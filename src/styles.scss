@@ -1,0 +1,50 @@
+
+/* You can add global styles to this file, and also import other style files */
+@import "normalize";
+@import "variables";
+@import "fonts";
+@import "common";
+@import "animate";
+*{
+    box-sizing: border-box;
+}
+/*html, body { min-height: 100%; }*/
+@import '~@angular/material/theming';
+
+$custom-typography: mat-typography-config($font-family: '"RobotoCondensed", normal !important;');
+@include mat-core($custom-typography);
+// body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+//Materials customization
+
+/* width */
+::-webkit-scrollbar {
+  width: 6px;    
+}
+
+/* Track */
+::-webkit-scrollbar-track:hover {
+  background-color: #eee;
+  opacity: .9;    
+  width: 15px;
+}
+
+
+::-webkit-scrollbar-track {
+  width: 10px;
+  background-color: $whiteColor;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background-color: $thumbColor;
+  border-radius: 6px;
+  transition: background-color .2s linear,width .2s ease-in-out;
+  -webkit-transition: background-color .2s linear,width .2s ease-in-out;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: $thumbHoverColor; 
+  width: 15px;
+}  

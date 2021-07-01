@@ -1,0 +1,137 @@
+@import "variables";
+.assessmentHeaderinfo {
+    font-weight: 700;
+    line-height: 2.2;
+    margin-top: 1em;
+
+    .heading6.flxView {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    span {
+        font-weight: normal;
+        line-height: 1.3;
+        color: $mediumGrey;
+    }
+    .primaryClick {
+        color:$primaryColor;
+        font-size: 0.8em;
+        cursor: pointer;
+    }
+}
+::ng-deep.assessmentInfoarea {
+    margin: 1.2em 0;
+
+    .mat-expansion-panel {
+    margin-bottom: 1.3em;
+    }
+    .mat-expansion-panel-header {
+        height: auto;
+        display: grid;
+        padding: 0 15px;
+        grid-template-areas: "mat-expansion mat-content";
+        grid-template-columns: 2em auto;
+        border-bottom: 0.1em solid $greyColor;
+        border-radius: 0;
+    }
+    .mat-expansion-panel-body {
+        padding: 0;
+    }
+    
+
+    span.mat-content {
+        display: initial;
+        grid-area: mat-content;
+    }
+    span.mat-expansion-indicator {
+        display: flex;
+        align-items: center;
+        grid-area: mat-expansion;
+        justify-content: center;
+    }
+    .expandheaderArea {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        margin: 1em 0;
+
+        div {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            padding: 0 0.4em;
+            border-right: 0.1em solid $greyColor;
+            margin-right: 1em;
+            &:last-child {
+                border: none;
+            }
+            &:nth-child(1), &:nth-child(2) {
+                flex-grow: 3;
+            }
+            em {
+                color: $lightGrey;
+                font-size: 2em;
+            }
+            > span {
+                font-size: 0.9em;
+                color: $lightGrey;
+                padding: 0 0.8em;
+                span {
+                    display: block;
+                    font-size: 1em;
+                    font-weight: 700; 
+                    color: $blackColor;
+                }
+            }
+        }
+    }
+    .ContentInfoDetails {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        flex-wrap: nowrap;
+        padding: 1em 1.6em;
+        border-bottom: 0.1em solid $greyColor;
+
+        div {
+            flex-grow: 1;
+            color: $lightGrey;
+            &.primaryInfo {
+                flex-grow: 2.5;
+            }
+        }
+        span {
+            display: block;
+            color: $blackColor;
+            font-size: 1.4em;
+            font-weight: 700;
+            line-height: 1.5;
+            span {
+                display: inline-block;
+                color: $lightGrey;
+                font-size: 0.68em;
+                font-weight: normal;
+                padding: 0 0.4em;
+            }
+        }
+    }
+    .ContentInfoSummary {
+        padding: 1em 1.6em;
+    }
+
+    //common styles
+    .successColor , .expandheaderArea div > span span.successColor, 
+    .ContentInfoDetails span.successColor, .ContentInfoDetails span.successColor span {
+        color:$successColor;
+    }
+    .warningColor , .expandheaderArea div > span span.warningColor, 
+    .ContentInfoDetails span.warningColor, .ContentInfoDetails span.warningColor span {
+        color:$primaryColor;
+    } 
+    .WarnColor , .expandheaderArea div > span span.WarnColor, 
+    .ContentInfoDetails span.WarnColor, .ContentInfoDetails span.WarnColor span {
+        color:#d68f0c;
+    }
+}
