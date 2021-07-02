@@ -1,12 +1,12 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: consumerportal
+  name: unifiedreport
   #annotations:
   #  service.beta.kubernetes.io/azure-load-balancer-internal: "true"
 spec:
   selector:
-    app: consumerportal
+    app: unifiedreport
   type: LoadBalancer
   ports:
   - name: http
