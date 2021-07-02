@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: consumerportal
+  name: unifiedreport
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: consumerportal
+      app: unifiedreport
   template:
     metadata:
       labels:
-        app: consumerportal
+        app: unifiedreport
     spec:
       containers:
-        - name: consumerportal
-          image: microcert.azurecr.io/consumerportal:$tag
+        - name: unifiedreport
+          image: microcert.azurecr.io/unifiedreport:$tag
           imagePullPolicy: Always
           ports:
           - containerPort: 80
