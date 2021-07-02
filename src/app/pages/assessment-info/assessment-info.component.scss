@@ -134,4 +134,91 @@
     .ContentInfoDetails span.WarnColor, .ContentInfoDetails span.WarnColor span {
         color:#d68f0c;
     }
+
+    .SummaryInfoArea {
+        padding:1em 0;
+        .summaryTable {
+            width:100%;
+
+        }
+        .summaryTable  tr th {
+            color: $lightGrey;
+            text-align: left;
+            padding: 0.8em 1.2em;
+            font-weight: 500;
+            border: 0.1em solid $greyColor;
+            border-right-width: 0;
+            width: 12%;
+            &:first-child {
+                width: 30%;
+            }
+            &:last-child {
+                border-right-width: 0.1em;
+            }
+        }
+        .summaryTable tr td {
+            color: $lightGrey;
+            text-align: left;
+            padding: 0.8em 1.2em;
+            font-weight: 500;
+            border: 0.1em solid $greyColor;
+            border-right-width: 0;
+            border-top-width: 0;
+            width: 12%;
+            position: relative;
+            &:first-child {
+                width: 30%;
+                color: $primaryColor;
+            }
+            &:nth-child(2) {
+                .progressbar {
+                    margin-left: -1px;
+                }
+            }
+            &:last-child {
+                border-right-width: 0.1em;
+                text-align: center;
+            }
+            span {
+                color: $blackColor;
+                font-size: 1.2em;
+                font-weight: 700;
+            }
+            .icon-Like {
+                color: $successColor;
+            }
+            .icon-Dislike {
+                color: $primaryColor;
+            }
+            .progressbar {
+                display: block;
+                position: absolute;
+                z-index: 1; 
+                top: 0;
+                bottom: 0;
+                left: 0;  
+            }
+            .progressdata { 
+                display: block;
+                position: relative;
+                z-index: 2;
+            }
+            .color-bluebar { 
+                background-color: #e1f4ff;
+                border-right: 0.3em solid #8fc7e2;
+            }
+            .color-pinkbar {
+                background-color: #ffe1eb;
+                border-right: 0.3em solid #f07f9e;
+            }
+            .color-greenbar {
+                background-color: #dcffed;
+                border-right: 0.3em solid #7ae4af;
+            }
+            .color-yellowbar {
+                background-color: #fff4dc;
+                border-right: 0.3em solid #fbe8a9;
+            }
+        }
+    }
 }

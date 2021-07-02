@@ -13,6 +13,7 @@ import { DocInfoComponent } from './pages/doc-info/doc-info.component';
 import { AssessmentInfoComponent } from './pages/assessment-info/assessment-info.component';
 import { CompetencyAreasComponent } from './pages/competency-areas/competency-areas.component';
 import { QualityAreaComponent } from './pages/quality-area/quality-area.component';
+import { NgxChartsModule} from '@swimlane/ngx-charts';
 
 
 @NgModule({
@@ -32,6 +33,7 @@ import { QualityAreaComponent } from './pages/quality-area/quality-area.componen
     ReactiveFormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    NgxChartsModule,
     MaterialModule
   ],
   providers: [],

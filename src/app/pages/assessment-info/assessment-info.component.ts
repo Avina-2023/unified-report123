@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class AssessmentInfoComponent implements OnInit {
 
   colorCode = 'Good';
+  iconBase = 'like';
   constructor() { }
 
   ngOnInit(): void {
