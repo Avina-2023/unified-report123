@@ -1,0 +1,41 @@
+@import "variables";
+.docInfoarea {
+    margin-top: 1.2em;
+    display: flex;
+    flex-direction: row;
+    > div {
+        width: 19%;
+        margin-right: 3%;
+        &:last-child {
+        width: 57%;
+        margin-right: 0;
+        }
+    }
+    span {
+        color: $mediumGrey;
+        font-size:0.9em;
+        display: block;
+        margin-bottom: 1em;
+    }
+    .formSet {
+        display: flex;
+        flex-direction: row;
+        align-content: flex-start; 
+        > div {
+            max-width: 33%;
+            min-height: 120px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            img {
+                min-height:120px;
+            }
+            &:last-child {
+                text-align: center;
+            }
+        }
+        span {
+            margin: 0;
+        }
+    }
+}
