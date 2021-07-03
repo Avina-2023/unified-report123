@@ -32,4 +32,7 @@ export class ApiService {
     return this.http.get('../../assets/json/reports.json');
   }
 
+  getUserList(data) {
+    return this.http.post(`${this.BASE_URL}/getuserList`, data);
+  }
 }

@@ -1,0 +1,12 @@
+<div class="search-icon mt-3 mb-0">
+    <div class="first">
+        <h2 class="result mb-0">Userlist</h2>
+    </div>
+    <div class="second">
+        <input class="search" matInput (keyup)="onQuickFilterChanged()" [(ngModel)]="quickSearchValue" placeholder="Search….">
+    </div>
+</div>
+<ag-grid-angular style="width: 98%; height: calc(100vh - 112px); margin:auto !important;" class="ag-theme-alpine" [rowData]="rowData" [enableCellTextSelection]="true" [suppressExcelExport]="true" [columnDefs]="columnDefs" [defaultColDef]="defaultColDef"
+    [tooltipShowDelay]="tooltipShowDelay" [pagination]="true" [suppressRowClickSelection]="true" [paginationPageSize]="paginationPageSize" [rowSelection]="'multiple'" [cacheBlockSize]="cacheBlockSize" (gridReady)="onGridReady($event)" (sortChanged)="sortevent($event)"
+    (cellClicked)="onCellClicked($event)" [enableCharts]="true" [enableRangeSelection]="true" (filterModified)="getModel($event)" headerHeight="40" [sideBar]="true" [rowGroupPanelShow]="'always'">
+</ag-grid-angular>

@@ -14,6 +14,8 @@
 $custom-typography: mat-typography-config($font-family: '"RobotoCondensed", normal !important;');
 @include mat-core($custom-typography);
 // body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+@import "../node_modules/ag-grid-community/dist/styles/ag-grid.css";
+@import "../node_modules/ag-grid-community/dist/styles/ag-theme-alpine.css";
 
 //Materials customization
 
@@ -48,3 +50,9 @@ $custom-typography: mat-typography-config($font-family: '"RobotoCondensed", norm
   background: $thumbHoverColor; 
   width: 15px;
 }  
+
+.ag-body-horizontal-scroll-viewport {
+  height: 1px !important;
+  max-height: 1px !important;
+  min-height: 1px !important;
+}
