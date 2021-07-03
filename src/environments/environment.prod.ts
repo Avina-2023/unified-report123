@@ -1,3 +1,9 @@
 export const environment = {
-  production: true
+  dev: false,
+  qa: false,
+  uat: false,
+  production: true,
+  local: false,
+
+  API_BASE_URL: 'https://unifiedreport.lntedutech.com',
 };

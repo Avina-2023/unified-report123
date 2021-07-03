@@ -3,7 +3,13 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  dev: false,
+  qa: false,
+  uat: false,
+  production: false,
+  local: true,
+
+  API_BASE_URL: 'https://unifiedreport.lntedutech.com',
 };
 
 /*
