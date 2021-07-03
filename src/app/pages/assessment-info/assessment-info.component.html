@@ -1,0 +1,322 @@
+<section>
+    <div class="assessmentHeaderinfo">
+        <div class="heading6">
+            Assessment Details
+        </div>
+    </div>
+
+    <div class="assessmentInfoarea">
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <div class="expandheaderArea">
+                    <div>
+                        <em class="icon-Assessment"></em>
+                        <span>Test Name:
+                            <span>Aptitude Assessment T1</span>
+                        </span>
+                    </div>
+                    <div>
+                        <em class="icon-Booked"></em>
+                        <span>Test Taken on:
+                            <span>June 15 2021 10:30:00 AM IST</span>
+                        </span>
+                    </div>
+                    <div>
+                        <em class="icon-SpeedoMeter"></em>
+                        <span>Score:
+                            <span [ngClass]="{'warningColor': colorCode == 'Weak', 'successColor': colorCode == 'Good', 'WarnColor': colorCode == 'Average'}">78/100</span>
+                        </span>
+                    </div>
+                    <div>
+                        <em class="icon-Like"></em>
+                        <span>Credibility Index:
+                            <span [ngClass]="{'warningColor': colorCode == 'Weak', 'successColor': colorCode == 'Good', 'WarnColor': colorCode == 'Average'}">Good</span>
+                        </span>
+                    </div>
+                </div>
+            </mat-expansion-panel-header>
+
+            <div class="expandContentArea">
+                <div class="ContentInfoDetails">
+                    <div>
+                        Test Time
+                        <span>30<span>/min</span></span>
+                    </div>
+                    <div>
+                        Test Taken
+                        <span>23<span>/min 46 Seconds</span></span>
+                    </div>
+                    <div>
+                        Marks Scored
+                        <span>78<span>/100</span></span>
+                    </div>
+                    <div>
+                        Proctoring
+                        <span>Yes<span class="warningColor">View Details</span></span>
+                    </div>
+                    <div class="primaryInfo">
+                        Compilation
+                        <span class="successColor"><em class="icon-checked"></em><span>Completed</span></span>
+                    </div>
+                </div>
+                <div class="ContentInfoSummary">
+                    <div class="assessmentHeaderinfo ">
+                        <div class="heading6 flxView">
+                            Sectional Summary
+                            <span class="primaryClick"><em class="icon-right-next"></em> View Questionwise Analysis</span>
+                        </div>
+                    </div>
+                    <div class="SummaryInfoArea">
+                            <table class="summaryTable" cellpadding="0" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>Section Name</th>
+                                        <th>Questions</th>
+                                        <th>Attempted</th>
+                                        <th>Score</th>
+                                        <th>Accuracy</th>
+                                        <th>Time Taken</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Basics of Data Structures</td>
+                                        <td>
+                                            <div class="progressbar color-bluebar" [ngStyle]="{'width':(10/15) * 100 + '%'}" ></div>
+                                            <div class="progressdata"><span>10</span>/15</div>
+                                        </td>
+                                        <td>
+                                            <div class="progressdata"><span>1</span>/1</div>
+                                        </td>
+                                        <td>
+                                            <div class="progressbar color-pinkbar" [ngStyle]="{'width':(10/100) * 100 + '%'}"  ></div>
+                                            <div class="progressdata"><span>10</span></div>
+                                        </td>
+                                        <td>
+                                            <div class="progressbar color-greenbar" [ngStyle]="{'width':(67/100) * 100 + '%'}"  ></div>
+                                            <div class="progressdata"><span>67%</span></div>
+                                        </td>
+                                        <td>
+                                            <div class="progressbar color-yellowbar" [ngStyle]="{'width':(8.1/10) * 100 + '%'}" ></div>
+                                            <div class="progressdata"><span>08.00</span>/10mins</div>
+                                        </td>
+                                        <td>
+                                            <div class="likeSec">
+                                                <em [ngClass]="{'icon-Like' : iconBase == 'like', 'icon-Dislike' : iconBase == 'Dislike' }"></em></div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                    </div>
+                </div>
+
+            </div>
+
+        </mat-expansion-panel> 
+
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <div class="expandheaderArea">
+                    <div>
+                        <em class="icon-Assessment"></em>
+                        <span>Test Name:
+                            <span>Aptitude Assessment T1</span>
+                        </span>
+                    </div>
+                    <div>
+                        <em class="icon-Booked"></em>
+                        <span>Test Taken on:
+                            <span>June 15 2021 10:30:00 AM IST</span>
+                        </span>
+                    </div>
+                    <div>
+                        <em class="icon-SpeedoMeter"></em>
+                        <span>Score:
+                            <span class="warningColor">35/100</span>
+                        </span>
+                    </div>
+                    <div>
+                        <em class="icon-Like"></em>
+                        <span>Credibility Index:
+                            <span class="warningColor">Weak</span>
+                        </span>
+                    </div>
+                </div>
+            </mat-expansion-panel-header>
+            <div class="expandContentArea">
+                <div class="ContentInfoDetails">
+                    <div>
+                        Test Time
+                        <span>30<span>/min</span></span>
+                    </div>
+                    <div>
+                        Test Taken
+                        <span>23<span>/min 46 Seconds</span></span>
+                    </div>
+                    <div>
+                        Marks Scored
+                        <span>78<span>/100</span></span>
+                    </div>
+                    <div>
+                        Proctoring
+                        <span>Yes<span class="warningColor">View Details</span></span>
+                    </div>
+                    <div class="primaryInfo">
+                        Compilation
+                        <span class="successColor"><em class="icon-checked"></em><span>Completed</span></span>
+                    </div>
+                </div>
+                <div class="ContentInfoSummary">
+                    <div class="assessmentHeaderinfo ">
+                        <div class="heading6 flxView">
+                            Sectional Summary
+                            <span class="primaryClick"><em class="icon-right-next"></em> View Questionwise Analysis</span>
+                        </div>
+                    </div>
+                    <div class="SummaryInfoArea">
+                        <table class="summaryTable" cellpadding="0" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>Section Name</th>
+                                    <th>Questions</th>
+                                    <th>Attempted</th>
+                                    <th>Score</th>
+                                    <th>Accuracy</th>
+                                    <th>Time Taken</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Basics of Data Structures</td>
+                                    <td>
+                                        <div class="progressbar color-bluebar" [ngStyle]="{'width':(10/15) * 100 + '%'}"></div>
+                                        <div class="progressdata"><span>10</span>/15</div>
+                                    </td>
+                                    <td>
+                                        <div class="progressdata"><span>1</span>/1</div>
+                                    </td>
+                                    <td>
+                                        <div class="progressbar color-pinkbar" [ngStyle]="{'width':(10/100) * 100 + '%'}"></div>
+                                        <div class="progressdata"><span>10</span></div>
+                                    </td>
+                                    <td>
+                                        <div class="progressbar color-greenbar" [ngStyle]="{'width':(67/100) * 100 + '%'}"></div>
+                                        <div class="progressdata"><span>67%</span></div>
+                                    </td>
+                                    <td>
+                                        <div class="progressbar color-yellowbar" [ngStyle]="{'width':(8.1/10) * 100 + '%'}"></div>
+                                        <div class="progressdata"><span>08.00</span>/10mins</div>
+                                    </td>
+                                    <td>
+                                        <div class="likeSec">
+                                            <em
+                                                [ngClass]="{'icon-Like' : iconBase == 'like', 'icon-Dislike' : iconBase == 'Dislike' }"></em>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Concepts of Databases</td>
+                                    <td>
+                                        <div class="progressbar color-bluebar" [ngStyle]="{'width':(5/10) * 100 + '%'}"></div>
+                                        <div class="progressdata"><span>5</span>/10</div>
+                                    </td>
+                                    <td>
+                                        <div class="progressdata"><span>1</span>/1</div>
+                                    </td>
+                                    <td>
+                                        <div class="progressbar color-pinkbar" [ngStyle]="{'width':(5/10) * 100 + '%'}"></div>
+                                        <div class="progressdata"><span>5</span></div>
+                                    </td>
+                                    <td>
+                                        <div class="progressbar color-greenbar" [ngStyle]="{'width':(50/100) * 100 + '%'}"></div>
+                                        <div class="progressdata"><span>50%</span></div>
+                                    </td>
+                                    <td>
+                                        <div class="progressbar color-yellowbar" [ngStyle]="{'width':(5.1/10) * 100 + '%'}"></div>
+                                        <div class="progressdata"><span>05.00</span>/10mins</div>
+                                    </td>
+                                    <td>
+                                        <div class="likeSec">
+                                            <em
+                                                [ngClass]="{'icon-Like' : iconBase == 'like', 'icon-Dislike' : iconBase == 'Dislike' }"></em>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </mat-expansion-panel> 
+
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <div class="expandheaderArea">
+                    <div>
+                        <em class="icon-Assessment"></em>
+                        <span>Test Name:
+                            <span>Aptitude Assessment T1</span>
+                        </span>
+                    </div>
+                    <div>
+                        <em class="icon-Booked"></em>
+                        <span>Test Taken on:
+                            <span>June 15 2021 10:30:00 AM IST</span>
+                        </span>
+                    </div>
+                    <div>
+                        <em class="icon-SpeedoMeter"></em>
+                        <span>Score:
+                            <span class="WarnColor">58/100</span>
+                        </span>
+                    </div>
+                    <div>
+                        <em class="icon-Like"></em>
+                        <span>Credibility Index:
+                            <span class="WarnColor">Average</span>
+                        </span>
+                    </div>
+                </div>
+            </mat-expansion-panel-header>
+            <div class="expandContentArea">
+                <div class="ContentInfoDetails">
+                    <div>
+                        Test Time
+                        <span>30<span>/min</span></span>
+                    </div>
+                    <div>
+                        Test Taken
+                        <span>23<span>/min 46 Seconds</span></span>
+                    </div>
+                    <div>
+                        Marks Scored
+                        <span>78<span>/100</span></span>
+                    </div>
+                    <div>
+                        Proctoring
+                        <span>Yes<span class="warningColor">View Details</span></span>
+                    </div>
+                    <div class="primaryInfo">
+                        Compilation
+                        <span class="successColor"><em class="icon-checked"></em><span>Completed</span></span>
+                    </div>
+                </div>
+                <div class="ContentInfoSummary">
+                    <div class="assessmentHeaderinfo ">
+                        <div class="heading6 flxView">
+                            Sectional Summary
+                            <span class="primaryClick"><em class="icon-right-next"></em> View Questionwise Analysis</span>
+                        </div>
+                    </div>
+                    <div class="SummaryInfoArea">
+
+                    </div>
+                </div>
+
+            </div>
+        </mat-expansion-panel> 
+    </div> 
+</section>

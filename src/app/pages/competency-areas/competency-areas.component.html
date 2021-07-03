@@ -1,0 +1,60 @@
+<section>
+    <div class="Headerinfo">
+        <div class="heading6">
+            Competency Area
+        </div> 
+        
+    </div>
+    <div class="InfoDetailsArea">
+        <div class="leftPan">
+           
+                    <div class="heading6">Competencies</div>
+                    <div class="mat-card-header-text">Click on the respective competency to view the details</div>
+              
+                    <ngx-charts-bar-vertical 
+                    [view]="view" 
+                    [scheme] ="colorScheme" 
+                    [results]="single" 
+                    [gradient]="gradient"  
+                    [roundEdges]="roundEdges"
+                    [xAxis]="showXAxis"
+                     [yAxis]="showYAxis" 
+                     [legend]="showLegend" 
+                     [showXAxisLabel]="showXAxisLabel" 
+                     [showYAxisLabel]="showYAxisLabel"  
+                     (select)="onSelect($event)">
+                    </ngx-charts-bar-vertical>
+               
+        </div>
+        <div class="rightPan">
+            <div class="heading4">Aptitude <span>50%</span></div>
+            <div class="heading6">Skills</div>
+            <div>
+            <ngx-charts-bar-horizontal 
+            [view]="viewhori" 
+            [scheme] ="colorSchemeHori"
+            [showGridLines] = "showGridLineshori"
+            [results]="Skills" 
+            [gradient]="gradient"  
+            [roundEdges]="roundEdges"
+            [xAxis]="showXAxishori"
+             [yAxis]="showYAxis" 
+             [legend]="showLegend" 
+             [showXAxisLabel]="showXAxisLabel" 
+             [showYAxisLabel]="showYAxisLabel"  
+             (select)="onSelect($event)">
+            </ngx-charts-bar-horizontal>
+        </div>
+            <div class="heading6">Areas</div>
+            <div class="areasbtnsec">
+                <span class="btnBox btnBlue">Areas - 1</span>
+                <span class="btnBox btnGreen">Areas - 1</span>
+                <span class="btnBox btnWarn">Areas - 1</span>
+                <span class="btnBox btnRed">Areas - 1</span>
+
+            </div>
+        </div>
+        <span class="triangle-left"></span>
+
+    </div>
+</section>
