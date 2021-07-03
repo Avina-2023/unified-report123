@@ -1,3 +1,4 @@
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { NgModule } from '@angular/core';
 
 
@@ -13,8 +14,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 // import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
-import { MatSliderModule } from '@angular/material/slider';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+// import { MatSliderModule } from '@angular/material/slider';
+// import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 // Material Navigation
 // ----------------------------------------------------------------
@@ -26,9 +27,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-// import { MatSidenavModule } from '@angular/material/sidenav';
-// import { MatToolbarModule } from '@angular/material/toolbar';
-
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 // Material Layout
 // -----------------------------------------------------------------
 // import { MatCardModule } from '@angular/material/card';
@@ -55,7 +56,6 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 // import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { MatDialogModule } from '@angular/material/dialog';
 // import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatNativeDateModule } from '@angular/material/core';
 
 // Material Data tables
@@ -84,10 +84,11 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatDatepickerModule,
     MatNativeDateModule,
     MatSelectModule,
-    MatSliderModule,
+    MatBadgeModule,
+    MatToolbarModule,
+    MatSidenavModule,
     MatSlideToggleModule,
-    MatBadgeModule
-],
+  ],
   exports: [
     MatMenuModule,
     MatTabsModule,
@@ -106,9 +107,10 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatDatepickerModule,
     MatNativeDateModule,
     MatSelectModule,
-    MatSliderModule,
-    MatSlideToggleModule,
-    MatBadgeModule
+    MatBadgeModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatSlideToggleModule
   ]
 })
 export class MaterialModule { }
