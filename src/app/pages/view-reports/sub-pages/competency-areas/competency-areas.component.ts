@@ -25,47 +25,8 @@ export class CompetencyAreasComponent implements OnInit {
     domain: ['#8ac1ed', '#a4dea5', '#f7d096', '#e89694']
   };
 
-  single = [
-    {
-      "name": "Aptitude",
-      "value": 50
-    },
-    {
-      "name": "Psychometric",
-      "value": 80
-    },
-    {
-      "name": "Coding",
-      "value": 90
-    },
-    {
-      "name": "Domain",
-      "value": 50
-    },
-    {
-      "name": "Communication",
-      "value": 70
-    }
-  ];
-
-  Skills = [
-    {
-      "name": "Situational",
-      "value": 50
-    },
-    {
-      "name": "Verbal",
-      "value": 80
-    },
-    {
-      "name": "Numerical",
-      "value": 90
-    },
-    {
-      "name": "Diagramatic",
-      "value": 50
-    } 
-  ];
+  Skills = [50, 80, 90, 50, 70];
+  labels = ["Aptitude", "Psychometric", "Coding", "Domain", "Communication"];
 
 
   constructor() { }

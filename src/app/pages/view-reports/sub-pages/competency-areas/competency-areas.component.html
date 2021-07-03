@@ -10,8 +10,9 @@
            
                     <div class="heading6">Competencies</div>
                     <div class="mat-card-header-text">Click on the respective competency to view the details</div>
-              
-                    <ngx-charts-bar-vertical 
+                    <app-bar-chart [orientation]="'x'" [chartType]="'bar'" [values]="Skills" [labels]="labels" ></app-bar-chart>
+
+                    <!-- <ngx-charts-bar-vertical 
                     [view]="view" 
                     [scheme] ="colorScheme" 
                     [results]="single" 
@@ -23,14 +24,16 @@
                      [showXAxisLabel]="showXAxisLabel" 
                      [showYAxisLabel]="showYAxisLabel"  
                      (select)="onSelect($event)">
-                    </ngx-charts-bar-vertical>
+                    </ngx-charts-bar-vertical> -->
                
         </div>
         <div class="rightPan">
             <div class="heading4">Aptitude <span>50%</span></div>
             <div class="heading6">Skills</div>
             <div>
-            <ngx-charts-bar-horizontal 
+                <app-bar-chart [orientation]="'y'" [chartType]="'bar'" [values]="Skills" [labels]="labels" ></app-bar-chart>
+
+            <!-- <ngx-charts-bar-horizontal 
             [view]="viewhori" 
             [scheme] ="colorSchemeHori"
             [showGridLines] = "showGridLineshori"
@@ -43,7 +46,7 @@
              [showXAxisLabel]="showXAxisLabel" 
              [showYAxisLabel]="showYAxisLabel"  
              (select)="onSelect($event)">
-            </ngx-charts-bar-horizontal>
+            </ngx-charts-bar-horizontal> -->
         </div>
             <div class="heading6">Areas</div>
             <div class="areasbtnsec">

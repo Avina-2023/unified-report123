@@ -3,68 +3,72 @@
         <div class="heading6">
         Drive Information
         </div>
-        <span>Campus Assessment_01_2021</span>
+        <mat-select class="matSelect" (selectionChange)="driveChange($event)" placeholder="Select Drive" [(ngModel)]="driveselectedValue" name="list">
+            <mat-option *ngFor="let list of driveList" [value]="list.drivename">
+                {{list.drivename}}
+            </mat-option>
+        </mat-select>
     </div>
     <div class="profileHeaderinfo">
         <div class="heading6">
             Candidate Details
         </div>
     </div>
-    <div class="profileInfoarea">
+    <div class="profileInfoarea" *ngIf="personalInfo">
         <div class="profileInfoSec">
             <div>
                 First Name:
-               <span> Prabhu Bandari </span>
+               <span> {{personalInfo.firstname}} </span>
             </div>
             <div>
                 Last Name:
-                <span>Prabhu Bandari</span>
+                <span>{{personalInfo.lastname}}</span>
             </div>
             <div>
                 Date of birth:
-                <span>Prabhu Bandari</span>
+                <span>{{personalInfo.DOB}}</span>
             </div>
             <div>
                 Father's Name:
-                <span>Ravikumar Bandari</span>
+                <span>{{personalInfo.fathername}}</span>
             </div>
             <div>
                 Gender:
-                <span>Male</span>
+                <span>{{personalInfo.gender}}</span>
             </div>
             <div>
                 Contact No:
-                <span> 90000 00000</span>
+                <span> {{personalInfo.mobile}}</span>
             </div>
             <div>
                Address:
-               <span>19th Main, 8th Cross, Vijayanagara 3rd stage, Mysore - 570027</span>
+               <span>{{personalInfo.address}}</span>
             </div>
         </div>
         <div class="profileInfoSec">
             <div>
                 College/University:
-                <span> Vidyavardhaka College of Engineering</span>
+                <span> {{personalInfo.institute}}</span>
             </div>
             <div>
                 State/City:
-                <span>Karnataka, Mysore</span>
+                <span>{{personalInfo.city}}</span>
             </div>
             <div>
                 Specialization:
-                <span> Bachelor of Engineering</span>
+                <span> {{personalInfo.specialization}}</span>
             </div>
             <div>
                 Branch:
-                <span>Electronics & Communication</span>
+                <span>{{personalInfo.branch}}</span>
             </div>
             <div>
                 Passing year:
-                <span>2001</span>
+                <span>{{personalInfo.passedOut}}</span>
             </div>
             <div>
                 Graduation Aggregate: 
-                <span>85%</span>
+                <span>{{personalInfo.percentage}}</span>
             </div>
         </div>
     </div>

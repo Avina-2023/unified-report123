@@ -12,11 +12,8 @@ export class AssessmentInfoComponent implements OnInit, OnChanges {
   constructor() { }
 
   ngOnInit(): void {
-    console.log('child assessmentinfor component', this.getAllReportsData);
-    
   }
 
   ngOnChanges() {
-    console.log('child onchange assessmentinfor component', this.getAllReportsData);
   }
 }
