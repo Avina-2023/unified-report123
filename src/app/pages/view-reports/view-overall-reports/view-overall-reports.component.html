@@ -1,4 +1,9 @@
 <div class="container">
+    <div class="mt-2 mb-2 d-flex align-content-center" style="font-size: 20px; cursor: pointer;">
+    <span class="material-icons" (click)="onBack()">arrow_back</span>
+    <span class="ml-2" (click)="onBack()">Back</span>
+</div>
+
     <app-profile-info (driveName)="getSelectedDriveName($event)" [getAllReportsData]="getAllReportsData"></app-profile-info>
     <app-doc-info [getAllReportsData]="getAllReportsData"></app-doc-info>
     <app-assessment-info [driveName]="driveName" [getAllReportsData]="getAllReportsData"></app-assessment-info>

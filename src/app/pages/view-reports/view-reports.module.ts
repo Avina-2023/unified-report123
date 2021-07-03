@@ -10,6 +10,8 @@ import { CompetencyAreasComponent } from './sub-pages/competency-areas/competenc
 import { DocInfoComponent } from './sub-pages/doc-info/doc-info.component';
 import { ProfileInfoComponent } from './sub-pages/profile-info/profile-info.component';
 import { QualityAreaComponent } from './sub-pages/quality-area/quality-area.component';
+import { UserListComponent } from './user-list/user-list.component';
+import { AgGridModule } from 'ag-grid-angular';
 
 
 @NgModule({
@@ -19,13 +21,15 @@ import { QualityAreaComponent } from './sub-pages/quality-area/quality-area.comp
     AssessmentInfoComponent,
     CompetencyAreasComponent,
     QualityAreaComponent,
-    ViewOverallReportsComponent
+    ViewOverallReportsComponent,
+    UserListComponent
   ],
   imports: [
     CommonModule,
     ViewReportsRoutingModule,
     SharedModule,
-    MaterialModule
+    MaterialModule,
+    AgGridModule.withComponents([])
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]
 })
