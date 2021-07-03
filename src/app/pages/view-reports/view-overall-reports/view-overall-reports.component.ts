@@ -10,6 +10,7 @@ import { Component, OnInit } from '@angular/core';
 export class ViewOverallReportsComponent implements OnInit {
 
   getAllReportsData: any;
+  driveName: any;
 
   constructor(private toastr: ToastrService, private ApiService: ApiService) { }
 
@@ -34,6 +35,7 @@ export class ViewOverallReportsComponent implements OnInit {
   getSelectedDriveName(e) {
     if (this.getAllReportsData) {
       this.getAllReportsData.selectedDriveName = e;
+      this.driveName = e;      
     }    
   }
 }
