@@ -75,7 +75,6 @@ export class BarChartComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    console.log('coming to', this.chartValues, this.chartLabels, this.chartContainer);
     this.canvas = this.chartContainer.nativeElement;
     this.ctx = this.canvas.getContext('2d');
     let chartdata:any = {

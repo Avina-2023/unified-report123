@@ -24,8 +24,11 @@ export class ApiService {
     return this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.LOGIN);
   }
 
-  getReportsData() {
-    // return this.http.get(`${this.BASE_URL}/tao/views/api/dynamicreports/listserverapi.php`);
+  getReportsDataAPI(data) {
+    return this.http.post(`${this.BASE_URL}/getunifiedReport`, data);
+  }
+
+  getReportsData(data) {
     return this.http.get('../../assets/json/reports.json');
   }
 

@@ -5,5 +5,5 @@ export const environment = {
   production: true,
   local: false,
 
-  API_BASE_URL: 'https://unifiedreport.lntedutech.com',
+  API_BASE_URL: 'https://candidate.lntiggnite.com',
 };

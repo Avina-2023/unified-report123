@@ -9,7 +9,7 @@ export const environment = {
   production: false,
   local: true,
 
-  API_BASE_URL: 'https://unifiedreport.lntedutech.com',
+  API_BASE_URL: 'https://candidate.lntiggnite.com',
 };
 
 /*

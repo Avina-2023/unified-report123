@@ -18,10 +18,12 @@ export class ViewOverallReportsComponent implements OnInit {
   }
 
   getReports() {
-    this.ApiService.getReportsData().subscribe((response: any)=> {
-      console.log('response', response);
+    const apiData = {
+      email: "sr-venkadesh@lntecc.com"
+    }
+    this.ApiService.getReportsDataAPI(apiData).subscribe((response: any)=> {
       if (response && response.success) {
-        this.getAllReportsData = response.data;
+        this.getAllReportsData = response.data && response.data[0] ? response.data[0] : null;
       } else {
         this.toastr.error('No Reports Available');
         this.getAllReportsData = [];
@@ -29,4 +31,9 @@ export class ViewOverallReportsComponent implements OnInit {
     });
   }
 
+  getSelectedDriveName(e) {
+    if (this.getAllReportsData) {
+      this.getAllReportsData.selectedDriveName = e;
+    }    
+  }
 }
