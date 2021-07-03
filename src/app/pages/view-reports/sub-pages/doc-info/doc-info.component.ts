@@ -1,3 +1,4 @@
+import { environment } from 'src/environments/environment';
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
 
 @Component({
@@ -7,7 +8,7 @@ import { Component, Input, OnChanges, OnInit } from '@angular/core';
 })
 export class DocInfoComponent implements OnInit, OnChanges {
   @Input() getAllReportsData;
-
+  blobkey = environment.blobKey;
   profilePic: any;
   certificationList: any;
   constructor() { }

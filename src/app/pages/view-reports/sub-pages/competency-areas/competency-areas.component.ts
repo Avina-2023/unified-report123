@@ -50,19 +50,22 @@ export class CompetencyAreasComponent implements OnInit {
   }
 
   getCompetancyData(){
+    console.log('adad', this.getAllReportsData);    
     let horiSkilles = [];
     this.competancyData = this.getAllReportsData?.competencyDetails;
-    this.competancyData?.forEach(labNames => {
-    this.competencieslabels.push(labNames?.competencyname);
-    console.log( this.competencieslabels,' this.competencieslabels')
-    });
-    horiSkilles.push(this.competancyData ? this.competancyData[0].skills:'');
-    horiSkilles?.forEach(element => {
-      element?.forEach(element1 => {
-        this.skilllabels.push(element1?.skillname)
-        this.Skills1.push(element1?.score,'skillscore')
-       });
-    });
-  }
+    if (this.competancyData && this.competancyData.length > 0) {
+      this.competancyData?.forEach(labNames => {
+        this.competencieslabels.push(labNames?.competencyname);
+        console.log( this.competencieslabels,' this.competencieslabels')
+        });
+        horiSkilles.push(this.competancyData ? this.competancyData[0].skills:'');
+        horiSkilles?.forEach(element => {
+          element?.forEach(element1 => {
+            this.skilllabels.push(element1?.skillname)
+            this.Skills1.push(element1?.score)
+           });
+        });
+      }    
+    }
 
 }
