@@ -8,6 +8,7 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { PerfectScrollbarConfigInterface, PerfectScrollbarModule, PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { BarChartComponent } from './bar-chart/bar-chart.component';
+import { HorizontalBarChartComponent } from './horizontal-bar-chart/horizontal-bar-chart.component';
 
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -18,7 +19,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   declarations: [
     HeaderComponent,
     FooterComponent,
-    BarChartComponent
+    BarChartComponent,
+    HorizontalBarChartComponent
   ],
   imports: [
     CommonModule,
@@ -38,7 +40,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     HeaderComponent,
     FooterComponent,
     NgxChartsModule,
-    BarChartComponent
+    BarChartComponent,
+    HorizontalBarChartComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
   providers: [

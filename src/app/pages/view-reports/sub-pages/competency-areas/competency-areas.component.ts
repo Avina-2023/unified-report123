@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-competency-areas',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./competency-areas.component.scss']
 })
 export class CompetencyAreasComponent implements OnInit { 
+  @Input() getAllReportsData;
+  competancyData = [];
   view: any[] = [350, 350]; 
   viewhori: any[] = [400, 125];   
   showXAxis = true;
@@ -26,16 +28,41 @@ export class CompetencyAreasComponent implements OnInit {
   };
 
   Skills = [50, 80, 90, 50, 70];
-  labels = ["Aptitude", "Psychometric", "Coding", "Domain", "Communication"];
+  Skills1 = [];
+  competencieslabels = [];
+  skilllabels = [];
 
 
-  constructor() { }
-
-  ngOnInit(): void { 
+  constructor() { 
   }
+
+  ngOnInit(): void {
+  this.getCompetancyData();
+  }
+
+  ngOnChanges() {
+    this.getCompetancyData();
+  }
+
 
   onSelect(event) {
     console.log(event);
+  }
+
+  getCompetancyData(){
+    let horiSkilles = [];
+    this.competancyData = this.getAllReportsData?.competencyDetails;
+    this.competancyData?.forEach(labNames => {
+    this.competencieslabels.push(labNames?.competencyname);
+    console.log( this.competencieslabels,' this.competencieslabels')
+    });
+    horiSkilles.push(this.competancyData ? this.competancyData[0].skills:'');
+    horiSkilles?.forEach(element => {
+      element?.forEach(element1 => {
+        this.skilllabels.push(element1?.skillname)
+        this.Skills1.push(element1?.score,'skillscore')
+       });
+    });
   }
 
 }

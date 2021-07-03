@@ -19,7 +19,7 @@ import { QualityAreaComponent } from './sub-pages/quality-area/quality-area.comp
     AssessmentInfoComponent,
     CompetencyAreasComponent,
     QualityAreaComponent,
-    ViewOverallReportsComponent
+    ViewOverallReportsComponent,
   ],
   imports: [
     CommonModule,
