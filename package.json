@@ -24,6 +24,7 @@
     "@swimlane/ngx-charts": "^18.0.1",
     "ag-grid-angular": "^25.3.0",
     "ag-grid-community": "^25.3.0",
+    "angular-responsive-carousel": "^2.1.1",
     "bootstrap": "^4.5.2",
     "chart.js": "^3.3.2",
     "ngx-perfect-scrollbar": "^10.1.1",

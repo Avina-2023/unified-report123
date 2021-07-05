@@ -3,22 +3,20 @@
 .Headerinfo {
     font-weight: 700;
     line-height: 2.2;
-    margin-top: 1em;
+    margin-top: 2.5em;
+    margin-bottom: 1.5em;
 }
 .InfoDetailsArea {
     position: relative;
     display: flex;
-    justify-content: space-between;
-    border:0.1em solid $greyColor;
+    justify-content: space-between; 
     border-bottom: none;
     border-right: none;
     margin-top: 1.2em;
-    box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%), 
-                0px 2px 2px 0px rgb(0 0 0 / 14%), 
-                0px 1px 5px 0px rgb(0 0 0 / 12%);
+    box-shadow:0px 1px 5px 0px rgb(0 0 0 / 12%);
 
     > div {
-        padding: 1.3em 2em;
+        padding: 2em 2em;
         width: 50%;
         color: $lightGrey;
         display: flex;
@@ -26,6 +24,14 @@
     }            
     .leftPan { 
         background-color: $whiteColor; 
+        justify-content: space-between;
+        .heading6 {
+            margin-bottom: 0.6em;
+        }
+        .mat-card-header-text {
+            font-size: 0.7em;
+            margin-top: 0.6em;
+        }
     }   
     .rightPan { 
         background-color: #f2f2f2; 

@@ -8,13 +8,18 @@
             <span>Identity Card Snapshot</span>
             <img src="../../../assets/images/panCard.jpg" alt="Identity" />
         </div>
+        <div>
+            <carousel [src]="images" [cellsToShow]="3" [loop]="true" [autoplay]="true" 
+                    [autoplayInterval]="3000" >
+                    <span>{{'test'}}</span> </carousel> 
+        </div>
         <ng-container *ngIf="certificationList && certificationList.length > 0 && false">
         <div *ngFor="let cert of certificationList; let i = index">
             <span>Upload Documents</span>
             <div class="formSet">
                 <div>
                     <img [src]="cert['url']" alt="Eligibility" />
-                    <span>{{cert?.name}}</span>
+                    <span>{{cert?.name}}</span> 
                 </div>
             </div>
         </div>
