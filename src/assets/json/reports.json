@@ -1,0 +1,303 @@
+{
+    "success":true,
+    "message":"UnifiedReportDetails Fetched Successfully.",
+    "data":[
+       {
+          "_id":"60dc4a59f9b4bcf03ef8be3d",
+          "firstname":"Venkadesh",
+          "lastname":"SR",
+          "email":"sr-venkadesh@lntecc.com",
+          "mobile":"8474848494",
+          "nationality":"Indian",
+          "gender":"Male",
+          "DOB":"8/18/1990",
+          "fathername":"S Raman",
+          "profileImage":"https://microcertstg.blob.core.windows.net/container1/catalogueImageUpload/33459891272297515-vivek001.jpg",
+          "educationalDetails":[
+             {
+                "level":"SSLC",
+                "Board":"State",
+                "Insitite":"Sri gurunanak high school",
+                "percentage":65,
+                "url":"http://profile/certificate/sslc"
+             },
+             {
+                "level":"HSC",
+                "Board":"State",
+                "Insitite":"Velammal Higher sec school",
+                "percentage":78,
+                "url":"http://profile/certificate/hsc"
+             },
+             {
+                "level":"UG",
+                "Board":"Anna universty",
+                "Insitite":"Anna universty",
+                "specialization":"Bachelor of Engineering",
+                "branch":"Electronics & Communication",
+                "passedout":"2015",
+                "percentage":71,
+                "url":"http://profile/certificate/ug"
+             }
+          ],
+          "presentAddress":{
+             "line1":"434 shanmuga street",
+             "line2":"2 nd cross Street",
+             "state":"Tamilnadu",
+             "city":"chennai",
+             "pincode":"610432"
+          },
+          "permanentAddress":{
+             "line1":"434 shanmuga street",
+             "line2":"2 nd cross Street",
+             "state":"Tamilnadu",
+             "city":"chennai",
+             "pincode":"610432"
+          },
+          "driveDetails":[
+             {
+                "drivename":"Fresher hiring 2021-1",
+                "assessments":[
+                   {
+                      "assessmentname":"Test 1",
+                      "assessmentdate":"2021-06-23T07:00:00.000Z",
+                      "score":70,
+                      "source":"Wecp",
+                      "catagory":"Btech",
+                      "skillId":"S01",
+                      "domainId":"D01",
+                      "proctored":true,
+                      "proctoredlink":"http://profile/proctoredlink",
+                      "section":[
+                         {
+                            "secname":"SecA",
+                            "score":80
+                         },
+                         {
+                            "secname":"SecB",
+                            "score":60
+                         }
+                      ]
+                   },
+                   {
+                      "assessmentname":"Test 2",
+                      "assessmentdate":"2021-06-23T07:00:00.000Z",
+                      "score":78,
+                      "source":"TAO",
+                      "catagory":"Btech",
+                      "skillId":"S01",
+                      "domainId":"D01",
+                      "proctored":false,
+                      "section":[
+                         {
+                            "secname":"SecA",
+                            "score":82
+                         },
+                         {
+                            "secname":"SecB",
+                            "score":74
+                         }
+                      ]
+                   }
+                ]
+             },
+             {
+                "drivename":"Fresher hiring 2021-2",
+                "assessments":[
+                   {
+                      "assessmentname":"Test 1",
+                      "assessmentdate":"2021-06-23T07:00:00.000Z",
+                      "score":78,
+                      "source":"TAO",
+                      "catagory":"Btech",
+                      "skillId":"S01",
+                      "domainId":"D01",
+                      "proctored":true,
+                      "proctoredlink":"http://profile/proctoredlink",
+                      "section":[
+                         {
+                            "secname":"SecA",
+                            "score":75
+                         },
+                         {
+                            "secname":"SecB",
+                            "score":81
+                         }
+                      ]
+                   },
+                   {
+                      "assessmentname":"Test 2",
+                      "assessmentdate":"2021-06-23T07:00:00.000Z",
+                      "score":72,
+                      "source":"TAO",
+                      "catagory":"Btech",
+                      "skillId":"S01",
+                      "domainId":"D01",
+                      "proctored":true,
+                      "proctoredlink":"http://profile/proctoredlink",
+                      "section":[
+                         {
+                            "secname":"SecA",
+                            "score":70
+                         },
+                         {
+                            "secname":"SecB",
+                            "score":74
+                         }
+                      ]
+                   }
+                ]
+             }
+          ],
+          "competencyDetails":[
+             {
+                "competencyname":"Soft Skills",
+                "competencyId":"C01",
+                "skills":[
+                   {
+                      "skillname":"Nodejs",
+                      "skillID":"S01",
+                      "score":56,
+                      "area":[
+                         {
+                            "areaname":"express",
+                            "score":62
+                         },
+                         {
+                            "areaname":"package",
+                            "score":70
+                         }
+                      ]
+                   },
+                   {
+                      "skillname":"Angular",
+                      "skillID":"S02",
+                      "score":34,
+                      "area":[
+                         {
+                            "areaname":"Modules",
+                            "score":58
+                         },
+                         {
+                            "areaname":"ng tables",
+                            "score":64
+                         }
+                      ]
+                   },
+                   {
+                      "skillname":"React",
+                      "skillID":"S02",
+                      "score":49,
+                      "area":[
+                         {
+                            "areaname":"reactjs",
+                            "score":58
+                         },
+                         {
+                            "areaname":"ng tables",
+                            "score":64
+                         }
+                      ]
+                   }
+                ]
+             },
+             {
+                "competencyname":"cognitive",
+                "competencyId":"C02",
+                "skills":[
+                   {
+                      "skillname":"Logical Reasoning",
+                      "skillID":"S03",
+                      "score":78,
+                      "area":[
+                         {
+                            "areaname":"Quantitative",
+                            "score":75
+                         }
+                      ]
+                   },
+                   {
+                      "skillname":"Verbal Reasoning",
+                      "skillID":"S04",
+                      "score":58,
+                      "area":[
+                         {
+                            "areaname":"Data skills",
+                            "score":75
+                         }
+                      ]
+                   }
+                ]
+             }
+          ],
+          "certificationDetails":[
+             {
+                "name":"Hydraulics & Water Resources",
+                "domainname":"Civil",
+                "domainId":"D001",
+                "authority":"L&T Edutech",
+                "licenseNumber":"LT536327366363-64773",
+                "fromdate":"2021-06-23T07:00:00.000Z",
+                "todate":"2022-06-23T07:00:00.000Z",
+                "url":"http://certificate/Civil",
+                "completeddate":"2021-06-23T07:00:00.000Z",
+                "expireddate":"2022-06-23T07:00:00.000Z",
+                "levelId":"L001",
+                "levelname":"Level 1",
+                "badgeId":"B01",
+                "badgename":"badge3.png"
+             },
+             {
+                "name":"Python Basics for Data Science",
+                "domainname":"Information Technology",
+                "domainId":"D005",
+                "authority":"L&T Edutech",
+                "licenseNumber":"LT536327366363-64773",
+                "fromdate":"2021-03-10T07:00:00.000Z",
+                "todate":"2022-06-23T07:00:00.000Z",
+                "url":"http://certificate/IT",
+                "completeddate":"2021-03-10T07:00:00.000Z",
+                "expireddate":"2022-03-10T07:00:00.000Z",
+                "levelId":"L001",
+                "levelname":"Level 1",
+                "badgeId":"B02",
+                "badgename":"badge1.png"
+             },
+             {
+                "name":"Analysing Data with Python",
+                "domainname":"Information Technology",
+                "domainId":"D005",
+                "authority":"L&T Edutech",
+                "licenseNumber":"LT536327366363-64773",
+                "fromdate":"2021-03-10T07:00:00.000Z",
+                "todate":"2022-06-23T07:00:00.000Z",
+                "url":"http://certificate/IT",
+                "completeddate":"2021-01-04T07:00:00.000Z",
+                "expireddate":"2022-01-04T07:00:00.000Z",
+                "levelId":"L002",
+                "levelname":"Level 2",
+                "badgeId":"B03",
+                "badgename":"cup2.png"
+             },
+             {
+                "name":"Thermodynamics",
+                "domainname":"Mechanical",
+                "domainId":"D003",
+                "authority":"L&T Edutech",
+                "licenseNumber":"LT536327366363-64773",
+                "fromdate":"2020-09-22T07:00:00.000Z",
+                "todate":"2022-06-23T07:00:00.000Z",
+                "url":"http://certificate/IT",
+                "completeddate":"2020-09-22T07:00:00.000Z",
+                "expireddate":"2022-01-04T07:00:00.000Z",
+                "levelId":"L002",
+                "levelname":"Level 3",
+                "badgeId":"B03",
+                "badgename":"cup1.png"
+             }
+          ],
+          "isActive":true,
+          "isSelected":true,
+          "selectedTo":"L&T Edutech"
+       }
+    ]
+ }

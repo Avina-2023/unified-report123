@@ -1,0 +1,30 @@
+@import '../../../../assets//scss//variables.scss';
+.search-icon {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4px 11px;
+}
+
+.search {
+    border: solid #bebebe 1px;
+    height: 30px;
+    box-sizing: border-box;
+    outline: none;
+    padding: 4px 8px;
+    width: 250px;
+}
+
+.search:hover {
+    border: solid $primaryColor 1px;
+}
+
+:host ::ng-deep .agTable-btn {
+    background-color: #C02222;
+    color: #ffffff;
+    line-height: 30px;
+    display: flex;
+    border: none;
+    align-items: center;
+}

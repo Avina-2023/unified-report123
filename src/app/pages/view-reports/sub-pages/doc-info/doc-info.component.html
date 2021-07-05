@@ -1,0 +1,23 @@
+<section>
+    <div class="docInfoarea">
+        <div *ngIf="profilePic">
+            <span>Profile Picture Snapshot</span>
+            <img [src]="profilePic + blobkey" alt="Profile" />
+        </div>
+        <div *ngIf="false">
+            <span>Identity Card Snapshot</span>
+            <img src="../../../assets/images/panCard.jpg" alt="Identity" />
+        </div>
+        <ng-container *ngIf="certificationList && certificationList.length > 0 && false">
+        <div *ngFor="let cert of certificationList; let i = index">
+            <span>Upload Documents</span>
+            <div class="formSet">
+                <div>
+                    <img [src]="cert['url']" alt="Eligibility" />
+                    <span>{{cert?.name}}</span>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+    </div>
+</section>
