@@ -1,4 +1,5 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import * as moment from 'moment'; //in your component
 
 @Component({
   selector: 'app-assessment-info',
@@ -41,4 +42,12 @@ export class AssessmentInfoComponent implements OnInit, OnChanges {
     }
     return null;
   }
+
+  momentForm(date) {
+    if (date) {
+      const split = moment(date).format('LLL');
+      return split;
+    }
+  }
+
 }

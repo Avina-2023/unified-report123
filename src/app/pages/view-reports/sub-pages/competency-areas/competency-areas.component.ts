@@ -8,6 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class CompetencyAreasComponent implements OnInit { 
   @Input() getAllReportsData;
   competancyData = [];
+  areasName = [];
   view: any[] = [350, 350]; 
   // viewhori: any[] = [400, 125];   
   // showXAxis = true;
@@ -27,7 +28,7 @@ export class CompetencyAreasComponent implements OnInit {
   //   domain: ['#8ac1ed', '#a4dea5', '#f7d096', '#e89694']
   // };
 
-  Skills = [50, 80, 90, 50, 70];
+  Skills = [];
   Skills1 = [];
   competencieslabels = [];
   skilllabels = [];
@@ -50,20 +51,33 @@ export class CompetencyAreasComponent implements OnInit {
   }
 
   getCompetancyData(){
-    console.log('adad', this.getAllReportsData);    
+    // console.log('adad', this.getAllReportsData);    
     let horiSkilles = [];
+    let areas = [];
     this.competancyData = this.getAllReportsData?.competencyDetails;
     if (this.competancyData && this.competancyData.length > 0) {
       this.competancyData?.forEach(labNames => {
         this.competencieslabels.push(labNames?.competencyname);
-        console.log( this.competencieslabels,' this.competencieslabels')
+        this.Skills.push(labNames?.score)
+        // console.log( this.competencieslabels,' this.competencieslabels')
         });
         horiSkilles.push(this.competancyData ? this.competancyData[0].skills:'');
         horiSkilles?.forEach(element => {
-          element?.forEach(element1 => {
-            this.skilllabels.push(element1?.skillname)
-            this.Skills1.push(element1?.score)
+          element?.forEach(skillsName => {
+            this.skilllabels.push(skillsName?.skillname)
+            this.Skills1.push(skillsName?.score);
+            areas.push(skillsName.area);
            });
+
+           if(areas){
+            areas.forEach(listOfAreas => {
+                listOfAreas.forEach(element => {
+                this.areasName.push(element);
+                console.log(this.areasName)
+                console.log(this.areasName)
+                });
+            });
+          }
         });
       }    
     }

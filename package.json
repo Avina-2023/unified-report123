@@ -26,6 +26,7 @@
     "ag-grid-community": "^25.3.0",
     "angular-responsive-carousel": "^2.1.1",
     "bootstrap": "^4.5.2",
+    "moment": "^2.26.0",
     "chart.js": "^3.3.2",
     "ngx-perfect-scrollbar": "^10.1.1",
     "ngx-toastr": "^13.2.1",

@@ -20,7 +20,7 @@
                     <div>
                         <em class="icon-Booked"></em>
                         <span>Test Taken on:
-                            <span>{{assessment.assessmentdate}}</span>
+                            <span>{{assessment.assessmentdate ? momentForm(assessment.assessmentdate) : ''}}</span>
                         </span>
                     </div>
                     <div>
@@ -57,7 +57,7 @@
                         <span>{{assessment.proctored ? 'Yes' : 'No'}}<span *ngIf="assessment.proctored" class="warningColor">View Details</span></span>
                     </div>
                     <div class="primaryInfo">
-                        Compilation
+                        Completion
                         <span class="successColor"><em class="icon-checked"></em><span>{{assessment.compilation}}</span></span>
                     </div>
                 </div>

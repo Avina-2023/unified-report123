@@ -1,11 +1,11 @@
 @import "variables";
-
 .Headerinfo {
     font-weight: 700;
     line-height: 2.2;
     margin-top: 2.5em;
     margin-bottom: 1.5em;
 }
+
 .InfoDetailsArea {
     position: relative;
     display: flex;
@@ -47,7 +47,6 @@
             display: flex;
             align-items: center;
             line-height: 1;
-
             span {
                 font-size: 1.5em;
                 padding-left: 0.3em;
@@ -57,7 +56,7 @@
             color: $blackColor;
             padding-left: 1.1em;
             font-weight: 700;
-            margin-top:1em;
+            margin-top: 1em;
         }
         .areasbtnsec {
             padding-left: 1.2em;
@@ -95,7 +94,7 @@
                 background-color: #e89694;
             }
         }
-    } 
+    }
     .triangle-left {
         width: 0;
         height: 0;
@@ -105,13 +104,15 @@
         position: absolute;
         left: 48%;
         top: 35%;
-      } 
+    }
 }
+
 mat-card {
-    ::ng-deep.mat-card-header, ::ng-deep.mat-card-content {
+     ::ng-deep.mat-card-header,
+     ::ng-deep.mat-card-content {
         font-weight: normal !important;
     }
     .heading6 {
         display: block;
     }
- }
+}

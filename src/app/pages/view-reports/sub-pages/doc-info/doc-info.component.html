@@ -2,26 +2,25 @@
     <div class="docInfoarea">
         <div *ngIf="profilePic">
             <span>Profile Picture Snapshot</span>
-            <img [src]="profilePic + blobkey" alt="Profile" />
+            <img [src]="profilePic + blobkey" class="imgProp" alt="Profile" />
         </div>
-        <div *ngIf="false">
+        <div *ngIf="idCardImg">
             <span>Identity Card Snapshot</span>
-            <img src="../../../assets/images/panCard.jpg" alt="Identity" />
+            <img [src]="idCardImg + blobkey" class="imgProp" alt="Identity" />
         </div>
+        <ng-container *ngIf="certificationList && certificationList.length > 0">
         <div>
-            <carousel [src]="images" [cellsToShow]="3" [loop]="true" [autoplay]="true" 
-                    [autoplayInterval]="3000" >
-                    <span>{{'test'}}</span> </carousel> 
-        </div>
-        <ng-container *ngIf="certificationList && certificationList.length > 0 && false">
-        <div *ngFor="let cert of certificationList; let i = index">
-            <span>Upload Documents</span>
-            <div class="formSet">
-                <div>
-                    <img [src]="cert['url']" alt="Eligibility" />
-                    <span>{{cert?.name}}</span> 
+            <span>Uploaded Documents</span>
+            <div class="d-flex img-flex-container">
+                <div class="img-container space" *ngFor="let cert of certificationList; let i = index">
+                    <ng-container *ngIf="cert['url']" class="formSet">
+                        <div class="img-container">
+                    <img [src]="(cert['url'] + blobkey)" class="imgProp" alt="Eligibility" />
+                    <span>{{cert?.name}}</span>
                 </div>
-            </div>
+            </ng-container>
+        </div>
+    </div>
         </div>
     </ng-container>
     </div>
