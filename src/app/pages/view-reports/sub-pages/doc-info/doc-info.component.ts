@@ -10,6 +10,7 @@ export class DocInfoComponent implements OnInit, OnChanges {
   @Input() getAllReportsData;
   blobkey = environment.blobKey;
   profilePic: any;
+  idCardImg: any;
   certificationList: any;
   constructor() { }
 
@@ -24,6 +25,7 @@ export class DocInfoComponent implements OnInit, OnChanges {
   getDocInfo() {
     console.log('Docs', this.getAllReportsData);
     this.profilePic = this.getAllReportsData && this.getAllReportsData.profileImage ? this.getAllReportsData.profileImage : null;
-    this.certificationList = this.getAllReportsData && this.getAllReportsData.certificationDetails && this.getAllReportsData.certificationDetails.length > 0 ? this.getAllReportsData.certificationDetails : null;
+    this.idCardImg = this.getAllReportsData && this.getAllReportsData.IdcardImage ? this.getAllReportsData.IdcardImage : null;
+    this.certificationList = this.getAllReportsData && this.getAllReportsData.selfDefinedCertificates && this.getAllReportsData.selfDefinedCertificates.length > 0 ? this.getAllReportsData.selfDefinedCertificates : null;
   }
 }
