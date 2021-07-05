@@ -20,7 +20,7 @@
                     <div>
                         <em class="icon-Booked"></em>
                         <span>Test Taken on:
-                            <span>{{assessment.assessmentdate}}</span>
+                            <span>{{assessment.assessmentdate ? momentForm(assessment.assessmentdate) : ''}}</span>
                         </span>
                     </div>
                     <div>
