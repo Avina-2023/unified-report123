@@ -12,20 +12,20 @@
             <div class="mat-card-header-text">Click on the respective competency to view the details</div>
             <div *ngIf="Skills.length > 0 && competencieslabels.length > 0">
                 <app-bar-chart [orientation]="'x'" [chartType]="'bar'" [values]="Skills" [labels]="competencieslabels"></app-bar-chart>
-        </div>
+            </div>
         </div>
         <div class="rightPan">
-            <div class="heading4">Aptitude <span>50%</span></div>
+            <div class="heading4">{{competencieslabels[0]}} <span>{{Skills[0]}}%</span></div>
             <div class="heading6">Skills</div>
             <div *ngIf="Skills1.length > 0 && skilllabels.length > 0">
                 <app-horizontal-bar-chart [orientation]="'y'" [chartType]="'bar'" [values]="Skills1" [labels]="skilllabels"></app-horizontal-bar-chart>
             </div>
             <div class="heading6">Areas</div>
             <div class="areasbtnsec">
-                <span class="btnBox btnBlue">Areas - 1</span>
-                <span class="btnBox btnGreen">Areas - 1</span>
+                <span class="btnBox btnBlue" *ngFor="let area1 of areasName">{{area1.areaname}} - {{area1.score}}</span>
+                <!-- <span class="btnBox btnGreen">Areas - 1</span>
                 <span class="btnBox btnWarn">Areas - 1</span>
-                <span class="btnBox btnRed">Areas - 1</span>
+                <span class="btnBox btnRed">Areas - 1</span> -->
 
             </div>
         </div>
