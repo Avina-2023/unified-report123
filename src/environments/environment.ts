@@ -8,7 +8,7 @@ export const environment = {
   uat: false,
   production: false,
   local: true,
-  blobKey : "?xRhYtRl8X2Q92d1QzNWXM2uiC9BA0c8UmKjfCq5dfHTLSo0OldlYz7+RAPNSDyWql3uiqFp8eJ7+w5cAEMDOqw==",
+  blobKey : "?sv=2020-02-10&ss=b&srt=sco&sp=rwdlactfx&se=2121-07-05T12:33:56Z&st=2021-07-05T04:33:56Z&spr=https&sig=LAL2dTXStLF0Qgyd6%2FiPjw5xjMR0kmR2kB7bZmudHdY%3D",
 
   API_BASE_URL: 'https://candidate.lntiggnite.com',
 };
