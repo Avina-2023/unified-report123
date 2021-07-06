@@ -28,4 +28,12 @@ export class DocInfoComponent implements OnInit, OnChanges {
     this.idCardImg = this.getAllReportsData && this.getAllReportsData.IdcardImage ? this.getAllReportsData.IdcardImage : null;
     this.certificationList = this.getAllReportsData && this.getAllReportsData.selfDefinedCertificates && this.getAllReportsData.selfDefinedCertificates.length > 0 ? this.getAllReportsData.selfDefinedCertificates : null;
   }
+
+  
+  images = [
+    {path: 'https://source.unsplash.com/800x600/?nature'},
+    {path: 'https://source.unsplash.com/800x600/?car'},
+    {path: 'https://source.unsplash.com/800x600/?moto'},
+    {path: 'https://source.unsplash.com/800x600/?fantasy'},
+  ]
 }

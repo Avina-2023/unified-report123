@@ -64,11 +64,15 @@ ul {
     line-height: 1.2;
 }
 .heading6 {
-    font-size: 1.125em;
+    font-size: 1.5em;
     line-height: 1.3;
 }
 mat-error {
     padding: 0 0 0em 0;
     font-size: .95em;
     color: $primaryColor !important;
+}
+
+.mat-drawer-container {
+    background-color: $whiteColor !important;
 }

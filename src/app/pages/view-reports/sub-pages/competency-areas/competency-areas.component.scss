@@ -2,31 +2,39 @@
 .Headerinfo {
     font-weight: 700;
     line-height: 2.2;
-    margin-top: 1em;
+    margin-top: 2.5em;
+    margin-bottom: 1.5em;
 }
 
 .InfoDetailsArea {
     position: relative;
     display: flex;
-    justify-content: space-between;
-    border: 0.1em solid $greyColor;
-    text-transform: capitalize;
+    justify-content: space-between; 
     border-bottom: none;
     border-right: none;
     margin-top: 1.2em;
-    box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%), 0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%);
-    >div {
-        padding: 1.3em 2em;
+    box-shadow:0px 1px 5px 0px rgb(0 0 0 / 12%);
+
+    > div {
+        padding: 2em 2em;
         width: 50%;
         color: $lightGrey;
         display: flex;
         flex-direction: column;
-    }
-    .leftPan {
-        background-color: $whiteColor;
-    }
-    .rightPan {
-        background-color: #f2f2f2;
+    }            
+    .leftPan { 
+        background-color: $whiteColor; 
+        justify-content: space-between;
+        .heading6 {
+            margin-bottom: 0.6em;
+        }
+        .mat-card-header-text {
+            font-size: 0.7em;
+            margin-top: 0.6em;
+        }
+    }   
+    .rightPan { 
+        background-color: #f2f2f2; 
         .ngx-charts {
             margin-left: -2.2em;
         }
@@ -58,9 +66,7 @@
             .btnBox {
                 background-color: transparent;
                 vertical-align: bottom;
-                border: 0;
-                -webkit-box-shadow: 0 2px 5px 0 rgb(0 0 0 / 20%);
-                box-shadow: 0 2px 5px 0 rgb(0 0 0 / 20%);
+                border: 0; 
                 font-weight: 500;
                 padding: 0.425rem 1rem 0.5rem;
                 font-size: .75rem;
@@ -72,6 +78,7 @@
                 margin-right: 1em;
                 margin-bottom: 1em;
                 font-weight: 500;
+                color: $sidebar-black;
             }
             .btnBlue {
                 background-color: #8ac1ed;

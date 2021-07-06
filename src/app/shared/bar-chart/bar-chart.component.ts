@@ -82,9 +82,9 @@ export class BarChartComponent implements OnInit, AfterViewInit {
       datasets: [{
         label: 'Skill Score',
         data: this.chartValues,
-        backgroundColor: ["#FF8C00", "#0085B6" , "#9DBC5B" , "#28B59A", "#03B8CB"],
+        backgroundColor: ['#c84656', '#dfbd3f', '#68d886', '#95c923', '#fec623'],
       borderWidth: 1,
-      borderRadius:20
+      borderRadius:0
       }]
   }
   // this.type==="radar"?chartdata.datasets[0].fillColor = "rgba(255,10,13,255)":''
@@ -92,6 +92,10 @@ export class BarChartComponent implements OnInit, AfterViewInit {
     type: this.type,
     data:chartdata,
     options: {
+      responsive: false,
+      legend: {
+        display: false
+     },
       scales: {
         yAxes: [{
           gridLines: {
