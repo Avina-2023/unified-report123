@@ -1,3 +1,34 @@
-<div>
-    <canvas #myChart></canvas>
+<div class="sort-container">
+<div class="heading6">Skills</div>
+<button class="sort" mat-raised-button (click)="sorting(indexNum + 1)" name="fieldName" ngDefaultControl [(ngModel)]="indexNum">
+    {{('Sort')}} 
+    <mat-icon *ngIf="indexNum == 0">sort</mat-icon>
+    <mat-icon *ngIf="indexNum == 1">
+    arrow_upward
+    </mat-icon>
+    <mat-icon *ngIf="indexNum == 2">
+        arrow_downward
+    </mat-icon>    
+</button>
 </div>
+<ngx-charts-bar-horizontal 
+[view]="view"
+[scheme]="colorScheme"
+[results]="single"
+[gradient]="gradient"
+[xAxis]="showXAxis"
+[yAxis]="showYAxis"
+[legend]="showLegend"
+[showXAxisLabel]="showXAxisLabel"
+[showYAxisLabel]="showYAxisLabel"
+[xAxisLabel]="xAxisLabel"
+[yAxisLabel]="yAxisLabel"
+[showYAxisLabel]="showYAxisLabel"  
+[showDataLabel]=true
+legendPosition = 'below'
+(select)="onSelect($event)">
+</ngx-charts-bar-horizontal>
+<!-- <canvas #myChart></canvas> -->
+<!-- <div>
+    <canvas #myChart></canvas>
+</div> -->

@@ -1,0 +1,26 @@
+.sort {
+    line-height: 24px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    background: #CC0022;
+    color: white;
+    font-weight: 400;
+}
+mat-icon {
+    font-size: 18px !important;
+    top: 50%;
+    width: 8px;
+    transform: translateY(12%);
+}
+
+.sort-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+:host ::ng-deep .textDataLabel {
+    font-size: 14px !important;
+}

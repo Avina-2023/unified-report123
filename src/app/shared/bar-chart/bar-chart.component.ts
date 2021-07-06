@@ -59,6 +59,7 @@ Chart.register(
   styleUrls: ['./bar-chart.component.scss']
 })
 export class BarChartComponent implements OnInit, AfterViewInit {
+  // Charts module initializtion
   canvas: any;
   ctx: any;
   @ViewChild('myChart', {static: false}) private chartContainer: ElementRef;
@@ -66,15 +67,76 @@ export class BarChartComponent implements OnInit, AfterViewInit {
   @Input('values') chartValues: any;
   @Input('labels') chartLabels: any;
   @Input('orientation') orient: any;
+  // Charts module initializtion end
+
+  // ngx charts start
+  @Input() chartData: any;
+  @Input() unSorted: any;
+  indexNum: any = 0;
+  single: any;
+
+  view: any[] = [500, 400];
+
+  // options
+  showXAxis = true;
+  showYAxis = true;
+  gradient = false;
+  showLegend = false;
+  showXAxisLabel = true;
+  xAxisLabel = 'Competency Score';
+  showYAxisLabel = false;
+  yAxisLabel = 'Competency Score';
+
+  colorScheme = {
+    domain: ["#FF8C00", "#0085B6" , "#9DBC5B" , "#28B59A", "#03B8CB"]
+  };
+
+  // ngx charts end
 
   constructor() {
-
   }
 
   ngOnInit() {
+    this.single = this.chartData;
   }
 
   ngAfterViewInit() {
+  }  
+
+  sorting(data) {
+    this.single = [];
+    let sortingArray = this.chartData;
+    if (data == 1) {
+      this.indexNum = data;
+      sortingArray.sort(function(a, b) {
+        return a.value < b.value ? -1 : 1;
+      }); 
+      sortingArray.forEach(element => {
+        this.single.push(element);
+      });
+    } 
+    else if (data == 2) {
+      this.indexNum = data;
+      sortingArray.sort(function(a, b) {
+        return a.value > b.value ? -1 : 1;
+      }); 
+      sortingArray.forEach(element => {
+        this.single.push(element);
+      });
+    } else {
+      this.indexNum = 0
+      sortingArray = this.unSorted;      
+      sortingArray.forEach(element => {
+        this.single.push(element);
+      });      
+    }
+  }
+
+  onSelect(event) {
+
+  }
+
+  chartsModule() {
     this.canvas = this.chartContainer.nativeElement;
     this.ctx = this.canvas.getContext('2d');
     let chartdata:any = {
@@ -114,8 +176,6 @@ export class BarChartComponent implements OnInit, AfterViewInit {
   //   options: {
   //   indexAxis: this.orient,
   // }
-    });
-  
-  }  
-
+    });  
+  }
 }
