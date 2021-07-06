@@ -59,6 +59,7 @@ Chart.register(
   styleUrls: ['./horizontal-bar-chart.component.scss']
 })
 export class HorizontalBarChartComponent implements OnInit {
+  // chart start
   canvas: any;
   ctx: any;
   @ViewChild('myChart', {static: false}) private chartContainer: ElementRef;
@@ -66,15 +67,98 @@ export class HorizontalBarChartComponent implements OnInit {
   @Input('values') chartValues: any;
   @Input('labels') chartLabels: any;
   @Input('orientation') orient: any;
+// chart end
+
+// ngx charts start
+@Input() chartData: any;
+@Input() unSorted: any;
+indexNum: any = 0;
+
+single: any;
+
+view: any[] = [500, 325];
+
+// options
+showXAxis = true;
+showYAxis = true;
+gradient = false;
+showLegend = false;
+showXAxisLabel = true;
+xAxisLabel = 'Skill Score';
+showYAxisLabel = false;
+yAxisLabel = 'Skill Score';
+
+colorScheme = {
+  domain: ["#FF8C00", "#0085B6" , "#9DBC5B" , "#28B59A", "#03B8CB"]
+};
+
+// ngx charts end
 
   constructor() {
 
   }
 
   ngOnInit() {
+    this.single = this.chartData;
+    this.calculateWidthAndHeight();
   }
 
   ngAfterViewInit() {
+  }  
+
+
+  calculateWidthAndHeight() {
+    if (this.chartData && this.chartData.length <= 3) {
+     return this.view = [500, 225];
+    }
+    if (this.chartData && this.chartData.length <= 6) {
+      return this.view = [500, 325];      
+    }
+    if (this.chartData && this.chartData.length <= 9) {
+      return this.view = [500, 425];            
+    }
+    if (this.chartData && this.chartData.length <= 12) {
+      return this.view = [500, 480];            
+    }
+    if (this.chartData && this.chartData.length <= 15) {
+      return this.view = [500, 530];      
+    }
+  }
+
+  onSelect(event) {
+
+  }
+
+  sorting(data) {
+    this.single = [];
+    let sortingArray = this.chartData;
+    if (data == 1) {
+      this.indexNum = data;
+      sortingArray.sort(function(a, b) {
+        return a.value < b.value ? -1 : 1;
+      }); 
+      sortingArray.forEach(element => {
+        this.single.push(element);
+      });
+    } 
+    else if (data == 2) {
+      this.indexNum = data;
+      sortingArray.sort(function(a, b) {
+        return a.value > b.value ? -1 : 1;
+      }); 
+      sortingArray.forEach(element => {
+        this.single.push(element);
+      });
+    } else {
+      this.indexNum = 0
+      sortingArray = this.unSorted;      
+      sortingArray.forEach(element => {
+        this.single.push(element);
+      });      
+    }
+  }
+
+  chartjs() {
     this.canvas = this.chartContainer.nativeElement;
     this.ctx = this.canvas.getContext('2d');
     let chartdata:any = {
@@ -110,8 +194,6 @@ export class HorizontalBarChartComponent implements OnInit {
   //   options: {
   //   indexAxis: this.orient,
   // }
-    });
-  
-  }  
-
+    }); 
+  }
 }
