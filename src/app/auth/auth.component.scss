@@ -41,6 +41,7 @@
         .user {
             display: inline-flex;
             align-items: center;
+            font-size: 14px;
             mat-icon {
                 cursor: pointer;
             }
@@ -151,4 +152,9 @@
             }
         }
     }
+}
+
+.beforeloginimg { 
+        width: 100px;
+        margin-right: 2em;
 }

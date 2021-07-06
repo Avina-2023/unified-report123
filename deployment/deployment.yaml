@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: unifiedreport
+  namespace: unifiedrpt
 spec:
   replicas: 1
   selector:
@@ -19,4 +20,4 @@ spec:
           ports:
           - containerPort: 80
       imagePullSecrets:
-        - name: mysecret
+        - name: mysecret2
