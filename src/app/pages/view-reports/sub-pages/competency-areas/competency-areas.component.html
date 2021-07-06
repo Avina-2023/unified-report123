@@ -8,8 +8,9 @@
     <div class="InfoDetailsArea">
         <div class="leftPan">
 
-            <div class="heading6">Competencies</div>
-            <div class="mat-card-header-text">Click on the respective competency to view the details</div>
+            <div class="heading6">Competencies
+                <div class="mat-card-header-text">Click on the respective competency to view the details</div>
+            </div>
             <div style="width: 100%;" *ngIf="competenciesChartData.length > 0">
                 <app-bar-chart [unSorted]="unSortedVerticalData" [chartData]="competenciesChartData"></app-bar-chart>
                 <!-- Below commented is for chart.js charts -->

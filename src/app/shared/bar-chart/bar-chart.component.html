@@ -1,5 +1,5 @@
 <div class="sort-container">
-    <button class="sort mt-2" mat-raised-button (click)="sorting(indexNum + 1)" name="fieldName" ngDefaultControl [(ngModel)]="indexNum">
+    <button class="sort" mat-raised-button (click)="sorting(indexNum + 1)" name="fieldName" ngDefaultControl [(ngModel)]="indexNum">
         {{('Sort')}} 
         <mat-icon *ngIf="indexNum == 0">sort</mat-icon>
         <mat-icon *ngIf="indexNum == 1">
