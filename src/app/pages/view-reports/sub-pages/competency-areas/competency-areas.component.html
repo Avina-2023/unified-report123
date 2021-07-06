@@ -8,8 +8,10 @@
     <div class="InfoDetailsArea">
         <div class="leftPan">
 
-            <div class="heading6">Competencies</div>
-            <div class="mat-card-header-text">Click on the respective competency to view the details</div>
+            <div class="heading6">Competencies
+                <div class="mat-card-header-text">Click on the respective competency to view the details</div>
+            </div>
+            
             <div *ngIf="Skills.length > 0 && competencieslabels.length > 0">
                 <app-bar-chart [orientation]="'x'" [chartType]="'bar'" [values]="Skills" [labels]="competencieslabels"></app-bar-chart>
             </div>

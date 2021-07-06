@@ -82,27 +82,32 @@ export class HorizontalBarChartComponent implements OnInit {
       datasets: [{
         label: 'Skill Score',
         data: this.chartValues,
-        backgroundColor: ["#FF8C00", "#0085B6" , "#9DBC5B" , "#28B59A", "#03B8CB"],
-      borderWidth: 1,
-      borderRadius:20
+        backgroundColor: ['#8ac1ed', '#a4dea5', '#f7d096', '#e89694'],
+      borderWidth: 0,
+      borderRadius:0
       }]
   }
   // this.type==="radar"?chartdata.datasets[0].fillColor = "rgba(255,10,13,255)":''
+  
     let myChart = new Chart(this.ctx, {
     type: this.type,
     data:chartdata,
     options: {
-      scales: {
-        yAxes: [{
-          gridLines: {
+      responsive: false,
+      legend: {
+        display: false
+     },
+      scales: {  
+        x: {
+          grid: {
             display: false,
           },
-        }],
-        xAxes: [{
-          gridLines: {
+        },
+        y: {
+          grid: {
             display: false,
           },
-        }],
+        },
       },
       indexAxis: this.orient,
       scaleShowLabels : false
@@ -111,6 +116,7 @@ export class HorizontalBarChartComponent implements OnInit {
   //   indexAxis: this.orient,
   // }
     });
+    
   
   }  
 
