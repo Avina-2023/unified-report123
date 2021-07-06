@@ -9,31 +9,12 @@ export class CompetencyAreasComponent implements OnInit {
   @Input() getAllReportsData;
   competancyData = [];
   areasName = [];
-  view: any[] = [350, 350]; 
-  // viewhori: any[] = [400, 125];   
-  // showXAxis = true;
-  // showXAxishori = false;
-  // showYAxis = true;
-  // gradient = false;
-  // showLegend = false;
-  // showXAxisLabel = true; 
-  // showYAxisLabel = true; 
-  // showGridLines = true;
-  // showGridLineshori = false;
-  // roundEdges = false; 
-  // colorScheme = {
-  //   domain: ['#c84656', '#dfbd3f', '#68d886', '#95c923', '#fec623']
-  // };
-  // colorSchemeHori = {
-  //   domain: ['#8ac1ed', '#a4dea5', '#f7d096', '#e89694']
-  // };
 
-  Skills = [];
-  Skills1 = [];
-  competencieslabels = [];
-  skilllabels = [];
-
-
+  competenciesChartData = [];
+  skillsChartData = [];
+  competenciesName: any;
+  unSortedVerticalData: any;
+  unSortedHorizontalData: any;
   constructor() { 
   }
 
@@ -47,34 +28,41 @@ export class CompetencyAreasComponent implements OnInit {
 
 
   onSelect(event) {
-    console.log(event);
   }
 
   getCompetancyData(){
-    // console.log('adad', this.getAllReportsData);    
     let horiSkilles = [];
     let areas = [];
     this.competancyData = this.getAllReportsData?.competencyDetails;
     if (this.competancyData && this.competancyData.length > 0) {
+
+      // vertical chart data
+      let competencyChartData = [];
+      let unsort = [];
       this.competancyData?.forEach(labNames => {
-        this.competencieslabels.push(labNames?.competencyname);
-        this.Skills.push(labNames?.score)
-        // console.log( this.competencieslabels,' this.competencieslabels')
-        });
-        horiSkilles.push(this.competancyData ? this.competancyData[0].skills:'');
+        competencyChartData.push({name: labNames.competencyname, value: labNames.score})
+        unsort.push({name: labNames.competencyname, value: labNames.score})
+        });       
+        this.unSortedVerticalData = unsort;
+        this.competenciesChartData = competencyChartData;
+        this.competenciesName = this.competenciesChartData && this.competenciesChartData[0];
+
+      // Horizontan chart data 
+        let skillchartdata= [];
+        let unsortHorizontal = [];
+        horiSkilles.push(this.competancyData && this.competancyData[0] && this.competancyData[0].skills ? this.competancyData[0].skills :'');
         horiSkilles?.forEach(element => {
-          element?.forEach(skillsName => {
-            this.skilllabels.push(skillsName?.skillname)
-            this.Skills1.push(skillsName?.score);
+          element?.forEach((skillsName, i) => {
+            skillchartdata.push({name: skillsName?.skillname, value: skillsName?.score});
+            unsortHorizontal.push({name: skillsName?.skillname, value: skillsName?.score});
             areas.push(skillsName.area);
            });
-
+      this.unSortedHorizontalData = unsortHorizontal;
+      this.skillsChartData = skillchartdata;
            if(areas){
             areas.forEach(listOfAreas => {
                 listOfAreas.forEach(element => {
                 this.areasName.push(element);
-                console.log(this.areasName)
-                console.log(this.areasName)
                 });
             });
           }
