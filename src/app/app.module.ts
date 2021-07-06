@@ -13,7 +13,7 @@ import { SharedModule } from './shared/shared.module';
 import { PerfectScrollbarConfigInterface, PerfectScrollbarModule, PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { InterceptorService } from './interceptor/interceptor.service';
-import { IvyCarouselModule } from "angular-responsive-carousel";
+import { CarouselModule } from 'ngx-owl-carousel-o';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -33,7 +33,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     MaterialModule,
     SharedModule,
     PerfectScrollbarModule,
-    IvyCarouselModule,
+    CarouselModule,
     ToastrModule.forRoot(
       {
         timeOut: 3000,
