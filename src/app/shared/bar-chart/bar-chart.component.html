@@ -1,4 +1,4 @@
-<!-- <div style="width: 200px; height: 200px"> -->
+<div class="sort-container">
     <button class="sort mt-2" mat-raised-button (click)="sorting(indexNum + 1)" name="fieldName" ngDefaultControl [(ngModel)]="indexNum">
         {{('Sort')}} 
         <mat-icon *ngIf="indexNum == 0">sort</mat-icon>
@@ -9,6 +9,7 @@
             arrow_downward
         </mat-icon>    
     </button>
+    </div>
     <ngx-charts-bar-vertical 
      [view]="view"
      [scheme]="colorScheme"
