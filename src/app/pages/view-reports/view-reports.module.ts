@@ -12,6 +12,7 @@ import { ProfileInfoComponent } from './sub-pages/profile-info/profile-info.comp
 import { QualityAreaComponent } from './sub-pages/quality-area/quality-area.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { AgGridModule } from 'ag-grid-angular';
+import { CarouselModule } from 'ngx-owl-carousel-o';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import { AgGridModule } from 'ag-grid-angular';
     ViewReportsRoutingModule,
     SharedModule,
     MaterialModule,
+    CarouselModule,
     AgGridModule.withComponents([])
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]
