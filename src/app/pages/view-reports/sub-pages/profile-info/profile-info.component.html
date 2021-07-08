@@ -1,24 +1,22 @@
-<section>
-    <div class="profileHeaderinfo first">
-        <div class="heading6">
+<section class="profilearea">
+    <div class="heading6">
         Drive Information
-        </div>
-        <mat-select class="matSelect" (selectionChange)="driveChange($event)" placeholder="Select Drive" [(ngModel)]="driveselectedValue" name="list">
-            <mat-option *ngFor="let list of driveList" [value]="list.drivename">
-                {{list.drivename}}
-            </mat-option>
-        </mat-select>
     </div>
-    <div class="profileHeaderinfo">
-        <div class="heading6">
-            Candidate Details
-        </div>
+
+    <mat-select class="matSelect" (selectionChange)="driveChange($event)" placeholder="Select Drive"
+        [(ngModel)]="driveselectedValue" name="list">
+        <mat-option *ngFor="let list of driveList" [value]="list.drivename">
+            {{list.drivename}}
+        </mat-option>
+    </mat-select>
+    <div class="heading6 mt-5">
+        Candidate Details
     </div>
     <div class="profileInfoarea" *ngIf="personalInfo">
         <div class="profileInfoSec">
             <div>
                 First Name:
-               <span> {{personalInfo.firstname}} </span>
+                <span> {{personalInfo.firstname}} </span>
             </div>
             <div>
                 Last Name:
@@ -41,8 +39,8 @@
                 <span> {{personalInfo.mobile}}</span>
             </div>
             <div>
-               Address:
-               <span>{{personalInfo.address}}</span>
+                Address:
+                <span>{{personalInfo.address}}</span>
             </div>
         </div>
         <div class="profileInfoSec">
@@ -67,7 +65,7 @@
                 <span>{{personalInfo.passedOut}}</span>
             </div>
             <div>
-                Graduation Aggregate: 
+                Graduation Aggregate:
                 <span>{{personalInfo.percentage}}%</span>
             </div>
         </div>

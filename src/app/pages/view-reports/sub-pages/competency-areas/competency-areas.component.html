@@ -1,14 +1,14 @@
-<section>
+<section class="CompetencyArea">
     <div class="Headerinfo">
         <div class="heading6">
-            Competency Area
+            Competency Areas
         </div>
 
     </div>
     <div class="InfoDetailsArea">
         <div class="leftPan">
 
-            <div class="heading6">Competencies
+            <div class="comphtxt">Competencies
                 <div class="mat-card-header-text">Click on the respective competency to view the details</div>
             </div>
             <div style="width: 100%;" *ngIf="competenciesChartData.length > 0">
@@ -17,19 +17,20 @@
                 <!-- <app-bar-chart [orientation]="'x'" [chartType]="'bar'" [values]="Skills" [labels]="competencieslabels"></app-bar-chart> -->
             </div>
         </div>
-        <div class="rightPan">
-            <div class="heading4">{{competenciesName && competenciesName.name ? competenciesName.name : ''}} <span>{{competenciesName && competenciesName.value ? competenciesName.value : ''}}%</span></div>
+        <div class="rightPan"> 
+            <div class="heading4">{{competenciesName && competenciesName.name ? competenciesName.name : ''}}
+                <span>{{competenciesName && competenciesName.value ? competenciesName.value : ''}}%</span>
+            </div>
             <div *ngIf="skillsChartData.length > 0">
-                <app-horizontal-bar-chart [unSorted]="unSortedHorizontalData" [chartData]="skillsChartData"></app-horizontal-bar-chart>
+                <app-horizontal-bar-chart [unSorted]="unSortedHorizontalData"  [chartData]="skillsChartData">
+                </app-horizontal-bar-chart>
                 <!-- Below commented is for chart.js charts -->
                 <!-- <app-horizontal-bar-chart [orientation]="'y'" [chartType]="'bar'" [values]="Skills1" [labels]="skilllabels"></app-horizontal-bar-chart> -->
             </div>
             <div class="heading6">Areas</div>
             <div class="areasbtnsec">
-                <span class="btnBox btnBlue" *ngFor="let area1 of areasName">{{area1.areaname}} - {{area1.score}}</span>
-                <!-- <span class="btnBox btnGreen">Areas - 1</span>
-                <span class="btnBox btnWarn">Areas - 1</span>
-                <span class="btnBox btnRed">Areas - 1</span> -->
+                <span class="btnBox btnBlue" *ngFor="let area1 of areasName">{{area1.areaname}} -
+                    {{area1.score}}</span>
 
             </div>
         </div>
