@@ -22,7 +22,7 @@
                 <span>{{competenciesName && competenciesName.value ? competenciesName.value : ''}}%</span>
             </div>
             <div *ngIf="skillsChartData.length > 0">
-                <app-horizontal-bar-chart [unSorted]="unSortedHorizontalData" [chartData]="skillsChartData">
+                <app-horizontal-bar-chart [unSorted]="unSortedHorizontalData"  [chartData]="skillsChartData">
                 </app-horizontal-bar-chart>
                 <!-- Below commented is for chart.js charts -->
                 <!-- <app-horizontal-bar-chart [orientation]="'y'" [chartType]="'bar'" [values]="Skills1" [labels]="skilllabels"></app-horizontal-bar-chart> -->

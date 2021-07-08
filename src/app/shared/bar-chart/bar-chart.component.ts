@@ -75,7 +75,7 @@ export class BarChartComponent implements OnInit, AfterViewInit {
   indexNum: any = 0;
   single: any;
 
-  view: any[] = [500, 400];
+  view: any[] = [200, 400];
 
   // options
   showXAxis = true;
@@ -145,7 +145,7 @@ export class BarChartComponent implements OnInit, AfterViewInit {
         label: 'Skill Score',
         data: this.chartValues,
         backgroundColor: ['#c84656', '#dfbd3f', '#68d886', '#95c923', '#fec623'],
-      borderWidth: 1,
+      borderWidth: 0,
       borderRadius:0
       }]
   }

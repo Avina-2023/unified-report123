@@ -561,11 +561,11 @@ perfect-scrollbar {
             color: $blackColor;
             font-weight: 700;
             padding-left: 0.5em;
-            border-left: 0.3em solid #c84656;
-            margin-bottom: 1em;
+            border-left: 0.3em solid #c84656; 
             display: flex;
             align-items: center;
             line-height: 1;
+            font-size: 1.37em;
             span {
                 font-size: 1.5em;
                 padding-left: 0.3em;
