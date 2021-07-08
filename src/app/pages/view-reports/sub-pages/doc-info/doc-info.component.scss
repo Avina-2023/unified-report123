@@ -4,11 +4,12 @@
     display: flex;
     flex-direction: row;
     > div {
-        width: 200px !important;
+        width: 200px;
         margin-right: 3%;
         &:last-child {
         width: 57%;
         margin-right: 0;
+        max-height: 230px;
         }
     }
     span {
@@ -40,11 +41,11 @@
 }
 
 .imgProp {
-    width: 200px !important;
-    height: 200px !important;
+    width: 200px ;
+    height: 200px ;
 }
 .img-container {
-    width: 200px !important;
+    width: 200px;
 }
 .space {
     margin-right: 5%;
@@ -55,4 +56,40 @@
 }
 .img-container:last-child {
     margin-right: 1%;
+}
+::ng-deep.docUpload {
+.owl-carousel .owl-item img { 
+    height: 200px;
+    width: 80%;
+
+    &:hover + a {
+        display: block;
+    }
+    & + .viewBtn {
+        display: none;
+        position: absolute;
+        top: 6em;
+        left: 4em;
+        background-color: #8ac1ed;
+        padding: 0.2em 1em;
+        border-radius: 0.3em;
+        color: #fff;
+        cursor: pointer;
+        box-shadow: 0 0 3px 0 #0000008a;
+        z-index: 999;
+        text-decoration: none;
+
+        &:hover {
+            display: block;
+        }
+    }
+}
+
+.owl-carousel .owl-item {
+    max-height: 225px;
+}
+
+.owl-stage .owl-item:first-child {
+    display: none;
+  }
 }
