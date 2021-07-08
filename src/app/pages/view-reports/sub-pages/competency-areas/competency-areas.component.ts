@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { OwlOptions } from 'ngx-owl-carousel-o';
 
 @Component({
   selector: 'app-competency-areas',
@@ -15,6 +16,25 @@ export class CompetencyAreasComponent implements OnInit {
   competenciesName: any;
   unSortedVerticalData: any;
   unSortedHorizontalData: any;
+
+  customOptions: OwlOptions = {  
+    loop: true,
+    autoplay: true,
+    center: true,
+    dots: false,
+    autoHeight: true,
+    autoWidth: false,
+    rtl: false,
+    lazyLoad: false,
+    navText: ['<', '>'],
+    nav: true,
+    responsive: {
+      0: {
+        items: 1
+      }
+    }
+  } 
+
   constructor() { 
   }
 

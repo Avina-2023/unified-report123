@@ -1,6 +1,5 @@
 import { environment } from 'src/environments/environment';
-import { Component, Input, OnChanges, OnInit } from '@angular/core';
-import { OwlOptions } from 'ngx-owl-carousel-o';
+import { Component, Input, OnChanges, OnInit } from '@angular/core'; 
 
 @Component({
   selector: 'app-doc-info',
@@ -12,18 +11,7 @@ export class DocInfoComponent implements OnInit, OnChanges {
   blobkey = environment.blobKey;
   profilePic: any;
   idCardImg: any;
-  certificationList: any;
-  customOptions: OwlOptions = {
-    items: 3,
-    loop: true,
-    autoplay: true,
-    center: true,
-    dots: false,
-    autoHeight: true,
-    autoWidth: false,
-    rtl: false,
-    lazyLoad: false
-  } 
+  certificationList: any; 
   constructor() { }
 
   ngOnInit(): void {
