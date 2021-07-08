@@ -9,19 +9,31 @@
             <img [src]="idCardImg + blobkey" class="imgProp" alt="Identity" />
         </div>
         <ng-container *ngIf="certificationList && certificationList.length > 0">
-        <div>
-            <span>Uploaded Documents</span>
-            <div class="d-flex img-flex-container">
-                <div class="img-container space" *ngFor="let cert of certificationList; let i = index">
+            <div class="docUpload">
+                <span>Uploaded Documents</span>
+                <!-- <div class="img-container space" *ngFor="let cert of certificationList; let i = index">
                     <ng-container *ngIf="cert['url']" class="formSet">
                         <div class="img-container">
-                    <img [src]="(cert['url'] + blobkey)" class="imgProp" alt="Eligibility" />
-                    <span>{{cert?.name}}</span>
-                </div>
-            </ng-container>
-        </div>
+                            <img [src]="(cert['url'] + blobkey)" class="imgProp" alt="Eligibility" />
+                            <span>{{cert?.name}}</span>
+                        </div>
+
+                    </ng-container>
+                </div> -->
+                <owl-carousel-o [options]="customOptions">
+                    <ng-container *ngFor="let cert of certificationList; let i = index; let l = last">
+                        <ng-container *ngIf="cert['url']">
+                            <ng-template class="slide" carouselSlide [id]="cert.name">
+                                <div [style.margin]="(l ? '600px': '2px')">
+                                    <img [src]="(cert['url'] + blobkey)" [alt]="'image'" [title]="cert?.name">
+                                    <a href="cert['url'] + blobkey)"  class="viewBtn" target="_blank">View</a>
+                                    <span>{{cert?.name}}</span>
+                                </div>
+                            </ng-template>
+                        </ng-container>
+                    </ng-container>
+                </owl-carousel-o>
+            </div>
+        </ng-container>
     </div>
-        </div>
-    </ng-container>
-    </div>
-</section>
+</section> 

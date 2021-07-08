@@ -1,5 +1,6 @@
 import { environment } from 'src/environments/environment';
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import { OwlOptions } from 'ngx-owl-carousel-o';
 
 @Component({
   selector: 'app-doc-info',
@@ -12,10 +13,21 @@ export class DocInfoComponent implements OnInit, OnChanges {
   profilePic: any;
   idCardImg: any;
   certificationList: any;
+  customOptions: OwlOptions = {
+    items: 3,
+    loop: true,
+    autoplay: true,
+    center: true,
+    dots: false,
+    autoHeight: true,
+    autoWidth: false,
+    rtl: false,
+    lazyLoad: false
+  } 
   constructor() { }
 
   ngOnInit(): void {
-    this.getDocInfo();
+    this.getDocInfo();   
   }
 
   ngOnChanges() {
@@ -27,13 +39,5 @@ export class DocInfoComponent implements OnInit, OnChanges {
     this.profilePic = this.getAllReportsData && this.getAllReportsData.profileImage ? this.getAllReportsData.profileImage : null;
     this.idCardImg = this.getAllReportsData && this.getAllReportsData.IdcardImage ? this.getAllReportsData.IdcardImage : null;
     this.certificationList = this.getAllReportsData && this.getAllReportsData.selfDefinedCertificates && this.getAllReportsData.selfDefinedCertificates.length > 0 ? this.getAllReportsData.selfDefinedCertificates : null;
-  }
-
-  
-  images = [
-    {path: 'https://source.unsplash.com/800x600/?nature'},
-    {path: 'https://source.unsplash.com/800x600/?car'},
-    {path: 'https://source.unsplash.com/800x600/?moto'},
-    {path: 'https://source.unsplash.com/800x600/?fantasy'},
-  ]
+  } 
 }
