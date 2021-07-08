@@ -1,4 +1,4 @@
-<section>
+<section class="assessmentArea">
     <div class="assessmentHeaderinfo">
         <div class="heading6">
             Assessment Details
@@ -7,8 +7,8 @@
 
     <div class="assessmentInfoarea">
         <ng-container *ngIf="assessmentsList && assessmentsList.length > 0">
-        <ng-container *ngFor="let assessment of assessmentsList; let i = index">
-        <mat-expansion-panel>
+        <ng-container *ngFor="let assessment of assessmentsList; let i = index; first as isFirst" >
+        <mat-expansion-panel [expanded]="isFirst">
             <mat-expansion-panel-header>
                 <div class="expandheaderArea">
                     <div>
@@ -26,7 +26,7 @@
                     <div>
                         <em class="icon-SpeedoMeter"></em>
                         <span>Score:
-                            <span [ngClass]="{'warningColor': assessment.score < 50 , 'WarnColor': (assessment.score >= 70 && assessment.score < 75), 'successColor': assessment.score >= 75}">{{assessment.score}} / {{assessment.maxscore}}</span>
+                            <span [ngClass]="{'warningColor': assessment.score < 50 , 'WarnColor': (assessment.score >= 70 && assessment.score < 75), 'successColor': assessment.score >= 75}">{{assessment.score}}/{{assessment.maxscore}}</span>
                         </span>
                     </div>
                     <div>
@@ -63,7 +63,7 @@
                 </div>
                 <div class="ContentInfoSummary">
                     <div class="assessmentHeaderinfo ">
-                        <div class="heading6 flxView">
+                        <div class="Summaryhtxt">
                             Sectional Summary
                             <!-- <span class="primaryClick"><em class="icon-right-next"></em> View Questionwise Analysis</span> -->
                         </div>
@@ -118,8 +118,7 @@
 
             </div>
 
-        </mat-expansion-panel> 
-
+        </mat-expansion-panel>  
         </ng-container>
     </ng-container>
     </div> 

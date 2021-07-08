@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core'; 
 
 @Component({
   selector: 'app-competency-areas',
@@ -15,6 +15,8 @@ export class CompetencyAreasComponent implements OnInit {
   competenciesName: any;
   unSortedVerticalData: any;
   unSortedHorizontalData: any;
+ 
+
   constructor() { 
   }
 
