@@ -15,6 +15,8 @@ export class CompetencyAreasComponent implements OnInit {
   competenciesName: any;
   unSortedVerticalData: any;
   unSortedHorizontalData: any;
+  domain: ['#8ac1ed', '#a4dea5', '#f7d096', '#e89694'];
+  selectedHorizontalChartIndex = '0';
   constructor() { 
   }
 
@@ -30,27 +32,44 @@ export class CompetencyAreasComponent implements OnInit {
   onSelect(event) {
   }
 
-  getCompetancyData(){
-    let horiSkilles = [];
-    let areas = [];
-    this.competancyData = this.getAllReportsData?.competencyDetails;
-    if (this.competancyData && this.competancyData.length > 0) {
+  getParticularCompetencySkills(e) {
+    this.getHorizontalDataByCompetencyId(e);
+  }
 
-      // vertical chart data
+  getHorizontalDataByCompetencyId(id) {
+    const selectedCompetency = this.competancyData.find((data: any)=> {
+      if (data && data.competencyId == id) {
+        return data;
+      };
+    });
+    if (selectedCompetency) {
+      this.getSkillChartData(selectedCompetency);
+    }
+  }
+
+  getCompetencyChartData() {
+              // vertical chart data
       let competencyChartData = [];
       let unsort = [];
       this.competancyData?.forEach(labNames => {
-        competencyChartData.push({name: labNames.competencyname, value: labNames.score})
-        unsort.push({name: labNames.competencyname, value: labNames.score})
+        competencyChartData.push({name: labNames.competencyname, value: labNames.score, id: labNames?.competencyId})
+        unsort.push({name: labNames.competencyname, value: labNames.score, id: labNames?.competencyId})
         });       
         this.unSortedVerticalData = unsort;
         this.competenciesChartData = competencyChartData;
-        this.competenciesName = this.competenciesChartData && this.competenciesChartData[0];
+  }
 
+  getSkillChartData(data) {
       // Horizontan chart data 
-        let skillchartdata= [];
-        let unsortHorizontal = [];
-        horiSkilles.push(this.competancyData && this.competancyData[0] && this.competancyData[0].skills ? this.competancyData[0].skills :'');
+      let horiSkilles = [];
+      let areas = [];
+      let skillchartdata= [];
+      let unsortHorizontal = [];
+      this.areasName = [];
+      this.competenciesName = data ? data : '';
+      horiSkilles.push(data &&  data.skills ? data.skills : '');
+      
+      if (horiSkilles) {
         horiSkilles?.forEach(element => {
           element?.forEach((skillsName, i) => {
             skillchartdata.push({name: skillsName?.skillname, value: skillsName?.score});
@@ -60,14 +79,32 @@ export class CompetencyAreasComponent implements OnInit {
       this.unSortedHorizontalData = unsortHorizontal;
       this.skillsChartData = skillchartdata;
            if(areas){
-            areas.forEach(listOfAreas => {
-                listOfAreas.forEach(element => {
-                this.areasName.push(element);
-                });
-            });
+             this.getAreas(areas);
           }
         });
-      }    
+      } else {
+        this.unSortedHorizontalData = [];
+        this.skillsChartData = [];
+      }
+    }    
+
+    getAreas(areas) {
+      let areaArray = []
+      areas.forEach(listOfAreas => {
+        listOfAreas.forEach(element => {
+          areaArray.push(element);
+        });
+    });
+    this.areasName = areaArray;
+  }
+
+  getCompetancyData(){
+    this.competancyData = this.getAllReportsData?.competencyDetails;
+    if (this.competancyData && this.competancyData.length > 0) {
+      this.getCompetencyChartData();
+      let skillData = this.competancyData && this.competancyData[0] ? this.competancyData[0] : '';
+      this.getSkillChartData(skillData);
     }
+  }
 
 }

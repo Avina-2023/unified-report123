@@ -1,5 +1,5 @@
 import { AfterViewInit, Input } from "@angular/core";
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, OnChanges } from '@angular/core';
 import {
   Chart,
   ArcElement,
@@ -58,7 +58,7 @@ Chart.register(
   templateUrl: './horizontal-bar-chart.component.html',
   styleUrls: ['./horizontal-bar-chart.component.scss']
 })
-export class HorizontalBarChartComponent implements OnInit {
+export class HorizontalBarChartComponent implements OnInit, OnChanges {
   // chart start
   canvas: any;
   ctx: any;
@@ -103,6 +103,11 @@ colorScheme = {
     this.calculateWidthAndHeight();
   }
 
+  ngOnChanges() {
+    this.single = this.chartData;
+    this.calculateWidthAndHeight();
+  }
+
   ngAfterViewInit() {
   }  
 
@@ -126,7 +131,7 @@ colorScheme = {
   }
 
   onSelect(event) {
-
+    console.log('event', event);
   }
 
   sorting(data) {

@@ -24,6 +24,8 @@
     }            
     .leftPan { 
         background-color: $whiteColor; 
+        position: relative;
+        min-height: 250px;
         justify-content: space-between;
         .heading6 {
             margin-bottom: 0em;
@@ -34,6 +36,7 @@
         }
     }   
     .rightPan { 
+        position: relative;
         background-color: #f2f2f2; 
         .ngx-charts {
             margin-left: -2.2em;
@@ -114,4 +117,13 @@ mat-card {
     .heading6 {
         display: block;
     }
+}
+
+.no-chart {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 22px;
+    color: #333;
 }
