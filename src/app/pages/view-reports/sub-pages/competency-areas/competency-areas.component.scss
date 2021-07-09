@@ -127,3 +127,11 @@ mat-card {
     font-size: 22px;
     color: #333;
 }
+
+.horizontal-scroll {
+    overflow: auto !important;
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    width: 530px !important;
+}

@@ -19,11 +19,13 @@
             </div>
             </ng-container>
         </div>
-        <div class="rightPan">
-            <ng-container *ngIf="skillsChartData.length > 0 else noChart">
-            <div class="heading4">{{competenciesName && competenciesName.competencyname ? competenciesName.competencyname : ''}} <span>{{competenciesName && competenciesName.score ? competenciesName.score : ''}}%</span></div>
+        <div class="rightPan horizontal-scroll">
+            <ng-container *ngIf="(skillsChartData.length > 0 && competenciesChartData.length > 0) else noChart">
+                <ng-container *ngFor="let competency of competancyData; let i = index">
+                    <div>
+            <div class="heading4">{{competency && competency.competencyname ? competency.competencyname : ''}} <span>{{competency && competency.score ? competency.score : ''}}%</span></div>
             <div>
-                <app-horizontal-bar-chart [unSorted]="unSortedHorizontalData" [chartData]="skillsChartData"></app-horizontal-bar-chart>
+                <app-horizontal-bar-chart [unSorted]="'unSortedHorizontalData'" [chartData]="competency.skills"></app-horizontal-bar-chart>
                 <!-- Below commented is for chart.js charts -->
                 <!-- <app-horizontal-bar-chart [orientation]="'y'" [chartType]="'bar'" [values]="Skills1" [labels]="skilllabels"></app-horizontal-bar-chart> -->
             </div>
@@ -33,6 +35,8 @@
                     {{area1.score}}</span>
 
             </div>
+        </div>
+        </ng-container>
         </ng-container>
         </div>
         <span class="triangle-left"></span>

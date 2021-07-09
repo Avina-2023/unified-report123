@@ -98,13 +98,26 @@ colorScheme = {
 
   }
 
-  ngOnInit() {
-    this.single = this.chartData;
+  async ngOnInit() {
+    await this.getSkillData();
     this.calculateWidthAndHeight();
   }
 
-  ngOnChanges() {
-    this.single = this.chartData;
+  getSkillData() {
+    this.single = [];
+    this.chartData.forEach(element => {
+      if (element) {
+        let ele = {
+          name: element.skillname,
+          value: element.score,
+          id: element.skillID
+        }
+        this.single.push(ele);
+      }
+    });
+  }
+  async ngOnChanges() {
+    await this.getSkillData();
     this.calculateWidthAndHeight();
   }
 
@@ -113,19 +126,19 @@ colorScheme = {
 
 
   calculateWidthAndHeight() {
-    if (this.chartData && this.chartData.length <= 3) {
+    if (this.single && this.single.length <= 3) {
      return this.view = [400, 110];
     }
-    if (this.chartData && this.chartData.length <= 6) {
+    if (this.single && this.single.length <= 6) {
       return this.view = [400, 110];      
     }
-    if (this.chartData && this.chartData.length <= 9) {
+    if (this.single && this.single.length <= 9) {
       return this.view = [400, 110];            
     }
-    if (this.chartData && this.chartData.length <= 12) {
+    if (this.single && this.single.length <= 12) {
       return this.view = [400, 110];            
     }
-    if (this.chartData && this.chartData.length <= 15) {
+    if (this.single && this.single.length <= 15) {
       return this.view = [400, 110];      
     }
   }
