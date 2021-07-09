@@ -73,11 +73,9 @@ export class HorizontalBarChartComponent implements OnInit, OnChanges {
 @Output() selectedArea:EventEmitter<any> =new EventEmitter<any>();
 @Input() chartData: any;
 @Input() domains: any;
-indexNum: any = 0;
-
-single: any;
-
-view: any[] = [500, 325];
+indexNum: any = 0; 
+single: any; 
+view: any[] = [350, 125];
 
 // options
 showXAxis = true;
@@ -139,19 +137,19 @@ colorScheme = {
 
   calculateWidthAndHeight() {
     if (this.single && this.single.length <= 3) {
-     return this.view = [400, 110];
+     return this.view = [350, 95];
     }
     if (this.single && this.single.length <= 6) {
-      return this.view = [400, 110];      
+      return this.view = [350, 125];      
     }
     if (this.single && this.single.length <= 9) {
-      return this.view = [400, 110];            
+      return this.view = [350, 150];            
     }
     if (this.single && this.single.length <= 12) {
-      return this.view = [400, 110];            
+      return this.view = [350, 200];            
     }
     if (this.single && this.single.length <= 15) {
-      return this.view = [400, 110];      
+      return this.view = [350, 250];      
     }
   }
 

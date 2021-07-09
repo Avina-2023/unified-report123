@@ -1,14 +1,19 @@
 import { Component, Input, OnInit } from '@angular/core'; 
+import { slide } from '../../../../animations'
 
 @Component({
   selector: 'app-competency-areas',
   templateUrl: './competency-areas.component.html',
-  styleUrls: ['./competency-areas.component.scss']
+  styleUrls: ['./competency-areas.component.scss'],
+  animations: slide
 })
 export class CompetencyAreasComponent implements OnInit { 
   @Input() getAllReportsData;
   competancyData = [];
   areasName = [];
+  counter: number = 0;
+  list: Array<number> = [1, 2];
+
 
   competenciesChartData = [];
   skillsChartData = [];
@@ -99,6 +104,18 @@ export class CompetencyAreasComponent implements OnInit {
         skills.areaSkills = areaSingle;
       }
     });
+}
+
+onNext() {
+  if (this.counter != this.list.length - 1) {
+    this.counter++;
+  }
+}
+
+onPrevious() {
+  if (this.counter > 0) {
+    this.counter--;
+  }
 }
 
 }

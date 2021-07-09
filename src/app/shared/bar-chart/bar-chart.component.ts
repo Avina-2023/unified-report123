@@ -76,14 +76,14 @@ export class BarChartComponent implements OnInit, AfterViewInit {
   indexNum: any = 0;
   single: any;
 
-  view: any[] = [200, 400];
+  view: any[] = [140, 350];
 
   // options
   showXAxis = true;
   showYAxis = true;
   gradient = false;
   showLegend = false;
-  showXAxisLabel = true;
+  showXAxisLabel = false; 
   xAxisLabel = 'Competency Score';
   showYAxisLabel = false;
   yAxisLabel = 'Competency Score';
