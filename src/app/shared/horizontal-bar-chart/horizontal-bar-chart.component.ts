@@ -83,7 +83,7 @@ showXAxis = true;
 showYAxis = true;
 gradient = false;
 showLegend = false;
-showXAxisLabel = true;
+showXAxisLabel = false;
 xAxisLabel = 'Skill Score';
 showYAxisLabel = false;
 yAxisLabel = 'Skill Score';
@@ -114,19 +114,19 @@ colorScheme = {
 
   calculateWidthAndHeight() {
     if (this.chartData && this.chartData.length <= 3) {
-     return this.view = [500, 225];
+     return this.view = [400, 110];
     }
     if (this.chartData && this.chartData.length <= 6) {
-      return this.view = [500, 325];      
+      return this.view = [400, 110];      
     }
     if (this.chartData && this.chartData.length <= 9) {
-      return this.view = [500, 425];            
+      return this.view = [400, 110];            
     }
     if (this.chartData && this.chartData.length <= 12) {
-      return this.view = [500, 480];            
+      return this.view = [400, 110];            
     }
     if (this.chartData && this.chartData.length <= 15) {
-      return this.view = [500, 530];      
+      return this.view = [400, 110];      
     }
   }
 

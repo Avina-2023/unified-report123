@@ -1,36 +1,15 @@
 <mat-toolbar color="primary" class="header-toolbar">
     <div class="first">
-        <img alt="" class="beforeloginimg"  src="../../assets/images/iggnite.svg">
+        <img alt="EduTech" class="beforeloginimg" src="../../assets/images/L&T-EduTech_Black_yellow.png" />
     </div>
     <div class="second">
-        <button mat-icon-button (click)="isExpanded = !isExpanded">
-            <mat-icon>menu</mat-icon>
-        </button>
-        <div class="user pl-2 pr-4">
-            <div class="username mr-3">Welcome User</div>
-            <!-- <mat-icon matTooltip="Logout" (click)="matDialogOpen()">exit_to_app</mat-icon> -->
-        </div>
+        LOG OUT <img alt="LOG OUT" src="../../assets/images/logout.svg" />
     </div>
 </mat-toolbar>
 
-<mat-sidenav-container class="parent-container" autosize>
-    <mat-sidenav #sidenav class="sidenav-container" mode="side" opened="true" [ngClass]="{'wt-200': isExpanded}"> 
-      
-        <perfect-scrollbar style="height: calc(100vh - 50px);">
-            <mat-nav-list>
-                <div class="parent-list parent mt-0" [routerLink]="appConstant['REPORTS']['HOME']" routerLinkActive="active"
-                    (click)="showSubmenu = !showSubmenu">
-                    <mat-icon mat-list-icon>home</mat-icon>
-                    <span class="full-width" *ngIf="isExpanded || isShowing">Reports</span>
-                </div>
-            </mat-nav-list>
-        </perfect-scrollbar>
-    </mat-sidenav>
-
-    <div class="main-content-start">          
-        <perfect-scrollbar style="height: calc(100vh - 50px);">
-            <router-outlet></router-outlet>
-            <footer style="z-index: 500;
+<perfect-scrollbar style="height: calc(100vh - 50px);">
+    <router-outlet></router-outlet>
+    <footer style="z-index: 500;
             background-color: white;
             height: 25px;
             position: absolute;
@@ -43,21 +22,4 @@
             align-items: flex-end;
             flex-direction: row-reverse;
             border-top: 1px solid #efeeee;padding-right:5px">2021 © L&T EduTech All Rights Reserved</footer>
-        </perfect-scrollbar>
-    </div>
-
-</mat-sidenav-container>
-
-
-
-<ng-template #matDialog>
-    <div class="main-wrapper">
-        <div class="text">Are you sure you want to logout?
-        </div>
-        <div class="button-wrapper-form-pop-up">
-            <button class="b1" (click)="closeDialog('save')" type="button" mat-raised-button>Yes</button>
-            <button class="b3" style="margin-left: 2em;" (click)="closeDialog('cancel')" type="button" mat-raised-button>No</button>
-        </div>
-    </div>
-
-</ng-template>
+</perfect-scrollbar>

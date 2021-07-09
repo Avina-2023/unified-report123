@@ -1,14 +1,14 @@
-<section>
+<section class="CompetencyArea">
     <div class="Headerinfo">
         <div class="heading6">
-            Competency Area
+            Competency Areas
         </div>
 
     </div>
     <div class="InfoDetailsArea">
         <div class="leftPan">
 
-            <div class="heading6">Competencies
+            <div class="comphtxt">Competencies
                 <div *ngIf="competenciesChartData.length > 0" class="mat-card-header-text">Click on the respective competency to view the details</div>
             </div>
             <ng-container *ngIf="competenciesChartData.length > 0 else noCompetency">
@@ -29,10 +29,8 @@
             </div>
             <div class="heading6">Areas</div>
             <div class="areasbtnsec">
-                <span class="btnBox btnBlue" *ngFor="let area1 of areasName">{{area1.areaname}} - {{area1.score}}</span>
-                <!-- <span class="btnBox btnGreen">Areas - 1</span>
-                <span class="btnBox btnWarn">Areas - 1</span>
-                <span class="btnBox btnRed">Areas - 1</span> -->
+                <span class="btnBox btnBlue" *ngFor="let area1 of areasName">{{area1.areaname}} -
+                    {{area1.score}}</span>
 
             </div>
         </ng-container>
