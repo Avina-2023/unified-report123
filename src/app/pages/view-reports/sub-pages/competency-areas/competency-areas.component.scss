@@ -1,0 +1,137 @@
+@import "variables";
+.Headerinfo {
+    font-weight: 700;
+    line-height: 2.2;
+    margin-top: 2.5em;
+    margin-bottom: 1.5em;
+}
+
+.InfoDetailsArea {
+    position: relative;
+    display: flex;
+    justify-content: space-between; 
+    border-bottom: none;
+    border-right: none;
+    margin-top: 1.2em;
+    box-shadow:0px 1px 5px 0px rgb(0 0 0 / 12%);
+
+    > div {
+        padding: 2em 2em;
+        width: 50%;
+        color: $lightGrey;
+        display: flex;
+        flex-direction: column;
+    }            
+    .leftPan { 
+        background-color: $whiteColor; 
+        position: relative;
+        min-height: 250px;
+        justify-content: space-between;
+        .heading6 {
+            margin-bottom: 0em;
+        }
+        .mat-card-header-text {
+            font-size: 0.7em;
+            margin-top: 0.6em;
+        }
+    }   
+    .rightPan { 
+        position: relative;
+        background-color: #f2f2f2; 
+        .ngx-charts {
+            margin-left: -2.2em;
+        }
+        .heading4 {
+            color: $blackColor;
+            font-weight: 700;
+            padding-left: 0.5em;
+            border-left: 0.3em solid #c84656;
+            margin-bottom: 1em;
+            display: flex;
+            align-items: center;
+            line-height: 1;
+            span {
+                font-size: 1.5em;
+                padding-left: 0.3em;
+            }
+        }
+        .heading6 {
+            color: $blackColor;
+            padding-left: 1.1em;
+            font-weight: 700;
+            margin-top: 1em;
+        }
+        .areasbtnsec {
+            padding-left: 1.2em;
+            display: flex;
+            margin-top: 0.5em;
+            flex-wrap: wrap;
+            .btnBox {
+                background-color: transparent;
+                vertical-align: bottom;
+                border: 0; 
+                font-weight: 500;
+                padding: 0.425rem 1rem 0.5rem;
+                font-size: .75rem;
+                line-height: 1.5;
+                text-align: center;
+                text-decoration: none;
+                user-select: none;
+                border-radius: .25rem;
+                margin-right: 1em;
+                margin-bottom: 1em;
+                font-weight: 500;
+                color: $sidebar-black;
+            }
+            .btnBlue {
+                background-color: #8ac1ed;
+            }
+            .btnGreen {
+                background-color: #a4dea5;
+            }
+            .btnWarn {
+                background-color: #f7d096;
+            }
+            .btnRed {
+                background-color: #e89694;
+            }
+        }
+    }
+    .triangle-left {
+        width: 0;
+        height: 0;
+        border-top: 40px solid transparent;
+        border-right: 50px solid #f2f2f2;
+        border-bottom: 40px solid transparent;
+        position: absolute;
+        left: 48%;
+        top: 35%;
+    }
+}
+
+mat-card {
+     ::ng-deep.mat-card-header,
+     ::ng-deep.mat-card-content {
+        font-weight: normal !important;
+    }
+    .heading6 {
+        display: block;
+    }
+}
+
+.no-chart {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 22px;
+    color: #333;
+}
+
+.horizontal-scroll {
+    overflow: auto !important;
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    width: 530px !important;
+}

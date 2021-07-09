@@ -1,5 +1,5 @@
 import { AfterViewInit, Input } from "@angular/core";
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, OnChanges, Output, EventEmitter } from '@angular/core';
 import {
   Chart,
   ArcElement,
@@ -58,7 +58,7 @@ Chart.register(
   templateUrl: './horizontal-bar-chart.component.html',
   styleUrls: ['./horizontal-bar-chart.component.scss']
 })
-export class HorizontalBarChartComponent implements OnInit {
+export class HorizontalBarChartComponent implements OnInit, OnChanges {
   // chart start
   canvas: any;
   ctx: any;
@@ -70,8 +70,9 @@ export class HorizontalBarChartComponent implements OnInit {
 // chart end
 
 // ngx charts start
+@Output() selectedArea:EventEmitter<any> =new EventEmitter<any>();
 @Input() chartData: any;
-@Input() unSorted: any;
+@Input() domains: any;
 indexNum: any = 0;
 
 single: any;
@@ -89,7 +90,7 @@ showYAxisLabel = false;
 yAxisLabel = 'Skill Score';
 
 colorScheme = {
-  domain: ['#8ac1ed', '#a4dea5', '#f7d096', '#e89694']
+  domain: []
 };
 
 // ngx charts end
@@ -98,9 +99,38 @@ colorScheme = {
 
   }
 
-  ngOnInit() {
-    this.single = this.chartData;
+  async ngOnInit() {
+    await this.getSkillData();
     this.calculateWidthAndHeight();
+    this.setColorDomain();
+  }
+
+  async ngOnChanges() {
+    await this.getSkillData();
+    this.calculateWidthAndHeight();
+    this.setColorDomain();
+  }
+
+  setColorDomain() {
+    this.colorScheme.domain = this.domains;
+  }
+
+  getSkillData() {
+    this.single = [];
+    let colorCode = [];
+    this.chartData.forEach(element => {
+      if (element) {
+        let ele = {
+          name: element.skillname,
+          value: element.score,
+          id: element.skillID,
+          color: element.areaColor
+        }
+        colorCode.push(element.areaColor);
+        this.single.push(ele);
+      }
+    });
+    this.colorScheme.domain = colorCode;
   }
 
   ngAfterViewInit() {
@@ -108,53 +138,56 @@ colorScheme = {
 
 
   calculateWidthAndHeight() {
-    if (this.chartData && this.chartData.length <= 3) {
+    if (this.single && this.single.length <= 3) {
      return this.view = [400, 110];
     }
-    if (this.chartData && this.chartData.length <= 6) {
+    if (this.single && this.single.length <= 6) {
       return this.view = [400, 110];      
     }
-    if (this.chartData && this.chartData.length <= 9) {
+    if (this.single && this.single.length <= 9) {
       return this.view = [400, 110];            
     }
-    if (this.chartData && this.chartData.length <= 12) {
+    if (this.single && this.single.length <= 12) {
       return this.view = [400, 110];            
     }
-    if (this.chartData && this.chartData.length <= 15) {
+    if (this.single && this.single.length <= 15) {
       return this.view = [400, 110];      
     }
   }
 
   onSelect(event) {
-
+    this.selectedArea.emit(event);
   }
 
   sorting(data) {
+    let sortingArray = this.single;
     this.single = [];
-    let sortingArray = this.chartData;
     if (data == 1) {
       this.indexNum = data;
       sortingArray.sort(function(a, b) {
         return a.value < b.value ? -1 : 1;
       }); 
+      let colorCode = [];
       sortingArray.forEach(element => {
+        colorCode.push(element.color);
         this.single.push(element);
       });
+      this.colorScheme.domain = colorCode;
     } 
     else if (data == 2) {
       this.indexNum = data;
       sortingArray.sort(function(a, b) {
         return a.value > b.value ? -1 : 1;
       }); 
+      let colorCode = [];
       sortingArray.forEach(element => {
+        colorCode.push(element.color);
         this.single.push(element);
       });
+      this.colorScheme.domain = colorCode;
     } else {
-      this.indexNum = 0
-      sortingArray = this.unSorted;      
-      sortingArray.forEach(element => {
-        this.single.push(element);
-      });      
+      this.indexNum = 0;
+      this.getSkillData();
     }
   }
 
