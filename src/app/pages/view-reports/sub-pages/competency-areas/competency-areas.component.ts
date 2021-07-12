@@ -12,7 +12,7 @@ export class CompetencyAreasComponent implements OnInit {
   competancyData = [];
   areasName = [];
   counter: number = 0;
-  list: Array<number> = [1, 2];
+  list: any = [1];
 
 
   competenciesChartData = [];
@@ -57,10 +57,13 @@ export class CompetencyAreasComponent implements OnInit {
               // vertical chart data
       let competencyChartData = [];
       let unsort = [];
-      this.competancyData?.forEach(labNames => {
+      let listCount = [];
+      this.competancyData?.forEach((labNames, i) => {
+        listCount.push(i+1);
         competencyChartData.push({name: labNames.competencyname, value: labNames.score, id: labNames?.competencyId})
         unsort.push({name: labNames.competencyname, value: labNames.score, id: labNames?.competencyId})
-        });       
+        });
+        this.list = listCount;
         this.unSortedVerticalData = unsort;
         this.competenciesChartData = competencyChartData;
   }
