@@ -6,10 +6,7 @@
 
     </div>
     <div class="InfoDetailsArea">
-        <div class="leftPan">
-
-            
-
+        <div class="leftPan"> 
             <div *ngIf="competenciesChartData.length > 0" >
                 <app-bar-chart (competencyId)="getParticularCompetencySkills($event)" [unSorted]="unSortedVerticalData"
                     [chartData]="competenciesChartData"></app-bar-chart>
@@ -43,6 +40,9 @@
                     class="icon-Back"></em></button>
             <button type="button" class="sliderBtn right" (click)="onNext()"
                 [disabled]="this.counter == this.list.length - 1"><em class="icon-right-next"></em></button>
+                <div class="slideDots">
+                    <span *ngFor="let competency of competancyData; let i = index" [class.active]="i===counter" >{{competency && competency.score ? competency.score : ''}}</span>
+                </div>
         </div>
         <span class="triangle-left"></span>
 
