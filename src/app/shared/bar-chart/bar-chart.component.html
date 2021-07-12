@@ -1,31 +1,34 @@
-<div class="sort-container">
-    <button class="sort" mat-raised-button (click)="sorting(indexNum + 1)" name="fieldName" ngDefaultControl [(ngModel)]="indexNum">
-        {{('Sort')}} 
-        <mat-icon *ngIf="indexNum == 0">sort</mat-icon>
-        <mat-icon *ngIf="indexNum == 1">
-        arrow_upward
-        </mat-icon>
-        <mat-icon *ngIf="indexNum == 2">
-            arrow_downward
-        </mat-icon>    
-    </button>
+<div class="comphtxt">Competencies
+    <div  class="mat-card-header-text">  Click on the respective competency to view the details 
+        <span class="sort" (click)="sorting(indexNum + 1)" name="fieldName" ngDefaultControl [(ngModel)]="indexNum">
+            <mat-icon   [class.disable]="indexNum == 1">
+            arrow_upward
+            </mat-icon>
+            <mat-icon   [class.disable]="indexNum == 2">
+                arrow_downward
+            </mat-icon>    
+        </span>
     </div>
+</div> 
+
     <ngx-charts-bar-vertical 
      [view]="view"
      [scheme]="colorScheme"
-     [results]="single"
-     [gradient]="gradient"
+     [results]="single" 
      [xAxis]="showXAxis"
      [yAxis]="showYAxis"
-     [legend]="showLegend"
      [showXAxisLabel]="showXAxisLabel"
-     [showYAxisLabel]="showYAxisLabel"
-     [xAxisLabel]="xAxisLabel"
-     [yAxisLabel]="yAxisLabel"
-     [showYAxisLabel]="showYAxisLabel"  
-     [showDataLabel]="true"
-     [barPadding]="15"
-     legendPosition = 'below'
+     [showYAxisLabel]="showYAxisLabel"   
+     [showDataLabel]="true" 
+     [xAxisLabel]="xAxisLabel" 
+     [yAxisLabel]="yAxisLabel" 
+     [trimYAxisTicks]="true"
+     [barPadding]="barPadding"  
+     [showGridLines] ="true" 
+     [noBarWhenZero]="false" 
+     [yScaleMax]="100"
+     [maxXAxisTickLength]="10"
+     [maxYAxisTickLength]="10"
      (select)="onSelect($event)">
      </ngx-charts-bar-vertical>
     <!-- </div> -->

@@ -8,9 +8,7 @@
     <div class="InfoDetailsArea">
         <div class="leftPan">
 
-            <div class="comphtxt" *ngIf="competenciesChartData.length > 0">Competencies
-                <div  class="mat-card-header-text">  Click on the respective competency to view the details</div>
-            </div>
+            
 
             <div *ngIf="competenciesChartData.length > 0" >
                 <app-bar-chart (competencyId)="getParticularCompetencySkills($event)" [unSorted]="unSortedVerticalData"
@@ -20,24 +18,27 @@
             </div>
         </div>
         <div class="rightPan" [@animSlider]="counter">
+
             <ng-container *ngFor="let competency of competancyData; let i = index">
                 <div *ngIf="i===counter" class="chartContainer">
+                    <div>
                     <div class="heading4">{{competency && competency.competencyname ? competency.competencyname :
                         ''}} <span>{{competency && competency.score ? competency.score : ''}}%</span>
-                    </div> 
-                    <app-horizontal-bar-chart (selectedArea)="selectedHorizontalArrayIndex($event, i)"
-                        [domains]="domain" [chartData]="competency.skills"></app-horizontal-bar-chart> 
+                    </div>
+                    <app-horizontal-bar-chart (selectedArea)="selectedHorizontalArrayIndex($event, i)" [domains]="domain"
+                        [chartData]="competency.skills"></app-horizontal-bar-chart>
+                    </div>
                     <div>
-                        <div class="heading6">Areas</div>
+                        <div class="subhtxt">Areas <span class="ResetBtn "> <em class="icon-Refresh"></em>Reset</span></div>
                         <div class="areasbtnsec" *ngIf="competency.areaSkills">
-                            <span class="btnBox btnBlue"
-                                [ngStyle]="{'background-color': area1.areaColor ? area1.areaColor : ''}"
+                            <span class="btnBox btnBlue" [ngStyle]="{'background-color': area1.areaColor ? area1.areaColor : ''}"
                                 *ngFor="let area1 of competency.areaSkills">{{area1.areaname}} -
                                 {{area1.score}}</span>
                         </div>
                     </div>
                 </div>
             </ng-container>
+            
             <button type="button" class="sliderBtn left" (click)="onPrevious()" [disabled]="counter===0"><em
                     class="icon-Back"></em></button>
             <button type="button" class="sliderBtn right" (click)="onNext()"
