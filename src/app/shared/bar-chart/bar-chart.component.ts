@@ -1,5 +1,5 @@
 import { AfterViewInit, Input } from "@angular/core";
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Output, EventEmitter } from '@angular/core';
 import {
   Chart,
   ArcElement,
@@ -70,19 +70,20 @@ export class BarChartComponent implements OnInit, AfterViewInit {
   // Charts module initializtion end
 
   // ngx charts start
+  @Output() competencyId:EventEmitter<any> =new EventEmitter<any>();
   @Input() chartData: any;
   @Input() unSorted: any;
   indexNum: any = 0;
   single: any;
 
-  view: any[] = [200, 400];
+  view: any[] = [140, 350];
 
   // options
   showXAxis = true;
   showYAxis = true;
   gradient = false;
   showLegend = false;
-  showXAxisLabel = true;
+  showXAxisLabel = false; 
   xAxisLabel = 'Competency Score';
   showYAxisLabel = false;
   yAxisLabel = 'Competency Score';
@@ -133,7 +134,19 @@ export class BarChartComponent implements OnInit, AfterViewInit {
   }
 
   onSelect(event) {
+    this.getSelectedCompetencyIdByName(event.name, event.value);
+  }
 
+  getSelectedCompetencyIdByName(name, value) {
+    const selectedId = this.unSorted.find((data)=> {
+      if (data.name == name && data.value == value) {
+        return data;
+      }
+    });
+    this.emitCompetencyId(selectedId.id ? selectedId.id : '');
+  }
+  emitCompetencyId(id) {
+    this.competencyId.emit(id);
   }
 
   chartsModule() {
