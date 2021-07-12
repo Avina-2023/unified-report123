@@ -48,9 +48,8 @@ export class CompetencyAreasComponent implements OnInit {
       };
     });
     if (selectedCompetency) {
-      console.log('adad', selectedCompetency);
-      
-      // this.getSkillChartData(selectedCompetency);
+      const filterIndex = this.competancyData.findIndex(data => (data.competencyname == selectedCompetency.competencyname && data.score == selectedCompetency.score));
+      this.counter = filterIndex != -1 ? filterIndex : this.counter;
     }
   }
 
