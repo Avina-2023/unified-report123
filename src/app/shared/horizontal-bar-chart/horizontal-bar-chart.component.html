@@ -1,15 +1,13 @@
-<div class="heading6">Skills
-    <button class="sort" mat-raised-button (click)="sorting(indexNum + 1)" name="fieldName" ngDefaultControl
-        [(ngModel)]="indexNum">
-        {{('Sort')}}
-        <mat-icon *ngIf="indexNum == 0">sort</mat-icon>
-        <mat-icon *ngIf="indexNum == 1">
+<div class="subhtxt">Skills
+    <span class="sort" (click)="sorting(indexNum + 1)" name="fieldName" ngDefaultControl
+        [(ngModel)]="indexNum"> 
+        <mat-icon [diabled]="indexNum == 1">
             arrow_upward
         </mat-icon>
-        <mat-icon *ngIf="indexNum == 2">
+        <mat-icon [diabled]="indexNum == 2">
             arrow_downward
         </mat-icon>
-    </button>
+    </span>
 </div>
 <div class="barChartCenter">
     <ngx-charts-bar-horizontal 
@@ -20,13 +18,16 @@
     [xAxis]="showXAxis" 
     [yAxis]="showYAxis" 
     [legend]="showLegend" 
+    [xScaleMax]="100" 
     [showXAxisLabel]="showXAxisLabel" 
     [showYAxisLabel]="showYAxisLabel" 
     [xAxisLabel]="xAxisLabel" 
     [yAxisLabel]="yAxisLabel"  
     [showYAxisLabel]="showYAxisLabel" 
-    [showDataLabel]=true 
-    legendPosition='top' 
+    [showDataLabel]=true  
+    [trimYAxisTicks]="false"
+    [showGridLines]="true"
+    [animations]="false"
     (select)="onSelect($event)">
     </ngx-charts-bar-horizontal>
 </div>
