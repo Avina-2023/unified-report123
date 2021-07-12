@@ -8,33 +8,54 @@
     <div class="InfoDetailsArea">
         <div class="leftPan">
 
-            <div class="comphtxt">Competencies
-                <div class="mat-card-header-text">Click on the respective competency to view the details</div>
+            <div class="comphtxt" *ngIf="competenciesChartData.length > 0">Competencies
+                <div  class="mat-card-header-text">  Click on the respective competency to view the details</div>
             </div>
-            <div style="width: 100%;" *ngIf="competenciesChartData.length > 0">
-                <app-bar-chart [unSorted]="unSortedVerticalData" [chartData]="competenciesChartData"></app-bar-chart>
+
+            <div *ngIf="competenciesChartData.length > 0" >
+                <app-bar-chart (competencyId)="getParticularCompetencySkills($event)" [unSorted]="unSortedVerticalData"
+                    [chartData]="competenciesChartData"></app-bar-chart>
                 <!-- Below commented is for chart.js charts -->
                 <!-- <app-bar-chart [orientation]="'x'" [chartType]="'bar'" [values]="Skills" [labels]="competencieslabels"></app-bar-chart> -->
             </div>
         </div>
-        <div class="rightPan"> 
-            <div class="heading4">{{competenciesName && competenciesName.name ? competenciesName.name : ''}}
-                <span>{{competenciesName && competenciesName.value ? competenciesName.value : ''}}%</span>
-            </div>
-            <div *ngIf="skillsChartData.length > 0">
-                <app-horizontal-bar-chart [unSorted]="unSortedHorizontalData"  [chartData]="skillsChartData">
-                </app-horizontal-bar-chart>
-                <!-- Below commented is for chart.js charts -->
-                <!-- <app-horizontal-bar-chart [orientation]="'y'" [chartType]="'bar'" [values]="Skills1" [labels]="skilllabels"></app-horizontal-bar-chart> -->
-            </div>
-            <div class="heading6">Areas</div>
-            <div class="areasbtnsec">
-                <span class="btnBox btnBlue" *ngFor="let area1 of areasName">{{area1.areaname}} -
-                    {{area1.score}}</span>
-
-            </div>
+        <div class="rightPan" [@animSlider]="counter">
+            <ng-container *ngFor="let competency of competancyData; let i = index">
+                <div *ngIf="i===counter" class="chartContainer">
+                    <div class="heading4">{{competency && competency.competencyname ? competency.competencyname :
+                        ''}} <span>{{competency && competency.score ? competency.score : ''}}%</span>
+                    </div> 
+                    <app-horizontal-bar-chart (selectedArea)="selectedHorizontalArrayIndex($event, i)"
+                        [domains]="domain" [chartData]="competency.skills"></app-horizontal-bar-chart> 
+                    <div>
+                        <div class="heading6">Areas</div>
+                        <div class="areasbtnsec" *ngIf="competency.areaSkills">
+                            <span class="btnBox btnBlue"
+                                [ngStyle]="{'background-color': area1.areaColor ? area1.areaColor : ''}"
+                                *ngFor="let area1 of competency.areaSkills">{{area1.areaname}} -
+                                {{area1.score}}</span>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+            <button type="button" class="sliderBtn left" (click)="onPrevious()" [disabled]="counter===0"><em
+                    class="icon-Back"></em></button>
+            <button type="button" class="sliderBtn right" (click)="onNext()"
+                [disabled]="this.counter == this.list.length - 1"><em class="icon-right-next"></em></button>
         </div>
         <span class="triangle-left"></span>
 
     </div>
 </section>
+
+<ng-template #noChart>
+    <div class="no-chart">
+        No Chart Available
+    </div>
+</ng-template>
+
+<ng-template #noCompetency>
+    <div class="no-chart">
+        No Competencies Available
+    </div>
+</ng-template>
