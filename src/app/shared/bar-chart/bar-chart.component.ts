@@ -74,20 +74,19 @@ export class BarChartComponent implements OnInit, AfterViewInit {
   @Input() chartData: any;
   @Input() unSorted: any;
   indexNum: any = 0;
-  single: any;
-
-  view: any[] = [140, 350];
+  single: any; 
+  view: any[] = [450, 350];
 
   // options
   showXAxis = true;
   showYAxis = true;
   gradient = false;
   showLegend = false;
-  showXAxisLabel = false; 
-  xAxisLabel = 'Competency Score';
-  showYAxisLabel = false;
-  yAxisLabel = 'Competency Score';
-
+  showXAxisLabel = true;   
+  showYAxisLabel = true;
+  yAxisLabel = 'Percentage'; 
+  xAxisLabel = 'Competencies'; 
+  barPadding = 25;
   colorScheme = {
     domain: ["#FF8C00", "#0085B6" , "#9DBC5B" , "#28B59A", "#03B8CB"]
   };
@@ -97,8 +96,27 @@ export class BarChartComponent implements OnInit, AfterViewInit {
   constructor() {
   }
 
+  calculateWidthAndHeight() {
+    if (this.single && this.single.length <= 3) {
+     return this.view = [200, 350];
+    }
+    if (this.single && this.single.length <= 5) {
+      return this.view = [350, 180];      
+    }
+    if (this.single && this.single.length <= 7) {
+      return this.view = [490, 252];            
+    }
+    if (this.single && this.single.length <= 9) {
+      return this.view = [630, 324];            
+    }
+    if (this.single && this.single.length <= 11) {
+      return this.view = [420, 770];      
+    }
+  }
+
   ngOnInit() {
     this.single = this.chartData;
+    this.calculateWidthAndHeight();
   }
 
   ngAfterViewInit() {
