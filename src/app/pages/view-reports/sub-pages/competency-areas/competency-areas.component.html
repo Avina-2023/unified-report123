@@ -26,7 +26,7 @@
                         [chartData]="competency.skills"></app-horizontal-bar-chart>
                     </div>
                     <div>
-                        <div class="subhtxt">Areas <span class="ResetBtn "> <em class="icon-Refresh"></em>Reset</span></div>
+                        <div class="subhtxt">Areas <span (click)="resetAreas(i, competency)" class="ResetBtn "> <em class="icon-Refresh"></em>Reset</span></div>
                         <div class="areasbtnsec" *ngIf="competency.areaSkills">
                             <span class="btnBox btnBlue" [ngStyle]="{'background-color': area1.areaColor ? area1.areaColor : ''}"
                                 *ngFor="let area1 of competency.areaSkills">{{area1.areaname}} -
@@ -41,7 +41,7 @@
             <button type="button" class="sliderBtn right" (click)="onNext()"
                 [disabled]="this.counter == this.list.length - 1"><em class="icon-right-next"></em></button>
                 <div class="slideDots">
-                    <span *ngFor="let competency of competancyData; let i = index" [class.active]="i===counter" >{{competency && competency.score ? competency.score : ''}}</span>
+                    <span (click)="dotChange(i)" *ngFor="let competency of competancyData; let i = index" [class.active]="i===counter" >{{competency && competency.score ? competency.score : ''}}</span>
                 </div>
         </div>
         <span class="triangle-left"></span>
