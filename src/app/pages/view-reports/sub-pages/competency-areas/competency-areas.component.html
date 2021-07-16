@@ -1,10 +1,8 @@
-<section class="CompetencyArea">
-    <div class="Headerinfo">
+<section class="CompetencyArea"> 
         <div class="heading6">
-            Competency Areas
+            Competencies Areas
+        
         </div>
-
-    </div>
     <div class="InfoDetailsArea">
         <div class="leftPan"> 
             <div *ngIf="competenciesChartData.length > 0" >
@@ -18,14 +16,14 @@
 
             <ng-container *ngFor="let competency of competancyData; let i = index">
                 <div *ngIf="i===counter" class="chartContainer">
-                    <div>
+                    <div class="sPan">
                     <div class="heading4">{{competency && competency.competencyname ? competency.competencyname :
                         ''}} <span>{{competency && competency.score ? competency.score : ''}}%</span>
                     </div>
                     <app-horizontal-bar-chart (selectedArea)="selectedHorizontalArrayIndex($event, i)" [domains]="domain"
                         [chartData]="competency.skills"></app-horizontal-bar-chart>
                     </div>
-                    <div>
+                    <div class="aPan">
                         <div class="subhtxt">Areas <span (click)="resetAreas(i, competency)" class="ResetBtn "> <em class="icon-Refresh"></em>Reset</span></div>
                         <div class="areasbtnsec" *ngIf="competency.areaSkills">
                             <span class="btnBox btnBlue" [ngStyle]="{'background-color': area1.areaColor ? area1.areaColor : ''}"

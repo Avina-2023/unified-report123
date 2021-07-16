@@ -11,8 +11,8 @@ import { DocInfoComponent } from './sub-pages/doc-info/doc-info.component';
 import { ProfileInfoComponent } from './sub-pages/profile-info/profile-info.component';
 import { QualityAreaComponent } from './sub-pages/quality-area/quality-area.component';
 import { UserListComponent } from './user-list/user-list.component';
-import { AgGridModule } from 'ag-grid-angular';
-import { CarouselModule } from 'ngx-owl-carousel-o';
+import { AgGridModule } from 'ag-grid-angular'; 
+import { DragScrollModule } from 'ngx-drag-scroll';
 
 
 @NgModule({
@@ -28,9 +28,9 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
   imports: [
     CommonModule,
     ViewReportsRoutingModule,
+    DragScrollModule,
     SharedModule,
     MaterialModule,
-    CarouselModule,
     AgGridModule.withComponents([])
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]
