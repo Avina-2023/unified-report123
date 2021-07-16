@@ -13,7 +13,7 @@ import { SharedModule } from './shared/shared.module';
 import { PerfectScrollbarConfigInterface, PerfectScrollbarModule, PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { InterceptorService } from './interceptor/interceptor.service';
-import { CarouselModule } from 'ngx-owl-carousel-o';
+import { DragScrollModule } from 'ngx-drag-scroll';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -32,8 +32,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     NgxChartsModule,
     MaterialModule,
     SharedModule,
+    DragScrollModule,
     PerfectScrollbarModule,
-    CarouselModule,
     ToastrModule.forRoot(
       {
         timeOut: 3000,

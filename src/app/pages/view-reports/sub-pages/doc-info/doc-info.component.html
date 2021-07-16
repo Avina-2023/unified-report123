@@ -11,16 +11,46 @@
         <ng-container *ngIf="certificationList && certificationList.length > 0">
             <div class="docUpload">
                 <span>Uploaded Documents</span>
-                <div class="img-container" >
-                    <ng-container  *ngFor="let cert of certificationList; let i = index">
-                        <div class="img-sec" *ngIf="cert['url']">
-                            <img [src]="(cert['url'] + blobkey)" class="imgProp" alt="Eligibility" />
-                            <a [attr.href]="(cert['url'] + blobkey)" class="viewBtn" target="_blank"><em class="icon-View"></em></a>
-                            <span>{{cert?.name}}</span>
+                <div class="img-container">
+                    <drag-scroll #nav [scrollbar-hidden]=true [drag-scroll-y-disabled]=true
+                        (reachesLeftBound)="leftBoundStat($event)" (reachesRightBound)="rightBoundStat($event)">
+                        <div drag-scroll-item *ngFor="let cert of certificationList; let i = index;">
+
+                            <span class="drag">
+                                <img [src]="(cert['url'] + blobkey)" class="imgProp" #first alt="Eligibility" />
+                                <a (click)="openDialog(cert, viewImg)"
+                                    [ngStyle]="{'width': first.offsetWidth +'px', 'height': first.offsetHeight +'px' }"
+                                    class="viewBtn"><em class="icon-View"></em></a>
+                                <span>{{cert?.name}}</span>
+                            </span>
+
                         </div>
-                    </ng-container>
+                    </drag-scroll>
+                    <div class="draggable-button-container">
+                        <button [disabled]="leftNavDisabled" class="sliderBtn left doc" (click)="moveLeft()">
+                            <em class="icon-Back"></em>
+                        </button>
+                        <button [disabled]="rightNavDisabled" class="sliderBtn right doc" (click)="moveRight()">
+                            <em class="icon-right-next"></em>
+                        </button>
+                    </div>
+                </div>
+                <div class="draggable-button-container">
+                    <button [disabled]="leftNavDisabled" class="sliderBtn left doc" (click)="moveLeft()">
+                        <em class="icon-Back"></em>
+                    </button>
+                    <button [disabled]="rightNavDisabled" class="sliderBtn right doc" (click)="moveRight()">
+                        <em class="icon-right-next"></em>
+                    </button>
                 </div>
             </div>
         </ng-container>
     </div>
 </section>
+
+<ng-template #viewImg id="viewImg">
+    <div class="progressText">
+        <span class="close" mat-button (click)="closeDialog()">X</span>
+        <img [src]="selectedURL" alt="" />
+    </div>
+</ng-template>

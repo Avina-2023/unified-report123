@@ -83,6 +83,7 @@ showYAxis = true;
 gradient = false;
 showLegend = false;
 showXAxisLabel = false;
+barPadding = 12;
 xAxisLabel = 'Skill Score';
 showYAxisLabel = false;
 yAxisLabel = 'Skill Score';
@@ -137,22 +138,22 @@ colorScheme = {
 
   calculateWidthAndHeight() {
     if (this.single && this.single.length <= 2) {
-      return this.view = [420, 80];
+      return this.view = [420, 90];
      }
     if (this.single && this.single.length <= 3) {
-     return this.view = [420, 110];
+     return this.view = [420, 120];
     }
     if (this.single && this.single.length <= 5) {
-      return this.view = [420, 180];      
+      return this.view = [420, 190];      
     }
     if (this.single && this.single.length <= 7) {
-      return this.view = [420, 252];            
+      return this.view = [420, 262];            
     }
     if (this.single && this.single.length <= 9) {
-      return this.view = [420, 324];            
+      return this.view = [420, 334];            
     }
     if (this.single && this.single.length <= 11) {
-      return this.view = [420, 396];      
+      return this.view = [420, 406];      
     }
   }
 
