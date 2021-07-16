@@ -42,8 +42,8 @@ export class DocInfoComponent implements OnInit, OnChanges {
       this.selectedURL = group['url'] + this.blobkey;
       this.dialog.open(templateRef, {   
         panelClass: 'uploadInProgress', 
-        height: '95%', 
-        width: '50%', 
+        height: '60%', 
+        width: '35%', 
         disableClose: true });  
     } else {
 
