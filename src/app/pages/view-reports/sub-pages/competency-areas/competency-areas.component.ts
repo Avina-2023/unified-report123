@@ -12,7 +12,7 @@ export class CompetencyAreasComponent implements OnInit {
   competancyData = [];
   areasName = [];
   counter: number = 0;
-  list: any = [1];
+  list: any = [0];
 
 
   competenciesChartData = [];
