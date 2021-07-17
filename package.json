@@ -26,6 +26,7 @@
     "ag-grid-community": "^25.3.0",
     "bootstrap": "^4.5.2",
     "chart.js": "^3.3.2",
+    "crypto-js": "^4.0.0",
     "moment": "^2.26.0",
     "ng-image-slider": "^2.8.0",
     "ngx-drag-scroll": "^12.0.0-beta.1",

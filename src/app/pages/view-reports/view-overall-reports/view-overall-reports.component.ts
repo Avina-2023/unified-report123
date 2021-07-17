@@ -15,7 +15,7 @@ export class ViewOverallReportsComponent implements OnInit {
   getAllReportsData: any;
   driveName: any;
 
-  constructor(private toastr: ToastrService, private ApiService: ApiService, private appconfig: AppConfigService, 
+  constructor(private toastr: ToastrService, private ApiService: ApiService, private appconfig: AppConfigService,
     private route: ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -25,10 +25,10 @@ export class ViewOverallReportsComponent implements OnInit {
   getRoute() {
     this.route.paramMap.subscribe((param: any)=> {
       if (param && param.params && param.params.id) {
-        let email = param.params.id;
+        let email = param.params.id ? this.ApiService.decrypt(param.params.id) : param.params.id;
         this.getReports(email);
       }
-      
+
     });
   }
 
@@ -52,7 +52,7 @@ export class ViewOverallReportsComponent implements OnInit {
   getSelectedDriveName(e) {
     if (this.getAllReportsData) {
       this.getAllReportsData.selectedDriveName = e;
-      this.driveName = e;      
-    }    
+      this.driveName = e;
+    }
   }
 }
