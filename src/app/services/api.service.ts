@@ -4,14 +4,14 @@ import { environment } from './../../environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AppConfigService } from '../utils/app-config.service';
-
+import * as CryptoJS from 'crypto-js';
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
 
   BASE_URL = environment.API_BASE_URL;
-
+  EncryptKEY = environment.encryptionKey;
   constructor(
     private http: HttpClient,
     private appConfig: AppConfigService,
@@ -34,5 +34,27 @@ export class ApiService {
 
   getUserList(data) {
     return this.http.post(`${this.BASE_URL}/getuserList`, data);
+  }
+
+  encrypt(data) {
+    try {
+      return CryptoJS.AES.encrypt(JSON.stringify(data), this.EncryptKEY).toString();
+    } catch (e) {
+      console.log(e);
+      return data;
+    }
+  }
+
+  decrypt(data) {
+    try {
+      const bytes = CryptoJS.AES.decrypt(data, this.EncryptKEY);
+      if (bytes.toString()) {
+        return JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+      }
+      return data;
+    } catch (e) {
+      console.log(e);
+      return data;
+    }
   }
 }

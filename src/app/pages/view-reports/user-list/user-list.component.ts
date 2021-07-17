@@ -3,7 +3,7 @@ import { AppConfigService } from './../../../utils/app-config.service';
 import { ApiService } from './../../../services/api.service';
 import { ToastrService } from 'ngx-toastr';
 import { Component, OnChanges, OnInit } from '@angular/core';
-
+import * as CryptoJS from 'crypto-js';
 @Component({
   selector: 'app-user-list',
   templateUrl: './user-list.component.html',
@@ -42,12 +42,12 @@ export class UserListComponent implements OnInit, OnChanges {
   constructor(private toastr: ToastrService, private ApiService: ApiService, private appconfig: AppConfigService) { }
 
   ngOnInit(): void {
-    this.tableDef();    
+    this.tableDef();
   }
 
   ngOnChanges() {
   //   console.log('coming');
-    this.tableDef();    
+    this.tableDef();
   }
 
 
@@ -83,13 +83,13 @@ export class UserListComponent implements OnInit, OnChanges {
 
   onCellClicked(event) {
     if (event.column.userProvidedColDef.headerName === 'Reports') {
-      let email = event['data']['email'];
+      let email = event['data']['email'] ? this.ApiService.encrypt(event['data']['email']) : '';
       this.appconfig.routeNavigationWithParam(APP_CONSTANTS.ENDPOINTS.REPORTS.VIEWREPORTS, email);
     }
   }
 
   getModel(e) {
-    // console.log(e);    
+    // console.log(e);
     const filteredArray = this.gridApi.getModel().rootNode.childrenAfterFilter;
     if (filteredArray && filteredArray.length === 0) {
       this.toastr.warning('No search results found');
@@ -108,7 +108,7 @@ export class UserListComponent implements OnInit, OnChanges {
 tableDef() {
   this.columnDefs = [
     {
-      headerName: 'Firstname', 
+      headerName: 'Firstname',
       field: 'firstname',
       filter: true,
       minWidth: 120,
@@ -119,7 +119,7 @@ tableDef() {
       }
     },
     {
-      headerName: 'Lastname', 
+      headerName: 'Lastname',
       field: 'lastname',
       filter: true,
       minWidth: 120,
@@ -130,7 +130,7 @@ tableDef() {
       }
     },
     {
-      headerName: 'Email ID', 
+      headerName: 'Email ID',
       field: 'email',
       filter: true,
       minWidth: 120,
