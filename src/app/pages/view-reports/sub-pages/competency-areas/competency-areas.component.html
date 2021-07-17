@@ -4,10 +4,9 @@
         
         </div>
     <div class="InfoDetailsArea">
-        <div class="leftPan"> 
-            <div *ngIf="competenciesChartData.length > 0" >
-                <app-bar-chart (competencyId)="getParticularCompetencySkills($event)" [unSorted]="unSortedVerticalData"
-                    [chartData]="competenciesChartData"></app-bar-chart>
+        <div class="leftPan">
+            <div *ngIf="verticalChartData && verticalChartData.length > 0" >
+                <app-bar-chart (competencyId)="getParticularCompetencySkills($event)"  [domains]="verticalChartData" [chartData]="verticalChartData"></app-bar-chart>
                 <!-- Below commented is for chart.js charts -->
                 <!-- <app-bar-chart [orientation]="'x'" [chartType]="'bar'" [values]="Skills" [labels]="competencieslabels"></app-bar-chart> -->
             </div>
@@ -33,7 +32,7 @@
                     </div>
                 </div>
             </ng-container>
-            
+
             <button type="button" class="sliderBtn left" (click)="onPrevious()" [disabled]="counter===0"><em
                     class="icon-Back"></em></button>
             <button type="button" class="sliderBtn right" (click)="onNext()"

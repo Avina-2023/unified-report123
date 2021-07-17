@@ -73,8 +73,8 @@ export class HorizontalBarChartComponent implements OnInit, OnChanges {
 @Output() selectedArea:EventEmitter<any> =new EventEmitter<any>();
 @Input() chartData: any;
 @Input() domains: any;
-indexNum: any = 0; 
-single: any; 
+indexNum: any = 0;
+single: any;
 view: any[] = [420, 400];
 
 // options
@@ -133,7 +133,7 @@ colorScheme = {
   }
 
   ngAfterViewInit() {
-  }  
+  }
 
 
   calculateWidthAndHeight() {
@@ -144,16 +144,16 @@ colorScheme = {
      return this.view = [420, 120];
     }
     if (this.single && this.single.length <= 5) {
-      return this.view = [420, 190];      
+      return this.view = [420, 190];
     }
     if (this.single && this.single.length <= 7) {
-      return this.view = [420, 262];            
+      return this.view = [420, 262];
     }
     if (this.single && this.single.length <= 9) {
-      return this.view = [420, 334];            
+      return this.view = [420, 334];
     }
     if (this.single && this.single.length <= 11) {
-      return this.view = [420, 406];      
+      return this.view = [420, 406];
     }
   }
 
@@ -168,19 +168,19 @@ colorScheme = {
       this.indexNum = data;
       sortingArray.sort(function(a, b) {
         return a.value < b.value ? -1 : 1;
-      }); 
+      });
       let colorCode = [];
       sortingArray.forEach(element => {
         colorCode.push(element.color);
         this.single.push(element);
       });
       this.colorScheme.domain = colorCode;
-    } 
+    }
     else if (data == 2) {
       this.indexNum = data;
       sortingArray.sort(function(a, b) {
         return a.value > b.value ? -1 : 1;
-      }); 
+      });
       let colorCode = [];
       sortingArray.forEach(element => {
         colorCode.push(element.color);
@@ -207,7 +207,7 @@ colorScheme = {
       }]
   }
   // this.type==="radar"?chartdata.datasets[0].fillColor = "rgba(255,10,13,255)":''
-  
+
     let myChart = new Chart(this.ctx, {
     type: this.type,
     data:chartdata,
@@ -216,7 +216,7 @@ colorScheme = {
       legend: {
         display: false
      },
-      scales: {  
+      scales: {
         x: {
           grid: {
             display: false,
@@ -234,6 +234,6 @@ colorScheme = {
   //   options: {
   //   indexAxis: this.orient,
   // }
-    }); 
+    });
   }
 }
