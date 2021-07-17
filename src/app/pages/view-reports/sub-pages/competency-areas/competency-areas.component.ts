@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core'; 
+import { Component, Input, OnInit } from '@angular/core';
 import { slide } from '../../../../animations'
 
 @Component({
@@ -7,7 +7,7 @@ import { slide } from '../../../../animations'
   styleUrls: ['./competency-areas.component.scss'],
   animations: slide
 })
-export class CompetencyAreasComponent implements OnInit { 
+export class CompetencyAreasComponent implements OnInit {
   @Input() getAllReportsData;
   competancyData = [];
   areasName = [];
@@ -21,8 +21,10 @@ export class CompetencyAreasComponent implements OnInit {
   unSortedVerticalData: any;
   unSortedHorizontalData: any;
   domain = ['#8ac1ed', '#a4dea5', '#f7d096', '#e89694', '#8ac1ed', '#a4dea5', '#f7d096', '#e89694', '#8ac1ed', '#a4dea5', '#f7d096', '#e89694', '#8ac1ed', '#a4dea5', '#f7d096', '#e89694'];
+  verticaldomain = ["#FF8C00", "#0085B6" , "#9DBC5B" , "#28B59A", "#03B8CB", "#FF8C00", "#0085B6" , "#9DBC5B" , "#28B59A", "#03B8CB"];
   selectedHorizontalChartIndex = '0';
-  constructor() { 
+  verticalChartData: any[];
+  constructor() {
   }
 
   ngOnInit(): void {
@@ -53,20 +55,6 @@ export class CompetencyAreasComponent implements OnInit {
     }
   }
 
-  getCompetencyChartData() {
-              // vertical chart data
-      let competencyChartData = [];
-      let unsort = [];
-      let listCount = [];
-      this.competancyData?.forEach((labNames, i) => {
-        listCount.push(i+1);
-        competencyChartData.push({name: labNames.competencyname, value: labNames.score, id: labNames?.competencyId})
-        unsort.push({name: labNames.competencyname, value: labNames.score, id: labNames?.competencyId})
-        });
-        this.list = listCount;
-        this.unSortedVerticalData = unsort;
-        this.competenciesChartData = competencyChartData;
-  }
 
   selectedHorizontalArrayIndex(event, i) {
     let skill = this.competancyData[i].skills.find((data: any)=> {
@@ -85,11 +73,67 @@ export class CompetencyAreasComponent implements OnInit {
   getCompetancyData(){
     this.competancyData = this.getAllReportsData?.competencyDetails;
     if (this.competancyData && this.competancyData.length > 0) {
-      this.getCompetencyChartData();
       this.getAreasDataInitialize(this.competancyData);
+      this.setColorCodesToVericalChart();
     }
   }
-
+  setColorCodesToVericalChart() {
+    this.verticalChartData = [];
+    let listCount = [];
+    this.competancyData.forEach((element, j) => {
+      listCount.push(j + 1);
+      this.verticalChartData.push(element);
+    });
+    this.list = listCount;
+    // Dummy variable is for testing purpose
+    let dummy = [
+      {
+      areaColor: "#FF8C00",
+      areaSkills: [],
+      competencyId: "C013",
+      competencyname: "Behavioral213",
+      maxscore: 100,
+      score: 23,
+      skills: []
+      },
+      {
+        areaColor: "#FF8C00",
+        areaSkills: [],
+        competencyId: "C013",
+        competencyname: "Behaviorals",
+        maxscore: 100,
+        score: 53,
+        skills: []
+        },
+        {
+          areaColor: "#FF8C00",
+          areaSkills: [],
+          competencyId: "C013",
+          competencyname: "1ehavioral213",
+          maxscore: 100,
+          score: 13,
+          skills: []
+          },
+          {
+            areaColor: "#FF8C00",
+            areaSkills: [],
+            competencyId: "C013",
+            competencyname: "2Behaviorals",
+            maxscore: 100,
+            score: 23,
+            skills: []
+            }
+    ]
+    this.verticalChartData.forEach((element, i) => {
+      if(element && element.score) {
+        element.areaColor = this.verticaldomain[i];
+      }
+    });
+    // this.verticalChartData.push(dummy[0]);
+    // this.verticalChartData.push(dummy[1]);
+    // this.verticalChartData.push(dummy[2]);
+    // this.verticalChartData.push(dummy[3]);
+  }
   getAreasDataInitialize(i) {
     this.competancyData.forEach(skills => {
       if (skills) {

@@ -1,31 +1,31 @@
 <div class="comphtxt">Competencies
-    <div  class="mat-card-header-text">  Click on the respective competency to view the details 
+    <div  class="mat-card-header-text">  Click on the respective competency to view the details
         <span class="sort" (click)="sorting(indexNum + 1)" name="fieldName" ngDefaultControl [(ngModel)]="indexNum">
             <mat-icon   [class.disable]="indexNum == 1">
             arrow_upward
             </mat-icon>
             <mat-icon   [class.disable]="indexNum == 2">
                 arrow_downward
-            </mat-icon>    
+            </mat-icon>
         </span>
     </div>
-</div> 
+</div>
 
-    <ngx-charts-bar-vertical 
+    <ngx-charts-bar-vertical
      [view]="view"
      [scheme]="colorScheme"
-     [results]="single" 
+     [results]="single"
      [xAxis]="showXAxis"
      [yAxis]="showYAxis"
      [showXAxisLabel]="showXAxisLabel"
-     [showYAxisLabel]="showYAxisLabel"   
-     [showDataLabel]="true" 
-     [xAxisLabel]="xAxisLabel" 
-     [yAxisLabel]="yAxisLabel" 
+     [showYAxisLabel]="showYAxisLabel"
+     [showDataLabel]="true"
+     [xAxisLabel]="xAxisLabel"
+     [yAxisLabel]="yAxisLabel"
      [trimYAxisTicks]="true"
-     [barPadding]="barPadding"  
-     [showGridLines] ="true" 
-     [noBarWhenZero]="false" 
+     [barPadding]="barPadding"
+     [showGridLines] ="true"
+     [noBarWhenZero]="true"
      [yScaleMax]="100"
      [maxXAxisTickLength]="10"
      [maxYAxisTickLength]="10"
