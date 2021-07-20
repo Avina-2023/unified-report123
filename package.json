@@ -29,6 +29,7 @@
     "crypto-js": "^4.0.0",
     "moment": "^2.26.0",
     "ng-image-slider": "^2.8.0",
+    "ng2-pdf-viewer": "^7.0.1",
     "ngx-drag-scroll": "^12.0.0-beta.1",
     "ngx-owl-carousel-o": "^6.0.0",
     "ngx-perfect-scrollbar": "^10.1.1",
