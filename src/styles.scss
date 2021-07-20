@@ -249,6 +249,30 @@ ul {
           margin-left: 175px;
       }
   }
+  .profileplace {
+      position: relative;
+      
+      .viewprofile {
+          display: none;
+        position: absolute;
+        top: 44px;
+        left: 0;
+        background-color: #0000005c;
+        padding: 0.2em 1em;
+        color: #fff;
+        cursor: pointer;
+        z-index: 5;
+        text-decoration: none;
+        padding-top: 3em;
+        font-size: 23px;
+        text-align: center;
+        border-radius: 5px;
+        z-index: 5;
+      }
+      img:hover + .viewprofile, .viewprofile:hover {
+        display: block;
+      }
+  }
   span {
       color: $mediumGrey;
       font-size: 1em;
@@ -344,16 +368,30 @@ ul {
     height: 480px;
     // max-height: 80%;
     }
-    .close {
+    .closebtn {
         font-size: 0.9em;
-        color: #808080;
-        cursor: pointer;
-        position: absolute;
-        top: 4px;
-        right: 2px;
+        color: #797171;
+        cursor: pointer; 
+        position: relative;
+        top: 2px;
         &:hover {
-            color: #808080;
+            color: #000;
         }
+    }
+    .progressText{
+        position: relative;
+    }
+    .progressclose {
+        position: absolute;
+        width: 25px;
+        height: 25px;
+        background-color: #ffffff63;
+        right: 7px;
+        top: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 25px;
     }
 }
 ng-image-slider {

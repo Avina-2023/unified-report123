@@ -56,6 +56,15 @@ export class DocInfoComponent implements OnInit, OnChanges {
       disableClose: false });
     }
   }
+
+  profileDialog(group, templateRef: TemplateRef<any>) {
+      this.selectedURL = group + this.blobkey;
+      this.dialog.open(templateRef, {
+        panelClass: 'uploadInProgress',
+        // height: '80%',
+        // width: '35%',
+        disableClose: false });
+  }
   closeDialog() {
     this.dialog.closeAll();
   }
