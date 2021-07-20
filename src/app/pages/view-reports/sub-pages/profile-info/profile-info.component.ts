@@ -9,7 +9,7 @@ export class ProfileInfoComponent implements OnInit, OnChanges {
   @Input() getAllReportsData;
   @Output() driveName:EventEmitter<any> =new EventEmitter<any>();
   personalInfo: any;
-  driveselectedValue: any; 
+  driveselectedValue: any;
   driveList: any;
   constructor() { }
 
@@ -34,7 +34,7 @@ export class ProfileInfoComponent implements OnInit, OnChanges {
     this.personalInfo.gender = this.getAllReportsData?.gender;
     this.personalInfo.address = this.getContactAddress('address');
     this.personalInfo.city = this.getContactAddress('city');
-    this.personalInfo.institute = this.getLastEducationValue('institute'); 
+    this.personalInfo.institute = this.getLastEducationValue('institute');
     this.personalInfo.specialization = this.getLastEducationValue('specialization');
     this.personalInfo.branch = this.getLastEducationValue('branch');
     this.personalInfo.passedOut = this.getLastEducationValue('passedOut');
@@ -56,7 +56,7 @@ export class ProfileInfoComponent implements OnInit, OnChanges {
     if (EducationValues && EducationValues.length > 0) {
       let findLastIndex = EducationValues.length -1;
       let lastEducationValue = EducationValues[findLastIndex];
-      let institute = lastEducationValue.Insitite;
+      let institute = lastEducationValue.institute;
       let specialization = lastEducationValue.specialization;
       let branch = lastEducationValue.branch;
       let passedOut = lastEducationValue.passedout;
