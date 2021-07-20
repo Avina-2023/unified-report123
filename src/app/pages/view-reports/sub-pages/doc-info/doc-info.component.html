@@ -26,7 +26,8 @@
 
                         </div>
                     </drag-scroll>
-                    <div class="draggable-button-container">
+                    <div class="draggable-button-container"
+                        *ngIf="getAllReportsData.selfDefinedCertificates.length > 3">
                         <button [disabled]="leftNavDisabled" class="sliderBtn left doc" (click)="moveLeft()">
                             <em class="icon-Back"></em>
                         </button>
@@ -42,9 +43,6 @@
 
 <ng-template #viewImg id="viewImg">
     <div class="progressText">
-        <span class="close" mat-button (click)="closeDialog()"><em class="icon-Close"></em></span>
-        <div>
-            <img [src]="selectedURL" alt="" />
-        </div>
+        <img [src]="selectedURL" alt="" />
     </div>
 </ng-template>
