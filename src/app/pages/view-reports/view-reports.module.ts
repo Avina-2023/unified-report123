@@ -11,9 +11,9 @@ import { DocInfoComponent } from './sub-pages/doc-info/doc-info.component';
 import { ProfileInfoComponent } from './sub-pages/profile-info/profile-info.component';
 import { QualityAreaComponent } from './sub-pages/quality-area/quality-area.component';
 import { UserListComponent } from './user-list/user-list.component';
-import { AgGridModule } from 'ag-grid-angular'; 
+import { AgGridModule } from 'ag-grid-angular';
 import { DragScrollModule } from 'ngx-drag-scroll';
-
+import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 @NgModule({
   declarations: [
@@ -31,6 +31,7 @@ import { DragScrollModule } from 'ngx-drag-scroll';
     DragScrollModule,
     SharedModule,
     MaterialModule,
+    PdfViewerModule,
     AgGridModule.withComponents([])
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]
