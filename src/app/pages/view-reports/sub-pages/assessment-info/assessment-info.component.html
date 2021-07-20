@@ -26,13 +26,13 @@
                     <div>
                         <em class="icon-SpeedoMeter"></em>
                         <span>Score:
-                            <span [ngClass]="{'warningColor': assessment.score < 50 , 'WarnColor': (assessment.score >= 70 && assessment.score < 75), 'successColor': assessment.score >= 75}">{{assessment.score}}/{{assessment.maxscore}}</span>
+                            <span [ngClass]="{'warningColor': assessment.score < 50 , 'WarnColor': (assessment.score >= 50 && assessment.score < 75), 'successColor': assessment.score >= 75}">{{assessment.score}}/{{assessment.maxscore}}</span>
                         </span>
                     </div>
                     <div>
                         <em class="icon-Like"></em>
                         <span>Credibility Index:
-                            <span [ngClass]="{'warningColor': assessment.score < 50 , 'WarnColor': (assessment.score >= 70 && assessment.score < 75), 'successColor': assessment.score >= 75}">{{getCredibility(assessment.score)}}</span>
+                            <span [ngClass]="{'warningColor': assessment.score < 50 , 'WarnColor': (assessment.score >= 50 && assessment.score < 75), 'successColor': assessment.score >= 75}">{{getCredibility(assessment.score)}}</span>
                         </span>
                     </div>
                 </div>
@@ -73,10 +73,10 @@
                                 <thead>
                                     <tr>
                                         <th>Section Name</th>
-                                        <th>Questions</th>
-                                        <th>Attempted</th>
-                                        <th>Score</th>
-                                        <th>Accuracy</th>
+                                        <th>Questions Attempted</th>
+                                        <!-- <th>Attempted</th> -->
+                                        <th>Score Obtained</th>
+                                        <th>Percentage</th>
                                         <th>Time Taken</th>
                                         <th></th>
                                     </tr>
@@ -89,10 +89,10 @@
                                             <div class="progressbar color-bluebar" [ngStyle]="{'width':(section.attendedquestions/section.overallquestions) * 100 + '%'}" ></div>
                                             <div class="progressdata"><span>{{section.attendedquestions}}</span>/{{section.overallquestions}}</div>
                                         </td>
-                                        <td>
+                                        <!-- <td>
                                             <div class="progressbar color-bluebar" [ngStyle]="{'width':(section.attempt/section.overallattempt) * 100 + '%'}" ></div>
                                             <div class="progressdata"><span>{{section.attempt}}</span>/{{section.overallattempt}}</div>
-                                        </td>
+                                        </td> -->
                                         <td>
                                             <div class="progressbar color-pinkbar" [ngStyle]="{'width':(section.score/section.overallscore) * 100 + '%'}"  ></div>
                                             <div class="progressdata"><span>{{section.score}}</span></div>
@@ -118,8 +118,8 @@
 
             </div>
 
-        </mat-expansion-panel>  
+        </mat-expansion-panel>
         </ng-container>
     </ng-container>
-    </div> 
+    </div>
 </section>

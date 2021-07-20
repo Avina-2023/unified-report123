@@ -2,15 +2,15 @@
 /* You can add global styles to this file, and also import other style files */
 @import "normalize";
 @import "variables";
-@import "fonts"; 
+@import "fonts";
 
 *{
     box-sizing: border-box;
-} 
+}
 @import '~@angular/material/theming';
 
 $custom-typography: mat-typography-config($font-family: '"Roboto", normal !important;');
-@include mat-core($custom-typography); 
+@include mat-core($custom-typography);
 // body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 @import "../node_modules/ag-grid-community/dist/styles/ag-grid.css";
 @import "../node_modules/ag-grid-community/dist/styles/ag-theme-alpine.css";
@@ -19,14 +19,14 @@ $custom-typography: mat-typography-config($font-family: '"Roboto", normal !impor
 
 /* width */
 ::-webkit-scrollbar {
-  width: 6px;    
+  width: 6px;
   height: 6px;
 }
 
 /* Track */
 ::-webkit-scrollbar-track:hover {
   background-color: #eee;
-  opacity: .9;    
+  opacity: .9;
   width: 15px;
 }
 
@@ -46,9 +46,9 @@ $custom-typography: mat-typography-config($font-family: '"Roboto", normal !impor
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: $thumbHoverColor; 
+  background: $thumbHoverColor;
   width: 15px;
-}  
+}
 
 .ag-body-horizontal-scroll-viewport {
   height: 1px !important;
@@ -65,10 +65,10 @@ ul {
   list-style-type: none;
   padding: 0;
   margin: 0;
-} 
+}
 
 .backBtn {
-  font-size: 14px; 
+  font-size: 14px;
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -93,7 +93,7 @@ ul {
     color: $blackColor;
   font-size: 16px;
   font-weight: 700;
-  margin: 1em 0 0; 
+  margin: 1em 0 0;
   display: flex;
     justify-content: space-between;
     align-items: center;
@@ -112,30 +112,30 @@ ul {
     }
 }
 /**************************/
-/*****auth******/ 
+/*****auth******/
 
-.header-toolbar { 
+.header-toolbar {
   background-color: #fff !important;
   display: flex;
   align-items: center;
   padding: 0;
   color: #808080 !important;
-  .first { 
+  .first {
       height: 50px;
       display: flex;
       justify-content: center;
       align-items: center;
       width: 220px;
   }
-  .second { 
+  .second {
       height: 50px;
       width: 100%;
       display: flex;
       justify-content: flex-end;
       align-items: center;
       font-size: 13px;
-      margin-right: 25px;  
-      
+      margin-right: 25px;
+
       img {
           width: 23px;
           margin-left: 8px;
@@ -144,10 +144,10 @@ ul {
           cursor: pointer;
       }
   }
-} 
+}
 
 .mat-toolbar.mat-primary {
-  background: none; 
+  background: none;
   height: 65px;
   box-shadow: 0 2px 4px -1px rgb(0 0 0 / 20%) !important;
   margin-bottom: 5px;
@@ -155,11 +155,11 @@ ul {
   z-index: 5;
 }
 
-.beforeloginimg { 
-      width: 150px; 
+.beforeloginimg {
+      width: 150px;
       margin-left: 1.5em;
 }
-.perfect-scrollbar { 
+.perfect-scrollbar {
   background-color: #f9f9f9;
   margin-top: -6px;
   overflow: hidden;
@@ -169,8 +169,8 @@ ul {
 .footerPan {
     z-index: 500;
             background-color: white;
-            height: 25px; 
-            font-size: small; 
+            height: 25px;
+            font-size: small;
             width: 100%;
             text-align: end;
             color: grey;
@@ -191,7 +191,7 @@ ul {
     font-weight: 700;
     line-height: 2.2;
     margin-top: 1em;
-    margin-bottom: 0.8em; 
+    margin-bottom: 0.8em;
     color: #1a1a1a;
     span {
         font-weight: normal;
@@ -201,7 +201,7 @@ ul {
     &.first {
         margin-bottom: 1.5em;
     }
-} 
+}
 
 .profileInfoarea {
     display: flex;
@@ -219,8 +219,8 @@ ul {
             flex-wrap: nowrap;
             justify-content: space-between;
         }
-        span {  
-            font-weight: 500; 
+        span {
+            font-weight: 500;
             color: $blackColor;
             display: inline-block;
             width: 70%;
@@ -239,7 +239,7 @@ ul {
   margin-top: 3em;
   display: flex;
   flex-direction: row;
-  > div { 
+  > div {
       margin-right: 1%;
       min-width: 150px;
       &:last-child {
@@ -262,14 +262,14 @@ ul {
       &.drag {
           margin-top: 0;
       }
-  } 
+  }
   .img-sec {
       position: relative;
       margin-right: 2%;
       text-align: left;
       min-width: 225px;
   }
-  .imgProp { 
+  .imgProp {
       height: 170px;
       border: 1px solid #cacaca;
       border-radius: 5px;
@@ -284,11 +284,11 @@ ul {
     min-height: 215px;
     position: relative;
     padding: 0 35px;
-  } 
+  }
   .img-container:last-child {
       margin-right: 1%;
-  } 
-  .docUpload {  
+  }
+  .docUpload {
    img {
       &:hover + a {
           display: block;
@@ -300,22 +300,25 @@ ul {
           left: 0;
           background-color: #0000005c;
           padding: 0.2em 1em;
-          color: #fff; 
+          color: #fff;
           cursor: pointer;
           z-index: 5;
           text-decoration: none;
           padding-top: 3em;
           font-size: 23px;
           text-align: center;
-  
+
           &:hover {
               display: block;
           }
-      }  
+      }
     }
   }
 }
 .uploadInProgress {
+  .mat-dialog-container {
+    padding: 4px;
+  }
     img {
         width: auto;
     }
@@ -337,9 +340,9 @@ ng-image-slider {
 
 /******assment*****************************/
 .assessmentArea {
-  
-.assessmentHeaderinfo { 
-  margin-top: 3em; 
+
+.assessmentHeaderinfo {
+  margin-top: 3em;
   .primaryClick {
       color:$primaryColor;
       font-size: 0.8em;
@@ -366,7 +369,7 @@ ng-image-slider {
   }
   .mat-expansion-panel-body {
       padding: 0;
-  } 
+  }
   span.mat-content {
       display: initial;
       grid-area: mat-content;
@@ -375,7 +378,7 @@ ng-image-slider {
       display: flex;
       align-items: center;
       grid-area: mat-expansion;
-      justify-content: center; 
+      justify-content: center;
   }
   .expandheaderArea {
       display: flex;
@@ -389,7 +392,7 @@ ng-image-slider {
           flex-direction: row;
           align-items: center;
           padding: 0.6em 0.8em;
-          border-right:0.1em solid #e8e8e8; 
+          border-right:0.1em solid #e8e8e8;
           justify-content: center;
           min-width: 160px;
           &:last-child {
@@ -413,7 +416,7 @@ ng-image-slider {
           > span {
               font-size: 0.8em;
               color: #757575;
-              padding: 0 0.8em; 
+              padding: 0 0.8em;
               padding-left: 1.2em;
               span {
                   display: block;
@@ -451,7 +454,7 @@ ng-image-slider {
           color: $blackColor;
           font-size: 2em;
           font-weight: 700;
-          line-height: 1.3; 
+          line-height: 1.3;
           margin-top: -2px;
           span {
               display: inline-block;
@@ -469,21 +472,21 @@ ng-image-slider {
       }
       .Summaryhtxt {
         font-size: 18px;
-      } 
+      }
   }
 
   //common styles
-  .successColor , .expandheaderArea div > span span.successColor, 
+  .successColor , .expandheaderArea div > span span.successColor,
   .ContentInfoDetails span.successColor, .ContentInfoDetails span.successColor span {
       color:$successColorDark;
   }
-  .warningColor , .expandheaderArea div > span span.warningColor, 
+  .warningColor , .expandheaderArea div > span span.warningColor,
   .ContentInfoDetails span.warningColor, .ContentInfoDetails span.warningColor span {
       color:$primaryColor;
       padding-left: 0.7em;
       font-size: 0.5em;
-  } 
-  .WarnColor , .expandheaderArea div > span span.WarnColor, 
+  }
+  .WarnColor , .expandheaderArea div > span span.WarnColor,
   .ContentInfoDetails span.WarnColor, .ContentInfoDetails span.WarnColor span {
       color:#d68f0c;
   }
@@ -502,6 +505,7 @@ ng-image-slider {
           color: $lightGrey;
           text-align: left;
           padding: 0.8em 1.2em;
+          white-space: nowrap;
           font-weight: normal;
           border: 1px solid #dbdbdb;
           border-right-width: 0;
@@ -527,10 +531,10 @@ ng-image-slider {
               width:25%;
               color: $primaryColor;
           }
-          
+
           &:last-child {
               border-right-width: 1px;
-              text-align: center; 
+              text-align: center;
               font-size:1.3em;
               min-width: 95px;
           }
@@ -548,18 +552,18 @@ ng-image-slider {
           .progressbar {
               display: block;
               position: absolute;
-              z-index: 1; 
+              z-index: 1;
               top: 0;
               bottom: 0;
-              left: 0;  
+              left: 0;
           }
-          .progressdata { 
+          .progressdata {
               display: block;
               position: relative;
               z-index: 2;
               font-size: 0.8em;
           }
-          .color-bluebar { 
+          .color-bluebar {
               background-color: #e1f4ff;
               border-right: 0.3em solid #8fc7e2;
           }
@@ -585,12 +589,12 @@ ng-image-slider {
 
 /******assment*****************************/
 
-.CompetencyArea { 
+.CompetencyArea {
     margin-top: 35px;
 .InfoDetailsArea {
     position: relative;
     display: flex;
-    justify-content: space-between; 
+    justify-content: space-between;
     border-bottom: none;
     border-right: none;
     margin-top: 1.2em;
@@ -604,9 +608,9 @@ ng-image-slider {
         color: $lightGrey;
         display: flex;
         flex-direction: column;
-    }            
-    .leftPan { 
-        background-color: $whiteColor; 
+    }
+    .leftPan {
+        background-color: $whiteColor;
         position: relative;
         min-height: 250px;
         justify-content: space-between;
@@ -625,10 +629,10 @@ ng-image-slider {
             font-size: 20px;
             color: #808080;
         }
-    }   
-    .rightPan { 
+    }
+    .rightPan {
         position: relative;
-        background-color: #f2f2f2; 
+        background-color: #f2f2f2;
         border-radius:0 4px 4px 0;
         overflow: hidden;
         top: 0;
@@ -644,7 +648,7 @@ ng-image-slider {
             color: $blackColor;
             font-weight: 700;
             padding-left: 0.5em;
-            border-left: 0.3em solid #c84656; 
+            border-left: 0.3em solid #c84656;
             display: flex;
             align-items: center;
             line-height: 1;
@@ -664,7 +668,7 @@ ng-image-slider {
             justify-content: space-between;
             align-items: center;
         }
-        .areasbtnsec { 
+        .areasbtnsec {
             display: flex;
             margin-top: 14px;
             flex-wrap: wrap;
@@ -672,7 +676,7 @@ ng-image-slider {
             .btnBox {
                 background-color: transparent;
                 vertical-align: bottom;
-                border: 0; 
+                border: 0;
                 font-weight: 500;
                 padding: 5px 9px;
                 font-size: 11px;
@@ -684,7 +688,7 @@ ng-image-slider {
                 border-radius: 4px;
                 margin-right: 10px;
                 margin-bottom: 10px;
-                font-weight: 500;  
+                font-weight: 500;
                 color:#777;
             }
             .btnBlue {
@@ -700,16 +704,16 @@ ng-image-slider {
                 background-color: #e89694;
             }
         }
-        .chartContainer { 
-            height: 100%; 
-            > div.sPan { 
+        .chartContainer {
+            height: 100%;
+            > div.sPan {
                 min-height: 200px;
                 display: flex;
                 flex-direction: column;
-                justify-content: space-between; 
+                justify-content: space-between;
             }
             div.aPan {
-                min-height: 200px; 
+                min-height: 200px;
                 margin-top: 3em;
             }
         }
@@ -726,8 +730,8 @@ ng-image-slider {
         z-index: 4;
         top: 12.5em;
     }
-    
-    .barChartCenter { 
+
+    .barChartCenter {
         ngx-charts-bar-horizontal {
             display: block;
             padding-left: 25px;
@@ -744,7 +748,7 @@ mat-card {
     .heading6 {
         display: block;
     }
-} 
+}
 }
 .draggable-button-container {
     position: absolute;
@@ -758,7 +762,7 @@ button.sliderBtn, .sliderBtn:focus {
     border-radius: 50%;
     height: 25px;
     width: 25px;
-    position: absolute; 
+    position: absolute;
     box-shadow: 0 0 3px #00000052 !important;
     padding: 3px;
     line-height: 1.5;
@@ -773,12 +777,12 @@ button.sliderBtn, .sliderBtn:focus {
 
     &.right {
         right: 12px;
-        
+
     }
     &.left {
-        left: 12px; 
+        left: 12px;
         &.doc {
-            left:0; 
+            left:0;
         }
     }
     &:disabled {
@@ -811,12 +815,12 @@ button.sliderBtn, .sliderBtn:focus {
 }
 
 /********quality**********************************/
-  
+
 .StInfoDetailsArea {
   margin:4em 0 0;
   display: flex;
   flex-direction: row;
-  justify-content: space-between; 
+  justify-content: space-between;
 
 .comphtxt {
   font-size: 18px;
@@ -824,7 +828,7 @@ button.sliderBtn, .sliderBtn:focus {
   font-weight: 500;
   margin: 0.3em 0 1em 0;
 }
-.cardInfoArea { 
+.cardInfoArea {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -834,7 +838,7 @@ button.sliderBtn, .sliderBtn:focus {
   border-radius: 0.3em;
   border:1px solid $greyColor;
   background-color: $whiteColor;
-  box-shadow: 0px 2px 2px 0px rgb(0 0 0 / 14%); 
+  box-shadow: 0px 2px 2px 0px rgb(0 0 0 / 14%);
 }
 
 .infoIcon {
@@ -850,27 +854,27 @@ button.sliderBtn, .sliderBtn:focus {
       padding: 0.4em;
       font-size: 1.4em;
       border-radius: 1.5em;
-      display: inline-block; 
+      display: inline-block;
   }
 
   &.SuccessColor {
       border-color:#a4dda5 ;
-      .iconpl { 
+      .iconpl {
           background-color: #a4dda5 ;
       }
       .icon-Like {
           color: $successColorDark;
-          font-size: 1.1em; 
+          font-size: 1.1em;
       }
   }
   &.WarningColor {
       border-color:#f4c1c1;
-      .iconpl { 
+      .iconpl {
           background-color: #f4c1c1;
       }
       .icon-Dislike {
           color: $primaryColor;
-          font-size: 1.1em; 
+          font-size: 1.1em;
       }
   }
 }
@@ -890,7 +894,7 @@ button.sliderBtn, .sliderBtn:focus {
   }
 }
 }
- 
+
 mat-icon {
   font-size: 18px !important;
   top: 50%;
@@ -898,10 +902,10 @@ mat-icon {
   transform: translateY(12%);
 }
 
-.sort { 
+.sort {
   display: inline-block;
   margin: 0;
-  padding: 0; 
+  padding: 0;
     .mat-icon {
         cursor: pointer;
         height: 30px;
@@ -911,10 +915,10 @@ mat-icon {
         background-color: #f2f2f2;
         color: #000;
         text-align: center;
-        &:first-child { 
-        border-radius: 4px 0 0 4px; 
+        &:first-child {
+        border-radius: 4px 0 0 4px;
         }
-        &:last-child { 
+        &:last-child {
         border-radius: 0 4px 4px 0;
         border-left-width: 0;
         }
@@ -922,5 +926,4 @@ mat-icon {
 }
 :host ::ng-deep .textDataLabel {
   font-size: 14px !important;
-} 
- 
+}

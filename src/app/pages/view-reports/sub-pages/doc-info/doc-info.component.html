@@ -15,7 +15,7 @@
                     <drag-scroll #nav [scrollbar-hidden]=true [drag-scroll-y-disabled]=true
                         (reachesLeftBound)="leftBoundStat($event)" (reachesRightBound)="rightBoundStat($event)">
                         <div drag-scroll-item *ngFor="let cert of certificationList; let i = index;">
-
+<!--  [src]="(cert['url'] + blobkey)" -->
                             <span class="drag">
                                 <img [src]="(cert['url'] + blobkey)" class="imgProp" #first alt="Eligibility" />
                                 <a (click)="openDialog(cert, viewImg)"
@@ -34,7 +34,7 @@
                             <em class="icon-right-next"></em>
                         </button>
                     </div>
-                </div> 
+                </div>
             </div>
         </ng-container>
     </div>
