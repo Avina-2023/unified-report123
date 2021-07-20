@@ -316,8 +316,16 @@ ul {
   }
 }
 .uploadInProgress {
+    padding: 15px;
+    background-color: #fff;
+    border-radius: 5px;
   .mat-dialog-container {
-    padding: 4px;
+    padding: 0;
+    display: flex;
+    align-content: center;
+    align-items: center;
+    position: relative;
+    box-shadow: none;
   }
     img {
         width: auto;
@@ -327,6 +335,9 @@ ul {
         color: #808080;
         cursor: pointer;
         margin-bottom: 0.5em;
+        position: absolute;
+        top: 15px;
+        right: 15px;
         &:hover {
             color: #808080;
         }
