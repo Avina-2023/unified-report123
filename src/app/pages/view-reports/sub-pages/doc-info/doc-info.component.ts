@@ -40,14 +40,15 @@ export class DocInfoComponent implements OnInit, OnChanges {
   }
     // this.selectedURL = 'assets/images/high.jpg' + this.blobkey;
     openDialog(group, templateRef: TemplateRef<any>) {
-    if (group.type && group.type.includes('jpg')) {
+    if (group.type && group.type.includes('image/')) {
       this.selectedURL = group['url'] + this.blobkey;
       this.dialog.open(templateRef, {
         panelClass: 'uploadInProgress',
         // height: '80%',
         // width: '35%',
         disableClose: false });
-    } else {
+    }
+    if (group.type && group.type.includes('pdf')) {
       this.selectedURL = group['url'] + this.blobkey;
       this.dialog.open(this.viewPDF, {
       panelClass: 'pdfView',
