@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: unifiedreportuat
+  namespace: unifiedrpt
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: unifiedreportuat
+  template:
+    metadata:
+      labels:
+        app: unifiedreportuat
+    spec:
+      containers:
+        - name: unifiedreportqa
+          image: microcert.azurecr.io/unifiedreportuat:$tag
+          imagePullPolicy: Always
+          ports:
+          - containerPort: 80
+      imagePullSecrets:
+        - name: mysecret2
