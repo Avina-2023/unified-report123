@@ -14,8 +14,8 @@ spec:
         app: unifiedreportuat
     spec:
       containers:
-        - name: unifiedreportqa
-          image: microcert.azurecr.io/unifiedreportuat:$tag
+        - name: unifiedreportuat
+          image: assessmentecouat.azurecr.io/unifiedreportuat:$tag
           imagePullPolicy: Always
           ports:
           - containerPort: 80
