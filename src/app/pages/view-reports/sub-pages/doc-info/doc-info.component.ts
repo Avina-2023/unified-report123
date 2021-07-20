@@ -12,6 +12,7 @@ import { DragScrollComponent } from 'ngx-drag-scroll';
 })
 export class DocInfoComponent implements OnInit, OnChanges {
   @ViewChild(DragScrollComponent) ds: DragScrollComponent;
+  @ViewChild('viewPDF', {static: false}) viewPDF: TemplateRef<any>;
   @Input() getAllReportsData;
   blobkey = environment.blobKey;
   profilePic: any;
@@ -37,17 +38,22 @@ export class DocInfoComponent implements OnInit, OnChanges {
     this.idCardImg = this.getAllReportsData && this.getAllReportsData.IdcardImage ? this.getAllReportsData.IdcardImage : null;
     this.certificationList = this.getAllReportsData && this.getAllReportsData.selfDefinedCertificates && this.getAllReportsData.selfDefinedCertificates.length > 0 ? this.getAllReportsData.selfDefinedCertificates : null;
   }
-  openDialog(group, templateRef: TemplateRef<any>) {
-    if (group.type && group.type.includes('image') || true) {
-       this.selectedURL = group['url'] + this.blobkey;
-      // this.selectedURL = 'assets/images/high.jpg' + this.blobkey;
+    // this.selectedURL = 'assets/images/high.jpg' + this.blobkey;
+    openDialog(group, templateRef: TemplateRef<any>) {
+    if (group.type && group.type.includes('jpg')) {
+      this.selectedURL = group['url'] + this.blobkey;
       this.dialog.open(templateRef, {
         panelClass: 'uploadInProgress',
         // height: '80%',
         // width: '35%',
         disableClose: false });
     } else {
-
+      this.selectedURL = group['url'] + this.blobkey;
+      this.dialog.open(this.viewPDF, {
+      panelClass: 'pdfView',
+      // height: '80%',
+      // width: '35%',
+      disableClose: false });
     }
   }
   closeDialog() {

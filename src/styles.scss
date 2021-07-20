@@ -313,6 +313,18 @@ ul {
     }
   }
 }
+.pdfView {
+  position: relative !important;
+  overflow: auto !important;
+  .ng2-pdf-viewer-container {
+    overflow-x: hidden !important;
+  }
+  .mat-dialog-container {
+    width: 800px !important;
+    min-height: 600px !important;
+    padding: 0 !important;
+  }
+}
 .uploadInProgress {
     padding: 20px 15px;
     background-color: #fff;
