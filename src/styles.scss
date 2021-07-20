@@ -319,6 +319,7 @@ ul {
     padding: 15px;
     background-color: #fff;
     border-radius: 5px;
+    max-height: 90% !important;
   .mat-dialog-container {
     padding: 0;
     display: flex;
@@ -326,18 +327,21 @@ ul {
     align-items: center;
     position: relative;
     box-shadow: none;
+    height: inherit;
+    overflow: auto;
   }
     img {
-        width: auto;
+    width: auto;
+    height: 480px;
+    // max-height: 80%;
     }
     .close {
         font-size: 0.9em;
         color: #808080;
         cursor: pointer;
-        margin-bottom: 0.5em;
         position: absolute;
-        top: 15px;
-        right: 15px;
+        top: 4px;
+        right: 2px;
         &:hover {
             color: #808080;
         }

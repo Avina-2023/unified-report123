@@ -38,14 +38,14 @@ export class DocInfoComponent implements OnInit, OnChanges {
     this.certificationList = this.getAllReportsData && this.getAllReportsData.selfDefinedCertificates && this.getAllReportsData.selfDefinedCertificates.length > 0 ? this.getAllReportsData.selfDefinedCertificates : null;
   }
   openDialog(group, templateRef: TemplateRef<any>) {
-    if (group.type.includes('image') || true) {
+    if (group.type && group.type.includes('image') || true) {
        this.selectedURL = group['url'] + this.blobkey;
       // this.selectedURL = 'assets/images/high.jpg' + this.blobkey;
       this.dialog.open(templateRef, {
         panelClass: 'uploadInProgress',
         // height: '80%',
         // width: '35%',
-        disableClose: true });
+        disableClose: false });
     } else {
 
     }
