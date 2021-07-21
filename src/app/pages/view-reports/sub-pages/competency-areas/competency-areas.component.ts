@@ -73,10 +73,23 @@ export class CompetencyAreasComponent implements OnInit {
   getCompetancyData(){
     this.competancyData = this.getAllReportsData?.competencyDetails;
     if (this.competancyData && this.competancyData.length > 0) {
+      this.convertToPercentage();
       this.getAreasDataInitialize(this.competancyData);
       this.setColorCodesToVericalChart();
     }
   }
+
+  convertToPercentage() {
+    this.competancyData.forEach(element => {
+      if (element.score && element.maxscore) {
+        element.actualScore = element.score;
+        let percentage = Number(element.score) / Number(element.maxscore) * 100;
+        element.score = percentage;
+      }
+    });
+    console.log('c', this.competancyData);
+  }
+
   setColorCodesToVericalChart() {
     this.verticalChartData = [];
     let listCount = [];
