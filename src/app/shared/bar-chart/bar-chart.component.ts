@@ -86,7 +86,7 @@ export class BarChartComponent implements OnInit, OnChanges, AfterViewInit {
   showYAxisLabel = true;
   yAxisLabel = 'Percentage';
   xAxisLabel = 'Competencies';
-  barPadding = 8;
+  barPadding = 16;
   colorScheme = {
     domain: ["#FF8C00", "#0085B6" , "#9DBC5B" , "#28B59A", "#03B8CB"]
   };
