@@ -251,7 +251,7 @@ ul {
   }
   .profileplace {
       position: relative;
-      
+
       .viewprofile {
           display: none;
         position: absolute;
@@ -371,7 +371,7 @@ ul {
     .closebtn {
         font-size: 0.9em;
         color: #797171;
-        cursor: pointer; 
+        cursor: pointer;
         position: relative;
         top: 2px;
         &:hover {
@@ -608,6 +608,9 @@ ng-image-slider {
           .icon-Like {
               color: $successColorDark;
           }
+          .average-color {
+              color: #d68f0c;
+          }
           .icon-Dislike {
               color: $primaryColor;
           }
@@ -747,7 +750,7 @@ ng-image-slider {
                 text-decoration: none;
                 -webkit-user-select: none;
                 user-select: none;
-                border-radius: 4px;
+                border-radius: 1px;
                 margin-right: 10px;
                 margin-bottom: 10px;
                 font-weight: 500;
