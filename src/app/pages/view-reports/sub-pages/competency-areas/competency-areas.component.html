@@ -17,7 +17,7 @@
                 <div *ngIf="i===counter" class="chartContainer">
                     <div class="sPan">
                     <div class="heading4">{{competency && competency.competencyname ? competency.competencyname :
-                        ''}} <span>{{competency && competency.actualScore ? competency.actualScore : ''}}</span>
+                        ''}} <span>{{competency && competency.score ? competency.score : ''}}%</span>
                     </div>
                     <app-horizontal-bar-chart (selectedArea)="selectedHorizontalArrayIndex($event, i)" [domains]="domain"
                         [chartData]="competency.skills"></app-horizontal-bar-chart>
