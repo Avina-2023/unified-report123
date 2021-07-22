@@ -83,11 +83,27 @@ export class CompetencyAreasComponent implements OnInit {
     this.competancyData.forEach(element => {
       if (element.score && element.maxscore) {
         element.actualScore = element.score;
-        let percentage = Number(element.score) / Number(element.maxscore) * 100;
-        element.score = percentage;
+        element.score = this.conversionFormula(element.score, element.maxscore);
       }
+      element.skills.forEach(skills => {
+        if (skills.score && skills.maxscore) {
+          skills.actualScore = skills.score;
+          skills.score = this.conversionFormula(skills.score, skills.maxscore);
+        }
+      skills.area.forEach(area => {
+        if (area.score && area.maxscore) {
+          area.actualScore = area.score;
+          area.score = this.conversionFormula(area.score, area.maxscore);
+        }
+      });
+      });
     });
-    console.log('c', this.competancyData);
+  }
+
+  conversionFormula(score: number, maxscore: number) {
+    let percentage: number = Number(score) / Number(maxscore) * 100;
+    percentage = Number(percentage.toFixed(2));
+    return Number.isInteger(percentage) ? percentage : percentage.toFixed(2);
   }
 
   setColorCodesToVericalChart() {

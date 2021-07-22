@@ -75,7 +75,7 @@ export class HorizontalBarChartComponent implements OnInit, OnChanges {
 @Input() domains: any;
 indexNum: any = 0;
 single: any;
-view: any[] = [420, 400];
+view: any[] = [480, 450];
 
 // options
 showXAxis = true;
@@ -87,17 +87,15 @@ barPadding = 12;
 xAxisLabel = 'Skill Score';
 showYAxisLabel = false;
 yAxisLabel = 'Skill Score';
-
 colorScheme = {
   domain: []
 };
-
+yAxisTicks = [0, 40, 80, 100];
 // ngx charts end
 
   constructor() {
 
   }
-
   async ngOnInit() {
     await this.getSkillData();
     this.calculateWidthAndHeight();
@@ -138,22 +136,22 @@ colorScheme = {
 
   calculateWidthAndHeight() {
     if (this.single && this.single.length <= 2) {
-      return this.view = [420, 90];
+      return this.view = [480, 120];
      }
     if (this.single && this.single.length <= 3) {
-     return this.view = [420, 120];
+     return this.view = [480, 120];
     }
     if (this.single && this.single.length <= 5) {
-      return this.view = [420, 190];
+      return this.view = [480, 190];
     }
     if (this.single && this.single.length <= 7) {
-      return this.view = [420, 262];
+      return this.view = [480, 262];
     }
     if (this.single && this.single.length <= 9) {
-      return this.view = [420, 334];
+      return this.view = [480, 334];
     }
     if (this.single && this.single.length <= 11) {
-      return this.view = [420, 406];
+      return this.view = [480, 406];
     }
   }
 

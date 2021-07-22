@@ -75,7 +75,7 @@ export class BarChartComponent implements OnInit, OnChanges, AfterViewInit {
   @Input() domains: any;
   indexNum: any = 0;
   single: any;
-  view: any[] = [500, 350];
+  view: any[] = [500, 360];
 
   // options
   showXAxis = true;
@@ -86,7 +86,8 @@ export class BarChartComponent implements OnInit, OnChanges, AfterViewInit {
   showYAxisLabel = true;
   yAxisLabel = 'Percentage';
   xAxisLabel = 'Competencies';
-  barPadding = 16;
+  barPadding = 26;
+  yAxisTicks = [0, 40, 80, 100];
   colorScheme = {
     domain: ["#FF8C00", "#0085B6" , "#9DBC5B" , "#28B59A", "#03B8CB"]
   };
@@ -158,7 +159,7 @@ export class BarChartComponent implements OnInit, OnChanges, AfterViewInit {
     return name;
   }
   addEmptyData(data) {
-    let expectedLength = 8;
+    let expectedLength = 7;
     let chartLength = data.length;
     for (let index = data.length; index < expectedLength; index++) {
       let name = '';
