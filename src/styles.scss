@@ -524,6 +524,11 @@ ng-image-slider {
               font-size: 0.6em;
               font-weight: 500;
               padding: 0 0.1em;
+
+              &.warningColor {
+                font-size: 0.5em;
+                padding-left: 0.5em;
+              }
           }
       }
   }
@@ -545,8 +550,6 @@ ng-image-slider {
   .warningColor , .expandheaderArea div > span span.warningColor,
   .ContentInfoDetails span.warningColor, .ContentInfoDetails span.warningColor span {
       color:$primaryColor;
-      padding-left: 0.7em;
-      font-size: 0.5em;
   }
   .WarnColor , .expandheaderArea div > span span.WarnColor,
   .ContentInfoDetails span.WarnColor, .ContentInfoDetails span.WarnColor span {
@@ -984,12 +987,16 @@ mat-icon {
         background-color: #f2f2f2;
         color: #000;
         text-align: center;
-        &:first-child {
-        border-radius: 4px 0 0 4px;
-        }
-        &:last-child {
-        border-radius: 0 4px 4px 0;
-        border-left-width: 0;
+        border-radius: 4px;
+       
+        &.bothbtn {
+            &:first-child {
+                border-radius: 4px 0 0 4px;
+                }
+                &:last-child {
+                border-radius: 0 4px 4px 0;
+                border-left-width: 0;
+                }
         }
     }
 }
