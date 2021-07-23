@@ -1,12 +1,13 @@
 <div class="comphtxt">Competencies
     <div  class="mat-card-header-text">  Click on the respective competency to view the details
-        <span class="sort" (click)="sorting(indexNum + 1)" name="fieldName" ngDefaultControl [(ngModel)]="indexNum">
-            <mat-icon   [class.disable]="indexNum == 1">
-            arrow_upward
+        <span class="sort" matTooltip="Sort Competencies" (click)="sorting(indexNum + 1)" name="fieldName" ngDefaultControl [(ngModel)]="indexNum">
+          
+            <mat-icon   *ngIf="indexNum == 2 || indexNum == 0" [ngClass]="{'bothbtn' : indexNum == 0 }">
+                 arrow_downward
             </mat-icon>
-            <mat-icon   [class.disable]="indexNum == 2">
-                arrow_downward
-            </mat-icon>
+            <mat-icon   *ngIf="indexNum == 1 || indexNum == 0" [ngClass]="{'bothbtn' : indexNum == 0 }">
+                arrow_upward
+                </mat-icon>
         </span>
     </div>
 </div>
