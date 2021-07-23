@@ -1,12 +1,12 @@
 <div class="subhtxt">Skills
-    <span class="sort" (click)="sorting(indexNum + 1)" name="fieldName" ngDefaultControl
-        [(ngModel)]="indexNum">
-        <mat-icon [diabled]="indexNum == 1">
-            arrow_upward
-        </mat-icon>
-        <mat-icon [diabled]="indexNum == 2">
+    <span class="sort" matTooltip="Sort Skills" (click)="sorting(indexNum + 1)" name="fieldName" ngDefaultControl
+        [(ngModel)]="indexNum"> 
+        <mat-icon   *ngIf="indexNum == 2 || indexNum == 0" [ngClass]="{'bothbtn' : indexNum == 0 }">
             arrow_downward
-        </mat-icon>
+       </mat-icon>
+       <mat-icon   *ngIf="indexNum == 1 || indexNum == 0" [ngClass]="{'bothbtn' : indexNum == 0 }">
+           arrow_upward
+           </mat-icon>
     </span>
 </div>
 <div class="barChartCenter">

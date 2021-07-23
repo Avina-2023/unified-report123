@@ -135,8 +135,11 @@ yAxisTicks = [0, 40, 80, 100];
 
 
   calculateWidthAndHeight() {
+    if (this.single && this.single.length <= 1) {
+      return this.view = [480, 75];
+     }
     if (this.single && this.single.length <= 2) {
-      return this.view = [480, 120];
+      return this.view = [480, 100];
      }
     if (this.single && this.single.length <= 3) {
      return this.view = [480, 120];
@@ -165,7 +168,7 @@ yAxisTicks = [0, 40, 80, 100];
     if (data == 1) {
       this.indexNum = data;
       sortingArray.sort(function(a, b) {
-        return a.value < b.value ? -1 : 1;
+        return Number(a.value) < Number(b.value) ? -1 : 1;
       });
       let colorCode = [];
       sortingArray.forEach(element => {
@@ -177,7 +180,7 @@ yAxisTicks = [0, 40, 80, 100];
     else if (data == 2) {
       this.indexNum = data;
       sortingArray.sort(function(a, b) {
-        return a.value > b.value ? -1 : 1;
+        return Number(a.value) > Number(b.value) ? -1 : 1;
       });
       let colorCode = [];
       sortingArray.forEach(element => {

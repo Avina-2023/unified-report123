@@ -180,8 +180,8 @@ export class BarChartComponent implements OnInit, OnChanges, AfterViewInit {
     if (data == 1) {
       this.indexNum = data;
       sortingArray.sort(function(a, b) {
-        if (a.value) {
-          return a.value < b.value ? -1 : 1;
+        if (a.value && b.value) {
+          return Number(a.value) < Number(b.value) ? -1 : 1;
         }
       });
       let colorCode = [];
@@ -194,8 +194,8 @@ export class BarChartComponent implements OnInit, OnChanges, AfterViewInit {
     else if (data == 2) {
       this.indexNum = data;
       sortingArray.sort(function(a, b) {
-        if (a.value) {
-          return a.value > b.value ? -1 : 1;
+        if (a.value && b.value) {
+          return Number(a.value) > Number(b.value) ? -1 : 1;
         }
       });
       let colorCode = [];
