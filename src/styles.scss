@@ -147,8 +147,8 @@ ul {
 }
 
 .mat-toolbar.mat-primary {
-  background: none;
-  height: 65px;
+  background: linear-gradient(90deg,#fff 14%,#fc0 25%)!important;
+  height: 60px;
   box-shadow: 0 2px 4px -1px rgb(0 0 0 / 20%) !important;
   margin-bottom: 5px;
   position: relative;
@@ -156,7 +156,7 @@ ul {
 }
 
 .beforeloginimg {
-      width: 150px;
+      height: 45px;
       margin-left: 1.5em;
 }
 .perfect-scrollbar {
