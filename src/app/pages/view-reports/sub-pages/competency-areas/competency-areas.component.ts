@@ -73,10 +73,39 @@ export class CompetencyAreasComponent implements OnInit {
   getCompetancyData(){
     this.competancyData = this.getAllReportsData?.competencyDetails;
     if (this.competancyData && this.competancyData.length > 0) {
+      this.convertToPercentage();
       this.getAreasDataInitialize(this.competancyData);
       this.setColorCodesToVericalChart();
     }
   }
+
+  convertToPercentage() {
+    this.competancyData.forEach(element => {
+      if (element.score && element.maxscore) {
+        element.actualScore = element.score;
+        element.score = this.conversionFormula(element.score, element.maxscore);
+      }
+      element.skills.forEach(skills => {
+        if (skills.score && skills.maxscore) {
+          skills.actualScore = skills.score;
+          skills.score = this.conversionFormula(skills.score, skills.maxscore);
+        }
+      skills.area.forEach(area => {
+        if (area.score && area.maxscore) {
+          area.actualScore = area.score;
+          area.score = this.conversionFormula(area.score, area.maxscore);
+        }
+      });
+      });
+    });
+  }
+
+  conversionFormula(score: number, maxscore: number) {
+    let percentage: number = Number(score) / Number(maxscore) * 100;
+    percentage = Number(percentage.toFixed(2));
+    return Number.isInteger(percentage) ? percentage : percentage.toFixed(2);
+  }
+
   setColorCodesToVericalChart() {
     this.verticalChartData = [];
     let listCount = [];

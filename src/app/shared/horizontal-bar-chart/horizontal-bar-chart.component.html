@@ -1,34 +1,35 @@
 <div class="subhtxt">Skills
-    <span class="sort" (click)="sorting(indexNum + 1)" name="fieldName" ngDefaultControl
+    <span class="sort" matTooltip="Sort Skills" (click)="sorting(indexNum + 1)" name="fieldName" ngDefaultControl
         [(ngModel)]="indexNum"> 
-        <mat-icon [diabled]="indexNum == 1">
-            arrow_upward
-        </mat-icon>
-        <mat-icon [diabled]="indexNum == 2">
+        <mat-icon   *ngIf="indexNum == 2 || indexNum == 0" [ngClass]="{'bothbtn' : indexNum == 0 }">
             arrow_downward
-        </mat-icon>
+       </mat-icon>
+       <mat-icon   *ngIf="indexNum == 1 || indexNum == 0" [ngClass]="{'bothbtn' : indexNum == 0 }">
+           arrow_upward
+           </mat-icon>
     </span>
 </div>
 <div class="barChartCenter">
-    <ngx-charts-bar-horizontal 
-    [view]="view" 
-    [scheme]="colorScheme" 
-    [results]="single" 
-    [gradient]="gradient" 
-    [xAxis]="showXAxis" 
-    [yAxis]="showYAxis" 
-    [legend]="showLegend" 
-    [xScaleMax]="100" 
+    <ngx-charts-bar-horizontal
+    [view]="view"
+    [scheme]="colorScheme"
+    [results]="single"
+    [gradient]="gradient"
+    [xAxis]="showXAxis"
+    [yAxis]="showYAxis"
+    [legend]="showLegend"
+    [xScaleMax]="100"
     [barPadding]="barPadding"
-    [showXAxisLabel]="showXAxisLabel" 
-    [showYAxisLabel]="showYAxisLabel" 
-    [xAxisLabel]="xAxisLabel" 
-    [yAxisLabel]="yAxisLabel"  
-    [showYAxisLabel]="showYAxisLabel" 
-    [showDataLabel]=true  
+    [showXAxisLabel]="showXAxisLabel"
+    [showYAxisLabel]="showYAxisLabel"
+    [xAxisLabel]="xAxisLabel"
+    [yAxisLabel]="yAxisLabel"
+    [xAxisTicks]="yAxisTicks"
+    [showDataLabel]="true"
     [trimYAxisTicks]="false"
     [showGridLines]="true"
     [animations]="false"
+    [roundEdges]="false"
     (select)="onSelect($event)">
     </ngx-charts-bar-horizontal>
 </div>
