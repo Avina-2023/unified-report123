@@ -73,7 +73,7 @@ export class BarChartComponent implements OnInit, OnChanges, AfterViewInit {
   @Output() competencyId:EventEmitter<any> =new EventEmitter<any>();
   @Input() chartData: any;
   @Input() domains: any;
-  indexNum: any = 0;
+  indexNum: any = 1;
   single: any;
   view: any[] = [500, 360];
 
@@ -176,6 +176,7 @@ export class BarChartComponent implements OnInit, OnChanges, AfterViewInit {
   sorting(data) {
     let sortingArray = this.single;
     this.single = [];
+    data = data > 2 ? 1 : data;
 
     if (data == 1) {
       this.indexNum = data;
@@ -205,9 +206,14 @@ export class BarChartComponent implements OnInit, OnChanges, AfterViewInit {
       });
       this.colorScheme.domain = colorCode;
     } else {
-      this.indexNum = 0;
-      this.ngOnInit();
+      // this.indexNum = 1;
+      // this.ngOnInit();
     }
+  }
+
+  reset(){
+     this.indexNum = 1;
+      this.ngOnInit();
   }
 
   onSelect(event) {
@@ -220,7 +226,7 @@ export class BarChartComponent implements OnInit, OnChanges, AfterViewInit {
         return data;
       }
     });
-    this.emitCompetencyId(selectedId.competencyId ? selectedId.competencyId : '');
+    this.emitCompetencyId(selectedId.competencyname ? selectedId.competencyname : '');
   }
   emitCompetencyId(id) {
     this.competencyId.emit(id);
