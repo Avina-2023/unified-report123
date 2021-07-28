@@ -32,7 +32,8 @@
                             <div>
                                 <em class="icon-SpeedoMeter"></em>
                                 <span>Total Score:
-                  <span class="color-black">{{ assessment.maxscore }}</span>
+                  <span class="color-black">{{ assessment.score
+                  }}/{{ assessment.maxscore }}</span>
                                 </span>
                             </div>
                             <div>
@@ -60,11 +61,11 @@
                                 Test Taken
                                 <span>{{ assessment.timetaken }}<span>Mins</span></span>
                             </div>
-                            <div>
+                            <!-- <div>
                                 Marks Scored
                                 <span>{{ assessment.score
                   }}<span></span></span>
-                            </div>
+                            </div> -->
                             <div>
                                 Proctoring
                                 <span>{{ assessment.proctored ? "Yes" : "No"
