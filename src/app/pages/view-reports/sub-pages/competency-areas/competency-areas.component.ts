@@ -45,7 +45,7 @@ export class CompetencyAreasComponent implements OnInit {
 
   getHorizontalDataByCompetencyId(id) {
     const selectedCompetency = this.competancyData.find((data: any)=> {
-      if (data && data.competencyId == id) {
+      if (data && data.competencyname == id) {
         return data;
       };
     });
