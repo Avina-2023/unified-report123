@@ -1,9 +1,9 @@
+<div class="StInfoDetailsArea">
 
-    <div class="StInfoDetailsArea">
-
-      <ng-container *ngIf="getAreaofDevelopment && getAreaofDevelopment.length > 0 else strength">
-          <div class="cardInfoArea">
-            <div class="infoIcon SuccessColor"> <!--icon-Dislike-->
+    <ng-container *ngIf="getAreaofDevelopment && getAreaofDevelopment.length > 0 else strength">
+        <div class="cardInfoArea">
+            <div class="infoIcon SuccessColor">
+                <!--icon-Dislike-->
                 <span class="iconpl"><em class="icon-Like"></em></span>
             </div>
             <div class="infotxt">
@@ -11,16 +11,16 @@
                     Strengths
                 </div>
                 <div class="ContentArea" *ngFor="let getAreaofDevelopment of getAreaofDevelopment">
-                    <span>{{getAreaofDevelopment.title}}</span>
-                    {{getAreaofDevelopment.description}}
+                    <span>{{getAreaofDevelopment.title ? getAreaofDevelopment.title : '-'}}</span> {{getAreaofDevelopment.description ? getAreaofDevelopment.description : '-'}}
                 </div>
             </div>
         </div>
-      </ng-container>
+    </ng-container>
 
-      <ng-container *ngIf="areatoimprove && areatoimprove.length > 0 else area">
+    <ng-container *ngIf="areatoimprove && areatoimprove.length > 0 else area">
         <div class="cardInfoArea">
-            <div class="infoIcon WarningColor"> <!--icon-Like-->
+            <div class="infoIcon WarningColor">
+                <!--icon-Like-->
                 <span class="iconpl"><em class="icon-Dislike"></em></span>
             </div>
             <div class="infotxt">
@@ -28,18 +28,18 @@
                     Area of Development
                 </div>
                 <div class="ContentArea" *ngFor="let areatoimprove of areatoimprove">
-                  <span>{{areatoimprove.title}}</span>
-                  {{areatoimprove.description}}
-              </div>
+                    <span>{{areatoimprove.title ? areatoimprove.title : '-'}}</span> {{areatoimprove.description ? areatoimprove.description : '-'}}
+                </div>
             </div>
         </div>
-      </ng-container>
+    </ng-container>
 
-    </div>
+</div>
 
 <ng-template #strength>
     <div class="cardInfoArea">
-        <div class="infoIcon SuccessColor"> <!--icon-Dislike-->
+        <div class="infoIcon SuccessColor">
+            <!--icon-Dislike-->
             <span class="iconpl"><em class="icon-Like"></em></span>
         </div>
         <div class="infotxt">
@@ -47,12 +47,10 @@
                 Strengths
             </div>
             <div class="ContentArea">
-                <span>Accountability</span>
-                Likely to hold oneself accountable and responsibility for one's actions and decisions.
+                <span>Accountability</span> Likely to hold oneself accountable and responsibility for one's actions and decisions.
             </div>
             <div class="ContentArea">
-                <span>Drive for results</span>
-                Likely to hold oneself accountable and responsibility for one's actions and decisions.
+                <span>Drive for results</span> Likely to hold oneself accountable and responsibility for one's actions and decisions.
             </div>
         </div>
     </div>
@@ -61,23 +59,21 @@
 
 
 <ng-template #area>
-      <div class="cardInfoArea">
-          <div class="infoIcon WarningColor"> <!--icon-Like-->
-              <span class="iconpl"><em class="icon-Dislike"></em></span>
-          </div>
-          <div class="infotxt">
-              <div class="comphtxt">
-                  Area of Development
-              </div>
-              <div class="ContentArea">
-                  <span>Self-assurance</span>
-                  Needs to have belief in one's abilities and should try to remain optimistic reagardless
-                  of what others say about oneself
-              </div>
-              <div class="ContentArea">
-                  <span>Understanding Customers</span>
-                  Should try to gather more Information from customers to understand their needs and requirement.
-              </div>
-          </div>
-      </div>
-  </ng-template>
+    <div class="cardInfoArea">
+        <div class="infoIcon WarningColor">
+            <!--icon-Like-->
+            <span class="iconpl"><em class="icon-Dislike"></em></span>
+        </div>
+        <div class="infotxt">
+            <div class="comphtxt">
+                Area of Development
+            </div>
+            <div class="ContentArea">
+                <span>Self-assurance</span> Needs to have belief in one's abilities and should try to remain optimistic reagardless of what others say about oneself
+            </div>
+            <div class="ContentArea">
+                <span>Understanding Customers</span> Should try to gather more Information from customers to understand their needs and requirement.
+            </div>
+        </div>
+    </div>
+</ng-template>
