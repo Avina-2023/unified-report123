@@ -73,8 +73,8 @@
                             </div>
                             <div class="primaryInfo">
                                 Completion
-                                <span class="successColor"><em class="icon-checked"></em><span>{{ assessment.compilation
-                    }}</span></span>
+                                <span [ngClass]="{ warningColor: assessment.compilation == false, successColor: assessment.compilation == true
+                                }"><em *ngIf="assessment.compilation" class="icon-checked"></em><span>{{ assessment.compilation ? assessment.compilation : '-'  }}</span></span>
                             </div>
                         </div>
                         <div class="ContentInfoSummary">

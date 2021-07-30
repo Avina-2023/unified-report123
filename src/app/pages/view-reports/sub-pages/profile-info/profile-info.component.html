@@ -65,7 +65,7 @@
             </div>
             <div>
                 Graduation Aggregate:
-                <span *ngIf="personalInfo.percentage">{{personalInfo.percentage ? personalInfo.percentage : 0}}%</span>
+                <span>{{personalInfo.percentage ? personalInfo.percentage + '%' : '-' }}</span>
             </div>
         </div>
     </div>
