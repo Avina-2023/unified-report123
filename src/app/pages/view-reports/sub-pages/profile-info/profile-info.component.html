@@ -3,8 +3,7 @@
         Drive Information
     </div>
 
-    <mat-select class="matSelect" (selectionChange)="driveChange($event)" placeholder="Select Drive"
-        [(ngModel)]="driveselectedValue" name="list">
+    <mat-select class="matSelect" (selectionChange)="driveChange($event)" placeholder="Select Drive" [(ngModel)]="driveselectedValue" name="list">
         <mat-option *ngFor="let list of driveList" [value]="list.drivename">
             {{list.drivename}}
         </mat-option>
@@ -16,57 +15,57 @@
         <div class="profileInfoSec">
             <div>
                 First Name:
-                <span> {{personalInfo.firstname}} </span>
+                <span> {{personalInfo.firstname ? personalInfo.firstname : '-'}} </span>
             </div>
             <div>
                 Last Name:
-                <span>{{personalInfo.lastname}}</span>
+                <span>{{personalInfo.lastname ? personalInfo.lastname : '-'}}</span>
             </div>
             <div>
                 Date of Birth:
-                <span>{{personalInfo.DOB}}</span>
+                <span>{{personalInfo.DOB ? personalInfo.DOB : '-'}}</span>
             </div>
             <div>
                 Father's Name:
-                <span>{{personalInfo.fathername}}</span>
+                <span>{{personalInfo.fathername ? personalInfo.fathername : '-'}}</span>
             </div>
             <div>
                 Gender:
-                <span>{{personalInfo.gender}}</span>
+                <span>{{personalInfo.gender ? personalInfo.gender : '-'}}</span>
             </div>
             <div>
                 Contact No:
-                <span> {{personalInfo.mobile}}</span>
+                <span> {{personalInfo.mobile ? personalInfo.mobile : '-'}}</span>
             </div>
             <div>
                 Address:
-                <span>{{personalInfo.address}}</span>
+                <span>{{personalInfo.address ? personalInfo.address : '-'}}</span>
             </div>
         </div>
         <div class="profileInfoSec">
             <div>
                 College/University:
-                <span> {{personalInfo.institute}}</span>
+                <span> {{personalInfo.institute ? personalInfo.institute : '-'}}</span>
             </div>
             <div>
                 State/City:
-                <span>{{personalInfo.city}}</span>
+                <span>{{personalInfo.city ? personalInfo.city : '-'}}</span>
             </div>
             <div>
                 Specialization:
-                <span> {{personalInfo.specialization}}</span>
+                <span> {{personalInfo.specialization ? personalInfo.specialization : '-'}}</span>
             </div>
             <div>
                 Branch:
-                <span>{{personalInfo.branch}}</span>
+                <span>{{personalInfo.branch ? personalInfo.branch : '-'}}</span>
             </div>
             <div>
                 Passing Year:
-                <span>{{personalInfo.passedOut}}</span>
+                <span>{{personalInfo.passedOut ? personalInfo.passedOut : '-'}}</span>
             </div>
             <div>
                 Graduation Aggregate:
-                <span>{{personalInfo.percentage}}%</span>
+                <span *ngIf="personalInfo.percentage">{{personalInfo.percentage ? personalInfo.percentage : 0}}%</span>
             </div>
         </div>
     </div>

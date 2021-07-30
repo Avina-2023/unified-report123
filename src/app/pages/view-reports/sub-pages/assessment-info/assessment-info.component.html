@@ -13,30 +13,30 @@
                 <mat-expansion-panel [expanded]="isFirst">
                     <mat-expansion-panel-header>
                         <div class="expandheaderArea">
-                            <div>
+                            <div class="width-51">
                                 <em class="icon-Assessment"></em>
                                 <span>Test Name:
-                  <span>{{ assessment.assessmentname }}</span>
+                  <span>{{ assessment.assessmentname ? assessment.assessmentname : '-' }}</span>
                                 </span>
                             </div>
-                            <div>
+                            <div class="width-255">
                                 <em class="icon-Booked"></em>
                                 <span>Test Taken on:
                   <span>{{
                     assessment.assessmentdate
                     ? momentForm(assessment.assessmentdate)
-                    : ""
+                    : "-"
                     }}</span>
                                 </span>
                             </div>
-                            <div>
+                            <div class="width-150">
                                 <em class="icon-SpeedoMeter"></em>
                                 <span>Total Score:
-                  <span class="color-black">{{ assessment.score
-                  }}/{{ assessment.maxscore }}</span>
+                  <span class="color-black">{{ assessment.score ? assessment.score : 0
+                  }}/{{ assessment.maxscore ? assessment.maxscore : 0 }}</span>
                                 </span>
                             </div>
-                            <div>
+                            <div class="width-168">
                                 <em class="icon-Like"></em>
                                 <span>Credibility Index:
                   <span [ngClass]="{
@@ -55,11 +55,11 @@
                         <div class="ContentInfoDetails">
                             <div>
                                 Test Time
-                                <span>{{ assessment.duration }}<span>Mins</span></span>
+                                <span>{{ assessment.duration ? assessment.duration : 0  }}<span>Mins</span></span>
                             </div>
                             <div>
                                 Test Taken
-                                <span>{{ assessment.timetaken }}<span>Mins</span></span>
+                                <span>{{ assessment.timetaken ? assessment.timetaken  : 0 }}<span>Mins</span></span>
                             </div>
                             <!-- <div>
                                 Marks Scored
@@ -105,17 +105,12 @@
                           let section of assessment.section;
                           let j = index
                         ">
-                                                <td>{{ section.secname }}</td>
+                                                <td>{{ section.secname ? section.secname : '-' }}</td>
                                                 <td>
                                                     <div class="progressbar color-bluebar" [ngStyle]="{
-                              width:
-                                (section.attendedquestions /
-                                  section.overallquestions) *
-                                  100 +
-                                '%'
-                            }"></div>
+                                                      width: (section.attendedquestions / section.overallquestions) * 100 + '%' }"></div>
                                                     <div class="progressdata">
-                                                        <span>{{ section.attendedquestions }}</span>/{{ section.overallquestions }}
+                                                        <span>{{ section.attendedquestions ? section.attendedquestions : '-' }}</span>/ {{ section.overallquestions ? section.overallquestions : '-' }}
                                                     </div>
                                                 </td>
                                                 <!-- <td>
@@ -124,31 +119,23 @@
                                                 </td> -->
                                                 <td>
                                                     <div class="progressbar color-pinkbar" [ngStyle]="{
-                              width:
-                                (section.score / section.overallscore) * 100 +
-                                '%'
-                            }"></div>
+                                                     width:(section.score / section.overallscore) * 100 +'%'}"></div>
                                                     <div class="progressdata">
-                                                        <span>{{ section.score }}</span>
+                                                        <span>{{ section.score ? section.score : 0 }}</span>
                                                     </div>
                                                 </td>
                                                 <td>
                                                     <div class="progressbar color-greenbar" [ngStyle]="{
-                              width: (section.accuracy / 100) * 100 + '%'
-                            }"></div>
+                                                      width: (section.accuracy / 100) * 100 + '%'}"></div>
                                                     <div class="progressdata">
-                                                        <span>{{ section.accuracy }}%</span>
+                                                        <span>{{ section.accuracy ? section.accuracy : 0 }}%</span>
                                                     </div>
                                                 </td>
                                                 <td>
                                                     <div class="progressbar color-yellowbar" [ngStyle]="{
-                              width:
-                                (section.timetaken / section.overallduration) *
-                                  100 +
-                                '%'
-                            }"></div>
+                                                   width:(section.timetaken / section.overallduration) * 100 + '%'}"></div>
                                                     <div class="progressdata">
-                                                        <span>{{ section.timetaken }}</span> mins
+                                                        <span>{{ section.timetaken ? section.timetaken : 0 }}</span> mins
                                                         <!-- /{{ section.overallduration }} -->
                                                     </div>
                                                 </td>
