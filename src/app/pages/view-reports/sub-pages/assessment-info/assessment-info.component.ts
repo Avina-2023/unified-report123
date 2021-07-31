@@ -70,23 +70,25 @@ export class AssessmentInfoComponent implements OnInit, OnChanges {
 
   getTimetaker(time){
     if(time){
+      // debugger
       let convertTime = time.toString();
       let SplitTime = convertTime.split(/([.])/);
       this.TimeTakerMins = parseInt(SplitTime[0]);
       let sec = '0.' + SplitTime[2];
       let conIntoSec = parseFloat(sec) * 60;
       this.timeTakerSec = conIntoSec.toFixed(0);
+      console.log( this.timeTakerSec,' this.timeTakerSec')
     }
   }
 
   getTimetaken(takenTime){
     if(takenTime){
-      let convertTime = takenTime.toString();
-      let SplitTime = convertTime.split(/([.])/);
-      this.TimeTakenMins = parseInt(SplitTime[0]);
-      let sec = '0.' + SplitTime[2];
-      let conIntoSec = parseFloat(sec) * 60;
-      this.timeTakenSec = conIntoSec.toFixed(0);
+      let convertTime1 = takenTime.toString();
+      let SplitTime1 = convertTime1.split(/([.])/);
+      this.TimeTakenMins = parseInt(SplitTime1[0]);
+      let sec = '0.' + SplitTime1[2];
+      let conIntoSec1 = parseFloat(sec) * 60;
+      this.timeTakenSec = conIntoSec1.toFixed(0);
     }
   }
 
