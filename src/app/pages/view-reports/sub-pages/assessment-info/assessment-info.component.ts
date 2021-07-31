@@ -15,6 +15,8 @@ export class AssessmentInfoComponent implements OnInit, OnChanges {
   timeTaker: number;
   TimeTakerMins: number;
   timeTakerSec: any;
+  TimeTakenMins: number;
+  timeTakenSec: any;
   constructor() { }
 
   ngOnInit(): void {
@@ -75,7 +77,17 @@ export class AssessmentInfoComponent implements OnInit, OnChanges {
       let conIntoSec = parseFloat(sec) * 60;
       this.timeTakerSec = conIntoSec.toFixed(0);
     }
+  }
 
+  getTimetaken(takenTime){
+    if(takenTime){
+      let convertTime = takenTime.toString();
+      let SplitTime = convertTime.split(/([.])/);
+      this.TimeTakenMins = parseInt(SplitTime[0]);
+      let sec = '0.' + SplitTime[2];
+      let conIntoSec = parseFloat(sec) * 60;
+      this.timeTakenSec = conIntoSec.toFixed(0);
+    }
   }
 
 }

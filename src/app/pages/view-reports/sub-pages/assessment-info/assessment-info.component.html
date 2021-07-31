@@ -59,7 +59,8 @@
                             </div>
                             <div>
                                 Test Taken
-                                <span>{{ assessment.timetaken ? assessment.timetaken  : 0 }}<span>Mins</span></span>
+                                <span>{{ getTimetaken(assessment.timetaken)}}</span>
+                                <span>{{TimeTakenMins != undefined ? TimeTakenMins + ' : ' : '00 : 00' }} {{timeTakenSec != undefined ? timeTakenSec : '' }}<span>Sec</span></span>
                             </div>
                             <!-- <div>
                                 Marks Scored
@@ -137,7 +138,7 @@
                                                    width:(section.timetaken / section.overallduration) * 100 + '%'}"></div>
                                                     <div class="progressdata">
                                                         <span>{{ getTimetaker(section.timetaken)}}</span>
-                                                        <span>{{this.TimeTakerMins != 0 ? this.TimeTakerMins + ' m ' : ''}} {{this.timeTakerSec != 0 ? this.timeTakerSec  + ' sec' : '' }}</span>
+                                                        <span>{{TimeTakerMins != undefined ? TimeTakerMins + ' : ' : '00 : 00 sec' }} {{timeTakerSec != undefined ? timeTakerSec  + ' Sec' : '' }}</span>
                                                         <!-- /{{ section.overallduration }} -->
                                                     </div>
                                                 </td>
