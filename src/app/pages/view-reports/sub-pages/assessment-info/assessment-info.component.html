@@ -136,7 +136,7 @@
                                                    width:(section.timetaken / section.overallduration) * 100 + '%'}"></div>
                                                     <div class="progressdata">
                                                         <span>{{ getTimetaker(section.timetaken)}}</span>
-                                                        <span>{{this.TimeTakerMins + ' m'}}{{this.timeTakerSec + 'sec' }}</span>
+                                                        <span>{{this.TimeTakerMins != 0 ? this.TimeTakerMins + ' m ' : ''}} {{this.timeTakerSec != 0 ? this.timeTakerSec  + ' sec' : '' }}</span>
                                                         <!-- /{{ section.overallduration }} -->
                                                     </div>
                                                 </td>
