@@ -74,7 +74,8 @@
                             <div class="primaryInfo">
                                 Completion
                                 <span [ngClass]="{ warningColor: assessment.compilation == false, successColor: assessment.compilation == true
-                                }"><em *ngIf="assessment.compilation" class="icon-checked"></em><span>{{ assessment.compilation ? assessment.compilation : '-'  }}</span></span>
+                                }"><em  class="icon-{{assessment.compilation ? 'checked' : 'cancel_black'}}"></em>
+                                <span>{{assessment.compilation ? "Completed" : "Not Completed"}}</span></span>
                             </div>
                         </div>
                         <div class="ContentInfoSummary">
@@ -135,7 +136,8 @@
                                                     <div class="progressbar color-yellowbar" [ngStyle]="{
                                                    width:(section.timetaken / section.overallduration) * 100 + '%'}"></div>
                                                     <div class="progressdata">
-                                                        <span>{{ section.timetaken ? section.timetaken : 0 }}</span> mins
+                                                        <span>{{ getTimetaker(section.timetaken)}}</span>
+                                                        <span>{{this.TimeTakerMins != 0 ? this.TimeTakerMins + ' m ' : ''}} {{this.timeTakerSec != 0 ? this.timeTakerSec  + ' sec' : '' }}</span>
                                                         <!-- /{{ section.overallduration }} -->
                                                     </div>
                                                 </td>
