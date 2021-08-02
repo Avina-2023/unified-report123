@@ -1,14 +1,13 @@
 <div class="comphtxt">Competencies
-    <div class="mat-card-header-text"> Click on the respective competency to view the details
-        <span class="sort" matTooltip="Sort Competencies" (click)="sorting(indexNum + 1)" name="fieldName" ngDefaultControl [(ngModel)]="indexNum">
-          
-            <mat-icon   *ngIf="indexNum == 1" [ngClass]="{'bothbtn' : indexNum == 0 }">
-                 arrow_downward
-            </mat-icon>
-            <mat-icon   *ngIf="indexNum == 2" [ngClass]="{'bothbtn' : indexNum == 0 }">
-                arrow_upward
-                </mat-icon>
-        </span>
+
+    <div class="sort" matTooltip="Sort Competencies" (click)="sorting(indexNum + 1)" name="fieldName" ngDefaultControl [(ngModel)]="indexNum">
+
+        <mat-icon *ngIf="indexNum == 1" [ngClass]="{'bothbtn' : indexNum == 0 }">
+            arrow_downward
+        </mat-icon>
+        <mat-icon *ngIf="indexNum == 2" [ngClass]="{'bothbtn' : indexNum == 0 }">
+            arrow_upward
+        </mat-icon>
     </div>
 
 </div>
@@ -20,5 +19,6 @@
 <div class="reset">
     <span class="ResetBtn " (click)="reset()"> <em class="icon-Refresh"></em>Reset</span>
 </div>
+<div class=" clk">* Click on a competency to view the skill details </div>
 <!-- </div> -->
 <!-- <canvas #myChart></canvas> -->
