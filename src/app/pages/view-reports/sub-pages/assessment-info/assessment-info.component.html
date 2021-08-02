@@ -10,7 +10,7 @@
           let i = index;
           first as isFirst
         ">
-                <mat-expansion-panel [expanded]="false">
+                <mat-expansion-panel [expanded]="isFirst">
                     <mat-expansion-panel-header>
                         <div class="expandheaderArea">
                             <div class="width-51">
@@ -37,7 +37,7 @@
                                 </span>
                             </div>
                             <div class="width-168">
-                                <!-- <em class="icon-Like"></em> -->
+                                <em class="icon-Like"></em>
                                 <span>Credibility Index:
                   <span [ngClass]="{
                       warningColor: assessment.percentageScore < 40,
@@ -60,7 +60,7 @@
                             <div>
                                 Test Taken
                                 <span>{{ getTimetaken(assessment.timetaken)}}</span>
-                                <span>{{TimeTakenMins != undefined ? TimeTakenMins  : '0' }}<span>Mins</span> {{timeTakenSec != undefined ? timeTakenSec : '0' }}<span>sec</span></span>
+                                <span>{{TimeTakenMins != undefined ? TimeTakenMins + ' : ' : '00 : 00' }} {{timeTakenSec != undefined ? timeTakenSec : '' }}<span>Sec</span></span>
                             </div>
                             <!-- <div>
                                 Marks Scored
@@ -138,7 +138,7 @@
                                                    width:(section.timetaken / section.overallduration) * 100 + '%'}"></div>
                                                     <div class="progressdata">
                                                         <span *ngIf="section.timetaken != 0">{{ getTimetaker(section.timetaken)}}</span>
-                                                        <span *ngIf="section.timetaken != 0">{{TimeTakerMins != undefined ? TimeTakerMins + ' Mins ' : '0 Mins' }} {{timeTakerSec != undefined ? timeTakerSec  + ' sec' : '' }}</span>
+                                                        <span *ngIf="section.timetaken != 0">{{TimeTakerMins != undefined ? TimeTakerMins + ' : ' : '00 : 00 sec' }} {{timeTakerSec != undefined ? timeTakerSec  + ' sec' : '' }}</span>
                                                         <!-- /{{ section.overallduration }} -->
                                                         <span *ngIf="section.timetaken == 0">{{section.timetaken}}</span>
                                                     </div>
