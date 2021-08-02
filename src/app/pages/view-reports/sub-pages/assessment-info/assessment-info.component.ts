@@ -77,7 +77,7 @@ export class AssessmentInfoComponent implements OnInit, OnChanges {
       let sec = '0.' + SplitTime[2];
       let conIntoSec = parseFloat(sec) * 60;
       this.timeTakerSec = conIntoSec.toFixed(0);
-      console.log( this.timeTakerSec,' this.timeTakerSec')
+      // console.log( this.timeTakerSec,' this.timeTakerSec')
     }
   }
 

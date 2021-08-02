@@ -99,6 +99,7 @@ ul {
     top: 5px;
     position: relative;
 }
+
 .heading6 {
     font-size: 21px;
     font-weight: 700;
@@ -652,12 +653,15 @@ ng-image-slider {
             }
             .icon-Like {
                 color: $successColorDark;
+                font-weight: 700;
             }
             .average-color {
                 color: #d68f0c;
+                font-weight: 700;
             }
             .icon-Dislike {
                 color: $primaryColor;
+                font-weight: 700;
             }
             .progressbar {
                 display: block;
