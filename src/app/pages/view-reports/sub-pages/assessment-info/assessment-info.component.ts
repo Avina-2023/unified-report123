@@ -23,6 +23,7 @@ export class AssessmentInfoComponent implements OnInit, OnChanges {
   timeTakerSec: any;
   TimeTakenMins: number;
   timeTakenSec: any;
+  correct = true;
   testJsonChart = [
     {
       "b1": 0,
@@ -495,7 +496,7 @@ export class AssessmentInfoComponent implements OnInit, OnChanges {
   currentItem:any = [];
   playlist:any = [];
 
-  constructor(private matDialog: MatDialog,) { }
+  constructor(public matDialog: MatDialog) { }
 
   ngOnInit(): void {
     this.getAssessmentInfo();
@@ -635,6 +636,16 @@ export class AssessmentInfoComponent implements OnInit, OnChanges {
     var vid = <HTMLVideoElement> document.getElementById("myVideo"); 
     vid.load();
     vid.play(); 
+  } 
+    
+    questionview (templateRef: TemplateRef<any>,) {
+    this.matDialog.open(templateRef, {
+      width: '90%',
+      height: '85%',
+      closeOnNavigation: true,
+      // disableClose: true,
+      panelClass: 'question_dialog'
+    }); 
   }
 
 }
