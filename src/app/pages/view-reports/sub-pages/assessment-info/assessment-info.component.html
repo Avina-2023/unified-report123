@@ -60,8 +60,7 @@
                             <div>
                                 Test Taken
                                 <span>{{ getTimetaken(assessment.timetaken)}}</span>
-                                <span>{{TimeTakenMins != undefined ? TimeTakenMins : '0' }}<span>Mins</span>
-                                    {{timeTakenSec != undefined ? timeTakenSec : '0' }}<span>sec</span></span>
+                                <span>{{TimeTakenMins != undefined ? TimeTakenMins : '0' }}<span>Mins</span> {{timeTakenSec != undefined ? timeTakenSec : '0' }}<span>sec</span></span>
                             </div>
                             <!-- <div>
                                 Marks Scored
@@ -85,7 +84,7 @@
                             <div class="assessmentHeaderinfo">
                                 <div class="Summaryhtxt">
                                     Sectional Summary
-                                    <span class="primaryClick" (click)="questionview(question)"><em
+                                    <span class="primaryClick" (click)="questionview(question,assessment)"><em
                                             class="icon-right-next"></em> View Questionwise Analysis</span>
                                 </div>
                             </div>
@@ -112,13 +111,11 @@
                         ">
                                                 <td>{{ section.secname ? section.secname : '-' }}</td>
                                                 <td>
-                                                    <div class="progressbar color-bluebar"
-                                                        [ngStyle]="{
+                                                    <div class="progressbar color-bluebar" [ngStyle]="{
                                                       width: (section.attendedquestions / section.overallquestions) * 100 + '%' }"></div>
                                                     <div class="progressdata">
                                                         <span>{{ section.attendedquestions ? section.attendedquestions :
-                                                            '-' }}</span>/ {{ section.overallquestions ?
-                                                        section.overallquestions : '-' }}
+                                                            '-' }}</span>/ {{ section.overallquestions ? section.overallquestions : '-' }}
                                                     </div>
                                                 </td>
                                                 <!-- <td>
@@ -151,8 +148,7 @@
                                                             {{timeTakerSec != undefined ? timeTakerSec + ' sec' : ''
                                                             }}</span>
                                                         <!-- /{{ section.overallduration }} -->
-                                                        <span
-                                                            *ngIf="section.timetaken == 0">{{section.timetaken}}</span>
+                                                        <span *ngIf="section.timetaken == 0">{{section.timetaken}}</span>
                                                     </div>
                                                 </td>
                                                 <td>
@@ -188,33 +184,33 @@
                 <em class="icon-Assessment"></em>
                 <div>
                     Candidate Name:
-                    <span>{{ 'Prabhu Kumari Bandri' }}</span>
+                    <span>{{ sectionData.candidateName }}</span>
                 </div>
             </div>
             <div>
                 <em class="icon-Assessment"></em>
                 <div>
                     Test Name:
-                    <span>{{ 'Aptitude Assessment T1' }}</span>
+                    <span>{{ sectionData.assessmentName }}</span>
                 </div>
             </div>
             <div>
                 <em class="icon-Booked"></em>
                 <div>
                     Test Taken on:
-                    <span>{{'June 15 2021 10:30:00 AM IST' }}</span>
+                    <span>{{sectionData.assessmentDate  ? momentForm(sectionData.assessmentDate)
+                        : "-"}}</span>
                 </div>
             </div>
         </div>
-        <ng-container>
-            <ng-container>
-                <mat-expansion-panel [expanded]="true">
+        <ng-container *ngIf="listOfSections && listOfSections.length > 0">
+            <ng-container *ngFor="let sections of listOfSections; let i = index;">
+                <mat-expansion-panel [expanded]="false">
                     <mat-expansion-panel-header>
                         <div class="expandheaderArea">
-                            <div class="htxt">{{'Quantitative Aptitude'}}</div>
+                            <div class="htxt">{{sections._id}}</div>
                             <div class="txtinfo">
-                                <span>No. of Questions</span>
-                                {{'40'}}
+                                <span>No. of Questions</span> {{sections.tableList.length}}
                             </div>
                         </div>
                     </mat-expansion-panel-header>
@@ -227,20 +223,20 @@
                                         <tr>
                                             <th>Question No.</th>
                                             <th>Question Code</th>
-                                            <th>Question Type</th>
+                                            <!-- <th>Question Type</th> -->
                                             <th class="text-center">Correct/InCorrect</th>
-                                            <th>Answered/Unanswered</th>
+                                            <th>Score / Max Score</th>
                                             <th>Time Spent (In min.)</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td class="text-center">Q1</td>
-                                            <td>1627728491088693</td>
-                                            <td>True/False</td>
-                                            <td class="text-center"><span><em class="icon-{{correct ? 'CheckMark' : 'uncheck'}}"></em></span></td>
-                                            <td>Answered</td>
-                                            <td>0.25</td>
+                                        <tr *ngFor="let tableData of sections?.tableList; let j = index">
+                                            <td class="text-center">Q{{j+1}}</td>
+                                            <td>{{ tableData ? tableData.itemid : '-'}}</td>
+                                            <!-- <td>True/False</td> -->
+                                            <td class="text-center"><span><em class="icon-{{ tableData.correct == true ? 'CheckMark' : 'uncheck' }}"></em></span></td>
+                                            <td>{{tableData ? tableData.score : '0'}} / {{tableData ? tableData.maxscore : '0'}}</td>
+                                            <td>{{tableData ? tableData.timetaken : '-'}}</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -250,8 +246,10 @@
                 </mat-expansion-panel>
             </ng-container>
         </ng-container>
+
     </div>
 </ng-template>
+
 <ng-template #matDialog1>
 
     <section style="padding-bottom: 22px;">

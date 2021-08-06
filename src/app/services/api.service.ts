@@ -57,4 +57,8 @@ export class ApiService {
       return data;
     }
   }
+
+  getSectionWiseDetails(data){
+    return this.http.post(`${this.BASE_URL}/sectionwiseScoreDetails`, data);
+  }
 }

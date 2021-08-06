@@ -3,7 +3,8 @@ import { MatDialog } from '@angular/material/dialog';
 import * as moment from 'moment'; //in your component
 import _ from 'lodash';
 import { VgAPI, VgFullscreenAPI } from 'ngx-videogular';
-
+import { ToastrService } from 'ngx-toastr';
+import { ApiService } from '../../../../services/api.service';
 @Component({
   selector: 'app-assessment-info',
   templateUrl: './assessment-info.component.html',
@@ -495,8 +496,10 @@ export class AssessmentInfoComponent implements OnInit, OnChanges {
   currentIndex = 0;
   currentItem:any = [];
   playlist:any = [];
+  sectionData: {};
+  listOfSections: any;
 
-  constructor(public matDialog: MatDialog) { }
+  constructor(public matDialog: MatDialog,private toastr: ToastrService, private ApiService: ApiService, ) { }
 
   ngOnInit(): void {
     this.getAssessmentInfo();
@@ -638,7 +641,7 @@ export class AssessmentInfoComponent implements OnInit, OnChanges {
     vid.play(); 
   } 
     
-    questionview (templateRef: TemplateRef<any>,) {
+    questionview (templateRef: TemplateRef<any>,assessment) {
     this.matDialog.open(templateRef, {
       width: '90%',
       height: '85%',
@@ -646,6 +649,29 @@ export class AssessmentInfoComponent implements OnInit, OnChanges {
       // disableClose: true,
       panelClass: 'question_dialog'
     }); 
+    this.sectionData = {
+      assessmentName: assessment.assessmentname,
+      assessmentDate:  assessment.assessmentdate,
+      candidateName: this.getAllReportsData.firstname
+    }
+
+    this.getSectionsData(assessment.assessmentname);
+  }
+
+
+  getSectionsData(assessmentname){
+    this.listOfSections = [];
+    let data = {
+      email:   this.getAllReportsData.email,
+      testname: assessmentname,
+    }
+    this.ApiService.getSectionWiseDetails(data).subscribe((response: any)=> {
+      if(response.data.length > 0) {
+        this.listOfSections = response.data;
+      }else {
+        this.toastr.error('No data available for the specified assessment')
+      }
+    })
   }
 
 }
