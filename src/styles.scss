@@ -715,18 +715,18 @@ ng-image-slider {
         margin-top: 1.2em;
         box-shadow: 0px 1px 5px 0px rgb(0 0 0 / 12%);
         border: 1px solid #d4d4d4bd;
-        border-radius: 4px;
+        border-radius: 4px;;
+        min-height: 550px;
         >div {
             padding: 2em;
             width: 50%;
             color: $lightGrey;
             display: flex;
-            flex-direction: column;
+            flex-direction: column; 
         }
         .leftPan {
             background-color: $whiteColor;
-            position: relative;
-            min-height: 250px;
+            position: relative; 
             justify-content: space-between;
             border-radius: 4px 0 0 4px;
             .heading6 {
@@ -753,8 +753,7 @@ ng-image-slider {
             bottom: 0;
             right: 0;
             left: 0;
-            z-index: 5;
-            min-height: 480px;
+            z-index: 5; 
             .ngx-charts {
                 margin-left: -2.2em;
             }
@@ -786,7 +785,12 @@ ng-image-slider {
                 display: flex;
                 margin-top: 14px;
                 flex-wrap: wrap;
-                max-width: 470px;
+                max-width: 100%;
+                max-height: 190px;
+                min-height: 150px;
+                overflow: hidden;
+                overflow-y: auto;
+                align-content: flex-start;
                 .btnBox {
                     background-color: transparent;
                     vertical-align: bottom;
@@ -799,7 +803,7 @@ ng-image-slider {
                     text-decoration: none;
                     -webkit-user-select: none;
                     user-select: none;
-                    border-radius: 1px;
+                    border-radius: 3px;
                     margin-right: 10px;
                     margin-bottom: 10px;
                     font-weight: 500;
@@ -820,15 +824,14 @@ ng-image-slider {
             }
             .chartContainer {
                 height: 100%;
-                >div.sPan {
+                > div.sPan {
                     min-height: 200px;
                     display: flex;
                     flex-direction: column;
-                    justify-content: space-between;
+                    justify-content: flex-start;
                 }
-                div.aPan {
-                    min-height: 200px;
-                    margin-top: 3em;
+                div.aPan { 
+                    padding: 2em 0.3em 0;
                 }
             }
         }
