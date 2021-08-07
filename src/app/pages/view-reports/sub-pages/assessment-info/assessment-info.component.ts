@@ -610,10 +610,10 @@ export class AssessmentInfoComponent implements OnInit, OnChanges {
 });
       });
     });
-      console.log(filter,'asdadasd')
+      // console.log(filter,'asdadasd')
      this.currentItem =  this.playlist[this.currentIndex];
      this.getMiniVideos(this.proctoringData);
-     console.log(  this.proctoringData,'  this.proctoringData')
+    //  console.log(  this.proctoringData,'  this.proctoringData')
   }
 
   getMiniVideos(data){
@@ -622,7 +622,7 @@ export class AssessmentInfoComponent implements OnInit, OnChanges {
           this.playlist.imgUrl = iterator.id;
       }
     }
-    console.log(this.playlist)
+    // console.log(this.playlist)
   }
 
   nextVideo() {
@@ -669,7 +669,7 @@ export class AssessmentInfoComponent implements OnInit, OnChanges {
       if(response.data.length > 0) {
         this.listOfSections = response.data;
       }else {
-        this.toastr.error('No data available for the specified assessment')
+        this.toastr.error('No data available for the specified assessment');
       }
     })
   }

@@ -719,18 +719,19 @@ ng-image-slider {
         margin-top: 1.2em;
         box-shadow: 0px 1px 5px 0px rgb(0 0 0 / 12%);
         border: 1px solid #d4d4d4bd;
-        border-radius: 4px;;
+        border-radius: 4px;
+        ;
         min-height: 550px;
         >div {
             padding: 2em;
             width: 50%;
             color: $lightGrey;
             display: flex;
-            flex-direction: column; 
+            flex-direction: column;
         }
         .leftPan {
             background-color: $whiteColor;
-            position: relative; 
+            position: relative;
             justify-content: space-between;
             border-radius: 4px 0 0 4px;
             .heading6 {
@@ -757,7 +758,7 @@ ng-image-slider {
             bottom: 0;
             right: 0;
             left: 0;
-            z-index: 5; 
+            z-index: 5;
             .ngx-charts {
                 margin-left: -2.2em;
             }
@@ -828,13 +829,13 @@ ng-image-slider {
             }
             .chartContainer {
                 height: 100%;
-                > div.sPan {
+                >div.sPan {
                     min-height: 200px;
                     display: flex;
                     flex-direction: column;
                     justify-content: flex-start;
                 }
-                div.aPan { 
+                div.aPan {
                     padding: 2em 0.3em 0;
                 }
             }
@@ -1048,6 +1049,7 @@ mat-icon {
 :host ::ng-deep .textDataLabel {
     font-size: 14px !important;
 }
+
 .question_dialog {
     mat-dialog-container {
         padding: 10px 15px;
@@ -1056,11 +1058,11 @@ mat-icon {
         padding: 0;
         margin-bottom: 1.5em;
         border: none;
-        > div {
+        >div {
             display: flex;
             align-items: center;
             border-left: 1px solid #ececec;
-            padding-left: 25px; 
+            padding-left: 25px;
             em {
                 font-size: 2em;
                 margin-right: 0.6em;
@@ -1072,7 +1074,7 @@ mat-icon {
         }
     }
     .assessmentInfoarea .expandheaderArea {
-        > div {
+        >div {
             padding: 0 0.5em;
             font-size: 1.4em;
             font-weight: 500;
@@ -1099,34 +1101,39 @@ mat-icon {
         padding: 0.3em 1em;
     }
     .summaryTable {
-            th {
-                font-weight: 600 !important;
-                color: #000 !important;
-                background-color: #f4f4f4;
-                &:first-child {
-                    width: 10% !important;
-                }
-            }
-            td {
-                font-weight: normal !important;
-                color: #757575 !important;
-                &.text-center {
-                    text-align: center;
-                }
-                span {
-                    color: #757575 !important;
-                }
-                &:first-child {
-                    width: 10% !important;
-                    color: #757575 !important;
-                }
-                .icon-uncheck {
-                   color: #e36563 !important;
-                }
-                .icon-CheckMark {
-                    color: #8bd5b5 !important;
-                 }
+        th {
+            font-weight: 600 !important;
+            color: #000 !important;
+            background-color: #f4f4f4;
+            &:first-child {
+                width: 10% !important;
             }
         }
-
+        td {
+            font-weight: normal !important;
+            color: #757575 !important;
+            &.text-center {
+                text-align: center;
+            }
+            span {
+                color: #757575 !important;
+            }
+            &:first-child {
+                width: 10% !important;
+                color: #757575 !important;
+            }
+            .icon-uncheck {
+                color: #e36563 !important;
+            }
+            .icon-CheckMark {
+                color: #8bd5b5 !important;
+            }
+            .ans-green {
+                color: #8bd5b5 !important;
+            }
+            .ans-red {
+                color: #e36563 !important;
+            }
+        }
+    }
 }

@@ -223,8 +223,9 @@
                                         <tr>
                                             <th>Question No.</th>
                                             <th>Question Code</th>
-                                            <!-- <th>Question Type</th> -->
-                                            <th class="text-center">Correct/InCorrect</th>
+                                            <th>Question Type</th>
+                                            <th class="text-center">Correct / InCorrect</th>
+                                            <th>Answered / Unanswered</th>
                                             <th>Score / Max Score</th>
                                             <th>Time Spent (In min.)</th>
                                         </tr>
@@ -233,8 +234,9 @@
                                         <tr *ngFor="let tableData of sections?.tableList; let j = index">
                                             <td class="text-center">Q{{j+1}}</td>
                                             <td>{{ tableData ? tableData.itemid : '-'}}</td>
-                                            <!-- <td>True/False</td> -->
+                                            <td>{{tableData.type}}</td>
                                             <td class="text-center"><span><em class="icon-{{ tableData.correct == true ? 'CheckMark' : 'uncheck' }}"></em></span></td>
+                                            <td>{{tableData.status}}</td>
                                             <td>{{tableData ? tableData.score : '0'}} / {{tableData ? tableData.maxscore : '0'}}</td>
                                             <td>{{tableData ? tableData.timetaken : '-'}}</td>
                                         </tr>
