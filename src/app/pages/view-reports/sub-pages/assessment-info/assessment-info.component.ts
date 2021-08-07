@@ -3,7 +3,8 @@ import { MatDialog } from '@angular/material/dialog';
 import * as moment from 'moment'; //in your component
 import _ from 'lodash';
 import { VgAPI, VgFullscreenAPI } from 'ngx-videogular';
-
+import { ToastrService } from 'ngx-toastr';
+import { ApiService } from '../../../../services/api.service';
 @Component({
   selector: 'app-assessment-info',
   templateUrl: './assessment-info.component.html',
@@ -23,6 +24,7 @@ export class AssessmentInfoComponent implements OnInit, OnChanges {
   timeTakerSec: any;
   TimeTakenMins: number;
   timeTakenSec: any;
+  correct = true;
   testJsonChart = [
     {
       "b1": 0,
@@ -494,8 +496,10 @@ export class AssessmentInfoComponent implements OnInit, OnChanges {
   currentIndex = 0;
   currentItem:any = [];
   playlist:any = [];
+  sectionData: {};
+  listOfSections: any;
 
-  constructor(private matDialog: MatDialog,) { }
+  constructor(public matDialog: MatDialog,private toastr: ToastrService, private ApiService: ApiService, ) { }
 
   ngOnInit(): void {
     this.getAssessmentInfo();
@@ -606,10 +610,10 @@ export class AssessmentInfoComponent implements OnInit, OnChanges {
 });
       });
     });
-      console.log(filter,'asdadasd')
+      // console.log(filter,'asdadasd')
      this.currentItem =  this.playlist[this.currentIndex];
      this.getMiniVideos(this.proctoringData);
-     console.log(  this.proctoringData,'  this.proctoringData')
+    //  console.log(  this.proctoringData,'  this.proctoringData')
   }
 
   getMiniVideos(data){
@@ -618,7 +622,7 @@ export class AssessmentInfoComponent implements OnInit, OnChanges {
           this.playlist.imgUrl = iterator.id;
       }
     }
-    console.log(this.playlist)
+    // console.log(this.playlist)
   }
 
   nextVideo() {
@@ -635,6 +639,39 @@ export class AssessmentInfoComponent implements OnInit, OnChanges {
     var vid = <HTMLVideoElement> document.getElementById("myVideo"); 
     vid.load();
     vid.play(); 
+  } 
+    
+    questionview (templateRef: TemplateRef<any>,assessment) {
+    this.matDialog.open(templateRef, {
+      width: '90%',
+      height: '85%',
+      closeOnNavigation: true,
+      // disableClose: true,
+      panelClass: 'question_dialog'
+    }); 
+    this.sectionData = {
+      assessmentName: assessment.assessmentname,
+      assessmentDate:  assessment.assessmentdate,
+      candidateName: this.getAllReportsData.firstname
+    }
+
+    this.getSectionsData(assessment.assessmentname);
+  }
+
+
+  getSectionsData(assessmentname){
+    this.listOfSections = [];
+    let data = {
+      email:   this.getAllReportsData.email,
+      testname: assessmentname,
+    }
+    this.ApiService.getSectionWiseDetails(data).subscribe((response: any)=> {
+      if(response.data.length > 0) {
+        this.listOfSections = response.data;
+      }else {
+        this.toastr.error('No data available for the specified assessment');
+      }
+    })
   }
 
 }
