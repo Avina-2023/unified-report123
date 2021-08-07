@@ -446,6 +446,7 @@ ng-image-slider {
 
 .assessmentInfoarea {
     margin: 1.2em 0;
+    position: relative;
     .mat-expansion-panel {
         margin-bottom: 1.5em;
     }
@@ -1051,14 +1052,19 @@ mat-icon {
 }
 
 .question_dialog {
+    .SummaryInfoArea {
+        max-height: 223px;
+        overflow: auto;
+        padding-right: 20px;  
+    }
     mat-dialog-container {
-        padding: 10px 15px;
+        padding: 10px 15px; 
     }
     .ContentInfoDetails {
         padding: 0;
         margin-bottom: 1.5em;
         border: none;
-        >div {
+        > div {
             display: flex;
             align-items: center;
             border-left: 1px solid #ececec;
@@ -1071,6 +1077,9 @@ mat-icon {
                 font-size: 1.4em;
                 font-weight: 500;
             }
+        }
+        div:first-child {
+            border: none;
         }
     }
     .assessmentInfoarea .expandheaderArea {
@@ -1099,12 +1108,14 @@ mat-icon {
     }
     .ContentInfoSummary {
         padding: 0.3em 1em;
+        padding-right: 0;
     }
     .summaryTable {
         th {
             font-weight: 600 !important;
             color: #000 !important;
             background-color: #f4f4f4;
+            padding: 0.5em 1.2em !important;
             &:first-child {
                 width: 10% !important;
             }
@@ -1112,6 +1123,8 @@ mat-icon {
         td {
             font-weight: normal !important;
             color: #757575 !important;
+            font-size: 14px !important;
+            padding: 0.3em 0.5em !important;
             &.text-center {
                 text-align: center;
             }
@@ -1124,6 +1137,7 @@ mat-icon {
             }
             .icon-uncheck {
                 color: #e36563 !important;
+                font-size: 23px;
             }
             .icon-CheckMark {
                 color: #8bd5b5 !important;
@@ -1136,4 +1150,10 @@ mat-icon {
             }
         }
     }
+}
+.closedailog {
+    position: absolute;
+    right: 1px;
+    top: -13px;
+    font-size: 11px;
 }
