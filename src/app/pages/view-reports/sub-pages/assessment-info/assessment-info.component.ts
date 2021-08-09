@@ -645,16 +645,15 @@ export class AssessmentInfoComponent implements OnInit, OnChanges {
     this.matDialog.open(templateRef, {
       width: '90%',
       height: '85%',
-      closeOnNavigation: true,
-      // disableClose: true,
+      // closeOnNavigation: true,
+      disableClose: true,
       panelClass: 'question_dialog'
     }); 
     this.sectionData = {
       assessmentName: assessment.assessmentname,
-      assessmentDate:  assessment.assessmentdate,
-      candidateName: this.getAllReportsData.firstname
+      assessmentDate: assessment.assessmentdate,
+      candidateName : this.getAllReportsData.firstname
     }
-
     this.getSectionsData(assessment.assessmentname);
   }
 
