@@ -607,7 +607,7 @@ export class AssessmentInfoComponent implements OnInit, OnChanges {
               src: 'https://proctoring.southeastasia.cloudapp.azure.com/api/storage/'+iterator.id+'?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFkbWluIiwicm9sZSI6ImFkbWluaXN0cmF0b3IiLCJleHAiOjE2MjgxODA3ODMsImlhdCI6MTYyODEzNzU4M30.cuVpG3tpP3GK2tNylGnM8HtT_iJ1UepivGg7vTHCc64',
             })
           }
-});
+        });
       });
     });
       // console.log(filter,'asdadasd')
