@@ -581,6 +581,8 @@ export class AssessmentInfoComponent implements OnInit, OnChanges {
       autoFocus: false,
       closeOnNavigation: true,
     });
+
+    this.getProctoringVideo();
   }
 
   closeBox() {
@@ -588,31 +590,41 @@ export class AssessmentInfoComponent implements OnInit, OnChanges {
   }
 
   getVideoFiles(){
-    let filter = [];
-    this.videoJson.forEach(element => {
-        element.data.forEach(data => {
-          this.proctoringData = data.attach;
-          filter.push({
-            id:  this.proctoringData[1].id,
-            posterId: this.proctoringData[0].id,
-            // poster: iterator.id,
-            src: 'https://proctoring.southeastasia.cloudapp.azure.com/api/storage/'+this.proctoringData[0].id+'?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFkbWluIiwicm9sZSI6ImFkbWluaXN0cmF0b3IiLCJleHAiOjE2MjgxODA3ODMsImlhdCI6MTYyODEzNzU4M30.cuVpG3tpP3GK2tNylGnM8HtT_iJ1UepivGg7vTHCc64',
-          })
-          data.attach.forEach(iterator => {
-            if(iterator.mimetype.includes('video')){
-            this.playlist.push({
-              id:iterator.id,
-              filename:iterator.filename,
-              poster:iterator.id,
-              src: 'https://proctoring.southeastasia.cloudapp.azure.com/api/storage/'+iterator.id+'?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFkbWluIiwicm9sZSI6ImFkbWluaXN0cmF0b3IiLCJleHAiOjE2MjgxODA3ODMsImlhdCI6MTYyODEzNzU4M30.cuVpG3tpP3GK2tNylGnM8HtT_iJ1UepivGg7vTHCc64',
-            })
-          }
-        });
-      });
-    });
-      // console.log(filter,'asdadasd')
-     this.currentItem =  this.playlist[this.currentIndex];
-     this.getMiniVideos(this.proctoringData);
+    let data = {
+      limit: 20,
+      count: 1,
+      filterType:"event",
+      roomId: "034c9c5c-ca24-4d37-8344-75cb5364f53f"
+      }
+      this.ApiService.getProctorVideo(data).subscribe((response: any)=> {
+          console.log(response,'response.data')
+          // this.listOfSections = response.data;
+          let filter = [];
+          // response.forEach(element => {
+            response.data.forEach(data => {
+                this.proctoringData = data.attach;
+                filter.push({
+                  id:  this.proctoringData[1].id,
+                  posterId: this.proctoringData[0].id,
+                  // poster: iterator.id,
+                  src: 'https://proctoring.southeastasia.cloudapp.azure.com/api/storage/'+this.proctoringData[0].id+'?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFkbWluIiwicm9sZSI6ImFkbWluaXN0cmF0b3IiLCJleHAiOjE2Mjg1NTMxOTQsImlhdCI6MTYyODUwOTk5NH0.dCD2ceB1rKvH8k-gaOD4NPs73mR37Jk0D8gAMQxbAOE',
+                })
+                data.attach.forEach(iterator => {
+                  if(iterator.mimetype.includes('video')){
+                  this.playlist.push({
+                    id:iterator.id,
+                    filename:iterator.filename,
+                    poster:iterator.id,
+                    src: 'https://proctoring.southeastasia.cloudapp.azure.com/api/storage/'+iterator.id+'?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFkbWluIiwicm9sZSI6ImFkbWluaXN0cmF0b3IiLCJleHAiOjE2Mjg1NTMxOTQsImlhdCI6MTYyODUwOTk5NH0.dCD2ceB1rKvH8k-gaOD4NPs73mR37Jk0D8gAMQxbAOE',
+                  })
+                }
+              });
+            });
+          // });
+            // console.log(filter,'asdadasd')
+           this.currentItem =  this.playlist[this.currentIndex];
+           this.getMiniVideos(this.proctoringData);
+      })
     //  console.log(  this.proctoringData,'  this.proctoringData')
   }
 
@@ -671,6 +683,11 @@ export class AssessmentInfoComponent implements OnInit, OnChanges {
         this.toastr.error('No data available for the specified assessment');
       }
     })
+  }
+
+
+  getProctoringVideo(){
+
   }
 
 }
