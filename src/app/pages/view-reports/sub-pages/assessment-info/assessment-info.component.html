@@ -71,7 +71,7 @@
                                 Proctoring
                                 <span>{{ assessment.proctored ? "Yes" : "No"
                                     }}<span *ngIf="assessment.proctored" class="warningColor pointer"
-                                        (click)="open()">View Details</span></span>
+                                        (click)="open(assessment)">View Details</span></span>
                             </div>
                             <div class="primaryInfo">
                                 Completion
@@ -254,14 +254,14 @@
 </ng-template>
 
 <ng-template #matDialog1>
-
+    <span class="closedailog" (click)="closeBox()"><em class="icon-Close btn-close"></em></span>
     <section style="padding-bottom: 22px;">
         <div class="Pmain">
             <div class="row">
                 <div class="col-4">
 
                     <div class="Pheader">Proctoring Video</div>
-                    <span class="psubHeader">Candidate Name : Ankit</span>
+                    <span class="psubHeader">Candidate Name : {{ userInfo.candidateName }}</span>
                 </div>
 
                 <div class="col-4 dis-flex ">
@@ -270,7 +270,7 @@
                     <div>
                         <div></div>
                         <div class="psubHeader">Test Name:</div>
-                        <span class="Pheader">step-plus-for-l-and-t</span>
+                        <span class="Pheader">{{ userInfo.assessmentName }}</span>
                     </div>
 
 
@@ -281,7 +281,8 @@
                     <div>
                         <div></div>
                         <div class="psubHeader">Test Taken on:</div>
-                        <span class="Pheader">July 21, 2021 12:22 PM</span>
+                        <span class="Pheader">{{userInfo.assessmentDate  ? momentForm(userInfo.assessmentDate)
+                            : "-"}}</span>
                     </div>
                 </div>
             </div>
@@ -293,47 +294,10 @@
     </section>
 
 
-    <div class="video">
-        <!-- <figure id="video_player"> -->
-        <video controls autoplay id="myVideo" name="media" width="700px" (ended)="nextVideo()">
+    <div class="video" *ngIf="currentItem.src">
+        <video controls autoplay id="myVideo" name="media" width="700px" height="347px" (ended)="nextVideo()">
             <source id="sourceVideo" [src]="currentItem.src" type="video/mp4">
         </video>
-        <!-- <figcaption>
-                <div *ngFor="let data of proctoringData">
-
-                    <a [href]="data.videoUrl" class="currentvid">
-                        <img [src]="data.posterId" alt="Athabasca Glacier">
-                    </a>
-                </div>
-            </figcaption> -->
-        <!-- </figure> -->
     </div>
 
-    <!-- <figure id="video_player">
-        <div id="video_container">
-            <video controls width="700px" height="600px" poster="vid-glacier.jpg">
-                <source [src]="currentItem.src" type="video/webm">
-               
-            </video>
-        </div>
-        <figcaption>
-            <div *ngFor="let data of proctoringData">
-                
-                <a href="https://proctoring.southeastasia.cloudapp.azure.com/api/storage/5f6c2f61f1fbd20022dae7c7?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFkbWluIiwicm9sZSI6ImFkbWluaXN0cmF0b3IiLCJleHAiOjE2MjgwOTY2OTYsImlhdCI6MTYyODA1MTkzNX0.X7cVJSsV72LEGZkHwsGsvWJEEushDNn0FC3nqd6g_MY"
-                class="currentvid">
-                <img src="https://proctoring.southeastasia.cloudapp.azure.com/api/storage/5f6c2f60f1fbd20022dae7c6?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFkbWluIiwicm9sZSI6ImFkbWluaXN0cmF0b3IiLCJleHAiOjE2MjgwOTY2OTYsImlhdCI6MTYyODA1MTkzNX0.X7cVJSsV72LEGZkHwsGsvWJEEushDNn0FC3nqd6g_MY"
-                    alt="Athabasca Glacier">
-            </a>
-            </div>
-            
-        </figcaption>
-    </figure> -->
-
-    <!-- <div class="player-wrapper">
-        <vg-player (onPlayerReady)="onPlayerReady($event)">
-            <video #media [vgMedia]="media" [vgMedia]="media" [src]="currentItem.src" preload="auto" type="video/mp4">
-            </video>
-        </vg-player>
-
-    </div> -->
 </ng-template>
