@@ -1,0 +1,50 @@
+ <div class="StInfoDetailsArea">
+
+    <ng-container *ngIf="getAreaofDevelopment && getAreaofDevelopment.length > 0 else nocard">
+        <div class="cardInfoArea">
+            <div class="infotxt">
+                <div class="comphtxt">
+                    Behavioural Summary
+                </div>
+                <div class="ContentArea" *ngFor="let getAreaofDevelopment of getAreaofDevelopment">
+                    <span>{{getAreaofDevelopment.title ? getAreaofDevelopment.title : '-'}}</span> {{getAreaofDevelopment.description ? getAreaofDevelopment.description : '-'}}
+                </div>
+            </div>
+        </div>
+    </ng-container>
+
+</div>
+
+<ng-template #nocard>
+        <div class="cardInfoArea">
+            <div class="infotxt">
+                <div class="comphtxt">
+                    Behavioural Summary
+                </div>
+                <div class="nocard">
+                  No Data Available
+                </div>
+    </div>
+    </div>
+</ng-template>
+
+
+<!-- <ng-template #area>
+    <div class="cardInfoArea">
+        <div class="infoIcon WarningColor">
+
+            <span class="iconpl"><em class="icon-Dislike"></em></span>
+        </div>
+        <div class="infotxt">
+            <div class="comphtxt">
+                Area of Development
+            </div>
+            <div class="ContentArea">
+                <span>Self-assurance</span> Needs to have belief in one's abilities and should try to remain optimistic reagardless of what others say about oneself
+            </div>
+            <div class="ContentArea">
+                <span>Understanding Customers</span> Should try to gather more Information from customers to understand their needs and requirement.
+            </div>
+        </div>
+    </div>
+</ng-template> -->
