@@ -11,6 +11,7 @@ import * as CryptoJS from 'crypto-js';
 export class ApiService {
 
   BASE_URL = environment.API_BASE_URL;
+  Prourl = environment.NODE_URL;
   EncryptKEY = environment.encryptionKey;
   constructor(
     private http: HttpClient,
@@ -56,5 +57,13 @@ export class ApiService {
       console.log(e);
       return data;
     }
+  }
+
+  getSectionWiseDetails(data){
+    return this.http.post(`${this.BASE_URL}/sectionwiseScoreDetails`, data);
+  }
+
+  getProctorVideo(data){
+    return this.http.post(`${this.Prourl}/getProctorVideobyUserRoomId`, data);
   }
 }

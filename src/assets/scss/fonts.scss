@@ -59,8 +59,26 @@
     -moz-osx-font-smoothing: grayscale;
   }
   
-.icon-cancel_black:before {
+.icon-uncheck:before {
+  content: "\e98a";
+}
+.icon-radio_button:before {
+  content: "\e988";
+}
+.icon-forum_black:before {
+  content: "\e989";
+}
+.icon-done_all:before {
+  content: "\e987";
+}
+.icon-close:before {
   content: "\e984";
+}
+.icon-add:before {
+  content: "\e985";
+}
+.icon-send:before {
+  content: "\e986";
 }
 .icon-dashboard:before {
   content: "\e97c";
