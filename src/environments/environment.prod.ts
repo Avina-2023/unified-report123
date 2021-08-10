@@ -9,4 +9,5 @@ export const environment = {
   blobKey : "",
 
   API_BASE_URL: 'https://candidate.lntiggnite.com',
+  NODE_URL: 'https://uapcoreservicesdev.lntiggnite.com' 
 };
