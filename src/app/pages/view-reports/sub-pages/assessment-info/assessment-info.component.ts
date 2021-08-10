@@ -498,6 +498,7 @@ export class AssessmentInfoComponent implements OnInit, OnChanges {
   playlist:any = [];
   sectionData: {};
   listOfSections: any;
+  userInfo: { assessmentName: any; assessmentDate: any; candidateName: any; };
 
   constructor(public matDialog: MatDialog,private toastr: ToastrService, private ApiService: ApiService, ) { }
 
@@ -574,7 +575,8 @@ export class AssessmentInfoComponent implements OnInit, OnChanges {
     }
   }
 
-  open(){
+  open(assessment){
+    console.log(assessment)
     const dialogRef = this.matDialog.open(this.matDialogRef1, {
       width: '200vh',
       height: '600px',
@@ -582,7 +584,13 @@ export class AssessmentInfoComponent implements OnInit, OnChanges {
       closeOnNavigation: true,
     });
 
-    this.getProctoringVideo();
+    this.userInfo = {
+      assessmentName: assessment.assessmentname,
+      assessmentDate: assessment.assessmentdate,
+      candidateName : this.getAllReportsData.firstname
+    }
+
+    this.getVideoFiles();
   }
 
   closeBox() {
@@ -597,17 +605,14 @@ export class AssessmentInfoComponent implements OnInit, OnChanges {
       roomId: "034c9c5c-ca24-4d37-8344-75cb5364f53f"
       }
       this.ApiService.getProctorVideo(data).subscribe((response: any)=> {
-          console.log(response,'response.data')
-          // this.listOfSections = response.data;
           let filter = [];
-          // response.forEach(element => {
             response.data.forEach(data => {
                 this.proctoringData = data.attach;
                 filter.push({
                   id:  this.proctoringData[1].id,
                   posterId: this.proctoringData[0].id,
                   // poster: iterator.id,
-                  src: 'https://proctoring.southeastasia.cloudapp.azure.com/api/storage/'+this.proctoringData[0].id+'?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFkbWluIiwicm9sZSI6ImFkbWluaXN0cmF0b3IiLCJleHAiOjE2Mjg1NTMxOTQsImlhdCI6MTYyODUwOTk5NH0.dCD2ceB1rKvH8k-gaOD4NPs73mR37Jk0D8gAMQxbAOE',
+                  src: 'https://proctoring.southeastasia.cloudapp.azure.com/api/storage/'+this.proctoringData[0].id+'?token='+response.token,
                 })
                 data.attach.forEach(iterator => {
                   if(iterator.mimetype.includes('video')){
@@ -615,17 +620,14 @@ export class AssessmentInfoComponent implements OnInit, OnChanges {
                     id:iterator.id,
                     filename:iterator.filename,
                     poster:iterator.id,
-                    src: 'https://proctoring.southeastasia.cloudapp.azure.com/api/storage/'+iterator.id+'?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFkbWluIiwicm9sZSI6ImFkbWluaXN0cmF0b3IiLCJleHAiOjE2Mjg1NTMxOTQsImlhdCI6MTYyODUwOTk5NH0.dCD2ceB1rKvH8k-gaOD4NPs73mR37Jk0D8gAMQxbAOE',
+                    src: 'https://proctoring.southeastasia.cloudapp.azure.com/api/storage/'+iterator.id+'?token='+response.token,
                   })
                 }
               });
             });
-          // });
-            // console.log(filter,'asdadasd')
            this.currentItem =  this.playlist[this.currentIndex];
            this.getMiniVideos(this.proctoringData);
       })
-    //  console.log(  this.proctoringData,'  this.proctoringData')
   }
 
   getMiniVideos(data){
@@ -634,7 +636,6 @@ export class AssessmentInfoComponent implements OnInit, OnChanges {
           this.playlist.imgUrl = iterator.id;
       }
     }
-    // console.log(this.playlist)
   }
 
   nextVideo() {
@@ -644,7 +645,6 @@ export class AssessmentInfoComponent implements OnInit, OnChanges {
     }
     this.currentItem = this.playlist[this.currentIndex];
     this.playVideo();
-    // console.log(this.playlist[this.currentIndex])
   }
 
   playVideo() {
@@ -686,8 +686,8 @@ export class AssessmentInfoComponent implements OnInit, OnChanges {
   }
 
 
-  getProctoringVideo(){
+  // getProctoringVideo(){
 
-  }
+  // }
 
 }

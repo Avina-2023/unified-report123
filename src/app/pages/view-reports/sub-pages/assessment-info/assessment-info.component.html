@@ -71,7 +71,7 @@
                                 Proctoring
                                 <span>{{ assessment.proctored ? "Yes" : "No"
                                     }}<span *ngIf="assessment.proctored" class="warningColor pointer"
-                                        (click)="open()">View Details</span></span>
+                                        (click)="open(assessment)">View Details</span></span>
                             </div>
                             <div class="primaryInfo">
                                 Completion
@@ -254,14 +254,14 @@
 </ng-template>
 
 <ng-template #matDialog1>
-
+    <span class="closedailog" (click)="closeBox()"><em class="icon-Close btn-close"></em></span>
     <section style="padding-bottom: 22px;">
         <div class="Pmain">
             <div class="row">
                 <div class="col-4">
 
                     <div class="Pheader">Proctoring Video</div>
-                    <span class="psubHeader">Candidate Name : Ankit</span>
+                    <span class="psubHeader">Candidate Name : {{ userInfo.candidateName }}</span>
                 </div>
 
                 <div class="col-4 dis-flex ">
@@ -270,7 +270,7 @@
                     <div>
                         <div></div>
                         <div class="psubHeader">Test Name:</div>
-                        <span class="Pheader">step-plus-for-l-and-t</span>
+                        <span class="Pheader">{{ userInfo.assessmentName }}</span>
                     </div>
 
 
@@ -281,7 +281,8 @@
                     <div>
                         <div></div>
                         <div class="psubHeader">Test Taken on:</div>
-                        <span class="Pheader">July 21, 2021 12:22 PM</span>
+                        <span class="Pheader">{{userInfo.assessmentDate  ? momentForm(userInfo.assessmentDate)
+                            : "-"}}</span>
                     </div>
                 </div>
             </div>
