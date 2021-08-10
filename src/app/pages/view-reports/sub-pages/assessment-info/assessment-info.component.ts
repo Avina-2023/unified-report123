@@ -504,8 +504,6 @@ export class AssessmentInfoComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
     this.getAssessmentInfo();
-    this.getVideoFiles();
-
   }
 
   ngOnChanges() {
@@ -590,19 +588,19 @@ export class AssessmentInfoComponent implements OnInit, OnChanges {
       candidateName : this.getAllReportsData.firstname
     }
 
-    this.getVideoFiles();
+    this.getVideoFiles(assessment.roomId);
   }
 
   closeBox() {
     this.matDialog.closeAll();
   }
 
-  getVideoFiles(){
+  getVideoFiles(roomId){
     let data = {
       limit: 20,
       count: 1,
       filterType:"event",
-      roomId: "034c9c5c-ca24-4d37-8344-75cb5364f53f"
+      roomId: roomId
       }
       this.ApiService.getProctorVideo(data).subscribe((response: any)=> {
           let filter = [];
