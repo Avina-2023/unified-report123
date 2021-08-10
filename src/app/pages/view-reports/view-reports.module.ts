@@ -14,6 +14,9 @@ import { UserListComponent } from './user-list/user-list.component';
 import { AgGridModule } from 'ag-grid-angular';
 import { DragScrollModule } from 'ngx-drag-scroll';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
+import { BehaviouralAssessmentInfoComponent } from './sub-pages/behavioural-assessment-info/behavioural-assessment-info.component';
+import { BehaviouralCompetencyAreasComponent } from './sub-pages/behavioural-competency-areas/behavioural-competency-areas.component';
+import { BehaviouralQualityAreaComponent } from './sub-pages/behavioural-quality-area/behavioural-quality-area.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +26,10 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
     CompetencyAreasComponent,
     QualityAreaComponent,
     ViewOverallReportsComponent,
-    UserListComponent
+    UserListComponent,
+    BehaviouralAssessmentInfoComponent,
+    BehaviouralCompetencyAreasComponent,
+    BehaviouralQualityAreaComponent
   ],
   imports: [
     CommonModule,
