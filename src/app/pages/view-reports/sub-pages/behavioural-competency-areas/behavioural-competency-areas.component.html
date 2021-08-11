@@ -1,9 +1,9 @@
 <section class="CompetencyArea">
-    <div class="heading6">
+    <div class="heading6" *ngIf="verticalChartData && verticalChartData.length > 0">
         Behavioural Competencies
 
     </div>
-    <div class="InfoDetailsArea">
+    <div class="InfoDetailsArea" *ngIf="verticalChartData && verticalChartData.length > 0">
         <div class="leftPan">
             <div *ngIf="verticalChartData && verticalChartData.length > 0">
                 <app-bar-chart (competencyId)="getParticularCompetencySkills($event)" [domains]="verticalChartData" [chartData]="verticalChartData"></app-bar-chart>

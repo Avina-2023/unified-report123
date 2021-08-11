@@ -1,5 +1,5 @@
 <section class="assessmentArea">
-    <div class="assessmentHeaderinfo">
+    <div class="assessmentHeaderinfo" *ngIf=" assessmentsList && assessmentsList[0].section[0].length > 0">
         <div class="heading6">Assessment Details</div>
     </div>
 
@@ -10,7 +10,7 @@
           let i = index;
           first as isFirst
         ">
-                <mat-expansion-panel [expanded]="false">
+                <mat-expansion-panel [expanded]="false" *ngIf="assessment.assessmentname">
                     <mat-expansion-panel-header>
                         <div class="expandheaderArea">
                             <div class="width-51">
