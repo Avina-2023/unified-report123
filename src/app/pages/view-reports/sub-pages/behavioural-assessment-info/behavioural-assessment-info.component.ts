@@ -36,6 +36,7 @@ export class BehaviouralAssessmentInfoComponent implements OnInit, OnChanges {
   playlist:any = [];
   sectionData: {};
   listOfSections: any;
+  userInfo: { assessmentName: any; assessmentDate: any; candidateName: any; };
 
   constructor(public matDialog: MatDialog,private toastr: ToastrService, private ApiService: ApiService, ) { }
 
@@ -112,14 +113,76 @@ export class BehaviouralAssessmentInfoComponent implements OnInit, OnChanges {
     }
   }
 
-  open(){
+  open(assessment){
     const dialogRef = this.matDialog.open(this.matDialogRef1, {
       width: '200vh',
       height: '600px',
       autoFocus: false,
       closeOnNavigation: true,
     });
+    this.userInfo = {
+      assessmentName: assessment.testname,
+      assessmentDate: assessment.testdate,
+      candidateName : this.getAllReportsData.firstname
+    }
+    this.getVideoFiles(assessment.roomId);
   }
+
+  getVideoFiles(roomId){
+    let data = {
+      limit: 20,
+      count: 1,
+      filterType:"event",
+      roomId: roomId
+      }
+      this.ApiService.getProctorVideo(data).subscribe((response: any)=> {
+          let filter = [];
+            response.data.forEach(data => {
+                this.proctoringData = data.attach;
+                filter.push({
+                  id:  this.proctoringData[1].id,
+                  posterId: this.proctoringData[0].id,
+                  // poster: iterator.id,
+                  src: 'https://proctoring.southeastasia.cloudapp.azure.com/api/storage/'+this.proctoringData[0].id+'?token='+response.token,
+                })
+                data.attach.forEach(iterator => {
+                  if(iterator.mimetype.includes('video')){
+                  this.playlist.push({
+                    id:iterator.id,
+                    filename:iterator.filename,
+                    poster:iterator.id,
+                    src: 'https://proctoring.southeastasia.cloudapp.azure.com/api/storage/'+iterator.id+'?token='+response.token,
+                  })
+                }
+              });
+            });
+           this.currentItem =  this.playlist[this.currentIndex];
+           this.getMiniVideos(this.proctoringData);
+      })
+  }
+
+  getMiniVideos(data){
+    for (const iterator of data) {
+      if(iterator.filename == 'webcam.jpg'){
+          this.playlist.imgUrl = iterator.id;
+      }
+    }
+  }
+
+  nextVideo() {
+    this.currentIndex++;
+    if (this.currentIndex === this.playlist.length) {
+      this.currentIndex = 0;
+    }
+    this.currentItem = this.playlist[this.currentIndex];
+    this.playVideo();
+  }
+
+  playVideo() {
+    var vid = <HTMLVideoElement> document.getElementById("myVideo"); 
+    vid.load();
+    vid.play(); 
+  } 
 
   closeBox() {
     this.matDialog.closeAll();
