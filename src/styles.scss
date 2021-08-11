@@ -1157,3 +1157,67 @@ mat-icon {
     top: -13px;
     font-size: 11px;
 }
+#mat-dialog-0.mat-dialog-container, #mat-dialog-1.mat-dialog-container {
+    padding: 15px 20px;
+    .Pmain {
+        > div:last-child {
+            border: none;
+        }
+            .Pheader {
+                max-width: 100%;
+            }
+        }
+        .videosection {
+            display: flex;
+            margin-top: 35px;
+            .leftpan {
+                flex-grow: 5;
+                video {
+                    border-radius: 4px;
+                }
+            }
+
+            .rightpan {
+                flex-grow: 2;
+                width: 250px;
+                overflow: hidden;
+                display: flex;
+                justify-content: flex-start;
+                flex-direction: column;
+                .videothumb {
+                    border-radius: 4px;
+                    background-color: #e6faf3;
+                    height: 160px;
+                    width: 300px;
+                    overflow: hidden;
+                    padding: 10px 12px;
+                    border-left: 3px solid #17d087;
+                    box-sizing: border-box;
+                    display: flex;
+                    align-content: center;
+                    flex-direction: column;
+                    video {
+                        border-radius: 4px;
+                        background-color: #282828;
+                    }
+                }
+                .chartsec {
+                    width: 100%;
+                    height: 130px;
+                    margin-top: 30px;
+                    padding: 10px 12px;
+                    border-left: 3px solid #17d087;
+                    box-sizing: border-box;
+                    display: flex;
+                    align-content: center;
+                    flex-direction: column;
+                    background-color: #e6faf3;
+                    padding-top: 0;
+                    .label {
+                        color: #13a8c6;
+                        margin: 5px 0;
+                    } 
+                }
+            }
+        }
+}

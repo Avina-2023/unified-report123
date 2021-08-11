@@ -1,57 +1,6 @@
 import { AfterViewInit, Input, OnChanges } from "@angular/core";
 import { Component, OnInit, ViewChild, ElementRef, Output, EventEmitter } from '@angular/core';
-import {
-  Chart,
-  ArcElement,
-  LineElement,
-  BarElement,
-  PointElement,
-  BarController,
-  BubbleController,
-  DoughnutController,
-  LineController,
-  PieController,
-  PolarAreaController,
-  RadarController,
-  ScatterController,
-  CategoryScale,
-  LinearScale,
-  LogarithmicScale,
-  RadialLinearScale,
-  TimeScale,
-  TimeSeriesScale,
-  Decimation,
-  Filler,
-  Legend,
-  Title,
-  Tooltip
-} from 'chart.js';
-
-Chart.register(
-  ArcElement,
-  LineElement,
-  BarElement,
-  PointElement,
-  BarController,
-  BubbleController,
-  DoughnutController,
-  LineController,
-  PieController,
-  PolarAreaController,
-  RadarController,
-  ScatterController,
-  CategoryScale,
-  LinearScale,
-  LogarithmicScale,
-  RadialLinearScale,
-  TimeScale,
-  TimeSeriesScale,
-  Decimation,
-  Filler,
-  Legend,
-  Title,
-  Tooltip
-);
+ 
 
 @Component({
   selector: 'app-bar-chart',
@@ -231,47 +180,5 @@ export class BarChartComponent implements OnInit, OnChanges, AfterViewInit {
   emitCompetencyId(id) {
     this.competencyId.emit(id);
   }
-
-  chartsModule() {
-    this.canvas = this.chartContainer.nativeElement;
-    this.ctx = this.canvas.getContext('2d');
-    let chartdata:any = {
-      labels: this.chartLabels,
-      datasets: [{
-        label: 'Skill Score',
-        data: this.chartValues,
-        backgroundColor: ['#c84656', '#dfbd3f', '#68d886', '#95c923', '#fec623'],
-      borderWidth: 0,
-      borderRadius:0
-      }]
-  }
-  // this.type==="radar"?chartdata.datasets[0].fillColor = "rgba(255,10,13,255)":''
-    let myChart = new Chart(this.ctx, {
-    type: this.type,
-    data:chartdata,
-    options: {
-      responsive: false,
-      legend: {
-        display: false
-     },
-      scales: {
-        yAxes: [{
-          gridLines: {
-            display: false,
-          },
-        }],
-        xAxes: [{
-          gridLines: {
-            display: false,
-          },
-        }],
-      },
-      indexAxis: this.orient,
-      scaleShowLabels : false
-    },
-  //   options: {
-  //   indexAxis: this.orient,
-  // }
-    });
-  }
 }
+
