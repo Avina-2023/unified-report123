@@ -5,6 +5,7 @@ import _ from 'lodash';
 import { VgAPI, VgFullscreenAPI } from 'ngx-videogular';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from '../../../../services/api.service';
+import { Label, Color } from 'ng2-charts';
 @Component({
   selector: 'app-assessment-info',
   templateUrl: './assessment-info.component.html',
@@ -576,7 +577,7 @@ export class AssessmentInfoComponent implements OnInit, OnChanges {
 
   open(assessment){
     const dialogRef = this.matDialog.open(this.matDialogRef1, {
-      width: '200vh',
+      width: '95%',
       height: '600px',
       autoFocus: false,
       closeOnNavigation: true,
@@ -682,4 +683,26 @@ export class AssessmentInfoComponent implements OnInit, OnChanges {
       }
     })
   }
+
+
+  // getProctoringVideo(){
+
+  // }
+
+  public barChartOptions = {
+    scaleShowVerticalLines: false,
+    responsive: false
+  };
+
+  public barChartLabels = ['b1', 'b2', 'b3', 'c1', 'c2'];
+  public barChartType = 'bar';
+  public barChartLegend = false;
+  public barChartData = [
+    {data: [0, 28, 8, 0, 5], label: 'Remote'} 
+    
+  ];
+  public barChartColors: Color[] = [
+    { backgroundColor: '#ff5253' }
+  ]
+
 }

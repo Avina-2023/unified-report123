@@ -76,7 +76,7 @@
                             <div class="primaryInfo">
                                 Completion
                                 <span [ngClass]="{ warningColor: assessment.compilation == false, successColor: assessment.compilation == true
-                                }"><em class="icon-{{assessment.compilation ? 'checked' : 'cancel_black'}}"></em>
+                                }"><em class="icon-{{assessment.compilation ? 'checked' : 'uncheck'}}"></em>
                                     <span>{{assessment.compilation ? "Completed" : "Not Completed"}}</span></span>
                             </div>
                         </div>
@@ -255,7 +255,7 @@
 
 <ng-template #matDialog1>
     <span class="closedailog" (click)="closeBox()"><em class="icon-Close btn-close"></em></span>
-    <section style="padding-bottom: 22px;">
+    <section >
         <div class="Pmain">
             <div class="row">
                 <div class="col-4">
@@ -263,7 +263,7 @@
                     <span class="psubHeader">Candidate Name : {{ userInfo.candidateName }}</span>
                 </div>
 
-                <div class="col-4 dis-flex ">
+                <div class="col-5 dis-flex ">
                     <em class="icon-Assessment icon-bag"></em>
                     <div>
                         <div></div>
@@ -272,7 +272,7 @@
                     </div>
                 </div>
 
-                <div class="col-4 dis-flex">
+                <div class="col-3 dis-flex">
                     <em class="icon-Booked icon-bag"></em>
                     <div>
                         <div></div>
@@ -285,11 +285,34 @@
         </div>
     </section>
 
+<div class="videosection">
+    <div class="leftpan">
 
-    <div class="video" *ngIf="currentItem.src">
-        <video controls autoplay id="myVideo" name="media" width="700px" height="347px" (ended)="nextVideo()">
-            <source id="sourceVideo" [src]="currentItem.src" type="video/mp4">
-        </video>
+        <div class="video" *ngIf="currentItem.src">
+            <video controls autoplay id="myVideo" name="media" width="700px" height="450px" (ended)="nextVideo()">
+                <source id="sourceVideo" [src]="currentItem.src" type="video/mp4">
+            </video>
+        </div>
     </div>
-
+    <div class="rightpan">
+        <div class="videothumb" *ngIf="currentItem.src">
+            <video controls autoplay id="myVideo" name="media" width="95%" height="150px" (ended)="nextVideo()">
+                <source id="sourceVideo" [src]="currentItem.src" type="video/mp4">
+            </video>
+        </div>
+        <div class="chartsec">
+            <div class="label">
+                <span>{{ userInfo.candidateName }}</span>
+            </div>
+            <canvas baseChart
+            [datasets]="barChartData"
+            [labels]="barChartLabels"
+            [options]="barChartOptions"
+            [legend]="barChartLegend"
+            [colors]="barChartColors"
+            [chartType]="barChartType">
+            </canvas>
+        </div> 
+    </div>
+</div>
 </ng-template>
