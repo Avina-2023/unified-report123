@@ -499,7 +499,7 @@ export class AssessmentInfoComponent implements OnInit, OnChanges {
   playlist:any = [];
   sectionData: {};
   listOfSections: any;
-  userInfo: { assessmentName: any; assessmentDate: any; candidateName: any; };
+  userInfo: {};
 
   constructor(public matDialog: MatDialog,private toastr: ToastrService, private ApiService: ApiService, ) { }
 
@@ -575,7 +575,6 @@ export class AssessmentInfoComponent implements OnInit, OnChanges {
   }
 
   open(assessment){
-    console.log(assessment)
     const dialogRef = this.matDialog.open(this.matDialogRef1, {
       width: '95%',
       height: '600px',
