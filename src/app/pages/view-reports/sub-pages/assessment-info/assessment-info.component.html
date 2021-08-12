@@ -255,7 +255,7 @@
 
 <ng-template #matDialog1>
     <span class="closedailog" (click)="closeBox()"><em class="icon-Close btn-close"></em></span>
-    <section >
+    <section>
         <div class="Pmain">
             <div class="row">
                 <div class="col-4">
@@ -285,34 +285,28 @@
         </div>
     </section>
 
-<div class="videosection">
-    <div class="leftpan">
+    <div class="videosection">
+        <div class="leftpan">
 
-        <div class="video" *ngIf="currentItem.src">
-            <video controls autoplay id="myVideo" name="media" width="700px" height="450px" (ended)="nextVideo()">
+            <div class="video" *ngIf="currentItem.src">
+                <video controls autoplay id="myVideo" name="media" width="700px" height="450px" (ended)="nextVideo()">
                 <source id="sourceVideo" [src]="currentItem.src" type="video/mp4">
             </video>
-        </div>
-    </div>
-    <div class="rightpan">
-        <div class="videothumb" *ngIf="currentItem.src">
-            <video controls autoplay id="myVideo" name="media" width="95%" height="150px" (ended)="nextVideo()">
-                <source id="sourceVideo" [src]="currentItem.src" type="video/mp4">
-            </video>
-        </div>
-        <div class="chartsec">
-            <div class="label">
-                <span>{{ userInfo.candidateName }}</span>
             </div>
-            <canvas baseChart
-            [datasets]="barChartData"
-            [labels]="barChartLabels"
-            [options]="barChartOptions"
-            [legend]="barChartLegend"
-            [colors]="barChartColors"
-            [chartType]="barChartType">
+        </div>
+        <div class="rightpan">
+            <div class="videothumb" *ngFor="let miniVideo of playlist; let x = index">
+                <video controls name="media" width="95%" height="150px">
+                <source id="sourceVideo" [src]="miniVideo.src" type="video/mp4">
+            </video>
+            </div>
+            <div class="chartsec">
+                <div class="label">
+                    <span>{{ userInfo.candidateName }}</span>
+                </div>
+                <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend" [colors]="barChartColors" [chartType]="barChartType">
             </canvas>
-        </div> 
+            </div>
+        </div>
     </div>
-</div>
 </ng-template>

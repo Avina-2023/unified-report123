@@ -5,7 +5,7 @@ import _ from 'lodash';
 import { VgAPI, VgFullscreenAPI } from 'ngx-videogular';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from '../../../../services/api.service';
-
+import { Label, Color } from 'ng2-charts';
 @Component({
   selector: 'app-behavioural-assessment-info',
   templateUrl: './behavioural-assessment-info.component.html',
@@ -37,6 +37,7 @@ export class BehaviouralAssessmentInfoComponent implements OnInit, OnChanges {
   sectionData: {};
   listOfSections: any;
   userInfo: { assessmentName: any; assessmentDate: any; candidateName: any; };
+  metrics: any;
 
   constructor(public matDialog: MatDialog,private toastr: ToastrService, private ApiService: ApiService, ) { }
 
@@ -137,7 +138,9 @@ export class BehaviouralAssessmentInfoComponent implements OnInit, OnChanges {
       }
       this.ApiService.getProctorVideo(data).subscribe((response: any)=> {
           let filter = [];
+          this.metrics = response.data;
             response.data.forEach(data => {
+              console.log(data,'data')
                 this.proctoringData = data.attach;
                 filter.push({
                   id:  this.proctoringData[1].id,
@@ -156,18 +159,21 @@ export class BehaviouralAssessmentInfoComponent implements OnInit, OnChanges {
                 }
               });
             });
+
+
+
            this.currentItem =  this.playlist[this.currentIndex];
-           this.getMiniVideos(this.proctoringData);
+          //  this.getMiniVideos(this.proctoringData);
       })
   }
-
-  getMiniVideos(data){
-    for (const iterator of data) {
-      if(iterator.filename == 'webcam.jpg'){
-          this.playlist.imgUrl = iterator.id;
-      }
-    }
-  }
+    
+  // getMiniVideos(data){
+  //   for (const iterator of data) {
+  //     if(iterator.filename == 'webcam.jpg'){
+  //         this.playlist.imgUrl = iterator.id;
+  //     }
+  //   }
+  // }
 
   nextVideo() {
     this.currentIndex++;
@@ -187,5 +193,23 @@ export class BehaviouralAssessmentInfoComponent implements OnInit, OnChanges {
   closeBox() {
     this.matDialog.closeAll();
   }
+
+
+
+  public barChartOptions = {
+    scaleShowVerticalLines: false,
+    responsive: false
+  };
+
+  public barChartLabels = ['b1', 'b2', 'b3', 'c1', 'c2'];
+  public barChartType = 'bar';
+  public barChartLegend = false;
+  public barChartData = [
+    {data: [0, 28, 8, 0, 5], label: 'Remote'} 
+    
+  ];
+  public barChartColors: Color[] = [
+    { backgroundColor: '#ff5253' }
+  ]
 
 }
