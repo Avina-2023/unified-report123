@@ -16,6 +16,7 @@ export class BarChartComponent implements OnInit, OnChanges, AfterViewInit {
   @Input('values') chartValues: any;
   @Input('labels') chartLabels: any;
   @Input('orientation') orient: any;
+  @Input('hideControls') hideControls: any;
   // Charts module initializtion end
 
   // ngx charts start
@@ -46,28 +47,14 @@ export class BarChartComponent implements OnInit, OnChanges, AfterViewInit {
   constructor() {
   }
 
-  calculateWidthAndHeight() {
-    if (this.single && this.single.length <= 3) {
-     return this.view = [500, 350];
-    }
-    if (this.single && this.single.length <= 5) {
-      return this.view = [350, 180];
-    }
-    if (this.single && this.single.length <= 7) {
-      return this.view = [490, 252];
-    }
-    if (this.single && this.single.length <= 9) {
-      return this.view = [630, 324];
-    }
-    if (this.single && this.single.length <= 11) {
-      return this.view = [420, 770];
-    }
-  }
-
   async ngOnInit() {
     await this.getCompetencyData();
     // this.setColorDomain();
-    // this.calculateWidthAndHeight();
+    if (this.hideControls) {
+      this.yAxisLabel = '';
+      this.yAxisTicks = [];
+      this.view = [500, 320];
+    }
   }
 
   async ngOnChanges() {
