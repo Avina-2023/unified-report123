@@ -1,20 +1,20 @@
 <section class="CompetencyArea">
-    <div class="heading6">
+    <div class="heading6" *ngIf="verticalChartData && verticalChartData.length > 0">
         Cognitive and Technical Competencies
 
     </div>
-    <div class="InfoDetailsArea">
-        <div class="leftPan"  >
-            <div *ngIf="verticalChartData && verticalChartData.length > 0">
+    <div class="InfoDetailsArea" *ngIf="verticalChartData && verticalChartData.length > 0">
+        <div class="leftPan">
+            <div>
                 <app-bar-chart (competencyId)="getParticularCompetencySkills($event)" [domains]="verticalChartData" [chartData]="verticalChartData"></app-bar-chart>
                 <!-- Below commented is for chart.js charts -->
                 <!-- <app-bar-chart [orientation]="'x'" [chartType]="'bar'" [values]="Skills" [labels]="competencieslabels"></app-bar-chart> -->
             </div>
         </div>
-        <div class="rightPan" [@animSlider]="counter" #height  >
+        <div class="rightPan" [@animSlider]="counter" #height>
 
             <ng-container *ngFor="let competency of competancyData; let i = index">
-                <div *ngIf="i===counter" class="chartContainer"  >
+                <div *ngIf="i===counter" class="chartContainer">
                     <div class="sPan">
                         <div class="heading4">{{competency && competency.competencyname ? competency.competencyname : ''}} <span>{{competency && competency.score ? competency.score : ''}}%</span>
                         </div>
@@ -37,7 +37,7 @@
                 <span (click)="dotChange(i)" *ngFor="let competency of competancyData; let i = index" [class.active]="i===counter">{{competency && competency.score ? competency.score : ''}}</span>
             </div>
         </div>
-        <span class="triangle-left"></span> 
+        <span class="triangle-left"></span>
     </div>
 </section>
 

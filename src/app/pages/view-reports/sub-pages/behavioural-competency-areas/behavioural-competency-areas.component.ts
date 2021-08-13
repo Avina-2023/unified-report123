@@ -25,6 +25,7 @@ export class BehaviouralCompetencyAreasComponent implements OnInit {
   verticaldomain = ["#FF8C00", "#0085B6" , "#9DBC5B" , "#28B59A", "#03B8CB", "#FF8C00", "#0085B6" , "#9DBC5B" , "#28B59A", "#03B8CB"];
   selectedHorizontalChartIndex = '0';
   verticalChartData: any[];
+  hideControls = true;
   constructor() {
   }
 
@@ -73,7 +74,6 @@ export class BehaviouralCompetencyAreasComponent implements OnInit {
 
   getCompetancyData(){
     this.competancyData = this.getAllReportsData?.behavioralCompetencyDetails;
-    console.log('adad', this.competancyData);
     if (this.competancyData && this.competancyData.length > 0) {
       // this.competancyData.forEach(element => {
       //   element.competencyname = element.competencyName;
@@ -88,7 +88,7 @@ export class BehaviouralCompetencyAreasComponent implements OnInit {
     this.competancyData.forEach(element => {
       if (element.score && element.maxscore) {
         element.actualScore = element.score;
-        element.score = this.conversionFormula(element.score, element.maxscore);
+        element.score = this.conversionFormula(100, 100);
       }
       element.skills.forEach(skills => {
         if (skills.score && skills.maxscore) {
