@@ -5,7 +5,7 @@ import _ from 'lodash';
 import { VgAPI, VgFullscreenAPI } from 'ngx-videogular';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from '../../../../services/api.service';
-
+import { Label, Color } from 'ng2-charts';
 @Component({
   selector: 'app-behavioural-assessment-info',
   templateUrl: './behavioural-assessment-info.component.html',
@@ -36,7 +36,33 @@ export class BehaviouralAssessmentInfoComponent implements OnInit, OnChanges {
   playlist:any = [];
   sectionData: {};
   listOfSections: any;
+  userInfo: { assessmentName: any; assessmentDate: any; candidateName: any; };
+  metrics: any;
 
+  public barChartOptions = {
+    scaleShowVerticalLines: false,
+    responsive: false
+  };
+
+  public barChartLabels = ['b1',
+    'b2',
+    'b3',
+    'c1',
+    'c2',
+    'c3',
+    'c4',
+    'c5',
+    'm1',
+    'm2',
+    'n1',
+    's1',
+    's2',];
+  public barChartType = 'bar';
+  public barChartLegend = false;
+  public barChartData = [];
+  public barChartColors: Color[] = [
+    { backgroundColor: '#ff5253' }
+  ]
   constructor(public matDialog: MatDialog,private toastr: ToastrService, private ApiService: ApiService, ) { }
 
   ngOnInit(): void {
@@ -112,17 +138,100 @@ export class BehaviouralAssessmentInfoComponent implements OnInit, OnChanges {
     }
   }
 
-  open(){
+  open(assessment){
     const dialogRef = this.matDialog.open(this.matDialogRef1, {
       width: '200vh',
       height: '600px',
       autoFocus: false,
       closeOnNavigation: true,
     });
+    this.userInfo = {
+      assessmentName: assessment.testname,
+      assessmentDate: assessment.testdate,
+      candidateName : this.getAllReportsData.firstname
+    }
+    this.getVideoFiles(assessment.roomId);
   }
+
+  getVideoFiles(roomId){
+    let data = {
+      limit: 20,
+      count: 1,
+      filterType:"event",
+      roomId: roomId
+      }
+      this.ApiService.getProctorVideo(data).subscribe((response: any)=> {
+            response.data.forEach((data,i) => {
+              let filter = [];
+                this.proctoringData = data.attach;
+                this.metrics = data.metadata.metrics;
+                for (const key in this.metrics) {
+                  if (Object.prototype.hasOwnProperty.call(this.metrics, key)) {
+                  }
+                  filter.push(this.metrics[key])
+                
+                }
+             
+
+                data.attach.forEach(iterator => {
+                  if(iterator.mimetype.includes('video')){
+                  this.playlist.push({
+                    id:iterator.id,
+                    filename:iterator.filename,
+                    poster:iterator.id,
+                    src: 'https://proctoring.southeastasia.cloudapp.azure.com/api/storage/'+iterator.id+'?token='+response.token,
+                  })
+                }
+              });
+              this.barChartData = this.barChartData + i;
+              this.barChartData.push({data: filter ? filter : '', label: 'Data 1'});
+            });
+
+            
+           this.currentItem =  this.playlist[this.currentIndex];
+           console.log(this.barChartData,'filterfilter')
+
+          //  this.getMiniVideos(this.proctoringData);
+      })
+  }
+                    // console.log( this.barChartData,' this.barChartData')
+           
+               
+
+                // filter.push({
+                //   id:  this.proctoringData[1].id,
+                //   posterId: this.proctoringData[0].id,
+                //   // poster: iterator.id,
+                //   src: 'https://proctoring.southeastasia.cloudapp.azure.com/api/storage/'+this.proctoringData[0].id+'?token='+response.token,
+                // })
+  // getMiniVideos(data){
+  //   for (const iterator of data) {
+  //     if(iterator.filename == 'webcam.jpg'){
+  //         this.playlist.imgUrl = iterator.id;
+  //     }
+  //   }
+  // }
+
+  nextVideo() {
+    this.currentIndex++;
+    if (this.currentIndex === this.playlist.length) {
+      this.currentIndex = 0;
+    }
+    this.currentItem = this.playlist[this.currentIndex];
+    this.playVideo();
+  }
+
+  playVideo() {
+    var vid = <HTMLVideoElement> document.getElementById("myVideo"); 
+    vid.load();
+    vid.play(); 
+  } 
 
   closeBox() {
     this.matDialog.closeAll();
   }
+
+
+
 
 }
