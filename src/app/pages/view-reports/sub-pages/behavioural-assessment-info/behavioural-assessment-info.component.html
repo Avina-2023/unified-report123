@@ -111,7 +111,7 @@
                     <span class="psubHeader">Candidate Name : {{ userInfo.candidateName }}</span>
                 </div>
 
-                <div class="col-5 dis-flex ">
+                <div class="col-4 dis-flex ">
                     <em class="icon-Assessment icon-bag"></em>
                     <div>
                         <div></div>
@@ -120,7 +120,7 @@
                     </div>
                 </div>
 
-                <div class="col-3 dis-flex">
+                <div class="col-4 dis-flex">
                     <em class="icon-Booked icon-bag"></em>
                     <div>
                         <div></div>
@@ -142,22 +142,28 @@
             </video>
             </div>
         </div>
-        <div *ngFor="let miniVideo of playlist; let x = index">
-            <div class="rightpan">
-                <div class="videothumb">
-                    <video controls name="media" width="95%" height="150px">
+        <div class="rightpan">
+            <div *ngFor="let miniVideo of playVideoList; let x = index">
+                <div class="videothumb" *ngIf="!miniVideo.chart">
+                    <video controls name="media" width="100%" height="150px">
                 <source id="sourceVideo" [src]="miniVideo.src" type="video/mp4">
             </video>
                 </div>
-                <div class="chartsec">
+                <div class="chartsec" *ngIf="miniVideo.chart">
                     <div class="label">
                         <span>{{ userInfo.candidateName }}</span>
                     </div>
-                    <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend" [colors]="barChartColors" [chartType]="barChartType">
-                    </canvas>
+
+                    <div>
+                        <ul class="chart">
+                            <li *ngFor="let chart of miniVideo.chart; let a = index">
+                                <span [ngStyle]="{height: (chart.value / 100) * 100 + '%'}" [title]="chart.key"> {{chart.value}}</span>
+                            </li>
+                        </ul>
+                    </div>
+
                 </div>
             </div>
         </div>
-
     </div>
 </ng-template>
