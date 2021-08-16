@@ -5,7 +5,7 @@ import _ from 'lodash';
 import { VgAPI, VgFullscreenAPI } from 'ngx-videogular';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from '../../../../services/api.service';
-import { Label, Color } from 'ng2-charts';
+
 @Component({
   selector: 'app-behavioural-assessment-info',
   templateUrl: './behavioural-assessment-info.component.html',
@@ -27,42 +27,20 @@ export class BehaviouralAssessmentInfoComponent implements OnInit, OnChanges {
   TimeTakenMins: number;
   timeTakenSec: any;
   correct = true;
-  proctoringData: any;
-
   api: VgAPI;
   fsAPI: VgFullscreenAPI;
   currentIndex = 0;
   currentItem:any = [];
   playlist:any = [];
-  sectionData: {};
   listOfSections: any;
   userInfo: { assessmentName: any; assessmentDate: any; candidateName: any; };
-  metrics: any;
-
+  playVideoList = []
   public barChartOptions = {
     scaleShowVerticalLines: false,
     responsive: false
   };
 
-  public barChartLabels = ['b1',
-    'b2',
-    'b3',
-    'c1',
-    'c2',
-    'c3',
-    'c4',
-    'c5',
-    'm1',
-    'm2',
-    'n1',
-    's1',
-    's2',];
-  public barChartType = 'bar';
-  public barChartLegend = false;
-  public barChartData = [];
-  public barChartColors: Color[] = [
-    { backgroundColor: '#ff5253' }
-  ]
+  secValChart: any;
   constructor(public matDialog: MatDialog,private toastr: ToastrService, private ApiService: ApiService, ) { }
 
   ngOnInit(): void {
@@ -160,57 +138,39 @@ export class BehaviouralAssessmentInfoComponent implements OnInit, OnChanges {
       filterType:"event",
       roomId: roomId
       }
+      let filter = [];
       this.ApiService.getProctorVideo(data).subscribe((response: any)=> {
-            response.data.forEach((data,i) => {
-              let filter = [];
-                this.proctoringData = data.attach;
-                this.metrics = data.metadata.metrics;
-                for (const key in this.metrics) {
-                  if (Object.prototype.hasOwnProperty.call(this.metrics, key)) {
-                  }
-                  filter.push(this.metrics[key])
-                
-                }
-             
-
-                data.attach.forEach(iterator => {
+            response.data.forEach((data) => {
+                var i = 0;
+                filter = [];
+                data.attach.forEach((iterator) => {
                   if(iterator.mimetype.includes('video')){
+                    this.playVideoList.push({
+                      id:iterator.id,
+                      filename:iterator.filename,
+                      poster:iterator.id,
+                      src: 'https://proctoring.southeastasia.cloudapp.azure.com/api/storage/'+iterator.id+'?token='+response.token,
+                    })
                   this.playlist.push({
                     id:iterator.id,
                     filename:iterator.filename,
                     poster:iterator.id,
                     src: 'https://proctoring.southeastasia.cloudapp.azure.com/api/storage/'+iterator.id+'?token='+response.token,
                   })
+                  i++
                 }
               });
-              this.barChartData = this.barChartData + i;
-              this.barChartData.push({data: filter ? filter : '', label: 'Data 1'});
+              for (const key in data.metadata.metrics) {
+                if (Object.prototype.hasOwnProperty.call(data.metadata.metrics, key)) {
+                }
+                filter.push({key: key,value:data.metadata.metrics[key]})
+              } 
+              this.playVideoList.push({chart:filter})
             });
-
-            
-           this.currentItem =  this.playlist[this.currentIndex];
-           console.log(this.barChartData,'filterfilter')
-
-          //  this.getMiniVideos(this.proctoringData);
+           this.currentItem =  this.playlist[this.currentIndex]
       })
   }
-                    // console.log( this.barChartData,' this.barChartData')
-           
-               
 
-                // filter.push({
-                //   id:  this.proctoringData[1].id,
-                //   posterId: this.proctoringData[0].id,
-                //   // poster: iterator.id,
-                //   src: 'https://proctoring.southeastasia.cloudapp.azure.com/api/storage/'+this.proctoringData[0].id+'?token='+response.token,
-                // })
-  // getMiniVideos(data){
-  //   for (const iterator of data) {
-  //     if(iterator.filename == 'webcam.jpg'){
-  //         this.playlist.imgUrl = iterator.id;
-  //     }
-  //   }
-  // }
 
   nextVideo() {
     this.currentIndex++;
@@ -230,8 +190,18 @@ export class BehaviouralAssessmentInfoComponent implements OnInit, OnChanges {
   closeBox() {
     this.matDialog.closeAll();
   }
-
-
-
-
 }
+
+                // filter.push({
+                //   id:  this.proctoringData[1].id,
+                //   posterId: this.proctoringData[0].id,
+                //   // poster: iterator.id,
+                //   src: 'https://proctoring.southeastasia.cloudapp.azure.com/api/storage/'+this.proctoringData[0].id+'?token='+response.token,
+                // })
+                // getMiniVideos(data){
+                //   for (const iterator of data) {
+                //     if(iterator.filename == 'webcam.jpg'){
+                //         this.playlist.imgUrl = iterator.id;
+                //     }
+                //   }
+                // }

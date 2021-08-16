@@ -295,17 +295,26 @@
             </div>
         </div>
         <div class="rightpan">
-            <div class="videothumb" *ngFor="let miniVideo of playlist; let x = index">
-                <video controls name="media" width="95%" height="150px">
+            <div *ngFor="let miniVideo of playVideoList; let x = index">
+                <div class="videothumb" *ngIf="!miniVideo.chart">
+                    <video controls name="media" width="95%" height="150px">
                 <source id="sourceVideo" [src]="miniVideo.src" type="video/mp4">
             </video>
-            </div>
-            <div class="chartsec">
-                <div class="label">
-                    <span>{{ userInfo.candidateName }}</span>
                 </div>
-                <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend" [colors]="barChartColors" [chartType]="barChartType">
-            </canvas>
+                <div class="chartsec" *ngIf="miniVideo.chart">
+                    <div class="label">
+                        <span>{{ userInfo.candidateName }}</span>
+                    </div>
+
+                    <div>
+                        <ul class="chart">
+                            <li *ngFor="let chart of miniVideo.chart; let a = index">
+                                <span [ngStyle]="{height: (chart.value / 100) * 100 + '%'}" [title]="chart.key"> {{chart.value}}</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
             </div>
         </div>
     </div>

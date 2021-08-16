@@ -35,6 +35,7 @@ export class AssessmentInfoComponent implements OnInit, OnChanges {
   sectionData: {};
   listOfSections: any;
   userInfo: {};
+  playVideoList = [];
 
   constructor(public matDialog: MatDialog,private toastr: ToastrService, private ApiService: ApiService, ) { }
 
@@ -137,40 +138,48 @@ export class AssessmentInfoComponent implements OnInit, OnChanges {
       filterType:"event",
       roomId: roomId
       }
+      let filter = [];
       this.ApiService.getProctorVideo(data).subscribe((response: any)=> {
-          let filter = [];
-            response.data.forEach(data => {
-                this.proctoringData = data.attach;
-                filter.push({
-                  id:  this.proctoringData[1].id,
-                  posterId: this.proctoringData[0].id,
-                  // poster: iterator.id,
-                  src: 'https://proctoring.southeastasia.cloudapp.azure.com/api/storage/'+this.proctoringData[0].id+'?token='+response.token,
-                })
-                data.attach.forEach(iterator => {
+            response.data.forEach((data) => {
+                var i =0
+                filter = [];
+                data.attach.forEach((iterator) => {
                   if(iterator.mimetype.includes('video')){
+                    this.playVideoList.push({
+                      id:iterator.id,
+                      filename:iterator.filename,
+                      poster:iterator.id,
+                      src: 'https://proctoring.southeastasia.cloudapp.azure.com/api/storage/'+iterator.id+'?token='+response.token,
+                    })
                   this.playlist.push({
                     id:iterator.id,
                     filename:iterator.filename,
                     poster:iterator.id,
                     src: 'https://proctoring.southeastasia.cloudapp.azure.com/api/storage/'+iterator.id+'?token='+response.token,
                   })
+                  i++
+
+
                 }
               });
+              for (const key in data.metadata.metrics) {
+                if (Object.prototype.hasOwnProperty.call(data.metadata.metrics, key)) {
+                }
+                filter.push({key: key,value:data.metadata.metrics[key]})
+              } 
+              this.playVideoList.push({chart:filter})
             });
-           this.currentItem =  this.playlist[this.currentIndex];
-          
-           this.getMiniVideos(this.proctoringData);
+           this.currentItem =  this.playlist[this.currentIndex]
       })
   }
 
-  getMiniVideos(data){
-    for (const iterator of data) {
-      if(iterator.filename == 'webcam.jpg'){
-          this.playlist.imgUrl = iterator.id;
-      }
-    }
-  }
+  // getMiniVideos(data){
+  //   for (const iterator of data) {
+  //     if(iterator.filename == 'webcam.jpg'){
+  //         this.playlist.imgUrl = iterator.id;
+  //     }
+  //   }
+  // }
 
   nextVideo() {
     this.currentIndex++;
