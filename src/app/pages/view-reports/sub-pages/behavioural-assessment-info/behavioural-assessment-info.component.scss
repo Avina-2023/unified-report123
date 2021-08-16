@@ -29,6 +29,7 @@
         max-width: 300px;
         display: block;
         max-width: 300px;
+        white-space: nowrap;
         font-size: 1.3em;
         font-weight: 500;
         color: #000000;
@@ -54,14 +55,14 @@
     position: absolute;
     right: 0px;
 }
+
 .primaryInfo {
     em {
-        
         &.icon-checked {
             color: #43b447;
             font-size: 25px;
         }
-        &.icon-uncheck  {
+        &.icon-uncheck {
             color: #C02222;
             font-size: 30px;
         }
@@ -69,7 +70,7 @@
 }
 
 .proct {
-    > span {
+    >span {
         display: flex;
         flex-direction: row;
         span {
