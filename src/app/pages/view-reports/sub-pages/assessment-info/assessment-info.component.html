@@ -140,7 +140,7 @@
                                                     <div class="progressbar color-yellowbar" [ngStyle]="{
                                                    width:(section.timetaken / section.overallduration) * 100 + '%'}">
                                                     </div>
-                                                    <div class="progressdata">
+                                                    <div *ngIf="section && section.timetaken" class="progressdata">
                                                         <span *ngIf="section.timetaken != 0">{{
                                                             getTimetaker(section.timetaken)}}</span>
                                                         <span *ngIf="section.timetaken != 0">{{TimeTakerMins !=
@@ -150,6 +150,10 @@
                                                         <!-- /{{ section.overallduration }} -->
                                                         <span *ngIf="section.timetaken == 0">{{section.timetaken}}</span>
                                                     </div>
+                                                    <div *ngIf="!section.timetaken" class="progressdata">
+                                                        <span>{{'0'}}</span>
+                                                    </div>
+
                                                 </td>
                                                 <td>
                                                     <div class="likeSec">
