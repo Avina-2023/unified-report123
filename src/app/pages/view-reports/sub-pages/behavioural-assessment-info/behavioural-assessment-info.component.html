@@ -10,7 +10,7 @@
         let i = index;
         first as isFirst
       ">
-                <mat-expansion-panel [expanded]="false" *ngIf="assessment && assessment.testname">
+                <mat-expansion-panel [expanded]="false" *ngIf="assessment && assessment.testname" hideToggle>
                     <mat-expansion-panel-header>
                         <div class="expandheaderArea">
                             <div class="width-51">
@@ -165,5 +165,8 @@
                 </div>
             </div>
         </div>
+
+
     </div>
+    <div id="visualization"></div>
 </ng-template>
