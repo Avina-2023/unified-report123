@@ -10,7 +10,7 @@
           let i = index;
           first as isFirst
         ">
-                <mat-expansion-panel [expanded]="false" *ngIf="assessment.assessmentname">
+                <mat-expansion-panel [expanded]="false" *ngIf="assessment.assessmentname" hideToggle>
                     <mat-expansion-panel-header>
                         <div class="expandheaderArea">
                             <div class="width-51">
@@ -84,8 +84,8 @@
                             <div class="assessmentHeaderinfo">
                                 <div class="Summaryhtxt">
                                     Sectional Summary
-                                    <span class="primaryClick" (click)="questionview(question,assessment)"><em
-                                            class="icon-right-next"></em> View Questionwise Analysis</span>
+                                    <!-- <span class="primaryClick" (click)="questionview(question,assessment)"><em
+                                            class="icon-right-next"></em> View Questionwise Analysis</span> -->
                                 </div>
                             </div>
                             <div class="SummaryInfoArea">

@@ -1,10 +1,15 @@
-import { Component, Input, OnChanges, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnChanges, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import * as moment from 'moment'; //in your component
 import _ from 'lodash';
-import { VgAPI, VgFullscreenAPI } from 'ngx-videogular';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from '../../../../services/api.service';
+// import { Timeline } from 'vis-timeline';
+// import { DataSet } from 'vis-data';
+
+// import { DataSet } from "vis-data/peer";
+// import { Timeline } from "vis-timeline/peer";
+// import "vis-timeline/styles/vis-timeline-graph2d.css";
 
 @Component({
   selector: 'app-behavioural-assessment-info',
@@ -16,7 +21,6 @@ export class BehaviouralAssessmentInfoComponent implements OnInit, OnChanges {
   @Input() getAllReportsData;
   @Input() driveName;
   @ViewChild('sourceVideo',{static: false}) video: TemplateRef<any>;
-  // @ViewChild('matDialog', {static: false}) matDialogRef: TemplateRef<any>;
   @ViewChild('matDialog1', {static: false}) matDialogRef1: TemplateRef<any>;
   assessmentsList: any;
   colorCode = 'Good';
@@ -27,29 +31,36 @@ export class BehaviouralAssessmentInfoComponent implements OnInit, OnChanges {
   TimeTakenMins: number;
   timeTakenSec: any;
   correct = true;
-  api: VgAPI;
-  fsAPI: VgFullscreenAPI;
   currentIndex = 0;
   currentItem:any = [];
   playlist:any = [];
   listOfSections: any;
   userInfo: { assessmentName: any; assessmentDate: any; candidateName: any; };
   playVideoList = []
-  public barChartOptions = {
-    scaleShowVerticalLines: false,
-    responsive: false
-  };
-
   secValChart: any;
-  constructor(public matDialog: MatDialog,private toastr: ToastrService, private ApiService: ApiService, ) { }
-
-  ngOnInit(): void {
-    this.getAssessmentInfo();
+  constructor(public matDialog: MatDialog,private toastr: ToastrService, private ApiService: ApiService, ) { 
 
   }
 
+  ngOnInit(): void {
+    this.getAssessmentInfo();
+    // const container = document.getElementById("visualization");
+    // const items = new DataSet([
+    //   { id: 1, content: "item 1", start: "2014-04-20" },
+    //   { id: 2, content: "item 2", start: "2014-04-14" },
+    //   { id: 3, content: "item 3", start: "2014-04-18" },
+    //   { id: 4, content: "item 4", start: "2014-04-16", end: "2014-04-19" },
+    //   { id: 5, content: "item 5", start: "2014-04-25" },
+    //   { id: 6, content: "item 6", start: "2014-04-27", type: "point" }
+    // ]);
+    // const options = {};
+    // const timeline = new Timeline(container, items, options);
+  }
+
+
   ngOnChanges() {
     this.getAssessmentInfo();
+
   }
 
   getAssessmentInfo() {
