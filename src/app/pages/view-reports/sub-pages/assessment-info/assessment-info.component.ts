@@ -103,6 +103,7 @@ export class AssessmentInfoComponent implements OnInit, OnChanges {
   }
 
   getTimetaken(takenTime){
+    // console.log(takenTime)
     if(takenTime){
       let convertTime1 = takenTime.toString();
       let SplitTime1 = convertTime1.split(/([.])/);
@@ -110,6 +111,9 @@ export class AssessmentInfoComponent implements OnInit, OnChanges {
       let sec = '0.' + SplitTime1[2];
       let conIntoSec1 = parseFloat(sec) * 60;
       this.timeTakenSec = conIntoSec1.toFixed(0);
+    }else {
+      this.TimeTakenMins = 0;
+      this.timeTakenSec = 0;
     }
   }
 
@@ -144,7 +148,7 @@ export class AssessmentInfoComponent implements OnInit, OnChanges {
       let filter = [];
       this.ApiService.getProctorVideo(data).subscribe((response: any)=> {
             response.data.forEach((data) => {
-                var i =0
+                var i = 0
                 filter = [];
                 data.attach.forEach((iterator) => {
                   if(iterator.mimetype.includes('video')){
@@ -160,19 +164,17 @@ export class AssessmentInfoComponent implements OnInit, OnChanges {
                     poster:iterator.id,
                     src: 'https://proctoring.southeastasia.cloudapp.azure.com/api/storage/'+iterator.id+'?token='+response.token,
                   })
-                  i++
-
-
+                  i++;
                 }
               });
               for (const key in data.metadata.metrics) {
                 if (Object.prototype.hasOwnProperty.call(data.metadata.metrics, key)) {
                 }
-                filter.push({key: key,value:data.metadata.metrics[key]})
+                filter.push({key: key,value:data.metadata.metrics[key]});
               } 
-              this.playVideoList.push({chart:filter})
+              this.playVideoList.push({chart:filter});
             });
-           this.currentItem =  this.playlist[this.currentIndex]
+           this.currentItem =  this.playlist[this.currentIndex];
       })
   }
 
@@ -236,20 +238,20 @@ export class AssessmentInfoComponent implements OnInit, OnChanges {
 
   // }
 
-  public barChartOptions = {
-    scaleShowVerticalLines: false,
-    responsive: false
-  };
+  // public barChartOptions = {
+  //   scaleShowVerticalLines: false,
+  //   responsive: false
+  // };
 
-  public barChartLabels = ['b1', 'b2', 'b3', 'c1', 'c2'];
-  public barChartType = 'bar';
-  public barChartLegend = false;
-  public barChartData = [
-    {data: [0, 28, 8, 0, 5], label: 'Remote'} 
+  // public barChartLabels = ['b1', 'b2', 'b3', 'c1', 'c2'];
+  // public barChartType = 'bar';
+  // public barChartLegend = false;
+  // public barChartData = [
+  //   {data: [0, 28, 8, 0, 5], label: 'Remote'} 
     
-  ];
-  public barChartColors: Color[] = [
-    { backgroundColor: '#ff5253' }
-  ]
+  // ];
+  // public barChartColors: Color[] = [
+  //   { backgroundColor: '#ff5253' }
+  // ]
 
 }
