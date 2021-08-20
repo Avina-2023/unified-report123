@@ -36,6 +36,7 @@ export class AssessmentInfoComponent implements OnInit, OnChanges {
   listOfSections: any;
   userInfo: {};
   playVideoList = [];
+  inboundClick = false;
 
   constructor(public matDialog: MatDialog,private toastr: ToastrService, private ApiService: ApiService, ) { }
 
@@ -201,19 +202,27 @@ export class AssessmentInfoComponent implements OnInit, OnChanges {
     vid.play(); 
   } 
     
-    questionview (templateRef: TemplateRef<any>,assessment) {
-    this.matDialog.open(templateRef, {
-      width: '90%',
-      height: '85%',
-      // closeOnNavigation: true,
-      disableClose: true,
-      panelClass: 'question_dialog'
-    }); 
+    questionview (assessment,hide) {
+      console.log(assessment,'asdsda')
+    // this.matDialog.open(templateRef, {
+    //   width: '90%',
+    //   height: '85%',
+    //   // closeOnNavigation: true,
+    //   disableClose: true,
+    //   panelClass: 'question_dialog'
+    // }); 
+
+    // if(hide == true){
+    //     this.showQus = false;
+    // }else {
+    //   this.showQus = true;
+    // }
     this.sectionData = {
       assessmentName: assessment.assessmentname,
       assessmentDate: assessment.assessmentdate,
       candidateName : this.getAllReportsData.firstname
     }
+    console.log( this.sectionData)
     this.getSectionsData(assessment.assessmentname);
   }
 
@@ -222,11 +231,13 @@ export class AssessmentInfoComponent implements OnInit, OnChanges {
     this.listOfSections = [];
     let data = {
       email:   this.getAllReportsData.email,
-      testname: assessmentname,
+      testname: assessmentname ? assessmentname : '' ,
     }
     this.ApiService.getSectionWiseDetails(data).subscribe((response: any)=> {
       if(response.data.length > 0) {
         this.listOfSections = response.data;
+        this.listOfSections[0].testName = assessmentname;
+        console.log(this.listOfSections,' this.listOfSections')
       }else {
         this.toastr.error('No data available for the specified assessment');
       }

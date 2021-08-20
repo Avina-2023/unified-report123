@@ -84,9 +84,57 @@
                             <div class="assessmentHeaderinfo">
                                 <div class="Summaryhtxt">
                                     Sectional Summary
-                                    <!-- <span class="primaryClick" (click)="questionview(question,assessment)"><em
-                                            class="icon-right-next"></em> View Questionwise Analysis</span> -->
+                                    <span class="primaryClick" (click)="questionview(assessment,false);inboundClick = !inboundClick"><em
+                                            class="icon-right-next"></em> View Questionwise Analysis</span>
                                 </div>
+                                <div *ngIf="inboundClick">
+                                    <ng-container *ngIf="listOfSections && listOfSections.length > 0">
+                                        <ng-container *ngFor="let sections of listOfSections; let j = index;">
+                                            <mat-expansion-panel [expanded]="false" *ngIf="listOfSections[0].testName == assessment.assessmentname">
+                                                <mat-expansion-panel-header>
+                                                    <div class="expandheaderArea">
+                                                        <div class="htxt">{{sections._id}}</div>
+                                                        <div class="txtinfo">
+                                                            <span>No. of Questions</span> {{sections.tableList.length}}
+                                                        </div>
+                                                    </div>
+                                                </mat-expansion-panel-header>
+
+                                                <div class="expandContentArea">
+                                                    <div class="ContentInfoSummary">
+                                                        <div class="SummaryInfoArea">
+                                                            <table class="summaryTable" border="0" cellpadding="0" cellspacing="0">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>Question No.</th>
+                                                                        <th>Question Code</th>
+                                                                        <th>Question Type</th>
+                                                                        <th class="text-center">Correct / InCorrect</th>
+                                                                        <th>Answered / Unanswered</th>
+                                                                        <th>Score / Max Score</th>
+                                                                        <th>Time Spent (In min.)</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr *ngFor="let tableData of sections?.tableList; let j = index">
+                                                                        <td class="text-center">Q{{j+1}}</td>
+                                                                        <td>{{ tableData ? tableData.itemid : '-'}}</td>
+                                                                        <td>{{tableData ? tableData.type : '-'}}</td>
+                                                                        <td class="text-center"><span><em class="icon-{{ tableData.correct == true ? 'CheckMark' : 'uncheck' }}"></em></span></td>
+                                                                        <td>{{tableData ? tableData.status : '-'}}</td>
+                                                                        <td>{{tableData ? tableData.score : '0'}} / {{tableData ? tableData.maxscore : '0'}}</td>
+                                                                        <td>{{tableData ? tableData.timetaken : '-'}}</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </mat-expansion-panel>
+                                        </ng-container>
+                                    </ng-container>
+                                </div>
+
                             </div>
                             <div class="SummaryInfoArea">
                                 <table class="summaryTable" border="0" cellpadding="0" cellspacing="0">
@@ -180,7 +228,7 @@
     </div>
 </section>
 
-<ng-template #question>
+<!-- <ng-template #question>
 
     <div class="assessmentInfoarea">
         <span class="closedailog" (click)="closeBox()"><em class="icon-Close btn-close"></em></span>
@@ -208,54 +256,10 @@
                 </div>
             </div>
         </div>
-        <ng-container *ngIf="listOfSections && listOfSections.length > 0">
-            <ng-container *ngFor="let sections of listOfSections; let i = index;">
-                <mat-expansion-panel [expanded]="false">
-                    <mat-expansion-panel-header>
-                        <div class="expandheaderArea">
-                            <div class="htxt">{{sections._id}}</div>
-                            <div class="txtinfo">
-                                <span>No. of Questions</span> {{sections.tableList.length}}
-                            </div>
-                        </div>
-                    </mat-expansion-panel-header>
 
-                    <div class="expandContentArea">
-                        <div class="ContentInfoSummary">
-                            <div class="SummaryInfoArea">
-                                <table class="summaryTable" border="0" cellpadding="0" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>Question No.</th>
-                                            <th>Question Code</th>
-                                            <th>Question Type</th>
-                                            <th class="text-center">Correct / InCorrect</th>
-                                            <th>Answered / Unanswered</th>
-                                            <th>Score / Max Score</th>
-                                            <th>Time Spent (In min.)</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr *ngFor="let tableData of sections?.tableList; let j = index">
-                                            <td class="text-center">Q{{j+1}}</td>
-                                            <td>{{ tableData ? tableData.itemid : '-'}}</td>
-                                            <td>{{tableData ? tableData.type : '-'}}</td>
-                                            <td class="text-center"><span><em class="icon-{{ tableData.correct == true ? 'CheckMark' : 'uncheck' }}"></em></span></td>
-                                            <td>{{tableData ? tableData.status : '-'}}</td>
-                                            <td>{{tableData ? tableData.score : '0'}} / {{tableData ? tableData.maxscore : '0'}}</td>
-                                            <td>{{tableData ? tableData.timetaken : '-'}}</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </mat-expansion-panel>
-            </ng-container>
-        </ng-container>
 
     </div>
-</ng-template>
+</ng-template> -->
 
 <ng-template #matDialog1>
     <span class="closedailog" (click)="closeBox()"><em class="icon-Close btn-close"></em></span>
