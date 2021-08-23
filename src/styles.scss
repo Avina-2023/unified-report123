@@ -170,26 +170,23 @@ ul {
     }
 }
 
-.mat-toolbar.mat-primary {
+mat-toolbar.header-toolbar {
     background: linear-gradient(90deg, #fff 14%, #fc0 25%)!important;
     height: 60px;
-    box-shadow: 0 2px 4px -1px rgb(0 0 0 / 20%) !important;
-    margin-bottom: 5px;
+    box-shadow: 0 2px 4px -1px rgb(0 0 0 / 20%) !important; 
     position: relative;
     z-index: 5;
 }
 
 .beforeloginimg {
-    height: 45px;
-    margin-left: 1.5em;
+    height: 40px;
+    margin-right: 15px;
 }
 
 .perfect-scrollbar {
-    background-color: #f9f9f9;
-    margin-top: -6px;
+    background-color: #f9f9f9; 
     overflow: hidden;
-    overflow-y: auto;
-    padding: 2em;
+    overflow-y: auto; 
 }
 
 .footerPan {
@@ -214,7 +211,7 @@ ul {
 /*********Profile*****************/
 
 .reportContainer {
-    padding: 0 3.8em;
+    padding: 1em 4em 0 4em;
 }
 
 .profilearea {
@@ -272,8 +269,8 @@ ul {
     display: flex;
     flex-direction: row;
     >div {
-        margin-right: 1%;
-        min-width: 150px;
+        margin-right: 20px; 
+        width: 150px; 
         &:last-child {
             width: 100%;
             margin-right: 0;
@@ -282,7 +279,7 @@ ul {
         }
     }
     .profileplace {
-        position: relative;
+        position: relative; 
         .viewprofile {
             display: none;
             position: absolute;
@@ -304,14 +301,22 @@ ul {
         .viewprofile:hover {
             display: block;
         }
+        .photoholder {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            border-radius: 4px;
+            border:1px solid #e5e5e5;
+            background-color: #fff;
+        }
     }
     span {
         color: $mediumGrey;
-        font-size: 1em;
+        font-size: 14px;
         display: block;
-        margin-bottom: 1em;
-        text-align: left;
-        margin-top: 10px;
+        margin-bottom: 10px;
+        text-align: left; 
         width: 170px;
         position: relative;
         &.drag {
@@ -325,9 +330,7 @@ ul {
         min-width: 225px;
     }
     .imgProp {
-        height: 170px;
-        border: 1px solid #cacaca;
-        border-radius: 5px;
+        height: 170px; 
     }
     .img-container {
         width: 100%;
@@ -424,6 +427,9 @@ ul {
         align-items: center;
         justify-content: center;
         border-radius: 25px;
+        &:hover {
+            background-color: #ffffff;
+        }
     }
 }
 
@@ -1263,4 +1269,8 @@ mat-icon {
             }
         }
     }
+}
+
+button, input, optgroup, select, textarea {
+    font-family: 'Roboto';
 }
