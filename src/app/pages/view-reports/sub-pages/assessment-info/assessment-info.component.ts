@@ -6,6 +6,7 @@ import { VgAPI, VgFullscreenAPI } from 'ngx-videogular';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from '../../../../services/api.service';
 import { Label, Color } from 'ng2-charts';
+import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-assessment-info',
   templateUrl: './assessment-info.component.html',
@@ -38,7 +39,13 @@ export class AssessmentInfoComponent implements OnInit, OnChanges {
   playVideoList = [];
   inboundClick = false;
 
-  constructor(public matDialog: MatDialog,private toastr: ToastrService, private ApiService: ApiService, ) { }
+
+  constructor(private http: HttpClient ,public matDialog: MatDialog,private toastr: ToastrService, private ApiService: ApiService, ) { 
+
+
+  }
+
+
 
   ngOnInit(): void {
     this.getAssessmentInfo();

@@ -1,0 +1,26 @@
+@import "../../../../../assets/scss/variables.scss";
+::ng-deep .btn-green {
+    font-size: 12px;
+    height: 24px;
+    line-height: 2px;
+    border: none;
+    width: 74px;
+    border-radius: 20px;
+    color: $whiteColor;
+    background: $successColor;
+}
+
+::ng-deep .btn-yellow {
+    font-size: 12px;
+    height: 24px;
+    line-height: 2px;
+    border: none;
+    width: 74px;
+    border-radius: 20px;
+    color: $whiteColor;
+    background: $secondaryColor;
+}
+
+.backBtn {
+    margin-left: 8px !important;
+}

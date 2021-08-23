@@ -73,6 +73,9 @@ export class UserListComponent implements OnInit, OnChanges {
   onGridReady(params: any) {
     this.gridApi = params.api;
   }
+  nav(){
+    this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.REPORTS.HIRINGREPORT);
+  }
 
   sortevent(e) {
   }
