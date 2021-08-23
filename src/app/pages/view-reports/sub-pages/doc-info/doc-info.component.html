@@ -44,8 +44,9 @@
       </ng-container>
       </div>
     </div>
-    <ng-container *ngIf="certificationList && certificationList.length > 0">
+    
       <div class="docUpload">
+        <ng-container *ngIf="certificationList && certificationList.length > 0">
         <span>Uploaded Documents</span>
         <div class="img-container">
           <ng-container
@@ -128,8 +129,9 @@
             />
           </ng-container>
         </div>
+      </ng-container>
       </div>
-    </ng-container>
+   
   </div>
   <div class="clearfix"></div>
 </section>

@@ -283,7 +283,7 @@ mat-toolbar.header-toolbar {
         .viewprofile {
             display: none;
             position: absolute;
-            top: 44px;
+            top: 30px;
             left: 0;
             background-color: #0000005c;
             padding: 0.2em 1em;
@@ -317,7 +317,7 @@ mat-toolbar.header-toolbar {
         display: block;
         margin-bottom: 10px;
         text-align: left; 
-        width: 170px;
+        width: 150px;
         position: relative;
         &.drag {
             margin-top: 0;
@@ -333,13 +333,23 @@ mat-toolbar.header-toolbar {
         height: 170px; 
     }
     .img-container {
-        width: 100%;
+        width: 80%;
         display: flex;
         flex-direction: row;
-        max-width: 100%;
+        max-width: 80%;
         min-height: 215px;
         position: relative;
         padding: 0;
+
+        .drag-scroll-content {
+            display: flex !important;
+            flex-direction: row;
+            .imgProp {
+                border-radius: 4px;
+                border: 1px solid #e5e5e5;
+                background-color: #fff;
+            }
+        }
     }
     .img-container:last-child {
         margin-right: 1%;
@@ -363,6 +373,7 @@ mat-toolbar.header-toolbar {
                 padding-top: 3em;
                 font-size: 23px;
                 text-align: center;
+                border-radius: 4px;
                 &:hover {
                     display: block;
                 }
@@ -443,6 +454,7 @@ ng-image-slider {
 /******assment*****************************/
 
 .assessmentArea {
+    margin-top: 3em;
     .assessmentHeaderinfo {
         margin-top: 3em;
         .primaryClick {
@@ -593,6 +605,7 @@ ng-image-slider {
             display: flex;
             align-items: center;
             justify-content: space-between;
+            margin: 1em 0;
         }
     }
     //common styles
@@ -719,7 +732,7 @@ ng-image-slider {
 /******assment*****************************/
 
 .CompetencyArea {
-    margin-top: 35px;
+    margin-top: 3em;
     .InfoDetailsArea {
         position: relative;
         display: flex;
@@ -733,7 +746,7 @@ ng-image-slider {
         ;
         min-height: 550px;
         >div {
-            padding: 2em;
+            padding: 1.5em 2em;
             width: 50%;
             color: $lightGrey;
             display: flex;
@@ -839,6 +852,7 @@ ng-image-slider {
             }
             .chartContainer {
                 height: 100%;
+                padding-top: 1em;
                 >div.sPan {
                     min-height: 200px;
                     display: flex;
@@ -892,15 +906,16 @@ button.sliderBtn,
     background-color: #f9f9f9;
     border: none;
     border-radius: 50%;
-    height: 25px;
-    width: 25px;
+    height: 30px;
+    width: 30px;
     position: absolute;
-    box-shadow: 0 0 3px #00000052 !important;
+    border:1px solid #dedede !important;
     padding: 3px;
     line-height: 1.5;
     z-index: 5;
     outline: none;
     top: 14.5em;
+    padding-top: 5px;
     &.doc {
         top: 0;
         background-color: #fff;
@@ -1119,48 +1134,52 @@ mat-icon {
         padding: 0.3em 1em;
         padding-right: 0;
     }
-    .summaryTable {
-        th {
-            font-weight: 600 !important;
-            color: #000 !important;
-            background-color: #f4f4f4;
-            padding: 0.5em 1.2em !important;
-            &:first-child {
-                width: 10% !important;
-            }
+   
+}
+.question_table {
+    width:100%;
+    th {
+        font-weight: 600 !important;
+        color: #000 !important;
+        background-color: #f4f4f4;
+        padding: 0.5em 1.2em !important;
+        border: 1px solid #dbdbdb;
+        &:first-child {
+            width: 10% !important;
         }
-        td {
-            font-weight: normal !important;
+    }
+    td {
+        font-weight: normal !important;
+        color: #757575 !important;
+        font-size: 14px !important;
+        padding: 0.3em 0.5em !important;
+        border: 1px solid #dbdbdb;
+        &.text-center {
+            text-align: center;
+        }
+        span {
             color: #757575 !important;
-            font-size: 14px !important;
-            padding: 0.3em 0.5em !important;
-            &.text-center {
-                text-align: center;
-            }
-            span {
-                color: #757575 !important;
-            }
-            &:first-child {
-                width: 10% !important;
-                color: #757575 !important;
-            }
-            .icon-uncheck {
-                color: #e36563 !important;
-                font-size: 23px;
-            }
-            .icon-CheckMark {
-                color: #8bd5b5 !important;
-            }
-            .ans-green {
-                color: #8bd5b5 !important;
-            }
-            .ans-red {
-                color: #e36563 !important;
-            }
+        }
+        &:first-child {
+            width: 10% !important;
+            color: #757575 !important;
+        }
+        .icon-uncheck {
+            color: #e36563 !important;
+            font-size: 20px;
+        }
+        .icon-CheckMark {
+            color: #8bd5b5 !important;
+            font-size: 17px;
+        }
+        .ans-green {
+            color: #8bd5b5 !important;
+        }
+        .ans-red {
+            color: #e36563 !important;
         }
     }
 }
-
 .closedailog {
     position: absolute;
     right: 1px;
@@ -1168,8 +1187,7 @@ mat-icon {
     font-size: 11px;
 }
 
-#mat-dialog-0.mat-dialog-container,
-#mat-dialog-1.mat-dialog-container {
+mat-dialog-container {
     padding: 15px 20px;
     .Pmain {
         >div:last-child {
@@ -1218,7 +1236,7 @@ mat-icon {
             .chartsec {
                 width: 100%;
                 margin-top: 30px;
-                padding: 6px 9px;
+                padding: 6px 9px 6px 5px;
                 margin-bottom: 35px;
                 border-left: 3px solid #17d087;
                 box-sizing: border-box;
@@ -1238,22 +1256,24 @@ mat-icon {
             table-layout: fixed;
             width: 100%;
             max-width: 700px;
-            height: 200px;
-            margin: 0 auto;
-            background-image: linear-gradient(bottom, rgb(231, 29, 29) 2%, transparent 2%) !important;
-            background-size: 100% 50px;
-            background-position: left top;
+            height: 150px;
+            margin: 0 auto; 
             li {
                 position: relative;
                 display: table-cell;
                 vertical-align: bottom;
-                height: 200px;
+                height: 150px;
+                width: 20px;
+                text-align: center;
             }
             span {
                 // margin: 0 1em;
                 display: inline-block;
                 background: rgba(#ff5253, .75);
                 animation: draw 1s ease-in-out;
+                width: 18px;
+                font-size: 11px;
+                line-height: 0;
                 &:before {
                     position: absolute;
                     // left: 18px;
@@ -1265,6 +1285,9 @@ mat-icon {
                     display: block;
                     content: attr(title);
                     word-wrap: break-word;
+                    min-width: 20px;
+                    left: 0;
+                    line-height: 1.9;
                 }
             }
         }

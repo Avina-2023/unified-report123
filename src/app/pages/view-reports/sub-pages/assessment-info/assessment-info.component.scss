@@ -42,6 +42,9 @@
         margin-top: 7px;
         margin-right: 15px;
     }
+    div:last-child {
+        border-right: none;
+    }
 }
 
 .btn-close {

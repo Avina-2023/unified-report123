@@ -103,7 +103,7 @@
                                                 <div class="expandContentArea">
                                                     <div class="ContentInfoSummary">
                                                         <div class="SummaryInfoArea">
-                                                            <table class="summaryTable" border="0" cellpadding="0" cellspacing="0">
+                                                            <table class="question_table" border="0" cellpadding="0" cellspacing="0">
                                                                 <thead>
                                                                     <tr>
                                                                         <th>Question No.</th>
@@ -122,8 +122,8 @@
                                                                         <td>{{tableData ? tableData.type : '-'}}</td>
                                                                         <td class="text-center"><span><em class="icon-{{ tableData.correct == true ? 'CheckMark' : 'uncheck' }}"></em></span></td>
                                                                         <td>{{tableData ? tableData.status : '-'}}</td>
-                                                                        <td>{{tableData ? tableData.score : '0'}} / {{tableData ? tableData.maxscore : '0'}}</td>
-                                                                        <td>{{tableData ? tableData.timetaken : '-'}}</td>
+                                                                        <td class="text-center">{{tableData ? tableData.score : '0'}} / {{tableData ? tableData.maxscore : '0'}}</td>
+                                                                        <td class="text-center">{{tableData ? tableData.timetaken : '-'}}</td>
                                                                     </tr>
                                                                 </tbody>
                                                             </table>
@@ -267,7 +267,7 @@
     <section>
         <div class="Pmain">
             <div class="row">
-                <div class="col-4">
+                <div class="col-3">
                     <div class="Pheader">Proctoring Video</div>
                     <span class="psubHeader">Candidate Name : {{ userInfo.candidateName }}</span>
                 </div>
@@ -281,7 +281,7 @@
                     </div>
                 </div>
 
-                <div class="col-3 dis-flex">
+                <div class="col-4 dis-flex">
                     <em class="icon-Booked icon-bag"></em>
                     <div>
                         <div></div>
