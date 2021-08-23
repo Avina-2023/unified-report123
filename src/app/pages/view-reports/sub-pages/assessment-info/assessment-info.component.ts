@@ -202,27 +202,12 @@ export class AssessmentInfoComponent implements OnInit, OnChanges {
     vid.play(); 
   } 
     
-    questionview (assessment,hide) {
-      console.log(assessment,'asdsda')
-    // this.matDialog.open(templateRef, {
-    //   width: '90%',
-    //   height: '85%',
-    //   // closeOnNavigation: true,
-    //   disableClose: true,
-    //   panelClass: 'question_dialog'
-    // }); 
-
-    // if(hide == true){
-    //     this.showQus = false;
-    // }else {
-    //   this.showQus = true;
-    // }
+    questionview (assessment) {
     this.sectionData = {
       assessmentName: assessment.assessmentname,
       assessmentDate: assessment.assessmentdate,
       candidateName : this.getAllReportsData.firstname
     }
-    console.log( this.sectionData)
     this.getSectionsData(assessment.assessmentname);
   }
 
@@ -237,32 +222,9 @@ export class AssessmentInfoComponent implements OnInit, OnChanges {
       if(response.data.length > 0) {
         this.listOfSections = response.data;
         this.listOfSections[0].testName = assessmentname;
-        console.log(this.listOfSections,' this.listOfSections')
       }else {
         this.toastr.error('No data available for the specified assessment');
       }
     })
   }
-
-
-  // getProctoringVideo(){
-
-  // }
-
-  // public barChartOptions = {
-  //   scaleShowVerticalLines: false,
-  //   responsive: false
-  // };
-
-  // public barChartLabels = ['b1', 'b2', 'b3', 'c1', 'c2'];
-  // public barChartType = 'bar';
-  // public barChartLegend = false;
-  // public barChartData = [
-  //   {data: [0, 28, 8, 0, 5], label: 'Remote'} 
-    
-  // ];
-  // public barChartColors: Color[] = [
-  //   { backgroundColor: '#ff5253' }
-  // ]
-
 }
