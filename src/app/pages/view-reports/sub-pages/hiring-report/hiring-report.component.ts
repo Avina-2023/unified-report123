@@ -45,7 +45,7 @@ export class HiringReportComponent implements OnInit {
       "testname":"English Language",
       "taken":"18th Aug 2021",
       "tscore":"20 / 50",
-      "completion":"Completed",
+      "completion":"Not Completed",
       "rating":"Strong",
       "callRecords": [{
           "name": "Ability",
@@ -91,7 +91,7 @@ export class HiringReportComponent implements OnInit {
       "testname":"Personlity & Behaviour",
       "taken":"18th Aug 2021",
       "tscore":"20 / 50",
-      "completion":"Completed",
+      "completion":"Not Completed",
       "rating":"Strong",
       "callRecords": [{
           "name": "Ability",
@@ -114,7 +114,7 @@ export class HiringReportComponent implements OnInit {
       "testname":"Cognitive Abilities",
       "taken":"18th Aug 2021",
       "tscore":"15.58 / 54",
-      "completion":"Completed",
+      "completion":"Not Completed",
       "rating":"Strong",
       "callRecords": [{
           "name": "Quantitative Ability",
@@ -205,48 +205,58 @@ export class HiringReportComponent implements OnInit {
       {
         headerName: 'First Name',
         field: 'fname',
+        tooltipField:'fname',
        
       },
       {
         headerName: 'Last Name',
         field: 'lname',
+        tooltipField:'lname',
       },
       {
         headerName: 'Mobile No',
         field: 'mobile',
+        tooltipField:'mobile',
       },
       {
         headerName: 'Email',
         field: 'email',
+        tooltipField:'email',
       },
       {
         headerName: 'Test Type',
         field: 'testtype',
+        tooltipField:'testtype',
         cellRenderer: 'agGroupCellRenderer',
       },
       {
         headerName: 'Test Name',
         field: 'testname',
+        tooltipField:'testname',
       },
       {
         headerName: 'Test Taken on',
         field: 'taken',
+        tooltipField:'taken',
       },
       {
         headerName: 'Total Score',
         field: 'tscore',
+        tooltipField:'tscore',
       },
       {
         headerName: 'Completion',
         field: 'completion',
-        // cellRenderer: (params) => {
-        //   if(params.value == 'Completed'){
-        //     return `<span><button (click)="invokeParentMethod()" class="btn btn-green">`+params.value+`</button></span>`;
-        //   }else {
-        //     return `<span><button (click)="invokeParentMethod()" class="btn btn-yellow">`+params.value+`</button></span>`;
-        //   }
-        
-        // }
+        tooltipField:'completion',
+      cellRenderer: (params) => {
+        if(params.value == 'Completed'){
+          return `<i class="material-icons green">check</i>`
+        } if (params.value == 'Not Completed'){
+          return `<i class="material-icons  red">close</i>`
+        }else {
+          return '';
+        }
+      }
       },
 
       {
@@ -254,13 +264,12 @@ export class HiringReportComponent implements OnInit {
         field: 'rating',
         cellRenderer: (params) => {
           if(params.value == 'Strong'){
-            return `<span><button (click)="invokeParentMethod()" class="btn btn-green">`+params.value+`</button></span>`;
+            return `<span><button  class="btn btn-green">`+params.value+`</button></span>`;
           }if(params.value == 'Weak') {
-            return `<span><button (click)="invokeParentMethod()" class="btn btn-yellow">`+params.value+`</button></span>`;
+            return `<span><button  class="btn btn-yellow">`+params.value+`</button></span>`;
           } else {
              return '';
           }
-        
         }
       },
 

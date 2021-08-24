@@ -25,6 +25,10 @@ $custom-typography: mat-typography-config($font-family: '"Roboto", normal !impor
     height: 6px;
 }
 
+.material-icons {
+    font-family: 'Material Icons' !important;
+}
+
 
 /* Track */
 
@@ -173,7 +177,7 @@ ul {
 mat-toolbar.header-toolbar {
     background: linear-gradient(90deg, #fff 14%, #fc0 25%)!important;
     height: 60px;
-    box-shadow: 0 2px 4px -1px rgb(0 0 0 / 20%) !important; 
+    box-shadow: 0 2px 4px -1px rgb(0 0 0 / 20%) !important;
     position: relative;
     z-index: 5;
 }
@@ -184,9 +188,9 @@ mat-toolbar.header-toolbar {
 }
 
 .perfect-scrollbar {
-    background-color: #f9f9f9; 
+    background-color: #f9f9f9;
     overflow: hidden;
-    overflow-y: auto; 
+    overflow-y: auto;
 }
 
 .footerPan {
@@ -269,8 +273,8 @@ mat-toolbar.header-toolbar {
     display: flex;
     flex-direction: row;
     >div {
-        margin-right: 20px; 
-        width: 150px; 
+        margin-right: 20px;
+        width: 150px;
         &:last-child {
             width: 100%;
             margin-right: 0;
@@ -279,7 +283,7 @@ mat-toolbar.header-toolbar {
         }
     }
     .profileplace {
-        position: relative; 
+        position: relative;
         .viewprofile {
             display: none;
             position: absolute;
@@ -307,7 +311,7 @@ mat-toolbar.header-toolbar {
             align-items: center;
             overflow: hidden;
             border-radius: 4px;
-            border:1px solid #e5e5e5;
+            border: 1px solid #e5e5e5;
             background-color: #fff;
         }
     }
@@ -316,7 +320,7 @@ mat-toolbar.header-toolbar {
         font-size: 14px;
         display: block;
         margin-bottom: 10px;
-        text-align: left; 
+        text-align: left;
         width: 150px;
         position: relative;
         &.drag {
@@ -330,7 +334,7 @@ mat-toolbar.header-toolbar {
         min-width: 225px;
     }
     .imgProp {
-        height: 170px; 
+        height: 170px;
     }
     .img-container {
         width: 80%;
@@ -340,7 +344,6 @@ mat-toolbar.header-toolbar {
         min-height: 215px;
         position: relative;
         padding: 0;
-
         .drag-scroll-content {
             display: flex !important;
             flex-direction: row;
@@ -909,7 +912,7 @@ button.sliderBtn,
     height: 30px;
     width: 30px;
     position: absolute;
-    border:1px solid #dedede !important;
+    border: 1px solid #dedede !important;
     padding: 3px;
     line-height: 1.5;
     z-index: 5;
@@ -1134,10 +1137,10 @@ mat-icon {
         padding: 0.3em 1em;
         padding-right: 0;
     }
-   
 }
+
 .question_table {
-    width:100%;
+    width: 100%;
     th {
         font-weight: 600 !important;
         color: #000 !important;
@@ -1180,6 +1183,7 @@ mat-icon {
         }
     }
 }
+
 .closedailog {
     position: absolute;
     right: 1px;
@@ -1257,7 +1261,7 @@ mat-dialog-container {
             width: 100%;
             max-width: 700px;
             height: 150px;
-            margin: 0 auto; 
+            margin: 0 auto;
             li {
                 position: relative;
                 display: table-cell;
@@ -1294,6 +1298,10 @@ mat-dialog-container {
     }
 }
 
-button, input, optgroup, select, textarea {
+button,
+input,
+optgroup,
+select,
+textarea {
     font-family: 'Roboto';
 }

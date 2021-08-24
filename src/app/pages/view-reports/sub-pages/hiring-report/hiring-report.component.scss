@@ -1,4 +1,5 @@
 @import "../../../../../assets/scss/variables.scss";
+@import "../../../../../assets/scss/fonts.scss";
 ::ng-deep .btn-green {
     font-size: 12px;
     height: 24px;
@@ -23,4 +24,12 @@
 
 .backBtn {
     margin-left: 8px !important;
+}
+
+::ng-deep .green {
+    color: $successColor;
+}
+
+::ng-deep .red {
+    color: $primaryColor;
 }
