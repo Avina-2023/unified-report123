@@ -18,6 +18,114 @@ export class HiringReportComponent implements OnInit {
 
   constructor(private appconfig: AppConfigService,private toastr: ToastrService, private ApiService: ApiService,) {      
     this.getHiringReportDetails();
+    this.defaultColDef = { 
+      flex: 1,
+      enableRowGroup: true,
+      enablePivot: true,
+      enableValue: true,
+      sortable: true,
+      resizable: true,
+      filter: true 
+    };
+  
+
+  }
+
+  ngOnInit(): void {
+    this.tabledef();
+  }
+
+  // onFirstDataRendered(params) {
+  //   this.gridApi = params.api;
+  //   setTimeout(function () {
+  //     if(params.data.){
+  //       this.detailCellRendererParams = {
+  //         detailGridOptions: {
+  //           suppressRowClickSelection: true,
+  //           enableRangeSelection: true,
+  //           pagination: true,
+  //           paginationAutoPageSize: true,
+  //           resizable: true,
+  //           columnDefs: [
+  //             {
+  //               headerName: 'Sectional Name',
+  //               field: 'secname',
+  //             },
+  //             { 
+  //               headerName: 'Questions Attempted',
+  //               field: 'attendedquestions',
+  //               cellRenderer: (params) => {
+  //                 if(params.value != undefined && params.value){
+  //                   return params.value +'/'+ (params.data.overallquestions ? params.data.overallquestions : '-') 
+  //                 }else {
+  //                   return '-';
+  //                 }
+  //               }
+  //              },
+  //             {
+  //               headerName: 'Score Obtained',
+  //               field: 'score',
+  //             },
+  //             {
+  //               headerName: 'Percentage',
+  //               field: 'accuracy',
+  //               cellRenderer: (params) => {
+  //                 if(params.value != undefined && params.value){
+  //                   return params.value +'%' 
+  //                 }else {
+  //                   return '-';
+  //                 }
+  //               }
+  //             },
+  //           ],
+  //           defaultColDef: {
+  //             sortable: true,
+  //             flex: 1,
+  //           },
+  //         },
+          
+  //         getDetailRowData: function (params) {
+  //           console.log(params)
+  //           params.successCallback(params.data.section);
+  //         },
+  //       };
+  //     }else {
+  //       this.detailCellRendererParams = {
+  //         detailGridOptions: {
+  //           suppressRowClickSelection: true,
+  //           enableRangeSelection: true,
+  //           pagination: true,
+  //           paginationAutoPageSize: true,
+  //           resizable: true,
+  //           columnDefs: [
+  //             {
+  //               headerName: 'Skill Name',
+  //               field: 'skillname',
+  //             },
+  //             { 
+  //               headerName: 'Sten Score',
+  //               field: 'stenScore',
+  //              },
+  //           ],
+  //           defaultColDef: {
+  //             sortable: true,
+  //             flex: 1,
+  //           },
+  //         },
+          
+  //         getDetailRowData: function (params) {
+  //           params.successCallback(params.data.skills);
+  //         },
+  //       };
+  //     }
+  
+  //     // params.api.getDisplayedRowAtIndex(1).setExpanded(false);
+  //   }, 0);
+  // }
+
+
+
+  tabledef(){
     this.columnDefs = [
       {
         headerName: 'First Name',
@@ -124,16 +232,7 @@ export class HiringReportComponent implements OnInit {
         }
       },
     ];
-    this.defaultColDef = { 
-      flex: 1,
-      enableRowGroup: true,
-      enablePivot: true,
-      enableValue: true,
-      sortable: true,
-      resizable: true,
-      filter: true 
-    };
-  
+
     this.detailCellRendererParams = {
       detailGridOptions: {
         suppressRowClickSelection: true,
@@ -180,28 +279,17 @@ export class HiringReportComponent implements OnInit {
       },
       
       getDetailRowData: function (params) {
+        console.log(params)
         params.successCallback(params.data.section);
       },
     };
+
   }
-
-  ngOnInit(): void {
-  }
-
-  // onFirstDataRendered(params) {
-  //   this.gridApi = params.api;
-  //   setTimeout(function () {
-
-  
-  //     // params.api.getDisplayedRowAtIndex(1).setExpanded(false);
-  //   }, 0);
-  // }
 
   onGridReady(params) {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
     this.gridApi.closeToolPanel();
-    // this.autoSizeAll(false);
     this.sizeToFit();
   }
 

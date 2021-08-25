@@ -7,12 +7,15 @@ import { ToastrService } from 'ngx-toastr';
 import { ApiService } from '../../../../services/api.service';
 // import { Label, Color } from 'ng2-charts';
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment.prod';
+
 @Component({
   selector: 'app-assessment-info',
   templateUrl: './assessment-info.component.html',
   styleUrls: ['./assessment-info.component.scss']
 })
 export class AssessmentInfoComponent implements OnInit, OnChanges {
+  proctor_url = environment.PROCTOR_URL;
   @Input() getAllReportsData;
   @Input() driveName;
   @ViewChild('sourceVideo',{static: false}) video: TemplateRef<any>;
@@ -164,13 +167,13 @@ export class AssessmentInfoComponent implements OnInit, OnChanges {
                       id:iterator.id,
                       filename:iterator.filename,
                       poster:iterator.id,
-                      src: 'https://proctoring.southeastasia.cloudapp.azure.com/api/storage/'+iterator.id+'?token='+response.token,
+                      src: this.proctor_url+iterator.id+'?token='+response.token,
                     })
                   this.playlist.push({
                     id:iterator.id,
                     filename:iterator.filename,
                     poster:iterator.id,
-                    src: 'https://proctoring.southeastasia.cloudapp.azure.com/api/storage/'+iterator.id+'?token='+response.token,
+                    src: this.proctor_url+iterator.id+'?token='+response.token,
                   })
                   i++;
                 }
