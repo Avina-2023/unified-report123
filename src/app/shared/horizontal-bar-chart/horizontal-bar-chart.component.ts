@@ -22,6 +22,7 @@ export class HorizontalBarChartComponent implements OnInit, OnChanges {
 @Output() selectedArea:EventEmitter<any> =new EventEmitter<any>();
 @Input() chartData: any;
 @Input() domains: any;
+@Input() hideControls: any;
 indexNum: any = 1;
 single: any;
 view: any[] = [480, 450];
@@ -46,6 +47,9 @@ yAxisTicks = [0, 40, 80, 100];
 
   }
   async ngOnInit() {
+    if (this.hideControls) {
+      this.yAxisTicks = [0, 10];
+    }
     await this.getSkillData();
     this.calculateWidthAndHeight();
     this.setColorDomain();
@@ -84,7 +88,6 @@ yAxisTicks = [0, 40, 80, 100];
 
 
   calculateWidthAndHeight() {
-    console.log('as', this.single);
 
     if (this.single && this.single.length <= 1) {
       return this.view = [480, 75];

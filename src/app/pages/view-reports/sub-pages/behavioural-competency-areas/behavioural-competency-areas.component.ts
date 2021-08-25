@@ -15,7 +15,6 @@ export class BehaviouralCompetencyAreasComponent implements OnInit {
   counter: number = 0;
   list: any = [0];
 
-
   competenciesChartData = [];
   skillsChartData = [];
   competenciesName: any;
@@ -91,10 +90,9 @@ export class BehaviouralCompetencyAreasComponent implements OnInit {
         element.score = this.conversionFormula(100, 100);
       }
       element.skills.forEach(skills => {
-        if (skills.score && skills.maxscore) {
-          skills.actualScore = skills.score;
-          skills.score = this.conversionFormula(skills.score, skills.maxscore);
-        }
+        // if (skills.stenScore) {
+          skills.score = skills.stenScore ? skills.stenScore : 1;
+        // }
       skills.area.forEach(area => {
         if (area.score && area.maxscore) {
           area.actualScore = area.score;
@@ -119,21 +117,11 @@ export class BehaviouralCompetencyAreasComponent implements OnInit {
       this.verticalChartData.push(element);
     });
     this.list = listCount;
-    // Dummy variable is for testing purpose
-    let dummy = this.getDummyData();
     this.verticalChartData.forEach((element, i) => {
       if(element && element.score) {
         element.areaColor = this.verticaldomain[i];
       }
     });
-    // this.verticalChartData.push(dummy[0]);
-    // this.verticalChartData.push(dummy[1]);
-    // this.verticalChartData.push(dummy[2]);
-    // this.verticalChartData.push(dummy[3]);
-    // this.verticalChartData.push(dummy[4]);
-    // this.verticalChartData.push(dummy[5]);
-    // this.verticalChartData.push(dummy[6]);
-    // this.verticalChartData.push(dummy[7]);
   }
   getAreasDataInitialize(i) {
     this.competancyData.forEach(skills => {
@@ -181,84 +169,6 @@ onPrevious() {
 
 dotChange(i) {
   this.counter = i;
-}
-
-getDummyData() {
-  return [
-    {
-    areaColor: "#FF8C00",
-    areaSkills: [],
-    competencyId: "C013",
-    competencyname: "Behavioral213",
-    maxscore: 100,
-    score: 23,
-    skills: []
-    },
-    {
-      areaColor: "#FF8C00",
-      areaSkills: [],
-      competencyId: "C013",
-      competencyname: "Behaviorals",
-      maxscore: 100,
-      score: 53,
-      skills: []
-      },
-      {
-        areaColor: "#FF8C00",
-        areaSkills: [],
-        competencyId: "C013",
-        competencyname: "1ehavioral213",
-        maxscore: 100,
-        score: 13,
-        skills: []
-        },
-        {
-          areaColor: "#FF8C00",
-          areaSkills: [],
-          competencyId: "C013",
-          competencyname: "2Behaviorals",
-          maxscore: 100,
-          score: 23,
-          skills: []
-        },
-        {
-          areaColor: "#FF8C00",
-          areaSkills: [],
-          competencyId: "C013",
-          competencyname: "zehavioral213",
-          maxscore: 100,
-          score: 94,
-          skills: []
-          },
-          {
-            areaColor: "#FF8C00",
-            areaSkills: [],
-            competencyId: "C013",
-            competencyname: "zz2Behaviorals",
-            maxscore: 100,
-            score: 73,
-            skills: []
-            },
-            {
-              areaColor: "#FF8C00",
-              areaSkills: [],
-              competencyId: "C013",
-              competencyname: "wwzehavioral213",
-              maxscore: 100,
-              score: 44,
-              skills: []
-              },
-              {
-                areaColor: "#FF8C00",
-                areaSkills: [],
-                competencyId: "C013",
-                competencyname: "eezz2Behaviorals",
-                maxscore: 100,
-                score: 73,
-                skills: []
-                }
-
-  ]
 }
 
 }
