@@ -5,7 +5,8 @@ import _ from 'lodash';
 import { VgAPI, VgFullscreenAPI } from 'ngx-videogular';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from '../../../../services/api.service';
-import { Label, Color } from 'ng2-charts';
+// import { Label, Color } from 'ng2-charts';
+import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-assessment-info',
   templateUrl: './assessment-info.component.html',
@@ -36,8 +37,15 @@ export class AssessmentInfoComponent implements OnInit, OnChanges {
   listOfSections: any;
   userInfo: {};
   playVideoList = [];
+  inboundClick = false;
 
-  constructor(public matDialog: MatDialog,private toastr: ToastrService, private ApiService: ApiService, ) { }
+
+  constructor(private http: HttpClient ,public matDialog: MatDialog,private toastr: ToastrService, private ApiService: ApiService, ) {
+
+
+  }
+
+
 
   ngOnInit(): void {
     this.getAssessmentInfo();
@@ -103,6 +111,7 @@ export class AssessmentInfoComponent implements OnInit, OnChanges {
   }
 
   getTimetaken(takenTime){
+    // console.log(takenTime)
     if(takenTime){
       let convertTime1 = takenTime.toString();
       let SplitTime1 = convertTime1.split(/([.])/);
@@ -110,6 +119,9 @@ export class AssessmentInfoComponent implements OnInit, OnChanges {
       let sec = '0.' + SplitTime1[2];
       let conIntoSec1 = parseFloat(sec) * 60;
       this.timeTakenSec = conIntoSec1.toFixed(0);
+    }else {
+      this.TimeTakenMins = 0;
+      this.timeTakenSec = 0;
     }
   }
 
@@ -144,7 +156,7 @@ export class AssessmentInfoComponent implements OnInit, OnChanges {
       let filter = [];
       this.ApiService.getProctorVideo(data).subscribe((response: any)=> {
             response.data.forEach((data) => {
-                var i =0
+                var i = 0
                 filter = [];
                 data.attach.forEach((iterator) => {
                   if(iterator.mimetype.includes('video')){
@@ -160,19 +172,17 @@ export class AssessmentInfoComponent implements OnInit, OnChanges {
                     poster:iterator.id,
                     src: 'https://proctoring.southeastasia.cloudapp.azure.com/api/storage/'+iterator.id+'?token='+response.token,
                   })
-                  i++
-
-
+                  i++;
                 }
               });
               for (const key in data.metadata.metrics) {
                 if (Object.prototype.hasOwnProperty.call(data.metadata.metrics, key)) {
                 }
-                filter.push({key: key,value:data.metadata.metrics[key]})
-              } 
-              this.playVideoList.push({chart:filter})
+                filter.push({key: key,value:data.metadata.metrics[key]});
+              }
+              this.playVideoList.push({chart:filter});
             });
-           this.currentItem =  this.playlist[this.currentIndex]
+           this.currentItem =  this.playlist[this.currentIndex];
       })
   }
 
@@ -194,19 +204,12 @@ export class AssessmentInfoComponent implements OnInit, OnChanges {
   }
 
   playVideo() {
-    var vid = <HTMLVideoElement> document.getElementById("myVideo"); 
+    var vid = <HTMLVideoElement> document.getElementById("myVideo");
     vid.load();
-    vid.play(); 
-  } 
-    
-    questionview (templateRef: TemplateRef<any>,assessment) {
-    this.matDialog.open(templateRef, {
-      width: '90%',
-      height: '85%',
-      // closeOnNavigation: true,
-      disableClose: true,
-      panelClass: 'question_dialog'
-    }); 
+    vid.play();
+  }
+
+    questionview (assessment) {
     this.sectionData = {
       assessmentName: assessment.assessmentname,
       assessmentDate: assessment.assessmentdate,
@@ -220,36 +223,15 @@ export class AssessmentInfoComponent implements OnInit, OnChanges {
     this.listOfSections = [];
     let data = {
       email:   this.getAllReportsData.email,
-      testname: assessmentname,
+      testname: assessmentname ? assessmentname : '' ,
     }
     this.ApiService.getSectionWiseDetails(data).subscribe((response: any)=> {
       if(response.data.length > 0) {
         this.listOfSections = response.data;
+        this.listOfSections[0].testName = assessmentname;
       }else {
         this.toastr.error('No data available for the specified assessment');
       }
     })
   }
-
-
-  // getProctoringVideo(){
-
-  // }
-
-  public barChartOptions = {
-    scaleShowVerticalLines: false,
-    responsive: false
-  };
-
-  public barChartLabels = ['b1', 'b2', 'b3', 'c1', 'c2'];
-  public barChartType = 'bar';
-  public barChartLegend = false;
-  public barChartData = [
-    {data: [0, 28, 8, 0, 5], label: 'Remote'} 
-    
-  ];
-  public barChartColors: Color[] = [
-    { backgroundColor: '#ff5253' }
-  ]
-
 }

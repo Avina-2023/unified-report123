@@ -2,39 +2,27 @@
   <div class="docInfoarea">
     <div class="profileplace">
       <span>Profile Picture Snapshot</span>
-      <ng-container *ngIf="profilePic">
-        <img
-          [src]="profilePic + blobkey"
-          class="imgProp"
-          #profil
-          alt="Profile"
-        />
-        <a
-          (click)="profileDialog(profilePic, viewImg)"
-          [ngStyle]="{
-            width: profil.offsetWidth + 'px',
-            height: profil.offsetHeight + 'px'
-          }"
-          class="viewprofile"
-          ><em class="icon-View"></em
-        ></a>
-      </ng-container>
-      <ng-container *ngIf="!profilePic">
-        <img
-          src="../../../../../assets/images/noImg.jpg"
-          class="imgProp"
-          alt="Profile"
-        />
-      </ng-container>
+      <div class="photoholder" #profil>
+        <ng-container *ngIf="profilePic">
+          <img [src]="profilePic + blobkey" class="imgProp" alt="Profile" />
+          <a (click)="profileDialog(profilePic, viewImg)" [ngStyle]="{
+                  width: profil.offsetWidth + 'px',
+                  height: profil.offsetHeight + 'px'
+                }" class="viewprofile"><em class="icon-View"></em></a>
+        </ng-container>
+        <ng-container *ngIf="!profilePic">
+          <img src="../../../../../assets/images/noImg.jpg" class="imgProp" alt="Profile" />
+        </ng-container>
+      </div>
     </div>
 
     <div class="profileplace">
       <span>Identity Card Snapshot</span>
+      <div class="photoholder" #identi>
       <ng-container *ngIf="idCardImg">
         <img
           [src]="idCardImg + blobkey"
-          class="imgProp"
-          #identi
+          class="imgProp" 
           alt="Identity"
         />
         <a
@@ -54,9 +42,11 @@
           alt="Identity"
         />
       </ng-container>
+      </div>
     </div>
-    <ng-container *ngIf="certificationList && certificationList.length > 0">
+    
       <div class="docUpload">
+        <ng-container *ngIf="certificationList && certificationList.length > 0">
         <span>Uploaded Documents</span>
         <div class="img-container">
           <ng-container
@@ -139,9 +129,11 @@
             />
           </ng-container>
         </div>
+      </ng-container>
       </div>
-    </ng-container>
+   
   </div>
+  <div class="clearfix"></div>
 </section>
 <ng-template #viewImg id="viewImg">
   <div class="progressText">

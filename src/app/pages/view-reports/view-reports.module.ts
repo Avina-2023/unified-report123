@@ -13,12 +13,13 @@ import { QualityAreaComponent } from './sub-pages/quality-area/quality-area.comp
 import { UserListComponent } from './user-list/user-list.component';
 import { AgGridModule } from 'ag-grid-angular';
 import { DragScrollModule } from 'ngx-drag-scroll';
-import { PdfViewerModule } from 'ng2-pdf-viewer'; 
-import { ChartsModule } from 'ng2-charts';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
+// import { ChartsModule } from 'ng2-charts';
 import { BehaviouralAssessmentInfoComponent } from './sub-pages/behavioural-assessment-info/behavioural-assessment-info.component';
 import { BehaviouralCompetencyAreasComponent } from './sub-pages/behavioural-competency-areas/behavioural-competency-areas.component';
 import { BehaviouralQualityAreaComponent } from './sub-pages/behavioural-quality-area/behavioural-quality-area.component';
-
+import 'ag-grid-enterprise';
+import { HiringReportComponent } from './sub-pages/hiring-report/hiring-report.component';
 @NgModule({
   declarations: [
     ProfileInfoComponent,
@@ -30,13 +31,15 @@ import { BehaviouralQualityAreaComponent } from './sub-pages/behavioural-quality
     UserListComponent,
     BehaviouralAssessmentInfoComponent,
     BehaviouralCompetencyAreasComponent,
-    BehaviouralQualityAreaComponent
+    BehaviouralQualityAreaComponent,
+    HiringReportComponent
   ],
   imports: [
+
     CommonModule,
     ViewReportsRoutingModule,
     DragScrollModule,
-    ChartsModule,
+    // ChartsModule,
     SharedModule,
     MaterialModule,
     PdfViewerModule,
