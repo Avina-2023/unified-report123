@@ -61,7 +61,7 @@ export class HiringReportComponent implements OnInit {
         field: 'testname',
         tooltipField:'testname',
         cellRenderer: 'agGroupCellRenderer',
-        width: 250,
+        width: 200,
         
       },
       {
@@ -201,13 +201,8 @@ export class HiringReportComponent implements OnInit {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
     this.gridApi.closeToolPanel();
-    var allColumnIds = [];
-    params.columnApi.autoSizeAllColumns();
-    this.gridColumnApi.getAllColumns().forEach(function (column) {
-      allColumnIds.push(column.colId);
-    });
-    this.gridColumnApi.autoSizeColumns(allColumnIds, false);
-
+    // this.autoSizeAll(false);
+    this.sizeToFit();
   }
 
   onBack(){
@@ -219,5 +214,8 @@ export class HiringReportComponent implements OnInit {
       this.rowData = res.data;
     })
   }
-
+  
+  sizeToFit() {
+    this.gridApi.sizeColumnsToFit();
+  }
 }
