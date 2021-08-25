@@ -20,11 +20,18 @@ export class BehaviouralQualityAreaComponent implements OnInit, OnChanges {
   }
 
   getStrengthAndWeakness() {
-    if (this.getAllReportsData && this.getAllReportsData.psychometricContent && this.getAllReportsData.psychometricContent.length > 0) {
-      this.getAreaofDevelopment = this.getAllReportsData.psychometricContent;
+    if (this.getAllReportsData && this.getAllReportsData.behavioralImprovementContent && this.getAllReportsData.behavioralImprovementContent.length > 0) {
+      this.areatoimprove = this.getAllReportsData.behavioralImprovementContent;
+    } else {
+      this.areatoimprove = [];
+    }
+
+    if (this.getAllReportsData && this.getAllReportsData.behavioralStrenthContent && this.getAllReportsData.behavioralStrenthContent.length > 0) {
+      this.getAreaofDevelopment = this.getAllReportsData.behavioralStrenthContent;
     } else {
       this.getAreaofDevelopment = [];
     }
+
   }
 
 }

@@ -1,6 +1,6 @@
 import { AfterViewInit, Input } from "@angular/core";
 import { Component, OnInit, ViewChild, ElementRef, OnChanges, Output, EventEmitter } from '@angular/core';
-  
+
 
 @Component({
   selector: 'app-horizontal-bar-chart',
@@ -84,6 +84,8 @@ yAxisTicks = [0, 40, 80, 100];
 
 
   calculateWidthAndHeight() {
+    console.log('as', this.single);
+
     if (this.single && this.single.length <= 1) {
       return this.view = [480, 75];
      }
@@ -143,5 +145,5 @@ yAxisTicks = [0, 40, 80, 100];
       this.getSkillData();
     }
   }
- 
+
 }
