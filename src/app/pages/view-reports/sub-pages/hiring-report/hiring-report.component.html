@@ -3,7 +3,15 @@
     <span class="ml-2" (click)="onBack()">Back</span>
 </div>
 
+<div class="outer-div">
+    <div class="grid-wrapper">
+        <ag-grid-angular style="width: 98%; height: calc(100vh - 140px); margin:auto !important;" id="myGrid" class="ag-theme-alpine" [columnDefs]="columnDefs" [defaultColDef]="defaultColDef" [masterDetail]="true" [detailCellRendererParams]="detailCellRendererParams"
+            [rowData]="rowData" [enableRangeSelection]="true" [enableCharts]="true" [tooltipShowDelay]="0" [rowSelection]="'multiple'" [animateRows]="true" headerHeight="40" [suppressRowClickSelection]="true" [pagination]="true" [paginationPageSize]="100"
+            [pivotPanelShow]="'always'" [colResizeDefault]="'shift'" [sideBar]="true" (gridReady)="onGridReady($event)"></ag-grid-angular>
 
-<ag-grid-angular style="width: 98%; height: calc(100vh - 140px); margin:auto !important;" id="myGrid" class="ag-theme-alpine" [columnDefs]="columnDefs" [defaultColDef]="defaultColDef" [masterDetail]="true" [detailCellRendererParams]="detailCellRendererParams"
-    [rowData]="rowData" (firstDataRendered)="onFirstDataRendered($event)" [enableRangeSelection]="true" [enableCharts]="true" [tooltipShowDelay]="0" [rowSelection]="'multiple'" [animateRows]="true" [masterDetail]="true" headerHeight="40" [suppressRowClickSelection]="true"
-    [rowGroupPanelShow]="'always'" [pagination]="true" [paginationPageSize]="100" [pivotPanelShow]="'always'" [sideBar]="true" (gridReady)="onGridReady($event)"></ag-grid-angular>
+    </div>
+</div>
+
+
+
+<!-- (firstDataRendered)="onFirstDataRendered($event)" -->

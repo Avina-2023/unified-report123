@@ -1,260 +1,104 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { AppConfigService } from 'src/app/utils/app-config.service';
 import { APP_CONSTANTS } from '../../../../utils/app-constants.service';
+import { ApiService } from '../../../../services/api.service';
 @Component({
   selector: 'app-hiring-report',
   templateUrl: './hiring-report.component.html',
   styleUrls: ['./hiring-report.component.scss']
 })
 export class HiringReportComponent implements OnInit {
+  rowData:any
   public gridApi;
   public gridColumnApi;
   public columnDefs;
   public defaultColDef;
   public detailCellRendererParams;
-  public rowData = [
-    {
-      "fname": "Venkadesh",
-      "lname":"SR",
-      "mobile": "6379139868",
-      "email": "venkatdoss1989@gmail.com",
-      "testtype":"Aptitude",
-      "testname":"Cognitive Abilities",
-      "taken":"18th Aug 2021",
-      "tscore":"15.58 / 54",
-      "completion":"Completed",
-      "rating":"Strong",
-      "callRecords": [{
-          "name": "Quantitative Ability",
-          "QT": "13/20",
-          "SO": 2.4,
-          "percentage": "17%",
-      }, {
-        "name": "Analytical",
-        "QT": "15/20",
-        "SO": 2.4,
-        "percentage": "17%",
-      }]
-    },
-    {
-      "fname": "",
-      "lname":"",
-      "mobile": "",
-      "email": "",
-      "testtype":"English Language",
-      "testname":"English Language",
-      "taken":"18th Aug 2021",
-      "tscore":"20 / 50",
-      "completion":"Not Completed",
-      "rating":"Strong",
-      "callRecords": [{
-          "name": "Ability",
-          "QT": "13/20",
-          "SO": 2.4,
-          "percentage": "17%",
-      }, {
-        "name": "Analytical2",
-        "QT": "15/20",
-        "SO": 2.4,
-        "percentage": "17%",
-      }]
-    },
-    {
-      "fname": "",
-      "lname":"",
-      "mobile": "",
-      "email": "",
-      "testtype":"Coding",
-      "testname":"Coding",
-      "taken":"18th Aug 2021",
-      "tscore":"20 / 50",
-      "completion":"Completed",
-      "rating":"Strong",
-      "callRecords": [{
-          "name": "Ability",
-          "QT": "13/20",
-          "SO": 2.4,
-          "percentage": "17%",
-      }, {
-        "name": "Analytical2",
-        "QT": "15/20",
-        "SO": 2.4,
-        "percentage": "17%",
-      }]
-    },
-    {
-      "fname": "",
-      "lname":"",
-      "mobile": "",
-      "email": "",
-      "testtype":"Personlity & Behaviour",
-      "testname":"Personlity & Behaviour",
-      "taken":"18th Aug 2021",
-      "tscore":"20 / 50",
-      "completion":"Not Completed",
-      "rating":"Strong",
-      "callRecords": [{
-          "name": "Ability",
-          "QT": "13/20",
-          "SO": 2.4,
-          "percentage": "17%",
-      }, {
-        "name": "Analytical2",
-        "QT": "15/20",
-        "SO": 2.4,
-        "percentage": "17%",
-      }]
-    },
-    {
-      "fname": "Ankit",
-      "lname":"ANK",
-      "mobile": "774934922",
-      "email": "ankit@gmail.com",
-      "testtype":"Aptitude",
-      "testname":"Cognitive Abilities",
-      "taken":"18th Aug 2021",
-      "tscore":"15.58 / 54",
-      "completion":"Not Completed",
-      "rating":"Strong",
-      "callRecords": [{
-          "name": "Quantitative Ability",
-          "QT": "13/20",
-          "SO": 2.4,
-          "percentage": "17%",
-      }, {
-        "name": "Analytical",
-        "QT": "15/20",
-        "SO": 2.4,
-        "percentage": "17%",
-      }]
-    },
-    {
-      "fname": "",
-      "lname":"",
-      "mobile": "",
-      "email": "",
-      "testtype":"English Language",
-      "testname":"English Language",
-      "taken":"18th Aug 2021",
-      "tscore":"20 / 50",
-      "completion":"Completed",
-      "rating":"Strong",
-      "callRecords": [{
-          "name": "Ability",
-          "QT": "13/20",
-          "SO": 2.4,
-          "percentage": "17%",
-      }, {
-        "name": "Analytical2",
-        "QT": "15/20",
-        "SO": 2.4,
-        "percentage": "17%",
-      }]
-    },
-    {
-      "fname": "",
-      "lname":"",
-      "mobile": "",
-      "email": "",
-      "testtype":"Coding",
-      "testname":"Coding",
-      "taken":"18th Aug 2021",
-      "tscore":"20 / 50",
-      "completion":"Completed",
-      "rating":"Weak",
-      "callRecords": [{
-          "name": "Ability",
-          "QT": "13/20",
-          "SO": 2.4,
-          "percentage": "17%",
-      }, {
-        "name": "Analytical2",
-        "QT": "15/20",
-        "SO": 2.4,
-        "percentage": "17%",
-      }]
-    },
-    {
-      "fname": "",
-      "lname":"",
-      "mobile": "",
-      "email": "",
-      "testtype":"Personlity & Behaviour",
-      "testname":"Personlity & Behaviour",
-      "taken":"18th Aug 2021",
-      "tscore":"20 / 50",
-      "completion":"Completed",
-      "rating":"Weak",
-      "callRecords": [{
-          "name": "Ability",
-          "QT": "13/20",
-          "SO": 2.4,
-          "percentage": "17%",
-      }, {
-        "name": "Analytical2",
-        "QT": "15/20",
-        "SO": 2.4,
-        "percentage": "17%",
-      }]
-    }
 
-  ]
-
-  constructor(private appconfig: AppConfigService) { 
+  constructor(private appconfig: AppConfigService,private toastr: ToastrService, private ApiService: ApiService,) {      
+    this.getHiringReportDetails();
     this.columnDefs = [
       {
         headerName: 'First Name',
-        field: 'fname',
-        tooltipField:'fname',
-       
+        field: 'firstname',
+        tooltipField:'firstname',    
+        width: 100,
       },
       {
         headerName: 'Last Name',
-        field: 'lname',
-        tooltipField:'lname',
+        field: 'lastname',
+        tooltipField:'lastname',
+        width: 100,
       },
       {
         headerName: 'Mobile No',
         field: 'mobile',
         tooltipField:'mobile',
+        width: 100,
       },
       {
         headerName: 'Email',
         field: 'email',
         tooltipField:'email',
+        width: 100,
       },
       {
         headerName: 'Test Type',
         field: 'testtype',
         tooltipField:'testtype',
-        cellRenderer: 'agGroupCellRenderer',
+        width: 100,
+        cellRenderer: (params) => {
+          if(params.value){
+            return params.value;
+          }else{
+            return '-';
+          }
+        }
       },
       {
         headerName: 'Test Name',
         field: 'testname',
         tooltipField:'testname',
+        cellRenderer: 'agGroupCellRenderer',
+        width: 200,
+        
       },
       {
         headerName: 'Test Taken on',
-        field: 'taken',
-        tooltipField:'taken',
+        field: 'testdate',
+        tooltipField:'testdate',
+        width: 100,
       },
       {
-        headerName: 'Total Score',
-        field: 'tscore',
-        tooltipField:'tscore',
+        headerName: 'Score',
+        field: 'testscore',
+        tooltipField:'testscore',
+        width: 100,
+        cellRenderer: (params) => {
+          if(params.value != undefined && params.value){
+            return params.value +'/'+ (params.data.testmaxscore ? params.data.testmaxscore : '-') 
+          }else {
+            return '-';
+          }
+        }
       },
+      // {
+      //   headerName: 'Total Score',
+      //   field: 'testmaxscore',
+      //   tooltipField:'testmaxscore',
+      // },
       {
         headerName: 'Completion',
         field: 'completion',
-        tooltipField:'completion',
+        width: 100,
       cellRenderer: (params) => {
-        if(params.value == 'Completed'){
+        if(params.value == true){
           return `<i class="material-icons green">check</i>`
-        } if (params.value == 'Not Completed'){
+        } if (params.value == false){
           return `<i class="material-icons  red">close</i>`
         }else {
-          return '';
+          return '-';
         }
       }
       },
@@ -262,48 +106,71 @@ export class HiringReportComponent implements OnInit {
       {
         headerName: 'Rating',
         field: 'rating',
+        width: 100,
         cellRenderer: (params) => {
-          if(params.value == 'Strong'){
-            return `<span><button  class="btn btn-green">`+params.value+`</button></span>`;
-          }if(params.value == 'Weak') {
-            return `<span><button  class="btn btn-yellow">`+params.value+`</button></span>`;
-          } else {
-             return '';
+          if(params.data){
+            if(params.data.testscore < 40){
+              return `<span><button class="btnsm red-btn">Weak</button></span>`;
+            }if(params.data.testscore >=40 && params.data.testscore < 80) {
+              return `<span><button class="btnsm yellow-btn">Average</button></span>`;
+            } if(params.data.testscore >=90){
+              return `<span><button class="btnsm green-btn">Excellent</button></span>`;
+            } else{
+              return '-';
+            }
+          }else {
+             return '-';
           }
         }
       },
-
     ];
-    this.defaultColDef = { flex: 1,
+    this.defaultColDef = { 
+      flex: 1,
       enableRowGroup: true,
       enablePivot: true,
       enableValue: true,
       sortable: true,
       resizable: true,
-      filter: true, };
- 
+      filter: true 
+    };
+  
     this.detailCellRendererParams = {
       detailGridOptions: {
         suppressRowClickSelection: true,
         enableRangeSelection: true,
         pagination: true,
         paginationAutoPageSize: true,
+        resizable: true,
         columnDefs: [
           {
             headerName: 'Sectional Name',
-            field: 'name',
+            field: 'secname',
           },
           { 
             headerName: 'Questions Attempted',
-            field: 'QT'
+            field: 'attendedquestions',
+            cellRenderer: (params) => {
+              if(params.value != undefined && params.value){
+                return params.value +'/'+ (params.data.overallquestions ? params.data.overallquestions : '-') 
+              }else {
+                return '-';
+              }
+            }
            },
           {
             headerName: 'Score Obtained',
-            field: 'SO',
+            field: 'score',
           },
           {
             headerName: 'Percentage',
-            field: 'percentage',
+            field: 'accuracy',
+            cellRenderer: (params) => {
+              if(params.value != undefined && params.value){
+                return params.value +'%' 
+              }else {
+                return '-';
+              }
+            }
           },
         ],
         defaultColDef: {
@@ -311,8 +178,9 @@ export class HiringReportComponent implements OnInit {
           flex: 1,
         },
       },
+      
       getDetailRowData: function (params) {
-        params.successCallback(params.data.callRecords);
+        params.successCallback(params.data.section);
       },
     };
   }
@@ -320,20 +188,34 @@ export class HiringReportComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onFirstDataRendered(params) {
-    setTimeout(function () {
-      params.api.getDisplayedRowAtIndex(1).setExpanded(false);
-    }, 0);
-  }
+  // onFirstDataRendered(params) {
+  //   this.gridApi = params.api;
+  //   setTimeout(function () {
+
+  
+  //     // params.api.getDisplayedRowAtIndex(1).setExpanded(false);
+  //   }, 0);
+  // }
 
   onGridReady(params) {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
     this.gridApi.closeToolPanel();
+    // this.autoSizeAll(false);
+    this.sizeToFit();
   }
 
   onBack(){
     this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.REPORTS.USERLIST);
   }
 
+  getHiringReportDetails(){
+    this.ApiService.getHiringReport().subscribe((res: any)=> {
+      this.rowData = res.data;
+    })
+  }
+  
+  sizeToFit() {
+    this.gridApi.sizeColumnsToFit();
+  }
 }

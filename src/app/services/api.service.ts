@@ -66,4 +66,9 @@ export class ApiService {
   getProctorVideo(data){
     return this.http.post(`${this.Prourl}/getProctorVideobyUserRoomId`, data);
   }
+
+  getHiringReport(){
+    return this.http.post(`${this.BASE_URL}/getAgegridReport`,'');
+  }
+  
 }
