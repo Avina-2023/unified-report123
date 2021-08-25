@@ -13,7 +13,8 @@ export const environment = {
   blobKey : "",
 
   API_BASE_URL: 'https://candidateqa.lntiggnite.com',
-  NODE_URL: 'https://uapcoreservicesdev.lntiggnite.com' 
+  NODE_EDGE_URL: 'https://edgeserviceqa.lntiggnite.com',
+  NODE_URL: 'https://uapcoreservicesdev.lntiggnite.com'
 };
 
 /*

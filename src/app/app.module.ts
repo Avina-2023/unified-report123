@@ -21,6 +21,8 @@ import {VgOverlayPlayModule} from '@videogular/ngx-videogular/overlay-play';
 import {VgBufferingModule} from '@videogular/ngx-videogular/buffering';
 import { AgGridModule } from 'ag-grid-angular';
 import 'ag-grid-enterprise';
+import { IsAccessGuard } from './guards/is-access.guard';
+import { IsloggedInGuard } from './guards/islogged-in.guard';
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
 };
@@ -60,11 +62,12 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   providers: [
     {
       provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true
-      },  
+      },
     {
       provide: PERFECT_SCROLLBAR_CONFIG,
       useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
     },
+    IsloggedInGuard, IsAccessGuard
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]

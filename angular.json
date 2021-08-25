@@ -41,7 +41,11 @@
                                 "src/assets/scss/"
                             ]
                         },
-                        "scripts": []
+                        "scripts": [
+                          "node_modules/jquery/dist/jquery.slim.min.js",
+                          "node_modules/jquery/dist/jquery.min.js",
+                          "node_modules/bootstrap/dist/js/bootstrap.min.js"
+                        ]
                     },
                     "configurations": {
                         "production": {
@@ -58,8 +62,8 @@
                             "buildOptimizer": true,
                             "budgets": [{
                                     "type": "initial",
-                                    "maximumWarning": "2mb",
-                                    "maximumError": "5mb"
+                                    "maximumWarning": "10mb",
+                                    "maximumError": "10mb"
                                 },
                                 {
                                     "type": "anyComponentStyle",
