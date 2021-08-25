@@ -33,3 +33,49 @@
 ::ng-deep .red {
     color: $primaryColor;
 }
+
+// ::ng-deep .yellow {
+//     color: $secondaryColor;
+// }
+::ng-deep .green-btn {
+    background: $successColor;
+}
+
+::ng-deep .red-btn {
+    background: $primaryColor;
+}
+
+::ng-deep .yellow-btn {
+    background: $secondaryColor;
+}
+
+::ng-deep .btnsm {
+    font-size: 14px;
+    height: 23px;
+    line-height: 0px;
+    border: none;
+    color: $whiteColor;
+    letter-spacing: 0.5px;
+    border-radius: 2px;
+    text-transform: capitalize !important;
+}
+
+::ng-deep .ag-body-horizontal-scroll-viewport {
+    height: 3px !important;
+    max-height: 10px !important;
+    min-height: 7px !important;
+}
+
+.outer-div {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.button-bar {
+    margin-bottom: 1rem;
+}
+
+.grid-wrapper {
+    flex: 1 1 auto;
+}
