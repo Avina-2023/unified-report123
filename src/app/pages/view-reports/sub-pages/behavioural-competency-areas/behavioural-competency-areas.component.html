@@ -7,8 +7,6 @@
         <div class="leftPan">
             <div *ngIf="verticalChartData && verticalChartData.length > 0">
                 <app-bar-chart (competencyId)="getParticularCompetencySkills($event)" [domains]="verticalChartData" [hideControls]="hideControls" [chartData]="verticalChartData"></app-bar-chart>
-                <!-- Below commented is for chart.js charts -->
-                <!-- <app-bar-chart [orientation]="'x'" [chartType]="'bar'" [values]="Skills" [labels]="competencieslabels"></app-bar-chart> -->
             </div>
         </div>
         <div class="rightPan" [@animSlider]="counter" #height>
@@ -18,7 +16,7 @@
                     <div class="sPan">
                         <div class="heading4">{{competency && competency.competencyname ? competency.competencyname : ''}}
                         </div>
-                        <app-horizontal-bar-chart (selectedArea)="selectedHorizontalArrayIndex($event, i)" [domains]="domain" [chartData]="competency.skills"></app-horizontal-bar-chart>
+                        <app-horizontal-bar-chart (selectedArea)="selectedHorizontalArrayIndex($event, i)" [hideControls]="hideControls" [domains]="domain" [chartData]="competency.skills"></app-horizontal-bar-chart>
                     </div>
                     <div class="aPan">
                         <div class="subhtxt">Skill areas <span (click)="resetAreas(i, competency)" class="ResetBtn "> <em class="icon-Refresh"></em>Reset</span></div>

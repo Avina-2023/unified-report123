@@ -70,4 +70,5 @@ export class ApiService {
   getHiringReport(){
     return this.http.post(`${this.BASE_URL}/getAgegridReport`,'');
   }
+  
 }
