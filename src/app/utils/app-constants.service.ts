@@ -22,7 +22,8 @@ export const APP_CONSTANTS = {
     REPORTS: {
       HOME: '/auth/reports',
       USERLIST: '/auth/reports/userlist',
-      VIEWREPORTS: '/auth/reports/viewreport' 
+      VIEWREPORTS: '/auth/reports/viewreport',
+      HIRINGREPORT:'/auth/reports/hiring' 
     }
   },
 
@@ -34,7 +35,8 @@ export const APP_CONSTANTS = {
     REPORTS: {
       HOME: 'reports',
       USERLIST: 'userlist',
-      VIEWREPORTS: 'viewreport'
+      VIEWREPORTS: 'viewreport',
+      HIRINGREPORT:'hiring'
     }
   }
 };

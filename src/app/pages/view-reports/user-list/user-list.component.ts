@@ -27,18 +27,6 @@ export class UserListComponent implements OnInit, OnChanges {
   searchBox = false;
   filterValue: string;
   quickSearchValue = '';
-
-//   columnDefs = [
-//     { field: 'make' },
-//     { field: 'model' },
-//     { field: 'price'}
-// ];
-
-// rowData = [
-//     { make: 'Toyota', model: 'Celica', price: 35000 },
-//     { make: 'Ford', model: 'Mondeo', price: 32000 },
-//     { make: 'Porsche', model: 'Boxter', price: 72000 }
-// ];
   constructor(private toastr: ToastrService, private ApiService: ApiService, private appconfig: AppConfigService) { }
 
   ngOnInit(): void {
@@ -46,7 +34,6 @@ export class UserListComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges() {
-  //   console.log('coming');
     this.tableDef();
   }
 
@@ -72,6 +59,9 @@ export class UserListComponent implements OnInit, OnChanges {
 
   onGridReady(params: any) {
     this.gridApi = params.api;
+  }
+  nav(){
+    this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.REPORTS.HIRINGREPORT);
   }
 
   sortevent(e) {

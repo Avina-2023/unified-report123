@@ -1,6 +1,6 @@
 import { AfterViewInit, Input, OnChanges } from "@angular/core";
 import { Component, OnInit, ViewChild, ElementRef, Output, EventEmitter } from '@angular/core';
- 
+
 
 @Component({
   selector: 'app-bar-chart',
@@ -38,6 +38,7 @@ export class BarChartComponent implements OnInit, OnChanges, AfterViewInit {
   xAxisLabel = 'Competencies';
   barPadding = 26;
   yAxisTicks = [0, 40, 80, 100];
+  horiTicks = [0, 100]
   colorScheme = {
     domain: ["#FF8C00", "#0085B6" , "#9DBC5B" , "#28B59A", "#03B8CB"]
   };
@@ -52,8 +53,8 @@ export class BarChartComponent implements OnInit, OnChanges, AfterViewInit {
     // this.setColorDomain();
     if (this.hideControls) {
       this.yAxisLabel = '';
-      this.yAxisTicks = [];
-      this.view = [500, 320];
+      // this.yAxisTicks = [];
+      this.barPadding = 20;
     }
   }
 
@@ -72,21 +73,46 @@ export class BarChartComponent implements OnInit, OnChanges, AfterViewInit {
     this.chartData.forEach(element => {
       if (element) {
         let ele = {
-          name: element.competencyname,
-          value: element.score,
-          id: element.competencyId,
-          color: element.areaColor
+          name: element.competencyname ? element.competencyname : '',
+          value: element.score ? element.score : '',
+          id: element.competencyId ? element.competencyId : '',
+          color: element.areaColor ? element.areaColor : ''
         }
         colorCode.push(element.areaColor);
         this.single.push(ele);
       }
     });
     this.colorScheme.domain = colorCode;
-    this.addEmptyData(this.chartData);
+    this.hideControls ? this.calculateWidthAndHeight() : this.addEmptyData(this.chartData);
   }
 
   ngAfterViewInit() {
   }
+
+  calculateWidthAndHeight() {
+    if (this.single && this.single.length <= 1) {
+      return this.view = [480, 110];
+     }
+    if (this.single && this.single.length <= 2) {
+      return this.view = [480, 150];
+     }
+    if (this.single && this.single.length <= 3) {
+     return this.view = [480, 200];
+    }
+    if (this.single && this.single.length <= 5) {
+      return this.view = [480, 250];
+    }
+    if (this.single && this.single.length <= 7) {
+      return this.view = [480, 300];
+    }
+    if (this.single && this.single.length <= 9) {
+      return this.view = [480, 350];
+    }
+    if (this.single && this.single.length <= 11) {
+      return this.view = [480, 450];
+    }
+  }
+
 
   addSpaces(i, name) {
     for (let index = 0; index < i; index++) {
