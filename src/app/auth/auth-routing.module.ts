@@ -9,7 +9,7 @@ const routes: Routes = [
     path: '', component: AuthComponent,
     children: [
       {
-        path: `${APP_CONSTANTS.ROUTES.REPORTS.HOME}`, loadChildren: () => import('../pages/view-reports/view-reports.module').then(m => m.ViewReportsModule), canActivate: [IsloggedInGuard]
+        path: `${APP_CONSTANTS.ROUTES.REPORTS.HOME}`, loadChildren: () => import('../pages/view-reports/view-reports.module').then(m => m.ViewReportsModule)
       },
       {
         path: '',

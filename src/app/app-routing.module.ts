@@ -10,11 +10,6 @@ const routes: Routes = [
   },
   {
     path: `${APP_CONSTANTS.ROUTES.AUTH}`, loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule), canActivate: [IsAccessGuard]
-  },
-  {
-    path: '',
-    redirectTo: `${APP_CONSTANTS.ROUTES.AUTH}`,
-    pathMatch: 'full',
   }
 ];
 
