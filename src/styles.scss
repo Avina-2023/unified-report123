@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 
-@import "normalize";
+// @import "normalize";
 @import "variables";
 @import "fonts";
 * {
@@ -14,12 +14,19 @@ $custom-typography: mat-typography-config($font-family: '"Roboto", normal !impor
 @import "../node_modules/ag-grid-community/dist/styles/ag-grid.css";
 @import "../node_modules/ag-grid-community/dist/styles/ag-theme-alpine.css";
 //Materials customization
+// @import '~vis-timeline/dist/vis-timeline-graph2d.min.css';
+// @import "vis-timeline/styles/vis-timeline-graph2d.css";
+// @import "../node_modules/vis-timeline/dist/vis-timeline-graph2d.min.css";
 
 /* width */
 
 ::-webkit-scrollbar {
     width: 6px;
     height: 6px;
+}
+
+.material-icons {
+    font-family: 'Material Icons' !important;
 }
 
 
@@ -95,7 +102,7 @@ ul {
 
 /*common*************************/
 
-.icon-cancel_black {
+.icon-uncheck {
     top: 5px;
     position: relative;
 }
@@ -167,26 +174,23 @@ ul {
     }
 }
 
-.mat-toolbar.mat-primary {
+mat-toolbar.header-toolbar {
     background: linear-gradient(90deg, #fff 14%, #fc0 25%)!important;
     height: 60px;
     box-shadow: 0 2px 4px -1px rgb(0 0 0 / 20%) !important;
-    margin-bottom: 5px;
     position: relative;
     z-index: 5;
 }
 
 .beforeloginimg {
-    height: 45px;
-    margin-left: 1.5em;
+    height: 40px;
+    margin-right: 15px;
 }
 
 .perfect-scrollbar {
     background-color: #f9f9f9;
-    margin-top: -6px;
     overflow: hidden;
     overflow-y: auto;
-    padding: 2em;
 }
 
 .footerPan {
@@ -211,7 +215,7 @@ ul {
 /*********Profile*****************/
 
 .reportContainer {
-    padding: 0 3.8em;
+    padding: 1em 4em 0 4em;
 }
 
 .profilearea {
@@ -269,8 +273,8 @@ ul {
     display: flex;
     flex-direction: row;
     >div {
-        margin-right: 1%;
-        min-width: 150px;
+        margin-right: 20px;
+        width: 150px;
         &:last-child {
             width: 100%;
             margin-right: 0;
@@ -283,7 +287,7 @@ ul {
         .viewprofile {
             display: none;
             position: absolute;
-            top: 44px;
+            top: 30px;
             left: 0;
             background-color: #0000005c;
             padding: 0.2em 1em;
@@ -301,15 +305,23 @@ ul {
         .viewprofile:hover {
             display: block;
         }
+        .photoholder {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            border-radius: 4px;
+            border: 1px solid #e5e5e5;
+            background-color: #fff;
+        }
     }
     span {
         color: $mediumGrey;
-        font-size: 1em;
+        font-size: 14px;
         display: block;
-        margin-bottom: 1em;
+        margin-bottom: 10px;
         text-align: left;
-        margin-top: 10px;
-        width: 170px;
+        width: 150px;
         position: relative;
         &.drag {
             margin-top: 0;
@@ -323,17 +335,24 @@ ul {
     }
     .imgProp {
         height: 170px;
-        border: 1px solid #cacaca;
-        border-radius: 5px;
     }
     .img-container {
-        width: 100%;
+        width: 80%;
         display: flex;
         flex-direction: row;
-        max-width: 100%;
+        max-width: 80%;
         min-height: 215px;
         position: relative;
         padding: 0;
+        .drag-scroll-content {
+            display: flex !important;
+            flex-direction: row;
+            .imgProp {
+                border-radius: 4px;
+                border: 1px solid #e5e5e5;
+                background-color: #fff;
+            }
+        }
     }
     .img-container:last-child {
         margin-right: 1%;
@@ -357,6 +376,7 @@ ul {
                 padding-top: 3em;
                 font-size: 23px;
                 text-align: center;
+                border-radius: 4px;
                 &:hover {
                     display: block;
                 }
@@ -421,6 +441,9 @@ ul {
         align-items: center;
         justify-content: center;
         border-radius: 25px;
+        &:hover {
+            background-color: #ffffff;
+        }
     }
 }
 
@@ -434,6 +457,7 @@ ng-image-slider {
 /******assment*****************************/
 
 .assessmentArea {
+    margin-top: 3em;
     .assessmentHeaderinfo {
         margin-top: 3em;
         .primaryClick {
@@ -446,6 +470,7 @@ ng-image-slider {
 
 .assessmentInfoarea {
     margin: 1.2em 0;
+    position: relative;
     .mat-expansion-panel {
         margin-bottom: 1.5em;
     }
@@ -475,8 +500,8 @@ ng-image-slider {
     .width-51 {
         width: 51% !important;
     }
-    .width-255 {
-        width: 255px !important;
+    .width-270 {
+        width: 270px !important;
     }
     .width-150 {
         width: 150px !important;
@@ -494,7 +519,7 @@ ng-image-slider {
             display: flex;
             flex-direction: row;
             align-items: center;
-            padding: 0.6em 0.8em;
+            padding: 0em 0.8em;
             border-right: 0.1em solid #e8e8e8;
             justify-content: center;
             //   min-width: 160px;
@@ -506,6 +531,7 @@ ng-image-slider {
                 flex-grow: 3.6;
                 justify-content: flex-start;
                 padding-left: 1.6em;
+                white-space: nowrap;
             }
             em {
                 color: #b3b3b3;
@@ -579,6 +605,10 @@ ng-image-slider {
         }
         .Summaryhtxt {
             font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 1em 0;
         }
     }
     //common styles
@@ -643,7 +673,7 @@ ng-image-slider {
             &:last-child {
                 border-right-width: 1px;
                 text-align: center;
-                font-size: 1.3em;
+                font-size: 1em;
                 min-width: 95px;
             }
             span {
@@ -670,6 +700,7 @@ ng-image-slider {
                 top: 0;
                 bottom: 0;
                 left: 0;
+                max-width: 100%;
             }
             .progressdata {
                 display: block;
@@ -704,7 +735,7 @@ ng-image-slider {
 /******assment*****************************/
 
 .CompetencyArea {
-    margin-top: 35px;
+    margin-top: 3em;
     .InfoDetailsArea {
         position: relative;
         display: flex;
@@ -715,8 +746,10 @@ ng-image-slider {
         box-shadow: 0px 1px 5px 0px rgb(0 0 0 / 12%);
         border: 1px solid #d4d4d4bd;
         border-radius: 4px;
+        ;
+        min-height: 550px;
         >div {
-            padding: 2em;
+            padding: 1.5em 2em;
             width: 50%;
             color: $lightGrey;
             display: flex;
@@ -725,7 +758,6 @@ ng-image-slider {
         .leftPan {
             background-color: $whiteColor;
             position: relative;
-            min-height: 250px;
             justify-content: space-between;
             border-radius: 4px 0 0 4px;
             .heading6 {
@@ -753,7 +785,6 @@ ng-image-slider {
             right: 0;
             left: 0;
             z-index: 5;
-            min-height: 480px;
             .ngx-charts {
                 margin-left: -2.2em;
             }
@@ -785,7 +816,12 @@ ng-image-slider {
                 display: flex;
                 margin-top: 14px;
                 flex-wrap: wrap;
-                max-width: 470px;
+                max-width: 100%;
+                max-height: 190px;
+                min-height: 150px;
+                overflow: hidden;
+                overflow-y: auto;
+                align-content: flex-start;
                 .btnBox {
                     background-color: transparent;
                     vertical-align: bottom;
@@ -798,7 +834,7 @@ ng-image-slider {
                     text-decoration: none;
                     -webkit-user-select: none;
                     user-select: none;
-                    border-radius: 1px;
+                    border-radius: 3px;
                     margin-right: 10px;
                     margin-bottom: 10px;
                     font-weight: 500;
@@ -819,15 +855,15 @@ ng-image-slider {
             }
             .chartContainer {
                 height: 100%;
+                padding-top: 1em;
                 >div.sPan {
                     min-height: 200px;
                     display: flex;
                     flex-direction: column;
-                    justify-content: space-between;
+                    justify-content: flex-start;
                 }
                 div.aPan {
-                    min-height: 200px;
-                    margin-top: 3em;
+                    padding: 2em 0.3em 0;
                 }
             }
         }
@@ -873,15 +909,16 @@ button.sliderBtn,
     background-color: #f9f9f9;
     border: none;
     border-radius: 50%;
-    height: 25px;
-    width: 25px;
+    height: 30px;
+    width: 30px;
     position: absolute;
-    box-shadow: 0 0 3px #00000052 !important;
+    border: 1px solid #dedede !important;
     padding: 3px;
     line-height: 1.5;
     z-index: 5;
     outline: none;
     top: 14.5em;
+    padding-top: 5px;
     &.doc {
         top: 0;
         background-color: #fff;
@@ -1039,4 +1076,232 @@ mat-icon {
 
 :host ::ng-deep .textDataLabel {
     font-size: 14px !important;
+}
+
+.question_dialog {
+    .SummaryInfoArea {
+        max-height: 223px;
+        overflow: auto;
+        padding-right: 20px;
+    }
+    mat-dialog-container {
+        padding: 10px 15px;
+    }
+    .ContentInfoDetails {
+        padding: 0;
+        margin-bottom: 1.5em;
+        border: none;
+        >div {
+            display: flex;
+            align-items: center;
+            border-left: 1px solid #ececec;
+            padding-left: 25px;
+            em {
+                font-size: 2em;
+                margin-right: 0.6em;
+            }
+            span {
+                font-size: 1.4em;
+                font-weight: 500;
+            }
+        }
+        div:first-child {
+            border: none;
+        }
+    }
+    .assessmentInfoarea .expandheaderArea {
+        >div {
+            padding: 0 0.5em;
+            font-size: 1.4em;
+            font-weight: 500;
+            border: none;
+        }
+        .txtinfo {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            font-size: 1.4em;
+            padding-right: 75px;
+            span {
+                padding: 0;
+                font-size: 0.6em;
+                font-weight: normal;
+                margin-right: -68px;
+            }
+        }
+    }
+    .assessmentHeaderinfo {
+        margin-top: 0;
+    }
+    .ContentInfoSummary {
+        padding: 0.3em 1em;
+        padding-right: 0;
+    }
+}
+
+.question_table {
+    width: 100%;
+    th {
+        font-weight: 600 !important;
+        color: #000 !important;
+        background-color: #f4f4f4;
+        padding: 0.5em 1.2em !important;
+        border: 1px solid #dbdbdb;
+        &:first-child {
+            width: 10% !important;
+        }
+    }
+    td {
+        font-weight: normal !important;
+        color: #757575 !important;
+        font-size: 14px !important;
+        padding: 0.3em 0.5em !important;
+        border: 1px solid #dbdbdb;
+        &.text-center {
+            text-align: center;
+        }
+        span {
+            color: #757575 !important;
+        }
+        &:first-child {
+            width: 10% !important;
+            color: #757575 !important;
+        }
+        .icon-uncheck {
+            color: #e36563 !important;
+            font-size: 20px;
+        }
+        .icon-CheckMark {
+            color: #8bd5b5 !important;
+            font-size: 17px;
+        }
+        .ans-green {
+            color: #8bd5b5 !important;
+        }
+        .ans-red {
+            color: #e36563 !important;
+        }
+    }
+}
+
+.closedailog {
+    position: absolute;
+    right: 1px;
+    top: -13px;
+    font-size: 11px;
+}
+
+mat-dialog-container {
+    padding: 15px 20px;
+    .Pmain {
+        >div:last-child {
+            border: none;
+        }
+        .Pheader {
+            max-width: 100%;
+        }
+    }
+    .videosection {
+        display: flex;
+        margin-top: 35px;
+        .leftpan {
+            flex-grow: 5;
+            video {
+                border-radius: 4px;
+            }
+        }
+        .rightpan {
+            flex-grow: 2;
+            width: 250px;
+            height: 465px;
+            overflow: scroll;
+            display: flex;
+            justify-content: flex-start;
+            flex-direction: column;
+            .videothumb {
+                border-radius: 4px;
+                background-color: #e6faf3;
+                height: 160px;
+                width: 265px;
+                margin-bottom: 5px;
+                overflow: hidden;
+                padding: 10px 12px;
+                border-left: 3px solid #17d087;
+                box-sizing: border-box;
+                display: flex;
+                align-content: center;
+                flex-direction: column;
+                justify-content: center;
+                video {
+                    border-radius: 4px;
+                    background-color: #282828;
+                }
+            }
+            .chartsec {
+                width: 100%;
+                margin-top: 30px;
+                padding: 6px 9px 6px 5px;
+                margin-bottom: 35px;
+                border-left: 3px solid #17d087;
+                box-sizing: border-box;
+                display: flex;
+                align-content: center;
+                flex-direction: column;
+                background-color: #e6faf3;
+                padding-top: 0;
+                .label {
+                    color: #13a8c6;
+                    margin: 5px 0;
+                }
+            }
+        }
+        .chart {
+            display: table;
+            table-layout: fixed;
+            width: 100%;
+            max-width: 700px;
+            height: 150px;
+            margin: 0 auto;
+            li {
+                position: relative;
+                display: table-cell;
+                vertical-align: bottom;
+                height: 150px;
+                width: 20px;
+                text-align: center;
+            }
+            span {
+                // margin: 0 1em;
+                display: inline-block;
+                background: rgba(#ff5253, .75);
+                animation: draw 1s ease-in-out;
+                width: 18px;
+                font-size: 11px;
+                line-height: 0;
+                &:before {
+                    position: absolute;
+                    // left: 18px;
+                    // right: 3px;
+                    // width: 20px;
+                    font-size: 10px;
+                    top: 100%;
+                    padding: 3px 0em 0px 0px;
+                    display: block;
+                    content: attr(title);
+                    word-wrap: break-word;
+                    min-width: 20px;
+                    left: 0;
+                    line-height: 1.9;
+                }
+            }
+        }
+    }
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+    font-family: 'Roboto';
 }

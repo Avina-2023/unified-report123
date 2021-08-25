@@ -1,17 +1,17 @@
 <section class="CompetencyArea">
-    <div class="heading6">
+    <div class="heading6" *ngIf="verticalChartData && verticalChartData.length > 0">
         Cognitive and Technical Competencies
 
     </div>
-    <div class="InfoDetailsArea">
+    <div class="InfoDetailsArea" *ngIf="verticalChartData && verticalChartData.length > 0">
         <div class="leftPan">
-            <div *ngIf="verticalChartData && verticalChartData.length > 0">
+            <div>
                 <app-bar-chart (competencyId)="getParticularCompetencySkills($event)" [domains]="verticalChartData" [chartData]="verticalChartData"></app-bar-chart>
                 <!-- Below commented is for chart.js charts -->
                 <!-- <app-bar-chart [orientation]="'x'" [chartType]="'bar'" [values]="Skills" [labels]="competencieslabels"></app-bar-chart> -->
             </div>
         </div>
-        <div class="rightPan" [@animSlider]="counter">
+        <div class="rightPan" [@animSlider]="counter" #height>
 
             <ng-container *ngFor="let competency of competancyData; let i = index">
                 <div *ngIf="i===counter" class="chartContainer">
@@ -38,8 +38,8 @@
             </div>
         </div>
         <span class="triangle-left"></span>
-
     </div>
+    <div class="clearfix"></div>
 </section>
 
 <ng-template #noChart>

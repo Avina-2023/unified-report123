@@ -1,57 +1,6 @@
 import { AfterViewInit, Input, OnChanges } from "@angular/core";
 import { Component, OnInit, ViewChild, ElementRef, Output, EventEmitter } from '@angular/core';
-import {
-  Chart,
-  ArcElement,
-  LineElement,
-  BarElement,
-  PointElement,
-  BarController,
-  BubbleController,
-  DoughnutController,
-  LineController,
-  PieController,
-  PolarAreaController,
-  RadarController,
-  ScatterController,
-  CategoryScale,
-  LinearScale,
-  LogarithmicScale,
-  RadialLinearScale,
-  TimeScale,
-  TimeSeriesScale,
-  Decimation,
-  Filler,
-  Legend,
-  Title,
-  Tooltip
-} from 'chart.js';
 
-Chart.register(
-  ArcElement,
-  LineElement,
-  BarElement,
-  PointElement,
-  BarController,
-  BubbleController,
-  DoughnutController,
-  LineController,
-  PieController,
-  PolarAreaController,
-  RadarController,
-  ScatterController,
-  CategoryScale,
-  LinearScale,
-  LogarithmicScale,
-  RadialLinearScale,
-  TimeScale,
-  TimeSeriesScale,
-  Decimation,
-  Filler,
-  Legend,
-  Title,
-  Tooltip
-);
 
 @Component({
   selector: 'app-bar-chart',
@@ -67,6 +16,7 @@ export class BarChartComponent implements OnInit, OnChanges, AfterViewInit {
   @Input('values') chartValues: any;
   @Input('labels') chartLabels: any;
   @Input('orientation') orient: any;
+  @Input('hideControls') hideControls: any;
   // Charts module initializtion end
 
   // ngx charts start
@@ -88,6 +38,7 @@ export class BarChartComponent implements OnInit, OnChanges, AfterViewInit {
   xAxisLabel = 'Competencies';
   barPadding = 26;
   yAxisTicks = [0, 40, 80, 100];
+  horiTicks = [0, 100]
   colorScheme = {
     domain: ["#FF8C00", "#0085B6" , "#9DBC5B" , "#28B59A", "#03B8CB"]
   };
@@ -97,28 +48,14 @@ export class BarChartComponent implements OnInit, OnChanges, AfterViewInit {
   constructor() {
   }
 
-  calculateWidthAndHeight() {
-    if (this.single && this.single.length <= 3) {
-     return this.view = [500, 350];
-    }
-    if (this.single && this.single.length <= 5) {
-      return this.view = [350, 180];
-    }
-    if (this.single && this.single.length <= 7) {
-      return this.view = [490, 252];
-    }
-    if (this.single && this.single.length <= 9) {
-      return this.view = [630, 324];
-    }
-    if (this.single && this.single.length <= 11) {
-      return this.view = [420, 770];
-    }
-  }
-
   async ngOnInit() {
     await this.getCompetencyData();
     // this.setColorDomain();
-    // this.calculateWidthAndHeight();
+    if (this.hideControls) {
+      this.yAxisLabel = '';
+      // this.yAxisTicks = [];
+      this.barPadding = 20;
+    }
   }
 
   async ngOnChanges() {
@@ -136,21 +73,46 @@ export class BarChartComponent implements OnInit, OnChanges, AfterViewInit {
     this.chartData.forEach(element => {
       if (element) {
         let ele = {
-          name: element.competencyname,
-          value: element.score,
-          id: element.competencyId,
-          color: element.areaColor
+          name: element.competencyname ? element.competencyname : '',
+          value: element.score ? element.score : '',
+          id: element.competencyId ? element.competencyId : '',
+          color: element.areaColor ? element.areaColor : ''
         }
         colorCode.push(element.areaColor);
         this.single.push(ele);
       }
     });
     this.colorScheme.domain = colorCode;
-    this.addEmptyData(this.chartData);
+    this.hideControls ? this.calculateWidthAndHeight() : this.addEmptyData(this.chartData);
   }
 
   ngAfterViewInit() {
   }
+
+  calculateWidthAndHeight() {
+    if (this.single && this.single.length <= 1) {
+      return this.view = [480, 110];
+     }
+    if (this.single && this.single.length <= 2) {
+      return this.view = [480, 150];
+     }
+    if (this.single && this.single.length <= 3) {
+     return this.view = [480, 200];
+    }
+    if (this.single && this.single.length <= 5) {
+      return this.view = [480, 250];
+    }
+    if (this.single && this.single.length <= 7) {
+      return this.view = [480, 300];
+    }
+    if (this.single && this.single.length <= 9) {
+      return this.view = [480, 350];
+    }
+    if (this.single && this.single.length <= 11) {
+      return this.view = [480, 450];
+    }
+  }
+
 
   addSpaces(i, name) {
     for (let index = 0; index < i; index++) {
@@ -231,47 +193,5 @@ export class BarChartComponent implements OnInit, OnChanges, AfterViewInit {
   emitCompetencyId(id) {
     this.competencyId.emit(id);
   }
-
-  chartsModule() {
-    this.canvas = this.chartContainer.nativeElement;
-    this.ctx = this.canvas.getContext('2d');
-    let chartdata:any = {
-      labels: this.chartLabels,
-      datasets: [{
-        label: 'Skill Score',
-        data: this.chartValues,
-        backgroundColor: ['#c84656', '#dfbd3f', '#68d886', '#95c923', '#fec623'],
-      borderWidth: 0,
-      borderRadius:0
-      }]
-  }
-  // this.type==="radar"?chartdata.datasets[0].fillColor = "rgba(255,10,13,255)":''
-    let myChart = new Chart(this.ctx, {
-    type: this.type,
-    data:chartdata,
-    options: {
-      responsive: false,
-      legend: {
-        display: false
-     },
-      scales: {
-        yAxes: [{
-          gridLines: {
-            display: false,
-          },
-        }],
-        xAxes: [{
-          gridLines: {
-            display: false,
-          },
-        }],
-      },
-      indexAxis: this.orient,
-      scaleShowLabels : false
-    },
-  //   options: {
-  //   indexAxis: this.orient,
-  // }
-    });
-  }
 }
+

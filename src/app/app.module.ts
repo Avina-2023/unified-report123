@@ -14,7 +14,15 @@ import { PerfectScrollbarConfigInterface, PerfectScrollbarModule, PERFECT_SCROLL
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { InterceptorService } from './interceptor/interceptor.service';
 import { DragScrollModule } from 'ngx-drag-scroll';
-
+// import { VgCoreModule, } from '@videogular/ngx-videogular/core';
+import {VgCoreModule} from '@videogular/ngx-videogular/core';
+import {VgControlsModule} from '@videogular/ngx-videogular/controls';
+import {VgOverlayPlayModule} from '@videogular/ngx-videogular/overlay-play';
+import {VgBufferingModule} from '@videogular/ngx-videogular/buffering';
+import { AgGridModule } from 'ag-grid-angular';
+import 'ag-grid-enterprise';
+import { IsAccessGuard } from './guards/is-access.guard';
+import { IsloggedInGuard } from './guards/islogged-in.guard';
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
 };
@@ -24,6 +32,10 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     AppComponent
   ],
   imports: [
+    VgCoreModule,
+    VgControlsModule,
+    VgOverlayPlayModule,
+    VgBufferingModule,
     BrowserModule,
     FormsModule,
     CommonModule,
@@ -34,6 +46,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     SharedModule,
     DragScrollModule,
     PerfectScrollbarModule,
+    AgGridModule,
     ToastrModule.forRoot(
       {
         timeOut: 3000,
@@ -49,11 +62,12 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   providers: [
     {
       provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true
-      },  
+      },
     {
       provide: PERFECT_SCROLLBAR_CONFIG,
       useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
     },
+    IsloggedInGuard, IsAccessGuard
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]

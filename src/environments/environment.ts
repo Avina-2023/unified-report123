@@ -13,6 +13,9 @@ export const environment = {
   blobKey : "",
 
   API_BASE_URL: 'https://candidateuat.lntedutech.com',
+  NODE_EDGE_URL: 'https://edgeserviceuat.lntedutech.com',
+  NODE_URL: 'https://edgeserviceuat.lntedutech.com',
+  PROCTOR_URL : 'http://lntproctor.lntedutech.com/api/storage/'
 };
 
 /*

@@ -1,5 +1,5 @@
 <section class="assessmentArea">
-    <div class="assessmentHeaderinfo">
+    <div class="assessmentHeaderinfo" *ngIf=" assessmentsList && assessmentsList[0].section[0].length > 0">
         <div class="heading6">Assessment Details</div>
     </div>
 
@@ -10,36 +10,36 @@
           let i = index;
           first as isFirst
         ">
-                <mat-expansion-panel [expanded]="false">
+                <mat-expansion-panel [expanded]="false" *ngIf="assessment.assessmentname">
                     <mat-expansion-panel-header>
                         <div class="expandheaderArea">
                             <div class="width-51">
                                 <em class="icon-Assessment"></em>
                                 <span>Test Name:
-                  <span>{{ assessment.assessmentname ? assessment.assessmentname : '-' }}</span>
+                                    <span>{{ assessment.assessmentname ? assessment.assessmentname : '-' }}</span>
                                 </span>
                             </div>
-                            <div class="width-255">
+                            <div class="width-270">
                                 <em class="icon-Booked"></em>
                                 <span>Test Taken on:
-                  <span>{{
-                    assessment.assessmentdate
-                    ? momentForm(assessment.assessmentdate)
-                    : "-"
-                    }}</span>
+                                    <span>{{
+                                        assessment.assessmentdate
+                                        ? momentForm(assessment.assessmentdate)
+                                        : "-"
+                                        }}</span>
                                 </span>
                             </div>
                             <div class="width-150">
                                 <em class="icon-SpeedoMeter"></em>
                                 <span>Total Score:
-                  <span class="color-black">{{ assessment.score ? assessment.score : 0
-                  }}/{{ assessment.maxscore ? assessment.maxscore : 0 }}</span>
+                                    <span class="color-black">{{ assessment.score ? assessment.score : 0
+                                        }}/{{ assessment.maxscore ? assessment.maxscore : 0 }}</span>
                                 </span>
                             </div>
                             <div class="width-168">
                                 <!-- <em class="icon-Like"></em> -->
                                 <span>Rating:
-                  <span [ngClass]="{
+                                    <span [ngClass]="{
                       warningColor: assessment.percentageScore < 40,
                       WarnColor:
                         assessment.percentageScore >= 40 &&
@@ -55,12 +55,12 @@
                         <div class="ContentInfoDetails">
                             <div>
                                 Test Time
-                                <span>{{ assessment.duration ? assessment.duration : 0  }}<span>Mins</span></span>
+                                <span>{{ assessment.duration ? assessment.duration : 0 }}<span>Mins</span></span>
                             </div>
                             <div>
                                 Test Taken
                                 <span>{{ getTimetaken(assessment.timetaken)}}</span>
-                                <span>{{TimeTakenMins != undefined ? TimeTakenMins  : '0' }}<span>Mins</span> {{timeTakenSec != undefined ? timeTakenSec : '0' }}<span>sec</span></span>
+                                <span>{{TimeTakenMins != undefined ? TimeTakenMins : '0' }}<span>Mins</span> {{timeTakenSec != undefined ? timeTakenSec : '0' }}<span>sec</span></span>
                             </div>
                             <!-- <div>
                                 Marks Scored
@@ -70,21 +70,71 @@
                             <div>
                                 Proctoring
                                 <span>{{ assessment.proctored ? "Yes" : "No"
-                  }}<span *ngIf="assessment.proctored" class="warningColor">View Details</span></span>
+                                    }}<span *ngIf="assessment.proctored" class="warningColor pointer"
+                                        (click)="open(assessment)">View Details</span></span>
                             </div>
                             <div class="primaryInfo">
                                 Completion
                                 <span [ngClass]="{ warningColor: assessment.compilation == false, successColor: assessment.compilation == true
-                                }"><em  class="icon-{{assessment.compilation ? 'checked' : 'cancel_black'}}"></em>
-                                <span>{{assessment.compilation ? "Completed" : "Not Completed"}}</span></span>
+                                }"><em class="icon-{{assessment.compilation ? 'checked' : 'uncheck'}}"></em>
+                                    <span>{{assessment.compilation ? "Completed" : "Not Completed"}}</span></span>
                             </div>
                         </div>
                         <div class="ContentInfoSummary">
                             <div class="assessmentHeaderinfo">
                                 <div class="Summaryhtxt">
                                     Sectional Summary
-                                    <!-- <span class="primaryClick"><em class="icon-right-next"></em> View Questionwise Analysis</span> -->
+                                    <span class="primaryClick" (click)="questionview(assessment);inboundClick = !inboundClick"><em
+                                            class="icon-right-next"></em> View Questionwise Analysis</span>
                                 </div>
+                                <div *ngIf="inboundClick">
+                                    <ng-container *ngIf="listOfSections && listOfSections.length > 0">
+                                        <ng-container *ngFor="let sections of listOfSections; let j = index;">
+                                            <mat-expansion-panel [expanded]="false" *ngIf="listOfSections[0].testName == assessment.assessmentname">
+                                                <mat-expansion-panel-header>
+                                                    <div class="expandheaderArea">
+                                                        <div class="htxt">{{sections._id}}</div>
+                                                        <div class="txtinfo">
+                                                            <span>No. of Questions</span> {{sections.tableList.length}}
+                                                        </div>
+                                                    </div>
+                                                </mat-expansion-panel-header>
+
+                                                <div class="expandContentArea">
+                                                    <div class="ContentInfoSummary">
+                                                        <div class="SummaryInfoArea">
+                                                            <table class="question_table" border="0" cellpadding="0" cellspacing="0">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>Question No.</th>
+                                                                        <th>Question Code</th>
+                                                                        <th>Question Type</th>
+                                                                        <th class="text-center">Correct / InCorrect</th>
+                                                                        <th>Answered / Unanswered</th>
+                                                                        <th>Score / Max Score</th>
+                                                                        <th>Time Spent (In min.)</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr *ngFor="let tableData of sections?.tableList; let j = index">
+                                                                        <td class="text-center">Q{{j+1}}</td>
+                                                                        <td>{{ tableData ? tableData.itemid : '-'}}</td>
+                                                                        <td>{{tableData ? tableData.type : '-'}}</td>
+                                                                        <td class="text-center"><span><em class="icon-{{ tableData.correct == true ? 'CheckMark' : 'uncheck' }}"></em></span></td>
+                                                                        <td>{{tableData ? tableData.status : '-'}}</td>
+                                                                        <td class="text-center">{{tableData ? tableData.score : '0'}} / {{tableData ? tableData.maxscore : '0'}}</td>
+                                                                        <td class="text-center">{{tableData ? tableData.timetaken : '-'}}</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </mat-expansion-panel>
+                                        </ng-container>
+                                    </ng-container>
+                                </div>
+
                             </div>
                             <div class="SummaryInfoArea">
                                 <table class="summaryTable" border="0" cellpadding="0" cellspacing="0">
@@ -112,7 +162,8 @@
                                                     <div class="progressbar color-bluebar" [ngStyle]="{
                                                       width: (section.attendedquestions / section.overallquestions) * 100 + '%' }"></div>
                                                     <div class="progressdata">
-                                                        <span>{{ section.attendedquestions ? section.attendedquestions : '-' }}</span>/ {{ section.overallquestions ? section.overallquestions : '-' }}
+                                                        <span>{{ section.attendedquestions ? section.attendedquestions :
+                                                            '-' }}</span>/ {{ section.overallquestions ? section.overallquestions : '-' }}
                                                     </div>
                                                 </td>
                                                 <!-- <td>
@@ -135,13 +186,22 @@
                                                 </td>
                                                 <td>
                                                     <div class="progressbar color-yellowbar" [ngStyle]="{
-                                                   width:(section.timetaken / section.overallduration) * 100 + '%'}"></div>
-                                                    <div class="progressdata">
-                                                        <span *ngIf="section.timetaken != 0">{{ getTimetaker(section.timetaken)}}</span>
-                                                        <span *ngIf="section.timetaken != 0">{{TimeTakerMins != undefined ? TimeTakerMins + ' Mins ' : '0 Mins' }} {{timeTakerSec != undefined ? timeTakerSec  + ' sec' : '' }}</span>
+                                                   width:(section.timetaken / section.overallduration) * 100 + '%'}">
+                                                    </div>
+                                                    <div *ngIf="section && section.timetaken" class="progressdata">
+                                                        <span *ngIf="section.timetaken != 0">{{
+                                                            getTimetaker(section.timetaken)}}</span>
+                                                        <span *ngIf="section.timetaken != 0">{{TimeTakerMins !=
+                                                            undefined ? TimeTakerMins + ' Mins ' : '0 Mins' }}
+                                                            {{timeTakerSec != undefined ? timeTakerSec + ' sec' : ''
+                                                            }}</span>
                                                         <!-- /{{ section.overallduration }} -->
                                                         <span *ngIf="section.timetaken == 0">{{section.timetaken}}</span>
                                                     </div>
+                                                    <div *ngIf="!section.timetaken" class="progressdata">
+                                                        <span>{{'0'}}</span>
+                                                    </div>
+
                                                 </td>
                                                 <td>
                                                     <div class="likeSec">
@@ -166,4 +226,105 @@
             </ng-container>
         </ng-container>
     </div>
+    <div class="clearfix"></div>
 </section>
+
+<!-- <ng-template #question>
+
+    <div class="assessmentInfoarea">
+        <span class="closedailog" (click)="closeBox()"><em class="icon-Close btn-close"></em></span>
+        <div class="ContentInfoDetails">
+            <div>
+                <em class="icon-Assessment"></em>
+                <div>
+                    Candidate Name:
+                    <span>{{ sectionData.candidateName }}</span>
+                </div>
+            </div>
+            <div>
+                <em class="icon-Assessment"></em>
+                <div>
+                    Test Name:
+                    <span>{{ sectionData.assessmentName }}</span>
+                </div>
+            </div>
+            <div>
+                <em class="icon-Booked"></em>
+                <div>
+                    Test Taken on:
+                    <span>{{sectionData.assessmentDate  ? momentForm(sectionData.assessmentDate)
+                        : "-"}}</span>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</ng-template> -->
+
+<ng-template #matDialog1>
+    <span class="closedailog" (click)="closeBox()"><em class="icon-Close btn-close"></em></span>
+    <section>
+        <div class="Pmain">
+            <div class="row">
+                <div class="col-3">
+                    <div class="Pheader">Proctoring Video</div>
+                    <span class="psubHeader">Candidate Name : {{ userInfo.candidateName }}</span>
+                </div>
+
+                <div class="col-5 dis-flex ">
+                    <em class="icon-Assessment icon-bag"></em>
+                    <div>
+                        <div></div>
+                        <div class="psubHeader">Test Name:</div>
+                        <span class="Pheader">{{ userInfo.assessmentName }}</span>
+                    </div>
+                </div>
+
+                <div class="col-4 dis-flex">
+                    <em class="icon-Booked icon-bag"></em>
+                    <div>
+                        <div></div>
+                        <div class="psubHeader">Test Taken on:</div>
+                        <span class="Pheader">{{userInfo.assessmentDate  ? momentForm(userInfo.assessmentDate)
+                            : "-"}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="videosection">
+        <div class="leftpan">
+
+            <div class="video" *ngIf="currentItem.src">
+                <video controls autoplay id="myVideo" name="media" width="700px" height="450px" (ended)="nextVideo()">
+                <source id="sourceVideo" [src]="currentItem.src" type="video/mp4">
+            </video>
+            </div>
+        </div>
+        <div class="rightpan">
+            <div *ngFor="let miniVideo of playVideoList; let x = index">
+                <div class="videothumb" *ngIf="!miniVideo.chart">
+                    <video controls name="media" width="95%" height="150px">
+                <source id="sourceVideo" [src]="miniVideo.src" type="video/mp4">
+            </video>
+                </div>
+                <div class="chartsec" *ngIf="miniVideo.chart">
+                    <div class="label">
+                        <span>{{ userInfo.candidateName }}</span>
+                    </div>
+
+                    <div>
+                        <ul class="chart">
+                            <li *ngFor="let chart of miniVideo.chart; let a = index">
+                                <span [ngStyle]="{height: (chart.value / 100) * 100 + '%'}" [title]="chart.key"> {{chart.value}}</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>
