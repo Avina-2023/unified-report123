@@ -25,6 +25,10 @@ export class ApiService {
     return this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.LOGIN);
   }
 
+  login(data: any) {
+    return this.http.post(`${this.BASE_URL}/login`, data);
+  }
+
   getReportsDataAPI(data) {
     return this.http.post(`${this.BASE_URL}/getunifiedReport`, data);
   }
@@ -70,5 +74,5 @@ export class ApiService {
   getHiringReport(){
     return this.http.post(`${this.BASE_URL}/getAgegridReport`,'');
   }
-  
+
 }

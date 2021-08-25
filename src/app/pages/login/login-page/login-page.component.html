@@ -1,0 +1,93 @@
+<div>
+    <!-- <app-header></app-header> -->
+    <mat-toolbar class="headerShadow">
+        <img class="hearder-logo " alt="" src="../../../../assets/images/lnt.svg">
+    </mat-toolbar>
+
+    <div class="limiter">
+        <div class="row container-reg200">
+            <div class="igniteLogo col-xl-8 col-md-6 col-sm-12 col-12 border-right no_pl">
+                <div class="main-logo">
+                    <img alt="" style="width: inherit" src="https://assets.lntedutech.com/edutech_logo.svg">
+
+                </div>
+            </div>
+            <div class="loginWrapper col-xl-4 col-md-6 col-sm-12 col-12">
+                <div class="wrap-reg">
+                    <form [formGroup]="loginForm" autocomplete="off">
+                        <h1 class="animated animatedFadeInUp fadeInUp signIn"> {{'Sign in to your account'}}</h1> <br><br>
+                        <mat-card-content style="margin-top:10px">
+
+                            <mat-form-field appearance="outline">
+                                <mat-label class="label-color">{{'Username'}}</mat-label>
+                                <input matInput id="username" [placeholder]="'Enter the User name'" formControlName="username" maxlength="64" required>
+                                <mat-icon matPrefix class="icon-color">mail_outline</mat-icon>
+                                <!-- {{username}} -->
+                            </mat-form-field>
+                            <ng-container *ngIf="username.invalid && username.touched">
+                                <mat-error class="error" *ngIf="username?.errors?.required">{{'User name is required'}}</mat-error>
+
+                                <mat-error class="error" *ngIf="username.errors?.pattern">{{'Please enter a valid User name'}}</mat-error>
+                            </ng-container>
+
+                            <div class="space-20"></div>
+
+                            <mat-form-field appearance="outline">
+                                <mat-label class="label-color">{{'Password'}}</mat-label>
+                                <input matInput [placeholder]="'Enter password'" [type]="hide ? 'password' : 'text'" formControlName="password" [ngClass]="{ 'is-invalid': password?.touched && password?.errors?.required}" required>
+                                <mat-icon class="icon-color" matPrefix>lock_outline</mat-icon>
+                                <span mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                  <mat-icon class="icon-color">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                  </span>
+                            </mat-form-field>
+                            <ng-container *ngIf="password?.invalid && password?.touched">
+                                <mat-error class="error" *ngIf="password?.errors?.required">{{'Password is required'}}</mat-error>
+                            </ng-container>
+                            <div class="space-20"></div>
+
+                            <div class="space-20"></div>
+
+                            <div class="center">
+                                <button class="btn" id="login" mat-raised-button (click)="login()">{{'SIGN IN'}}</button>
+                                <!-- [disabled]="disableButton" -->
+                            </div>
+
+                            <!-- <div class="sign_up">
+                <span class="haveacc">Don't have an account?</span>
+                <a [routerLink]="['/Learner/register']"><span class="col">{{'Sign up'}}</span></a> </div><br> -->
+                        </mat-card-content>
+                    </form>
+                    <!-- <div class="info-card animate" *ngIf="infoClose">
+            <div class="info-bodyWrapper">
+            <div class="info-title d-flex justify-content-between align-items-center">
+              <div><i class="lxp-info-circle"></i><span>info</span></div>
+              <div (click)="infoClose = infoClose?false:true"><i class="lxp-Close"></i></div>
+            </div>
+            <div class="info-content">
+              <ul>
+                <li>Please clear browser cache before logging into the application.</li>
+                <li>If you need any assistance, kindly reach us at <a href="mailto:collegeconnect.support@lntedutech.com">collegeconnect.support@lntedutech.com</a>.</li>
+              </ul>
+            </div>
+          </div>
+          </div> -->
+                    <div class="" id="footer">
+                        <div class="col-12">
+                            <span class="forgot1">2021 © L&T EduTech All Rights Reserved</span>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-4">
+                    <!-- <span class="powered">
+            <img class="footericon" alt="" src="assets/learner/LT_small.svg">
+          </span> -->
+                </div>
+            </div>
+
+
+
+        </div>
+
+    </div>
+</div>
