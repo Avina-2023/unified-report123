@@ -11,6 +11,7 @@ import * as CryptoJS from 'crypto-js';
 export class ApiService {
 
   BASE_URL = environment.API_BASE_URL;
+  EDGE_URL = environment.NODE_EDGE_URL;
   Prourl = environment.NODE_URL;
   EncryptKEY = environment.encryptionKey;
   constructor(
@@ -23,6 +24,10 @@ export class ApiService {
     this.appConfig.clearLocalStorage();
     this.toastr.warning('You have been logged out successfully');
     return this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.LOGIN);
+  }
+
+  login(data: any) {
+    return this.http.post(`${this.EDGE_URL}/login`, data);
   }
 
   getReportsDataAPI(data) {
@@ -70,5 +75,5 @@ export class ApiService {
   getHiringReport(){
     return this.http.post(`${this.BASE_URL}/getAgegridReport`,'');
   }
-  
+
 }
