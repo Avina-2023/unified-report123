@@ -4,6 +4,7 @@ import * as moment from 'moment'; //in your component
 import _ from 'lodash';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from '../../../../services/api.service';
+import { environment } from 'src/environments/environment.prod';
 // import { Timeline } from 'vis-timeline';
 // import { DataSet } from 'vis-data';
 
@@ -18,6 +19,7 @@ import { ApiService } from '../../../../services/api.service';
 })
 
 export class BehaviouralAssessmentInfoComponent implements OnInit, OnChanges {
+  proctor_url = environment.PROCTOR_URL;
   @Input() getAllReportsData;
   @Input() driveName;
   @ViewChild('sourceVideo',{static: false}) video: TemplateRef<any>;
@@ -160,13 +162,13 @@ export class BehaviouralAssessmentInfoComponent implements OnInit, OnChanges {
                       id:iterator.id,
                       filename:iterator.filename,
                       poster:iterator.id,
-                      src: 'https://proctoring.southeastasia.cloudapp.azure.com/api/storage/'+iterator.id+'?token='+response.token,
+                      src: this.proctor_url+iterator.id+'?token='+response.token,
                     })
                   this.playlist.push({
                     id:iterator.id,
                     filename:iterator.filename,
                     poster:iterator.id,
-                    src: 'https://proctoring.southeastasia.cloudapp.azure.com/api/storage/'+iterator.id+'?token='+response.token,
+                    src: this.proctor_url+iterator.id+'?token='+response.token,
                   })
                   i++
                 }
