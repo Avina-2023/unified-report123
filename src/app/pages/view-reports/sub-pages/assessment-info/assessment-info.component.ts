@@ -5,7 +5,7 @@ import _ from 'lodash';
 import { VgAPI, VgFullscreenAPI } from 'ngx-videogular';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from '../../../../services/api.service';
-import { Label, Color } from 'ng2-charts';
+// import { Label, Color } from 'ng2-charts';
 import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-assessment-info',
@@ -40,7 +40,7 @@ export class AssessmentInfoComponent implements OnInit, OnChanges {
   inboundClick = false;
 
 
-  constructor(private http: HttpClient ,public matDialog: MatDialog,private toastr: ToastrService, private ApiService: ApiService, ) { 
+  constructor(private http: HttpClient ,public matDialog: MatDialog,private toastr: ToastrService, private ApiService: ApiService, ) {
 
 
   }
@@ -179,7 +179,7 @@ export class AssessmentInfoComponent implements OnInit, OnChanges {
                 if (Object.prototype.hasOwnProperty.call(data.metadata.metrics, key)) {
                 }
                 filter.push({key: key,value:data.metadata.metrics[key]});
-              } 
+              }
               this.playVideoList.push({chart:filter});
             });
            this.currentItem =  this.playlist[this.currentIndex];
@@ -204,11 +204,11 @@ export class AssessmentInfoComponent implements OnInit, OnChanges {
   }
 
   playVideo() {
-    var vid = <HTMLVideoElement> document.getElementById("myVideo"); 
+    var vid = <HTMLVideoElement> document.getElementById("myVideo");
     vid.load();
-    vid.play(); 
-  } 
-    
+    vid.play();
+  }
+
     questionview (assessment) {
     this.sectionData = {
       assessmentName: assessment.assessmentname,
