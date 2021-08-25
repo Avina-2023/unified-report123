@@ -91,7 +91,7 @@ export class BehaviouralCompetencyAreasComponent implements OnInit {
       }
       element.skills.forEach(skills => {
         // if (skills.stenScore) {
-          skills.score = skills.stenScore ? skills.stenScore : 1;
+          skills.score = skills.stenScore ? skills.stenScore : 0;
         // }
       skills.area.forEach(area => {
         if (area.score && area.maxscore) {
