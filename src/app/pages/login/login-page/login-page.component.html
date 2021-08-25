@@ -48,7 +48,7 @@
                             <div class="space-20"></div>
 
                             <div class="center">
-                                <button class="btn" id="login" mat-raised-button (click)="login()">{{'SIGN IN'}}</button>
+                                <button class="btn" [disabled]="!loginForm.valid" id="login" mat-raised-button (click)="login()">{{'SIGN IN'}}</button>
                                 <!-- [disabled]="disableButton" -->
                             </div>
 

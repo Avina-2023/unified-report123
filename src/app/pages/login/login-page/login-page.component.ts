@@ -29,20 +29,19 @@ export class LoginPageComponent implements OnInit {
   }
 
   login() {
-    // this.disableButton = true;
-    // const apiData = {
-    //   username: this.loginForm.value.username.trim(),
-    //   password: this.loginForm.value.password.trim(),
-    // }
-    // // this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.REPORTS.HOME);
+    this.disableButton = true;
+    const apiData = {
+      username: this.loginForm.value.username.trim(),
+      password: this.loginForm.value.password.trim(),
+    }
 
-    // this.apiService.login(apiData).subscribe((data: any)=> {
-    //   this.appConfig.setLocalStorage('token', 'true');
-    //   this.disableButton = false;
+    this.apiService.login(apiData).subscribe((data: any)=> {
+      this.appConfig.setLocalStorage('token', 'true');
+      this.disableButton = false;
       this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.REPORTS.HOME);
-    // }, (err)=> {
-    //   this.disableButton = false;
-    // });
+    }, (err)=> {
+      this.disableButton = false;
+    });
   }
 
   formInitialize() {

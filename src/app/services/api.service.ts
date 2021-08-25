@@ -11,6 +11,7 @@ import * as CryptoJS from 'crypto-js';
 export class ApiService {
 
   BASE_URL = environment.API_BASE_URL;
+  EDGE_URL = environment.NODE_EDGE_URL;
   Prourl = environment.NODE_URL;
   EncryptKEY = environment.encryptionKey;
   constructor(
@@ -26,7 +27,7 @@ export class ApiService {
   }
 
   login(data: any) {
-    return this.http.post(`${this.BASE_URL}/login`, data);
+    return this.http.post(`${this.EDGE_URL}/login`, data);
   }
 
   getReportsDataAPI(data) {
