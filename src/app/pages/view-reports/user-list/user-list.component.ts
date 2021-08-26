@@ -60,9 +60,7 @@ export class UserListComponent implements OnInit, OnChanges {
   onGridReady(params: any) {
     this.gridApi = params.api;
   }
-  nav(){
-    this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.REPORTS.HIRINGREPORT);
-  }
+
 
   sortevent(e) {
   }
@@ -79,7 +77,6 @@ export class UserListComponent implements OnInit, OnChanges {
   }
 
   getModel(e) {
-    // console.log(e);
     const filteredArray = this.gridApi.getModel().rootNode.childrenAfterFilter;
     if (filteredArray && filteredArray.length === 0) {
       this.toastr.warning('No search results found');
