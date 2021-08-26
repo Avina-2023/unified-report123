@@ -95,37 +95,18 @@ export class HiringReportComponent implements OnInit {
         width: 100,
         cellRenderer: (params) => {
           if (params.value != null && params.value <= 40) {
-            return `<div class="progessbar"  style="
-            width: `+params.value+`%; 
-            background-color: rgb(245, 93, 81);
-            ">`+params.value+`</div>
-           `;
+            return `<div class="progessbar red-btn"  style="width: `+params.value+`%;">`+params.value+`</div>`;
           }
           if (params.value != null && params.value >= 40 && params.value < 80 ) {
-            return `<div class="progessbar"  style="
-            width: `+params.value+`%; 
-            background-color: rgb(255, 179, 0);
-            ">`+params.value +`</div>
-           `;
+            return `<div class="progessbar yellow-btn"  style="width: `+params.value+`%;">`+params.value +`</div>`;
           } if (params.value != null && params.value >=90){
-            return `<div class="progessbar" style="
-            width: `+params.value+`%; 
-            background-color:  rgb(130, 210, 73);
-            ">`+params.value +`</div>
-           `;
+            return `<div class="progessbar green-btn" style="width: `+params.value+`%; ">`+params.value +`</div>`;
           } if(params.value !== undefined && params.value == 'null' && params.value == null ){
             return params.value = '-';
           }else {
             return '-';
           }
         },
-        // cellRenderer: (params) => {
-        //   if(params.value != undefined && params.value){
-        //     return params.value +'/'+ (params.data.testmaxscore ? params.data.testmaxscore : '-') 
-        //   }else {
-        //     return '-';
-        //   }
-        // }
       },
 
       {
@@ -190,7 +171,7 @@ export class HiringReportComponent implements OnInit {
             { headerName: 'Skill Name', field: 'skillname' },
             { headerName: 'Sten Score', field: 'stenScore' },
           ],
-          defaultColDef: { flex: 1,headerHeight:40 },
+          defaultColDef: { flex: 1},
         };
       } else {
         res.detailGridOptions = {
@@ -214,24 +195,12 @@ export class HiringReportComponent implements OnInit {
               field: 'accuracy',
               cellRenderer: (params) => {
                 if (params.value != null && params.value <= 40) {
-                  return `<div class="progessbar"  style="
-                  width: `+params.value+`%; 
-                  background-color: rgb(245, 93, 81);
-                  ">`+params.value+`</div>
-                 `;
+                  return `<div class="progessbar red-btn"  style="width: `+params.value+`%;">`+params.value+`</div>`;
                 }
                 if (params.value != null && params.value >= 40 && params.value < 80 ) {
-                  return `<div class="progessbar"  style="
-                  width: `+params.value+`%; 
-                  background-color: rgb(255, 179, 0);
-                  ">`+params.value+`</div>
-                 `;
+                  return `<div class="progessbar yellow-btn"  style="width: `+params.value+`%;">`+params.value+`</div>`;
                 } if (params.value != null && params.value >=90){
-                  return `<div class="progessbar" style="
-                  width: `+params.value+`%; 
-                  background-color:  rgb(130, 210, 73);
-                  ">`+params.value+`</div>
-                 `;
+                  return `<div class="progessbar green-btn" style="width: `+params.value+`%; ">`+params.value+`</div>`;
                 } if(params.value !== undefined && params.value == 'null' && params.value == null ){
                   return params.value = '-';
                 }else {
