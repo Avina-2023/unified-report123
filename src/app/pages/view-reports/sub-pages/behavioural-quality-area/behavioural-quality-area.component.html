@@ -1,4 +1,5 @@
- <div class="StInfoDetailsArea mb-2">
+<ng-container *ngIf="getAllReportsData && getAllReportsData.BehavioralAssessment && getAllReportsData.BehavioralAssessment.length > 0">
+<div class="StInfoDetailsArea mb-2">
 
     <ng-container *ngIf="getAreaofDevelopment && getAreaofDevelopment.length > 0 else nocard">
       <div class="cardInfoArea">
@@ -53,7 +54,7 @@
             Strengths
         </div>
         <div class="ContentArea">
-          <span class="no-card-text">No Strengths Available</span>
+          <span class="no-card-text">No Data Available</span>
         </div>
     </div>
 </div>
@@ -72,9 +73,10 @@
             Area of Development
         </div>
         <div class="ContentArea">
-            <span class="no-card-text">No Area of Development Available</span>
+            <span class="no-card-text">No Data Available</span>
         </div>
     </div>
 </div>
 
 </ng-template>
+</ng-container>

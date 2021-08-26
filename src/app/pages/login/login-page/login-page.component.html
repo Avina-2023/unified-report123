@@ -37,7 +37,7 @@
                                 <input matInput [placeholder]="'Enter password'" [type]="hide ? 'password' : 'text'" formControlName="password" [ngClass]="{ 'is-invalid': password?.touched && password?.errors?.required}" required>
                                 <mat-icon class="icon-color" matPrefix>lock_outline</mat-icon>
                                 <span mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-                  <mat-icon class="icon-color">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                  <mat-icon style="cursor: pointer;" class="icon-color">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                   </span>
                             </mat-form-field>
                             <ng-container *ngIf="password?.invalid && password?.touched">

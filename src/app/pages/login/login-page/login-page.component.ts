@@ -31,14 +31,18 @@ export class LoginPageComponent implements OnInit {
   login() {
     this.disableButton = true;
     const apiData = {
-      username: this.loginForm.value.username.trim(),
-      password: this.loginForm.value.password.trim(),
+      email: this.loginForm.value.username.trim(),
+      pass: this.loginForm.value.password.trim(),
     }
 
-    this.apiService.login(apiData).subscribe((data: any)=> {
-      this.appConfig.setLocalStorage('token', 'true');
-      this.disableButton = false;
-      this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.REPORTS.HOME);
+    this.apiService.login(apiData).subscribe((response: any)=> {
+      // if ((response && response.success) || (response && response.data)) {
+        this.appConfig.setLocalStorage('token', 'true');
+        this.disableButton = false;
+        this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.REPORTS.HOME);
+      // } else {
+      //   this.toastr.error('Invalid Login Crendentials');
+      // }
     }, (err)=> {
       this.disableButton = false;
     });
