@@ -19,7 +19,7 @@
 </ng-container>
 <ng-template #showBehaviouralHorizontalChart>
   <div class="chart-center">
-  <div class="center">
+  <div class="center behavioural-chart-axis-hide">
   <ngx-charts-bar-horizontal [view]="view" [scheme]="colorScheme" [results]="single" [gradient]="gradient" [xAxis]="true" [yAxis]="showYAxis" [legend]="showLegend" [xScaleMax]="100" [barPadding]="barPadding" [showXAxisLabel]="true" [showYAxisLabel]="false"
   [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel" [xAxisTicks]="horiTicks" [showDataLabel]="false" [trimYAxisTicks]="true" [trimXAxisTicks]="true" [showGridLines]="false" [noBarWhenZero]="true" [animations]="false" [roundEdges]="false" (select)="onSelect($event)">
   <ng-template #tooltipTemplate let-model="model">
