@@ -152,7 +152,7 @@ ul {
     .first {
         height: 50px;
         display: flex;
-        justify-content: center;
+        // justify-content: center;
         align-items: center;
         width: 220px;
     }
@@ -1308,9 +1308,9 @@ textarea {
 
 // Behavioural Competency chart x axis number range hide
 .behavioural-chart-axis-hide {
-  .x.axis {
-  .tick {
-    visibility: hidden !important;
-  }
-}
+    .x.axis {
+        .tick {
+            visibility: hidden !important;
+        }
+    }
 }

@@ -9,7 +9,7 @@ import { ApiService } from '../../../../services/api.service';
   styleUrls: ['./hiring-report.component.scss']
 })
 export class HiringReportComponent implements OnInit {
-  rowData:any
+  rowData:any;
   public gridApi;
   public gridColumnApi;
   public columnDefs;
@@ -34,96 +34,6 @@ export class HiringReportComponent implements OnInit {
   ngOnInit(): void {
     this.tabledef();
   }
-
-  // onFirstDataRendered(params) {
-  //   this.gridApi = params.api;
-  //   setTimeout(function () {
-  //     if(params.data.){
-  //       this.detailCellRendererParams = {
-  //         detailGridOptions: {
-  //           suppressRowClickSelection: true,
-  //           enableRangeSelection: true,
-  //           pagination: true,
-  //           paginationAutoPageSize: true,
-  //           resizable: true,
-  //           columnDefs: [
-  //             {
-  //               headerName: 'Sectional Name',
-  //               field: 'secname',
-  //             },
-  //             { 
-  //               headerName: 'Questions Attempted',
-  //               field: 'attendedquestions',
-  //               cellRenderer: (params) => {
-  //                 if(params.value != undefined && params.value){
-  //                   return params.value +'/'+ (params.data.overallquestions ? params.data.overallquestions : '-') 
-  //                 }else {
-  //                   return '-';
-  //                 }
-  //               }
-  //              },
-  //             {
-  //               headerName: 'Score Obtained',
-  //               field: 'score',
-  //             },
-  //             {
-  //               headerName: 'Percentage',
-  //               field: 'accuracy',
-  //               cellRenderer: (params) => {
-  //                 if(params.value != undefined && params.value){
-  //                   return params.value +'%' 
-  //                 }else {
-  //                   return '-';
-  //                 }
-  //               }
-  //             },
-  //           ],
-  //           defaultColDef: {
-  //             sortable: true,
-  //             flex: 1,
-  //           },
-  //         },
-          
-  //         getDetailRowData: function (params) {
-  //           console.log(params)
-  //           params.successCallback(params.data.section);
-  //         },
-  //       };
-  //     }else {
-  //       this.detailCellRendererParams = {
-  //         detailGridOptions: {
-  //           suppressRowClickSelection: true,
-  //           enableRangeSelection: true,
-  //           pagination: true,
-  //           paginationAutoPageSize: true,
-  //           resizable: true,
-  //           columnDefs: [
-  //             {
-  //               headerName: 'Skill Name',
-  //               field: 'skillname',
-  //             },
-  //             { 
-  //               headerName: 'Sten Score',
-  //               field: 'stenScore',
-  //              },
-  //           ],
-  //           defaultColDef: {
-  //             sortable: true,
-  //             flex: 1,
-  //           },
-  //         },
-          
-  //         getDetailRowData: function (params) {
-  //           params.successCallback(params.data.skills);
-  //         },
-  //       };
-  //     }
-  
-  //     // params.api.getDisplayedRowAtIndex(1).setExpanded(false);
-  //   }, 0);
-  // }
-
-
 
   tabledef(){
     this.columnDefs = [
@@ -179,23 +89,58 @@ export class HiringReportComponent implements OnInit {
         width: 100,
       },
       {
-        headerName: 'Score',
+        headerName: 'Score Obtained',
         field: 'testscore',
         tooltipField:'testscore',
         width: 100,
         cellRenderer: (params) => {
-          if(params.value != undefined && params.value){
-            return params.value +'/'+ (params.data.testmaxscore ? params.data.testmaxscore : '-') 
+          if (params.value != null && params.value <= 40) {
+            return `<div class="progessbar"  style="
+            width: `+params.value+`%; 
+            background-color: rgb(245, 93, 81);
+            ">`+params.value+`</div>
+           `;
+          }
+          if (params.value != null && params.value >= 40 && params.value < 80 ) {
+            return `<div class="progessbar"  style="
+            width: `+params.value+`%; 
+            background-color: rgb(255, 179, 0);
+            ">`+params.value +`</div>
+           `;
+          } if (params.value != null && params.value >=90){
+            return `<div class="progessbar" style="
+            width: `+params.value+`%; 
+            background-color:  rgb(130, 210, 73);
+            ">`+params.value +`</div>
+           `;
+          } if(params.value !== undefined && params.value == 'null' && params.value == null ){
+            return params.value = '-';
           }else {
+            return '-';
+          }
+        },
+        // cellRenderer: (params) => {
+        //   if(params.value != undefined && params.value){
+        //     return params.value +'/'+ (params.data.testmaxscore ? params.data.testmaxscore : '-') 
+        //   }else {
+        //     return '-';
+        //   }
+        // }
+      },
+
+      {
+        headerName: 'Score',
+        field: 'testmaxscore',
+        tooltipField:'testmaxscore',
+        width: 100,
+        cellRenderer: (params) => {
+          if(params.value){
+            return  params.value
+          } else {
             return '-';
           }
         }
       },
-      // {
-      //   headerName: 'Total Score',
-      //   field: 'testmaxscore',
-      //   tooltipField:'testmaxscore',
-      // },
       {
         headerName: 'Completion',
         field: 'completion',
@@ -223,7 +168,7 @@ export class HiringReportComponent implements OnInit {
               return `<span><button class="btnsm yellow-btn">Average</button></span>`;
             } if(params.data.testscore >=90){
               return `<span><button class="btnsm green-btn">Excellent</button></span>`;
-            } else{
+            } else {
               return '-';
             }
           }else {
@@ -233,57 +178,73 @@ export class HiringReportComponent implements OnInit {
       },
     ];
 
-    this.detailCellRendererParams = {
-      detailGridOptions: {
-        suppressRowClickSelection: true,
-        enableRangeSelection: true,
-        pagination: true,
-        paginationAutoPageSize: true,
-        resizable: true,
-        columnDefs: [
-          {
-            headerName: 'Sectional Name',
-            field: 'secname',
-          },
-          { 
-            headerName: 'Questions Attempted',
-            field: 'attendedquestions',
-            cellRenderer: (params) => {
-              if(params.value != undefined && params.value){
-                return params.value +'/'+ (params.data.overallquestions ? params.data.overallquestions : '-') 
-              }else {
-                return '-';
-              }
-            }
-           },
-          {
-            headerName: 'Score Obtained',
-            field: 'score',
-          },
-          {
-            headerName: 'Percentage',
-            field: 'accuracy',
-            cellRenderer: (params) => {
-              if(params.value != undefined && params.value){
-                return params.value +'%' 
-              }else {
-                return '-';
-              }
-            }
-          },
-        ],
-        defaultColDef: {
-          sortable: true,
-          flex: 1,
-        },
-      },
-      
-      getDetailRowData: function (params) {
-        console.log(params)
-        params.successCallback(params.data.section);
-      },
-    };
 
+    this.detailCellRendererParams = function (params) {
+      var res: any = {};
+      res.getDetailRowData = function (params) {
+        params.successCallback(params.data.section);
+      };
+      if (params.data && params.data.testtype === 'Personality & Behaviour') {
+        res.detailGridOptions = {
+          columnDefs: [
+            { headerName: 'Skill Name', field: 'skillname' },
+            { headerName: 'Sten Score', field: 'stenScore' },
+          ],
+          defaultColDef: { flex: 1,headerHeight:40 },
+        };
+      } else {
+        res.detailGridOptions = {
+          columnDefs: [
+            {headerName: 'Sectional Name',field: 'secname',},
+            {headerName: 'Questions Attempted',field: 'attendedquestions',
+              cellRenderer: (params) => {
+                if (params.value != undefined && params.value) {
+                  return params.value +'/' + (params.data.overallquestions ? params.data.overallquestions: '-');
+                } else {
+                  return '-';
+                }
+              },
+            },
+            {
+              headerName: 'Score Obtained',
+              field: 'score',
+            },
+            {
+              headerName: 'Percentage',
+              field: 'accuracy',
+              cellRenderer: (params) => {
+                if (params.value != null && params.value <= 40) {
+                  return `<div class="progessbar"  style="
+                  width: `+params.value+`%; 
+                  background-color: rgb(245, 93, 81);
+                  ">`+params.value+`</div>
+                 `;
+                }
+                if (params.value != null && params.value >= 40 && params.value < 80 ) {
+                  return `<div class="progessbar"  style="
+                  width: `+params.value+`%; 
+                  background-color: rgb(255, 179, 0);
+                  ">`+params.value+`</div>
+                 `;
+                } if (params.value != null && params.value >=90){
+                  return `<div class="progessbar" style="
+                  width: `+params.value+`%; 
+                  background-color:  rgb(130, 210, 73);
+                  ">`+params.value+`</div>
+                 `;
+                } if(params.value !== undefined && params.value == 'null' && params.value == null ){
+                  return params.value = '-';
+                }else {
+                  return '-';
+                }
+              },
+            },
+          ],
+          defaultColDef: { flex: 1 },
+        };
+      }
+      return res;
+    };
   }
 
   onGridReady(params) {
@@ -306,4 +267,5 @@ export class HiringReportComponent implements OnInit {
   sizeToFit() {
     this.gridApi.sizeColumnsToFit();
   }
+
 }
