@@ -94,3 +94,7 @@
     bottom: 0;
     font-weight: 600;
 }
+
+::ng-deep .ag-theme-alpine .ag-details-row {
+    padding: 10px !important;
+}
