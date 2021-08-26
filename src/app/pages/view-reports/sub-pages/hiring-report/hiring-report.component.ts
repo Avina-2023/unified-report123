@@ -9,7 +9,7 @@ import { ApiService } from '../../../../services/api.service';
   styleUrls: ['./hiring-report.component.scss']
 })
 export class HiringReportComponent implements OnInit {
-  rowData:any
+  rowData:any;
   public gridApi;
   public gridColumnApi;
   public columnDefs;
@@ -34,96 +34,6 @@ export class HiringReportComponent implements OnInit {
   ngOnInit(): void {
     this.tabledef();
   }
-
-  // onFirstDataRendered(params) {
-  //   this.gridApi = params.api;
-  //   setTimeout(function () {
-  //     if(params.data.){
-  //       this.detailCellRendererParams = {
-  //         detailGridOptions: {
-  //           suppressRowClickSelection: true,
-  //           enableRangeSelection: true,
-  //           pagination: true,
-  //           paginationAutoPageSize: true,
-  //           resizable: true,
-  //           columnDefs: [
-  //             {
-  //               headerName: 'Sectional Name',
-  //               field: 'secname',
-  //             },
-  //             { 
-  //               headerName: 'Questions Attempted',
-  //               field: 'attendedquestions',
-  //               cellRenderer: (params) => {
-  //                 if(params.value != undefined && params.value){
-  //                   return params.value +'/'+ (params.data.overallquestions ? params.data.overallquestions : '-') 
-  //                 }else {
-  //                   return '-';
-  //                 }
-  //               }
-  //              },
-  //             {
-  //               headerName: 'Score Obtained',
-  //               field: 'score',
-  //             },
-  //             {
-  //               headerName: 'Percentage',
-  //               field: 'accuracy',
-  //               cellRenderer: (params) => {
-  //                 if(params.value != undefined && params.value){
-  //                   return params.value +'%' 
-  //                 }else {
-  //                   return '-';
-  //                 }
-  //               }
-  //             },
-  //           ],
-  //           defaultColDef: {
-  //             sortable: true,
-  //             flex: 1,
-  //           },
-  //         },
-          
-  //         getDetailRowData: function (params) {
-  //           console.log(params)
-  //           params.successCallback(params.data.section);
-  //         },
-  //       };
-  //     }else {
-  //       this.detailCellRendererParams = {
-  //         detailGridOptions: {
-  //           suppressRowClickSelection: true,
-  //           enableRangeSelection: true,
-  //           pagination: true,
-  //           paginationAutoPageSize: true,
-  //           resizable: true,
-  //           columnDefs: [
-  //             {
-  //               headerName: 'Skill Name',
-  //               field: 'skillname',
-  //             },
-  //             { 
-  //               headerName: 'Sten Score',
-  //               field: 'stenScore',
-  //              },
-  //           ],
-  //           defaultColDef: {
-  //             sortable: true,
-  //             flex: 1,
-  //           },
-  //         },
-          
-  //         getDetailRowData: function (params) {
-  //           params.successCallback(params.data.skills);
-  //         },
-  //       };
-  //     }
-  
-  //     // params.api.getDisplayedRowAtIndex(1).setExpanded(false);
-  //   }, 0);
-  // }
-
-
 
   tabledef(){
     this.columnDefs = [
@@ -191,11 +101,6 @@ export class HiringReportComponent implements OnInit {
           }
         }
       },
-      // {
-      //   headerName: 'Total Score',
-      //   field: 'testmaxscore',
-      //   tooltipField:'testmaxscore',
-      // },
       {
         headerName: 'Completion',
         field: 'completion',
@@ -223,7 +128,7 @@ export class HiringReportComponent implements OnInit {
               return `<span><button class="btnsm yellow-btn">Average</button></span>`;
             } if(params.data.testscore >=90){
               return `<span><button class="btnsm green-btn">Excellent</button></span>`;
-            } else{
+            } else {
               return '-';
             }
           }else {
@@ -233,57 +138,54 @@ export class HiringReportComponent implements OnInit {
       },
     ];
 
-    this.detailCellRendererParams = {
-      detailGridOptions: {
-        suppressRowClickSelection: true,
-        enableRangeSelection: true,
-        pagination: true,
-        paginationAutoPageSize: true,
-        resizable: true,
-        columnDefs: [
-          {
-            headerName: 'Sectional Name',
-            field: 'secname',
-          },
-          { 
-            headerName: 'Questions Attempted',
-            field: 'attendedquestions',
-            cellRenderer: (params) => {
-              if(params.value != undefined && params.value){
-                return params.value +'/'+ (params.data.overallquestions ? params.data.overallquestions : '-') 
-              }else {
-                return '-';
-              }
-            }
-           },
-          {
-            headerName: 'Score Obtained',
-            field: 'score',
-          },
-          {
-            headerName: 'Percentage',
-            field: 'accuracy',
-            cellRenderer: (params) => {
-              if(params.value != undefined && params.value){
-                return params.value +'%' 
-              }else {
-                return '-';
-              }
-            }
-          },
-        ],
-        defaultColDef: {
-          sortable: true,
-          flex: 1,
-        },
-      },
-      
-      getDetailRowData: function (params) {
-        console.log(params)
-        params.successCallback(params.data.section);
-      },
-    };
 
+    this.detailCellRendererParams = function (params) {
+      var res: any = {};
+      res.getDetailRowData = function (params) {
+        params.successCallback(params.data.section);
+      };
+      if (params.data && params.data.testtype === 'Personality & Behaviour') {
+        res.detailGridOptions = {
+          columnDefs: [
+            { headerName: 'Skill Name', field: 'skillname' },
+            { headerName: 'Sten Score', field: 'stenScore' },
+          ],
+          defaultColDef: { flex: 1 },
+        };
+      } else {
+        res.detailGridOptions = {
+          columnDefs: [
+            {headerName: 'Sectional Name',field: 'secname',},
+            {headerName: 'Questions Attempted',field: 'attendedquestions',
+              cellRenderer: (params) => {
+                if (params.value != undefined && params.value) {
+                  return params.value +'/' + (params.data.overallquestions ? params.data.overallquestions: '-');
+                } else {
+                  return '-';
+                }
+              },
+            },
+            {
+              headerName: 'Score Obtained',
+              field: 'score',
+            },
+            {
+              headerName: 'Percentage',
+              field: 'accuracy',
+              cellRenderer: (params) => {
+                if (params.value != undefined && params.value) {
+                  return params.value + '%';
+                } else {
+                  return '-';
+                }
+              },
+            },
+          ],
+          defaultColDef: { flex: 1 },
+        };
+      }
+      return res;
+    };
   }
 
   onGridReady(params) {
@@ -306,4 +208,5 @@ export class HiringReportComponent implements OnInit {
   sizeToFit() {
     this.gridApi.sizeColumnsToFit();
   }
+
 }
