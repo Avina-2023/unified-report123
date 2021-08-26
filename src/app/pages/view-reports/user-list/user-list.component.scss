@@ -33,3 +33,12 @@
     border-radius: 3px;
     text-shadow: 1px 1px 2px #8c1b1b, -1px -1px 2px #8c1b1b;
 }
+
+:host ::ng-deep .mat-tab-header {
+    margin-bottom: 20px;
+}
+
+:host ::ng-deep .mat-tab-group.mat-primary .mat-ink-bar,
+.mat-tab-nav-bar.mat-primary .mat-ink-bar {
+    background-color: $secondaryColor !important;
+}
