@@ -36,13 +36,13 @@ export class LoginPageComponent implements OnInit {
     }
 
     this.apiService.login(apiData).subscribe((response: any)=> {
-      // if ((response && response.success) || (response && response.data)) {
+      if ((response && response.success) || (response && response.data) || (response && response.token)) {
         this.appConfig.setLocalStorage('token', 'true');
         this.disableButton = false;
         this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.REPORTS.HOME);
-      // } else {
-      //   this.toastr.error('Invalid Login Crendentials');
-      // }
+      } else {
+        this.toastr.error('Invalid Login Crendentials');
+      }
     }, (err)=> {
       this.disableButton = false;
     });

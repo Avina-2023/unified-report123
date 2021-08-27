@@ -27,31 +27,34 @@
 }
 
 ::ng-deep .green {
-    color: $successColor;
+    color: rgb(130, 210, 73);
+    font-size: 17px;
+    position: relative;
+    top: 4px;
 }
 
 ::ng-deep .red {
-    color: $primaryColor;
+    color: rgb(245, 93, 81);
+    font-size: 17px;
+    position: relative;
+    top: 4px;
 }
 
-// ::ng-deep .yellow {
-//     color: $secondaryColor;
-// }
 ::ng-deep .green-btn {
-    background: $successColor;
+    background: rgb(130, 210, 73);
 }
 
 ::ng-deep .red-btn {
-    background: $primaryColor;
+    background: rgb(245, 93, 81);
 }
 
 ::ng-deep .yellow-btn {
-    background: $secondaryColor;
+    background: rgb(255, 179, 0);
 }
 
 ::ng-deep .btnsm {
-    font-size: 14px;
-    height: 23px;
+    font-size: 11px;
+    padding: 10px 12px;
     line-height: 0px;
     border: none;
     color: $whiteColor;
@@ -66,10 +69,17 @@
     min-height: 7px !important;
 }
 
+// ::ng-deep .cell-span {
+//     background-color: #00e5ff;
+// }
 .outer-div {
     height: 100%;
     display: flex;
     flex-direction: column;
+}
+
+::ng-deep .hideRows {
+    visibility: hidden;
 }
 
 .button-bar {
@@ -78,4 +88,28 @@
 
 .grid-wrapper {
     flex: 1 1 auto;
+}
+
+::ng-deep .progessbar {
+    display: block;
+    position: absolute;
+    z-index: 1;
+    padding-left: 5px;
+    top: 0;
+    text-align: left;
+    color: #000 !important;
+    bottom: 0;
+}
+
+::ng-deep .ag-theme-alpine .ag-details-row {
+    padding: 10px !important;
+}
+
+::ng-deep .ag-theme-alpine .ag-cell,
+.ag-theme-alpine .ag-full-width-row .ag-cell-wrapper.ag-row-group {
+    line-height: 36px !important;
+}
+
+::ng-deep .alignCenter {
+    // text-align: center;
 }
