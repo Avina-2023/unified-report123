@@ -3,6 +3,7 @@ import { ToastrService } from 'ngx-toastr';
 import { AppConfigService } from 'src/app/utils/app-config.service';
 import { APP_CONSTANTS } from '../../../../utils/app-constants.service';
 import { ApiService } from '../../../../services/api.service';
+import * as moment from 'moment';
 @Component({
   selector: 'app-hiring-report',
   templateUrl: './hiring-report.component.html',
@@ -25,7 +26,8 @@ export class HiringReportComponent implements OnInit {
       enableValue: true,
       sortable: true,
       resizable: true,
-      filter: true 
+      filter: true,
+       floatingFilter: true, 
     };
   
 
@@ -40,11 +42,11 @@ export class HiringReportComponent implements OnInit {
       {
         headerName: 'First Name',
         field: 'firstname',
+        filter: 'agTextColumnFilter',
         tooltipField:'firstname',    
         width: 100,
         cellRenderer: (params) => {
-          console.log(params)
-          if(params.data.display == true){
+          if(params.data && params.data.display == true){
             return  params.value
           } else {
             return '';
@@ -67,11 +69,11 @@ export class HiringReportComponent implements OnInit {
       {
         headerName: 'Email',
         field: 'email',
+        filter: 'agTextColumnFilter',
         tooltipField:'email',
         width: 100,
         cellRenderer: (params) => {
-          console.log(params)
-          if(params.data.display == true){
+          if(params.data && params.data.display == true){
             return  params.value
           } else {
             return '';
@@ -81,6 +83,7 @@ export class HiringReportComponent implements OnInit {
       {
         headerName: 'Test Type',
         field: 'testtype',
+        filter: 'agTextColumnFilter',
         tooltipField:'testtype',
         width: 100,
         cellRenderer: (params) => {
@@ -94,6 +97,7 @@ export class HiringReportComponent implements OnInit {
       {
         headerName: 'Test Name',
         field: 'testname',
+        filter: 'agTextColumnFilter',
         tooltipField:'testname',
         cellRenderer: 'agGroupCellRenderer',
         width: 200,
@@ -101,13 +105,42 @@ export class HiringReportComponent implements OnInit {
       },
       {
         headerName: 'Test Taken on',
+        filter: 'agDateColumnFilter',
         field: 'testdate',
         tooltipField:'testdate',
         width: 100,
+      //   cellRenderer: (data :any) => {
+      //     return data.value ? moment(data.value).format('DD/MM/YYYY') : '-'
+      // },
+        filterParams: {
+          comparator: 
+          function (filterLocalDateAtMidnight, cellValue) {
+            
+            console.log(cellValue)
+            var dateAsString = cellValue;
+            if (dateAsString == null) return -1;
+            var dateParts = dateAsString.split('/');
+            var cellDate = new Date(
+              Number(dateParts[2]),
+              Number(dateParts[1]) - 1,
+              Number(dateParts[0])
+            );
+            if (filterLocalDateAtMidnight?.getTime() === cellDate?.getTime()) {
+              return 0;
+            }
+            if (cellDate < filterLocalDateAtMidnight) {
+              return -1;
+            }
+            if (cellDate > filterLocalDateAtMidnight) {
+              return 1;
+            }
+          },
+        },
       },
       {
         headerName: 'Score Obtained',
         field: 'testscore',
+        filter: 'agNumberColumnFilter',
         tooltipField:'testscore',
         width: 100,
         cellRenderer: (params) => {
@@ -129,6 +162,7 @@ export class HiringReportComponent implements OnInit {
       {
         headerName: 'Maxscore',
         field: 'testmaxscore',
+        filter: 'agNumberColumnFilter',
         tooltipField:'testmaxscore',
         width: 100,
         cellRenderer: (params) => {
@@ -142,6 +176,7 @@ export class HiringReportComponent implements OnInit {
       {
         headerName: 'Completion',
         field: 'completion',
+        filter: 'agTextColumnFilter',
         width: 100,
       cellRenderer: (params) => {
         if(params.value == true){
@@ -157,6 +192,7 @@ export class HiringReportComponent implements OnInit {
       {
         headerName: 'Rating',
         field: 'rating',
+        filter: 'agTextColumnFilter',
         width: 100,
         cellRenderer: (params) => {
           if(params.data){
@@ -184,14 +220,24 @@ export class HiringReportComponent implements OnInit {
       };
       if (params.data && params.data.testtype === 'Personality & Behaviour') {
         res.detailGridOptions = {
+          rowSelection: 'multiple',
+          suppressRowClickSelection: true,
+          enableRangeSelection: true,
+          pagination: true,
+          paginationAutoPageSize: true,
           columnDefs: [
             { headerName: 'Skill Name', field: 'skillname' },
             { headerName: 'Sten Score', field: 'stenScore' },
           ],
-          defaultColDef: { flex: 1},
+          defaultColDef: { flex: 1,},
         };
       } else {
         res.detailGridOptions = {
+          rowSelection: 'multiple',
+          suppressRowClickSelection: true,
+          enableRangeSelection: true,
+          pagination: true,
+          paginationAutoPageSize: true,
           columnDefs: [
             {headerName: 'Sectional Name',field: 'secname',},
             {headerName: 'Questions Attempted',field: 'attendedquestions',
