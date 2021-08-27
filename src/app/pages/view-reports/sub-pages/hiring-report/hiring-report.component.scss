@@ -99,9 +99,17 @@
     text-align: left;
     color: #000 !important;
     bottom: 0;
-    font-weight: 600;
 }
 
 ::ng-deep .ag-theme-alpine .ag-details-row {
     padding: 10px !important;
+}
+
+::ng-deep .ag-theme-alpine .ag-cell,
+.ag-theme-alpine .ag-full-width-row .ag-cell-wrapper.ag-row-group {
+    line-height: 36px !important;
+}
+
+::ng-deep .alignCenter {
+    // text-align: center;
 }
