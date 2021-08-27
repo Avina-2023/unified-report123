@@ -165,6 +165,7 @@ export class HiringReportComponent implements OnInit {
         filter: 'agNumberColumnFilter',
         tooltipField:'testmaxscore',
         width: 100,
+        cellClass: 'alignCenter',
         cellRenderer: (params) => {
           if(params.value){
             return  params.value
@@ -240,7 +241,7 @@ export class HiringReportComponent implements OnInit {
           paginationAutoPageSize: true,
           columnDefs: [
             {headerName: 'Sectional Name',field: 'secname',},
-            {headerName: 'Questions Attempted',field: 'attendedquestions',
+            {headerName: 'Questions Attempted',field: 'attendedquestions', cellClass: 'alignCenter',
               cellRenderer: (params) => {
                 if (params.value != undefined && params.value) {
                   return params.value +'/' + (params.data.overallquestions ? params.data.overallquestions: '-');
@@ -252,6 +253,7 @@ export class HiringReportComponent implements OnInit {
             {
               headerName: 'Score Obtained',
               field: 'score',
+              cellClass: 'alignCenter',
             },
             {
               headerName: 'Percentage',
