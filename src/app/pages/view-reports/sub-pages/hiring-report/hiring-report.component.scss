@@ -69,10 +69,17 @@
     min-height: 7px !important;
 }
 
+// ::ng-deep .cell-span {
+//     background-color: #00e5ff;
+// }
 .outer-div {
     height: 100%;
     display: flex;
     flex-direction: column;
+}
+
+::ng-deep .hideRows {
+    visibility: hidden;
 }
 
 .button-bar {
