@@ -115,8 +115,6 @@ export class HiringReportComponent implements OnInit {
         filterParams: {
           comparator: 
           function (filterLocalDateAtMidnight, cellValue) {
-            
-            console.log(cellValue)
             var dateAsString = cellValue;
             if (dateAsString == null) return -1;
             var dateParts = dateAsString.split('/');
@@ -302,7 +300,7 @@ export class HiringReportComponent implements OnInit {
     this.gridApi.sizeColumnsToFit();
   }
   getModel(e) {
-    console.log(e)
+    // console.log(e)
     const filteredArray = this.gridApi.getModel().rootNode.childrenAfterFilter;
     if (filteredArray && filteredArray.length === 0) {
       // this.toastr.warning('No search results found');
