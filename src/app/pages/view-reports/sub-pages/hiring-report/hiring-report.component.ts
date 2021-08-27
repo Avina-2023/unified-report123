@@ -42,24 +42,41 @@ export class HiringReportComponent implements OnInit {
         field: 'firstname',
         tooltipField:'firstname',    
         width: 100,
+        cellRenderer: (params) => {
+          console.log(params)
+          if(params.data.display == true){
+            return  params.value
+          } else {
+            return '';
+          }
+        }
       },
-      {
-        headerName: 'Last Name',
-        field: 'lastname',
-        tooltipField:'lastname',
-        width: 100,
-      },
-      {
-        headerName: 'Mobile No',
-        field: 'mobile',
-        tooltipField:'mobile',
-        width: 100,
-      },
+
+      // {
+      //   headerName: 'Last Name',
+      //   field: 'lastname',
+      //   tooltipField:'lastname',
+      //   width: 100,
+      // },
+      // {
+      //   headerName: 'Mobile No',
+      //   field: 'mobile',
+      //   tooltipField:'mobile',
+      //   width: 100,
+      // },
       {
         headerName: 'Email',
         field: 'email',
         tooltipField:'email',
         width: 100,
+        cellRenderer: (params) => {
+          console.log(params)
+          if(params.data.display == true){
+            return  params.value
+          } else {
+            return '';
+          }
+        }
       },
       {
         headerName: 'Test Type',
@@ -110,7 +127,7 @@ export class HiringReportComponent implements OnInit {
       },
 
       {
-        headerName: 'Score',
+        headerName: 'Maxscore',
         field: 'testmaxscore',
         tooltipField:'testmaxscore',
         width: 100,
@@ -236,5 +253,11 @@ export class HiringReportComponent implements OnInit {
   sizeToFit() {
     this.gridApi.sizeColumnsToFit();
   }
-
+  getModel(e) {
+    console.log(e)
+    const filteredArray = this.gridApi.getModel().rootNode.childrenAfterFilter;
+    if (filteredArray && filteredArray.length === 0) {
+      // this.toastr.warning('No search results found');
+    }
+  }
 }
