@@ -13,9 +13,9 @@
             </div>
             <div class="ContentArea" *ngFor="let getAreaofDevelopment of getAreaofDevelopment">
                 <span>{{getAreaofDevelopment.skillname ? getAreaofDevelopment.skillname : '-'}}</span>
-                <ng-containter *ngIf="areatoimprove.strength && areatoimprove.strength.length > 0">
-                  <div *ngFor="let improvement of areatoimprove.strength">{{improvement}}</div>
-                </ng-containter>
+                <ul style="list-style-type: disc" *ngIf="getAreaofDevelopment.strength && getAreaofDevelopment.strength.length > 0">
+                  <li *ngFor="let improvement of getAreaofDevelopment.strength">{{improvement}}</li>
+                </ul>
             </div>
         </div>
     </div>

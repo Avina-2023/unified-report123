@@ -109,9 +109,6 @@ export class HiringReportComponent implements OnInit {
         field: 'testdate',
         tooltipField:'testdate',
         width: 100,
-      //   cellRenderer: (data :any) => {
-      //     return data.value ? moment(data.value).format('DD/MM/YYYY') : '-'
-      // },
         filterParams: {
           comparator: 
           function (filterLocalDateAtMidnight, cellValue) {
