@@ -48,6 +48,11 @@
     background: rgb(245, 93, 81);
 }
 
+::ng-deep .redColor {
+    color: rgb(6, 69, 173);
+    cursor: pointer;
+}
+
 ::ng-deep .yellow-btn {
     background: rgb(255, 179, 0);
 }

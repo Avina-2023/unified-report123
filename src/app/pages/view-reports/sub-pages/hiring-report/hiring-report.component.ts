@@ -3,7 +3,6 @@ import { ToastrService } from 'ngx-toastr';
 import { AppConfigService } from 'src/app/utils/app-config.service';
 import { APP_CONSTANTS } from '../../../../utils/app-constants.service';
 import { ApiService } from '../../../../services/api.service';
-import * as moment from 'moment';
 @Component({
   selector: 'app-hiring-report',
   templateUrl: './hiring-report.component.html',
@@ -16,6 +15,7 @@ export class HiringReportComponent implements OnInit {
   public columnDefs;
   public defaultColDef;
   public detailCellRendererParams;
+  reportsData: any;
 
   constructor(private appconfig: AppConfigService,private toastr: ToastrService, private ApiService: ApiService,) {      
     this.getHiringReportDetails();
@@ -29,8 +29,6 @@ export class HiringReportComponent implements OnInit {
       filter: true,
        floatingFilter: true, 
     };
-  
-
   }
 
   ngOnInit(): void {
@@ -47,25 +45,12 @@ export class HiringReportComponent implements OnInit {
         width: 100,
         cellRenderer: (params) => {
           if(params.data && params.data.display == true){
-            return  params.value
-          } else {
+            return  params.value;
+          }else {
             return '';
           }
         }
       },
-
-      // {
-      //   headerName: 'Last Name',
-      //   field: 'lastname',
-      //   tooltipField:'lastname',
-      //   width: 100,
-      // },
-      // {
-      //   headerName: 'Mobile No',
-      //   field: 'mobile',
-      //   tooltipField:'mobile',
-      //   width: 100,
-      // },
       {
         headerName: 'Email',
         field: 'email',
@@ -74,8 +59,8 @@ export class HiringReportComponent implements OnInit {
         width: 100,
         cellRenderer: (params) => {
           if(params.data && params.data.display == true){
-            return  params.value
-          } else {
+            return '<span class="redColor">'+params.value+'</span>' ;
+          }else {
             return '';
           }
         }
@@ -101,7 +86,6 @@ export class HiringReportComponent implements OnInit {
         tooltipField:'testname',
         cellRenderer: 'agGroupCellRenderer',
         width: 200,
-        
       },
       {
         headerName: 'Test Taken on',
@@ -153,7 +137,6 @@ export class HiringReportComponent implements OnInit {
           }
         },
       },
-
       {
         headerName: 'Maxscore',
         field: 'testmaxscore',
@@ -178,7 +161,7 @@ export class HiringReportComponent implements OnInit {
         if(params.value == true){
           return `<i class="material-icons green">check</i>`
         } if (params.value == false){
-          return `<i class="material-icons  red">close</i>`
+          return `<i class="material-icons red">close</i>`
         }else {
           return '-';
         }
@@ -207,8 +190,10 @@ export class HiringReportComponent implements OnInit {
         }
       },
     ];
+    this.getSubTableDef();
+  }
 
-
+  getSubTableDef(){
     this.detailCellRendererParams = function (params) {
       var res: any = {};
       res.getDetailRowData = function (params) {
@@ -225,7 +210,7 @@ export class HiringReportComponent implements OnInit {
             { headerName: 'Skill Name', field: 'skillname' },
             { headerName: 'Sten Score', field: 'stenScore' },
           ],
-          defaultColDef: { flex: 1,},
+          defaultColDef: {flex: 1},
         };
       } else {
         res.detailGridOptions = {
@@ -235,7 +220,7 @@ export class HiringReportComponent implements OnInit {
           pagination: true,
           paginationAutoPageSize: true,
           columnDefs: [
-            {headerName: 'Sectional Name',field: 'secname',},
+            {headerName: 'Sectional Name',field: 'secname'},
             {headerName: 'Questions Attempted',field: 'attendedquestions', cellClass: 'alignCenter',
               cellRenderer: (params) => {
                 if (params.value != undefined && params.value) {
@@ -245,20 +230,16 @@ export class HiringReportComponent implements OnInit {
                 }
               },
             },
-            {
-              headerName: 'Score Obtained',
-              field: 'score',
-              cellClass: 'alignCenter',
-            },
+            {headerName: 'Score Obtained',field: 'score',cellClass: 'alignCenter'},
             {
               headerName: 'Percentage',
               field: 'accuracy',
               cellRenderer: (params) => {
                 if (params.value != null && params.value <= 40) {
-                  return `<div class="progessbar red-btn"  style="width: `+params.value+`%;">`+params.value+`</div>`;
+                  return `<div class="progessbar red-btn" style="width: `+params.value+`%;">`+params.value+`</div>`;
                 }
                 if (params.value != null && params.value >= 40 && params.value < 80 ) {
-                  return `<div class="progessbar yellow-btn"  style="width: `+params.value+`%;">`+params.value+`</div>`;
+                  return `<div class="progessbar yellow-btn" style="width: `+params.value+`%;">`+params.value+`</div>`;
                 } if (params.value != null && params.value >=90){
                   return `<div class="progessbar green-btn" style="width: `+params.value+`%; ">`+params.value+`</div>`;
                 } if(params.value !== undefined && params.value == 'null' && params.value == null ){
@@ -289,18 +270,45 @@ export class HiringReportComponent implements OnInit {
 
   getHiringReportDetails(){
     this.ApiService.getHiringReport().subscribe((res: any)=> {
-      this.rowData = res.data;
+      if(res){
+        this.rowData = res.data;
+      }else {
+          this.toastr.warning('Please try after sometimes...')
+      }
     })
   }
   
   sizeToFit() {
     this.gridApi.sizeColumnsToFit();
   }
+
   getModel(e) {
-    // console.log(e)
     const filteredArray = this.gridApi.getModel().rootNode.childrenAfterFilter;
-    if (filteredArray && filteredArray.length === 0) {
-      // this.toastr.warning('No search results found');
+    if(e.filterInstance.appliedModel == null){
+      // filteredArray == [];
+      this.gridApi.getModel(null);
+        // filteredArray.forEach(element => {
+        // if(element.data.display == true){
+        //   element.data.display = false;
+        // } else {
+        //   element.data.display = true;
+        // }
+        // });
+        // this.getHiringReportDetails();
+        this.tabledef();
+    }else {
+      filteredArray.forEach(element => {
+        element.data.isFilter = true;
+    });
+    console.log(filteredArray)
+    this.tabledef();
+    }
+  }
+
+  onCellClicked(event) {
+    if (event.column.userProvidedColDef.headerName === 'Email') {
+      let email = event['data']['email'] ? this.ApiService.encrypt(event['data']['email']) : '';
+      this.appconfig.routeNavigationWithParam(APP_CONSTANTS.ENDPOINTS.REPORTS.VIEWREPORTS, email);
     }
   }
 }
