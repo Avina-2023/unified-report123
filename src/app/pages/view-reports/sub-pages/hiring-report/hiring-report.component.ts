@@ -174,13 +174,13 @@ export class HiringReportComponent implements OnInit {
         filter: 'agTextColumnFilter',
         width: 100,
         cellRenderer: (params) => {
-          if(params.data){
-            if(params.data.testscore < 40){
-              return `<span><button class="btnsm red-btn">Weak</button></span>`;
-            }if(params.data.testscore >=40 && params.data.testscore < 80) {
-              return `<span><button class="btnsm yellow-btn">Average</button></span>`;
-            } if(params.data.testscore >=90){
-              return `<span><button class="btnsm green-btn">Excellent</button></span>`;
+          if(params.value){
+            if(params.value == 'Weak'){
+              return `<span><button class="btnsm red-btn">`+params.value +`</button></span>`;
+            }if(params.value == 'Average') {
+              return `<span><button class="btnsm yellow-btn">`+params.value +`</button></span>`;
+            } if(params.value == 'Excellent'){
+              return `<span><button class="btnsm green-btn">`+params.value +`</button></span>`;
             } else {
               return '-';
             }
