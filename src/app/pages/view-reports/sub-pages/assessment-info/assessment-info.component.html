@@ -294,10 +294,10 @@
         </div>
     </section>
 
-    <div class="videosection">
+    <div class="videosection" *ngIf="currentItem.src">
         <div class="leftpan">
 
-            <div class="video" *ngIf="currentItem.src">
+            <div class="video">
                 <video controls autoplay id="myVideo" name="media" width="700px" height="450px" (ended)="nextVideo()">
                 <source id="sourceVideo" [src]="currentItem.src" type="video/mp4">
             </video>
@@ -326,5 +326,9 @@
                 </div>
             </div>
         </div>
+
     </div>
+    <div class="alert" *ngIf="showErrormsg"> <span class="material-icons novideo">
+        videocam_off
+        </span>No video found</div>
 </ng-template>
