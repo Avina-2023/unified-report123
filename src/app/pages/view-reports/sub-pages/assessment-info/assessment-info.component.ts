@@ -41,6 +41,7 @@ export class AssessmentInfoComponent implements OnInit, OnChanges {
   userInfo: {};
   playVideoList = [];
   inboundClick = false;
+  showErrormsg = false;
 
 
   constructor(private http: HttpClient ,public matDialog: MatDialog,private toastr: ToastrService, private ApiService: ApiService, ) {
@@ -157,35 +158,44 @@ export class AssessmentInfoComponent implements OnInit, OnChanges {
       roomId: roomId
       }
       let filter = [];
+      this.playlist = [];
+      this.playVideoList = [];
+      this.currentItem = [];
       this.ApiService.getProctorVideo(data).subscribe((response: any)=> {
-            response.data.forEach((data) => {
-                var i = 0
-                filter = [];
-                data.attach.forEach((iterator) => {
-                  if(iterator.mimetype.includes('video')){
-                    this.playVideoList.push({
-                      id:iterator.id,
-                      filename:iterator.filename,
-                      poster:iterator.id,
-                      src: this.proctor_url+iterator.id+'?token='+response.token,
-                    })
-                  this.playlist.push({
-                    id:iterator.id,
-                    filename:iterator.filename,
-                    poster:iterator.id,
-                    src: this.proctor_url+iterator.id+'?token='+response.token,
-                  })
-                  i++;
-                }
-              });
-              for (const key in data.metadata.metrics) {
-                if (Object.prototype.hasOwnProperty.call(data.metadata.metrics, key)) {
-                }
-                filter.push({key: key,value:data.metadata.metrics[key]});
-              }
-              this.playVideoList.push({chart:filter});
-            });
-           this.currentItem =  this.playlist[this.currentIndex];
+        if(response.data){
+          this.showErrormsg = false;
+          response.data.forEach((data) => {
+            var i = 0
+            filter = [];
+            data.attach.forEach((iterator) => {
+              if(iterator.mimetype.includes('video')){
+                this.playVideoList.push({
+                  id:iterator.id,
+                  filename:iterator.filename,
+                  poster:iterator.id,
+                  src: this.proctor_url+iterator.id+'?token='+response.token,
+                })
+              this.playlist.push({
+                id:iterator.id,
+                filename:iterator.filename,
+                poster:iterator.id,
+                src: this.proctor_url+iterator.id+'?token='+response.token,
+              })
+              i++;
+            }
+          });
+          for (const key in data.metadata.metrics) {
+            if (Object.prototype.hasOwnProperty.call(data.metadata.metrics, key)) {
+            }
+            filter.push({key: key,value:data.metadata.metrics[key]});
+          }
+          this.playVideoList.push({chart:filter});
+        });
+       this.currentItem =  this.playlist[this.currentIndex];
+        }else {
+          this.showErrormsg = true;
+        }
+
       })
   }
 
