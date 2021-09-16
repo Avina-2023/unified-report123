@@ -11,5 +11,5 @@ export const environment = {
   API_BASE_URL: 'https://candidate.lntedutech.com', 
   NODE_EDGE_URL: 'https://edgeservice.lntedutech.com',
   NODE_URL:  'https://uapcoreservice.lntedutech.com',
-  PROCTOR_URL : 'http://lntproctor.lntedutech.com/api/storage/'
+  PROCTOR_URL : 'https://proctoring.lntiggnite.com/api/storage/'
 };
