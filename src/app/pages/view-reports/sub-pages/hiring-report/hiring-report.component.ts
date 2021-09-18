@@ -71,7 +71,7 @@ export class HiringReportComponent implements OnInit {
         field: 'schedulename',
         filter: 'agTextColumnFilter',
         tooltipField:'schedulename',
-        width: 100,
+        width: 100 ,
         cellRenderer: (params) => {
           if(params.data && params.data.display == true){
             return params.value ;
