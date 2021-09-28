@@ -60,8 +60,12 @@ export class HiringReportComponent implements OnInit {
         cellRenderer: (params) => {
           if(params.data && params.data.display == true){
             return '<span class="redColor">'+params.value+'</span>' ;
-          }else {
-            return '';
+          } if(params.data && params.data.display != true){
+            return '<span class="displayNone">'+params.value+'</span>' ;
+          } if(params.value == undefined){
+            return'';
+          }else { 
+              return ''+params.value;
           }
         }
       },
@@ -71,12 +75,15 @@ export class HiringReportComponent implements OnInit {
         field: 'schedulename',
         filter: 'agTextColumnFilter',
         tooltipField:'schedulename',
+        enableRowGroup: true,
         width: 100 ,
         cellRenderer: (params) => {
-          if(params.data && params.data.display == true){
-            return params.value ;
+          if(params.value != null && params.data && params.data.display == true){
+            return ''+params.value ;
+          } if(params.value == undefined){
+            return '';
           }else {
-            return '-';
+            return ''+params.value;
           }
         }
       },
@@ -138,14 +145,17 @@ export class HiringReportComponent implements OnInit {
         tooltipField:'testscore',
         width: 100,
         cellRenderer: (params) => {
-          if (params.value != null && params.value <= 40) {
-            return `<div class="progessbar red-btn"  style="width: `+params.value+`%;">`+params.value+`</div>`;
+          if(  params.value != null && params.value / params.data.testmaxscore * 100 <= 40){
+            return `<div class="progessbar red-btn"  style="width: `+''+params.value+`%;">`+params.value+`</div>`;
           }
-          if (params.value != null && params.value >= 40 && params.value < 80 ) {
-            return `<div class="progessbar yellow-btn"  style="width: `+params.value+`%;">`+params.value +`</div>`;
-          } if (params.value != null && params.value >=90){
-            return `<div class="progessbar green-btn" style="width: `+params.value+`%; ">`+params.value +`</div>`;
-          } if(params.value !== undefined && params.value == 'null' && params.value == null ){
+          if ( params.value != null && params.value / params.data.testmaxscore * 100 >= 40 && params.value / params.data.testmaxscore * 100 < 80 ) {
+            return `<div class="progessbar yellow-btn"  style="width: `+''+params.value+`%;">`+params.value +`</div>`;
+          } 
+          if(params.value != null && params.value / params.data.testmaxscore * 100 >=80 && params.value / params.data.testmaxscore * 100 < 90){
+            return `<div class="progessbar blue-btn" style="width: `+''+params.value+`%;">`+params.value+`</div>`;
+          }if (params.value != null && params.value / params.data.testmaxscore * 100 >=90){
+            return `<div class="progessbar green-btn" style="width: `+''+params.value+`%; ">`+params.value +`</div>`;
+          } if(params.value !== undefined && params.value == 'null' && params.value == null  && params.data.testmaxscore == null){
             return params.value = '-';
           }else {
             return '-';
@@ -161,7 +171,7 @@ export class HiringReportComponent implements OnInit {
         cellClass: 'alignCenter',
         cellRenderer: (params) => {
           if(params.value){
-            return  params.value
+            return  ''+params.value
           } else {
             return '-';
           }
@@ -196,7 +206,11 @@ export class HiringReportComponent implements OnInit {
               return `<span><button class="btnsm yellow-btn">`+params.value +`</button></span>`;
             } if(params.value == 'Excellent'){
               return `<span><button class="btnsm green-btn">`+params.value +`</button></span>`;
-            } else {
+            }  if(params.value == 'Good'){
+              return `<span><button class="btnsm blue-btn">`+params.value +`</button></span>`;
+            }
+            
+            else {
               return '-';
             }
           }else {
@@ -255,7 +269,10 @@ export class HiringReportComponent implements OnInit {
                 }
                 if (params.value != null && params.value >= 40 && params.value < 80 ) {
                   return `<div class="progessbar yellow-btn" style="width: `+params.value+`%;">`+params.value+`</div>`;
-                } if (params.value != null && params.value >=90){
+                } if(params.value != null && params.value >=80 && params.value < 90){
+                  return `<div class="progessbar blue-btn" style="width: `+params.value+`%;">`+params.value+`</div>`;
+                }
+                if (params.value != null && params.value >=90){
                   return `<div class="progessbar green-btn" style="width: `+params.value+`%; ">`+params.value+`</div>`;
                 } if(params.value !== undefined && params.value == 'null' && params.value == null ){
                   return params.value = '-';
@@ -298,30 +315,21 @@ export class HiringReportComponent implements OnInit {
   }
 
   getModel(e) {
-    const filteredArray = this.gridApi.getModel().rootNode.childrenAfterFilter;
-    if(e.filterInstance.appliedModel == null){
-      // filteredArray == [];
-      this.gridApi.getModel(null);
-        // filteredArray.forEach(element => {
-        // if(element.data.display == true){
-        //   element.data.display = false;
-        // } else {
-        //   element.data.display = true;
-        // }
-        // });
-        // this.getHiringReportDetails();
-        this.tabledef();
-    }else {
-      filteredArray.forEach(element => {
-        element.data.isFilter = true;
-    });
-    console.log(filteredArray)
-    this.tabledef();
-    }
+    // const filteredArray = this.gridApi.getModel().rootNode.childrenAfterFilter;
+    // if(e.filterInstance.appliedModel == null){
+    //   this.gridApi.getModel(null);
+    //     // this.tabledef();
+    // }else {
+    //   filteredArray.forEach(element => {
+    //     element.data.isFilter = true;
+    //     // this.tabledef();
+    // });
+
+    // }
   }
 
   onCellClicked(event) {
-    if (event.column.userProvidedColDef.headerName === 'Email') {
+    if (event.column.userProvidedColDef.headerName == 'Email') {
       let email = event['data']['email'] ? this.ApiService.encrypt(event['data']['email']) : '';
       this.appconfig.routeNavigationWithParam(APP_CONSTANTS.ENDPOINTS.REPORTS.VIEWREPORTS, email);
     }
