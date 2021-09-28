@@ -60,6 +60,12 @@ export class HiringReportComponent implements OnInit {
         cellRenderer: (params) => {
           if(params.data && params.data.display == true){
             return '<span class="redColor">'+params.value+'</span>' ;
+          } if(params.data && params.data.display != true){
+            return '<span class="displayNone">'+params.value+'</span>' ;
+          } if(params.value == undefined){
+            return'';
+          }else { 
+              return ''+params.value;
           }
         }
       },

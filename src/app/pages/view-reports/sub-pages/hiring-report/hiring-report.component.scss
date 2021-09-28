@@ -26,6 +26,10 @@
     margin-left: 8px !important;
 }
 
+::ng-deep .displayNone {
+    display: none;
+}
+
 ::ng-deep .green {
     color: rgb(130, 210, 73);
     font-size: 17px;
