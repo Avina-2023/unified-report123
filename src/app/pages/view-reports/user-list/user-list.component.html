@@ -1,6 +1,6 @@
 <div class="search-icon mt-3 mb-0">
     <div class="first">
-        <h2 class="result mb-0">Shortlisted Candidates</h2>
+        <h2 class="result mb-0">Candidates - Unified Report</h2>
         <!-- <span><button mat-raised-button (click)="nav()" class="agTable-btn" mat-raised-button>Ag Grid</button></span> -->
 
     </div>
@@ -14,9 +14,9 @@
         <app-hiring-report></app-hiring-report>
     </mat-tab>
     <mat-tab label="Individual report">
-          <div class="second">
-        <input class="search" matInput (keyup)="onQuickFilterChanged()" [(ngModel)]="quickSearchValue" placeholder="Search….">
-    </div>
+        <div class="second">
+            <input class="search" matInput (keyup)="onQuickFilterChanged()" [(ngModel)]="quickSearchValue" placeholder="Search….">
+        </div>
 
         <ag-grid-angular style="width: 98%; height: calc(100vh - 140px); margin:auto !important;" class="ag-theme-alpine" [rowData]="rowData" [columnDefs]="columnDefs" [defaultColDef]="defaultColDef" [tooltipShowDelay]="tooltipShowDelay" [pagination]="true" [paginationPageSize]="paginationPageSize"
             [rowSelection]="'multiple'" [cacheBlockSize]="cacheBlockSize" (gridReady)="onGridReady($event)" (sortChanged)="sortevent($event)" (cellClicked)="onCellClicked($event)" (filterModified)="getModel($event)" headerHeight="40">
