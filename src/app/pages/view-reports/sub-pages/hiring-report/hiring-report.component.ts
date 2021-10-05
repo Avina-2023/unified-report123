@@ -112,9 +112,16 @@ export class HiringReportComponent implements OnInit {
       {
         headerName: 'Test Date',
         filter: 'agDateColumnFilter',
-        field: 'testdate' ? 'testdate' : 'scheduledate',
-        tooltipField:'testdate' ? 'testdate' : 'scheduledate',
+        field: 'testdate',
+        tooltipField:'testdate',
         width: 100,
+        cellRenderer: (params) => {
+          if(params.value){
+            return params.value;
+          }else{
+            return params.data?.scheduledate;
+          }
+        },
         filterParams: {
           comparator: 
           function (filterLocalDateAtMidnight, cellValue) {
