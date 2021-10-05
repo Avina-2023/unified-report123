@@ -1,5 +1,9 @@
 @import "../../../../../assets/scss/variables.scss";
 @import "../../../../../assets/scss/fonts.scss";
+::ng-deep .ag-theme-alpine {
+    font-size: 12px !important;
+}
+
 ::ng-deep .btn-green {
     font-size: 12px;
     height: 24px;
@@ -116,11 +120,13 @@
 
 ::ng-deep .ag-theme-alpine .ag-details-row {
     padding: 10px !important;
+    font-size: 12px !important;
 }
 
 ::ng-deep .ag-theme-alpine .ag-cell,
 .ag-theme-alpine .ag-full-width-row .ag-cell-wrapper.ag-row-group {
     line-height: 36px !important;
+    font-size: 12px !important;
 }
 
 ::ng-deep .alignCenter {

@@ -27,7 +27,7 @@ export class HiringReportComponent implements OnInit {
       sortable: true,
       resizable: true,
       filter: true,
-       floatingFilter: true, 
+      //  floatingFilter: true, 
     };
   }
 
@@ -38,7 +38,7 @@ export class HiringReportComponent implements OnInit {
   tabledef(){
     this.columnDefs = [
       {
-        headerName: 'First Name',
+        headerName: 'Name',
         field: 'firstname',
         filter: 'agTextColumnFilter',
         tooltipField:'firstname',    
@@ -110,10 +110,10 @@ export class HiringReportComponent implements OnInit {
         width: 200,
       },
       {
-        headerName: 'Test Taken on',
+        headerName: 'Test Date',
         filter: 'agDateColumnFilter',
-        field: 'testdate',
-        tooltipField:'testdate',
+        field: 'testdate' ? 'testdate' : 'scheduledate',
+        tooltipField:'testdate' ? 'testdate' : 'scheduledate',
         width: 100,
         filterParams: {
           comparator: 
@@ -145,19 +145,9 @@ export class HiringReportComponent implements OnInit {
         tooltipField:'testscore',
         width: 100,
         cellRenderer: (params) => {
-          if(  params.value != null && params.value / params.data.testmaxscore * 100 <= 40){
-            return `<div class="progessbar red-btn"  style="width: `+''+params.value+`%;">`+params.value+`</div>`;
-          }
-          if ( params.value != null && params.value / params.data.testmaxscore * 100 >= 40 && params.value / params.data.testmaxscore * 100 < 80 ) {
-            return `<div class="progessbar yellow-btn"  style="width: `+''+params.value+`%;">`+params.value +`</div>`;
-          } 
-          if(params.value != null && params.value / params.data.testmaxscore * 100 >=80 && params.value / params.data.testmaxscore * 100 < 90){
-            return `<div class="progessbar blue-btn" style="width: `+''+params.value+`%;">`+params.value+`</div>`;
-          }if (params.value != null && params.value / params.data.testmaxscore * 100 >=90){
-            return `<div class="progessbar green-btn" style="width: `+''+params.value+`%; ">`+params.value +`</div>`;
-          } if(params.value !== undefined && params.value == 'null' && params.value == null  && params.data.testmaxscore == null){
-            return params.value = '-';
-          }else {
+          if(params.value){
+            return ''+params.value;
+          }else{
             return '-';
           }
         },
@@ -175,6 +165,44 @@ export class HiringReportComponent implements OnInit {
           } else {
             return '-';
           }
+        }
+      },
+
+      {
+        headerName: 'Percentage ',
+        // field: 'testmaxscore',
+        filter: 'agNumberColumnFilter',
+        // tooltipField:'testmaxscore',
+        width: 100,
+        cellClass: 'alignCenter',
+        cellRenderer: (params) => {
+            if(params.data?.testscore !== undefined){
+              if(params.data?.testscore !== undefined && params.data.testscore != null && params.data.testscore / params.data.testmaxscore * 100 <= 40){
+                let per:any = params.data.testscore != null && params.data.testscore / params.data.testmaxscore * 100;
+             return `<div class="progessbar red-btn"  style="width: `+''+parseInt(per)+`%;">`+parseInt(per)+`</div>`;
+           }
+           if (params.data?.testscore !== undefined && params.data.testscore != null && params.value / params.data.testmaxscore * 100 >= 40 && params.data.testscore / params.data.testmaxscore * 100 < 80 ) {
+             let per:any = params.data.testscore != null && params.data.testscore / params.data.testmaxscore * 100;
+             return `<div class="progessbar yellow-btn"  style="width: `+''+parseInt(per)+`%;">`+parseInt(per) +`</div>`;
+           } 
+           if( params.data?.testscore !== undefined && params.data.testscore != null && params.value / params.data.testmaxscore * 100 >=80 && params.data.testscore / params.data.testmaxscore * 100 < 90){
+             let per:any = params.data.testscore != null && params.data.testscore / params.data.testmaxscore * 100;
+             return `<div class="progessbar blue-btn" style="width: `+''+parseInt(per)+`%;">`+parseInt(per)+`</div>`;
+           }
+           if (params.data?.testscore !== undefined && params.data.testscore != null && params.value / params.data.testmaxscore * 100 >=90){
+             let per:any = params.data.testscore != null && params.data.testscore / params.data.testmaxscore * 100;
+             return `<div class="progessbar green-btn" style="width: `+''+parseInt(per)+`%; ">`+parseInt(per)+`</div>`;
+           } 
+           if( params.data?.testscore !== undefined && params.data.testscore !== undefined && params.data.testscore == 'null' && params.data.testscore == null  && params.data.testmaxscore == null){
+             let per:any = params.data.testscore != null && params.data.testscore / params.data.testmaxscore * 100;
+             return ''+parseInt(per);
+           }else {
+             return ''+'-';
+           }
+            }else {
+              return ''+'-';
+            }
+
         }
       },
       {
