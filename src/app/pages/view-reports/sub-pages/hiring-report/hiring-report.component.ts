@@ -110,10 +110,10 @@ export class HiringReportComponent implements OnInit {
         width: 200,
       },
       {
-        headerName: 'Test Taken on',
+        headerName: 'Test Date',
         filter: 'agDateColumnFilter',
-        field: 'testdate',
-        tooltipField:'testdate',
+        field: 'testdate' ? 'testdate' : 'scheduledate',
+        tooltipField:'testdate' ? 'testdate' : 'scheduledate',
         width: 100,
         filterParams: {
           comparator: 
