@@ -1,9 +1,9 @@
 <section class="profilearea">
     <div class="heading6">
-        Drive Information
+        Schedule Information
     </div>
 
-    <mat-select class="matSelect" (selectionChange)="driveChange($event)" placeholder="Select Drive" [(ngModel)]="driveselectedValue" name="list">
+    <mat-select class="matSelect" (selectionChange)="driveChange($event)" placeholder="Select Scheduled" [(ngModel)]="driveselectedValue" name="list">
         <mat-option *ngFor="let list of driveList" [value]="list.drivename">
             {{list.drivename}}
         </mat-option>
@@ -14,12 +14,16 @@
     <div class="profileInfoarea" *ngIf="personalInfo">
         <div class="profileInfoSec">
             <div>
-                First Name:
+                Name:
                 <span> {{personalInfo.firstname ? personalInfo.firstname : '-'}} </span>
             </div>
-            <div>
+            <!-- <div>
                 Last Name:
                 <span>{{personalInfo.lastname ? personalInfo.lastname : '-'}}</span>
+            </div> -->
+            <div>
+                Email:
+                <span>{{personalInfo.emailId ? personalInfo.emailId : '-'}}</span>
             </div>
             <div>
                 Date of Birth:
