@@ -242,7 +242,7 @@ export class HiringReportComponent implements OnInit {
             } if(params.value == 'Excellent'){
               return `<span><button class="btnsm green-btn">`+params.value +`</button></span>`;
             }  if(params.value == 'Good'){
-              return `<span><button class="btnsm blue-btn">`+params.value +`</button></span>`;
+              return `<span><button class="btnsm greenlight-btn">`+params.value +`</button></span>`;
             }
             
             else {
