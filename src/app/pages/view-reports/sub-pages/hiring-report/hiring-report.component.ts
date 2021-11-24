@@ -152,11 +152,15 @@ export class HiringReportComponent implements OnInit {
         tooltipField:'testscore',
         width: 100,
         cellRenderer: (params) => {
+          if(params.data.testtype == 'Personality & Behaviour'){
+            return '-'
+        }else{
           if(params.value){
-            return ''+params.value;
-          }else{
+            return  ''+params.value
+          } else {
             return '-';
           }
+        }
         },
       },
       {
@@ -167,11 +171,16 @@ export class HiringReportComponent implements OnInit {
         width: 100,
         cellClass: 'alignCenter',
         cellRenderer: (params) => {
-          if(params.value){
-            return  ''+params.value
-          } else {
-            return '-';
+          if(params.data.testtype == 'Personality & Behaviour'){
+              return '-'
+          }else{
+            if(params.value){
+              return  ''+params.value
+            } else {
+              return '-';
+            }
           }
+
         }
       },
 
@@ -234,6 +243,10 @@ export class HiringReportComponent implements OnInit {
         filter: 'agTextColumnFilter',
         width: 100,
         cellRenderer: (params) => {
+
+          if(params.data.testtype == 'Personality & Behaviour'){
+            return '-'
+        }else{
           if(params.value){
             if(params.value == 'Weak'){
               return `<span><button class="btnsm red-btn">`+params.value +`</button></span>`;
@@ -251,6 +264,9 @@ export class HiringReportComponent implements OnInit {
           }else {
              return '-';
           }
+        }
+
+
         }
       },
     ];
