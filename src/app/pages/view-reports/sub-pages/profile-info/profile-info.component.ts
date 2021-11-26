@@ -32,6 +32,7 @@ export class ProfileInfoComponent implements OnInit, OnChanges {
     this.personalInfo.fathername = this.getAllReportsData?.fathername;
     this.personalInfo.mobile = this.getAllReportsData?.mobile;
     this.personalInfo.gender = this.getAllReportsData?.gender;
+    this.personalInfo.email = this.getAllReportsData?.email;
     this.personalInfo.address = this.getContactAddress('address');
     this.personalInfo.city = this.getContactAddress('city');
     this.personalInfo.institute = this.getLastEducationValue('institute');

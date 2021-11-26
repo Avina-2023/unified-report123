@@ -14,10 +14,19 @@ spec:
         app: unifiedreportuat
     spec:
       containers:
-        - name: unifiedreportqa
-          image: microcert.azurecr.io/unifiedreportuat:$tag
+        - name: unifiedreportuat
+          image: assessmentecouat.azurecr.io/unifiedreportuat:$tag
+          resources:
+           limits:
+             cpu: "1"
+             memory: "4Gi"
+           requests:
+             cpu: "500m"
+             memory: "2Gi"
           imagePullPolicy: Always
           ports:
           - containerPort: 80
       imagePullSecrets:
         - name: mysecret2
+      nodeSelector:
+        agentpool: uapuat
