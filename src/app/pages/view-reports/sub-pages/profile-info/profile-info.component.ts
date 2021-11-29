@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
+import { AppConfigService } from 'src/app/utils/app-config.service';
 
 @Component({
   selector: 'app-profile-info',
@@ -11,10 +12,12 @@ export class ProfileInfoComponent implements OnInit, OnChanges {
   personalInfo: any;
   driveselectedValue: any;
   driveList: any;
-  constructor() { }
+  isaccess:any;
+  constructor(private appConfig: AppConfigService,) { }
 
   ngOnInit(): void {
     this.getPersonalInfo();
+    this.isaccess = this.appConfig.isComingFromMicroCert();
   }
 
   ngOnChanges() {

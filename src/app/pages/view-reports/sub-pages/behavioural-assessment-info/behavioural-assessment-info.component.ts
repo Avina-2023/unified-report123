@@ -5,6 +5,7 @@ import _ from 'lodash';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from '../../../../services/api.service';
 import { environment } from 'src/environments/environment.prod';
+import { AppConfigService } from 'src/app/utils/app-config.service';
 // import { Timeline } from 'vis-timeline';
 // import { DataSet } from 'vis-data';
 
@@ -40,12 +41,14 @@ export class BehaviouralAssessmentInfoComponent implements OnInit, OnChanges {
   userInfo: { assessmentName: any; assessmentDate: any; candidateName: any; };
   playVideoList = []
   secValChart: any;
-  constructor(public matDialog: MatDialog,private toastr: ToastrService, private ApiService: ApiService, ) { 
+  isaccess:any;
+  constructor(private appConfig: AppConfigService,public matDialog: MatDialog,private toastr: ToastrService, private ApiService: ApiService, ) { 
 
   }
 
   ngOnInit(): void {
     this.getAssessmentInfo();
+    this.isaccess = this.appConfig.isComingFromMicroCert();
     // const container = document.getElementById("visualization");
     // const items = new DataSet([
     //   { id: 1, content: "item 1", start: "2014-04-20" },
