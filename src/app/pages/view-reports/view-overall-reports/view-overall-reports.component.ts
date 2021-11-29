@@ -14,12 +14,14 @@ export class ViewOverallReportsComponent implements OnInit {
 
   getAllReportsData: any;
   driveName: any;
+  isaccess:any;
 
   constructor(private toastr: ToastrService, private ApiService: ApiService, private appconfig: AppConfigService,
     private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.getRoute();
+    this.isaccess = this.appconfig.isComingFromMicroCert();
   }
 
   getRoute() {
@@ -42,6 +44,7 @@ export class ViewOverallReportsComponent implements OnInit {
     this.ApiService.getReportsDataAPI(apiData).subscribe((response: any)=> {
       if (response && response.success) {
         this.getAllReportsData = response.data && response.data[0] ? response.data[0] : null;
+       
       } else {
         this.toastr.error('No Reports Available');
         this.getAllReportsData = [];
