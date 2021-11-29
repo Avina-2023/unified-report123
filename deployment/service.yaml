@@ -1,13 +1,13 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: unifiedreportqa
+  name: unifiedreport
   namespace: unifiedrpt
   #annotations:
   #  service.beta.kubernetes.io/azure-load-balancer-internal: "true"
 spec:
   selector:
-    app: unifiedreportqa
+    app: unifiedreport
   type: LoadBalancer
   ports:
   - name: http

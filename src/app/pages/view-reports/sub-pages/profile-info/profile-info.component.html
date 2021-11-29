@@ -8,70 +8,73 @@
             {{list.drivename}}
         </mat-option>
     </mat-select>
-    <div class="heading6 mt-5">
-        Candidate Details
-    </div>
-    <div class="profileInfoarea" *ngIf="personalInfo">
-        <div class="profileInfoSec">
-            <div>
-                Name:
-                <span> {{personalInfo.firstname ? personalInfo.firstname : '-'}} </span>
+    <ng-container *ngIf="isaccess">
+        <div class="heading6 mt-5">
+            Candidate Details
+        </div>
+        <div class="profileInfoarea" *ngIf="personalInfo">
+            <div class="profileInfoSec">
+                <div>
+                    Name:
+                    <span> {{personalInfo.firstname ? personalInfo.firstname : '-'}} </span>
+                </div>
+                <!-- <div>
+                    Last Name:
+                    <span>{{personalInfo.lastname ? personalInfo.lastname : '-'}}</span>
+                </div> -->
+                <div>
+                    Email:
+                    <span>{{personalInfo.email ? personalInfo.email : '-'}}</span>
+                </div>
+                <div>
+                    Date of Birth:
+                    <span>{{personalInfo.DOB ? personalInfo.DOB : '-'}}</span>
+                </div>
+                <div>
+                    Father's Name:
+                    <span>{{personalInfo.fathername ? personalInfo.fathername : '-'}}</span>
+                </div>
+                <div>
+                    Gender:
+                    <span>{{personalInfo.gender ? personalInfo.gender : '-'}}</span>
+                </div>
+                <div>
+                    Contact No:
+                    <span> {{personalInfo.mobile ? personalInfo.mobile : '-'}}</span>
+                </div>
+                <div>
+                    Address:
+                    <span>{{personalInfo.address ? personalInfo.address : '-'}}</span>
+                </div>
             </div>
-            <!-- <div>
-                Last Name:
-                <span>{{personalInfo.lastname ? personalInfo.lastname : '-'}}</span>
-            </div> -->
-            <div>
-                Email:
-                <span>{{personalInfo.emailId ? personalInfo.emailId : '-'}}</span>
-            </div>
-            <div>
-                Date of Birth:
-                <span>{{personalInfo.DOB ? personalInfo.DOB : '-'}}</span>
-            </div>
-            <div>
-                Father's Name:
-                <span>{{personalInfo.fathername ? personalInfo.fathername : '-'}}</span>
-            </div>
-            <div>
-                Gender:
-                <span>{{personalInfo.gender ? personalInfo.gender : '-'}}</span>
-            </div>
-            <div>
-                Contact No:
-                <span> {{personalInfo.mobile ? personalInfo.mobile : '-'}}</span>
-            </div>
-            <div>
-                Address:
-                <span>{{personalInfo.address ? personalInfo.address : '-'}}</span>
+            <div class="profileInfoSec">
+                <div>
+                    College/University:
+                    <span> {{personalInfo.institute ? personalInfo.institute : '-'}}</span>
+                </div>
+                <div>
+                    State/City:
+                    <span>{{personalInfo.city ? personalInfo.city : '-'}}</span>
+                </div>
+                <div>
+                    Specialization:
+                    <span> {{personalInfo.specialization ? personalInfo.specialization : '-'}}</span>
+                </div>
+                <div>
+                    Branch:
+                    <span>{{personalInfo.branch ? personalInfo.branch : '-'}}</span>
+                </div>
+                <div>
+                    Passing Year:
+                    <span>{{personalInfo.passedOut ? personalInfo.passedOut : '-'}}</span>
+                </div>
+                <div>
+                    Graduation Aggregate:
+                    <span>{{personalInfo.percentage ? personalInfo.percentage + '%' : '-' }}</span>
+                </div>
             </div>
         </div>
-        <div class="profileInfoSec">
-            <div>
-                College/University:
-                <span> {{personalInfo.institute ? personalInfo.institute : '-'}}</span>
-            </div>
-            <div>
-                State/City:
-                <span>{{personalInfo.city ? personalInfo.city : '-'}}</span>
-            </div>
-            <div>
-                Specialization:
-                <span> {{personalInfo.specialization ? personalInfo.specialization : '-'}}</span>
-            </div>
-            <div>
-                Branch:
-                <span>{{personalInfo.branch ? personalInfo.branch : '-'}}</span>
-            </div>
-            <div>
-                Passing Year:
-                <span>{{personalInfo.passedOut ? personalInfo.passedOut : '-'}}</span>
-            </div>
-            <div>
-                Graduation Aggregate:
-                <span>{{personalInfo.percentage ? personalInfo.percentage + '%' : '-' }}</span>
-            </div>
-        </div>
-    </div>
+    </ng-container>
+
     <div class="clearfix"></div>
 </section>

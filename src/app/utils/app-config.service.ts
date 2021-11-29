@@ -86,4 +86,13 @@ export class AppConfigService {
     }
   }
 
+  isComingFromMicroCert() {
+    let isCert = localStorage.getItem('type');
+    if (isCert == 'microcert') {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
 }

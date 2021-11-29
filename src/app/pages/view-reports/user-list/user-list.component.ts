@@ -27,10 +27,12 @@ export class UserListComponent implements OnInit, OnChanges {
   searchBox = false;
   filterValue: string;
   quickSearchValue = '';
+  isaccess:any;
   constructor(private toastr: ToastrService, private ApiService: ApiService, private appconfig: AppConfigService) { }
 
   ngOnInit(): void {
     this.tableDef();
+    this.isaccess = this.appconfig.isComingFromMicroCert();
   }
 
   ngOnChanges() {

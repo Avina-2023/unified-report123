@@ -23,13 +23,15 @@ import { AgGridModule } from 'ag-grid-angular';
 import 'ag-grid-enterprise';
 import { IsAccessGuard } from './guards/is-access.guard';
 import { IsloggedInGuard } from './guards/islogged-in.guard';
+import { PagenotfoundComponent } from './pages/pagenotfound/pagenotfound.component';
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
 };
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PagenotfoundComponent
   ],
   imports: [
     VgCoreModule,

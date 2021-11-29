@@ -1,5 +1,5 @@
 ### STAGE 1: Build ###
-FROM node:10.20.1 AS build 
+FROM node:10.20.1 AS build
 WORKDIR /usr/src/app
 ARG environment
 ENV PORT=$environment
@@ -15,7 +15,7 @@ COPY . .
 #RUN ng serve
 
 #RUN npm run build:${PORT}
-RUN npm run build 
+RUN npm run build
 ### STAGE 2: Run ###
 FROM nginx:1.17.1-alpine
 COPY --from=build /usr/src/app/dist/UnifiedReports /usr/share/nginx/html

@@ -87,6 +87,21 @@ export class HiringReportComponent implements OnInit {
           }
         }
       },
+
+      {
+        headerName: 'Schedule Name',
+        field: 'schedulename',
+        filter: 'agTextColumnFilter',
+        tooltipField:'schedulename',
+        width: 100,
+        cellRenderer: (params) => {
+          if(params.data && params.data.display == true){
+            return params.value ;
+          }else {
+            return '-';
+          }
+        }
+      },
       {
         headerName: 'Test Type',
         field: 'testtype',

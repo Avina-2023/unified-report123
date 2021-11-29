@@ -8,6 +8,7 @@ import { ApiService } from '../../../../services/api.service';
 // import { Label, Color } from 'ng2-charts';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment.prod';
+import { AppConfigService } from 'src/app/utils/app-config.service';
 
 @Component({
   selector: 'app-assessment-info',
@@ -42,9 +43,9 @@ export class AssessmentInfoComponent implements OnInit, OnChanges {
   playVideoList = [];
   inboundClick = false;
   showErrormsg = false;
+  isaccess:any;
 
-
-  constructor(private http: HttpClient ,public matDialog: MatDialog,private toastr: ToastrService, private ApiService: ApiService, ) {
+  constructor(private appConfig: AppConfigService,private http: HttpClient ,public matDialog: MatDialog,private toastr: ToastrService, private ApiService: ApiService, ) {
 
 
   }
@@ -53,6 +54,7 @@ export class AssessmentInfoComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
     this.getAssessmentInfo();
+    this.isaccess = this.appConfig.isComingFromMicroCert();
   }
 
   ngOnChanges() {
