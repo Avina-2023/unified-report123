@@ -21,6 +21,7 @@ export class AuthComponent implements OnInit {
   showSubmenu: boolean = false;
   isShowing = false;
   showSubSubMenu: boolean = false;
+  isaccess: boolean;
 
   constructor(
     private appConfig: AppConfigService,
@@ -29,6 +30,7 @@ export class AuthComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.isaccess = this.appConfig.isComingFromMicroCert();
   }
 
   logout() {

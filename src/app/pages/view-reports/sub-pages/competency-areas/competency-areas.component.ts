@@ -28,7 +28,7 @@ export class CompetencyAreasComponent implements OnInit {
   }
 
   ngOnInit(): void {
-  this.getCompetancyData();
+  // this.getCompetancyData();
   }
 
   ngOnChanges() {
@@ -101,6 +101,7 @@ export class CompetencyAreasComponent implements OnInit {
   }
 
   conversionFormula(score: number, maxscore: number) {
+    console.log(score,maxscore)
     let percentage: number = Number(score) / Number(maxscore) * 100;
     percentage = Number(percentage.toFixed(2));
     return Number.isInteger(percentage) ? percentage : percentage.toFixed(2);
@@ -115,20 +116,12 @@ export class CompetencyAreasComponent implements OnInit {
     });
     this.list = listCount;
     // Dummy variable is for testing purpose
-    let dummy = this.getDummyData();
+    // let dummy = this.getDummyData();
     this.verticalChartData.forEach((element, i) => {
       if(element && element.score) {
         element.areaColor = this.verticaldomain[i];
       }
     });
-    // this.verticalChartData.push(dummy[0]);
-    // this.verticalChartData.push(dummy[1]);
-    // this.verticalChartData.push(dummy[2]);
-    // this.verticalChartData.push(dummy[3]);
-    // this.verticalChartData.push(dummy[4]);
-    // this.verticalChartData.push(dummy[5]);
-    // this.verticalChartData.push(dummy[6]);
-    // this.verticalChartData.push(dummy[7]);
   }
   getAreasDataInitialize(i) {
     this.competancyData.forEach(skills => {
@@ -178,82 +171,82 @@ dotChange(i) {
   this.counter = i;
 }
 
-getDummyData() {
-  return [
-    {
-    areaColor: "#FF8C00",
-    areaSkills: [],
-    competencyId: "C013",
-    competencyname: "Behavioral213",
-    maxscore: 100,
-    score: 23,
-    skills: []
-    },
-    {
-      areaColor: "#FF8C00",
-      areaSkills: [],
-      competencyId: "C013",
-      competencyname: "Behaviorals",
-      maxscore: 100,
-      score: 53,
-      skills: []
-      },
-      {
-        areaColor: "#FF8C00",
-        areaSkills: [],
-        competencyId: "C013",
-        competencyname: "1ehavioral213",
-        maxscore: 100,
-        score: 13,
-        skills: []
-        },
-        {
-          areaColor: "#FF8C00",
-          areaSkills: [],
-          competencyId: "C013",
-          competencyname: "2Behaviorals",
-          maxscore: 100,
-          score: 23,
-          skills: []
-        },
-        {
-          areaColor: "#FF8C00",
-          areaSkills: [],
-          competencyId: "C013",
-          competencyname: "zehavioral213",
-          maxscore: 100,
-          score: 94,
-          skills: []
-          },
-          {
-            areaColor: "#FF8C00",
-            areaSkills: [],
-            competencyId: "C013",
-            competencyname: "zz2Behaviorals",
-            maxscore: 100,
-            score: 73,
-            skills: []
-            },
-            {
-              areaColor: "#FF8C00",
-              areaSkills: [],
-              competencyId: "C013",
-              competencyname: "wwzehavioral213",
-              maxscore: 100,
-              score: 44,
-              skills: []
-              },
-              {
-                areaColor: "#FF8C00",
-                areaSkills: [],
-                competencyId: "C013",
-                competencyname: "eezz2Behaviorals",
-                maxscore: 100,
-                score: 73,
-                skills: []
-                }
+// getDummyData() {
+//   return [
+//     {
+//     areaColor: "#FF8C00",
+//     areaSkills: [],
+//     competencyId: "C013",
+//     competencyname: "Behavioral213",
+//     maxscore: 100,
+//     score: 23,
+//     skills: []
+//     },
+//     {
+//       areaColor: "#FF8C00",
+//       areaSkills: [],
+//       competencyId: "C013",
+//       competencyname: "Behaviorals",
+//       maxscore: 100,
+//       score: 53,
+//       skills: []
+//       },
+//       {
+//         areaColor: "#FF8C00",
+//         areaSkills: [],
+//         competencyId: "C013",
+//         competencyname: "1ehavioral213",
+//         maxscore: 100,
+//         score: 13,
+//         skills: []
+//         },
+//         {
+//           areaColor: "#FF8C00",
+//           areaSkills: [],
+//           competencyId: "C013",
+//           competencyname: "2Behaviorals",
+//           maxscore: 100,
+//           score: 23,
+//           skills: []
+//         },
+//         {
+//           areaColor: "#FF8C00",
+//           areaSkills: [],
+//           competencyId: "C013",
+//           competencyname: "zehavioral213",
+//           maxscore: 100,
+//           score: 94,
+//           skills: []
+//           },
+//           {
+//             areaColor: "#FF8C00",
+//             areaSkills: [],
+//             competencyId: "C013",
+//             competencyname: "zz2Behaviorals",
+//             maxscore: 100,
+//             score: 73,
+//             skills: []
+//             },
+//             {
+//               areaColor: "#FF8C00",
+//               areaSkills: [],
+//               competencyId: "C013",
+//               competencyname: "wwzehavioral213",
+//               maxscore: 100,
+//               score: 44,
+//               skills: []
+//               },
+//               {
+//                 areaColor: "#FF8C00",
+//                 areaSkills: [],
+//                 competencyId: "C013",
+//                 competencyname: "eezz2Behaviorals",
+//                 maxscore: 100,
+//                 score: 73,
+//                 skills: []
+//                 }
 
-  ]
-}
+//   ]
+// }
 
 }

@@ -154,18 +154,13 @@
                                             <!-- <th>Attempted</th> -->
                                             <th>Score Obtained</th>
                                             <th>Percentage</th>
-                                            <th>Time Taken</th>
+                                            <th *ngIf="assessment.assessmentname != 'Core Java' ">Time Taken</th>
                                             <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <ng-container *ngIf="
-                        assessment.section && assessment.section.length > 0
-                      ">
-                                            <tr *ngFor="
-                          let section of assessment.section;
-                          let j = index
-                        ">
+                                        <ng-container *ngIf="assessment.section && assessment.section.length > 0">
+                                            <tr *ngFor="let section of assessment.section;let j = index">
                                                 <td>{{ section.secname ? section.secname : '-' }}</td>
                                                 <td>
                                                     <div class="progressbar color-bluebar" [ngStyle]="{
@@ -193,7 +188,7 @@
                                                         <span>{{ section.accuracy ? section.accuracy : 0 }}%</span>
                                                     </div>
                                                 </td>
-                                                <td>
+                                                <td *ngIf="assessment.assessmentname != 'Core Java' ">
                                                     <div class="progressbar color-yellowbar" [ngStyle]="{
                                                    width:(section.timetaken / section.overallduration) * 100 + '%'}">
                                                     </div>
