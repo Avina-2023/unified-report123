@@ -4,6 +4,7 @@ import { AppConfigService } from './../../../utils/app-config.service';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from './../../../services/api.service';
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-view-overall-reports',
@@ -16,7 +17,7 @@ export class ViewOverallReportsComponent implements OnInit {
   driveName: any;
   isaccess:any;
 
-  constructor(private toastr: ToastrService, private ApiService: ApiService, private appconfig: AppConfigService,
+  constructor(  private location: Location,private toastr: ToastrService, private ApiService: ApiService, private appconfig: AppConfigService,
     private route: ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -35,7 +36,12 @@ export class ViewOverallReportsComponent implements OnInit {
   }
 
   onBack() {
-    this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.REPORTS.USERLIST);
+    if(this.isaccess){
+      this.location.back()
+    }else{
+      this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.REPORTS.USERLIST);
+    }
+  
   }
   getReports(data) {
     const apiData = {

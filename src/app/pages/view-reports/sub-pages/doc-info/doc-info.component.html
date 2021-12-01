@@ -1,4 +1,4 @@
-<section>
+<section *ngIf="isaccess">
     <div class="docInfoarea">
         <div class="profileplace">
             <span>Profile Picture Snapshot</span>
@@ -95,7 +95,7 @@
     </div>
     <div class="clearfix"></div>
 </section>
-<ng-template #viewImg id="viewImg">
+<ng-template #viewImg id="viewImg" *ngIf="isaccess">
     <div class="progressText">
         <div class="progressclose">
             <span class="closebtn" (click)="closeDialog()"><em class="icon-Close"></em
@@ -105,6 +105,6 @@
     </div>
 </ng-template>
 
-<ng-template #viewPDF id="viewPDF">
+<ng-template #viewPDF id="viewPDF" *ngIf="isaccess">
     <pdf-viewer [src]="selectedURL" [render-text]="true" style="display: block"></pdf-viewer>
 </ng-template>
