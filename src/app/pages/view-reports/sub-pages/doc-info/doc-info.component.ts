@@ -3,6 +3,7 @@ import { Component, Input, OnChanges, OnInit, TemplateRef, ViewChild } from '@an
 import { MatDialog } from '@angular/material/dialog';
 import { imgslide } from '../../../../animations'
 import { DragScrollComponent } from 'ngx-drag-scroll';
+import { AppConfigService } from 'src/app/utils/app-config.service';
 
 @Component({
   selector: 'app-doc-info',
@@ -22,10 +23,12 @@ export class DocInfoComponent implements OnInit, OnChanges {
   counter: number = 0;
   leftNavDisabled = false;
   rightNavDisabled = false;
-  constructor( private dialog: MatDialog ) { }
+  isaccess: any;
+  constructor( private dialog: MatDialog,private appConfig: AppConfigService ) { }
 
   ngOnInit(): void {
     this.getDocInfo();
+    this.isaccess = this.appConfig.isComingFromMicroCert();
   }
 
   ngOnChanges() {
