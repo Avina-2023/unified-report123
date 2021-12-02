@@ -1,24 +1,30 @@
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, NavigationStart, Router } from '@angular/router';
 import { APP_CONSTANTS } from './../../../utils/app-constants.service';
 import { AppConfigService } from './../../../utils/app-config.service';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from './../../../services/api.service';
 import { Component, OnInit } from '@angular/core';
-import { Location } from '@angular/common';
-
+import { HostListener } from '@angular/core';
+import { PlatformLocation } from '@angular/common';
 @Component({
   selector: 'app-view-overall-reports',
   templateUrl: './view-overall-reports.component.html',
-  styleUrls: ['./view-overall-reports.component.scss']
+  styleUrls: ['./view-overall-reports.component.scss'],
 })
 export class ViewOverallReportsComponent implements OnInit {
-
+  @HostListener('window:popstate', ['$event'])
   getAllReportsData: any;
   driveName: any;
-  isaccess:any;
+  isaccess: any;
 
-  constructor(  private location: Location,private toastr: ToastrService, private ApiService: ApiService, private appconfig: AppConfigService,
-    private route: ActivatedRoute) { }
+  constructor(
+    private toastr: ToastrService,
+    private ApiService: ApiService,
+    private appconfig: AppConfigService,
+    private route: ActivatedRoute,
+  ) {
+  }
+
 
   ngOnInit(): void {
     this.getRoute();
@@ -26,31 +32,27 @@ export class ViewOverallReportsComponent implements OnInit {
   }
 
   getRoute() {
-    this.route.paramMap.subscribe((param: any)=> {
+    this.route.paramMap.subscribe((param: any) => {
       if (param && param.params && param.params.id) {
-        let email = param.params.id ? this.ApiService.decrypt(param.params.id) : param.params.id;
+        let email = param.params.id
+          ? this.ApiService.decrypt(param.params.id)
+          : param.params.id;
         this.getReports(email);
       }
-
     });
   }
 
   onBack() {
-    if(this.isaccess){
-      this.location.back()
-    }else{
-      this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.REPORTS.USERLIST);
-    }
-  
+    this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.REPORTS.USERLIST);
   }
   getReports(data) {
     const apiData = {
-      email: data
+      email: data,
     };
-    this.ApiService.getReportsDataAPI(apiData).subscribe((response: any)=> {
+    this.ApiService.getReportsDataAPI(apiData).subscribe((response: any) => {
       if (response && response.success) {
-        this.getAllReportsData = response.data && response.data[0] ? response.data[0] : null;
-       
+        this.getAllReportsData =
+          response.data && response.data[0] ? response.data[0] : null;
       } else {
         this.toastr.error('No Reports Available');
         this.getAllReportsData = [];
