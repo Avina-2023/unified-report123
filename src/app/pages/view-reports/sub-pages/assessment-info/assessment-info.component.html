@@ -21,7 +21,7 @@
                             </div>
                             <div class="width-270">
                                 <em class="icon-Booked"></em>
-                                <span>Test Taken on:
+                                <span>Test Date:
                                     <span>{{
                                         assessment.assessmentdate
                                         ? momentForm(assessment.assessmentdate)
@@ -69,9 +69,13 @@
                             </div> -->
                             <div>
                                 Proctoring
-                                <span>{{ assessment.proctored ? "Yes" : "No"
-                                    }}<span *ngIf="assessment.proctored" class="warningColor pointer"
-                                        (click)="open(assessment)">View Details</span></span>
+                                <span>{{ assessment.proctored ? "Yes" : "No"}}
+                                    <a *ngIf="isaccess">
+                                        <span *ngIf="assessment.proctored" class="warningColor pointer"
+                                        (click)="open(assessment)">View Details</span>
+                                </a>
+                                </span>
+
                             </div>
                             <div class="primaryInfo">
                                 Completion
@@ -87,7 +91,7 @@
                         </div>
                         <div class="ContentInfoSummary">
                             <div class="assessmentHeaderinfo">
-                                <div class="Summaryhtxt">
+                                <div class="Summaryhtxt" *ngIf="isaccess">
                                     Sectional Summary
                                     <span class="primaryClick" (click)="questionview(assessment);inboundClick = !inboundClick"><em
                                             class="icon-right-next"></em> View Questionwise Analysis</span>
@@ -150,18 +154,13 @@
                                             <!-- <th>Attempted</th> -->
                                             <th>Score Obtained</th>
                                             <th>Percentage</th>
-                                            <th>Time Taken</th>
+                                            <th *ngIf="assessment.assessmentname != 'Core Java' ">Time Taken</th>
                                             <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <ng-container *ngIf="
-                        assessment.section && assessment.section.length > 0
-                      ">
-                                            <tr *ngFor="
-                          let section of assessment.section;
-                          let j = index
-                        ">
+                                        <ng-container *ngIf="assessment.section && assessment.section.length > 0">
+                                            <tr *ngFor="let section of assessment.section;let j = index">
                                                 <td>{{ section.secname ? section.secname : '-' }}</td>
                                                 <td>
                                                     <div class="progressbar color-bluebar" [ngStyle]="{
@@ -189,7 +188,7 @@
                                                         <span>{{ section.accuracy ? section.accuracy : 0 }}%</span>
                                                     </div>
                                                 </td>
-                                                <td>
+                                                <td *ngIf="assessment.assessmentname != 'Core Java' ">
                                                     <div class="progressbar color-yellowbar" [ngStyle]="{
                                                    width:(section.timetaken / section.overallduration) * 100 + '%'}">
                                                     </div>
@@ -290,7 +289,7 @@
                     <em class="icon-Booked icon-bag"></em>
                     <div>
                         <div></div>
-                        <div class="psubHeader">Test Taken on:</div>
+                        <div class="psubHeader">Test Date:</div>
                         <span class="Pheader">{{userInfo.assessmentDate  ? momentForm(userInfo.assessmentDate)
                             : "-"}}</span>
                     </div>

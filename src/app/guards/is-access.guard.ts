@@ -3,7 +3,7 @@ import { AppConfigService } from './../utils/app-config.service';
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, CanLoad, Route, RouterStateSnapshot, UrlSegment, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
-
+import * as CryptoJS from 'crypto-js';
 @Injectable({
   providedIn: 'root'
 })
@@ -26,12 +26,27 @@ export class IsAccessGuard implements CanLoad {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      if (this.appConfig.getLocalStorage('token')) {
-        return true;
-      } else {
-        this.apiService.logout();
-        return false;
-      }  
+      let param = route.queryParams;
+      if(param.details){
+       let details =  this.apiService.decrypt(param.details);
+          if( details.email && details.type  == 'microcert'){
+               localStorage.setItem('type','microcert');
+                localStorage.setItem('token', 'true');
+                return true
+          }else {
+            this.apiService.logout();
+            this.appConfig.routeNavigation('/error')
+            return false
+          }
+      }else{
+        if (this.appConfig.getLocalStorage('token')) {
+          return true;
+        } else {
+          this.apiService.logout();
+          return false;
+        }  
+      }
+
   }
   
 }

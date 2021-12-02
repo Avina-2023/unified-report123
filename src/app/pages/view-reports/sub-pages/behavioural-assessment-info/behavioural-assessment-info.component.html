@@ -23,8 +23,11 @@
                                 <!-- <div> -->
 
                                 <span class="proct"> Proctoring :
-                                        <span>{{ assessment.proctored ? "Yes" : "No"
-                                        }}<span *ngIf="assessment.proctored" class="warningColor pointer" (click)="open(assessment)">View Details</span></span>
+                                        <span>{{ assessment.proctored ? "Yes" : "No"}}
+                                            <a *ngIf="isaccess">
+                                                <span *ngIf="assessment.proctored" class="warningColor pointer" (click)="open(assessment)">View Details</span>
+                                </a>
+                                </span>
                                 </span>
                                 <!-- </div> -->
                                 <!-- <em class="icon-Booked"></em>
@@ -125,7 +128,7 @@
                     <em class="icon-Booked icon-bag"></em>
                     <div>
                         <div></div>
-                        <div class="psubHeader">Test Taken on:</div>
+                        <div class="psubHeader">Test Date:</div>
                         <span class="Pheader">{{userInfo.assessmentDate  ? momentForm(userInfo.assessmentDate)
                             : "-"}}</span>
                     </div>

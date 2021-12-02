@@ -27,7 +27,7 @@ export class HiringReportComponent implements OnInit {
       sortable: true,
       resizable: true,
       filter: true,
-       floatingFilter: true, 
+      //  floatingFilter: true, 
     };
   }
 
@@ -38,7 +38,7 @@ export class HiringReportComponent implements OnInit {
   tabledef(){
     this.columnDefs = [
       {
-        headerName: 'First Name',
+        headerName: 'Name',
         field: 'firstname',
         filter: 'agTextColumnFilter',
         tooltipField:'firstname',    
@@ -125,11 +125,18 @@ export class HiringReportComponent implements OnInit {
         width: 200,
       },
       {
-        headerName: 'Test Taken on',
+        headerName: 'Test Date',
         filter: 'agDateColumnFilter',
         field: 'testdate',
         tooltipField:'testdate',
         width: 100,
+        cellRenderer: (params) => {
+          if(params.value){
+            return params.value;
+          }else{
+            return params.data?.scheduledate;
+          }
+        },
         filterParams: {
           comparator: 
           function (filterLocalDateAtMidnight, cellValue) {
@@ -160,21 +167,15 @@ export class HiringReportComponent implements OnInit {
         tooltipField:'testscore',
         width: 100,
         cellRenderer: (params) => {
-          if(  params.value != null && params.value / params.data.testmaxscore * 100 <= 40){
-            return `<div class="progessbar red-btn"  style="width: `+''+params.value+`%;">`+params.value+`</div>`;
-          }
-          if ( params.value != null && params.value / params.data.testmaxscore * 100 >= 40 && params.value / params.data.testmaxscore * 100 < 80 ) {
-            return `<div class="progessbar yellow-btn"  style="width: `+''+params.value+`%;">`+params.value +`</div>`;
-          } 
-          if(params.value != null && params.value / params.data.testmaxscore * 100 >=80 && params.value / params.data.testmaxscore * 100 < 90){
-            return `<div class="progessbar blue-btn" style="width: `+''+params.value+`%;">`+params.value+`</div>`;
-          }if (params.value != null && params.value / params.data.testmaxscore * 100 >=90){
-            return `<div class="progessbar green-btn" style="width: `+''+params.value+`%; ">`+params.value +`</div>`;
-          } if(params.value !== undefined && params.value == 'null' && params.value == null  && params.data.testmaxscore == null){
-            return params.value = '-';
-          }else {
+          if(params.data.testtype == 'Personality & Behaviour'){
+            return '-'
+        }else{
+          if(params.value){
+            return  ''+params.value
+          } else {
             return '-';
           }
+        }
         },
       },
       {
@@ -185,11 +186,54 @@ export class HiringReportComponent implements OnInit {
         width: 100,
         cellClass: 'alignCenter',
         cellRenderer: (params) => {
-          if(params.value){
-            return  ''+params.value
-          } else {
-            return '-';
+          if(params.data.testtype == 'Personality & Behaviour'){
+              return '-'
+          }else{
+            if(params.value){
+              return  ''+params.value
+            } else {
+              return '-';
+            }
           }
+
+        }
+      },
+
+      {
+        headerName: 'Percentage ',
+        // field: 'testmaxscore',
+        filter: 'agNumberColumnFilter',
+        // tooltipField:'testmaxscore',
+        width: 100,
+        cellClass: 'alignCenter',
+        cellRenderer: (params) => {
+            if(params.data?.testscore !== undefined){
+              if(params.data?.testscore !== undefined && params.data.testscore != null && params.data.testscore / params.data.testmaxscore * 100 <= 40){
+                let per:any = params.data.testscore != null && params.data.testscore / params.data.testmaxscore * 100;
+             return `<div class="progessbar red-btn"  style="width: `+''+parseInt(per)+`%;">`+parseInt(per)+`</div>`;
+           }
+           if (params.data?.testscore !== undefined && params.data.testscore != null && params.value / params.data.testmaxscore * 100 >= 40 && params.data.testscore / params.data.testmaxscore * 100 < 80 ) {
+             let per:any = params.data.testscore != null && params.data.testscore / params.data.testmaxscore * 100;
+             return `<div class="progessbar yellow-btn"  style="width: `+''+parseInt(per)+`%;">`+parseInt(per) +`</div>`;
+           } 
+           if( params.data?.testscore !== undefined && params.data.testscore != null && params.value / params.data.testmaxscore * 100 >=80 && params.data.testscore / params.data.testmaxscore * 100 < 90){
+             let per:any = params.data.testscore != null && params.data.testscore / params.data.testmaxscore * 100;
+             return `<div class="progessbar blue-btn" style="width: `+''+parseInt(per)+`%;">`+parseInt(per)+`</div>`;
+           }
+           if (params.data?.testscore !== undefined && params.data.testscore != null && params.value / params.data.testmaxscore * 100 >=90){
+             let per:any = params.data.testscore != null && params.data.testscore / params.data.testmaxscore * 100;
+             return `<div class="progessbar green-btn" style="width: `+''+parseInt(per)+`%; ">`+parseInt(per)+`</div>`;
+           } 
+           if( params.data?.testscore !== undefined && params.data.testscore !== undefined && params.data.testscore == 'null' && params.data.testscore == null  && params.data.testmaxscore == null){
+             let per:any = params.data.testscore != null && params.data.testscore / params.data.testmaxscore * 100;
+             return ''+parseInt(per);
+           }else {
+             return ''+'-';
+           }
+            }else {
+              return ''+'-';
+            }
+
         }
       },
       {
@@ -214,6 +258,10 @@ export class HiringReportComponent implements OnInit {
         filter: 'agTextColumnFilter',
         width: 100,
         cellRenderer: (params) => {
+
+          if(params.data.testtype == 'Personality & Behaviour'){
+            return '-'
+        }else{
           if(params.value){
             if(params.value == 'Weak'){
               return `<span><button class="btnsm red-btn">`+params.value +`</button></span>`;
@@ -222,7 +270,7 @@ export class HiringReportComponent implements OnInit {
             } if(params.value == 'Excellent'){
               return `<span><button class="btnsm green-btn">`+params.value +`</button></span>`;
             }  if(params.value == 'Good'){
-              return `<span><button class="btnsm blue-btn">`+params.value +`</button></span>`;
+              return `<span><button class="btnsm greenlight-btn">`+params.value +`</button></span>`;
             }
             
             else {
@@ -231,6 +279,9 @@ export class HiringReportComponent implements OnInit {
           }else {
              return '-';
           }
+        }
+
+
         }
       },
     ];
