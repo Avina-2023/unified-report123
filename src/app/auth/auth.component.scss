@@ -1,3 +1,19 @@
  mat-toolbar {
-   justify-content: space-between;
+     justify-content: space-between;
+ }
+ 
+ ::ng-deep .yellowColor {
+     background: linear-gradient(90deg, #fff 14%, #fc0 25%)!important;
+     height: 60px;
+     box-shadow: 0 2px 4px -1px rgb(0 0 0 / 20%) !important;
+     position: relative;
+     z-index: 5;
+ }
+ 
+ ::ng-deep .whiteColor {
+     background: linear-gradient(90deg, #fff 14%, #fff 25%)!important;
+     height: 60px;
+     box-shadow: 0 2px 4px -1px rgb(0 0 0 / 20%) !important;
+     position: relative;
+     z-index: 5;
  }
