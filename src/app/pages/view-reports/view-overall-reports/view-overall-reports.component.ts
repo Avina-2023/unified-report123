@@ -51,8 +51,7 @@ export class ViewOverallReportsComponent implements OnInit {
     };
     this.ApiService.getReportsDataAPI(apiData).subscribe((response: any) => {
       if (response && response.success) {
-        this.getAllReportsData =
-          response.data && response.data[0] ? response.data[0] : null;
+        this.getAllReportsData = response.data && response.data[0] ? response.data[0] : null;
       } else {
         this.toastr.error('No Reports Available');
         this.getAllReportsData = [];

@@ -4,7 +4,7 @@
         <span class="ml-2" (click)="onBack()">Back</span>
     </div>
 
-    <ng-continer *ngIf="getAllReportsData && getAllReportsData.email; else nocard">
+    <ng-continer *ngIf="getAllReportsData && getAllReportsData.email">
 
         <app-profile-info (driveName)="getSelectedDriveName($event)" [getAllReportsData]="getAllReportsData">
         </app-profile-info>
@@ -20,7 +20,7 @@
     </ng-continer>
 </div>
 
-<ng-template #nocard>
+<ng-template *ngIf="!getAllReportsData && !getAllReportsData.email">
 
     <div class="noCard">
         <div class="noData">No Data found...</div>
