@@ -9,6 +9,9 @@
                 <app-bar-chart (competencyId)="getParticularCompetencySkills($event)" [domains]="verticalChartData" [hideControls]="hideControls" [chartData]="verticalChartData"></app-bar-chart>
             </div>
         </div>
+
+
+
         <div class="rightPan" [@animSlider]="counter" #height>
 
             <ng-container *ngFor="let competency of competancyData; let i = index">
@@ -18,13 +21,13 @@
                         </div>
                         <app-horizontal-bar-chart (selectedArea)="selectedHorizontalArrayIndex($event, i)" [hideControls]="hideControls" [domains]="domain" [chartData]="competency.skills"></app-horizontal-bar-chart>
                     </div>
-                    <div class="aPan">
+                    <!-- <div class="aPan">
                         <div class="subhtxt">Skill areas <span (click)="resetAreas(i, competency)" class="ResetBtn "> <em class="icon-Refresh"></em>Reset</span></div>
                         <div class="areasbtnsec" *ngIf="competency.areaSkills">
                             <span class="btnBox btnBlue" [ngStyle]="{'background-color': area1.areaColor ? area1.areaColor : ''}" *ngFor="let area1 of competency.areaSkills">{{area1.areaname}} -
                               {{area1.score}}</span>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </ng-container>
 
