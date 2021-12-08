@@ -201,35 +201,35 @@ export class HiringReportComponent implements OnInit {
 
       {
         headerName: 'Percentage ',
-        // field: 'testmaxscore',
+        field: 'percentage',
         filter: 'agNumberColumnFilter',
         // tooltipField:'testmaxscore',
         width: 100,
         cellClass: 'alignCenter',
         cellRenderer: (params) => {
             if(params.data?.testscore !== undefined){
-              if(params.data?.testscore !== undefined && params.data.testscore != null && params.data.testscore / params.data.testmaxscore * 100 <= 40){
-                let per:any = params.data.testscore != null && params.data.testscore / params.data.testmaxscore * 100;
-             return `<div class="progessbar red-btn"  style="width: `+''+parseInt(per)+`%;">`+parseInt(per)+`</div>`;
+              if(params.value <= 40){
+                // let per:any = params.data.testscore != null && params.data.testscore / params.data.testmaxscore * 100;
+             return `<div class="progessbar red-btn"  style="width: `+''+parseInt(params.value)+`%;">`+parseInt(params.value)+`</div>`;
            }
-           if (params.data?.testscore !== undefined && params.data.testscore != null && params.value / params.data.testmaxscore * 100 >= 40 && params.data.testscore / params.data.testmaxscore * 100 < 80 ) {
+           if (params.value < 80 ) {
              let per:any = params.data.testscore != null && params.data.testscore / params.data.testmaxscore * 100;
-             return `<div class="progessbar yellow-btn"  style="width: `+''+parseInt(per)+`%;">`+parseInt(per) +`</div>`;
+             return `<div class="progessbar yellow-btn"  style="width: `+''+parseInt(params.value)+`%;">`+parseInt(params.value) +`</div>`;
            } 
-           if( params.data?.testscore !== undefined && params.data.testscore != null && params.value / params.data.testmaxscore * 100 >=80 && params.data.testscore / params.data.testmaxscore * 100 < 90){
-             let per:any = params.data.testscore != null && params.data.testscore / params.data.testmaxscore * 100;
-             return `<div class="progessbar blue-btn" style="width: `+''+parseInt(per)+`%;">`+parseInt(per)+`</div>`;
+           if(params.value  < 90){
+            //  let per:any = params.data.testscore != null && params.data.testscore / params.data.testmaxscore * 100;
+             return `<div class="progessbar blue-btn" style="width: `+''+parseInt(params.value)+`%;">`+parseInt(params.value)+`</div>`;
            }
-           if (params.data?.testscore !== undefined && params.data.testscore != null && params.value / params.data.testmaxscore * 100 >=90){
-             let per:any = params.data.testscore != null && params.data.testscore / params.data.testmaxscore * 100;
-             return `<div class="progessbar green-btn" style="width: `+''+parseInt(per)+`%; ">`+parseInt(per)+`</div>`;
+           if ( params.value >=90){
+            //  let per:any = params.data.testscore != null && params.data.testscore / params.data.testmaxscore * 100;
+             return `<div class="progessbar green-btn" style="width: `+''+parseInt(params.value)+`%; ">`+parseInt(params.value)+`</div>`;
            } 
-           if( params.data?.testscore !== undefined && params.data.testscore !== undefined && params.data.testscore == 'null' && params.data.testscore == null  && params.data.testmaxscore == null){
-             let per:any = params.data.testscore != null && params.data.testscore / params.data.testmaxscore * 100;
-             return ''+parseInt(per);
-           }else {
-             return ''+'-';
-           }
+          //  if( params.data?.testscore !== undefined && params.data.testscore !== undefined && params.data.testscore == 'null' && params.data.testscore == null  && params.data.testmaxscore == null){
+          //   //  let per:any = params.data.testscore != null && params.data.testscore / params.data.testmaxscore * 100;
+          //    return ''+parseInt(per);
+          //  }else {
+          //    return ''+'-';
+          //  }
             }else {
               return ''+'-';
             }

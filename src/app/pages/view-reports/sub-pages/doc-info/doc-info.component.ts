@@ -14,6 +14,7 @@ import { AppConfigService } from 'src/app/utils/app-config.service';
 export class DocInfoComponent implements OnInit, OnChanges {
   @ViewChild(DragScrollComponent) ds: DragScrollComponent;
   @ViewChild('viewPDF', {static: false}) viewPDF: TemplateRef<any>;
+  @ViewChild('viewImg', {static: false}) viewImg: TemplateRef<any>;
   @Input() getAllReportsData;
   blobkey = environment.blobKey;
   profilePic: any;
@@ -45,7 +46,7 @@ export class DocInfoComponent implements OnInit, OnChanges {
     openDialog(group, templateRef: TemplateRef<any>) {
     if (group.type && group.type.includes('image/')) {
       this.selectedURL = group['url'] + this.blobkey;
-      this.dialog.open(templateRef, {
+      this.dialog.open(this.viewImg, {
         panelClass: 'uploadInProgress',
         // height: '80%',
         // width: '35%',
