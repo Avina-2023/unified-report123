@@ -40,6 +40,10 @@
 
 .first {
     display: contents;
+    .link {
+        color: black;
+        text-decoration: none
+    }
 }
 
 :host ::ng-deep .mat-tab-group.mat-primary .mat-ink-bar,
