@@ -207,33 +207,40 @@ export class HiringReportComponent implements OnInit {
         width: 100,
         cellClass: 'alignCenter',
         cellRenderer: (params) => {
-            if(params.value !== undefined && params.value !== null && params.value == 'null'){
+
+          if(params.data.testtype == 'Personality & Behaviour'){
+            return '-'
+          }else {
+            // if(params.value !== undefined && params.value !== null && params.value == 'null'){
               if(params.value <= 40){
                 // let per:any = params.data.testscore != null && params.data.testscore / params.data.testmaxscore * 100;
-             return `<div class="progessbar red-btn"  style="width: `+''+parseInt(params.value)+`%;">`+parseInt(params.value)+`</div>`;
-           }
-           if (params.value < 80 ) {
+            return `<div class="progessbar red-btn"  style="width: `+''+parseInt(params.value)+`%;">`+parseInt(params.value)+`</div>`;
+            }
+            if (params.value < 80 ) {
             //  let per:any = params.data.testscore != null && params.data.testscore / params.data.testmaxscore * 100;
-             return `<div class="progessbar yellow-btn"  style="width: `+''+parseInt(params.value)+`%;">`+parseInt(params.value) +`</div>`;
-           } 
-           if(params.value  < 90){
+            return `<div class="progessbar yellow-btn"  style="width: `+''+parseInt(params.value)+`%;">`+parseInt(params.value) +`</div>`;
+            } 
+            if(params.value  < 90){
             //  let per:any = params.data.testscore != null && params.data.testscore / params.data.testmaxscore * 100;
-             return `<div class="progessbar blue-btn" style="width: `+''+parseInt(params.value)+`%;">`+parseInt(params.value)+`</div>`;
-           }
-           if ( params.value >=90){
+            return `<div class="progessbar blue-btn" style="width: `+''+parseInt(params.value)+`%;">`+parseInt(params.value)+`</div>`;
+            }
+            if ( params.value >=90){
             //  let per:any = params.data.testscore != null && params.data.testscore / params.data.testmaxscore * 100;
-             return `<div class="progessbar green-btn" style="width: `+''+parseInt(params.value)+`%; ">`+parseInt(params.value)+`</div>`;
-           } 
-           if(params.value !== undefined && params.value !== null && params.value == 'null'){
+            return `<div class="progessbar green-btn" style="width: `+''+parseInt(params.value)+`%; ">`+parseInt(params.value)+`</div>`;
+            } 
+            if(params.value !== undefined && params.value !== null && params.value == 'null' && params.value == ''){
             //  let per:any = params.data.testscore != null && params.data.testscore / params.data.testmaxscore * 100;
-             return ''+parseInt(params.value);
-           }else {
-             return ''+'-';
-           }
+            return ''+parseInt(params.value);
             }else {
-              return ''+'-';
+            return '-';
             }
 
+            // }else {
+            //   return ''+'-';
+            // }
+
+          }
+           
         }
       },
       {
