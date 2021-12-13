@@ -207,13 +207,13 @@ export class HiringReportComponent implements OnInit {
         width: 100,
         cellClass: 'alignCenter',
         cellRenderer: (params) => {
-            if(params.data?.testscore !== undefined){
+            if(params.value !== undefined && params.value !== null && params.value == 'null'){
               if(params.value <= 40){
                 // let per:any = params.data.testscore != null && params.data.testscore / params.data.testmaxscore * 100;
              return `<div class="progessbar red-btn"  style="width: `+''+parseInt(params.value)+`%;">`+parseInt(params.value)+`</div>`;
            }
            if (params.value < 80 ) {
-             let per:any = params.data.testscore != null && params.data.testscore / params.data.testmaxscore * 100;
+            //  let per:any = params.data.testscore != null && params.data.testscore / params.data.testmaxscore * 100;
              return `<div class="progessbar yellow-btn"  style="width: `+''+parseInt(params.value)+`%;">`+parseInt(params.value) +`</div>`;
            } 
            if(params.value  < 90){
@@ -224,12 +224,12 @@ export class HiringReportComponent implements OnInit {
             //  let per:any = params.data.testscore != null && params.data.testscore / params.data.testmaxscore * 100;
              return `<div class="progessbar green-btn" style="width: `+''+parseInt(params.value)+`%; ">`+parseInt(params.value)+`</div>`;
            } 
-          //  if( params.data?.testscore !== undefined && params.data.testscore !== undefined && params.data.testscore == 'null' && params.data.testscore == null  && params.data.testmaxscore == null){
-          //   //  let per:any = params.data.testscore != null && params.data.testscore / params.data.testmaxscore * 100;
-          //    return ''+parseInt(per);
-          //  }else {
-          //    return ''+'-';
-          //  }
+           if( params.value !== undefined && params.value !== null && params.value == 'null'){
+            //  let per:any = params.data.testscore != null && params.data.testscore / params.data.testmaxscore * 100;
+             return ''+parseInt(params.value);
+           }else {
+             return ''+'-';
+           }
             }else {
               return ''+'-';
             }
