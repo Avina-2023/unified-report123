@@ -38,6 +38,10 @@
     margin-bottom: 20px;
 }
 
+.first {
+    display: contents;
+}
+
 :host ::ng-deep .mat-tab-group.mat-primary .mat-ink-bar,
 .mat-tab-nav-bar.mat-primary .mat-ink-bar {
     background-color: $secondaryColor !important;
@@ -48,8 +52,9 @@
     flex-direction: column;
     padding: 0px 15px !important;
 }
+
 .second {
-  margin: .25em 0 .5em 0;
+    margin: .25em 0 .5em 0;
     display: flex;
     margin-right: 1em;
     justify-content: flex-end;

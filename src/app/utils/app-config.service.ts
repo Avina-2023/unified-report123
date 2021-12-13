@@ -82,7 +82,7 @@ export class AppConfigService {
   // To print logs
   consoleLog(identityString: any, printText: any) {
     if (environment) {
-      console.log(identityString, printText);
+      // console.log(identityString, printText);
     }
   }
 

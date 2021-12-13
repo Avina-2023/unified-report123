@@ -132,7 +132,7 @@ export class AssessmentInfoComponent implements OnInit, OnChanges {
   }
 
   open(assessment){
-    console.log(assessment)
+    // console.log(assessment)
     const dialogRef = this.matDialog.open(this.matDialogRef1, {
       width: '95%',
       height: '600px',

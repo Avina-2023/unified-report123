@@ -39,6 +39,10 @@ export class UserListComponent implements OnInit, OnChanges {
     this.tableDef();
   }
 
+  open(){
+    var win = window.open();
+    win.document.write('<iframe title="Campus Data - Dashboard" width="1140" height="541.25" src="https://app.powerbi.com/reportEmbed?reportId=60450b63-1eab-4d87-98b1-91f431865d62&autoAuth=true&ctid=264b9899-fe1b-430b-9509-2154878d5774&config=eyJjbHVzdGVyVXJsIjoiaHR0cHM6Ly93YWJpLXNvdXRoLWVhc3QtYXNpYS1yZWRpcmVjdC5hbmFseXNpcy53aW5kb3dzLm5ldC8ifQ%3D%3D" frameborder="0" allowFullScreen="true"></iframe>')
+  }
 
   getUserList() {
     const apiData = {

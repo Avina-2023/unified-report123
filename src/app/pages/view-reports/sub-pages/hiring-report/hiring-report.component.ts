@@ -377,7 +377,7 @@ export class HiringReportComponent implements OnInit {
     this.ApiService.getHiringReport().subscribe((res: any)=> {
       if(res){
         this.rowData = res.data;
-        console.log(this.rowData)
+        // console.log(this.rowData)
       }else {
           this.toastr.warning('Please try after sometimes...')
       }
