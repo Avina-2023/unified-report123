@@ -222,7 +222,7 @@ export class HiringReportComponent implements OnInit {
             } 
             if(params.value  < 90){
             //  let per:any = params.data.testscore != null && params.data.testscore / params.data.testmaxscore * 100;
-            return `<div class="progessbar blue-btn" style="width: `+''+parseInt(params.value)+`%;">`+parseInt(params.value)+`</div>`;
+            return `<div class="progessbar greenlight-btn" style="width: `+''+parseInt(params.value)+`%;">`+parseInt(params.value)+`</div>`;
             }
             if ( params.value >=90){
             //  let per:any = params.data.testscore != null && params.data.testscore / params.data.testmaxscore * 100;
