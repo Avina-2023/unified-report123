@@ -57,7 +57,7 @@
                                 Scheduled Duration
                                 <span>{{ assessment.duration ? assessment.duration : 0 }}<span>Mins</span></span>
                             </div>
-                            <div>
+                            <div *ngIf="assessment.source != 'ICP'">
                                 Test Taken Duration
                                 <span>{{ getTimetaken(assessment.timetaken)}}</span>
                                 <span>{{TimeTakenMins != undefined ? TimeTakenMins : '0' }}<span>Mins</span> {{timeTakenSec != undefined ? timeTakenSec : '0' }}<span>sec</span></span>
@@ -154,7 +154,7 @@
                                             <!-- <th>Attempted</th> -->
                                             <th>Score Obtained</th>
                                             <th>Percentage</th>
-                                            <th *ngIf="assessment.assessmentname != 'Core Java' ">Time Taken</th>
+                                            <th *ngIf="assessment.source != 'ICP' ">Time Taken</th>
                                             <th></th>
                                         </tr>
                                     </thead>
@@ -188,7 +188,7 @@
                                                         <span>{{ section.accuracy ? section.accuracy : 0 }}%</span>
                                                     </div>
                                                 </td>
-                                                <td *ngIf="assessment.assessmentname != 'Core Java' ">
+                                                <td *ngIf="assessment.source != 'ICP' ">
                                                     <div class="progressbar color-yellowbar" [ngStyle]="{
                                                    width:(section.timetaken / section.overallduration) * 100 + '%'}">
                                                     </div>

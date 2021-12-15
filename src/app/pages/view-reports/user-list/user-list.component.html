@@ -9,11 +9,11 @@
     </div> -->
 </div>
 
-<mat-tab-group>
-    <mat-tab label="Overall report">
-        <app-hiring-report></app-hiring-report>
-    </mat-tab>
-    <!-- <mat-tab label="Individual report">
+<!-- <mat-tab-group> -->
+<!-- <mat-tab label="Overall report"> -->
+<app-hiring-report></app-hiring-report>
+<!-- </mat-tab> -->
+<!-- <mat-tab label="Individual report">
         <div class="second">
             <input class="search" matInput (keyup)="onQuickFilterChanged()" [(ngModel)]="quickSearchValue" placeholder="Search….">
         </div>
@@ -22,4 +22,4 @@
             [rowSelection]="'multiple'" [cacheBlockSize]="cacheBlockSize" (gridReady)="onGridReady($event)" (sortChanged)="sortevent($event)" (cellClicked)="onCellClicked($event)" (filterModified)="getModel($event)" headerHeight="40">
         </ag-grid-angular>
     </mat-tab> -->
-</mat-tab-group>
+<!-- </mat-tab-group> -->
