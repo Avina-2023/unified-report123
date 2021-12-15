@@ -39,6 +39,7 @@
     font-size: 17px;
     position: relative;
     top: 4px;
+    text-align: center;
 }
 
 ::ng-deep .red {
@@ -135,4 +136,12 @@
 
 ::ng-deep .alignCenter {
     // text-align: center;
+}
+
+::ng-deep .center {
+    text-align: center;
+}
+
+::ng-deep .light-green {
+    background: #82d2498a;
 }

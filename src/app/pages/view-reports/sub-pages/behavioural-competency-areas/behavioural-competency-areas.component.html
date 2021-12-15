@@ -19,7 +19,7 @@
                     <div class="sPan">
                         <div class="heading4">{{competency && competency.competencyname ? competency.competencyname : ''}}
                         </div>
-                        <app-horizontal-bar-chart (selectedArea)="selectedHorizontalArrayIndex($event, i)" [hideControls]="hideControls" [domains]="domain" [chartData]="competency.skills"></app-horizontal-bar-chart>
+                        <app-horizontal-bar-chart (selectedArea)="selectedHorizontalArrayIndex($event, i,competency.competencyname)" [hideControls]="hideControls" [domains]="domain" [chartData]="competency.skills"></app-horizontal-bar-chart>
                     </div>
                     <!-- <div class="aPan">
                         <div class="subhtxt">Skill areas <span (click)="resetAreas(i, competency)" class="ResetBtn "> <em class="icon-Refresh"></em>Reset</span></div>
@@ -28,6 +28,18 @@
                               {{area1.score}}</span>
                         </div>
                     </div> -->
+                    <div class="behav">
+                        <div *ngFor="let beh of behaviouraldef">
+                            <div class="black">{{beh.heading}} </div>
+                            <ul class="para" style="list-style-type: disc">
+                                <span style="color:#343a40b8" *ngFor="let subhead of beh.children">
+                                {{subhead.subheading}}
+                                <li class="col-black" *ngFor="let para of subhead.child">{{para.para}}</li>
+                            </span>
+
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </ng-container>
 

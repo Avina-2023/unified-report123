@@ -1,82 +1,86 @@
 <ng-container *ngIf="getAllReportsData && getAllReportsData.BehavioralAssessment && getAllReportsData.BehavioralAssessment.length > 0">
-<div class="StInfoDetailsArea mb-2">
+    <div class="StInfoDetailsArea mb-2">
 
-    <ng-container *ngIf="getAreaofDevelopment && getAreaofDevelopment.length > 0 else nocard">
-      <div class="cardInfoArea">
-        <div class="infoIcon SuccessColor sidebarSticky">
+        <ng-container *ngIf="getAreaofDevelopment && getAreaofDevelopment.length > 0 else nocard">
+            <div class="cardInfoArea">
+                <div class="infoIcon SuccessColor sidebarSticky">
 
-            <span class="iconpl"><em class="icon-Like"></em></span>
-        </div>
-        <div class="infotxt">
-            <div class="comphtxt stickyHeader">
-                Strengths
+                    <span class="iconpl"><em class="icon-Like"></em></span>
+                </div>
+                <div class="infotxt">
+                    <div class="comphtxt stickyHeader">
+                        Strengths
+                    </div>
+                    <div class="ContentArea" *ngFor="let getAreaofDevelopment of getAreaofDevelopment">
+                        <span>{{getAreaofDevelopment.skillname ? getAreaofDevelopment.skillname : '-'}}</span>
+                        <ul style="list-style-type: disc" *ngIf="getAreaofDevelopment.strength && getAreaofDevelopment.strength.length > 0">
+                            <li *ngFor="let improvement of getAreaofDevelopment.strength">{{improvement}}</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-            <div class="ContentArea" *ngFor="let getAreaofDevelopment of getAreaofDevelopment">
-                <span>{{getAreaofDevelopment.skillname ? getAreaofDevelopment.skillname : '-'}}</span>
-                <ul style="list-style-type: disc" *ngIf="getAreaofDevelopment.strength && getAreaofDevelopment.strength.length > 0">
-                  <li *ngFor="let improvement of getAreaofDevelopment.strength">{{improvement}}</li>
-                </ul>
+        </ng-container>
+
+        <ng-container *ngIf="areatoimprove && areatoimprove.length > 0 else area">
+            <div class="cardInfoArea">
+                <div class="infoIcon WarningColor sidebarSticky">
+
+                    <span class="iconpl"><em class="icon-Dislike"></em></span>
+                </div>
+                <div class="infotxt">
+                    <div class="comphtxt stickyHeader">
+                        Area of Development
+                    </div>
+                    <div class="ContentArea" *ngFor="let areatoimprove of areatoimprove">
+                        <span>{{areatoimprove.skillname ? areatoimprove.skillname : '-'}}</span>
+                        <ul style="list-style-type: disc" *ngIf="areatoimprove.improvement && areatoimprove.improvement.length > 0">
+                            <li *ngFor="let improvement of areatoimprove.improvement">{{improvement.heading}}
+                                <ul style="list-style-type: lower-roman; padding-left: 15px;">
+                                    <li *ngFor="let Childimprovement of improvement.children">{{Childimprovement}}</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+
+    </div>
+
+    <ng-template #nocard>
+        <div class="cardInfoArea">
+            <div class="infoIcon SuccessColor">
+
+                <span class="iconpl"><em class="icon-Like"></em></span>
+            </div>
+            <div class="infotxt">
+                <div class="comphtxt">
+                    Strengths
+                </div>
+                <div class="ContentArea">
+                    <span class="no-card-text">No Data Available</span>
+                </div>
             </div>
         </div>
-    </div>
-    </ng-container>
 
-    <ng-container *ngIf="areatoimprove && areatoimprove.length > 0 else area">
-      <div class="cardInfoArea">
-          <div class="infoIcon WarningColor sidebarSticky">
+    </ng-template>
 
-              <span class="iconpl"><em class="icon-Dislike"></em></span>
-          </div>
-          <div class="infotxt">
-              <div class="comphtxt stickyHeader">
-                  Area of Development
-              </div>
-              <div class="ContentArea" *ngFor="let areatoimprove of areatoimprove">
-                  <span>{{areatoimprove.skillname ? areatoimprove.skillname : '-'}}</span>
-                  <ul style="list-style-type: disc" *ngIf="areatoimprove.improvement && areatoimprove.improvement.length > 0">
-                  <li *ngFor="let improvement of areatoimprove.improvement">{{improvement}}</li>
-                </ul>
-              </div>
-          </div>
-      </div>
-  </ng-container>
 
-</div>
+    <ng-template #area>
+        <div class="cardInfoArea">
+            <div class="infoIcon WarningColor">
 
-<ng-template #nocard>
-  <div class="cardInfoArea">
-    <div class="infoIcon SuccessColor">
-
-        <span class="iconpl"><em class="icon-Like"></em></span>
-    </div>
-    <div class="infotxt">
-        <div class="comphtxt">
-            Strengths
+                <span class="iconpl"><em class="icon-Dislike"></em></span>
+            </div>
+            <div class="infotxt">
+                <div class="comphtxt">
+                    Area of Development
+                </div>
+                <div class="ContentArea">
+                    <span class="no-card-text">No Data Available</span>
+                </div>
+            </div>
         </div>
-        <div class="ContentArea">
-          <span class="no-card-text">No Data Available</span>
-        </div>
-    </div>
-</div>
 
-</ng-template>
-
-
-<ng-template #area>
-  <div class="cardInfoArea">
-    <div class="infoIcon WarningColor">
-
-        <span class="iconpl"><em class="icon-Dislike"></em></span>
-    </div>
-    <div class="infotxt">
-        <div class="comphtxt">
-            Area of Development
-        </div>
-        <div class="ContentArea">
-            <span class="no-card-text">No Data Available</span>
-        </div>
-    </div>
-</div>
-
-</ng-template>
+    </ng-template>
 </ng-container>

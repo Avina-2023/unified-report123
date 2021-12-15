@@ -427,7 +427,6 @@ input.mat-input-element {
     .footertext {
         color: transparent;
     }
-     
     .footer20 {
         bottom: 25px;
         text-align: center !important;
@@ -479,7 +478,6 @@ input.mat-input-element {
     .haveacc {
         font-size: 13px !important;
     }
-     
     .footerRow {
         margin-top: 2rem !important;
     }
@@ -492,8 +490,8 @@ input.mat-input-element {
 }
 
 .headerShadow {
-    box-shadow: 0 3px 3px rgba(0, 0, 0, .2) !important;
-    background:linear-gradient(90deg,#fff 15%,#fc0 25%)!important;
+    // box-shadow: 0 3px 3px rgba(0, 0, 0, .2) !important;
+    background: linear-gradient(90deg, #fff 15%, #fff 25%)!important;
 }
 
 .limiter {
@@ -581,10 +579,10 @@ input.mat-input-element {
     font-size: 28px;
     letter-spacing: 0.5px;
 }
- 
 
-.mat-toolbar { 
+.mat-toolbar {
     color: $color-blank;
+    background: #fff;
     position: absolute;
     z-index: 4;
     height: 60px !important;
