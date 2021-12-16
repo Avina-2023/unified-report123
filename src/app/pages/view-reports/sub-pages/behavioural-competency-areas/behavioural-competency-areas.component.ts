@@ -45,116 +45,13 @@ export class BehaviouralCompetencyAreasComponent implements OnInit {
     '#03B8CB',
   ];
 
-  behaviouraldef = [
-    {
-   
-      "heading": "THOUGHT FACTOR",
-      "children": [{  
-        "subheading": "DETAIL-ORIENTED:",
-          "child": [{
-            "para":"The ability to be thorough in accomplishing any task by paying attention to even the minutest details. They are focused on quality and hence strive continuously to improve the process. Individuals who are detail-oriented tend to provide useful information to others on time and double-check the work to ensure accuracy."
-          }]
-       
-      },
-      {
-        "subheading": "CREATIVE THINKING:",
-        "child": [{
-        "para": "The individual’s ability to think in an unconventional, diverse, and innovative way towards any challenging situations. The need to constantly challenge the status quo. Creative thinkers enjoy their varied approaches to deal with problem situations. They are aware when a new approach is required; they also can come up with a unique solution",
-        }]
-      },
-  
-      {
-        "subheading": "CRITICAL THINKING:",
-        "child": [{
-        "para": "The ability to critically assess statements and arguments; examine beliefs, assumptions, and opinions and weigh them against facts. They are solely driven by rationality, factual details, and knowledge. They can break the problems into abstract parts and look for an underlying cause of the problem and come up with an effective solution.",
-        }]
-      },
-    ]
-  },
 
-{
-    "heading": "CORE/PERSONAL FACTOR",
-    "children": [{  
-      "subheading": "RECEPTIVENESS ",
-      "child": [{ 
-        "para":"The ability to be inquisitive, frank, open and sincere as an Individual. Can express one's views and ideas with openness and sincerity. They are also receptive and open to the ideas and suggestions provided by others."
-      }]
-     
-    },
-    {
-      "subheading": "GROWTH MIND-SET:",
-      "child": [{
-      "para": "The individual’s ability to have an optimistic outlook and strong belief in oneself. Is open to learning and constantly works towards growth opportunities. An individual with a growth mind-set tends to view intelligence and knowledge as something that can be developed/improved over time. They show a strong tendency to embrace challenges willingly as well as uses feedback to improve and learn.",
-      }]
-    },
-  
-  ]
-},
-{
-
-  "heading": "INTERPERSONAL FACTOR",
-  "children": [{  
-    "subheading": "TEAMWORK:",
-    "child": [{ 
-      "para":"The ability to adapt and work cooperatively with others under varying circumstances. They are characterised as adaptable, flexible, and work accordingly with the team to resolve any challenges and crises. A team player actively participates in the development of team goals and plans and appreciates and acknowledges what the other team member can bring to the table."
-    }]
-   
-  },
-  {
-    "subheading": "COMMUNICATION SKILLS:",
-    "child": [{
-    "para": "The ability to communicate and express with clarity, in a well-organized and logically sequenced way. Individuals with good communication skills are also aware of and receptive to both verbal and non-verbal means of communication. They display the ability to communicate problems in a timely manner.",
-    }]
-  },
-
-]
-},
-{
-
-  "heading": "EMOTION",
-  "children": [{  
-    "subheading": "POSITIVE ATTITUDE:",
-    "child": [{ 
-      "para":"A positive mental state that makes one likeable and puts others at ease in any relationship. The individual’s ability to have a frame of mind that looks at any situation in a favourable way."
-    }]
-   
-  },
-  {
-    "subheading": "EMPATHY:",
-    "child": [{
-    "para": "The ability to sense and also be sensitive to others feelings and concerns, taking into consideration their perspective; appreciating differences in how people feel about things.",
-    }]
-  },
-
-  {
-    "subheading": "EMOTIONAL SELF-AWARENESS:",
-    "child": [{
-    "para": "The ability to be aware of one’s own emotion/feeling at any given time, and the impact it has on other people and their mood.",
-    }]
-  },
-  {
-    "subheading": "ANXIETY MANAGEMENT:",
-    "child": [{
-    "para": "Refers to the individual’s ability to handle stressful feelings and anxieties, and to react appropriately to the current situation.",
-    }]
-  },
-  {
-    "subheading": "ADAPTABILITY:",
-    "child": [{
-    "para": "The ability to change/adjust to different and varying circumstances and people. Is flexible and open to new situations and approaches. They display a willingness to learn new ways to achieve work-related tasks and view change in a positive way.",
-    }]
-  },
-
-]
-}
-]
   selectedHorizontalChartIndex = '0';
   verticalChartData: any[];
   hideControls = true;
   constructor() {}
 
   ngOnInit(): void {
-    // console.log(this.behaviouraldef)
     this.getCompetancyData();
   }
 
@@ -165,9 +62,9 @@ export class BehaviouralCompetencyAreasComponent implements OnInit {
 
 
   ngAfterViewInit() {
-    console.log(this.myDiv.nativeElement.innerHTML);
-    if(this.myDiv.nativeElement.innerHTML){
-      this.setColorCodesBasedOnLabel(this.myDiv.nativeElement.innerHTML)
+    if(this.myDiv.nativeElement.innerHTML.length > 0){
+      
+      this.setColorCodesBasedOnLabel(this.myDiv.nativeElement.innerHTML.toString().trim())
     }
   }
   onSelect(event) {}
@@ -202,7 +99,7 @@ export class BehaviouralCompetencyAreasComponent implements OnInit {
       }
     });
     this.getParticularAreaData(skill.area, i);
-    console.log(skill)
+    // console.log(skill)
   }
 
   getParticularAreaData(area, i) {
@@ -308,9 +205,10 @@ export class BehaviouralCompetencyAreasComponent implements OnInit {
     this.competancyData[i].areaSkills = areaSingle;
   }
 
+
   onNext() {
-    if(this.myDiv.nativeElement.innerHTML){
-      
+    if(this.myDiv.nativeElement.innerHTML.length > 0){
+      // console.log(this.myDiv.nativeElement.innerHTML,'next')
       if (this.counter != this.list.length - 1) {
         this.setColorCodesBasedOnLabel(this.myDiv.nativeElement.innerHTML.toString().trim());
         this.counter++;
@@ -321,8 +219,8 @@ export class BehaviouralCompetencyAreasComponent implements OnInit {
   }
 
   onPrevious() {
-    if(this.myDiv.nativeElement.innerHTML){
- 
+    if(this.myDiv.nativeElement.innerHTML.length > 0){
+      // console.log(this.myDiv.nativeElement.innerHTML,'preves')
       if (this.counter > 0) {
         this.setColorCodesBasedOnLabel(this.myDiv.nativeElement.innerHTML.toString().trim());
         this.counter--;
