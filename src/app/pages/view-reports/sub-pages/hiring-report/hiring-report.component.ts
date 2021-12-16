@@ -3,6 +3,8 @@ import { ToastrService } from 'ngx-toastr';
 import { AppConfigService } from 'src/app/utils/app-config.service';
 import { APP_CONSTANTS } from '../../../../utils/app-constants.service';
 import { ApiService } from '../../../../services/api.service';
+import { IGetRowsParams } from '@ag-grid-enterprise/all-modules';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-hiring-report',
   templateUrl: './hiring-report.component.html',
@@ -16,7 +18,9 @@ export class HiringReportComponent implements OnInit {
   public defaultColDef;
   public detailCellRendererParams;
   reportsData: any;
-
+  userList: any = [];
+  pageRowCount = 0;
+  candidateListSubscription: Subscription;
   constructor(private appconfig: AppConfigService,private toastr: ToastrService, private ApiService: ApiService,) {      
     this.getHiringReportDetails();
     this.defaultColDef = { 
@@ -32,7 +36,11 @@ export class HiringReportComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.tabledef();
+    // this.tabledef();
+  }
+
+  ngOnDestroy() {
+    this.candidateListSubscription ? this.candidateListSubscription.unsubscribe() : '';
   }
 
   tabledef(){
@@ -212,32 +220,29 @@ export class HiringReportComponent implements OnInit {
             return '-'
           }else {
             // if(params.value !== undefined && params.value !== null && params.value == 'null'){
-              if(params.value <= 40){
+              if(params.value && params.value <= 40){
                 // let per:any = params.data.testscore != null && params.data.testscore / params.data.testmaxscore * 100;
             return `<div class="progessbar red-btn"  style="width: `+''+parseInt(params.value)+`%;">`+parseInt(params.value)+'%'+`</div>`;
             }
-            if (params.value < 80 ) {
+            if (params.value && params.value < 80 ) {
             //  let per:any = params.data.testscore != null && params.data.testscore / params.data.testmaxscore * 100;
             return `<div class="progessbar yellow-btn"  style="width: `+''+parseInt(params.value)+`%;">`+parseInt(params.value)+'%'+`</div>`;
             } 
-            if(params.value  < 90){
+            if(params.value && params.value  < 90){
             //  let per:any = params.data.testscore != null && params.data.testscore / params.data.testmaxscore * 100;
             return `<div class="progessbar light-green" style="width: `+''+parseInt(params.value)+`%;">`+parseInt(params.value)+'%'+`</div>`;
             }
-            if ( params.value >=90){
+            if ( params.value && params.value >=90){
             //  let per:any = params.data.testscore != null && params.data.testscore / params.data.testmaxscore * 100;
             return `<div class="progessbar green-btn" style="width: `+''+parseInt(params.value)+`%; ">`+parseInt(params.value)+'%'+`</div>`;
             } 
-            if(params.value !== undefined && params.value !== null && params.value == 'null' && params.value == ''){
+            if(params.value && params.value !== undefined && params.value !== null && params.value == 'null' && params.value == ''){
             //  let per:any = params.data.testscore != null && params.data.testscore / params.data.testmaxscore * 100;
             return ''+parseInt(params.value);
-            }else {
+          }
+            else {
             return '-';
             }
-
-            // }else {
-            //   return ''+'-';
-            // }
 
           }
            
@@ -369,9 +374,51 @@ export class HiringReportComponent implements OnInit {
   onGridReady(params) {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
+    let candidateDefinition =  this.tabledef();
+    this.gridApi.setColumnDefs(candidateDefinition);
+    this.callApiForCandidateList();
     this.gridApi.closeToolPanel();
     this.sizeToFit();
   }
+
+
+  callApiForCandidateList() {
+    var datasource = {
+      getRows: (params: IGetRowsParams) => {
+      let apiData: any = params;
+    
+      this.gridApi.showLoadingOverlay();
+     this.candidateListSubscription =  this.ApiService.getHiringReport(apiData).subscribe((data1: any) => {
+        this.gridApi.hideOverlay();
+        this.userList = data1 && data1.data ? data1.data: [];
+        if (this.userList.length > 0) {
+        let count = params.startRow;
+        this.userList.forEach((element, i) => {
+          count = count + 1;
+          // element['counter'] = count;
+        });
+        this.pageRowCount = data1 && data1.count ? data1.count : 0;
+        params.successCallback(
+          this.userList, this.pageRowCount
+        );
+      } else {
+        params.successCallback(
+          this.userList, 0
+        );
+        this.gridApi.showNoRowsOverlay();
+      }
+      }, (err) => {
+        this.gridApi.hideOverlay();
+        params.failCallback();
+        params.successCallback(
+          this.userList, this.pageRowCount
+        );
+        this.gridApi.showNoRowsOverlay();
+      });
+      }
+    }
+    this.gridApi.setDatasource(datasource);
+}
 
   onBack(){
     this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.REPORTS.USERLIST);
@@ -384,7 +431,6 @@ export class HiringReportComponent implements OnInit {
     this.ApiService.getHiringReport(data).subscribe((res: any)=> {
       if(res){
         this.rowData = res.data;
-        // console.log(this.rowData)
       }else {
           this.toastr.warning('Please try after sometimes...')
       }

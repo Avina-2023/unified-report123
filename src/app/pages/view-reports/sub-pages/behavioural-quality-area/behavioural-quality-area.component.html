@@ -14,7 +14,11 @@
                     <div class="ContentArea" *ngFor="let getAreaofDevelopment of getAreaofDevelopment">
                         <span>{{getAreaofDevelopment.skillname ? getAreaofDevelopment.skillname : '-'}}</span>
                         <ul style="list-style-type: disc" *ngIf="getAreaofDevelopment.strength && getAreaofDevelopment.strength.length > 0">
-                            <li *ngFor="let improvement of getAreaofDevelopment.strength">{{improvement}}</li>
+                            <li *ngFor="let improvement of getAreaofDevelopment.strength">{{improvement.heading}}
+                                <ul *ngIf="areatoimprove.improvement" style="list-style-type: lower-roman; padding-left: 15px;">
+                                    <li *ngFor="let Childimprovement of improvement.children">{{Childimprovement}}</li>
+                                </ul>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -35,7 +39,7 @@
                         <span>{{areatoimprove.skillname ? areatoimprove.skillname : '-'}}</span>
                         <ul style="list-style-type: disc" *ngIf="areatoimprove.improvement && areatoimprove.improvement.length > 0">
                             <li *ngFor="let improvement of areatoimprove.improvement">{{improvement.heading}}
-                                <ul style="list-style-type: lower-roman; padding-left: 15px;">
+                                <ul *ngIf="areatoimprove.improvement" style="list-style-type: lower-roman; padding-left: 15px;">
                                     <li *ngFor="let Childimprovement of improvement.children">{{Childimprovement}}</li>
                                 </ul>
                             </li>
