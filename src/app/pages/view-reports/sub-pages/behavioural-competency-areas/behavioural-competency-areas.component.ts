@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ElementRef, ViewChild } from '@angular/core';
 import { slide } from 'src/app/animations';
 import _ from 'lodash';
 @Component({
@@ -8,6 +8,7 @@ import _ from 'lodash';
   animations: slide,
 })
 export class BehaviouralCompetencyAreasComponent implements OnInit {
+  @ViewChild('myDiv') myDiv: ElementRef;
   @Input() getAllReportsData;
   competancyData = [];
   areasName = [];
@@ -153,14 +154,22 @@ export class BehaviouralCompetencyAreasComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    console.log(this.behaviouraldef)
+    // console.log(this.behaviouraldef)
     this.getCompetancyData();
   }
 
   ngOnChanges() {
     this.getCompetancyData();
+
   }
 
+
+  ngAfterViewInit() {
+    console.log(this.myDiv.nativeElement.innerHTML);
+    if(this.myDiv.nativeElement.innerHTML){
+      this.setColorCodesBasedOnLabel(this.myDiv.nativeElement.innerHTML)
+    }
+  }
   onSelect(event) {}
 
   getParticularCompetencySkills(e) {
@@ -171,7 +180,7 @@ export class BehaviouralCompetencyAreasComponent implements OnInit {
     const selectedCompetency = this.competancyData.find((data: any) => {
       if (data && data.competencyname == id) {
         this.setColorCodesBasedOnLabel(data.competencyname);
-        // this.getparticulardesc(data.competencyname)
+        // this.getparticulardesc(data.competencyname)m
         return data;
       }
     });
@@ -185,14 +194,15 @@ export class BehaviouralCompetencyAreasComponent implements OnInit {
     }
   }
 
-  selectedHorizontalArrayIndex(event, i,skillname) {
+  selectedHorizontalArrayIndex(event, i) {
+  
     let skill = this.competancyData[i].skills.find((data: any) => {
       if (data.skillname == event.name && data.score == event.value) {
         return data;
       }
     });
     this.getParticularAreaData(skill.area, i);
-    
+    console.log(skill)
   }
 
   getParticularAreaData(area, i) {
@@ -261,7 +271,7 @@ export class BehaviouralCompetencyAreasComponent implements OnInit {
     this.verticalChartData.forEach((element, i) => {
       if (element && element.score) {
         // element.areaColor = this.verticaldomain[i];
-        element.areaColor =    this.setColorCodesBasedOnLabel(element.competencyname);
+        element.areaColor = this.setColorCodesBasedOnLabel(element.competencyname);
       }
     });
   }
@@ -271,11 +281,9 @@ export class BehaviouralCompetencyAreasComponent implements OnInit {
       if (skills) {
         let areaSingle = [];
         skills.skills.forEach((area, i) => {
-
           if (area) {
             // area.areaColor = this.domain[i];
             area.area.forEach((element) => {
-            
               // element.areaColor = this.domain[i];
               areaSingle.push(element);
             });
@@ -286,7 +294,7 @@ export class BehaviouralCompetencyAreasComponent implements OnInit {
     });
   }
 
-  resetAreas(i, competency) {
+  resetAreas(i) {
     let areaSingle = [];
     this.competancyData[i].skills.forEach((area, i) => {
       if (area) {
@@ -301,32 +309,51 @@ export class BehaviouralCompetencyAreasComponent implements OnInit {
   }
 
   onNext() {
-    if (this.counter != this.list.length - 1) {
-      this.counter++;
+    if(this.myDiv.nativeElement.innerHTML){
+      
+      if (this.counter != this.list.length - 1) {
+        this.setColorCodesBasedOnLabel(this.myDiv.nativeElement.innerHTML.toString().trim());
+        this.counter++;
+      }
+  
     }
+    
   }
 
   onPrevious() {
-    if (this.counter > 0) {
-      this.counter--;
+    if(this.myDiv.nativeElement.innerHTML){
+ 
+      if (this.counter > 0) {
+        this.setColorCodesBasedOnLabel(this.myDiv.nativeElement.innerHTML.toString().trim());
+        this.counter--;
+        // this.setColorCodesBasedOnLabel(sessionStorage.getItem('Cname'))
+      }
     }
+
   }
 
-  dotChange(i) {
+  dotChange(i,label) {
     this.counter = i;
+    this.setColorCodesBasedOnLabel(label)
   }
+
+  // getcompetencyname(competencyname){
+  //   console.log(competencyname,'set')
+  //   sessionStorage.setItem('Cname',competencyname);
+  // }
 
   setColorCodesBasedOnLabel(labelName: any) {
-    if(labelName == 'Thought Factor'){
+    const dynamicColor = labelName ? labelName : sessionStorage.getItem('Cname');
+    if(dynamicColor == 'Thought Factor'){
         this.domain = ['#8EC031'];
         return '#8EC031';
-    } if(labelName == 'Emotion Factor'){
+    } if(dynamicColor == 'Emotion Factor'){
       this.domain = ['#FFBB48'];
         return '#FFBB48'
-    } if(labelName == 'Core/Personal Factor'){
+    } if(dynamicColor == 'Core/Personal Factor'){
       this.domain = ['#5460A7'];
       return '#5460A7'
-      }if(labelName == 'Interpersonal Factor'){
+      }if(dynamicColor == 'Interpersonal Factor'){
         this.domain = ['#F08145'];
         return '#F08145'
     }

@@ -69,6 +69,7 @@ yAxisTicks = [0, 40, 80, 100];
     this.single = [];
     let colorCode = [];
     this.chartData.forEach(element => {
+      // console.log(element)
       if (element) {
         let ele = {
           name: element.skillname,
@@ -117,6 +118,7 @@ yAxisTicks = [0, 40, 80, 100];
   }
 
   sorting(data) {
+    // console.log(data)
     let sortingArray = this.single;
     this.single = [];
     data = data > 2 ? 1 : data;
@@ -125,9 +127,10 @@ yAxisTicks = [0, 40, 80, 100];
       sortingArray.sort(function(a, b) {
         return Number(a.value) < Number(b.value) ? -1 : 1;
       });
-      let colorCode = [];
+      let colorCode = this.domains;
       sortingArray.forEach(element => {
-        colorCode.push(element.color);
+        // console.log(element)
+        // colorCode.push(this.domains);
         this.single.push(element);
       });
       this.colorScheme.domain = colorCode;
@@ -137,9 +140,9 @@ yAxisTicks = [0, 40, 80, 100];
       sortingArray.sort(function(a, b) {
         return Number(a.value) > Number(b.value) ? -1 : 1;
       });
-      let colorCode = [];
+      let colorCode = this.domains;
       sortingArray.forEach(element => {
-        colorCode.push(element.color);
+        // colorCode.push(element.color);
         this.single.push(element);
       });
       this.colorScheme.domain = colorCode;
