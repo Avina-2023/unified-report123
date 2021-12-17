@@ -92,14 +92,12 @@ export class BehaviouralCompetencyAreasComponent implements OnInit {
   }
 
   selectedHorizontalArrayIndex(event, i) {
-  
     let skill = this.competancyData[i].skills.find((data: any) => {
       if (data.skillname == event.name && data.score == event.value) {
         return data;
       }
     });
     this.getParticularAreaData(skill.area, i);
-    // console.log(skill)
   }
 
   getParticularAreaData(area, i) {
@@ -208,37 +206,32 @@ export class BehaviouralCompetencyAreasComponent implements OnInit {
 
   onNext() {
     if(this.myDiv.nativeElement.innerHTML.length > 0){
-      // console.log(this.myDiv.nativeElement.innerHTML,'next')
       if (this.counter != this.list.length - 1) {
-        this.setColorCodesBasedOnLabel(this.myDiv.nativeElement.innerHTML.toString().trim());
         this.counter++;
       }
-  
     }
-    
+    setTimeout(() => {
+      this.setColorCodesBasedOnLabel(this.myDiv.nativeElement.innerHTML.toString().trim());   
+    }, 10);
+ 
+  
   }
 
   onPrevious() {
     if(this.myDiv.nativeElement.innerHTML.length > 0){
-      // console.log(this.myDiv.nativeElement.innerHTML,'preves')
       if (this.counter > 0) {
-        this.setColorCodesBasedOnLabel(this.myDiv.nativeElement.innerHTML.toString().trim());
         this.counter--;
-        // this.setColorCodesBasedOnLabel(sessionStorage.getItem('Cname'))
       }
     }
-
+    setTimeout(() => {
+      this.setColorCodesBasedOnLabel(this.myDiv.nativeElement.innerHTML.toString().trim());   
+    }, 10);
   }
 
   dotChange(i,label) {
     this.counter = i;
     this.setColorCodesBasedOnLabel(label)
   }
-
-  // getcompetencyname(competencyname){
-  //   console.log(competencyname,'set')
-  //   sessionStorage.setItem('Cname',competencyname);
-  // }
 
   setColorCodesBasedOnLabel(labelName: any) {
     const dynamicColor = labelName ? labelName : sessionStorage.getItem('Cname');
