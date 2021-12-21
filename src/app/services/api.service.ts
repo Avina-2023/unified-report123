@@ -39,7 +39,7 @@ export class ApiService {
   }
 
   getUserList(data) {
-    return this.http.post(`${this.BASE_URL}/getuserList`, data);
+    // return this.http.post(`${this.BASE_URL}/getuserList`, data);
   }
 
   encrypt(data) {

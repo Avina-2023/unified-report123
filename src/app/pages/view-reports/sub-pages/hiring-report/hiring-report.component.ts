@@ -17,12 +17,21 @@ export class HiringReportComponent implements OnInit {
   public columnDefs;
   public defaultColDef;
   public detailCellRendererParams;
+  public rowModelType;
+  public serverSideStoreType;
+  public rowSelection;
+  public masterDetail;
   reportsData: any;
   userList: any = [];
   pageRowCount = 0;
-  candidateListSubscription: Subscription;
+  candidateListSubscription: Subscription;  
   constructor(private appconfig: AppConfigService,private toastr: ToastrService, private ApiService: ApiService,) {      
-    this.getHiringReportDetails();
+    // this.getHiringReportDetails();
+
+    // this.rowSelection = "multiple";
+    this.serverSideStoreType = 'partial';
+    this.masterDetail = true;
+    this.rowModelType = 'infinite';
     this.defaultColDef = { 
       flex: 1,
       enableRowGroup: true,
@@ -44,11 +53,12 @@ export class HiringReportComponent implements OnInit {
   }
 
   tabledef(){
-    this.columnDefs = [
+    return   [  
       {
         headerName: 'Name',
         field: 'firstname',
         filter: 'agTextColumnFilter',
+        
         tooltipField:'firstname',    
         // width: 100,
         cellRenderer: (params) => {
@@ -95,21 +105,6 @@ export class HiringReportComponent implements OnInit {
           }
         }
       },
-
-      // {
-      //   headerName: 'Schedule Name',
-      //   field: 'schedulename',
-      //   filter: 'agTextColumnFilter',
-      //   tooltipField:'schedulename',
-      //   width: 100,
-      //   cellRenderer: (params) => {
-      //     if(params.data && params.data.display == true){
-      //       return params.value ;
-      //     }else {
-      //       return '-';
-      //     }
-      //   }
-      // },
       {
         headerName: 'Test Type',
         field: 'testtype',
@@ -130,7 +125,7 @@ export class HiringReportComponent implements OnInit {
         filter: 'agTextColumnFilter',
         tooltipField:'testname',
         cellRenderer: 'agGroupCellRenderer',
-        width: 150,
+        maxWidth: 200,
       },
       {
         headerName: 'Test Date',
@@ -300,94 +295,117 @@ export class HiringReportComponent implements OnInit {
 
         }
       },
-    ];
-    this.getSubTableDef();
+
+
+      // this.detailCellRendererParams = function (params) {
+      //   var res: any = {};
+      //   res.getDetailRowData = function (params) {
+      //     params.successCallback(params.data.section);
+      //   };
+      //   if (params.data && params.data.testtype === 'Personality & Behaviour') {
+      //     res.detailGridOptions = {
+    
+      //       rowSelection: 'multiple',
+      //       suppressRowClickSelection: true,
+      //       enableRangeSelection: true,
+      //       rowModelType : 'serverSide',
+      //       pagination: true,
+      //       paginationAutoPageSize: true,
+      //       columnDefs: [
+      //         { headerName: 'Skill Name', field: 'skillname' },
+      //         { headerName: 'Sten Score', field: 'stenScore' },
+      //       ],
+      //       defaultColDef:{ flex: 1 },
+      //       // rowModelType : 'serverSide',
+      //       // serverSideStoreType : 'partial'
+      //     };
+      //   } else {
+      //     res.detailGridOptions = {
+      //       rowSelection: 'multiple',
+      //       suppressRowClickSelection: true,
+      //       enableRangeSelection: true,
+      //       rowModelType : 'serverSide',
+      //       pagination: true,
+      //       paginationAutoPageSize: true,
+      //       columnDefs: [
+      //         {headerName: 'Sectional Name',field: 'secname'},
+      //         {headerName: 'Questions Attempted',field: 'attendedquestions', cellClass: 'alignCenter',
+      //           cellRenderer: (params) => {
+      //             if (params.value != undefined && params.value) {
+      //               return params.value +'/' + (params.data.overallquestions ? params.data.overallquestions: '-');
+      //             } else {
+      //               return '-';
+      //             }
+      //           },
+      //         },
+      //         {headerName: 'Score Obtained',field: 'score',cellClass: 'alignCenter'},
+      //         {
+      //           headerName: 'Percentage',
+      //           field: 'accuracy',
+      //           cellRenderer: (params) => {
+      //             if (params.value != null && params.value <= 40) {
+      //               return `<div class="progessbar red-btn" style="width: `+params.value+`%;">`+params.value+`</div>`;
+      //             }
+      //             if (params.value != null && params.value >= 40 && params.value < 80 ) {
+      //               return `<div class="progessbar yellow-btn" style="width: `+params.value+`%;">`+params.value+`</div>`;
+      //             } if(params.value != null && params.value >=80 && params.value < 90){
+      //               return `<div class="progessbar blue-btn" style="width: `+params.value+`%;">`+params.value+`</div>`;
+      //             }
+      //             if (params.value != null && params.value >=90){
+      //               return `<div class="progessbar green-btn" style="width: `+params.value+`%; ">`+params.value+`</div>`;
+      //             } if(params.value !== undefined && params.value == 'null' && params.value == null ){
+      //               return params.value = '-';
+      //             }else {
+      //               return '-';
+      //             }
+      //           },
+      //         },
+      //       ],
+      //       defaultColDef: { flex: 1 },
+      //     };
+      //   }
+      //   return res;
+      // }
+  ]
+ 
+ 
   }
 
   getSubTableDef(){
-    this.detailCellRendererParams = function (params) {
-      var res: any = {};
-      res.getDetailRowData = function (params) {
-        params.successCallback(params.data.section);
-      };
-      if (params.data && params.data.testtype === 'Personality & Behaviour') {
-        res.detailGridOptions = {
-          rowSelection: 'multiple',
-          suppressRowClickSelection: true,
-          enableRangeSelection: true,
-          pagination: true,
-          paginationAutoPageSize: true,
-          columnDefs: [
-            { headerName: 'Skill Name', field: 'skillname' },
-            { headerName: 'Sten Score', field: 'stenScore' },
-          ],
-          defaultColDef: {flex: 1},
-        };
-      } else {
-        res.detailGridOptions = {
-          rowSelection: 'multiple',
-          suppressRowClickSelection: true,
-          enableRangeSelection: true,
-          pagination: true,
-          paginationAutoPageSize: true,
-          columnDefs: [
-            {headerName: 'Sectional Name',field: 'secname'},
-            {headerName: 'Questions Attempted',field: 'attendedquestions', cellClass: 'alignCenter',
-              cellRenderer: (params) => {
-                if (params.value != undefined && params.value) {
-                  return params.value +'/' + (params.data.overallquestions ? params.data.overallquestions: '-');
-                } else {
-                  return '-';
-                }
-              },
-            },
-            {headerName: 'Score Obtained',field: 'score',cellClass: 'alignCenter'},
-            {
-              headerName: 'Percentage',
-              field: 'accuracy',
-              cellRenderer: (params) => {
-                if (params.value != null && params.value <= 40) {
-                  return `<div class="progessbar red-btn" style="width: `+params.value+`%;">`+params.value+`</div>`;
-                }
-                if (params.value != null && params.value >= 40 && params.value < 80 ) {
-                  return `<div class="progessbar yellow-btn" style="width: `+params.value+`%;">`+params.value+`</div>`;
-                } if(params.value != null && params.value >=80 && params.value < 90){
-                  return `<div class="progessbar blue-btn" style="width: `+params.value+`%;">`+params.value+`</div>`;
-                }
-                if (params.value != null && params.value >=90){
-                  return `<div class="progessbar green-btn" style="width: `+params.value+`%; ">`+params.value+`</div>`;
-                } if(params.value !== undefined && params.value == 'null' && params.value == null ){
-                  return params.value = '-';
-                }else {
-                  return '-';
-                }
-              },
-            },
-          ],
-          defaultColDef: { flex: 1 },
-        };
-      }
-      return res;
-    };
+    
+ 
   }
 
   onGridReady(params) {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
-    let candidateDefinition =  this.tabledef();
-    this.gridApi.setColumnDefs(candidateDefinition);
-    this.callApiForCandidateList();
+    // let candidateDefinition =  this.tabledef();
+    //  console.log(candidateDefinition,'candidateDefinition')
+    this.gridApi.setColumnDefs( this.tabledef());
     this.gridApi.closeToolPanel();
     this.sizeToFit();
+    this.callApiForCandidateList();
+
+    
   }
 
 
   callApiForCandidateList() {
+
     var datasource = {
       getRows: (params: IGetRowsParams) => {
       let apiData: any = params;
-    
       this.gridApi.showLoadingOverlay();
+      console.log(apiData)
+      if(apiData.sortModel && apiData.sortModel.length > 0){
+        apiData.sortModel.forEach(element => {
+            if(element.sort == 'asc'){
+                element.sort = 1
+            }else{
+              element.sort = -1
+            }
+        });
+      }
      this.candidateListSubscription =  this.ApiService.getHiringReport(apiData).subscribe((data1: any) => {
         this.gridApi.hideOverlay();
         this.userList = data1 && data1.data ? data1.data: [];
@@ -397,7 +415,7 @@ export class HiringReportComponent implements OnInit {
           count = count + 1;
           // element['counter'] = count;
         });
-        this.pageRowCount = data1 && data1.count ? data1.count : 0;
+        this.pageRowCount = data1 && data1.total_count ? data1.total_count : 0;
         params.successCallback(
           this.userList, this.pageRowCount
         );
@@ -418,24 +436,26 @@ export class HiringReportComponent implements OnInit {
       }
     }
     this.gridApi.setDatasource(datasource);
+
+    console.log( datasource)
 }
 
   onBack(){
     this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.REPORTS.USERLIST);
   }
 
-  getHiringReportDetails(){
-    let data ={
-      pagenumber: 0
-    }
-    this.ApiService.getHiringReport(data).subscribe((res: any)=> {
-      if(res){
-        this.rowData = res.data;
-      }else {
-          this.toastr.warning('Please try after sometimes...')
-      }
-    })
-  }
+  // getHiringReportDetails(){
+  //   let data ={
+  //     pagenumber: 0
+  //   }
+  //   this.ApiService.getHiringReport(data).subscribe((res: any)=> {
+  //     if(res){
+  //       this.rowData = res.data;
+  //     }else {
+  //         this.toastr.warning('Please try after sometimes...')
+  //     }
+  //   })
+  // }
   
   sizeToFit() {
     this.gridApi.sizeColumnsToFit();
