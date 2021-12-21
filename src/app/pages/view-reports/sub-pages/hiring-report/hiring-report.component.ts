@@ -58,7 +58,10 @@ export class HiringReportComponent implements OnInit {
         headerName: 'Name',
         field: 'firstname',
         filter: 'agTextColumnFilter',
-        
+        filterParams: {
+          suppressAndOrCondition: true,
+          filterOptions: ['contains']
+        },
         tooltipField:'firstname',    
         // width: 100,
         cellRenderer: (params) => {
@@ -73,6 +76,10 @@ export class HiringReportComponent implements OnInit {
         headerName: 'Email',
         field: 'email',
         filter: 'agTextColumnFilter',
+        filterParams: {
+          suppressAndOrCondition: true,
+          filterOptions: ['contains']
+        },
         tooltipField:'email',
         // width: 100,
         cellRenderer: (params) => {
@@ -92,6 +99,10 @@ export class HiringReportComponent implements OnInit {
         headerName: 'Schedule Name',
         field: 'schedulename',
         filter: 'agTextColumnFilter',
+        filterParams: {
+          suppressAndOrCondition: true,
+          filterOptions: ['contains']
+        },
         tooltipField:'schedulename',
         enableRowGroup: true,
         // width: 100 ,
@@ -110,6 +121,10 @@ export class HiringReportComponent implements OnInit {
         field: 'testtype',
         filter: 'agTextColumnFilter',
         tooltipField:'testtype',
+        filterParams: {
+          suppressAndOrCondition: true,
+          filterOptions: ['contains']
+        },
         // width: 100,
         cellRenderer: (params) => {
           if(params.value){
@@ -124,6 +139,10 @@ export class HiringReportComponent implements OnInit {
         field: 'testname',
         filter: 'agTextColumnFilter',
         tooltipField:'testname',
+        filterParams: {
+          suppressAndOrCondition: true,
+          filterOptions: ['contains']
+        },
         cellRenderer: 'agGroupCellRenderer',
         maxWidth: 200,
       },
@@ -141,6 +160,8 @@ export class HiringReportComponent implements OnInit {
           }
         },
         filterParams: {
+          suppressAndOrCondition: true,
+          filterOptions: ['equals','lessThan','greaterThan','inRange'],
           comparator: 
           function (filterLocalDateAtMidnight, cellValue) {
             var dateAsString = cellValue;
@@ -167,6 +188,10 @@ export class HiringReportComponent implements OnInit {
         headerName: 'Score Obtained',
         field: 'testscore',
         filter: 'agNumberColumnFilter',
+        filterParams: {
+          suppressAndOrCondition: true,
+          filterOptions: ['equals','lessThan','lessThanOrEqual','greaterThan','greaterThanOrEqual']
+        },
         tooltipField:'testscore',
         // width: 100,
         cellRenderer: (params) => {
@@ -186,6 +211,10 @@ export class HiringReportComponent implements OnInit {
         field: 'testmaxscore',
         filter: 'agNumberColumnFilter',
         tooltipField:'testmaxscore',
+        filterParams: {
+          suppressAndOrCondition: true,
+          filterOptions: ['equals','lessThan','lessThanOrEqual','greaterThan','greaterThanOrEqual']
+        },
         // width: 100,
         cellClass: 'alignCenter',
         cellRenderer: (params) => {
@@ -208,6 +237,10 @@ export class HiringReportComponent implements OnInit {
         filter: 'agNumberColumnFilter',
         // tooltipField:'testmaxscore',
         // width: 100,
+               filterParams: {
+          suppressAndOrCondition: true,
+          filterOptions: ['equals','lessThan','lessThanOrEqual','greaterThan','greaterThanOrEqual']
+        },
         cellClass: 'alignCenter',
         cellRenderer: (params) => {
 
@@ -246,7 +279,12 @@ export class HiringReportComponent implements OnInit {
       {
         headerName: 'Completion',
         field: 'completion',
-        filter: 'agTextColumnFilter',
+        filter:false,
+        // filter: 'agTextColumnFilter',
+        // filterParams: {
+        //   suppressAndOrCondition: true,
+        //   filterOptions: ['contains']
+        // },
         // width: 100,
       cellRenderer: (params) => {
         if(params.value == true){
@@ -263,6 +301,10 @@ export class HiringReportComponent implements OnInit {
         headerName: 'Rating',
         field: 'rating',
         filter: 'agTextColumnFilter',
+        filterParams: {
+          suppressAndOrCondition: true,
+          filterOptions: ['contains']
+        },
         // width: 100,
         cellRenderer: (params) => {
 
