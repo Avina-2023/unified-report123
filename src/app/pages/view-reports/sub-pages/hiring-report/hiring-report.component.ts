@@ -396,7 +396,7 @@ export class HiringReportComponent implements OnInit {
       getRows: (params: IGetRowsParams) => {
       let apiData: any = params;
       this.gridApi.showLoadingOverlay();
-      console.log(apiData)
+      // console.log(apiData)
       if(apiData.sortModel && apiData.sortModel.length > 0){
         apiData.sortModel.forEach(element => {
             if(element.sort == 'asc'){
@@ -437,7 +437,7 @@ export class HiringReportComponent implements OnInit {
     }
     this.gridApi.setDatasource(datasource);
 
-    console.log( datasource)
+    // console.log( datasource)
 }
 
   onBack(){
