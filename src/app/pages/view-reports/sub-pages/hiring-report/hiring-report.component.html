@@ -2,8 +2,8 @@
     <div class="grid-wrapper">
         <ag-grid-angular style="width: 98%; height: calc(100vh - 140px); margin:auto !important;font-size: 12px;" id="myGrid" class="ag-theme-alpine" [columnDefs]="columnDefs" [defaultColDef]="defaultColDef" [masterDetail]="masterDetail" [detailCellRendererParams]="detailCellRendererParams"
             [rowData]="rowData" [enableRangeSelection]="true" [enableCharts]="true" [tooltipShowDelay]="0" [rowSelection]="'multiple'" [animateRows]="true" headerHeight="40" rowHeight="35" [suppressRowClickSelection]="true" [suppressRowTransform]="true" (filterModified)="getModel($event)"
-            (cellClicked)="onCellClicked($event)" [paginationPageSize]="100" (filterModified)="getModel($event)" [pivotPanelShow]="'always'" [colResizeDefault]="'shift'" [sideBar]="true" (gridReady)="onGridReady($event)" [rowModelType]="rowModelType" [serverSideStoreType]="serverSideStoreType"
-            [maintainColumnOrder]="true">
+            [pagination]="true" (cellClicked)="onCellClicked($event)" [paginationPageSize]="100" (filterModified)="getModel($event)" [pivotPanelShow]="'always'" [colResizeDefault]="'shift'" [sideBar]="true" (gridReady)="onGridReady($event)" [rowModelType]="rowModelType"
+            [serverSideStoreType]="serverSideStoreType" [maintainColumnOrder]="true">
         </ag-grid-angular>
 
 
