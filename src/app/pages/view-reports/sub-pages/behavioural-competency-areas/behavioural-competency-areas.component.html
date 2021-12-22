@@ -17,7 +17,8 @@
             <ng-container *ngFor="let competency of competancyData; let i = index">
                 <div *ngIf="i===counter" class="chartContainer">
                     <div class="sPan">
-                        <div class="heading4">{{competency && competency.competencyname ? competency.competencyname : ''}}
+                        <div class="heading4" #myDiv>{{competency && competency.competencyname ? competency.competencyname : ''}}
+
                         </div>
                         <app-horizontal-bar-chart (selectedArea)="selectedHorizontalArrayIndex($event, i)" [hideControls]="hideControls" [domains]="domain" [chartData]="competency.skills"></app-horizontal-bar-chart>
                     </div>
@@ -28,6 +29,16 @@
                               {{area1.score}}</span>
                         </div>
                     </div> -->
+                    <div class="aPan">
+                        <div class="areasbtnsec">
+                            <div *ngFor="let area1 of competency.skills">
+                                <div *ngIf="area1.skilldesc" class="black">{{area1.skillname}} </div>
+                                <ul *ngIf="area1.skilldesc" class="para" style="list-style-type: disc">
+                                    <li class="col-black">{{area1.skilldesc}}</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </ng-container>
 
@@ -35,7 +46,7 @@
                   class="icon-Back"></em></button>
             <button type="button" class="sliderBtn right" (click)="onNext()" [disabled]="this.counter == this.list.length - 1"><em class="icon-right-next"></em></button>
             <div class="slideDots">
-                <span (click)="dotChange(i)" *ngFor="let competency of competancyData; let i = index" [class.active]="i===counter">{{competency && competency.score ? competency.score : ''}}</span>
+                <span (click)="dotChange(i,competency.competencyname)" *ngFor="let competency of competancyData; let i = index" [class.active]="i===counter">{{competency && competency.score ? competency.score : ''}}</span>
             </div>
         </div>
         <span class="triangle-left"></span>

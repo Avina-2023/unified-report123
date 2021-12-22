@@ -39,7 +39,7 @@ export class ApiService {
   }
 
   getUserList(data) {
-    return this.http.post(`${this.BASE_URL}/getuserList`, data);
+    // return this.http.post(`${this.BASE_URL}/getuserList`, data);
   }
 
   encrypt(data) {
@@ -72,8 +72,8 @@ export class ApiService {
     return this.http.post(`${this.Prourl}/getProctorVideobyUserRoomId`, data);
   }
 
-  getHiringReport(){
-    return this.http.post(`${this.BASE_URL}/getAgegridReport`,'');
+  getHiringReport(data){
+    return this.http.post(`${this.BASE_URL}/getAgegridReport`,data);
   }
 
 }
