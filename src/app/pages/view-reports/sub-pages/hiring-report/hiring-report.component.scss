@@ -145,3 +145,42 @@
 ::ng-deep .light-green {
     background: #82d2498a;
 }
+
+::ng-deep .mat-icon-button {
+    width: 20px !important;
+    height: 20px !important;
+    line-height: 2px !important;
+    background: transparent !important;
+}
+
+::ng-deep .mat-icon-button i,
+.mat-icon-button .mat-icon {
+    line-height: 0px !important;
+    background: transparent !important;
+}
+
+::ng-deep .popupModalContainerForaddUser {
+    min-height: 300px;
+    max-height: 600px;
+    background: #fff;
+    .add-user-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        position: sticky;
+        top: -14px;
+        background: #fff;
+        z-index: 999;
+    }
+    .mat-dialog-container {
+        padding: 14px !important;
+        overflow: auto !important;
+    }
+    .width-100 {
+        width: 100%;
+    }
+    .closebtn {
+        background-color: #fff;
+        border: none;
+    }
+}

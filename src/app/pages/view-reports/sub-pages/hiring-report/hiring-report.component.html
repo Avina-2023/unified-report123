@@ -10,6 +10,25 @@
     </div>
 </div>
 
+<ng-template #sectionDetails>
 
+    <div class="add-user-header">
+        <h2>Section details</h2>
+        <button class="closebtn" [mat-dialog-close]="true">
+            <mat-icon class="close-icon" color="warn">close</mat-icon>
+          </button>
+        <!-- <div (click)="closeDialog()"><span class="icon-close_black ag-icon-font-size pointer"></span></div> -->
+    </div>
+
+    <div class="outer-div">
+        <div class="grid-wrapper">
+            <ag-grid-angular style="width: 98%; height: calc(100vh - 350px); margin:auto !important;font-size: 12px;" id="myGrid1" class="ag-theme-alpine" [columnDefs]="columnDefsmini" [rowData]="rowData1" [tooltipShowDelay]="0" [animateRows]="true" headerHeight="40"
+                [defaultColDef]="defaultColDef" rowHeight="35" (gridReady)="onGridReadymini($event)" [pagination]="true">
+            </ag-grid-angular>
+
+
+        </div>
+    </div>
+</ng-template>
 
 <!-- (firstDataRendered)="onFirstDataRendered($event)" -->
