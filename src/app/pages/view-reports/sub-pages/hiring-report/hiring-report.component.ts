@@ -1,20 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { AppConfigService } from 'src/app/utils/app-config.service';
 import { APP_CONSTANTS } from '../../../../utils/app-constants.service';
 import { ApiService } from '../../../../services/api.service';
 import { IGetRowsParams } from '@ag-grid-enterprise/all-modules';
 import { Subscription } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
 @Component({
   selector: 'app-hiring-report',
   templateUrl: './hiring-report.component.html',
   styleUrls: ['./hiring-report.component.scss']
 })
 export class HiringReportComponent implements OnInit {
+  @ViewChild('sectionDetails', {static: false}) opensection: TemplateRef<any>;
   rowData:any;
   public gridApi;
   public gridColumnApi;
   public columnDefs;
+  public columnDefsmini;
   public defaultColDef;
   public detailCellRendererParams;
   public rowModelType;
@@ -25,10 +28,9 @@ export class HiringReportComponent implements OnInit {
   userList: any = [];
   pageRowCount = 0;
   candidateListSubscription: Subscription;  
-  constructor(private appconfig: AppConfigService,private toastr: ToastrService, private ApiService: ApiService,) {      
-    // this.getHiringReportDetails();
-
-    // this.rowSelection = "multiple";
+  sectiondialogRef: any;
+  rowData1: any;
+  constructor(  private matDialog: MatDialog,private appconfig: AppConfigService,private toastr: ToastrService, private ApiService: ApiService,) {      
     this.serverSideStoreType = 'partial';
     this.masterDetail = true;
     this.rowModelType = 'infinite';
@@ -45,7 +47,6 @@ export class HiringReportComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.tabledef();
   }
 
   ngOnDestroy() {
@@ -143,7 +144,14 @@ export class HiringReportComponent implements OnInit {
           suppressAndOrCondition: true,
           filterOptions: ['contains']
         },
-        cellRenderer: 'agGroupCellRenderer',
+        cellRenderer: (params) => {
+          if(params && params.value){
+            return '<span class="redColor">'+params.value+'</span>' ;
+          }else{
+            return '-';
+          }
+        },
+        // cellRenderer: 'agGroupCellRenderer',
         maxWidth: 200,
       },
       {
@@ -413,9 +421,49 @@ export class HiringReportComponent implements OnInit {
  
   }
 
-  getSubTableDef(){
-    
- 
+  getSubTableDef(params,event){ 
+    if (event.value && event.value === 'Personality & Behaviour') {
+          
+          this.columnDefsmini = [
+            { headerName: 'Skill Name', field: 'skillname' },
+            { headerName: 'Sten Score', field: 'stenScore' },
+          ] 
+    }else{
+       this.columnDefsmini = [
+        {headerName: 'Sectional Name',field: 'secname'},
+        {headerName: 'Questions Attempted',field: 'attendedquestions', cellClass: 'alignCenter',
+          cellRenderer: (params) => {
+            if (params.value != undefined && params.value) {
+              return params.value +'/' + (params.data.overallquestions ? params.data.overallquestions: '-');
+            } else {
+              return '-';
+            }
+          },
+        },
+        {headerName: 'Score Obtained',field: 'score',cellClass: 'alignCenter'},
+        {
+          headerName: 'Percentage',
+          field: 'accuracy',
+          cellRenderer: (params) => {
+            if (params.value != null && params.value <= 40) {
+              return `<div class="progessbar red-btn" style="width: `+params.value+`%;">`+params.value+'%'+`</div>`;
+            }
+            if (params.value != null && params.value >= 40 && params.value < 80 ) {
+              return `<div class="progessbar yellow-btn" style="width: `+params.value+`%;">`+params.value+'%'+`</div>`;
+            } if(params.value != null && params.value >=80 && params.value < 90){
+              return `<div class="progessbar blue-btn" style="width: `+params.value+`%;">`+params.value+'%'+`</div>`;
+            }
+            if (params.value != null && params.value >=90){
+              return `<div class="progessbar green-btn" style="width: `+params.value+`%; ">`+params.value+'%'+`</div>`;
+            } if(params.value !== undefined && params.value == 'null' && params.value == null ){
+              return params.value = '-';
+            }else {
+              return '-';
+            }
+          },
+        },
+       ]
+    }
   }
 
   onGridReady(params) {
@@ -423,22 +471,24 @@ export class HiringReportComponent implements OnInit {
     this.gridColumnApi = params.columnApi;
     // let candidateDefinition =  this.tabledef();
     //  console.log(candidateDefinition,'candidateDefinition')
-    this.gridApi.setColumnDefs( this.tabledef());
+    this.gridApi.setColumnDefs(this.tabledef());
     this.gridApi.closeToolPanel();
     this.sizeToFit();
     this.callApiForCandidateList();
-
-    
   }
 
+  onGridReadymini(params){
+    this.gridApi = params.api;
+    this.gridColumnApi = params.columnApi;
+    this.gridApi.closeToolPanel();
+    this.sizeToFit();
+  }
 
   callApiForCandidateList() {
-
     var datasource = {
       getRows: (params: IGetRowsParams) => {
       let apiData: any = params;
       this.gridApi.showLoadingOverlay();
-      // console.log(apiData)
       if(apiData.sortModel && apiData.sortModel.length > 0){
         apiData.sortModel.forEach(element => {
             if(element.sort == 'asc'){
@@ -478,49 +528,37 @@ export class HiringReportComponent implements OnInit {
       }
     }
     this.gridApi.setDatasource(datasource);
-
-    // console.log( datasource)
 }
 
   onBack(){
     this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.REPORTS.USERLIST);
   }
-
-  // getHiringReportDetails(){
-  //   let data ={
-  //     pagenumber: 0
-  //   }
-  //   this.ApiService.getHiringReport(data).subscribe((res: any)=> {
-  //     if(res){
-  //       this.rowData = res.data;
-  //     }else {
-  //         this.toastr.warning('Please try after sometimes...')
-  //     }
-  //   })
-  // }
   
   sizeToFit() {
     this.gridApi.sizeColumnsToFit();
   }
 
   getModel(e) {
-    // const filteredArray = this.gridApi.getModel().rootNode.childrenAfterFilter;
-    // if(e.filterInstance.appliedModel == null){
-    //   this.gridApi.getModel(null);
-    //     // this.tabledef();
-    // }else {
-    //   filteredArray.forEach(element => {
-    //     element.data.isFilter = true;
-    //     // this.tabledef();
-    // });
-
-    // }
   }
 
   onCellClicked(event) {
-    if (event.column.userProvidedColDef.headerName == 'Email') {
+    if (event &&  event.column && event.column.userProvidedColDef && event.column.userProvidedColDef.headerName == 'Email') {
       let email = event['data']['email'] ? this.ApiService.encrypt(event['data']['email']) : '';
       this.appconfig.routeNavigationWithParam(APP_CONSTANTS.ENDPOINTS.REPORTS.VIEWREPORTS, email);
     }
+
+    if(event &&  event.column && event.column.userProvidedColDef && event.column.userProvidedColDef.field == 'testname'){
+      this.getSubTableDef(event.section,event)
+      this.rowData1 = event.data ? event.data.section : '';
+      this.openUserFormDialog();
+    }
   }
+      // Add users Section
+      openUserFormDialog() {
+        this.sectiondialogRef = this.matDialog.open(this.opensection, {
+          width: '800px',
+          height: 'auto',
+          panelClass: 'popupModalContainerForaddUser'
+        });
+      }
 }
