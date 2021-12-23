@@ -422,7 +422,7 @@ export class HiringReportComponent implements OnInit {
   }
 
   getSubTableDef(params,event){ 
-    if (event.value && event.value === 'Personality & Behaviour') {
+    if (event.data && event.data.testtype === 'Personality & Behaviour') {
           
           this.columnDefsmini = [
             { headerName: 'Skill Name', field: 'skillname' },
@@ -548,7 +548,8 @@ export class HiringReportComponent implements OnInit {
     }
 
     if(event &&  event.column && event.column.userProvidedColDef && event.column.userProvidedColDef.field == 'testname'){
-      this.getSubTableDef(event.section,event)
+  
+      this.getSubTableDef(event.section,event);
       this.rowData1 = event.data ? event.data.section : '';
       this.openUserFormDialog();
     }
