@@ -205,7 +205,7 @@ export class HiringReportComponent implements OnInit {
         filter: 'agNumberColumnFilter',
         filterParams: {
           suppressAndOrCondition: true,
-          filterOptions: ['equals','lessThan','lessThanOrEqual','greaterThan','greaterThanOrEqual']
+          filterOptions: ['equals','lessThan','lessThanOrEqual','greaterThan','greaterThanOrEqual','inRange']
         },
         tooltipField:'testscore',
         // width: 100,
@@ -228,7 +228,7 @@ export class HiringReportComponent implements OnInit {
         tooltipField:'testmaxscore',
         filterParams: {
           suppressAndOrCondition: true,
-          filterOptions: ['equals','lessThan','lessThanOrEqual','greaterThan','greaterThanOrEqual']
+          filterOptions: ['equals','lessThan','lessThanOrEqual','greaterThan','greaterThanOrEqual','inRange']
         },
         // width: 100,
         cellClass: 'alignCenter',
@@ -254,7 +254,7 @@ export class HiringReportComponent implements OnInit {
         // width: 100,
                filterParams: {
           suppressAndOrCondition: true,
-          filterOptions: ['equals','lessThan','lessThanOrEqual','greaterThan','greaterThanOrEqual']
+          filterOptions: ['equals','lessThan','lessThanOrEqual','greaterThan','greaterThanOrEqual','inRange']
         },
         cellClass: 'alignCenter',
         cellRenderer: (params) => {
@@ -495,7 +495,6 @@ export class HiringReportComponent implements OnInit {
     return  {
       getRows: (params) => {
       let apiData: any = params;
-      console.log(apiData)
       if(apiData.request.sortModel && apiData.request.sortModel.length > 0){
         apiData.request.sortModel.forEach(element => {
             if(element.sort == 'asc'){
@@ -504,6 +503,13 @@ export class HiringReportComponent implements OnInit {
               element.sort = -1
             }
         });
+      }
+
+      if(apiData.request.filterModel.testdate){
+        apiData.request.filterModel.testdate.filter = apiData.request.filterModel.testdate.dateFrom;
+        delete apiData.request.filterModel.testdate.dateFrom;
+        apiData.request.filterModel.testdate.filterTo = apiData.request.filterModel.testdate.dateTo;
+        delete apiData.request.filterModel.testdate.dateTo;
       }
         this.candidateListSubscription =  this.ApiService.getHiringReport(apiData.request).subscribe((data1: any) => {
         this.userList = data1 && data1.data ? data1.data: [];
