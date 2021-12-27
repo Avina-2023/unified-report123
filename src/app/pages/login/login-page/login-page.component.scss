@@ -369,12 +369,34 @@ input.mat-input-element {
     .linee {
         border-left: 222px solid none !important;
     }
-    .forgot1 {
-        margin-left: -9%;
-        position: relative !important;
-    }
     #footer {
         text-align: center;
+    }
+}
+
+.forgot1 {
+    position: fixed !important;
+    bottom: 0px;
+    color: #9E9E9E;
+    font-size: 13px;
+}
+
+.footer-area {
+    position: absolute;
+    bottom: 14px;
+    right: 20px;
+    color: $lightGrey !important;
+    font-size: 13px;
+    display: flex;
+    justify-content: flex-start;
+    text-align: left;
+    align-items: center;
+    .sub-text {
+        white-space: nowrap;
+        margin-right: 1em;
+    }
+    img {
+        width: 50px;
     }
 }
 
