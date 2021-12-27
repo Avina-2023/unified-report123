@@ -480,6 +480,7 @@ export class HiringReportComponent implements OnInit {
     this.sizeToFit();
     var datasource = this.callApiForCandidateList();
     params.api.setServerSideDatasource(datasource);
+    
   }
 
   onGridReadymini(params){
@@ -494,9 +495,7 @@ export class HiringReportComponent implements OnInit {
     return  {
       getRows: (params) => {
       let apiData: any = params;
-      // sessionStorage.setItem('startRow',apiData.request.startRow)
-      // sessionStorage.setItem('endRow',apiData.request.endRow)
-
+      console.log(apiData)
       if(apiData.request.sortModel && apiData.request.sortModel.length > 0){
         apiData.request.sortModel.forEach(element => {
             if(element.sort == 'asc'){
@@ -506,21 +505,13 @@ export class HiringReportComponent implements OnInit {
             }
         });
       }
-
-      // if(apiData.request.startRow > 0){
-
-      // }else{
-      //   sessionStorage.setItem('startRow',apiData.request.startRow)
-      //   sessionStorage.setItem('endRow',apiData.request.endRow)
-      // }
-     
         this.candidateListSubscription =  this.ApiService.getHiringReport(apiData.request).subscribe((data1: any) => {
         this.userList = data1 && data1.data ? data1.data: [];
         if (this.userList.length > 0) {
-        let count = params.startRow;
-        this.userList.forEach((element, i) => {
-          count = count + 1;
-        });
+        // let count = params.startRow;
+        // this.userList.forEach((element, i) => {
+        //   count = count + 1;
+        // });
         this.pageRowCount = data1 && data1.total_count ? data1.total_count : 0;
         params.success({
           rowData: this.userList,
