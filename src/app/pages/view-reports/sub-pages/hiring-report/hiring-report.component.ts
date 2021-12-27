@@ -3,9 +3,11 @@ import { ToastrService } from 'ngx-toastr';
 import { AppConfigService } from 'src/app/utils/app-config.service';
 import { APP_CONSTANTS } from '../../../../utils/app-constants.service';
 import { ApiService } from '../../../../services/api.service';
-import { IGetRowsParams } from '@ag-grid-enterprise/all-modules';
+import { IGetRowsParams, Module } from '@ag-grid-enterprise/all-modules';
 import { Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
+import { ClientSideRowModelModule } from '@ag-grid-community/client-side-row-model';
+import { RowGroupingModule } from '@ag-grid-enterprise/row-grouping';
 @Component({
   selector: 'app-hiring-report',
   templateUrl: './hiring-report.component.html',
@@ -24,6 +26,9 @@ export class HiringReportComponent implements OnInit {
   public serverSideStoreType;
   public rowSelection;
   public masterDetail;
+  public modules: Module[] = [ClientSideRowModelModule, RowGroupingModule];
+  private autoGroupColumnDef;
+  private rowGroupPanelShow;
   reportsData: any;
   userList: any = [];
   pageRowCount = 0;
@@ -33,7 +38,7 @@ export class HiringReportComponent implements OnInit {
   constructor(  private matDialog: MatDialog,private appconfig: AppConfigService,private toastr: ToastrService, private ApiService: ApiService,) {      
     this.serverSideStoreType = 'partial';
     this.masterDetail = true;
-    this.rowModelType = 'infinite';
+    this.rowModelType = 'serverSide';
     this.defaultColDef = { 
       flex: 1,
       enableRowGroup: true,
@@ -47,6 +52,7 @@ export class HiringReportComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.tabledef()
   }
 
   ngOnDestroy() {
@@ -54,11 +60,12 @@ export class HiringReportComponent implements OnInit {
   }
 
   tabledef(){
-    return   [  
+    this.columnDefs =  [  
       {
         headerName: 'Name',
         field: 'firstname',
         filter: 'agTextColumnFilter',
+        enableRowGroup: true,
         filterParams: {
           suppressAndOrCondition: true,
           filterOptions: ['contains']
@@ -164,7 +171,7 @@ export class HiringReportComponent implements OnInit {
           if(params.value){
             return params.value;
           }else{
-            return params.data?.scheduledate;
+            return '-';
           }
         },
         filterParams: {
@@ -198,7 +205,7 @@ export class HiringReportComponent implements OnInit {
         filter: 'agNumberColumnFilter',
         filterParams: {
           suppressAndOrCondition: true,
-          filterOptions: ['equals','lessThan','lessThanOrEqual','greaterThan','greaterThanOrEqual']
+          filterOptions: ['equals','lessThan','lessThanOrEqual','greaterThan','greaterThanOrEqual','inRange']
         },
         tooltipField:'testscore',
         // width: 100,
@@ -221,7 +228,7 @@ export class HiringReportComponent implements OnInit {
         tooltipField:'testmaxscore',
         filterParams: {
           suppressAndOrCondition: true,
-          filterOptions: ['equals','lessThan','lessThanOrEqual','greaterThan','greaterThanOrEqual']
+          filterOptions: ['equals','lessThan','lessThanOrEqual','greaterThan','greaterThanOrEqual','inRange']
         },
         // width: 100,
         cellClass: 'alignCenter',
@@ -247,7 +254,7 @@ export class HiringReportComponent implements OnInit {
         // width: 100,
                filterParams: {
           suppressAndOrCondition: true,
-          filterOptions: ['equals','lessThan','lessThanOrEqual','greaterThan','greaterThanOrEqual']
+          filterOptions: ['equals','lessThan','lessThanOrEqual','greaterThan','greaterThanOrEqual','inRange']
         },
         cellClass: 'alignCenter',
         cellRenderer: (params) => {
@@ -447,7 +454,7 @@ export class HiringReportComponent implements OnInit {
           cellRenderer: (params) => {
             if (params.value != null && params.value <= 40) {
               return `<div class="progessbar red-btn" style="width: `+params.value+`%;">`+params.value+'%'+`</div>`;
-            }
+            } 
             if (params.value != null && params.value >= 40 && params.value < 80 ) {
               return `<div class="progessbar yellow-btn" style="width: `+params.value+`%;">`+params.value+'%'+`</div>`;
             } if(params.value != null && params.value >=80 && params.value < 90){
@@ -469,12 +476,11 @@ export class HiringReportComponent implements OnInit {
   onGridReady(params) {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
-    // let candidateDefinition =  this.tabledef();
-    //  console.log(candidateDefinition,'candidateDefinition')
-    this.gridApi.setColumnDefs(this.tabledef());
     this.gridApi.closeToolPanel();
     this.sizeToFit();
-    this.callApiForCandidateList();
+    var datasource = this.callApiForCandidateList();
+    params.api.setServerSideDatasource(datasource);
+    
   }
 
   onGridReadymini(params){
@@ -482,15 +488,15 @@ export class HiringReportComponent implements OnInit {
     this.gridColumnApi = params.columnApi;
     this.gridApi.closeToolPanel();
     this.sizeToFit();
+    
   }
 
   callApiForCandidateList() {
-    var datasource = {
-      getRows: (params: IGetRowsParams) => {
+    return  {
+      getRows: (params) => {
       let apiData: any = params;
-      this.gridApi.showLoadingOverlay();
-      if(apiData.sortModel && apiData.sortModel.length > 0){
-        apiData.sortModel.forEach(element => {
+      if(apiData.request.sortModel && apiData.request.sortModel.length > 0){
+        apiData.request.sortModel.forEach(element => {
             if(element.sort == 'asc'){
                 element.sort = 1
             }else{
@@ -498,36 +504,43 @@ export class HiringReportComponent implements OnInit {
             }
         });
       }
-     this.candidateListSubscription =  this.ApiService.getHiringReport(apiData).subscribe((data1: any) => {
-        this.gridApi.hideOverlay();
+
+      if(apiData.request.filterModel.testdate){
+        apiData.request.filterModel.testdate.filter = apiData.request.filterModel.testdate.dateFrom;
+        delete apiData.request.filterModel.testdate.dateFrom;
+        apiData.request.filterModel.testdate.filterTo = apiData.request.filterModel.testdate.dateTo;
+        delete apiData.request.filterModel.testdate.dateTo;
+      }
+        this.candidateListSubscription =  this.ApiService.getHiringReport(apiData.request).subscribe((data1: any) => {
         this.userList = data1 && data1.data ? data1.data: [];
         if (this.userList.length > 0) {
-        let count = params.startRow;
-        this.userList.forEach((element, i) => {
-          count = count + 1;
-          // element['counter'] = count;
-        });
+        // let count = params.startRow;
+        // this.userList.forEach((element, i) => {
+        //   count = count + 1;
+        // });
         this.pageRowCount = data1 && data1.total_count ? data1.total_count : 0;
-        params.successCallback(
-          this.userList, this.pageRowCount
+        params.success({
+          rowData: this.userList,
+          rowCount: this.pageRowCount
+        }
         );
       } else {
-        params.successCallback(
-          this.userList, 0
+        params.success({
+          rowData: this.userList,
+          rowCount: 0
+        }
+
         );
-        this.gridApi.showNoRowsOverlay();
       }
       }, (err) => {
-        this.gridApi.hideOverlay();
-        params.failCallback();
-        params.successCallback(
-          this.userList, this.pageRowCount
-        );
-        this.gridApi.showNoRowsOverlay();
+        params.fail();
+        params.success({
+          rowData: this.userList,
+          rowCount: this.pageRowCount
+        });
       });
       }
     }
-    this.gridApi.setDatasource(datasource);
 }
 
   onBack(){
