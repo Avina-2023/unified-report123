@@ -1,9 +1,9 @@
-<mat-toolbar class="header-toolbar" [ngClass]="{ yellowColor: isaccess == true, whiteColor: isaccess == true
-}">
+<mat-toolbar class="header-toolbar">
     <div class="first">
         <img alt="EduTech" class="beforeloginimg" src="https://assets.lntedutech.com/edutech_logo.svg" />
     </div>
     <div *ngIf="isaccess" style="cursor: pointer;" matTooltip="Logout" class="logout" (click)="logout()">
+        <span class="wel" *ngIf="isaccess"> Hello,</span>
         <em class="icon-logout"></em>
     </div>
 </mat-toolbar>
