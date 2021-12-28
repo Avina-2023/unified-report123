@@ -7,19 +7,17 @@ import { HiringReportComponent } from './sub-pages/hiring-report/hiring-report.c
 
 const routes: Routes = [
   {
-    path: `${APP_CONSTANTS.ROUTES.REPORTS.VIEWREPORTS}/:id`, component: ViewOverallReportsComponent, 
+    path: `${APP_CONSTANTS.ROUTES.REPORTS.VIEWREPORTS}/:id`, component: ViewOverallReportsComponent,
   },
   {
-    path: `${APP_CONSTANTS.ROUTES.REPORTS.USERLIST}`, component: UserListComponent, 
+    path: `${APP_CONSTANTS.ROUTES.REPORTS.USERLIST}`, component: UserListComponent,
   },
   {
-    path: `${APP_CONSTANTS.ROUTES.REPORTS.HIRINGREPORT}`, component: HiringReportComponent, 
+    path: `${APP_CONSTANTS.ROUTES.REPORTS.HIRINGREPORT}`, component: HiringReportComponent,
   },
   {
-    path: '',
-    redirectTo: `${APP_CONSTANTS.ROUTES.REPORTS.USERLIST}`,
-    pathMatch: 'full',
-  }
+    path: `${APP_CONSTANTS.ROUTES.REPORTS.BEHAVIOUR_MODULE.HOME}`, loadChildren: () => import('../behavioural-report/behavioural-report.module').then(m => m.BehaviouralReportModule)
+  },
 ];
 
 @NgModule({

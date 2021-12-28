@@ -32,14 +32,14 @@ export class HiringReportComponent implements OnInit {
   reportsData: any;
   userList: any = [];
   pageRowCount = 0;
-  candidateListSubscription: Subscription;  
+  candidateListSubscription: Subscription;
   sectiondialogRef: any;
   rowData1: any;
-  constructor(  private matDialog: MatDialog,private appconfig: AppConfigService,private toastr: ToastrService, private ApiService: ApiService,) {      
+  constructor(  private matDialog: MatDialog,private appconfig: AppConfigService,private toastr: ToastrService, private ApiService: ApiService,) {
     this.serverSideStoreType = 'partial';
     this.masterDetail = true;
     this.rowModelType = 'serverSide';
-    this.defaultColDef = { 
+    this.defaultColDef = {
       flex: 1,
       enableRowGroup: true,
       enablePivot: true,
@@ -47,7 +47,7 @@ export class HiringReportComponent implements OnInit {
       sortable: true,
       resizable: true,
       filter: true,
-      //  floatingFilter: true, 
+      //  floatingFilter: true,
     };
   }
 
@@ -60,7 +60,7 @@ export class HiringReportComponent implements OnInit {
   }
 
   tabledef(){
-    this.columnDefs =  [  
+    this.columnDefs =  [
       {
         headerName: 'Name',
         field: 'firstname',
@@ -70,7 +70,7 @@ export class HiringReportComponent implements OnInit {
           suppressAndOrCondition: true,
           filterOptions: ['contains']
         },
-        tooltipField:'firstname',    
+        tooltipField:'firstname',
         // width: 100,
         cellRenderer: (params) => {
           if(params.data && params.data.display == true){
@@ -97,7 +97,7 @@ export class HiringReportComponent implements OnInit {
             return '<span class="displayNone">'+params.value+'</span>' ;
           } if(params.value == undefined){
             return'';
-          }else { 
+          }else {
               return ''+params.value;
           }
         }
@@ -177,7 +177,7 @@ export class HiringReportComponent implements OnInit {
         filterParams: {
           suppressAndOrCondition: true,
           filterOptions: ['equals','lessThan','greaterThan','inRange'],
-          comparator: 
+          comparator:
           function (filterLocalDateAtMidnight, cellValue) {
             var dateAsString = cellValue;
             if (dateAsString == null) return -1;
@@ -270,7 +270,7 @@ export class HiringReportComponent implements OnInit {
             if (params.value && params.value < 80 ) {
             //  let per:any = params.data.testscore != null && params.data.testscore / params.data.testmaxscore * 100;
             return `<div class="progessbar yellow-btn"  style="width: `+''+parseInt(params.value)+`%;">`+params.value+'%'+`</div>`;
-            } 
+            }
             if(params.value && params.value  < 90){
             //  let per:any = params.data.testscore != null && params.data.testscore / params.data.testmaxscore * 100;
             return `<div class="progessbar light-green" style="width: `+''+parseInt(params.value)+`%;">`+params.value+'%'+`</div>`;
@@ -278,7 +278,7 @@ export class HiringReportComponent implements OnInit {
             if ( params.value && params.value >=90){
             //  let per:any = params.data.testscore != null && params.data.testscore / params.data.testmaxscore * 100;
             return `<div class="progessbar green-btn" style="width: `+''+parseInt(params.value)+`%; ">`+params.value+'%'+`</div>`;
-            } 
+            }
             if(params.value && params.value !== undefined && params.value !== null && params.value == 'null' && params.value == ''){
             //  let per:any = params.data.testscore != null && params.data.testscore / params.data.testmaxscore * 100;
             return ''+params.value;
@@ -288,7 +288,7 @@ export class HiringReportComponent implements OnInit {
             }
 
           }
-           
+
         }
       },
       {
@@ -340,7 +340,7 @@ export class HiringReportComponent implements OnInit {
               // return `<span><button class="btnsm greenlight-btn">`+params.value +`</button></span>`;
               return params.value
             }
-            
+
             else {
               return '-';
             }
@@ -361,7 +361,7 @@ export class HiringReportComponent implements OnInit {
       //   };
       //   if (params.data && params.data.testtype === 'Personality & Behaviour') {
       //     res.detailGridOptions = {
-    
+
       //       rowSelection: 'multiple',
       //       suppressRowClickSelection: true,
       //       enableRangeSelection: true,
@@ -424,17 +424,17 @@ export class HiringReportComponent implements OnInit {
       //   return res;
       // }
   ]
- 
- 
+
+
   }
 
-  getSubTableDef(params,event){ 
+  getSubTableDef(params,event){
     if (event.data && event.data.testtype === 'Personality & Behaviour') {
-          
+
           this.columnDefsmini = [
             { headerName: 'Skill Name', field: 'skillname' },
             { headerName: 'Sten Score', field: 'stenScore' },
-          ] 
+          ]
     }else{
        this.columnDefsmini = [
         {headerName: 'Sectional Name',field: 'secname'},
@@ -454,7 +454,7 @@ export class HiringReportComponent implements OnInit {
           cellRenderer: (params) => {
             if (params.value != null && params.value <= 40) {
               return `<div class="progessbar red-btn" style="width: `+params.value+`%;">`+params.value+'%'+`</div>`;
-            } 
+            }
             if (params.value != null && params.value >= 40 && params.value < 80 ) {
               return `<div class="progessbar yellow-btn" style="width: `+params.value+`%;">`+params.value+'%'+`</div>`;
             } if(params.value != null && params.value >=80 && params.value < 90){
@@ -480,7 +480,7 @@ export class HiringReportComponent implements OnInit {
     this.sizeToFit();
     var datasource = this.callApiForCandidateList();
     params.api.setServerSideDatasource(datasource);
-    
+
   }
 
   onGridReadymini(params){
@@ -488,7 +488,7 @@ export class HiringReportComponent implements OnInit {
     this.gridColumnApi = params.columnApi;
     this.gridApi.closeToolPanel();
     this.sizeToFit();
-    
+
   }
 
   callApiForCandidateList() {
@@ -546,7 +546,7 @@ export class HiringReportComponent implements OnInit {
   onBack(){
     this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.REPORTS.USERLIST);
   }
-  
+
   sizeToFit() {
     this.gridApi.sizeColumnsToFit();
   }
@@ -557,11 +557,12 @@ export class HiringReportComponent implements OnInit {
   onCellClicked(event) {
     if (event &&  event.column && event.column.userProvidedColDef && event.column.userProvidedColDef.headerName == 'Email') {
       let email = event['data']['email'] ? this.ApiService.encrypt(event['data']['email']) : '';
-      this.appconfig.routeNavigationWithParam(APP_CONSTANTS.ENDPOINTS.REPORTS.VIEWREPORTS, email);
+      this.appconfig.routeNavigationWithParam(APP_CONSTANTS.ENDPOINTS.REPORTS.BEHAVIOUR_MODULE.BEHAVIOUR_REPORT, email);
+      // this.appconfig.routeNavigationWithParam(APP_CONSTANTS.ENDPOINTS.REPORTS.VIEWREPORTS, email);
     }
 
     if(event &&  event.column && event.column.userProvidedColDef && event.column.userProvidedColDef.field == 'testname'){
-  
+
       this.getSubTableDef(event.section,event);
       this.rowData1 = event.data ? event.data.section : '';
       this.openUserFormDialog();
