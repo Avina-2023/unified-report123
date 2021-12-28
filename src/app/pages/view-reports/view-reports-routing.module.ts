@@ -18,6 +18,11 @@ const routes: Routes = [
   {
     path: `${APP_CONSTANTS.ROUTES.REPORTS.BEHAVIOUR_MODULE.HOME}`, loadChildren: () => import('../behavioural-report/behavioural-report.module').then(m => m.BehaviouralReportModule)
   },
+  {
+    path: '',
+    redirectTo: `${APP_CONSTANTS.ROUTES.REPORTS.USERLIST}`,
+    pathMatch: 'full',
+  }
 ];
 
 @NgModule({
