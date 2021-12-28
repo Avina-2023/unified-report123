@@ -3,11 +3,10 @@ import { ToastrService } from 'ngx-toastr';
 import { AppConfigService } from 'src/app/utils/app-config.service';
 import { APP_CONSTANTS } from '../../../../utils/app-constants.service';
 import { ApiService } from '../../../../services/api.service';
-import { IGetRowsParams, Module } from '@ag-grid-enterprise/all-modules';
 import { Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
-import { ClientSideRowModelModule } from '@ag-grid-community/client-side-row-model';
-import { RowGroupingModule } from '@ag-grid-enterprise/row-grouping';
+// import { RowGroupingModule } from '@ag-grid-enterprise/row-grouping';
+// import { ClientSideRowModelModule, Module } from '@ag-grid-enterprise/all-modules';
 @Component({
   selector: 'app-hiring-report',
   templateUrl: './hiring-report.component.html',
@@ -26,7 +25,7 @@ export class HiringReportComponent implements OnInit {
   public serverSideStoreType;
   public rowSelection;
   public masterDetail;
-  public modules: Module[] = [ClientSideRowModelModule, RowGroupingModule];
+  // public modules: Module[] = [ClientSideRowModelModule, RowGroupingModule];
   private autoGroupColumnDef;
   private rowGroupPanelShow;
   reportsData: any;
@@ -207,7 +206,7 @@ export class HiringReportComponent implements OnInit {
           suppressAndOrCondition: true,
           filterOptions: ['equals','lessThan','lessThanOrEqual','greaterThan','greaterThanOrEqual','inRange']
         },
-        tooltipField:'testscore',
+        // tooltipField:'testscore',
         // width: 100,
         cellRenderer: (params) => {
           if(params.data && params.data.testtype == 'Personality & Behaviour'){
@@ -225,7 +224,7 @@ export class HiringReportComponent implements OnInit {
         headerName: 'Maxscore',
         field: 'testmaxscore',
         filter: 'agNumberColumnFilter',
-        tooltipField:'testmaxscore',
+        // tooltipField:'testmaxscore',
         filterParams: {
           suppressAndOrCondition: true,
           filterOptions: ['equals','lessThan','lessThanOrEqual','greaterThan','greaterThanOrEqual','inRange']
@@ -265,23 +264,23 @@ export class HiringReportComponent implements OnInit {
             // if(params.value !== undefined && params.value !== null && params.value == 'null'){
               if(params.value && params.value <= 40){
                 // let per:any = params.data.testscore != null && params.data.testscore / params.data.testmaxscore * 100;
-            return `<div class="progessbar red-btn"  style="width: `+''+parseInt(params.value)+`%;">`+parseInt(params.value)+'%'+`</div>`;
+            return `<div class="progessbar red-btn"  style="width: `+''+parseInt(params.value)+`%;">`+params.value+'%'+`</div>`;
             }
             if (params.value && params.value < 80 ) {
             //  let per:any = params.data.testscore != null && params.data.testscore / params.data.testmaxscore * 100;
-            return `<div class="progessbar yellow-btn"  style="width: `+''+parseInt(params.value)+`%;">`+parseInt(params.value)+'%'+`</div>`;
+            return `<div class="progessbar yellow-btn"  style="width: `+''+parseInt(params.value)+`%;">`+params.value+'%'+`</div>`;
             } 
             if(params.value && params.value  < 90){
             //  let per:any = params.data.testscore != null && params.data.testscore / params.data.testmaxscore * 100;
-            return `<div class="progessbar light-green" style="width: `+''+parseInt(params.value)+`%;">`+parseInt(params.value)+'%'+`</div>`;
+            return `<div class="progessbar light-green" style="width: `+''+parseInt(params.value)+`%;">`+params.value+'%'+`</div>`;
             }
             if ( params.value && params.value >=90){
             //  let per:any = params.data.testscore != null && params.data.testscore / params.data.testmaxscore * 100;
-            return `<div class="progessbar green-btn" style="width: `+''+parseInt(params.value)+`%; ">`+parseInt(params.value)+'%'+`</div>`;
+            return `<div class="progessbar green-btn" style="width: `+''+parseInt(params.value)+`%; ">`+params.value+'%'+`</div>`;
             } 
             if(params.value && params.value !== undefined && params.value !== null && params.value == 'null' && params.value == ''){
             //  let per:any = params.data.testscore != null && params.data.testscore / params.data.testmaxscore * 100;
-            return ''+parseInt(params.value);
+            return ''+params.value;
           }
             else {
             return '-';
