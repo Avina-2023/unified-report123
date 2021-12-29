@@ -47,22 +47,25 @@
     margin-top: -100px;
     .container {
         background-color: $whiteColor;
-        padding: 20px 0;
+        padding: 60px 0;
     }
     .profImage {
         width: 50%;
-        figure {
-            width: 35%;
+        .positionProfile {
+            width: 10%;
             border: 3px solid $whiteColor;
             border-radius: 12px;
             background-color: $whiteColor;
             box-shadow: 0 3px 6px rgba(0,0,0,0.3);
             overflow: hidden;
-            position: relative;
-            top: -100px;
+            position: absolute;
+            top: -70px;
             img {
                 width: 100%;
             }
+        }
+        .emptyClass {
+            width: 35%;
         }
         .profContent {
             width: 60%;
@@ -101,7 +104,7 @@
         }
     }
     .profDesctiption {
-        margin-top: 30px;
+        margin-top: 50px;
         .heading4 {
             color: $darkGrey;
             font-size: 25px;
