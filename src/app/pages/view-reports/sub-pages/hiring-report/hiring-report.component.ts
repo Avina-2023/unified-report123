@@ -3,11 +3,10 @@ import { ToastrService } from 'ngx-toastr';
 import { AppConfigService } from 'src/app/utils/app-config.service';
 import { APP_CONSTANTS } from '../../../../utils/app-constants.service';
 import { ApiService } from '../../../../services/api.service';
-import { IGetRowsParams, Module } from '@ag-grid-enterprise/all-modules';
 import { Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
-import { ClientSideRowModelModule } from '@ag-grid-community/client-side-row-model';
-import { RowGroupingModule } from '@ag-grid-enterprise/row-grouping';
+// import { RowGroupingModule } from '@ag-grid-enterprise/row-grouping';
+// import { ClientSideRowModelModule, Module } from '@ag-grid-enterprise/all-modules';
 @Component({
   selector: 'app-hiring-report',
   templateUrl: './hiring-report.component.html',
@@ -26,7 +25,7 @@ export class HiringReportComponent implements OnInit {
   public serverSideStoreType;
   public rowSelection;
   public masterDetail;
-  public modules: Module[] = [ClientSideRowModelModule, RowGroupingModule];
+  // public modules: Module[] = [ClientSideRowModelModule, RowGroupingModule];
   private autoGroupColumnDef;
   private rowGroupPanelShow;
   reportsData: any;
@@ -207,7 +206,7 @@ export class HiringReportComponent implements OnInit {
           suppressAndOrCondition: true,
           filterOptions: ['equals','lessThan','lessThanOrEqual','greaterThan','greaterThanOrEqual','inRange']
         },
-        tooltipField:'testscore',
+        // tooltipField:'testscore',
         // width: 100,
         cellRenderer: (params) => {
           if(params.data && params.data.testtype == 'Personality & Behaviour'){
@@ -225,7 +224,7 @@ export class HiringReportComponent implements OnInit {
         headerName: 'Maxscore',
         field: 'testmaxscore',
         filter: 'agNumberColumnFilter',
-        tooltipField:'testmaxscore',
+        // tooltipField:'testmaxscore',
         filterParams: {
           suppressAndOrCondition: true,
           filterOptions: ['equals','lessThan','lessThanOrEqual','greaterThan','greaterThanOrEqual','inRange']
@@ -557,8 +556,7 @@ export class HiringReportComponent implements OnInit {
   onCellClicked(event) {
     if (event &&  event.column && event.column.userProvidedColDef && event.column.userProvidedColDef.headerName == 'Email') {
       let email = event['data']['email'] ? this.ApiService.encrypt(event['data']['email']) : '';
-      this.appconfig.routeNavigationWithParam(APP_CONSTANTS.ENDPOINTS.REPORTS.BEHAVIOUR_MODULE.BEHAVIOUR_REPORT, email);
-      // this.appconfig.routeNavigationWithParam(APP_CONSTANTS.ENDPOINTS.REPORTS.VIEWREPORTS, email);
+      this.appconfig.routeNavigationWithParam(APP_CONSTANTS.ENDPOINTS.REPORTS.VIEWREPORTS, email);
     }
 
     if(event &&  event.column && event.column.userProvidedColDef && event.column.userProvidedColDef.field == 'testname'){
