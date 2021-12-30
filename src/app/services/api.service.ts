@@ -76,4 +76,8 @@ export class ApiService {
     return this.http.post(`${this.BASE_URL}/getAgegridReport`,data);
   }
 
+  getBehaviourReport(data){
+    return this.http.post(`${this.BASE_URL}/getBehaviouralReportContent `,data);
+  }
+
 }
