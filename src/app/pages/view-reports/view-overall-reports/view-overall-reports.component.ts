@@ -16,6 +16,7 @@ export class ViewOverallReportsComponent implements OnInit {
   getAllReportsData: any;
   driveName: any;
   isaccess: any;
+  emailId: any;
 
   constructor(
     private toastr: ToastrService,
@@ -45,10 +46,14 @@ export class ViewOverallReportsComponent implements OnInit {
   onBack() {
     this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.REPORTS.USERLIST);
   }
+  goToBehavioural() {
+    this.appconfig.routeNavigationWithParam(APP_CONSTANTS.ENDPOINTS.REPORTS.BEHAVIOUR_MODULE.BEHAVIOUR_REPORT, this.ApiService.encrypt(this.emailId));
+  }
   getReports(data) {
     const apiData = {
       email: data,
     };
+    this.emailId = data;
     this.ApiService.getReportsDataAPI(apiData).subscribe((response: any) => {
       if (response && response.success) {
         this.getAllReportsData = response.data && response.data[0] ? response.data[0] : null;

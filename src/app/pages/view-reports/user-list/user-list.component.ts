@@ -40,25 +40,6 @@ export class UserListComponent implements OnInit, OnChanges {
   }
 
 
-  // getUserList() {
-  //   const apiData = {
-  //     email: ''
-  //   }
-  //   this.ApiService.getUserList(apiData).subscribe((res: any)=> {
-  //     if (res.success && res.data && res.data.length > 0) {
-  //       this.userlist = res.data;
-  //       this.rowData = this.userlist;
-  //     } else {
-  //       this.toastr.error('No userlist available to show');
-  //       this.userlist= [];
-  //       this.rowData = [];
-  //     }
-  //   }, (err)=> {
-  //     this.userlist = [];
-  //     this.rowData = this.userlist;
-  //   })
-  // }
-
   onGridReady(params: any) {
     this.gridApi = params.api;
   }
