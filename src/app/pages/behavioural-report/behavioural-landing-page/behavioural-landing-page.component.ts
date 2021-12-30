@@ -43,7 +43,7 @@ export class BehaviouralLandingPageComponent implements OnInit, OnDestroy {
      this.getBehaviourReportAPISubscription = this.ApiService.getBehaviourReport(apiData).subscribe((response: any) => {
       console.log('res', response);
       if (response && response.success) {
-          this.getAllBehaviourData = response.data ? response.data : null;
+          this.getAllBehaviourData = response.data.data ? response.data.data : null;
         } else {
           this.toastr.error('No Reports Available');
           this.getAllBehaviourData = null;
