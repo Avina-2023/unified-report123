@@ -50,7 +50,7 @@
         padding: 60px 0;
     }
     .profImage {
-        width: 50%;
+        width: 48%;
         .positionProfile {
             width: 185px;
             border: 3px solid $whiteColor;
@@ -75,8 +75,9 @@
                 color: $primaryBlue;
                 font-size: 30px;
                 font-weight: 500;
-                line-height: normal;
+                line-height: 27px;
                 margin-bottom: 10px;
+                word-break: break-all;
             }
             span {
                 color: $blackColor;
@@ -87,7 +88,7 @@
         }
     }
     .profDetails {
-        width: 50%;
+        width: 48%;
         > div {
             margin-bottom: 7px;
             .prof {
