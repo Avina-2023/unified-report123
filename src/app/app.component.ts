@@ -15,7 +15,7 @@ export class AppComponent implements OnInit {
   loading: boolean = true;
 
   constructor(private _loading: LoadingService,  private appConfig : AppConfigService){
-    
+    sessionStorage.setItem('InAppReport','true');
   }
 
 ngOnInit() {

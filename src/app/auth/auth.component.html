@@ -2,10 +2,16 @@
     <div class="first">
         <img alt="EduTech" class="beforeloginimg" src="https://assets.lntedutech.com/edutech_logo.svg" />
     </div>
-    <div *ngIf="isaccess" style="cursor: pointer;" matTooltip="Logout" class="logout" (click)="logout()">
-        <span class="wel" *ngIf="isaccess"> Hello,</span>
-        <em class="icon-logout"></em>
+    <div>
+        <div *ngIf="isaccess" style="cursor: pointer;" class="logout">
+            <span class="wel" *ngIf="isaccess"> Hello, {{username}}</span>
+            <span *ngIf="!InAppReport">
+                <em class="icon-logout"  matTooltip="Logout" (click)="logout()"></em>
+            </span>
+
+        </div>
     </div>
+
 </mat-toolbar>
 <div class="perfect-scrollbar">
     <router-outlet></router-outlet>
