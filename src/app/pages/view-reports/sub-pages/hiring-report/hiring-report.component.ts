@@ -5,6 +5,7 @@ import { APP_CONSTANTS } from '../../../../utils/app-constants.service';
 import { ApiService } from '../../../../services/api.service';
 import { Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
+import { SentDataToOtherComp } from 'src/app/services/sendDataToOtherComp.service';
 // import { RowGroupingModule } from '@ag-grid-enterprise/row-grouping';
 // import { ClientSideRowModelModule, Module } from '@ag-grid-enterprise/all-modules';
 @Component({
@@ -34,7 +35,7 @@ export class HiringReportComponent implements OnInit {
   candidateListSubscription: Subscription;
   sectiondialogRef: any;
   rowData1: any;
-  constructor(  private matDialog: MatDialog,private appconfig: AppConfigService,private toastr: ToastrService, private ApiService: ApiService,) {
+  constructor(private sendData: SentDataToOtherComp, private matDialog: MatDialog,private appconfig: AppConfigService,private toastr: ToastrService, private ApiService: ApiService,) {      
     this.serverSideStoreType = 'partial';
     this.masterDetail = true;
     this.rowModelType = 'serverSide';
@@ -176,26 +177,26 @@ export class HiringReportComponent implements OnInit {
         filterParams: {
           suppressAndOrCondition: true,
           filterOptions: ['equals','lessThan','greaterThan','inRange'],
-          comparator:
-          function (filterLocalDateAtMidnight, cellValue) {
-            var dateAsString = cellValue;
-            if (dateAsString == null) return -1;
-            var dateParts = dateAsString.split('/');
-            var cellDate = new Date(
-              Number(dateParts[2]),
-              Number(dateParts[1]) - 1,
-              Number(dateParts[0])
-            );
-            if (filterLocalDateAtMidnight?.getTime() === cellDate?.getTime()) {
-              return 0;
-            }
-            if (cellDate < filterLocalDateAtMidnight) {
-              return -1;
-            }
-            if (cellDate > filterLocalDateAtMidnight) {
-              return 1;
-            }
-          },
+          // comparator: 
+          // function (filterLocalDateAtMidnight, cellValue) {
+          //   var dateAsString = cellValue;
+          //   if (dateAsString == null) return -1;
+          //   var dateParts = dateAsString.split('/');
+          //   var cellDate = new Date(
+          //     Number(dateParts[2]),
+          //     Number(dateParts[1]) - 1,
+          //     Number(dateParts[0])
+          //   );
+          //   if (filterLocalDateAtMidnight?.getTime() === cellDate?.getTime()) {
+          //     return 0;
+          //   }
+          //   if (cellDate < filterLocalDateAtMidnight) {
+          //     return -1;
+          //   }
+          //   if (cellDate > filterLocalDateAtMidnight) {
+          //     return 1;
+          //   }
+          // },
         },
       },
       {
@@ -505,10 +506,12 @@ export class HiringReportComponent implements OnInit {
       }
 
       if(apiData.request.filterModel.testdate){
-        apiData.request.filterModel.testdate.filter = apiData.request.filterModel.testdate.dateFrom;
-        delete apiData.request.filterModel.testdate.dateFrom;
-        apiData.request.filterModel.testdate.filterTo = apiData.request.filterModel.testdate.dateTo;
-        delete apiData.request.filterModel.testdate.dateTo;
+        const filter = apiData.request.filterModel.testdate.filter;
+        const filterTo = apiData.request.filterModel.testdate.filterTo;
+        apiData.request.filterModel.testdate.filter = apiData.request.filterModel.testdate.dateFrom ? apiData.request.filterModel.testdate.dateFrom:filter;
+        delete apiData.request.filterModel.testdate.dateFrom ? apiData.request.filterModel.testdate.dateFrom : '';
+        apiData.request.filterModel.testdate.filterTo = apiData.request.filterModel.testdate.dateTo ?  apiData.request.filterModel.testdate.dateTo : filterTo;
+        delete apiData.request.filterModel.testdate.dateTo ? apiData.request.filterModel.testdate.dateTo : '';
       }
         this.candidateListSubscription =  this.ApiService.getHiringReport(apiData.request).subscribe((data1: any) => {
         this.userList = data1 && data1.data ? data1.data: [];
@@ -555,9 +558,12 @@ export class HiringReportComponent implements OnInit {
 
   onCellClicked(event) {
     if (event &&  event.column && event.column.userProvidedColDef && event.column.userProvidedColDef.headerName == 'Email') {
-      let email = event['data']['email'] ? this.ApiService.encrypt(event['data']['email']) : '';
-      this.appconfig.routeNavigationWithParam(APP_CONSTANTS.ENDPOINTS.REPORTS.VIEWREPORTS, email);
+      let email = event['data']['email'] ? this.ApiService.encrypt(event['data']['email']) : ''
+      // this.appconfig.routeNavigationWithParam(APP_CONSTANTS.ENDPOINTS.REPORTS.VIEWREPORTS, email);
+      this.navtoDetailsPage(event['data']['email'])
     }
+
+
 
     if(event &&  event.column && event.column.userProvidedColDef && event.column.userProvidedColDef.field == 'testname'){
 
@@ -565,6 +571,12 @@ export class HiringReportComponent implements OnInit {
       this.rowData1 = event.data ? event.data.section : '';
       this.openUserFormDialog();
     }
+  }
+
+  navtoDetailsPage(email){
+    // sessionStorage.setItem('InAppReport','false');
+    this.sendData.sendMessage(false);
+    window.open(APP_CONSTANTS.ENDPOINTS.REPORTS.VIEWREPORTS+'/'+`${email}`, '_blank');
   }
       // Add users Section
       openUserFormDialog() {
