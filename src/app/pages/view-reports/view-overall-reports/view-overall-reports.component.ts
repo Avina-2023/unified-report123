@@ -6,6 +6,8 @@ import { ApiService } from './../../../services/api.service';
 import { Component, OnInit } from '@angular/core';
 import { HostListener } from '@angular/core';
 import { PlatformLocation } from '@angular/common';
+import { SentDataToOtherComp } from 'src/app/services/sendDataToOtherComp.service';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-view-overall-reports',
   templateUrl: './view-overall-reports.component.html',
@@ -16,6 +18,7 @@ export class ViewOverallReportsComponent implements OnInit {
   getAllReportsData: any;
   driveName: any;
   isaccess: any;
+  subscription: Subscription;
   emailId: any;
 
   constructor(
@@ -23,7 +26,9 @@ export class ViewOverallReportsComponent implements OnInit {
     private ApiService: ApiService,
     private appconfig: AppConfigService,
     private route: ActivatedRoute,
+    private sendData: SentDataToOtherComp,
   ) {
+    this.sendData.sendMessage(true);
   }
 
 

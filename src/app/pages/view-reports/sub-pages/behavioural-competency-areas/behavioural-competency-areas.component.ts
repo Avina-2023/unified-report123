@@ -236,17 +236,17 @@ export class BehaviouralCompetencyAreasComponent implements OnInit {
   setColorCodesBasedOnLabel(labelName: any) {
     const dynamicColor = labelName ? labelName : sessionStorage.getItem('Cname');
     if(dynamicColor == 'Thought Factor'){
-        this.domain = ['#8EC031'];
-        return '#8EC031';
+        this.domain = ['#96C32E'];
+        return '#96C32E';
     } if(dynamicColor == 'Emotion Factor'){
-      this.domain = ['#FFBB48'];
-        return '#FFBB48'
+      this.domain = ['#C35BDC'];
+        return '#C35BDC'
     } if(dynamicColor == 'Core/Personal Factor'){
-      this.domain = ['#5460A7'];
-      return '#5460A7'
+      this.domain = ['#5885BF'];
+      return '#5885BF'
       }if(dynamicColor == 'Interpersonal Factor'){
-        this.domain = ['#F08145'];
-        return '#F08145'
+        this.domain = ['#F7A53E'];
+        return '#F7A53E'
     }
     else {
       this.domain = ['#03B8CB'];
