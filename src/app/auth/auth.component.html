@@ -1,8 +1,8 @@
-<mat-toolbar class="header-toolbar">
-    <div class="first">
-        <img alt="EduTech" class="beforeloginimg" src="https://assets.lntedutech.com/edutech_logo.svg" />
-    </div>
-    <div>
+<div class="wrapper">
+    <mat-toolbar class="header-toolbar">
+        <div class="first">
+            <img alt="EduTech" class="beforeloginimg" src="https://assets.lntedutech.com/edutech_logo.svg" />
+        </div>
         <div *ngIf="isaccess" style="cursor: pointer;" class="logout">
             <span class="wel" *ngIf="isaccess"> Hello, {{username}}</span>
             <span *ngIf="!InAppReport">
@@ -10,10 +10,9 @@
             </span>
 
         </div>
+    </mat-toolbar>
+    <div class="perfect-scrollbar">
+        <router-outlet></router-outlet>
     </div>
-
-</mat-toolbar>
-<div class="perfect-scrollbar">
-    <router-outlet></router-outlet>
+    <footer class="footerPan">2021 © L&T EduTech All Rights Reserved</footer>
 </div>
-<footer class="footerPan">2021 © L&T EduTech All Rights Reserved</footer>

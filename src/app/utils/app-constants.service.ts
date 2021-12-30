@@ -13,7 +13,7 @@ export const APP_CONSTANTS = {
     PPT: 'application/vnd.ms-powerpoint',
     PPTX: 'application/vnd.openxmlformats-officedocument.presentationm1.presentation',
   },
-  
+
   // Route endpoints
   ENDPOINTS: {
     LOGIN: '/login',
@@ -23,7 +23,11 @@ export const APP_CONSTANTS = {
       HOME: '/auth/reports',
       USERLIST: '/auth/reports/userlist',
       VIEWREPORTS: '/auth/reports/viewreport',
-      HIRINGREPORT:'/auth/reports/hiring' 
+      HIRINGREPORT:'/auth/reports/hiring',
+      BEHAVIOUR_MODULE: {
+        BEHAVIOUR_MODULE_PAGE: '/auth/reports/behavioural',
+        BEHAVIOUR_REPORT: '/auth/reports/behavioural/view'
+      }
     }
   },
 
@@ -36,7 +40,11 @@ export const APP_CONSTANTS = {
       HOME: 'reports',
       USERLIST: 'userlist',
       VIEWREPORTS: 'viewreport',
-      HIRINGREPORT:'hiring'
+      HIRINGREPORT:'hiring',
+      BEHAVIOUR_MODULE: {
+        HOME: 'behavioural',
+        BEHAVIOUR_REPORT: 'view'
+      }
     }
   }
 };
