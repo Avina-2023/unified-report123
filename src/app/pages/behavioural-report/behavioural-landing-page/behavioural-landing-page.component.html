@@ -14,29 +14,29 @@
                 <div class="profileWrapper d-flex justify-content-between">
                     <div class="profImage d-flex">
                         <figure class="positionProfile">
-                            <img src="/assets/images/Passport_Size_Photo.jpg" alt="" />
+                            <img [src]="getAllBasicData && getAllBasicData.profileImage ? getAllBasicData.profileImage : '/assets/images/Avatar.svg'" alt="" />
                         </figure>
                         <div class="emptyClass"></div>
                         <div class="profContent">
-                            <div class="heading3">Avinasi S</div>
-                            <span>Test Completion Date: 29/10/2021</span>
+                            <div class="heading3">{{getAllBasicData?.firstname ? getAllBasicData?.firstname : ''}}</div>
+                            <span>Test Completion Date: {{getAllBasicData && getAllBasicData.testDate ? momentForm(getAllBasicData?.testDate) : 'Nil'}}</span>
                         </div>
                     </div>
                     <div class="profDetails">
                         <div>
-                            <span class="prof"><em>Email</em>: avinasi.selvakumar@lntecc.com</span>
+                            <span class="prof"><em>Email</em>: {{emailId ? emailId : 'Nil'}}</span>
                         </div>
                         <div>
-                            <span class="prof"><em>Gender</em>: Male</span>
+                            <span class="prof"><em>Gender</em>: {{getAllBasicData?.gender ? getAllBasicData?.gender : 'Nil'}}</span>
                         </div>
                         <div>
-                            <span class="prof"><em>Education Level</em>: University</span>
+                            <span class="prof"><em>Education Level</em>: {{highestEducation?.level ? highestEducation?.level : 'Nil'}}</span>
                         </div>
                     </div>
                 </div>
                 <div class="profDesctiption">
                     <div class="heading4">This Report Describes:</div>
-                    <p>The behavioural profile of <span>Avinasi S’s</span> is mapped on the basis of four factors. The report also covers the potential candidate’s Strengths and Development scope.</p>
+                    <p>The behavioural profile of <span>{{getAllBasicData?.firstname}}’s</span> is mapped on the basis of four factors. The report also covers the potential candidate’s Strengths and Development scope.</p>
                     <figure>
                         <img src="/assets/images/report.svg" alt="" />
                     </figure>

@@ -4,6 +4,7 @@ import { AppConfigService } from 'src/app/utils/app-config.service';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
 import { Subscription } from 'rxjs';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-behavioural-landing-page',
@@ -14,6 +15,9 @@ export class BehaviouralLandingPageComponent implements OnInit, OnDestroy {
 
   getAllBehaviourData: any;
   getBehaviourReportAPISubscription: Subscription;
+  getAllBasicData: any;
+  emailId: any;
+  highestEducation: any;
   constructor(
     private toastr: ToastrService,
     private ApiService: ApiService,
@@ -38,20 +42,38 @@ export class BehaviouralLandingPageComponent implements OnInit, OnDestroy {
 
   getBehaviouralReportData(data) {
       const apiData = {
-        email: data,
+        email: data//'sr-venkadesh@lntecc.com'
       };
+    this.emailId= data;
      this.getBehaviourReportAPISubscription = this.ApiService.getBehaviourReport(apiData).subscribe((response: any) => {
       console.log('res', response);
-      if (response && response.success) {
+      if (response && response.success && response.data) {
           this.getAllBehaviourData = response.data.data ? response.data.data : null;
+          this.getAllBasicData = response.data.basicDetails ? response.data.basicDetails : null;
+          this.highestEducation = this.getAllBasicData && this.getAllBasicData.education ? this.getAllBasicData.education : [];
+          if (this.highestEducation.length > 0) {
+            let i = this.highestEducation.length - 1;
+            this.highestEducation = this.highestEducation[i];
+          }
         } else {
           this.toastr.error('No Reports Available');
+          this.getAllBasicData = null;
           this.getAllBehaviourData = null;
         }
       }, (err)=> {
         console.log('err', err);
-      });
+        this.getAllBasicData = null;
+        this.getAllBehaviourData = null;
+    });
   }
+
+  momentForm(date) {
+    if (date) {
+      const split = moment(date).format('DD/MM/YYYY');
+      return split;
+    }
+  }
+
 
   ngOnDestroy() {
     this.getBehaviourReportAPISubscription ? this.getBehaviourReportAPISubscription.unsubscribe() : '';

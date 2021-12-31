@@ -55,7 +55,7 @@
         padding: 60px 0;
     }
     .profImage {
-        width: 50%;
+        width: 48%;
         .positionProfile {
             width: 185px;
             border: 3px solid $whiteColor;
@@ -66,6 +66,7 @@
             position: absolute;
             top: -70px;
             img {
+                padding: 12px;
                 width: 100%;
             }
         }
@@ -79,8 +80,9 @@
                 color: $primaryBlue;
                 font-size: 30px;
                 font-weight: 500;
-                line-height: normal;
+                line-height: 27px;
                 margin-bottom: 10px;
+                word-break: break-all;
             }
             span {
                 color: $blackColor;
@@ -91,7 +93,7 @@
         }
     }
     .profDetails {
-        width: 50%;
+        width: 48%;
         > div {
             margin-bottom: 7px;
             .prof {
@@ -221,7 +223,7 @@
             font-size: 14px;
             font-weight: 400;
             color: $darkGrey;
-            line-height: 18px;
+            line-height: 20px;
             margin-bottom: 0;
         }
     }
