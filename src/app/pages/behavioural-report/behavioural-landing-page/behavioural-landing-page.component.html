@@ -1,7 +1,7 @@
 <div class="bodyWrapper">
     <section class="bannerSection">
         <div class="content">
-            <div class="container">
+            <div class="containerWrapper">
                 <h2>Behavioural <br />Profiling Report</h2>
             </div>
         </div>
@@ -9,7 +9,7 @@
 
     <!-- Profile -->
     <section class="profile">
-        <div class="container">
+        <div class="containerWrapper">
             <div class="innerContainer">
                 <div class="profileWrapper d-flex justify-content-between">
                     <div class="profImage d-flex">
@@ -47,7 +47,7 @@
 
     <!-- Introduction -->
     <section class="introduction">
-        <div class="container">
+        <div class="containerWrapper">
             <div class="innerContainer">
                 <div class="introductionWrapper">
                     <div class="heading2">Introduction</div>
@@ -62,7 +62,7 @@
 
     <!-- Four Factors -->
     <section class="fourFactors">
-        <div class="container">
+        <div class="containerWrapper">
             <div class="innerContainer">
                 <div class="heading2">The Four Factors</div>
                 <div *ngIf="getAllBehaviourData && getAllBehaviourData.factors" class="factors d-flex justify-content-between flex-wrap">
@@ -75,6 +75,72 @@
                         </figure>
                         <div class="heading4">{{factor?.name}}</div>
                         <p>{{factor?.description}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Report Snapshot -->
+    <section class="snapshot">
+        <div class="containerWrapper">
+            <div class="innerContainer">
+                <div class="heading2">Report Snapshot</div>
+                <p>Snapshot view of the four factors and their respective 13 competencies. Please note that the competencies in each of the factors are independent and cannot be consolidated to provide any score representation for the factors.</p>
+                <div class="styleOne d-flex justify-content-between">
+                    <div class="left d-flex justify-content-between">
+                        <div class="figure">
+                            <figure>
+                                <img src="/assets/images/thought_factor.svg" alt="" />
+                            </figure>
+                        </div>
+                        <div class="figContent">
+                            <span class="heading4">Thought Factor</span>
+                            <p>Constitutes a group of behavioural competencies that focuses on Cognitive factors like Detail Orientation, Critical thinking and Creative thinking.</p>
+                        </div>
+                    </div>
+                    <div class="right">
+                        <div>
+                            <ul>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                            </ul>
+                            <ul>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                            </ul>
+                            <ul>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                            </ul>
+                        </div>
+                        <div>
+
+                        </div>
                     </div>
                 </div>
             </div>

@@ -1,5 +1,10 @@
 @import "variables";
 
+.containerWrapper {
+    max-width: 1200px;
+    width: 96%;
+    margin: 0 auto;
+}
 .innerContainer {
     max-width: 1024px;
     width: 96%;
@@ -29,7 +34,7 @@
         left: 0;
         top: 5em;
     }
-    .container {
+    .containerWrapper {
         position: relative;
         h2 {
             font-size: 50px !important;
@@ -45,7 +50,7 @@
 .profile {
     position: relative;
     margin-top: -100px;
-    .container {
+    .containerWrapper {
         background-color: $whiteColor;
         padding: 60px 0;
     }
@@ -133,7 +138,7 @@
 
 //Introduction
 .introduction {
-    .container {
+    .containerWrapper {
         padding: 60px 0;
         position: relative;
         &::before {
@@ -179,7 +184,7 @@
 
 //Four Factors
 .fourFactors {
-    .container {
+    .containerWrapper {
         background-color: $whiteColor;
         padding: 60px 0 20px 0;
     }
@@ -218,6 +223,75 @@
             color: $darkGrey;
             line-height: 18px;
             margin-bottom: 0;
+        }
+    }
+}
+
+//Report Snapshot
+.snapshot {
+    .containerWrapper {
+        background-color: $whiteColor;
+        padding: 60px 0;
+    }
+    .heading2 {
+        text-align: center;
+        text-transform: uppercase;
+        font-size: 35px;
+        font-weight: 700;
+        color: $primaryBlue;
+        line-height: normal;
+        margin-bottom: 20px;
+    }
+    p {
+        font-size: 18px;
+        font-weight: 400;
+        color: $color-blank;
+        line-height: 24px;
+    }
+    .styleOne {
+        .left {
+            width: 53%;
+            background-color: #F5F5F5;
+            border-radius: 100px 0 0 100px;
+            padding: 15px;
+            .figure {
+                width: 31%;
+                figure {
+                    background-color: $whiteColor;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 150px;
+                    height: 150px;
+                    border-radius: 50%;
+                }
+            }
+            .figContent {
+                text-align: center;
+                width: 65%;
+                display: inline-flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                .heading4 {
+                    font-size: 25px;
+                    font-weight: 700;
+                    color: $blackColor;
+                    line-height: normal;
+                    margin: 0 0 10px 0;
+                }
+                p {
+                    color: $mediumGrey;
+                    font-size: 15px;
+                    font-weight: 400;
+                    line-height: 21px;
+                    margin: 0;
+                    padding: 0 20px;
+                }
+            }
+        }
+        .right {
+            width: 43%;
         }
     }
 }
