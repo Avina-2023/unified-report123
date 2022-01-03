@@ -18,6 +18,12 @@ export class BehaviouralLandingPageComponent implements OnInit, OnDestroy {
   getAllBasicData: any;
   emailId: any;
   highestEducation: any;
+  strenthAreas = [
+    {img:'/assets/images/Recpectiveness.svg',color:'green'},
+    {img:'/assets/images/creative.svg',color:'green'},
+    {img:'/assets/images/adaptablity.svg',color:'red'},
+    {img:'/assets/images/Teamwork.svg',color:'red'},
+  ]
   constructor(
     private toastr: ToastrService,
     private ApiService: ApiService,
