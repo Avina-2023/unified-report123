@@ -59,25 +59,25 @@ $screen-xl-min: 1200px; // Large tablets and desktops
     }
 }
 
-@mixin buttonCommon {
-    border-radius: 1.56em;
-    padding-top: 0.375em;
-    padding-bottom: 0.375em;
-    line-height: 1.2;
-}
-@mixin buttonFilled {
-    background: $primaryColor;
-    color: $whiteColor;
-    border: 0;
-    transition: background 0.3s ease-in-out;
-    &:hover {
-        background: #961111;
-    }
-    @include buttonCommon;
-}
-@mixin buttonOutlined {
-    background-color: transparent;
-    color: $primaryColor;
-    border: 1px solid $primaryColor;
-    @include buttonCommon;
-}
+// @mixin buttonCommon {
+//     border-radius: 1.56em;
+//     padding-top: 0.375em;
+//     padding-bottom: 0.375em;
+//     line-height: 1.2;
+// }
+// @mixin buttonFilled {
+//     background: $primaryColor;
+//     color: $whiteColor;
+//     border: 0;
+//     transition: background 0.3s ease-in-out;
+//     &:hover {
+//         background: #961111;
+//     }
+//     @include buttonCommon;
+// }
+// @mixin buttonOutlined {
+//     background-color: transparent;
+//     color: $primaryColor;
+//     border: 1px solid $primaryColor;
+//     @include buttonCommon;
+// }

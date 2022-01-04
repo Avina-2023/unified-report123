@@ -1,7 +1,7 @@
 <div class="bodyWrapper">
     <section class="bannerSection">
         <div class="content">
-            <div class="containerWrapper">
+            <div class="innerContainer">
                 <h2>Behavioural <br />Profiling Report</h2>
             </div>
         </div>
@@ -19,19 +19,20 @@
                         <div class="emptyClass"></div>
                         <div class="profContent">
                             <div class="heading3">{{getAllBasicData?.firstname ? getAllBasicData?.firstname : ''}}</div>
-                            <span>Test Completion Date: {{getAllBasicData && getAllBasicData.testDate ? momentForm(getAllBasicData?.testDate) : 'Nil'}}</span>
+                            <div>
+                                <span class="prof"><img src="/assets/images/email.svg" alt="Email" /> {{emailId ? emailId : 'Nil'}}</span>
+                            </div>
+                            <div>
+                                <span class="prof"><img src="/assets/images/maleFemale.svg" alt="Gender" /> {{getAllBasicData?.gender ? getAllBasicData?.gender : 'Nil'}}</span>
+                            </div>
+                            <div>
+                                <span class="prof"><img src="/assets/images/university.svg" alt="University" /> {{highestEducation?.level ? highestEducation?.level : 'Nil'}}</span>
+                            </div>
                         </div>
                     </div>
                     <div class="profDetails">
-                        <div>
-                            <span class="prof"><em>Email</em>: {{emailId ? emailId : 'Nil'}}</span>
-                        </div>
-                        <div>
-                            <span class="prof"><em>Gender</em>: {{getAllBasicData?.gender ? getAllBasicData?.gender : 'Nil'}}</span>
-                        </div>
-                        <div>
-                            <span class="prof"><em>Education Level</em>: {{highestEducation?.level ? highestEducation?.level : 'Nil'}}</span>
-                        </div>
+                        <span>Test Completion Date: {{getAllBasicData && getAllBasicData.testDate ? momentForm(getAllBasicData?.testDate) : 'Nil'}}</span>
+                        <button class="download"><img src="/assets/images/download.svg" alt="Download" /> Download Report</button>
                     </div>
                 </div>
                 <div class="profDesctiption">
@@ -63,18 +64,25 @@
     <!-- Four Factors -->
     <section class="fourFactors">
         <div class="containerWrapper">
-            <div class="innerContainer">
-                <div class="heading2">The Four Factors</div>
-                <div *ngIf="getAllBehaviourData && getAllBehaviourData.factors" class="factors d-flex justify-content-between flex-wrap">
-                    <div class="factor" *ngFor="let factor of getAllBehaviourData.factors">
-                        <figure>
-                            <img *ngIf="factor.name.includes('THOUGHT FACTOR')" src="/assets/images/thought_factor.svg" alt="" />
-                            <img *ngIf="factor.name.includes('CORE/PERSONAL FACTOR')" src="/assets/images/personal_factor.svg" alt="" />
-                            <img *ngIf="factor.name.includes('INTERPERSONAL FACTOR')" src="/assets/images/interpersonal_factor.svg" alt="" />
-                            <img *ngIf="factor.name.includes('EMOTION FACTOR')" src="/assets/images/emotion_factor.svg" alt="" />
-                        </figure>
-                        <div class="heading4">{{factor?.name}}</div>
-                        <p>{{factor?.description}}</p>
+            <div class="heading2">The Four Factors</div>
+            <div *ngIf="getAllBehaviourData && getAllBehaviourData.factors" class="factors d-flex justify-content-between flex-wrap">
+                <div class="factor" *ngFor="let factor of getAllBehaviourData.factors">
+                    <div class="flipCard">
+                        <div class="frontSide">
+                            <figure>
+                                <img *ngIf="factor.name.includes('THOUGHT FACTOR')" src="/assets/images/thought_factor.svg" alt="" />
+                                <img *ngIf="factor.name.includes('CORE/PERSONAL FACTOR')" src="/assets/images/personal_factor.svg" alt="" />
+                                <img *ngIf="factor.name.includes('INTERPERSONAL FACTOR')" src="/assets/images/interpersonal_factor.svg" alt="" />
+                                <img *ngIf="factor.name.includes('EMOTION FACTOR')" src="/assets/images/emotion_factor.svg" alt="" />
+                            </figure>
+                            <div class="heading4">{{factor?.name}}</div>
+                            <p>{{factor?.description}}</p>
+                            <span class="readMore">Read More...</span>
+                        </div>
+                        <div class="backSide">
+                            <div class="heading4">{{factor?.name}}</div>
+                            <p>{{factor?.description}}</p>
+                        </div>
                     </div>
                 </div>
             </div>
