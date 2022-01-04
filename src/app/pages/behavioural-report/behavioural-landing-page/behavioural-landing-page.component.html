@@ -155,10 +155,55 @@
         </div>
     </section>
 
-    <!-- STRENGTH AREAS -->
-    <section class="strength">
+    <!-- Snapshot tabs -->
+    <section class="snapshotTabs">
         <div class="containerWrapper">
             <div class="innerContainer">
+                <mat-tab-group mat-align-tabs="center">
+                    <mat-tab>
+                        <ng-template mat-tab-label>
+                            <img src="/assets/images/thought.svg">
+                            <span>THOUGHT</span>
+                        </ng-template>
+                            <h1>THOUGHT</h1>
+                    </mat-tab>
+                    <mat-tab>
+                        <ng-template mat-tab-label>
+                            <img src="/assets/images/core.svg">
+                            <span>CORE/PERSONAL</span>
+                        </ng-template>
+                            <h1>CORE/PERSONAL</h1>
+                    </mat-tab>
+                    <mat-tab>
+                        <ng-template mat-tab-label>
+                            <img src="/assets/images/interpersonal.svg">
+                            <span>INTERPERSONAL</span>
+                        </ng-template>
+                            <h1>INTERPERSONAL</h1>
+                    </mat-tab>
+                    <mat-tab>
+                        <ng-template mat-tab-label>
+                            <img src="/assets/images/emotion.svg">
+                            <span>EMOTION</span>
+                        </ng-template>
+                            <h1>EMOTION</h1>
+                    </mat-tab>
+                </mat-tab-group>
+                <div class="bencmark-info">
+                    <button (click)="openBenchmarkInfo(benchmarkInfo)">
+                        <img src="/assets/images/path.svg" alt="">
+                        <span>Score Benchmark Info</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PERSONAL DEVELOPMENT -->
+    <section class="personaldevelopment">
+        <div class="containerWrapper">
+            <div class="innerContainer">
+                <div class="heading2">PERSONAL DEVELOPMENT</div>
                 <div class="strengthscope-description-wrapper d-flex justify-content-between flex-wrap">
                     <div class="description-contaier">
                         <div class="scope-head d-flex align-items-center">
@@ -204,3 +249,28 @@
         </div>
     </section>
 </div>
+
+<ng-template #benchmarkInfo>
+    <div class="benchmarkInfo">
+        <div class="containerWrapper">
+            <div class="innerContainer">
+                    <mat-icon class="closebtn" [mat-dialog-close]="true">close</mat-icon>
+                <div class="heading2">SCORE BENCHMARK INFO</div>
+                <figure class="chart">
+                    <img src="/assets/images/behaviourmeter.svg" alt="">
+                </figure>
+                <div class="score d-flex justify-content-between align-items-center flex-wrap">
+                    <ng-container *ngFor="let score of benchMarkScore">
+                        <div class="score-content" [ngClass]="{'red':score.color == 'red', 'green': score.color == 'green', 'yellow':score.color == 'yellow' ,'orange':score.color == 'orange'}" >
+                            <div class="scorepoint">{{score.score}}</div>
+                            <div class="scorelabel">{{score.label}}</div>
+                        </div>
+                    </ng-container>
+                </div>
+                <figure class="growth">
+                    <img src="/assets/images/growth.svg" alt="">
+                </figure>
+            </div>
+        </div>
+    </div>
+</ng-template>
