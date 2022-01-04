@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
+import { multicast } from 'rxjs/operators';
 import { AppConfigService } from 'src/app/utils/app-config.service';
 
 @Component({
@@ -13,9 +14,13 @@ export class ProfileInfoComponent implements OnInit, OnChanges {
   driveselectedValue: any;
   driveList: any;
   isaccess:any;
-  constructor(private appConfig: AppConfigService,) { }
+  selectDriveName: string;
+  constructor(private appConfig: AppConfigService,) { 
+     this.selectDriveName = sessionStorage.getItem('schedulename');
+  }
 
   ngOnInit(): void {
+    
     this.getPersonalInfo();
     this.isaccess = this.appConfig.isComingFromMicroCert();
   }
@@ -26,7 +31,10 @@ export class ProfileInfoComponent implements OnInit, OnChanges {
 
   getPersonalInfo() {
     this.driveList = this.getAllReportsData?.driveDetails;
-    this.driveselectedValue = this.driveList && this.driveList.length > 0 ? this.driveList[0].drivename : null;
+
+    this.driveselectedValue = this.selectDriveName ? this.selectDriveName : null;
+    // do not remove
+    // this.driveList && this.driveList.length > 0 ? this.driveList[0].drivename : null
     this.emitdriveNametoParent();
     this.personalInfo ={};
     this.personalInfo.firstname = this.getAllReportsData?.firstname;
