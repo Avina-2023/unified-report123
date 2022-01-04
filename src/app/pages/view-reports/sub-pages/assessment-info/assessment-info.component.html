@@ -188,17 +188,18 @@
                                                         <span>{{ section.accuracy ? section.accuracy : 0 }}%</span>
                                                     </div>
                                                 </td>
+
                                                 <td *ngIf="assessment.source != 'ICP' ">
                                                     <div class="progressbar color-yellowbar" [ngStyle]="{
                                                    width:(section.timetaken / section.overallduration) * 100 + '%'}">
                                                     </div>
+
                                                     <div *ngIf="section && section.timetaken" class="progressdata">
-                                                        <span *ngIf="section.timetaken != 0">{{
-                                                            getTimetaker(section.timetaken)}}</span>
-                                                        <span *ngIf="section.timetaken != 0">{{TimeTakerMins !=
-                                                            undefined ? TimeTakerMins + ' Mins ' : '0 Mins' }}
-                                                            {{timeTakerSec != undefined ? timeTakerSec + ' sec' : ''
-                                                            }}</span>
+
+                                                        <span *ngIf="section.timetaken != 0">{{getTimetaker(section.timetaken)}}</span>
+
+                                                        <span *ngIf="section.timetaken != 0">{{TimeTakerMins != undefined ? TimeTakerMins + ' Mins ' : '0 Mins' }}
+                                                            {{timeTakerSec != undefined ? timeTakerSec + ' sec' : ''}}</span>
                                                         <!-- /{{ section.overallduration }} -->
                                                         <span *ngIf="section.timetaken == 0">{{section.timetaken}}</span>
                                                     </div>

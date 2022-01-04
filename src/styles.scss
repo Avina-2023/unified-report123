@@ -8,7 +8,9 @@
     padding: 0;
     box-sizing: border-box;
 }
-html, body {
+
+html,
+body {
     height: 100%;
 }
 
@@ -37,6 +39,8 @@ $custom-typography: mat-typography-config($font-family: '"Roboto", normal !impor
 figure {
     margin: 0 !important;
 }
+
+
 /* Track */
 
 ::-webkit-scrollbar-track:hover {
@@ -541,6 +545,7 @@ ng-image-slider {
                 justify-content: flex-start;
                 padding-left: 1.6em;
                 white-space: nowrap;
+                width: 200px;
             }
             em {
                 color: #b3b3b3;
@@ -950,6 +955,30 @@ button.sliderBtn,
     &:disabled {
         pointer-events: none;
         opacity: 0.5;
+    }
+}
+
+@media only screen and (max-width: 1600px) {
+    button.sliderBtn,
+    .sliderBtn:focus {
+        &.right {
+            right: 12px;
+            &.doc {
+                right: -900px !important;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 1366px) {
+    button.sliderBtn,
+    .sliderBtn:focus {
+        &.right {
+            right: 12px;
+            &.doc {
+                right: -700px !important;
+            }
+        }
     }
 }
 

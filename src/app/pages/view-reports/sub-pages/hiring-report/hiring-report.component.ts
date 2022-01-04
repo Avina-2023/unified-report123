@@ -211,12 +211,12 @@ export class HiringReportComponent implements OnInit {
         // width: 100,
         cellRenderer: (params) => {
           if(params.data && params.data.testtype == 'Personality & Behaviour'){
-            return '-'
+            return '<div style="text-align:right;">'+'-'+'</div>';
         }else{
           if(params.value){
             return'<div style="text-align:right;">'+params.value+'</div>'
           } else {
-            return '-';
+            return '<div style="text-align:right;">'+'-'+'</div>';
           }
         }
         },
@@ -234,12 +234,12 @@ export class HiringReportComponent implements OnInit {
         cellClass: 'alignCenter',
         cellRenderer: (params) => {
           if(params.data && params.data.testtype == 'Personality & Behaviour'){
-              return '-'
+            return '<div style="text-align:right;">'+'-'+'</div>';
           }else{
             if(params.value){
               return'<div style="text-align:right;">'+params.value+'</div>'
             } else {
-              return '-';
+              return '<div style="text-align:right;">'+'-'+'</div>';;
             }
           }
 
@@ -558,15 +558,15 @@ export class HiringReportComponent implements OnInit {
 
   onCellClicked(event) {
     if (event &&  event.column && event.column.userProvidedColDef && event.column.userProvidedColDef.headerName == 'Email') {
-      let email = event['data']['email'] ? this.ApiService.encrypt(event['data']['email']) : ''
+      // let email = event['data']['email'] ? this.ApiService.encrypt(event['data']['email']) : ''
       // this.appconfig.routeNavigationWithParam(APP_CONSTANTS.ENDPOINTS.REPORTS.VIEWREPORTS, email);
+      sessionStorage.setItem('schedulename',event['data']['schedulename'])
       this.navtoDetailsPage(event['data']['email'])
     }
 
 
 
     if(event &&  event.column && event.column.userProvidedColDef && event.column.userProvidedColDef.field == 'testname'){
-
       this.getSubTableDef(event.section,event);
       this.rowData1 = event.data ? event.data.section : '';
       this.openUserFormDialog();
