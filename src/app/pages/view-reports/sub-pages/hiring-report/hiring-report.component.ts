@@ -27,8 +27,6 @@ export class HiringReportComponent implements OnInit {
   public rowSelection;
   public masterDetail;
   // public modules: Module[] = [ClientSideRowModelModule, RowGroupingModule];
-  private autoGroupColumnDef;
-  private rowGroupPanelShow;
   reportsData: any;
   userList: any = [];
   pageRowCount = 0;
@@ -47,6 +45,7 @@ export class HiringReportComponent implements OnInit {
       sortable: true,
       resizable: true,
       filter: true,
+      enableFilter:true
       //  floatingFilter: true,
     };
   }
@@ -499,7 +498,7 @@ export class HiringReportComponent implements OnInit {
         apiData.request.sortModel.forEach(element => {
             if(element.sort == 'asc'){
                 element.sort = 1
-            }else{
+            } if(element.sort == 'desc'){
               element.sort = -1
             }
         });
