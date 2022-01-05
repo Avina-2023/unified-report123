@@ -26,7 +26,7 @@
 
 <ng-template #nocard>
 
-    <div class="noCard">
-        <div class="noData">No Data found...</div>
+    <div class="noCard" *ngIf="getAllReportsData">
+        <div class=" noData ">No Data found...</div>
     </div>
 </ng-template>

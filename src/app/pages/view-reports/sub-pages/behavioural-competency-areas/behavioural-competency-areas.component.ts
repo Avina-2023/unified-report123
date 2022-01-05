@@ -63,7 +63,6 @@ export class BehaviouralCompetencyAreasComponent implements OnInit {
 
   ngAfterViewInit() {
     if(this.myDiv.nativeElement.innerHTML.length > 0){
-      
       this.setColorCodesBasedOnLabel(this.myDiv.nativeElement.innerHTML.toString().trim())
     }
   }

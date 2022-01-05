@@ -152,10 +152,7 @@ resetAreas(i, competency) {
     });
   }
   });
-  setTimeout(() => {
     this.competancyData[i].areaSkills = areaSingle;
-    console.log(this.competancyData[i].areaSkills)
-  }, 1000);
 
 }
 

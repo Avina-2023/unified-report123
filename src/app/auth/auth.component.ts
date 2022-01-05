@@ -63,14 +63,14 @@ export class AuthComponent implements OnInit {
     });
   }
 
-  closeDialog(e) {
-    if (e == 'save') {
-      this.dialog.closeAll();
-      this.logout();
-    } else {
-      this.dialog.closeAll();
-    }
-  }
+  // closeDialog(e) {
+  //   if (e == 'save') {
+  //     this.dialog.closeAll();
+  //     this.logout();
+  //   } else {
+  //     this.dialog.closeAll();
+  //   }
+  // }
 
   mouseenter() {
     if (!this.isExpanded) {
