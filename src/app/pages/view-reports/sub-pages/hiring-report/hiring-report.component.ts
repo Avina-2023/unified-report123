@@ -45,6 +45,7 @@ export class HiringReportComponent implements OnInit {
       sortable: true,
       resizable: true,
       filter: true,
+      enableFilter:true
       //  floatingFilter: true,
     };
   }
