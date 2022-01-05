@@ -158,43 +158,49 @@
     <!-- Snapshot tabs -->
     <section class="snapshotTabs">
         <div class="containerWrapper">
-            <div class="innerContainer">
-                <mat-tab-group mat-align-tabs="center">
-                    <mat-tab>
-                        <ng-template mat-tab-label>
-                            <img src="/assets/images/thought.svg">
+            <mat-tab-group mat-align-tabs="center">
+                <mat-tab>
+                    <ng-template mat-tab-label>
+                        <div class="heading">
+                            <img src="/assets/images/thought.png" alt="THOUGHT">
                             <span>THOUGHT</span>
-                        </ng-template>
-                            <h1>THOUGHT</h1>
-                    </mat-tab>
-                    <mat-tab>
-                        <ng-template mat-tab-label>
-                            <img src="/assets/images/core.svg">
+                        </div>
+                    </ng-template>
+                        <h1>THOUGHT</h1>
+                </mat-tab>
+                <mat-tab>
+                    <ng-template mat-tab-label>
+                        <div class="heading">
+                            <img src="/assets/images/core.png" alt="Core / Personal">
                             <span>CORE/PERSONAL</span>
-                        </ng-template>
-                            <h1>CORE/PERSONAL</h1>
-                    </mat-tab>
-                    <mat-tab>
-                        <ng-template mat-tab-label>
-                            <img src="/assets/images/interpersonal.svg">
+                        </div>
+                    </ng-template>
+                        <h1>CORE/PERSONAL</h1>
+                </mat-tab>
+                <mat-tab>
+                    <ng-template mat-tab-label>
+                        <div class="heading">
+                            <img src="/assets/images/interpersonal.png" alt="INTERPERSONAL">
                             <span>INTERPERSONAL</span>
-                        </ng-template>
-                            <h1>INTERPERSONAL</h1>
-                    </mat-tab>
-                    <mat-tab>
-                        <ng-template mat-tab-label>
-                            <img src="/assets/images/emotion.svg">
+                        </div>
+                    </ng-template>
+                        <h1>INTERPERSONAL</h1>
+                </mat-tab>
+                <mat-tab>
+                    <ng-template mat-tab-label>
+                        <div class="heading">
+                            <img src="/assets/images/emotion.png" alt="EMOTION">
                             <span>EMOTION</span>
-                        </ng-template>
-                            <h1>EMOTION</h1>
-                    </mat-tab>
-                </mat-tab-group>
-                <div class="bencmark-info">
-                    <button (click)="openBenchmarkInfo(benchmarkInfo)">
-                        <img src="/assets/images/path.svg" alt="">
-                        <span>Score Benchmark Info</span>
-                    </button>
-                </div>
+                        </div>
+                    </ng-template>
+                        <h1>EMOTION</h1>
+                </mat-tab>
+            </mat-tab-group>
+            <div class="bencmark-info">
+                <button (click)="openBenchmarkInfo(benchmarkInfo)">
+                    <img src="/assets/images/path.svg" alt="Score Benchmark Info">
+                    <span>Score Benchmark Info</span>
+                </button>
             </div>
         </div>
     </section>
@@ -202,52 +208,117 @@
     <!-- PERSONAL DEVELOPMENT -->
     <section class="personaldevelopment">
         <div class="containerWrapper">
-            <div class="innerContainer">
-                <div class="heading2">PERSONAL DEVELOPMENT</div>
-                <div class="strengthscope-description-wrapper d-flex justify-content-between flex-wrap">
-                    <div class="description-contaier">
-                        <div class="scope-head d-flex align-items-center">
-                            <img src="/assets/images/strength_thumbs.svg" alt=""><span>STRENGTH AREAS</span>
-                        </div>
-                        <p class="scope-desc">
-                            Strength areas provide an overview of your strengths, you could use this report to acknowledge and actively incorporate these strengths in your workplace. Being aware of your strong pointscan strengthen your confidence to effectively and efficiently use these traits both in the personal and professional arena to bring positive changes.
-                        </p>
-                    </div>
-                    <div class="description-contaier">
-                        <div class="scope-head d-flex align-items-center">
-                            <img src="/assets/images/development_thumbs.svg" alt=""><span>DEVELOPMENT SCOPE</span>
-                        </div>
-                        <p class="scope-desc">
-                            The development scope provides an overview of your potential weaknesses. View them as stepping stones to enhance your career. Now that you have an insight into your development needs related to specific areas, you may choose to work towards addressing the needs. This change can enable positive outcomes in both your and professional arena.
-                        </p>
-                    </div>
+            <div class="heading2">PERSONAL DEVELOPMENT</div>
+            <div class="strengthscope-description-wrapper d-flex justify-content-between flex-wrap">
+                <div class="description-contaier">
+                    <figure class="scope-head d-flex align-items-center">
+                        <img src="/assets/images/strength_thumbs.svg" alt="">
+                        <span>STRENGTH AREAS</span>
+                    </figure>
+                    <p class="scope-desc">
+                        Strength areas provide an overview of your strengths, you could use this report to acknowledge and actively incorporate these strengths in your workplace. Being aware of your strong pointscan strengthen your confidence to effectively and efficiently use these traits both in the personal and professional arena to bring positive changes.
+                    </p>
                 </div>
-                <div class="content-wrapper d-flex justify-content-between align-items-center flex-wrap">
-                    <ng-container *ngFor=" let item of strenthAreas">
-                        <div class="content-container" [ngClass]="item.color == 'green' ? 'green':'red'">
-                            <div class="content-head d-flex align-items-center">
-                                <img [src]="item.img" alt=""><span class="content-head-txt">RECEPTIVENESS</span>
-                            </div>
-                                <ul class="content-desc">
-                                    <li class="align-items-center">
-                                        <img src="/assets/images/list-arrow.svg" alt=""><span>You tend to listen openly, without judgment, and interruption.</span>
-                                    </li>
-                                    <li class="align-items-center">
-                                        <img src="/assets/images/list-arrow.svg" alt=""><span>You tend to listen openly, without judgment, and interruption.</span>
-                                    </li>
-                                    <li class="align-items-center">
-                                        <img src="/assets/images/list-arrow.svg" alt=""><span>You tend to listen openly, without judgment, and interruption.</span>
-                                    </li>
-                                    <li class="align-items-center">
-                                        <img src="/assets/images/list-arrow.svg" alt=""><span>You tend to listen openly, without judgment, and interruption.</span>
-                                    </li>
-                                </ul>
-                    </div>
-                    </ng-container>
+                <div class="description-contaier">
+                    <figure class="scope-head d-flex align-items-center">
+                        <img src="/assets/images/development_thumbs.svg" alt=""><span>DEVELOPMENT SCOPE</span>
+                    </figure>
+                    <p class="scope-desc">
+                        The development scope provides an overview of your potential weaknesses. View them as stepping stones to enhance your career. Now that you have an insight into your development needs related to specific areas, you may choose to work towards addressing the needs. This change can enable positive outcomes in both your and professional arena.
+                    </p>
+                </div>
+            </div>
+
+            <div class="content-wrapper d-flex justify-content-between align-items-center flex-wrap">
+                <ng-container *ngFor=" let item of strenthAreas">
+                    <div class="content-container" [ngClass]="item.color == 'green' ? 'green':'red'">
+                        <div class="content-head d-flex align-items-center">
+                            <img [src]="item.img" alt=""><span class="content-head-txt">RECEPTIVENESS</span>
+                        </div>
+                            <ul class="content-desc">
+                                <li class="align-items-center">
+                                    <img src="/assets/images/list-arrow.svg" alt=""><span>You tend to listen openly, without judgment, and interruption.</span>
+                                </li>
+                                <li class="align-items-center">
+                                    <img src="/assets/images/list-arrow.svg" alt=""><span>You tend to listen openly, without judgment, and interruption.</span>
+                                </li>
+                                <li class="align-items-center">
+                                    <img src="/assets/images/list-arrow.svg" alt=""><span>You tend to listen openly, without judgment, and interruption.</span>
+                                </li>
+                                <li class="align-items-center">
+                                    <img src="/assets/images/list-arrow.svg" alt=""><span>You tend to listen openly, without judgment, and interruption.</span>
+                                </li>
+                            </ul>
+                </div>
+                </ng-container>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interview -->
+    <section class="interview">
+        <div class="overlay"></div>
+        <div class="containerWrapper">
+            <div class="innerContainer">
+                <div class="interviewWrapper">
+                    <div class="heading2">BEHAVIORAL EVENT INTERVIEW (BEI) QUESTION</div>
+                    <p>A BEI questions are standard interview questions to assess whether the candidates demonstrate these critical traits that fit the workplace culture. It is helpful to customize questions to align the requirements of the open position and the organization’s culture. Follow-up probes questions should be used to further explore the candidate’s response to a particular question.</p>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Strength Areas -->
+    <section class="strengthAreas">
+        <div class="containerWrapper">
+            <div class="d-flex justify-content-between strengthAreasWrapper">
+                <figure>
+                    <img src="/assets/images/Job_Interview.svg" alt="" />
+                </figure>
+                <div class="right">
+                    <div class="heading4">STRENGTH AREAS</div>
+                    <div class="heading6">RECEPTIVENESS</div>
+                    <ol>
+                        <li>1. Have there been an instance/experience where you have tried something different or new.</li>
+                        <li>2. Would you consider yourself to be someone who is more open to experiences. If so can you quote a recent incident on that.</li>
+                    </ol>
+                    <div class="heading6">ADAPTABILITY</div>
+                    <ol>
+                        <li>1. Are you someone who is flexible when itcomes to planning - lets say a trip recently?</li>
+                        <li>2. How have you handled the changes during thisPandemic?</li>
+                        <li>3. Have there been an instance where you have learnt something new to adapt to that culture?</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Development Scope -->
+    <section class="developmentScope">
+        <div class="containerWrapper">
+            <div class="d-flex justify-content-between developmentScopeWrapper">
+                <div class="left">
+                    <div class="heading4">DEVELOPMENT SCOPE</div>
+                    <div class="heading6">CREATIVE THINKING</div>
+                    <ol>
+                        <li>1. How would you approach a problem situation coming up with many alternatives or focus on a single effective solution. Why.</li>
+                        <li>2. Have there been a time where you were more creative or innovative coming up with an idea.What was that.</li>
+                        <li>3. Is it easy for you to come up with multiple new ideas?</li>
+                    </ol>
+                    <div class="heading6">TEAMWORK</div>
+                    <ol>
+                        <li>1. Are you someone who prefers to work alone, or are you more of a team player.</li>
+                        <li>2. How comfortable are you when it comes to working with people from varied background?</li>
+                        <li>3. Have there been a recent team activity that had motivated you? What was that?</li>
+                    </ol>
+                </div>
+                <figure>
+                    <img src="/assets/images/development_scope.png" alt="" />
+                </figure>
+            </div>
+        </div>
+    </section>
+
 </div>
 
 <ng-template #benchmarkInfo>
