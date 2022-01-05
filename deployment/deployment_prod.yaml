@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: unifiedreport
+  namespace: unifiedrpt
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: unifiedreport
+  template:
+    metadata:
+      labels:
+        app: unifiedreport
+    spec:
+      containers:
+        - name: unifiedreportuat
+          image: assessmentecouat.azurecr.io/unifiedreport:$tag
+          resources:
+           limits:
+             cpu: "1"
+             memory: "4Gi"
+           requests:
+             cpu: "500m"
+             memory: "2Gi"
+          imagePullPolicy: Always
+          ports:
+          - containerPort: 80
+      imagePullSecrets:
+        - name: mysecret2
+      nodeSelector:
+        agentpool: uapuat
