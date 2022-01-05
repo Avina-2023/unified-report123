@@ -14,7 +14,7 @@ spec:
         app: unifiedreport
     spec:
       containers:
-        - name: unifiedreportuat
+        - name: unifiedreport
           image: uapprod.azurecr.io/unifiedreport:$tag
           resources:
            limits:
