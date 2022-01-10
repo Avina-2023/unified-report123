@@ -515,6 +515,7 @@ export class HiringReportComponent implements OnInit {
         this.candidateListSubscription =  this.ApiService.getHiringReport(apiData.request).subscribe((data1: any) => {
         this.userList = data1 && data1.data ? data1.data: [];
         if (this.userList.length > 0) {
+          this.gridApi.hideOverlay();
         // let count = params.startRow;
         // this.userList.forEach((element, i) => {
         //   count = count + 1;
@@ -540,6 +541,7 @@ export class HiringReportComponent implements OnInit {
           rowCount: this.pageRowCount
         });
       });
+      this.gridApi.showNoRowsOverlay();
       }
     }
 }
