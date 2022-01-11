@@ -72,10 +72,11 @@ export class HiringReportComponent implements OnInit {
         tooltipField:'firstname',
         // width: 100,
         cellRenderer: (params) => {
-          if(params.data && params.data.display == true){
+          // && params.data.display == true
+          if(params.data){
             return  params.value;
           }else {
-            return '';
+            return '-';
           }
         }
       },
@@ -90,12 +91,15 @@ export class HiringReportComponent implements OnInit {
         tooltipField:'email',
         // width: 100,
         cellRenderer: (params) => {
-          if(params.data && params.data.display == true){
+          // && params.data.display == true
+          if(params.data ){
             return '<span class="redColor">'+params.value+'</span>' ;
-          } if(params.data && params.data.display != true){
-            return '<span class="displayNone">'+params.value+'</span>' ;
-          } if(params.value == undefined){
-            return'';
+          } 
+          // if(params.data && params.data.display != true){
+          //   return '<span class="displayNone">'+params.value+'</span>' ;
+          // } 
+          if(params.value == undefined){
+            return '-';
           }else {
               return ''+params.value;
           }
@@ -114,12 +118,13 @@ export class HiringReportComponent implements OnInit {
         enableRowGroup: true,
         // width: 100 ,
         cellRenderer: (params) => {
-          if(params.value != null && params.data && params.data.display == true){
+          // && params.data.display == true
+          if(params.data  && params.value != null){
             return ''+params.value ;
           } if(params.value == undefined){
-            return '';
+            return '-';
           }else {
-            return ''+params.value;
+            return '-'+params.value;
           }
         }
       },
