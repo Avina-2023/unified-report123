@@ -1,9 +1,9 @@
 <section class="profilearea">
-    <div class="heading6">
+    <div class="heading6" *ngIf="driveList">
         Schedule Information
     </div>
 
-    <mat-select class="matSelect" (selectionChange)="driveChange($event)" placeholder="Select Scheduled" [(ngModel)]="driveselectedValue" name="list">
+    <mat-select *ngIf="driveList" class="matSelect" (selectionChange)="driveChange($event)" placeholder="Select Scheduled" [(ngModel)]="driveselectedValue" name="list">
         <mat-option *ngFor="let list of driveList" [value]="list.drivename">
             {{list.drivename}}
         </mat-option>
