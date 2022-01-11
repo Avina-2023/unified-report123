@@ -8,6 +8,7 @@ import { LoadingService } from '../services/loading.service';
 import { MatDialog } from '@angular/material/dialog';
 import { SentDataToOtherComp } from '../services/sendDataToOtherComp.service';
 import { Subscription } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.component.html',
@@ -31,7 +32,8 @@ export class AuthComponent implements OnInit {
     private appConfig: AppConfigService,
     private apiService: ApiService,
     private dialog: MatDialog,
-    private sendData: SentDataToOtherComp
+    private sendData: SentDataToOtherComp,
+    private toastr: ToastrService
   ) {
 
     this.subscription = this.sendData.getMessage().subscribe(message => {
@@ -50,6 +52,7 @@ export class AuthComponent implements OnInit {
 
   logout() {
     this.apiService.logout();
+    this.toastr.warning('You have been logged out successfully');
   }
 
   matDialogOpen() {
