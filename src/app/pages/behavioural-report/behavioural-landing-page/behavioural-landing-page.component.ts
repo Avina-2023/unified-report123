@@ -89,10 +89,10 @@ export class BehaviouralLandingPageComponent implements OnInit, OnDestroy {
   }
   openBenchmarkInfo(templateRef: TemplateRef<any>){
     this.dialog.open(templateRef, {
-      width: "400px",
-      height: "700px",
+      width: "450px",
+      height: "80%",
       position: { right: "0px", bottom: "0px"},
-      panelClass: "filter-modal-box",
+      panelClass: "filterModalbox",
       closeOnNavigation: true,
       disableClose: true,
     });

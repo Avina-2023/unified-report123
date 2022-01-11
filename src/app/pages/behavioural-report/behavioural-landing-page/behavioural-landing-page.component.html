@@ -158,6 +158,76 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="styleOne thoughtFactor d-flex justify-content-between">
+                    <div class="left d-flex justify-content-between">
+                        <div class="figure">
+                            <figure>
+                                <img src="/assets/images/thought_factor.svg" alt="" />
+                            </figure>
+                        </div>
+                        <div class="figContent">
+                            <span class="heading4">Thought Factor</span>
+                            <p>Constitutes a group of behavioural competencies that focuses on Cognitive factors like Detail Orientation, Critical thinking and Creative thinking.</p>
+                        </div>
+                    </div>
+                    <div class="right d-flex justify-content-between">
+                        <div class="d-flex justify-content-start">
+                            <ul>
+                                <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
+                            </ul>
+                            <ul>
+                                <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
+                            </ul>
+                            <ul>
+                                <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
+                            </ul>
+                        </div>
+                        <div class="d-flex flex-column justify-content-between">
+                            <button class="one d-flex align-items-center justify-content-between">Detail-Oriented <span>5</span></button>
+                            <button class="two d-flex align-items-center justify-content-between">Critical Thinking <span>6</span></button>
+                            <button class="three d-flex align-items-center justify-content-between">Creative Thinking <span>4</span></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="styleTwo corePersonal d-flex justify-content-between">
+                    <div class="left d-flex justify-content-between">
+                        <div class="d-flex justify-content-start">
+                            <ul>
+                                <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
+                            </ul>
+                            <ul>
+                                <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
+                            </ul>
+                            <ul>
+                                <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
+                            </ul>
+                        </div>
+                        <div class="d-flex flex-column justify-content-between">
+                            <button class="one d-flex align-items-center justify-content-between">Detail-Oriented <span>5</span></button>
+                            <button class="two d-flex align-items-center justify-content-between">Critical Thinking <span>6</span></button>
+                            <button class="three d-flex align-items-center justify-content-between">Creative Thinking <span>4</span></button>
+                        </div>
+                    </div>
+                    <div class="right d-flex justify-content-between">
+                        <div class="figContent">
+                            <span class="heading4">CORE/PERSONAL</span>
+                            <p>This is a Social competence, that showcases your ability to handle communication and interactions with others effectively, either individually or socially.</p>
+                        </div>
+                        <div class="figure">
+                            <figure>
+                                <img src="/assets/images/thought_factor.svg" alt="" />
+                            </figure>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bencmark-info">
+                <button (click)="openBenchmarkInfo(benchmarkInfo)">
+                    <img src="/assets/images/path.svg" alt="Score Benchmark Info">
+                    <span>Score Benchmark Info</span>
+                </button>
             </div>
         </div>
     </section>
@@ -502,25 +572,21 @@
 
 <ng-template #benchmarkInfo>
     <div class="benchmarkInfo">
-        <div class="containerWrapper">
-            <div class="innerContainer">
-                    <mat-icon class="closebtn" [mat-dialog-close]="true">close</mat-icon>
-                <div class="heading2">SCORE BENCHMARK INFO</div>
-                <figure class="chart">
-                    <img src="/assets/images/behaviourmeter.svg" alt="">
-                </figure>
-                <div class="score d-flex justify-content-between align-items-center flex-wrap">
-                    <ng-container *ngFor="let score of benchMarkScore">
-                        <div class="score-content" [ngClass]="{'red':score.color == 'red', 'green': score.color == 'green', 'yellow':score.color == 'yellow' ,'orange':score.color == 'orange'}" >
-                            <div class="scorepoint">{{score.score}}</div>
-                            <div class="scorelabel">{{score.label}}</div>
-                        </div>
-                    </ng-container>
+        <em [mat-dialog-close]="true" class="icon-Close"></em>
+        <div class="heading5">SCORE BENCHMARK INFO</div>
+        <figure class="chart">
+            <img src="/assets/images/behaviourmeter.svg" alt="">
+        </figure>
+        <div class="score d-flex justify-content-between align-items-center flex-wrap">
+            <ng-container *ngFor="let score of benchMarkScore">
+                <div class="score-content" [ngClass]="{'red':score.color == 'red', 'green': score.color == 'green', 'yellow':score.color == 'yellow' ,'orange':score.color == 'orange'}" >
+                    <div class="scorepoint">{{score.score}}</div>
+                    <div class="scorelabel">{{score.label}}</div>
                 </div>
-                <figure class="growth">
-                    <img src="/assets/images/growth.svg" alt="">
-                </figure>
-            </div>
+            </ng-container>
         </div>
+        <figure class="growth">
+            <img src="/assets/images/growth.svg" alt="">
+        </figure>
     </div>
 </ng-template>
