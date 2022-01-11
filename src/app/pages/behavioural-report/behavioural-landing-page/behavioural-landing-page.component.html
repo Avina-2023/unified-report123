@@ -1,7 +1,7 @@
 <div class="bodyWrapper">
     <section class="bannerSection">
         <div class="content">
-            <div class="container">
+            <div class="innerContainer">
                 <h2>Behavioural <br />Profiling Report</h2>
             </div>
         </div>
@@ -9,7 +9,7 @@
 
     <!-- Profile -->
     <section class="profile">
-        <div class="container">
+        <div class="containerWrapper">
             <div class="innerContainer">
                 <div class="profileWrapper d-flex justify-content-between">
                     <div class="profImage d-flex">
@@ -19,19 +19,20 @@
                         <div class="emptyClass"></div>
                         <div class="profContent">
                             <div class="heading3">{{getAllBasicData?.firstname ? getAllBasicData?.firstname : ''}}</div>
-                            <span>Test Completion Date: {{getAllBasicData && getAllBasicData.testDate ? momentForm(getAllBasicData?.testDate) : 'Nil'}}</span>
+                            <div>
+                                <span class="prof"><img src="/assets/images/email.svg" alt="Email" /> {{emailId ? emailId : 'Nil'}}</span>
+                            </div>
+                            <div>
+                                <span class="prof"><img src="/assets/images/maleFemale.svg" alt="Gender" /> {{getAllBasicData?.gender ? getAllBasicData?.gender : 'Nil'}}</span>
+                            </div>
+                            <div>
+                                <span class="prof"><img src="/assets/images/university.svg" alt="University" /> {{highestEducation?.level ? highestEducation?.level : 'Nil'}}</span>
+                            </div>
                         </div>
                     </div>
                     <div class="profDetails">
-                        <div>
-                            <span class="prof"><em>Email</em>: {{emailId ? emailId : 'Nil'}}</span>
-                        </div>
-                        <div>
-                            <span class="prof"><em>Gender</em>: {{getAllBasicData?.gender ? getAllBasicData?.gender : 'Nil'}}</span>
-                        </div>
-                        <div>
-                            <span class="prof"><em>Education Level</em>: {{highestEducation?.level ? highestEducation?.level : 'Nil'}}</span>
-                        </div>
+                        <span>Test Completion Date: {{getAllBasicData && getAllBasicData.testDate ? momentForm(getAllBasicData?.testDate) : 'Nil'}}</span>
+                        <button class="download"><img src="/assets/images/download.svg" alt="Download" /> Download Report</button>
                     </div>
                 </div>
                 <div class="profDesctiption">
@@ -47,7 +48,7 @@
 
     <!-- Introduction -->
     <section class="introduction">
-        <div class="container">
+        <div class="containerWrapper">
             <div class="innerContainer">
                 <div class="introductionWrapper">
                     <div class="heading2">Introduction</div>
@@ -62,22 +63,464 @@
 
     <!-- Four Factors -->
     <section class="fourFactors">
-        <div class="container">
-            <div class="innerContainer">
-                <div class="heading2">The Four Factors</div>
-                <div *ngIf="getAllBehaviourData && getAllBehaviourData.factors" class="factors d-flex justify-content-between flex-wrap">
-                    <div class="factor" *ngFor="let factor of getAllBehaviourData.factors">
-                        <figure>
-                            <img *ngIf="factor.name.includes('THOUGHT FACTOR')" src="/assets/images/thought_factor.svg" alt="" />
-                            <img *ngIf="factor.name.includes('PERSONAL FACTOR')" src="/assets/images/personal_factor.svg" alt="" />
-                            <img *ngIf="factor.name.includes('INTERPERSONAL FACTOR')" src="/assets/images/interpersonal_factor.svg" alt="" />
-                            <img *ngIf="factor.name.includes('EMOTION FACTOR')" src="/assets/images/emotion_factor.svg" alt="" />
-                        </figure>
-                        <div class="heading4">{{factor?.name}}</div>
-                        <p>{{factor?.description}}</p>
+        <div class="containerWrapper">
+            <div class="heading2">The Four Factors</div>
+            <div *ngIf="getAllBehaviourData && getAllBehaviourData.factors" class="factors d-flex justify-content-between flex-wrap">
+                <div class="factor" *ngFor="let factor of getAllBehaviourData.factors">
+                    <div class="flipCard">
+                        <div class="frontSide">
+                            <figure>
+                                <img *ngIf="factor.name.includes('THOUGHT FACTOR')" src="/assets/images/thought_factor.svg" alt="" />
+                                <img *ngIf="factor.name.includes('CORE/PERSONAL FACTOR')" src="/assets/images/personal_factor.svg" alt="" />
+                                <img *ngIf="factor.name.includes('INTERPERSONAL FACTOR')" src="/assets/images/interpersonal_factor.svg" alt="" />
+                                <img *ngIf="factor.name.includes('EMOTION FACTOR')" src="/assets/images/emotion_factor.svg" alt="" />
+                            </figure>
+                            <div class="heading4">{{factor?.name}}</div>
+                            <p>{{factor?.description}}</p>
+                            <span class="readMore">Read More...</span>
+                        </div>
+                        <div class="backSide">
+                            <div class="heading4">{{factor?.name}}</div>
+                            <p>{{factor?.description}}</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Report Snapshot -->
+    <section class="snapshot">
+        <div class="containerWrapper">
+            <div class="innerContainer">
+                <div class="heading2">Report Snapshot</div>
+                <p>Snapshot view of the four factors and their respective 13 competencies. Please note that the competencies in each of the factors are independent and cannot be consolidated to provide any score representation for the factors.</p>
+                <div class="styleOne thoughtFactor d-flex justify-content-between">
+                    <div class="left d-flex justify-content-between">
+                        <div class="figure">
+                            <figure>
+                                <img src="/assets/images/thought_factor.svg" alt="" />
+                            </figure>
+                        </div>
+                        <div class="figContent">
+                            <span class="heading4">Thought Factor</span>
+                            <p>Constitutes a group of behavioural competencies that focuses on Cognitive factors like Detail Orientation, Critical thinking and Creative thinking.</p>
+                        </div>
+                    </div>
+                    <div class="right d-flex justify-content-between">
+                        <div class="d-flex justify-content-start">
+                            <ul>
+                                <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
+                            </ul>
+                            <ul>
+                                <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
+                            </ul>
+                            <ul>
+                                <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
+                            </ul>
+                        </div>
+                        <div class="d-flex flex-column justify-content-between">
+                            <button class="one d-flex align-items-center justify-content-between">Detail-Oriented <span>5</span></button>
+                            <button class="two d-flex align-items-center justify-content-between">Critical Thinking <span>6</span></button>
+                            <button class="three d-flex align-items-center justify-content-between">Creative Thinking <span>4</span></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="styleTwo corePersonal d-flex justify-content-between">
+                    <div class="left d-flex justify-content-between">
+                        <div class="d-flex justify-content-start">
+                            <ul>
+                                <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
+                            </ul>
+                            <ul>
+                                <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
+                            </ul>
+                            <ul>
+                                <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
+                            </ul>
+                        </div>
+                        <div class="d-flex flex-column justify-content-between">
+                            <button class="one d-flex align-items-center justify-content-between">Detail-Oriented <span>5</span></button>
+                            <button class="two d-flex align-items-center justify-content-between">Critical Thinking <span>6</span></button>
+                            <button class="three d-flex align-items-center justify-content-between">Creative Thinking <span>4</span></button>
+                        </div>
+                    </div>
+                    <div class="right d-flex justify-content-between">
+                        <div class="figContent">
+                            <span class="heading4">CORE/PERSONAL</span>
+                            <p>This is a Social competence, that showcases your ability to handle communication and interactions with others effectively, either individually or socially.</p>
+                        </div>
+                        <div class="figure">
+                            <figure>
+                                <img src="/assets/images/thought_factor.svg" alt="" />
+                            </figure>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Snapshot tabs -->
+    <section class="snapshotTabs">
+        <div class="containerWrapper">
+            <mat-tab-group mat-align-tabs="center">
+                <mat-tab>
+                    <ng-template mat-tab-label>
+                        <div class="heading">
+                            <img src="/assets/images/thought.png" alt="THOUGHT">
+                            <span>THOUGHT</span>
+                        </div>
+                    </ng-template>
+                    <div class="snapshotContent">
+                        <span class="heading5">THOUGHT Factor focuses on Cognitive factors (Behavioural aspects only) like</span>
+                        <ul>
+                            <li><img src="/assets/images/rightArrow.svg" alt="" /> <span>Detail Orientation</span></li>
+                            <li><img src="/assets/images/rightArrow.svg" alt="" /> <span>Critical Thinking</span></li>
+                            <li><img src="/assets/images/rightArrow.svg" alt="" /> <span>Creative Thinking</span></li>
+                        </ul>
+                        <div class="content d-flex justify-content-between">
+                            <div class="left d-flex justify-content-between align-items-center">
+                                <figure><img src="/assets/images/detailOriented.svg" alt="" /></figure>
+                                <div>
+                                    <p><span>DETAIL-ORIENTED:</span> The ability to be thorough in accomplishing any task by paying attention to even the minutest details. They are focused on quality and hence strive continuously to improve the process.</p>
+                                </div>
+                            </div>
+                            <div class="right">
+                                <figure><img src="/assets/images/detailOriented.svg" alt="" /></figure>
+                            </div>
+                        </div>
+                        <div class="content d-flex justify-content-between">
+                            <div class="left d-flex justify-content-between align-items-center">
+                                <figure><img src="/assets/images/criticalThinking.svg" alt="" /></figure>
+                                <div>
+                                    <p><span>CRITICAL THINKING:</span> The ability to critically assess statements and arguments; examine beliefs, assumptions, and opinions and weigh them against facts. Solely driven by rationality, factual details, and knowledge.</p>
+                                </div>
+                            </div>
+                            <div class="right">
+                                <figure><img src="/assets/images/criticalThinking.svg" alt="" /></figure>
+                            </div>
+                        </div>
+                        <div class="content d-flex justify-content-between">
+                            <div class="left d-flex justify-content-between align-items-center">
+                                <figure><img src="/assets/images/creativeThinking.svg" alt="" /></figure>
+                                <div>
+                                    <p><span>CREATIVE THINKING:</span> The individual’s ability to think in an unconventional, diverse, and innovative way towards any challenging situations. The need to constantly challenge the status quo.</p>
+                                </div>
+                            </div>
+                            <div class="right">
+                                <figure><img src="/assets/images/creativeThinking.svg" alt="" /></figure>
+                            </div>
+                        </div>
+                    </div>
+                </mat-tab>
+                <mat-tab>
+                    <ng-template mat-tab-label>
+                        <div class="heading">
+                            <img src="/assets/images/core.png" alt="Core / Personal">
+                            <span>CORE/PERSONAL</span>
+                        </div>
+                    </ng-template>
+                    <div class="snapshotContent">
+                        <span class="heading5">CORE/PERSONAL Factor set of core competenciesthat maps the characteristics of an individual to Organizational expectations.</span>
+                        <ul>
+                            <li><img src="/assets/images/rightArrow.svg" alt="" /> <span>Self-Reliant</span></li>
+                            <li><img src="/assets/images/rightArrow.svg" alt="" /> <span>Receptiveness</span></li>
+                            <li><img src="/assets/images/rightArrow.svg" alt="" /> <span>Growth Mindset</span></li>
+                        </ul>
+                        <div class="content d-flex justify-content-between">
+                            <div class="left d-flex justify-content-between align-items-center">
+                                <figure><img src="/assets/images/selfReliant.svg" alt="" /></figure>
+                                <div>
+                                    <p><span>SELF-RELIANT:</span> A Self-motivated (driven) individual who is completely committed, responsible, and strive towards perfection. They take their commitments seriously and tend to be very careful and efficient (timely) in their actions and behaviour.</p>
+                                </div>
+                            </div>
+                            <div class="right">
+                                <figure><img src="/assets/images/selfReliant.svg" alt="" /></figure>
+                            </div>
+                        </div>
+                        <div class="content d-flex justify-content-between">
+                            <div class="left d-flex justify-content-between align-items-center">
+                                <figure><img src="/assets/images/growthMindset.svg" alt="" /></figure>
+                                <div>
+                                    <p><span>GROWTH MINDSET:</span> The individual’s ability to have an optimistic outlook and strong belief in oneself. Is open to learning and constantly works towards growth opportunities. An individual with a growth mindset tends to view intelligence and knowledge as something that can be developed/improved over time.</p>
+                                </div>
+                            </div>
+                            <div class="right">
+                                <figure><img src="/assets/images/growthMindset.svg" alt="" /></figure>
+                            </div>
+                        </div>
+                        <div class="content d-flex justify-content-between">
+                            <div class="left d-flex justify-content-between align-items-center">
+                                <figure><img src="/assets/images/receptiveness.svg" alt="" /></figure>
+                                <div>
+                                    <p><span>RECEPTIVENESS:</span> The ability to be inquisitive, frank, open, and sincere as an individual and in expressing one’s views and ideas. They are also receptive and open to the ideas and suggestions were given by others.</p>
+                                </div>
+                            </div>
+                            <div class="right">
+                                <figure><img src="/assets/images/receptiveness.svg" alt="" /></figure>
+                            </div>
+                        </div>
+                    </div>
+                </mat-tab>
+                <mat-tab>
+                    <ng-template mat-tab-label>
+                        <div class="heading">
+                            <img src="/assets/images/interpersonal.png" alt="INTERPERSONAL">
+                            <span>INTERPERSONAL</span>
+                        </div>
+                    </ng-template>
+                    <div class="snapshotContent">
+                        <span class="heading5">INTERPERSONAL Factor Your Social competence which is the ability to handle communication and interactions with others effectively, either individually or socially.</span>
+                        <ul>
+                            <li><img src="/assets/images/rightArrow.svg" alt="" /> <span>Communication Skills</span></li>
+                            <li><img src="/assets/images/rightArrow.svg" alt="" /> <span>Positive Attitude</span></li>
+                            <li><img src="/assets/images/rightArrow.svg" alt="" /> <span>Teamwork</span></li>
+                        </ul>
+                        <div class="content d-flex justify-content-between">
+                            <div class="left d-flex justify-content-between align-items-center">
+                                <figure><img src="/assets/images/communicationSkills.svg" alt="" /></figure>
+                                <div>
+                                    <p><span>COMMUNICATION SKILLS:</span> The ability to communicate and express with clarity, in a well-organized and logically sequenced way. Individuals with good communication skills are also aware of and receptive to both verbal and non-verbal means of communication. They display the ability to communicate problems in a timely manner.</p>
+                                </div>
+                            </div>
+                            <div class="right">
+                                <figure><img src="/assets/images/communicationSkills.svg" alt="" /></figure>
+                            </div>
+                        </div>
+                        <div class="content d-flex justify-content-between">
+                            <div class="left d-flex justify-content-between align-items-center">
+                                <figure><img src="/assets/images/positiveAttitude.svg" alt="" /></figure>
+                                <div>
+                                    <p><span>POSITIVE ATTITUDE:</span> A positive mental state that makes one likeable and puts others at ease in any relationship. The individual’s ability to have a frame of mind that looks at any situation in a favourable way.</p>
+                                </div>
+                            </div>
+                            <div class="right">
+                                <figure><img src="/assets/images/positiveAttitude.svg" alt="" /></figure>
+                            </div>
+                        </div>
+                        <div class="content d-flex justify-content-between">
+                            <div class="left d-flex justify-content-between align-items-center">
+                                <figure><img src="/assets/images/team-Work.svg" alt="" /></figure>
+                                <div>
+                                    <p><span>TEAMWORK:</span> The ability to be adaptable and work cooperatively with others under varying conditions. They are characterized as being adaptable, flexible, and works accordingly with the team towards resolving any challenges and crisis situations.</p>
+                                </div>
+                            </div>
+                            <div class="right">
+                                <figure><img src="/assets/images/team-Work.svg" alt="" /></figure>
+                            </div>
+                        </div>
+                    </div>
+                </mat-tab>
+                <mat-tab>
+                    <ng-template mat-tab-label>
+                        <div class="heading">
+                            <img src="/assets/images/emotion.png" alt="EMOTION">
+                            <span>EMOTION</span>
+                        </div>
+                    </ng-template>
+                    <div class="snapshotContent">
+                        <span class="heading5">EMOTION Factor A set of competencies that mapsthe ability to manage emotions and bounce back from any setbacks.</span>
+                        <ul>
+                            <li><img src="/assets/images/rightArrow.svg" alt="" /> <span>Adaptability</span></li>
+                            <li><img src="/assets/images/rightArrow.svg" alt="" /> <span>Anxiety Management</span></li>
+                            <li><img src="/assets/images/rightArrow.svg" alt="" /> <span>Self-Awareness</span></li>
+                            <li><img src="/assets/images/rightArrow.svg" alt="" /> <span>Empathy</span></li>
+                        </ul>
+                        <div class="content d-flex justify-content-between">
+                            <div class="left d-flex justify-content-between align-items-center">
+                                <figure><img src="/assets/images/adaptablity.svg" alt="" /></figure>
+                                <div>
+                                    <p><span>ADAPTABILITY:</span> The ability to change/adjust to different and varying circumstances and people. Is flexible and open to new situations and approaches. They display a willingness to learn new ways to achieve work-related tasks and view change in a positive way.</p>
+                                </div>
+                            </div>
+                            <div class="right">
+                                <figure><img src="/assets/images/adaptablity.svg" alt="" /></figure>
+                            </div>
+                        </div>
+                        <div class="content d-flex justify-content-between">
+                            <div class="left d-flex justify-content-between align-items-center">
+                                <figure><img src="/assets/images/anxietyMgmnt.svg" alt="" /></figure>
+                                <div>
+                                    <p><span>ANXIETY MANAGEMENT:</span> Refers to the individual’s ability to handle stressful feelings and anxieties, and to react appropriately to the current situation.</p>
+                                </div>
+                            </div>
+                            <div class="right">
+                                <figure><img src="/assets/images/anxietyMgmnt.svg" alt="" /></figure>
+                            </div>
+                        </div>
+                        <div class="content d-flex justify-content-between">
+                            <div class="left d-flex justify-content-between align-items-center">
+                                <figure><img src="/assets/images/emotionalAwarness.svg" alt="" /></figure>
+                                <div>
+                                    <p><span>EMOTIONAL SELF-AWARENESS:</span> The ability to be aware of one’s own emotion/feeling at any given time, and the impact it has on other people and their mood.</p>
+                                </div>
+                            </div>
+                            <div class="right">
+                                <figure><img src="/assets/images/emotionalAwarness.svg" alt="" /></figure>
+                            </div>
+                        </div>
+                        <div class="content d-flex justify-content-between">
+                            <div class="left d-flex justify-content-between align-items-center">
+                                <figure><img src="/assets/images/empathy.svg" alt="" /></figure>
+                                <div>
+                                    <p><span>EMPATHY:</span> The ability to sense and also be sensitive to others feelings and concerns, taking into consideration their perspective; appreciating differences in how people feel about things.</p>
+                                </div>
+                            </div>
+                            <div class="right">
+                                <figure><img src="/assets/images/empathy.svg" alt="" /></figure>
+                            </div>
+                        </div>
+                    </div>
+                </mat-tab>
+            </mat-tab-group>
+            <div class="bencmark-info">
+                <button (click)="openBenchmarkInfo(benchmarkInfo)">
+                    <img src="/assets/images/path.svg" alt="Score Benchmark Info">
+                    <span>Score Benchmark Info</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- PERSONAL DEVELOPMENT -->
+    <section class="personaldevelopment">
+        <div class="containerWrapper">
+            <div class="heading2">PERSONAL DEVELOPMENT</div>
+            <div class="strengthscope-description-wrapper d-flex justify-content-between flex-wrap">
+                <div class="description-contaier">
+                    <figure class="scope-head d-flex align-items-center">
+                        <img src="/assets/images/strength_thumbs.svg" alt="">
+                        <span>STRENGTH AREAS</span>
+                    </figure>
+                    <p class="scope-desc">
+                        Strength areas provide an overview of your strengths, you could use this report to acknowledge and actively incorporate these strengths in your workplace. Being aware of your strong pointscan strengthen your confidence to effectively and efficiently use these traits both in the personal and professional arena to bring positive changes.
+                    </p>
+                </div>
+                <div class="description-contaier">
+                    <figure class="scope-head d-flex align-items-center">
+                        <img src="/assets/images/development_thumbs.svg" alt=""><span>DEVELOPMENT SCOPE</span>
+                    </figure>
+                    <p class="scope-desc">
+                        The development scope provides an overview of your potential weaknesses. View them as stepping stones to enhance your career. Now that you have an insight into your development needs related to specific areas, you may choose to work towards addressing the needs. This change can enable positive outcomes in both your and professional arena.
+                    </p>
+                </div>
+            </div>
+
+            <div class="content-wrapper d-flex justify-content-between align-items-center flex-wrap">
+                <ng-container *ngFor=" let item of strenthAreas">
+                    <div class="content-container" [ngClass]="item.color == 'green' ? 'green':'red'">
+                        <div class="content-head d-flex align-items-center">
+                            <img [src]="item.img" alt=""><span class="content-head-txt">RECEPTIVENESS</span>
+                        </div>
+                            <ul class="content-desc">
+                                <li class="align-items-center">
+                                    <img src="/assets/images/list-arrow.svg" alt=""><span>You tend to listen openly, without judgment, and interruption.</span>
+                                </li>
+                                <li class="align-items-center">
+                                    <img src="/assets/images/list-arrow.svg" alt=""><span>You tend to listen openly, without judgment, and interruption.</span>
+                                </li>
+                                <li class="align-items-center">
+                                    <img src="/assets/images/list-arrow.svg" alt=""><span>You tend to listen openly, without judgment, and interruption.</span>
+                                </li>
+                                <li class="align-items-center">
+                                    <img src="/assets/images/list-arrow.svg" alt=""><span>You tend to listen openly, without judgment, and interruption.</span>
+                                </li>
+                            </ul>
+                </div>
+                </ng-container>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interview -->
+    <section class="interview">
+        <div class="overlay"></div>
+        <div class="containerWrapper">
+            <div class="innerContainer">
+                <div class="interviewWrapper">
+                    <div class="heading2">BEHAVIORAL EVENT INTERVIEW (BEI) QUESTION</div>
+                    <p>A BEI questions are standard interview questions to assess whether the candidates demonstrate these critical traits that fit the workplace culture. It is helpful to customize questions to align the requirements of the open position and the organization’s culture. Follow-up probes questions should be used to further explore the candidate’s response to a particular question.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Strength Areas -->
+    <section class="strengthAreas">
+        <div class="containerWrapper">
+            <div class="d-flex justify-content-between strengthAreasWrapper">
+                <figure>
+                    <img src="/assets/images/Job_Interview.svg" alt="" />
+                </figure>
+                <div class="right">
+                    <div class="heading4">STRENGTH AREAS</div>
+                    <div class="heading6">RECEPTIVENESS</div>
+                    <ol>
+                        <li>1. Have there been an instance/experience where you have tried something different or new.</li>
+                        <li>2. Would you consider yourself to be someone who is more open to experiences. If so can you quote a recent incident on that.</li>
+                    </ol>
+                    <div class="heading6">ADAPTABILITY</div>
+                    <ol>
+                        <li>1. Are you someone who is flexible when itcomes to planning - lets say a trip recently?</li>
+                        <li>2. How have you handled the changes during thisPandemic?</li>
+                        <li>3. Have there been an instance where you have learnt something new to adapt to that culture?</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Development Scope -->
+    <section class="developmentScope">
+        <div class="containerWrapper">
+            <div class="d-flex justify-content-between developmentScopeWrapper">
+                <div class="left">
+                    <div class="heading4">DEVELOPMENT SCOPE</div>
+                    <div class="heading6">CREATIVE THINKING</div>
+                    <ol>
+                        <li>1. How would you approach a problem situation coming up with many alternatives or focus on a single effective solution. Why.</li>
+                        <li>2. Have there been a time where you were more creative or innovative coming up with an idea.What was that.</li>
+                        <li>3. Is it easy for you to come up with multiple new ideas?</li>
+                    </ol>
+                    <div class="heading6">TEAMWORK</div>
+                    <ol>
+                        <li>1. Are you someone who prefers to work alone, or are you more of a team player.</li>
+                        <li>2. How comfortable are you when it comes to working with people from varied background?</li>
+                        <li>3. Have there been a recent team activity that had motivated you? What was that?</li>
+                    </ol>
+                </div>
+                <figure>
+                    <img src="/assets/images/development_scope.png" alt="" />
+                </figure>
+            </div>
+        </div>
+    </section>
+
 </div>
+
+<ng-template #benchmarkInfo>
+    <div class="benchmarkInfo">
+        <div class="containerWrapper">
+            <div class="innerContainer">
+                    <mat-icon class="closebtn" [mat-dialog-close]="true">close</mat-icon>
+                <div class="heading2">SCORE BENCHMARK INFO</div>
+                <figure class="chart">
+                    <img src="/assets/images/behaviourmeter.svg" alt="">
+                </figure>
+                <div class="score d-flex justify-content-between align-items-center flex-wrap">
+                    <ng-container *ngFor="let score of benchMarkScore">
+                        <div class="score-content" [ngClass]="{'red':score.color == 'red', 'green': score.color == 'green', 'yellow':score.color == 'yellow' ,'orange':score.color == 'orange'}" >
+                            <div class="scorepoint">{{score.score}}</div>
+                            <div class="scorelabel">{{score.label}}</div>
+                        </div>
+                    </ng-container>
+                </div>
+                <figure class="growth">
+                    <img src="/assets/images/growth.svg" alt="">
+                </figure>
+            </div>
+        </div>
+    </div>
+</ng-template>

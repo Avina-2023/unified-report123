@@ -1,10 +1,11 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, TemplateRef } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { AppConfigService } from 'src/app/utils/app-config.service';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
 import { Subscription } from 'rxjs';
 import * as moment from 'moment';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-behavioural-landing-page',
@@ -18,11 +19,24 @@ export class BehaviouralLandingPageComponent implements OnInit, OnDestroy {
   getAllBasicData: any;
   emailId: any;
   highestEducation: any;
+  strenthAreas = [
+    {img:'/assets/images/Recpectiveness.svg',color:'green'},
+    {img:'/assets/images/creative.svg',color:'green'},
+    {img:'/assets/images/adaptablity.svg',color:'red'},
+    {img:'/assets/images/Teamwork.svg',color:'red'},
+  ];
+  benchMarkScore = [
+    {score:"1-2",label:"DEVELOPMENT SCOPE",color:"red"},
+    {score:"3-4-5",label:"LESS INCLINED",color:"yellow"},
+    {score:"6-7-8",label:"MORE INCLINED",color:"orange"},
+    {score:"9-10",label:"STRENGTH",color:"green"}
+  ];
   constructor(
     private toastr: ToastrService,
     private ApiService: ApiService,
     private appconfig: AppConfigService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -73,8 +87,16 @@ export class BehaviouralLandingPageComponent implements OnInit, OnDestroy {
       return split;
     }
   }
-
-
+  openBenchmarkInfo(templateRef: TemplateRef<any>){
+    this.dialog.open(templateRef, {
+      width: "400px",
+      height: "700px",
+      position: { right: "0px", bottom: "0px"},
+      panelClass: "filter-modal-box",
+      closeOnNavigation: true,
+      disableClose: true,
+    });
+  }
   ngOnDestroy() {
     this.getBehaviourReportAPISubscription ? this.getBehaviourReportAPISubscription.unsubscribe() : '';
   }
