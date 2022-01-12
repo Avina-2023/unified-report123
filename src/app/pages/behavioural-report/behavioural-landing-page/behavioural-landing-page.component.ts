@@ -6,6 +6,8 @@ import { ApiService } from 'src/app/services/api.service';
 import { Subscription } from 'rxjs';
 import * as moment from 'moment';
 import { MatDialog } from '@angular/material/dialog';
+import { ChartType } from 'chart.js';
+import { MultiDataSet, Label } from 'ng2-charts';
 
 @Component({
   selector: 'app-behavioural-landing-page',
@@ -13,6 +15,12 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./behavioural-landing-page.component.scss']
 })
 export class BehaviouralLandingPageComponent implements OnInit, OnDestroy {
+// Doughnut
+public doughnutChartLabels: Label[] = ['Download Sales', 'In-Store Sales', 'Mail-Order Sales'];
+public doughnutChartData: MultiDataSet = [
+  [350, 450, 100]
+];
+public doughnutChartType: ChartType = 'doughnut';
   ReportSnapshotColor = [
     {
       name: 'thoughtFactor'
@@ -94,10 +102,10 @@ export class BehaviouralLandingPageComponent implements OnInit, OnDestroy {
   }
   openBenchmarkInfo(templateRef: TemplateRef<any>){
     this.dialog.open(templateRef, {
-      width: "400px",
-      height: "700px",
+      width: "450px",
+      height: "80%",
       position: { right: "0px", bottom: "0px"},
-      panelClass: "filter-modal-box",
+      panelClass: "filterModalbox",
       closeOnNavigation: true,
       disableClose: true,
     });
