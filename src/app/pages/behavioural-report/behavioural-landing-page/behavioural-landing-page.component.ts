@@ -21,7 +21,12 @@ public doughnutChartData: MultiDataSet = [
   [350, 450, 100]
 ];
 public doughnutChartType: ChartType = 'doughnut';
+  ReportSnapshotColor = [
+    {
+      name: 'thoughtFactor'
+    },
 
+  ]
   getAllBehaviourData: any;
   getBehaviourReportAPISubscription: Subscription;
   getAllBasicData: any;
@@ -64,7 +69,7 @@ public doughnutChartType: ChartType = 'doughnut';
 
   getBehaviouralReportData(data) {
       const apiData = {
-        email: data//'sr-venkadesh@lntecc.com'
+        email: 'ronald-devnath@lntecc.com'
       };
     this.emailId= data;
      this.getBehaviourReportAPISubscription = this.ApiService.getBehaviourReport(apiData).subscribe((response: any) => {
