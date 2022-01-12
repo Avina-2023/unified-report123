@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, TemplateRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, TemplateRef, Input } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { AppConfigService } from 'src/app/utils/app-config.service';
 import { ActivatedRoute } from '@angular/router';
@@ -6,8 +6,6 @@ import { ApiService } from 'src/app/services/api.service';
 import { Subscription } from 'rxjs';
 import * as moment from 'moment';
 import { MatDialog } from '@angular/material/dialog';
-import { ChartType } from 'chart.js';
-import { MultiDataSet, Label } from 'ng2-charts';
 
 @Component({
   selector: 'app-behavioural-landing-page',
@@ -15,12 +13,8 @@ import { MultiDataSet, Label } from 'ng2-charts';
   styleUrls: ['./behavioural-landing-page.component.scss']
 })
 export class BehaviouralLandingPageComponent implements OnInit, OnDestroy {
-// Doughnut
-public doughnutChartLabels: Label[] = ['Download Sales', 'In-Store Sales', 'Mail-Order Sales'];
-public doughnutChartData: MultiDataSet = [
-  [350, 450, 100]
-];
-public doughnutChartType: ChartType = 'doughnut';
+// @Input() stenColor
+
   ReportSnapshotColor = [
     {
       name: 'thoughtFactor'
@@ -44,6 +38,10 @@ public doughnutChartType: ChartType = 'doughnut';
     {score:"6-7-8",label:"MORE INCLINED",color:"orange"},
     {score:"9-10",label:"STRENGTH",color:"green"}
   ];
+  bgColorInput:string = '#85BD44';
+  doughnutValue:number = 4;
+  tabIndex:number = 0;
+  
   constructor(
     private toastr: ToastrService,
     private ApiService: ApiService,
@@ -52,7 +50,7 @@ public doughnutChartType: ChartType = 'doughnut';
     private dialog: MatDialog
   ) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.getRoute();
   }
 
@@ -65,6 +63,29 @@ public doughnutChartType: ChartType = 'doughnut';
         this.getBehaviouralReportData(email);
       }
     });
+  }
+
+  tabChanged(event) {
+    this.tabIndex = event.index;
+
+    switch(this.tabIndex) {
+      case 0:
+        this.bgColorInput = '#85BD44';
+        break;
+      case 1:
+        this.bgColorInput = '#547ABC';
+        break;
+      case 2:
+        this.bgColorInput = '#FCBD33';
+        break;
+      case 3:
+        this.bgColorInput = '#C45CDD';
+        break;
+      default:
+        this.bgColorInput = '#C3C5CA';
+        break;
+    }
+
   }
 
   getBehaviouralReportData(data) {

@@ -167,58 +167,57 @@
     <!-- Snapshot tabs -->
     <section class="snapshotTabs">
         <div class="containerWrapper">
-            <mat-tab-group mat-align-tabs="center">
+            <mat-tab-group mat-align-tabs="center" (selectedTabChange)="tabChanged($event)">
                 <mat-tab>
-                    <ng-template mat-tab-label>
-                        <div class="heading">
-                            <img src="/assets/images/thought.png" alt="THOUGHT">
-                            <span>THOUGHT</span>
-                        </div>
-                    </ng-template>
-                    <div class="snapshotContent">
-                        <span class="heading5">THOUGHT Factor focuses on Cognitive factors (Behavioural aspects only) like</span>
-                        <ul>
-                            <li><img src="/assets/images/rightArrow.svg" alt="" /> <span>Detail Orientation</span></li>
-                            <li><img src="/assets/images/rightArrow.svg" alt="" /> <span>Critical Thinking</span></li>
-                            <li><img src="/assets/images/rightArrow.svg" alt="" /> <span>Creative Thinking</span></li>
-                        </ul>
-                        <div class="content d-flex justify-content-between">
-                            <div class="left d-flex justify-content-between align-items-center">
-                                <figure><img src="/assets/images/detailOriented.svg" alt="" /></figure>
-                                <div>
-                                    <p><span>DETAIL-ORIENTED:</span> The ability to be thorough in accomplishing any task by paying attention to even the minutest details. They are focused on quality and hence strive continuously to improve the process.</p>
+                        <ng-template mat-tab-label>
+                            <div class="heading">
+                                <img src="/assets/images/thought.png" alt="THOUGHT">
+                                <span>THOUGHT</span>
+                            </div>
+                        </ng-template>
+                        <ng-container *ngIf ="tabIndex == 0">
+                        <div class="snapshotContent">
+                            <span class="heading5">THOUGHT Factor focuses on Cognitive factors (Behavioural aspects only) like</span>
+                            <ul>
+                                <li><img src="/assets/images/rightArrow.svg" alt="" /> <span>Detail Orientation</span></li>
+                                <li><img src="/assets/images/rightArrow.svg" alt="" /> <span>Critical Thinking</span></li>
+                                <li><img src="/assets/images/rightArrow.svg" alt="" /> <span>Creative Thinking</span></li>
+                            </ul>
+                            <div class="content d-flex justify-content-between">
+                                <div class="left d-flex justify-content-between align-items-center">
+                                    <figure><img src="/assets/images/detailOriented.svg" alt="" /></figure>
+                                    <div>
+                                        <p><span>DETAIL-ORIENTED:</span> The ability to be thorough in accomplishing any task by paying attention to even the minutest details. They are focused on quality and hence strive continuously to improve the process.</p>
+                                    </div>
+                                </div>
+                                <div class="right">
+                                    <app-behavioural-report-canvas [bgColor] = "bgColorInput" [score]="doughnutValue"></app-behavioural-report-canvas>
                                 </div>
                             </div>
-                            <div class="right">
-                                <canvas baseChart
-              [data]="doughnutChartData"
-              [labels]="doughnutChartLabels"
-              [chartType]="doughnutChartType"></canvas>
-                            </div>
-                        </div>
-                        <div class="content d-flex justify-content-between">
-                            <div class="left d-flex justify-content-between align-items-center">
-                                <figure><img src="/assets/images/criticalThinking.svg" alt="" /></figure>
-                                <div>
-                                    <p><span>CRITICAL THINKING:</span> The ability to critically assess statements and arguments; examine beliefs, assumptions, and opinions and weigh them against facts. Solely driven by rationality, factual details, and knowledge.</p>
+                            <div class="content d-flex justify-content-between">
+                                <div class="left d-flex justify-content-between align-items-center">
+                                    <figure><img src="/assets/images/criticalThinking.svg" alt="" /></figure>
+                                    <div>
+                                        <p><span>CRITICAL THINKING:</span> The ability to critically assess statements and arguments; examine beliefs, assumptions, and opinions and weigh them against facts. Solely driven by rationality, factual details, and knowledge.</p>
+                                    </div>
+                                </div>
+                                <div class="right">
+                                    <app-behavioural-report-canvas [bgColor] = "bgColorInput" [score]="doughnutValue"></app-behavioural-report-canvas>
                                 </div>
                             </div>
-                            <div class="right">
-                                <figure><img src="/assets/images/criticalThinking.svg" alt="" /></figure>
-                            </div>
-                        </div>
-                        <div class="content d-flex justify-content-between">
-                            <div class="left d-flex justify-content-between align-items-center">
-                                <figure><img src="/assets/images/creativeThinking.svg" alt="" /></figure>
-                                <div>
-                                    <p><span>CREATIVE THINKING:</span> The individual’s ability to think in an unconventional, diverse, and innovative way towards any challenging situations. The need to constantly challenge the status quo.</p>
+                            <div class="content d-flex justify-content-between">
+                                <div class="left d-flex justify-content-between align-items-center">
+                                    <figure><img src="/assets/images/creativeThinking.svg" alt="" /></figure>
+                                    <div>
+                                        <p><span>CREATIVE THINKING:</span> The individual’s ability to think in an unconventional, diverse, and innovative way towards any challenging situations. The need to constantly challenge the status quo.</p>
+                                    </div>
+                                </div>
+                                <div class="right">
+                                    <app-behavioural-report-canvas [bgColor] = "bgColorInput" [score]="doughnutValue"></app-behavioural-report-canvas>
                                 </div>
                             </div>
-                            <div class="right">
-                                <figure><img src="/assets/images/creativeThinking.svg" alt="" /></figure>
-                            </div>
                         </div>
-                    </div>
+                    </ng-container>
                 </mat-tab>
                 <mat-tab>
                     <ng-template mat-tab-label>
@@ -227,6 +226,7 @@
                             <span>CORE/PERSONAL</span>
                         </div>
                     </ng-template>
+                    <ng-container *ngIf ="tabIndex == 1">
                     <div class="snapshotContent">
                         <span class="heading5">CORE/PERSONAL Factor set of core competenciesthat maps the characteristics of an individual to Organizational expectations.</span>
                         <ul>
@@ -242,7 +242,7 @@
                                 </div>
                             </div>
                             <div class="right">
-                                <figure><img src="/assets/images/selfReliant.svg" alt="" /></figure>
+                                <app-behavioural-report-canvas [bgColor] = "bgColorInput" [score]="doughnutValue"></app-behavioural-report-canvas>
                             </div>
                         </div>
                         <div class="content d-flex justify-content-between">
@@ -253,7 +253,7 @@
                                 </div>
                             </div>
                             <div class="right">
-                                <figure><img src="/assets/images/growthMindset.svg" alt="" /></figure>
+                                <app-behavioural-report-canvas [bgColor] = "bgColorInput" [score]="doughnutValue"></app-behavioural-report-canvas>
                             </div>
                         </div>
                         <div class="content d-flex justify-content-between">
@@ -264,10 +264,11 @@
                                 </div>
                             </div>
                             <div class="right">
-                                <figure><img src="/assets/images/receptiveness.svg" alt="" /></figure>
+                                <app-behavioural-report-canvas [bgColor] = "bgColorInput" [score]="doughnutValue"></app-behavioural-report-canvas>
                             </div>
                         </div>
                     </div>
+                </ng-container>
                 </mat-tab>
                 <mat-tab>
                     <ng-template mat-tab-label>
@@ -276,6 +277,7 @@
                             <span>INTERPERSONAL</span>
                         </div>
                     </ng-template>
+                    <ng-container *ngIf ="tabIndex == 2">
                     <div class="snapshotContent">
                         <span class="heading5">INTERPERSONAL Factor Your Social competence which is the ability to handle communication and interactions with others effectively, either individually or socially.</span>
                         <ul>
@@ -291,7 +293,7 @@
                                 </div>
                             </div>
                             <div class="right">
-                                <figure><img src="/assets/images/communicationSkills.svg" alt="" /></figure>
+                                <app-behavioural-report-canvas [bgColor] = "bgColorInput" [score]="doughnutValue"></app-behavioural-report-canvas>
                             </div>
                         </div>
                         <div class="content d-flex justify-content-between">
@@ -302,7 +304,7 @@
                                 </div>
                             </div>
                             <div class="right">
-                                <figure><img src="/assets/images/positiveAttitude.svg" alt="" /></figure>
+                                <app-behavioural-report-canvas [bgColor] = "bgColorInput" [score]="doughnutValue"></app-behavioural-report-canvas>
                             </div>
                         </div>
                         <div class="content d-flex justify-content-between">
@@ -313,10 +315,11 @@
                                 </div>
                             </div>
                             <div class="right">
-                                <figure><img src="/assets/images/team-Work.svg" alt="" /></figure>
+                                <app-behavioural-report-canvas [bgColor] = "bgColorInput" [score]="doughnutValue"></app-behavioural-report-canvas>
                             </div>
                         </div>
                     </div>
+                </ng-container>
                 </mat-tab>
                 <mat-tab>
                     <ng-template mat-tab-label>
@@ -325,6 +328,7 @@
                             <span>EMOTION</span>
                         </div>
                     </ng-template>
+                    <ng-container *ngIf ="tabIndex == 3">
                     <div class="snapshotContent">
                         <span class="heading5">EMOTION Factor A set of competencies that mapsthe ability to manage emotions and bounce back from any setbacks.</span>
                         <ul>
@@ -341,7 +345,7 @@
                                 </div>
                             </div>
                             <div class="right">
-                                <figure><img src="/assets/images/adaptablity.svg" alt="" /></figure>
+                                <app-behavioural-report-canvas [bgColor] = "bgColorInput" [score]="doughnutValue"></app-behavioural-report-canvas>
                             </div>
                         </div>
                         <div class="content d-flex justify-content-between">
@@ -352,7 +356,7 @@
                                 </div>
                             </div>
                             <div class="right">
-                                <figure><img src="/assets/images/anxietyMgmnt.svg" alt="" /></figure>
+                                <app-behavioural-report-canvas [bgColor] = "bgColorInput" [score]="doughnutValue"></app-behavioural-report-canvas>
                             </div>
                         </div>
                         <div class="content d-flex justify-content-between">
@@ -363,7 +367,7 @@
                                 </div>
                             </div>
                             <div class="right">
-                                <figure><img src="/assets/images/emotionalAwarness.svg" alt="" /></figure>
+                                <app-behavioural-report-canvas [bgColor] = "bgColorInput" [score]="doughnutValue"></app-behavioural-report-canvas>
                             </div>
                         </div>
                         <div class="content d-flex justify-content-between">
@@ -374,10 +378,11 @@
                                 </div>
                             </div>
                             <div class="right">
-                                <figure><img src="/assets/images/empathy.svg" alt="" /></figure>
+                                <app-behavioural-report-canvas [bgColor] = "bgColorInput" [score]="doughnutValue"></app-behavioural-report-canvas>
                             </div>
                         </div>
                     </div>
+                </ng-container>
                 </mat-tab>
             </mat-tab-group>
             <div class="bencmark-info">
