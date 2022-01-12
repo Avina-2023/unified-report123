@@ -29,7 +29,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     ReactiveFormsModule,
     HttpClientModule,
     PerfectScrollbarModule,
-    NgxChartsModule
+    NgxChartsModule,
   ],
   exports: [
     CommonModule,

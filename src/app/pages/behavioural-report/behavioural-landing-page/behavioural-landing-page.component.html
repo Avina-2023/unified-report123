@@ -258,7 +258,10 @@
                                 </div>
                             </div>
                             <div class="right">
-                                <figure><img src="/assets/images/detailOriented.svg" alt="" /></figure>
+                                <canvas baseChart
+              [data]="doughnutChartData"
+              [labels]="doughnutChartLabels"
+              [chartType]="doughnutChartType"></canvas>
                             </div>
                         </div>
                         <div class="content d-flex justify-content-between">
