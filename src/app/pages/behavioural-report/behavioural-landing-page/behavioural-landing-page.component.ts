@@ -13,7 +13,12 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./behavioural-landing-page.component.scss']
 })
 export class BehaviouralLandingPageComponent implements OnInit, OnDestroy {
+  ReportSnapshotColor = [
+    {
+      name: 'thoughtFactor'
+    },
 
+  ]
   getAllBehaviourData: any;
   getBehaviourReportAPISubscription: Subscription;
   getAllBasicData: any;
@@ -56,7 +61,7 @@ export class BehaviouralLandingPageComponent implements OnInit, OnDestroy {
 
   getBehaviouralReportData(data) {
       const apiData = {
-        email: data//'sr-venkadesh@lntecc.com'
+        email: 'ronald-devnath@lntecc.com'
       };
     this.emailId= data;
      this.getBehaviourReportAPISubscription = this.ApiService.getBehaviourReport(apiData).subscribe((response: any) => {

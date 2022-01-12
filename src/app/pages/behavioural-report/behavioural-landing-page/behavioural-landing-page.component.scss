@@ -389,17 +389,17 @@
                         font-size: 20px;
                         color: #fff;
                     }
-                    &.one {
+                    &.a1 {
                         span {
                             background-color: #CBD613;
                         }
                     }
-                    &.two {
+                    &.a2 {
                         span {
                             background-color: #95C330;
                         }
                     }
-                    &.three {
+                    &.a3 {
                         span {
                             background-color: #687C3C;
                         }
@@ -513,17 +513,17 @@
                         font-size: 20px;
                         color: #fff;
                     }
-                    &.one {
+                    &.a1 {
                         span {
                             background-color: #CBD613;
                         }
                     }
-                    &.two {
+                    &.a2 {
                         span {
                             background-color: #95C330;
                         }
                     }
-                    &.three {
+                    &.a3 {
                         span {
                             background-color: #687C3C;
                         }
@@ -744,7 +744,7 @@
             }
         }
     }
-    .mat-tab-group.mat-primary .mat-ink-bar, 
+    .mat-tab-group.mat-primary .mat-ink-bar,
     .mat-tab-nav-bar.mat-primary .mat-ink-bar {
         background-color: transparent;
     }

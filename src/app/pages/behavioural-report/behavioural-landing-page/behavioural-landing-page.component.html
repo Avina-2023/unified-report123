@@ -90,78 +90,80 @@
     </section>
 
     <!-- Report Snapshot -->
+    <ng-container *ngIf="getAllBehaviourData && getAllBehaviourData.reportSnapShot">
     <section class="snapshot">
         <div class="containerWrapper">
             <div class="innerContainer">
                 <div class="heading2">Report Snapshot</div>
-                <p>Snapshot view of the four factors and their respective 13 competencies. Please note that the competencies in each of the factors are independent and cannot be consolidated to provide any score representation for the factors.</p>
+                <p *ngIf="getAllBehaviourData.reportSnapShot?.description">{{getAllBehaviourData.reportSnapShot?.description}}</p>
+                <ng-container *ngIf="getAllBehaviourData.reportSnapShot.competency && getAllBehaviourData.reportSnapShot.competency.length > 0"></ng-container>
+                <ng-container *ngFor="let competency of getAllBehaviourData.reportSnapShot.competency; let c = index">
+                  <ng-container *ngIf="(c + 1) % 2 != 0">
                 <div class="styleOne thoughtFactor d-flex justify-content-between">
                     <div class="left d-flex justify-content-between">
                         <div class="figure">
                             <figure>
-                                <img src="/assets/images/thought_factor.svg" alt="" />
+                                <!-- <img src="/assets/images/thought_factor.svg" alt="" /> -->
+                                <img [src]="competency.imageurl" alt="" />
                             </figure>
                         </div>
                         <div class="figContent">
-                            <span class="heading4">Thought Factor</span>
-                            <p>Constitutes a group of behavioural competencies that focuses on Cognitive factors like Detail Orientation, Critical thinking and Creative thinking.</p>
+                            <span class="heading4">{{competency?.name}}</span>
+                            <p>{{competency?.description}}</p>
                         </div>
                     </div>
                     <div class="right d-flex justify-content-between">
+                      <ng-container *ngIf="competency?.skills && competency?.skills.length > 0">
                         <div class="d-flex justify-content-start">
-                            <ul>
-                                <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
-                            </ul>
-                            <ul>
-                                <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
-                            </ul>
-                            <ul>
-                                <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
+                            <ul *ngFor="let skills of competency.skills; let bar = index">
+                                <ng-container *ngFor="let array of [0,1,2,3,4,5,6,7,8,9]; let stenIndex = index">
+                                <li [ngStyle]="{'background-color': ((stenIndex + 1) <= skills?.stenScore) ? skills?.colourcode : ''}"></li>
+                                </ng-container>
                             </ul>
                         </div>
                         <div class="d-flex flex-column justify-content-between">
-                            <button class="one d-flex align-items-center justify-content-between">Detail-Oriented <span>5</span></button>
-                            <button class="two d-flex align-items-center justify-content-between">Critical Thinking <span>6</span></button>
-                            <button class="three d-flex align-items-center justify-content-between">Creative Thinking <span>4</span></button>
+                            <button *ngFor="let skills of competency.skills; let s = index" [ngClass]="'a' + s + 1" class="d-flex align-items-center justify-content-between">{{skills?.name}} <span [ngStyle]="{background: skills?.colourcode}">{{skills?.stenScore}}</span></button>
                         </div>
+                      </ng-container>
                     </div>
                 </div>
-
+              </ng-container>
+              <ng-container *ngIf="(c + 1) % 2 == 0">
                 <div class="styleTwo corePersonal d-flex justify-content-between">
                     <div class="left d-flex justify-content-between">
+                      <ng-container *ngIf="competency?.skills && competency?.skills.length > 0">
                         <div class="d-flex justify-content-start">
-                            <ul>
-                                <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
-                            </ul>
-                            <ul>
-                                <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
-                            </ul>
-                            <ul>
-                                <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
-                            </ul>
+                          <ul *ngFor="let skills of competency.skills; let bar = index">
+                            <ng-container *ngFor="let array of [0,1,2,3,4,5,6,7,8,9]; let stenIndex = index">
+                                <li [ngStyle]="{'background-color': ((stenIndex + 1) <= skills?.stenScore) ? skills?.colourcode : ''}"></li>
+                            </ng-container>
+                          </ul>
                         </div>
                         <div class="d-flex flex-column justify-content-between">
-                            <button class="one d-flex align-items-center justify-content-between">Detail-Oriented <span>5</span></button>
-                            <button class="two d-flex align-items-center justify-content-between">Critical Thinking <span>6</span></button>
-                            <button class="three d-flex align-items-center justify-content-between">Creative Thinking <span>4</span></button>
+                          <button *ngFor="let skills of competency.skills; let s = index" [ngClass]="'a' + s + 1" class="d-flex align-items-center justify-content-between">{{skills?.name}} <span [ngStyle]="{background: skills?.colourcode}">{{skills?.stenScore}}</span></button>
                         </div>
+                      </ng-container>
                     </div>
                     <div class="right d-flex justify-content-between">
                         <div class="figContent">
-                            <span class="heading4">CORE/PERSONAL</span>
-                            <p>This is a Social competence, that showcases your ability to handle communication and interactions with others effectively, either individually or socially.</p>
+                          <span class="heading4">{{competency?.name}}</span>
+                          <p>{{competency?.description}}</p>
                         </div>
                         <div class="figure">
                             <figure>
-                                <img src="/assets/images/thought_factor.svg" alt="" />
+                              <img [src]="competency.imageurl" alt="" />
                             </figure>
                         </div>
                     </div>
                 </div>
+                </ng-container>
+
+              </ng-container>
+
             </div>
         </div>
     </section>
-
+  </ng-container>
     <!-- Snapshot tabs -->
     <section class="snapshotTabs">
         <div class="containerWrapper">
