@@ -6,7 +6,7 @@ import { ApiService } from 'src/app/services/api.service';
 import { Subscription } from 'rxjs';
 import * as moment from 'moment';
 import { MatDialog } from '@angular/material/dialog';
-import { ChartType } from 'chart.js';
+import { ChartType, ChartOptions } from 'chart.js';
 import { MultiDataSet, Label } from 'ng2-charts';
 
 @Component({
@@ -15,12 +15,16 @@ import { MultiDataSet, Label } from 'ng2-charts';
   styleUrls: ['./behavioural-landing-page.component.scss']
 })
 export class BehaviouralLandingPageComponent implements OnInit, OnDestroy {
+
 // Doughnut
-public doughnutChartLabels: Label[] = ['Download Sales', 'In-Store Sales', 'Mail-Order Sales'];
+public doughnutChartLabels: Label[] = ['', '', ''];
 public doughnutChartData: MultiDataSet = [
-  [350, 450, 100]
+  [10, 10, 10, 10, 10, 10, 10, 10, 10, 10]
 ];
+chartColors: any = ['rgba(0,255,0,1)'];
 public doughnutChartType: ChartType = 'doughnut';
+public doughnutChartLegend = false;
+
   ReportSnapshotColor = [
     {
       name: 'thoughtFactor'
@@ -54,8 +58,21 @@ public doughnutChartType: ChartType = 'doughnut';
 
   ngOnInit(): void {
     this.getRoute();
+    let stenScore = 5;
+    this.setStenScoreColors(Number(stenScore));
   }
 
+  setStenScoreColors(stenScore) {
+    let array = [];
+    this.chartColors.forEach((ele, index) => {
+      if ((index + 1) <= stenScore) {
+        array.push('rgba(0,255,0,1)');
+      } else {
+        array.push('rgba(211,211,211,1)');
+      }
+    });
+    this.chartColors = array;
+  }
   getRoute() {
     this.route.paramMap.subscribe((param: any) => {
       if (param && param.params && param.params.id) {
