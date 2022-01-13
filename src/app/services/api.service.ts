@@ -17,12 +17,12 @@ export class ApiService {
   constructor(
     private http: HttpClient,
     private appConfig: AppConfigService,
-    private toastr: ToastrService
+ 
   ) { }
 
   logout() {
     this.appConfig.clearLocalStorage();
-    this.toastr.warning('You have been logged out successfully');
+   
     return this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.LOGIN);
   }
 
@@ -74,6 +74,10 @@ export class ApiService {
 
   getHiringReport(data){
     return this.http.post(`${this.BASE_URL}/getAgegridReport`,data);
+  }
+
+  getBehaviourReport(data){
+    return this.http.post(`${this.BASE_URL}/getBehaviouralReportContent `,data);
   }
 
 }

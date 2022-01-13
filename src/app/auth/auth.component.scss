@@ -10,3 +10,8 @@
      font-weight: 400;
      cursor: text;
  }
+ .wrapper {
+     display: flex;
+     flex-direction: column;
+     height: 100%;
+ }
