@@ -6,7 +6,9 @@ import { MatSidenav } from '@angular/material/sidenav';
 import { delay } from 'rxjs/operators';
 import { LoadingService } from '../services/loading.service';
 import { MatDialog } from '@angular/material/dialog';
-
+import { SentDataToOtherComp } from '../services/sendDataToOtherComp.service';
+import { Subscription } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.component.html',
@@ -22,19 +24,35 @@ export class AuthComponent implements OnInit {
   isShowing = false;
   showSubSubMenu: boolean = false;
   isaccess: boolean;
-
+  userDetails: any;
+  username: any;
+  InAppReport: string;
+  subscription: Subscription;
   constructor(
     private appConfig: AppConfigService,
     private apiService: ApiService,
     private dialog: MatDialog,
-  ) { }
+    private sendData: SentDataToOtherComp,
+    private toastr: ToastrService
+  ) {
+
+    this.subscription = this.sendData.getMessage().subscribe(message => {
+      this.InAppReport = message;
+    });
+   }
 
   ngOnInit(): void {
+   
+    this.userDetails  =   JSON.parse(sessionStorage.getItem('user'));
+    if(this.userDetails){
+      this.username = this.userDetails.attributes.firstName;
+    }
     this.isaccess = this.appConfig.isComingFromMicroCert();
   }
 
   logout() {
     this.apiService.logout();
+    this.toastr.warning('You have been logged out successfully');
   }
 
   matDialogOpen() {
@@ -48,14 +66,14 @@ export class AuthComponent implements OnInit {
     });
   }
 
-  closeDialog(e) {
-    if (e == 'save') {
-      this.dialog.closeAll();
-      this.logout();
-    } else {
-      this.dialog.closeAll();
-    }
-  }
+  // closeDialog(e) {
+  //   if (e == 'save') {
+  //     this.dialog.closeAll();
+  //     this.logout();
+  //   } else {
+  //     this.dialog.closeAll();
+  //   }
+  // }
 
   mouseenter() {
     if (!this.isExpanded) {

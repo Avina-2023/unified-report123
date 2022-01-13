@@ -1,7 +1,11 @@
 <div class="reportContainer">
-    <div class="backBtn" *ngIf="isaccess">
+    <!-- <div class="backBtn" *ngIf="isaccess">
         <span class="material-icons" (click)="onBack()">arrow_back</span>
         <span class="ml-2" (click)="onBack()">Back</span>
+    </div> -->
+    <div class="backBtn" (click)="goToBehavioural()" style="cursor: pointer;" *ngIf="isaccess">
+        <span class="material-icons">arrow_forward</span>
+        <span class="ml-2">Go</span>
     </div>
 
     <ng-continer *ngIf="getAllReportsData && getAllReportsData.email; else nocard">
@@ -22,7 +26,7 @@
 
 <ng-template #nocard>
 
-    <div class="noCard">
-        <div class="noData">No Data found...</div>
+    <div class="noCard" *ngIf="getAllReportsData">
+        <div class=" noData ">No Data found...</div>
     </div>
 </ng-template>

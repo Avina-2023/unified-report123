@@ -6,6 +6,8 @@ import { ApiService } from './../../../services/api.service';
 import { Component, OnInit } from '@angular/core';
 import { HostListener } from '@angular/core';
 import { PlatformLocation } from '@angular/common';
+import { SentDataToOtherComp } from 'src/app/services/sendDataToOtherComp.service';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-view-overall-reports',
   templateUrl: './view-overall-reports.component.html',
@@ -16,13 +18,17 @@ export class ViewOverallReportsComponent implements OnInit {
   getAllReportsData: any;
   driveName: any;
   isaccess: any;
+  subscription: Subscription;
+  emailId: any;
 
   constructor(
     private toastr: ToastrService,
     private ApiService: ApiService,
     private appconfig: AppConfigService,
     private route: ActivatedRoute,
+    private sendData: SentDataToOtherComp,
   ) {
+    this.sendData.sendMessage(true);
   }
 
 
@@ -45,10 +51,14 @@ export class ViewOverallReportsComponent implements OnInit {
   onBack() {
     this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.REPORTS.USERLIST);
   }
+  goToBehavioural() {
+    this.appconfig.routeNavigationWithParam(APP_CONSTANTS.ENDPOINTS.REPORTS.BEHAVIOUR_MODULE.BEHAVIOUR_REPORT, this.ApiService.encrypt(this.emailId));
+  }
   getReports(data) {
     const apiData = {
       email: data,
     };
+    this.emailId = data;
     this.ApiService.getReportsDataAPI(apiData).subscribe((response: any) => {
       if (response && response.success) {
         this.getAllReportsData = response.data && response.data[0] ? response.data[0] : null;
