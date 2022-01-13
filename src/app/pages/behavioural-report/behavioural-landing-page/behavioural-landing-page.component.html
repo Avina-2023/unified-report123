@@ -165,63 +165,44 @@
     </section>
   </ng-container>
     <!-- Snapshot tabs -->
-    <ng-container *ngIf="getAllBehaviourData && getAllBehaviourData.reportSnapShot">
+    <ng-container *ngIf="getAllBehaviourData && getAllBehaviourData.reportSnapShot && getAllBehaviourData.reportSnapShot.competency">
     <section class="snapshotTabs">
         <div class="containerWrapper">
             <mat-tab-group mat-align-tabs="center" (selectedTabChange)="tabChanged($event)">
-              <ng-container></ng-container>
+              <ng-container *ngFor="let factors of getAllBehaviourData.reportSnapShot.competency; let factorIndex = index">
                 <mat-tab>
                         <ng-template mat-tab-label>
                             <div class="heading">
-                                <img src="/assets/images/thought.png" alt="THOUGHT">
-                                <span>THOUGHT</span>
+                                <img [src]="factors?.imageurl" alt="THOUGHT">
+                                <span>{{factors?.name}}</span>
                             </div>
                         </ng-template>
-                        <ng-container *ngIf="tabIndex == 0">
+                        <ng-container *ngIf="tabIndex == 0 || true">
                         <div class="snapshotContent">
-                            <span class="heading5">THOUGHT Factor focuses on Cognitive factors (Behavioural aspects only) like</span>
-                            <ul>
-                                <li><img src="/assets/images/rightArrow.svg" alt="" /> <span>Detail Orientation</span></li>
-                                <li><img src="/assets/images/rightArrow.svg" alt="" /> <span>Critical Thinking</span></li>
-                                <li><img src="/assets/images/rightArrow.svg" alt="" /> <span>Creative Thinking</span></li>
+                            <span class="heading5">{{factors.glimpse}}</span>
+                            <ul *ngIf="factors?.skills && factors.skills.length > 0">
+                                <li *ngFor="let skills of factors.skills"><img src="/assets/images/rightArrow.svg" alt="" /> <span>{{skills.name}}</span></li>
                             </ul>
+                            <ng-container *ngIf="factors?.skills && factors.skills.length > 0">
+                            <ng-container *ngFor="let skillsDetail of factors.skills; let skillDetailIndex = index">
                             <div class="content d-flex justify-content-between">
                                 <div class="left d-flex justify-content-between align-items-center">
-                                    <figure><img src="/assets/images/detailOriented.svg" alt="" /></figure>
+                                    <figure><img [src]="skillsDetail?.imageurl" alt="" /></figure>
                                     <div>
-                                        <p><span>DETAIL-ORIENTED:</span> The ability to be thorough in accomplishing any task by paying attention to even the minutest details. They are focused on quality and hence strive continuously to improve the process.</p>
+                                        <p><span>{{skillsDetail?.name}}:</span> {{skillsDetail?.name}}</p>
                                     </div>
                                 </div>
                                 <div class="right">
-                                    <app-behavioural-report-canvas [bgColor] = "bgColorInput" [score]="doughnutValue"></app-behavioural-report-canvas>
+                                    <app-behavioural-report-canvas [bgColor]="skillsDetail?.colourcode" [score]="skillsDetail?.stenScore"></app-behavioural-report-canvas>
                                 </div>
                             </div>
-                            <div class="content d-flex justify-content-between">
-                                <div class="left d-flex justify-content-between align-items-center">
-                                    <figure><img src="/assets/images/criticalThinking.svg" alt="" /></figure>
-                                    <div>
-                                        <p><span>CRITICAL THINKING:</span> The ability to critically assess statements and arguments; examine beliefs, assumptions, and opinions and weigh them against facts. Solely driven by rationality, factual details, and knowledge.</p>
-                                    </div>
-                                </div>
-                                <div class="right">
-                                    <app-behavioural-report-canvas [bgColor] = "bgColorInput" [score]="doughnutValue"></app-behavioural-report-canvas>
-                                </div>
-                            </div>
-                            <div class="content d-flex justify-content-between">
-                                <div class="left d-flex justify-content-between align-items-center">
-                                    <figure><img src="/assets/images/creativeThinking.svg" alt="" /></figure>
-                                    <div>
-                                        <p><span>CREATIVE THINKING:</span> The individual’s ability to think in an unconventional, diverse, and innovative way towards any challenging situations. The need to constantly challenge the status quo.</p>
-                                    </div>
-                                </div>
-                                <div class="right">
-                                    <app-behavioural-report-canvas [bgColor] = "bgColorInput" [score]="doughnutValue"></app-behavioural-report-canvas>
-                                </div>
-                            </div>
+                            </ng-container>
+                          </ng-container>
                         </div>
                     </ng-container>
                 </mat-tab>
-                <mat-tab>
+              </ng-container>
+                <!-- <mat-tab>
                     <ng-template mat-tab-label>
                         <div class="heading">
                             <img src="/assets/images/core.png" alt="Core / Personal">
@@ -385,7 +366,7 @@
                         </div>
                     </div>
                 </ng-container>
-                </mat-tab>
+                </mat-tab> -->
             </mat-tab-group>
             <div class="bencmark-info">
                 <button (click)="openBenchmarkInfo(benchmarkInfo)">
