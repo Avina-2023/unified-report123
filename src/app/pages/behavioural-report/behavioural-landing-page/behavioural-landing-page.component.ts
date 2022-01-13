@@ -13,14 +13,6 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./behavioural-landing-page.component.scss']
 })
 export class BehaviouralLandingPageComponent implements OnInit, OnDestroy {
-// @Input() stenColor
-
-  ReportSnapshotColor = [
-    {
-      name: 'thoughtFactor'
-    },
-
-  ]
   getAllBehaviourData: any;
   getBehaviourReportAPISubscription: Subscription;
   getAllBasicData: any;
@@ -41,7 +33,7 @@ export class BehaviouralLandingPageComponent implements OnInit, OnDestroy {
   bgColorInput:string = '#85BD44';
   doughnutValue:number = 4;
   tabIndex:number = 0;
-  
+
   constructor(
     private toastr: ToastrService,
     private ApiService: ApiService,

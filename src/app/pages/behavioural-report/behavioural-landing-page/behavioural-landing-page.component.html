@@ -165,9 +165,11 @@
     </section>
   </ng-container>
     <!-- Snapshot tabs -->
+    <ng-container *ngIf="getAllBehaviourData && getAllBehaviourData.reportSnapShot">
     <section class="snapshotTabs">
         <div class="containerWrapper">
             <mat-tab-group mat-align-tabs="center" (selectedTabChange)="tabChanged($event)">
+              <ng-container></ng-container>
                 <mat-tab>
                         <ng-template mat-tab-label>
                             <div class="heading">
@@ -175,7 +177,7 @@
                                 <span>THOUGHT</span>
                             </div>
                         </ng-template>
-                        <ng-container *ngIf ="tabIndex == 0">
+                        <ng-container *ngIf="tabIndex == 0">
                         <div class="snapshotContent">
                             <span class="heading5">THOUGHT Factor focuses on Cognitive factors (Behavioural aspects only) like</span>
                             <ul>
@@ -226,7 +228,7 @@
                             <span>CORE/PERSONAL</span>
                         </div>
                     </ng-template>
-                    <ng-container *ngIf ="tabIndex == 1">
+                    <ng-container *ngIf="tabIndex == 1">
                     <div class="snapshotContent">
                         <span class="heading5">CORE/PERSONAL Factor set of core competenciesthat maps the characteristics of an individual to Organizational expectations.</span>
                         <ul>
@@ -277,7 +279,7 @@
                             <span>INTERPERSONAL</span>
                         </div>
                     </ng-template>
-                    <ng-container *ngIf ="tabIndex == 2">
+                    <ng-container *ngIf="tabIndex == 2">
                     <div class="snapshotContent">
                         <span class="heading5">INTERPERSONAL Factor Your Social competence which is the ability to handle communication and interactions with others effectively, either individually or socially.</span>
                         <ul>
@@ -328,7 +330,7 @@
                             <span>EMOTION</span>
                         </div>
                     </ng-template>
-                    <ng-container *ngIf ="tabIndex == 3">
+                    <ng-container *ngIf="tabIndex == 3">
                     <div class="snapshotContent">
                         <span class="heading5">EMOTION Factor A set of competencies that mapsthe ability to manage emotions and bounce back from any setbacks.</span>
                         <ul>
@@ -393,7 +395,7 @@
             </div>
         </div>
     </section>
-
+    </ng-container>
     <!-- PERSONAL DEVELOPMENT -->
     <section class="personaldevelopment">
         <div class="containerWrapper">
