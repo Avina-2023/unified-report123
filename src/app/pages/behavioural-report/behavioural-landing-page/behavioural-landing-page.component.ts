@@ -33,6 +33,7 @@ export class BehaviouralLandingPageComponent implements OnInit, OnDestroy {
   bgColorInput:string = '#85BD44';
   doughnutValue:number = 4;
   tabIndex:number = 0;
+  getAllBehaviourAPIDetails: any;
 
   constructor(
     private toastr: ToastrService,
@@ -89,6 +90,7 @@ export class BehaviouralLandingPageComponent implements OnInit, OnDestroy {
       console.log('res', response);
       if (response && response.success && response.data) {
           this.getAllBehaviourData = response.data.data ? response.data.data : null;
+          this.getAllBehaviourAPIDetails = response.data ? response.data : null;
           this.getAllBasicData = response.data.basicDetails ? response.data.basicDetails : null;
           this.highestEducation = this.getAllBasicData && this.getAllBasicData.education ? this.getAllBasicData.education : [];
           if (this.highestEducation.length > 0) {
