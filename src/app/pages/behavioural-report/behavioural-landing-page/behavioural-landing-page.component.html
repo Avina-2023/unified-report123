@@ -222,6 +222,29 @@
                     <p class="scope-desc">
                         Strength areas provide an overview of your strengths, you could use this report to acknowledge and actively incorporate these strengths in your workplace. Being aware of your strong pointscan strengthen your confidence to effectively and efficiently use these traits both in the personal and professional arena to bring positive changes.
                     </p>
+                    <div class="content-wrapper">
+                        <ng-container *ngFor=" let item of strenthAreas">
+                            <div class="content-container" [ngClass]="item.color == 'green' ? 'green':'red'">
+                                <div class="content-head d-flex align-items-center">
+                                    <img [src]="item.img" alt=""><span class="content-head-txt">{{item.title}}</span>
+                                </div>
+                                <ul class="content-desc">
+                                    <li class="align-items-center">
+                                        <img src="/assets/images/list-arrow.svg" alt=""><span>You tend to listen openly, without judgment, and interruption.</span>
+                                    </li>
+                                    <li class="align-items-center">
+                                        <img src="/assets/images/list-arrow.svg" alt=""><span>You tend to listen openly, without judgment, and interruption.</span>
+                                    </li>
+                                    <li class="align-items-center">
+                                        <img src="/assets/images/list-arrow.svg" alt=""><span>You tend to listen openly, without judgment, and interruption.</span>
+                                    </li>
+                                    <li class="align-items-center">
+                                        <img src="/assets/images/list-arrow.svg" alt=""><span>You tend to listen openly, without judgment, and interruption.</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </ng-container>
+                    </div>
                 </div>
                 <div class="description-contaier">
                     <figure class="scope-head d-flex align-items-center">
@@ -230,31 +253,30 @@
                     <p class="scope-desc">
                         The development scope provides an overview of your potential weaknesses. View them as stepping stones to enhance your career. Now that you have an insight into your development needs related to specific areas, you may choose to work towards addressing the needs. This change can enable positive outcomes in both your and professional arena.
                     </p>
+                    <div class="content-wrapper">
+                        <ng-container *ngFor=" let item of devScope">
+                            <div class="content-container" [ngClass]="item.color == 'green' ? 'green':'red'">
+                                <div class="content-head d-flex align-items-center">
+                                    <img [src]="item.img" alt=""><span class="content-head-txt">{{item.title}}</span>
+                                </div>
+                                <ul class="content-desc">
+                                    <li class="align-items-center">
+                                        <img src="/assets/images/list-arrow.svg" alt=""><span>You tend to listen openly, without judgment, and interruption.</span>
+                                    </li>
+                                    <li class="align-items-center">
+                                        <img src="/assets/images/list-arrow.svg" alt=""><span>You tend to listen openly, without judgment, and interruption.</span>
+                                    </li>
+                                    <li class="align-items-center">
+                                        <img src="/assets/images/list-arrow.svg" alt=""><span>You tend to listen openly, without judgment, and interruption.</span>
+                                    </li>
+                                    <li class="align-items-center">
+                                        <img src="/assets/images/list-arrow.svg" alt=""><span>You tend to listen openly, without judgment, and interruption.</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </ng-container>
+                    </div>
                 </div>
-            </div>
-
-            <div class="content-wrapper d-flex justify-content-between align-items-center flex-wrap">
-                <ng-container *ngFor=" let item of strenthAreas">
-                    <div class="content-container" [ngClass]="item.color == 'green' ? 'green':'red'">
-                        <div class="content-head d-flex align-items-center">
-                            <img [src]="item.img" alt=""><span class="content-head-txt">RECEPTIVENESS</span>
-                        </div>
-                            <ul class="content-desc">
-                                <li class="align-items-center">
-                                    <img src="/assets/images/list-arrow.svg" alt=""><span>You tend to listen openly, without judgment, and interruption.</span>
-                                </li>
-                                <li class="align-items-center">
-                                    <img src="/assets/images/list-arrow.svg" alt=""><span>You tend to listen openly, without judgment, and interruption.</span>
-                                </li>
-                                <li class="align-items-center">
-                                    <img src="/assets/images/list-arrow.svg" alt=""><span>You tend to listen openly, without judgment, and interruption.</span>
-                                </li>
-                                <li class="align-items-center">
-                                    <img src="/assets/images/list-arrow.svg" alt=""><span>You tend to listen openly, without judgment, and interruption.</span>
-                                </li>
-                            </ul>
-                </div>
-                </ng-container>
             </div>
         </div>
     </section>
