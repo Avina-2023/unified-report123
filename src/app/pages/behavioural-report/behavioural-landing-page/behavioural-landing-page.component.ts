@@ -19,10 +19,12 @@ export class BehaviouralLandingPageComponent implements OnInit, OnDestroy {
   emailId: any;
   highestEducation: any;
   strenthAreas = [
-    {img:'/assets/images/Recpectiveness.svg',color:'green'},
-    {img:'/assets/images/creative.svg',color:'green'},
-    {img:'/assets/images/adaptablity.svg',color:'red'},
-    {img:'/assets/images/Teamwork.svg',color:'red'},
+    {img:'/assets/images/Recpectiveness.svg',color:'green',title:'RECEPTIVENESS'},
+    {img:'/assets/images/creative.svg',color:'green',title:'ADAPTABILITY'},
+  ];
+  devScope = [
+    {img:'/assets/images/adaptablity.svg',color:'red',title:'CREATIVE THINKING'},
+    {img:'/assets/images/Teamwork.svg',color:'red',title:'TEAMWORK'},
   ];
   benchMarkScore = [
     {score:"1-2",label:"DEVELOPMENT SCOPE",color:"red"},
