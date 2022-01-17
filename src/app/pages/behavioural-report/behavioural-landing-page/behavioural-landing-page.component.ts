@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, TemplateRef, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy, TemplateRef, Input, AfterViewInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { AppConfigService } from 'src/app/utils/app-config.service';
 import { ActivatedRoute } from '@angular/router';
@@ -12,7 +12,7 @@ import { MatDialog } from '@angular/material/dialog';
   templateUrl: './behavioural-landing-page.component.html',
   styleUrls: ['./behavioural-landing-page.component.scss']
 })
-export class BehaviouralLandingPageComponent implements OnInit, OnDestroy {
+export class BehaviouralLandingPageComponent implements OnInit, AfterViewInit, OnDestroy {
   getAllBehaviourData: any;
   getBehaviourReportAPISubscription: Subscription;
   getAllBasicData: any;
@@ -40,6 +40,15 @@ export class BehaviouralLandingPageComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.getRoute();
+  }
+
+  ngAfterViewInit() {
+    // Hack: Scrolls to top of Page after page view initialized
+    let top = document.getElementById('top');
+    if (top !== null) {
+      top.scrollIntoView();
+      top = null;
+    }
   }
 
   getRoute() {
