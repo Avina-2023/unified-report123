@@ -1186,6 +1186,10 @@
                     color: $color-blank;
                     line-height: 20px;
                     margin-bottom: 10px;
+                    margin-left: 1.25em;
+                    list-style: decimal !important;
+                    display: list-item;
+                    list-style-position: inside;
                 }
             }
         }
