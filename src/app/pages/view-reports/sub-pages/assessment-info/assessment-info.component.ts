@@ -64,7 +64,7 @@ export class AssessmentInfoComponent implements OnInit, OnChanges {
   getAssessmentInfo() {
     if (this.getAllReportsData && this.getAllReportsData.driveDetails && this.getAllReportsData.driveDetails.length > 0 && this.getAllReportsData.selectedDriveName) {
       const assessmentDrive = this.getAllReportsData.driveDetails.find((x => x.drivename == this.getAllReportsData.selectedDriveName))
-      this.assessmentsList = assessmentDrive.assessments;
+      this.assessmentsList = assessmentDrive?.assessments;
       this.assessmentsList && this.assessmentsList.length > 0 ? this.covertToPercentage() : '';
     }
   }
