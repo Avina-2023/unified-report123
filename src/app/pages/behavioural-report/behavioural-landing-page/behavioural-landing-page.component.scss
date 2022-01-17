@@ -1191,15 +1191,24 @@
         }
     }
 }
-.noData {
+
+.hanging {
+  margin-left: 1.5em;
+  text-indent: -1.5em;
+}
+.noData,.errorCard {
     box-shadow: 0 6px 10px rgb(0 0 0 / 10%);
     background: white;
     padding: 1em;
     display: flex;
-    margin: 1em 0;
+    margin: 2em 0;
     height: 50%;
     font-size: 18px;
     align-items: center;
     justify-content: center;
     font-weight: 500;
+}
+.errorCard {
+  margin: 2em 2em;
+  padding: 3em;
 }

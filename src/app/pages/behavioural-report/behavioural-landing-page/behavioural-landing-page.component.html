@@ -7,6 +7,7 @@
         </div>
     </section>
 
+  <ng-container *ngIf="apiSuccess else nodata">
     <!-- Profile -->
     <section class="profile">
         <div class="containerWrapper">
@@ -219,62 +220,52 @@
                         <img src="/assets/images/strength_thumbs.svg" alt="">
                         <span>STRENGTH AREAS</span>
                     </figure>
-                    <p class="scope-desc">
-                        Strength areas provide an overview of your strengths, you could use this report to acknowledge and actively incorporate these strengths in your workplace. Being aware of your strong pointscan strengthen your confidence to effectively and efficiently use these traits both in the personal and professional arena to bring positive changes.
+                    <p *ngIf="getAllBehaviourData" class="scope-desc">
+                        {{getAllBehaviourData?.strengthAreaDescription}}
                     </p>
                     <div class="content-wrapper">
-                        <ng-container *ngFor=" let item of strenthAreas">
-                            <div class="content-container" [ngClass]="item.color == 'green' ? 'green':'red'">
+                      <ng-container *ngIf="getAllBehaviourAPIDetails?.strengthContent && getAllBehaviourAPIDetails?.strengthContent.length > 0 else noStrength">
+                        <ng-container *ngFor=" let item of getAllBehaviourAPIDetails?.strengthContent">
+                            <div class="content-container" [ngClass]="'green'">
                                 <div class="content-head d-flex align-items-center">
-                                    <img [src]="item.img" alt=""><span class="content-head-txt">{{item.title}}</span>
+                                    <img [src]="item?.imageurl" alt=""><span class="content-head-txt">{{item?.skillName}}</span>
                                 </div>
                                 <ul class="content-desc">
-                                    <li class="align-items-center">
-                                        <img src="/assets/images/list-arrow.svg" alt=""><span>You tend to listen openly, without judgment, and interruption.</span>
+                                  <ng-container *ngIf="item?.strengthContent && item?.strengthContent.length > 0">
+                                    <li *ngFor="let content of item?.strengthContent" class="align-items-center pb-1 hanging">
+                                        <img src="/assets/images/list-arrow.svg" alt=""><span>{{content}}</span>
                                     </li>
-                                    <li class="align-items-center">
-                                        <img src="/assets/images/list-arrow.svg" alt=""><span>You tend to listen openly, without judgment, and interruption.</span>
-                                    </li>
-                                    <li class="align-items-center">
-                                        <img src="/assets/images/list-arrow.svg" alt=""><span>You tend to listen openly, without judgment, and interruption.</span>
-                                    </li>
-                                    <li class="align-items-center">
-                                        <img src="/assets/images/list-arrow.svg" alt=""><span>You tend to listen openly, without judgment, and interruption.</span>
-                                    </li>
+                                  </ng-container>
                                 </ul>
                             </div>
                         </ng-container>
+                      </ng-container>
                     </div>
                 </div>
                 <div class="description-contaier">
                     <figure class="scope-head d-flex align-items-center">
                         <img src="/assets/images/development_thumbs.svg" alt=""><span>DEVELOPMENT SCOPE</span>
                     </figure>
-                    <p class="scope-desc">
-                        The development scope provides an overview of your potential weaknesses. View them as stepping stones to enhance your career. Now that you have an insight into your development needs related to specific areas, you may choose to work towards addressing the needs. This change can enable positive outcomes in both your and professional arena.
+                    <p *ngIf="getAllBehaviourData" class="scope-desc">
+                      {{getAllBehaviourData?.developmentScopeDescription}}
                     </p>
                     <div class="content-wrapper">
-                        <ng-container *ngFor=" let item of devScope">
-                            <div class="content-container" [ngClass]="item.color == 'green' ? 'green':'red'">
+                      <ng-container *ngIf="getAllBehaviourAPIDetails?.developmentContent && getAllBehaviourAPIDetails?.developmentContent.length > 0 else noImprovements">
+                        <ng-container *ngFor=" let item of getAllBehaviourAPIDetails?.developmentContent">
+                          <div class="content-container" [ngClass]="'red'">
                                 <div class="content-head d-flex align-items-center">
-                                    <img [src]="item.img" alt=""><span class="content-head-txt">{{item.title}}</span>
+                                  <img [src]="item?.imageurl" alt=""><span class="content-head-txt">{{item?.skillName}}</span>
                                 </div>
                                 <ul class="content-desc">
-                                    <li class="align-items-center">
-                                        <img src="/assets/images/list-arrow.svg" alt=""><span>You tend to listen openly, without judgment, and interruption.</span>
+                                  <ng-container *ngIf="item?.developmentContent && item?.developmentContent.length > 0">
+                                    <li *ngFor="let content of item?.developmentContent" class="align-items-center pb-1 hanging">
+                                        <img src="/assets/images/list-arrow.svg" alt=""><span>{{content}}</span>
                                     </li>
-                                    <li class="align-items-center">
-                                        <img src="/assets/images/list-arrow.svg" alt=""><span>You tend to listen openly, without judgment, and interruption.</span>
-                                    </li>
-                                    <li class="align-items-center">
-                                        <img src="/assets/images/list-arrow.svg" alt=""><span>You tend to listen openly, without judgment, and interruption.</span>
-                                    </li>
-                                    <li class="align-items-center">
-                                        <img src="/assets/images/list-arrow.svg" alt=""><span>You tend to listen openly, without judgment, and interruption.</span>
-                                    </li>
+                                  </ng-container>
                                 </ul>
                             </div>
                         </ng-container>
+                      </ng-container>
                     </div>
                 </div>
             </div>
@@ -287,8 +278,8 @@
         <div class="containerWrapper">
             <div class="innerContainer">
                 <div class="interviewWrapper">
-                    <div class="heading2">BEHAVIORAL EVENT INTERVIEW (BEI) QUESTION</div>
-                    <p>A BEI questions are standard interview questions to assess whether the candidates demonstrate these critical traits that fit the workplace culture. It is helpful to customize questions to align the requirements of the open position and the organization’s culture. Follow-up probes questions should be used to further explore the candidate’s response to a particular question.</p>
+                    <div *ngIf="getAllBehaviourData?.conclusion" class="heading2">{{getAllBehaviourData?.conclusion?.topicName}}</div>
+                    <p *ngIf="getAllBehaviourData?.conclusion">{{getAllBehaviourData?.conclusion?.description}}</p>
                 </div>
             </div>
         </div>
@@ -303,7 +294,7 @@
                 </figure>
                 <div class="right">
                     <div class="heading4">STRENGTH AREAS</div>
-                    <ng-container *ngIf="getAllBehaviourAPIDetails && getAllBehaviourAPIDetails.strengthconclusionPoints && false else noStrength">
+                    <ng-container *ngIf="getAllBehaviourAPIDetails && getAllBehaviourAPIDetails?.strengthconclusionPoints && getAllBehaviourAPIDetails?.strengthconclusionPoints.length > 0 else noStrength">
                     <ng-container *ngFor="let conclusion of getAllBehaviourAPIDetails.strengthconclusionPoints">
                     <div class="heading6">{{conclusion?.skillName}}</div>
                     <ng-container *ngIf="conclusion && conclusion.conclusionPoints">
@@ -324,7 +315,7 @@
             <div class="d-flex justify-content-between developmentScopeWrapper">
                 <div class="left">
                     <div class="heading4">DEVELOPMENT SCOPE</div>
-                    <ng-container *ngIf="getAllBehaviourAPIDetails && getAllBehaviourAPIDetails.developmentconclusionPoints && false else noImprovements">
+                    <ng-container *ngIf="getAllBehaviourAPIDetails && getAllBehaviourAPIDetails?.developmentconclusionPoints && getAllBehaviourAPIDetails?.developmentconclusionPoints.length > 0 else noImprovements">
                       <ng-container *ngFor="let conclusion of getAllBehaviourAPIDetails.developmentconclusionPoints">
                       <div class="heading7">{{conclusion?.skillName}}</div>
                       <ng-container *ngIf="conclusion && conclusion.conclusionPoints">
@@ -341,7 +332,7 @@
             </div>
         </div>
     </section>
-
+  </ng-container>
 </div>
 
 <ng-template #benchmarkInfo>
@@ -374,5 +365,11 @@
 <ng-template #noImprovements>
   <div class="noData">
     No Suggestions for Improvement...
+  </div>
+</ng-template>
+
+<ng-template #nodata>
+  <div class="errorCard">
+    No Data Available...
   </div>
 </ng-template>
