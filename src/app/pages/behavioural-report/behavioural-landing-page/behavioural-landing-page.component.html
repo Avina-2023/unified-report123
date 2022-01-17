@@ -32,7 +32,7 @@
                     </div>
                     <div class="profDetails">
                         <span>Test Completion Date: {{getAllBasicData && getAllBasicData.testDate ? momentForm(getAllBasicData?.testDate) : 'Nil'}}</span>
-                        <button class="download"><img src="/assets/images/download.svg" alt="Download" /> Download Report</button>
+                        <button *ngIf="false" class="download"><img src="/assets/images/download.svg" alt="Download" /> Download Report</button>
                     </div>
                 </div>
                 <div class="profDesctiption">
@@ -48,17 +48,17 @@
 
     <!-- Introduction -->
     <section class="introduction">
+      <ng-container *ngIf="getAllBehaviourData && getAllBehaviourData.introduction">
         <div class="containerWrapper">
             <div class="innerContainer">
                 <div class="introductionWrapper">
                     <div class="heading2">Introduction</div>
-                    <ng-container *ngIf="getAllBehaviourData && getAllBehaviourData.introduction">
                     <p *ngFor="let introPara of getAllBehaviourData.introduction">{{introPara}}</p>
-                  </ng-container>
                     <div *ngIf="getAllBehaviourData && getAllBehaviourData.introductionNote" class="note">Note: {{getAllBehaviourData.introductionNote}}</div>
                 </div>
             </div>
         </div>
+      </ng-container>
     </section>
 
     <!-- Four Factors -->
@@ -70,10 +70,7 @@
                     <div class="flipCard">
                         <div class="frontSide">
                             <figure>
-                                <img *ngIf="factor.name.includes('THOUGHT FACTOR')" src="/assets/images/thought_factor.svg" alt="" />
-                                <img *ngIf="factor.name.includes('CORE/PERSONAL FACTOR')" src="/assets/images/personal_factor.svg" alt="" />
-                                <img *ngIf="factor.name.includes('INTERPERSONAL FACTOR')" src="/assets/images/interpersonal_factor.svg" alt="" />
-                                <img *ngIf="factor.name.includes('EMOTION FACTOR')" src="/assets/images/emotion_factor.svg" alt="" />
+                                <img [src]="factor?.imageurl" alt="" />
                             </figure>
                             <div class="heading4">{{factor?.name}}</div>
                             <p>{{factor?.description}}</p>
@@ -284,7 +281,7 @@
                 </figure>
                 <div class="right">
                     <div class="heading4">STRENGTH AREAS</div>
-                    <ng-container *ngIf="getAllBehaviourAPIDetails && getAllBehaviourAPIDetails.strengthconclusionPoints">
+                    <ng-container *ngIf="getAllBehaviourAPIDetails && getAllBehaviourAPIDetails.strengthconclusionPoints && false else noStrength">
                     <ng-container *ngFor="let conclusion of getAllBehaviourAPIDetails.strengthconclusionPoints">
                     <div class="heading6">{{conclusion?.skillName}}</div>
                     <ng-container *ngIf="conclusion && conclusion.conclusionPoints">
@@ -305,7 +302,7 @@
             <div class="d-flex justify-content-between developmentScopeWrapper">
                 <div class="left">
                     <div class="heading4">DEVELOPMENT SCOPE</div>
-                    <ng-container *ngIf="getAllBehaviourAPIDetails && getAllBehaviourAPIDetails.developmentconclusionPoints">
+                    <ng-container *ngIf="getAllBehaviourAPIDetails && getAllBehaviourAPIDetails.developmentconclusionPoints && false else noImprovements">
                       <ng-container *ngFor="let conclusion of getAllBehaviourAPIDetails.developmentconclusionPoints">
                       <div class="heading7">{{conclusion?.skillName}}</div>
                       <ng-container *ngIf="conclusion && conclusion.conclusionPoints">
@@ -344,4 +341,16 @@
             <img src="/assets/images/growth.svg" alt="">
         </figure>
     </div>
+</ng-template>
+
+<ng-template #noStrength>
+  <div class="noData">
+    No Suggestions on Strength Areas...
+  </div>
+</ng-template>
+
+<ng-template #noImprovements>
+  <div class="noData">
+    No Suggestions for Improvement...
+  </div>
 </ng-template>
