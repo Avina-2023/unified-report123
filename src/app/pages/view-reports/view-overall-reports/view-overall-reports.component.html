@@ -3,10 +3,6 @@
         <span class="material-icons" (click)="onBack()">arrow_back</span>
         <span class="ml-2" (click)="onBack()">Back</span>
     </div> -->
-    <div class="backBtn" (click)="goToBehavioural()" style="cursor: pointer;" *ngIf="isaccess">
-        <span class="material-icons">arrow_forward</span>
-        <span class="ml-2">Go</span>
-    </div>
 
     <ng-continer *ngIf="getAllReportsData && getAllReportsData.email; else nocard">
 
@@ -16,7 +12,7 @@
         <app-assessment-info [driveName]="driveName" [getAllReportsData]="getAllReportsData"></app-assessment-info>
         <app-competency-areas [getAllReportsData]="getAllReportsData"></app-competency-areas>
         <app-quality-area [getAllReportsData]="getAllReportsData"></app-quality-area>
-        <app-behavioural-assessment-info [driveName]="driveName" [getAllReportsData]="getAllReportsData"></app-behavioural-assessment-info>
+        <app-behavioural-assessment-info [driveName]="driveName" [emailId]="emailId" [getAllReportsData]="getAllReportsData"></app-behavioural-assessment-info>
         <app-behavioural-competency-areas [getAllReportsData]="getAllReportsData"></app-behavioural-competency-areas>
         <app-behavioural-quality-area [getAllReportsData]="getAllReportsData"></app-behavioural-quality-area>
         <div class="clearfix"></div>
