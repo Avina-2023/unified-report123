@@ -36,11 +36,6 @@ $custom-typography: mat-typography-config($font-family: '"Roboto", normal !impor
     font-family: 'Material Icons' !important;
 }
 
-figure {
-    margin: 0 !important;
-}
-
-
 /* Track */
 
 ::-webkit-scrollbar-track:hover {
@@ -199,7 +194,8 @@ mat-toolbar.header-toolbar {
 }
 
 .perfect-scrollbar {
-    background-color: #f9f9f9;
+    // background-color: #f9f9f9;
+    background-color: #F7FAFE;
     overflow: hidden;
     overflow-y: auto;
     height: 100%;
