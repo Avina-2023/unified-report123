@@ -120,7 +120,7 @@
                             </ul>
                         </div>
                         <div class="d-flex flex-column justify-content-between">
-                            <button *ngFor="let skills of competency.skills; let s = index" [ngClass]="'a' + s + 1" class="d-flex align-items-center justify-content-between">{{skills?.name}} <span [ngStyle]="{background: skills?.colourcode}">{{skills?.stenScore}}</span></button>
+                            <button *ngFor="let skills of competency.skills; let s = index" [ngClass]="'a' + s + 1" class="d-flex align-items-center justify-content-between">{{skills?.name}} <span [ngStyle]="{background: skills?.colourcode}">{{skills?.stenScore ? skills?.stenScore : 0}}</span></button>
                         </div>
                       </ng-container>
                     </div>
@@ -138,7 +138,7 @@
                           </ul>
                         </div>
                         <div class="d-flex flex-column justify-content-between">
-                          <button *ngFor="let skills of competency.skills; let s = index" [ngClass]="'a' + s + 1" class="d-flex align-items-center justify-content-between">{{skills?.name}} <span [ngStyle]="{background: skills?.colourcode}">{{skills?.stenScore}}</span></button>
+                          <button *ngFor="let skills of competency.skills; let s = index" [ngClass]="'a' + s + 1" class="d-flex align-items-center justify-content-between">{{skills?.name}} <span [ngStyle]="{background: skills?.colourcode}">{{skills?.stenScore ? skills?.stenScore : 0}}</span></button>
                         </div>
                       </ng-container>
                     </div>
@@ -228,12 +228,24 @@
                         <ng-container *ngFor=" let item of getAllBehaviourAPIDetails?.strengthContent">
                             <div class="content-container" [ngClass]="'green'">
                                 <div class="content-head d-flex align-items-center">
-                                    <img [src]="item?.imageurl" alt=""><span class="content-head-txt">{{item?.skillName}}</span>
+                                  <div class="content-title-wrapper">
+                                    <img [src]="item?.imageurl" width="50px" alt="">
+                                  </div>
+                                  <div class="content-title-wrapper-column">
+                                    <span class="content-head-txt">{{item?.skillName}}</span>
+                                  </div>
                                 </div>
                                 <ul class="content-desc">
                                   <ng-container *ngIf="item?.strengthContent && item?.strengthContent.length > 0">
                                     <li *ngFor="let content of item?.strengthContent" class="align-items-center pb-1 hanging">
-                                        <img src="/assets/images/list-arrow.svg" alt=""><span>{{content}}</span>
+                                        <img src="/assets/images/list-arrow.svg" alt=""><span>{{content?.item}}</span>
+                                        <ng-container *ngIf="content?.sub_item && content?.sub_item.length > 0">
+                                          <ul class="content-desc">
+                                            <li *ngFor="let subcontent of content?.sub_item" class="align-items-center pb-1 hanging">
+                                              <img src="/assets/images/list-arrow.svg" alt=""><span>{{subcontent?.item}}</span>
+                                            </li>
+                                          </ul>
+                                        </ng-container>
                                     </li>
                                   </ng-container>
                                 </ul>
@@ -254,12 +266,25 @@
                         <ng-container *ngFor=" let item of getAllBehaviourAPIDetails?.developmentContent">
                           <div class="content-container" [ngClass]="'red'">
                                 <div class="content-head d-flex align-items-center">
-                                  <img [src]="item?.imageurl" alt=""><span class="content-head-txt">{{item?.skillName}}</span>
+                                  <div class="content-title-wrapper">
+                                    <img [src]="item?.imageurl" width="50px" alt="">
+                                  </div>
+                                  <div class="content-title-wrapper-column">
+                                    <span class="content-head-txt">{{item?.skillName}}</span>
+                                    <div class="development-glimpse">A lower score in this Competency indicates that</div>
+                                  </div>
                                 </div>
                                 <ul class="content-desc">
                                   <ng-container *ngIf="item?.developmentContent && item?.developmentContent.length > 0">
                                     <li *ngFor="let content of item?.developmentContent" class="align-items-center pb-1 hanging">
-                                        <img src="/assets/images/list-arrow.svg" alt=""><span>{{content}}</span>
+                                        <img src="/assets/images/list-arrow.svg" alt=""><span>{{content?.item}}</span>
+                                        <ng-container *ngIf="content?.sub_item && content?.sub_item.length > 0">
+                                          <ul class="content-desc">
+                                            <li *ngFor="let subcontent of content?.sub_item" class="align-items-center pb-1 hanging">
+                                              <img src="/assets/images/list-arrow.svg" alt=""><span>{{subcontent?.item}}</span>
+                                            </li>
+                                          </ul>
+                                        </ng-container>
                                     </li>
                                   </ng-container>
                                 </ul>
