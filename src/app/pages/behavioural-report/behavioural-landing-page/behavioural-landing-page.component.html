@@ -187,11 +187,11 @@
                                 <div class="left d-flex justify-content-between align-items-center">
                                     <figure><img [src]="skillsDetail?.imageurl" alt="" /></figure>
                                     <div>
-                                        <p><span>{{skillsDetail?.name}}:</span> {{skillsDetail?.name}}</p>
+                                        <p><span>{{skillsDetail?.name}}:</span> {{skillsDetail?.scorebasedSkillDescription ? skillsDetail?.scorebasedSkillDescription : '-'}}</p>
                                     </div>
                                 </div>
                                 <div class="right">
-                                    <app-behavioural-report-canvas [bgColor]="factors?.colourcode" [score]="skillsDetail?.stenScore"></app-behavioural-report-canvas>
+                                    <app-behavioural-report-canvas [bgColor]="factors?.colourcode" [score]="skillsDetail?.stenScore ? skillsDetail?.stenScore : 0"></app-behavioural-report-canvas>
                                 </div>
                             </div>
                             </ng-container>
