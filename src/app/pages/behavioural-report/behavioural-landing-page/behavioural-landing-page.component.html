@@ -1,7 +1,7 @@
 <div class="bodyWrapper">
     <section class="bannerSection">
         <div class="content">
-            <div class="container">
+            <div class="innerContainer">
                 <h2>Behavioural <br />Profiling Report</h2>
             </div>
         </div>
@@ -9,7 +9,7 @@
 
     <!-- Profile -->
     <section class="profile">
-        <div class="container">
+        <div class="containerWrapper">
             <div class="innerContainer">
                 <div class="profileWrapper d-flex justify-content-between">
                     <div class="profImage d-flex">
@@ -19,19 +19,20 @@
                         <div class="emptyClass"></div>
                         <div class="profContent">
                             <div class="heading3">{{getAllBasicData?.firstname ? getAllBasicData?.firstname : ''}}</div>
-                            <span>Test Completion Date: {{getAllBasicData && getAllBasicData.testDate ? momentForm(getAllBasicData?.testDate) : 'Nil'}}</span>
+                            <div>
+                                <span class="prof"><img src="/assets/images/email.svg" alt="Email" /> {{emailId ? emailId : 'Nil'}}</span>
+                            </div>
+                            <div>
+                                <span class="prof"><img src="/assets/images/maleFemale.svg" alt="Gender" /> {{getAllBasicData?.gender ? getAllBasicData?.gender : 'Nil'}}</span>
+                            </div>
+                            <div>
+                                <span class="prof"><img src="/assets/images/university.svg" alt="University" /> {{highestEducation?.level ? highestEducation?.level : 'Nil'}}</span>
+                            </div>
                         </div>
                     </div>
                     <div class="profDetails">
-                        <div>
-                            <span class="prof"><em>Email</em>: {{emailId ? emailId : 'Nil'}}</span>
-                        </div>
-                        <div>
-                            <span class="prof"><em>Gender</em>: {{getAllBasicData?.gender ? getAllBasicData?.gender : 'Nil'}}</span>
-                        </div>
-                        <div>
-                            <span class="prof"><em>Education Level</em>: {{highestEducation?.level ? highestEducation?.level : 'Nil'}}</span>
-                        </div>
+                        <span>Test Completion Date: {{getAllBasicData && getAllBasicData.testDate ? momentForm(getAllBasicData?.testDate) : 'Nil'}}</span>
+                        <button class="download"><img src="/assets/images/download.svg" alt="Download" /> Download Report</button>
                     </div>
                 </div>
                 <div class="profDesctiption">
@@ -47,7 +48,7 @@
 
     <!-- Introduction -->
     <section class="introduction">
-        <div class="container">
+        <div class="containerWrapper">
             <div class="innerContainer">
                 <div class="introductionWrapper">
                     <div class="heading2">Introduction</div>
@@ -62,22 +63,307 @@
 
     <!-- Four Factors -->
     <section class="fourFactors">
-        <div class="container">
-            <div class="innerContainer">
-                <div class="heading2">The Four Factors</div>
-                <div *ngIf="getAllBehaviourData && getAllBehaviourData.factors" class="factors d-flex justify-content-between flex-wrap">
-                    <div class="factor" *ngFor="let factor of getAllBehaviourData.factors">
-                        <figure>
-                            <img *ngIf="factor.name.includes('THOUGHT FACTOR')" src="/assets/images/thought_factor.svg" alt="" />
-                            <img *ngIf="factor.name.includes('PERSONAL FACTOR')" src="/assets/images/personal_factor.svg" alt="" />
-                            <img *ngIf="factor.name.includes('INTERPERSONAL FACTOR')" src="/assets/images/interpersonal_factor.svg" alt="" />
-                            <img *ngIf="factor.name.includes('EMOTION FACTOR')" src="/assets/images/emotion_factor.svg" alt="" />
-                        </figure>
-                        <div class="heading4">{{factor?.name}}</div>
-                        <p>{{factor?.description}}</p>
+        <div class="containerWrapper">
+            <div class="heading2">The Four Factors</div>
+            <div *ngIf="getAllBehaviourData && getAllBehaviourData.factors" class="factors d-flex justify-content-between flex-wrap">
+                <div class="factor" *ngFor="let factor of getAllBehaviourData.factors">
+                    <div class="flipCard">
+                        <div class="frontSide">
+                            <figure>
+                                <img *ngIf="factor.name.includes('THOUGHT FACTOR')" src="/assets/images/thought_factor.svg" alt="" />
+                                <img *ngIf="factor.name.includes('CORE/PERSONAL FACTOR')" src="/assets/images/personal_factor.svg" alt="" />
+                                <img *ngIf="factor.name.includes('INTERPERSONAL FACTOR')" src="/assets/images/interpersonal_factor.svg" alt="" />
+                                <img *ngIf="factor.name.includes('EMOTION FACTOR')" src="/assets/images/emotion_factor.svg" alt="" />
+                            </figure>
+                            <div class="heading4">{{factor?.name}}</div>
+                            <p>{{factor?.description}}</p>
+                            <span class="readMore">Read More...</span>
+                        </div>
+                        <div class="backSide">
+                            <div class="heading4">{{factor?.name}}</div>
+                            <p>{{factor?.description}}</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Report Snapshot -->
+    <ng-container *ngIf="getAllBehaviourData && getAllBehaviourData.reportSnapShot">
+    <section class="snapshot">
+        <div class="containerWrapper">
+            <div class="innerContainer">
+                <div class="heading2">Report Snapshot</div>
+                <p *ngIf="getAllBehaviourData.reportSnapShot?.description">{{getAllBehaviourData.reportSnapShot?.description}}</p>
+                <ng-container *ngIf="getAllBehaviourData.reportSnapShot.competency && getAllBehaviourData.reportSnapShot.competency.length > 0"></ng-container>
+                <ng-container *ngFor="let competency of getAllBehaviourData.reportSnapShot.competency; let c = index">
+                  <ng-container *ngIf="(c + 1) % 2 != 0">
+                <div class="styleOne thoughtFactor d-flex justify-content-between">
+                    <div class="left d-flex justify-content-between">
+                        <div class="figure">
+                            <figure>
+                                <!-- <img src="/assets/images/thought_factor.svg" alt="" /> -->
+                                <img [src]="competency.imageurl" alt="" />
+                            </figure>
+                        </div>
+                        <div class="figContent">
+                            <span class="heading4">{{competency?.name}}</span>
+                            <p>{{competency?.description}}</p>
+                        </div>
+                    </div>
+                    <div class="right d-flex justify-content-between">
+                      <ng-container *ngIf="competency?.skills && competency?.skills.length > 0">
+                        <div class="d-flex justify-content-start">
+                            <ul *ngFor="let skills of competency.skills; let bar = index">
+                                <ng-container *ngFor="let array of [0,1,2,3,4,5,6,7,8,9]; let stenIndex = index">
+                                <li [ngStyle]="{'background-color': ((stenIndex + 1) > (10 - (skills?.stenScore ? skills?.stenScore : 0 ))) ? skills?.colourcode : ''}"></li>
+                                </ng-container>
+                            </ul>
+                        </div>
+                        <div class="d-flex flex-column justify-content-between">
+                            <button *ngFor="let skills of competency.skills; let s = index" [ngClass]="'a' + s + 1" class="d-flex align-items-center justify-content-between">{{skills?.name}} <span [ngStyle]="{background: skills?.colourcode}">{{skills?.stenScore}}</span></button>
+                        </div>
+                      </ng-container>
+                    </div>
+                </div>
+              </ng-container>
+              <ng-container *ngIf="(c + 1) % 2 == 0">
+                <div class="styleTwo corePersonal d-flex justify-content-between">
+                    <div class="left d-flex justify-content-between">
+                      <ng-container *ngIf="competency?.skills && competency?.skills.length > 0">
+                        <div class="d-flex justify-content-start">
+                          <ul *ngFor="let skills of competency.skills; let bar = index">
+                            <ng-container *ngFor="let array of [0,1,2,3,4,5,6,7,8,9]; let stenIndex = index">
+                              <li [ngStyle]="{'background-color': ((stenIndex + 1) > (10 - (skills?.stenScore ? skills?.stenScore : 0 ))) ? skills?.colourcode : ''}"></li>
+                            </ng-container>
+                          </ul>
+                        </div>
+                        <div class="d-flex flex-column justify-content-between">
+                          <button *ngFor="let skills of competency.skills; let s = index" [ngClass]="'a' + s + 1" class="d-flex align-items-center justify-content-between">{{skills?.name}} <span [ngStyle]="{background: skills?.colourcode}">{{skills?.stenScore}}</span></button>
+                        </div>
+                      </ng-container>
+                    </div>
+                    <div class="right d-flex justify-content-between">
+                        <div class="figContent">
+                          <span class="heading4">{{competency?.name}}</span>
+                          <p>{{competency?.description}}</p>
+                        </div>
+                        <div class="figure">
+                            <figure>
+                              <img [src]="competency.imageurl" alt="" />
+                            </figure>
+                        </div>
+                    </div>
+                </div>
+                </ng-container>
+
+              </ng-container>
+
+            </div>
+        </div>
+    </section>
+  </ng-container>
+    <!-- Snapshot tabs -->
+    <ng-container *ngIf="getAllBehaviourData && getAllBehaviourData.reportSnapShot && getAllBehaviourData.reportSnapShot.competency">
+    <section class="snapshotTabs">
+        <div class="containerWrapper">
+            <mat-tab-group mat-align-tabs="center" (selectedTabChange)="tabChanged($event)">
+              <ng-container *ngFor="let factors of getAllBehaviourData.reportSnapShot.competency; let factorIndex = index">
+                <mat-tab>
+                        <ng-template mat-tab-label>
+                            <div class="heading">
+                                <img [src]="factors?.colourimageurl" alt="THOUGHT">
+                                <span>{{factors?.name}}</span>
+                            </div>
+                        </ng-template>
+                        <ng-container *ngIf="tabIndex == 0 || true">
+                        <div class="snapshotContent">
+                            <span class="heading5">{{factors.glimpse}}</span>
+                            <ul *ngIf="factors?.skills && factors.skills.length > 0">
+                                <li *ngFor="let skills of factors.skills"><img src="/assets/images/rightArrow.svg" alt="" /> <span>{{skills.name}}</span></li>
+                            </ul>
+                            <ng-container *ngIf="factors?.skills && factors.skills.length > 0">
+                            <ng-container *ngFor="let skillsDetail of factors.skills; let skillDetailIndex = index">
+                            <div class="content d-flex justify-content-between">
+                                <div class="left d-flex justify-content-between align-items-center">
+                                    <figure><img [src]="skillsDetail?.imageurl" alt="" /></figure>
+                                    <div>
+                                        <p><span>{{skillsDetail?.name}}:</span> {{skillsDetail?.name}}</p>
+                                    </div>
+                                </div>
+                                <div class="right">
+                                    <app-behavioural-report-canvas [bgColor]="factors?.colourcode" [score]="skillsDetail?.stenScore"></app-behavioural-report-canvas>
+                                </div>
+                            </div>
+                            </ng-container>
+                          </ng-container>
+                        </div>
+                    </ng-container>
+                </mat-tab>
+              </ng-container>
+            </mat-tab-group>
+            <div class="bencmark-info">
+                <button (click)="openBenchmarkInfo(benchmarkInfo)">
+                    <img src="/assets/images/path.svg" alt="Score Benchmark Info">
+                    <span>Score Benchmark Info</span>
+                </button>
+            </div>
+        </div>
+    </section>
+    </ng-container>
+    <!-- PERSONAL DEVELOPMENT -->
+    <section class="personaldevelopment">
+        <div class="containerWrapper">
+            <div class="heading2">PERSONAL DEVELOPMENT</div>
+            <div class="strengthscope-description-wrapper d-flex justify-content-between flex-wrap">
+                <div class="description-contaier">
+                    <figure class="scope-head d-flex align-items-center">
+                        <img src="/assets/images/strength_thumbs.svg" alt="">
+                        <span>STRENGTH AREAS</span>
+                    </figure>
+                    <p class="scope-desc">
+                        Strength areas provide an overview of your strengths, you could use this report to acknowledge and actively incorporate these strengths in your workplace. Being aware of your strong pointscan strengthen your confidence to effectively and efficiently use these traits both in the personal and professional arena to bring positive changes.
+                    </p>
+                    <div class="content-wrapper">
+                        <ng-container *ngFor=" let item of strenthAreas">
+                            <div class="content-container" [ngClass]="item.color == 'green' ? 'green':'red'">
+                                <div class="content-head d-flex align-items-center">
+                                    <img [src]="item.img" alt=""><span class="content-head-txt">{{item.title}}</span>
+                                </div>
+                                <ul class="content-desc">
+                                    <li class="align-items-center">
+                                        <img src="/assets/images/list-arrow.svg" alt=""><span>You tend to listen openly, without judgment, and interruption.</span>
+                                    </li>
+                                    <li class="align-items-center">
+                                        <img src="/assets/images/list-arrow.svg" alt=""><span>You tend to listen openly, without judgment, and interruption.</span>
+                                    </li>
+                                    <li class="align-items-center">
+                                        <img src="/assets/images/list-arrow.svg" alt=""><span>You tend to listen openly, without judgment, and interruption.</span>
+                                    </li>
+                                    <li class="align-items-center">
+                                        <img src="/assets/images/list-arrow.svg" alt=""><span>You tend to listen openly, without judgment, and interruption.</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </ng-container>
+                    </div>
+                </div>
+                <div class="description-contaier">
+                    <figure class="scope-head d-flex align-items-center">
+                        <img src="/assets/images/development_thumbs.svg" alt=""><span>DEVELOPMENT SCOPE</span>
+                    </figure>
+                    <p class="scope-desc">
+                        The development scope provides an overview of your potential weaknesses. View them as stepping stones to enhance your career. Now that you have an insight into your development needs related to specific areas, you may choose to work towards addressing the needs. This change can enable positive outcomes in both your and professional arena.
+                    </p>
+                    <div class="content-wrapper">
+                        <ng-container *ngFor=" let item of devScope">
+                            <div class="content-container" [ngClass]="item.color == 'green' ? 'green':'red'">
+                                <div class="content-head d-flex align-items-center">
+                                    <img [src]="item.img" alt=""><span class="content-head-txt">{{item.title}}</span>
+                                </div>
+                                <ul class="content-desc">
+                                    <li class="align-items-center">
+                                        <img src="/assets/images/list-arrow.svg" alt=""><span>You tend to listen openly, without judgment, and interruption.</span>
+                                    </li>
+                                    <li class="align-items-center">
+                                        <img src="/assets/images/list-arrow.svg" alt=""><span>You tend to listen openly, without judgment, and interruption.</span>
+                                    </li>
+                                    <li class="align-items-center">
+                                        <img src="/assets/images/list-arrow.svg" alt=""><span>You tend to listen openly, without judgment, and interruption.</span>
+                                    </li>
+                                    <li class="align-items-center">
+                                        <img src="/assets/images/list-arrow.svg" alt=""><span>You tend to listen openly, without judgment, and interruption.</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interview -->
+    <section class="interview">
+        <div class="overlay"></div>
+        <div class="containerWrapper">
+            <div class="innerContainer">
+                <div class="interviewWrapper">
+                    <div class="heading2">BEHAVIORAL EVENT INTERVIEW (BEI) QUESTION</div>
+                    <p>A BEI questions are standard interview questions to assess whether the candidates demonstrate these critical traits that fit the workplace culture. It is helpful to customize questions to align the requirements of the open position and the organization’s culture. Follow-up probes questions should be used to further explore the candidate’s response to a particular question.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Strength Areas -->
+    <section class="strengthAreas">
+        <div class="containerWrapper">
+            <div class="d-flex justify-content-between strengthAreasWrapper">
+                <figure>
+                    <img src="/assets/images/Job_Interview.svg" alt="" />
+                </figure>
+                <div class="right">
+                    <div class="heading4">STRENGTH AREAS</div>
+                    <ng-container *ngIf="getAllBehaviourAPIDetails && getAllBehaviourAPIDetails.strengthconclusionPoints">
+                    <ng-container *ngFor="let conclusion of getAllBehaviourAPIDetails.strengthconclusionPoints">
+                    <div class="heading6">{{conclusion?.skillName}}</div>
+                    <ng-container *ngIf="conclusion && conclusion.conclusionPoints">
+                    <ol>
+                        <li *ngFor="let points of conclusion.conclusionPoints">{{points}}</li>
+                    </ol>
+                  </ng-container>
+                  </ng-container>
+                  </ng-container>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Development Scope -->
+    <section class="developmentScope">
+        <div class="containerWrapper">
+            <div class="d-flex justify-content-between developmentScopeWrapper">
+                <div class="left">
+                    <div class="heading4">DEVELOPMENT SCOPE</div>
+                    <ng-container *ngIf="getAllBehaviourAPIDetails && getAllBehaviourAPIDetails.developmentconclusionPoints">
+                      <ng-container *ngFor="let conclusion of getAllBehaviourAPIDetails.developmentconclusionPoints">
+                      <div class="heading7">{{conclusion?.skillName}}</div>
+                      <ng-container *ngIf="conclusion && conclusion.conclusionPoints">
+                      <ol>
+                          <li *ngFor="let points of conclusion.conclusionPoints">{{points}}</li>
+                      </ol>
+                    </ng-container>
+                    </ng-container>
+                    </ng-container>
+                  </div>
+                <figure>
+                    <img src="/assets/images/development_scope.png" alt="" />
+                </figure>
+            </div>
+        </div>
+    </section>
+
 </div>
+
+<ng-template #benchmarkInfo>
+    <div class="benchmarkInfo">
+        <em [mat-dialog-close]="true" class="icon-Close"></em>
+        <div class="heading5">SCORE BENCHMARK INFO</div>
+        <figure class="chart">
+            <img src="/assets/images/behaviourmeter.svg" alt="">
+        </figure>
+        <div class="score d-flex justify-content-between align-items-center flex-wrap">
+            <ng-container *ngFor="let score of benchMarkScore">
+                <div class="score-content" [ngClass]="{'red':score.color == 'red', 'green': score.color == 'green', 'yellow':score.color == 'yellow' ,'orange':score.color == 'orange'}" >
+                    <div class="scorepoint">{{score.score}}</div>
+                    <div class="scorelabel">{{score.label}}</div>
+                </div>
+            </ng-container>
+        </div>
+        <figure class="growth">
+            <img src="/assets/images/growth.svg" alt="">
+        </figure>
+    </div>
+</ng-template>
