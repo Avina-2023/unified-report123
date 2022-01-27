@@ -9,6 +9,8 @@ import { FooterComponent } from './footer/footer.component';
 import { PerfectScrollbarConfigInterface, PerfectScrollbarModule, PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { BarChartComponent } from './bar-chart/bar-chart.component';
 import { HorizontalBarChartComponent } from './horizontal-bar-chart/horizontal-bar-chart.component';
+import { RoundcanvasComponent } from './roundcanvas/roundcanvas.component';
+import { ChartsModule } from 'ng2-charts';
 
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -20,7 +22,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     HeaderComponent,
     FooterComponent,
     BarChartComponent,
-    HorizontalBarChartComponent
+    HorizontalBarChartComponent,
+    RoundcanvasComponent
   ],
   imports: [
     CommonModule,
@@ -30,6 +33,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     HttpClientModule,
     PerfectScrollbarModule,
     NgxChartsModule,
+    ChartsModule
   ],
   exports: [
     CommonModule,
@@ -41,7 +45,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     FooterComponent,
     NgxChartsModule,
     BarChartComponent,
-    HorizontalBarChartComponent
+    HorizontalBarChartComponent,
+    RoundcanvasComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
   providers: [

@@ -39,6 +39,7 @@ export class BehaviouralReportCanvasComponent implements OnInit {
 
   ngOnInit() {
     this.score;
+    console.log(this.score,'this.score')
     this.setStenScoreColors(Number(this.score));
   }
 

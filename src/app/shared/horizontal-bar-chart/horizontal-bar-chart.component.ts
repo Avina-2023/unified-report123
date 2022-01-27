@@ -69,6 +69,7 @@ yAxisTicks = [0, 40, 80, 100];
     this.single = [];
     let colorCode = [];
     this.chartData.forEach(element => {
+      // console.log(element,'asfdads')
       // console.log(element)
       if (element) {
         let ele = {

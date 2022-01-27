@@ -21,9 +21,9 @@
                         <app-horizontal-bar-chart (selectedArea)="selectedHorizontalArrayIndex($event, i)" [domains]="domain" [chartData]="competency.skills"></app-horizontal-bar-chart>
                     </div>
                     <div class="aPan">
-                        <div class="subhtxt">Skill areas <span (click)="resetAreas(i, competency)" class="ResetBtn "> <em class="icon-Refresh"></em>Reset</span></div>
+                        <div class="subhtxt">Skill Areas <span (click)="resetAreas(i, competency)" class="ResetBtn "> <em class="icon-Refresh"></em>Reset</span></div>
                         <div class="areasbtnsec" *ngIf="competency.areaSkills">
-                            <span class="btnBox btnBlue" [ngStyle]="{'background-color': area1.areaColor ? area1.areaColor : ''}" *ngFor="let area1 of competency.areaSkills">{{area1.areaname}} -
+                            <span class="btnBox" [ngStyle]="{'border-left-color': area1.areaColor ? area1.areaColor : ''}" *ngFor="let area1 of competency.areaSkills">{{area1.areaname}} -
                                 {{area1.score}}</span>
                         </div>
                     </div>

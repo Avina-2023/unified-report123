@@ -14,7 +14,6 @@ export class BehaviouralCompetencyAreasComponent implements OnInit {
   areasName = [];
   counter: number = 0;
   list: any = [0];
-
   competenciesChartData = [];
   skillsChartData = [];
   competenciesName: any;
@@ -49,6 +48,7 @@ export class BehaviouralCompetencyAreasComponent implements OnInit {
   selectedHorizontalChartIndex = '0';
   verticalChartData: any[];
   hideControls = true;
+ 
   constructor() {}
 
   ngOnInit(): void {
@@ -57,8 +57,9 @@ export class BehaviouralCompetencyAreasComponent implements OnInit {
 
   ngOnChanges() {
     this.getCompetancyData();
-
   }
+
+
 
 
   ngAfterViewInit() {
@@ -135,6 +136,7 @@ export class BehaviouralCompetencyAreasComponent implements OnInit {
         element.score = this.conversionFormula(100, 100);
       }
       element.skills.forEach((skills) => {
+      
         // if (skills.stenScore) {
         skills.score = skills.stenScore ? skills.stenScore : 0;
         // }
@@ -145,6 +147,7 @@ export class BehaviouralCompetencyAreasComponent implements OnInit {
           }
         });
       });
+     
     });
   }
 
@@ -203,34 +206,34 @@ export class BehaviouralCompetencyAreasComponent implements OnInit {
   }
 
 
-  onNext() {
-    if(this.myDiv.nativeElement.innerHTML.length > 0){
-      if (this.counter != this.list.length - 1) {
-        this.counter++;
-      }
-    }
-    setTimeout(() => {
-      this.setColorCodesBasedOnLabel(this.myDiv.nativeElement.innerHTML.toString().trim());   
-    }, 10);
+  // onNext() {
+  //   if(this.myDiv.nativeElement.innerHTML.length > 0){
+  //     if (this.counter != this.list.length - 1) {
+  //       this.counter++;
+  //     }
+  //   }
+  //   setTimeout(() => {
+  //     this.setColorCodesBasedOnLabel(this.myDiv.nativeElement.innerHTML.toString().trim());   
+  //   }, 10);
  
   
-  }
+  // }
 
-  onPrevious() {
-    if(this.myDiv.nativeElement.innerHTML.length > 0){
-      if (this.counter > 0) {
-        this.counter--;
-      }
-    }
-    setTimeout(() => {
-      this.setColorCodesBasedOnLabel(this.myDiv.nativeElement.innerHTML.toString().trim());   
-    }, 10);
-  }
+  // onPrevious() {
+  //   if(this.myDiv.nativeElement.innerHTML.length > 0){
+  //     if (this.counter > 0) {
+  //       this.counter--;
+  //     }
+  //   }
+  //   setTimeout(() => {
+  //     this.setColorCodesBasedOnLabel(this.myDiv.nativeElement.innerHTML.toString().trim());   
+  //   }, 10);
+  // }
 
-  dotChange(i,label) {
-    this.counter = i;
-    this.setColorCodesBasedOnLabel(label)
-  }
+  // dotChange(i,label) {
+  //   this.counter = i;
+  //   this.setColorCodesBasedOnLabel(label)
+  // }
 
   setColorCodesBasedOnLabel(labelName: any) {
     const dynamicColor = labelName ? labelName : sessionStorage.getItem('Cname');

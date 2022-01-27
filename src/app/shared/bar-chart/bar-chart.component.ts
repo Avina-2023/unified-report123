@@ -1,16 +1,37 @@
 import { AfterViewInit, Input, OnChanges } from "@angular/core";
 import { Component, OnInit, ViewChild, ElementRef, Output, EventEmitter } from '@angular/core';
-
-
+// import * as Chart from "chart.js";
+import { ChartConfiguration, ChartData, ChartDataSets, ChartOptions, ChartType } from 'chart.js';
+import { BaseChartDirective, Label } from 'ng2-charts';
+import * as pluginDataLabels from 'chartjs-plugin-datalabels';
+declare const Chart;
 @Component({
   selector: 'app-bar-chart',
   templateUrl: './bar-chart.component.html',
   styleUrls: ['./bar-chart.component.scss']
 })
 export class BarChartComponent implements OnInit, OnChanges, AfterViewInit {
+  @ViewChild(BaseChartDirective) chart: BaseChartDirective | undefined;
+  public barChartOptions: ChartOptions = {
+    responsive: true,
+  };
+  public barChartLabels: Label[] = [];
+  public barChartType: ChartType = 'bar';
+  public barChartLegend = false;
+  public barChartPlugins = [];
+  // public chartPlugins = [pluginDataLabels];
+
+  public barChartData: ChartDataSets[] = [
+    {
+      data: [],
+      backgroundColor: [],
+      hoverBackgroundColor:'#2280C1',
+      barThickness: 12,
+    }
+  ];
+
+  barChartData1 =[];
   // Charts module initializtion
-  canvas: any;
-  ctx: any;
   @ViewChild('myChart', {static: false}) private chartContainer: ElementRef;
   @Input('chartType') type: any;
   @Input('values') chartValues: any;
@@ -59,7 +80,7 @@ export class BarChartComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   async ngOnChanges() {
-    await this.getCompetencyData();
+    // await this.getCompetencyData();
     // this.setColorDomain();
   }
 
@@ -70,7 +91,6 @@ export class BarChartComponent implements OnInit, OnChanges, AfterViewInit {
   getCompetencyData() {
     this.single = [];
     let colorCode = [];
-    console.log(this.chartData,'chart')
     this.chartData.forEach(element => {
       if (element) {
         let ele = {
@@ -81,7 +101,17 @@ export class BarChartComponent implements OnInit, OnChanges, AfterViewInit {
         }
         colorCode.push(element.areaColor);
         this.single.push(ele);
-        console.log(this.single,'single')
+
+        this.barChartLabels.push(element.competencyname ? element.competencyname : '')
+        this.barChartData1.push({"y":element.score ? element.score : ''})
+        this.barChartData = [
+          {
+            data: this.barChartData1,
+            backgroundColor: colorCode,
+            hoverBackgroundColor:colorCode,
+            // barThickness: 12,
+          }
+        ];
       }
     });
     this.colorScheme.domain = colorCode;
@@ -89,6 +119,23 @@ export class BarChartComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   ngAfterViewInit() {
+  }
+
+  
+   chartClicked(e): void {
+    if (e.active.length > 0) {
+      const chart = e.active[0]._chart;
+      const activePoints = chart.getElementAtEvent(e.event);
+      if ( activePoints.length > 0) {
+        // get the internal index of slice in pie chart
+        const clickedElementIndex = activePoints[0]._index;
+        const label = chart.data.labels[clickedElementIndex];
+        // get value by index
+        const value = chart.data.datasets[0].data[clickedElementIndex];
+        console.log(clickedElementIndex, label, value)
+        this.getSelectedCompetencyIdByName(label,value.y);
+      }
+    }
   }
 
   calculateWidthAndHeight() {
@@ -181,11 +228,18 @@ export class BarChartComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   onSelect(event) {
-    console.log(event)
     this.getSelectedCompetencyIdByName(event.name, event.value);
   }
 
+
+  behaviouralSkills(name,value){
+    this.getSelectedCompetencyIdByName(name,value);
+  }
+
+
+
   getSelectedCompetencyIdByName(name, value) {
+    console.log(name,value)
     const selectedId = this.chartData.find((data)=> {
       if (data.competencyname == name && data.score == value) {
         return data;

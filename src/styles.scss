@@ -36,6 +36,7 @@ $custom-typography: mat-typography-config($font-family: '"Roboto", normal !impor
     font-family: 'Material Icons' !important;
 }
 
+
 /* Track */
 
 ::-webkit-scrollbar-track:hover {
@@ -194,8 +195,8 @@ mat-toolbar.header-toolbar {
 }
 
 .perfect-scrollbar {
-    // background-color: #f9f9f9;
-    background-color: #F7FAFE;
+    background-color: #f9f9f9;
+    // background-color: #F7FAFE;
     overflow: hidden;
     overflow-y: auto;
     height: 100%;
@@ -787,7 +788,7 @@ ng-image-slider {
         }
         .rightPan {
             position: relative;
-            background-color: #f2f2f2;
+            background-color: #F4FBFF;
             border-radius: 0 4px 4px 0;
             overflow: hidden;
             top: 0;
@@ -802,7 +803,7 @@ ng-image-slider {
                 color: $blackColor;
                 font-weight: 700;
                 padding-left: 0.5em;
-                border-left: 0.3em solid #c84656;
+                // border-left: 0.3em solid #c84656;
                 display: flex;
                 align-items: center;
                 line-height: 1;
@@ -827,15 +828,15 @@ ng-image-slider {
                 margin-top: 14px;
                 flex-wrap: wrap;
                 max-width: 100%;
-                max-height: 190px;
+                max-height: 257px;
                 min-height: 150px;
                 overflow: hidden;
                 overflow-y: auto;
                 align-content: flex-start;
                 .btnBox {
-                    background-color: transparent;
+                    background-color: #ffffff;
                     vertical-align: bottom;
-                    border: 0;
+                    border-left: 3px solid;
                     font-weight: 500;
                     padding: 5px 9px;
                     font-size: 11px;
@@ -844,7 +845,7 @@ ng-image-slider {
                     text-decoration: none;
                     -webkit-user-select: none;
                     user-select: none;
-                    border-radius: 3px;
+                    // border-radius: 3px;
                     margin-right: 10px;
                     margin-bottom: 10px;
                     font-weight: 500;
@@ -865,7 +866,7 @@ ng-image-slider {
             }
             .chartContainer {
                 height: 100%;
-                padding-top: 1em;
+                padding-top: 0em;
                 >div.sPan {
                     min-height: 200px;
                     display: flex;
@@ -873,7 +874,7 @@ ng-image-slider {
                     justify-content: flex-start;
                 }
                 div.aPan {
-                    padding: 2em 0.3em 0;
+                    padding: 0em 0.3em 0;
                 }
             }
         }
