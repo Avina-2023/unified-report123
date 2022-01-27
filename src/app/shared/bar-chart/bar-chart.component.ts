@@ -70,6 +70,7 @@ export class BarChartComponent implements OnInit, OnChanges, AfterViewInit {
   getCompetencyData() {
     this.single = [];
     let colorCode = [];
+    console.log(this.chartData,'chart')
     this.chartData.forEach(element => {
       if (element) {
         let ele = {
@@ -80,6 +81,7 @@ export class BarChartComponent implements OnInit, OnChanges, AfterViewInit {
         }
         colorCode.push(element.areaColor);
         this.single.push(ele);
+        console.log(this.single,'single')
       }
     });
     this.colorScheme.domain = colorCode;
@@ -179,6 +181,7 @@ export class BarChartComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   onSelect(event) {
+    console.log(event)
     this.getSelectedCompetencyIdByName(event.name, event.value);
   }
 

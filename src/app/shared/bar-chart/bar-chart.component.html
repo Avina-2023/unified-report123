@@ -12,23 +12,33 @@
 
 </div>
 <ng-container *ngIf="!hideControls else showBehaviouralHorizontalChart">
-  <ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme" [results]="single" [xAxis]="showXAxis" [yAxis]="showYAxis" [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel" [showDataLabel]="hideControls ? false : true" [xAxisLabel]="xAxisLabel"
-  [yAxisLabel]="yAxisLabel" [trimYAxisTicks]="true" [barPadding]="barPadding" [showGridLines]="true" [noBarWhenZero]="true" [yScaleMax]="100" [yAxisTicks]="yAxisTicks" [maxXAxisTickLength]="10" [maxYAxisTickLength]="10" [roundEdges]="false" [animations]="true"
-  [tooltipDisabled]="hideControls ? true : false" (select)="onSelect($event)" style="fill:#808080;">
-</ngx-charts-bar-vertical>
+    <ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme" [results]="single" [xAxis]="showXAxis" [yAxis]="showYAxis" [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel" [showDataLabel]="hideControls ? false : true" [xAxisLabel]="xAxisLabel"
+        [yAxisLabel]="yAxisLabel" [trimYAxisTicks]="true" [barPadding]="barPadding" [showGridLines]="true" [noBarWhenZero]="true" [yScaleMax]="100" [yAxisTicks]="yAxisTicks" [maxXAxisTickLength]="10" [maxYAxisTickLength]="10" [roundEdges]="false" [animations]="true"
+        [tooltipDisabled]="hideControls ? true : false" (select)="onSelect($event)" style="fill:#808080;">
+    </ngx-charts-bar-vertical>
 </ng-container>
 <ng-template #showBehaviouralHorizontalChart>
-  <div class="chart-center">
-  <div class="center behavioural-chart-axis-hide">
-  <ngx-charts-bar-horizontal [view]="view" [scheme]="colorScheme" [results]="single" [gradient]="gradient" [xAxis]="true" [yAxis]="showYAxis" [legend]="showLegend" [xScaleMax]="100" [barPadding]="barPadding" [showXAxisLabel]="true" [showYAxisLabel]="false"
-  [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel" [xAxisTicks]="horiTicks" [showDataLabel]="false" [trimYAxisTicks]="true" [trimXAxisTicks]="true" [showGridLines]="false" [noBarWhenZero]="true" [animations]="false" [roundEdges]="false" (select)="onSelect($event)">
-  <ng-template #tooltipTemplate let-model="model">
-    <h5 style="margin-bottom: 0;">{{ model.name }}</h5>
-  </ng-template>
+    <div class="chart-center">
+        <div class="center behavioural-chart-axis-hide">
+            <ngx-charts-bar-horizontal [view]="view" [scheme]="colorScheme" [results]="single" [gradient]="gradient" [xAxis]="true" [yAxis]="showYAxis" [legend]="showLegend" [xScaleMax]="100" [barPadding]="barPadding" [showXAxisLabel]="true" [showYAxisLabel]="false"
+                [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel" [xAxisTicks]="horiTicks" [showDataLabel]="false" [trimYAxisTicks]="true" [trimXAxisTicks]="true" [showGridLines]="false" [noBarWhenZero]="true" [animations]="false" [roundEdges]="false" (select)="onSelect($event)">
+                <ng-template #tooltipTemplate let-model="model">
+                    <h5 style="margin-bottom: 0;">{{ model.name }}</h5>
+                </ng-template>
 
-</ngx-charts-bar-horizontal>
-</div>
-</div>
+            </ngx-charts-bar-horizontal>
+            <div class="expandheaderArea">
+                <div class="width-51">
+                    <img src="../../../assets/images/THOUGHTFACTOR.svg" />
+
+                    <span>Personal Profile</span>
+
+                </div>
+            </div>
+
+
+        </div>
+    </div>
 </ng-template>
 <div *ngIf="!hideControls" class="reset">
     <span class="ResetBtn " (click)="reset()"> <em class="icon-Refresh"></em>Reset</span>
