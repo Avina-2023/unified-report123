@@ -19,6 +19,14 @@ export class BehaviouralReportCanvasComponent implements OnInit {
     },
     legend: {
       display: false
+    },
+    plugins: {
+      datalabels: {
+        formatter: (value, ctx) => {
+          return '';
+
+      },
+      }
     }
   }
   public loopingArray: any = [

@@ -1,6 +1,6 @@
 <div class="comphtxt" [ngClass]="hideControls ? 'mb-2' : ''">Competencies
 
-    <div *ngIf="!hideControls" class="sort" matTooltip="Sort Competencies" (click)="sorting(indexNum + 1)" name="fieldName" ngDefaultControl [(ngModel)]="indexNum">
+    <!-- <div *ngIf="!hideControls" class="sort" matTooltip="Sort Competencies" (click)="sorting(indexNum + 1)" name="fieldName" ngDefaultControl [(ngModel)]="indexNum">
 
         <mat-icon *ngIf="indexNum == 1" [ngClass]="{'bothbtn' : indexNum == 0 }">
             arrow_downward
@@ -8,7 +8,7 @@
         <mat-icon *ngIf="indexNum == 2" [ngClass]="{'bothbtn' : indexNum == 0 }">
             arrow_upward
         </mat-icon>
-    </div>
+    </div> -->
 
 </div>
 <ng-container *ngIf="!hideControls else showBehaviouralHorizontalChart">
@@ -17,8 +17,8 @@
         [tooltipDisabled]="hideControls ? true : false" (select)="onSelect($event)" style="fill:#808080;">
     </ngx-charts-bar-vertical> -->
 
-    <div style="display: block;">
-        <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend" [chartType]="barChartType" (chartClick)="chartClicked($event)">
+    <div class="barcanvas">
+        <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [plugins]="barChartPlugins" [legend]="barChartLegend" [chartType]="barChartType" (chartClick)="chartClicked($event)">
       </canvas>
     </div>
 
@@ -46,9 +46,9 @@
         </div>
     </div>
 </ng-template>
-<div *ngIf="!hideControls" class="reset">
+<!-- <div *ngIf="!hideControls" class="reset">
     <span class="ResetBtn " (click)="reset()"> <em class="icon-Refresh"></em>Reset</span>
-</div>
+</div> -->
 <div class=" clk">* Click on a competency to view the skill details </div>
 <!-- </div> -->
 <!-- <canvas #myChart></canvas> -->

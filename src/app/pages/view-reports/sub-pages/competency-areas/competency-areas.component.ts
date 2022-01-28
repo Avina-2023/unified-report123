@@ -122,6 +122,7 @@ export class CompetencyAreasComponent implements OnInit {
         element.areaColor = this.verticaldomain[i];
       }
     });
+    console.log( this.verticalChartData,' this.verticalChartData')
   }
   getAreasDataInitialize(i) {
     this.competancyData.forEach(skills => {

@@ -11,26 +11,55 @@ declare const Chart;
   styleUrls: ['./bar-chart.component.scss']
 })
 export class BarChartComponent implements OnInit, OnChanges, AfterViewInit {
+  //new chart
   @ViewChild(BaseChartDirective) chart: BaseChartDirective | undefined;
+  public barChartPlugins = [pluginDataLabels];
   public barChartOptions: ChartOptions = {
     responsive: true,
+    // legend: {
+    //   display: false
+    // },
+    scales : {
+      yAxes: [{
+        ticks: {
+          max : 100,
+          min : 0,
+          stepSize:40,
+        }
+      }],
+      xAxes: [{
+  
+ 
+        }],
+    },
+    plugins: {
+      datalabels: {
+        anchor: 'end',
+        align: 'end',
+        font: {
+          size: 10,
+        },
+      }
+    }
   };
   public barChartLabels: Label[] = [];
   public barChartType: ChartType = 'bar';
   public barChartLegend = false;
-  public barChartPlugins = [];
   // public chartPlugins = [pluginDataLabels];
 
   public barChartData: ChartDataSets[] = [
     {
       data: [],
       backgroundColor: [],
-      hoverBackgroundColor:'#2280C1',
-      barThickness: 12,
+      hoverBackgroundColor:[],
+      barThickness: 25,
     }
   ];
 
   barChartData1 =[];
+
+  //new chart end
+
   // Charts module initializtion
   @ViewChild('myChart', {static: false}) private chartContainer: ElementRef;
   @Input('chartType') type: any;
@@ -47,7 +76,6 @@ export class BarChartComponent implements OnInit, OnChanges, AfterViewInit {
   indexNum: any = 1;
   single: any;
   view: any[] = [500, 360];
-
   // options
   showXAxis = true;
   showYAxis = true;
@@ -102,16 +130,18 @@ export class BarChartComponent implements OnInit, OnChanges, AfterViewInit {
         colorCode.push(element.areaColor);
         this.single.push(ele);
 
+        // console.log(this.single,'this.single')
         this.barChartLabels.push(element.competencyname ? element.competencyname : '')
-        this.barChartData1.push({"y":element.score ? element.score : ''})
+        this.barChartData1.push(element.score ? element.score : '')
         this.barChartData = [
           {
             data: this.barChartData1,
             backgroundColor: colorCode,
             hoverBackgroundColor:colorCode,
-            // barThickness: 12,
+            barThickness: 50,
           }
         ];
+        // console.log(this.barChartData,'this.barChartData')
       }
     });
     this.colorScheme.domain = colorCode;
@@ -132,8 +162,7 @@ export class BarChartComponent implements OnInit, OnChanges, AfterViewInit {
         const label = chart.data.labels[clickedElementIndex];
         // get value by index
         const value = chart.data.datasets[0].data[clickedElementIndex];
-        console.log(clickedElementIndex, label, value)
-        this.getSelectedCompetencyIdByName(label,value.y);
+        this.getSelectedCompetencyIdByName(label,value);
       }
     }
   }
@@ -239,7 +268,6 @@ export class BarChartComponent implements OnInit, OnChanges, AfterViewInit {
 
 
   getSelectedCompetencyIdByName(name, value) {
-    console.log(name,value)
     const selectedId = this.chartData.find((data)=> {
       if (data.competencyname == name && data.score == value) {
         return data;

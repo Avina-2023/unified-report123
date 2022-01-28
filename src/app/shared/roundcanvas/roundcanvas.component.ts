@@ -10,15 +10,23 @@ import { MultiDataSet, Label, Color } from 'ng2-charts';
 export class RoundcanvasComponent implements OnInit {
   @Input ()bgColor:string;
   @Input ()score:number;
+
     // Doughnut
     public doughnutOption: ChartOptions = {
       responsive: true,
-      tooltips: {
-        enabled: false
-      },
       legend: {
         display: false
+      },
+      plugins: {
+        datalabels: {
+          formatter: (value, ctx) => {
+            return '';
+  
+        },
+        }
       }
+
+
     }
     public loopingArray: any = [
       [10, 10, 10, 10, 10, 10, 10, 10, 10, 10]
@@ -54,6 +62,7 @@ export class RoundcanvasComponent implements OnInit {
           array.push('rgba(195, 197, 202, 1)');
         }
       }
+      console.log(array,'asdasdad')
       this.chartColors[0].backgroundColor = array;
     }
   

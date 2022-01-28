@@ -9,7 +9,16 @@
                 <app-bar-chart (competencyId)="getParticularCompetencySkills($event)" [domains]="verticalChartData" [chartData]="verticalChartData"></app-bar-chart>
                 <!-- Below commented is for chart.js charts -->
                 <!-- <app-bar-chart [orientation]="'x'" [chartType]="'bar'" [values]="Skills" [labels]="competencieslabels"></app-bar-chart> -->
+
+                <div class="legend">
+                    <span *ngFor="let verticalchartdata of  verticalChartData">
+                    {{verticalchartdata.competencyname}}
+                </span>
+
+                </div>
             </div>
+
+
         </div>
         <div class="rightPan" [@animSlider]="counter" #height>
 
@@ -21,7 +30,11 @@
                         <app-horizontal-bar-chart (selectedArea)="selectedHorizontalArrayIndex($event, i)" [domains]="domain" [chartData]="competency.skills"></app-horizontal-bar-chart>
                     </div>
                     <div class="aPan">
-                        <div class="subhtxt">Skill Areas <span (click)="resetAreas(i, competency)" class="ResetBtn "> <em class="icon-Refresh"></em>Reset</span></div>
+                        <div class="subhtxt">Skill Areas
+                            <span (click)="resetAreas(i, competency)" class="ResetBtn "> 
+                                <!-- <em class="icon-Refresh"></em>Reset -->
+                            </span>
+                        </div>
                         <div class="areasbtnsec" *ngIf="competency.areaSkills">
                             <span class="btnBox" [ngStyle]="{'border-left-color': area1.areaColor ? area1.areaColor : ''}" *ngFor="let area1 of competency.areaSkills">{{area1.areaname}} -
                                 {{area1.score}}</span>
@@ -30,12 +43,12 @@
                 </div>
             </ng-container>
 
-            <button type="button" class="sliderBtn left" (click)="onPrevious()" [disabled]="counter===0"><em
+            <!-- <button type="button" class="sliderBtn left" (click)="onPrevious()" [disabled]="counter===0"><em
                     class="icon-Back"></em></button>
             <button type="button" class="sliderBtn right" (click)="onNext()" [disabled]="this.counter == this.list.length - 1"><em class="icon-right-next"></em></button>
             <div class="slideDots">
                 <span (click)="dotChange(i)" *ngFor="let competency of competancyData; let i = index" [class.active]="i===counter">{{competency && competency.score ? competency.score : ''}}</span>
-            </div>
+            </div> -->
         </div>
         <span class="triangle-left"></span>
     </div>
