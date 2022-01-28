@@ -122,7 +122,6 @@ export class CompetencyAreasComponent implements OnInit {
         element.areaColor = this.verticaldomain[i];
       }
     });
-    console.log( this.verticalChartData,' this.verticalChartData')
   }
   getAreasDataInitialize(i) {
     this.competancyData.forEach(skills => {
@@ -143,17 +142,18 @@ export class CompetencyAreasComponent implements OnInit {
 }
 
 resetAreas(i, competency) {
-  let areaSingle = [];
-  this.competancyData[i].skills.forEach((area, i) => {
-    if (area) {
-    area.areaColor = this.domain[i] ? this.domain[i] : '';
-    area.area.forEach(element => {
-      element.areaColor = this.domain[i] ? this.domain[i] : '';
-      areaSingle.push(element);
-    });
-  }
-  });
-    this.competancyData[i].areaSkills = areaSingle;
+  // this.getCompetancyData();
+  // let areaSingle = [];
+  // this.competancyData[i].skills.forEach((area, i) => {
+  //   if (area) {
+  //   area.areaColor = this.domain[i] ? this.domain[i] : '';
+  //   area.area.forEach(element => {
+  //     element.areaColor = this.domain[i] ? this.domain[i] : '';
+  //     areaSingle.push(element);
+  //   });
+  // }
+  // });
+  //   this.competancyData[i].areaSkills = areaSingle;
 
 }
 

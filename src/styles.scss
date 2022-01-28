@@ -757,16 +757,20 @@ ng-image-slider {
         box-shadow: 0px 1px 5px 0px rgb(0 0 0 / 12%);
         border: 1px solid #d4d4d4bd;
         border-radius: 4px;
-        ;
         min-height: 550px;
+        &.cognitiveTechnical {
+            >div {
+                width: 50%;
+            }
+        }
         >div {
             padding: 1.5em 2em;
-            width: 50%;
             color: $lightGrey;
             display: flex;
             flex-direction: column;
         }
         .leftPan {
+            width: 35%;
             background-color: $whiteColor;
             position: relative;
             justify-content: space-between;
@@ -787,6 +791,7 @@ ng-image-slider {
             }
         }
         .rightPan {
+            width: 65%;
             position: relative;
             background-color: #F4FBFF;
             border-radius: 0 4px 4px 0;
@@ -1151,6 +1156,7 @@ mat-icon {
             font-size: 1.4em;
             font-weight: 500;
             border: none;
+            height: 90px;
         }
         .txtinfo {
             display: flex;

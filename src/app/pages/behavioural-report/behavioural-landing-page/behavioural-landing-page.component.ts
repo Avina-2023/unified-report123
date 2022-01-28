@@ -89,7 +89,7 @@ export class BehaviouralLandingPageComponent implements OnInit, OnDestroy {
       };
     this.emailId= data;
      this.getBehaviourReportAPISubscription = this.ApiService.getBehaviourReport(apiData).subscribe((response: any) => {
-      console.log('res', response);
+      // console.log('res', response);
       if (response && response.success && response.data) {
           this.getAllBehaviourData = response.data.data ? response.data.data : null;
           this.getAllBehaviourAPIDetails = response.data ? response.data : null;

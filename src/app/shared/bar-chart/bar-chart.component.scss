@@ -34,14 +34,14 @@
 
 .expandheaderArea {
     >div {
-        padding: 0 0.5em;
+        padding: 22px 0.5em;
         font-size: 1.4em;
         font-weight: 500;
         border: none;
     }
     >div:hover {
         background-color: #F4FBFF;
-        >span:hover {
+        .skillname:hover {
             color: #000000;
         }
     }
@@ -62,10 +62,16 @@
         font-size: 18px;
         color: #666666;
         cursor: pointer;
+        margin-left: 20px;
     }
 }
 
 .barcanvas {
     display: block;
     margin-top: 50px
+}
+
+.competencyImg {
+    height: 50px;
+    width: 50px;
 }

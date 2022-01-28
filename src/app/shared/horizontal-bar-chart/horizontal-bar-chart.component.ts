@@ -15,9 +15,18 @@ export class HorizontalBarChartComponent implements OnInit, OnChanges {
   public barChartPlugins = [pluginDataLabels];
   public barChartOptions: ChartOptions = {
     responsive: true,
+    layout: {
+      padding: {
+        left: 130
+      }
+    },  
     scales : {
       yAxes: [{
-
+        
+          ticks: {
+            mirror: true,
+            padding: 140,
+          },
       }],
       xAxes: [{
         ticks: {

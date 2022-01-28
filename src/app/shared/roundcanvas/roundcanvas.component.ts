@@ -14,6 +14,9 @@ export class RoundcanvasComponent implements OnInit {
     // Doughnut
     public doughnutOption: ChartOptions = {
       responsive: true,
+      tooltips: {
+        enabled: false
+      },
       legend: {
         display: false
       },
@@ -62,7 +65,6 @@ export class RoundcanvasComponent implements OnInit {
           array.push('rgba(195, 197, 202, 1)');
         }
       }
-      console.log(array,'asdasdad')
       this.chartColors[0].backgroundColor = array;
     }
   

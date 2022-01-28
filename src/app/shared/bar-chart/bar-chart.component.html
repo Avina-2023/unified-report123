@@ -35,10 +35,10 @@
             </ngx-charts-bar-horizontal> -->
             <div class="expandheaderArea">
                 <div class="width-51" *ngFor="let skills of chartData" (click)="behaviouralSkills(skills.competencyname ,skills.score )">
-                    <img src="../../../assets/images/THOUGHTFACTOR.svg" />
-
-                    <span class="skillname">{{skills.competencyname}}</span>
-
+                    <span>
+                        <img class="competencyImg" [src]="skills.competencyImageurl" />
+                        <span class="skillname">{{skills.competencyname}}</span>
+                    </span>
                 </div>
             </div>
 
@@ -49,6 +49,6 @@
 <!-- <div *ngIf="!hideControls" class="reset">
     <span class="ResetBtn " (click)="reset()"> <em class="icon-Refresh"></em>Reset</span>
 </div> -->
-<div class=" clk">* Click on a competency to view the skill details </div>
+<!-- <div class=" clk">* Click on a competency to view the skill details </div> -->
 <!-- </div> -->
 <!-- <canvas #myChart></canvas> -->

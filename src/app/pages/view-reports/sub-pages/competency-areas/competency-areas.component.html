@@ -3,7 +3,7 @@
         Cognitive and Technical Competencies
 
     </div>
-    <div class="InfoDetailsArea" *ngIf="verticalChartData && verticalChartData.length > 0">
+    <div class="InfoDetailsArea cognitiveTechnical" *ngIf="verticalChartData && verticalChartData.length > 0">
         <div class="leftPan">
             <div>
                 <app-bar-chart (competencyId)="getParticularCompetencySkills($event)" [domains]="verticalChartData" [chartData]="verticalChartData"></app-bar-chart>
@@ -12,8 +12,8 @@
 
                 <div class="legend">
                     <span *ngFor="let verticalchartdata of  verticalChartData">
-                    {{verticalchartdata.competencyname}}
-                </span>
+                        <span class="dot" [ngStyle]="{'background-color': verticalchartdata.areaColor ? verticalchartdata.areaColor : ''}"></span><span class="m-l">{{verticalchartdata.competencyname}}</span>
+                    </span>
 
                 </div>
             </div>
