@@ -1,15 +1,17 @@
 @import "variables";
-
 .containerWrapper {
+    background-color: #F7FAFE;
     max-width: 1280px;
     width: 96%;
     margin: 0 auto;
 }
+
 .innerContainer {
     max-width: 1140px;
     width: 96%;
     margin: 0 auto;
 }
+
 .bannerSection {
     padding: 20px 0;
     background-image: url('#{$imagePath}/bg.png');
@@ -51,7 +53,7 @@
         background-position: center;
     }
     .profileWrapper {
-        border-bottom: 1px solid rgba(0,0,0,0.2);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.2);
         padding-bottom: 30px;
     }
     .profImage {
@@ -61,7 +63,7 @@
             border: 3px solid $whiteColor;
             border-radius: 12px;
             background-color: $whiteColor;
-            box-shadow: 0 3px 6px rgba(0,0,0,0.3);
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
             overflow: hidden;
             position: absolute;
             top: -50px;
@@ -227,12 +229,13 @@
             transition: transform 0.6s;
             transform-style: preserve-3d;
         }
-        .frontSide, .backSide {
+        .frontSide,
+        .backSide {
             position: absolute;
             width: 100%;
             height: 100%;
             backface-visibility: hidden;
-            box-shadow: 0 6px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
             padding: 20px;
             border-radius: 10px;
             text-align: center;
@@ -275,7 +278,7 @@
                 max-height: 100px;
                 &::after {
                     content: '';
-                    background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, transparent),color-stop(1, white));
+                    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, transparent), color-stop(1, white));
                     position: absolute;
                     bottom: 0;
                     left: 0;
@@ -348,7 +351,8 @@
                 }
             }
         }
-        &::before, &::after {
+        &::before,
+        &::after {
             content: '';
             position: absolute;
             background-repeat: no-repeat;
@@ -375,7 +379,8 @@
         line-height: 24px;
         display: inline-block;
     }
-    .styleOne, .styleTwo {
+    .styleOne,
+    .styleTwo {
         margin-top: 40px;
     }
     .styleOne {
@@ -424,7 +429,7 @@
         }
         .right {
             width: 46%;
-            > div {
+            >div {
                 &:first-child {
                     width: 45%;
                     margin-left: 10%;
@@ -501,7 +506,6 @@
             }
         }
     }
-
     .styleTwo {
         .right {
             width: 52%;
@@ -548,7 +552,7 @@
         }
         .left {
             width: 46%;
-            > div {
+            >div {
                 &:first-child {
                     width: 45%;
                 }
@@ -627,6 +631,7 @@
         }
     }
 }
+
 //Snapshot Tabs
 .snapshotTabs {
     margin-top: 60px;
@@ -715,7 +720,7 @@
                         width: 70%;
                     }
                 }
-                > div {
+                >div {
                     width: 77%;
                     p {
                         font-size: 18px;
@@ -736,6 +741,7 @@
         }
     }
 }
+
 ::ng-deep.snapshotTabs {
     .mat-tab-header {
         border-bottom: transparent;
@@ -815,7 +821,6 @@
     }
 }
 
-
 //Score benchmark Info dialog
 ::ng-deep.filterModalbox {
     height: 90% !important;
@@ -834,6 +839,7 @@
         }
     }
 }
+
 .benchmarkInfo {
     overflow: auto;
     height: 100%;
@@ -848,12 +854,13 @@
         text-align: center;
         padding: 25px 0;
         position: relative;
-        &::before, &::after {
+        &::before,
+        &::after {
             content: '';
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background-color: rgba(0,0,0,0.2);
+            background-color: rgba(0, 0, 0, 0.2);
             height: 1px;
             width: 28%;
         }
@@ -869,7 +876,8 @@
         border: none;
         float: right;
     }
-    .chart, .growth {
+    .chart,
+    .growth {
         text-align: center;
     }
     .growth {
@@ -921,6 +929,7 @@
         }
     }
 }
+
 //PERSONAL DEVELOPMENT
 .personaldevelopment {
     .containerWrapper {
@@ -928,9 +937,9 @@
         .strengthscope-description-wrapper {
             .description-contaier {
                 width: 46%;
-                .scope-head{
+                .scope-head {
                     justify-content: center;
-                    span{
+                    span {
                         margin-left: 15px;
                         text-align: center;
                         text-transform: uppercase;
@@ -939,14 +948,13 @@
                         color: $primaryBlue;
                         line-height: normal;
                     }
-                        margin-bottom: 30px;
+                    margin-bottom: 30px;
                 }
-                .scope-desc{
+                .scope-desc {
                     font-size: 14px;
                     text-align: center;
                     line-height: normal;
                 }
-
             }
         }
         .content-wrapper {
@@ -961,13 +969,13 @@
                 position: relative;
                 overflow: hidden;
                 .development-glimpse {
-                  position: relative;
-                  font-size: 12px;
-                  color: #999999;
-                  text-align: left;
+                    position: relative;
+                    font-size: 12px;
+                    color: #999999;
+                    text-align: left;
                 }
-                .content-head{
-                    .content-head-txt{
+                .content-head {
+                    .content-head-txt {
                         text-align: left;
                         text-transform: uppercase;
                         font-size: 18px;
@@ -976,26 +984,26 @@
                     }
                     margin-bottom: 20px;
                     .content-title-wrapper-column {
-                      display: flex;
-                      flex-direction: column;
-                      text-align: left;
-                      margin-left: 15px;
-                      margin-left: 15px;
+                        display: flex;
+                        flex-direction: column;
+                        text-align: left;
+                        margin-left: 15px;
+                        margin-left: 15px;
                     }
                 }
-                .content-desc{
+                .content-desc {
                     text-align: left;
                     margin: 0;
                     padding: 0;
                     line-height: 25px;
-                    li{
-                        span{
+                    li {
+                        span {
                             margin-left: 10px;
                         }
                     }
                 }
             }
-            .content-container::before{
+            .content-container::before {
                 content: '';
                 position: absolute;
                 left: 0;
@@ -1003,16 +1011,15 @@
                 height: 100%;
                 width: 7px;
             }
-            .content-container.green::before{
+            .content-container.green::before {
                 background-color: $successColorDark;
             }
-            .content-container.red::before{
+            .content-container.red::before {
                 background-color: $redcolor;
             }
         }
     }
 }
-
 
 //Interview
 .interview {
@@ -1024,7 +1031,8 @@
         height: 100%;
         left: 0;
         top: 0;
-        &::before, &::after {
+        &::before,
+        &::after {
             content: '';
             position: absolute;
             background-repeat: no-repeat;
@@ -1073,7 +1081,6 @@
     }
 }
 
-
 //Strength Areas
 .strengthAreas {
     .containerWrapper {
@@ -1094,7 +1101,8 @@
     }
     .strengthAreasWrapper {
         position: relative;
-        figure, .right {
+        figure,
+        .right {
             width: 49%;
         }
         figure {
@@ -1137,7 +1145,6 @@
     }
 }
 
-
 //Development Scope
 .developmentScope {
     .containerWrapper {
@@ -1158,7 +1165,8 @@
     }
     .developmentScopeWrapper {
         position: relative;
-        figure, .left {
+        figure,
+        .left {
             width: 49%;
         }
         figure {
@@ -1185,12 +1193,12 @@
                 line-height: normal;
             }
             .heading7 {
-              font-size: 16px;
-              font-weight: 700;
-              color: $warningColorDark;
-              text-transform: uppercase;
-              line-height: normal;
-              margin: 1em 0 0.58em;
+                font-size: 16px;
+                font-weight: 700;
+                color: $warningColorDark;
+                text-transform: uppercase;
+                line-height: normal;
+                margin: 1em 0 0.58em;
             }
             ol {
                 margin: 0;
@@ -1213,10 +1221,12 @@
 }
 
 .hanging {
-  margin-left: 1.5em;
-  text-indent: -1.5em;
+    margin-left: 1.5em;
+    text-indent: -1.5em;
 }
-.noData,.errorCard {
+
+.noData,
+.errorCard {
     box-shadow: 0 6px 10px rgb(0 0 0 / 10%);
     background: white;
     padding: 5em;
@@ -1228,7 +1238,8 @@
     justify-content: center;
     font-weight: 500;
 }
+
 .errorCard {
-  margin: 2em 2em;
-  padding: 3em;
+    margin: 2em 2em;
+    padding: 3em;
 }

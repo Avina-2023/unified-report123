@@ -1,6 +1,8 @@
 import { AfterViewInit, Input } from "@angular/core";
 import { Component, OnInit, ViewChild, ElementRef, OnChanges, Output, EventEmitter } from '@angular/core';
-
+import { ChartConfiguration, ChartData, ChartDataSets, ChartOptions, ChartType } from 'chart.js';
+import { BaseChartDirective, Label } from 'ng2-charts';
+import * as pluginDataLabels from 'chartjs-plugin-datalabels';
 
 @Component({
   selector: 'app-horizontal-bar-chart',
@@ -8,6 +10,64 @@ import { Component, OnInit, ViewChild, ElementRef, OnChanges, Output, EventEmitt
   styleUrls: ['./horizontal-bar-chart.component.scss']
 })
 export class HorizontalBarChartComponent implements OnInit, OnChanges {
+  //ng-chart-2 start
+  @ViewChild(BaseChartDirective) chart: BaseChartDirective | undefined;
+  public barChartPlugins = [pluginDataLabels];
+  public barChartOptions: ChartOptions = {
+    responsive: true,
+    layout: {
+      padding: {
+        left: 130,
+        right:25,
+      }
+    },  
+    scales : {
+      yAxes: [{
+        // display:true,
+          ticks: {
+            mirror: true,
+            padding: 140,
+          },
+      }],
+      xAxes: [{
+        
+        ticks: {
+          max : 100,
+          min : 0,
+          stepSize:40,
+         
+        }
+ 
+        }],
+    },
+    plugins: {
+      datalabels: {
+        anchor: 'end',
+        align: 'end',
+        font: {
+          size: 10,
+        }
+      }
+    }
+  };
+  public barChartLabels: Label[] = [];
+  public barChartType: ChartType = 'horizontalBar';
+  public barChartLegend = false;
+  // public chartPlugins = [pluginDataLabels];
+
+  public barChartData: ChartDataSets[] = [
+    {
+      data: [],
+      backgroundColor: [],
+      hoverBackgroundColor:[],
+      barThickness: 25,
+    }
+  ];
+
+  barChartData1 =[];
+
+  //ng-chart-2 end
+
   // chart start
   canvas: any;
   ctx: any;
@@ -56,7 +116,8 @@ yAxisTicks = [0, 40, 80, 100];
   }
 
   async ngOnChanges() {
-    await this.getSkillData();
+    await 
+    // this.getSkillData();
     this.calculateWidthAndHeight();
     this.setColorDomain();
   }
@@ -69,6 +130,7 @@ yAxisTicks = [0, 40, 80, 100];
     this.single = [];
     let colorCode = [];
     this.chartData.forEach(element => {
+      // console.log(element,'asfdads')
       // console.log(element)
       if (element) {
         let ele = {
@@ -79,6 +141,16 @@ yAxisTicks = [0, 40, 80, 100];
         }
         colorCode.push(element.areaColor);
         this.single.push(ele);
+        this.barChartLabels.push(element.skillname ? element.skillname : '')
+        this.barChartData1.push(element.score ? element.score : '')
+        this.barChartData = [
+          {
+            data: this.barChartData1,
+            backgroundColor: colorCode,
+            hoverBackgroundColor:colorCode,
+            barThickness: 25,
+          }
+        ];
       }
     });
     this.colorScheme.domain = colorCode;
@@ -116,6 +188,28 @@ yAxisTicks = [0, 40, 80, 100];
   onSelect(event) {
     this.selectedArea.emit(event);
   }
+
+
+  chartClicked(e): void {
+    if (e.active.length > 0) {
+      const chart = e.active[0]._chart;
+      const activePoints = chart.getElementAtEvent(e.event);
+      if ( activePoints.length > 0) {
+        // get the internal index of slice in pie chart
+        const clickedElementIndex = activePoints[0]._index;
+        const label = chart.data.labels[clickedElementIndex];
+        // get value by index
+        const value = chart.data.datasets[0].data[clickedElementIndex];
+        let  data = {
+            name : label,
+            value: value,
+            label: label
+        }
+        this.selectedArea.emit(data);
+      }
+    }
+  }
+
 
   sorting(data) {
     // console.log(data)
