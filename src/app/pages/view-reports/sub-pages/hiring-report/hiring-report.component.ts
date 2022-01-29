@@ -462,7 +462,7 @@ export class HiringReportComponent implements OnInit {
             if (params.value != null && params.value >= 40 && params.value < 80 ) {
               return `<div class="progessbar yellow-btn" style="width: `+params.value+`%;">`+params.value+'%'+`</div>`;
             } if(params.value != null && params.value >=80 && params.value < 90){
-              return `<div class="progessbar blue-btn" style="width: `+params.value+`%;">`+params.value+'%'+`</div>`;
+              return `<div class="progessbar light-green" style="width: `+params.value+`%;">`+params.value+'%'+`</div>`;
             }
             if (params.value != null && params.value >=90){
               return `<div class="progessbar green-btn" style="width: `+params.value+`%; ">`+params.value+'%'+`</div>`;

@@ -19,6 +19,14 @@ export class BehaviouralReportCanvasComponent implements OnInit {
     },
     legend: {
       display: false
+    },
+    plugins: {
+      datalabels: {
+        formatter: (value, ctx) => {
+          return '';
+
+      },
+      }
     }
   }
   public loopingArray: any = [
@@ -39,6 +47,7 @@ export class BehaviouralReportCanvasComponent implements OnInit {
 
   ngOnInit() {
     this.score;
+    // console.log(this.score,'this.score')
     this.setStenScoreColors(Number(this.score));
   }
 

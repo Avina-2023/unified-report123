@@ -20,6 +20,7 @@ import { BehaviouralCompetencyAreasComponent } from './sub-pages/behavioural-com
 import { BehaviouralQualityAreaComponent } from './sub-pages/behavioural-quality-area/behavioural-quality-area.component';
 import 'ag-grid-enterprise';
 import { HiringReportComponent } from './sub-pages/hiring-report/hiring-report.component';
+import { ChartsModule } from 'ng2-charts';
 @NgModule({
   declarations: [
     ProfileInfoComponent,
@@ -32,10 +33,10 @@ import { HiringReportComponent } from './sub-pages/hiring-report/hiring-report.c
     BehaviouralAssessmentInfoComponent,
     BehaviouralCompetencyAreasComponent,
     BehaviouralQualityAreaComponent,
-    HiringReportComponent
+    HiringReportComponent,
+    
   ],
   imports: [
-
     CommonModule,
     ViewReportsRoutingModule,
     DragScrollModule,
@@ -43,6 +44,7 @@ import { HiringReportComponent } from './sub-pages/hiring-report/hiring-report.c
     SharedModule,
     MaterialModule,
     PdfViewerModule,
+    ChartsModule,
     AgGridModule.withComponents([])
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]
