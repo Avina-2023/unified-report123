@@ -968,16 +968,28 @@
                 margin-top: 40px;
                 position: relative;
                 overflow: hidden;
+                .development-glimpse {
+                    position: relative;
+                    font-size: 12px;
+                    color: #999999;
+                    text-align: left;
+                }
                 .content-head {
                     .content-head-txt {
-                        margin-left: 15px;
-                        text-align: center;
+                        text-align: left;
                         text-transform: uppercase;
                         font-size: 18px;
                         font-weight: 500;
                         line-height: normal;
                     }
                     margin-bottom: 20px;
+                    .content-title-wrapper-column {
+                        display: flex;
+                        flex-direction: column;
+                        text-align: left;
+                        margin-left: 15px;
+                        margin-left: 15px;
+                    }
                 }
                 .content-desc {
                     text-align: left;
@@ -1123,6 +1135,10 @@
                     color: $color-blank;
                     line-height: 20px;
                     margin-bottom: 10px;
+                    margin-left: 1.25em;
+                    list-style: decimal !important;
+                    display: list-item;
+                    list-style-position: inside;
                 }
             }
         }
@@ -1194,8 +1210,36 @@
                     color: $color-blank;
                     line-height: 20px;
                     margin-bottom: 10px;
+                    margin-left: 1.25em;
+                    list-style: decimal !important;
+                    display: list-item;
+                    list-style-position: inside;
                 }
             }
         }
     }
+}
+
+.hanging {
+    margin-left: 1.5em;
+    text-indent: -1.5em;
+}
+
+.noData,
+.errorCard {
+    box-shadow: 0 6px 10px rgb(0 0 0 / 10%);
+    background: white;
+    padding: 5em;
+    display: flex;
+    margin: 2em 0;
+    height: 50%;
+    font-size: 18px;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+}
+
+.errorCard {
+    margin: 2em 2em;
+    padding: 3em;
 }

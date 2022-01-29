@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, TemplateRef, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy, TemplateRef, Input, AfterViewInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { AppConfigService } from 'src/app/utils/app-config.service';
 import { ActivatedRoute } from '@angular/router';
@@ -12,20 +12,12 @@ import { MatDialog } from '@angular/material/dialog';
   templateUrl: './behavioural-landing-page.component.html',
   styleUrls: ['./behavioural-landing-page.component.scss']
 })
-export class BehaviouralLandingPageComponent implements OnInit, OnDestroy {
+export class BehaviouralLandingPageComponent implements OnInit, AfterViewInit, OnDestroy {
   getAllBehaviourData: any;
   getBehaviourReportAPISubscription: Subscription;
   getAllBasicData: any;
   emailId: any;
   highestEducation: any;
-  strenthAreas = [
-    {img:'/assets/images/Recpectiveness.svg',color:'green',title:'RECEPTIVENESS'},
-    {img:'/assets/images/creative.svg',color:'green',title:'ADAPTABILITY'},
-  ];
-  devScope = [
-    {img:'/assets/images/adaptablity.svg',color:'red',title:'CREATIVE THINKING'},
-    {img:'/assets/images/Teamwork.svg',color:'red',title:'TEAMWORK'},
-  ];
   benchMarkScore = [
     {score:"1-2",label:"DEVELOPMENT SCOPE",color:"red"},
     {score:"3-4-5",label:"LESS INCLINED",color:"yellow"},
@@ -36,6 +28,7 @@ export class BehaviouralLandingPageComponent implements OnInit, OnDestroy {
   doughnutValue:number = 4;
   tabIndex:number = 0;
   getAllBehaviourAPIDetails: any;
+  apiSuccess = true;
 
   constructor(
     private toastr: ToastrService,
@@ -47,6 +40,15 @@ export class BehaviouralLandingPageComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.getRoute();
+  }
+
+  ngAfterViewInit() {
+    // Hack: Scrolls to top of Page after page view initialized
+    let top = document.getElementById('top');
+    if (top !== null) {
+      top.scrollIntoView();
+      top = null;
+    }
   }
 
   getRoute() {
@@ -85,12 +87,12 @@ export class BehaviouralLandingPageComponent implements OnInit, OnDestroy {
 
   getBehaviouralReportData(data) {
       const apiData = {
-        email: 'ronald-devnath@lntecc.com'
+        email: data
       };
     this.emailId= data;
      this.getBehaviourReportAPISubscription = this.ApiService.getBehaviourReport(apiData).subscribe((response: any) => {
-      // console.log('res', response);
       if (response && response.success && response.data) {
+          this.apiSuccess = true;
           this.getAllBehaviourData = response.data.data ? response.data.data : null;
           this.getAllBehaviourAPIDetails = response.data ? response.data : null;
           this.getAllBasicData = response.data.basicDetails ? response.data.basicDetails : null;
@@ -100,15 +102,19 @@ export class BehaviouralLandingPageComponent implements OnInit, OnDestroy {
             this.highestEducation = this.highestEducation[i];
           }
         } else {
+          this.apiSuccess = false;
           this.toastr.error('No Reports Available');
           this.getAllBasicData = null;
           this.getAllBehaviourData = null;
+          this.getAllBehaviourAPIDetails = null;
         }
       }, (err)=> {
         console.log('err', err);
+        this.apiSuccess = false;
         this.getAllBasicData = null;
         this.getAllBehaviourData = null;
-    });
+        this.getAllBehaviourAPIDetails = null;
+  });
   }
 
   momentForm(date) {
