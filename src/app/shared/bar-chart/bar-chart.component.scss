@@ -15,19 +15,63 @@
 }
 
 .chart-center {
-  width: 100%;
-  max-height: 100%;
-  position: relative;
-  min-height: 420px;
-  margin: auto;
-  .center {
-    position: absolute;
     width: 100%;
-    margin: 0 auto;
-    top: 40%;
-    left: 50%;
-    bottom: 0;
-    right: 0;
-    transform: translate(-50%, -40%);
-  }
+    max-height: 100%;
+    position: relative;
+    min-height: 120px;
+    margin: auto;
+    .center {
+        position: absolute;
+        width: 100%;
+        margin: 0 auto;
+        top: 40%;
+        left: 50%;
+        bottom: 0;
+        right: 0;
+        transform: translate(-50%, -40%);
+    }
+}
+
+.expandheaderArea {
+    >div {
+        padding: 22px 0.5em;
+        font-size: 1.4em;
+        font-weight: 500;
+        border: none;
+    }
+    >div:hover {
+        background-color: #F4FBFF;
+        .skillname:hover {
+            color: #000000;
+        }
+    }
+    .txtinfo {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        font-size: 1.4em;
+        padding-right: 75px;
+        span {
+            padding: 0;
+            font-size: 0.6em;
+            font-weight: normal;
+            margin-right: -68px;
+        }
+    }
+    .skillname {
+        font-size: 18px;
+        color: #666666;
+        cursor: pointer;
+        margin-left: 20px;
+    }
+}
+
+.barcanvas {
+    display: block;
+    margin-top: 10px
+}
+
+.competencyImg {
+    height: 50px;
+    width: 50px;
 }
