@@ -16,6 +16,12 @@ export class BarChartComponent implements OnInit, OnChanges, AfterViewInit {
   public barChartPlugins = [pluginDataLabels];
   public barChartOptions: ChartOptions = {
     responsive: true,
+
+    layout: {
+      padding: {
+       top:30
+      }
+    },  
     legend: {
       display: false
     },
@@ -30,9 +36,11 @@ export class BarChartComponent implements OnInit, OnChanges, AfterViewInit {
        
       }],
       xAxes: [{
-        display:false,
-        
- 
+          ticks: {
+              display: false
+          }
+   
+     
         }],
     },
     plugins: {
@@ -55,7 +63,7 @@ export class BarChartComponent implements OnInit, OnChanges, AfterViewInit {
       data: [],
       backgroundColor: [],
       hoverBackgroundColor:[],
-      barThickness: 25,
+      // barThickness: 25,
     }
   ];
 
@@ -141,7 +149,7 @@ export class BarChartComponent implements OnInit, OnChanges, AfterViewInit {
             data: this.barChartData1,
             backgroundColor: colorCode,
             hoverBackgroundColor:colorCode,
-            // barThickness: 50,
+            barThickness: 50,
           }
         ];
         // console.log(this.barChartData,'this.barChartData')

@@ -5,14 +5,14 @@
     </div>
     <div class="InfoDetailsArea cognitiveTechnical" *ngIf="verticalChartData && verticalChartData.length > 0">
         <div class="leftPan">
-            <div>
+            <div class="">
                 <app-bar-chart (competencyId)="getParticularCompetencySkills($event)" [domains]="verticalChartData" [chartData]="verticalChartData"></app-bar-chart>
                 <!-- Below commented is for chart.js charts -->
                 <!-- <app-bar-chart [orientation]="'x'" [chartType]="'bar'" [values]="Skills" [labels]="competencieslabels"></app-bar-chart> -->
 
                 <div class="legend">
                     <span *ngFor="let verticalchartdata of  verticalChartData">
-                        <span class="dot" [ngStyle]="{'background-color': verticalchartdata.areaColor ? verticalchartdata.areaColor : ''}"></span><span class="m-l">{{verticalchartdata.competencyname}}</span>
+                        <span class="dot" [ngStyle]="{'background-color': verticalchartdata.areaColor ? verticalchartdata.areaColor : '#6666'}"></span><span class="m-l">{{verticalchartdata.competencyname}}</span>
                     </span>
 
                 </div>

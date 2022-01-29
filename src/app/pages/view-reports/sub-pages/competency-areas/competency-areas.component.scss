@@ -1,7 +1,9 @@
  .legend {
-     display: flex;
-     justify-content: space-evenly;
+     //  display: flex;
+     //  justify-content: space-evenly;
      margin-top: 2.7em;
+     //  width: 588px;
+     margin-left: 2.5em;
  }
  
  .dot {
@@ -13,5 +15,10 @@
  }
  
  .m-l {
-     margin-left: 3px;
+     margin-left: 5px;
+     margin-right: 15px;
+ }
+ 
+ .m-t {
+     margin-top: 1.2em;
  }

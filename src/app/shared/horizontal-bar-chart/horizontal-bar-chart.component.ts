@@ -17,22 +17,25 @@ export class HorizontalBarChartComponent implements OnInit, OnChanges {
     responsive: true,
     layout: {
       padding: {
-        left: 130
+        left: 130,
+        right:25,
       }
     },  
     scales : {
       yAxes: [{
-        
+        // display:true,
           ticks: {
             mirror: true,
             padding: 140,
           },
       }],
       xAxes: [{
+        
         ticks: {
           max : 100,
           min : 0,
           stepSize:40,
+         
         }
  
         }],
