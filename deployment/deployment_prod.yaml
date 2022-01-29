@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: unifiedreportuat
+  name: unifiedreport
   namespace: unifiedrpt
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: unifiedreportuat
+      app: unifiedreport
   template:
     metadata:
       labels:
-        app: unifiedreportuat
+        app: unifiedreport
     spec:
       containers:
         - name: unifiedreportuat
-          image: assessmentecouat.azurecr.io/unifiedreportuat:$tag
+          image: assessmentecouat.azurecr.io/unifiedreport:$tag
           resources:
            limits:
              cpu: "1"
