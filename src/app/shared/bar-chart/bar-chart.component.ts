@@ -1,16 +1,77 @@
 import { AfterViewInit, Input, OnChanges } from "@angular/core";
 import { Component, OnInit, ViewChild, ElementRef, Output, EventEmitter } from '@angular/core';
-
-
+// import * as Chart from "chart.js";
+import { ChartConfiguration, ChartData, ChartDataSets, ChartOptions, ChartType } from 'chart.js';
+import { BaseChartDirective, Label } from 'ng2-charts';
+import * as pluginDataLabels from 'chartjs-plugin-datalabels';
+declare const Chart;
 @Component({
   selector: 'app-bar-chart',
   templateUrl: './bar-chart.component.html',
   styleUrls: ['./bar-chart.component.scss']
 })
 export class BarChartComponent implements OnInit, OnChanges, AfterViewInit {
+  //new chart
+  @ViewChild(BaseChartDirective) chart: BaseChartDirective | undefined;
+  public barChartPlugins = [pluginDataLabels];
+  public barChartOptions: ChartOptions = {
+    responsive: true,
+
+    layout: {
+      padding: {
+       top:30
+      }
+    },  
+    legend: {
+      display: false
+    },
+    
+    scales : {
+      yAxes: [{
+        ticks: {
+          max : 100,
+          min : 0,
+          stepSize:40,
+        },
+       
+      }],
+      xAxes: [{
+          ticks: {
+              display: false
+          }
+   
+     
+        }],
+    },
+    plugins: {
+      datalabels: {
+        anchor: 'end',
+        align: 'end',
+        font: {
+          size: 10,
+        },
+      }
+    }
+  };
+  public barChartLabels: Label[] = [];
+  public barChartType: ChartType = 'bar';
+  public barChartLegend = false;
+  // public chartPlugins = [pluginDataLabels];
+
+  public barChartData: ChartDataSets[] = [
+    {
+      data: [],
+      backgroundColor: [],
+      hoverBackgroundColor:[],
+      // barThickness: 25,
+    }
+  ];
+
+  barChartData1 =[];
+
+  //new chart end
+
   // Charts module initializtion
-  canvas: any;
-  ctx: any;
   @ViewChild('myChart', {static: false}) private chartContainer: ElementRef;
   @Input('chartType') type: any;
   @Input('values') chartValues: any;
@@ -26,7 +87,6 @@ export class BarChartComponent implements OnInit, OnChanges, AfterViewInit {
   indexNum: any = 1;
   single: any;
   view: any[] = [500, 360];
-
   // options
   showXAxis = true;
   showYAxis = true;
@@ -59,7 +119,7 @@ export class BarChartComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   async ngOnChanges() {
-    await this.getCompetencyData();
+    // await this.getCompetencyData();
     // this.setColorDomain();
   }
 
@@ -80,6 +140,19 @@ export class BarChartComponent implements OnInit, OnChanges, AfterViewInit {
         }
         colorCode.push(element.areaColor);
         this.single.push(ele);
+
+        // console.log(this.single,'this.single')
+        this.barChartLabels.push(element.competencyname ? element.competencyname : '')
+        this.barChartData1.push(element.score ? element.score : '')
+        this.barChartData = [
+          {
+            data: this.barChartData1,
+            backgroundColor: colorCode,
+            hoverBackgroundColor:colorCode,
+            barThickness: 50,
+          }
+        ];
+        // console.log(this.barChartData,'this.barChartData')
       }
     });
     this.colorScheme.domain = colorCode;
@@ -87,6 +160,22 @@ export class BarChartComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   ngAfterViewInit() {
+  }
+
+  
+   chartClicked(e): void {
+    if (e.active.length > 0) {
+      const chart = e.active[0]._chart;
+      const activePoints = chart.getElementAtEvent(e.event);
+      if ( activePoints.length > 0) {
+        // get the internal index of slice in pie chart
+        const clickedElementIndex = activePoints[0]._index;
+        const label = chart.data.labels[clickedElementIndex];
+        // get value by index
+        const value = chart.data.datasets[0].data[clickedElementIndex];
+        this.getSelectedCompetencyIdByName(label,value);
+      }
+    }
   }
 
   calculateWidthAndHeight() {
@@ -181,6 +270,13 @@ export class BarChartComponent implements OnInit, OnChanges, AfterViewInit {
   onSelect(event) {
     this.getSelectedCompetencyIdByName(event.name, event.value);
   }
+
+
+  behaviouralSkills(name,value){
+    this.getSelectedCompetencyIdByName(name,value);
+  }
+
+
 
   getSelectedCompetencyIdByName(name, value) {
     const selectedId = this.chartData.find((data)=> {
