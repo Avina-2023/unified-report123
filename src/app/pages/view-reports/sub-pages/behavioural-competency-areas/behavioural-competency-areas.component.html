@@ -20,8 +20,22 @@
                         <div class="heading4" #myDiv>{{competency && competency.competencyname ? competency.competencyname : ''}}
 
                         </div>
-                        <app-horizontal-bar-chart (selectedArea)="selectedHorizontalArrayIndex($event, i)" [hideControls]="hideControls" [domains]="domain" [chartData]="competency.skills"></app-horizontal-bar-chart>
-                    </div>
+
+                        <div class="roundCanvas">
+                            <div style="width: 200px;
+                            margin-top: 15px;" *ngFor="let skilles of competency.skills">
+                                <app-roundcanvas (click)="selectedHorizontalArrayIndex($event, i)" style="width: 200px;margin-top: 20px;" [bgColor]="domain" [score]="skilles.score"></app-roundcanvas>
+                                <div class="behaskillsname"> <span>{{skilles.skillname}}</span></div>
+                            </div>
+
+
+                        </div>
+
+
+                        <!-- <app-horizontal-bar-chart (selectedArea)="selectedHorizontalArrayIndex($event, i)" [hideControls]="hideControls" [domains]="domain" [chartData]="competency.skills"></app-horizontal-bar-chart> -->
+                    </div>.
+
+
                     <!-- <div class="aPan">
                         <div class="subhtxt">Skill areas <span (click)="resetAreas(i, competency)" class="ResetBtn "> <em class="icon-Refresh"></em>Reset</span></div>
                         <div class="areasbtnsec" *ngIf="competency.areaSkills">
@@ -42,12 +56,12 @@
                 </div>
             </ng-container>
 
-            <button type="button" class="sliderBtn left" (click)="onPrevious()" [disabled]="counter===0"><em
-                  class="icon-Back"></em></button>
-            <button type="button" class="sliderBtn right" (click)="onNext()" [disabled]="this.counter == this.list.length - 1"><em class="icon-right-next"></em></button>
-            <div class="slideDots">
+            <!-- <button type="button" class="sliderBtn left" (click)="onPrevious()" [disabled]="counter===0"><em
+                  class="icon-Back"></em></button> -->
+            <!-- <button type="button" class="sliderBtn right" (click)="onNext()" [disabled]="this.counter == this.list.length - 1"><em class="icon-right-next"></em></button> -->
+            <!-- <div class="slideDots">
                 <span (click)="dotChange(i,competency.competencyname)" *ngFor="let competency of competancyData; let i = index" [class.active]="i===counter">{{competency && competency.score ? competency.score : ''}}</span>
-            </div>
+            </div> -->
         </div>
         <span class="triangle-left"></span>
     </div>

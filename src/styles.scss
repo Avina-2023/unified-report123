@@ -36,10 +36,6 @@ $custom-typography: mat-typography-config($font-family: '"Roboto", normal !impor
     font-family: 'Material Icons' !important;
 }
 
-figure {
-    margin: 0 !important;
-}
-
 
 /* Track */
 
@@ -200,6 +196,7 @@ mat-toolbar.header-toolbar {
 
 .perfect-scrollbar {
     background-color: #f9f9f9;
+    // background-color: #F7FAFE;
     overflow: hidden;
     overflow-y: auto;
     height: 100%;
@@ -760,16 +757,20 @@ ng-image-slider {
         box-shadow: 0px 1px 5px 0px rgb(0 0 0 / 12%);
         border: 1px solid #d4d4d4bd;
         border-radius: 4px;
-        ;
         min-height: 550px;
+        &.cognitiveTechnical {
+            >div {
+                width: 50%;
+            }
+        }
         >div {
             padding: 1.5em 2em;
-            width: 50%;
             color: $lightGrey;
             display: flex;
             flex-direction: column;
         }
         .leftPan {
+            width: 32%;
             background-color: $whiteColor;
             position: relative;
             justify-content: space-between;
@@ -790,8 +791,9 @@ ng-image-slider {
             }
         }
         .rightPan {
+            width: 68%;
             position: relative;
-            background-color: #f2f2f2;
+            background-color: #F4FBFF;
             border-radius: 0 4px 4px 0;
             overflow: hidden;
             top: 0;
@@ -831,15 +833,15 @@ ng-image-slider {
                 margin-top: 14px;
                 flex-wrap: wrap;
                 max-width: 100%;
-                max-height: 190px;
+                max-height: 257px;
                 min-height: 150px;
                 overflow: hidden;
                 overflow-y: auto;
                 align-content: flex-start;
                 .btnBox {
-                    background-color: transparent;
+                    background-color: #ffffff;
                     vertical-align: bottom;
-                    border: 0;
+                    border-left: 3px solid;
                     font-weight: 500;
                     padding: 5px 9px;
                     font-size: 11px;
@@ -848,7 +850,7 @@ ng-image-slider {
                     text-decoration: none;
                     -webkit-user-select: none;
                     user-select: none;
-                    border-radius: 3px;
+                    // border-radius: 3px;
                     margin-right: 10px;
                     margin-bottom: 10px;
                     font-weight: 500;
@@ -869,7 +871,7 @@ ng-image-slider {
             }
             .chartContainer {
                 height: 100%;
-                padding-top: 1em;
+                padding-top: 0em;
                 >div.sPan {
                     min-height: 200px;
                     display: flex;
@@ -877,7 +879,7 @@ ng-image-slider {
                     justify-content: flex-start;
                 }
                 div.aPan {
-                    padding: 2em 0.3em 0;
+                    padding: 0em 0.3em 0;
                 }
             }
         }
@@ -931,7 +933,7 @@ button.sliderBtn,
     line-height: 1.5;
     z-index: 5;
     outline: none;
-    top: 14.5em;
+    top: 15.5em;
     padding-top: 5px;
     &.doc {
         top: 0;
@@ -941,7 +943,7 @@ button.sliderBtn,
         position: relative;
     }
     &.right {
-        right: 12px;
+        right: 2px;
         &.doc {
             right: -700px;
         }
@@ -1154,6 +1156,7 @@ mat-icon {
             font-size: 1.4em;
             font-weight: 500;
             border: none;
+            height: 90px;
         }
         .txtinfo {
             display: flex;

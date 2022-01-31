@@ -6,6 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { ApiService } from '../../../../services/api.service';
 import { environment } from 'src/environments/environment.prod';
 import { AppConfigService } from 'src/app/utils/app-config.service';
+import { APP_CONSTANTS } from 'src/app/utils/app-constants.service';
 // import { Timeline } from 'vis-timeline';
 // import { DataSet } from 'vis-data';
 
@@ -23,6 +24,7 @@ export class BehaviouralAssessmentInfoComponent implements OnInit, OnChanges {
   proctor_url = environment.PROCTOR_URL;
   @Input() getAllReportsData;
   @Input() driveName;
+  @Input() emailId;
   @ViewChild('sourceVideo',{static: false}) video: TemplateRef<any>;
   @ViewChild('matDialog1', {static: false}) matDialogRef1: TemplateRef<any>;
   assessmentsList: any;
@@ -42,7 +44,7 @@ export class BehaviouralAssessmentInfoComponent implements OnInit, OnChanges {
   playVideoList = []
   secValChart: any;
   isaccess:any;
-  constructor(private appConfig: AppConfigService,public matDialog: MatDialog,private toastr: ToastrService, private ApiService: ApiService, ) { 
+  constructor(private appConfig: AppConfigService,public matDialog: MatDialog,private toastr: ToastrService, private ApiService: ApiService, ) {
 
   }
 
@@ -62,6 +64,9 @@ export class BehaviouralAssessmentInfoComponent implements OnInit, OnChanges {
     // const timeline = new Timeline(container, items, options);
   }
 
+  viewBehaviouralReport() {
+    this.appConfig.routeNavigationWithParam(APP_CONSTANTS.ENDPOINTS.REPORTS.BEHAVIOUR_MODULE.BEHAVIOUR_REPORT, this.ApiService.encrypt(this.emailId));
+  }
 
   ngOnChanges() {
     this.getAssessmentInfo();
@@ -180,7 +185,7 @@ export class BehaviouralAssessmentInfoComponent implements OnInit, OnChanges {
                 if (Object.prototype.hasOwnProperty.call(data.metadata.metrics, key)) {
                 }
                 filter.push({key: key,value:data.metadata.metrics[key]})
-              } 
+              }
               this.playVideoList.push({chart:filter})
             });
            this.currentItem =  this.playlist[this.currentIndex]
@@ -198,10 +203,10 @@ export class BehaviouralAssessmentInfoComponent implements OnInit, OnChanges {
   }
 
   playVideo() {
-    var vid = <HTMLVideoElement> document.getElementById("myVideo"); 
+    var vid = <HTMLVideoElement> document.getElementById("myVideo");
     vid.load();
-    vid.play(); 
-  } 
+    vid.play();
+  }
 
   closeBox() {
     this.matDialog.closeAll();
