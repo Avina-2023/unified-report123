@@ -17,7 +17,7 @@
             <ng-container *ngFor="let competency of competancyData; let i = index">
                 <div *ngIf="i===counter" class="chartContainer">
                     <div class="sPan">
-                        <div class="heading4" #myDiv>{{competency && competency.competencyname ? competency.competencyname : ''}}
+                        <div class="heading4" #myDiv>{{competency && competency.competencyname ? competency.competencyname : 'NA'}}
 
                         </div>
 
@@ -25,7 +25,7 @@
                             <div style="width: 200px;
                             margin-top: 15px;" *ngFor="let skilles of competency.skills">
                                 <app-roundcanvas (click)="selectedHorizontalArrayIndex($event, i)" style="width: 200px;margin-top: 20px;" [bgColor]="domain" [score]="skilles.score"></app-roundcanvas>
-                                <div class="behaskillsname"> <span>{{skilles.skillname}}</span></div>
+                                <div class="behaskillsname"> <span>{{skilles.skillname ? skilles.skillname : 'NA'}}</span></div>
                             </div>
 
 
