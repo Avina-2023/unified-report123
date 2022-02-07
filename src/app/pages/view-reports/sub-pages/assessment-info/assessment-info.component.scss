@@ -64,3 +64,35 @@
     position: absolute;
     right: 0px;
 }
+
+.primaryInfo span.successColor {
+    color: $successColorDark !important;
+}
+
+.status {
+    display: flex !important;
+    .warningColor {
+        color: #C02222 !important;
+    }
+    em {
+        &.icon-checked {
+            color: #43b447;
+            font-size: 25px;
+        }
+        &.icon-uncheck {
+            color: #C02222;
+            font-size: 30px;
+        }
+    }
+    .statusCheck {
+        display: inline-block;
+        font-size: 0.9em !important;
+        padding: 0 0.1em !important;
+        word-break: break-all;
+    }
+}
+
+.icons {
+    font-size: 1em !important;
+    padding-right: 0.5em !important;
+}

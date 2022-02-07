@@ -48,6 +48,19 @@
                     }">{{ getCredibility(assessment.percentageScore) }}</span>
                                 </span>
                             </div>
+                            <div class="width-150">
+
+                                <span>Completion
+                                    <span class="status" [ngClass]="{ warningColor: assessment?.teststatus === 'In Complete' && assessment?.teststatus === 'Not Taken', 
+                                                   successColor: assessment?.teststatus === 'Complete'}">
+                                <em  *ngIf="assessment?.teststatus === 'In Complete'" class=" icons icon-uncheck"></em>
+                                <em   *ngIf="assessment?.teststatus === 'Not Taken'" class=" icons icon-uncheck"></em>
+                                <em  *ngIf="assessment?.teststatus === 'Complete'"class=" icons icon-checked"></em>
+                                
+                                    <span class="statusCheck">{{assessment?.teststatus}}</span>
+                                </span>
+                                </span>
+                            </div>
                         </div>
                     </mat-expansion-panel-header>
 
@@ -77,7 +90,7 @@
                                 </span>
 
                             </div>
-                            <div class="primaryInfo">
+                            <!-- <div class="primaryInfo">
                                 Completion
                                 <span [ngClass]="{ warningColor: assessment?.teststatus === 'In Complete' && assessment?.teststatus === 'Not Taken', 
                                                    successColor: assessment?.teststatus === 'Complete'}">
@@ -87,7 +100,7 @@
                                 
                                     <span>{{assessment?.teststatus}}</span>
                                 </span>
-                            </div>
+                            </div> -->
                         </div>
                         <div class="ContentInfoSummary">
                             <div class="assessmentHeaderinfo">

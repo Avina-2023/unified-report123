@@ -110,7 +110,7 @@ ul {
 /*common*************************/
 
 .icon-uncheck {
-    top: 5px;
+    // top: 5px;
     position: relative;
 }
 
@@ -508,7 +508,7 @@ ng-image-slider {
         justify-content: center;
     }
     .width-51 {
-        width: 47% !important;
+        width: 40% !important;
     }
     .width-270 {
         width: 270px !important;
@@ -549,9 +549,11 @@ ng-image-slider {
                 font-size: 2em;
                 &.icon-SpeedoMeter {
                     font-size: 2.3em;
+                    color: #b3b3b3;
                 }
                 &.icon-Booked {
                     font-size: 1.7em;
+                    color: #b3b3b3;
                 }
             }
             >span {
@@ -563,7 +565,7 @@ ng-image-slider {
                     display: block;
                     font-size: 1.3em;
                     font-weight: 500;
-                    color: $blackColor;
+                    // color: $blackColor;
                 }
             }
         }
@@ -1355,4 +1357,12 @@ textarea {
             visibility: hidden !important;
         }
     }
+}
+
+.successColor {
+    color: $successColorDark !important;
+}
+
+.warningColor {
+    color: $primaryColor !important;
 }
