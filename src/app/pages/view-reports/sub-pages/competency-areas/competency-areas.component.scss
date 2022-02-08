@@ -1,12 +1,13 @@
  .legend {
      margin-top: 2.7em;
-     margin-left: 2.5em;
+     margin-left: 3em;
      display: flex;
      flex-wrap: wrap;
      max-width: 100%;
+     font-size: 11px;
      max-height: 257px;
      min-height: 150px;
-     align-content: flex-start
+     align-content: flex-start;
  }
  
  .CompetenciesName {

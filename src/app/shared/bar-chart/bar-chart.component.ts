@@ -141,7 +141,6 @@ export class BarChartComponent implements OnInit, OnChanges, AfterViewInit {
         colorCode.push(element.areaColor);
         this.single.push(ele);
 
-        // console.log(this.single,'this.single')
         this.barChartLabels.push(element.competencyname ? element.competencyname : '')
         this.barChartData1.push(element.score ? element.score : '')
         this.barChartData = [
@@ -152,7 +151,6 @@ export class BarChartComponent implements OnInit, OnChanges, AfterViewInit {
             barThickness: 50,
           }
         ];
-        // console.log(this.barChartData,'this.barChartData')
       }
     });
     this.colorScheme.domain = colorCode;

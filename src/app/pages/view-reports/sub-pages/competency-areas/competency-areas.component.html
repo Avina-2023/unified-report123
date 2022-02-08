@@ -13,7 +13,7 @@
                 <div class="CompetenciesName">Competencies</div>
                 <div class="legend">
                     <span *ngFor="let verticalchartdata of  verticalChartData">
-                        <span class="dot" [ngStyle]="{'background-color': verticalchartdata.areaColor ? verticalchartdata.areaColor : '#6666'}"></span><span class="m-l">{{verticalchartdata.competencyname ? verticalchartdata.competencyname : 'NA'}}</span>
+                        <span class="dot" [ngStyle]="{'background-color': verticalchartdata.areaColor ? verticalchartdata.areaColor : '#6666'}"></span><span class="m-l">{{verticalchartdata.competencyname ? verticalchartdata.competencyname : 'XXXX'}}</span>
                     </span>
 
                 </div>
@@ -26,7 +26,7 @@
             <ng-container *ngFor="let competency of competancyData; let i = index">
                 <div *ngIf="i===counter" class="chartContainer">
                     <div class="sPan">
-                        <div class="heading4">{{competency && competency.competencyname ? competency.competencyname : 'NA'}} <span>{{competency && competency.score ? competency.score : 'NA'}}<span *ngIf="competency && competency.score">%</span></span>
+                        <div class="heading4">{{competency && competency.competencyname ? competency.competencyname : 'XXXX'}} <span>{{competency && competency.score ? competency.score : ''}}<span *ngIf="competency && competency.score">%</span></span>
                         </div>
                         <app-horizontal-bar-chart (selectedArea)="selectedHorizontalArrayIndex($event, i)" [domains]="domain" [chartData]="competency.skills"></app-horizontal-bar-chart>
                     </div>
@@ -37,7 +37,7 @@
                             </span>
                         </div>
                         <div class="areasbtnsec" *ngIf="competency.areaSkills">
-                            <span class="btnBox" [ngStyle]="{'border-left-color': area1.areaColor ? area1.areaColor : ''}" *ngFor="let area1 of competency.areaSkills">{{area1.areaname ? area1.areaname : 'NA'}} -
+                            <span class="btnBox" [ngStyle]="{'border-left-color': area1.areaColor ? area1.areaColor : ''}" *ngFor="let area1 of competency.areaSkills">{{area1.areaname ? area1.areaname : 'XXXX'}} -
                                 {{area1.score}}</span>
                         </div>
                     </div>

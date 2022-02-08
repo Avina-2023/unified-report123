@@ -13,7 +13,7 @@ export const environment = {
   blobKey : "",
 
   API_BASE_URL: 'https://candidateqa.lntiggnite.com',
-  NODE_EDGE_URL: 'https://edgeserviceqa.lntiggnite.com',
+  NODE_EDGE_URL: 'https://uapqaedgeservice.lntiggnite.com',
   NODE_URL: 'https://uapcoreserviceqa.lntiggnite.com',
   PROCTOR_URL : 'http://lntproctordev.lntedutech.com/api/storage/',
   PROCTOR : 'https://lntproctordev.lntedutech.com'
