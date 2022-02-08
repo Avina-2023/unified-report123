@@ -64,3 +64,62 @@
     position: absolute;
     right: 0px;
 }
+
+.primaryInfo span.successColor {
+    color: $successColorDark !important;
+}
+
+.primaryInfo {
+    em {
+        &.icon-checked {
+            color: #43b447;
+            font-size: 25px !important;
+        }
+        &.icon-uncheck {
+            color: #C02222;
+            font-size: 30px !important;
+        }
+    }
+}
+
+.status {
+    display: flex !important;
+    .warningColor {
+        color: #C02222 !important;
+    }
+    .statusCheck {
+        display: inline-block;
+        font-size: 0.9em !important;
+        padding: 0 0.1em !important;
+        word-break: break-all;
+    }
+}
+
+.progressText {
+    position: relative;
+    .progressclose1 {
+        position: absolute;
+        width: 25px;
+        height: 25px;
+        background-color: #a9a9a866;
+        right: -17px;
+        top: -21px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 25px;
+    }
+    .closebtn1 {
+        font-size: 0.9em;
+        color: #000;
+        cursor: pointer;
+        position: relative;
+        top: 2px;
+        z-index: 1;
+    }
+}
+
+// .icons {
+//     font-size: 1em !important;
+//     padding-right: 0.5em !important;
+// }

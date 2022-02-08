@@ -142,7 +142,7 @@ export class BehaviouralAssessmentInfoComponent implements OnInit, OnChanges {
       width: '200vh',
       height: '600px',
       autoFocus: false,
-      closeOnNavigation: true,
+      disableClose: false
     });
     this.userInfo = {
       assessmentName: assessment.testname,

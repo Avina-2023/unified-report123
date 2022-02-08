@@ -1,0 +1,22 @@
+.progressclose1 {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    background-color: #a9a9a866;
+    ;
+    right: 7px;
+    top: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 25px;
+}
+
+.closebtn1 {
+    font-size: 0.9em;
+    color: #000;
+    cursor: pointer;
+    position: relative;
+    top: 2px;
+    z-index: 1;
+}
