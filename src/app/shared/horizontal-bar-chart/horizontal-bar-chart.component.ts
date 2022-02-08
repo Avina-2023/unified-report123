@@ -141,7 +141,7 @@ yAxisTicks = [0, 40, 80, 100];
         }
         colorCode.push(element.areaColor);
         this.single.push(ele);
-        this.barChartLabels.push(element.skillname ? element.skillname : 'NA')
+        this.barChartLabels.push(element.skillname ? element.skillname : 'XXXX')
         this.barChartData1.push(element.score ? element.score : '')
         this.barChartData = [
           {

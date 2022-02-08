@@ -33,19 +33,18 @@
                 </ng-template>
 
             </ngx-charts-bar-horizontal> -->
-            <div class="expandheaderArea">
-                <div class="width-51" *ngFor="let skills of chartData" (click)="behaviouralSkills(skills.competencyname ,skills.score )">
-                    <span>
+            <mat-selection-list [multiple]="false">
+                <mat-list-option *ngFor="let skills of chartData;let i = index" [selected]="skills && i == 0" (click)="behaviouralSkills(skills.competencyname ,skills.score )" [value]="skills.competencyname">
+                    <div class="expandheaderArea">
                         <img class="competencyImg" [src]="skills.competencyImageurl" />
                         <span class="skillname">{{skills.competencyname}}</span>
-                    </span>
-                </div>
-            </div>
-
-
+                    </div>
+                </mat-list-option>
+            </mat-selection-list>
         </div>
     </div>
 </ng-template>
+
 <!-- <div *ngIf="!hideControls" class="reset">
     <span class="ResetBtn " (click)="reset()"> <em class="icon-Refresh"></em>Reset</span>
 </div> -->

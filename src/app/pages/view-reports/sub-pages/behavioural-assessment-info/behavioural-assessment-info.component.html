@@ -16,14 +16,14 @@
                             <div class="width-51">
                                 <em class="icon-Assessment"></em>
                                 <span>Test Name:
-                                  <span>{{ assessment.testname ? assessment.testname : '-' }}</span>
+                                  <span class="color-black">{{ assessment.testname ? assessment.testname : '-' }}</span>
                                 </span>
                             </div>
                             <div class="width-270">
                                 <!-- <div> -->
 
                                 <span class="proct"> Proctoring :
-                                        <span>{{ assessment.proctored ? "Yes" : "No"}}
+                                        <span class="color-black">{{ assessment.proctored ? "Yes" : "No"}}
                                             <a *ngIf="isaccess">
                                                 <span *ngIf="assessment.proctored" class="warningColor pointer" (click)="open(assessment)">View Details</span>
                                 </a>
@@ -106,7 +106,13 @@
 </section>
 
 <ng-template #matDialog1>
-    <span class="closedailog" (click)="closeBox()"><em class="icon-Close btn-close"></em></span>
+    <div class="progressText">
+        <div class="progressclose1">
+            <span class="closebtn1" (click)="closeBox()"><em class="icon-Close"></em></span>
+        </div>
+
+    </div>
+    <!-- <span class="closedailog" (click)="closeBox()"><em class="icon-Close btn-close"></em></span> -->
     <section>
         <div class="Pmain">
             <div class="row">
