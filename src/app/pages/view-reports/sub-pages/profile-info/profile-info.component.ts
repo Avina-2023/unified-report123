@@ -94,13 +94,15 @@ export class ProfileInfoComponent implements OnInit, OnChanges {
   }
 
   driveChange(e) {
-    // this._loading.setLoading(true, '');
+    this._loading.setLoading(true, 'loader');
+    setTimeout(() => {
+      this._loading.setLoading(false, 'loader');
+    }, 300);
     this.driveselectedValue = e.value;
     this.emitdriveNametoParent();
   }
 
   emitdriveNametoParent() {
     this.driveName.emit(this.driveselectedValue);
-    // this._loading.setLoading(false, '');
   }
 }

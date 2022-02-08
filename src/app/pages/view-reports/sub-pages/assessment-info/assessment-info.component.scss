@@ -69,20 +69,23 @@
     color: $successColorDark !important;
 }
 
+.primaryInfo {
+    em {
+        &.icon-checked {
+            color: #43b447;
+            font-size: 25px !important;
+        }
+        &.icon-uncheck {
+            color: #C02222;
+            font-size: 30px !important;
+        }
+    }
+}
+
 .status {
     display: flex !important;
     .warningColor {
         color: #C02222 !important;
-    }
-    em {
-        &.icon-checked {
-            color: #43b447;
-            font-size: 25px;
-        }
-        &.icon-uncheck {
-            color: #C02222;
-            font-size: 30px;
-        }
     }
     .statusCheck {
         display: inline-block;
@@ -92,7 +95,31 @@
     }
 }
 
-.icons {
-    font-size: 1em !important;
-    padding-right: 0.5em !important;
+.progressText {
+    position: relative;
+    .progressclose1 {
+        position: absolute;
+        width: 25px;
+        height: 25px;
+        background-color: #a9a9a866;
+        right: -17px;
+        top: -21px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 25px;
+    }
+    .closebtn1 {
+        font-size: 0.9em;
+        color: #000;
+        cursor: pointer;
+        position: relative;
+        top: 2px;
+        z-index: 1;
+    }
 }
+
+// .icons {
+//     font-size: 1em !important;
+//     padding-right: 0.5em !important;
+// }

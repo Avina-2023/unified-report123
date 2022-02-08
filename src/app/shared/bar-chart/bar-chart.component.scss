@@ -32,6 +32,16 @@
     }
 }
 
+.backcolor {
+    //  :hover {
+    background-color: #F4FBFF;
+    span:hover {
+        color: #000000;
+    }
+    .skillname:hover {}
+    // }
+}
+
 .expandheaderArea {
     >div {
         padding: 22px 0.5em;
@@ -39,12 +49,13 @@
         font-weight: 500;
         border: none;
     }
-    >div:hover {
-        background-color: #F4FBFF;
-        .skillname:hover {
-            color: #000000;
-        }
-    }
+    // >div:hover {
+    //     background-color: #F4FBFF;
+    //     span:hover {
+    //         color: #000000;
+    //     }
+    //     .skillname:hover {}
+    // }
     .txtinfo {
         display: flex;
         flex-direction: column;
@@ -60,7 +71,7 @@
     }
     .skillname {
         font-size: 18px;
-        color: #666666;
+        // color: #666666;
         cursor: pointer;
         margin-left: 20px;
     }
@@ -74,4 +85,21 @@
 .competencyImg {
     height: 50px;
     width: 50px;
+}
+
+.mat-list-base .mat-list-item,
+.mat-list-base .mat-list-option {
+    display: block;
+    height: 100px;
+    -webkit-tap-highlight-color: transparent;
+    width: 100%;
+    padding: 0;
+}
+
+mat-list-option[aria-selected="true"] {
+    background: #dbeffa;
+}
+
+.mat-list-option.active .skillname {
+    color: #000000;
 }

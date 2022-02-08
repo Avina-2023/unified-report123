@@ -16,13 +16,13 @@
                             <div class="width-51">
                                 <em class="icon-Assessment"></em>
                                 <span>Test Name:
-                                    <span>{{ assessment.assessmentname ? assessment.assessmentname : '-' }}</span>
+                                    <span class="color-black">{{ assessment.assessmentname ? assessment.assessmentname : '-' }}</span>
                                 </span>
                             </div>
                             <div class="width-270">
                                 <em class="icon-Booked"></em>
                                 <span>Test Date:
-                                    <span>{{
+                                    <span class="color-black">{{
                                         assessment.assessmentdate
                                         ? momentForm(assessment.assessmentdate)
                                         : "-"
@@ -49,8 +49,17 @@
                                 </span>
                             </div>
                             <div class="width-150">
-
-                                <span>Completion
+                                <div class="primaryInfo">
+                                    <em *ngIf="assessment?.teststatus === 'In Complete'" class="icon-uncheck"></em>
+                                    <em *ngIf="assessment?.teststatus === 'Not Taken'" class="icon-uncheck"></em>
+                                    <em *ngIf="assessment?.teststatus === 'Complete'" class="icon-checked"></em>
+                                    <span> Completion :
+                                    <span [ngClass]="{ warningColor: assessment?.teststatus === 'In Complete' && assessment?.teststatus === 'Not Taken', successColor: assessment?.teststatus === 'Complete'
+                                    }">
+                                        <span style="font-size: 1em;display: contents;">{{assessment?.teststatus}}</span></span>
+                                    </span>
+                                </div>
+                                <!-- <span>Completion
                                     <span class="status" [ngClass]="{ warningColor: assessment?.teststatus === 'In Complete' && assessment?.teststatus === 'Not Taken', 
                                                    successColor: assessment?.teststatus === 'Complete'}">
                                 <em  *ngIf="assessment?.teststatus === 'In Complete'" class=" icons icon-uncheck"></em>
@@ -59,7 +68,7 @@
                                 
                                     <span class="statusCheck">{{assessment?.teststatus}}</span>
                                 </span>
-                                </span>
+                                </span> -->
                             </div>
                         </div>
                     </mat-expansion-panel-header>
@@ -281,7 +290,13 @@
 </ng-template> -->
 
 <ng-template #matDialog1>
-    <span class="closedailog" (click)="closeBox()"><em class="icon-Close btn-close"></em></span>
+    <!-- <span class="closedailog" (click)="closeBox()"><em class="icon-Close btn-close"></em></span> -->
+    <div class="progressText">
+        <div class="progressclose1">
+            <span class="closebtn1" (click)="closeBox()"><em class="icon-Close"></em></span>
+        </div>
+
+    </div>
     <section>
         <div class="Pmain">
             <div class="row">
