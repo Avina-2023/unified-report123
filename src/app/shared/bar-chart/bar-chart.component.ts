@@ -141,7 +141,7 @@ export class BarChartComponent implements OnInit, OnChanges, AfterViewInit {
         colorCode.push(element.areaColor);
         this.single.push(ele);
 
-        this.barChartLabels.push(element.competencyname ? element.competencyname : '')
+        this.barChartLabels.push(element.competencyname  ? element.competencyname : '')
         this.barChartData1.push(element.score ? element.score : '')
         this.barChartData = [
           {

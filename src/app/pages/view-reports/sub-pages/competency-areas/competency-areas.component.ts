@@ -130,8 +130,12 @@ export class CompetencyAreasComponent implements OnInit {
         skills.skills.forEach((area, i) => {
           if (area) {
           area.areaColor = this.domain[i];
+
           area.area.forEach(element => {
             element.areaColor = this.domain[i];
+            if(element.areaname == 'NA'){
+                element.areaname = 'XXXX'
+            }
             areaSingle.push(element);
           });
         }
