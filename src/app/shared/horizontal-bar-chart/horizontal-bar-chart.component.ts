@@ -25,6 +25,9 @@ export class HorizontalBarChartComponent implements OnInit, OnChanges {
       yAxes: [{
         // display:true,
           ticks: {
+            callback: (label: any) => {
+              return label.length > 20 ? label.substr(0, 20) + '...' : label;
+            },
             mirror: true,
             padding: 140,
           },
@@ -141,7 +144,7 @@ yAxisTicks = [0, 40, 80, 100];
         }
         colorCode.push(element.areaColor);
         this.single.push(ele);
-        this.barChartLabels.push(element.skillname ? element.skillname : 'XXXX')
+        this.barChartLabels.push(element.skillname && element.skillname != 'NA' ? element.skillname : 'XXXX')
         this.barChartData1.push(element.score ? element.score : '')
         this.barChartData = [
           {
