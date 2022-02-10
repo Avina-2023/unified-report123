@@ -265,13 +265,19 @@ export class BarChartComponent implements OnInit, OnChanges, AfterViewInit {
       this.ngOnInit();
   }
 
-  onSelect(event) {
-    this.getSelectedCompetencyIdByName(event.name, event.value);
-  }
+  // onSelect(event) {
+  //   this.getSelectedCompetencyIdByName(event.name, event.value);
+  // }
 
 
   behaviouralSkills(name,value){
-    this.getSelectedCompetencyIdByName(name,value);
+    const selectedId = this.chartData.find((data)=> {
+      if (data.competencyname == name && data.score == value ) {
+        return data;
+      }
+    });
+
+    this.emitCompetencyId(selectedId.competencyname ? selectedId.competencyname : '');
   }
 
 
@@ -282,6 +288,7 @@ export class BarChartComponent implements OnInit, OnChanges, AfterViewInit {
         return data;
       }
     });
+
     this.emitCompetencyId(selectedId.competencyname ? selectedId.competencyname : '');
   }
   emitCompetencyId(id) {
