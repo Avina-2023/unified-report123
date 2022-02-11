@@ -4,7 +4,7 @@
             <img alt="EduTech" class="beforeloginimg" src="https://assets.lntedutech.com/edutech_logo.svg" />
         </div>
         <div *ngIf="isaccess" style="cursor: pointer;" class="logout">
-            <span class="wel" *ngIf="isaccess"> Hello, {{username}}</span>
+            <span class="wel" *ngIf="isaccess">{{username}}</span>
             <span *ngIf="!InAppReport">
                 <em class="icon-logout"  matTooltip="Logout" (click)="logout()"></em>
             </span>

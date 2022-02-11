@@ -133,7 +133,7 @@ export class BarChartComponent implements OnInit, OnChanges, AfterViewInit {
     this.chartData.forEach(element => {
       if (element) {
         let ele = {
-          name: element.competencyname ? element.competencyname : '',
+          name: element.competencyname && element.competencyname != 'NA' ? element.competencyname : 'XXXX',
           value: element.score ? element.score : '',
           id: element.competencyId ? element.competencyId : '',
           color: element.areaColor ? element.areaColor : ''
@@ -141,8 +141,7 @@ export class BarChartComponent implements OnInit, OnChanges, AfterViewInit {
         colorCode.push(element.areaColor);
         this.single.push(ele);
 
-        // console.log(this.single,'this.single')
-        this.barChartLabels.push(element.competencyname ? element.competencyname : '')
+        this.barChartLabels.push(element.competencyname && element.competencyname !='NA'   ? element.competencyname : 'XXXX')
         this.barChartData1.push(element.score ? element.score : '')
         this.barChartData = [
           {
@@ -152,7 +151,6 @@ export class BarChartComponent implements OnInit, OnChanges, AfterViewInit {
             barThickness: 50,
           }
         ];
-        // console.log(this.barChartData,'this.barChartData')
       }
     });
     this.colorScheme.domain = colorCode;
@@ -267,23 +265,30 @@ export class BarChartComponent implements OnInit, OnChanges, AfterViewInit {
       this.ngOnInit();
   }
 
-  onSelect(event) {
-    this.getSelectedCompetencyIdByName(event.name, event.value);
-  }
+  // onSelect(event) {
+  //   this.getSelectedCompetencyIdByName(event.name, event.value);
+  // }
 
 
   behaviouralSkills(name,value){
-    this.getSelectedCompetencyIdByName(name,value);
+    const selectedId = this.chartData.find((data)=> {
+      if (data.competencyname == name && data.score == value ) {
+        return data;
+      }
+    });
+
+    this.emitCompetencyId(selectedId.competencyname ? selectedId.competencyname : '');
   }
 
 
 
   getSelectedCompetencyIdByName(name, value) {
     const selectedId = this.chartData.find((data)=> {
-      if (data.competencyname == name && data.score == value) {
+      if (data.competencyname == name ? name : 'XXXX' && data.score == value) {
         return data;
       }
     });
+
     this.emitCompetencyId(selectedId.competencyname ? selectedId.competencyname : '');
   }
   emitCompetencyId(id) {

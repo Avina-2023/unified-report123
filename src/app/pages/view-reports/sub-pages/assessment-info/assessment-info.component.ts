@@ -92,7 +92,7 @@ export class AssessmentInfoComponent implements OnInit, OnChanges {
     if (score >=90) {
       return 'Excellent';
     }
-    return null;
+    return '-';
   }
 
   momentForm(date) {
