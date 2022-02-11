@@ -1,9 +1,25 @@
  .legend {
-     //  display: flex;
-     //  justify-content: space-evenly;
      margin-top: 2.7em;
-     //  width: 588px;
-     margin-left: 2.5em;
+     margin-left: 3em;
+     display: flex;
+     flex-wrap: wrap;
+     max-width: 100%;
+     font-size: 11px;
+     max-height: 257px;
+     min-height: 150px;
+     align-content: flex-start;
+ }
+ 
+ .CompetenciesName {
+     text-align: center;
+ }
+ 
+ .CompetenciesPercentage {
+     transform: translateX(-52%) translateY(-50%) rotate( -91deg);
+     height: 24px;
+     width: 143px;
+     position: absolute;
+     margin-top: 21%;
  }
  
  .dot {

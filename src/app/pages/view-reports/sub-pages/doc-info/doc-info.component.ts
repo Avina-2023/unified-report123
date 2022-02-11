@@ -73,6 +73,10 @@ export class DocInfoComponent implements OnInit, OnChanges {
   closeDialog() {
     this.dialog.closeAll();
   }
+  closeDialog1() {
+    this.dialog.closeAll();
+  }
+
 
   moveLeft() {
     this.ds.moveLeft();

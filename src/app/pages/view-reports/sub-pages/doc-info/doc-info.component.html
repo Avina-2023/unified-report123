@@ -106,5 +106,11 @@
 </ng-template>
 
 <ng-template #viewPDF id="viewPDF" *ngIf="isaccess">
+    <div class="progressText">
+        <div class="progressclose1">
+            <span class="closebtn1" (click)="closeDialog1()"><em class="icon-Close"></em></span>
+        </div>
+
+    </div>
     <pdf-viewer [src]="selectedURL" [render-text]="true" style="display: contents"></pdf-viewer>
 </ng-template>
