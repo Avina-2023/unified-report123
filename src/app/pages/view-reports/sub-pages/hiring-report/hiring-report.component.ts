@@ -517,6 +517,7 @@ export class HiringReportComponent implements OnInit {
         apiData.request.filterModel.testdate.filterTo = apiData.request.filterModel.testdate.dateTo ?  apiData.request.filterModel.testdate.dateTo : filterTo;
         delete apiData.request.filterModel.testdate.dateTo ? apiData.request.filterModel.testdate.dateTo : '';
       }
+        apiData.request.attributes = JSON.parse(this.appconfig.getSessionStorage('role'))
         this.candidateListSubscription =  this.ApiService.getHiringReport(apiData.request).subscribe((data1: any) => {
         this.userList = data1 && data1.data ? data1.data: [];
         if (this.userList.length > 0) {
