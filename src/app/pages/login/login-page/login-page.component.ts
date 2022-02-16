@@ -33,11 +33,13 @@ export class LoginPageComponent implements OnInit {
     const apiData = {
       email: this.loginForm.value.username.trim(),
       pass: this.loginForm.value.password.trim(),
+      loginfrom:"unifiedreport",
     }
 
     this.apiService.login(apiData).subscribe((response: any)=> {
       if ((response && response.success) || (response && response.data) || (response && response.token)) {
         this.appConfig.setLocalStorage('token', 'true');
+        this.appConfig.setSessionStorage('role',response.data ? JSON.stringify(response.data.attributes.organisations)  : '')
         this.disableButton = false;
         this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.REPORTS.HOME);
       } else {
