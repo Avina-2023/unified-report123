@@ -33,7 +33,7 @@ export class ProfileInfoComponent implements OnInit, OnChanges {
   getPersonalInfo() {
     this.driveList = this.getAllReportsData?.driveDetails;
 
-    this.driveselectedValue = this.selectDriveName ? this.selectDriveName : null;
+    this.driveselectedValue = this.selectDriveName ? this.selectDriveName : this.driveList[0].drivename;
     // do not remove
     // this.driveList && this.driveList.length > 0 ? this.driveList[0].drivename : null
     this.emitdriveNametoParent();
