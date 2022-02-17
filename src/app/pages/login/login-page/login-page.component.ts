@@ -38,10 +38,15 @@ export class LoginPageComponent implements OnInit {
 
     this.apiService.login(apiData).subscribe((response: any)=> {
       if ((response && response.success) || (response && response.data) || (response && response.token)) {
-        this.appConfig.setLocalStorage('token', 'true');
-        this.appConfig.setSessionStorage('role',response.data ? JSON.stringify(response.data.attributes.organisations)  : '')
-        this.disableButton = false;
-        this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.REPORTS.HOME);
+          if(response.data.length > 0){
+            this.appConfig.setLocalStorage('token', 'true');
+            this.appConfig.setSessionStorage('role',response.data ? JSON.stringify(response.data.attributes.organisations)  : '')
+            this.disableButton = false;
+            this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.REPORTS.HOME);
+          }else {
+            this.toastr.error('User not found please try with diffrent crendentials');
+          }
+
       } else {
         this.toastr.error('Invalid Login Crendentials');
       }
