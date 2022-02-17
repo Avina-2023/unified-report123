@@ -54,9 +54,14 @@ export class ViewOverallReportsComponent implements OnInit {
   goToBehavioural() {
     this.appconfig.routeNavigationWithParam(APP_CONSTANTS.ENDPOINTS.REPORTS.BEHAVIOUR_MODULE.BEHAVIOUR_REPORT, this.ApiService.encrypt(this.emailId));
   }
+
   getReports(data) {
+    let driveId = this.appconfig.getSessionStorage('driveInfo');
+    let assessmentId = this.appconfig.getSessionStorage('assessmentId');
     const apiData = {
       email: data,
+      driveId:driveId,
+      assessmentId:assessmentId
     };
     this.emailId = data;
     this.ApiService.getReportsDataAPI(apiData).subscribe((response: any) => {

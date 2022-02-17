@@ -38,7 +38,8 @@ export class LoginPageComponent implements OnInit {
 
     this.apiService.login(apiData).subscribe((response: any)=> {
       if ((response && response.success) || (response && response.data) || (response && response.token)) {
-          if(response.data.length > 0){
+        
+          if(response.data.attributes){
             this.appConfig.setLocalStorage('token', 'true');
             this.appConfig.setSessionStorage('role',response.data ? JSON.stringify(response.data.attributes.organisations)  : '')
             this.disableButton = false;
