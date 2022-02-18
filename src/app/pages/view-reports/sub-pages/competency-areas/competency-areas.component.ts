@@ -40,6 +40,7 @@ export class CompetencyAreasComponent implements OnInit {
   }
 
   getParticularCompetencySkills(e) {
+    console.log('e', e);
     this.getHorizontalDataByCompetencyId(e);
   }
 
@@ -101,7 +102,6 @@ export class CompetencyAreasComponent implements OnInit {
   }
 
   conversionFormula(score: number, maxscore: number) {
-    // console.log(score,maxscore)
     let percentage: number = Number(score) / Number(maxscore) * 100;
     percentage = Number(percentage.toFixed(2));
     return Number.isInteger(percentage) ? percentage : percentage.toFixed(2);
