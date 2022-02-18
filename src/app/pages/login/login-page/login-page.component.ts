@@ -49,7 +49,7 @@ export class LoginPageComponent implements OnInit {
           }
 
       } else {
-        this.toastr.error('Invalid Login Crendentials');
+        this.toastr.error('Invalid Login Credentials');
       }
     }, (err)=> {
       this.disableButton = false;
