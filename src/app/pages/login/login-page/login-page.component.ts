@@ -45,7 +45,7 @@ export class LoginPageComponent implements OnInit {
             this.disableButton = false;
             this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.REPORTS.HOME);
           }else {
-            this.toastr.error('User not found please try with diffrent crendentials');
+            this.toastr.error('User not found please try with diffrent credentials');
           }
 
       } else {
