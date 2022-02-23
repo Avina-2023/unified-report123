@@ -117,7 +117,6 @@ export class AssessmentInfoComponent implements OnInit, OnChanges {
   }
 
   getTimetaken(takenTime){
-    // console.log(takenTime)
     if(takenTime){
       let convertTime1 = takenTime.toString();
       let SplitTime1 = convertTime1.split(/([.])/);
@@ -132,7 +131,6 @@ export class AssessmentInfoComponent implements OnInit, OnChanges {
   }
 
   open(assessment){
-    // console.log(assessment)
     const dialogRef = this.matDialog.open(this.matDialogRef1, {
       width: '95%',
       height: '600px',

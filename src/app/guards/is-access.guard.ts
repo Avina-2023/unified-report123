@@ -31,7 +31,9 @@ export class IsAccessGuard implements CanLoad {
        let details =  this.apiService.decrypt(param.details);
           if( details.email && details.type  == 'microcert'){
                localStorage.setItem('type','microcert');
-                localStorage.setItem('token', 'true');
+               localStorage.setItem('token', 'true');
+               sessionStorage.setItem('driveInfo', details.driveId);
+               sessionStorage.setItem('assessmentId',details.assessmentId); 
                 return true
           }else {
             this.apiService.logout();

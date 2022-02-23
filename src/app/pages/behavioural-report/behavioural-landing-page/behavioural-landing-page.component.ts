@@ -109,7 +109,6 @@ export class BehaviouralLandingPageComponent implements OnInit, AfterViewInit, O
           this.getAllBehaviourAPIDetails = null;
         }
       }, (err)=> {
-        console.log('err', err);
         this.apiSuccess = false;
         this.getAllBasicData = null;
         this.getAllBehaviourData = null;

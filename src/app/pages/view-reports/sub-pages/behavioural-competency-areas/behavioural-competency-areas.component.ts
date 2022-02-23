@@ -174,7 +174,6 @@ export class BehaviouralCompetencyAreasComponent implements OnInit {
   }
   getAreasDataInitialize(i) {
     this.competancyData.forEach((skills,j) => {
-      // console.log(skills,'element')
       if (skills) {
         let areaSingle = [];
         skills.skills.forEach((area, i) => {
