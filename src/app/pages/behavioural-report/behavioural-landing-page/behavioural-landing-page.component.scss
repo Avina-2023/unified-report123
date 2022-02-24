@@ -71,6 +71,8 @@
             img {
                 padding: 12px;
                 width: 100%;
+                object-fit: cover;
+                height: 200px;
             }
         }
         .emptyClass {
@@ -310,26 +312,10 @@
         background-color: $whiteColor;
         padding: 60px 0;
         position: relative;
-        .innerContainer {
-            position: relative;
-            z-index: 9;
-            &::after {
-                content: '';
-                position: absolute;
-                right: -90px;
-                bottom: -60px;
-                background-image: url('#{$imagePath}/bottomCircle.png');
-                background-repeat: no-repeat;
-                background-size: contain;
-                width: 33%;
-                height: 15%;
-                z-index: -1;
-            }
-        }
         .bencmark-info {
             position: absolute;
             right: 0;
-            top: 180px;
+            top: 200px;
             z-index: 9;
             button {
                 border-radius: 100px 0 0 100px;
@@ -349,6 +335,22 @@
                 span {
                     margin-left: 10px;
                 }
+            }
+        }
+        .innerContainer {
+            position: relative;
+            z-index: 9;
+            &::after {
+                content: '';
+                position: absolute;
+                right: -90px;
+                bottom: -60px;
+                background-image: url('#{$imagePath}/bottomCircle.png');
+                background-repeat: no-repeat;
+                background-size: contain;
+                width: 33%;
+                height: 15%;
+                z-index: -1;
             }
         }
         &::before,
@@ -476,6 +478,19 @@
             ul {
                 margin: 0 10px 0 0;
                 padding: 0;
+                position: relative;
+                .arrowUp {
+                    display: flex;
+                    position: absolute;
+                    bottom: 0;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    z-index: 99;
+                    em {
+                        font-size: 22px;
+                        color: $whiteColor;
+                    }
+                }
                 li {
                     width: 45px;
                     height: 17px;
@@ -599,6 +614,19 @@
             ul {
                 margin: 0 0 0 10px;
                 padding: 0;
+                position: relative;
+                .arrowUp {
+                    display: flex;
+                    position: absolute;
+                    bottom: 0;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    z-index: 99;
+                    em {
+                        font-size: 22px;
+                        color: $whiteColor;
+                    }
+                }
                 li {
                     background-color: rgba(203, 214, 19, 0.2);
                     width: 45px;
