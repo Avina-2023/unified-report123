@@ -27,7 +27,7 @@ export class ApiService {
   }
 
   login(data: any) {
-    return this.http.post(`${this.EDGE_URL}/login`, data);
+    return this.http.post(`${this.BASE_URL}/login`, data);
   }
 
   getReportsDataAPI(data) {
