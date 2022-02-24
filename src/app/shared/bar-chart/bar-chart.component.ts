@@ -284,7 +284,10 @@ export class BarChartComponent implements OnInit, OnChanges, AfterViewInit {
 
   getSelectedCompetencyIdByName(name, value) {
     const selectedId = this.chartData.find((data)=> {
-      if ((data.competencyname == (name ? name : 'XXXX')) && data.score == value) {
+            if(data.competencyname == 'NA'){
+                  data.competencyname = 'XXXX';
+            } 
+      if (((data.competencyname ? data.competencyname : "XXXX" )  == (name ? name : 'XXXX')) && data.score == value) {
         return data;
       }
     });
