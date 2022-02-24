@@ -40,7 +40,6 @@ export class CompetencyAreasComponent implements OnInit {
   }
 
   getParticularCompetencySkills(e) {
-    console.log('e', e);
     this.getHorizontalDataByCompetencyId(e);
   }
 
