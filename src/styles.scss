@@ -716,7 +716,7 @@ ng-image-slider {
                 max-width: 100%;
             }
             .progressdata {
-                display: block;
+                display: flex;
                 position: relative;
                 z-index: 2;
                 font-size: 0.8em;
