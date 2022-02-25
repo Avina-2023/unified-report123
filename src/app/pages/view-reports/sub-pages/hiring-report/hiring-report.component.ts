@@ -30,6 +30,7 @@ export class HiringReportComponent implements OnInit {
   reportsData: any;
   userList: any = [];
   pageRowCount = 0;
+  cacheBlockSize: any = 10000;
   candidateListSubscription: Subscription;
   sectiondialogRef: any;
   rowData1: any;

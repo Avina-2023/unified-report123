@@ -115,7 +115,7 @@
                             <div class="assessmentHeaderinfo">
                                 <div class="Summaryhtxt" *ngIf="isaccess">
                                     Sectional Summary
-                                    <span class="primaryClick" (click)="questionview(assessment);inboundClick = !inboundClick"><em
+                                    <span *ngIf="assessment.source != 'STEP'" class="primaryClick" (click)="questionview(assessment);inboundClick = !inboundClick"><em
                                             class="icon-right-next"></em> View Questionwise Analysis</span>
                                 </div>
                                 <div *ngIf="inboundClick">
@@ -189,7 +189,8 @@
                                                       width: (section.attendedquestions / section.overallquestions) * 100 + '%' }"></div>
                                                     <div class="progressdata">
                                                         <span>{{ section.attendedquestions ? section.attendedquestions :
-                                                            '-' }}</span>/ {{ section.overallquestions ? section.overallquestions : '-' }}
+                                                            '-' }}</span>
+                                                        <p *ngIf="assessment.source != 'STEP'">/ {{ section.overallquestions ? section.overallquestions : '-' }}</p>
                                                     </div>
                                                 </td>
                                                 <!-- <td>
