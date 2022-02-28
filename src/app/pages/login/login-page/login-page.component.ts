@@ -41,7 +41,7 @@ export class LoginPageComponent implements OnInit {
         
           if(response.data.attributes){
             this.appConfig.setLocalStorage('token', 'true');
-            this.appConfig.setSessionStorage('role',response.data ? JSON.stringify(response.data.attributes.organisations)  : '')
+            this.appConfig.setLocalStorage('role',response.data ? JSON.stringify(response.data.attributes.organisations)  : '')
             this.disableButton = false;
             this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.REPORTS.HOME);
           }else {
