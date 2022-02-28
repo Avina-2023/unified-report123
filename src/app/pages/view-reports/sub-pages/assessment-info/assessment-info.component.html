@@ -189,7 +189,8 @@
                                                       width: (section.attendedquestions / section.overallquestions) * 100 + '%' }"></div>
                                                     <div class="progressdata">
                                                         <span>{{ section.attendedquestions ? section.attendedquestions :
-                                                            '-' }}</span>/ {{ section.overallquestions ? section.overallquestions : '-' }}
+                                                            '-' }}</span>
+                                                        <p *ngIf="assessment.source != 'STEP'">/ {{ section.overallquestions ? section.overallquestions : '-' }}</p>
                                                     </div>
                                                 </td>
                                                 <!-- <td>
