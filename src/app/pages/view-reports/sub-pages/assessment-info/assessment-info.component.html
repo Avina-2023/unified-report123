@@ -116,7 +116,7 @@
                                 <div class="Summaryhtxt" *ngIf="isaccess">
                                     Sectional Summary
                                     <span class="primaryClick" (click)="questionview(assessment);inboundClick = !inboundClick"><em
-                                            class="icon-right-next"></em> View Questionwise Analysis</span>
+                                        *ngIf="assessment.source != 'STEP'"    class="icon-right-next"></em> View Questionwise Analysis</span>
                                 </div>
                                 <div *ngIf="inboundClick">
                                     <ng-container *ngIf="listOfSections && listOfSections.length > 0">
