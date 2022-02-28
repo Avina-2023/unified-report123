@@ -308,7 +308,7 @@
         </section>
 
         <!-- Interview -->
-        <section class="interview">
+        <section class="interview" *ngIf="isaccess">
             <div class="overlay"></div>
             <div class="containerWrapper">
                 <div class="innerContainer">
@@ -321,7 +321,7 @@
         </section>
 
         <!-- Strength Areas -->
-        <section class="strengthAreas">
+        <section class="strengthAreas" *ngIf="isaccess">
             <div class="containerWrapper">
                 <div class="d-flex justify-content-between strengthAreasWrapper">
                     <figure>
@@ -345,7 +345,7 @@
         </section>
 
         <!-- Development Scope -->
-        <section class="developmentScope">
+        <section class="developmentScope" *ngIf="isaccess">
             <div class="containerWrapper">
                 <div class="d-flex justify-content-between developmentScopeWrapper">
                     <div class="left">
