@@ -33,6 +33,7 @@ export class HiringReportComponent implements OnInit {
   candidateListSubscription: Subscription;
   sectiondialogRef: any;
   rowData1: any;
+  cacheBlockSize: any = 10000;
   constructor(private sendData: SentDataToOtherComp, private matDialog: MatDialog,private appconfig: AppConfigService,private toastr: ToastrService, private ApiService: ApiService,) {      
     this.serverSideStoreType = 'partial';
     this.masterDetail = true;
@@ -517,7 +518,7 @@ export class HiringReportComponent implements OnInit {
         apiData.request.filterModel.testdate.filterTo = apiData.request.filterModel.testdate.dateTo ?  apiData.request.filterModel.testdate.dateTo : filterTo;
         delete apiData.request.filterModel.testdate.dateTo ? apiData.request.filterModel.testdate.dateTo : '';
       }
-        apiData.request.attributes = JSON.parse(this.appconfig.getSessionStorage('role'));
+        apiData.request.attributes = JSON.parse(this.appconfig.getLocalStorage('role'));
 
         
         this.candidateListSubscription =  this.ApiService.getHiringReport(apiData.request).subscribe((data1: any) => {
