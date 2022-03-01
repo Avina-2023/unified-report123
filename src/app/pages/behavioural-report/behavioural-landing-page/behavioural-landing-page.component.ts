@@ -29,17 +29,19 @@ export class BehaviouralLandingPageComponent implements OnInit, AfterViewInit, O
   tabIndex:number = 0;
   getAllBehaviourAPIDetails: any;
   apiSuccess = true;
+  isaccess: any;
 
   constructor(
     private toastr: ToastrService,
     private ApiService: ApiService,
     private appconfig: AppConfigService,
     private route: ActivatedRoute,
-    private dialog: MatDialog
+    private dialog: MatDialog,
   ) { }
 
   ngOnInit() {
     this.getRoute();
+    this.isaccess = this.appconfig.isComingFromMicroCert();
   }
 
   ngAfterViewInit() {
