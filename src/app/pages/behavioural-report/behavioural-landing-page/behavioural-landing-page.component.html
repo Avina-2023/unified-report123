@@ -117,6 +117,9 @@
                                                     <ng-container *ngFor="let array of [0,1,2,3,4,5,6,7,8,9]; let stenIndex = index">
                                                         <li [ngStyle]="{'background-color': ((stenIndex + 1) > (10 - (skills?.stenScore ? skills?.stenScore : 0 ))) ? skills?.colourcode : ''}"></li>
                                                     </ng-container>
+                                                    <span *ngIf="skills?.stenScore > 0" class="arrowUp">
+                                                        <em class="icon-ArrowUp"></em>
+                                                    </span>
                                                 </ul>
                                             </div>
                                             <div class="d-flex flex-column justify-content-between">
@@ -135,6 +138,9 @@
                                                     <ng-container *ngFor="let array of [0,1,2,3,4,5,6,7,8,9]; let stenIndex = index">
                                                         <li [ngStyle]="{'background-color': ((stenIndex + 1) > (10 - (skills?.stenScore ? skills?.stenScore : 0 ))) ? skills?.colourcode : ''}"></li>
                                                     </ng-container>
+                                                    <span *ngIf="skills?.stenScore > 0" class="arrowUp">
+                                                        <em class="icon-ArrowUp"></em>
+                                                    </span>
                                                 </ul>
                                             </div>
                                             <div class="d-flex flex-column justify-content-between">
@@ -155,9 +161,13 @@
                                     </div>
                                 </div>
                             </ng-container>
-
                         </ng-container>
-
+                    </div>
+                    <div class="bencmark-info">
+                        <button (click)="openBenchmarkInfo(benchmarkInfo)">
+                            <img src="/assets/images/path.svg" alt="Score Benchmark Info">
+                            <span>Score Benchmark Info</span>
+                        </button>
                     </div>
                 </div>
             </section>
@@ -203,9 +213,9 @@
                     </mat-tab-group>
                     <div class="bencmark-info">
                         <button (click)="openBenchmarkInfo(benchmarkInfo)">
-                    <img src="/assets/images/path.svg" alt="Score Benchmark Info">
-                    <span>Score Benchmark Info</span>
-                </button>
+                            <img src="/assets/images/path.svg" alt="Score Benchmark Info">
+                            <span>Score Benchmark Info</span>
+                        </button>
                     </div>
                 </div>
             </section>
@@ -298,7 +308,7 @@
         </section>
 
         <!-- Interview -->
-        <section class="interview">
+        <section class="interview" *ngIf="isaccess">
             <div class="overlay"></div>
             <div class="containerWrapper">
                 <div class="innerContainer">
@@ -311,7 +321,7 @@
         </section>
 
         <!-- Strength Areas -->
-        <section class="strengthAreas">
+        <section class="strengthAreas" *ngIf="isaccess">
             <div class="containerWrapper">
                 <div class="d-flex justify-content-between strengthAreasWrapper">
                     <figure>
@@ -335,7 +345,7 @@
         </section>
 
         <!-- Development Scope -->
-        <section class="developmentScope">
+        <section class="developmentScope" *ngIf="isaccess">
             <div class="containerWrapper">
                 <div class="d-flex justify-content-between developmentScopeWrapper">
                     <div class="left">
