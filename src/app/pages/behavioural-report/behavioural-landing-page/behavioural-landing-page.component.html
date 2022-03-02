@@ -1,4 +1,4 @@
-<!-- <app-behavioural-pdf-report-download></app-behavioural-pdf-report-download> -->
+<app-behavioural-pdf-report-download *ngIf="getAllBehaviourData" [data]="getAllBehaviourAPIDetails"></app-behavioural-pdf-report-download>
 
 <div class="bodyWrapper">
     <section id="top" class="bannerSection">
@@ -95,7 +95,9 @@
                 <div class="containerWrapper">
                     <div class="innerContainer">
                         <div class="heading2">Report Snapshot</div>
+
                         <p *ngIf="getAllBehaviourData.reportSnapShot?.description">{{getAllBehaviourData.reportSnapShot?.description}}</p>
+
                         <ng-container *ngIf="getAllBehaviourData.reportSnapShot.competency && getAllBehaviourData.reportSnapShot.competency.length > 0"></ng-container>
                         <ng-container *ngFor="let competency of getAllBehaviourData.reportSnapShot.competency; let c = index">
                             <ng-container *ngIf="(c + 1) % 2 != 0">
@@ -175,6 +177,7 @@
             </section>
         </ng-container>
         <!-- Snapshot tabs -->
+
         <ng-container *ngIf="getAllBehaviourData && getAllBehaviourData.reportSnapShot && getAllBehaviourData.reportSnapShot.competency">
             <section class="snapshotTabs">
                 <div class="containerWrapper">
