@@ -1,8 +1,9 @@
-<div class="pdfWrapper" *ngIf="data">
+<div> <button (click)="downloadAsPDF()">Export To PDF</button></div>
+<div class="pdfWrapper" *ngIf="data" id="element-to-print">
     <header>
-        <figure>
-            <img src="https://assets.lntedutech.com/edutech_logo.svg" alt="" />
-        </figure>
+        <!-- <figure> -->
+        <img style="width: 120px;" src="/assets/images/pdfDownload/edutech_logo.svg" alt="" />
+        <!-- </figure> -->
     </header>
 
     <section class="banner">
@@ -33,6 +34,8 @@
                 <img src="/assets/images/pdfDownload/reportDescribes.svg" alt="" />
             </figure>
         </section>
+        <!-- break to next page -->
+        <div class="html2pdf__page-break"></div>
 
         <section class="fourFactors">
             <ng-container *ngIf="getAllBehaviourData && getAllBehaviourData.introduction">
@@ -47,6 +50,9 @@
             </figure>
         </section>
 
+        <!-- break to next page -->
+        <div class="html2pdf__page-break"></div>
+
         <ng-container *ngIf="getAllBehaviourData && getAllBehaviourData.reportSnapShot">
             <section class="reportSnapshot">
                 <div class="heading3">REPORT SNAPSHOT</div>
@@ -59,7 +65,7 @@
                             <div class="thoughtFactor commonStyle">
                                 <div class="imageContent d-flex justify-content-between">
                                     <figure>
-                                        <img [src]="competency.imageurl" alt="" />
+                                        <img [src]="reportImage(competency?.name)" alt="" />
                                     </figure>
                                     <div>
                                         <div class="heading">{{competency?.name}}</div>
@@ -312,7 +318,7 @@
                             <div class="thoughtFactor commonStyle">
                                 <div class="imageContent d-flex justify-content-between">
                                     <figure>
-                                        <img [src]="competency.imageurl" alt="" />
+                                        <img [src]="reportImage(competency?.name)" alt="" />
                                     </figure>
                                     <div>
                                         <div class="heading">{{competency?.name}}</div>
@@ -564,6 +570,7 @@
             </section>
         </ng-container>
 
+
         <ng-container *ngIf="getAllBehaviourData && getAllBehaviourData.reportSnapShot && getAllBehaviourData.reportSnapShot.competency">
             <ng-container *ngFor="let factors of getAllBehaviourData.reportSnapShot.competency; let factorIndex = index">
                 <section class="thoughtSection">
@@ -574,7 +581,7 @@
                         <div class="wrapper d-flex justify-content-between align-items-center">
                             <div class="left">
                                 <figure>
-                                    <img [src]="factors?.colourimageurl" alt="" />
+                                    <img [src]="factorsImage(factors?.name)" alt="" />
                                 </figure>
                             </div>
                             <div class="right">
@@ -831,7 +838,8 @@
 
 
 
-
+        <!-- break to next page -->
+        <div class="html2pdf__page-break"></div>
 
         <section class="strengthAreas commonStyle">
             <figure class="scope-head d-flex align-items-center">
@@ -1018,7 +1026,8 @@
                 <p *ngIf="getAllBehaviourData?.conclusion">{{getAllBehaviourData?.conclusion?.description}}</p>
             </div>
 
-
+            <!-- break to next page -->
+            <div class="html2pdf__page-break"></div>
             <div class="heading3">Strength Areas</div>
             <ng-container *ngIf="getAllBehaviourAPIDetails && getAllBehaviourAPIDetails?.strengthconclusionPoints && getAllBehaviourAPIDetails?.strengthconclusionPoints.length > 0 else noStrength">
                 <ng-container *ngFor="let conclusion of getAllBehaviourAPIDetails.strengthconclusionPoints">

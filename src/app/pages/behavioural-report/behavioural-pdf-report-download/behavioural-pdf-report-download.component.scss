@@ -1,11 +1,11 @@
 @import "variables";
-
 .pdfWrapper {
     max-width: 1024px;
     width: 100%;
     margin: 0 auto;
     background-color: $whiteColor;
 }
+
 header {
     background-color: $whiteColor;
     padding: 20px;
@@ -16,10 +16,12 @@ header {
         }
     }
 }
+
 .banner {
     position: relative;
     height: 500px;
-    &::before, &::after {
+    &::before,
+    &::after {
         content: '';
         position: absolute;
         left: 0;
@@ -50,6 +52,7 @@ header {
         z-index: 3;
     }
 }
+
 .bannerBorder {
     width: 100%;
     height: 10px;
@@ -82,7 +85,7 @@ header {
         }
     }
     .right {
-        > div {
+        >div {
             span {
                 color: #3C3C3B;
                 font-size: 14px;
@@ -136,7 +139,8 @@ header {
         margin: 15px 0;
         text-transform: uppercase;
     }
-    p, span {
+    p,
+    span {
         font-size: 14px;
         font-weight: 400;
         margin-bottom: 15px;
@@ -198,7 +202,7 @@ header {
                         // filter: invert(100%) sepia(0%) saturate(7485%) hue-rotate(117deg) brightness(107%) contrast(104%);
                     }
                 }
-                > div {
+                >div {
                     width: 72%;
                     .heading {
                         color: #1D1D1B;
@@ -410,8 +414,9 @@ header {
         }
     }
 }
+
 .commonContent {
-    > div {
+    >div {
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -563,7 +568,7 @@ header {
     margin-top: 40px;
     .header {
         background-image: linear-gradient(to right, #23bbee, #00bed9, #00beb4, #00ba85, #5ab253);
-        padding: 20px;       
+        padding: 20px;
     }
     .heading {
         color: #ffffff;
@@ -590,7 +595,8 @@ header {
     }
     .wrapper {
         margin: 20px 0;
-        .left, .right {
+        .left,
+        .right {
             position: relative;
             &::before {
                 content: '';
@@ -628,7 +634,8 @@ header {
             }
         }
         &:last-child {
-            .left, .right {
+            .left,
+            .right {
                 padding-bottom: 20px;
                 &::after {
                     content: '';
