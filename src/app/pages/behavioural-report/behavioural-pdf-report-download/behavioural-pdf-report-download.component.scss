@@ -696,12 +696,12 @@ header {
     justify-content: space-between;
     align-items: center;
     .chart {
-        width: 32%;
+        width: 30%;
         margin: 0;
         display: flex;
         justify-content: center;
         img {
-            max-width: 80%;
+            max-width: 70%;
             margin: 0;
         }
     }
@@ -716,12 +716,12 @@ header {
         width: 65%;
         flex-direction: column;
         .heading5 {
-            font-size: 13px;
+            font-size: 10px;
             font-weight: 500;
             color: #868686;
             line-height: normal;
             text-align: center;
-            padding: 25px 0;
+            padding: 17px 0;
             position: relative;
             &::before,
             &::after {
@@ -755,8 +755,8 @@ header {
                 color: $blackColor;
             }
             .scorelabel {
-                font-size: 11px;
-                font-weight: 400;
+                font-size: 9px;
+                font-weight: 600;
                 color: #575756;
                 line-height: normal;
             }
@@ -785,10 +785,11 @@ header {
 }
 
 footer {
+    margin-top: 15px;
     .copyrights {
         position: relative;
         p {
-            font-size: 15px;
+            font-size: 10px;
             font-weight: 400;
             color: #868686;
             line-height: normal;
@@ -807,9 +808,9 @@ footer {
     figure {
         margin: 0;
         img {
-            width: 35%;
+            width: 68%;
             display: inline-block;
-            opacity: 0.3;
+            // opacity: 0.3;
         }
     }
 }
