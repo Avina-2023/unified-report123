@@ -15,6 +15,13 @@ export class BehaviouralPdfReportDownloadComponent implements OnInit {
   getAllBasicData: any;
   getAllBehaviourData: any;
   getAllBehaviourAPIDetails: any;
+  benchmarkInfo = true;
+  benchMarkScore = [
+    {score:"1-2",label:"DEVELOPMENT SCOPE",color:"red"},
+    {score:"3-4-5",label:"LESS INCLINED",color:"yellow"},
+    {score:"6-7-8",label:"MORE INCLINED",color:"orange"},
+    {score:"9-10",label:"STRENGTH",color:"green"}
+  ];
   img: string;
   constructor(private appconfig: AppConfigService) {}
 
@@ -50,36 +57,67 @@ export class BehaviouralPdfReportDownloadComponent implements OnInit {
 
   reportImage(name) {
     if (name == 'THOUGHT') {
-      return (this.img = '/assets/images/pdfDownload/thought_factor.svg');
+      return this.img = '/assets/images/pdfDownload/Thought-1.png';
     } else if (name == 'INTERPERSONAL') {
-      return (this.img = '/assets/images/pdfDownload/interpersonal_factor.svg');
+      return this.img = '/assets/images/pdfDownload/Interpersonal-1.png';
     } else if (name == 'CORE/PERSONAL') {
-      return (this.img = '/assets/images/pdfDownload/personal_factor.svg');
+      return this.img = '/assets/images/pdfDownload/Core-1.png';
     } else if (name == 'EMOTION') {
-      return (this.img = '/assets/images/pdfDownload/emotion_factor.svg');
+      return this.img = '/assets/images/pdfDownload/Emotion-1.png';
     } else {
-      return (this.img = '');
+      return this.img = '';
     }
   }
 
   factorsImage(name){
     if (name == 'THOUGHT') {
-      return (this.img = '/assets/images/pdfDownload/THOUGHT_FACTOR.png');
+      return this.img = '/assets/images/pdfDownload/THOUGHT_FACTOR.png';
     } else if (name == 'INTERPERSONAL') {
-      return (this.img = '/assets/images/pdfDownload/INTERPERSONAL_FACTOR.png');
+      return this.img = '/assets/images/pdfDownload/INTERPERSONAL_FACTOR.png';
     } else if (name == 'CORE/PERSONAL') {
-      return (this.img = '/assets/images/pdfDownload/COREPERSONAL_FACTOR.png');
+      return this.img = '/assets/images/pdfDownload/COREPERSONAL_FACTOR.png';
     } else if (name == 'EMOTION') {
-      return (this.img = '/assets/images/pdfDownload/EMOTION_FACTOR.png');
+      return this.img = '/assets/images/pdfDownload/EMOTION_FACTOR.png';
     } else {
-      return (this.img = '');
+      return this.img = '';
+    }
+  }
+
+  factorsSkillsImage(name){
+    if (name == 'Detail-Oriented') {
+      return this.img = '/assets/images/pdfDownload/detailOriented.svg';
+    } else if (name == 'Critical Thinking') {
+      return this.img = '/assets/images/pdfDownload/criticalThinking.svg';
+    } else if (name == 'Creative Thinking') {
+      return this.img = '/assets/images/pdfDownload/creativeThinking.svg';
+    } else if (name == 'Communication Skills') {
+      return this.img = '/assets/images/pdfDownload/communicationSkills.svg';
+    } else if (name == 'Teamwork') {
+      return this.img = '/assets/images/pdfDownload/team-Work.svg';
+    } else if (name == 'Positive Attitude') {
+      return this.img = '/assets/images/pdfDownload/positiveAttitude.svg';
+    } else if (name == 'Self-Reliance') {
+      return this.img = '/assets/images/pdfDownload/selfReliant.svg';
+    }else if (name == 'Receptiveness') {
+      return this.img = '/assets/images/pdfDownload/receptiveness.svg';
+    } else if (name == 'Growth Mind-Set') {
+      return this.img = '/assets/images/pdfDownload/growthMindset.svg';
+    } else if (name == 'Adaptability') {
+      return this.img = '/assets/images/pdfDownload/adaptablity.svg';
+    } else if (name == 'Emotional Self-Awareness') {
+      return this.img = '/assets/images/pdfDownload/emotionalAwarness.svg';
+    }
+    else if (name == 'Anxiety Management') {
+      return this.img = '/assets/images/pdfDownload/anxietyMgmnt.svg';
+    } else if (name == 'Empathy') {
+      return this.img = '/assets/images/pdfDownload/empathy.svg';
+    }else {
+      return this.img = '';
     }
   }
 
   downloadAsPDF() {
     var element = document.getElementById('element-to-print');
-    // pdf(element);
-
     var opt = {
       margin: 0,
       filename: 'myfile.pdf',
@@ -87,28 +125,7 @@ export class BehaviouralPdfReportDownloadComponent implements OnInit {
       html2canvas: { scale: 2 },
       jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
     };
-
     pdf().from(element).set(opt).save();
-
-    // console.log(worker,'asdasdasd')
-
-    //   var printContents = document.getElementById('pdfTable').innerHTML;
-    //   var popupWin = window.open(
-    //     'Angular Large Table to pdf',
-    //     '_blank',
-    //     'width=768,height=auto'
-    //   );
-
-    //   popupWin.document.write(
-    //     '<html><head>' +
-    //       '<link rel="stylesheet" href="' +
-    //       './behavioural-pdf-report-download.component.scss"/>' +
-
-    //       '</head><body onload="window.print();window.close()">' +
-    //       printContents +
-    //       '</body></html>'
-    //   );
-    //   popupWin.document.close();
   }
 }
 
