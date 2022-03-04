@@ -33,7 +33,8 @@
                         </div>
                         <div class="profDetails">
                             <span>Test Completion Date: {{getAllBasicData && getAllBasicData.testDate ? momentForm(getAllBasicData?.testDate) : 'Nil'}}</span>
-                            <button *ngIf="false" class="download"><img src="/assets/images/download.svg" alt="Download" /> Download Report</button>
+
+                            <button *ngIf="isaccess" class="download" (click)="downloadreport()"><img src="/assets/images/download.svg" alt="Download" /> Download Report</button>
                         </div>
                     </div>
                     <div class="profDesctiption">
@@ -93,7 +94,9 @@
                 <div class="containerWrapper">
                     <div class="innerContainer">
                         <div class="heading2">Report Snapshot</div>
+
                         <p *ngIf="getAllBehaviourData.reportSnapShot?.description">{{getAllBehaviourData.reportSnapShot?.description}}</p>
+
                         <ng-container *ngIf="getAllBehaviourData.reportSnapShot.competency && getAllBehaviourData.reportSnapShot.competency.length > 0"></ng-container>
                         <ng-container *ngFor="let competency of getAllBehaviourData.reportSnapShot.competency; let c = index">
                             <ng-container *ngIf="(c + 1) % 2 != 0">
@@ -173,6 +176,7 @@
             </section>
         </ng-container>
         <!-- Snapshot tabs -->
+
         <ng-container *ngIf="getAllBehaviourData && getAllBehaviourData.reportSnapShot && getAllBehaviourData.reportSnapShot.competency">
             <section class="snapshotTabs">
                 <div class="containerWrapper">
@@ -408,3 +412,7 @@
         No Data Available...
     </div>
 </ng-template>
+
+<div class="printing">
+    <app-behavioural-pdf-report-download *ngIf="getAllBehaviourData" [data]="getAllBehaviourAPIDetails"></app-behavioural-pdf-report-download>
+</div>

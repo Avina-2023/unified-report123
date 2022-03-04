@@ -71,9 +71,10 @@ export class AssessmentInfoComponent implements OnInit, OnChanges {
 
   covertToPercentage() {
     this.assessmentsList.forEach(element => {
-      if (element.score && element.maxscore) {
-        let score = Number(element.score) / Number(element.maxscore) * 100;
-        let percentage = Number.isInteger(score) ? score : score.toFixed(2);
+      
+      if (element.score >=0 && element.maxscore) {
+        let score = element.score / element.maxscore * 100;
+        const percentage = score ? score : score.toFixed(2);
         element.percentageScore = percentage;
       }
     });
