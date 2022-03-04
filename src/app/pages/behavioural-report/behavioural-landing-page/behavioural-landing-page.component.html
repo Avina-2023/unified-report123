@@ -35,7 +35,8 @@
                         </div>
                         <div class="profDetails">
                             <span>Test Completion Date: {{getAllBasicData && getAllBasicData.testDate ? momentForm(getAllBasicData?.testDate) : 'Nil'}}</span>
-                            <button *ngIf="false" class="download"><img src="/assets/images/download.svg" alt="Download" /> Download Report</button>
+
+                            <button *ngIf="isaccess" class="download" (click)="downloadreport()"><img src="/assets/images/download.svg" alt="Download" /> Download Report</button>
                         </div>
                     </div>
                     <div class="profDesctiption">

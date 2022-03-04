@@ -34,7 +34,7 @@
                 <img src="/assets/images/pdfDownload/reportDescribes.svg" alt="" />
             </figure>
         </section>
-
+        <!-- footer start -->
         <footer class="d-flex justify-content-between">
             <div class="copyrights">
                 <p>Behavioural Profiling Report &nbsp;|&nbsp; ©2022 L&T EduTech. All Rights Reserved.</p>
@@ -43,193 +43,214 @@
                 <img src="/assets/images/pdfDownload/Logo1.png" alt="" />
             </figure>
         </footer>
-        <!-- break to next page -->
-        <div class="html2pdf__page-break"></div>
+        <!-- footer end -->
 
-        <section class="fourFactors">
-            <ng-container *ngIf="getAllBehaviourData && getAllBehaviourData.introduction">
-                <div class="heading3">Introduction</div>
-                <p *ngFor="let introPara of getAllBehaviourData.introduction">{{introPara}}</p>
-                <span *ngIf="getAllBehaviourData && getAllBehaviourData.introductionNote">Note: {{getAllBehaviourData.introductionNote}}</span>
-            </ng-container>
-
-            <div class="heading3">THE FOUR FACTORS</div>
-            <figure>
-                <img src="/assets/images/pdfDownload/fourFactors.svg" alt="" />
-            </figure>
-        </section>
-
-        <footer class="d-flex justify-content-between">
-            <div class="copyrights">
-                <p>Behavioural Profiling Report &nbsp;|&nbsp; ©2022 L&T EduTech. All Rights Reserved.</p>
-            </div>
-            <figure class="logo">
-                <img src="/assets/images/pdfDownload/Logo1.png" alt="" />
-            </figure>
-        </footer>
 
         <!-- break to next page -->
         <div class="html2pdf__page-break"></div>
 
-        <ng-container *ngIf="getAllBehaviourData && getAllBehaviourData.reportSnapShot">
-            <section class="reportSnapshot">
-                <div class="heading3">REPORT SNAPSHOT</div>
-                <p *ngIf="getAllBehaviourData.reportSnapShot?.description">{{getAllBehaviourData.reportSnapShot?.description}}</p>
-                <ng-container *ngIf="getAllBehaviourData.reportSnapShot.competency && getAllBehaviourData.reportSnapShot.competency.length > 0"></ng-container>
-                <div class="wrapper d-flex justify-content-between flex-wrap">
-                    <ng-container *ngFor="let competency of getAllBehaviourData.reportSnapShot.competency; let c = index">
-                        <ng-container *ngIf="(c + 1) % 2 != 0">
-                            <div class="thoughtFactor commonStyle">
-                                <div class="imageContent d-flex justify-content-between">
-                                    <figure>
-                                        <img [src]="reportImage(competency?.name)" alt="" />
-                                    </figure>
-                                    <div>
-                                        <div class="heading">{{competency?.name}}</div>
-                                        <p>{{competency?.description}}</p>
-                                    </div>
-                                </div>
-                                <div class="chart d-flex justify-content-between">
-                                    <ng-container *ngIf="competency?.skills && competency?.skills.length > 0">
-                                        <div class="left d-flex justify-content-start">
-                                            <ul *ngFor="let skills of competency.skills; let bar = index">
-                                                <ng-container *ngFor="let array of [0,1,2,3,4,5,6,7,8,9]; let stenIndex = index">
-                                                    <li [ngStyle]="{'background-color': ((stenIndex + 1) > (10 - (skills?.stenScore ? skills?.stenScore : 0 ))) ? skills?.colourcode : ''}"></li>
-                                                </ng-container>
-                                                <span *ngIf="skills?.stenScore > 0" class="arrowUp">
-                                                <em class="icon-ArrowUp"></em>
-                                            </span>
-                                            </ul>
-                                        </div>
-                                    </ng-container>
-                                    <div class="right d-flex justify-content-between">
-                                        <button *ngFor="let skills of competency.skills; let s = index" [ngClass]="'a' + s + 1" class="d-flex align-items-center justify-content-between a01 ng-star-inserted">{{skills?.name}}
-                                        <span [ngStyle]="{background: skills?.colourcode}">{{skills?.stenScore ? skills?.stenScore : 0}}</span>
-                                    </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </ng-container>
-                        <ng-container *ngIf="(c + 1) % 2 == 0">
-                            <div class="thoughtFactor commonStyle">
-                                <div class="imageContent d-flex justify-content-between">
-                                    <figure>
-                                        <img [src]="reportImage(competency?.name)" alt="" />
-                                    </figure>
-                                    <div>
-                                        <div class="heading">{{competency?.name}}</div>
-                                        <p>{{competency?.description}}</p>
-                                    </div>
-                                </div>
-                                <div class="chart d-flex justify-content-between">
-                                    <ng-container *ngIf="competency?.skills && competency?.skills.length > 0">
-                                        <div class="left d-flex justify-content-start">
-                                            <ul *ngFor="let skills of competency.skills; let bar = index">
-                                                <ng-container *ngFor="let array of [0,1,2,3,4,5,6,7,8,9]; let stenIndex = index">
-                                                    <li [ngStyle]="{'background-color': ((stenIndex + 1) > (10 - (skills?.stenScore ? skills?.stenScore : 0 ))) ? skills?.colourcode : ''}"></li>
-                                                </ng-container>
-                                                <span *ngIf="skills?.stenScore > 0" class="arrowUp">
-                                                <em class="icon-ArrowUp"></em>
-                                            </span>
-                                            </ul>
-                                        </div>
-                                    </ng-container>
-
-
-                                    <div class="right d-flex justify-content-between">
-                                        <button *ngFor="let skills of competency.skills; let s = index" [ngClass]="'a' + s + 1" class="d-flex align-items-center justify-content-between a01 ng-star-inserted">{{skills?.name}}
-                                        <span [ngStyle]="{background: skills?.colourcode}">{{skills?.stenScore ? skills?.stenScore : 0}}</span>
-                                    </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </ng-container>
+        <section class="heightContainer">
+            <section class="commonHeight">
+                <section class="fourFactors">
+                    <ng-container *ngIf="getAllBehaviourData && getAllBehaviourData.introduction">
+                        <div class="heading3">Introduction</div>
+                        <p *ngFor="let introPara of getAllBehaviourData.introduction">{{introPara}}</p>
+                        <span *ngIf="getAllBehaviourData && getAllBehaviourData.introductionNote">Note: {{getAllBehaviourData.introductionNote}}</span>
                     </ng-container>
-                </div>
+
+                    <div class="heading3">THE FOUR FACTORS</div>
+                    <figure>
+                        <img src="/assets/images/pdfDownload/fourFactors.svg" alt="" />
+                    </figure>
+                </section>
             </section>
-        </ng-container>
+            <footer class="d-flex justify-content-between">
+                <div class="copyrights">
+                    <p>Behavioural Profiling Report &nbsp;|&nbsp; ©2022 L&T EduTech. All Rights Reserved.</p>
+                </div>
+                <figure class="logo">
+                    <img src="/assets/images/pdfDownload/Logo1.png" alt="" />
+                </figure>
+            </footer>
+        </section>
+        <!-- break to next page -->
+        <div class="html2pdf__page-break"></div>
 
 
-        <footer class="d-flex justify-content-between">
-            <div class="copyrights">
-                <p>Behavioural Profiling Report &nbsp;|&nbsp; ©2022 L&T EduTech. All Rights Reserved.</p>
-            </div>
-            <figure class="logo">
-                <img src="/assets/images/pdfDownload/Logo1.png" alt="" />
-            </figure>
-        </footer>
+        <!-- REPORT SNAPSHOT -->
+        <section class="heightContainer">
+            <section class="commonHeight">
+                <ng-container *ngIf="getAllBehaviourData && getAllBehaviourData.reportSnapShot">
+                    <section class="reportSnapshot">
+                        <div class="heading3">REPORT SNAPSHOT</div>
+                        <p *ngIf="getAllBehaviourData.reportSnapShot?.description">{{getAllBehaviourData.reportSnapShot?.description}}</p>
+                        <ng-container *ngIf="getAllBehaviourData.reportSnapShot.competency && getAllBehaviourData.reportSnapShot.competency.length > 0"></ng-container>
+                        <div class="wrapper d-flex justify-content-between flex-wrap">
+                            <ng-container *ngFor="let competency of getAllBehaviourData.reportSnapShot.competency; let c = index">
+                                <ng-container *ngIf="(c + 1) % 2 != 0">
+                                    <div class="thoughtFactor commonStyle">
+                                        <div class="imageContent d-flex justify-content-between">
+                                            <figure>
+                                                <img [src]="reportImage(competency?.name)" alt="" />
+                                            </figure>
+                                            <div>
+                                                <div class="heading">{{competency?.name}}</div>
+                                                <p>{{competency?.description}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="chart d-flex justify-content-between">
+                                            <ng-container *ngIf="competency?.skills && competency?.skills.length > 0">
+                                                <div class="left d-flex justify-content-start">
+                                                    <ul *ngFor="let skills of competency.skills; let bar = index">
+                                                        <ng-container *ngFor="let array of [0,1,2,3,4,5,6,7,8,9]; let stenIndex = index">
+                                                            <li [ngStyle]="{'background-color': ((stenIndex + 1) > (10 - (skills?.stenScore ? skills?.stenScore : 0 ))) ? skills?.colourcode : ''}"></li>
+                                                        </ng-container>
+                                                        <span *ngIf="skills?.stenScore > 0" class="arrowUp">
+                                                <em class="icon-ArrowUp"></em>
+                                            </span>
+                                                    </ul>
+                                                </div>
+                                            </ng-container>
+                                            <div class="right d-flex justify-content-between">
+                                                <button *ngFor="let skills of competency.skills; let s = index" [ngClass]="'a' + s + 1" class="d-flex align-items-center justify-content-between a01 ng-star-inserted">{{skills?.name}}
+                                        <span [ngStyle]="{background: skills?.colourcode}">{{skills?.stenScore ? skills?.stenScore : 0}}</span>
+                                    </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </ng-container>
+                                <ng-container *ngIf="(c + 1) % 2 == 0">
+                                    <div class="thoughtFactor commonStyle">
+                                        <div class="imageContent d-flex justify-content-between">
+                                            <figure>
+                                                <img [src]="reportImage(competency?.name)" alt="" />
+                                            </figure>
+                                            <div>
+                                                <div class="heading">{{competency?.name}}</div>
+                                                <p>{{competency?.description}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="chart d-flex justify-content-between">
+                                            <ng-container *ngIf="competency?.skills && competency?.skills.length > 0">
+                                                <div class="left d-flex justify-content-start">
+                                                    <ul *ngFor="let skills of competency.skills; let bar = index">
+                                                        <ng-container *ngFor="let array of [0,1,2,3,4,5,6,7,8,9]; let stenIndex = index">
+                                                            <li [ngStyle]="{'background-color': ((stenIndex + 1) > (10 - (skills?.stenScore ? skills?.stenScore : 0 ))) ? skills?.colourcode : ''}"></li>
+                                                        </ng-container>
+                                                        <span *ngIf="skills?.stenScore > 0" class="arrowUp">
+                                                <em class="icon-ArrowUp"></em>
+                                            </span>
+                                                    </ul>
+                                                </div>
+                                            </ng-container>
+
+
+                                            <div class="right d-flex justify-content-between">
+                                                <button *ngFor="let skills of competency.skills; let s = index" [ngClass]="'a' + s + 1" class="d-flex align-items-center justify-content-between a01 ng-star-inserted">{{skills?.name}}
+                                        <span [ngStyle]="{background: skills?.colourcode}">{{skills?.stenScore ? skills?.stenScore : 0}}</span>
+                                    </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </ng-container>
+                            </ng-container>
+                        </div>
+                    </section>
+                </ng-container>
+
+            </section>
+
+            <footer class="d-flex justify-content-between">
+                <div class="copyrights">
+                    <p>Behavioural Profiling Report &nbsp;|&nbsp; ©2022 L&T EduTech. All Rights Reserved.</p>
+                </div>
+                <figure class="logo">
+                    <img src="/assets/images/pdfDownload/Logo1.png" alt="" />
+                </figure>
+            </footer>
+        </section>
+        <!-- REPORT SNAPSHOT END -->
+
         <!-- break to next page -->
         <div class="html2pdf__page-break"></div>
 
         <ng-container *ngIf="getAllBehaviourData && getAllBehaviourData.reportSnapShot && getAllBehaviourData.reportSnapShot.competency">
-            <ng-container *ngFor="let factors of getAllBehaviourData.reportSnapShot.competency; let factorIndex = index">
-                <section class="thoughtSection">
-                    <div class="commonHeader">
-                        <figure class="bg">
-                            <img src="/assets/images/pdfDownload/thoughtBG.svg" alt="" />
-                        </figure>
-                        <div class="wrapper d-flex justify-content-between align-items-center">
-                            <div class="left">
-                                <figure>
-                                    <img [src]="factorsImage(factors?.name)" alt="" />
-                                </figure>
-                            </div>
-                            <div class="right">
-                                <div class="heading">
-                                    <span>{{factors?.name}}</span> {{factors.glimpse}}
-                                </div>
-                                <ul *ngIf="factors?.skills && factors.skills.length > 0">
-                                    <li *ngFor="let skills of factors.skills"><img src="/assets/images/rightArrow.svg" alt="" /> <span>{{skills.name}}</span></li>
 
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <ng-container *ngIf="factors?.skills && factors.skills.length > 0">
-                        <ng-container *ngFor="let skillsDetail of factors.skills; let skillDetailIndex = index">
-                            <div class="commonContent">
-                                <div>
-                                    <figure>
-                                        <img alt="" [src]="factorsSkillsImage(skillsDetail?.name)">
-                                    </figure>
-                                    <div class="content">
-                                        <span>{{skillsDetail?.name}}:</span>{{skillsDetail?.scorebasedSkillDescription ? skillsDetail?.scorebasedSkillDescription : '-'}}
+            <ng-container *ngFor="let factors of getAllBehaviourData.reportSnapShot.competency; let factorIndex = index">
+                <section class="heightContainer">
+                    <section class="commonHeight">
+                        <section class="thoughtSection">
+                            <div class="commonHeader">
+                                <figure class="bg">
+                                    <img src="/assets/images/pdfDownload/thoughtBG.svg" alt="" />
+                                </figure>
+                                <div class="wrapper d-flex justify-content-between align-items-center">
+                                    <div class="left">
+                                        <figure>
+                                            <img [src]="factorsImage(factors?.name)" alt="" />
+                                        </figure>
                                     </div>
-                                    <div class="chart"></div>
-                                    <span class="pointer">
+                                    <div class="right">
+                                        <div class="heading">
+                                            <span>{{factors?.name}}</span> {{factors.glimpse}}
+                                        </div>
+                                        <ul *ngIf="factors?.skills && factors.skills.length > 0">
+                                            <li *ngFor="let skills of factors.skills"><img src="/assets/images/rightArrow.svg" alt="" /> <span>{{skills.name}}</span></li>
+
+                                        </ul>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                            <ng-container *ngIf="factors?.skills && factors.skills.length > 0">
+                                <ng-container *ngFor="let skillsDetail of factors.skills; let skillDetailIndex = index">
+                                    <div class="commonContent">
+                                        <div>
+                                            <figure>
+                                                <img alt="" [src]="factorsSkillsImage(skillsDetail?.name)">
+                                            </figure>
+                                            <div class="content">
+                                                <span>{{skillsDetail?.name}}: &nbsp;</span>{{skillsDetail?.scorebasedSkillDescription ? skillsDetail?.scorebasedSkillDescription : '-'}}
+                                            </div>
+                                            <div class="chart">
+                                                <app-behavioural-report-canvas [bgColor]="factors?.colourcode" [score]="skillsDetail?.stenScore ? skillsDetail?.stenScore : 0"></app-behavioural-report-canvas>
+                                            </div>
+                                            <span class="pointer">
                         <img alt="" src="/assets/images/pdfDownload/arrow.svg">
                     </span>
+                                        </div>
+                                    </div>
+                                </ng-container>
+                            </ng-container>
+                        </section>
+
+                        <div class="benchmarkInfo">
+                            <figure class="chart">
+                                <img src="/assets/images/behaviourmeter.svg" alt="">
+                            </figure>
+                            <div class="score d-flex justify-content-between flex-wrap">
+                                <div class="heading5">SCORE BENCHMARK INFO</div>
+                                <div class="wrapper">
+                                    <ng-container *ngFor="let score of benchMarkScore">
+                                        <div class="score-content" [ngClass]="{'red':score.color == 'red', 'green': score.color == 'green', 'yellow':score.color == 'yellow' ,'orange':score.color == 'orange'}">
+                                            <div class="scorepoint">{{score.score}}</div>
+                                            <div class="scorelabel">{{score.label}}</div>
+                                        </div>
+                                    </ng-container>
                                 </div>
                             </div>
-                        </ng-container>
-                    </ng-container>
-                </section>
-
-                <div class="benchmarkInfo">
-                    <figure class="chart">
-                        <img src="/assets/images/behaviourmeter.svg" alt="">
-                    </figure>
-                    <div class="score d-flex justify-content-between flex-wrap">
-                        <div class="heading5">SCORE BENCHMARK INFO</div>
-                        <div class="wrapper">
-                            <ng-container *ngFor="let score of benchMarkScore">
-                                <div class="score-content" [ngClass]="{'red':score.color == 'red', 'green': score.color == 'green', 'yellow':score.color == 'yellow' ,'orange':score.color == 'orange'}">
-                                    <div class="scorepoint">{{score.score}}</div>
-                                    <div class="scorelabel">{{score.label}}</div>
-                                </div>
-                            </ng-container>
                         </div>
-                    </div>
-                </div>
-
-                <footer class="d-flex justify-content-between">
-                    <div class="copyrights">
-                        <p>Behavioural Profiling Report &nbsp;|&nbsp; ©2022 L&T EduTech. All Rights Reserved.</p>
-                    </div>
-                    <figure class="logo">
-                        <img src="/assets/images/pdfDownload/Logo1.png" alt="" />
-                    </figure>
-                </footer>
+                    </section>
+                    <footer class="d-flex justify-content-between">
+                        <div class="copyrights">
+                            <p>Behavioural Profiling Report &nbsp;|&nbsp; ©2022 L&T EduTech. All Rights Reserved.</p>
+                        </div>
+                        <figure class="logo">
+                            <img src="/assets/images/pdfDownload/Logo1.png" alt="" />
+                        </figure>
+                    </footer>
+                </section>
                 <!-- break to next page -->
                 <div class="html2pdf__page-break"></div>
 
@@ -238,175 +259,194 @@
         <!-- break to next page -->
         <!-- <div class="html2pdf__page-break"></div> -->
 
-        <section class="strengthAreas commonStyle">
-            <figure class="scope-head d-flex align-items-center">
-                <img src="/assets/images/STRENGTH.svg" alt="">
-                <span class="heading3">STRENGTH AREAS</span>
-            </figure>
-            <p *ngIf="getAllBehaviourData">{{getAllBehaviourData?.strengthAreaDescription}}</p>
-            <ng-container *ngIf="getAllBehaviourAPIDetails?.strengthContent && getAllBehaviourAPIDetails?.strengthContent.length > 0">
-                <ng-container *ngFor=" let item of getAllBehaviourAPIDetails?.strengthContent">
-                    <div class="description">
+        <section class="heightContainer">
+            <section class="commonHeight">
+                <section class="strengthAreas commonStyle">
+                    <figure class="scope-head d-flex align-items-center">
+                        <img src="/assets/images/STRENGTH.svg" alt="">
+                        <span class="heading3">STRENGTH AREAS</span>
+                    </figure>
+                    <p *ngIf="getAllBehaviourData">{{getAllBehaviourData?.strengthAreaDescription}}</p>
+                    <ng-container *ngIf="getAllBehaviourAPIDetails?.strengthContent && getAllBehaviourAPIDetails?.strengthContent.length > 0 else noStrength">
+                        <ng-container *ngFor=" let item of getAllBehaviourAPIDetails?.strengthContent">
+                            <div class="description">
 
-                        <div class="left">
-                            <figure>
-                                <img alt="" [src]="item?.imageurl">
-                            </figure>
-                        </div>
-                        <div class="right">
-                            <div class="heading4">{{item?.skillName}}</div>
-                            <ul>
-                                <ng-container *ngIf="item?.strengthContent && item?.strengthContent.length > 0">
-                                    <li *ngFor="let content of item?.strengthContent">
-                                        <img src="/assets/images/list-arrow.svg" alt="">
-                                        <span>{{content?.item}}</span>
-                                        <ng-container *ngIf="content?.sub_item && content?.sub_item.length > 0">
-                                            <ul>
-                                                <li *ngFor="let subcontent of content?.sub_item">
-                                                    <img src="/assets/images/list-arrow.svg" alt=""><span>{{subcontent?.item}}</span>
-                                                </li>
-                                            </ul>
+                                <div class="left">
+                                    <figure>
+                                        <img alt="" [src]="item?.imageurl">
+                                    </figure>
+                                </div>
+                                <div class="right">
+                                    <div class="heading4">{{item?.skillName}}</div>
+                                    <ul>
+                                        <ng-container *ngIf="item?.strengthContent && item?.strengthContent.length > 0">
+                                            <li *ngFor="let content of item?.strengthContent">
+                                                <img src="/assets/images/list-arrow.svg" alt="">
+                                                <span>{{content?.item}}</span>
+                                                <ng-container *ngIf="content?.sub_item && content?.sub_item.length > 0">
+                                                    <ul>
+                                                        <li *ngFor="let subcontent of content?.sub_item">
+                                                            <img src="/assets/images/list-arrow.svg" alt=""><span>{{subcontent?.item}}</span>
+                                                        </li>
+                                                    </ul>
+                                                </ng-container>
+                                            </li>
                                         </ng-container>
-                                    </li>
-                                </ng-container>
-                            </ul>
-                        </div>
+                                    </ul>
+                                </div>
 
-                    </div>
-                </ng-container>
-            </ng-container>
+                            </div>
+                        </ng-container>
+                    </ng-container>
 
+                </section>
+            </section>
+            <footer class="d-flex justify-content-between">
+                <div class="copyrights">
+                    <p>Behavioural Profiling Report &nbsp;|&nbsp; ©2022 L&T EduTech. All Rights Reserved.</p>
+                </div>
+                <figure class="logo">
+                    <img src="/assets/images/pdfDownload/Logo1.png" alt="" />
+                </figure>
+            </footer>
         </section>
 
-        <footer class="d-flex justify-content-between">
-            <div class="copyrights">
-                <p>Behavioural Profiling Report &nbsp;|&nbsp; ©2022 L&T EduTech. All Rights Reserved.</p>
-            </div>
-            <figure class="logo">
-                <img src="/assets/images/pdfDownload/Logo1.png" alt="" />
-            </figure>
-        </footer>
+
         <!-- break to next page -->
         <div class="html2pdf__page-break"></div>
-
-        <section class="devScope commonStyle">
-            <figure class="scope-head d-flex align-items-center">
-                <img src="/assets/images/DEVELOPMENT.svg" alt="">
-                <span class="heading3">DEVELOPMENT SCOPE</span>
-            </figure>
-            <p *ngIf="getAllBehaviourData">{{getAllBehaviourData?.developmentScopeDescription}}</p>
-            <ng-container *ngIf="getAllBehaviourAPIDetails?.developmentContent && getAllBehaviourAPIDetails?.developmentContent.length > 0 else noImprovements">
-                <ng-container *ngFor=" let item of getAllBehaviourAPIDetails?.developmentContent">
-                    <div class="description">
-                        <div class="left">
-                            <figure>
-                                <img alt="" [src]="item?.imageurl">
-                            </figure>
-                        </div>
-                        <div class="right">
-                            <div class="heading4">{{item?.skillName}}</div>
-                            <ul>
-                                <ng-container *ngIf="item?.developmentContent && item?.developmentContent.length > 0">
-                                    <li *ngFor="let content of item?.developmentContent">
-                                        <img src="/assets/images/list-arrow.svg" alt="">
-                                        <span>{{content?.item}}</span>
-                                        <ng-container *ngIf="content?.sub_item && content?.sub_item.length > 0">
-                                            <ul>
-                                                <li *ngFor="let subcontent of content?.sub_item">
-                                                    <img src="/assets/images/list-arrow.svg" alt=""><span>{{subcontent?.item}}</span>
-                                                </li>
-                                            </ul>
+        <section class="heightContainer">
+            <section class="commonHeight">
+                <section class="devScope commonStyle">
+                    <figure class="scope-head d-flex align-items-center">
+                        <img src="/assets/images/DEVELOPMENT.svg" alt="">
+                        <span class="heading3">DEVELOPMENT SCOPE</span>
+                    </figure>
+                    <p *ngIf="getAllBehaviourData">{{getAllBehaviourData?.developmentScopeDescription}}</p>
+                    <ng-container *ngIf="getAllBehaviourAPIDetails?.developmentContent && getAllBehaviourAPIDetails?.developmentContent.length > 0 else noImprovements">
+                        <ng-container *ngFor=" let item of getAllBehaviourAPIDetails?.developmentContent">
+                            <div class="description">
+                                <div class="left">
+                                    <figure>
+                                        <img alt="" [src]="item?.imageurl">
+                                    </figure>
+                                </div>
+                                <div class="right">
+                                    <div class="heading4">{{item?.skillName}}</div>
+                                    <ul>
+                                        <ng-container *ngIf="item?.developmentContent && item?.developmentContent.length > 0">
+                                            <li *ngFor="let content of item?.developmentContent">
+                                                <img src="/assets/images/list-arrow.svg" alt="">
+                                                <span>{{content?.item}}</span>
+                                                <ng-container *ngIf="content?.sub_item && content?.sub_item.length > 0">
+                                                    <ul>
+                                                        <li *ngFor="let subcontent of content?.sub_item">
+                                                            <img src="/assets/images/list-arrow.svg" alt=""><span>{{subcontent?.item}}</span>
+                                                        </li>
+                                                    </ul>
+                                                </ng-container>
+                                            </li>
                                         </ng-container>
-                                    </li>
-                                </ng-container>
-                            </ul>
-                        </div>
-                    </div>
+                                    </ul>
+                                </div>
+                            </div>
 
-                </ng-container>
-            </ng-container>
+                        </ng-container>
+                    </ng-container>
+                </section>
+            </section>
+            <footer class="d-flex justify-content-between">
+                <div class="copyrights">
+                    <p>Behavioural Profiling Report &nbsp;|&nbsp; ©2022 L&T EduTech. All Rights Reserved.</p>
+                </div>
+                <figure class="logo">
+                    <img src="/assets/images/pdfDownload/Logo1.png" alt="" />
+                </figure>
+            </footer>
         </section>
-
-        <footer class="d-flex justify-content-between">
-            <div class="copyrights">
-                <p>Behavioural Profiling Report &nbsp;|&nbsp; ©2022 L&T EduTech. All Rights Reserved.</p>
-            </div>
-            <figure class="logo">
-                <img src="/assets/images/pdfDownload/Logo1.png" alt="" />
-            </figure>
-        </footer>
 
         <!-- break to next page -->
         <div class="html2pdf__page-break"></div>
-
-        <section class="behaviouralEvent" *ngIf="isaccess">
-            <div class="header" *ngIf="getAllBehaviourData?.conclusion">
-                <div class="heading">
-                    {{getAllBehaviourData?.conclusion?.topicName}}
-                </div>
-                <p *ngIf="getAllBehaviourData?.conclusion">{{getAllBehaviourData?.conclusion?.description}}</p>
-            </div>
-
-
-
-            <div class="heading3">Strength Areas</div>
-            <ng-container *ngIf="getAllBehaviourAPIDetails && getAllBehaviourAPIDetails?.strengthconclusionPoints && getAllBehaviourAPIDetails?.strengthconclusionPoints.length > 0 else noStrength">
-                <ng-container *ngFor="let conclusion of getAllBehaviourAPIDetails.strengthconclusionPoints">
-                    <div class="wrapper d-flex justify-content-between">
-                        <div class="left">
-                            <span>{{conclusion?.skillName}}</span>
+        <section class="heightContainer">
+            <section class="commonHeight">
+                <section class="behaviouralEvent" *ngIf="isaccess">
+                    <div class="header" *ngIf="getAllBehaviourData?.conclusion">
+                        <div class="heading">
+                            {{getAllBehaviourData?.conclusion?.topicName}}
                         </div>
-                        <div class="right">
-                            <ng-container *ngIf="conclusion && conclusion.conclusionPoints">
-                                <ol>
-                                    <li *ngFor="let points of conclusion.conclusionPoints">{{points}}</li>
-                                </ol>
-                            </ng-container>
-                        </div>
+                        <p *ngIf="getAllBehaviourData?.conclusion">{{getAllBehaviourData?.conclusion?.description}}</p>
                     </div>
-                </ng-container>
-            </ng-container>
+
+                    <div class="heading3">Strength Areas</div>
+                    <ng-container *ngIf="getAllBehaviourAPIDetails && getAllBehaviourAPIDetails?.strengthconclusionPoints && getAllBehaviourAPIDetails?.strengthconclusionPoints.length > 0 else noStrength">
+                        <ng-container *ngFor="let conclusion of getAllBehaviourAPIDetails.strengthconclusionPoints">
+                            <div class="wrapper d-flex justify-content-between">
+                                <div class="left">
+                                    <span>{{conclusion?.skillName}}</span>
+                                </div>
+                                <div class="right">
+                                    <ng-container *ngIf="conclusion && conclusion.conclusionPoints">
+                                        <ol>
+                                            <li *ngFor="let points of conclusion.conclusionPoints">{{points}}</li>
+                                        </ol>
+                                    </ng-container>
+                                </div>
+                            </div>
+                        </ng-container>
+                    </ng-container>
+                </section>
+            </section>
+
+            <footer class="d-flex justify-content-between">
+                <div class="copyrights">
+                    <p>Behavioural Profiling Report &nbsp;|&nbsp; ©2022 L&T EduTech. All Rights Reserved.</p>
+                </div>
+                <figure class="logo">
+                    <img src="/assets/images/pdfDownload/Logo1.png" alt="" />
+                </figure>
+            </footer>
         </section>
 
-
-        <footer class="d-flex justify-content-between">
-            <div class="copyrights">
-                <p>Behavioural Profiling Report &nbsp;|&nbsp; ©2022 L&T EduTech. All Rights Reserved.</p>
-            </div>
-            <figure class="logo">
-                <img src="/assets/images/pdfDownload/Logo1.png" alt="" />
-            </figure>
-        </footer>
         <!-- break to next page -->
         <div class="html2pdf__page-break"></div>
-
-        <section class="behaviouralEvent scope">
-            <div class="header" *ngIf="getAllBehaviourData?.conclusion">
-                <div class="heading">
-                    {{getAllBehaviourData?.conclusion?.topicName}}
-                </div>
-                <p *ngIf="getAllBehaviourData?.conclusion">{{getAllBehaviourData?.conclusion?.description}}</p>
-            </div>
-
-
-            <div class="heading3">DEVELOPMENT SCOPE</div>
-            <ng-container *ngIf="getAllBehaviourAPIDetails && getAllBehaviourAPIDetails?.developmentconclusionPoints && getAllBehaviourAPIDetails?.developmentconclusionPoints.length > 0 else noImprovements">
-                <ng-container *ngFor="let conclusion of getAllBehaviourAPIDetails.developmentconclusionPoints">
-                    <div class="wrapper d-flex justify-content-between">
-                        <div class="left">
-                            <span>{{conclusion?.skillName}}</span>
+        <section class="heightContainer">
+            <section class="commonHeight">
+                <section class="behaviouralEvent scope">
+                    <div class="header" *ngIf="getAllBehaviourData?.conclusion">
+                        <div class="heading">
+                            {{getAllBehaviourData?.conclusion?.topicName}}
                         </div>
-                        <div class="right">
-                            <ng-container *ngIf="conclusion && conclusion.conclusionPoints">
-                                <ol>
-                                    <li *ngFor="let points of conclusion.conclusionPoints">{{points}}</li>
-
-                                </ol>
-                            </ng-container>
-                        </div>
+                        <p *ngIf="getAllBehaviourData?.conclusion">{{getAllBehaviourData?.conclusion?.description}}</p>
                     </div>
-                </ng-container>
-            </ng-container>
+
+
+                    <div class="heading3">DEVELOPMENT SCOPE</div>
+                    <ng-container *ngIf="getAllBehaviourAPIDetails && getAllBehaviourAPIDetails?.developmentconclusionPoints && getAllBehaviourAPIDetails?.developmentconclusionPoints.length > 0 else noImprovements">
+                        <ng-container *ngFor="let conclusion of getAllBehaviourAPIDetails.developmentconclusionPoints">
+                            <div class="wrapper d-flex justify-content-between">
+                                <div class="left">
+                                    <span>{{conclusion?.skillName}}</span>
+                                </div>
+                                <div class="right">
+                                    <ng-container *ngIf="conclusion && conclusion.conclusionPoints">
+                                        <ol>
+                                            <li *ngFor="let points of conclusion.conclusionPoints">{{points}}</li>
+
+                                        </ol>
+                                    </ng-container>
+                                </div>
+                            </div>
+                        </ng-container>
+                    </ng-container>
+                </section>
+            </section>
+            <footer class="d-flex justify-content-between">
+                <div class="copyrights">
+                    <p>Behavioural Profiling Report &nbsp;|&nbsp; ©2022 L&T EduTech. All Rights Reserved.</p>
+                </div>
+                <figure class="logo">
+                    <img src="/assets/images/pdfDownload/Logo1.png" alt="" />
+                </figure>
+            </footer>
         </section>
     </div>
 </div>

@@ -2,6 +2,8 @@ import { Component, ElementRef, Input, OnInit, ViewChild } from "@angular/core";
 import * as moment from "moment";
 import { AppConfigService } from "src/app/utils/app-config.service";
 import * as pdf from "html2pdf.js";
+import { Subscription } from "rxjs/internal/Subscription";
+import { SentDataToOtherComp } from "src/app/services/sendDataToOtherComp.service";
 @Component({
   selector: 'app-behavioural-pdf-report-download',
   templateUrl: './behavioural-pdf-report-download.component.html',
@@ -16,14 +18,24 @@ export class BehaviouralPdfReportDownloadComponent implements OnInit {
   getAllBehaviourData: any;
   getAllBehaviourAPIDetails: any;
   benchmarkInfo = true;
+  img: string;
+  subscription: Subscription;
+  InAppReport: any;
   benchMarkScore = [
     {score:"1-2",label:"DEVELOPMENT SCOPE",color:"red"},
     {score:"3-4-5",label:"LESS INCLINED",color:"yellow"},
     {score:"6-7-8",label:"MORE INCLINED",color:"orange"},
     {score:"9-10",label:"STRENGTH",color:"green"}
   ];
-  img: string;
-  constructor(private appconfig: AppConfigService) {}
+
+  constructor(private appconfig: AppConfigService, private sendData: SentDataToOtherComp,) {
+    this.subscription = this.sendData.getMessage().subscribe(message => {
+      this.InAppReport = message;
+      if(this.InAppReport == true){
+            this.downloadAsPDF();
+      }
+    });
+  }
 
   ngOnInit() {
     this.isaccess = this.appconfig.isComingFromMicroCert();
@@ -120,12 +132,23 @@ export class BehaviouralPdfReportDownloadComponent implements OnInit {
     var element = document.getElementById('element-to-print');
     var opt = {
       margin: 0,
-      filename: 'myfile.pdf',
-      image: { type: 'jpeg', quality: 0.98 },
-      html2canvas: { scale: 2 },
-      jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
+      filename: 'pre-assessed-candidate-report.pdf',
+      image:        { type: 'jpeg', quality: 1 },
+      html2canvas:  {scale: 2},
+      jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
     };
-    pdf().from(element).set(opt).save();
+    pdf().from(element).set(opt).toPdf().get('pdf').then(function (pdf) {
+     
+  var totalPages = pdf.internal.getNumberOfPages();
+  console.log(totalPages,'totale pages')
+      for (let i = 1; i <= totalPages; i++) {
+        pdf.setPage(i);
+        pdf.addImage('/assets/images/pdfDownload/Interpersonal-1.png', "PNG", 0, 0, 100, 100);
+      // pdf.setFontSize(40);
+      // pdf.setTextColor(0);
+ 
+      } 
+      }).save();
   }
 }
 
