@@ -1,4 +1,4 @@
-<div> <button (click)="downloadAsPDF()">Export To PDF</button></div>
+<!-- <div> <button (click)="downloadAsPDF()">Export To PDF</button></div> -->
 <div class="pdfWrapper" *ngIf="data" id="element-to-print">
     <header>
         <!-- <figure> -->
@@ -35,7 +35,7 @@
             </figure>
         </section>
         <!-- footer start -->
-        <footer class="d-flex justify-content-between">
+        <footer class="d-flex justify-content-between m-t-30">
             <div class="copyrights">
                 <p>Behavioural Profiling Report &nbsp;|&nbsp; ©2022 L&T EduTech. All Rights Reserved.</p>
             </div>
@@ -64,7 +64,7 @@
                     </figure>
                 </section>
             </section>
-            <footer class="d-flex justify-content-between">
+            <footer class="d-flex justify-content-between m-t-30">
                 <div class="copyrights">
                     <p>Behavioural Profiling Report &nbsp;|&nbsp; ©2022 L&T EduTech. All Rights Reserved.</p>
                 </div>
@@ -268,12 +268,13 @@
                     </figure>
                     <p *ngIf="getAllBehaviourData">{{getAllBehaviourData?.strengthAreaDescription}}</p>
                     <ng-container *ngIf="getAllBehaviourAPIDetails?.strengthContent && getAllBehaviourAPIDetails?.strengthContent.length > 0 else noStrength">
-                        <ng-container *ngFor=" let item of getAllBehaviourAPIDetails?.strengthContent">
-                            <div class="description">
 
+                        <ng-container *ngFor=" let item of getAllBehaviourAPIDetails?.strengthContent; let a = index">
+
+                            <div class="description">
                                 <div class="left">
                                     <figure>
-                                        <img alt="" [src]="item?.imageurl">
+                                        <img alt="" [src]="factorsSkillsImage(item?.skillName)">
                                     </figure>
                                 </div>
                                 <div class="right">
@@ -296,19 +297,40 @@
                                 </div>
 
                             </div>
+
+
+                            <!-- <footer *ngIf="(a + 1) % 2 == 0" class="d-flex justify-content-between m-t">
+                                <div class="copyrights">
+                                    <p>Behavioural Profiling Report &nbsp;|&nbsp; ©2022 L&T EduTech. All Rights Reserved.</p>
+                                </div>
+                                <figure class="logo">
+                                    <img src="/assets/images/pdfDownload/Logo1.png" alt="" />
+                                </figure>
+                            </footer> -->
+
+
+
+                            <div *ngIf="(a + 1) % 2 == 0" class="html2pdf__page-break"></div>
+
+
+                            <figure *ngIf="(a + 1) % 2 == 0" class="scope-head d-flex align-items-center m-t-40">
+                                <img src="/assets/images/STRENGTH.svg" alt="">
+                                <span class="heading3">STRENGTH AREAS</span>
+                            </figure>
+                            <p *ngIf="getAllBehaviourData && (a + 1) % 2 == 0">{{getAllBehaviourData?.strengthAreaDescription}}</p>
                         </ng-container>
                     </ng-container>
 
                 </section>
             </section>
-            <footer class="d-flex justify-content-between">
+            <!-- <footer class="d-flex justify-content-between">
                 <div class="copyrights">
                     <p>Behavioural Profiling Report &nbsp;|&nbsp; ©2022 L&T EduTech. All Rights Reserved.</p>
                 </div>
                 <figure class="logo">
                     <img src="/assets/images/pdfDownload/Logo1.png" alt="" />
                 </figure>
-            </footer>
+            </footer> -->
         </section>
 
 
@@ -323,7 +345,7 @@
                     </figure>
                     <p *ngIf="getAllBehaviourData">{{getAllBehaviourData?.developmentScopeDescription}}</p>
                     <ng-container *ngIf="getAllBehaviourAPIDetails?.developmentContent && getAllBehaviourAPIDetails?.developmentContent.length > 0 else noImprovements">
-                        <ng-container *ngFor=" let item of getAllBehaviourAPIDetails?.developmentContent">
+                        <ng-container *ngFor=" let item of getAllBehaviourAPIDetails?.developmentContent; let b = index">
                             <div class="description">
                                 <div class="left">
                                     <figure>
@@ -349,19 +371,26 @@
                                     </ul>
                                 </div>
                             </div>
+                            <div *ngIf="(b + 1) % 2 == 0" class="html2pdf__page-break"></div>
 
+
+                            <figure *ngIf="(b + 1) % 2 == 0" class="scope-head d-flex align-items-center m-t-40">
+                                <img src="/assets/images/STRENGTH.svg" alt="">
+                                <span class="heading3">DEVELOPMENT SCOPE</span>
+                            </figure>
+                            <p *ngIf="getAllBehaviourData && (b + 1) % 2 == 0">{{getAllBehaviourData?.developmentScopeDescription}}</p>
                         </ng-container>
                     </ng-container>
                 </section>
             </section>
-            <footer class="d-flex justify-content-between">
+            <!-- <footer class="d-flex justify-content-between">
                 <div class="copyrights">
                     <p>Behavioural Profiling Report &nbsp;|&nbsp; ©2022 L&T EduTech. All Rights Reserved.</p>
                 </div>
                 <figure class="logo">
                     <img src="/assets/images/pdfDownload/Logo1.png" alt="" />
                 </figure>
-            </footer>
+            </footer> -->
         </section>
 
         <!-- break to next page -->
@@ -378,7 +407,7 @@
 
                     <div class="heading3">Strength Areas</div>
                     <ng-container *ngIf="getAllBehaviourAPIDetails && getAllBehaviourAPIDetails?.strengthconclusionPoints && getAllBehaviourAPIDetails?.strengthconclusionPoints.length > 0 else noStrength">
-                        <ng-container *ngFor="let conclusion of getAllBehaviourAPIDetails.strengthconclusionPoints">
+                        <ng-container *ngFor="let conclusion of getAllBehaviourAPIDetails.strengthconclusionPoints;let s = index">
                             <div class="wrapper d-flex justify-content-between">
                                 <div class="left">
                                     <span>{{conclusion?.skillName}}</span>
@@ -391,11 +420,26 @@
                                     </ng-container>
                                 </div>
                             </div>
+                            <!-- break page -->
+                            <div *ngIf="(s + 1) % 4 == 0" class="html2pdf__page-break"></div>
+
+                            <div class="m-t-40" *ngIf="(s + 1) % 4 == 0">
+                                <div class="header" *ngIf="getAllBehaviourData?.conclusion">
+                                    <div class="heading">
+                                        {{getAllBehaviourData?.conclusion?.topicName}}
+                                    </div>
+                                    <p *ngIf="getAllBehaviourData?.conclusion">{{getAllBehaviourData?.conclusion?.description}}</p>
+                                </div>
+
+                                <div class="heading3">Strength Areas</div>
+                            </div>
+
                         </ng-container>
+
                     </ng-container>
                 </section>
             </section>
-
+            <!-- 
             <footer class="d-flex justify-content-between">
                 <div class="copyrights">
                     <p>Behavioural Profiling Report &nbsp;|&nbsp; ©2022 L&T EduTech. All Rights Reserved.</p>
@@ -403,7 +447,7 @@
                 <figure class="logo">
                     <img src="/assets/images/pdfDownload/Logo1.png" alt="" />
                 </figure>
-            </footer>
+            </footer> -->
         </section>
 
         <!-- break to next page -->
@@ -421,7 +465,7 @@
 
                     <div class="heading3">DEVELOPMENT SCOPE</div>
                     <ng-container *ngIf="getAllBehaviourAPIDetails && getAllBehaviourAPIDetails?.developmentconclusionPoints && getAllBehaviourAPIDetails?.developmentconclusionPoints.length > 0 else noImprovements">
-                        <ng-container *ngFor="let conclusion of getAllBehaviourAPIDetails.developmentconclusionPoints">
+                        <ng-container *ngFor="let conclusion of getAllBehaviourAPIDetails.developmentconclusionPoints;let d = index">
                             <div class="wrapper d-flex justify-content-between">
                                 <div class="left">
                                     <span>{{conclusion?.skillName}}</span>
@@ -435,18 +479,28 @@
                                     </ng-container>
                                 </div>
                             </div>
+                            <div *ngIf="(d + 1) % 4 == 0" class="html2pdf__page-break"></div>
+                            <div class="m-t-40" *ngIf="(d + 1) % 4 == 0">
+                                <div class="header" *ngIf="getAllBehaviourData?.conclusion">
+                                    <div class="heading">
+                                        {{getAllBehaviourData?.conclusion?.topicName}}
+                                    </div>
+                                    <p *ngIf="getAllBehaviourData?.conclusion">{{getAllBehaviourData?.conclusion?.description}}</p>
+                                </div>
+                                <div class="heading3">DEVELOPMENT SCOPE</div>
+                            </div>
                         </ng-container>
                     </ng-container>
                 </section>
             </section>
-            <footer class="d-flex justify-content-between">
+            <!-- <footer class="d-flex justify-content-between">
                 <div class="copyrights">
                     <p>Behavioural Profiling Report &nbsp;|&nbsp; ©2022 L&T EduTech. All Rights Reserved.</p>
                 </div>
                 <figure class="logo">
                     <img src="/assets/images/pdfDownload/Logo1.png" alt="" />
                 </figure>
-            </footer>
+            </footer> -->
         </section>
     </div>
 </div>

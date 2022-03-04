@@ -1275,3 +1275,9 @@
     margin: 2em 2em;
     padding: 3em;
 }
+
+.printing {
+    position: fixed;
+    width: 0;
+    z-index: -5;
+}

@@ -1,5 +1,3 @@
-<app-behavioural-pdf-report-download *ngIf="getAllBehaviourData" [data]="getAllBehaviourAPIDetails"></app-behavioural-pdf-report-download>
-
 <div class="bodyWrapper">
     <section id="top" class="bannerSection">
         <div class="content">
@@ -414,3 +412,7 @@
         No Data Available...
     </div>
 </ng-template>
+
+<div class="printing">
+    <app-behavioural-pdf-report-download *ngIf="getAllBehaviourData" [data]="getAllBehaviourAPIDetails"></app-behavioural-pdf-report-download>
+</div>

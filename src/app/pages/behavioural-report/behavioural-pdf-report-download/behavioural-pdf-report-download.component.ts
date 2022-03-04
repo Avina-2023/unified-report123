@@ -4,6 +4,7 @@ import { AppConfigService } from "src/app/utils/app-config.service";
 import * as pdf from "html2pdf.js";
 import { Subscription } from "rxjs/internal/Subscription";
 import { SentDataToOtherComp } from "src/app/services/sendDataToOtherComp.service";
+import { LoadingService } from "src/app/services/loading.service";
 @Component({
   selector: 'app-behavioural-pdf-report-download',
   templateUrl: './behavioural-pdf-report-download.component.html',
@@ -28,11 +29,14 @@ export class BehaviouralPdfReportDownloadComponent implements OnInit {
     {score:"9-10",label:"STRENGTH",color:"green"}
   ];
 
-  constructor(private appconfig: AppConfigService, private sendData: SentDataToOtherComp,) {
+  constructor(private _loading: LoadingService,private appconfig: AppConfigService, private sendData: SentDataToOtherComp,) {
     this.subscription = this.sendData.getMessage().subscribe(message => {
       this.InAppReport = message;
       if(this.InAppReport == true){
+        console.log(this.InAppReport,'this.InAppReport')
+        // this._loading.setLoading(true, 'loader');
             this.downloadAsPDF();
+            // this._loading.setLoading(false, 'loader');
       }
     });
   }
@@ -128,6 +132,10 @@ export class BehaviouralPdfReportDownloadComponent implements OnInit {
     }
   }
 
+  strengthAreas(name){
+    console.log(name,'name')
+  }
+
   downloadAsPDF() {
     var element = document.getElementById('element-to-print');
     var opt = {
@@ -138,17 +146,16 @@ export class BehaviouralPdfReportDownloadComponent implements OnInit {
       jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
     };
     pdf().from(element).set(opt).toPdf().get('pdf').then(function (pdf) {
-     
-  var totalPages = pdf.internal.getNumberOfPages();
-  console.log(totalPages,'totale pages')
-      for (let i = 1; i <= totalPages; i++) {
-        pdf.setPage(i);
-        pdf.addImage('/assets/images/pdfDownload/Interpersonal-1.png', "PNG", 0, 0, 100, 100);
-      // pdf.setFontSize(40);
-      // pdf.setTextColor(0);
- 
-      } 
+      var number_of_pages = pdf.internal.getNumberOfPages()
+      var pdf_pages = pdf.internal.pages
+      for (var i = 1; i < pdf_pages.length; i++) {
+          pdf.setPage(i)
+          pdf.setFontSize(9);
+          pdf.setTextColor(150);
+          pdf.text('Page ' + i + ' of ' + number_of_pages, (pdf.internal.pageSize.getWidth() - 0.90 ), (pdf.internal.pageSize.getHeight()-0.35));
+      }
       }).save();
+      this._loading.setLoading(false, 'loader');
   }
 }
 
