@@ -5,6 +5,7 @@ import * as pdf from "html2pdf.js";
 import { Subscription } from "rxjs/internal/Subscription";
 import { SentDataToOtherComp } from "src/app/services/sendDataToOtherComp.service";
 import { LoadingService } from "src/app/services/loading.service";
+import { ToastrService } from "ngx-toastr";
 @Component({
   selector: 'app-behavioural-pdf-report-download',
   templateUrl: './behavioural-pdf-report-download.component.html',
@@ -29,14 +30,11 @@ export class BehaviouralPdfReportDownloadComponent implements OnInit {
     {score:"9-10",label:"STRENGTH",color:"green"}
   ];
 
-  constructor(private _loading: LoadingService,private appconfig: AppConfigService, private sendData: SentDataToOtherComp,) {
+  constructor( private toastr: ToastrService,private _loading: LoadingService,private appconfig: AppConfigService, private sendData: SentDataToOtherComp,) {
     this.subscription = this.sendData.getMessage().subscribe(message => {
       this.InAppReport = message;
       if(this.InAppReport == true){
-        console.log(this.InAppReport,'this.InAppReport')
-        // this._loading.setLoading(true, 'loader');
             this.downloadAsPDF();
-            // this._loading.setLoading(false, 'loader');
       }
     });
   }
@@ -131,12 +129,9 @@ export class BehaviouralPdfReportDownloadComponent implements OnInit {
       return this.img = '';
     }
   }
-
-  strengthAreas(name){
-    console.log(name,'name')
-  }
-
+  
   downloadAsPDF() {
+    this.toastr.success('Please wait for sometime','PDF is downloading')
     var element = document.getElementById('element-to-print');
     var opt = {
       margin: 0,
@@ -154,8 +149,10 @@ export class BehaviouralPdfReportDownloadComponent implements OnInit {
           pdf.setTextColor(150);
           pdf.text('Page ' + i + ' of ' + number_of_pages, (pdf.internal.pageSize.getWidth() - 0.90 ), (pdf.internal.pageSize.getHeight()-0.35));
       }
+    
+      }, (err) => {
       }).save();
-      this._loading.setLoading(false, 'loader');
+     
   }
 }
 

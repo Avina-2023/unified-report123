@@ -7,6 +7,7 @@ import { Subscription } from 'rxjs';
 import * as moment from 'moment';
 import { MatDialog } from '@angular/material/dialog';
 import { SentDataToOtherComp } from 'src/app/services/sendDataToOtherComp.service';
+import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
   selector: 'app-behavioural-landing-page',
@@ -39,6 +40,7 @@ export class BehaviouralLandingPageComponent implements OnInit, AfterViewInit, O
     private route: ActivatedRoute,
     private dialog: MatDialog,
     private sendData: SentDataToOtherComp,
+    private _loading: LoadingService,
   ) { }
 
   ngOnInit() {
