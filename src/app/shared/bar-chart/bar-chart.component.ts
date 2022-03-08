@@ -16,7 +16,6 @@ export class BarChartComponent implements OnInit, OnChanges, AfterViewInit {
   public barChartPlugins = [pluginDataLabels];
   public barChartOptions: ChartOptions = {
     responsive: true,
-
     layout: {
       padding: {
        top:30
@@ -148,7 +147,7 @@ export class BarChartComponent implements OnInit, OnChanges, AfterViewInit {
             data: this.barChartData1,
             backgroundColor: colorCode,
             hoverBackgroundColor:colorCode,
-            barThickness: 50,
+            // barThickness: 50,
           }
         ];
       }

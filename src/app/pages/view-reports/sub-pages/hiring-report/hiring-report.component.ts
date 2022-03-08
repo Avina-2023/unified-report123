@@ -33,7 +33,7 @@ export class HiringReportComponent implements OnInit {
   candidateListSubscription: Subscription;
   sectiondialogRef: any;
   rowData1: any;
-  cacheBlockSize: any = 10000;
+  cacheBlockSize: any = 100;
   constructor(private sendData: SentDataToOtherComp, private matDialog: MatDialog,private appconfig: AppConfigService,private toastr: ToastrService, private ApiService: ApiService,) {      
     this.serverSideStoreType = 'partial';
     this.masterDetail = true;
