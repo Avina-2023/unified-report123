@@ -11,7 +11,9 @@ import { AppConfigService } from 'src/app/utils/app-config.service';
 export class HeaderComponent implements OnInit {
   isaccess: boolean;
 
-  constructor(private apiservice: ApiService,private appConfig: AppConfigService,private toastr: ToastrService) { }
+  constructor(private apiservice: ApiService,private appConfig: AppConfigService,private toastr: ToastrService) { 
+    
+  }
 
   ngOnInit(): void {
     this.isaccess = this.appConfig.isComingFromMicroCert();
