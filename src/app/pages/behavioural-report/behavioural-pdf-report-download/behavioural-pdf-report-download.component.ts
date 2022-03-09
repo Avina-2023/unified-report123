@@ -6,6 +6,7 @@ import { Subscription } from "rxjs/internal/Subscription";
 import { SentDataToOtherComp } from "src/app/services/sendDataToOtherComp.service";
 import { LoadingService } from "src/app/services/loading.service";
 import { ToastrService } from "ngx-toastr";
+import { NavigationEnd, Router } from "@angular/router";
 @Component({
   selector: 'app-behavioural-pdf-report-download',
   templateUrl: './behavioural-pdf-report-download.component.html',
@@ -15,6 +16,7 @@ export class BehaviouralPdfReportDownloadComponent implements OnInit {
   @ViewChild('pdfTable', { static: false }) pdfTable: ElementRef;
   isaccess: any;
   @Input() data;
+  @Input() email;
   highestEducation: any;
   getAllBasicData: any;
   getAllBehaviourData: any;
@@ -30,20 +32,25 @@ export class BehaviouralPdfReportDownloadComponent implements OnInit {
     {score:"9-10",label:"STRENGTH",color:"green"}
   ];
 
-  constructor( private toastr: ToastrService,private _loading: LoadingService,private appconfig: AppConfigService, private sendData: SentDataToOtherComp,) {
-    this.subscription = this.sendData.getMessage().subscribe(message => {
-      this.InAppReport = message;
-      if(this.InAppReport == true){
-            this.downloadAsPDF();
-      }
-    });
+  constructor(private toastr: ToastrService,private appconfig: AppConfigService, private sendData: SentDataToOtherComp,) {
   }
 
   ngOnInit() {
+      this.subscription = this.sendData.getMessage().subscribe(message => {
+        this.InAppReport = message;
+        if(this.data && this.InAppReport == true){
+          this.downloadAsPDF();
+        }
+      });
+
     this.isaccess = this.appconfig.isComingFromMicroCert();
     if (this.data) {
       this.getReportData();
     }
+  }
+
+  ngOnDestroy(){
+    this.subscription ? this.subscription.unsubscribe() : '';
   }
 
   getReportData() {
@@ -135,7 +142,7 @@ export class BehaviouralPdfReportDownloadComponent implements OnInit {
     var element = document.getElementById('element-to-print');
     var opt = {
       margin: 0,
-      filename: 'pre-assessed-candidate-report.pdf',
+      filename:  (this.getAllBasicData?.firstname ? this.getAllBasicData?.firstname : '')+'('+this.email+')'+'.pdf',
       image:        { type: 'jpeg', quality: 1 },
       html2canvas:  {scale: 2},
       jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }

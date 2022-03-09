@@ -34,7 +34,7 @@
                         <div class="profDetails">
                             <span>Test Completion Date: {{getAllBasicData && getAllBasicData.testDate ? momentForm(getAllBasicData?.testDate) : 'Nil'}}</span>
 
-                            <button *ngIf="isaccess" class="download" (click)="downloadreport()"><img src="/assets/images/download.svg" alt="Download" /> Download Report</button>
+                            <button class="download" (click)="downloadreport(true)"><img src="/assets/images/download.svg" alt="Download" /> Download Report</button>
                         </div>
                     </div>
                     <div class="profDesctiption">
@@ -414,5 +414,5 @@
 </ng-template>
 
 <div class="printing">
-    <app-behavioural-pdf-report-download *ngIf="getAllBehaviourData" [data]="getAllBehaviourAPIDetails"></app-behavioural-pdf-report-download>
+    <app-behavioural-pdf-report-download *ngIf="getAllBehaviourData" [email]="emailId" [data]="getAllBehaviourAPIDetails"></app-behavioural-pdf-report-download>
 </div>

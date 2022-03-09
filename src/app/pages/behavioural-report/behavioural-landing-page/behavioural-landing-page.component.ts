@@ -32,6 +32,7 @@ export class BehaviouralLandingPageComponent implements OnInit, AfterViewInit, O
   getAllBehaviourAPIDetails: any;
   apiSuccess = true;
   isaccess: any;
+  isPdfdownable = false;
 
   constructor(
     private toastr: ToastrService,
@@ -143,7 +144,15 @@ export class BehaviouralLandingPageComponent implements OnInit, AfterViewInit, O
   }
 
 
-  downloadreport(){
-    this.sendData.sendMessage(true);
+  downloadreport(val){
+    if(val){
+      this.isPdfdownable = val;
+      this.sendData.sendMessage(true);
+    }else{
+      this.isPdfdownable = false;
+      this.sendData.sendMessage(false);
+    }
+ 
+    
   }
 }

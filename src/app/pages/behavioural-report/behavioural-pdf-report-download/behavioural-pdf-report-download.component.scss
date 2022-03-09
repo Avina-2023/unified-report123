@@ -45,7 +45,7 @@
             position: absolute;
             bottom: 20px;
             left: 20px;
-            font-size: 36px;
+            font-size: 40px;
             font-weight: 700;
             color: #1D1D1B;
             text-transform: uppercase;
@@ -72,7 +72,7 @@
         .left {
             .heading3 {
                 color: #09568C;
-                font-size: 28px;
+                font-size: 26px;
                 font-weight: 400;
                 line-height: normal;
             }
@@ -182,12 +182,12 @@
             color: #1D1D1B;
             font-size: 14px;
             font-weight: 400;
-            margin-bottom: 15px;
+            margin-bottom: -35px;
         }
         .wrapper {
             .commonStyle {
-                width: 48%;
-                margin-top: 82px;
+                width: 49%;
+                margin-top: 75px;
                 &:last-child {
                     .chart {
                         .left {
@@ -272,10 +272,11 @@
                             border-radius: 20px 50px 50px 20px;
                             background-color: #ffffff;
                             padding: 3px 3px 3px 10px;
-                            font-size: 13px;
+                            font-size: 12px;
                             font-weight: 500;
                             color: #1D1D1B;
                             line-height: normal;
+                            text-align: -webkit-left;
                             span {
                                 border-radius: 50%;
                                 width: 37px;
@@ -536,14 +537,14 @@
             }
         }
         .description {
-            padding: 20px;
+            padding: 15px;
             background-color: $whiteColor;
             border: 1px solid rgba(177, 177, 177, 0.5);
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
             margin-bottom: 20px;
-            margin-top: 40px;
+            margin-top: 26px;
             position: relative;
             &::before {
                 content: '';
@@ -585,9 +586,9 @@
                         }
                         span {
                             color: #1D1D1B;
-                            font-size: 14px;
+                            font-size: 12px;
                             font-weight: 400;
-                            line-height: 21px;
+                            line-height: 15px;
                         }
                     }
                 }
@@ -657,7 +658,7 @@
                     padding-left: 25px;
                     li {
                         color: #1D1D1B;
-                        font-size: 14px;
+                        font-size: 12px;
                         font-weight: 400;
                         line-height: 20px;
                         margin-top: 10px;
@@ -811,6 +812,7 @@
         }
         figure {
             margin: 0;
+            margin-right: 10%;
             img {
                 width: 68%;
                 display: inline-block;
@@ -843,6 +845,11 @@
         min-height: 950px;
     }
     
+    .commonHeight-1 {
+        position: relative;
+        min-height: 850px;
+    }
+    
     .commonedivheight {
         position: relative;
         min-height: 950px;
@@ -857,7 +864,7 @@
     }
     
     .m-t-30 {
-        margin-top: 35px;
+        margin-top: 25px !important;
     }
     
     .footer-1 {
@@ -865,4 +872,16 @@
         left: 0;
         bottom: 0;
         width: 100%;
+    }
+    
+    .development-glimpse {
+        position: relative;
+        font-size: 12px;
+        color: #999999;
+        text-align: left;
+    }
+    
+    .skillname {
+        font-size: 16px;
+        font-weight: 500;
     }
