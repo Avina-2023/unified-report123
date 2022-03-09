@@ -21,7 +21,7 @@
                 <span>Test Completion Date: {{getAllBasicData && getAllBasicData.testDate ? momentForm(getAllBasicData?.testDate) : 'Nil'}}</span>
             </div>
             <div class="right">
-                <div><span>Email </span>: <span>shalinidesilva620@gmail.com</span></div>
+                <div><span>Email </span>: <span>{{email ? email : 'Nil'}}</span></div>
                 <div><span>Gender: </span>: <span>{{getAllBasicData?.gender ? getAllBasicData?.gender : 'Nil'}}</span></div>
                 <div><span>Education level </span>: <span>{{highestEducation?.institute ? highestEducation?.institute : 'Nil'}}</span></div>
             </div>
@@ -53,14 +53,14 @@
             <section class="commonHeight">
                 <section class="fourFactors">
                     <ng-container *ngIf="getAllBehaviourData && getAllBehaviourData.introduction">
-                        <div class="heading3">Introduction</div>
+                        <div class="heading3 m-t-30">Introduction</div>
                         <p *ngFor="let introPara of getAllBehaviourData.introduction">{{introPara}}</p>
                         <span *ngIf="getAllBehaviourData && getAllBehaviourData.introductionNote">Note: {{getAllBehaviourData.introductionNote}}</span>
                     </ng-container>
 
                     <div class="heading3">THE FOUR FACTORS</div>
                     <figure>
-                        <img src="/assets/images/pdfDownload/fourFactors.svg" alt="" />
+                        <img src="/assets/images/pdfDownload/factoreimgwall.svg" alt="" />
                     </figure>
                 </section>
             </section>
@@ -79,7 +79,7 @@
 
         <!-- REPORT SNAPSHOT -->
         <section class="heightContainer">
-            <section class="commonHeight">
+            <section class="commonHeight-1">
                 <ng-container *ngIf="getAllBehaviourData && getAllBehaviourData.reportSnapShot">
                     <section class="reportSnapshot">
                         <div class="heading3">REPORT SNAPSHOT</div>
@@ -160,6 +160,23 @@
 
             </section>
 
+            <div class="benchmarkInfo">
+                <figure class="chart">
+                    <img src="/assets/images/behaviourmeter.svg" alt="">
+                </figure>
+                <div class="score d-flex justify-content-between flex-wrap">
+                    <div class="heading5">SCORE BENCHMARK INFO</div>
+                    <div class="wrapper">
+                        <ng-container *ngFor="let score of benchMarkScore">
+                            <div class="score-content" [ngClass]="{'red':score.color == 'red', 'green': score.color == 'green', 'yellow':score.color == 'yellow' ,'orange':score.color == 'orange'}">
+                                <div class="scorepoint">{{score.score}}</div>
+                                <div class="scorelabel">{{score.label}}</div>
+                            </div>
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+
             <footer class="d-flex justify-content-between">
                 <div class="copyrights">
                     <p>Behavioural Profiling Report &nbsp;|&nbsp; ©2022 L&T EduTech. All Rights Reserved.</p>
@@ -195,7 +212,7 @@
                                             <span>{{factors?.name}}</span> {{factors.glimpse}}
                                         </div>
                                         <ul *ngIf="factors?.skills && factors.skills.length > 0">
-                                            <li *ngFor="let skills of factors.skills"><img src="/assets/images/rightArrow.svg" alt="" /> <span>{{skills.name}}</span></li>
+                                            <li *ngFor="let skills of factors.skills"><img src="/assets/images/rightArrow.svg" alt="" /> <span class="skillname">{{skills.name}}</span></li>
 
                                         </ul>
                                     </div>
@@ -309,15 +326,15 @@
                             </footer> -->
 
 
-
-                            <div *ngIf="(a + 1) % 2 == 0" class="html2pdf__page-break"></div>
-
-
-                            <figure *ngIf="(a + 1) % 2 == 0" class="scope-head d-flex align-items-center m-t-40">
-                                <img src="/assets/images/STRENGTH.svg" alt="">
-                                <span class="heading3">STRENGTH AREAS</span>
+                            <span *ngIf="((a + 1) % 2 == 0) && (getAllBehaviourAPIDetails?.strengthContent.length != a+1)">
+                                <div class="html2pdf__page-break"></div>
+                                <figure class="scope-head d-flex align-items-center m-t-40">
+                                    <img src="/assets/images/STRENGTH.svg" alt="">
+                                    <span class="heading3">STRENGTH AREAS</span>
                             </figure>
-                            <p *ngIf="getAllBehaviourData && (a + 1) % 2 == 0">{{getAllBehaviourData?.strengthAreaDescription}}</p>
+                            <p *ngIf="getAllBehaviourData">{{getAllBehaviourData?.strengthAreaDescription}}</p>
+                            </span>
+
                         </ng-container>
                     </ng-container>
 
@@ -344,16 +361,18 @@
                         <span class="heading3">DEVELOPMENT SCOPE</span>
                     </figure>
                     <p *ngIf="getAllBehaviourData">{{getAllBehaviourData?.developmentScopeDescription}}</p>
+
                     <ng-container *ngIf="getAllBehaviourAPIDetails?.developmentContent && getAllBehaviourAPIDetails?.developmentContent.length > 0 else noImprovements">
                         <ng-container *ngFor=" let item of getAllBehaviourAPIDetails?.developmentContent; let b = index">
                             <div class="description">
                                 <div class="left">
                                     <figure>
-                                        <img alt="" [src]="item?.imageurl">
+                                        <img alt="" [src]="factorsSkillsImage(item?.skillName)">
                                     </figure>
                                 </div>
                                 <div class="right">
                                     <div class="heading4">{{item?.skillName}}</div>
+                                    <div class="development-glimpse">A low score in this competency indicates that</div>
                                     <ul>
                                         <ng-container *ngIf="item?.developmentContent && item?.developmentContent.length > 0">
                                             <li *ngFor="let content of item?.developmentContent">
@@ -370,15 +389,16 @@
                                         </ng-container>
                                     </ul>
                                 </div>
+
                             </div>
-                            <div *ngIf="(b + 1) % 2 == 0" class="html2pdf__page-break"></div>
-
-
-                            <figure *ngIf="(b + 1) % 2 == 0" class="scope-head d-flex align-items-center m-t-40">
-                                <img src="/assets/images/STRENGTH.svg" alt="">
-                                <span class="heading3">DEVELOPMENT SCOPE</span>
+                            <span *ngIf="((b +1) % 2 == 0) && (getAllBehaviourAPIDetails?.developmentContent.length != b+1)">
+                                <div  class="html2pdf__page-break"></div>
+                                <figure  class="scope-head d-flex align-items-center m-t-40">
+                                    <img src="/assets/images/DEVELOPMENT.svg" alt="">
+                                    <span class="heading3">DEVELOPMENT SCOPE</span>
                             </figure>
-                            <p *ngIf="getAllBehaviourData && (b + 1) % 2 == 0">{{getAllBehaviourData?.developmentScopeDescription}}</p>
+                            <p *ngIf="getAllBehaviourData">{{getAllBehaviourData?.developmentScopeDescription}}</p>
+                            </span>
                         </ng-container>
                     </ng-container>
                 </section>
@@ -395,7 +415,8 @@
 
         <!-- break to next page -->
         <div class="html2pdf__page-break"></div>
-        <section class="heightContainer">
+        <section class="heightContainer" *ngIf="isaccess">
+
             <section class="commonHeight">
                 <section class="behaviouralEvent" *ngIf="isaccess">
                     <div class="header" *ngIf="getAllBehaviourData?.conclusion">
@@ -423,7 +444,7 @@
                             <!-- break page -->
                             <div *ngIf="(s + 1) % 4 == 0" class="html2pdf__page-break"></div>
 
-                            <div class="m-t-40" *ngIf="(s + 1) % 4 == 0">
+                            <div class="m-t-40" *ngIf="((s + 1) % 4 == 0)  && (getAllBehaviourAPIDetails?.strengthconclusionPoints.length != s+1)">
                                 <div class="header" *ngIf="getAllBehaviourData?.conclusion">
                                     <div class="heading">
                                         {{getAllBehaviourData?.conclusion?.topicName}}
@@ -452,10 +473,11 @@
 
         <!-- break to next page -->
         <div class="html2pdf__page-break"></div>
-        <section class="heightContainer">
-            <section class="commonHeight">
+        <section class="heightContainer" *ngIf="isaccess">
+
+            <section class="commonHeight m-t-40">
                 <section class="behaviouralEvent scope">
-                    <div class="header" *ngIf="getAllBehaviourData?.conclusion">
+                    <div class="header " *ngIf="getAllBehaviourData?.conclusion">
                         <div class="heading">
                             {{getAllBehaviourData?.conclusion?.topicName}}
                         </div>
@@ -479,9 +501,10 @@
                                     </ng-container>
                                 </div>
                             </div>
-                            <div *ngIf="(d + 1) % 4 == 0" class="html2pdf__page-break"></div>
-                            <div class="m-t-40" *ngIf="(d + 1) % 4 == 0">
-                                <div class="header" *ngIf="getAllBehaviourData?.conclusion">
+
+                            <div class="m-t-40" *ngIf="((d + 1) % 4 == 0)  && (getAllBehaviourAPIDetails?.developmentconclusionPoints.length != d+1)">
+                                <div class="html2pdf__page-break"></div>
+                                <div class="header m-t-40" *ngIf="getAllBehaviourData?.conclusion">
                                     <div class="heading">
                                         {{getAllBehaviourData?.conclusion?.topicName}}
                                     </div>
