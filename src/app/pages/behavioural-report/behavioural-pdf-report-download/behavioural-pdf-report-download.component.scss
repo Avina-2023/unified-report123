@@ -149,6 +149,7 @@
         p {
             line-height: 21px;
             color: #1D1D1B;
+            text-align: justify;
         }
         span {
             line-height: 18px;
@@ -484,6 +485,7 @@
             }
         }
         .content {
+            text-align: justify;
             width: 55%;
             color: #1D1D1B;
             font-size: 14px;
@@ -616,6 +618,7 @@
             font-weight: 300;
             line-height: 21px;
             margin: 0;
+            text-align: justify;
         }
         .heading3 {
             font-size: 20px;
@@ -794,10 +797,11 @@
         .copyrights {
             position: relative;
             p {
+                padding-top: 15px;
                 font-size: 10px;
                 font-weight: 400;
                 color: #868686;
-                line-height: normal;
+                line-height: 1px;
                 margin: 0;
             }
             &:after {
@@ -884,4 +888,8 @@
     .skillname {
         font-size: 16px;
         font-weight: 500;
+    }
+    
+    .justify {
+        text-align: justify;
     }
