@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
 import { multicast } from 'rxjs/operators';
+import { LoadingService } from 'src/app/services/loading.service';
 import { AppConfigService } from 'src/app/utils/app-config.service';
 
 @Component({
@@ -15,7 +16,7 @@ export class ProfileInfoComponent implements OnInit, OnChanges {
   driveList: any;
   isaccess:any;
   selectDriveName: string;
-  constructor(private appConfig: AppConfigService,) { 
+  constructor(private appConfig: AppConfigService,private _loading: LoadingService, ) { 
      this.selectDriveName = sessionStorage.getItem('schedulename');
   }
 
@@ -32,7 +33,7 @@ export class ProfileInfoComponent implements OnInit, OnChanges {
   getPersonalInfo() {
     this.driveList = this.getAllReportsData?.driveDetails;
 
-    this.driveselectedValue = this.selectDriveName ? this.selectDriveName : null;
+    this.driveselectedValue = this.selectDriveName ? this.selectDriveName : this.driveList[0].drivename;
     // do not remove
     // this.driveList && this.driveList.length > 0 ? this.driveList[0].drivename : null
     this.emitdriveNametoParent();
@@ -93,6 +94,10 @@ export class ProfileInfoComponent implements OnInit, OnChanges {
   }
 
   driveChange(e) {
+    this._loading.setLoading(true, 'loader');
+    setTimeout(() => {
+      this._loading.setLoading(false, 'loader');
+    }, 300);
     this.driveselectedValue = e.value;
     this.emitdriveNametoParent();
   }

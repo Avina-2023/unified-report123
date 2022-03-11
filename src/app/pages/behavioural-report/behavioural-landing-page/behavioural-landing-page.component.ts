@@ -6,6 +6,8 @@ import { ApiService } from 'src/app/services/api.service';
 import { Subscription } from 'rxjs';
 import * as moment from 'moment';
 import { MatDialog } from '@angular/material/dialog';
+import { SentDataToOtherComp } from 'src/app/services/sendDataToOtherComp.service';
+import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
   selector: 'app-behavioural-landing-page',
@@ -29,17 +31,22 @@ export class BehaviouralLandingPageComponent implements OnInit, AfterViewInit, O
   tabIndex:number = 0;
   getAllBehaviourAPIDetails: any;
   apiSuccess = true;
+  isaccess: any;
+  isPdfdownable = false;
 
   constructor(
     private toastr: ToastrService,
     private ApiService: ApiService,
     private appconfig: AppConfigService,
     private route: ActivatedRoute,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private sendData: SentDataToOtherComp,
+    private _loading: LoadingService,
   ) { }
 
   ngOnInit() {
     this.getRoute();
+    this.isaccess = this.appconfig.isComingFromMicroCert();
   }
 
   ngAfterViewInit() {
@@ -109,7 +116,6 @@ export class BehaviouralLandingPageComponent implements OnInit, AfterViewInit, O
           this.getAllBehaviourAPIDetails = null;
         }
       }, (err)=> {
-        console.log('err', err);
         this.apiSuccess = false;
         this.getAllBasicData = null;
         this.getAllBehaviourData = null;
@@ -135,5 +141,18 @@ export class BehaviouralLandingPageComponent implements OnInit, AfterViewInit, O
   }
   ngOnDestroy() {
     this.getBehaviourReportAPISubscription ? this.getBehaviourReportAPISubscription.unsubscribe() : '';
+  }
+
+
+  downloadreport(val){
+    if(val){
+      this.isPdfdownable = val;
+      this.sendData.sendMessage(true);
+    }else{
+      this.isPdfdownable = false;
+      this.sendData.sendMessage(false);
+    }
+ 
+    
   }
 }

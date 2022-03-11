@@ -63,7 +63,7 @@ export class BehaviouralCompetencyAreasComponent implements OnInit {
 
 
   ngAfterViewInit() {
-    if(this.myDiv.nativeElement.innerHTML.length > 0){
+    if(this.myDiv && this.myDiv.nativeElement && this.myDiv.nativeElement.innerHTML.length > 0){
       this.setColorCodesBasedOnLabel(this.myDiv.nativeElement.innerHTML.toString().trim())
     }
   }
@@ -174,7 +174,6 @@ export class BehaviouralCompetencyAreasComponent implements OnInit {
   }
   getAreasDataInitialize(i) {
     this.competancyData.forEach((skills,j) => {
-      // console.log(skills,'element')
       if (skills) {
         let areaSingle = [];
         skills.skills.forEach((area, i) => {

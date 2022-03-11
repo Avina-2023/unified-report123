@@ -71,9 +71,10 @@ export class AssessmentInfoComponent implements OnInit, OnChanges {
 
   covertToPercentage() {
     this.assessmentsList.forEach(element => {
-      if (element.score && element.maxscore) {
-        let score = Number(element.score) / Number(element.maxscore) * 100;
-        let percentage = Number.isInteger(score) ? score : score.toFixed(2);
+      
+      if (element.score >=0 && element.maxscore) {
+        let score = element.score / element.maxscore * 100;
+        const percentage = score ? score : score.toFixed(2);
         element.percentageScore = percentage;
       }
     });
@@ -92,7 +93,7 @@ export class AssessmentInfoComponent implements OnInit, OnChanges {
     if (score >=90) {
       return 'Excellent';
     }
-    return null;
+    return '-';
   }
 
   momentForm(date) {
@@ -117,7 +118,6 @@ export class AssessmentInfoComponent implements OnInit, OnChanges {
   }
 
   getTimetaken(takenTime){
-    // console.log(takenTime)
     if(takenTime){
       let convertTime1 = takenTime.toString();
       let SplitTime1 = convertTime1.split(/([.])/);
@@ -132,7 +132,6 @@ export class AssessmentInfoComponent implements OnInit, OnChanges {
   }
 
   open(assessment){
-    // console.log(assessment)
     const dialogRef = this.matDialog.open(this.matDialogRef1, {
       width: '95%',
       height: '600px',

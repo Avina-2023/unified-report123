@@ -85,10 +85,35 @@
     height: 400px;
     border: 1px solid lightgray;
 }
+
 .view-report {
-  color: #C02222;
-  font-size: 12px;
-  top: -2px;
-  position: relative;
-  cursor: pointer;
+    color: #C02222;
+    font-size: 12px;
+    top: -2px;
+    position: relative;
+    cursor: pointer;
+}
+
+.progressText {
+    position: relative;
+    .progressclose1 {
+        position: absolute;
+        width: 25px;
+        height: 25px;
+        background-color: #a9a9a866;
+        right: -17px;
+        top: -21px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 25px;
+    }
+    .closebtn1 {
+        font-size: 0.9em;
+        color: #000;
+        cursor: pointer;
+        position: relative;
+        top: 2px;
+        z-index: 1;
+    }
 }

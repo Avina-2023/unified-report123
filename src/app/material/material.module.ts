@@ -36,7 +36,7 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 // import { MatDividerModule } from '@angular/material/divider';
 import { MatExpansionModule } from '@angular/material/expansion';
 // import { MatGridListModule } from '@angular/material/grid-list';
-// import { MatListModule } from '@angular/material/list';
+import { MatListModule } from '@angular/material/list';
 import { MatStepperModule } from '@angular/material/stepper';
 // import { MatTreeModule } from '@angular/material/tree';
 
@@ -88,6 +88,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatToolbarModule,
     MatSidenavModule,
     MatSlideToggleModule,
+    MatListModule
   ],
   exports: [
     MatMenuModule,
@@ -110,7 +111,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatBadgeModule,
     MatToolbarModule,
     MatSidenavModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatListModule
   ]
 })
 export class MaterialModule { }

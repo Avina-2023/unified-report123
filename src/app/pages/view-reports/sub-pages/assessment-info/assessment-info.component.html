@@ -16,13 +16,13 @@
                             <div class="width-51">
                                 <em class="icon-Assessment"></em>
                                 <span>Test Name:
-                                    <span>{{ assessment.assessmentname ? assessment.assessmentname : '-' }}</span>
+                                    <span class="color-black">{{ assessment.assessmentname ? assessment.assessmentname : '-' }}</span>
                                 </span>
                             </div>
                             <div class="width-270">
                                 <em class="icon-Booked"></em>
                                 <span>Test Date:
-                                    <span>{{
+                                    <span class="color-black">{{
                                         assessment.assessmentdate
                                         ? momentForm(assessment.assessmentdate)
                                         : "-"
@@ -48,6 +48,28 @@
                     }">{{ getCredibility(assessment.percentageScore) }}</span>
                                 </span>
                             </div>
+                            <div class="width-150">
+                                <div class="primaryInfo">
+                                    <em *ngIf="assessment?.teststatus === 'In Complete'" class="icon-uncheck"></em>
+                                    <em *ngIf="assessment?.teststatus === 'Not Taken'" class="icon-uncheck"></em>
+                                    <em *ngIf="assessment?.teststatus === 'Complete'" class="icon-checked"></em>
+                                    <span> Completion :
+                                    <span [ngClass]="{ warningColor: assessment?.teststatus === 'In Complete' && assessment?.teststatus === 'Not Taken', successColor: assessment?.teststatus === 'Complete'
+                                    }">
+                                        <span style="font-size: 1em;display: contents;">{{assessment?.teststatus}}</span></span>
+                                    </span>
+                                </div>
+                                <!-- <span>Completion
+                                    <span class="status" [ngClass]="{ warningColor: assessment?.teststatus === 'In Complete' && assessment?.teststatus === 'Not Taken', 
+                                                   successColor: assessment?.teststatus === 'Complete'}">
+                                <em  *ngIf="assessment?.teststatus === 'In Complete'" class=" icons icon-uncheck"></em>
+                                <em   *ngIf="assessment?.teststatus === 'Not Taken'" class=" icons icon-uncheck"></em>
+                                <em  *ngIf="assessment?.teststatus === 'Complete'"class=" icons icon-checked"></em>
+                                
+                                    <span class="statusCheck">{{assessment?.teststatus}}</span>
+                                </span>
+                                </span> -->
+                            </div>
                         </div>
                     </mat-expansion-panel-header>
 
@@ -71,13 +93,13 @@
                                 Proctoring
                                 <span>{{ assessment.proctored ? "Yes" : "No"}}
                                     <a *ngIf="isaccess">
-                                        <span *ngIf="assessment.proctored" class="warningColor pointer"
+                                        <span *ngIf="assessment.proctored && assessment.source != 'ICP'" class="warningColor pointer"
                                         (click)="open(assessment)">View Details</span>
                                 </a>
                                 </span>
 
                             </div>
-                            <div class="primaryInfo">
+                            <!-- <div class="primaryInfo">
                                 Completion
                                 <span [ngClass]="{ warningColor: assessment?.teststatus === 'In Complete' && assessment?.teststatus === 'Not Taken', 
                                                    successColor: assessment?.teststatus === 'Complete'}">
@@ -87,14 +109,14 @@
                                 
                                     <span>{{assessment?.teststatus}}</span>
                                 </span>
-                            </div>
+                            </div> -->
                         </div>
                         <div class="ContentInfoSummary">
                             <div class="assessmentHeaderinfo">
                                 <div class="Summaryhtxt" *ngIf="isaccess">
                                     Sectional Summary
                                     <span class="primaryClick" (click)="questionview(assessment);inboundClick = !inboundClick"><em
-                                            class="icon-right-next"></em> View Questionwise Analysis</span>
+                                        *ngIf="assessment.source != 'STEP'"    class="icon-right-next"></em> View Questionwise Analysis</span>
                                 </div>
                                 <div *ngIf="inboundClick">
                                     <ng-container *ngIf="listOfSections && listOfSections.length > 0">
@@ -104,7 +126,7 @@
                                                     <div class="expandheaderArea">
                                                         <div class="htxt">{{sections._id}}</div>
                                                         <div class="txtinfo">
-                                                            <span>No. of Questions</span> {{sections.tableList.length}}
+                                                            <span> No. of Attempted Questions</span> {{sections.tableList.length}}
                                                         </div>
                                                     </div>
                                                 </mat-expansion-panel-header>
@@ -167,7 +189,8 @@
                                                       width: (section.attendedquestions / section.overallquestions) * 100 + '%' }"></div>
                                                     <div class="progressdata">
                                                         <span>{{ section.attendedquestions ? section.attendedquestions :
-                                                            '-' }}</span>/ {{ section.overallquestions ? section.overallquestions : '-' }}
+                                                            '-' }}</span>
+                                                        <p *ngIf="assessment.source != 'STEP'">/ {{ section.overallquestions ? section.overallquestions : '-' }}</p>
                                                     </div>
                                                 </td>
                                                 <!-- <td>
@@ -268,7 +291,13 @@
 </ng-template> -->
 
 <ng-template #matDialog1>
-    <span class="closedailog" (click)="closeBox()"><em class="icon-Close btn-close"></em></span>
+    <!-- <span class="closedailog" (click)="closeBox()"><em class="icon-Close btn-close"></em></span> -->
+    <div class="progressText">
+        <div class="progressclose1">
+            <span class="closebtn1" (click)="closeBox()"><em class="icon-Close"></em></span>
+        </div>
+
+    </div>
     <section>
         <div class="Pmain">
             <div class="row">

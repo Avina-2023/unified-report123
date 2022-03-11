@@ -20,8 +20,8 @@ export class CompetencyAreasComponent implements OnInit {
   competenciesName: any;
   unSortedVerticalData: any;
   unSortedHorizontalData: any;
-  domain = ['#8ac1ed', '#a4dea5', '#f7d096', '#e89694', '#8ac1ed', '#a4dea5', '#f7d096', '#e89694', '#8ac1ed', '#a4dea5', '#f7d096', '#e89694', '#8ac1ed', '#a4dea5', '#f7d096', '#e89694'];
-  verticaldomain = ["#FF8C00", "#0085B6" , "#9DBC5B" , "#28B59A", "#03B8CB", "#FF8C00", "#0085B6" , "#9DBC5B" , "#28B59A", "#03B8CB"];
+  domain = ['#FFC4A3', '#FFBC43', '#C84557', '#BAD252', '#2F9E77', '#1E9FAA', '#C89072', '#786965', '#5F5C5A', '#A889DF', '#AD7CA4', '#847EA6', '#6E87B2', '#8D8C88', '#EF9E6D', '#D29999','#1E94BE'];
+  verticaldomain = ['#FFC4A3', '#FFBC43', '#C84557', '#BAD252', '#2F9E77', '#1E9FAA', '#C89072', '#786965', '#5F5C5A', '#A889DF', '#AD7CA4', '#847EA6', '#6E87B2', '#8D8C88', '#EF9E6D', '#D29999','#1E94BE','#FFC325','#FFA2A2'];
   selectedHorizontalChartIndex = '0';
   verticalChartData: any[];
   constructor() {
@@ -101,7 +101,6 @@ export class CompetencyAreasComponent implements OnInit {
   }
 
   conversionFormula(score: number, maxscore: number) {
-    // console.log(score,maxscore)
     let percentage: number = Number(score) / Number(maxscore) * 100;
     percentage = Number(percentage.toFixed(2));
     return Number.isInteger(percentage) ? percentage : percentage.toFixed(2);
@@ -130,8 +129,12 @@ export class CompetencyAreasComponent implements OnInit {
         skills.skills.forEach((area, i) => {
           if (area) {
           area.areaColor = this.domain[i];
+
           area.area.forEach(element => {
             element.areaColor = this.domain[i];
+            if(element.areaname == 'NA'){
+                element.areaname = 'XXXX'
+            }
             areaSingle.push(element);
           });
         }

@@ -28,12 +28,15 @@ export class AuthComponent implements OnInit {
   username: any;
   InAppReport: string;
   subscription: Subscription;
+  orgdetails: any;
+  orgLogo: any;
+  orgName: any;
   constructor(
     private appConfig: AppConfigService,
     private apiService: ApiService,
     private dialog: MatDialog,
     private sendData: SentDataToOtherComp,
-    private toastr: ToastrService
+    private toastr: ToastrService,
   ) {
 
     this.subscription = this.sendData.getMessage().subscribe(message => {
@@ -42,11 +45,14 @@ export class AuthComponent implements OnInit {
    }
 
   ngOnInit(): void {
-   
     this.userDetails  =   JSON.parse(sessionStorage.getItem('user'));
     if(this.userDetails){
       this.username = this.userDetails.attributes.firstName;
     }
+
+    this.orgdetails = JSON.parse(this.appConfig.getLocalStorage('role'));
+    this.orgLogo = this.orgdetails[0].logoUrl;
+    this.orgName = this.orgdetails[0].orgName;
     this.isaccess = this.appConfig.isComingFromMicroCert();
   }
 

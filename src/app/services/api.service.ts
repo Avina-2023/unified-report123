@@ -22,12 +22,12 @@ export class ApiService {
 
   logout() {
     this.appConfig.clearLocalStorage();
-   
+    this.appConfig.clearSessionStorage();
     return this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.LOGIN);
   }
 
   login(data: any) {
-    return this.http.post(`${this.EDGE_URL}/login`, data);
+    return this.http.post(`${this.BASE_URL}/login`, data);
   }
 
   getReportsDataAPI(data) {
