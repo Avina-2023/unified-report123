@@ -31,6 +31,7 @@ export class BehaviouralPdfReportDownloadComponent implements OnInit {
     {score:"6-7-8",label:"MORE INCLINED",color:"orange"},
     {score:"9-10",label:"STRENGTH",color:"green"}
   ];
+  removeheading: any;
 
   constructor(private toastr: ToastrService,private appconfig: AppConfigService, private sendData: SentDataToOtherComp,) {
   }
@@ -160,6 +161,29 @@ export class BehaviouralPdfReportDownloadComponent implements OnInit {
       }, (err) => {
       }).save();
      
+  }
+
+  splitHeading(glimpse){
+      if(glimpse.includes("THOUGHT FACTOR")){
+        let heading = "THOUGHT FACTOR";
+        this.removeheading = glimpse.replace("THOUGHT FACTOR", "  ");
+        return heading;
+      }else if (glimpse.includes("INTERPERSONAL FACTOR")){
+        let heading = "INTERPERSONAL FACTOR";
+        this.removeheading = glimpse.replace("INTERPERSONAL FACTOR", "  ");
+        return heading;
+
+      }else if (glimpse.includes("CORE/PERSONAL FACTOR")){
+        let heading = "CORE/PERSONAL FACTOR";
+        this.removeheading = glimpse.replace("CORE/PERSONAL FACTOR", "  ");
+        return heading;
+        
+      }else{
+        let heading = "EMOTION FACTOR";
+        this.removeheading = glimpse.replace("EMOTION FACTOR", "  ");
+        return heading;
+      }
+    
   }
 }
 
