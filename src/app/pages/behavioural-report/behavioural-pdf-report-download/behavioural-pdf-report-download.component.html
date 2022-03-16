@@ -209,7 +209,8 @@
                                     </div>
                                     <div class="right">
                                         <div class="heading">
-                                            <span>{{factors?.name}}</span> {{factors.glimpse}}
+                                            <!-- <span>{{factors?.name}}</span> -->
+                                            <span>{{splitHeading(factors.glimpse)}}</span> {{removeheading ? removeheading : ''}}
                                         </div>
                                         <ul *ngIf="factors?.skills && factors.skills.length > 0">
                                             <li *ngFor="let skills of factors.skills"><img src="/assets/images/rightArrow.svg" alt="" /> <span class="skillname">{{skills.name}}</span></li>
