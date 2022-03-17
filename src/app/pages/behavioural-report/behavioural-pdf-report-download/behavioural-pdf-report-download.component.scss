@@ -186,9 +186,50 @@
             margin-bottom: -35px;
         }
         .wrapper {
+            margin: 40px 0;
             .commonStyle {
-                width: 49%;
-                margin-top: 75px;
+                width: 50%;
+                padding: 35px 0;
+                position: relative;
+                margin-top: 0;
+                &::before,
+                &::after {
+                    content: '';
+                    position: absolute;
+                    background-color: #cdcdcd;
+                }
+                &::before {
+                    right: 0;
+                    bottom: 0;
+                    width: 1px;
+                    height: 100%;
+                }
+                &::after {
+                    width: 100%;
+                    left: 0;
+                    bottom: 0;
+                    height: 1px;
+                }
+                &:nth-child(2),
+                &:nth-child(4) {
+                    &::before {
+                        content: none;
+                    }
+                }
+                &:nth-child(3),
+                &:nth-child(4) {
+                    &::after {
+                        content: none;
+                    }
+                }
+                &:first-child,
+                &:nth-child(3) {
+                    padding-right: 5%;
+                }
+                &:nth-child(2),
+                &:nth-child(4) {
+                    padding-left: 5%;
+                }
                 &:last-child {
                     .chart {
                         .left {
@@ -851,7 +892,7 @@
     
     .commonHeight-1 {
         position: relative;
-        min-height: 850px;
+        min-height: 860px;
     }
     
     .commonedivheight {
@@ -861,6 +902,10 @@
     
     .m-t-40 {
         margin-top: 40px;
+    }
+    
+    .m-t-80 {
+        margin-top: 80px;
     }
     
     .m-t {

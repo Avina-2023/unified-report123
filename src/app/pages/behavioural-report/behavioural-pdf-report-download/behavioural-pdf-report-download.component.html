@@ -85,7 +85,7 @@
                         <div class="heading3">REPORT SNAPSHOT</div>
                         <p *ngIf="getAllBehaviourData.reportSnapShot?.description">{{getAllBehaviourData.reportSnapShot?.description}}</p>
                         <ng-container *ngIf="getAllBehaviourData.reportSnapShot.competency && getAllBehaviourData.reportSnapShot.competency.length > 0"></ng-container>
-                        <div class="wrapper d-flex justify-content-between flex-wrap">
+                        <div class="wrapper d-flex flex-wrap">
                             <ng-container *ngFor="let competency of getAllBehaviourData.reportSnapShot.competency; let c = index">
                                 <ng-container *ngIf="(c + 1) % 2 != 0">
                                     <div class="thoughtFactor commonStyle">
@@ -431,8 +431,9 @@
         <div class="html2pdf__page-break"></div>
         <section class="heightContainer" *ngIf="isaccess">
 
-            <section class="commonHeight">
+            <section class="commonHeight m-t-40">
                 <section class="behaviouralEvent" *ngIf="isaccess">
+
                     <div class="header" *ngIf="getAllBehaviourData?.conclusion">
                         <div class="heading">
                             {{getAllBehaviourData?.conclusion?.topicName}}
@@ -489,9 +490,9 @@
         <div class="html2pdf__page-break"></div>
         <section class="heightContainer" *ngIf="isaccess">
 
-            <section class="commonHeight m-t-40">
+            <section class="commonHeight ">
                 <section class="behaviouralEvent scope">
-                    <div class="header " *ngIf="getAllBehaviourData?.conclusion">
+                    <div class="header" *ngIf="getAllBehaviourData?.conclusion">
                         <div class="heading">
                             {{getAllBehaviourData?.conclusion?.topicName}}
                         </div>
@@ -502,7 +503,7 @@
                     <div class="heading3">DEVELOPMENT SCOPE</div>
                     <ng-container *ngIf="getAllBehaviourAPIDetails && getAllBehaviourAPIDetails?.developmentconclusionPoints && getAllBehaviourAPIDetails?.developmentconclusionPoints.length > 0 else noImprovements">
                         <ng-container *ngFor="let conclusion of getAllBehaviourAPIDetails.developmentconclusionPoints;let d = index">
-                            <div class="wrapper d-flex justify-content-between">
+                            <div class="wrapper d-flex justify-content-between m-t-40">
                                 <div class="left">
                                     <span>{{conclusion?.skillName}}</span>
                                 </div>
