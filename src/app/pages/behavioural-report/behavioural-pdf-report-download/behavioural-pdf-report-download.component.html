@@ -365,6 +365,17 @@
 
                     <ng-container *ngIf="getAllBehaviourAPIDetails?.developmentContent && getAllBehaviourAPIDetails?.developmentContent.length > 0 else noImprovements">
                         <ng-container *ngFor=" let item of getAllBehaviourAPIDetails?.developmentContent; let b = index">
+                            <!-- for Anxiety Management page brack added -->
+                            <span *ngIf="item?.skillName == 'Anxiety Management'">
+                                <div  class="html2pdf__page-break"></div>
+                                <figure  class="scope-head d-flex align-items-center m-t-40">
+                                    <img src="/assets/images/DEVELOPMENT.svg" alt="">
+                                    <span class="heading3">DEVELOPMENT SCOPE</span>
+                            </figure>
+                            <p *ngIf="getAllBehaviourData">{{getAllBehaviourData?.developmentScopeDescription}}</p>
+                            </span>
+
+                            <!-- end for Anxiety Management page brack added -->
                             <div class="description">
                                 <div class="left">
                                     <figure>
@@ -400,6 +411,8 @@
                             </figure>
                             <p *ngIf="getAllBehaviourData">{{getAllBehaviourData?.developmentScopeDescription}}</p>
                             </span>
+
+
                         </ng-container>
                     </ng-container>
                 </section>
