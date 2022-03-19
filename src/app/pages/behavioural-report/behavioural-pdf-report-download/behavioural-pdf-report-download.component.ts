@@ -25,6 +25,8 @@ export class BehaviouralPdfReportDownloadComponent implements OnInit {
   img: string;
   subscription: Subscription;
   InAppReport: any;
+  orgdetails: any;
+  orgId: any;
   benchMarkScore = [
     {score:"1-2",label:"DEVELOPMENT SCOPE",color:"red"},
     {score:"3-4-5",label:"LESS INCLINED",color:"yellow"},
@@ -48,6 +50,9 @@ export class BehaviouralPdfReportDownloadComponent implements OnInit {
     if (this.data) {
       this.getReportData();
     }
+
+    this.orgdetails = JSON.parse(this.appconfig.getLocalStorage('role'));
+    this.orgId = this.orgdetails[0].orgId;
   }
 
   ngOnDestroy(){
@@ -142,7 +147,7 @@ export class BehaviouralPdfReportDownloadComponent implements OnInit {
     this.toastr.success('Please wait for sometime','PDF is downloading')
     var element = document.getElementById('element-to-print');
     var opt = {
-      margin: 0,
+      margin: [0,0],
       filename:  (this.getAllBasicData?.firstname ? this.getAllBasicData?.firstname : '')+'('+this.email+')'+'.pdf',
       image:        { type: 'jpeg', quality: 1 },
       html2canvas:  {scale: 2},
@@ -155,7 +160,9 @@ export class BehaviouralPdfReportDownloadComponent implements OnInit {
           pdf.setPage(i)
           pdf.setFontSize(9);
           pdf.setTextColor(150);
-          pdf.text('Page ' + i + ' of ' + number_of_pages, (pdf.internal.pageSize.getWidth() - 0.90 ), (pdf.internal.pageSize.getHeight()-0.35));
+          // for right align 
+          // pdf.text('Page ' + i + ' of ' + number_of_pages, (pdf.internal.pageSize.getWidth() - 0.90 ), (pdf.internal.pageSize.getHeight()-0.35));
+          pdf.text('Page ' + i + ' of ' + number_of_pages, (pdf.internal.pageSize.getWidth() - 4.30 ), (pdf.internal.pageSize.getHeight()-0.25));
       }
     
       }, (err) => {
