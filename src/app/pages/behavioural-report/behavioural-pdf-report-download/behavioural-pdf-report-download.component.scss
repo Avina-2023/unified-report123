@@ -3,8 +3,11 @@
         display: block;
         width: 210mm;
         // width: 100%;
-        margin: 0 auto;
+        margin: 0;
         background-color: $whiteColor;
+        .pdfLogo {
+            width: 130px;
+        }
     }
     
     header {
@@ -21,6 +24,7 @@
     .banner {
         position: relative;
         height: 500px;
+        width: 825px !important;
         &::before,
         &::after {
             content: '';
@@ -55,7 +59,7 @@
     }
     
     .bannerBorder {
-        width: 100%;
+        width: 825px;
         height: 10px;
         background-image: linear-gradient(to right, #23bbee, #00bed9, #00beb4, #00ba85, #5ab253);
     }
@@ -293,7 +297,7 @@
                                 display: flex;
                                 em {
                                     color: $whiteColor;
-                                    font-size: 20px;
+                                    font-size: 30px;
                                 }
                             }
                             li {
@@ -466,6 +470,14 @@
                         font-weight: 500;
                         text-transform: uppercase;
                     }
+                    .foctorssubpara {
+                        color: #575756;
+                        font-size: 14px;
+                        line-height: normal;
+                        text-transform: none;
+                        text-align: left;
+                        letter-spacing: 0.26px;
+                    }
                 }
                 ul {
                     display: flex;
@@ -536,6 +548,14 @@
                 text-transform: uppercase;
                 font-weight: 700;
                 color: #000000;
+            }
+            .skillsDetail {
+                letter-spacing: 0.2px;
+                color: #1D1D1B;
+                opacity: 1;
+                font-size: 12px;
+                text-transform: none;
+                font-weight: normal;
             }
         }
         .chart {
@@ -857,10 +877,11 @@
         }
         figure {
             margin: 0;
-            margin-right: 10%;
+            margin-left: 37%;
             img {
                 width: 68%;
                 display: inline-block;
+                margin-left: 40%;
                 // opacity: 0.3;
             }
         }
