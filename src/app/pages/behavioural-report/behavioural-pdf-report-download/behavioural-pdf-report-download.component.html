@@ -2,7 +2,7 @@
 <div class="pdfWrapper" *ngIf="data" id="element-to-print">
     <header>
         <!-- <figure> -->
-        <img style="width: 120px;" src="/assets/images/pdfDownload/Logo.png" alt="" />
+        <img class="pdfLogo" [src]="orgId != '1' ? '/assets/images/adani_logo.png' : '/assets/images/pdfDownload/Logo.png'" alt="" />
         <!-- </figure> -->
     </header>
 
@@ -23,7 +23,7 @@
             <div class="right">
                 <div><span>Email </span>: <span>{{email ? email : 'Nil'}}</span></div>
                 <div><span>Gender: </span>: <span>{{getAllBasicData?.gender ? getAllBasicData?.gender : 'Nil'}}</span></div>
-                <div><span>Education level </span>: <span>{{highestEducation?.institute ? highestEducation?.institute : 'Nil'}}</span></div>
+                <!-- <div><span>Education level </span>: <span>{{highestEducation?.institute ? highestEducation?.institute : 'Nil'}}</span></div> -->
             </div>
         </section>
 
@@ -210,11 +210,11 @@
                                     <div class="right">
                                         <div class="heading">
                                             <!-- <span>{{factors?.name}}</span> -->
-                                            <span>{{splitHeading(factors.glimpse)}}</span> {{removeheading ? removeheading : ''}}
+                                            <span>{{splitHeading(factors.glimpse)}}</span>
+                                            <span class="foctorssubpara">{{removeheading ? removeheading : ''}}</span>
                                         </div>
                                         <ul *ngIf="factors?.skills && factors.skills.length > 0">
                                             <li *ngFor="let skills of factors.skills"><img src="/assets/images/rightArrow.svg" alt="" /> <span class="skillname">{{skills.name}}</span></li>
-
                                         </ul>
                                     </div>
 
@@ -229,14 +229,15 @@
                                                 <img alt="" [src]="factorsSkillsImage(skillsDetail?.name)">
                                             </figure>
                                             <div class="content">
-                                                <span>{{skillsDetail?.name}}: &nbsp;</span>{{skillsDetail?.scorebasedSkillDescription ? skillsDetail?.scorebasedSkillDescription : '-'}}
+                                                <span>{{skillsDetail?.name}}: &nbsp;</span>
+                                                <span class="skillsDetail">{{skillsDetail?.scorebasedSkillDescription ? skillsDetail?.scorebasedSkillDescription : '-'}}</span>
                                             </div>
                                             <div class="chart">
                                                 <app-behavioural-report-canvas [bgColor]="factors?.colourcode" [score]="skillsDetail?.stenScore ? skillsDetail?.stenScore : 0"></app-behavioural-report-canvas>
                                             </div>
                                             <span class="pointer">
-                        <img alt="" src="/assets/images/pdfDownload/arrow.svg">
-                    </span>
+                                                <img alt="" src="/assets/images/pdfDownload/arrow.svg">
+                                            </span>
                                         </div>
                                     </div>
                                 </ng-container>
