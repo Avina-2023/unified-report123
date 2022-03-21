@@ -6,6 +6,7 @@ import { ApiService } from '../../../../services/api.service';
 import { Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { SentDataToOtherComp } from 'src/app/services/sendDataToOtherComp.service';
+import { AgChartThemeOverrides } from '@ag-grid-enterprise/all-modules';
 // import { RowGroupingModule } from '@ag-grid-enterprise/row-grouping';
 // import { ClientSideRowModelModule, Module } from '@ag-grid-enterprise/all-modules';
 @Component({
@@ -26,6 +27,20 @@ export class HiringReportComponent implements OnInit {
   public serverSideStoreType;
   public rowSelection;
   public masterDetail;
+  public popupParent: HTMLElement = document.body;
+  public chartThemeOverrides: AgChartThemeOverrides = {
+    common: {
+      legend: {
+        enabled: false,
+        position: 'left',
+      },
+      paddingX: 120,
+      paddingY: 20,
+  },
+
+
+
+  };
   // public modules: Module[] = [ClientSideRowModelModule, RowGroupingModule];
   reportsData: any;
   userList: any = [];
@@ -49,6 +64,10 @@ export class HiringReportComponent implements OnInit {
       enableFilter:true
       //  floatingFilter: true,
     };
+
+    
+
+
   }
 
   ngOnInit(): void {
@@ -485,7 +504,7 @@ export class HiringReportComponent implements OnInit {
     this.sizeToFit();
     var datasource = this.callApiForCandidateList();
     params.api.setServerSideDatasource(datasource);
-
+        
   }
 
   onGridReadymini(params){
