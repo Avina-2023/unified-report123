@@ -10,16 +10,25 @@
                     <ng-container *ngFor="let competency of getAllBehaviourData.reportSnapShot.competency; let c = index">
                         <ng-container *ngIf="(c + 1) % 2 != 0">
                             <div class="styleOne thoughtFactor d-flex justify-content-between">
+
+
                                 <div class="left d-flex justify-content-between">
-                                    <div class="figure">
-                                        <figure>
-                                            <!-- <img src="/assets/images/thought_factor.svg" alt="" /> -->
-                                            <img [src]="competency.imageurl" alt="" />
-                                        </figure>
-                                    </div>
-                                    <div class="figContent">
-                                        <span class="heading4">{{competency?.name}}</span>
-                                        <p>{{competency?.description}}</p>
+                                    <div class="flipContainer">
+                                        <div class="front">
+                                            <div class="figure">
+                                                <figure>
+                                                    <!-- <img src="/assets/images/thought_factor.svg" alt="" /> -->
+                                                    <img [src]="competency.imageurl" alt="" />
+                                                </figure>
+                                            </div>
+                                            <div class="figContent">
+                                                <span class="heading4">{{competency?.name}}</span>
+                                                <p>{{competency?.description}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="back">
+                                            Back Side Text
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="right d-flex justify-content-between">

@@ -6,7 +6,7 @@
 
     <ng-continer *ngIf="getAllReportsData && getAllReportsData.email; else nocard">
         <!-- <div #stickyMenu class="menucontent" [class.sticky]="sticky"> -->
-        <app-profile-info (driveName)="getSelectedDriveName($event)" [getAllReportsData]="getAllReportsData">
+        <app-profile-info (driveName)="getSelectedDriveName($event)" (driveUserEmail)="getDriveBaisedUser($event)" [getAllReportsData]="getAllReportsData">
         </app-profile-info>
         <!-- </div> -->
 

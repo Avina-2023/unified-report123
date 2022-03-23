@@ -337,6 +337,14 @@
     background-color: #fff;
 }
 
+.stickybtn {
+    position: fixed;
+    z-index: 100;
+    width: 99%;
+    top: 30%;
+    margin-left: -49px;
+}
+
 .totalCount {
     display: flex;
     justify-content: space-between;
@@ -361,4 +369,30 @@
 .totalCout {
     font-size: 12px;
     color: #343a40;
+}
+
+.arrow {
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+    .left {
+        margin-left: 9%;
+        font-size: 30px !important;
+    }
+    .right {
+        margin-left: 9%;
+        font-size: 30px !important;
+    }
+    .arrow-btn {
+        width: 35px;
+        height: 35px;
+        background: #dee2e6;
+        border-radius: 50%;
+    }
+}
+
+.disable {
+    cursor: not-allowed;
+    opacity: 0.5;
+    pointer-events: none;
 }

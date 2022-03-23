@@ -97,4 +97,11 @@ export class ViewOverallReportsComponent implements OnInit {
       this.driveName = e;
     }
   }
+
+  getDriveBaisedUser($event){
+    if($event){
+      this.getReports($event);
+    }
+ 
+  }
 }

@@ -4,7 +4,7 @@
         Schedule Information
     </div>
     <div class="totalCount">
-        <mat-select *ngIf="driveList" class="matSelect" (selectionChange)="driveChange($event)" placeholder="Select Scheduled" [(ngModel)]="driveselectedValue" name="list">
+        <mat-select *ngIf="driveList" class="matSelect" (selectionChange)="driveChange($event,i)" placeholder="Select Scheduled" [(ngModel)]="driveselectedValue" name="list">
             <mat-option *ngFor="let list of driveList" [value]="list.drivename">
                 {{list.drivename}}
             </mat-option>
@@ -12,7 +12,7 @@
 
         <div>
             <span class="count-font">Total Count</span>
-            <div class="count"><span class="userCount">{{totalCount}}</span> / <span class="totalCout">{{totalCount}}</span></div>
+            <div class="count"><span class="userCount">{{userCount}}</span> / <span class="totalCout">{{totalCount}}</span></div>
         </div>
     </div>
 
@@ -198,9 +198,13 @@
     </ng-container> -->
 
     <div class="clearfix"></div>
+    <div class="arrow" [class.stickybtn]="sticky">
+        <span class="arrow-btn" [ngClass]="{'disable':prevIcon == true}"> <mat-icon class="left" (click)="prevUser()">keyboard_arrow_left</mat-icon></span>
+        <span class="arrow-btn" [ngClass]="{'disable':nextArrow == true}"><mat-icon class="right" (click)="nextUser()">keyboard_arrow_right</mat-icon></span>
 
 
+    </div>
 
 </section>
 
-<!-- <button style="position: absolute;z-index: 1;">></button> -->
+<!-- -->

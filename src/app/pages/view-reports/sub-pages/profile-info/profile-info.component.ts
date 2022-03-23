@@ -1,9 +1,11 @@
 import { Component, EventEmitter, HostListener, Input, OnChanges, OnInit, Output } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { multicast } from 'rxjs/operators';
 import { LoadingService } from 'src/app/services/loading.service';
 import { SentDataToOtherComp } from 'src/app/services/sendDataToOtherComp.service';
 import { AppConfigService } from 'src/app/utils/app-config.service';
+import { APP_CONSTANTS } from 'src/app/utils/app-constants.service';
 import { ApiService } from '../../../../services/api.service';
 @Component({
   selector: 'app-profile-info',
@@ -13,6 +15,8 @@ import { ApiService } from '../../../../services/api.service';
 export class ProfileInfoComponent implements OnInit, OnChanges {
   @Input() getAllReportsData;
   @Output() driveName:EventEmitter<any> =new EventEmitter<any>();
+  @Output() driveUserEmail:EventEmitter<any> =new EventEmitter<any>();
+  sampledata = []
   personalInfo: any;
   driveselectedValue: any;
   driveList: any;
@@ -22,31 +26,43 @@ export class ProfileInfoComponent implements OnInit, OnChanges {
   subscription: Subscription;
   menuPosition: number = 164;
   totalCount: any;
+  driveUser: any;
+  selectedMail: any;
+  hiddenIcon: boolean;
+  nextArrow: boolean = false;
+  prevIcon: boolean = true;
+  userCount = 1;
   @HostListener('window:scroll', ['$event'])
  handleScroll(){
     const windowScroll = window.pageYOffset;
-    console.log(windowScroll)
     if(windowScroll >= this.menuPosition){
       this.sticky = true;
     } else {
       this.sticky = false;
     }
     }
-  constructor(private ApiService: ApiService,private appConfig: AppConfigService,private _loading: LoadingService,  private sendData: SentDataToOtherComp, ) { 
+  constructor(  private route: ActivatedRoute,private ApiService: ApiService,private appConfig: AppConfigService,private _loading: LoadingService,  private sendData: SentDataToOtherComp, ) { 
      this.selectDriveName = sessionStorage.getItem('schedulename');
-    //  this.subscription = this.sendData.getMessage().subscribe(message => {
-    //   this.sticky = message;
-    // });
   }
 
   ngOnInit(): void {
     this.getPersonalInfo();
     this.isaccess = this.appConfig.isComingFromMicroCert();
-   
+    this.getRoute();
+    this.getDriveUser(this.selectDriveName, this.selectedMail ? this.selectedMail : '')
   }
 
   ngOnChanges() {
     this.getPersonalInfo();
+  }
+
+  getRoute() {
+    this.route.paramMap.subscribe((param: any) => {
+      if (param && param.params && param.params.id) {
+        this.selectedMail = param.params.id;
+       
+      }
+    });
   }
 
   getPersonalInfo() {
@@ -72,7 +88,6 @@ export class ProfileInfoComponent implements OnInit, OnChanges {
     this.personalInfo.branch = this.getLastEducationValue('branch');
     this.personalInfo.passedOut = this.getLastEducationValue('passedOut');
     this.personalInfo.percentage = this.getLastEducationValue('percentage');
-    // this.getDriveUser(this.driveselectedValue, this.personalInfo.email);
   }
 
   getContactAddress(val) {
@@ -125,18 +140,51 @@ export class ProfileInfoComponent implements OnInit, OnChanges {
 
   emitdriveNametoParent() {
     this.driveName.emit(this.driveselectedValue);
-    this.getDriveUser(this.driveselectedValue, this.getAllReportsData ? this.getAllReportsData?.email : '')
+   
   }
 
   getDriveUser(drive,email){
+
     let data = {
       driveName:drive,
       email:  email ? email : ''
 
     }
     this.ApiService.getDriveBaisedUser(data).subscribe((data:any)=>{
-        console.log(data,'res data')
+       
         this.totalCount = data.noOfCandidates;
+        this.sampledata = data.data;
+        console.log(this.driveUser,'res data')
     })
+  }
+
+  nextUser(){
+    this.userCount = this.userCount + 1;
+    let index = this.sampledata.findIndex((data => data.email == this.selectedMail));
+    let expectedIndex = index != -1 ? (index + 1) : null;
+    if(this.sampledata[expectedIndex]?.email){
+      let nextMail = this.sampledata[expectedIndex].email;
+      this.appConfig.routeNavigationWithParam(APP_CONSTANTS.ENDPOINTS.REPORTS.VIEWREPORTS, nextMail);
+      this.prevIcon = false;
+    }else {
+      this.nextArrow = true;
+    }
+   
+    
+   
+  }
+
+  prevUser(){
+    this.userCount = this.userCount - 1;
+    let index = this.sampledata.findIndex((data => data.email == this.selectedMail));
+    let expectedIndex = index != -1 ? (index - 1) : null;
+    if(this.sampledata[expectedIndex]?.email){
+      let prevMail = this.sampledata[expectedIndex].email;
+      this.appConfig.routeNavigationWithParam(APP_CONSTANTS.ENDPOINTS.REPORTS.VIEWREPORTS, prevMail)
+      this.nextArrow = false;
+    }else {
+      this.prevIcon = true
+    }
+    
   }
 }
