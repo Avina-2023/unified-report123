@@ -435,9 +435,11 @@
     .commonHeader {
         position: relative;
         background-color: #F3F3F3;
-        padding: 20px;
+        padding: 20px 46px 20px 0px;
         overflow: hidden;
         margin-top: 40px;
+        width: 830px;
+        margin-left: -18px;
         .bg {
             position: absolute;
             right: 10px;
@@ -507,7 +509,7 @@
             &::after {
                 content: '';
                 position: absolute;
-                left: 17%;
+                left: 12%;
                 top: 0;
                 width: 1px;
                 height: 100%;
@@ -516,7 +518,7 @@
             &::before {
                 content: '';
                 position: absolute;
-                left: 17%;
+                left: 12%;
                 top: 0;
                 width: 1px;
                 height: 100%;
@@ -526,13 +528,13 @@
                 position: absolute;
                 top: 50%;
                 transform: translateY(-50%);
-                left: 17%;
+                left: 12%;
             }
         }
         figure {
             width: 20%;
             margin: 0;
-            text-align: center;
+            // text-align: center;
             img {
                 max-width: 40%;
             }
@@ -772,6 +774,7 @@
             img {
                 max-width: 70%;
                 margin: 0;
+                margin-right: 20%;
             }
         }
         .chart,
