@@ -45,10 +45,10 @@ export class HiringReportComponent implements OnInit {
   reportsData: any;
   userList: any = [];
   pageRowCount = 0;
+  cacheBlockSize: any = 1000;
   candidateListSubscription: Subscription;
   sectiondialogRef: any;
   rowData1: any;
-  cacheBlockSize: any = 100;
   constructor(private sendData: SentDataToOtherComp, private matDialog: MatDialog,private appconfig: AppConfigService,private toastr: ToastrService, private ApiService: ApiService,) {      
     this.serverSideStoreType = 'partial';
     this.masterDetail = true;

@@ -1,81 +1,109 @@
 <section class="CompetencyArea">
-    <div class="heading6" *ngIf="verticalChartData && verticalChartData.length > 0">
-        Behavioural Competencies
-
-    </div>
-    <div class="InfoDetailsArea" *ngIf="verticalChartData && verticalChartData.length > 0">
-        <div class="leftPan">
-            <div *ngIf="verticalChartData && verticalChartData.length > 0">
-                <app-bar-chart (competencyId)="getParticularCompetencySkills($event)" [domains]="verticalChartData" [hideControls]="hideControls" [chartData]="verticalChartData"></app-bar-chart>
-            </div>
-        </div>
-
-
-
-        <div class="rightPan" [@animSlider]="counter" #height>
-
-            <ng-container *ngFor="let competency of competancyData; let i = index">
-                <div *ngIf="i===counter" class="chartContainer">
-                    <div class="sPan">
-                        <div class="heading4" #myDiv>{{competency && competency.competencyname ? competency.competencyname : 'XXXX'}}
-
-                        </div>
-
-                        <div class="roundCanvas">
-                            <div style="width: 200px;
-                            margin-top: 15px;" *ngFor="let skilles of competency.skills">
-                                <app-roundcanvas (click)="selectedHorizontalArrayIndex($event, i)" style="width: 200px;margin-top: 20px;" [bgColor]="domain" [score]="skilles.score"></app-roundcanvas>
-                                <div class="behaskillsname"> <span>{{skilles.skillname ? skilles.skillname : 'XXXX'}}</span></div>
+    <!-- Report Snapshot -->
+    <ng-container *ngIf="getAllBehaviourData && getAllBehaviourData.reportSnapShot">
+        <section class="snapshot box-shadow">
+            <div class="containerWrapper">
+                <div class="innerContainer">
+                    <div class="heading2">Report Snapshot</div>
+                    <div class="heading3" *ngIf="getAllBehaviourData.reportSnapShot?.description">{{getAllBehaviourData.reportSnapShot?.description}}</div>
+                    <ng-container *ngIf="getAllBehaviourData.reportSnapShot.competency && getAllBehaviourData.reportSnapShot.competency.length > 0"></ng-container>
+                    <ng-container *ngFor="let competency of getAllBehaviourData.reportSnapShot.competency; let c = index">
+                        <ng-container *ngIf="(c + 1) % 2 != 0">
+                            <div class="styleOne thoughtFactor d-flex justify-content-between">
+                                <div class="left d-flex justify-content-between">
+                                    <div class="figure">
+                                        <figure>
+                                            <!-- <img src="/assets/images/thought_factor.svg" alt="" /> -->
+                                            <img [src]="competency.imageurl" alt="" />
+                                        </figure>
+                                    </div>
+                                    <div class="figContent">
+                                        <span class="heading4">{{competency?.name}}</span>
+                                        <p>{{competency?.description}}</p>
+                                    </div>
+                                </div>
+                                <div class="right d-flex justify-content-between">
+                                    <ng-container *ngIf="competency?.skills && competency?.skills.length > 0">
+                                        <div class="d-flex justify-content-start">
+                                            <ul *ngFor="let skills of competency.skills; let bar = index">
+                                                <ng-container *ngFor="let array of [0,1,2,3,4,5,6,7,8,9]; let stenIndex = index">
+                                                    <li [ngStyle]="{'background-color': ((stenIndex + 1) > (10 - (skills?.stenScore ? skills?.stenScore : 0 ))) ? skills?.colourcode : ''}"></li>
+                                                </ng-container>
+                                                <span *ngIf="skills?.stenScore > 0" class="arrowUp">
+                                                <em class="icon-ArrowUp"></em>
+                                            </span>
+                                            </ul>
+                                        </div>
+                                        <div class="d-flex flex-column justify-content-between">
+                                            <button *ngFor="let skills of competency.skills; let s = index" [ngClass]="'a' + s + 1" class="d-flex align-items-center justify-content-between">{{skills?.name}} <span [ngStyle]="{background: skills?.colourcode}">{{skills?.stenScore ? skills?.stenScore : 0}}</span></button>
+                                        </div>
+                                    </ng-container>
+                                </div>
                             </div>
-
-
-                        </div>
-
-
-                        <!-- <app-horizontal-bar-chart (selectedArea)="selectedHorizontalArrayIndex($event, i)" [hideControls]="hideControls" [domains]="domain" [chartData]="competency.skills"></app-horizontal-bar-chart> -->
-                    </div>.
-
-
-                    <!-- <div class="aPan">
-                        <div class="subhtxt">Skill areas <span (click)="resetAreas(i, competency)" class="ResetBtn "> <em class="icon-Refresh"></em>Reset</span></div>
-                        <div class="areasbtnsec" *ngIf="competency.areaSkills">
-                            <span class="btnBox btnBlue" [ngStyle]="{'background-color': area1.areaColor ? area1.areaColor : ''}" *ngFor="let area1 of competency.areaSkills">{{area1.areaname}} -
-                              {{area1.score}}</span>
-                        </div>
-                    </div> -->
-                    <div class="aPan">
-                        <div class="areasbtnsec">
-                            <div *ngFor="let area1 of competency.skills">
-                                <div *ngIf="area1.skilldesc" class="black">{{area1.skillname}} </div>
-                                <ul *ngIf="area1.skilldesc" class="para" style="list-style-type: disc">
-                                    <li class="col-black">{{area1.skilldesc}}</li>
-                                </ul>
+                        </ng-container>
+                        <ng-container *ngIf="(c + 1) % 2 == 0">
+                            <div class="styleTwo corePersonal d-flex justify-content-between">
+                                <div class="left d-flex justify-content-between">
+                                    <ng-container *ngIf="competency?.skills && competency?.skills.length > 0">
+                                        <div class="d-flex justify-content-start">
+                                            <ul *ngFor="let skills of competency.skills; let bar = index">
+                                                <ng-container *ngFor="let array of [0,1,2,3,4,5,6,7,8,9]; let stenIndex = index">
+                                                    <li [ngStyle]="{'background-color': ((stenIndex + 1) > (10 - (skills?.stenScore ? skills?.stenScore : 0 ))) ? skills?.colourcode : ''}"></li>
+                                                </ng-container>
+                                                <span *ngIf="skills?.stenScore > 0" class="arrowUp">
+                                                <em class="icon-ArrowUp"></em>
+                                            </span>
+                                            </ul>
+                                        </div>
+                                        <div class="d-flex flex-column justify-content-between">
+                                            <button *ngFor="let skills of competency.skills; let s = index" [ngClass]="'a' + s + 1" class="d-flex align-items-center justify-content-between">{{skills?.name}} <span [ngStyle]="{background: skills?.colourcode}">{{skills?.stenScore ? skills?.stenScore : 0}}</span></button>
+                                        </div>
+                                    </ng-container>
+                                </div>
+                                <div class="right d-flex justify-content-between">
+                                    <div class="figContent">
+                                        <span class="heading4">{{competency?.name}}</span>
+                                        <p>{{competency?.description}}</p>
+                                    </div>
+                                    <div class="figure">
+                                        <figure>
+                                            <img [src]="competency.imageurl" alt="" />
+                                        </figure>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
+                        </ng-container>
+                    </ng-container>
                 </div>
-            </ng-container>
-
-            <!-- <button type="button" class="sliderBtn left" (click)="onPrevious()" [disabled]="counter===0"><em
-                  class="icon-Back"></em></button> -->
-            <!-- <button type="button" class="sliderBtn right" (click)="onNext()" [disabled]="this.counter == this.list.length - 1"><em class="icon-right-next"></em></button> -->
-            <!-- <div class="slideDots">
-                <span (click)="dotChange(i,competency.competencyname)" *ngFor="let competency of competancyData; let i = index" [class.active]="i===counter">{{competency && competency.score ? competency.score : ''}}</span>
-            </div> -->
-        </div>
-        <span class="triangle-left"></span>
-    </div>
-    <div class="clearfix"></div>
+                <div class="bencmark-info">
+                    <button (click)="openBenchmarkInfo(benchmarkInfo)">
+                    <img src="../../../../../assets/images/path.svg" alt="Score Benchmark Info">
+                    <span>Score Benchmark Info</span>
+                </button>
+                </div>
+            </div>
+        </section>
+    </ng-container>
+    <!-- Snapshot tabs -->
 </section>
 
-<ng-template #noChart>
-    <div class="no-chart">
-        No Chart Available
-    </div>
-</ng-template>
-
-<ng-template #noCompetency>
-    <div class="no-chart">
-        No Competencies Available
+<ng-template #benchmarkInfo>
+    <div class="benchmarkInfo">
+        <em [mat-dialog-close]="true" class="icon-Close"></em>
+        <div class="heading5">SCORE BENCHMARK INFO</div>
+        <figure class="chart">
+            <img src="/assets/images/behaviourmeter.svg" alt="">
+        </figure>
+        <div class="score d-flex justify-content-between align-items-center flex-wrap">
+            <ng-container *ngFor="let score of benchMarkScore">
+                <div class="score-content" [ngClass]="{'red':score.color == 'red', 'green': score.color == 'green', 'yellow':score.color == 'yellow' ,'orange':score.color == 'orange'}">
+                    <div class="scorepoint">{{score.score}}</div>
+                    <div class="scorelabel">{{score.label}}</div>
+                </div>
+            </ng-container>
+        </div>
+        <figure class="growth">
+            <img src="/assets/images/growth.svg" alt="">
+        </figure>
     </div>
 </ng-template>

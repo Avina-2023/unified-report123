@@ -1,8 +1,10 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, HostListener, Input, OnChanges, OnInit, Output } from '@angular/core';
+import { Subscription } from 'rxjs/internal/Subscription';
 import { multicast } from 'rxjs/operators';
 import { LoadingService } from 'src/app/services/loading.service';
+import { SentDataToOtherComp } from 'src/app/services/sendDataToOtherComp.service';
 import { AppConfigService } from 'src/app/utils/app-config.service';
-
+import { ApiService } from '../../../../services/api.service';
 @Component({
   selector: 'app-profile-info',
   templateUrl: './profile-info.component.html',
@@ -16,14 +18,31 @@ export class ProfileInfoComponent implements OnInit, OnChanges {
   driveList: any;
   isaccess:any;
   selectDriveName: string;
-  constructor(private appConfig: AppConfigService,private _loading: LoadingService, ) { 
+  sticky:boolean=false;
+  subscription: Subscription;
+  menuPosition: number = 164;
+  totalCount: any;
+  @HostListener('window:scroll', ['$event'])
+ handleScroll(){
+    const windowScroll = window.pageYOffset;
+    console.log(windowScroll)
+    if(windowScroll >= this.menuPosition){
+      this.sticky = true;
+    } else {
+      this.sticky = false;
+    }
+    }
+  constructor(private ApiService: ApiService,private appConfig: AppConfigService,private _loading: LoadingService,  private sendData: SentDataToOtherComp, ) { 
      this.selectDriveName = sessionStorage.getItem('schedulename');
+    //  this.subscription = this.sendData.getMessage().subscribe(message => {
+    //   this.sticky = message;
+    // });
   }
 
   ngOnInit(): void {
-    
     this.getPersonalInfo();
     this.isaccess = this.appConfig.isComingFromMicroCert();
+   
   }
 
   ngOnChanges() {
@@ -37,6 +56,7 @@ export class ProfileInfoComponent implements OnInit, OnChanges {
     // do not remove
     // this.driveList && this.driveList.length > 0 ? this.driveList[0].drivename : null
     this.emitdriveNametoParent();
+    
     this.personalInfo ={};
     this.personalInfo.firstname = this.getAllReportsData?.firstname;
     this.personalInfo.lastname = this.getAllReportsData?.lastname;
@@ -52,13 +72,14 @@ export class ProfileInfoComponent implements OnInit, OnChanges {
     this.personalInfo.branch = this.getLastEducationValue('branch');
     this.personalInfo.passedOut = this.getLastEducationValue('passedOut');
     this.personalInfo.percentage = this.getLastEducationValue('percentage');
+    // this.getDriveUser(this.driveselectedValue, this.personalInfo.email);
   }
 
   getContactAddress(val) {
     let address = this.getAllReportsData && this.getAllReportsData.presentAddress ? this.getAllReportsData.presentAddress : null
     if (address && address.line1 != '') {
       let currAddress = address.line1 + ', ' + address.line2 + ', ' + address.state + ', ' + address.city + ', ' + address.pincode
-      let city = address.state + ', ' + address.city;
+      let city = address.state && address.city ? address.state + ', ' + address.city : '';
       return val == 'address' ? currAddress : city;
     }
     return null
@@ -104,5 +125,18 @@ export class ProfileInfoComponent implements OnInit, OnChanges {
 
   emitdriveNametoParent() {
     this.driveName.emit(this.driveselectedValue);
+    this.getDriveUser(this.driveselectedValue, this.getAllReportsData ? this.getAllReportsData?.email : '')
+  }
+
+  getDriveUser(drive,email){
+    let data = {
+      driveName:drive,
+      email:  email ? email : ''
+
+    }
+    this.ApiService.getDriveBaisedUser(data).subscribe((data:any)=>{
+        console.log(data,'res data')
+        this.totalCount = data.noOfCandidates;
+    })
   }
 }

@@ -1,16 +1,140 @@
 <section class="profilearea">
+
     <div class="heading6" *ngIf="driveList">
         Schedule Information
     </div>
+    <div class="totalCount">
+        <mat-select *ngIf="driveList" class="matSelect" (selectionChange)="driveChange($event)" placeholder="Select Scheduled" [(ngModel)]="driveselectedValue" name="list">
+            <mat-option *ngFor="let list of driveList" [value]="list.drivename">
+                {{list.drivename}}
+            </mat-option>
+        </mat-select>
 
-    <mat-select *ngIf="driveList" class="matSelect" (selectionChange)="driveChange($event)" placeholder="Select Scheduled" [(ngModel)]="driveselectedValue" name="list">
-        <mat-option *ngFor="let list of driveList" [value]="list.drivename">
-            {{list.drivename}}
-        </mat-option>
-    </mat-select>
-    <ng-container *ngIf="isaccess">
+        <div>
+            <span class="count-font">Total Count</span>
+            <div class="count"><span class="userCount">{{totalCount}}</span> / <span class="totalCout">{{totalCount}}</span></div>
+        </div>
+    </div>
+
+    <div>
+        <div class="assessmentInfoarea">
+            <mat-expansion-panel [hideToggle]="sticky" expanded="true">
+                <mat-expansion-panel-header #stickyMenu [class.sticky]="sticky">
+                    <div class="expandheaderArea">
+                        <div class="">
+                            <em class="icon-Assessment"></em>
+                            <span class="head color-black">Candidate Details
+                            </span>
+                        </div>
+
+                        <div class="width-270">
+                            <!-- <mat-icon>perm_identity</mat-icon> -->
+                            <em class="icon-User"></em>
+                            <span>Name
+                                <span class="color-black">{{personalInfo.firstname ? personalInfo.firstname : '-'}}</span>
+                            </span>
+                        </div>
+
+                        <div class="width-270">
+                            <!-- <mat-icon> mail_outline</mat-icon> -->
+                            <em class="icon-Email"></em>
+                            <span>Email
+                                <span class="color-black">{{personalInfo.email ? personalInfo.email : '-'}}</span>
+                            </span>
+                        </div>
+                    </div>
+                </mat-expansion-panel-header>
+
+                <div class="expandContentArea">
+                    <div class="ContentInfoDetails">
+                        <div class="profileInfoarea" *ngIf="personalInfo">
+                            <div class="profileInfoSec">
+                                <div>
+                                    Name:
+                                    <span> {{personalInfo.firstname ? personalInfo.firstname : '-'}} </span>
+                                </div>
+                                <!-- <div>
+                                    Last Name:
+                                    <span>{{personalInfo.lastname ? personalInfo.lastname : '-'}}</span>
+                                </div> -->
+                                <div>
+                                    Email:
+                                    <span>{{personalInfo.email ? personalInfo.email : '-'}}</span>
+                                </div>
+                                <div>
+                                    Date of Birth:
+                                    <span>{{personalInfo.DOB ? personalInfo.DOB : '-'}}</span>
+                                </div>
+                                <div>
+                                    Father's Name:
+                                    <span>{{personalInfo.fathername ? personalInfo.fathername : '-'}}</span>
+                                </div>
+                                <div>
+                                    Gender:
+                                    <span>{{personalInfo.gender ? personalInfo.gender : '-'}}</span>
+                                </div>
+                                <div>
+                                    Contact No:
+                                    <span> {{personalInfo.mobile ? personalInfo.mobile : '-'}}</span>
+                                </div>
+                                <div>
+                                    Address:
+                                    <span>{{personalInfo.address ? personalInfo.address : '-'}}</span>
+                                </div>
+                            </div>
+                            <div class="profileInfoSec">
+                                <div>
+                                    College/University:
+                                    <span> {{personalInfo.institute ? personalInfo.institute : '-'}}</span>
+                                </div>
+                                <div>
+                                    State/City:
+                                    <span>{{personalInfo.city ? personalInfo.city : '-'}}</span>
+                                </div>
+                                <div>
+                                    Specialization:
+                                    <span> {{personalInfo.specialization ? personalInfo.specialization : '-'}}</span>
+                                </div>
+                                <div>
+                                    Branch:
+                                    <span>{{personalInfo.branch ? personalInfo.branch : '-'}}</span>
+                                </div>
+                                <div>
+                                    Passing Year:
+                                    <span>{{personalInfo.passedOut ? personalInfo.passedOut : '-'}}</span>
+                                </div>
+                                <div>
+                                    Graduation Aggregate:
+                                    <span>{{personalInfo.percentage ? personalInfo.percentage + '%' : '-' }}</span>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                    <div class="ContentInfoSummary">
+                        <div class="assessmentHeaderinfo">
+
+                            <app-doc-info [getAllReportsData]="getAllReportsData"></app-doc-info>
+
+                        </div>
+                        <!-- <div class="SummaryInfoArea">
+    
+                        </div> -->
+                    </div>
+
+
+                </div>
+            </mat-expansion-panel>
+        </div>
+    </div>
+
+
+
+    <!-- <ng-container *ngIf="isaccess">
         <div class="heading6 mt-5">
-            Candidate Details
+
         </div>
         <div class="profileInfoarea" *ngIf="personalInfo">
             <div class="profileInfoSec">
@@ -18,10 +142,7 @@
                     Name:
                     <span> {{personalInfo.firstname ? personalInfo.firstname : '-'}} </span>
                 </div>
-                <!-- <div>
-                    Last Name:
-                    <span>{{personalInfo.lastname ? personalInfo.lastname : '-'}}</span>
-                </div> -->
+               
                 <div>
                     Email:
                     <span>{{personalInfo.email ? personalInfo.email : '-'}}</span>
@@ -74,7 +195,12 @@
                 </div>
             </div>
         </div>
-    </ng-container>
+    </ng-container> -->
 
     <div class="clearfix"></div>
+
+
+
 </section>
+
+<!-- <button style="position: absolute;z-index: 1;">></button> -->
