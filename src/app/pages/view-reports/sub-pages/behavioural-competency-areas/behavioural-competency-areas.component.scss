@@ -56,6 +56,7 @@
             text-align: center;
             font-size: 16px;
             margin-bottom: 5%;
+            margin-top: -2%;
         }
         .bencmark-info {
             position: absolute;
@@ -128,7 +129,7 @@
     }
     .styleOne,
     .styleTwo {
-        margin-top: 40px;
+        margin-top: 85px;
     }
     .styleOne {
         .left {
@@ -250,21 +251,22 @@
                             position: absolute;
                             width: 350px;
                             height: auto;
-                            right: 0;
-                            bottom: 40px;
-                            z-index: 2;
+                            right: 0px;
+                            top: 40px;
+                            // bottom: 40px; 
+                            z-index: 1;
                             background-color: #F9F9F9;
-                            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.26);
+                            box-shadow: 0 3px 6px rgb(0 0 0 / 26%);
                             border-radius: 10px;
                             display: none;
                             padding: 12px;
                             &::before {
-                                content: '';
-                                border-top: 10px solid #F9F9F9;
-                                border-right: 10px solid transparent;
-                                border-left: 10px solid transparent;
-                                box-shadow: 0 3px 36px rgba(0, 0, 0, 0.26);
-                                bottom: -7px;
+                                content: "";
+                                // border-top: 10px solid #F9F9F9;
+                                // border-right: 10px solid transparent;
+                                // border-left: 10px solid transparent;
+                                box-shadow: 0 3px 36px rgb(0 0 0 / 26%);
+                                bottom: 210px;
                                 display: block;
                                 right: 10px;
                                 margin-left: 0;
