@@ -118,3 +118,9 @@
         z-index: 1;
     }
 }
+
+.printing {
+    position: fixed;
+    width: 0;
+    z-index: -5;
+}
