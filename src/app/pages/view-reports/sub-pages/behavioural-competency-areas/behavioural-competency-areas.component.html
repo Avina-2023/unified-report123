@@ -47,8 +47,8 @@
                                         <div class="d-flex flex-column justify-content-between">
                                             <button *ngFor="let skills of competency.skills; let s = index" [ngClass]="'a' + s + 1" class="d-flex align-items-center justify-content-between">
                                                 {{skills?.name}}
-                                                <div>
-                                                    <span [ngStyle]="{background: skills?.colourcode}">
+                                                <div [ngStyle]="{background: skills?.colourcode}">
+                                                    <span>
                                                         {{skills?.stenScore ? skills?.stenScore : 0}}
                                                     </span>
                                                     <div class="popoverContent">
