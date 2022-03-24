@@ -5,15 +5,17 @@
     </div> -->
 
     <ng-continer *ngIf="getAllReportsData && getAllReportsData.email; else nocard">
-
-        <app-profile-info (driveName)="getSelectedDriveName($event)" [getAllReportsData]="getAllReportsData">
+        <!-- <div #stickyMenu class="menucontent" [class.sticky]="sticky"> -->
+        <app-profile-info (driveName)="getSelectedDriveName($event)" (driveUserEmail)="getDriveBaisedUser($event)" [getAllReportsData]="getAllReportsData">
         </app-profile-info>
-        <app-doc-info [getAllReportsData]="getAllReportsData"></app-doc-info>
+        <!-- </div> -->
+
+        <!-- <app-doc-info [getAllReportsData]="getAllReportsData"></app-doc-info> -->
         <app-assessment-info [driveName]="driveName" [getAllReportsData]="getAllReportsData"></app-assessment-info>
-        <app-competency-areas [getAllReportsData]="getAllReportsData"></app-competency-areas>
+        <!-- <app-competency-areas [getAllReportsData]="getAllReportsData"></app-competency-areas> -->
         <app-quality-area [getAllReportsData]="getAllReportsData"></app-quality-area>
         <app-behavioural-assessment-info [driveName]="driveName" [emailId]="emailId" [getAllReportsData]="getAllReportsData"></app-behavioural-assessment-info>
-        <app-behavioural-competency-areas [getAllReportsData]="getAllReportsData"></app-behavioural-competency-areas>
+        <!-- <app-behavioural-competency-areas [getAllReportsData]="getAllReportsData"></app-behavioural-competency-areas> -->
         <!-- <app-behavioural-quality-area [getAllReportsData]="getAllReportsData"></app-behavioural-quality-area> -->
         <div class="clearfix"></div>
 
