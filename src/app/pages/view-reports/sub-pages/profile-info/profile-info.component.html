@@ -199,8 +199,22 @@
 
     <div class="clearfix"></div>
     <div class="arrow" [class.stickybtn]="sticky">
-        <span class="arrow-btn" [ngClass]="{'disable':prevIcon == true}"> <mat-icon class="left" (click)="prevUser()">keyboard_arrow_left</mat-icon></span>
-        <span class="arrow-btn" [ngClass]="{'disable':nextArrow == true}"><mat-icon class="right" (click)="nextUser()">keyboard_arrow_right</mat-icon></span>
+
+        <button class="btn" [disabled]="userCount != totalCount" (click)="prevUser()"> 
+            <mat-icon class="right">keyboard_arrow_left</mat-icon>
+        </button>
+
+
+        <button class="btn" [disabled]="userCount >= totalCount" (click)="nextUser()">
+           <mat-icon class="left" > keyboard_arrow_right</mat-icon>
+       </button>
+
+        <!-- <span class="arrow-btn" [ngClass]="{'disable':prevIcon == true}"> 
+           <mat-icon class="left" (click)="prevUser()">keyboard_arrow_left</mat-icon>
+        </span> -->
+
+
+        <!-- <span  [ngClass]="{'disable':nextArrow == true}"></span> -->
 
 
     </div>
