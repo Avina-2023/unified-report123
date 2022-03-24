@@ -151,7 +151,6 @@ export class ProfileInfoComponent implements OnInit, OnChanges {
 
     }
     this.ApiService.getDriveBaisedUser(data).subscribe((data:any)=>{
-       
         this.totalCount = data.noOfCandidates;
         this.sampledata = data.data;
         console.log(this.driveUser,'res data')
