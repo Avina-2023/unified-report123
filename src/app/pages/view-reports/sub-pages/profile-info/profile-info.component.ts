@@ -28,10 +28,8 @@ export class ProfileInfoComponent implements OnInit, OnChanges {
   totalCount: any;
   driveUser: any;
   selectedMail: any;
-  hiddenIcon: boolean;
-  nextArrow: boolean = false;
-  prevIcon: boolean = true;
   userCount = 1;
+  prevbtn: boolean = false;
   @HostListener('window:scroll', ['$event'])
  handleScroll(){
     const windowScroll = window.pageYOffset;
@@ -161,29 +159,24 @@ export class ProfileInfoComponent implements OnInit, OnChanges {
     this.userCount = this.userCount + 1;
     let index = this.sampledata.findIndex((data => data.email == this.selectedMail));
     let expectedIndex = index != -1 ? (index + 1) : null;
-    if(this.sampledata[expectedIndex]?.email){
       let nextMail = this.sampledata[expectedIndex].email;
       this.appConfig.routeNavigationWithParam(APP_CONSTANTS.ENDPOINTS.REPORTS.VIEWREPORTS, nextMail);
-      this.prevIcon = false;
-    }else {
-      this.nextArrow = true;
-    }
    
     
    
   }
 
   prevUser(){
-    this.userCount = this.userCount - 1;
-    let index = this.sampledata.findIndex((data => data.email == this.selectedMail));
-    let expectedIndex = index != -1 ? (index - 1) : null;
-    if(this.sampledata[expectedIndex]?.email){
-      let prevMail = this.sampledata[expectedIndex].email;
-      this.appConfig.routeNavigationWithParam(APP_CONSTANTS.ENDPOINTS.REPORTS.VIEWREPORTS, prevMail)
-      this.nextArrow = false;
-    }else {
-      this.prevIcon = true
+    if(this.userCount != 1){
+      this.userCount = this.userCount - 1;
+      let index = this.sampledata.findIndex((data => data.email == this.selectedMail));
+      let expectedIndex = index != -1 ? (index - 1) : null;
+        let prevMail = this.sampledata[expectedIndex].email;
+        this.appConfig.routeNavigationWithParam(APP_CONSTANTS.ENDPOINTS.REPORTS.VIEWREPORTS, prevMail)
+    }else{
+          this.prevbtn = true;
     }
+    
     
   }
 }

@@ -1,10 +1,10 @@
 <section class="profilearea">
 
-    <div class="heading6" *ngIf="driveList">
+    <div class="heading6">
         Schedule Information
     </div>
     <div class="totalCount">
-        <mat-select *ngIf="driveList" class="matSelect" (selectionChange)="driveChange($event,i)" placeholder="Select Scheduled" [(ngModel)]="driveselectedValue" name="list">
+        <mat-select class="matSelect" (selectionChange)="driveChange($event)" placeholder="Select Scheduled" [(ngModel)]="driveselectedValue" name="list">
             <mat-option *ngFor="let list of driveList" [value]="list.drivename">
                 {{list.drivename}}
             </mat-option>
@@ -18,8 +18,9 @@
 
     <div>
         <div class="assessmentInfoarea">
-            <mat-expansion-panel [hideToggle]="sticky" expanded="true">
-                <mat-expansion-panel-header #stickyMenu [class.sticky]="sticky">
+            <mat-expansion-panel expanded="true">
+                <!-- [class.sticky]="sticky"  [hideToggle]="sticky"-->
+                <mat-expansion-panel-header #stickyMenu>
                     <div class="expandheaderArea">
                         <div class="">
                             <em class="icon-Assessment"></em>
@@ -198,27 +199,12 @@
     </ng-container> -->
 
     <div class="clearfix"></div>
-    <div class="arrow" [class.stickybtn]="sticky">
-
-        <button class="btn" [disabled]="userCount != totalCount" (click)="prevUser()"> 
+    <div class="arrow" [class.stickybtn]="sticky" *ngIf="totalCount != 1">
+        <button class="btn" [disabled]="userCount == 1 && userCount != totalCount" (click)="prevUser()"> 
             <mat-icon class="right">keyboard_arrow_left</mat-icon>
         </button>
-
-
         <button class="btn" [disabled]="userCount >= totalCount" (click)="nextUser()">
            <mat-icon class="left" > keyboard_arrow_right</mat-icon>
        </button>
-
-        <!-- <span class="arrow-btn" [ngClass]="{'disable':prevIcon == true}"> 
-           <mat-icon class="left" (click)="prevUser()">keyboard_arrow_left</mat-icon>
-        </span> -->
-
-
-        <!-- <span  [ngClass]="{'disable':nextArrow == true}"></span> -->
-
-
     </div>
-
 </section>
-
-<!-- -->

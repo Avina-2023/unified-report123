@@ -375,11 +375,19 @@
     display: flex;
     justify-content: space-between;
     cursor: pointer;
+    position: fixed;
+    width: 99%;
+    top: 50%;
+    margin-left: -49px;
     .left {
         font-size: 30px !important;
+        margin-right: 5px;
+        margin-top: -1px;
     }
     .right {
         font-size: 30px !important;
+        margin-right: 5px;
+        margin-top: -1px;
     }
     .btn {
         width: 35px;
@@ -390,7 +398,7 @@
     }
 }
 
-.disable {
+.disabled {
     cursor: not-allowed;
     opacity: 0.5;
     pointer-events: none;

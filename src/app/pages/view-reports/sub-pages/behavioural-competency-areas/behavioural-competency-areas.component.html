@@ -23,10 +23,12 @@
                                             <div class="figContent">
                                                 <span class="heading4">{{competency?.name}}</span>
                                                 <p>{{competency?.description}}</p>
+
+                                                <span class="knowmore">Know more...</span>
                                             </div>
                                         </div>
                                         <div class="back">
-                                            Back Side Text
+                                            {{competency?.longdescription}}
                                         </div>
                                     </div>
                                 </div>
@@ -52,7 +54,7 @@
                                                         {{skills?.stenScore ? skills?.stenScore : 0}}
                                                     </span>
                                                     <div class="popoverContent">
-                                                        xyz
+                                                        <p>{{skills?.scorebasedSkillDescription}}</p>
                                                     </div>
                                                 </div>
                                             </button>
@@ -76,7 +78,17 @@
                                             </ul>
                                         </div>
                                         <div class="d-flex flex-column justify-content-between">
-                                            <button *ngFor="let skills of competency.skills; let s = index" [ngClass]="'a' + s + 1" class="d-flex align-items-center justify-content-between">{{skills?.name}} <span [ngStyle]="{background: skills?.colourcode}">{{skills?.stenScore ? skills?.stenScore : 0}}</span></button>
+                                            <button *ngFor="let skills of competency.skills; let s = index" [ngClass]="'a' + s + 1" class="d-flex align-items-center justify-content-between">
+                                                {{skills?.name}} 
+                                                <div [ngStyle]="{background: skills?.colourcode}">
+                                                  <span>
+                                                    {{skills?.stenScore ? skills?.stenScore : 0}}
+                                                  </span>  
+                                                  <div class="popoverContent">
+                                                    <p>{{skills?.scorebasedSkillDescription}}</p>
+                                                </div>
+                                                </div>
+                                            </button>
                                         </div>
                                     </ng-container>
                                 </div>
@@ -86,6 +98,7 @@
                                             <div class="figContent">
                                                 <span class="heading4">{{competency?.name}}</span>
                                                 <p>{{competency?.description}}</p>
+                                                <span class="knowmore">Know more...</span>
                                             </div>
                                             <div class="figure">
                                                 <figure>
@@ -95,7 +108,7 @@
                                         </div>
 
                                         <div class="back">
-                                            back text
+                                            {{competency?.longdescription}}
                                         </div>
                                     </div>
                                 </div>
