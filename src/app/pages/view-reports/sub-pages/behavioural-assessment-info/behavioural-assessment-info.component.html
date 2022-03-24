@@ -1,7 +1,7 @@
 <section class="assessmentArea">
     <div class="assessmentHeaderinfo" *ngIf="assessmentsList && assessmentsList[0].testname.length > 0">
         <div class="heading6">Behavioural Personal Profile
-            <!-- <span (click)="viewBehaviouralReport()" class="view-report pl-1">View Individual Report</span> -->
+            <span (click)="downloadreport(true)" class="view-report pl-1">Download report</span>
         </div>
     </div>
 
@@ -189,3 +189,7 @@
     </div>
     <div id="visualization"></div>
 </ng-template>
+<!-- printing -->
+<!-- <div class="printing"> -->
+<app-behavioural-pdf-report-download [email]="emailId" [data]="getAllBehaviourAPIDetails"></app-behavioural-pdf-report-download>
+<!-- </div> -->

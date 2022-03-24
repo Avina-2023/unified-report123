@@ -37,6 +37,11 @@ export class HiringReportComponent implements OnInit {
       paddingX: 120,
       paddingY: 20,
   },
+  cartesian: {
+    navigator: {
+      enabled: true,
+    },
+  },
 
 
 
@@ -85,6 +90,7 @@ export class HiringReportComponent implements OnInit {
         field: 'firstname',
         filter: 'agTextColumnFilter',
         enableRowGroup: true,
+        chartDataType: 'category',
         filterParams: {
           suppressAndOrCondition: true,
           filterOptions: ['contains']
@@ -104,6 +110,7 @@ export class HiringReportComponent implements OnInit {
         headerName: 'Email',
         field: 'email',
         filter: 'agTextColumnFilter',
+        chartDataType: 'series',
         filterParams: {
           suppressAndOrCondition: true,
           filterOptions: ['contains']
@@ -130,6 +137,7 @@ export class HiringReportComponent implements OnInit {
         headerName: 'Schedule Name',
         field: 'schedulename',
         filter: 'agTextColumnFilter',
+        chartDataType: 'series',
         filterParams: {
           suppressAndOrCondition: true,
           filterOptions: ['contains']
@@ -153,6 +161,7 @@ export class HiringReportComponent implements OnInit {
         field: 'testtype',
         filter: 'agTextColumnFilter',
         tooltipField:'testtype',
+        chartDataType: 'series',
         filterParams: {
           suppressAndOrCondition: true,
           filterOptions: ['contains']
@@ -171,6 +180,7 @@ export class HiringReportComponent implements OnInit {
         field: 'testname',
         filter: 'agTextColumnFilter',
         tooltipField:'testname',
+        chartDataType: 'series',
         filterParams: {
           suppressAndOrCondition: true,
           filterOptions: ['contains']
@@ -190,6 +200,7 @@ export class HiringReportComponent implements OnInit {
         filter: 'agDateColumnFilter',
         field: 'testdate',
         tooltipField:'testdate',
+        chartDataType: 'series',
         // width: 100,
         cellRenderer: (params) => {
           if(params.value){
@@ -227,6 +238,7 @@ export class HiringReportComponent implements OnInit {
         headerName: 'Score Obtained',
         field: 'testscore',
         filter: 'agNumberColumnFilter',
+        chartDataType: 'series',
         filterParams: {
           suppressAndOrCondition: true,
           filterOptions: ['equals','lessThan','lessThanOrEqual','greaterThan','greaterThanOrEqual','inRange']
@@ -249,6 +261,7 @@ export class HiringReportComponent implements OnInit {
         headerName: 'Maxscore',
         field: 'testmaxscore',
         filter: 'agNumberColumnFilter',
+        chartDataType: 'series',
         // tooltipField:'testmaxscore',
         filterParams: {
           suppressAndOrCondition: true,
@@ -274,6 +287,7 @@ export class HiringReportComponent implements OnInit {
         headerName: 'Percentage ',
         field: 'percentage',
         filter: 'agNumberColumnFilter',
+        chartDataType: 'series',
         // tooltipField:'testmaxscore',
         // width: 100,
                filterParams: {
@@ -319,6 +333,7 @@ export class HiringReportComponent implements OnInit {
         headerName: 'Completion',
         field: 'completion',
         filter:false,
+        chartDataType: 'series',
         // filter: 'agTextColumnFilter',
         // filterParams: {
         //   suppressAndOrCondition: true,
@@ -340,6 +355,7 @@ export class HiringReportComponent implements OnInit {
         headerName: 'Rating',
         field: 'rating',
         filter: 'agTextColumnFilter',
+        chartDataType: 'series',
         filterParams: {
           suppressAndOrCondition: true,
           filterOptions: ['contains']
