@@ -42,14 +42,15 @@ export class BehaviouralPdfReportDownloadComponent implements OnInit {
       this.subscription = this.sendData.getMessage().subscribe(message => {
         this.InAppReport = message;
         if(this.data && this.InAppReport == true){
+          this.getReportData();
           this.downloadAsPDF();
         }
       });
 
     this.isaccess = this.appconfig.isComingFromMicroCert();
-    if (this.data) {
-      this.getReportData();
-    }
+    // if (this.data) {
+     
+    // }
 
     this.orgdetails = JSON.parse(this.appconfig.getLocalStorage('role'));
     this.orgId = this.orgdetails[0].orgId;

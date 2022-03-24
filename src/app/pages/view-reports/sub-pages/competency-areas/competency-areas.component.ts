@@ -13,8 +13,6 @@ export class CompetencyAreasComponent implements OnInit {
   areasName = [];
   counter: number = 0;
   list: any = [0];
-
-
   competenciesChartData = [];
   skillsChartData = [];
   competenciesName: any;
@@ -29,10 +27,13 @@ export class CompetencyAreasComponent implements OnInit {
 
   ngOnInit(): void {
   // this.getCompetancyData();
+  
   }
 
   ngOnChanges() {
     this.getCompetancyData();
+
+   
   }
 
 
@@ -72,6 +73,7 @@ export class CompetencyAreasComponent implements OnInit {
 
   getCompetancyData(){
     this.competancyData = this.getAllReportsData?.competencyDetails;
+
     if (this.competancyData && this.competancyData.length > 0) {
       this.convertToPercentage();
       this.getAreasDataInitialize(this.competancyData);

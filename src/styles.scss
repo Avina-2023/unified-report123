@@ -225,6 +225,7 @@ mat-toolbar.header-toolbar {
 
 .reportContainer {
     padding: 1em 4em 1em 4em;
+    // height: 1899px
 }
 
 .profilearea {
@@ -270,7 +271,7 @@ mat-toolbar.header-toolbar {
     .matSelect {
         width: 300px;
         border: 1px solid #bebebe;
-        padding: 4px;
+        padding: 10px;
     }
 }
 
@@ -564,6 +565,7 @@ ng-image-slider {
                 span {
                     display: block;
                     font-size: 1.3em;
+                    text-align: center;
                     font-weight: 500;
                     // color: $blackColor;
                 }
@@ -980,7 +982,7 @@ button.sliderBtn,
         &.right {
             right: 12px;
             &.doc {
-                right: -700px !important;
+                right: -635px !important;
             }
         }
     }
