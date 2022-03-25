@@ -40,6 +40,7 @@ export class ProfileInfoComponent implements OnInit, OnChanges {
   prevbtn: boolean = false;
   orgdetails: any;
   orgId: any;
+  scheduleType: any;
   @HostListener('window:scroll', ['$event'])
   handleScroll() {
     const windowScroll = window.pageYOffset;
@@ -56,9 +57,8 @@ export class ProfileInfoComponent implements OnInit, OnChanges {
     private _loading: LoadingService,
     private sendData: SentDataToOtherComp
   ) {
-    this.selectDriveName = sessionStorage.getItem('schedulename')
-      ? sessionStorage.getItem('schedulename')
-      : '';
+    this.selectDriveName = sessionStorage.getItem('schedulename') ? sessionStorage.getItem('schedulename'): '';
+    this.scheduleType = sessionStorage.getItem('testType')
   }
 
   ngOnInit(): void {

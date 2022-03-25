@@ -110,7 +110,7 @@ export class BehaviouralLandingPageComponent implements OnInit, AfterViewInit, O
           }
         } else {
           this.apiSuccess = false;
-          this.toastr.error('No Reports Available');
+          // this.toastr.error('No Reports Available');
           this.getAllBasicData = null;
           this.getAllBehaviourData = null;
           this.getAllBehaviourAPIDetails = null;
