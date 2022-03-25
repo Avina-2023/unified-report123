@@ -4,15 +4,14 @@
         Schedule Information
     </div>
     <div class="totalCount">
-        <mat-select *ngIf="driveList" class="matSelect" (selectionChange)="driveChange($event)" [(ngModel)]="driveselectedValue" name="list">
+        <mat-select *ngIf="driveList && scheduleType != 'Personality & Behaviour'" class="matSelect" (selectionChange)="driveChange($event)" [(ngModel)]="driveselectedValue" name="list">
             <span>
             <mat-option *ngFor="let list of driveList" [value]="driveselectedValue ? driveselectedValue :list.drivename">
                 {{driveselectedValue ? driveselectedValue :list.drivename}}
             </mat-option>
            </span>
-
-
         </mat-select>
+
         <mat-select *ngIf="scheduleType == 'Personality & Behaviour'" [(ngModel)]="selectDriveName" class="matSelect" name="list">
             <mat-option [value]="this.selectDriveName != 'undefined' ? this.selectDriveName : ''">
                 {{this.selectDriveName != 'undefined' ? this.selectDriveName : ''}}
