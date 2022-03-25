@@ -206,10 +206,8 @@ export class ProfileInfoComponent implements OnInit, OnChanges {
 }
 
   nextUser() {
-    console.log(this.selectedMail,'this.selectedMail')
     this.userCount = this.userCount + 1;
     let index = this.sampledata.findIndex((data) => data.email == this.selectedMail);
-    console.log(index,'index')
     let expectedIndex = index != -1 ? index + 1 : null;
     let nextMail = this.sampledata[expectedIndex].email;
     this.appConfig.routeNavigationWithParam(APP_CONSTANTS.ENDPOINTS.REPORTS.VIEWREPORTS,nextMail);
