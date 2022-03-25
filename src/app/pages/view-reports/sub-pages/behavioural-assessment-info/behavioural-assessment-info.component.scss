@@ -73,6 +73,7 @@
     >span {
         display: flex;
         flex-direction: row;
+        font-size: 2em !important;
         span {
             font-size: 12px;
             margin: 1px 10px 0;
@@ -92,6 +93,7 @@
     top: -2px;
     position: relative;
     cursor: pointer;
+    z-index: 100;
 }
 
 .progressText {
@@ -116,4 +118,11 @@
         top: 2px;
         z-index: 1;
     }
+}
+
+.printing {
+    position: fixed;
+    width: 0;
+    z-index: -5;
+    visibility: hidden;
 }

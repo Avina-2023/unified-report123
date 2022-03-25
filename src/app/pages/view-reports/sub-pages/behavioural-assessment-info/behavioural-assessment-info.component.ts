@@ -7,6 +7,8 @@ import { ApiService } from '../../../../services/api.service';
 import { environment } from 'src/environments/environment.prod';
 import { AppConfigService } from 'src/app/utils/app-config.service';
 import { APP_CONSTANTS } from 'src/app/utils/app-constants.service';
+import { Subscription } from 'rxjs/internal/Subscription';
+import { SentDataToOtherComp } from 'src/app/services/sendDataToOtherComp.service';
 // import { Timeline } from 'vis-timeline';
 // import { DataSet } from 'vis-data';
 
@@ -44,13 +46,25 @@ export class BehaviouralAssessmentInfoComponent implements OnInit, OnChanges {
   playVideoList = []
   secValChart: any;
   isaccess:any;
-  constructor(private appConfig: AppConfigService,public matDialog: MatDialog,private toastr: ToastrService, private ApiService: ApiService, ) {
+  getAllBehaviourData: any;
+  getBehaviourReportAPISubscription: Subscription;
+  getAllBasicData: any;
+  getAllBehaviourAPIDetails: any;
+  apiSuccess = true;
+  isPdfdownable = false;
+  highestEducation: any;
+  constructor(private sendData: SentDataToOtherComp,private appConfig: AppConfigService,public matDialog: MatDialog,private toastr: ToastrService, private ApiService: ApiService, ) {
 
   }
 
   ngOnInit(): void {
     this.getAssessmentInfo();
     this.isaccess = this.appConfig.isComingFromMicroCert();
+    if(sessionStorage.getItem('testType') == 'Personality & Behaviour'){
+      this.getBehaviouralReportData(this.emailId ? this.emailId : '');
+      }
+   
+   
     // const container = document.getElementById("visualization");
     // const items = new DataSet([
     //   { id: 1, content: "item 1", start: "2014-04-20" },
@@ -211,6 +225,52 @@ export class BehaviouralAssessmentInfoComponent implements OnInit, OnChanges {
   closeBox() {
     this.matDialog.closeAll();
   }
+
+  getBehaviouralReportData(data) {
+    const apiData = {
+      email: data
+    };
+  this.emailId= data;
+   this.getBehaviourReportAPISubscription = this.ApiService.getBehaviourReport(apiData).subscribe((response: any) => {
+    if (response && response.success && response.data) {
+        this.apiSuccess = true;
+        this.getAllBehaviourData = response.data.data ? response.data.data : null;
+        this.getAllBehaviourAPIDetails = response.data ? response.data : null;
+        this.getAllBasicData = response.data.basicDetails ? response.data.basicDetails : null;
+        this.highestEducation = this.getAllBasicData && this.getAllBasicData.education ? this.getAllBasicData.education : [];
+        if (this.highestEducation.length > 0) {
+          let i = this.highestEducation.length - 1;
+          this.highestEducation = this.highestEducation[i];
+        }
+      } else {
+        this.apiSuccess = false;
+        this.toastr.error('No Reports Available');
+        this.getAllBasicData = null;
+        this.getAllBehaviourData = null;
+        this.getAllBehaviourAPIDetails = null;
+      }
+    }, (err)=> {
+      this.apiSuccess = false;
+      this.getAllBasicData = null;
+      this.getAllBehaviourData = null;
+      this.getAllBehaviourAPIDetails = null;
+});
+}
+ngOnDestroy() {
+  this.getBehaviourReportAPISubscription ? this.getBehaviourReportAPISubscription.unsubscribe() : '';
+}
+
+downloadreport(val){
+  if(val){
+    this.isPdfdownable = val;
+    this.sendData.sendMessage(true);
+  }else{
+    this.isPdfdownable = false;
+    this.sendData.sendMessage(false);
+  }
+
+  
+}
 }
 
                 // filter.push({

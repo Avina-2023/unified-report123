@@ -25,12 +25,15 @@ export class BehaviouralPdfReportDownloadComponent implements OnInit {
   img: string;
   subscription: Subscription;
   InAppReport: any;
+  orgdetails: any;
+  orgId: any;
   benchMarkScore = [
     {score:"1-2",label:"DEVELOPMENT SCOPE",color:"red"},
     {score:"3-4-5",label:"LESS INCLINED",color:"yellow"},
     {score:"6-7-8",label:"MORE INCLINED",color:"orange"},
     {score:"9-10",label:"STRENGTH",color:"green"}
   ];
+  removeheading: any;
 
   constructor(private toastr: ToastrService,private appconfig: AppConfigService, private sendData: SentDataToOtherComp,) {
   }
@@ -39,14 +42,18 @@ export class BehaviouralPdfReportDownloadComponent implements OnInit {
       this.subscription = this.sendData.getMessage().subscribe(message => {
         this.InAppReport = message;
         if(this.data && this.InAppReport == true){
+          this.getReportData();
           this.downloadAsPDF();
         }
       });
 
     this.isaccess = this.appconfig.isComingFromMicroCert();
-    if (this.data) {
-      this.getReportData();
-    }
+    // if (this.data) {
+     
+    // }
+
+    this.orgdetails = JSON.parse(this.appconfig.getLocalStorage('role'));
+    this.orgId = this.orgdetails[0].orgId;
   }
 
   ngOnDestroy(){
@@ -141,7 +148,7 @@ export class BehaviouralPdfReportDownloadComponent implements OnInit {
     this.toastr.success('Please wait for sometime','PDF is downloading')
     var element = document.getElementById('element-to-print');
     var opt = {
-      margin: 0,
+      margin: [0,0],
       filename:  (this.getAllBasicData?.firstname ? this.getAllBasicData?.firstname : '')+'('+this.email+')'+'.pdf',
       image:        { type: 'jpeg', quality: 1 },
       html2canvas:  {scale: 2},
@@ -154,12 +161,37 @@ export class BehaviouralPdfReportDownloadComponent implements OnInit {
           pdf.setPage(i)
           pdf.setFontSize(9);
           pdf.setTextColor(150);
-          pdf.text('Page ' + i + ' of ' + number_of_pages, (pdf.internal.pageSize.getWidth() - 0.90 ), (pdf.internal.pageSize.getHeight()-0.35));
+          // for right align 
+          // pdf.text('Page ' + i + ' of ' + number_of_pages, (pdf.internal.pageSize.getWidth() - 0.90 ), (pdf.internal.pageSize.getHeight()-0.35));
+          pdf.text('Page ' + i + ' of ' + number_of_pages, (pdf.internal.pageSize.getWidth() - 4.30 ), (pdf.internal.pageSize.getHeight()-0.25));
       }
     
       }, (err) => {
       }).save();
      
+  }
+
+  splitHeading(glimpse){
+      if(glimpse.includes("THOUGHT FACTOR")){
+        let heading = "THOUGHT FACTOR";
+        this.removeheading = glimpse.replace("THOUGHT FACTOR", "  ");
+        return heading;
+      }else if (glimpse.includes("INTERPERSONAL FACTOR")){
+        let heading = "INTERPERSONAL FACTOR";
+        this.removeheading = glimpse.replace("INTERPERSONAL FACTOR", "  ");
+        return heading;
+
+      }else if (glimpse.includes("CORE/PERSONAL FACTOR")){
+        let heading = "CORE/PERSONAL FACTOR";
+        this.removeheading = glimpse.replace("CORE/PERSONAL FACTOR", "  ");
+        return heading;
+        
+      }else{
+        let heading = "EMOTION FACTOR";
+        this.removeheading = glimpse.replace("EMOTION FACTOR", "  ");
+        return heading;
+      }
+    
   }
 }
 

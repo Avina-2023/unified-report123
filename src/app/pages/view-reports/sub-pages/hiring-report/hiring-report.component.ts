@@ -6,6 +6,7 @@ import { ApiService } from '../../../../services/api.service';
 import { Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { SentDataToOtherComp } from 'src/app/services/sendDataToOtherComp.service';
+import { AgChartThemeOverrides } from '@ag-grid-enterprise/all-modules';
 // import { RowGroupingModule } from '@ag-grid-enterprise/row-grouping';
 // import { ClientSideRowModelModule, Module } from '@ag-grid-enterprise/all-modules';
 @Component({
@@ -26,14 +27,33 @@ export class HiringReportComponent implements OnInit {
   public serverSideStoreType;
   public rowSelection;
   public masterDetail;
+  public popupParent: HTMLElement = document.body;
+  public chartThemeOverrides: AgChartThemeOverrides = {
+    common: {
+      legend: {
+        enabled: false,
+        position: 'left',
+      },
+      paddingX: 120,
+      paddingY: 20,
+  },
+  cartesian: {
+    navigator: {
+      enabled: true,
+    },
+  },
+
+
+
+  };
   // public modules: Module[] = [ClientSideRowModelModule, RowGroupingModule];
   reportsData: any;
   userList: any = [];
   pageRowCount = 0;
+  cacheBlockSize: any = 1000;
   candidateListSubscription: Subscription;
   sectiondialogRef: any;
   rowData1: any;
-  cacheBlockSize: any = 100;
   constructor(private sendData: SentDataToOtherComp, private matDialog: MatDialog,private appconfig: AppConfigService,private toastr: ToastrService, private ApiService: ApiService,) {      
     this.serverSideStoreType = 'partial';
     this.masterDetail = true;
@@ -49,6 +69,10 @@ export class HiringReportComponent implements OnInit {
       enableFilter:true
       //  floatingFilter: true,
     };
+
+    
+
+
   }
 
   ngOnInit(): void {
@@ -66,6 +90,7 @@ export class HiringReportComponent implements OnInit {
         field: 'firstname',
         filter: 'agTextColumnFilter',
         enableRowGroup: true,
+        chartDataType: 'category',
         filterParams: {
           suppressAndOrCondition: true,
           filterOptions: ['contains']
@@ -85,6 +110,7 @@ export class HiringReportComponent implements OnInit {
         headerName: 'Email',
         field: 'email',
         filter: 'agTextColumnFilter',
+        chartDataType: 'series',
         filterParams: {
           suppressAndOrCondition: true,
           filterOptions: ['contains']
@@ -111,6 +137,7 @@ export class HiringReportComponent implements OnInit {
         headerName: 'Schedule Name',
         field: 'schedulename',
         filter: 'agTextColumnFilter',
+        chartDataType: 'series',
         filterParams: {
           suppressAndOrCondition: true,
           filterOptions: ['contains']
@@ -134,6 +161,7 @@ export class HiringReportComponent implements OnInit {
         field: 'testtype',
         filter: 'agTextColumnFilter',
         tooltipField:'testtype',
+        chartDataType: 'series',
         filterParams: {
           suppressAndOrCondition: true,
           filterOptions: ['contains']
@@ -152,6 +180,7 @@ export class HiringReportComponent implements OnInit {
         field: 'testname',
         filter: 'agTextColumnFilter',
         tooltipField:'testname',
+        chartDataType: 'series',
         filterParams: {
           suppressAndOrCondition: true,
           filterOptions: ['contains']
@@ -171,6 +200,7 @@ export class HiringReportComponent implements OnInit {
         filter: 'agDateColumnFilter',
         field: 'testdate',
         tooltipField:'testdate',
+        chartDataType: 'series',
         // width: 100,
         cellRenderer: (params) => {
           if(params.value){
@@ -208,6 +238,7 @@ export class HiringReportComponent implements OnInit {
         headerName: 'Score Obtained',
         field: 'testscore',
         filter: 'agNumberColumnFilter',
+        chartDataType: 'series',
         filterParams: {
           suppressAndOrCondition: true,
           filterOptions: ['equals','lessThan','lessThanOrEqual','greaterThan','greaterThanOrEqual','inRange']
@@ -230,6 +261,7 @@ export class HiringReportComponent implements OnInit {
         headerName: 'Maxscore',
         field: 'testmaxscore',
         filter: 'agNumberColumnFilter',
+        chartDataType: 'series',
         // tooltipField:'testmaxscore',
         filterParams: {
           suppressAndOrCondition: true,
@@ -255,6 +287,7 @@ export class HiringReportComponent implements OnInit {
         headerName: 'Percentage ',
         field: 'percentage',
         filter: 'agNumberColumnFilter',
+        chartDataType: 'series',
         // tooltipField:'testmaxscore',
         // width: 100,
                filterParams: {
@@ -300,6 +333,7 @@ export class HiringReportComponent implements OnInit {
         headerName: 'Completion',
         field: 'completion',
         filter:false,
+        chartDataType: 'series',
         // filter: 'agTextColumnFilter',
         // filterParams: {
         //   suppressAndOrCondition: true,
@@ -321,6 +355,7 @@ export class HiringReportComponent implements OnInit {
         headerName: 'Rating',
         field: 'rating',
         filter: 'agTextColumnFilter',
+        chartDataType: 'series',
         filterParams: {
           suppressAndOrCondition: true,
           filterOptions: ['contains']
@@ -485,7 +520,7 @@ export class HiringReportComponent implements OnInit {
     this.sizeToFit();
     var datasource = this.callApiForCandidateList();
     params.api.setServerSideDatasource(datasource);
-
+        
   }
 
   onGridReadymini(params){
@@ -571,6 +606,7 @@ export class HiringReportComponent implements OnInit {
       // let email = event['data']['email'] ? this.ApiService.encrypt(event['data']['email']) : ''
       // this.appconfig.routeNavigationWithParam(APP_CONSTANTS.ENDPOINTS.REPORTS.VIEWREPORTS, email);
       sessionStorage.setItem('schedulename',event['data']['schedulename'])
+      sessionStorage.setItem('testType',event['data']['testtype'])
       this.navtoDetailsPage(event['data']['email'])
     }
 
