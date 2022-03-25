@@ -60,9 +60,7 @@ export class BehaviouralAssessmentInfoComponent implements OnInit, OnChanges {
   ngOnInit(): void {
     this.getAssessmentInfo();
     this.isaccess = this.appConfig.isComingFromMicroCert();
-    if(sessionStorage.getItem('testType') == 'Personality & Behaviour'){
       this.getBehaviouralReportData(this.emailId ? this.emailId : '');
-      }
    
    
     // const container = document.getElementById("visualization");
