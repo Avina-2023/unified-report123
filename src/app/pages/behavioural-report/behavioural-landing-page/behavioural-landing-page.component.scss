@@ -36,6 +36,7 @@
             text-transform: uppercase;
             color: $whiteColor;
             line-height: normal !important;
+            margin-top: 3%;
         }
     }
 }
@@ -197,6 +198,7 @@
             line-height: 24px;
             margin-bottom: 15px;
             display: inline-flex;
+            text-align: justify;
         }
         .note {
             font-size: 15px;
@@ -405,7 +407,7 @@
                 }
             }
             .figContent {
-                text-align: center;
+                text-align: left;
                 width: 65%;
                 display: inline-flex;
                 flex-direction: column;
@@ -756,6 +758,7 @@
                         color: $blackColor;
                         line-height: 24px;
                         margin: 0;
+                        text-align: justify;
                         span {
                             font-weight: 700;
                             text-transform: uppercase;
@@ -1101,6 +1104,7 @@
         .subpara {
             width: 73%;
             margin-left: 14%;
+            text-align: justify;
         }
         p {
             font-size: 18px;
@@ -1274,4 +1278,10 @@
 .errorCard {
     margin: 2em 2em;
     padding: 3em;
+}
+
+.printing {
+    position: fixed;
+    width: 0;
+    z-index: -5;
 }

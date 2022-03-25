@@ -42,6 +42,10 @@ export class ApiService {
     // return this.http.post(`${this.BASE_URL}/getuserList`, data);
   }
 
+  getDriveBaisedUser(data) {
+    return this.http.post(`${this.BASE_URL}/driveCandidateList`, data);
+  }
+
   encrypt(data) {
     try {
       return CryptoJS.AES.encrypt(JSON.stringify(data), this.EncryptKEY).toString();
