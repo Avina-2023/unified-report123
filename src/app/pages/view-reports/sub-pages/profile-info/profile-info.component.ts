@@ -1,4 +1,12 @@
-import { Component, EventEmitter, HostListener, Input, OnChanges, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  HostListener,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { multicast } from 'rxjs/operators';
@@ -10,19 +18,19 @@ import { ApiService } from '../../../../services/api.service';
 @Component({
   selector: 'app-profile-info',
   templateUrl: './profile-info.component.html',
-  styleUrls: ['./profile-info.component.scss']
+  styleUrls: ['./profile-info.component.scss'],
 })
 export class ProfileInfoComponent implements OnInit, OnChanges {
   @Input() getAllReportsData;
-  @Output() driveName:EventEmitter<any> =new EventEmitter<any>();
-  @Output() driveUserEmail:EventEmitter<any> =new EventEmitter<any>();
-  sampledata = []
+  @Output() driveName: EventEmitter<any> = new EventEmitter<any>();
+  @Output() driveUserEmail: EventEmitter<any> = new EventEmitter<any>();
+  sampledata = [];
   personalInfo: any;
   driveselectedValue: any;
   driveList: any;
-  isaccess:any;
+  isaccess: any;
   selectDriveName: string;
-  sticky:boolean=false;
+  sticky: boolean = false;
   subscription: Subscription;
   menuPosition: number = 164;
   totalCount: any;
@@ -30,24 +38,39 @@ export class ProfileInfoComponent implements OnInit, OnChanges {
   selectedMail: any;
   userCount = 1;
   prevbtn: boolean = false;
+  orgdetails: any;
+  orgId: any;
   @HostListener('window:scroll', ['$event'])
- handleScroll(){
+  handleScroll() {
     const windowScroll = window.pageYOffset;
-    if(windowScroll >= this.menuPosition){
+    if (windowScroll >= this.menuPosition) {
       this.sticky = true;
     } else {
       this.sticky = false;
     }
-    }
-  constructor(  private route: ActivatedRoute,private ApiService: ApiService,private appConfig: AppConfigService,private _loading: LoadingService,  private sendData: SentDataToOtherComp, ) { 
-     this.selectDriveName = sessionStorage.getItem('schedulename');
+  }
+  constructor(
+    private route: ActivatedRoute,
+    private ApiService: ApiService,
+    private appConfig: AppConfigService,
+    private _loading: LoadingService,
+    private sendData: SentDataToOtherComp
+  ) {
+    this.selectDriveName = sessionStorage.getItem('schedulename')
+      ? sessionStorage.getItem('schedulename')
+      : '';
   }
 
   ngOnInit(): void {
     this.getPersonalInfo();
     this.isaccess = this.appConfig.isComingFromMicroCert();
     this.getRoute();
-    this.getDriveUser(this.selectDriveName, this.selectedMail ? this.selectedMail : '')
+    this.getDriveUser(
+      this.selectDriveName,
+      this.selectedMail ? this.selectedMail : ''
+    );
+    this.orgdetails = JSON.parse(this.appConfig.getLocalStorage('role'));
+    this.orgId = this.orgdetails[0].orgId;
   }
 
   ngOnChanges() {
@@ -58,20 +81,20 @@ export class ProfileInfoComponent implements OnInit, OnChanges {
     this.route.paramMap.subscribe((param: any) => {
       if (param && param.params && param.params.id) {
         this.selectedMail = param.params.id;
-       
       }
     });
   }
 
   getPersonalInfo() {
     this.driveList = this.getAllReportsData?.driveDetails;
-
-    this.driveselectedValue = this.selectDriveName ? this.selectDriveName : this.driveList[0].drivename;
+    this.driveselectedValue = this.selectDriveName
+      ? this.selectDriveName
+      : this.driveList[0].drivename;
     // do not remove
     // this.driveList && this.driveList.length > 0 ? this.driveList[0].drivename : null
     this.emitdriveNametoParent();
-    
-    this.personalInfo ={};
+
+    this.personalInfo = {};
     this.personalInfo.firstname = this.getAllReportsData?.firstname;
     this.personalInfo.lastname = this.getAllReportsData?.lastname;
     this.personalInfo.DOB = this.getAllReportsData?.DOB;
@@ -82,26 +105,45 @@ export class ProfileInfoComponent implements OnInit, OnChanges {
     this.personalInfo.address = this.getContactAddress('address');
     this.personalInfo.city = this.getContactAddress('city');
     this.personalInfo.institute = this.getLastEducationValue('institute');
-    this.personalInfo.specialization = this.getLastEducationValue('specialization');
+    this.personalInfo.specialization =
+      this.getLastEducationValue('specialization');
     this.personalInfo.branch = this.getLastEducationValue('branch');
     this.personalInfo.passedOut = this.getLastEducationValue('passedOut');
     this.personalInfo.percentage = this.getLastEducationValue('percentage');
   }
 
   getContactAddress(val) {
-    let address = this.getAllReportsData && this.getAllReportsData.presentAddress ? this.getAllReportsData.presentAddress : null
+    let address =
+      this.getAllReportsData && this.getAllReportsData.presentAddress
+        ? this.getAllReportsData.presentAddress
+        : null;
     if (address && address.line1 != '') {
-      let currAddress = address.line1 + ', ' + address.line2 + ', ' + address.state + ', ' + address.city + ', ' + address.pincode
-      let city = address.state && address.city ? address.state + ', ' + address.city : '';
+      let currAddress =
+        address.line1 +
+        ', ' +
+        address.line2 +
+        ', ' +
+        address.state +
+        ', ' +
+        address.city +
+        ', ' +
+        address.pincode;
+      let city =
+        address.state && address.city
+          ? address.state + ', ' + address.city
+          : '';
       return val == 'address' ? currAddress : city;
     }
-    return null
+    return null;
   }
 
   getLastEducationValue(getvalue) {
-    let EducationValues = this.getAllReportsData && this.getAllReportsData.educationalDetails ? this.getAllReportsData.educationalDetails : [];
+    let EducationValues =
+      this.getAllReportsData && this.getAllReportsData.educationalDetails
+        ? this.getAllReportsData.educationalDetails
+        : [];
     if (EducationValues && EducationValues.length > 0) {
-      let findLastIndex = EducationValues.length -1;
+      let findLastIndex = EducationValues.length - 1;
       let lastEducationValue = EducationValues[findLastIndex];
       let institute = lastEducationValue.institute;
       let specialization = lastEducationValue.specialization;
@@ -133,49 +175,56 @@ export class ProfileInfoComponent implements OnInit, OnChanges {
       this._loading.setLoading(false, 'loader');
     }, 300);
     this.driveselectedValue = e.value;
+    this.getDriveUser(
+      this.driveselectedValue,
+      this.selectedMail ? this.selectedMail : ''
+    );
     this.emitdriveNametoParent();
   }
 
   emitdriveNametoParent() {
     this.driveName.emit(this.driveselectedValue);
-   
   }
 
-  getDriveUser(drive,email){
-
+  getDriveUser(drive, email) {
     let data = {
-      driveName:drive,
-      email:  email ? email : ''
-
-    }
-    this.ApiService.getDriveBaisedUser(data).subscribe((data:any)=>{
-        this.totalCount = data.noOfCandidates;
-        this.sampledata = data.data;
-    })
+      driveName: drive,
+      email: email ? email : '',
+      orgId: this.orgId ? this.orgId : '',
+    };
+    this.ApiService.getDriveBaisedUser(data).subscribe((data: any) => {
+      this.totalCount = data.noOfCandidates;
+      this.sampledata = data.data;
+    });
   }
 
-  nextUser(){
+  nextUser() {
     this.userCount = this.userCount + 1;
-    let index = this.sampledata.findIndex((data => data.email == this.selectedMail));
-    let expectedIndex = index != -1 ? (index + 1) : null;
-      let nextMail = this.sampledata[expectedIndex].email;
-      this.appConfig.routeNavigationWithParam(APP_CONSTANTS.ENDPOINTS.REPORTS.VIEWREPORTS, nextMail);
-   
-    
-   
+    let index = this.sampledata.findIndex(
+      (data) => data.email == this.selectedMail
+    );
+    let expectedIndex = index != -1 ? index + 1 : null;
+    let nextMail = this.sampledata[expectedIndex].email;
+    this.appConfig.routeNavigationWithParam(
+      APP_CONSTANTS.ENDPOINTS.REPORTS.VIEWREPORTS,
+      nextMail
+    );
   }
 
-  prevUser(){
-    if(this.userCount != 1){
+  prevUser() {
+    if (this.userCount != 1) {
       this.userCount = this.userCount - 1;
-      let index = this.sampledata.findIndex((data => data.email == this.selectedMail));
-      let expectedIndex = index != -1 ? (index - 1) : null;
-        let prevMail = this.sampledata[expectedIndex].email;
-        this.appConfig.routeNavigationWithParam(APP_CONSTANTS.ENDPOINTS.REPORTS.VIEWREPORTS, prevMail)
-    }else{
-          this.prevbtn = true;
+      let index = this.sampledata.findIndex(
+        (data) => data.email == this.selectedMail
+      );
+      let expectedIndex = index != -1 ? index - 1 : null;
+      let prevMail = this.sampledata[expectedIndex].email;
+      this.appConfig.routeNavigationWithParam(
+        APP_CONSTANTS.ENDPOINTS.REPORTS.VIEWREPORTS,
+        prevMail
+      );
+    } else {
+      this.prevbtn = true;
     }
-    
-    
   }
 }

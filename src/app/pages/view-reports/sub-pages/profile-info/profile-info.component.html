@@ -5,12 +5,17 @@
     </div>
     <div class="totalCount">
         <mat-select class="matSelect" (selectionChange)="driveChange($event)" placeholder="Select Scheduled" [(ngModel)]="driveselectedValue" name="list">
+            <span *ngIf="driveList">
             <mat-option *ngFor="let list of driveList" [value]="list.drivename">
                 {{list.drivename}}
             </mat-option>
+           </span>
+            <mat-option [value]="this.selectDriveName != 'undefined' ? this.selectDriveName : ''">
+                {{this.selectDriveName != 'undefined' ? this.selectDriveName : ''}}
+            </mat-option>
         </mat-select>
 
-        <div>
+        <div *ngIf="isaccess">
             <span class="count-font">Total Count</span>
             <div class="count"><span class="userCount">{{userCount}}</span> / <span class="totalCout">{{totalCount}}</span></div>
         </div>
@@ -199,12 +204,15 @@
     </ng-container> -->
 
     <div class="clearfix"></div>
-    <div class="arrow" [class.stickybtn]="sticky" *ngIf="totalCount != 1">
-        <button class="btn" [disabled]="userCount == 1 && userCount != totalCount" (click)="prevUser()"> 
-            <mat-icon class="right">keyboard_arrow_left</mat-icon>
-        </button>
-        <button class="btn" [disabled]="userCount >= totalCount" (click)="nextUser()">
-           <mat-icon class="left" > keyboard_arrow_right</mat-icon>
-       </button>
+    <div *ngIf="isaccess">
+        <div class="arrow" [class.stickybtn]="sticky" *ngIf="totalCount != 1">
+            <button class="btn" [disabled]="userCount == 1 && userCount != totalCount" (click)="prevUser()"> 
+                <mat-icon class="right" [disabled]="userCount == 1 && userCount != totalCount">keyboard_arrow_left</mat-icon>
+            </button>
+            <button class="btn" [disabled]="userCount >= totalCount" (click)="nextUser()">
+               <mat-icon class="left" [disabled]="userCount >= totalCount"> keyboard_arrow_right</mat-icon>
+           </button>
+        </div>
     </div>
+
 </section>
