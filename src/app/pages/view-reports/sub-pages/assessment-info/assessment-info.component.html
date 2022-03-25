@@ -10,18 +10,18 @@
           let i = index;
           first as isFirst
         ">
-                <mat-expansion-panel [expanded]="isFirst" *ngIf="assessment.assessmentname">
+                <mat-expansion-panel [expanded]="true" *ngIf="assessment.assessmentname">
                     <mat-expansion-panel-header>
                         <div class="expandheaderArea">
                             <div class="width-51">
                                 <em class="icon-Assessment"></em>
-                                <span>Test Name:
+                                <span>Test Name
                                     <span class="color-black">{{ assessment.assessmentname ? assessment.assessmentname : '-' }}</span>
                                 </span>
                             </div>
                             <div class="width-270">
                                 <em class="icon-Booked"></em>
-                                <span>Test Date:
+                                <span>Test Date
                                     <span class="color-black">{{
                                         assessment.assessmentdate
                                         ? momentForm(assessment.assessmentdate)
@@ -31,14 +31,14 @@
                             </div>
                             <div class="width-150">
                                 <em class="icon-SpeedoMeter"></em>
-                                <span>Total Score:
+                                <span>Total Score
                                     <span class="color-black">{{ assessment.score ? assessment.score : 0
                                         }}/{{ assessment.maxscore ? assessment.maxscore : 0 }}</span>
                                 </span>
                             </div>
                             <div class="width-168">
                                 <!-- <em class="icon-Like"></em> -->
-                                <span>Rating:
+                                <span>Rating
                                     <span [ngClass]="{
                       warningColor: assessment.percentageScore < 40,
                       WarnColor:
@@ -53,7 +53,7 @@
                                     <em *ngIf="assessment?.teststatus === 'In Complete'" class="icon-uncheck"></em>
                                     <em *ngIf="assessment?.teststatus === 'Not Taken'" class="icon-uncheck"></em>
                                     <em *ngIf="assessment?.teststatus === 'Complete'" class="icon-checked"></em>
-                                    <span> Completion :
+                                    <span> Completion
                                     <span [ngClass]="{ warningColor: assessment?.teststatus === 'In Complete' && assessment?.teststatus === 'Not Taken', successColor: assessment?.teststatus === 'Complete'
                                     }">
                                         <span style="font-size: 1em;display: contents;">{{assessment?.teststatus}}</span></span>
@@ -77,7 +77,7 @@
                         <div class="ContentInfoDetails">
                             <div>
                                 Scheduled Duration
-                                <span>{{ assessment.duration ? assessment.duration : 0 }}<span>Mins</span></span>
+                                <span class="m-l-6">{{ assessment.duration ? assessment.duration : 0 }}<span>Mins</span></span>
                             </div>
                             <div *ngIf="assessment.source != 'ICP'">
                                 Test Taken Duration
@@ -115,8 +115,8 @@
                             <div class="assessmentHeaderinfo">
                                 <div class="Summaryhtxt" *ngIf="isaccess">
                                     Sectional Summary
-                                    <span *ngIf="assessment.source != 'STEP'" class="primaryClick" (click)="questionview(assessment);inboundClick = !inboundClick"><em
-                                            class="icon-right-next"></em> View Questionwise Analysis</span>
+                                    <!-- <span *ngIf="assessment.source != 'STEP'" class="primaryClick" (click)="questionview(assessment);inboundClick = !inboundClick"><em
+                                            class="icon-right-next"></em> View Questionwise Analysis</span> -->
                                 </div>
                                 <div *ngIf="inboundClick">
                                     <ng-container *ngIf="listOfSections && listOfSections.length > 0">
@@ -126,7 +126,7 @@
                                                     <div class="expandheaderArea">
                                                         <div class="htxt">{{sections._id}}</div>
                                                         <div class="txtinfo">
-                                                            <span>No. of Questions</span> {{sections.tableList.length}}
+                                                            <span> No. of Attempted Questions</span> {{sections.tableList.length}}
                                                         </div>
                                                     </div>
                                                 </mat-expansion-panel-header>
@@ -303,14 +303,14 @@
             <div class="row">
                 <div class="col-3">
                     <div class="Pheader">Proctoring Video</div>
-                    <span class="psubHeader">Candidate Name : {{ userInfo.candidateName }}</span>
+                    <span class="psubHeader">Candidate Name  {{ userInfo.candidateName }}</span>
                 </div>
 
                 <div class="col-5 dis-flex ">
                     <em class="icon-Assessment icon-bag"></em>
                     <div>
                         <div></div>
-                        <div class="psubHeader">Test Name:</div>
+                        <div class="psubHeader">Test Name</div>
                         <span class="Pheader">{{ userInfo.assessmentName }}</span>
                     </div>
                 </div>
@@ -319,7 +319,7 @@
                     <em class="icon-Booked icon-bag"></em>
                     <div>
                         <div></div>
-                        <div class="psubHeader">Test Date:</div>
+                        <div class="psubHeader">Test Date</div>
                         <span class="Pheader">{{userInfo.assessmentDate  ? momentForm(userInfo.assessmentDate)
                             : "-"}}</span>
                     </div>

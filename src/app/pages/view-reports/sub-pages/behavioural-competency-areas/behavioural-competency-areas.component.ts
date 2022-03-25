@@ -1,6 +1,10 @@
-import { Component, OnInit, Input, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, ElementRef, ViewChild, TemplateRef } from '@angular/core';
 import { slide } from 'src/app/animations';
 import _ from 'lodash';
+import { ToastrService } from 'ngx-toastr';
+import { ApiService } from 'src/app/services/api.service';
+import { Subscription } from 'rxjs/internal/Subscription';
+import { MatDialog } from '@angular/material/dialog';
 @Component({
   selector: 'app-behavioural-competency-areas',
   templateUrl: './behavioural-competency-areas.component.html',
@@ -48,11 +52,34 @@ export class BehaviouralCompetencyAreasComponent implements OnInit {
   selectedHorizontalChartIndex = '0';
   verticalChartData: any[];
   hideControls = true;
+
+  // be
+
+  getAllBasicData: any;
+  emailId: any;
+  highestEducation: any;
+  benchMarkScore = [
+    {score:"1-2",label:"DEVELOPMENT SCOPE",color:"red"},
+    {score:"3-4-5",label:"LESS INCLINED",color:"yellow"},
+    {score:"6-7-8",label:"MORE INCLINED",color:"orange"},
+    {score:"9-10",label:"STRENGTH",color:"green"}
+  ];
+  bgColorInput:string = '#85BD44';
+  doughnutValue:number = 4;
+  tabIndex:number = 0;
+  getAllBehaviourAPIDetails: any;
+  apiSuccess = true;
+  isaccess: any;
+  getAllBehaviourData: any;
+  getBehaviourReportAPISubscription: Subscription;
  
-  constructor() {}
+  constructor( private toastr: ToastrService, private ApiService: ApiService, private dialog: MatDialog,) {}
 
   ngOnInit(): void {
     this.getCompetancyData();
+    if(sessionStorage.getItem('testType') == 'Personality & Behaviour'){
+    this.getBehaviouralReportData(this.getAllReportsData.email ? this.getAllReportsData.email : '')
+    }
   }
 
   ngOnChanges() {
@@ -254,4 +281,51 @@ export class BehaviouralCompetencyAreasComponent implements OnInit {
         return '#03B8CB'
     }
   }
+
+
+  getBehaviouralReportData(data) {
+    const apiData = {
+      email: data
+    };
+  this.emailId= data;
+   this.getBehaviourReportAPISubscription = this.ApiService.getBehaviourReport(apiData).subscribe((response: any) => {
+    if (response && response.success && response.data) {
+        this.apiSuccess = true;
+        this.getAllBehaviourData = response.data.data ? response.data.data : null;
+        this.getAllBehaviourAPIDetails = response.data ? response.data : null;
+        this.getAllBasicData = response.data.basicDetails ? response.data.basicDetails : null;
+        this.highestEducation = this.getAllBasicData && this.getAllBasicData.education ? this.getAllBasicData.education : [];
+        if (this.highestEducation.length > 0) {
+          let i = this.highestEducation.length - 1;
+          this.highestEducation = this.highestEducation[i];
+        }
+      } else {
+        this.apiSuccess = false;
+        // this.toastr.error('No Reports Available');
+        this.getAllBasicData = null;
+        this.getAllBehaviourData = null;
+        this.getAllBehaviourAPIDetails = null;
+      }
+    }, (err)=> {
+      this.apiSuccess = false;
+      this.getAllBasicData = null;
+      this.getAllBehaviourData = null;
+      this.getAllBehaviourAPIDetails = null;
+});
+}
+
+openBenchmarkInfo(templateRef: TemplateRef<any>){
+  this.dialog.open(templateRef, {
+    width: "450px",
+    height: "80%",
+    position: { right: "0px", bottom: "0px"},
+    panelClass: "filterModalbox",
+    closeOnNavigation: true,
+    disableClose: true,
+  });
+}
+ngOnDestroy() {
+  this.getBehaviourReportAPISubscription ? this.getBehaviourReportAPISubscription.unsubscribe() : '';
+}
+
 }

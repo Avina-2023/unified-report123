@@ -1,28 +1,28 @@
 <section class="assessmentArea">
     <div class="assessmentHeaderinfo" *ngIf="assessmentsList && assessmentsList[0].testname.length > 0">
-        <div class="heading6">Behavioural Personal Profile <span (click)="viewBehaviouralReport()" class="view-report pl-1">View Individual Report</span></div>
+        <div class="heading6">Behavioural Personal Profile
+            <span (click)="downloadreport(true)" class="view-report pl-1">Download report</span>
+        </div>
     </div>
 
     <div class="assessmentInfoarea">
+        <!-- first as isFirst -->
         <ng-container *ngIf="assessmentsList && assessmentsList.length > 0">
-            <ng-container *ngFor="
-        let assessment of assessmentsList;
-        let i = index;
-        first as isFirst
-      ">
-                <mat-expansion-panel [expanded]="false" *ngIf="assessment && assessment.testname" hideToggle>
+            <ng-container *ngFor="let assessment of assessmentsList;let i = index;">
+                <mat-expansion-panel [expanded]="true" *ngIf="assessment && assessment.testname">
+                    <!-- hideToggle -->
                     <mat-expansion-panel-header>
                         <div class="expandheaderArea">
                             <div class="width-51">
                                 <em class="icon-Assessment"></em>
-                                <span>Test Name:
+                                <span>Test Name
                                   <span class="color-black">{{ assessment.testname ? assessment.testname : '-' }}</span>
                                 </span>
                             </div>
                             <div class="width-270">
                                 <!-- <div> -->
 
-                                <span class="proct"> Proctoring :
+                                <span class="proct"> Proctoring
                                         <span class="color-black">{{ assessment.proctored ? "Yes" : "No"}}
                                             <a *ngIf="isaccess">
                                                 <span *ngIf="assessment.proctored" class="warningColor pointer" (click)="open(assessment)">View Details</span>
@@ -42,7 +42,7 @@
                             <div class="width-150">
                                 <div class="primaryInfo">
                                     <em class="icon-{{assessment.completionstatus ? 'checked' : 'uncheck'}}"></em>
-                                    <span> Completion :
+                                    <span> Completion
                                     <span [ngClass]="{ warningColor: assessment.completionstatus == false, successColor: assessment.completionstatus == true
                                     }">
                                         <span style="font-size: 1em;display: contents;">{{assessment.completionstatus ? "Complete" : "Not Taken"}}</span></span>
@@ -68,6 +68,15 @@
                             <!-- </div> -->
                         </div>
                     </mat-expansion-panel-header>
+
+
+
+
+                    <div class="expandContentArea">
+                        <div class="">
+                            <app-behavioural-competency-areas [getAllReportsData]="getAllReportsData"></app-behavioural-competency-areas>
+                        </div>
+                    </div>
 
                     <!-- <div class="expandContentArea">
                         <div class="ContentInfoDetails">
@@ -180,3 +189,6 @@
     </div>
     <div id="visualization"></div>
 </ng-template>
+<div class="printing">
+    <app-behavioural-pdf-report-download *ngIf="getAllBehaviourData" [email]="emailId" [data]="getAllBehaviourAPIDetails"></app-behavioural-pdf-report-download>
+</div>

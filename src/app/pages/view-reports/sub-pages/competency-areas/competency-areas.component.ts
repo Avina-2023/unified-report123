@@ -13,15 +13,13 @@ export class CompetencyAreasComponent implements OnInit {
   areasName = [];
   counter: number = 0;
   list: any = [0];
-
-
   competenciesChartData = [];
   skillsChartData = [];
   competenciesName: any;
   unSortedVerticalData: any;
   unSortedHorizontalData: any;
-  domain = ['#8ac1ed', '#a4dea5', '#f7d096', '#e89694', '#8ac1ed', '#a4dea5', '#f7d096', '#e89694', '#8ac1ed', '#a4dea5', '#f7d096', '#e89694', '#8ac1ed', '#a4dea5', '#f7d096', '#e89694'];
-  verticaldomain = ["#FF8C00", "#0085B6" , "#9DBC5B" , "#28B59A", "#03B8CB", "#FF8C00", "#0085B6" , "#9DBC5B" , "#28B59A", "#03B8CB"];
+  domain = ['#FFC4A3', '#FFBC43', '#C84557', '#BAD252', '#2F9E77', '#1E9FAA', '#C89072', '#786965', '#5F5C5A', '#A889DF', '#AD7CA4', '#847EA6', '#6E87B2', '#8D8C88', '#EF9E6D', '#D29999','#1E94BE'];
+  verticaldomain = ['#FFC4A3', '#FFBC43', '#C84557', '#BAD252', '#2F9E77', '#1E9FAA', '#C89072', '#786965', '#5F5C5A', '#A889DF', '#AD7CA4', '#847EA6', '#6E87B2', '#8D8C88', '#EF9E6D', '#D29999','#1E94BE','#FFC325','#FFA2A2'];
   selectedHorizontalChartIndex = '0';
   verticalChartData: any[];
   constructor() {
@@ -29,10 +27,13 @@ export class CompetencyAreasComponent implements OnInit {
 
   ngOnInit(): void {
   // this.getCompetancyData();
+  
   }
 
   ngOnChanges() {
     this.getCompetancyData();
+
+   
   }
 
 
@@ -72,6 +73,7 @@ export class CompetencyAreasComponent implements OnInit {
 
   getCompetancyData(){
     this.competancyData = this.getAllReportsData?.competencyDetails;
+
     if (this.competancyData && this.competancyData.length > 0) {
       this.convertToPercentage();
       this.getAreasDataInitialize(this.competancyData);
