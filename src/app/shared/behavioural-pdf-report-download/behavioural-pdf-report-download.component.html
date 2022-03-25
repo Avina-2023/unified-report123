@@ -464,7 +464,7 @@
 
                             <div class="m-t-40" *ngIf="((s + 1) % 4 == 0)  && (getAllBehaviourAPIDetails?.strengthconclusionPoints.length != s+1)">
                                 <div class="html2pdf__page-break"></div>
-                                <div class="header" *ngIf="getAllBehaviourData?.conclusion">
+                                <div class="header m-t-20" *ngIf="getAllBehaviourData?.conclusion">
                                     <div class="heading">
                                         {{getAllBehaviourData?.conclusion?.topicName}}
                                     </div>
@@ -523,7 +523,7 @@
 
                             <div class="m-t-40" *ngIf="((d + 1) % 4 == 0)  && (getAllBehaviourAPIDetails?.developmentconclusionPoints.length != d+1)">
                                 <div class="html2pdf__page-break"></div>
-                                <div class="header" *ngIf="getAllBehaviourData?.conclusion">
+                                <div class="header m-t-20" *ngIf="getAllBehaviourData?.conclusion">
                                     <div class="heading">
                                         {{getAllBehaviourData?.conclusion?.topicName}}
                                     </div>

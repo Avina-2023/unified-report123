@@ -662,6 +662,9 @@
     }
     
     .behaviouralEvent {
+        .m-t-20 {
+            margin-top: 10px !important;
+        }
         margin-top: 40px;
         .header {
             background-image: linear-gradient(to right, #23bbee, #00bed9, #00beb4, #00ba85, #5ab253);
