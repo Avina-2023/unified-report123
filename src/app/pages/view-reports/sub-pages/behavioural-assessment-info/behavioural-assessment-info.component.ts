@@ -244,7 +244,7 @@ export class BehaviouralAssessmentInfoComponent implements OnInit, OnChanges {
         }
       } else {
         this.apiSuccess = false;
-        this.toastr.error('No Reports Available');
+        // this.toastr.error('No Reports Available');
         this.getAllBasicData = null;
         this.getAllBehaviourData = null;
         this.getAllBehaviourAPIDetails = null;
