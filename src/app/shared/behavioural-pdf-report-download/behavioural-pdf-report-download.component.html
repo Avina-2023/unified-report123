@@ -464,15 +464,17 @@
 
                             <div class="m-t-40" *ngIf="((s + 1) % 4 == 0)  && (getAllBehaviourAPIDetails?.strengthconclusionPoints.length != s+1)">
                                 <div class="html2pdf__page-break"></div>
-
-                                <div class="header m-t-31" *ngIf="getAllBehaviourData?.conclusion">
-                                    <div class="heading">
-                                        {{getAllBehaviourData?.conclusion?.topicName}}
+                                <<<<<<< HEAD <div class="header m-t-20" *ngIf="getAllBehaviourData?.conclusion">
+                                    =======
+                                    <div class="header " *ngIf="getAllBehaviourData?.conclusion">
+                                        >>>>>>> dev_avinash
+                                        <div class="heading">
+                                            {{getAllBehaviourData?.conclusion?.topicName}}
+                                        </div>
+                                        <p *ngIf="getAllBehaviourData?.conclusion">{{getAllBehaviourData?.conclusion?.description}}</p>
                                     </div>
-                                    <p *ngIf="getAllBehaviourData?.conclusion">{{getAllBehaviourData?.conclusion?.description}}</p>
-                                </div>
 
-                                <div class="heading3">Strength Areas</div>
+                                    <div class="heading3">Strength Areas</div>
                             </div>
 
                         </ng-container>
@@ -508,7 +510,7 @@
                     <div class="heading3">DEVELOPMENT SCOPE</div>
                     <ng-container *ngIf="getAllBehaviourAPIDetails && getAllBehaviourAPIDetails?.developmentconclusionPoints && getAllBehaviourAPIDetails?.developmentconclusionPoints.length > 0 else noImprovements">
                         <ng-container *ngFor="let conclusion of getAllBehaviourAPIDetails.developmentconclusionPoints;let d = index">
-                            <div class="wrapper d-flex justify-content-between m-t-40">
+                            <div class="wrapper d-flex justify-content-between">
                                 <div class="left">
                                     <span>{{conclusion?.skillName}}</span>
                                 </div>
@@ -522,9 +524,9 @@
                                 </div>
                             </div>
 
-                            <div class="m-t-40" *ngIf="((d + 1) % 4 == 0)  && (getAllBehaviourAPIDetails?.developmentconclusionPoints.length != d+1)">
+                            <div class="" *ngIf="((d + 1) % 4 == 0)  && (getAllBehaviourAPIDetails?.developmentconclusionPoints.length != d+1)">
                                 <div class="html2pdf__page-break"></div>
-                                <div class="header m-t-31" *ngIf="getAllBehaviourData?.conclusion">
+                                <div class="header" *ngIf="getAllBehaviourData?.conclusion">
                                     <div class="heading">
                                         {{getAllBehaviourData?.conclusion?.topicName}}
                                     </div>
