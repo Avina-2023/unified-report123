@@ -11,7 +11,7 @@ import { BarChartComponent } from './bar-chart/bar-chart.component';
 import { HorizontalBarChartComponent } from './horizontal-bar-chart/horizontal-bar-chart.component';
 import { RoundcanvasComponent } from './roundcanvas/roundcanvas.component';
 import { ChartsModule } from 'ng2-charts';
-import { BehaviouralPdfReportDownloadComponent } from './behavioural-pdf-report-download/behavioural-pdf-report-download.component';
+import { BehaviouralPdfReportDownloadComponent } from '../pages/behavioural-report/behavioural-pdf-report-download/behavioural-pdf-report-download.component';
 
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
