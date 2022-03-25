@@ -197,20 +197,22 @@ export class ProfileInfoComponent implements OnInit, OnChanges {
     this.ApiService.getDriveBaisedUser(data).subscribe((data: any) => {
       this.totalCount = data.noOfCandidates;
       this.sampledata = data.data;
+      this.sampledata =   this.getUniqueListBy(this.sampledata,'email')
     });
   }
 
+ getUniqueListBy(arr, key) {
+    return [...new Map(arr.map(item => [item[key], item])).values()]
+}
+
   nextUser() {
+    console.log(this.selectedMail,'this.selectedMail')
     this.userCount = this.userCount + 1;
-    let index = this.sampledata.findIndex(
-      (data) => data.email == this.selectedMail
-    );
+    let index = this.sampledata.findIndex((data) => data.email == this.selectedMail);
+    console.log(index,'index')
     let expectedIndex = index != -1 ? index + 1 : null;
     let nextMail = this.sampledata[expectedIndex].email;
-    this.appConfig.routeNavigationWithParam(
-      APP_CONSTANTS.ENDPOINTS.REPORTS.VIEWREPORTS,
-      nextMail
-    );
+    this.appConfig.routeNavigationWithParam(APP_CONSTANTS.ENDPOINTS.REPORTS.VIEWREPORTS,nextMail);
   }
 
   prevUser() {
