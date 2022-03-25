@@ -77,7 +77,9 @@ export class BehaviouralCompetencyAreasComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCompetancyData();
+    if(sessionStorage.getItem('testType') == 'Personality & Behaviour'){
     this.getBehaviouralReportData(this.getAllReportsData.email ? this.getAllReportsData.email : '')
+    }
   }
 
   ngOnChanges() {

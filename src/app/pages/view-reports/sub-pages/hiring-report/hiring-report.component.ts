@@ -606,6 +606,7 @@ export class HiringReportComponent implements OnInit {
       // let email = event['data']['email'] ? this.ApiService.encrypt(event['data']['email']) : ''
       // this.appconfig.routeNavigationWithParam(APP_CONSTANTS.ENDPOINTS.REPORTS.VIEWREPORTS, email);
       sessionStorage.setItem('schedulename',event['data']['schedulename'])
+      sessionStorage.setItem('testType',event['data']['testtype'])
       this.navtoDetailsPage(event['data']['email'])
     }
 

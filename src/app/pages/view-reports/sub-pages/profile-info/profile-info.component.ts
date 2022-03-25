@@ -65,10 +65,7 @@ export class ProfileInfoComponent implements OnInit, OnChanges {
     this.getPersonalInfo();
     this.isaccess = this.appConfig.isComingFromMicroCert();
     this.getRoute();
-    this.getDriveUser(
-      this.selectDriveName,
-      this.selectedMail ? this.selectedMail : ''
-    );
+    this.getDriveUser(this.selectDriveName,this.selectedMail ? this.selectedMail : '');
     this.orgdetails = JSON.parse(this.appConfig.getLocalStorage('role'));
     this.orgId = this.orgdetails[0].orgId;
   }
@@ -175,10 +172,7 @@ export class ProfileInfoComponent implements OnInit, OnChanges {
       this._loading.setLoading(false, 'loader');
     }, 300);
     this.driveselectedValue = e.value;
-    this.getDriveUser(
-      this.driveselectedValue,
-      this.selectedMail ? this.selectedMail : ''
-    );
+      this.getDriveUser(this.driveselectedValue,this.selectedMail ? this.selectedMail : '');
     this.emitdriveNametoParent();
   }
 
@@ -187,11 +181,19 @@ export class ProfileInfoComponent implements OnInit, OnChanges {
   }
 
   getDriveUser(drive, email) {
-    let data = {
-      driveName: drive,
-      email: email ? email : '',
-      orgId: this.orgId ? this.orgId : '',
-    };
+    let data;
+    if(this.orgdetails && this.orgdetails.roles[0] && this.orgdetails.roles[0].roleCode == 'OADM'){
+      data = {
+        driveName: drive,
+        email: email ? email : '',
+        orgId: this.orgId ? this.orgId : '',
+      };
+    }else{
+      data = {
+        driveName: drive,
+        email: email ? email : '',
+      };
+    }
     this.ApiService.getDriveBaisedUser(data).subscribe((data: any) => {
       this.totalCount = data.noOfCandidates;
       this.sampledata = data.data;
