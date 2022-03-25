@@ -93,6 +93,7 @@
     top: -2px;
     position: relative;
     cursor: pointer;
+    z-index: 100;
 }
 
 .progressText {
@@ -123,4 +124,5 @@
     position: fixed;
     width: 0;
     z-index: -5;
+    visibility: hidden;
 }
