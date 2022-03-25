@@ -9,6 +9,7 @@ import { AppConfigService } from 'src/app/utils/app-config.service';
 import { APP_CONSTANTS } from 'src/app/utils/app-constants.service';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { SentDataToOtherComp } from 'src/app/services/sendDataToOtherComp.service';
+import { ActivatedRoute } from '@angular/router';
 // import { Timeline } from 'vis-timeline';
 // import { DataSet } from 'vis-data';
 
@@ -53,15 +54,20 @@ export class BehaviouralAssessmentInfoComponent implements OnInit, OnChanges {
   apiSuccess = true;
   isPdfdownable = false;
   highestEducation: any;
-  constructor(private sendData: SentDataToOtherComp,private appConfig: AppConfigService,public matDialog: MatDialog,private toastr: ToastrService, private ApiService: ApiService, ) {
+  constructor(private route: ActivatedRoute,private sendData: SentDataToOtherComp,private appConfig: AppConfigService,public matDialog: MatDialog,private toastr: ToastrService, private ApiService: ApiService, ) {
 
   }
 
   ngOnInit(): void {
     this.getAssessmentInfo();
     this.isaccess = this.appConfig.isComingFromMicroCert();
-      this.getBehaviouralReportData(this.emailId ? this.emailId : '');
-   
+      // this.getBehaviouralReportData(this.emailId ? this.emailId : '');
+      this.route.paramMap.subscribe((param: any) => {
+        if (param && param.params && param.params.id) {
+          let email = param.params.id ? param.params.id : this.emailId
+          this.getBehaviouralReportData(email);
+        }
+      });
    
     // const container = document.getElementById("visualization");
     // const items = new DataSet([
