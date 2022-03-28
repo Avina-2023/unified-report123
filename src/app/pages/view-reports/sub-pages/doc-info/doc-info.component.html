@@ -1,6 +1,6 @@
-<section *ngIf="isaccess">
+<section *ngIf="isaccess && profilePic">
     <div class="docInfoarea">
-        <div class="profileplace">
+        <div class="profileplace" *ngIf="profilePic">
             <span>Profile Picture Snapshot</span>
             <div class="photoholder" #profil>
                 <ng-container *ngIf="profilePic">
@@ -16,7 +16,7 @@
             </div>
         </div>
 
-        <div class="profileplace">
+        <div class="profileplace" *ngIf="idCardImg">
             <span>Identity Card Snapshot</span>
             <div class="photoholder" #identi>
                 <ng-container *ngIf="idCardImg">
