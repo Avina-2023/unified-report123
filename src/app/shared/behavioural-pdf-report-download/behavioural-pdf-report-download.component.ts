@@ -145,7 +145,7 @@ export class BehaviouralPdfReportDownloadComponent implements OnInit {
   }
   
   downloadAsPDF() {
-    this.toastr.success('Please wait for sometime','PDF is downloading')
+    this.toastr.success('Please wait','PDF is downloading')
     var element = document.getElementById('element-to-print');
     var opt = {
       margin: [0,0],
