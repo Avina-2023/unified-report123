@@ -69,10 +69,6 @@ export class HiringReportComponent implements OnInit {
       enableFilter:true
       //  floatingFilter: true,
     };
-
-    
-
-
   }
 
   ngOnInit(): void {
@@ -303,23 +299,23 @@ export class HiringReportComponent implements OnInit {
             // if(params.value !== undefined && params.value !== null && params.value == 'null'){
               if(params.value && params.value <= 40){
                 // let per:any = params.data.testscore != null && params.data.testscore / params.data.testmaxscore * 100;
-            return `<div class="progessbar red-btn"  style="width: `+''+parseInt(params.value)+`%;">`+params.value+'%'+`</div>`;
+            return `<div class="progessbar red-btn"  style="width: `+''+parseInt(params.value)+`%;">`+params.value.toFixed(2)+'%'+`</div>`;
             }
             if (params.value && params.value < 80 ) {
             //  let per:any = params.data.testscore != null && params.data.testscore / params.data.testmaxscore * 100;
-            return `<div class="progessbar yellow-btn"  style="width: `+''+parseInt(params.value)+`%;">`+params.value+'%'+`</div>`;
+            return `<div class="progessbar yellow-btn"  style="width: `+''+parseInt(params.value)+`%;">`+params.value.toFixed(2)+'%'+`</div>`;
             }
             if(params.value && params.value  < 90){
             //  let per:any = params.data.testscore != null && params.data.testscore / params.data.testmaxscore * 100;
-            return `<div class="progessbar light-green" style="width: `+''+parseInt(params.value)+`%;">`+params.value+'%'+`</div>`;
+            return `<div class="progessbar light-green" style="width: `+''+parseInt(params.value)+`%;">`+params.value.toFixed(2)+'%'+`</div>`;
             }
             if ( params.value && params.value >=90){
             //  let per:any = params.data.testscore != null && params.data.testscore / params.data.testmaxscore * 100;
-            return `<div class="progessbar green-btn" style="width: `+''+parseInt(params.value)+`%; ">`+params.value+'%'+`</div>`;
+            return `<div class="progessbar green-btn" style="width: `+''+parseInt(params.value)+`%; ">`+params.value.toFixed(2)+'%'+`</div>`;
             }
             if(params.value && params.value !== undefined && params.value !== null && params.value == 'null' && params.value == ''){
             //  let per:any = params.data.testscore != null && params.data.testscore / params.data.testmaxscore * 100;
-            return ''+params.value;
+            return ''+params.value.toFixed(2);
           }
             else {
             return '-';
@@ -329,27 +325,27 @@ export class HiringReportComponent implements OnInit {
 
         }
       },
-      {
-        headerName: 'Completion',
-        field: 'completion',
-        filter:false,
-        chartDataType: 'series',
-        // filter: 'agTextColumnFilter',
-        // filterParams: {
-        //   suppressAndOrCondition: true,
-        //   filterOptions: ['contains']
-        // },
-        // width: 100,
-      cellRenderer: (params) => {
-        if(params.value == true){
-          return `<div class="center"><i class="material-icons green">check</i></div>`
-        } if (params.value == false){
-          return `<div class="center"><i class="material-icons red">close</i></div>`
-        }else {
-          return '-';
-        }
-      }
-      },
+      // {
+      //   headerName: 'Completion',
+      //   field: 'completion',
+      //   filter:false,
+      //   chartDataType: 'series',
+      //   // filter: 'agTextColumnFilter',
+      //   // filterParams: {
+      //   //   suppressAndOrCondition: true,
+      //   //   filterOptions: ['contains']
+      //   // },
+      //   // width: 100,
+      // cellRenderer: (params) => {
+      //   if(params.value == true){
+      //     return `<div class="center"><i class="material-icons green">check</i></div>`
+      //   } if (params.value == false){
+      //     return `<div class="center"><i class="material-icons red">close</i></div>`
+      //   }else {
+      //     return '-';
+      //   }
+      // }
+      // },
 
       {
         headerName: 'Rating',
