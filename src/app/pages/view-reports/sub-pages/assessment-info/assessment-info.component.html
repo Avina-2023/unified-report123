@@ -93,7 +93,8 @@
                                 Proctoring
                                 <span>{{ assessment.proctored ? "Yes" : "No"}}
                                     <a *ngIf="isaccess">
-                                        <span *ngIf="assessment.proctored && assessment.source != 'ICP'" class="warningColor pointer"
+                                        <!-- *ngIf="assessment.proctored && assessment.source != 'ICP'" -->
+                                        <span  class="warningColor pointer"
                                         (click)="open(assessment)">View Details</span>
                                 </a>
                                 </span>

@@ -66,7 +66,7 @@ export class HiringReportComponent implements OnInit {
       sortable: true,
       resizable: true,
       filter: true,
-      enableFilter:true
+      enableFilter:true,
       //  floatingFilter: true,
     };
   }
@@ -130,28 +130,142 @@ export class HiringReportComponent implements OnInit {
       },
 
       {
-        headerName: 'Schedule Name',
-        field: 'schedulename',
+        headerName: 'Gender',
+        field: 'gender',
         filter: 'agTextColumnFilter',
         chartDataType: 'series',
         filterParams: {
           suppressAndOrCondition: true,
           filterOptions: ['contains']
         },
-        tooltipField:'schedulename',
-        enableRowGroup: true,
-        // width: 100 ,
+        tooltipField:'gender',
         cellRenderer: (params) => {
-          // && params.data.display == true
-          if(params.data  && params.value != null){
-            return ''+params.value ;
-          } if(params.value == undefined){
-            return '-';
-          }else {
-            return '-'+params.value;
+          if(params.value){
+            return params.value;
+          } else {
+              return '-';
           }
         }
       },
+
+      
+
+
+      {
+        headerName: 'Specialization',
+        field: 'specialization',
+        filter: 'agTextColumnFilter',
+        chartDataType: 'series',
+        filterParams: {
+          suppressAndOrCondition: true,
+          filterOptions: ['contains']
+        },
+        tooltipField:'specialization',
+        cellRenderer: (params) => {
+          if(params.value ){
+            return params.value;
+          } else {
+              return '-';
+          }
+        }
+      },
+
+      {
+        headerName: 'College/University',
+        field: 'institute',
+        filter: 'agTextColumnFilter',
+        chartDataType: 'series',
+        filterParams: {
+          suppressAndOrCondition: true,
+          filterOptions: ['contains']
+        },
+        tooltipField:'institute',
+        cellRenderer: (params) => {
+          if(params.value ){
+            return params.value;
+          } else {
+              return '-';
+          }
+        }
+      },
+
+      {
+        headerName: 'Branch',
+        field: 'branch',
+        filter: 'agTextColumnFilter',
+        chartDataType: 'series',
+        filterParams: {
+          suppressAndOrCondition: true,
+          filterOptions: ['contains']
+        },
+        tooltipField:'branch',
+        cellRenderer: (params) => {
+          if(params.value){
+            return params.value;
+          } else {
+              return '-'+params.value;
+          }
+        }
+      },
+
+      {
+        headerName: 'Year of passing',
+        field: 'passedout',
+        filter: 'agTextColumnFilter',
+        chartDataType: 'series',
+        tooltipField:'passedout',
+        cellRenderer: (params) => {
+          if(params.value){
+            return params.value;
+          } else {
+              return '-';
+          }
+        },
+        filterParams: {
+          suppressAndOrCondition: true,
+          filterOptions: ['equals','lessThan','greaterThan','inRange'],
+        },
+      },
+
+      {
+        headerName: 'Graduation Aggregate',
+        field: 'edu_percentage',
+        filter: 'agTextColumnFilter',
+        chartDataType: 'series',
+        filterParams: {
+          suppressAndOrCondition: true,
+          filterOptions: ['equals','lessThan','lessThanOrEqual','greaterThan','greaterThanOrEqual','inRange']
+        },
+        tooltipField:'edu_percentage',
+        cellRenderer: (params) => {
+          if(params.value ){
+            return'<div style="text-align:right;">'+params.value+'</div>'
+          } else {
+            return '<div style="text-align:right;">'+'-'+'</div>';
+          }
+        }
+      },
+
+      {
+        headerName: 'Drive Name',
+        field: 'drivename',
+        filter: 'agTextColumnFilter',
+        tooltipField:'drivename',
+        chartDataType: 'series',
+        filterParams: {
+          suppressAndOrCondition: true,
+          filterOptions: ['contains']
+        },
+        // width: 100,
+        cellRenderer: (params) => {
+          if(params.value){
+            return params.value;
+          }else{
+            return '-';
+          }
+        }
+      },
+    
       {
         headerName: 'Test Type',
         field: 'testtype',
@@ -386,6 +500,30 @@ export class HiringReportComponent implements OnInit {
         }
 
 
+        }
+      },
+
+      {
+        headerName: 'Schedule Name',
+        field: 'schedulename',
+        filter: 'agTextColumnFilter',
+        chartDataType: 'series',
+        filterParams: {
+          suppressAndOrCondition: true,
+          filterOptions: ['contains']
+        },
+        tooltipField:'schedulename',
+        enableRowGroup: true,
+        // width: 100 ,
+        cellRenderer: (params) => {
+          // && params.data.display == true
+          if(params.data  && params.value != null){
+            return ''+params.value ;
+          } if(params.value == undefined){
+            return '-';
+          }else {
+            return '-'+params.value;
+          }
         }
       },
 
