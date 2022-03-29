@@ -84,9 +84,8 @@ export class ProfileInfoComponent implements OnInit, OnChanges {
 
   getPersonalInfo() {
     this.driveList = this.getAllReportsData?.driveDetails;
-    this.driveselectedValue = this.selectDriveName
-      ? this.selectDriveName
-      : this.driveList[0].drivename;
+    // this.selectDriveName ? this.selectDriveName :
+    this.driveselectedValue =  this.driveList[0].drivename;
     // do not remove
     // this.driveList && this.driveList.length > 0 ? this.driveList[0].drivename : null
     this.emitdriveNametoParent();
@@ -182,7 +181,7 @@ export class ProfileInfoComponent implements OnInit, OnChanges {
 
   getDriveUser(drive, email) {
     let data;
-    if(this.orgdetails && this.orgdetails.roles[0] && this.orgdetails.roles[0].roleCode == 'OADM'){
+    if(this.orgdetails && this.orgdetails.roles && this.orgdetails.roles[0].roleCode == 'OADM'){
       data = {
         driveName: drive,
         email: email ? email : '',
@@ -201,9 +200,10 @@ export class ProfileInfoComponent implements OnInit, OnChanges {
     });
   }
 
- getUniqueListBy(arr, key) {
-    return [...new Map(arr.map(item => [item[key], item])).values()]
-}
+  // getting Unique list of mail to perform next and prve
+      getUniqueListBy(arr, key) {
+          return [...new Map(arr.map(item => [item[key], item])).values()]
+      }
 
   nextUser() {
     this.userCount = this.userCount + 1;
