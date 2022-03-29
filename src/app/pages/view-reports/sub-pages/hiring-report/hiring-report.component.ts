@@ -361,7 +361,7 @@ export class HiringReportComponent implements OnInit {
       },
 
       {
-        headerName: 'Specialization',
+        headerName: 'Qualification',
         field: 'specialization',
         filter: 'agTextColumnFilter',
         chartDataType: 'series',
