@@ -6,7 +6,7 @@ import { ApiService } from '../../../../services/api.service';
 import { Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { SentDataToOtherComp } from 'src/app/services/sendDataToOtherComp.service';
-import { AgChartThemeOverrides, ColDef, ColSpanParams } from '@ag-grid-enterprise/all-modules';
+import { AgChartThemeOverrides, ColDef, ColSpanParams, GridApi, IColumnToolPanel, SideBarDef } from '@ag-grid-enterprise/all-modules';
 @Component({
   selector: 'app-hiring-report',
   templateUrl: './hiring-report.component.html',
@@ -15,8 +15,9 @@ import { AgChartThemeOverrides, ColDef, ColSpanParams } from '@ag-grid-enterpris
 export class HiringReportComponent implements OnInit {
   @ViewChild('sectionDetails', {static: false}) opensection: TemplateRef<any>;
 
-  public gridApi;
+  // public gridApi;
   public gridColumnApi;
+  private gridApi!: GridApi;
   public columnDefs;
   public columnDefsmini;
   public defaultColDef;
@@ -40,6 +41,39 @@ export class HiringReportComponent implements OnInit {
       enabled: true,
     },
   },
+  };
+
+  public sideBar: SideBarDef | string | boolean | null = {
+    toolPanels: [
+      {
+        id: 'columns',
+        labelDefault: 'Columns',
+        labelKey: 'columns',
+        iconKey: 'columns',
+        toolPanel: 'agColumnsToolPanel',
+        toolPanelParams: {
+          suppressRowGroups: false,
+          suppressValues: true,
+          suppressPivots: true,
+          suppressPivotMode: false,
+          suppressColumnFilter: true,
+          suppressColumnSelectAll: true,
+          suppressColumnExpandAll: true,
+        },
+      },
+      {
+        id: 'filters',
+        labelDefault: 'Filters',
+        labelKey: 'filters',
+        iconKey: 'filter',
+        toolPanel: 'agFiltersToolPanel',
+        toolPanelParams: {
+          suppressExpandAll: true,
+          suppressFilterSearch: true,
+        },
+      },
+    ],
+    defaultToolPanel: 'columns',
   };
 
   reportsData: any;
@@ -67,6 +101,7 @@ export class HiringReportComponent implements OnInit {
       filter: true,
       enableFilter:true,
       minWidth: 220,
+      sideBar: 'filter',
     };
   }
 
@@ -76,6 +111,13 @@ export class HiringReportComponent implements OnInit {
 
   ngOnDestroy() {
     this.candidateListSubscription ? this.candidateListSubscription.unsubscribe() : '';
+  }
+
+  showPivotSection() {
+    var columnToolPanel = (this.gridApi.getToolPanelInstance(
+      'columns'
+    ) as unknown) as IColumnToolPanel;
+    columnToolPanel.setPivotSectionVisible(false);
   }
 
   tabledef(){
@@ -595,7 +637,8 @@ export class HiringReportComponent implements OnInit {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
     this.gridApi.closeToolPanel();
-    this.autoSizeAll(false)
+    this.autoSizeAll(false);
+    this.showPivotSection();
     var datasource = this.callApiForCandidateList();
     params.api.setServerSideDatasource(datasource);
 
