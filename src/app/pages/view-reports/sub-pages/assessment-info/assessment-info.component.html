@@ -94,7 +94,7 @@
                                 <span>{{ assessment.proctored ? "Yes" : "No"}}
                                     <a *ngIf="isaccess">
                                         <!-- *ngIf="assessment.proctored && assessment.source != 'ICP'" -->
-                                        <span  class="warningColor pointer"
+                                        <span *ngIf="assessment.proctored"  class="warningColor pointer"
                                         (click)="open(assessment)">View Details</span>
                                 </a>
                                 </span>
@@ -235,13 +235,13 @@
                                                 <td>
                                                     <div class="likeSec">
                                                         <em [ngClass]="
-                                section.accuracy < 40
-                                  ? 'icon-Dislike'
-                                  : section.accuracy >= 40 &&
-                                    section.accuracy < 80
-                                  ? 'icon-Like average-color'
-                                  : 'icon-Like'
-                              "></em>
+                                                            section.accuracy < 40
+                                                            ? 'icon-Dislike'
+                                                            : section.accuracy >= 40 &&
+                                                                section.accuracy < 80
+                                                            ? 'icon-Like average-color'
+                                                            : 'icon-Like'
+                                                        "></em>
                                                     </div>
                                                 </td>
                                             </tr>

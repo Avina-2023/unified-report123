@@ -4,17 +4,35 @@
         Drive Information
     </div>
     <div class="totalCount">
-        <mat-select *ngIf="driveList && scheduleType != 'Personality & Behaviour'" class="matSelect" (selectionChange)="driveChange($event)" [(ngModel)]="driveselectedValue" name="list">
-            <mat-option *ngFor="let list of driveList" [value]="list.drivename">
-                {{list.drivename}}
-            </mat-option>
-        </mat-select>
 
-        <mat-select *ngIf="scheduleType == 'Personality & Behaviour'" [(ngModel)]="selectDriveName" class="matSelect" name="list">
-            <mat-option [value]="this.selectDriveName != 'undefined' ? this.selectDriveName : ''">
-                {{this.selectDriveName != 'undefined' ? this.selectDriveName : ''}}
-            </mat-option>
-        </mat-select>
+        <div class="select">
+            <mat-label>Drive Name</mat-label>
+            <mat-select [(ngModel)]="selectDriveName" class="matSelect" name="list" placeholder="Drive Name">
+                <mat-option *ngFor="let mainlist of driveList" [value]="mainlist.main_drivename">
+                    {{mainlist.main_drivename}}
+                </mat-option>
+            </mat-select>
+        </div>
+
+        <div class="select m-r-38" *ngIf="driveList && scheduleType != 'Personality & Behaviour'">
+            <mat-label>Schedule Name</mat-label>
+            <mat-select class="matSelect" (selectionChange)="driveChange($event)" [(ngModel)]="driveselectedValue" name="list">
+                <mat-option *ngFor="let list of driveList" [value]="list.drivename">
+                    {{list.drivename}}
+                </mat-option>
+            </mat-select>
+        </div>
+
+        <div class="select m-r-38" *ngIf="scheduleType == 'Personality & Behaviour'">
+            <mat-form-field>
+                <mat-label>Schedule Name</mat-label>
+                <mat-select [(ngModel)]="selectScheduleName" class="matSelect" name="list">
+                    <mat-option [value]="this.selectScheduleName != 'undefined' ? this.selectScheduleName : ''">
+                        {{this.selectScheduleName != 'undefined' ? this.selectScheduleName : ''}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
 
         <div *ngIf="isaccess">
             <span class="count-font">Total Count</span>

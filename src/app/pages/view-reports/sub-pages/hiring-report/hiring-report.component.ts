@@ -221,9 +221,8 @@ export class HiringReportComponent implements OnInit {
         field: 'percentage',
         filter: 'agNumberColumnFilter',
         chartDataType: 'series',
-        // tooltipField:'testmaxscore',
-        // width: 100,
-               filterParams: {
+        aggFunc: 'avg',
+        filterParams: {
           suppressAndOrCondition: true,
           filterOptions: ['equals','lessThan','lessThanOrEqual','greaterThan','greaterThanOrEqual','inRange']
         },
@@ -343,6 +342,30 @@ export class HiringReportComponent implements OnInit {
         filter: 'agTextColumnFilter',
         tooltipField:'testname',
         chartDataType: 'series',
+        filterParams: {
+          suppressAndOrCondition: true,
+          filterOptions: ['contains']
+        },
+        cellRenderer: (params) => {
+          if(params && params.value){
+            return '<span class="redColor">'+params.value+'</span>' ;
+          } if(params.value == undefined){
+            return  '';
+          }else{
+            return '-';
+          }
+        },
+        // cellRenderer: 'agGroupCellRenderer',
+        maxWidth: 200,
+      },
+
+      {
+        headerName: 'Test Count',
+        field: 'testcount',
+        filter: 'agNumberColumnFilter',
+        tooltipField:'testcount',
+        chartDataType: 'series',
+        aggFunc: 'avg',
         filterParams: {
           suppressAndOrCondition: true,
           filterOptions: ['contains']
@@ -727,14 +750,17 @@ export class HiringReportComponent implements OnInit {
 
     if(event && event.colDef && event.colDef.headerName == 'Group'){
       sessionStorage.setItem('schedulename',event['data']['schedulename']);
-      sessionStorage.setItem('testType',event['data']['testtype'])
-      this.navtoDetailsPage(event && event.data.email)
+      sessionStorage.setItem('testType',event['data']['testtype']);
+      sessionStorage.setItem('rowIndex',event && event.rowIndex + 1);
+      this.navtoDetailsPage(event && event.data.email);
     }
     
     if(event &&  event.column && event.column.userProvidedColDef && event.column.userProvidedColDef.field == 'testname'){
-      this.getSubTableDef(event.data.section,event);
-      this.rowData1 = event.data ? event.data.section : '';
-      this.openUserFormDialog();
+        if(event && event.data && event.data.section){
+          this.getSubTableDef(event.data.section,event);
+          this.rowData1 = event.data ? event.data.section : '';
+          this.openUserFormDialog();
+        }  
     }
   }
 
