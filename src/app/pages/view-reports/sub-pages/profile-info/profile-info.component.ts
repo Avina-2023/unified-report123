@@ -30,6 +30,7 @@ export class ProfileInfoComponent implements OnInit, OnChanges {
   driveList: any;
   isaccess: any;
   selectDriveName: string;
+  selectScheduleName:string;
   sticky: boolean = false;
   subscription: Subscription;
   menuPosition: number = 164;
@@ -41,6 +42,7 @@ export class ProfileInfoComponent implements OnInit, OnChanges {
   orgdetails: any;
   orgId: any;
   scheduleType: any;
+  rowIndex:any;
   @HostListener('window:scroll', ['$event'])
   handleScroll() {
     const windowScroll = window.pageYOffset;
@@ -57,17 +59,22 @@ export class ProfileInfoComponent implements OnInit, OnChanges {
     private _loading: LoadingService,
     private sendData: SentDataToOtherComp
   ) {
-    this.selectDriveName = sessionStorage.getItem('schedulename') ? sessionStorage.getItem('schedulename'): '';
-    this.scheduleType = sessionStorage.getItem('testType')
+
+    this.selectScheduleName = sessionStorage.getItem('schedulename') ? sessionStorage.getItem('schedulename'): '';
+    this.scheduleType = sessionStorage.getItem('testType');
+    // this.rowIndex = sessionStorage.getItem('rowIndex') ? sessionStorage.getItem('rowIndex') : 1;
+    // this.userCount = parseInt(this.rowIndex);
   }
 
   ngOnInit(): void {
     this.getPersonalInfo();
-    this.isaccess = this.appConfig.isComingFromMicroCert();
-    this.getRoute();
-    this.getDriveUser(this.selectDriveName,this.selectedMail ? this.selectedMail : '');
     this.orgdetails = JSON.parse(this.appConfig.getLocalStorage('role'));
     this.orgId = this.orgdetails[0].orgId;
+    this.driveList = this.getAllReportsData?.driveDetails;
+    this.isaccess = this.appConfig.isComingFromMicroCert();
+    this.getRoute();
+    this.getDriveUser(this.driveList[0].main_drivename ? this.driveList[0].main_drivename : this.selectScheduleName ,this.selectedMail ? this.selectedMail : '');
+
   }
 
   ngOnChanges() {
@@ -83,9 +90,10 @@ export class ProfileInfoComponent implements OnInit, OnChanges {
   }
 
   getPersonalInfo() {
-    this.driveList = this.getAllReportsData?.driveDetails;
-    // this.selectDriveName ? this.selectDriveName :
+    this.driveList = this.getUniqueListBy(this.getAllReportsData?.driveDetails,'main_drivename')                  
+    // this.driveList = this.getAllReportsData?.driveDetails;
     this.driveselectedValue =  this.driveList[0].drivename;
+    this.selectDriveName = this.driveList[0].main_drivename;
     // do not remove
     // this.driveList && this.driveList.length > 0 ? this.driveList[0].drivename : null
     this.emitdriveNametoParent();
@@ -101,8 +109,7 @@ export class ProfileInfoComponent implements OnInit, OnChanges {
     this.personalInfo.address = this.getContactAddress('address');
     this.personalInfo.city = this.getContactAddress('city');
     this.personalInfo.institute = this.getLastEducationValue('institute');
-    this.personalInfo.specialization =
-      this.getLastEducationValue('specialization');
+    this.personalInfo.specialization = this.getLastEducationValue('specialization');
     this.personalInfo.branch = this.getLastEducationValue('branch');
     this.personalInfo.passedOut = this.getLastEducationValue('passedOut');
     this.personalInfo.percentage = this.getLastEducationValue('percentage');
@@ -171,7 +178,7 @@ export class ProfileInfoComponent implements OnInit, OnChanges {
       this._loading.setLoading(false, 'loader');
     }, 300);
     this.driveselectedValue = e.value;
-      this.getDriveUser(this.driveselectedValue,this.selectedMail ? this.selectedMail : '');
+    // this.getDriveUser(this.driveselectedValue,this.selectedMail ? this.selectedMail : '');
     this.emitdriveNametoParent();
   }
 
@@ -183,13 +190,13 @@ export class ProfileInfoComponent implements OnInit, OnChanges {
     let data;
     if(this.orgdetails && this.orgdetails.roles && this.orgdetails.roles[0].roleCode == 'OADM'){
       data = {
-        driveName: drive,
+        driveName: drive ? drive : this.driveselectedValue,
         email: email ? email : '',
         orgId: this.orgId ? this.orgId : '',
       };
     }else{
       data = {
-        driveName: drive,
+        driveName: drive ? drive : this.driveselectedValue,
         email: email ? email : '',
       };
     }
