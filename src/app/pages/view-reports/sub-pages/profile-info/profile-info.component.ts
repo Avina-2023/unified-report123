@@ -73,7 +73,7 @@ export class ProfileInfoComponent implements OnInit, OnChanges {
     this.driveList = this.getAllReportsData?.driveDetails;
     this.isaccess = this.appConfig.isComingFromMicroCert();
     this.getRoute();
-    this.getDriveUser(this.driveList[0].main_drivename ? this.driveList[0].main_drivename : this.selectScheduleName ,this.selectedMail ? this.selectedMail : '');
+    this.getDriveUser(this.driveList && this.driveList[0].main_drivename ? this.driveList[0].main_drivename : this.selectScheduleName ,this.selectedMail ? this.selectedMail : '');
 
   }
 
@@ -90,10 +90,10 @@ export class ProfileInfoComponent implements OnInit, OnChanges {
   }
 
   getPersonalInfo() {
-    this.driveList = this.getUniqueListBy(this.getAllReportsData?.driveDetails,'main_drivename')                  
+    this.driveList =  this.getAllReportsData?.driveDetails ? this.getUniqueListBy(this.getAllReportsData?.driveDetails,'main_drivename')  : ''                
     // this.driveList = this.getAllReportsData?.driveDetails;
-    this.driveselectedValue =  this.driveList[0].drivename;
-    this.selectDriveName = this.driveList[0].main_drivename;
+    this.driveselectedValue = this.driveList && this.driveList[0].drivename;
+    this.selectDriveName = this.driveList && this.driveList[0].main_drivename;
     // do not remove
     // this.driveList && this.driveList.length > 0 ? this.driveList[0].drivename : null
     this.emitdriveNametoParent();
