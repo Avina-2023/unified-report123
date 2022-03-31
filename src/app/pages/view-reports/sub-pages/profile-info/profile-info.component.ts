@@ -28,6 +28,7 @@ export class ProfileInfoComponent implements OnInit, OnChanges {
   personalInfo: any;
   driveselectedValue: any;
   driveList: any;
+  driveListMain:any
   isaccess: any;
   selectDriveName: string;
   selectScheduleName:string;
@@ -57,20 +58,13 @@ export class ProfileInfoComponent implements OnInit, OnChanges {
     private ApiService: ApiService,
     private appConfig: AppConfigService,
     private _loading: LoadingService,
-    private sendData: SentDataToOtherComp
   ) {
-
-    this.selectScheduleName = sessionStorage.getItem('schedulename') ? sessionStorage.getItem('schedulename'): '';
-    this.scheduleType = sessionStorage.getItem('testType');
-    // this.rowIndex = sessionStorage.getItem('rowIndex') ? sessionStorage.getItem('rowIndex') : 1;
-    // this.userCount = parseInt(this.rowIndex);
   }
 
   ngOnInit(): void {
     this.getPersonalInfo();
     this.orgdetails = JSON.parse(this.appConfig.getLocalStorage('role'));
     this.orgId = this.orgdetails[0].orgId;
-    this.driveList = this.getAllReportsData?.driveDetails;
     this.isaccess = this.appConfig.isComingFromMicroCert();
     this.getRoute();
     this.getDriveUser(this.driveList && this.driveList[0].main_drivename ? this.driveList[0].main_drivename : this.selectScheduleName ,this.selectedMail ? this.selectedMail : '');
@@ -90,12 +84,13 @@ export class ProfileInfoComponent implements OnInit, OnChanges {
   }
 
   getPersonalInfo() {
-    this.driveList =  this.getAllReportsData?.driveDetails ? this.getUniqueListBy(this.getAllReportsData?.driveDetails,'main_drivename')  : ''                
-    // this.driveList = this.getAllReportsData?.driveDetails;
-    this.driveselectedValue = this.driveList && this.driveList[0].drivename;
-    this.selectDriveName = this.driveList && this.driveList[0].main_drivename;
-    // do not remove
-    // this.driveList && this.driveList.length > 0 ? this.driveList[0].drivename : null
+    this.driveListMain =  this.getAllReportsData?.driveDetails ? this.getUniqueListBy(this.getAllReportsData?.driveDetails,'main_drivename')  : ''                
+    this.driveList = this.getAllReportsData?.driveDetails ? this.getUniqueListBy(this.getAllReportsData?.driveDetails,'drivename')  : '' 
+    this.driveselectedValue = this.driveList && this.driveList[0].drivename ;
+    this.selectDriveName = this.driveList ? this.driveList[0].main_drivename :  this.getAllReportsData?.BehavioralAssessment[0]?.main_drivename;
+    console.log( this.selectDriveName,' this.selectDriveName')
+    this.scheduleType = this.getAllReportsData && this.getAllReportsData?.BehavioralAssessment ?  this.getAllReportsData?.BehavioralAssessment[0]?.testtype : '' ;
+    this.selectScheduleName = this.getAllReportsData && this.getAllReportsData?.BehavioralAssessment ? this.getAllReportsData?.BehavioralAssessment[0]?.drivename : '';
     this.emitdriveNametoParent();
 
     this.personalInfo = {};
