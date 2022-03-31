@@ -368,7 +368,7 @@ export class HiringReportComponent implements OnInit {
         aggFunc: 'avg',
         filterParams: {
           suppressAndOrCondition: true,
-          filterOptions: ['contains']
+          filterOptions: ['equals','lessThan','lessThanOrEqual','greaterThan','greaterThanOrEqual','inRange']
         },
         cellRenderer: (params) => {
           if(params && params.value){
@@ -448,7 +448,7 @@ export class HiringReportComponent implements OnInit {
       {
         headerName: 'Year of passing',
         field: 'passedout',
-        filter: 'agTextColumnFilter',
+        filter: 'agDateColumnFilter',
         chartDataType: 'series',
         tooltipField:'passedout',
         cellRenderer: (params) => {
