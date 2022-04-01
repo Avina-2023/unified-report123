@@ -8,6 +8,7 @@ import { HostListener } from '@angular/core';
 import { PlatformLocation } from '@angular/common';
 import { SentDataToOtherComp } from 'src/app/services/sendDataToOtherComp.service';
 import { Subscription } from 'rxjs';
+import { ThrowStmt } from '@angular/compiler';
 @Component({
   selector: 'app-view-overall-reports',
   templateUrl: './view-overall-reports.component.html',
@@ -20,6 +21,9 @@ export class ViewOverallReportsComponent implements OnInit {
   isaccess: any;
   subscription: Subscription;
   emailId: any;
+  orgdetails:any;
+  orgId: any;
+  roleCode: any;
 //   sticky = false;
 //   menuPosition: number = 88;
 //   @HostListener('window:scroll', ['$event'])
@@ -48,6 +52,7 @@ export class ViewOverallReportsComponent implements OnInit {
   ngOnInit(): void {
     this.getRoute();
     this.isaccess = this.appconfig.isComingFromMicroCert();
+   
     // setTimeout(() => {
     //   debugger;
     //    this.menuPosition = this.stickyMenu?.nativeElement?.offsetTop ? this.stickyMenu?.nativeElement?.offsetTop : 88;
@@ -75,10 +80,15 @@ export class ViewOverallReportsComponent implements OnInit {
   getReports(data) {
     let driveId = this.appconfig.getSessionStorage('driveInfo');
     let assessmentId = this.appconfig.getSessionStorage('assessmentId');
+    this.orgdetails = JSON.parse(this.appconfig.getLocalStorage('role'));
+    this.orgId = this.orgdetails && this.orgdetails[0].orgId;
+    this.roleCode = this.orgdetails && this.orgdetails[0].roles && this.orgdetails[0].roles[0].roleCode;
     const apiData = {
       email: data,
       driveId:driveId,
-      assessmentId:assessmentId
+      assessmentId:assessmentId,
+      orgId: this.orgId ? this.orgId : '',
+      roleCode : this.roleCode ? this.roleCode : ''
     };
     this.emailId = data;
     this.ApiService.getReportsDataAPI(apiData).subscribe((response: any) => {

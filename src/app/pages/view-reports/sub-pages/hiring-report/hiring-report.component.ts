@@ -263,51 +263,32 @@ export class HiringReportComponent implements OnInit {
 
         }
       },
-
       {
-        headerName: 'Rating',
-        field: 'rating',
-        filter: 'agTextColumnFilter',
+        headerName: 'Test Count',
+        field: 'testcount',
+        filter: 'agNumberColumnFilter',
+        tooltipField:'testcount',
         chartDataType: 'series',
+        aggFunc: 'avg',
         filterParams: {
           suppressAndOrCondition: true,
-          filterOptions: ['contains']
+          filterOptions: ['equals','lessThan','lessThanOrEqual','greaterThan','greaterThanOrEqual','inRange']
         },
-        // width: 100,
         cellRenderer: (params) => {
-
-          if( params.data && params.data.testtype == 'Personality & Behaviour'){
-            return '-'
-        }else{
-          if(params.value){
-            if(params.value == 'Weak'){
-              // return `<span><button class="btnsm red-btn">`+params.value +`</button></span>`;
-              return params.value
-            }if(params.value == 'Average') {
-              // return `<span><button class="btnsm yellow-btn">`+params.value +`</button></span>`;
-              return params.value
-            } if(params.value == 'Excellent'){
-              // return `<span><button class="btnsm green-btn">`+params.value +`</button></span>`;
-              return params.value
-            }  if(params.value == 'Good'){
-              // return `<span><button class="btnsm greenlight-btn">`+params.value +`</button></span>`;
-              return params.value
-            }
-
-            else {
-              return '-';
-            }
+          if(params && params.value){
+            return '<span class="redColor">'+params.value+'</span>' ;
           } if(params.value == undefined){
             return  '';
-          }else {
-             return '-';
+          }else{
+            return '-';
           }
-        }
-
-
-        }
+        },
+        // cellRenderer: 'agGroupCellRenderer',
+        maxWidth: 200,
       },
 
+
+    
       {
         headerName: 'Maxscore',
         field: 'testmaxscore',
@@ -360,28 +341,51 @@ export class HiringReportComponent implements OnInit {
       },
 
       {
-        headerName: 'Test Count',
-        field: 'testcount',
-        filter: 'agNumberColumnFilter',
-        tooltipField:'testcount',
+        headerName: 'Rating',
+        field: 'rating',
+        filter: 'agTextColumnFilter',
         chartDataType: 'series',
-        aggFunc: 'avg',
         filterParams: {
           suppressAndOrCondition: true,
-          filterOptions: ['equals','lessThan','lessThanOrEqual','greaterThan','greaterThanOrEqual','inRange']
+          filterOptions: ['contains']
         },
+        // width: 100,
         cellRenderer: (params) => {
-          if(params && params.value){
-            return '<span class="redColor">'+params.value+'</span>' ;
+
+          if( params.data && params.data.testtype == 'Personality & Behaviour'){
+            return '-'
+        }else{
+          if(params.value){
+            if(params.value == 'Weak'){
+              // return `<span><button class="btnsm red-btn">`+params.value +`</button></span>`;
+              return params.value
+            }if(params.value == 'Average') {
+              // return `<span><button class="btnsm yellow-btn">`+params.value +`</button></span>`;
+              return params.value
+            } if(params.value == 'Excellent'){
+              // return `<span><button class="btnsm green-btn">`+params.value +`</button></span>`;
+              return params.value
+            }  if(params.value == 'Good'){
+              // return `<span><button class="btnsm greenlight-btn">`+params.value +`</button></span>`;
+              return params.value
+            }
+
+            else {
+              return '-';
+            }
           } if(params.value == undefined){
             return  '';
-          }else{
-            return '-';
+          }else {
+             return '-';
           }
-        },
-        // cellRenderer: 'agGroupCellRenderer',
-        maxWidth: 200,
+        }
+
+
+        }
       },
+
+
+     
 
       {
         headerName: 'Qualification',
