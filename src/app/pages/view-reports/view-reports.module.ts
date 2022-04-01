@@ -3,7 +3,6 @@ import { MaterialModule } from './../../material/material.module';
 import { SharedModule } from './../../shared/shared.module';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { ViewReportsRoutingModule } from './view-reports-routing.module';
 import { AssessmentInfoComponent } from './sub-pages/assessment-info/assessment-info.component';
 import { CompetencyAreasComponent } from './sub-pages/competency-areas/competency-areas.component';
