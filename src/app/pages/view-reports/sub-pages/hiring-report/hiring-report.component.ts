@@ -704,7 +704,7 @@ export class HiringReportComponent implements OnInit {
         delete apiData.request.filterModel.testdate.dateTo ? apiData.request.filterModel.testdate.dateTo : '';
       }
         apiData.request.attributes = JSON.parse(this.appconfig.getLocalStorage('role'));
-
+        apiData.request.email = this.appconfig.getSessionStorage('email') ? this.appconfig.getSessionStorage('email') : '';
         
         this.candidateListSubscription =  this.ApiService.getHiringReport(apiData.request).subscribe((data1: any) => {
         this.userList = data1 && data1.data ? data1.data: [];
