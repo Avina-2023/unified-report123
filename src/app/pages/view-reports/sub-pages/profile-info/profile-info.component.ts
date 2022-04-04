@@ -84,8 +84,8 @@ export class ProfileInfoComponent implements OnInit, OnChanges {
   getPersonalInfo() {
     this.driveListMain =  this.getAllReportsData?.driveDetails ? this.getUniqueListBy(this.getAllReportsData?.driveDetails,'main_drivename')  : ''                
     this.driveList = this.getAllReportsData?.driveDetails ? this.getUniqueListBy(this.getAllReportsData?.driveDetails,'drivename')  : '' 
-    this.driveselectedValue = this.driveList && this.driveList[0].drivename ;
-    this.selectDriveName = this.driveList ? this.driveList[0].main_drivename :  this.getAllReportsData?.BehavioralAssessment[0]?.main_drivename;
+    this.driveselectedValue = this.driveList && this.driveList[0] ? this.driveList[0].drivename : '';
+    this.selectDriveName = this.driveList &&  this.driveList[0] ? this.driveList[0].main_drivename :  this.getAllReportsData && this.getAllReportsData?.BehavioralAssessment ?   this.getAllReportsData?.BehavioralAssessment[0]?.main_drivename : '';
     this.scheduleType = this.getAllReportsData && this.getAllReportsData?.BehavioralAssessment ?  this.getAllReportsData?.BehavioralAssessment[0]?.testtype : '' ;
     this.selectScheduleName = this.getAllReportsData && this.getAllReportsData?.BehavioralAssessment ? this.getAllReportsData?.BehavioralAssessment[0]?.drivename : '';
     this.emitdriveNametoParent();
