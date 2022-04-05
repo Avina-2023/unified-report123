@@ -9,9 +9,7 @@ import {
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/internal/Subscription';
-import { multicast } from 'rxjs/operators';
 import { LoadingService } from 'src/app/services/loading.service';
-import { SentDataToOtherComp } from 'src/app/services/sendDataToOtherComp.service';
 import { AppConfigService } from 'src/app/utils/app-config.service';
 import { APP_CONSTANTS } from 'src/app/utils/app-constants.service';
 import { ApiService } from '../../../../services/api.service';
@@ -24,7 +22,7 @@ export class ProfileInfoComponent implements OnInit, OnChanges {
   @Input() getAllReportsData;
   @Output() driveName: EventEmitter<any> = new EventEmitter<any>();
   @Output() driveUserEmail: EventEmitter<any> = new EventEmitter<any>();
-  sampledata = [];
+  driveUserdata = [];
   personalInfo: any;
   driveselectedValue: any;
   driveList: any;
@@ -86,9 +84,8 @@ export class ProfileInfoComponent implements OnInit, OnChanges {
   getPersonalInfo() {
     this.driveListMain =  this.getAllReportsData?.driveDetails ? this.getUniqueListBy(this.getAllReportsData?.driveDetails,'main_drivename')  : ''                
     this.driveList = this.getAllReportsData?.driveDetails ? this.getUniqueListBy(this.getAllReportsData?.driveDetails,'drivename')  : '' 
-    this.driveselectedValue = this.driveList && this.driveList[0].drivename ;
-    this.selectDriveName = this.driveList ? this.driveList[0].main_drivename :  this.getAllReportsData?.BehavioralAssessment[0]?.main_drivename;
-    console.log( this.selectDriveName,' this.selectDriveName')
+    this.driveselectedValue = this.driveList && this.driveList[0] ? this.driveList[0].drivename : '';
+    this.selectDriveName = this.driveList &&  this.driveList[0] ? this.driveList[0].main_drivename :  this.getAllReportsData && this.getAllReportsData?.BehavioralAssessment ?   this.getAllReportsData?.BehavioralAssessment[0]?.main_drivename : '';
     this.scheduleType = this.getAllReportsData && this.getAllReportsData?.BehavioralAssessment ?  this.getAllReportsData?.BehavioralAssessment[0]?.testtype : '' ;
     this.selectScheduleName = this.getAllReportsData && this.getAllReportsData?.BehavioralAssessment ? this.getAllReportsData?.BehavioralAssessment[0]?.drivename : '';
     this.emitdriveNametoParent();
@@ -197,8 +194,8 @@ export class ProfileInfoComponent implements OnInit, OnChanges {
     }
     this.ApiService.getDriveBaisedUser(data).subscribe((data: any) => {
       this.totalCount = data.noOfCandidates;
-      this.sampledata = data.data;
-      this.sampledata =   this.getUniqueListBy(this.sampledata,'email')
+      this.driveUserdata = data.data;
+      this.driveUserdata =   this.getUniqueListBy(this.driveUserdata,'email')
     });
   }
 
@@ -209,20 +206,20 @@ export class ProfileInfoComponent implements OnInit, OnChanges {
 
   nextUser() {
     this.userCount = this.userCount + 1;
-    let index = this.sampledata.findIndex((data) => data.email == this.selectedMail);
+    let index = this.driveUserdata.findIndex((data) => data.email == this.selectedMail);
     let expectedIndex = index != -1 ? index + 1 : null;
-    let nextMail = this.sampledata[expectedIndex].email;
+    let nextMail = this.driveUserdata[expectedIndex].email;
     this.appConfig.routeNavigationWithParam(APP_CONSTANTS.ENDPOINTS.REPORTS.VIEWREPORTS,nextMail);
   }
 
   prevUser() {
     if (this.userCount != 1) {
       this.userCount = this.userCount - 1;
-      let index = this.sampledata.findIndex(
+      let index = this.driveUserdata.findIndex(
         (data) => data.email == this.selectedMail
       );
       let expectedIndex = index != -1 ? index - 1 : null;
-      let prevMail = this.sampledata[expectedIndex].email;
+      let prevMail = this.driveUserdata[expectedIndex].email;
       this.appConfig.routeNavigationWithParam(
         APP_CONSTANTS.ENDPOINTS.REPORTS.VIEWREPORTS,
         prevMail
