@@ -91,9 +91,6 @@
     min-height: 7px !important;
 }
 
-// ::ng-deep .cell-span {
-//     background-color: #00e5ff;
-// }
 .outer-div {
     height: 89%;
     display: flex;
@@ -119,7 +116,7 @@
     padding-left: 5px;
     top: 0;
     text-align: left;
-    color: #000 !important;
+    color: $blackColor !important;
     bottom: 0;
 }
 
@@ -162,14 +159,14 @@
 ::ng-deep .popupModalContainerForaddUser {
     min-height: 300px;
     max-height: 600px;
-    background: #fff;
+    background: $whiteColor;
     .add-user-header {
         display: flex;
         justify-content: space-between;
         align-items: flex-start;
         position: sticky;
         top: -14px;
-        background: #fff;
+        background: $whiteColor;
         z-index: 999;
     }
     .mat-dialog-container {
@@ -180,7 +177,7 @@
         width: 100%;
     }
     .closebtn {
-        background-color: #fff;
+        background-color: $whiteColor;
         border: none;
     }
 }

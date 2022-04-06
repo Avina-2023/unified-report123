@@ -193,9 +193,14 @@ export class ProfileInfoComponent implements OnInit, OnChanges {
       };
     }
     this.ApiService.getDriveBaisedUser(data).subscribe((data: any) => {
-      this.totalCount = data.noOfCandidates;
-      this.driveUserdata = data.data;
-      this.driveUserdata =   this.getUniqueListBy(this.driveUserdata,'email')
+      if(data.success){
+        this.totalCount = data.noOfCandidates;
+        this.driveUserdata = data.data;
+        this.driveUserdata =   this.getUniqueListBy(this.driveUserdata,'email')
+      }else{
+          
+      }
+
     });
   }
 

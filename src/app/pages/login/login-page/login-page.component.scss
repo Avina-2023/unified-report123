@@ -77,13 +77,11 @@ a:hover {
 
 mat-card-title,
 .remember_me .a {
-    // color: $color-blue !important;
     margin-top: -12px !important;
     text-align: center !important;
 }
 
 :host ::ng-deep .mat-checkbox .mat-checkbox-frame {
-    // border-color: $color-border !important;
     border-color: #333333 !important;
 }
 
@@ -186,11 +184,9 @@ mat-card-title {
     width: 100%;
     padding-left: 40px;
     padding-right: 40px;
-    // height: 100vh;
     border-radius: 0px !important;
     margin-left: 0% !important;
     overflow: hidden !important;
-    // min-height: 100%;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -604,7 +600,7 @@ input.mat-input-element {
 
 .mat-toolbar {
     color: $color-blank;
-    background: #fff;
+    background: $whiteColor;
     position: absolute;
     z-index: 4;
     height: 60px !important;
