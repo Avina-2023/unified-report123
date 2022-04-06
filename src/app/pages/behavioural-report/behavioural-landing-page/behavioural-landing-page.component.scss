@@ -1,6 +1,5 @@
 @import "variables";
 .containerWrapper {
-    // background-color: #F7FAFE;
     max-width: 1280px;
     width: 96%;
     margin: 0 auto;
@@ -322,7 +321,7 @@
             button {
                 border-radius: 100px 0 0 100px;
                 background-color: #F7FAFE;
-                color: #09568C;
+                color: $primaryBlue;
                 padding: 8px 12px;
                 border: 1px solid rgba(9, 86, 140, 0.5);
                 font-size: 14px;
@@ -331,7 +330,7 @@
                 transition: all 0.3s ease-in-out;
                 box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
                 &:hover {
-                    background: #09568C;
+                    background: $primaryBlue;
                     color: #ffff;
                 }
                 span {
@@ -681,7 +680,7 @@
         button {
             border-radius: 100px 0 0 100px;
             background-color: #F7FAFE;
-            color: #09568C;
+            color: $primaryBlue;
             padding: 8px 12px;
             border: 1px solid rgba(9, 86, 140, 0.5);
             font-size: 14px;
@@ -690,8 +689,8 @@
             transition: all 0.3s ease-in-out;
             box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
             &:hover {
-                background: #09568C;
-                color: #ffff;
+                background: $primaryBlue;
+                color: $whiteColor;
             }
             span {
                 margin-left: 10px;
@@ -903,7 +902,7 @@
         }
     }
     .closebtn {
-        background-color: #fff;
+        background-color: $whiteColor;
         border: none;
         float: right;
     }
@@ -1264,7 +1263,7 @@
 .noData,
 .errorCard {
     box-shadow: 0 6px 10px rgb(0 0 0 / 10%);
-    background: white;
+    background: $whiteColor;
     padding: 5em;
     display: flex;
     margin: 2em 0;

@@ -1,5 +1,6 @@
+@import "../../../../../assets/scss/variables.scss";
 .color-black {
-    color: #000;
+    color: $blackColor;
     font-size: 1.3em;
     font-weight: 500;
 }
@@ -32,7 +33,7 @@
         white-space: nowrap;
         font-size: 1.3em;
         font-weight: 500;
-        color: #000000;
+        color: $blackColor;
     }
     .psubHeader {
         font-size: 0.8em;
@@ -63,7 +64,7 @@
             font-size: 25px;
         }
         &.icon-uncheck {
-            color: #C02222;
+            color: $primaryColor;
             font-size: 30px;
         }
     }
@@ -88,7 +89,7 @@
 }
 
 .view-report {
-    color: #C02222;
+    color: $primaryColor;
     font-size: 12px;
     top: -2px;
     position: relative;
@@ -112,7 +113,7 @@
     }
     .closebtn1 {
         font-size: 0.9em;
-        color: #000;
+        color: $blackColor;
         cursor: pointer;
         position: relative;
         top: 2px;
