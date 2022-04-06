@@ -431,7 +431,7 @@ export class HiringReportComponent implements OnInit {
       {
         headerName: 'Graduation Aggregate',
         field: 'edu_percentage',
-        filter: 'agTextColumnFilter',
+        filter: 'agNumberColumnFilter',
         chartDataType: 'series',
         filterParams: {
           suppressAndOrCondition: true,
@@ -702,6 +702,15 @@ export class HiringReportComponent implements OnInit {
         delete apiData.request.filterModel.testdate.dateFrom ? apiData.request.filterModel.testdate.dateFrom : '';
         apiData.request.filterModel.testdate.filterTo = apiData.request.filterModel.testdate.dateTo ?  apiData.request.filterModel.testdate.dateTo : filterTo;
         delete apiData.request.filterModel.testdate.dateTo ? apiData.request.filterModel.testdate.dateTo : '';
+      }
+
+      if(apiData.request.filterModel.passedout){
+        const filter = apiData.request.filterModel.passedout.filter;
+        const filterTo = apiData.request.filterModel.passedout.filterTo;
+        apiData.request.filterModel.passedout.filter = apiData.request.filterModel.passedout.dateFrom ? apiData.request.filterModel.passedout.dateFrom:filter;
+        delete apiData.request.filterModel.passedout.dateFrom ? apiData.request.filterModel.passedout.dateFrom : '';
+        apiData.request.filterModel.passedout.filterTo = apiData.request.filterModel.passedout.dateTo ?  apiData.request.filterModel.passedout.dateTo : filterTo;
+        delete apiData.request.filterModel.passedout.dateTo ? apiData.request.filterModel.passedout.dateTo : '';
       }
         apiData.request.attributes = JSON.parse(this.appconfig.getLocalStorage('role'));
         apiData.request.email = this.appconfig.getSessionStorage('email') ? this.appconfig.getSessionStorage('email') : '';
