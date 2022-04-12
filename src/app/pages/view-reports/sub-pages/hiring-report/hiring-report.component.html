@@ -31,4 +31,41 @@
     </div>
 </ng-template>
 
+
+
+<ng-template #filter>
+
+    <div class="add-user-header">
+        <div mat-dialog-title class="box">
+            <span class="filter"><img src="/assets/images/Filter.svg" alt="">Filters</span>
+            <span class="clear">CLEAR ALL</span>
+        </div>
+
+        <!-- <button class="closebtn" [mat-dialog-close]="true">
+            <mat-icon class="close-icon" color="warn">close</mat-icon>
+          </button> -->
+
+    </div>
+
+    <div class="main">
+
+        <div class="left"></div>
+        <div class="right"></div>
+
+
+    </div>
+
+    <footer class="sticky-modal-footer">
+        <div class="main-footer">
+            <div class="left">
+                <div class="actionBtn" [mat-dialog-close]="true">CLOSE</div>
+            </div>
+
+            <div class="right">
+                <div class="actionBtn">APPLY</div>
+            </div>
+        </div>
+    </footer>
+</ng-template>
+
 <!-- (firstDataRendered)="onFirstDataRendered($event)" -->

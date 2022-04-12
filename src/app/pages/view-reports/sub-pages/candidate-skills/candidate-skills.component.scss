@@ -1,0 +1,168 @@
+@import "../../../../../assets/scss/variables.scss";
+@import "../../../../../assets/scss/fonts.scss";
+.header_info {
+    background-color: #f8f8f8;
+    background-image: url(../../../../../assets/images/skill_bg.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    position: relative;
+    margin-bottom: 30px;
+    height: 140px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 25px;
+    &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.7;
+        background-image: linear-gradient(to right, #00b0ed, #00b5d9, #00b6af, #00b376, #53aa34);
+    }
+    h3 {
+        position: relative;
+        color: $whiteColor;
+        line-height: normal;
+        letter-spacing: 0.48px !important;
+        font-size: 32px !important;
+        opacity: 1;
+        font-weight: 500!important;
+    }
+    button {
+        background-color: $whiteColor;
+        border-radius: 15px;
+        box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.1);
+        border: none;
+        padding: 3px 12px 2px 12px;
+        position: relative;
+        width: 104px;
+        height: 33px;
+    }
+}
+
+.wall {
+    margin-left: 3%;
+    .candidate-info {
+        margin-bottom: 30px;
+        margin-top: 30px;
+        h1 {
+            font-size: 21px !important;
+            font-weight: 700 !important;
+        }
+    }
+    .skills {
+        background-color: $whiteColor;
+        padding: 20px;
+        width: 94%;
+        box-shadow: 0px 0px 9px #00000026;
+        border-radius: 3px;
+        opacity: 1;
+        margin-bottom: 10px;
+        .heading {
+            color: $blackColor;
+            font-size: 18px;
+            font-weight: 400;
+            line-height: normal;
+            margin-bottom: 20px;
+        }
+        .recommendedJobs {
+            display: flex;
+            justify-content: space-evenly;
+            margin-bottom: 2.5%;
+            >div {
+                width: 30%;
+            }
+            h3 {
+                margin: 0;
+                font-size: 34px !important;
+                font-weight: 700 !important;
+                color: $blackColor !important;
+                line-height: normal !important;
+                margin-bottom: 10px;
+                span {
+                    color: #808080;
+                    font-size: 17px;
+                    font-weight: 400;
+                    margin-left: 6px;
+                }
+            }
+             ::ng-deep .mat-progress-bar-fill::after {
+                background-color: #009AFF !important;
+            }
+             ::ng-deep .mat-progress-bar-buffer {
+                background-color: #E6E6E6 !important;
+            }
+        }
+    }
+}
+
+.main-box {
+    display: flex;
+    justify-content: space-between;
+    width: 94%;
+    margin-top: 5%;
+    .heading {
+        color: $blackColor;
+        font-size: 18px;
+        font-weight: 400;
+        line-height: normal;
+        padding: 15px;
+    }
+    .left {
+        .hardSkills {
+            height: 289px;
+            width: 521px;
+            background: $whiteColor;
+            box-shadow: 0px 0px 9px #00000026;
+            margin-top: 10;
+            margin-bottom: 22px;
+        }
+        .softSkills {
+            height: 289px;
+            width: 521px;
+            background: $whiteColor;
+            box-shadow: 0px 0px 9px #00000026;
+            margin-bottom: 3%;
+        }
+    }
+    .right {
+        width: 100%;
+        height: auto;
+        background: $whiteColor;
+        box-shadow: 0px 0px 9px #00000026;
+        margin-bottom: 3%;
+    }
+}
+
+::ng-deep.recommendedJobs {
+    .mat-progress-bar {
+        height: 12px;
+        width: 90%;
+    }
+}
+
+.width-65 {
+    width: 75%;
+    .chart {
+        margin-left: 12%;
+    }
+}
+
+.Jobs {
+    margin-bottom: 3%;
+    .jobs {
+        background: #a9a9a959;
+        padding: 9px;
+        border-radius: 27px;
+        margin-left: 1%;
+        font-size: 13px;
+    }
+}
+
+::ng-deep .mat-tab-label .mat-tab-label-content {
+    font-size: 16px !important;
+}
