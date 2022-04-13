@@ -21,6 +21,7 @@ import 'ag-grid-enterprise';
 import { HiringReportComponent } from './sub-pages/hiring-report/hiring-report.component';
 import { ChartsModule } from 'ng2-charts';
 import { BehaviouralReportModule } from '../behavioural-report/behavioural-report.module';
+import { CandidateSkillsComponent } from './sub-pages/candidate-skills/candidate-skills.component';
 @NgModule({
   declarations: [
     ProfileInfoComponent,
@@ -34,6 +35,7 @@ import { BehaviouralReportModule } from '../behavioural-report/behavioural-repor
     BehaviouralCompetencyAreasComponent,
     BehaviouralQualityAreaComponent,
     HiringReportComponent,
+    CandidateSkillsComponent,
     
   ],
   imports: [
