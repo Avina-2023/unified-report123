@@ -14,7 +14,9 @@ import { AgChartThemeOverrides, ColDef, ColSpanParams, GridApi, IColumnToolPanel
 })
 export class HiringReportComponent implements OnInit {
   @ViewChild('sectionDetails', {static: false}) opensection: TemplateRef<any>;
-
+  @ViewChild('filter', {static: false}) filter: TemplateRef<any>;
+  
+  subscription: Subscription;
   // public gridApi;
   public gridColumnApi;
   private gridApi!: GridApi;
@@ -82,12 +84,14 @@ export class HiringReportComponent implements OnInit {
   cacheBlockSize: any = 2500;
   candidateListSubscription: Subscription;
   sectiondialogRef: any;
+  filterDef:any;
   rowData1: any;
   public rowData: any[] | null = [1, 2];
   public autoGroupColumnDef: ColDef = {
     flex: 1,
     minWidth: 220,
   };
+  isFilterOpen: any;
   constructor(private sendData: SentDataToOtherComp, private matDialog: MatDialog,private appconfig: AppConfigService,private toastr: ToastrService, private ApiService: ApiService,) {      
     this.serverSideStoreType = 'partial';
     this.masterDetail = true;
@@ -106,7 +110,16 @@ export class HiringReportComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.tabledef()
+    this.tabledef();
+    this.subscription = this.sendData.getMessage().subscribe(message => {
+      this.isFilterOpen = message;
+      if(this.isFilterOpen){
+        this.openFilter();
+      }else {
+
+      }
+    });
+
   }
 
   ngOnDestroy() {
@@ -782,12 +795,21 @@ export class HiringReportComponent implements OnInit {
     this.sendData.sendMessage(false);
     window.open(APP_CONSTANTS.ENDPOINTS.REPORTS.VIEWREPORTS+'/'+`${email}`, '_blank');
   }
-      // Add users Section
+  // Add users Section
       openUserFormDialog() {
         this.sectiondialogRef = this.matDialog.open(this.opensection, {
           width: '800px',
           height: 'auto',
           panelClass: 'popupModalContainerForaddUser'
+        });
+      }
+
+
+      openFilter() {
+        this.filterDef = this.matDialog.open(this.filter, {
+          width: '800px',
+          height: 'auto',
+          panelClass: 'filterPopup'
         });
       }
 }

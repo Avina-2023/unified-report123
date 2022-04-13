@@ -1,0 +1,54 @@
+<ng-continer *ngIf="noCard else noCard1">
+    <div class="wall">
+        <div class="candidate-info">
+            <h1>{{candidateSkills.firstname}}</h1>
+        </div>
+
+        <div class="skills">
+            <div class="heading">Top 03 Jobs recommended</div>
+            <div class="recommendedJobs">
+                <div *ngFor=" let joberoles of candidateSkills.jobrole">
+                    <h3>{{joberoles?.calculationScore}}%<span> for {{joberoles?.jobname}}</span></h3>
+                    <mat-progress-bar mode="determinate" [value]="joberoles?.calculationScore"></mat-progress-bar>
+                </div>
+            </div>
+        </div>
+
+        <div class="main-box">
+            <div class="right">
+                <div class="jobFitGap">
+                    <div class="heading">Job fit-gap</div>
+
+                    <div class="width-65">
+                        <canvas class="chart" baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [plugins]="barChartPlugins" [legend]="barChartLegend" [chartType]="barChartType">
+                        </canvas>
+                    </div>
+                </div>
+                <hr>
+
+                <div class="Jobs">
+                    <div class="">
+                        <div class="heading">
+                            Recommended Jobs
+                        </div>
+
+                        <div class="">
+                            <span *ngFor=" let joberoles of candidateSkills.jobrole" class="jobs">{{joberoles?.jobname}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</ng-continer>
+
+
+
+
+<ng-template #noCard1>
+    <div class="noCard">
+        <div class=" noData ">No Recommended Jobs found</div>
+    </div>
+</ng-template>
