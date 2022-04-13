@@ -5,12 +5,12 @@
     </div> -->
 
     <mat-tab-group>
-        <mat-tab label="Basic Profile">
+        <mat-tab label="Basic Profile Score">
             <app-candidate-skills></app-candidate-skills>
         </mat-tab>
 
 
-        <mat-tab label="Test Analysis">
+        <mat-tab label="Test Analysis Score">
             <ng-continer *ngIf="getAllReportsData && getAllReportsData.email; else nocard">
                 <!-- <div #stickyMenu class="menucontent" [class.sticky]="sticky"> -->
                 <app-profile-info (driveName)="getSelectedDriveName($event)" (driveUserEmail)="getDriveBaisedUser($event)" [getAllReportsData]="getAllReportsData">
@@ -36,6 +36,6 @@
 <ng-template #nocard>
 
     <div class="noCard" *ngIf="getAllReportsData">
-        <div class=" noData ">No Data found...</div>
+        <div class=" noData ">No Data found</div>
     </div>
 </ng-template>

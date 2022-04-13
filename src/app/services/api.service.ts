@@ -84,4 +84,10 @@ export class ApiService {
     return this.http.post(`${this.BASE_URL}/getBehaviouralReportContent `,data);
   }
 
+  getCandidateSkills(email){
+    return this.http.post(`${this.BASE_URL}/getCandidateRecommendedJobs `,email);
+  }
+
+  
+
 }
