@@ -464,17 +464,17 @@
 
                             <div class="m-t-40" *ngIf="((s + 1) % 4 == 0)  && (getAllBehaviourAPIDetails?.strengthconclusionPoints.length != s+1)">
                                 <div class="html2pdf__page-break"></div>
-                                <<<<<<< HEAD <div class="header m-t-20" *ngIf="getAllBehaviourData?.conclusion">
-                                    =======
-                                    <div class="header " *ngIf="getAllBehaviourData?.conclusion">
-                                        >>>>>>> dev_avinash
-                                        <div class="heading">
-                                            {{getAllBehaviourData?.conclusion?.topicName}}
-                                        </div>
-                                        <p *ngIf="getAllBehaviourData?.conclusion">{{getAllBehaviourData?.conclusion?.description}}</p>
+                                <!-- <<<<<<< HEAD <div class="header m-t-20" *ngIf="getAllBehaviourData?.conclusion">
+                                    ======= -->
+                                <div class="header " *ngIf="getAllBehaviourData?.conclusion">
+                                    <!-- >>>>>>> dev_avinash -->
+                                    <div class="heading">
+                                        {{getAllBehaviourData?.conclusion?.topicName}}
                                     </div>
+                                    <p *ngIf="getAllBehaviourData?.conclusion">{{getAllBehaviourData?.conclusion?.description}}</p>
+                                </div>
 
-                                    <div class="heading3">Strength Areas</div>
+                                <div class="heading3">Strength Areas</div>
                             </div>
 
                         </ng-container>
