@@ -107,7 +107,8 @@ export class HiringReportComponent implements OnInit {
   selectedItemsList: any;
   selectedKeyValue: any;
   filteredValues: any = {};
-  selectedMenuIndex: any;
+  selectedMenuIndex: any = 0;
+  model: any;
   constructor(private sendData: SentDataToOtherComp, private matDialog: MatDialog,private appconfig: AppConfigService,private toastr: ToastrService, private ApiService: ApiService,) {      
     this.serverSideStoreType = 'partial';
     this.masterDetail = true;
@@ -854,6 +855,10 @@ patch() {
       
     }
 
+    indexAssignment(i) {
+      this.selectedMenuIndex = i;
+    }
+
     selectedFilter(event, index){
       this.selectedMenuIndex = index;
       var result = _.pickBy(this.sampleFilterJson, function(value, key) {
@@ -875,6 +880,7 @@ patch() {
     this.customfilter = true;
     this.cacheBlockSize = 0;
     this.gridApi.paginationGoToFirstPage();
+    console.log('ada', this.model);
     this.gridApi.refreshServerSideStore({ purge: true });
   }
 
@@ -883,9 +889,9 @@ patch() {
     this.filteredValues = [];
     this.customfilter = false;
     this.selectedMenuIndex = 0;
-    this.selectedOptions.forEach(element => {
-      element.default = false;
-  });
- this.getFilter('','')
+  //   this.selectedOptions.forEach(element => {
+  //     element.default = false;
+  // });
+//  this.getFilter('','')
   }
 }

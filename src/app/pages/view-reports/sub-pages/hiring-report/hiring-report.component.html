@@ -45,8 +45,8 @@
     <div class="main">
 
         <div class="left">
-            <mat-selection-list #filter [multiple]="false">
-                <mat-list-option class="hide-checkbox" [value]="filterValues" *ngFor="let filterValues of filterTile;let i = index" [selected]="selectedMenuIndex ? selectedMenuIndex : filterValues && i == 0" (click)="selectedFilter(filter.selectedOptions.selected[0]?.value, i)">
+            <mat-selection-list #filter [(ngModel)]="model" [multiple]="false">
+                <mat-list-option class="hide-checkbox" [value]="filterValues" *ngFor="let filterValues of filterTile;let i = index" (click)="selectedFilter(filter.selectedOptions.selected[0]?.value, i)">
                     {{filterValues}}
                 </mat-list-option>
             </mat-selection-list>
