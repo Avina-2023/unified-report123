@@ -889,9 +889,9 @@ patch() {
     this.filteredValues = [];
     this.customfilter = false;
     this.selectedMenuIndex = 0;
-  //   this.selectedOptions.forEach(element => {
-  //     element.default = false;
-  // });
-//  this.getFilter('','')
+    this.selectedOptions.forEach(element => {
+      element.default = false;
+  });
+ this.getFilter('','')
   }
 }
