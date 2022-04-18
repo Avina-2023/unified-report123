@@ -88,6 +88,7 @@ export class ApiService {
     return this.http.post(`${this.BASE_URL}/getCandidateRecommendedJobs `,email);
   }
 
-  
-
+  getCandidatefilters(data){
+    return this.http.post(`${this.BASE_URL}/getCandidatefilters `,data);
+  }
 }

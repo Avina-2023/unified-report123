@@ -37,20 +37,31 @@
 
     <div class="add-user-header">
         <div mat-dialog-title class="box">
-            <span class="filter"><img src="/assets/images/Filter.svg" alt="">Filters</span>
-            <span class="clear">CLEAR ALL</span>
+            <span class="filter"><img src="/assets/images/Filter.svg" alt="" (click)="applyFilter()">Filters</span>
+            <span class="clear" (click)="clearAll()">CLEAR ALL</span>
         </div>
-
-        <!-- <button class="closebtn" [mat-dialog-close]="true">
-            <mat-icon class="close-icon" color="warn">close</mat-icon>
-          </button> -->
-
     </div>
 
     <div class="main">
 
-        <div class="left"></div>
-        <div class="right"></div>
+        <div class="left">
+            <mat-selection-list #filter [multiple]="false">
+                <mat-list-option class="hide-checkbox" [value]="filterValues" *ngFor="let filterValues of filterTile;let i = index" [selected]="selectedMenuIndex ? selectedMenuIndex : filterValues && i == 0" (click)="selectedFilter(filter.selectedOptions.selected[0]?.value, i)">
+                    {{filterValues}}
+                </mat-list-option>
+            </mat-selection-list>
+        </div>
+        <div class="right">
+
+            <mat-selection-list #childfilter [(ngModel)]="selectedOptions" (click)="onSelection(childfilter, firstChildVal.key)">
+                <mat-list-option class="child-checkbox" checkboxPosition="before" [selected]="childFilterValues.default" *ngFor="let childFilterValues of firstChildVal" [value]='childFilterValues'>
+                    <div class="listView">
+                        {{childFilterValues.key}}
+                        <span class="count"> {{childFilterValues.count}}</span>
+                    </div>
+                </mat-list-option>
+            </mat-selection-list>
+        </div>
 
 
     </div>
@@ -62,7 +73,7 @@
             </div>
 
             <div class="right">
-                <div class="actionBtn">APPLY</div>
+                <div class="actionBtn" (click)="applyFilter()">APPLY</div>
             </div>
         </div>
     </footer>

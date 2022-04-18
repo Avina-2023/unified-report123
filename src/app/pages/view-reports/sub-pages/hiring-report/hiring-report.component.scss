@@ -195,6 +195,7 @@
         .filter {
             font-size: 18px;
             color: #5F646B;
+            cursor: pointer;
             img {
                 border-style: none;
                 margin-right: 7px;
@@ -238,23 +239,62 @@
             .actionBtn {
                 text-align: center;
                 padding: 14px;
+                cursor: pointer;
             }
         }
         .left {
-            width: 168px;
+            width: 150px;
             background: #BFBFBF;
         }
         .right {
             background: #AAAAAA;
-            width: 62%;
+            width: 66%;
         }
     }
     .main {
+        display: flex;
         .left {
-            width: 168px;
             background: #EFEFEF;
             height: 700px;
+            width: 150px;
+            position: relative;
+             ::ng-deep .hide-checkbox {
+                .mat-pseudo-checkbox-checked,
+                .mat-pseudo-checkbox-indeterminate,
+                .mat-accent .mat-pseudo-checkbox-checked,
+                .mat-accent .mat-pseudo-checkbox-indeterminate {
+                    background: #efefef !important;
+                }
+                .mat-pseudo-checkbox {
+                    color: #efefef !important;
+                }
+                .mat-pseudo-checkbox::after {
+                    color: #efefef !important;
+                }
+            }
         }
-        .right {}
+        .right {
+            width: 280px;
+            .listView {
+                display: flex;
+                justify-content: space-between;
+                .count {
+                    font-size: 14px;
+                    font-weight: 500;
+                }
+            }
+             ::ng-deep .child-checkbox {
+                .mat-pseudo-checkbox::after {
+                    color: #28a745;
+                }
+                .mat-pseudo-checkbox-checked,
+                .mat-accent .mat-pseudo-checkbox-checked {
+                    background: $whiteColor;
+                }
+                .mat-pseudo-checkbox {
+                    color: $whiteColor;
+                }
+            }
+        }
     }
 }

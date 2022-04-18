@@ -6,7 +6,10 @@ import { ApiService } from '../../../../services/api.service';
 import { Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { SentDataToOtherComp } from 'src/app/services/sendDataToOtherComp.service';
+import _ from 'lodash';
 import { AgChartThemeOverrides, ColDef, ColSpanParams, GridApi, IColumnToolPanel, SideBarDef } from '@ag-grid-enterprise/all-modules';
+import { MatSelectionListChange } from '@angular/material/list';
+import { PathLocationStrategy } from '@angular/common';
 @Component({
   selector: 'app-hiring-report',
   templateUrl: './hiring-report.component.html',
@@ -17,6 +20,10 @@ export class HiringReportComponent implements OnInit {
   @ViewChild('filter', {static: false}) filter: TemplateRef<any>;
   
   subscription: Subscription;
+  selectedOption:any;
+  selectedOptions:any = [];
+  customfilter = false;
+  selectedFilterData: any = [] = [];
   // public gridApi;
   public gridColumnApi;
   private gridApi!: GridApi;
@@ -92,6 +99,15 @@ export class HiringReportComponent implements OnInit {
     minWidth: 220,
   };
   isFilterOpen: any;
+
+  sampleFilterJson = []
+  filterTile: any[];
+  firstChildVal: any;
+   selectedarr: any;
+  selectedItemsList: any;
+  selectedKeyValue: any;
+  filteredValues: any = {};
+  selectedMenuIndex: any;
   constructor(private sendData: SentDataToOtherComp, private matDialog: MatDialog,private appconfig: AppConfigService,private toastr: ToastrService, private ApiService: ApiService,) {      
     this.serverSideStoreType = 'partial';
     this.masterDetail = true;
@@ -110,6 +126,7 @@ export class HiringReportComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getFilter('','');
     this.tabledef();
     this.subscription = this.sendData.getMessage().subscribe(message => {
       this.isFilterOpen = message;
@@ -727,7 +744,8 @@ export class HiringReportComponent implements OnInit {
       }
         apiData.request.attributes = JSON.parse(this.appconfig.getLocalStorage('role'));
         apiData.request.email = this.appconfig.getSessionStorage('email') ? this.appconfig.getSessionStorage('email') : '';
-        
+        apiData.request.customfilter = this.customfilter,
+        this.customfilter ? apiData.request = apiData.request = {...apiData.request, ...this.filteredValues} : '';
         this.candidateListSubscription =  this.ApiService.getHiringReport(apiData.request).subscribe((data1: any) => {
         this.userList = data1 && data1.data ? data1.data: [];
         if (this.userList.length > 0) {
@@ -811,5 +829,63 @@ export class HiringReportComponent implements OnInit {
           height: 'auto',
           panelClass: 'filterPopup'
         });
+
+        this.patch();
       }
+
+patch() {
+  // console.log('this.selectedMenuIndex', this.selectedMenuIndex);
+  // console.log('paa', this.selectedKeyValue);
+}
+
+    getFilter(key,event){
+      // console.log(key,event)
+      let data = {
+        Domains: [],
+        Branches: []
+      }
+      this.ApiService.getCandidatefilters(data).subscribe((response:any)=>{
+          if(response.success){
+            this.filterTile = Object.keys(response.data);
+            this.sampleFilterJson = response.data;
+            this.selectedFilter(this.filterTile[0], 0);
+          }
+      })
+      
+    }
+
+    selectedFilter(event, index){
+      this.selectedMenuIndex = index;
+      var result = _.pickBy(this.sampleFilterJson, function(value, key) {
+        return _.startsWith(key, event);
+      });
+      this.firstChildVal = result[event];
+      this.selectedKeyValue = event;
+    }
+
+    onSelection($event, key) {
+      this.selectedOptions.forEach(element => {
+          element.default = true;
+      });
+      this.filteredValues[this.selectedKeyValue] = this.selectedOptions;
+  }
+
+
+  applyFilter(){
+    this.customfilter = true;
+    this.cacheBlockSize = 0;
+    this.gridApi.paginationGoToFirstPage();
+    this.gridApi.refreshServerSideStore({ purge: true });
+  }
+
+
+  clearAll(){
+    this.filteredValues = [];
+    this.customfilter = false;
+    this.selectedMenuIndex = 0;
+    this.selectedOptions.forEach(element => {
+      element.default = false;
+  });
+ this.getFilter('','')
+  }
 }
