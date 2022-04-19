@@ -848,7 +848,7 @@ export class HiringReportComponent implements OnInit {
       let data;
       if(filteredValues){
         data = {
-          filteredValues
+          ...filteredValues
         }
       }else{
         data = {
@@ -882,6 +882,7 @@ export class HiringReportComponent implements OnInit {
         element.default = true;
     });
     this.filteredValues[this.selectedKeyValue] = this.selectedOptions;
+    console.log(this.filteredValues,'this.filteredValues')
     this.getFilter(this.filteredValues)
       let arr = []
       for (const key in this.filteredValues) {
