@@ -1,4 +1,4 @@
-import { AgChartOptions } from 'ag-charts-community';
+
 import { Component, OnInit } from '@angular/core';
 import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
 import { ActivatedRoute } from '@angular/router';
@@ -11,9 +11,7 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class CandidateSkillsComponent implements OnInit {
   barChartPlugins:any
-  value = 50;
   candidateSkills:any = [];
-
   public barChartType: ChartType = 'horizontalBar';
   public barChartLegend = false;
   public barChartOptions: ChartOptions = {
@@ -61,12 +59,16 @@ export class CandidateSkillsComponent implements OnInit {
     
   };
   public barChartData: ChartDataSets[] = [
-    { data: [23,12,56,27,43,89,41], backgroundColor: ['#FFC4A3', '#FFBC43', '#C84557', '#BAD252', '#2F9E77', '#1E9FAA', '#C89072', '#786965', '#5F5C5A', '#A889DF', '#AD7CA4', '#847EA6', '#6E87B2', '#8D8C88', '#EF9E6D', '#D29999','#1E94BE','#FFC325','#FFA2A2'], },
+    { data: [], backgroundColor: [],hoverBackgroundColor:[],},
 
   ];
-  public barChartLabels: string[] = ['Hydraulics', 'Water Resources', 'Technician','Site Management','python','Java','Angular'];
+  public barChartLabels: string[] = [];
   selectedMail: any;
   noCard: boolean = true;
+  top3jobs: any;
+  jobFitGap: any;
+  barChartValue: any = [];
+  barChartColorCode: any=[];
   constructor( private route: ActivatedRoute,private apiService: ApiService,) {
   
    }
@@ -94,13 +96,32 @@ export class CandidateSkillsComponent implements OnInit {
     this.apiService.getCandidateSkills(data).subscribe((results:any)=>{
       if(results.success){
         this.candidateSkills = results && results.data ? results.data[0] : '';
+        this.top3jobs =  this.candidateSkills.jobrole.slice(0, 3);
+        this.formateBarChartData();
         this.noCard = true;
       }else{
           this.noCard = false;
       }
-
     })
-
   }
+
+
+
+   formateBarChartData(){
+    this.jobFitGap = this.candidateSkills.jobrole.splice(3);
+    this.jobFitGap.forEach(element => {
+      this.barChartLabels.push(element.jobname);
+      this.barChartValue.push(element.calculationScore);
+      this.barChartColorCode.push(element.colorCode);
+      this.barChartData = [
+        {
+          data: this.barChartValue,
+          backgroundColor:this.barChartColorCode,
+          hoverBackgroundColor:this.barChartColorCode,
+          barThickness: 50,
+        }
+      ];
+     });
+   }
 
 }
