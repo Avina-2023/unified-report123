@@ -4,7 +4,7 @@
     </div>
     <div class="filtermain">
         <div class="tab" *ngFor="let selectedFilter of ShowFilterWithCount">
-            {{selectedFilter.key}} {{selectedFilter.count}}
+            {{selectedFilter.key}} ({{selectedFilter.count}})
         </div>
         <div class="clear" (click)="clearAll()">
             Clear all
