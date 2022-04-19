@@ -27,7 +27,7 @@ export class HiringReportComponent implements OnInit {
   // filter var
   from:any;
   to:any
-
+  arr = [];
 
 
 
@@ -118,7 +118,8 @@ export class HiringReportComponent implements OnInit {
   model: any;
   selectedFilterCount: any;
   isFilterRecords = false;
-  CGPA: { from: any; to: any; };
+  CGPA: { };
+  ShowFilterWithCount: any;
   constructor(private sendData: SentDataToOtherComp, private matDialog: MatDialog,private appconfig: AppConfigService,private toastr: ToastrService, private ApiService: ApiService,) {      
     this.serverSideStoreType = 'partial';
     this.masterDetail = true;
@@ -137,7 +138,7 @@ export class HiringReportComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getFilter();
+    this.getFilter('');
     this.tabledef();
     this.subscription = this.sendData.getMessage().subscribe(message => {
       this.isFilterOpen = message;
@@ -757,7 +758,7 @@ export class HiringReportComponent implements OnInit {
         apiData.request.email = this.appconfig.getSessionStorage('email') ? this.appconfig.getSessionStorage('email') : '';
         apiData.request.customfilter = this.customfilter,
         this.customfilter ? apiData.request = apiData.request = {...apiData.request, ...this.filteredValues} : '';
-        this.customfilter ? apiData.request.CGPA = this.CGPA : ''
+        this.customfilter ? apiData.request.CGPA = [this.CGPA] : ''
         
         this.candidateListSubscription =  this.ApiService.getHiringReport(apiData.request).subscribe((data1: any) => {
         this.userList = data1 && data1.data ? data1.data: [];
@@ -843,12 +844,20 @@ export class HiringReportComponent implements OnInit {
         });
       }
 
-    getFilter(){
-      let data = {
-        Domain: [],
-        Qualification: [],
-        Gender:[],
+    getFilter(filteredValues){
+      let data;
+      if(filteredValues){
+        data = {
+          filteredValues
+        }
+      }else{
+        data = {
+          Domain: [],
+          Qualification: [],
+          Gender:[],
+        }
       }
+
       this.ApiService.getCandidatefilters(data).subscribe((response:any)=>{
           if(response.success){
             this.filterTile = Object.keys(response.data);
@@ -859,25 +868,35 @@ export class HiringReportComponent implements OnInit {
       
     }
 
-    selectedFilter(event, index){
-      this.selectedMenuIndex = index;
-      var result = _.pickBy(this.FilterData, function(value, key) {
-        return _.startsWith(key ? key : '', event ? event : '');
-      });
-      this.firstChildVal = result[event ? event : ''];
-      this.selectedKeyValue = event ? event : '';
-    }
-
-    onSelection() {
-      this.selectedOptions.forEach(element => {
-          element.default = true;
-      });
-      this.filteredValues[this.selectedKeyValue ? this.selectedKeyValue : ''] = this.selectedOptions;
-      this.selectedFilterCount = this.filteredValues[this.selectedKeyValue ? this.selectedKeyValue : ''].length;
-      console.log(this.filteredValues,'this.filteredValues')
-      console.log(this.selectedOptions,'this.selectedOptions')
-      console.log(this.selectedFilterCount,'this.selectedFilterCount')
+  selectedFilter(event, index){
+    this.selectedMenuIndex = index;
+    var result = _.pickBy(this.FilterData, function(value, key) {
+      return _.startsWith(key, event);
+    });
+    this.firstChildVal = result[event];
+    this.selectedKeyValue = event;
   }
+
+  onSelection($event, key) {
+    this.selectedOptions.forEach(element => {
+        element.default = true;
+    });
+    console.log(this.selectedOptions,'this.selectedOptions')
+    this.filteredValues[this.selectedKeyValue] = this.selectedOptions;
+    console.log(this.filteredValues,'this.filteredValues')
+
+    this.getFilter(this.filteredValues)
+      let arr = []
+      for (const key in this.filteredValues) {
+        if (Object.prototype.hasOwnProperty.call(this.filteredValues, key)) {
+          const element = this.filteredValues[key];
+          arr.push({key: key,count:this.filteredValues[key].length})
+        }
+        this.ShowFilterWithCount = arr;
+
+        console.log(this.ShowFilterWithCount,'this.ShowFilterWithCount')
+      }
+}
 
 
   applyFilter(){
@@ -886,18 +905,19 @@ export class HiringReportComponent implements OnInit {
     this.gridApi.paginationGoToFirstPage();
     this.gridApi.refreshServerSideStore({ purge: true });
     this.isFilterRecords = true;
-
-    if(this.from <= this.to){
-      this.CGPA = {
-        from : parseInt(this.from),
-        to : parseInt(this.to)
+    console.log(this.from)
+    if(this.from != undefined && this.to != undefined){
+      if(this.from <= this.to){
+        this.CGPA = {
+          from : parseInt(this.from),
+          to : parseInt(this.to)
+        }
+      }else {
+        this.toastr.warning('Please enter valid CGPA');
+        this.from = '';
+        this.to = '';
       }
-    }else {
-      this.toastr.warning('Please enter valid CGPA');
-      this.from = '';
-      this.to = '';
     }
-
   }
 
 
@@ -905,7 +925,13 @@ export class HiringReportComponent implements OnInit {
     this.filteredValues = [];
     this.customfilter = false;
     this.selectedMenuIndex = 0;
-    this.getFilter();
+    this.getFilter('');
     this.tabledef();
+    this.ShowFilterWithCount = [];
+    this.gridApi.paginationGoToFirstPage();
+    this.cacheBlockSize = 0;
+    this.gridApi.paginationGoToFirstPage();
+    this.gridApi.refreshServerSideStore({ purge: true });
+    this.isFilterRecords = false;
   }
 }
