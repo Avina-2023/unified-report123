@@ -2,8 +2,13 @@
     <div class="filter">
         Filtered Records : {{pageRowCount}}
     </div>
-    <div class="clear">
-        Clear all
+    <div class="filtermain">
+        <div class="tab" *ngFor="let selectedFilter of ShowFilterWithCount">
+            {{selectedFilter.key}} {{selectedFilter.count}}
+        </div>
+        <div class="clear" (click)="clearAll()">
+            Clear all
+        </div>
     </div>
 </div>
 
@@ -58,9 +63,9 @@
                 <mat-list-option class="hide-checkbox" [value]="filterValues" *ngFor="let filterValues of filterTile;let i = index" (click)="selectedFilter(filter.selectedOptions.selected[0]?.value, i)">
                     {{filterValues}}
                 </mat-list-option>
-                <mat-list-option class="hide-checkbox" [value]="'CGPA'" (click)="selectedFilter(filter.selectedOptions.selected[0]?.value, i)">
+                <!-- <mat-list-option class="hide-checkbox" [value]="'CGPA'" (click)="selectedFilter(filter.selectedOptions.selected[0]?.value, i)">
                     {{'CGPA'}}
-                </mat-list-option>
+                </mat-list-option> -->
             </mat-selection-list>
         </div>
         <div class="right">

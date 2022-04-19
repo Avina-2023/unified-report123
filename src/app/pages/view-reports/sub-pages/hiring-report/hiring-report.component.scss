@@ -325,5 +325,22 @@
     }
     .clear {
         color: red;
+        line-height: 2;
+        cursor: pointer;
+    }
+    .filtermain {
+        display: flex;
+    }
+    .tab {
+        width: auto;
+        margin-right: 10px;
+        background: #ffffff;
+        padding: 6px;
+        border-radius: 30px;
+        font-size: 12px;
+        text-align: center;
+        line-height: 1;
+        height: 26px;
+        border: 1px solid #939393;
     }
 }
