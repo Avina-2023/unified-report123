@@ -24,6 +24,13 @@ export class HiringReportComponent implements OnInit {
   selectedOptions:any = [];
   customfilter = false;
   selectedFilterData: any = [] = [];
+  // filter var
+  from:any;
+  to:any
+
+
+
+
   // public gridApi;
   public gridColumnApi;
   private gridApi!: GridApi;
@@ -100,7 +107,7 @@ export class HiringReportComponent implements OnInit {
   };
   isFilterOpen: any;
 
-  sampleFilterJson = []
+  FilterData = []
   filterTile: any[];
   firstChildVal: any;
    selectedarr: any;
@@ -109,6 +116,9 @@ export class HiringReportComponent implements OnInit {
   filteredValues: any = {};
   selectedMenuIndex: any = 0;
   model: any;
+  selectedFilterCount: any;
+  isFilterRecords = false;
+  CGPA: { from: any; to: any; };
   constructor(private sendData: SentDataToOtherComp, private matDialog: MatDialog,private appconfig: AppConfigService,private toastr: ToastrService, private ApiService: ApiService,) {      
     this.serverSideStoreType = 'partial';
     this.masterDetail = true;
@@ -127,7 +137,7 @@ export class HiringReportComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getFilter('','');
+    this.getFilter();
     this.tabledef();
     this.subscription = this.sendData.getMessage().subscribe(message => {
       this.isFilterOpen = message;
@@ -747,6 +757,8 @@ export class HiringReportComponent implements OnInit {
         apiData.request.email = this.appconfig.getSessionStorage('email') ? this.appconfig.getSessionStorage('email') : '';
         apiData.request.customfilter = this.customfilter,
         this.customfilter ? apiData.request = apiData.request = {...apiData.request, ...this.filteredValues} : '';
+        this.customfilter ? apiData.request.CGPA = this.CGPA : ''
+        
         this.candidateListSubscription =  this.ApiService.getHiringReport(apiData.request).subscribe((data1: any) => {
         this.userList = data1 && data1.data ? data1.data: [];
         if (this.userList.length > 0) {
@@ -810,7 +822,6 @@ export class HiringReportComponent implements OnInit {
   }
 
   navtoDetailsPage(email){
-    // sessionStorage.setItem('InAppReport','false');
     this.sendData.sendMessage(false);
     window.open(APP_CONSTANTS.ENDPOINTS.REPORTS.VIEWREPORTS+'/'+`${email}`, '_blank');
   }
@@ -830,49 +841,42 @@ export class HiringReportComponent implements OnInit {
           height: 'auto',
           panelClass: 'filterPopup'
         });
-
-        this.patch();
       }
 
-patch() {
-  // console.log('this.selectedMenuIndex', this.selectedMenuIndex);
-  // console.log('paa', this.selectedKeyValue);
-}
-
-    getFilter(key,event){
-      // console.log(key,event)
+    getFilter(){
       let data = {
-        Domains: [],
-        Branches: []
+        Domain: [],
+        Qualification: [],
+        Gender:[],
       }
       this.ApiService.getCandidatefilters(data).subscribe((response:any)=>{
           if(response.success){
             this.filterTile = Object.keys(response.data);
-            this.sampleFilterJson = response.data;
+            this.FilterData = response.data;
             this.selectedFilter(this.filterTile[0], 0);
           }
       })
       
     }
 
-    indexAssignment(i) {
-      this.selectedMenuIndex = i;
-    }
-
     selectedFilter(event, index){
       this.selectedMenuIndex = index;
-      var result = _.pickBy(this.sampleFilterJson, function(value, key) {
-        return _.startsWith(key, event);
+      var result = _.pickBy(this.FilterData, function(value, key) {
+        return _.startsWith(key ? key : '', event ? event : '');
       });
-      this.firstChildVal = result[event];
-      this.selectedKeyValue = event;
+      this.firstChildVal = result[event ? event : ''];
+      this.selectedKeyValue = event ? event : '';
     }
 
-    onSelection($event, key) {
+    onSelection() {
       this.selectedOptions.forEach(element => {
           element.default = true;
       });
-      this.filteredValues[this.selectedKeyValue] = this.selectedOptions;
+      this.filteredValues[this.selectedKeyValue ? this.selectedKeyValue : ''] = this.selectedOptions;
+      this.selectedFilterCount = this.filteredValues[this.selectedKeyValue ? this.selectedKeyValue : ''].length;
+      console.log(this.filteredValues,'this.filteredValues')
+      console.log(this.selectedOptions,'this.selectedOptions')
+      console.log(this.selectedFilterCount,'this.selectedFilterCount')
   }
 
 
@@ -880,8 +884,20 @@ patch() {
     this.customfilter = true;
     this.cacheBlockSize = 0;
     this.gridApi.paginationGoToFirstPage();
-    console.log('ada', this.model);
     this.gridApi.refreshServerSideStore({ purge: true });
+    this.isFilterRecords = true;
+
+    if(this.from <= this.to){
+      this.CGPA = {
+        from : parseInt(this.from),
+        to : parseInt(this.to)
+      }
+    }else {
+      this.toastr.warning('Please enter valid CGPA');
+      this.from = '';
+      this.to = '';
+    }
+
   }
 
 
@@ -889,9 +905,7 @@ patch() {
     this.filteredValues = [];
     this.customfilter = false;
     this.selectedMenuIndex = 0;
-    this.selectedOptions.forEach(element => {
-      element.default = false;
-  });
- this.getFilter('','')
+    this.getFilter();
+    this.tabledef();
   }
 }
