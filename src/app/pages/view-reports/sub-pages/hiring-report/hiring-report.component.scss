@@ -247,7 +247,8 @@
             background: #BFBFBF;
         }
         .right {
-            background: #AAAAAA;
+            background: #08558C;
+            color: $whiteColor;
             width: 66%;
         }
     }
@@ -271,6 +272,18 @@
                 .mat-pseudo-checkbox::after {
                     color: #efefef !important;
                 }
+                // .mat-list-option:not(.mat-list-item-disabled) {
+                //     border-bottom: 1px solid #C6C6C6 !important;
+                // }
+                .mat-list-base .mat-list-item,
+                .mat-list-base .mat-list-option {
+                    display: block;
+                    height: 48px;
+                    -webkit-tap-highlight-color: transparent;
+                    width: 100%;
+                    padding: 0;
+                    border-bottom: 1px solid #C6C6C6 !important;
+                }
             }
         }
         .right {
@@ -285,16 +298,32 @@
             }
              ::ng-deep .child-checkbox {
                 .mat-pseudo-checkbox::after {
-                    color: #28a745;
+                    color: $whiteColor;
                 }
                 .mat-pseudo-checkbox-checked,
                 .mat-accent .mat-pseudo-checkbox-checked {
-                    background: $whiteColor;
+                    background: #54B952;
                 }
-                .mat-pseudo-checkbox {
-                    color: $whiteColor;
-                }
+                // .mat-pseudo-checkbox {
+                //     color: ;
+                // }
+            }
+            .margin {
+                margin: 15px;
             }
         }
+    }
+}
+
+.filterkey {
+    display: flex;
+    justify-content: space-between;
+    margin: 15px;
+    .filter {
+        color: #607D8B;
+        font-size: 16px;
+    }
+    .clear {
+        color: red;
     }
 }

@@ -7,9 +7,9 @@
         <div class="skills">
             <div class="heading">Top 03 Jobs recommended</div>
             <div class="recommendedJobs">
-                <div *ngFor=" let joberoles of candidateSkills.jobrole">
+                <div *ngFor=" let joberoles of top3jobs">
                     <h3>{{joberoles?.calculationScore}}%<span> for {{joberoles?.jobname}}</span></h3>
-                    <mat-progress-bar mode="determinate" [value]="joberoles?.calculationScore"></mat-progress-bar>
+                    <mat-progress-bar mode="determinate" [color]="'#09568C'" [value]="joberoles?.calculationScore"></mat-progress-bar>
                 </div>
             </div>
         </div>
