@@ -881,10 +881,7 @@ export class HiringReportComponent implements OnInit {
     this.selectedOptions.forEach(element => {
         element.default = true;
     });
-    console.log(this.selectedOptions,'this.selectedOptions')
     this.filteredValues[this.selectedKeyValue] = this.selectedOptions;
-    console.log(this.filteredValues,'this.filteredValues')
-
     this.getFilter(this.filteredValues)
       let arr = []
       for (const key in this.filteredValues) {
@@ -893,8 +890,6 @@ export class HiringReportComponent implements OnInit {
           arr.push({key: key,count:this.filteredValues[key].length})
         }
         this.ShowFilterWithCount = arr;
-
-        console.log(this.ShowFilterWithCount,'this.ShowFilterWithCount')
       }
 }
 
@@ -905,7 +900,7 @@ export class HiringReportComponent implements OnInit {
     this.gridApi.paginationGoToFirstPage();
     this.gridApi.refreshServerSideStore({ purge: true });
     this.isFilterRecords = true;
-    console.log(this.from)
+    // console.log(this.from)
     if(this.from != undefined && this.to != undefined){
       if(this.from <= this.to){
         this.CGPA = {
