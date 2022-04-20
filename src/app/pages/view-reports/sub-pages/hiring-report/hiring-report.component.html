@@ -4,7 +4,12 @@
     </div>
     <div class="filtermain">
         <div class="tab" *ngFor="let selectedFilter of ShowFilterWithCount">
-            {{selectedFilter.key}} ({{selectedFilter.count}})
+            <div class="filterval">
+                {{selectedFilter.key}} ({{selectedFilter.count}})
+                <div>
+                    <mat-icon (click)="clearFilter(selectedFilter.key)" class="close">close</mat-icon>
+                </div>
+            </div>
         </div>
         <div class="clear" (click)="clearAll()">
             Clear all
@@ -59,13 +64,10 @@
     <div class="main">
 
         <div class="left">
-            <mat-selection-list #filter [(ngModel)]="model" [multiple]="false">
+            <mat-selection-list #filter [multiple]="false">
                 <mat-list-option class="hide-checkbox" [value]="filterValues" *ngFor="let filterValues of filterTile;let i = index" (click)="selectedFilter(filter.selectedOptions.selected[0]?.value, i)">
                     {{filterValues}}
                 </mat-list-option>
-                <!-- <mat-list-option class="hide-checkbox" [value]="'CGPA'" (click)="selectedFilter(filter.selectedOptions.selected[0]?.value, i)">
-                    {{'CGPA'}}
-                </mat-list-option> -->
             </mat-selection-list>
         </div>
         <div class="right">
