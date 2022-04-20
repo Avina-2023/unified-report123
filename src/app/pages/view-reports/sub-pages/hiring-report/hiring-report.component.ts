@@ -138,7 +138,7 @@ export class HiringReportComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getFilter('');
+    this.getFilter('','');
     this.tabledef();
     this.subscription = this.sendData.getMessage().subscribe(message => {
       this.isFilterOpen = message;
@@ -837,14 +837,19 @@ export class HiringReportComponent implements OnInit {
 
 
       openFilter() {
+        // this.getFilter(this.filteredValues ? this.filteredValues : '',this.selectedMenuIndex);
         this.filterDef = this.matDialog.open(this.filter, {
           width: '800px',
           height: 'auto',
           panelClass: 'filterPopup'
         });
+     
       }
 
-    getFilter(filteredValues){
+    getFilter(filteredValues,index){
+      console.log(filteredValues,index,'asdasdasasdasdas')
+      this.filterTile = [];
+      this.FilterData = [];
       let data;
       if(filteredValues){
         data = {
@@ -862,7 +867,8 @@ export class HiringReportComponent implements OnInit {
           if(response.success){
             this.filterTile = Object.keys(response.data);
             this.FilterData = response.data;
-            this.selectedFilter(this.filterTile[0], 0);
+            // console.log(this.filterTile[0],'this.filterTile[0]')
+            this.selectedFilter(this.filterTile[index ? index : 0], index ? index : 0);
           }
       })
       
@@ -882,8 +888,7 @@ export class HiringReportComponent implements OnInit {
         element.default = true;
     });
     this.filteredValues[this.selectedKeyValue] = this.selectedOptions;
-    console.log(this.filteredValues,'this.filteredValues')
-    this.getFilter(this.filteredValues)
+    this.getFilter(this.filteredValues,this.selectedMenuIndex)
       let arr = []
       for (const key in this.filteredValues) {
         if (Object.prototype.hasOwnProperty.call(this.filteredValues, key)) {
@@ -901,7 +906,6 @@ export class HiringReportComponent implements OnInit {
     this.gridApi.paginationGoToFirstPage();
     this.gridApi.refreshServerSideStore({ purge: true });
     this.isFilterRecords = true;
-    // console.log(this.from)
     if(this.from != undefined && this.to != undefined){
       if(this.from <= this.to){
         this.CGPA = {
@@ -920,8 +924,8 @@ export class HiringReportComponent implements OnInit {
   clearAll(){
     this.filteredValues = [];
     this.customfilter = false;
-    this.selectedMenuIndex = 0;
-    this.getFilter('');
+    // this.selectedMenuIndex = 0;
+    this.getFilter('',this.selectedMenuIndex);
     this.tabledef();
     this.ShowFilterWithCount = [];
     this.gridApi.paginationGoToFirstPage();
@@ -930,4 +934,28 @@ export class HiringReportComponent implements OnInit {
     this.gridApi.refreshServerSideStore({ purge: true });
     this.isFilterRecords = false;
   }
+
+
+  clearFilter(FilterKey){
+    //Inside filter removing checkbox
+    let filterSelectedFilter =  this.filteredValues[FilterKey];
+    filterSelectedFilter.forEach(element => {
+        element.default = false;
+    });
+    this.removedSelectedSingleFilter(FilterKey);
+    this.removedFilterFromRequestArray(FilterKey);
+
+  }
+
+  removedSelectedSingleFilter(FilterKey){
+    const filteredremovedItem = this.ShowFilterWithCount.filter((item) => item.key !== FilterKey);
+    this.ShowFilterWithCount = filteredremovedItem;
+  }
+
+  removedFilterFromRequestArray(FilterKey){
+    var filterArrAfterRemoved = _.omit(this.filteredValues, FilterKey);
+    this.filteredValues = filterArrAfterRemoved;
+  }
+
+ 
 }
