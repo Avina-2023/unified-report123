@@ -138,7 +138,7 @@ export class HiringReportComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getFilter('','');
+    // this.getFilter('','');
     this.tabledef();
     this.subscription = this.sendData.getMessage().subscribe(message => {
       this.isFilterOpen = message;
@@ -837,7 +837,7 @@ export class HiringReportComponent implements OnInit {
 
 
       openFilter() {
-        // this.getFilter(this.filteredValues ? this.filteredValues : '',this.selectedMenuIndex);
+        this.getFilter('','');
         this.filterDef = this.matDialog.open(this.filter, {
           width: '800px',
           height: 'auto',
@@ -847,7 +847,6 @@ export class HiringReportComponent implements OnInit {
       }
 
     getFilter(filteredValues,index){
-      console.log(filteredValues,index,'asdasdasasdasdas')
       this.filterTile = [];
       this.FilterData = [];
       let data;
@@ -867,7 +866,6 @@ export class HiringReportComponent implements OnInit {
           if(response.success){
             this.filterTile = Object.keys(response.data);
             this.FilterData = response.data;
-            // console.log(this.filterTile[0],'this.filterTile[0]')
             this.selectedFilter(this.filterTile[index ? index : 0], index ? index : 0);
           }
       })
@@ -938,13 +936,9 @@ export class HiringReportComponent implements OnInit {
 
   clearFilter(FilterKey){
     //Inside filter removing checkbox
-    let filterSelectedFilter =  this.filteredValues[FilterKey];
-    filterSelectedFilter.forEach(element => {
-        element.default = false;
-    });
     this.removedSelectedSingleFilter(FilterKey);
     this.removedFilterFromRequestArray(FilterKey);
-
+    this.getFilter(this.filteredValues,0);
   }
 
   removedSelectedSingleFilter(FilterKey){
