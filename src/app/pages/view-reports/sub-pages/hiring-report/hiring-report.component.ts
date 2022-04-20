@@ -138,7 +138,7 @@ export class HiringReportComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.getFilter('','');
+    this.getFilter('','');
     this.tabledef();
     this.subscription = this.sendData.getMessage().subscribe(message => {
       this.isFilterOpen = message;
@@ -837,7 +837,7 @@ export class HiringReportComponent implements OnInit {
 
 
       openFilter() {
-        this.getFilter('','');
+        this.getFilter(this.filteredValues,this.selectedMenuIndex);
         this.filterDef = this.matDialog.open(this.filter, {
           width: '800px',
           height: 'auto',
@@ -847,8 +847,8 @@ export class HiringReportComponent implements OnInit {
       }
 
     getFilter(filteredValues,index){
-      this.filterTile = [];
-      this.FilterData = [];
+      // this.filterTile = [];
+      // this.FilterData = [];
       let data;
       if(filteredValues){
         data = {
