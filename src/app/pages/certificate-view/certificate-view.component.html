@@ -7,10 +7,10 @@
           <img src="/assets/images/header_logo.png" alt="Logo" />
         </figure>
         <div class="heading" >
-          <img src="/assets/images/verified_Mob.png" alt="" />
+          <img [src]="!nocard && certificateData?.verified ? '/assets/images/verified_Mob.svg' : '/assets/images/not_verified.svg'" alt="" />
         </div>
           <figure class="certified">
-            <img src="/assets/images/certified.svg" alt="Certified" />
+            <img [src]="!nocard && certificateData?.verified ? '/assets/images/verified_tick.svg' : '/assets/images/not_verified_tick.svg'" alt="Certified" />
           </figure>
       </div>
     </div>
