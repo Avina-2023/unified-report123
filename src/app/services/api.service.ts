@@ -17,7 +17,7 @@ export class ApiService {
   constructor(
     private http: HttpClient,
     private appConfig: AppConfigService,
- 
+
   ) { }
 
   logout() {
@@ -87,6 +87,10 @@ export class ApiService {
   getCandidateSkills(email){
     return this.http.post(`${this.BASE_URL}/getCandidateRecommendedJobs `,email);
   }
+
+  getCertificateDetails(certificateCode){
+    return this.http.get(`${this.BASE_URL}/getCandidateVerificationDetails?certificationID=${certificateCode}`);
+   }
 
   getCandidatefilters(data){
     return this.http.post(`${this.BASE_URL}/getCandidatefilters `,data);

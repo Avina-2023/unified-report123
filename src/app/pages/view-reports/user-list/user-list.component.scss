@@ -39,6 +39,14 @@
     margin-bottom: 20px;
 }
 
+.first {
+    display: contents;
+    .link {
+        color: black;
+        text-decoration: none
+    }
+}
+
 :host ::ng-deep .mat-tab-group.mat-primary .mat-ink-bar,
 .mat-tab-nav-bar.mat-primary .mat-ink-bar {
     background-color: $secondaryColor !important;
