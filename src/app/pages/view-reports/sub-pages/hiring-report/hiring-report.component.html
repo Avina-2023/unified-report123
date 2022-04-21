@@ -5,13 +5,14 @@
     <div class="filtermain">
         <div class="tab" *ngFor="let selectedFilter of ShowFilterWithCount">
             <div class="filterval">
-                {{selectedFilter.key}} ({{selectedFilter.count}})
+                {{selectedFilter.key}}
+                <span *ngIf="selectedFilter.count != 0">({{selectedFilter.count}})</span>
                 <div>
                     <mat-icon (click)="clearFilter(selectedFilter.key)" class="close">close</mat-icon>
                 </div>
             </div>
         </div>
-        <div class="clear" (click)="clearAll()">
+        <div *ngIf="ShowFilterWithCount.length > 0" class="clear" (click)="clearAll()">
             Clear all
         </div>
     </div>
