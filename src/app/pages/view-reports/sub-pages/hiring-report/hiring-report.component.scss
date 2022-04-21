@@ -188,6 +188,9 @@
     bottom: 3%;
     height: 85% !important;
     width: 436px !important;
+    @media only screen and (min-width: 1440px) {
+        height: 600px !important;
+    }
     .add-user-header {
         background: #E5E5E5;
         z-index: 999;
@@ -287,6 +290,8 @@
         .right {
             width: 280px;
             padding-left: 10px;
+            height: 450px;
+            overflow: auto;
             .listView {
                 display: flex;
                 justify-content: space-between;
