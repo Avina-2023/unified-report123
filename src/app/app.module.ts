@@ -18,6 +18,7 @@ import 'ag-grid-enterprise';
 import { IsAccessGuard } from './guards/is-access.guard';
 import { IsloggedInGuard } from './guards/islogged-in.guard';
 import { PagenotfoundComponent } from './pages/pagenotfound/pagenotfound.component';
+import { CertificateViewComponent } from './pages/certificate-view/certificate-view.component';
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
 };
@@ -25,7 +26,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
 @NgModule({
   declarations: [
     AppComponent,
-    PagenotfoundComponent
+    PagenotfoundComponent,
+    CertificateViewComponent
   ],
   imports: [
     BrowserModule,
