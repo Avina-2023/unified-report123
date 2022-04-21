@@ -6,7 +6,10 @@ import { ApiService } from '../../../../services/api.service';
 import { Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { SentDataToOtherComp } from 'src/app/services/sendDataToOtherComp.service';
+import _ from 'lodash';
 import { AgChartThemeOverrides, ColDef, ColSpanParams, GridApi, IColumnToolPanel, SideBarDef } from '@ag-grid-enterprise/all-modules';
+import { MatSelectionListChange } from '@angular/material/list';
+import { PathLocationStrategy } from '@angular/common';
 @Component({
   selector: 'app-hiring-report',
   templateUrl: './hiring-report.component.html',
@@ -17,6 +20,17 @@ export class HiringReportComponent implements OnInit {
   @ViewChild('filter', {static: false}) filter: TemplateRef<any>;
   
   subscription: Subscription;
+  selectedOption:any;
+  selectedOptions:any = [];
+  customfilter = false;
+  selectedFilterData: any = [] = [];
+  // filter var
+  from:any;
+  to:any
+  arr = [];
+
+
+
   // public gridApi;
   public gridColumnApi;
   private gridApi!: GridApi;
@@ -92,6 +106,20 @@ export class HiringReportComponent implements OnInit {
     minWidth: 220,
   };
   isFilterOpen: any;
+
+  FilterData = []
+  filterTile: any[];
+  firstChildVal: any;
+   selectedarr: any;
+  selectedItemsList: any;
+  selectedKeyValue: any;
+  filteredValues: any = {};
+  selectedMenuIndex: any = 0;
+  model: any;
+  selectedFilterCount: any;
+  isFilterRecords = false;
+  CGPA: { };
+  ShowFilterWithCount: any;
   constructor(private sendData: SentDataToOtherComp, private matDialog: MatDialog,private appconfig: AppConfigService,private toastr: ToastrService, private ApiService: ApiService,) {      
     this.serverSideStoreType = 'partial';
     this.masterDetail = true;
@@ -110,6 +138,7 @@ export class HiringReportComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getFilter('','');
     this.tabledef();
     this.subscription = this.sendData.getMessage().subscribe(message => {
       this.isFilterOpen = message;
@@ -727,6 +756,9 @@ export class HiringReportComponent implements OnInit {
       }
         apiData.request.attributes = JSON.parse(this.appconfig.getLocalStorage('role'));
         apiData.request.email = this.appconfig.getSessionStorage('email') ? this.appconfig.getSessionStorage('email') : '';
+        apiData.request.customfilter = this.customfilter,
+        this.customfilter ? apiData.request = apiData.request = {...apiData.request, ...this.filteredValues} : '';
+        this.customfilter ? apiData.request.CGPA = [this.CGPA] : ''
         
         this.candidateListSubscription =  this.ApiService.getHiringReport(apiData.request).subscribe((data1: any) => {
         this.userList = data1 && data1.data ? data1.data: [];
@@ -791,7 +823,6 @@ export class HiringReportComponent implements OnInit {
   }
 
   navtoDetailsPage(email){
-    // sessionStorage.setItem('InAppReport','false');
     this.sendData.sendMessage(false);
     window.open(APP_CONSTANTS.ENDPOINTS.REPORTS.VIEWREPORTS+'/'+`${email}`, '_blank');
   }
@@ -806,10 +837,119 @@ export class HiringReportComponent implements OnInit {
 
 
       openFilter() {
+        this.getFilter(this.filteredValues,this.selectedMenuIndex);
         this.filterDef = this.matDialog.open(this.filter, {
           width: '800px',
           height: 'auto',
           panelClass: 'filterPopup'
         });
+     
       }
+
+    getFilter(filteredValues,index){
+      // this.filterTile = [];
+      // this.FilterData = [];
+      let data;
+      if(filteredValues){
+        data = {
+          ...filteredValues
+        }
+      }else{
+        data = {
+          Domain: [],
+          Qualification: [],
+          Gender:[],
+        }
+      }
+
+      this.ApiService.getCandidatefilters(data).subscribe((response:any)=>{
+          if(response.success){
+            this.filterTile = Object.keys(response.data);
+            this.FilterData = response.data;
+            this.selectedFilter(this.filterTile[index ? index : 0], index ? index : 0);
+          }
+      })
+      
+    }
+
+  selectedFilter(event, index){
+    this.selectedMenuIndex = index;
+    var result = _.pickBy(this.FilterData, function(value, key) {
+      return _.startsWith(key, event);
+    });
+    this.firstChildVal = result[event];
+    this.selectedKeyValue = event;
+  }
+
+  onSelection($event, key) {
+    this.selectedOptions.forEach(element => {
+        element.default = true;
+    });
+    this.filteredValues[this.selectedKeyValue] = this.selectedOptions;
+    this.getFilter(this.filteredValues,this.selectedMenuIndex)
+      let arr = []
+      for (const key in this.filteredValues) {
+        if (Object.prototype.hasOwnProperty.call(this.filteredValues, key)) {
+          const element = this.filteredValues[key];
+          arr.push({key: key,count:this.filteredValues[key].length})
+        }
+        this.ShowFilterWithCount = arr;
+      }
+}
+
+
+  applyFilter(){
+    this.customfilter = true;
+    this.cacheBlockSize = 0;
+    this.gridApi.paginationGoToFirstPage();
+    this.gridApi.refreshServerSideStore({ purge: true });
+    this.isFilterRecords = true;
+    if(this.from != undefined && this.to != undefined){
+      if(this.from <= this.to){
+        this.CGPA = {
+          from : parseInt(this.from),
+          to : parseInt(this.to)
+        }
+      }else {
+        this.toastr.warning('Please enter valid CGPA');
+        this.from = '';
+        this.to = '';
+      }
+    }
+  }
+
+
+  clearAll(){
+    this.filteredValues = [];
+    this.customfilter = false;
+    // this.selectedMenuIndex = 0;
+    this.getFilter('',this.selectedMenuIndex);
+    this.tabledef();
+    this.ShowFilterWithCount = [];
+    this.gridApi.paginationGoToFirstPage();
+    this.cacheBlockSize = 0;
+    this.gridApi.paginationGoToFirstPage();
+    this.gridApi.refreshServerSideStore({ purge: true });
+    this.isFilterRecords = false;
+  }
+
+
+  clearFilter(FilterKey){
+    //Inside filter removing checkbox
+    this.removedSelectedSingleFilter(FilterKey);
+    this.removedFilterFromRequestArray(FilterKey);
+    this.getFilter(this.filteredValues,0);
+  }
+
+  removedSelectedSingleFilter(FilterKey){
+    const filteredremovedItem = this.ShowFilterWithCount.filter((item) => item.key !== FilterKey);
+    this.ShowFilterWithCount = filteredremovedItem;
+  }
+
+  removedFilterFromRequestArray(FilterKey){
+    var filterArrAfterRemoved = _.omit(this.filteredValues, FilterKey);
+    this.filteredValues = filterArrAfterRemoved;
+  }
+
+ 
 }

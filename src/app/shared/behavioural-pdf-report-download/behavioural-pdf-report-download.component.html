@@ -411,7 +411,7 @@
                                 <span class="heading3">DEVELOPMENT SCOPE</span>
                             </figure>
                             <p *ngIf="getAllBehaviourData">{{getAllBehaviourData?.developmentScopeDescription}}</p>
-                          
+
                             </span> -->
                             <!-- end for Anxiety Management page brack added -->
 
@@ -464,7 +464,10 @@
 
                             <div class="m-t-40" *ngIf="((s + 1) % 4 == 0)  && (getAllBehaviourAPIDetails?.strengthconclusionPoints.length != s+1)">
                                 <div class="html2pdf__page-break"></div>
+                                <!-- <<<<<<< HEAD <div class="header m-t-20" *ngIf="getAllBehaviourData?.conclusion">
+                                    ======= -->
                                 <div class="header " *ngIf="getAllBehaviourData?.conclusion">
+                                    <!-- >>>>>>> dev_avinash -->
                                     <div class="heading">
                                         {{getAllBehaviourData?.conclusion?.topicName}}
                                     </div>
@@ -479,7 +482,7 @@
                     </ng-container>
                 </section>
             </section>
-            <!-- 
+            <!--
             <footer class="d-flex justify-content-between">
                 <div class="copyrights">
                     <p>Behavioural Profiling Report &nbsp;|&nbsp; ©2022 L&T EduTech. All Rights Reserved.</p>

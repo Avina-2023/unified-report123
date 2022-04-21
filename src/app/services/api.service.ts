@@ -92,4 +92,7 @@ export class ApiService {
     return this.http.get(`${this.BASE_URL}?code=renIDfwbxERkbhqSSgpX6Sy2qLYJvjydtJbFhBZg0ElMbt/gFRXN3g==&certificateCode=${certificateCode}`);
    }
 
+  getCandidatefilters(data){
+    return this.http.post(`${this.BASE_URL}/getCandidatefilters `,data);
+  }
 }
