@@ -89,7 +89,7 @@ export class ApiService {
   }
 
   getCertificateDetails(certificateCode){
-    return this.http.get(`${this.BASE_URL}?code=renIDfwbxERkbhqSSgpX6Sy2qLYJvjydtJbFhBZg0ElMbt/gFRXN3g==&certificateCode=${certificateCode}`);
+    return this.http.get(`${this.BASE_URL}/getCandidateVerificationDetails?certificationID=${certificateCode}`);
    }
 
   getCandidatefilters(data){

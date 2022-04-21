@@ -182,3 +182,340 @@
     padding: 2em;
     border: solid #eee 1px;
 }
+
+.candidateSkillsBasicProfile {
+  margin: 2em 0 2em 0;
+  width: 94%;
+}
+.expandheaderArea {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin: 0.6em 0;
+  div {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      padding: 0em 0.8em;
+      border-right: 0.1em solid #e8e8e8;
+      justify-content: center;
+      //   min-width: 160px;
+      &:last-child {
+          border: none;
+      }
+      &:nth-child(1),
+      &:nth-child(2) {
+          flex-grow: 3.6;
+          justify-content: flex-start;
+          padding-left: 1.6em;
+          white-space: nowrap;
+          width: 200px;
+      }
+      em {
+          color: #b3b3b3;
+          font-size: 2em;
+          &.icon-SpeedoMeter {
+              font-size: 2.3em;
+              color: #b3b3b3;
+          }
+          &.icon-Booked {
+              font-size: 1.7em;
+              color: #b3b3b3;
+          }
+      }
+      >span {
+          font-size: 0.8em;
+          color: #757575;
+          padding: 0 0.8em;
+          padding-left: 1.2em;
+          span {
+              display: block;
+              font-size: 1.3em;
+              font-weight: 500;
+              // color: $blackColor;
+          }
+      }
+  }
+}
+
+.head {
+  font-size: 1.3em !important;
+  color: $blackColor !important;
+  font-weight: 500 !important;
+  padding-left: 10px !important;
+}
+
+.assessmentInfoarea {
+  margin: 1.2em 1px;
+  position: relative;
+  .mat-expansion-panel {
+      margin-bottom: 1.5em;
+  }
+  .mat-expansion-panel-header {
+      height: auto;
+      display: grid;
+      padding: 0 0.6em;
+      grid-template-areas: "mat-expansion mat-content";
+      grid-template-columns: 2em auto;
+      border-bottom: 0.1em solid #e8e8e8;
+      border-radius: 0;
+      min-height: 72px;
+  }
+  .mat-expansion-panel-body {
+      padding: 0;
+  }
+  span.mat-content {
+      display: initial;
+      grid-area: mat-content;
+  }
+  span.mat-expansion-indicator {
+      display: flex;
+      align-items: center;
+      grid-area: mat-expansion;
+      justify-content: center;
+  }
+  .width-51 {
+      width: 40% !important;
+  }
+  .width-80 {
+    width: 80px !important;
+    height: 80px !important;
+  }
+  .width-270 {
+      width: 270px !important;
+  }
+  .width-150 {
+      width: 160px !important;
+  }
+  .width-168 {
+      width: 167px !important;
+  }
+  .expandheaderArea {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      margin: 0.6em 0;
+      div {
+          flex-grow: 1;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          padding: 0em 0.8em;
+          border-right: 0.1em solid #e8e8e8;
+          justify-content: start;
+          //   min-width: 160px;
+          &:last-child {
+              border: none;
+          }
+          &:nth-child(1),
+          &:nth-child(2) {
+              flex-grow: 3.6;
+              justify-content: flex-start;
+              padding-left: 1.6em;
+              white-space: nowrap;
+              width: 200px;
+          }
+          em {
+              color: #b3b3b3;
+              font-size: 2em;
+              &.icon-SpeedoMeter {
+                  font-size: 2.3em;
+                  color: #b3b3b3;
+              }
+              &.icon-Booked {
+                  font-size: 1.7em;
+                  color: #b3b3b3;
+              }
+          }
+          >span {
+              font-size: 0.8em;
+              color: #757575;
+              padding: 0 0.8em;
+              padding-left: 1.2em;
+              span {
+                  display: block;
+                  font-size: 1.3em;
+                  font-weight: 500;
+                  // color: $blackColor;
+              }
+          }
+      }
+  }
+  .ContentInfoDetails {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      flex-wrap: nowrap;
+      padding: 1em 1.6em;
+      border-bottom: 0.1em solid #e8e8e8;
+      div {
+          flex-grow: 1;
+          color: #757575;
+          font-size: 1em;
+          line-height: 1.5;
+          &.primaryInfo {
+              flex-grow: 2.5;
+              .icon-checked {
+                  font-size: 0.8em;
+                  padding-right: 0.5em;
+              }
+          }
+      }
+      span {
+          display: block;
+          color: $blackColor;
+          font-size: 1em;
+          // font-weight: 700;
+          line-height: 1.3;
+          margin-top: 0px;
+          span {
+              display: inline-block;
+              color: #6b6b6b;
+              font-size: 0.6em;
+              font-weight: 500;
+              padding: 0 0.1em;
+              &.warningColor {
+                  font-size: 0.5em;
+                  padding-left: 0.5em;
+              }
+          }
+      }
+  }
+  .ContentInfoSummary {
+      padding: 1em 1.6em;
+      .heading6.flxView,
+      .assessmentHeaderinfo {
+          margin-top: 1em;
+      }
+      .Summaryhtxt {
+          font-size: 18px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          margin: 1em 0;
+      }
+  }
+  //common styles
+  .successColor,
+  .expandheaderArea div>span span.successColor,
+  .ContentInfoDetails span.successColor,
+  .ContentInfoDetails span.successColor span {
+      color: $successColorDark;
+  }
+  .warningColor,
+  .expandheaderArea div>span span.warningColor,
+  .ContentInfoDetails span.warningColor,
+  .ContentInfoDetails span.warningColor span {
+      color: $primaryColor;
+  }
+  .WarnColor,
+  .expandheaderArea div>span span.WarnColor,
+  .ContentInfoDetails span.WarnColor,
+  .ContentInfoDetails span.WarnColor span {
+      color: #d68f0c;
+  }
+  .SummaryInfoArea {
+      padding: 1em 0;
+      .Summaryhtxt {
+          font-size: 19px;
+          margin: 1em 0 0;
+      }
+      .summaryTable {
+          width: 100%;
+          border: none !important;
+      }
+      .summaryTable tr th {
+          color: $lightGrey;
+          text-align: left;
+          padding: 0.8em 1.2em;
+          white-space: nowrap;
+          font-weight: normal;
+          border: 1px solid #dbdbdb;
+          border-right-width: 0;
+          width: 12%;
+          &:first-child {
+              width: 30%;
+          }
+          &:last-child {
+              border-right-width: 0.1em;
+          }
+      }
+      .summaryTable tr td {
+          color: $lightGrey;
+          text-align: left;
+          padding: 0.8em 1.2em;
+          font-weight: 500;
+          border: 1px solid #dbdbdb;
+          border-right-width: 0;
+          border-top-width: 0;
+          width: 13%;
+          position: relative;
+          &:first-child {
+              width: 25%;
+              color: $primaryColor;
+          }
+          &:last-child {
+              border-right-width: 1px;
+              text-align: center;
+              font-size: 1em;
+              min-width: 95px;
+          }
+          span {
+              color: $blackColor;
+              font-size: 1.4em;
+              font-weight: 700;
+          }
+          .icon-Like {
+              color: $successColorDark;
+              font-weight: 700;
+          }
+          .average-color {
+              color: #d68f0c;
+              font-weight: 700;
+          }
+          .icon-Dislike {
+              color: $primaryColor;
+              font-weight: 700;
+          }
+          .progressbar {
+              display: block;
+              position: absolute;
+              z-index: 1;
+              top: 0;
+              bottom: 0;
+              left: 0;
+              max-width: 100%;
+          }
+          .progressdata {
+              display: flex;
+              position: relative;
+              z-index: 2;
+              font-size: 0.8em;
+          }
+          .color-bluebar {
+              background-color: #e1f4ff;
+              border-right: 0.3em solid #8fc7e2;
+          }
+          .color-pinkbar {
+              background-color: #ffe1eb;
+              border-right: 0.3em solid #f07f9e;
+          }
+          .color-greenbar {
+              background-color: #dcffed;
+              border-right: 0.3em solid #7ae4af;
+          }
+          .color-yellowbar {
+              background-color: #fff4dc;
+              border-right: 0.3em solid #fbe8a9;
+          }
+      }
+  }
+  .mat-expansion-panel:not([class*=mat-elevation-z]) {
+      box-shadow: 0px 0px 3px 1px rgb(0 0 0 / 12%) !important;
+  }
+}
+
+.color-black {
+  color: $blackColor;
+}

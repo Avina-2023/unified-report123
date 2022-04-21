@@ -1,4 +1,5 @@
 <div class="certifyWrapper">
+  <div class="scroll-wrapper">
   <header>
     <div class="container">
       <div class="wrapper">
@@ -6,7 +7,6 @@
           <img src="/assets/images/header_logo.png" alt="Logo" />
         </figure>
         <div class="heading" >
-          <!-- <span><strong>Certificate</strong> of completion</span> -->
           <img src="/assets/images/verified_Mob.png" alt="" />
         </div>
           <figure class="certified">
@@ -24,55 +24,46 @@
           <figure>
             <img [src] ="certificateData?.profileImage ? (certificateData?.profileImage + blobToken) :'https://assets.lntedutech.com/application_images/pro2.png'" alt="" />
           </figure>
-          <div class="c-name">Avinasi Selvakumar Ramachandran Rao</div>
+          <div class="c-name" [ngStyle]="{'justify-content': certificateData?.firstname && certificateData?.firstname.length > 20 ? 'left' : 'center'}">{{certificateData?.firstname ? certificateData?.firstname : '-'}}</div>
           </div>
         </div>
         <div class="right">
           <ul>
             <li>
-              <span>Email</span> <span>{{'Avinash.selvakuar@gmail.com'}}</span>
+              <span>Email</span> <span>{{certificateData?.email ? certificateData?.email : '-'}}</span>
             </li>
             <li>
-              <span>Date of Birth</span> <span>{{'1995-06-12'}}</span>
+              <span>Date of Birth</span> <span>{{certificateData?.DOB ? certificateData?.DOB : '-'}}</span>
             </li>
             <li>
-              <span>Gender</span> <span>{{'Male'}}</span>
+              <span>Gender</span> <span>{{certificateData?.gender ? certificateData?.gender : '-'}}</span>
             </li>
             <li>
-              <span>College/University</span> <span>{{'Nationaal Instatitute of Technology'}}</span>
+              <span>College/University</span> <span>{{certificateData?.college ? certificateData?.college : '-'}}</span>
             </li>
             <li>
-              <span>Specialization</span> <span>{{'B.Tech'}}</span>
+              <span>Specialization</span> <span>{{certificateData?.specialization ? certificateData?.specialization : '-'}}</span>
             </li>
             <li>
-              <span>Branch</span> <span>{{'Information Technology'}}</span>
+              <span>Branch</span> <span>{{certificateData?.branch ? certificateData?.branch : '-'}}</span>
             </li>
             <li>
-              <span>Passing year</span> <span>{{'2017-05-01'}}</span>
+              <span>Passing year</span> <span>{{certificateData?.passedout ? certificateData?.passedout : '-'}}</span>
             </li>
             <li>
-              <span>Graduation Aggregate</span> <span>{{'86.72%'}}</span>
+              <span>Graduation Aggregate</span> <span>{{certificateData?.percentage ? certificateData?.percentage : '-'}}</span>
             </li>
             <li>
-              <span>Contact No</span> <span>{{'9862372383'}}</span>
+              <span>Contact No</span> <span>{{certificateData?.mobile ? certificateData?.mobile : '-'}}</span>
             </li>
             <li>
-              <span>Father's Name</span> <span>{{'Selvamani'}}</span>
+              <span>Father's Name</span> <span>{{certificateData?.fathername ? certificateData?.fathername : '-'}}</span>
             </li>
             <li>
-              <span>Address</span> <span>{{'46/38, Manimandaba Salai, Gandhi Market, Near Ponnan Egg shop, Trichy - 620008, Landmark: Boologanathar Temple Street'}}</span>
+              <span>Address</span> <span>{{certificateData?.addressCustom ? certificateData?.addressCustom : '-'}}</span>
             </li>
 
           </ul>
-          <!-- <div class="skillsAcquired">
-            <h6>Skills acquired</h6>
-            <div>
-              <span *ngFor="let item of certificateData?.skillsAcquired">{{item}}</span>
-            </div>
-          </div> -->
-          <!-- <figure class="verified">
-            <img src="/assets/images/verified.png" alt="" />
-          </figure> -->
         </div>
       </div>
     </div>
@@ -81,7 +72,8 @@
     <figure>
         <img src="https://lmsassetspremium.lntedutech.com/portalicons/no-categories.webp" alt="" />
     </figure>
-    <div class="heading3">No Certficate Found!</div>
+    <div class="heading3">No Details Found!</div>
+  </div>
   </div>
   <footer>
     <div class="container">
