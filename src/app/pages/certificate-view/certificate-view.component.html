@@ -9,7 +9,7 @@
         <div class="heading" >
           <img [src]="!nocard && certificateData?.verified ? '/assets/images/verified_Mob.svg' : '/assets/images/not_verified.svg'" alt="" />
         </div>
-          <figure class="certified">
+          <figure *ngIf="!nocard && certificateData?.verified" class="certified">
             <img [src]="!nocard && certificateData?.verified ? '/assets/images/verified_tick.svg' : '/assets/images/not_verified_tick.svg'" alt="Certified" />
           </figure>
       </div>
