@@ -57,7 +57,7 @@
     .skills {
         background-color: $whiteColor;
         padding: 20px;
-        width: 94%;
+        width: 100%;
         box-shadow: 0px 0px 9px #00000026;
         border-radius: 3px;
         opacity: 1;
@@ -103,7 +103,7 @@
 .main-box {
     display: flex;
     justify-content: space-between;
-    width: 94%;
+    width: 100%;
     margin-top: 1.5%;
     .heading {
         color: $blackColor;
@@ -185,7 +185,7 @@
 
 .candidateSkillsBasicProfile {
     margin: 2em 0 2em 0;
-    width: 94%;
+    width: 100%;
 }
 
 .expandheaderArea {

@@ -212,7 +212,8 @@ mat-toolbar.header-toolbar {
     margin: 1%;
 }
 
-.profilearea,.candidateSkillsBasicProfile-wrapper {
+.profilearea,
+.candidateSkillsBasicProfile-wrapper {
     margin: 3%;
     .profileHeaderinfo {
         font-weight: 700;
@@ -333,10 +334,9 @@ mat-toolbar.header-toolbar {
         height: 170px;
     }
     .img-container {
-        width: 80%;
         display: flex;
         flex-direction: row;
-        max-width: 80%;
+        max-width: 78%;
         min-height: 215px;
         position: relative;
         padding: 0;
@@ -967,7 +967,7 @@ button.sliderBtn,
         &.right {
             right: 12px;
             &.doc {
-                right: -817px !important;
+                right: -600px !important;
             }
         }
     }
