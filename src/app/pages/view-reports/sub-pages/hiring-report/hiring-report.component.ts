@@ -831,7 +831,8 @@ export class HiringReportComponent implements OnInit {
         this.sectiondialogRef = this.matDialog.open(this.opensection, {
           width: '800px',
           height: 'auto',
-          panelClass: 'popupModalContainerForaddUser'
+          panelClass: 'popupModalContainerForaddUser',
+          
         });
       }
 
