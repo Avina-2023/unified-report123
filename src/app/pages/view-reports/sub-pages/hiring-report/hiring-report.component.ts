@@ -832,7 +832,6 @@ export class HiringReportComponent implements OnInit {
           width: '800px',
           height: 'auto',
           panelClass: 'popupModalContainerForaddUser',
-          
         });
       }
 
