@@ -1,8 +1,8 @@
 <div class="filterkey" *ngIf="isFilterRecords">
-    <div class="filter">
+    <div class="filter" *ngIf="ShowFilterWithCount && ShowFilterWithCount.length > 0 && ShowFilterWithCount && ShowFilterWithCount[0].count != 0 ">
         Filtered Records : {{pageRowCount}}
     </div>
-    <div class="filtermain">
+    <div class="filtermain" *ngIf="ShowFilterWithCount && ShowFilterWithCount.length > 0 && ShowFilterWithCount && ShowFilterWithCount[0].count != 0 ">
         <div class="tab" *ngFor="let selectedFilter of ShowFilterWithCount">
             <div class="filterval">
                 {{selectedFilter.key}}
@@ -12,7 +12,7 @@
                 </div>
             </div>
         </div>
-        <div *ngIf="ShowFilterWithCount.length > 0" class="clear" (click)="clearAll()">
+        <div class="clear" (click)="clearAll()">
             Clear all
         </div>
     </div>
@@ -25,13 +25,10 @@
             (filterModified)="getModel($event)" [pivotPanelShow]="'always'" [sideBar]="false" (gridReady)="onGridReady($event)" [rowModelType]="rowModelType" [serverSideStoreType]="serverSideStoreType" [maintainColumnOrder]="true" [cacheBlockSize]="cacheBlockSize"
             [chartThemeOverrides]="chartThemeOverrides" [suppressAggFuncInHeader]="true" [suppressColumnVirtualisation]="true" [autoGroupColumnDef]="autoGroupColumnDef" [pagination]="true" [paginationPageSize]="2500" [sideBar]="sideBar">
         </ag-grid-angular>
-
-
     </div>
 </div>
 
 <ng-template #sectionDetails>
-
     <div class="add-user-header">
         <h2>Section details</h2>
         <button class="closebtn" [mat-dialog-close]="true">
@@ -45,8 +42,6 @@
             <ag-grid-angular style="width: 98%; height: calc(100vh - 350px); margin:auto !important;font-size: 12px;" id="myGrid1" class="ag-theme-alpine" [columnDefs]="columnDefsmini" [rowData]="rowData1" [tooltipShowDelay]="0" [animateRows]="true" headerHeight="40"
                 [defaultColDef]="defaultColDef" rowHeight="35" (gridReady)="onGridReadymini($event)" [pagination]="true">
             </ag-grid-angular>
-
-
         </div>
     </div>
 </ng-template>
@@ -54,7 +49,6 @@
 
 
 <ng-template #filter>
-
     <div class="add-user-header">
         <div mat-dialog-title class="box">
             <span class="filter"><img src="/assets/images/Filter.svg" alt="">Filters</span>
@@ -63,11 +57,18 @@
     </div>
 
     <div class="main">
-
         <div class="left">
             <mat-selection-list #filter [multiple]="false">
-                <mat-list-option class="hide-checkbox" [value]="filterValues" *ngFor="let filterValues of filterTile;let i = index" (click)="selectedFilter(filter.selectedOptions.selected[0]?.value, i)">
-                    {{filterValues}}
+                <mat-list-option class="hide-checkbox" [value]="filterValues" [selected]="filterIndex && i == filterIndexValue" *ngFor="let filterValues of filterTile;let i = index" (click)="selectedFilter(filter.selectedOptions.selected[0]?.value, i)">
+                    <div class="mainHeader">{{filterValues}}
+                        <span *ngFor="let keyCount of ShowFilterWithCount">
+                      <span *ngIf="filterValues == keyCount?.key ">
+                       <span class="subCount" *ngIf="keyCount?.count != 0">
+                        ({{keyCount?.count}})
+                       </span>
+                        </span>
+                        </span>
+                    </div>
                 </mat-list-option>
             </mat-selection-list>
         </div>
@@ -97,8 +98,6 @@
 
             </mat-selection-list>
         </div>
-
-
     </div>
 
     <footer class="sticky-modal-footer">
@@ -108,7 +107,7 @@
             </div>
 
             <div class="right">
-                <div class="actionBtn" (click)="applyFilter()">APPLY</div>
+                <div class="actionBtn" (click)="applyFilter()">APPLY <span *ngIf="selectedFilterTotalCount && selectedFilterTotalCount !=0">({{selectedFilterTotalCount}})</span></div>
             </div>
         </div>
     </footer>
