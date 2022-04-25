@@ -286,6 +286,17 @@
                 // .mat-list-option:not(.mat-list-item-disabled) {
                 //     border-bottom: 1px solid #C6C6C6 !important;
                 // }
+                .mainHeader {
+                    display: flex;
+                    font-size: 15px;
+                    color: #3A3A3A;
+                    .subCount {
+                        margin-right: 3px;
+                        font-size: 15px;
+                        color: #3A3A3A;
+                        padding-left: 10px;
+                    }
+                }
             }
         }
         .right {
@@ -296,6 +307,8 @@
             .listView {
                 display: flex;
                 justify-content: space-between;
+                font-size: 15px;
+                color: #3A3A3A;
                 .count {
                     font-size: 14px;
                     font-weight: 500;

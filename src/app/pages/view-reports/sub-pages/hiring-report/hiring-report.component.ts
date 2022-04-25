@@ -10,6 +10,7 @@ import _ from 'lodash';
 import { AgChartThemeOverrides, ColDef, ColSpanParams, GridApi, IColumnToolPanel, SideBarDef } from '@ag-grid-enterprise/all-modules';
 import { MatSelectionListChange } from '@angular/material/list';
 import { PathLocationStrategy } from '@angular/common';
+
 @Component({
   selector: 'app-hiring-report',
   templateUrl: './hiring-report.component.html',
@@ -28,9 +29,7 @@ export class HiringReportComponent implements OnInit {
   from:any;
   to:any
   arr = [];
-
-
-
+  selectedFilterTotalCount:any;
   // public gridApi;
   public gridColumnApi;
   private gridApi!: GridApi;
@@ -120,6 +119,9 @@ export class HiringReportComponent implements OnInit {
   isFilterRecords = false;
   CGPA: { };
   ShowFilterWithCount: any;
+  userSelectedFiltervalue: any;
+  filterIndex: any;
+  filterIndexValue: any;
   constructor(private sendData: SentDataToOtherComp, private matDialog: MatDialog,private appconfig: AppConfigService,private toastr: ToastrService, private ApiService: ApiService,) {      
     this.serverSideStoreType = 'partial';
     this.masterDetail = true;
@@ -847,8 +849,6 @@ export class HiringReportComponent implements OnInit {
       }
 
     getFilter(filteredValues,index){
-      // this.filterTile = [];
-      // this.FilterData = [];
       let data;
       if(filteredValues){
         data = {
@@ -873,6 +873,9 @@ export class HiringReportComponent implements OnInit {
     }
 
   selectedFilter(event, index){
+    this.filterIndex = event;
+    localStorage.setItem('selectedIndex',index)
+    this.filterIndexValue = localStorage.getItem('selectedIndex') ? localStorage.getItem('selectedIndex') : 0;
     this.selectedMenuIndex = index;
     var result = _.pickBy(this.FilterData, function(value, key) {
       return _.startsWith(key, event);
@@ -888,12 +891,20 @@ export class HiringReportComponent implements OnInit {
     this.filteredValues[this.selectedKeyValue] = this.selectedOptions;
     this.getFilter(this.filteredValues,this.selectedMenuIndex)
       let arr = []
+      let filterCount = []
       for (const key in this.filteredValues) {
         if (Object.prototype.hasOwnProperty.call(this.filteredValues, key)) {
           const element = this.filteredValues[key];
           arr.push({key: key,count:this.filteredValues[key].length})
         }
         this.ShowFilterWithCount = arr;
+        // Adding All selected Filter Count
+        this.filteredValues[key].forEach(element => {
+            if(element.count != undefined){
+              filterCount.push(element.count)
+            }
+        });
+        this.selectedFilterTotalCount = _.sum(filterCount)
       }
 }
 
@@ -916,13 +927,14 @@ export class HiringReportComponent implements OnInit {
         this.to = '';
       }
     }
+    this.closeDialog();
   }
 
 
   clearAll(){
     this.filteredValues = [];
+    this.selectedFilterTotalCount = '';
     this.customfilter = false;
-    // this.selectedMenuIndex = 0;
     this.getFilter('',this.selectedMenuIndex);
     this.tabledef();
     this.ShowFilterWithCount = [];
@@ -938,18 +950,30 @@ export class HiringReportComponent implements OnInit {
     //Inside filter removing checkbox
     this.removedSelectedSingleFilter(FilterKey);
     this.removedFilterFromRequestArray(FilterKey);
+    this.gridApi.paginationGoToFirstPage();
+    this.gridApi.refreshServerSideStore({ purge: true });
     this.getFilter(this.filteredValues,0);
   }
 
   removedSelectedSingleFilter(FilterKey){
     const filteredremovedItem = this.ShowFilterWithCount.filter((item) => item.key !== FilterKey);
     this.ShowFilterWithCount = filteredremovedItem;
+  
   }
+
 
   removedFilterFromRequestArray(FilterKey){
     var filterArrAfterRemoved = _.omit(this.filteredValues, FilterKey);
     this.filteredValues = filterArrAfterRemoved;
+    // checking object is empty or not 
+   if(_.isEmpty(this.filteredValues)){
+    this.isFilterRecords = false;
+    this.gridApi.refreshServerSideStore({ purge: true });
+   }
   }
 
- 
+
+  closeDialog() {
+    this.matDialog.closeAll();
+  }
 }
