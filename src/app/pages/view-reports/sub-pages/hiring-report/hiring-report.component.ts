@@ -937,6 +937,8 @@ export class HiringReportComponent implements OnInit {
     this.customfilter = false;
     this.getFilter('',this.selectedMenuIndex);
     this.tabledef();
+    this.from = '';
+    this.to = '';
     this.ShowFilterWithCount = [];
     this.gridApi.paginationGoToFirstPage();
     this.cacheBlockSize = 0;
