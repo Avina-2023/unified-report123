@@ -23,7 +23,7 @@ export class HiringReportComponent implements OnInit {
   subscription: Subscription;
   selectedOption:any;
   selectedOptions:any = [];
-  customfilter = false;
+  customfilter:any = 'false';
   selectedFilterData: any = [] = [];
   // filter var
   from:any;
@@ -122,6 +122,7 @@ export class HiringReportComponent implements OnInit {
   userSelectedFiltervalue: any;
   filterIndex: any;
   filterIndexValue: any;
+  SelectedFilterMainCount:any;
   constructor(private sendData: SentDataToOtherComp, private matDialog: MatDialog,private appconfig: AppConfigService,private toastr: ToastrService, private ApiService: ApiService,) {      
     this.serverSideStoreType = 'partial';
     this.masterDetail = true;
@@ -140,7 +141,16 @@ export class HiringReportComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getFilter('','');
+    let localFilterval = localStorage.getItem('filterItem');
+    this.getFilter(localFilterval ? JSON.parse(localFilterval) : '','');
+    this.selectedFilterTotalCount = localStorage.getItem('ApplyCount') ? localStorage.getItem('ApplyCount') : '';
+    this.SelectedFilterMainCount = localStorage.getItem('mainFilterCount') ? localStorage.getItem('mainFilterCount') : '';
+    if(this.SelectedFilterMainCount){
+      this.isFilterRecords = true;
+    }else{
+      this.isFilterRecords = false;
+    }
+    this.ShowFilterWithCount = this.SelectedFilterMainCount ? JSON.parse(this.SelectedFilterMainCount) : '';
     this.tabledef();
     this.subscription = this.sendData.getMessage().subscribe(message => {
       this.isFilterOpen = message;
@@ -725,7 +735,6 @@ export class HiringReportComponent implements OnInit {
   }
 
   callApiForCandidateList() {
-   
     return  {
       getRows: (params) => {
       let apiData: any = params;
@@ -758,15 +767,24 @@ export class HiringReportComponent implements OnInit {
       }
         apiData.request.attributes = JSON.parse(this.appconfig.getLocalStorage('role'));
         apiData.request.email = this.appconfig.getSessionStorage('email') ? this.appconfig.getSessionStorage('email') : '';
-        apiData.request.customfilter = this.customfilter,
-        this.customfilter ? apiData.request = apiData.request = {...apiData.request, ...this.filteredValues} : '';
-        this.customfilter ? apiData.request.CGPA = [this.CGPA] : ''
-        
+
+        //Filter  params 
+        let localFilterval = localStorage.getItem('filterItem') ?  localStorage.getItem('filterItem') : '';
+        this.filteredValues = localFilterval ?  JSON.parse(localFilterval) : {};
+        this.customfilter = this.customfilter ? localStorage.getItem('customfilter') : 'false';
+        apiData.request.customfilter = this.customfilter ? localStorage.getItem('customfilter') : 'false',
+        this.customfilter ? apiData.request = apiData.request = {...apiData.request,  ...this.filteredValues } : '';
+       // CGPA local values
+        let localStorageCGPA = localStorage.getItem('Cgpa');
+        let fromAndTo = localStorageCGPA ? JSON.parse(localStorageCGPA) : {};
+        this.customfilter  ? apiData.request.CGPA = [localStorageCGPA ? JSON.parse(localStorageCGPA) : null] : ''
         this.candidateListSubscription =  this.ApiService.getHiringReport(apiData.request).subscribe((data1: any) => {
+        this.from = fromAndTo.from;
+        this.to = fromAndTo.to;
         this.userList = data1 && data1.data ? data1.data: [];
         if (this.userList.length > 0) {
           this.gridApi.hideOverlay();
-        this.pageRowCount = data1 && data1.total_count ? data1.total_count : 0;
+          this.pageRowCount = data1 && data1.total_count ? data1.total_count : 0;
         params.success({
           rowData: this.userList,
           rowCount: this.pageRowCount
@@ -839,7 +857,7 @@ export class HiringReportComponent implements OnInit {
 
 
       openFilter() {
-        this.getFilter(this.filteredValues,this.selectedMenuIndex);
+        // this.getFilter(this.filteredValues,this.selectedMenuIndex);
         this.filterDef = this.matDialog.open(this.filter, {
           width: '800px',
           height: 'auto',
@@ -849,6 +867,7 @@ export class HiringReportComponent implements OnInit {
       }
 
     getFilter(filteredValues,index){
+      localStorage.setItem('filterItem',JSON.stringify(filteredValues));
       let data;
       if(filteredValues){
         data = {
@@ -904,40 +923,56 @@ export class HiringReportComponent implements OnInit {
               filterCount.push(element.count)
             }
         });
-        this.selectedFilterTotalCount = _.sum(filterCount)
+        this.selectedFilterTotalCount = _.sum(filterCount);
+        localStorage.setItem('ApplyCount',this.selectedFilterTotalCount);
       }
 }
 
 
   applyFilter(){
-    this.customfilter = true;
+    this.customfilter = 'true';
     this.cacheBlockSize = 0;
     this.gridApi.paginationGoToFirstPage();
     this.gridApi.refreshServerSideStore({ purge: true });
     this.isFilterRecords = true;
+    localStorage.setItem('mainFilterCount',JSON.stringify(this.ShowFilterWithCount));
+    localStorage.setItem('customfilter','true');
     if(this.from != undefined && this.to != undefined){
       if(this.from <= this.to){
         this.CGPA = {
           from : parseInt(this.from),
           to : parseInt(this.to)
         }
+        let setLocalvalues = this.CGPA;
+        localStorage.setItem('Cgpa',JSON.stringify(setLocalvalues))
       }else {
         this.toastr.warning('Please enter valid CGPA');
         this.from = '';
         this.to = '';
+        localStorage.setItem('Cgpa','{}')
       }
+    }else{
+      localStorage.setItem('Cgpa','{}')
     }
     this.closeDialog();
+   
   }
 
 
   clearAll(){
     this.filteredValues = [];
     this.selectedFilterTotalCount = '';
-    this.customfilter = false;
+    this.customfilter = 'false';
     this.getFilter('',this.selectedMenuIndex);
     this.tabledef();
+    this.from = '';
+    this.to = '';
+    this.SelectedFilterMainCount = [];
     this.ShowFilterWithCount = [];
+    localStorage.setItem('mainFilterCount','');
+    localStorage.setItem('filterItem','{}');
+    localStorage.setItem('filterItem','{}');
+    localStorage.setItem('Cgpa','{}');
     this.gridApi.paginationGoToFirstPage();
     this.cacheBlockSize = 0;
     this.gridApi.paginationGoToFirstPage();
@@ -958,7 +993,6 @@ export class HiringReportComponent implements OnInit {
   removedSelectedSingleFilter(FilterKey){
     const filteredremovedItem = this.ShowFilterWithCount.filter((item) => item.key !== FilterKey);
     this.ShowFilterWithCount = filteredremovedItem;
-  
   }
 
 
