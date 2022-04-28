@@ -19,3 +19,18 @@
          flex-grow: 1;
      }
  }
+ 
+ ::ng-deep .full-screen-modal .mat-dialog-container {}
+ 
+ .popupHead {
+     text-align: center !important;
+ }
+ 
+ .action {
+     display: flex !important;
+     justify-content: space-evenly!important;
+     .confirm {
+         background: #09568C;
+         color: #fff;
+     }
+ }

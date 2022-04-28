@@ -30,6 +30,12 @@ export class HiringReportComponent implements OnInit {
   to:any
   arr = [];
   selectedFilterTotalCount:any;
+
+candidatereqdata:any = {
+    Domain: [],
+    Qualification: [],
+    Gender:[],
+  }
   // public gridApi;
   public gridColumnApi;
   private gridApi!: GridApi;
@@ -766,11 +772,11 @@ export class HiringReportComponent implements OnInit {
         delete apiData.request.filterModel.passedout.dateTo ? apiData.request.filterModel.passedout.dateTo : '';
       }
         apiData.request.attributes = JSON.parse(this.appconfig.getLocalStorage('role'));
-        apiData.request.email = this.appconfig.getSessionStorage('email') ? this.appconfig.getSessionStorage('email') : '';
+        apiData.request.email = this.appconfig.getLocalStorage('email') ? this.appconfig.getLocalStorage('email') : '';
 
         //Filter  params 
-        let localFilterval = localStorage.getItem('filterItem') ?  localStorage.getItem('filterItem') : '';
-        this.filteredValues = localFilterval ?  JSON.parse(localFilterval) : {};
+        let localFilterval = localStorage.getItem('filterItem') ?  localStorage.getItem('filterItem') : JSON.parse(this.candidatereqdata);
+        this.filteredValues = localFilterval ?  JSON.parse(localFilterval) : JSON.parse(this.candidatereqdata);
         this.customfilter = this.customfilter ? localStorage.getItem('customfilter') : 'false';
         apiData.request.customfilter = this.customfilter ? localStorage.getItem('customfilter') : 'false',
         this.customfilter ? apiData.request = apiData.request = {...apiData.request,  ...this.filteredValues } : '';
@@ -867,12 +873,19 @@ export class HiringReportComponent implements OnInit {
       }
 
     getFilter(filteredValues,index){
-      localStorage.setItem('filterItem',JSON.stringify(filteredValues));
+      localStorage.setItem('filterItem',filteredValues ? JSON.stringify(filteredValues) : JSON.stringify(this.candidatereqdata));
       let data;
+      const cgpa = JSON.parse(localStorage.getItem('Cgpa'));
       if(filteredValues){
         data = {
-          ...filteredValues
+          ...filteredValues, 
         }
+
+        if(filteredValues.CGPA){
+          data.CGPA = [cgpa]
+        }
+ 
+
       }else{
         data = {
           Domain: [],
@@ -907,8 +920,9 @@ export class HiringReportComponent implements OnInit {
     this.selectedOptions.forEach(element => {
         element.default = true;
     });
+
     this.filteredValues[this.selectedKeyValue] = this.selectedOptions;
-    this.getFilter(this.filteredValues,this.selectedMenuIndex)
+    this.getFilter(this.filteredValues,this.selectedMenuIndex);
       let arr = []
       let filterCount = []
       for (const key in this.filteredValues) {
@@ -931,9 +945,6 @@ export class HiringReportComponent implements OnInit {
 
   applyFilter(){
     this.customfilter = 'true';
-    this.cacheBlockSize = 0;
-    this.gridApi.paginationGoToFirstPage();
-    this.gridApi.refreshServerSideStore({ purge: true });
     this.isFilterRecords = true;
     localStorage.setItem('mainFilterCount',JSON.stringify(this.ShowFilterWithCount));
     localStorage.setItem('customfilter','true');
@@ -954,8 +965,11 @@ export class HiringReportComponent implements OnInit {
     }else{
       localStorage.setItem('Cgpa','{}')
     }
+    this.cacheBlockSize = 0;
+    this.gridApi.paginationGoToFirstPage();
+    this.gridApi.refreshServerSideStore({ purge: true });
     this.closeDialog();
-   
+    this.getFilter(this.filteredValues,this.selectedMenuIndex);
   }
 
 
@@ -969,13 +983,11 @@ export class HiringReportComponent implements OnInit {
     this.to = '';
     this.SelectedFilterMainCount = [];
     this.ShowFilterWithCount = [];
-    localStorage.setItem('mainFilterCount','');
-    localStorage.setItem('filterItem','{}');
-    localStorage.setItem('filterItem','{}');
+    localStorage.setItem('mainFilterCount','{}');
+    localStorage.setItem('filterItem',JSON.stringify(this.candidatereqdata));
     localStorage.setItem('Cgpa','{}');
     this.gridApi.paginationGoToFirstPage();
     this.cacheBlockSize = 0;
-    this.gridApi.paginationGoToFirstPage();
     this.gridApi.refreshServerSideStore({ purge: true });
     this.isFilterRecords = false;
   }
@@ -997,6 +1009,9 @@ export class HiringReportComponent implements OnInit {
 
 
   removedFilterFromRequestArray(FilterKey){
+      if(FilterKey == 'CGPA'){
+        localStorage.setItem('Cgpa','{}')
+      }
     var filterArrAfterRemoved = _.omit(this.filteredValues, FilterKey);
     this.filteredValues = filterArrAfterRemoved;
     // checking object is empty or not 
