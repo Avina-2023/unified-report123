@@ -5,7 +5,8 @@
         </div>
         <div *ngIf="isaccess" style="cursor: pointer;" class="logout">
             <span class="wel" *ngIf="isaccess">Welcome, {{orgName ? orgName : 'Admin'}}</span>
-            <span *ngIf="!InAppReport">
+            <span>
+                <!-- *ngIf="!InAppReport" -->
                 <em class="icon-logout"  matTooltip="Logout" (click)="logout()"></em>
             </span>
 
@@ -16,3 +17,13 @@
     </div>
     <footer class="footerPan">2021 © L&T EduTech All Rights Reserved</footer>
 </div>
+
+
+<ng-template #matDialog>
+    <h1 class="popupHead" mat-dialog-title>Are you sure you want to logout?</h1>
+    <!-- <div mat-dialog-content>This dialog showcases the title, close, content and actions elements.</div> -->
+    <div class="action" mat-dialog-actions>
+        <button mat-button [mat-dialog-close]="true">Cancel </button>
+        <button class="confirm" mat-button (click)="closeDialog($event)">Confirm </button>
+    </div>
+</ng-template>

@@ -1,3 +1,29 @@
+<div class="filterkey" *ngIf="isFilterRecords">
+    <div class="filter" *ngIf="ShowFilterWithCount && ShowFilterWithCount.length > 0 && ShowFilterWithCount">
+        Filtered Records : {{FilteredRecords}}
+    </div>
+
+    <!-- *ngIf="ShowFilterWithCount && ShowFilterWithCount.length > 0 && ShowFilterWithCount && ShowFilterWithCount[0].count != 0 " -->
+
+    <div class="filtermain" *ngIf="ShowFilterWithCount && ShowFilterWithCount.length > 0">
+        <div *ngFor="let selectedFilter of ShowFilterWithCount">
+            <div class="tab" *ngIf="selectedFilter.count != 0">
+                <div class="filterval">
+                    {{selectedFilter.key}}
+                    <span>({{selectedFilter.count}})</span>
+                    <div>
+                        <mat-icon (click)="clearFilter(selectedFilter.key)" class="close">close</mat-icon>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="clear" (click)="clearAll()">
+            Clear all
+        </div>
+    </div>
+</div>
+
 <div class="outer-div">
     <div class="grid-wrapper">
         <ag-grid-angular style="width: 99%; height: calc(100vh - 140px); margin:auto !important;font-size: 12px;" id="myGrid" class="ag-theme-alpine" [columnDefs]="columnDefs" [defaultColDef]="defaultColDef" [masterDetail]="masterDetail" [detailCellRendererParams]="detailCellRendererParams"
@@ -5,13 +31,10 @@
             (filterModified)="getModel($event)" [pivotPanelShow]="'always'" [sideBar]="false" (gridReady)="onGridReady($event)" [rowModelType]="rowModelType" [serverSideStoreType]="serverSideStoreType" [maintainColumnOrder]="true" [cacheBlockSize]="cacheBlockSize"
             [chartThemeOverrides]="chartThemeOverrides" [suppressAggFuncInHeader]="true" [suppressColumnVirtualisation]="true" [autoGroupColumnDef]="autoGroupColumnDef" [pagination]="true" [paginationPageSize]="2500" [sideBar]="sideBar">
         </ag-grid-angular>
-
-
     </div>
 </div>
 
 <ng-template #sectionDetails>
-
     <div class="add-user-header">
         <h2>Section details</h2>
         <button class="closebtn" [mat-dialog-close]="true">
@@ -25,10 +48,81 @@
             <ag-grid-angular style="width: 98%; height: calc(100vh - 350px); margin:auto !important;font-size: 12px;" id="myGrid1" class="ag-theme-alpine" [columnDefs]="columnDefsmini" [rowData]="rowData1" [tooltipShowDelay]="0" [animateRows]="true" headerHeight="40"
                 [defaultColDef]="defaultColDef" rowHeight="35" (gridReady)="onGridReadymini($event)" [pagination]="true">
             </ag-grid-angular>
-
-
         </div>
     </div>
+</ng-template>
+
+
+
+<ng-template #filter>
+    <div class="add-user-header">
+        <div mat-dialog-title class="box">
+            <span class="filter"><img src="/assets/images/Filter.svg" alt="">Filters</span>
+            <span class="clear" (click)="clearAll()">CLEAR ALL</span>
+        </div>
+    </div>
+
+    <div class="main">
+        <div class="left">
+            <mat-selection-list #filter [multiple]="false">
+                <mat-list-option class="hide-checkbox" [value]="filterValues" [selected]="filterIndex && i == filterIndexValue" *ngFor="let filterValues of filterTile;let i = index" (click)="selectedFilter(filter.selectedOptions.selected[0]?.value, i)">
+                    <div class="mainHeader">{{filterValues}}
+                        <div *ngIf="ShowFilterWithCount">
+                            <span *ngFor="let keyCount of ShowFilterWithCount">
+                            <span *ngIf="filterValues == keyCount?.key ">
+                             <span class="subCount" *ngIf="keyCount?.count != 0">
+                              ({{keyCount?.count}})
+                             </span>
+                            </span>
+                            </span>
+                        </div>
+
+                    </div>
+                </mat-list-option>
+            </mat-selection-list>
+        </div>
+
+        <div class="right">
+            <mat-selection-list #childfilter [(ngModel)]="selectedOptions" (click)="onSelection(childfilter, firstChildVal.key)">
+                <div>
+                    <mat-list-option class="child-checkbox" checkboxPosition="before" [selected]="childFilterValues.default" *ngFor="let childFilterValues of firstChildVal" [value]='childFilterValues'>
+                        <div class="listView">
+                            {{childFilterValues.key}}
+                            <span class="count"> {{childFilterValues.count ? childFilterValues.count : ''}}</span>
+                        </div>
+                    </mat-list-option>
+                </div>
+
+
+                <!-- <div class="margin" *ngIf="selectedKeyValue == 'CGPA'">
+                    <mat-form-field appearance="outline">
+                        <mat-label>From</mat-label>
+                        <input type="number" [(ngModel)]="from" matInput autocomplete="off">
+                        <span matSuffix>%</span>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>To</mat-label>
+                        <input autocomplete="off" type="number" (input)="onSearchChange($event.target.value,from)" matInput [(ngModel)]="to">
+                        <span matSuffix>%</span>
+                    </mat-form-field>
+                </div> -->
+
+            </mat-selection-list>
+        </div>
+    </div>
+
+    <footer class="sticky-modal-footer">
+        <div class="main-footer">
+            <div class="left">
+                <div class="actionBtn" (click)="closeDialog()">CLOSE</div>
+            </div>
+
+            <div class="right">
+                <div class="actionBtn" (click)="applyFilter()">APPLY <span *ngIf="selectedFilterTotalCount && selectedFilterTotalCount !=0">({{selectedFilterTotalCount}})</span></div>
+            </div>
+        </div>
+    </footer>
 </ng-template>
 
 <!-- (firstDataRendered)="onFirstDataRendered($event)" -->

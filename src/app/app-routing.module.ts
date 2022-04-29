@@ -4,6 +4,7 @@ import { APP_CONSTANTS } from './utils/app-constants.service';
 import { IsloggedInGuard } from './guards/islogged-in.guard';
 import { IsAccessGuard } from './guards/is-access.guard';
 import { PagenotfoundComponent } from './pages/pagenotfound/pagenotfound.component';
+import { CertificateViewComponent } from './pages/certificate-view/certificate-view.component';
 
 const routes: Routes = [
   {
@@ -11,6 +12,9 @@ const routes: Routes = [
   },
   {
     path: `${APP_CONSTANTS.ROUTES.AUTH}`, loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule), canActivate: [IsAccessGuard]
+  },
+  {
+    path: `certificate`, component: CertificateViewComponent
   },
   {
     path: `error`,
