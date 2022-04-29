@@ -157,14 +157,13 @@ candidatereqdata:any = {
   ngOnInit(): void {
     let localFilterval = localStorage.getItem('filterItem');
     this.getFilter(localFilterval ? JSON.parse(localFilterval) : '','');
-    // this.selectedFilterTotalCount = localStorage.getItem('ApplyCount') ? localStorage.getItem('ApplyCount') : '';
     this.SelectedFilterMainCount = localStorage.getItem('mainFilterCount') ? JSON.parse(localStorage.getItem('mainFilterCount')) : '[]';
     if(this.SelectedFilterMainCount){
       this.isFilterRecords = true;
     }else{
       this.isFilterRecords = false;
     }
-    this.ShowFilterWithCount = this.SelectedFilterMainCount ? this.SelectedFilterMainCount : [];
+    this.ShowFilterWithCount = this.SelectedFilterMainCount;;
     this.tabledef();
 
 
@@ -989,7 +988,7 @@ candidatereqdata:any = {
     this.to = '';
     this.SelectedFilterMainCount = [];
     this.ShowFilterWithCount = [];
-    localStorage.setItem('mainFilterCount','{}');
+    localStorage.setItem('mainFilterCount','[]');
     localStorage.setItem('filterItem',JSON.stringify(this.candidatereqdata));
     localStorage.setItem('Cgpa','{}');
     this.gridApi.paginationGoToFirstPage();
@@ -1026,6 +1025,10 @@ candidatereqdata:any = {
     this.isFilterRecords = false;
     this.gridApi.refreshServerSideStore({ purge: true });
    }
+  }
+
+  valuechange(event,from){
+    console.log(from)
   }
 
 
