@@ -1,6 +1,6 @@
 @import "../../../../../assets/scss/variables.scss";
 .color-black {
-    color: #000;
+    color: $blackColor;
     font-size: 1.3em;
     font-weight: 500;
 }
@@ -38,7 +38,7 @@
         max-width: 300px;
         font-size: 1.3em;
         font-weight: 500;
-        color: #000000;
+        color: $blackColor;
     }
     .psubHeader {
         font-size: 0.8em;
@@ -76,7 +76,7 @@
             font-size: 25px !important;
         }
         &.icon-uncheck {
-            color: #C02222;
+            color: $primaryColor;
             font-size: 30px !important;
         }
     }
@@ -85,7 +85,7 @@
 .status {
     display: flex !important;
     .warningColor {
-        color: #C02222 !important;
+        color: $primaryColor !important;
     }
     .statusCheck {
         display: inline-block;
@@ -111,7 +111,7 @@
     }
     .closebtn1 {
         font-size: 0.9em;
-        color: #000;
+        color: $blackColor;
         cursor: pointer;
         position: relative;
         top: 2px;
@@ -122,8 +122,3 @@
 .m-l-6 {
     margin-left: 4%;
 }
-
-// .icons {
-//     font-size: 1em !important;
-//     padding-right: 0.5em !important;
-// }
