@@ -67,7 +67,7 @@
             <mat-selection-list #filter [multiple]="false">
                 <mat-list-option class="hide-checkbox" [value]="filterValues" [selected]="filterIndex && i == filterIndexValue" *ngFor="let filterValues of filterTile;let i = index" (click)="selectedFilter(filter.selectedOptions.selected[0]?.value, i)">
                     <div class="mainHeader">{{filterValues}}
-                        <div *ngIf="ShowFilterWithCount.length > 0">
+                        <div *ngIf="ShowFilterWithCount">
                             <span *ngFor="let keyCount of ShowFilterWithCount">
                             <span *ngIf="filterValues == keyCount?.key ">
                              <span class="subCount" *ngIf="keyCount?.count != 0">
@@ -84,26 +84,29 @@
 
         <div class="right">
             <mat-selection-list #childfilter [(ngModel)]="selectedOptions" (click)="onSelection(childfilter, firstChildVal.key)">
-                <mat-list-option class="child-checkbox" checkboxPosition="before" [selected]="childFilterValues.default" *ngFor="let childFilterValues of firstChildVal" [value]='childFilterValues'>
-                    <div class="listView">
-                        {{childFilterValues.key}}
-                        <span class="count"> {{childFilterValues.count ? childFilterValues.count : ''}}</span>
-                    </div>
-                </mat-list-option>
+                <div>
+                    <mat-list-option class="child-checkbox" checkboxPosition="before" [selected]="childFilterValues.default" *ngFor="let childFilterValues of firstChildVal" [value]='childFilterValues'>
+                        <div class="listView">
+                            {{childFilterValues.key}}
+                            <span class="count"> {{childFilterValues.count ? childFilterValues.count : ''}}</span>
+                        </div>
+                    </mat-list-option>
+                </div>
 
-                <div class="margin" *ngIf="selectedKeyValue == 'CGPA'">
+
+                <!-- <div class="margin" *ngIf="selectedKeyValue == 'CGPA'">
                     <mat-form-field appearance="outline">
                         <mat-label>From</mat-label>
-                        <input type="number" [(ngModel)]="from" matInput>
+                        <input type="number" [(ngModel)]="from" matInput autocomplete="off">
                         <span matSuffix>%</span>
                     </mat-form-field>
 
                     <mat-form-field appearance="outline">
                         <mat-label>To</mat-label>
-                        <input type="number" (input)="onSearchChange($event.target.value,from)" matInput [(ngModel)]="to">
+                        <input autocomplete="off" type="number" (input)="onSearchChange($event.target.value,from)" matInput [(ngModel)]="to">
                         <span matSuffix>%</span>
                     </mat-form-field>
-                </div>
+                </div> -->
 
             </mat-selection-list>
         </div>
