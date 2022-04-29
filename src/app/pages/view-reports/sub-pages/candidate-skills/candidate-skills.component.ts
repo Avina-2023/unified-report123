@@ -124,7 +124,7 @@ export class CandidateSkillsComponent implements OnInit, OnChanges {
           data: this.barChartValue,
           backgroundColor:this.barChartColorCode,
           hoverBackgroundColor:this.barChartColorCode,
-          barThickness: 50,
+          barThickness: 30,
         }
       ];
      });
