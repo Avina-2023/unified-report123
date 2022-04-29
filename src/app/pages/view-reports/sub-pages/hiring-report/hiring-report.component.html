@@ -1,17 +1,23 @@
 <div class="filterkey" *ngIf="isFilterRecords">
-    <div class="filter" *ngIf="ShowFilterWithCount && ShowFilterWithCount.length > 0 && ShowFilterWithCount && ShowFilterWithCount[0].count != 0 ">
+    <div class="filter" *ngIf="ShowFilterWithCount && ShowFilterWithCount.length > 0 && ShowFilterWithCount">
         Filtered Records : {{pageRowCount}}
     </div>
-    <div class="filtermain" *ngIf="ShowFilterWithCount && ShowFilterWithCount.length > 0 && ShowFilterWithCount && ShowFilterWithCount[0].count != 0 ">
-        <div class="tab" *ngFor="let selectedFilter of ShowFilterWithCount">
-            <div class="filterval">
-                {{selectedFilter.key}}
-                <span *ngIf="selectedFilter.count != 0">({{selectedFilter.count}})</span>
-                <div>
-                    <mat-icon (click)="clearFilter(selectedFilter.key)" class="close">close</mat-icon>
+
+    <!-- *ngIf="ShowFilterWithCount && ShowFilterWithCount.length > 0 && ShowFilterWithCount && ShowFilterWithCount[0].count != 0 " -->
+
+    <div class="filtermain" *ngIf="ShowFilterWithCount && ShowFilterWithCount.length > 0">
+        <div *ngFor="let selectedFilter of ShowFilterWithCount">
+            <div class="tab" *ngIf="selectedFilter.count != 0">
+                <div class="filterval">
+                    {{selectedFilter.key}}
+                    <span>({{selectedFilter.count}})</span>
+                    <div>
+                        <mat-icon (click)="clearFilter(selectedFilter.key)" class="close">close</mat-icon>
+                    </div>
                 </div>
             </div>
         </div>
+
         <div class="clear" (click)="clearAll()">
             Clear all
         </div>
@@ -61,19 +67,22 @@
             <mat-selection-list #filter [multiple]="false">
                 <mat-list-option class="hide-checkbox" [value]="filterValues" [selected]="filterIndex && i == filterIndexValue" *ngFor="let filterValues of filterTile;let i = index" (click)="selectedFilter(filter.selectedOptions.selected[0]?.value, i)">
                     <div class="mainHeader">{{filterValues}}
-                        <span *ngFor="let keyCount of ShowFilterWithCount">
-                      <span *ngIf="filterValues == keyCount?.key ">
-                       <span class="subCount" *ngIf="keyCount?.count != 0">
-                        ({{keyCount?.count}})
-                       </span>
-                        </span>
-                        </span>
+                        <div *ngIf="ShowFilterWithCount">
+                            <span *ngFor="let keyCount of ShowFilterWithCount">
+                            <span *ngIf="filterValues == keyCount?.key ">
+                             <span class="subCount" *ngIf="keyCount?.count != 0">
+                              ({{keyCount?.count}})
+                             </span>
+                            </span>
+                            </span>
+                        </div>
+
                     </div>
                 </mat-list-option>
             </mat-selection-list>
         </div>
-        <div class="right">
 
+        <div class="right">
             <mat-selection-list #childfilter [(ngModel)]="selectedOptions" (click)="onSelection(childfilter, firstChildVal.key)">
                 <mat-list-option class="child-checkbox" checkboxPosition="before" [selected]="childFilterValues.default" *ngFor="let childFilterValues of firstChildVal" [value]='childFilterValues'>
                     <div class="listView">

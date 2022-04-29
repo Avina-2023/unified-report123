@@ -21,12 +21,12 @@
                             </span>
                         </div>
 
-                        <div class="width-168">
+                        <!-- <div class="width-168">
                             <em class="icon-Shield"></em>
                             <span>Status
                                 <span class="color-black">{{personalInfo.campusVerified ? 'Verfied' : 'Not Verified'}}</span>
                             </span>
-                        </div>
+                        </div> -->
 
                         <div *ngIf="personalInfo?.qrCodeURL" class="width-80">
                             <img class="QaCode" [src]="personalInfo.qrCodeURL ? personalInfo.qrCodeURL : '-'" alt="" srcset="">
