@@ -158,7 +158,7 @@ candidatereqdata:any = {
   ngOnInit(): void {
     let localFilterval = localStorage.getItem('filterItem');
     this.getFilter(localFilterval ? JSON.parse(localFilterval) : '','');
-    this.SelectedFilterMainCount = localStorage.getItem('mainFilterCount') ? JSON.parse(localStorage.getItem('mainFilterCount')) : '[]';
+    this.SelectedFilterMainCount = localStorage.getItem('mainFilterCount') ? JSON.parse(localStorage.getItem('mainFilterCount')) :   localStorage.setItem('mainFilterCount','[]');;
     if(this.SelectedFilterMainCount){
       this.isFilterRecords = true;
     }else{
@@ -925,16 +925,19 @@ candidatereqdata:any = {
     });
 
     this.filteredValues[this.selectedKeyValue] = this.selectedOptions;
-    this.getFilter(this.filteredValues,this.selectedMenuIndex);
+    if(this.selectedKeyValue != 'CGPA'){
+      this.getFilter(this.filteredValues,this.selectedMenuIndex);
+    }
+   
       let arr = []
-      let filterCount = []
+      // let filterCount = []
       for (const key in this.filteredValues) {
         if (Object.prototype.hasOwnProperty.call(this.filteredValues, key)) {
           const element = this.filteredValues[key];
             if(this.filteredValues[key].length > 0){
               arr.push({key: key,count:this.filteredValues[key].length})
             }
-            if(key == 'CGPA'){
+            if(key == 'CGPA' && this.from != undefined && this.to != undefined){
               arr.push({key: key,count:this.filteredValues['CGPA'] = 1})
             }
                      
