@@ -920,7 +920,6 @@ candidatereqdata:any = {
   }
 
   onSelection($event, key) {
-    console.log(this.selectedKeyValue)
     this.selectedOptions.forEach(element => {
         element.default = true;
     });
@@ -935,12 +934,10 @@ candidatereqdata:any = {
       for (const key in this.filteredValues) {
         if (Object.prototype.hasOwnProperty.call(this.filteredValues, key)) {
           const element = this.filteredValues[key];
-          console.log(element,'element')
             if(this.filteredValues[key].length > 0){
               arr.push({key: key,count:this.filteredValues[key].length})
             }
             if(key == 'CGPA' && this.from != undefined && this.to != undefined){
-              console.log(key,this.from,this.to,'cgheckinf')
               arr.push({key: key,count:this.filteredValues['CGPA'] = 1})
             }
                      
