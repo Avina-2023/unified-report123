@@ -17,6 +17,7 @@ import { ToastrService } from 'ngx-toastr';
 export class AuthComponent implements OnInit {
 
   @ViewChild('matDialog', { static: false }) matDialogRef: TemplateRef<any>;
+
   @ViewChild('sidenav') sidenav: MatSidenav;
   appConstant = APP_CONSTANTS.ENDPOINTS;
   isExpanded = false;
@@ -58,29 +59,22 @@ export class AuthComponent implements OnInit {
   }
 
   logout() {
-    this.apiService.logout();
-    this.toastr.warning('You have been logged out successfully');
+    this.matDialogOpen()
+    // this.apiService.logout();
   }
 
   matDialogOpen() {
     const dialogRef = this.dialog.open(this.matDialogRef, {
-      width: '500px',
-      height: 'auto',
-      autoFocus: false,
-      closeOnNavigation: true,
-      disableClose: false,
-      panelClass: 'popupModalContainerForForms'
+      width: '500px'
     });
   }
 
-  // closeDialog(e) {
-  //   if (e == 'save') {
-  //     this.dialog.closeAll();
-  //     this.logout();
-  //   } else {
-  //     this.dialog.closeAll();
-  //   }
-  // }
+  closeDialog(e) {
+
+      this.dialog.closeAll();
+      this.apiService.logout();
+  
+  }
 
   mouseenter() {
     if (!this.isExpanded) {

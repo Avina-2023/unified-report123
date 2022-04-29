@@ -42,7 +42,7 @@ export class LoginPageComponent implements OnInit {
           if(response.data.attributes){
             this.appConfig.setLocalStorage('token', 'true');
             this.appConfig.setLocalStorage('role',response.data ? JSON.stringify(response.data.attributes.organisations)  : '');
-            this.appConfig.setSessionStorage('email',response.data && response.data.attributes  ? response.data.attributes.email : '');
+            this.appConfig.setLocalStorage('email',response.data && response.data.attributes  ? response.data.attributes.email : '');
             this.disableButton = false;
             this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.REPORTS.HOME);
           }else {
