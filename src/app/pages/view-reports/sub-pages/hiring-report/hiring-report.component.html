@@ -1,6 +1,6 @@
 <div class="filterkey" *ngIf="isFilterRecords">
     <div class="filter" *ngIf="ShowFilterWithCount && ShowFilterWithCount.length > 0 && ShowFilterWithCount">
-        Filtered Records : {{pageRowCount}}
+        Filtered Records : {{FilteredRecords}}
     </div>
 
     <!-- *ngIf="ShowFilterWithCount && ShowFilterWithCount.length > 0 && ShowFilterWithCount && ShowFilterWithCount[0].count != 0 " -->
@@ -100,7 +100,7 @@
 
                     <mat-form-field appearance="outline">
                         <mat-label>To</mat-label>
-                        <input type="number" matInput [(ngModel)]="to">
+                        <input type="number" (input)="onSearchChange($event.target.value,from)" matInput [(ngModel)]="to">
                         <span matSuffix>%</span>
                     </mat-form-field>
                 </div>
