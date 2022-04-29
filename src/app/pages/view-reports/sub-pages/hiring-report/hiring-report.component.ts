@@ -128,7 +128,7 @@ candidatereqdata:any = {
   userSelectedFiltervalue: any;
   filterIndex: any;
   filterIndexValue: any;
-  SelectedFilterMainCount:any;
+  SelectedFilterMainCount:any = [];
   constructor(private sendData: SentDataToOtherComp, private matDialog: MatDialog,private appconfig: AppConfigService,private toastr: ToastrService, private ApiService: ApiService,) {      
     this.serverSideStoreType = 'partial';
     this.masterDetail = true;
@@ -144,28 +144,29 @@ candidatereqdata:any = {
       minWidth: 220,
       sideBar: 'filter',
     };
-  }
 
-  ngOnInit(): void {
-    let localFilterval = localStorage.getItem('filterItem');
-    this.getFilter(localFilterval ? JSON.parse(localFilterval) : '','');
-    this.selectedFilterTotalCount = localStorage.getItem('ApplyCount') ? localStorage.getItem('ApplyCount') : '';
-    this.SelectedFilterMainCount = localStorage.getItem('mainFilterCount') ? localStorage.getItem('mainFilterCount') : '';
-    if(this.SelectedFilterMainCount){
-      this.isFilterRecords = true;
-    }else{
-      this.isFilterRecords = false;
-    }
-    this.ShowFilterWithCount = this.SelectedFilterMainCount ? JSON.parse(this.SelectedFilterMainCount) : '';
-    this.tabledef();
     this.subscription = this.sendData.getMessage().subscribe(message => {
       this.isFilterOpen = message;
       if(this.isFilterOpen){
         this.openFilter();
       }else {
-
       }
     });
+  }
+
+  ngOnInit(): void {
+    let localFilterval = localStorage.getItem('filterItem');
+    this.getFilter(localFilterval ? JSON.parse(localFilterval) : '','');
+    // this.selectedFilterTotalCount = localStorage.getItem('ApplyCount') ? localStorage.getItem('ApplyCount') : '';
+    this.SelectedFilterMainCount = localStorage.getItem('mainFilterCount') ? JSON.parse(localStorage.getItem('mainFilterCount')) : '[]';
+    if(this.SelectedFilterMainCount){
+      this.isFilterRecords = true;
+    }else{
+      this.isFilterRecords = false;
+    }
+    this.ShowFilterWithCount = this.SelectedFilterMainCount ? this.SelectedFilterMainCount : [];
+    this.tabledef();
+
 
   }
 
@@ -782,7 +783,7 @@ candidatereqdata:any = {
         this.customfilter ? apiData.request = apiData.request = {...apiData.request,  ...this.filteredValues } : '';
        // CGPA local values
         let localStorageCGPA = localStorage.getItem('Cgpa');
-        let fromAndTo = localStorageCGPA ? JSON.parse(localStorageCGPA) : {};
+        let fromAndTo = localStorageCGPA ? JSON.parse(localStorageCGPA) : [];
         this.customfilter  ? apiData.request.CGPA = [localStorageCGPA ? JSON.parse(localStorageCGPA) : null] : ''
         this.candidateListSubscription =  this.ApiService.getHiringReport(apiData.request).subscribe((data1: any) => {
         this.from = fromAndTo.from;
@@ -898,6 +899,7 @@ candidatereqdata:any = {
           if(response.success){
             this.filterTile = Object.keys(response.data);
             this.FilterData = response.data;
+            this.selectedFilterTotalCount = response && response.totalCount;
             this.selectedFilter(this.filterTile[index ? index : 0], index ? index : 0);
           }
       })
@@ -928,17 +930,21 @@ candidatereqdata:any = {
       for (const key in this.filteredValues) {
         if (Object.prototype.hasOwnProperty.call(this.filteredValues, key)) {
           const element = this.filteredValues[key];
-          arr.push({key: key,count:this.filteredValues[key].length})
+            if(this.filteredValues[key].length > 0){
+              arr.push({key: key,count:this.filteredValues[key].length})
+            }
+                     
         }
         this.ShowFilterWithCount = arr;
+        // console.log(arr,'arrarrarrarrarr')
         // Adding All selected Filter Count
-        this.filteredValues[key].forEach(element => {
-            if(element.count != undefined){
-              filterCount.push(element.count)
-            }
-        });
-        this.selectedFilterTotalCount = _.sum(filterCount);
-        localStorage.setItem('ApplyCount',this.selectedFilterTotalCount);
+        // this.filteredValues[key].forEach(element => {
+        //     if(element.count != undefined){
+        //       filterCount.push(element.count)
+        //     }
+        // });
+        // this.selectedFilterTotalCount = _.sum(filterCount);
+        // localStorage.setItem('ApplyCount',this.selectedFilterTotalCount);
       }
 }
 
@@ -946,7 +952,7 @@ candidatereqdata:any = {
   applyFilter(){
     this.customfilter = 'true';
     this.isFilterRecords = true;
-    localStorage.setItem('mainFilterCount',JSON.stringify(this.ShowFilterWithCount));
+    localStorage.setItem('mainFilterCount', this.ShowFilterWithCount ? JSON.stringify(this.ShowFilterWithCount) : '[]');
     localStorage.setItem('customfilter','true');
     if(this.from != undefined && this.to != undefined){
       if(this.from <= this.to){
@@ -1004,7 +1010,8 @@ candidatereqdata:any = {
 
   removedSelectedSingleFilter(FilterKey){
     const filteredremovedItem = this.ShowFilterWithCount.filter((item) => item.key !== FilterKey);
-    this.ShowFilterWithCount = filteredremovedItem;
+    this.ShowFilterWithCount = filteredremovedItem ? filteredremovedItem : '[]';
+    localStorage.setItem('mainFilterCount',JSON.stringify(this.ShowFilterWithCount));
   }
 
 
