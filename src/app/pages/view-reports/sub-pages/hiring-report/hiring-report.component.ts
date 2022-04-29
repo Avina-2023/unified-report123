@@ -129,6 +129,7 @@ candidatereqdata:any = {
   filterIndex: any;
   filterIndexValue: any;
   SelectedFilterMainCount:any = [];
+  FilteredRecords: any;
   constructor(private sendData: SentDataToOtherComp, private matDialog: MatDialog,private appconfig: AppConfigService,private toastr: ToastrService, private ApiService: ApiService,) {      
     this.serverSideStoreType = 'partial';
     this.masterDetail = true;
@@ -157,14 +158,13 @@ candidatereqdata:any = {
   ngOnInit(): void {
     let localFilterval = localStorage.getItem('filterItem');
     this.getFilter(localFilterval ? JSON.parse(localFilterval) : '','');
-    // this.selectedFilterTotalCount = localStorage.getItem('ApplyCount') ? localStorage.getItem('ApplyCount') : '';
     this.SelectedFilterMainCount = localStorage.getItem('mainFilterCount') ? JSON.parse(localStorage.getItem('mainFilterCount')) : '[]';
     if(this.SelectedFilterMainCount){
       this.isFilterRecords = true;
     }else{
       this.isFilterRecords = false;
     }
-    this.ShowFilterWithCount = this.SelectedFilterMainCount ? this.SelectedFilterMainCount : [];
+    this.ShowFilterWithCount = this.SelectedFilterMainCount;;
     this.tabledef();
 
 
@@ -789,6 +789,7 @@ candidatereqdata:any = {
         this.from = fromAndTo.from;
         this.to = fromAndTo.to;
         this.userList = data1 && data1.data ? data1.data: [];
+        this.FilteredRecords = data1 ? data1.total_count : 0
         if (this.userList.length > 0) {
           this.gridApi.hideOverlay();
           this.pageRowCount = data1 && data1.total_count ? data1.total_count : 0;
@@ -933,18 +934,12 @@ candidatereqdata:any = {
             if(this.filteredValues[key].length > 0){
               arr.push({key: key,count:this.filteredValues[key].length})
             }
+            if(key == 'CGPA'){
+              arr.push({key: key,count:this.filteredValues['CGPA'] = 1})
+            }
                      
         }
         this.ShowFilterWithCount = arr;
-        // console.log(arr,'arrarrarrarrarr')
-        // Adding All selected Filter Count
-        // this.filteredValues[key].forEach(element => {
-        //     if(element.count != undefined){
-        //       filterCount.push(element.count)
-        //     }
-        // });
-        // this.selectedFilterTotalCount = _.sum(filterCount);
-        // localStorage.setItem('ApplyCount',this.selectedFilterTotalCount);
       }
 }
 
@@ -989,7 +984,7 @@ candidatereqdata:any = {
     this.to = '';
     this.SelectedFilterMainCount = [];
     this.ShowFilterWithCount = [];
-    localStorage.setItem('mainFilterCount','{}');
+    localStorage.setItem('mainFilterCount','[]');
     localStorage.setItem('filterItem',JSON.stringify(this.candidatereqdata));
     localStorage.setItem('Cgpa','{}');
     this.gridApi.paginationGoToFirstPage();
@@ -1010,7 +1005,7 @@ candidatereqdata:any = {
 
   removedSelectedSingleFilter(FilterKey){
     const filteredremovedItem = this.ShowFilterWithCount.filter((item) => item.key !== FilterKey);
-    this.ShowFilterWithCount = filteredremovedItem ? filteredremovedItem : '[]';
+    this.ShowFilterWithCount = filteredremovedItem;
     localStorage.setItem('mainFilterCount',JSON.stringify(this.ShowFilterWithCount));
   }
 
@@ -1026,6 +1021,19 @@ candidatereqdata:any = {
     this.isFilterRecords = false;
     this.gridApi.refreshServerSideStore({ purge: true });
    }
+  }
+
+  onSearchChange(event,from){
+    if(event && from != undefined ){
+      this.CGPA = {
+        from : parseInt(this.from),
+        to : parseInt(this.to)
+      }
+      let setLocalvalues = this.CGPA;
+      localStorage.setItem('Cgpa',JSON.stringify(setLocalvalues))
+      this.getFilter(this.filteredValues,this.selectedMenuIndex)
+    }
+
   }
 
 
