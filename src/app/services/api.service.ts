@@ -23,7 +23,7 @@ export class ApiService {
   logout() {
     this.appConfig.clearLocalStorage();
     this.appConfig.clearSessionStorage();
-    return this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.LOGIN);
+    return this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.LANDING);
   }
 
   login(data: any) {

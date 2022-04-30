@@ -19,6 +19,7 @@ export const APP_CONSTANTS = {
     LOGIN: '/login',
     HOME: '/home',
     AUTH: '/auth',
+    LANDING: '/landing',
     REPORTS: {
       HOME: '/auth/reports',
       USERLIST: '/auth/reports/userlist',
@@ -34,6 +35,7 @@ export const APP_CONSTANTS = {
   // Routes
   ROUTES: {
     LOGIN: 'login',
+    LANDING: 'landing',
     HOME: 'home',
     AUTH: 'auth',
     REPORTS: {
