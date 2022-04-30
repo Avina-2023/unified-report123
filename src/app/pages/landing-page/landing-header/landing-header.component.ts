@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AppConfigService } from 'src/app/utils/app-config.service';
+import { APP_CONSTANTS } from 'src/app/utils/app-constants.service';
 
 @Component({
   selector: 'app-landing-header',
@@ -8,9 +10,14 @@ import { Component, OnInit } from '@angular/core';
 export class LandingHeaderComponent implements OnInit {
 
   showAvatar = false;
-  constructor() { }
+  constructor(public appConfig: AppConfigService,) { }
 
   ngOnInit(): void {
+  }
+
+
+  NavtoLogin(){
+    this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.LOGIN);
   }
 
 }

@@ -12,6 +12,9 @@ const routes: Routes = [
     path: `landing`, component: LandingPageComponent
   },
   {
+    path: ``, component: LandingPageComponent ,canActivate: [IsloggedInGuard]
+  },
+  {
     path: '', loadChildren: () => import('./pages/login/login.module').then(m => m.LoginModule), canActivate: [IsloggedInGuard]
   },
   {
