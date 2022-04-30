@@ -28,9 +28,10 @@
  
  .action {
      display: flex !important;
-     justify-content: space-evenly!important;
+     justify-content: center !important;
      .confirm {
          background: #09568C;
          color: #fff;
+         margin-left: 10%;
      }
  }
