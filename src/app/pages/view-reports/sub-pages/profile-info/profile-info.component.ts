@@ -65,7 +65,7 @@ export class ProfileInfoComponent implements OnInit, OnChanges {
     this.orgId = this.orgdetails[0].orgId;
     this.isaccess = this.appConfig.isComingFromMicroCert();
     this.getRoute();
-    this.getDriveUser(this.driveList && this.driveList[0].main_drivename ? this.driveList[0].main_drivename : this.selectScheduleName ,this.selectedMail ? this.selectedMail : '');
+  
 
   }
 
@@ -89,6 +89,9 @@ export class ProfileInfoComponent implements OnInit, OnChanges {
     this.scheduleType = this.getAllReportsData && this.getAllReportsData?.BehavioralAssessment ?  this.getAllReportsData?.BehavioralAssessment[0]?.testtype : '' ;
     this.selectScheduleName = this.getAllReportsData && this.getAllReportsData?.BehavioralAssessment ? this.getAllReportsData?.BehavioralAssessment[0]?.drivename : '';
     this.emitdriveNametoParent();
+    if(this.driveList){
+      this.getDriveUser(this.driveList && this.driveList[0].main_drivename ? this.driveList[0].main_drivename : this.selectScheduleName ,this.selectedMail ? this.selectedMail : '');
+    }
 
     this.personalInfo = {};
     this.personalInfo.firstname = this.getAllReportsData?.firstname;
