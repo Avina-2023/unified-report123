@@ -478,6 +478,7 @@ candidatereqdata:any = {
         field: 'institute',
         filter: 'agTextColumnFilter',
         chartDataType: 'series',
+        aggFunc: 'avg',
         filterParams: {
           suppressAndOrCondition: true,
           filterOptions: ['contains']
