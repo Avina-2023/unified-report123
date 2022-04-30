@@ -188,6 +188,7 @@ candidatereqdata:any = {
         field: 'firstname',
         filter: 'agTextColumnFilter',
         chartDataType: 'category',
+        aggFunc: 'sum',
         filterParams: {
           suppressAndOrCondition: true,
           filterOptions: ['contains']
@@ -234,6 +235,7 @@ candidatereqdata:any = {
         field: 'branch',
         filter: 'agTextColumnFilter',
         chartDataType: 'series',
+        aggFunc: 'sum',
         filterParams: {
           suppressAndOrCondition: true,
           filterOptions: ['contains']
@@ -255,6 +257,7 @@ candidatereqdata:any = {
         field: 'testscore',
         filter: 'agNumberColumnFilter',
         chartDataType: 'series',
+        aggFunc: 'avg',
         // width:100,
         filterParams: {
           suppressAndOrCondition: true,
@@ -453,6 +456,7 @@ candidatereqdata:any = {
         field: 'specialization',
         filter: 'agTextColumnFilter',
         chartDataType: 'series',
+        aggFunc: 'avg',
         filterParams: {
           suppressAndOrCondition: true,
           filterOptions: ['contains']
@@ -493,6 +497,7 @@ candidatereqdata:any = {
         headerName: 'Graduation Aggregate',
         field: 'edu_percentage',
         filter: 'agNumberColumnFilter',
+        aggFunc: 'avg',
         chartDataType: 'series',
         filterParams: {
           suppressAndOrCondition: true,
@@ -537,6 +542,7 @@ candidatereqdata:any = {
         field: 'gender',
         filter: 'agTextColumnFilter',
         chartDataType: 'series',
+        aggFunc: 'avg',
         filterParams: {
           suppressAndOrCondition: true,
           filterOptions: ['contains']
