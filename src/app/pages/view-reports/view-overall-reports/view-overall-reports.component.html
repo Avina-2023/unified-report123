@@ -9,16 +9,17 @@
     </div> -->
 
     <mat-tab-group>
-        <mat-tab label="Basic Profile Score">
-            <app-candidate-skills [getAllReportsData]="getAllReportsData"></app-candidate-skills>
+        <mat-tab label="Basic Profile">
+            <app-profile-info (driveName)="getSelectedDriveName($event)" (driveUserEmail)="getDriveBaisedUser($event)" [getAllReportsData]="getAllReportsData">
+            </app-profile-info>
         </mat-tab>
 
 
-        <mat-tab label="Test Analysis Score">
+        <mat-tab label="Test Analysis">
             <ng-continer *ngIf="getAllReportsData && getAllReportsData.email; else nocard">
                 <!-- <div #stickyMenu class="menucontent" [class.sticky]="sticky"> -->
-                <app-profile-info (driveName)="getSelectedDriveName($event)" (driveUserEmail)="getDriveBaisedUser($event)" [getAllReportsData]="getAllReportsData">
-                </app-profile-info>
+                <!-- <app-profile-info (driveName)="getSelectedDriveName($event)" (driveUserEmail)="getDriveBaisedUser($event)" [getAllReportsData]="getAllReportsData">
+                </app-profile-info> -->
                 <!-- </div> -->
 
                 <!-- <app-doc-info [getAllReportsData]="getAllReportsData"></app-doc-info> -->
@@ -31,6 +32,10 @@
                 <div class="clearfix"></div>
 
             </ng-continer>
+        </mat-tab>
+
+        <mat-tab label="Job Recommendations">
+            <app-candidate-skills [getAllReportsData]="getAllReportsData"></app-candidate-skills>
         </mat-tab>
     </mat-tab-group>
 
