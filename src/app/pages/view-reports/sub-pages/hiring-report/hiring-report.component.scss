@@ -343,6 +343,10 @@
     .filter {
         color: #607D8B;
         font-size: 16px;
+        .count {
+            color: $primaryColor;
+            font-weight: 500;
+        }
     }
     .clear {
         color: red;

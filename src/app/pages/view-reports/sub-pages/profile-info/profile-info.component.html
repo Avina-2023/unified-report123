@@ -60,20 +60,25 @@
                             </span>
                     </div>
 
-                    <div class="width-270">
-                        <!-- <mat-icon>perm_identity</mat-icon> -->
+                    <!-- <div class="width-270">
+                     
                         <em class="icon-User"></em>
                         <span>Name
                                 <span class="color-black">{{personalInfo.firstname ? personalInfo.firstname : '-'}}</span>
                         </span>
-                    </div>
+                    </div> -->
 
                     <div class="width-270">
-                        <!-- <mat-icon> mail_outline</mat-icon> -->
                         <em class="icon-Email"></em>
                         <span>Email
                                 <span class="color-black">{{personalInfo.email ? personalInfo.email : '-'}}</span>
                         </span>
+                    </div>
+
+                    <div class="width-90">
+                        <div *ngIf="personalInfo?.qrCodeURL" class="width-80">
+                            <img class="QaCode" [src]="personalInfo.qrCodeURL ? personalInfo.qrCodeURL : '-'" alt="" srcset="">
+                        </div>
                     </div>
                 </div>
             </mat-expansion-panel-header>

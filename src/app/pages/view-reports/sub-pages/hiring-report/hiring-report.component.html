@@ -1,33 +1,39 @@
-<div class="filterkey" *ngIf="isFilterRecords">
-    <div class="filter" *ngIf="ShowFilterWithCount && ShowFilterWithCount.length > 0 && ShowFilterWithCount">
-        Filtered Records : {{FilteredRecords}}
+<div class="filterkey">
+    <div class="filter" *ngIf="isFilterRecords">
+        Filtered Records : <span class="count">{{FilteredRecords ? FilteredRecords : 0}}</span>
+    </div>
+
+    <div class="filter" *ngIf="!isFilterRecords">
+        Total Candidates : <span class="count">{{FilteredRecords ? FilteredRecords : 0}}</span>
     </div>
 
     <!-- *ngIf="ShowFilterWithCount && ShowFilterWithCount.length > 0 && ShowFilterWithCount && ShowFilterWithCount[0].count != 0 " -->
-
-    <div class="filtermain" *ngIf="ShowFilterWithCount && ShowFilterWithCount.length > 0">
-        <div *ngFor="let selectedFilter of ShowFilterWithCount">
-            <div class="tab" *ngIf="selectedFilter.count != 0">
-                <div class="filterval">
-                    {{selectedFilter.key}}
-                    <span>({{selectedFilter.count}})</span>
-                    <div>
-                        <mat-icon (click)="clearFilter(selectedFilter.key)" class="close">close</mat-icon>
+    <div *ngIf="isFilterRecords">
+        <div class="filtermain" *ngIf="ShowFilterWithCount && ShowFilterWithCount.length > 0">
+            <div *ngFor="let selectedFilter of ShowFilterWithCount">
+                <div class="tab" *ngIf="selectedFilter.count != 0">
+                    <div class="filterval">
+                        {{selectedFilter.key}}
+                        <span>({{selectedFilter.count}})</span>
+                        <div>
+                            <mat-icon (click)="clearFilter(selectedFilter.key)" class="close">close</mat-icon>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="clear" (click)="clearAll()">
-            Clear all
+            <div class="clear" (click)="clearAll()">
+                Clear all
+            </div>
         </div>
     </div>
+
 </div>
 
 <div class="outer-div">
     <div class="grid-wrapper">
         <ag-grid-angular style="width: 99%; height: calc(100vh - 140px); margin:auto !important;font-size: 12px;" id="myGrid" class="ag-theme-alpine" [columnDefs]="columnDefs" [defaultColDef]="defaultColDef" [masterDetail]="masterDetail" [detailCellRendererParams]="detailCellRendererParams"
-            [rowData]="rowData" [enableRangeSelection]="true" [enableCharts]="true" [tooltipShowDelay]="0" [rowSelection]="'multiple'" [animateRows]="true" headerHeight="40" rowHeight="35" [suppressRowClickSelection]="true" [suppressRowTransform]="true" (cellClicked)="onCellClicked($event)"
+            [rowData]="rowData" [enableRangeSelection]="true" [enableCharts]="true" [tooltipShowDelay]="0" [rowSelection]="'multiple'" [animateRows]="true" headerHeight="40" rowHeight="40" [suppressRowClickSelection]="true" [suppressRowTransform]="true" (cellClicked)="onCellClicked($event)"
             (filterModified)="getModel($event)" [pivotPanelShow]="'always'" [sideBar]="false" (gridReady)="onGridReady($event)" [rowModelType]="rowModelType" [serverSideStoreType]="serverSideStoreType" [maintainColumnOrder]="true" [cacheBlockSize]="cacheBlockSize"
             [chartThemeOverrides]="chartThemeOverrides" [suppressAggFuncInHeader]="true" [suppressColumnVirtualisation]="true" [autoGroupColumnDef]="autoGroupColumnDef" [pagination]="true" [paginationPageSize]="2500" [sideBar]="sideBar">
         </ag-grid-angular>

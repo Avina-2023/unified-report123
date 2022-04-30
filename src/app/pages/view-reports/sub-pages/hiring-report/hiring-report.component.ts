@@ -255,13 +255,13 @@ candidatereqdata:any = {
         field: 'testscore',
         filter: 'agNumberColumnFilter',
         chartDataType: 'series',
-        
+        // width:100,
         filterParams: {
           suppressAndOrCondition: true,
           filterOptions: ['equals','lessThan','lessThanOrEqual','greaterThan','greaterThanOrEqual','inRange']
         },
         // tooltipField:'testscore',
-        // width: 100,
+        width: 10,
         cellRenderer: (params) => {
           if(params.data && params.data.testtype == 'Personality & Behaviour'){
             return '<div style="text-align:right;">'+'-'+'</div>';
