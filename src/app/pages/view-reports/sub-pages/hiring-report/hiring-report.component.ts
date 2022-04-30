@@ -130,7 +130,7 @@ candidatereqdata:any = {
   filterIndexValue: any;
   SelectedFilterMainCount:any = [];
   FilteredRecords: any;
-  constructor(private sendData: SentDataToOtherComp, private matDialog: MatDialog,private appconfig: AppConfigService,private toastr: ToastrService, private ApiService: ApiService,) {      
+  constructor(private apiService: ApiService,private sendData: SentDataToOtherComp, private matDialog: MatDialog,private appconfig: AppConfigService,private toastr: ToastrService, private ApiService: ApiService,) {      
     this.serverSideStoreType = 'partial';
     this.masterDetail = true;
     this.rowModelType = 'serverSide';
@@ -188,6 +188,7 @@ candidatereqdata:any = {
         field: 'firstname',
         filter: 'agTextColumnFilter',
         chartDataType: 'category',
+        aggFunc: 'sum',
         filterParams: {
           suppressAndOrCondition: true,
           filterOptions: ['contains']
@@ -234,6 +235,7 @@ candidatereqdata:any = {
         field: 'branch',
         filter: 'agTextColumnFilter',
         chartDataType: 'series',
+        aggFunc: 'sum',
         filterParams: {
           suppressAndOrCondition: true,
           filterOptions: ['contains']
@@ -255,13 +257,14 @@ candidatereqdata:any = {
         field: 'testscore',
         filter: 'agNumberColumnFilter',
         chartDataType: 'series',
-        
+        aggFunc: 'avg',
+        // width:100,
         filterParams: {
           suppressAndOrCondition: true,
           filterOptions: ['equals','lessThan','lessThanOrEqual','greaterThan','greaterThanOrEqual','inRange']
         },
         // tooltipField:'testscore',
-        // width: 100,
+        width: 10,
         cellRenderer: (params) => {
           if(params.data && params.data.testtype == 'Personality & Behaviour'){
             return '<div style="text-align:right;">'+'-'+'</div>';
@@ -453,6 +456,7 @@ candidatereqdata:any = {
         field: 'specialization',
         filter: 'agTextColumnFilter',
         chartDataType: 'series',
+        aggFunc: 'avg',
         filterParams: {
           suppressAndOrCondition: true,
           filterOptions: ['contains']
@@ -474,6 +478,7 @@ candidatereqdata:any = {
         field: 'institute',
         filter: 'agTextColumnFilter',
         chartDataType: 'series',
+        aggFunc: 'avg',
         filterParams: {
           suppressAndOrCondition: true,
           filterOptions: ['contains']
@@ -493,6 +498,7 @@ candidatereqdata:any = {
         headerName: 'Graduation Aggregate',
         field: 'edu_percentage',
         filter: 'agNumberColumnFilter',
+        aggFunc: 'avg',
         chartDataType: 'series',
         filterParams: {
           suppressAndOrCondition: true,
@@ -537,6 +543,7 @@ candidatereqdata:any = {
         field: 'gender',
         filter: 'agTextColumnFilter',
         chartDataType: 'series',
+        aggFunc: 'avg',
         filterParams: {
           suppressAndOrCondition: true,
           filterOptions: ['contains']
@@ -729,8 +736,6 @@ candidatereqdata:any = {
     this.showPivotSection();
     var datasource = this.callApiForCandidateList();
     params.api.setServerSideDatasource(datasource);
-
-        
   }
 
 
@@ -739,6 +744,7 @@ candidatereqdata:any = {
     this.gridColumnApi = params.columnApi;
     this.gridApi.closeToolPanel();
     this.autoSizeAll(false)
+  
   }
 
   callApiForCandidateList() {
@@ -786,10 +792,14 @@ candidatereqdata:any = {
         let fromAndTo = localStorageCGPA ? JSON.parse(localStorageCGPA) : [];
         this.customfilter  ? apiData.request.CGPA = [localStorageCGPA ? JSON.parse(localStorageCGPA) : null] : ''
         this.candidateListSubscription =  this.ApiService.getHiringReport(apiData.request).subscribe((data1: any) => {
+         if(data1.success == false){
+              this.toastr.warning('Your session has expired Please login again');
+              this.apiService.logout()
+         }
         this.from = fromAndTo.from;
         this.to = fromAndTo.to;
         this.userList = data1 && data1.data ? data1.data: [];
-        this.FilteredRecords = data1 ? data1.total_count : 0
+        // this.FilteredRecords = data1 ? data1.total_count : 0
         if (this.userList.length > 0) {
           this.gridApi.hideOverlay();
           this.pageRowCount = data1 && data1.total_count ? data1.total_count : 0;

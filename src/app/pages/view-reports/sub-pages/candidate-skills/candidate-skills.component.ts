@@ -77,11 +77,11 @@ export class CandidateSkillsComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
       this.getRoute();
-      this.getPersonalInfo();
+      // this.getPersonalInfo();
   }
 
   ngOnChanges() {
-    this.getPersonalInfo();
+    // this.getPersonalInfo();
   }
 
   getRoute() {
