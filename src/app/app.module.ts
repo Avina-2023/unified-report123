@@ -19,6 +19,10 @@ import { IsAccessGuard } from './guards/is-access.guard';
 import { IsloggedInGuard } from './guards/islogged-in.guard';
 import { PagenotfoundComponent } from './pages/pagenotfound/pagenotfound.component';
 import { CertificateViewComponent } from './pages/certificate-view/certificate-view.component';
+import { LandingPageComponent } from './pages/landing-page/landing-page.component';
+import { PartnersListComponent } from './pages/landing-page/partners-list/partners-list.component';
+import { LandingHeaderComponent } from './pages/landing-page/landing-header/landing-header.component';
+import { LandingFooterComponent } from './pages/landing-page/landing-footer/landing-footer.component';
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
 };
@@ -27,7 +31,11 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   declarations: [
     AppComponent,
     PagenotfoundComponent,
-    CertificateViewComponent
+    CertificateViewComponent,
+    LandingPageComponent,
+    PartnersListComponent,
+    LandingHeaderComponent,
+    LandingFooterComponent
   ],
   imports: [
     BrowserModule,
