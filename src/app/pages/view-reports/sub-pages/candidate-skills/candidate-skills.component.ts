@@ -13,6 +13,7 @@ export class CandidateSkillsComponent implements OnInit, OnChanges {
   @Input() getAllReportsData;
   barChartPlugins:any
   candidateSkills:any = [];
+  // nodata = '../../../../../assets/images/nodata.png'
   public barChartType: ChartType = 'horizontalBar';
   public barChartLegend = false;
   public barChartOptions: ChartOptions = {

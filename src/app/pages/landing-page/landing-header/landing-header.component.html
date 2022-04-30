@@ -1,0 +1,18 @@
+<header #header_width>
+  <div class="outline">
+
+  </div>
+  <div class="leftWrapper">
+      <figure class="edutechLogo">
+          <img src="https://assets.lntedutech.com/edutech_logo.svg"  alt="L&T Logo">
+      </figure>
+  </div>
+
+  <div class="rightWrapper">
+      <div class="signInRegister">
+          <ng-container *ngIf="!showAvatar">
+              <button class="register" (click)="NavtoLogin()">Login</button>
+          </ng-container>
+      </div>
+    </div>
+</header>
