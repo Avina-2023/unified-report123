@@ -214,6 +214,10 @@
                 font-size: 13px;
                 cursor: pointer;
             }
+            .clear:hover {
+                color: red !important;
+                transition: 0.7s;
+            }
         }
     }
     .mat-dialog-container {
@@ -241,6 +245,7 @@
                 text-align: center;
                 padding: 14px;
                 cursor: pointer;
+                transition: all .5s ease;
             }
         }
         .left {
@@ -251,6 +256,11 @@
             background: #08558C;
             color: $whiteColor;
             width: 66%;
+            .actionBtn:hover,
+            .actionBtn:focus {
+                background-color: #54B952;
+                transition: all .3s;
+            }
         }
     }
     .main {

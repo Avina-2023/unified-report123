@@ -4,24 +4,27 @@ import { AppConfigService } from './../../../utils/app-config.service';
 import { ApiService } from './../../../services/api.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
   styleUrls: ['./login-page.component.scss']
 })
-export class LoginPageComponent implements OnInit {
+export class LoginPageComponent  {
 
   loginForm: FormGroup;
   hide = true;
   show = false;
   disableButton: boolean;
 
+
   constructor(
     public fb: FormBuilder,
     public apiService: ApiService,
     public appConfig: AppConfigService,
-    public toastr: ToastrService
+    public toastr: ToastrService,
+    private matDialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -45,6 +48,9 @@ export class LoginPageComponent implements OnInit {
             this.appConfig.setLocalStorage('email',response.data && response.data.attributes  ? response.data.attributes.email : '');
             this.disableButton = false;
             this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.REPORTS.HOME);
+       
+              this.matDialog.closeAll();
+            
           }else {
             this.toastr.error('User not found please try with diffrent credentials');
           }

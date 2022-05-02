@@ -159,7 +159,7 @@ candidatereqdata:any = {
     let localFilterval = localStorage.getItem('filterItem');
     this.getFilter(localFilterval ? JSON.parse(localFilterval) : '','');
     this.SelectedFilterMainCount = localStorage.getItem('mainFilterCount') ? JSON.parse(localStorage.getItem('mainFilterCount')) :   localStorage.setItem('mainFilterCount','[]');;
-    if(this.SelectedFilterMainCount){
+    if(this.SelectedFilterMainCount && this.SelectedFilterMainCount.length > 0){
       this.isFilterRecords = true;
     }else{
       this.isFilterRecords = false;
@@ -734,6 +734,7 @@ candidatereqdata:any = {
     this.gridApi.closeToolPanel();
     this.autoSizeAll(false);
     this.showPivotSection();
+    // console.log(this.gridColumnApi)
     var datasource = this.callApiForCandidateList();
     params.api.setServerSideDatasource(datasource);
   }
@@ -799,10 +800,14 @@ candidatereqdata:any = {
         this.from = fromAndTo.from;
         this.to = fromAndTo.to;
         this.userList = data1 && data1.data ? data1.data: [];
-        // this.FilteredRecords = data1 ? data1.total_count : 0
         if (this.userList.length > 0) {
           this.gridApi.hideOverlay();
-          this.pageRowCount = data1 && data1.total_count ? data1.total_count : 0;
+          if(apiData.request.groupKeys.length < 0){
+          }else{
+            this.FilteredRecords = data1 ? data1.total_count : 0
+          }
+          
+        this.pageRowCount = data1 && data1.total_count ? data1.total_count : 0;
         params.success({
           rowData: this.userList,
           rowCount: this.pageRowCount
@@ -836,6 +841,7 @@ candidatereqdata:any = {
   }
 
   onCellClicked(event) {
+    console.log(event,'event')
     if (event &&  event.column && event.column.userProvidedColDef && event.column.userProvidedColDef.headerName == 'Email') {
       // let email = event['data']['email'] ? this.ApiService.encrypt(event['data']['email']) : ''
       // this.appconfig.routeNavigationWithParam(APP_CONSTANTS.ENDPOINTS.REPORTS.VIEWREPORTS, email);
@@ -959,8 +965,13 @@ candidatereqdata:any = {
 
   applyFilter(){
     this.customfilter = 'true';
-    this.isFilterRecords = true;
+    // this.isFilterRecords = true;
     localStorage.setItem('mainFilterCount', this.ShowFilterWithCount ? JSON.stringify(this.ShowFilterWithCount) : '[]');
+    if(this.ShowFilterWithCount.length > 0){
+      this.isFilterRecords = true;
+    }else {
+      this.isFilterRecords = false;
+    }
     localStorage.setItem('customfilter','true');
     if(this.from != undefined && this.to != undefined){
       if(this.from <= this.to){
@@ -1020,6 +1031,12 @@ candidatereqdata:any = {
     const filteredremovedItem = this.ShowFilterWithCount.filter((item) => item.key !== FilterKey);
     this.ShowFilterWithCount = filteredremovedItem;
     localStorage.setItem('mainFilterCount',JSON.stringify(this.ShowFilterWithCount));
+    if(this.ShowFilterWithCount && this.ShowFilterWithCount.length > 0){
+      this.isFilterRecords = true;
+    }else {
+      this.isFilterRecords = false;
+    }
+
   }
 
 
