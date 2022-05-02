@@ -159,7 +159,7 @@ candidatereqdata:any = {
     let localFilterval = localStorage.getItem('filterItem');
     this.getFilter(localFilterval ? JSON.parse(localFilterval) : '','');
     this.SelectedFilterMainCount = localStorage.getItem('mainFilterCount') ? JSON.parse(localStorage.getItem('mainFilterCount')) :   localStorage.setItem('mainFilterCount','[]');;
-    if(this.SelectedFilterMainCount.length > 0){
+    if(this.SelectedFilterMainCount && this.SelectedFilterMainCount.length > 0){
       this.isFilterRecords = true;
     }else{
       this.isFilterRecords = false;
@@ -1031,7 +1031,7 @@ candidatereqdata:any = {
     const filteredremovedItem = this.ShowFilterWithCount.filter((item) => item.key !== FilterKey);
     this.ShowFilterWithCount = filteredremovedItem;
     localStorage.setItem('mainFilterCount',JSON.stringify(this.ShowFilterWithCount));
-    if(this.ShowFilterWithCount.length > 0){
+    if(this.ShowFilterWithCount && this.ShowFilterWithCount.length > 0){
       this.isFilterRecords = true;
     }else {
       this.isFilterRecords = false;

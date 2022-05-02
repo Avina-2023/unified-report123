@@ -509,7 +509,11 @@ input.mat-input-element {
 
 .headerShadow {
     // box-shadow: 0 3px 3px rgba(0, 0, 0, .2) !important;
-    background: linear-gradient(90deg, #fff 15%, #fff 25%)!important;
+    box-shadow: 3px 3px 5px #0000001f;
+    .headerLogo {
+        width: 6%;
+        margin-left: 16px;
+    }
 }
 
 .limiter {

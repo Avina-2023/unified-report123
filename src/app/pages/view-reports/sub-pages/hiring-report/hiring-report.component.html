@@ -63,7 +63,7 @@
 <ng-template #filter>
     <div class="add-user-header">
         <div mat-dialog-title class="box">
-            <span class="filter"><img src="/assets/images/Filter.svg" alt="">Filters</span>
+            <span (click)="closeDialog()" class="filter"><img src="/assets/images/Filter.svg" alt="">Filters</span>
             <span class="clear" (click)="clearAll()">CLEAR ALL</span>
         </div>
     </div>
