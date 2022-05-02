@@ -23,6 +23,7 @@ import { LandingPageComponent } from './pages/landing-page/landing-page.componen
 import { PartnersListComponent } from './pages/landing-page/partners-list/partners-list.component';
 import { LandingHeaderComponent } from './pages/landing-page/landing-header/landing-header.component';
 import { LandingFooterComponent } from './pages/landing-page/landing-footer/landing-footer.component';
+import { LoginPageComponent } from './pages/login/login-page/login-page.component';
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
 };
@@ -35,7 +36,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     LandingPageComponent,
     PartnersListComponent,
     LandingHeaderComponent,
-    LandingFooterComponent
+    LandingFooterComponent,
+    LoginPageComponent
   ],
   imports: [
     BrowserModule,
