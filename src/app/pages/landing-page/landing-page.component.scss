@@ -160,6 +160,9 @@ figure {
         @media (min-width: 200px) and (max-width: 480px) {
           padding: 4px;
         }
+        @media (min-width: 481px) and (max-width: 600px) {
+          padding: 30px 55px;
+        }
         .flex-wrapper {
           display: flex;
           align-items: flex-start;
@@ -262,6 +265,9 @@ figure {
         padding: 60px 40px 60px 100px;
         @media (min-width: 200px) and (max-width: 480px) {
           padding: 20px 4px 0 4px;
+        }
+        @media (min-width: 481px) and (max-width: 600px) {
+          padding: 30px 20px 30px 50px;
         }
         .flex-wrapper {
           display: flex;
@@ -379,6 +385,9 @@ figure {
       padding: 50px 150px;
       @media (min-width: 200px) and (max-width: 480px) {
         padding: 20px 20px;
+      }
+      @media (min-width: 481px) and (max-width: 600px) {
+        padding: 25px 75px;
       }
       .heading-container {
         display: flex;
