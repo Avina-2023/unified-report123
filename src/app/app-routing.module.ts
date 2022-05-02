@@ -14,9 +14,9 @@ const routes: Routes = [
   {
     path: ``, component: LandingPageComponent ,canActivate: [IsloggedInGuard]
   },
-  {
-    path: '', loadChildren: () => import('./pages/login/login.module').then(m => m.LoginModule), canActivate: [IsloggedInGuard]
-  },
+  // {
+  //   path: '', loadChildren: () => import('./pages/login/login.module').then(m => m.LoginModule), canActivate: [IsloggedInGuard]
+  // },
   {
     path: `${APP_CONSTANTS.ROUTES.AUTH}`, loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule), canActivate: [IsAccessGuard]
   },
