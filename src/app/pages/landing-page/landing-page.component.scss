@@ -160,15 +160,23 @@ figure {
         .flex-wrapper {
           display: flex;
           align-items: flex-start;
+          flex-direction: column;
+          @media only screen and (min-width: 1000px) {
+            flex-direction: row;
+          }
           .image-wrapper {
             flex-basis: 40%;
             display: flex;
             align-items: center;
             justify-content: center;
+            width: 100%;
             figure {
               background-color: $whiteColor;
               padding: 1em;
-              width: 100%;
+              width: 70%;
+              @media only screen and (min-width: 1000px) {
+                width: 100%;
+              }
               img {
                 object-fit: contain;
                 object-position: top;
@@ -232,6 +240,211 @@ figure {
       height: 147px;
       bottom: 0;
       right: 0;
+    }
+    .howItWorks {
+      position: relative;
+      max-width: 100%;
+      width: 100%;
+      background: transparent linear-gradient(119deg, #F8FCFF 0%, #DEF6FF 100%) 0% 0% no-repeat padding-box;
+      .howItWorksWrapper {
+        display: flex;
+        width: 100%;
+        height: 100%;
+        padding: 60px 40px 60px 100px;
+        .flex-wrapper {
+          display: flex;
+          align-items: flex-start;
+          flex-direction: column;
+          @media only screen and (min-width: 1000px) {
+            flex-direction: row;
+          }
+          .content-wrapper {
+            flex-basis: 40%;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            padding: .7em 0 2em 1em;
+            .commonHeadingStyle {
+              color: $blackColor;
+              font-family: OpenSans,sans-serif;
+              font-size: 1.875em;
+              font-weight: 600;
+              line-height: 1.1;
+              position: relative;
+              margin-bottom: 1.5em;
+              letter-spacing: 0.8px;
+            }
+            .commonHeadingStyle:after {
+              left: 0;
+              content: "";
+              position: absolute;
+              background-image: linear-gradient(90deg,#00bcef,#00c0db,#00c1b6,#00be83,#4eb749);
+              width: 3em;
+              height: 4px;
+              border-radius: 1.25em;
+              bottom: -0.4em;
+            }
+            .content {
+              width: 100%;
+              .flex-container {
+                display: flex;
+                align-items: flex-start;
+                justify-content: flex-start;
+                width: 100%;
+                margin-top: 70px;
+                .numberValue {
+                  flex-basis: 18%;
+                  color: #27BBEE40;
+                  line-height: 45px;
+                  font-weight: 600;
+                  font-size: 3.5em;
+                  height: 100%;
+                }
+                .description {
+                  flex-basis: 82%;
+                  color: $lightBlack;
+                  font-size: 1.1em;
+                }
+                .sub-desc {
+                  color: #004684;
+                  font-style: italic;
+                  font-size: 12px;
+                  flex-basis: 82%;
+                }
+              }
+              .flex-container:first-child {
+                margin-top: 30px;
+              }
+              .flex-container:last-child {
+                margin-top: 20px;
+              }
+            }
+          }
+          .image-wrapper {
+            flex-basis: 60%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            @media only screen and (min-width: 1000px) {
+              justify-content: flex-end;
+            }
+            figure {
+              padding: 1em;
+              width: 80%;
+              position: relative;
+              @media only screen and (min-width: 1000px) {
+                width: 80%;
+              }
+              .semi {
+                width: auto;
+                position: absolute;
+                top: 17%;
+              }
+              img {
+                object-fit: contain;
+                object-position: top;
+                width: 100%;
+              }
+            }
+          }
+        }
+      }
+    }
+    .benefits {
+      position: relative;
+      max-width: 100%;
+      width: 100%;
+      background: $whiteColor;
+      padding: 50px 150px;
+      .heading-container {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        .heading-content {
+          color: $darkGrey;
+          font-size: 16px;
+          text-align: center;
+        }
+        .commonHeadingStyle {
+          color: $blackColor;
+          font-family: OpenSans,sans-serif;
+          font-size: 1.875em;
+          font-weight: 600;
+          line-height: 1.1;
+          position: relative;
+          margin-bottom: 1.5em;
+        }
+        .commonHeadingStyle:after {
+          left: 0;
+          content: "";
+          position: absolute;
+          background-image: linear-gradient(90deg,#00bcef,#00c0db,#00c1b6,#00be83,#4eb749);
+          width: 3em;
+          height: 4px;
+          border-radius: 1.25em;
+          bottom: -0.4em;
+        }
+      }
+      .benefits-content-wrapper {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        flex-wrap: wrap;
+        margin-top: 50px;
+        .inner-wrapper {
+          display: flex;
+          width: 100%;
+          align-items: center;
+          margin-top: 50px;
+          .image-wrapper {
+            flex-basis: 50%;
+            figure {
+              width: 100%;
+              img {
+                object-fit: contain;
+                object-position: top;
+                width: 100%;
+              }
+            }
+          }
+          .content-wrapper {
+            flex-basis: 50%;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            .flex-container {
+              display: flex;
+              flex-direction: column;
+              align-items: flex-start;
+              width: 100%;
+              .heading {
+                color: #004684;
+                font-size: 26px;
+                font-weight: bold;
+                margin-bottom: 15px;
+              }
+              .content {
+                font-size: 16px;
+                color: #373331;
+              }
+            }
+          }
+          .content-wrapper:nth-child(2n+1) {
+            padding-right: 100px;
+          }
+          .content-wrapper:nth-child(2n) {
+            padding-left: 100px;
+          }
+        }
+        .inner-wrapper:first-child {
+          margin-top: 0px;
+        }
+      }
     }
   }
 }
