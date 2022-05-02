@@ -49,7 +49,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     BarChartComponent,
     HorizontalBarChartComponent,
     RoundcanvasComponent,
-    BehaviouralPdfReportDownloadComponent
+    BehaviouralPdfReportDownloadComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
   providers: [

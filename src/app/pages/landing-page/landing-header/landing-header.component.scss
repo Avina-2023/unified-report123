@@ -1,189 +1,226 @@
 @import 'variables_landing';
 figure {
-  margin: 0;
+    margin: 0;
 }
+
 header {
-  // position: relative;
-  position: fixed;
-  z-index: 99;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: nowrap;
-  // flex-wrap: wrap;
-  background-color: $whiteColor;
-  padding: 10px 15px;
-  height: 74px;
-  font-size: 12px;
-  box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.15);
-  width: 100%;
-  .outline {
-      position: absolute;
-      width: 100%;
-      height: 53px;
-      left: 0%;
-      top: 0;
-      background-color: rgba(0, 0, 0, 0);
-      z-index: -1;
-  }
-  .leftWrapper, .rightWrapper {
-      @include md {
-          width: 50%;
-      }
-  }
-  .rightWrapper {
-      text-align: right;
-      width: 40%;
-  }
-  .leftWrapper {
-      width: 60%;
-      display: flex;
-      justify-content: flex-start;
-      align-items: center;
-  }
+    // position: relative;
+    position: fixed;
+    z-index: 99;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap;
+    // flex-wrap: wrap;
+    background-color: $whiteColor;
+    padding: 10px 15px;
+    height: 74px;
+    font-size: 12px;
+    box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.15);
+    width: 100%;
+    .outline {
+        position: absolute;
+        width: 100%;
+        height: 53px;
+        left: 0%;
+        top: 0;
+        background-color: rgba(0, 0, 0, 0);
+        z-index: -1;
+    }
+    .leftWrapper,
+    .rightWrapper {
+        @include md {
+            width: 50%;
+        }
+    }
+    .rightWrapper {
+        text-align: right;
+        width: 40%;
+    }
+    .leftWrapper {
+        width: 60%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+    }
 }
+
 .edutechLogo {
-  cursor: pointer;
-  width: 35%;
-  margin-right: 0;
-  margin-left: 2em;
-  @include sm {
-      width: 20%;
-  }
-  @include md {
-      margin-right: 2em;
-  }
-  @include lg {
-      width: 13%;
-      margin-left: 0;
-  }
-  @include xl {
-      width: 13%;
-  }
-  @media only screen and (min-width: 1540px) {
-      width: 9%;
-  }
-  img {
-      width: 100%;
-  }
+    cursor: pointer;
+    width: 35%;
+    margin-right: 0;
+    margin-left: 2em;
+    @include sm {
+        width: 20%;
+    }
+    @include md {
+        margin-right: 2em;
+    }
+    @include lg {
+        width: 13%;
+        margin-left: 0;
+    }
+    @include xl {
+        width: 13%;
+    }
+    @media only screen and (min-width: 1540px) {
+        width: 9%;
+    }
+    img {
+        width: 100%;
+    }
 }
+
 .signInRegister {
-  // grid-area: signIn;
-  text-align: right;
-  display: inline-flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 10px;
-  @include md {
-      margin-top: 0;
-      justify-content: flex-end;
-  }
-  .recruiter {
-      display: none;
-      margin-right: 2.35em;
-      @include lg {
-          display: inline-flex;
-      }
-      a {
-          color: $mediumGrey;
-          font-size: 1.15em;
-          display: flex;
-          em {
-              font-size: 1.3em;
-          }
-      }
-      span {
-          margin-left: 5px;
-      }
-      &:hover {
-          span, em {
-              color: #2EA3F2;
-          }
-      }
-  }
-  span, button {
-      vertical-align: middle;
-      display: inline-block;
-  }
-  .cart {
-      color: $lightGrey;
-      display: inline-block;
-      margin-right: 2.5em;
-      line-height: normal;
-      @include xl {
-          margin-right: 1.75em;
-      }
-      em {
-          font-size: 1.5em;
-          color: $mediumGrey;
-          @include lg {
-              font-size: 1.25em;
-              margin-right: 0.5em;
-          }
-      }
-  }
-  .signIn {
-      margin-right: 1.75em;
-      font-size: 1.15em;
-      font-weight: 400;
-      color: $darkGrey;
-      display: none;
-      @include lg {
-          display: inline-flex;
-      }
-  }
-  .register {
-      padding: 0.375em 1.5em;
-      background-color: $whiteColor;
-      color: $secondaryColor;
-      font-size: 1.15em;
-      font-weight: 400;
-      border-radius: 5px;
-      border: 1px solid $primaryColor;
-      box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2);
-      transition: all 0.3s ease-in-out;
-      display: none;
-      &:hover {
-          color: $whiteColor;
-          background-color: $primaryColor;
-      }
-      @include lg {
-          display: inline-flex;
-      }
-  }
+    // grid-area: signIn;
+    text-align: right;
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+    @include md {
+        margin-top: 0;
+        justify-content: flex-end;
+    }
+    .recruiter {
+        display: none;
+        margin-right: 2.35em;
+        @include lg {
+            display: inline-flex;
+        }
+        a {
+            color: $mediumGrey;
+            font-size: 1.15em;
+            display: flex;
+            em {
+                font-size: 1.3em;
+            }
+        }
+        span {
+            margin-left: 5px;
+        }
+        &:hover {
+            span,
+            em {
+                color: #2EA3F2;
+            }
+        }
+    }
+    span,
+    button {
+        vertical-align: middle;
+        display: inline-block;
+    }
+    .cart {
+        color: $lightGrey;
+        display: inline-block;
+        margin-right: 2.5em;
+        line-height: normal;
+        @include xl {
+            margin-right: 1.75em;
+        }
+        em {
+            font-size: 1.5em;
+            color: $mediumGrey;
+            @include lg {
+                font-size: 1.25em;
+                margin-right: 0.5em;
+            }
+        }
+    }
+    .signIn {
+        margin-right: 1.75em;
+        font-size: 1.15em;
+        font-weight: 400;
+        color: $darkGrey;
+        display: none;
+        @include lg {
+            display: inline-flex;
+        }
+    }
+    .register {
+        padding: 0.375em 1.5em;
+        background-color: $whiteColor;
+        color: $secondaryColor;
+        font-size: 1.15em;
+        font-weight: 400;
+        border-radius: 5px;
+        border: 1px solid $primaryColor;
+        box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease-in-out;
+        display: none;
+        &:hover {
+            color: $whiteColor;
+            background-color: $primaryColor;
+        }
+        @include lg {
+            display: inline-flex;
+        }
+    }
 }
+
 .signInRegister {
-  // grid-area: signIn;
-  text-align: right;
-  display: inline-flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 10px;
-  @include md {
-      margin-top: 0;
-      justify-content: flex-end;
-  }
-  span, button {
-      vertical-align: middle;
-      display: inline-block;
-  }
-  .register {
-      padding: 0.375em 1.5em;
-      background-color: $whiteColor;
-      color: $secondaryColor;
-      font-size: 1.15em;
-      font-weight: 400;
-      border-radius: 5px;
-      border: 1px solid $primaryColor;
-      box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2);
-      transition: all 0.3s ease-in-out;
-      display: none;
-      &:hover {
-          color: $whiteColor;
-          background-color: $primaryColor;
-      }
-      @include lg {
-          display: inline-flex;
-      }
-  }
+    // grid-area: signIn;
+    text-align: right;
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+    @include md {
+        margin-top: 0;
+        justify-content: flex-end;
+    }
+    span,
+    button {
+        vertical-align: middle;
+        display: inline-block;
+    }
+    .register {
+        padding: 0.375em 1.5em;
+        background-color: $whiteColor;
+        color: $secondaryColor;
+        font-size: 1.15em;
+        font-weight: 400;
+        border-radius: 5px;
+        border: 1px solid $primaryColor;
+        box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease-in-out;
+        display: block;
+        &:hover {
+            color: $whiteColor;
+            background-color: $primaryColor;
+        }
+        @include lg {
+            display: inline-flex;
+        }
+    }
+}
+
+.box {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    position: sticky;
+    padding: 19px;
+    .clear {
+        color: #3A3A3A;
+        font-size: 13px;
+        cursor: pointer;
+    }
+    .clear:hover {
+        color: red !important;
+        transition: 0.7s;
+    }
+}
+
+.close-button {
+    float: right;
+    top: -24px;
+    right: -24px;
+    background: transparent;
+    border: none;
+}
+
+.close-icon {
+    color: #666666 !important;
 }

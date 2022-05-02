@@ -39,7 +39,11 @@ export class InterceptorService implements HttpInterceptor {
       // .set('header2', 'header 2 value')
       // .set('header3', 'header 3 value')
     });
-    this._loading.setLoading(true, request.url);
+    if (request.reportProgress) {
+    } else {
+      this._loading.setLoading(true, request.url);
+    }
+
     return next.handle(clone).pipe(
       map((event: HttpEvent<any>) => {
         if (event instanceof HttpResponse) {

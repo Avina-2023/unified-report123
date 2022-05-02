@@ -1,13 +1,13 @@
-<section class="CompetencyArea">
+<section class="CompetencyArea" *ngIf="isCompeShow">
     <div class="heading6" *ngIf="verticalChartData && verticalChartData.length > 0">
         Cognitive and Technical Competencies
 
     </div>
-    <div class="InfoDetailsArea cognitiveTechnical" *ngIf="verticalChartData && verticalChartData.length > 0">
+    <div class="InfoDetailsArea cognitiveTechnical" *ngIf=" verticalChartData && verticalChartData.length > 0">
         <div class="leftPan">
             <div class="CompetenciesPercentage">Percentage</div>
             <div class="">
-                <app-bar-chart (competencyId)="getParticularCompetencySkills($event)" [domains]="verticalChartData" [chartData]="verticalChartData"></app-bar-chart>
+                <app-bar-chart *ngIf="isCompeShow" (competencyId)="getParticularCompetencySkills($event)" [domains]="verticalChartData" [chartData]="verticalChartData"></app-bar-chart>
                 <!-- Below commented is for chart.js charts -->
                 <!-- <app-bar-chart [orientation]="'x'" [chartType]="'bar'" [values]="Skills" [labels]="competencieslabels"></app-bar-chart> -->
                 <div class="CompetenciesName">Competencies</div>
