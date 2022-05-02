@@ -157,6 +157,9 @@ figure {
         height: 100%;
         background: $whiteColor;
         padding: 60px 110px;
+        @media (min-width: 200px) and (max-width: 480px) {
+          padding: 4px;
+        }
         .flex-wrapper {
           display: flex;
           align-items: flex-start;
@@ -228,6 +231,9 @@ figure {
       width: 127px;
       height: 147px;
       left: 0;
+      @media (min-width: 200px) and (max-width: 480px) {
+        width: 25%;
+      }
     }
     .skill-exchange-Container::after {
       content: "";
@@ -240,6 +246,9 @@ figure {
       height: 147px;
       bottom: 0;
       right: 0;
+      @media (min-width: 200px) and (max-width: 480px) {
+        width: 25%;
+      }
     }
     .howItWorks {
       position: relative;
@@ -251,6 +260,9 @@ figure {
         width: 100%;
         height: 100%;
         padding: 60px 40px 60px 100px;
+        @media (min-width: 200px) and (max-width: 480px) {
+          padding: 20px 4px 0 4px;
+        }
         .flex-wrapper {
           display: flex;
           align-items: flex-start;
@@ -263,7 +275,6 @@ figure {
             display: flex;
             flex-direction: column;
             width: 100%;
-            padding: .7em 0 2em 1em;
             .commonHeadingStyle {
               color: $blackColor;
               font-family: OpenSans,sans-serif;
@@ -292,6 +303,9 @@ figure {
                 justify-content: flex-start;
                 width: 100%;
                 margin-top: 70px;
+                @media (min-width: 200px) and (max-width: 480px) {
+                  margin-top: 40px;
+                }
                 .numberValue {
                   flex-basis: 18%;
                   color: #27BBEE40;
@@ -314,6 +328,9 @@ figure {
               }
               .flex-container:first-child {
                 margin-top: 30px;
+                @media (min-width: 200px) and (max-width: 480px) {
+                  margin-top: 15px;
+                }
               }
               .flex-container:last-child {
                 margin-top: 20px;
@@ -340,6 +357,9 @@ figure {
                 width: auto;
                 position: absolute;
                 top: 17%;
+                @media (min-width: 200px) and (max-width: 480px) {
+                  width: 25%;
+                }
               }
               img {
                 object-fit: contain;
@@ -357,6 +377,9 @@ figure {
       width: 100%;
       background: $whiteColor;
       padding: 50px 150px;
+      @media (min-width: 200px) and (max-width: 480px) {
+        padding: 20px 20px;
+      }
       .heading-container {
         display: flex;
         flex-direction: column;
@@ -394,13 +417,27 @@ figure {
         width: 100%;
         flex-wrap: wrap;
         margin-top: 50px;
+        @media (min-width: 200px) and (max-width: 480px) {
+          margin-top: 1.5em;
+        }
         .inner-wrapper {
           display: flex;
           width: 100%;
           align-items: center;
           margin-top: 50px;
+          flex-direction: column;
+          @media only screen and (min-width: 1000px) {
+            flex-direction: row;
+          }
+          @media (min-width: 200px) and (max-width: 480px) {
+            margin-top: 1em;
+          }
           .image-wrapper {
             flex-basis: 50%;
+            margin-top: 1em;
+            @media only screen and (min-width: 1000px) {
+              margin-top: 0em;
+            }
             figure {
               width: 100%;
               img {
@@ -417,6 +454,10 @@ figure {
             height: 100%;
             display: flex;
             align-items: center;
+            margin-top: 1em;
+            @media only screen and (min-width: 1000px) {
+              margin-top: 0em;
+            }
             .flex-container {
               display: flex;
               flex-direction: column;
@@ -427,6 +468,11 @@ figure {
                 font-size: 26px;
                 font-weight: bold;
                 margin-bottom: 15px;
+                width: 100%;
+                text-align: center;
+                @media only screen and (min-width: 1000px) {
+                  text-align: left;
+                }
               }
               .content {
                 font-size: 16px;
@@ -435,16 +481,35 @@ figure {
             }
           }
           .content-wrapper:nth-child(2n+1) {
-            padding-right: 100px;
+            padding-right: 0px;
+            @media only screen and (min-width: 1000px) {
+              padding-right: 100px;
+            }
           }
           .content-wrapper:nth-child(2n) {
-            padding-left: 100px;
+            padding-left: 0px;
+            @media only screen and (min-width: 1000px) {
+              padding-left: 100px;
+           }
           }
         }
         .inner-wrapper:first-child {
           margin-top: 0px;
         }
+        .inner-wrapper:nth-child(2n+1) {
+          flex-direction: column-reverse;
+          @media only screen and (min-width: 1000px) {
+            flex-direction: row;
+          }
+        }
       }
+    }
+  }
+}
+@media (min-width: 1000px) {
+  .benefits-content-wrapper {
+    .inner-wrapper:nth-child(2n+1) {
+      flex-direction: row;
     }
   }
 }
