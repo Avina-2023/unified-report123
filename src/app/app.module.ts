@@ -23,6 +23,7 @@ import { LandingPageComponent } from './pages/landing-page/landing-page.componen
 import { PartnersListComponent } from './pages/landing-page/partners-list/partners-list.component';
 import { LandingHeaderComponent } from './pages/landing-page/landing-header/landing-header.component';
 import { LandingFooterComponent } from './pages/landing-page/landing-footer/landing-footer.component';
+import { CarouselModule } from 'ngx-owl-carousel-o';
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
 };
@@ -49,6 +50,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     DragScrollModule,
     PerfectScrollbarModule,
     AgGridModule,
+    CarouselModule,
     ToastrModule.forRoot(
       {
         timeOut: 3000,

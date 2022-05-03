@@ -4,17 +4,39 @@
     <div style="height: 100%">
       <div class="app-Header">
         <section class="bannerSection">
-          <div class="container">
             <div class="bannerWrapper">
-                <div class="bannerContent">
-                    <div class="heading">
-                        <strong>Hire your Workforce</strong>
-                    </div>
-                    <div class="heading-sub">
-                      <span> from our </span> <strong>Certified Talent Pool</strong>
-                    </div>
-                </div>
-            </div>
+                <div class="owlCarouselWrapper">
+                  <owl-carousel-o [options]="owlCarouselOptions">
+                      <ng-container>
+                          <ng-template class="imageWrapper" carouselSlide>
+                            <div class="bannerContent blackColor">
+                              <div class="heading">
+                                  <strong>Hire your Workforce</strong>
+                              </div>
+                              <div class="heading-sub">
+                                <span> from our </span> <strong>Certified Talent Pool</strong>
+                              </div>
+                              </div>
+                              <figure>
+                                  <img src="assets/images/landing/banner_1.png" alt="" />
+                              </figure>
+                          </ng-template>
+                          <ng-template class="imageWrapper" carouselSlide>
+                            <div class="bannerContent whiteColor">
+                              <div class="heading ">
+                                  <strong>Hire your Workforce</strong>
+                              </div>
+                              <div class="heading-sub">
+                                <span> from our </span> <strong>Certified Talent Pool</strong>
+                              </div>
+                              </div>
+                              <figure>
+                                  <img src="assets/images/landing/banner_3.png" alt="" />
+                              </figure>
+                          </ng-template>
+                      </ng-container>
+                  </owl-carousel-o>
+              </div>
           </div>
         </section>
       </div>
