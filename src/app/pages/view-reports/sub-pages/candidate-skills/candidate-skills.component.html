@@ -1,8 +1,5 @@
-<ng-continer *ngIf="noCard else noCard1">
+<ng-continer>
     <div class="wall candidateSkillsBasicProfile-wrapper">
-        <!-- <div class="candidate-info">
-            <h1>{{candidateSkills.firstname}}</h1>
-        </div> -->
         <div class="assessmentInfoarea candidateSkillsBasicProfile" *ngIf="false">
             <mat-expansion-panel expanded="false">
                 <mat-expansion-panel-header #stickyMenu>
@@ -20,96 +17,11 @@
                                   <span class="color-black">{{personalInfo.email ? personalInfo.email : '-'}}</span>
                             </span>
                         </div>
-
-                        <!-- <div class="width-168">
-                            <em class="icon-Shield"></em>
-                            <span>Status
-                                <span class="color-black">{{personalInfo.campusVerified ? 'Verfied' : 'Not Verified'}}</span>
-                            </span>
-                        </div> -->
-
                         <div *ngIf="personalInfo?.qrCodeURL" class="width-80">
                             <img class="QaCode" [src]="personalInfo.qrCodeURL ? personalInfo.qrCodeURL : '-'" alt="" srcset="">
                         </div>
-
-
                     </div>
                 </mat-expansion-panel-header>
-
-                <!-- <div class="expandContentArea">
-                    <div class="ContentInfoDetails">
-                        <div class="profileInfoarea" *ngIf="personalInfo">
-                            <div class="profileInfoSec">
-                                <div>
-                                    Name:
-                                    <span> {{personalInfo.firstname ? personalInfo.firstname : '-'}} </span>
-                                </div>
-                                <div>
-                                    Email:
-                                    <span>{{personalInfo.email ? personalInfo.email : '-'}}</span>
-                                </div>
-                                <div>
-                                    Date of Birth:
-                                    <span>{{personalInfo.DOB ? personalInfo.DOB : '-'}}</span>
-                                </div>
-                                <div>
-                                    Father's Name:
-                                    <span>{{personalInfo.fathername ? personalInfo.fathername : '-'}}</span>
-                                </div>
-                                <div>
-                                    Gender:
-                                    <span>{{personalInfo.gender ? personalInfo.gender : '-'}}</span>
-                                </div>
-                                <div>
-                                    Contact No:
-                                    <span> {{personalInfo.mobile ? personalInfo.mobile : '-'}}</span>
-                                </div>
-                                <div>
-                                    Address:
-                                    <span>{{personalInfo.address ? personalInfo.address : '-'}}</span>
-                                </div>
-                            </div>
-                            <div class="profileInfoSec">
-                                <div>
-                                    College/University:
-                                    <span> {{personalInfo.institute ? personalInfo.institute : '-'}}</span>
-                                </div>
-                                <div>
-                                    State/City:
-                                    <span>{{personalInfo.city ? personalInfo.city : '-'}}</span>
-                                </div>
-                                <div>
-                                    Specialization:
-                                    <span> {{personalInfo.specialization ? personalInfo.specialization : '-'}}</span>
-                                </div>
-                                <div>
-                                    Branch:
-                                    <span>{{personalInfo.branch ? personalInfo.branch : '-'}}</span>
-                                </div>
-                                <div>
-                                    Passing Year:
-                                    <span>{{personalInfo.passedOut ? personalInfo.passedOut : '-'}}</span>
-                                </div>
-                                <div>
-                                    Graduation Aggregate:
-                                    <span>{{personalInfo.percentage ? personalInfo.percentage + '%' : '-' }}</span>
-                                </div>
-                            </div>
-                        </div>
-
-
-
-                    </div>
-                    <div class="ContentInfoSummary">
-                        <div class="assessmentHeaderinfo">
-
-                            <app-doc-info [getAllReportsData]="getAllReportsData"></app-doc-info>
-
-                        </div>
-                    </div>
-
-
-                </div> -->
             </mat-expansion-panel>
         </div>
 
@@ -125,9 +37,8 @@
 
         <div class="main-box">
             <div class="right">
-                <div class="jobFitGap">
+                <div class="jobFitGap" *ngIf="jobFitGap.length > 0; else nojobfit">
                     <div class="heading">Job fit-gap</div>
-
                     <div class="width-65">
                         <canvas class="chart" baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [plugins]="barChartPlugins" [legend]="barChartLegend" [chartType]="barChartType">
                         </canvas>
@@ -141,14 +52,13 @@
                             Recommended Jobs
                         </div>
 
-                        <div class="">
+                        <div>
                             <span *ngFor=" let joberoles of candidateSkills.jobrole" class="jobs">{{joberoles?.jobname}}</span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
 
 </ng-continer>
@@ -156,9 +66,9 @@
 
 
 
-<ng-template #noCard1>
+<ng-template #nojobfit>
     <div class="noCard">
-        <div class="noData">No Recommended Jobs found</div>
+        <div class="noData">No Job fit-gap found</div>
         <img class="imgCard" src='../../../../../assets/images/nodata.png'>
     </div>
 </ng-template>
