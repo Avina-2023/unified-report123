@@ -15,10 +15,10 @@ COPY . .
 #RUN ng serve
 
 #RUN npm run build:${PORT}
-RUN npm run build-prod
+RUN npm run build
 ### STAGE 2: Run ###
 FROM nginx:1.17.1-alpine
-COPY --from=build-prod /usr/src/app/dist/UnifiedReports /usr/share/nginx/html
+COPY --from=build /usr/src/app/dist/UnifiedReports /usr/share/nginx/html
 COPY ./nginx-custom.conf /etc/nginx/conf.d/default.conf
 COPY ./bundle.crt /etc/ssl/certs/
 COPY ./lntedutech.key /etc/ssl/certs/
