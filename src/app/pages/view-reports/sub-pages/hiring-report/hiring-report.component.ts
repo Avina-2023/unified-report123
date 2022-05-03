@@ -8,8 +8,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { SentDataToOtherComp } from 'src/app/services/sendDataToOtherComp.service';
 import _ from 'lodash';
 import { AgChartThemeOverrides, ColDef, ColSpanParams, GridApi, IColumnToolPanel, SideBarDef } from '@ag-grid-enterprise/all-modules';
-import { MatSelectionListChange } from '@angular/material/list';
-import { PathLocationStrategy } from '@angular/common';
+
 
 @Component({
   selector: 'app-hiring-report',
