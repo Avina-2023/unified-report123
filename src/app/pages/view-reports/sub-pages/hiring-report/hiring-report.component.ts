@@ -802,7 +802,7 @@ candidatereqdata:any = {
         this.userList = data1 && data1.data ? data1.data: [];
         if (this.userList.length > 0) {
           this.gridApi.hideOverlay();
-          if(apiData.request.groupKeys.length < 0){
+          if(apiData.request.groupKeys.length > 0){
           }else{
             this.FilteredRecords = data1 ? data1.total_count : 0
           }
