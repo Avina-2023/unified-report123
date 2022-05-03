@@ -20,7 +20,7 @@
 
                 <!-- <app-doc-info [getAllReportsData]="getAllReportsData"></app-doc-info> -->
                 <app-assessment-info [driveName]="driveName" [getAllReportsData]="getAllReportsData"></app-assessment-info>
-                <!-- <app-competency-areas [getAllReportsData]="getAllReportsData"></app-competency-areas> -->
+                <app-competency-areas [getAllReportsData]="getAllReportsData"></app-competency-areas>
                 <app-quality-area [getAllReportsData]="getAllReportsData"></app-quality-area>
                 <app-behavioural-assessment-info [driveName]="driveName" [emailId]="emailId" [getAllReportsData]="getAllReportsData"></app-behavioural-assessment-info>
                 <!-- <app-behavioural-competency-areas [getAllReportsData]="getAllReportsData"></app-behavioural-competency-areas> -->
@@ -30,7 +30,7 @@
             </ng-continer>
         </mat-tab>
 
-        <mat-tab label="Job Recommendations">
+        <mat-tab label="Job Recommendations" *ngIf="this.isaccess">
             <app-candidate-skills [getAllReportsData]="getAllReportsData"></app-candidate-skills>
         </mat-tab>
     </mat-tab-group>
