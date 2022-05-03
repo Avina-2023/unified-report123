@@ -167,6 +167,37 @@ ul {
     }
 }
 
+//Banner
+.owlCarouselWrapper {
+  .owl-theme {
+      .owl-nav {
+          display: none;
+      }
+      .owl-dots {
+          position: absolute;
+          bottom: .5em;
+          left: 48%;
+          .owl-dot {
+              span {
+                  background-color: #27BBEE;
+                  border-radius: 50%;
+                  margin: 0 0.4em;
+              }
+              &:hover {
+                  span {
+                      background-color: #27BBEE;
+                  }
+              }
+              &.active {
+                  span {
+                      background-color: #004684;
+                  }
+              }
+          }
+      }
+  }
+}
+
 mat-toolbar.header-toolbar {
     background: linear-gradient(90deg, #fff 14%, #fff 25%)!important;
     height: 60px;
