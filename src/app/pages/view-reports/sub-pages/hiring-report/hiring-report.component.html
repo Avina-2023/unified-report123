@@ -1,11 +1,11 @@
 <div class="filterkey">
     <div class="filter" *ngIf="isFilterRecords">
-        Filtered Records : <span class="count">{{pageRowCount ? pageRowCount : 0}}</span>
+        Filtered Records : <span class="count">{{FilteredRecords ? FilteredRecords : 0}}</span>
     </div>
 
-    <!-- <div class="filter" *ngIf="!isFilterRecords">
-        Total Candidates : <span class="count">{{pageRowCount ? pageRowCount : 0}}</span>
-    </div> -->
+    <div class="filter" *ngIf="!isFilterRecords">
+        Total Candidates : <span class="count">{{FilteredRecords ? FilteredRecords : pageRowCount}}</span>
+    </div>
 
     <!-- *ngIf="ShowFilterWithCount && ShowFilterWithCount.length > 0 && ShowFilterWithCount && ShowFilterWithCount[0].count != 0 " -->
     <div *ngIf="isFilterRecords">
@@ -63,7 +63,7 @@
 <ng-template #filter>
     <div class="add-user-header">
         <div mat-dialog-title class="box">
-            <span class="filter"><img src="/assets/images/Filter.svg" alt="">Filters</span>
+            <span (click)="closeDialog()" class="filter"><img src="/assets/images/Filter.svg" alt="">Filters</span>
             <span class="clear" (click)="clearAll()">CLEAR ALL</span>
         </div>
     </div>

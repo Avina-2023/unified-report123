@@ -17,6 +17,7 @@ import { ThrowStmt } from '@angular/compiler';
 export class ViewOverallReportsComponent implements OnInit {
   @HostListener('window:popstate', ['$event'])
   getAllReportsData: any;
+  candidateSkills:any;
   driveName: any;
   isaccess: any;
   subscription: Subscription;
@@ -24,6 +25,8 @@ export class ViewOverallReportsComponent implements OnInit {
   orgdetails:any;
   orgId: any;
   roleCode: any;
+  jobRecommended = false;
+  testTaken = false;
 //   sticky = false;
 //   menuPosition: number = 88;
 //   @HostListener('window:scroll', ['$event'])
@@ -66,6 +69,7 @@ export class ViewOverallReportsComponent implements OnInit {
           ? this.ApiService.decrypt(param.params.id)
           : param.params.id;
         this.getReports(email);
+        this.getCandidateData(email);
       }
     });
   }
@@ -100,6 +104,22 @@ export class ViewOverallReportsComponent implements OnInit {
       }
     });
   }
+
+  getCandidateData(email){
+    let data = {
+      email : email ? email : ''
+    }
+    this.ApiService.getCandidateSkills(data).subscribe((results:any)=>{
+      if(results.success){
+        this.candidateSkills = results && results.data ? results.data[0] : '';
+        this.jobRecommended = results && results.jobRecommended;
+        this.testTaken = results && results.testTaken;
+      }else{
+
+      }
+    })
+  }
+
 
   getSelectedDriveName(e) {
     if (this.getAllReportsData) {
