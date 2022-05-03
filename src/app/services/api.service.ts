@@ -1,7 +1,7 @@
-import { ToastrService } from 'ngx-toastr';
+
 import { APP_CONSTANTS } from './../utils/app-constants.service';
 import { environment } from './../../environments/environment';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AppConfigService } from '../utils/app-config.service';
 import * as CryptoJS from 'crypto-js';
@@ -9,7 +9,6 @@ import * as CryptoJS from 'crypto-js';
   providedIn: 'root'
 })
 export class ApiService {
-
   BASE_URL = environment.API_BASE_URL;
   EDGE_URL = environment.NODE_EDGE_URL;
   Prourl = environment.NODE_URL;
@@ -77,7 +76,9 @@ export class ApiService {
   }
 
   getHiringReport(data){
-    return this.http.post(`${this.BASE_URL}/getAgegridReport`,data);
+    return this.http.post(`${this.BASE_URL}/getAgegridReport`,data,
+    { reportProgress: true });
+    
   }
 
   getBehaviourReport(data){
@@ -93,6 +94,7 @@ export class ApiService {
    }
 
   getCandidatefilters(data){
-    return this.http.post(`${this.BASE_URL}/getCandidatefilters `,data);
+    return this.http.post(`${this.BASE_URL}/getCandidatefilters `,data,
+    { reportProgress: true });
   }
 }
