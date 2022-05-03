@@ -8,8 +8,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { SentDataToOtherComp } from 'src/app/services/sendDataToOtherComp.service';
 import _ from 'lodash';
 import { AgChartThemeOverrides, ColDef, ColSpanParams, GridApi, IColumnToolPanel, SideBarDef } from '@ag-grid-enterprise/all-modules';
-import { MatSelectionListChange } from '@angular/material/list';
-import { PathLocationStrategy } from '@angular/common';
+
 
 @Component({
   selector: 'app-hiring-report',
@@ -802,7 +801,7 @@ candidatereqdata:any = {
         this.userList = data1 && data1.data ? data1.data: [];
         if (this.userList.length > 0) {
           this.gridApi.hideOverlay();
-          if(apiData.request.groupKeys.length < 0){
+          if(apiData.request.groupKeys.length > 0){
           }else{
             this.FilteredRecords = data1 ? data1.total_count : 0
           }
