@@ -54,3 +54,39 @@ $screen-xl-min: 1200px; // Large tablets and desktops
   width: 94%;
   margin: 0 auto;
 }
+
+.commonHeadingStyle {
+  color: $blackColor;
+  font-family: OpenSans, sans-serif;
+  font-size: 1.875em;
+  font-weight: 600;
+  line-height: 1.1;
+  position: relative;
+  margin-bottom: 16px;
+  @include md {
+    margin-bottom: 1.5em;
+  }
+  @include lg {
+    margin-bottom: 1.5em;
+  }
+  @include xl {
+    margin-bottom: 1.5em;
+  }
+}
+.commonHeadingStyle:after {
+  left: 0;
+  content: "";
+  position: absolute;
+  background-image: linear-gradient(
+    90deg,
+    #00bcef,
+    #00c0db,
+    #00c1b6,
+    #00be83,
+    #4eb749
+  );
+  width: 3em;
+  height: 4px;
+  border-radius: 1.25em;
+  bottom: -0.4em;
+}

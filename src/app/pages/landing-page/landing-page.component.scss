@@ -7,6 +7,7 @@ figure {
   width: 100%;
   overflow: hidden;
   overflow-y: auto;
+  font-family: Lato, sans-serif !important;
   .contentArea {
     flex-grow: 1;
     padding-top: 73px;
@@ -84,6 +85,21 @@ figure {
                 height: 100%;
               }
             }
+            .banner_2::before {
+              opacity: .4;
+              z-index: 1;
+              background: linear-gradient(112deg, #26c1f6, #5CB646);
+            }
+            .banner_2_div {
+              opacity: 1;
+              z-index: 10;
+              width: 90% !important;
+              display: block;
+              text-align: center;
+              .heading {
+                line-height: 1.5em !important;
+              }
+            }
             .blackColor {
               color: #000;
               opacity: 0.7;
@@ -98,6 +114,7 @@ figure {
                 top: 50%;
                 width: 85%;
                 transform: translateY(-50%);
+                font-family: OpenSans, sans-serif;
                 @include sm {
                     width: 55%;
                 }
@@ -110,13 +127,12 @@ figure {
               line-height: 1.2;
             }
             .heading {
-              font-size: 2.125em;
+              font-size: 2.85em;
               line-height: 1.1;
               font-weight: 300;
               letter-spacing: 2px;
               strong {
                 display: block;
-                font-size: 1.5em;
                 font-weight: 700;
                 margin-top: 0.25em;
                 letter-spacing: initial;
@@ -159,8 +175,18 @@ figure {
     }
     .skill-exchange-Container {
       position: relative;
+      font-size: 12px;
       max-width: 100%;
       width: 100%;
+      @include md {
+        font-size: 13px;
+      }
+      @include lg {
+        font-size: 14px;
+      }
+      @include xl {
+        font-size: 16px;
+      }
       .skill-exchange {
         display: flex;
         width: 100%;
@@ -206,36 +232,10 @@ figure {
             flex-direction: column;
             width: 100%;
             padding: 2em 0 2em 1em;
-            .commonHeadingStyle {
-              color: $blackColor;
-              font-family: OpenSans, sans-serif;
-              font-size: 1.875em;
-              font-weight: 600;
-              line-height: 1.1;
-              position: relative;
-              margin-bottom: 1.5em;
-            }
-            .commonHeadingStyle:after {
-              left: 0;
-              content: "";
-              position: absolute;
-              background-image: linear-gradient(
-                90deg,
-                #00bcef,
-                #00c0db,
-                #00c1b6,
-                #00be83,
-                #4eb749
-              );
-              width: 3em;
-              height: 4px;
-              border-radius: 1.25em;
-              bottom: -0.4em;
-            }
             .content {
               color: $darkGrey;
-              font-size: 1.2em;
-              line-height: 35px;
+              font-size: 1em;
+              line-height: 2.2em;
             }
           }
         }
@@ -274,8 +274,18 @@ figure {
       position: relative;
       max-width: 100%;
       width: 100%;
+      font-size: 12px;
       background: transparent linear-gradient(119deg, #f8fcff 0%, #def6ff 100%)
         0% 0% no-repeat padding-box;
+        @include md {
+          font-size: 13px;
+        }
+        @include lg {
+          font-size: 14px;
+        }
+        @include xl {
+          font-size: 16px;
+        }
       .howItWorksWrapper {
         display: flex;
         width: 100%;
@@ -300,31 +310,7 @@ figure {
             flex-direction: column;
             width: 100%;
             .commonHeadingStyle {
-              color: $blackColor;
-              font-family: OpenSans, sans-serif;
-              font-size: 1.875em;
-              font-weight: 600;
-              line-height: 1.1;
-              position: relative;
-              margin-bottom: 1.5em;
               letter-spacing: 0.8px;
-            }
-            .commonHeadingStyle:after {
-              left: 0;
-              content: "";
-              position: absolute;
-              background-image: linear-gradient(
-                90deg,
-                #00bcef,
-                #00c0db,
-                #00c1b6,
-                #00be83,
-                #4eb749
-              );
-              width: 3em;
-              height: 4px;
-              border-radius: 1.25em;
-              bottom: -0.4em;
             }
             .content {
               width: 100%;
@@ -333,14 +319,23 @@ figure {
                 align-items: flex-start;
                 justify-content: flex-start;
                 width: 100%;
-                margin-top: 70px;
-                @media (min-width: 200px) and (max-width: 480px) {
-                  margin-top: 40px;
+                margin-top: 16px;
+                // @media (min-width: 200px) and (max-width: 480px) {
+                //   margin-top: 40px;
+                // }
+                @include md {
+                  margin: 4.38em 0 0 0;
+                }
+                @include lg {
+                  margin: 4.38em 0 0 0;
+                }
+                @include xl {
+                  margin: 4.38em 0 0 0;
                 }
                 .numberValue {
                   flex-basis: 18%;
                   color: #27bbee40;
-                  line-height: 45px;
+                  line-height: 0.92em;
                   font-weight: 600;
                   font-size: 3.5em;
                   height: 100%;
@@ -353,18 +348,19 @@ figure {
                 .sub-desc {
                   color: #004684;
                   font-style: italic;
-                  font-size: 12px;
+                  font-size: 0.75em;
                   flex-basis: 82%;
                 }
               }
               .flex-container:first-child {
-                margin-top: 30px;
-                @media (min-width: 200px) and (max-width: 480px) {
-                  margin-top: 15px;
-                }
+                margin-top: 1em;
+                // @media (min-width: 200px) and (max-width: 480px) {
+                //   margin-top: 15px;
+                // }
               }
               .flex-container:last-child {
-                margin-top: 20px;
+                margin-top: 1.25em;
+                margin-bottom: 1.25em;
               }
             }
           }
@@ -378,7 +374,6 @@ figure {
               justify-content: flex-end;
             }
             figure {
-              padding: 1em;
               width: 80%;
               position: relative;
               @media only screen and (min-width: 1000px) {
@@ -404,10 +399,20 @@ figure {
     }
     .benefits {
       position: relative;
+      font-size: 12px;
       max-width: 100%;
       width: 100%;
       background: $whiteColor;
       padding: 50px 150px;
+      @include md {
+        font-size: 13px;
+      }
+      @include lg {
+        font-size: 14px;
+      }
+      @include xl {
+        font-size: 16px;
+      }
       @media (min-width: 200px) and (max-width: 480px) {
         padding: 20px 20px;
       }
@@ -422,34 +427,11 @@ figure {
         align-items: center;
         .heading-content {
           color: $darkGrey;
-          font-size: 16px;
+          font-size: 1em;
           text-align: center;
-        }
-        .commonHeadingStyle {
-          color: $blackColor;
-          font-family: OpenSans, sans-serif;
-          font-size: 1.875em;
-          font-weight: 600;
-          line-height: 1.1;
-          position: relative;
-          margin-bottom: 1.5em;
-        }
-        .commonHeadingStyle:after {
-          left: 0;
-          content: "";
-          position: absolute;
-          background-image: linear-gradient(
-            90deg,
-            #00bcef,
-            #00c0db,
-            #00c1b6,
-            #00be83,
-            #4eb749
-          );
-          width: 3em;
-          height: 4px;
-          border-radius: 1.25em;
-          bottom: -0.4em;
+          @media (min-width: 200px) and (max-width: 480px) {
+            margin-top: 1em;
+          }
         }
       }
       .benefits-content-wrapper {
@@ -457,7 +439,16 @@ figure {
         flex-direction: column;
         width: 100%;
         flex-wrap: wrap;
-        margin-top: 50px;
+        margin: 12px 0 0 0;
+        @include md {
+          margin: 3.2em 0 0 0;
+        }
+        @include lg {
+          margin: 3.2em 0 0 0;
+        }
+        @include xl {
+          margin: 3.2em 0 0 0;
+        }
         @media (min-width: 200px) and (max-width: 480px) {
           margin-top: 1.5em;
         }
@@ -465,13 +456,10 @@ figure {
           display: flex;
           width: 100%;
           align-items: center;
-          margin-top: 50px;
+          margin-top: 3.2em;
           flex-direction: column;
           @media only screen and (min-width: 1000px) {
             flex-direction: row;
-          }
-          @media (min-width: 200px) and (max-width: 480px) {
-            margin-top: 1em;
           }
           .image-wrapper {
             flex-basis: 50%;
@@ -506,9 +494,9 @@ figure {
               width: 100%;
               .heading {
                 color: #004684;
-                font-size: 26px;
+                font-size: 1.62em;
                 font-weight: bold;
-                margin-bottom: 15px;
+                margin-bottom: .62em;
                 width: 100%;
                 text-align: center;
                 @media only screen and (min-width: 1000px) {
@@ -516,7 +504,7 @@ figure {
                 }
               }
               .content {
-                font-size: 16px;
+                font-size: 1em;
                 color: #373331;
               }
             }
