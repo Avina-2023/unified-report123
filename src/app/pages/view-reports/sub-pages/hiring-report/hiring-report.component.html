@@ -1,10 +1,10 @@
 <div class="filterkey">
     <div class="filter" *ngIf="isFilterRecords">
-        Filtered Records : <span class="count">{{FilteredRecords ? FilteredRecords : 0}}</span>
+        Filtered Records : <span class="count">{{FilteredRecords ? FilteredRecords : 0 }}</span>
     </div>
 
     <div class="filter" *ngIf="!isFilterRecords">
-        Total Candidates : <span class="count">{{FilteredRecords ? FilteredRecords : pageRowCount}}</span>
+        Total Candidates : <span class="count">{{FilteredRecords ? FilteredRecords : pageRowCount }}</span>
     </div>
 
     <!-- *ngIf="ShowFilterWithCount && ShowFilterWithCount.length > 0 && ShowFilterWithCount && ShowFilterWithCount[0].count != 0 " -->
@@ -22,7 +22,7 @@
                 </div>
             </div>
 
-            <div class="clear" (click)="clearAll()">
+            <div class="clear" (click)="clearAlltab()">
                 Clear all
             </div>
         </div>
@@ -70,7 +70,7 @@
 
     <div class="main">
         <div class="left">
-            <mat-selection-list #filter [multiple]="false">
+            <mat-selection-list #filter [multiple]="false" disableRipple>
                 <mat-list-option class="hide-checkbox" [value]="filterValues" [selected]="filterIndex && i == filterIndexValue" *ngFor="let filterValues of filterTile;let i = index" (click)="selectedFilter(filter.selectedOptions.selected[0]?.value, i)">
                     <div class="mainHeader">{{filterValues}}
                         <div *ngIf="ShowFilterWithCount">
@@ -89,7 +89,7 @@
         </div>
 
         <div class="right">
-            <mat-selection-list #childfilter [(ngModel)]="selectedOptions" (click)="onSelection(childfilter, firstChildVal.key)">
+            <mat-selection-list disableRipple #childfilter [(ngModel)]="selectedOptions" (click)="onSelection(childfilter, firstChildVal.key)">
                 <div>
                     <mat-list-option class="child-checkbox" checkboxPosition="before" [selected]="childFilterValues.default" *ngFor="let childFilterValues of firstChildVal" [value]='childFilterValues'>
                         <div class="listView">
