@@ -1,17 +1,27 @@
 <div class="wrapper">
-    <mat-toolbar class="header-toolbar">
+    <mat-toolbar class="header-toolbar" *ngIf="checkRouter =='/auth/reports/userlist'">
         <div class="first">
             <img alt="EduTech" class="beforeloginimg" [src]="this.orgLogo ? this.orgLogo  : 'https://assets.lntedutech.com/edutech_logo.svg'" />
         </div>
         <div *ngIf="isaccess" style="cursor: pointer;" class="logout">
-            <span class="wel" *ngIf="isaccess">Welcome, {{orgName ? orgName : 'Admin'}}</span>
+            <span class="wel">Welcome, {{orgName ? orgName : 'Admin'}}</span>
             <span>
-                <!-- *ngIf="!InAppReport" -->
                 <em class="icon-logout"  matTooltip="Logout" (click)="logout()"></em>
             </span>
-
         </div>
     </mat-toolbar>
+
+    <mat-toolbar class="header-toolbar" *ngIf="checkRouter !='/auth/reports/userlist'">
+        <div class="first">
+            <img alt="EduTech" class="beforeloginimg" [src]="this.orgLogo ? this.orgLogo  : 'https://assets.lntedutech.com/edutech_logo.svg'" />
+        </div>
+        <div *ngIf="isaccess" style="cursor: pointer;" class="logout">
+            <span class="wel">Welcome, {{orgName ? orgName : 'Admin'}}</span>
+        </div>
+    </mat-toolbar>
+
+
+
     <div class="heightDiv">
         <router-outlet></router-outlet>
     </div>

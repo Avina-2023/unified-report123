@@ -9,6 +9,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { SentDataToOtherComp } from '../services/sendDataToOtherComp.service';
 import { Subscription } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.component.html',
@@ -27,11 +28,12 @@ export class AuthComponent implements OnInit {
   isaccess: boolean;
   userDetails: any;
   username: any;
-  InAppReport: string;
+  InAppReport:any;
   subscription: Subscription;
   orgdetails: any;
   orgLogo: any;
   orgName: any;
+  checkRouter: string;
 
   constructor(
     private appConfig: AppConfigService,
@@ -39,28 +41,42 @@ export class AuthComponent implements OnInit {
     private dialog: MatDialog,
     private sendData: SentDataToOtherComp,
     private toastr: ToastrService,
+    private router: Router
   ) {
+    this.checkRouter = this.router.url
+
 
     this.subscription = this.sendData.getMessage().subscribe(message => {
-      this.InAppReport = message;
+      this.checkRouter = this.router.url
+      if(message){
+        if(this.router.url == '/auth/reports/userlist'){
+          this.InAppReport = true
+        }else{
+          this.InAppReport = false
+        }
+      }
     });
    }
 
   ngOnInit(): void {
+    console.log(this.router.url);
+
     this.userDetails  =   JSON.parse(sessionStorage.getItem('user'));
     if(this.userDetails){
       this.username = this.userDetails.attributes.firstName;
     }
 
-    this.orgdetails = JSON.parse(this.appConfig.getLocalStorage('role'));
-    this.orgLogo = this.orgdetails[0].logoUrl;
-    this.orgName = this.orgdetails[0].orgName;
+    if(this.appConfig.getLocalStorage('role')){
+      this.orgdetails = JSON.parse(this.appConfig.getLocalStorage('role'));
+      this.orgLogo = this.orgdetails[0].logoUrl;
+      this.orgName = this.orgdetails[0].orgName;
+    }
+
     this.isaccess = this.appConfig.isComingFromMicroCert();
   }
 
   logout() {
-    this.matDialogOpen()
-    // this.apiService.logout();
+    this.matDialogOpen();
   }
 
   matDialogOpen() {
