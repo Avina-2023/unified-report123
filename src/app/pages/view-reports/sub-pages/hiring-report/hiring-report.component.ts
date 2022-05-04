@@ -146,11 +146,16 @@ candidatereqdata:any = {
     };
 
     this.subscription = this.sendData.getMessage().subscribe(message => {
-      this.isFilterOpen = message;
-      if(this.isFilterOpen){
-        this.openFilter();
+      if(message.value == 'openFilter'){
+        this.isFilterOpen = message.data;
+        if(this.isFilterOpen){
+          this.openFilter();
+        }else {
+        }
       }else {
+        this.isFilterOpen = false;
       }
+
     });
   }
 
@@ -257,6 +262,7 @@ candidatereqdata:any = {
         filter: 'agNumberColumnFilter',
         chartDataType: 'series',
         aggFunc: 'avg',
+        maxWidth: 140,
         // width:100,
         filterParams: {
           suppressAndOrCondition: true,
@@ -284,6 +290,7 @@ candidatereqdata:any = {
         field: 'percentage',
         filter: 'agNumberColumnFilter',
         chartDataType: 'series',
+        maxWidth: 140,
         aggFunc: 'avg',
         filterParams: {
           suppressAndOrCondition: true,
@@ -330,6 +337,7 @@ candidatereqdata:any = {
         headerName: 'Test Count',
         field: 'testcount',
         filter: 'agNumberColumnFilter',
+        maxWidth: 120,
         tooltipField:'testcount',
         chartDataType: 'series',
         aggFunc: 'avg',
@@ -347,7 +355,6 @@ candidatereqdata:any = {
           }
         },
         // cellRenderer: 'agGroupCellRenderer',
-        maxWidth: 200,
       },
 
 
@@ -357,6 +364,7 @@ candidatereqdata:any = {
         field: 'testmaxscore',
         filter: 'agNumberColumnFilter',
         chartDataType: 'series',
+        maxWidth: 110,
         // tooltipField:'testmaxscore',
         filterParams: {
           suppressAndOrCondition: true,
@@ -406,6 +414,7 @@ candidatereqdata:any = {
       {
         headerName: 'Rating',
         field: 'rating',
+        maxWidth: 140,
         filter: 'agTextColumnFilter',
         chartDataType: 'series',
         filterParams: {
@@ -498,6 +507,7 @@ candidatereqdata:any = {
         field: 'edu_percentage',
         filter: 'agNumberColumnFilter',
         aggFunc: 'avg',
+        maxWidth: 190,
         chartDataType: 'series',
         filterParams: {
           suppressAndOrCondition: true,
@@ -519,6 +529,7 @@ candidatereqdata:any = {
         headerName: 'Year of passing',
         field: 'passedout',
         filter: 'agDateColumnFilter',
+        maxWidth: 140,
         chartDataType: 'series',
         tooltipField:'passedout',
         cellRenderer: (params) => {
@@ -539,6 +550,7 @@ candidatereqdata:any = {
 
       {
         headerName: 'Gender',
+        maxWidth: 140,
         field: 'gender',
         filter: 'agTextColumnFilter',
         chartDataType: 'series',
@@ -583,6 +595,7 @@ candidatereqdata:any = {
     
       {
         headerName: 'Test Type',
+        maxWidth: 140,
         field: 'testtype',
         filter: 'agTextColumnFilter',
         tooltipField:'testtype',
@@ -607,6 +620,7 @@ candidatereqdata:any = {
         headerName: 'Test Date',
         filter: 'agDateColumnFilter',
         field: 'testdate',
+        maxWidth: 140,
         tooltipField:'testdate',
         chartDataType: 'series',
         // width: 100,
@@ -791,6 +805,7 @@ candidatereqdata:any = {
         let localStorageCGPA = localStorage.getItem('Cgpa');
         let fromAndTo = localStorageCGPA ? JSON.parse(localStorageCGPA) : [];
         this.customfilter  ? apiData.request.CGPA = [localStorageCGPA ? JSON.parse(localStorageCGPA) : null] : ''
+        localStorage.setItem('FilterData',JSON.stringify(apiData.request))
         this.candidateListSubscription =  this.ApiService.getHiringReport(apiData.request).subscribe((data1: any) => {
          if(data1.success == false){
               this.toastr.warning('Your session has expired Please login again');
@@ -803,7 +818,8 @@ candidatereqdata:any = {
           this.gridApi.hideOverlay();
           if(apiData.request.groupKeys.length > 0){
           }else{
-            this.FilteredRecords = data1 ? data1.total_count : 0
+            this.FilteredRecords = data1 ? data1.total_count : 0;
+            this.FilteredRecords = this.FilteredRecords.toLocaleString('en-IN')
           }
           
         this.pageRowCount = data1 && data1.total_count ? data1.total_count : 0;
@@ -827,7 +843,7 @@ candidatereqdata:any = {
           rowCount: this.pageRowCount
         });
       });
-      this.gridApi.showNoRowsOverlay();
+      // this.gridApi.showNoRowsOverlay();
       }
     }
 }
@@ -840,7 +856,6 @@ candidatereqdata:any = {
   }
 
   onCellClicked(event) {
-    console.log(event,'event')
     if (event &&  event.column && event.column.userProvidedColDef && event.column.userProvidedColDef.headerName == 'Email') {
       // let email = event['data']['email'] ? this.ApiService.encrypt(event['data']['email']) : ''
       // this.appconfig.routeNavigationWithParam(APP_CONSTANTS.ENDPOINTS.REPORTS.VIEWREPORTS, email);
@@ -866,7 +881,7 @@ candidatereqdata:any = {
   }
 
   navtoDetailsPage(email){
-    this.sendData.sendMessage(false);
+    this.sendData.sendMessage(true,'go');
     window.open(APP_CONSTANTS.ENDPOINTS.REPORTS.VIEWREPORTS+'/'+`${email}`, '_blank');
   }
   // Add users Section
@@ -884,7 +899,8 @@ candidatereqdata:any = {
         this.filterDef = this.matDialog.open(this.filter, {
           width: '800px',
           height: 'auto',
-          panelClass: 'filterPopup'
+          panelClass: 'filterPopup',
+          disableClose: true 
         });
      
       }
@@ -998,11 +1014,12 @@ candidatereqdata:any = {
 
 
   clearAll(){
+    if(this.ShowFilterWithCount.length > 0){
+      this.getFilter('',this.selectedMenuIndex);
+    }
     this.filteredValues = [];
     this.selectedFilterTotalCount = '';
     this.customfilter = 'false';
-    this.getFilter('',this.selectedMenuIndex);
-    this.tabledef();
     this.from = '';
     this.to = '';
     this.SelectedFilterMainCount = [];
@@ -1010,10 +1027,27 @@ candidatereqdata:any = {
     localStorage.setItem('mainFilterCount','[]');
     localStorage.setItem('filterItem',JSON.stringify(this.candidatereqdata));
     localStorage.setItem('Cgpa','{}');
-    this.gridApi.paginationGoToFirstPage();
     this.cacheBlockSize = 0;
-    this.gridApi.refreshServerSideStore({ purge: true });
     this.isFilterRecords = false;
+  }
+
+  clearAlltab(){
+      this.gridApi.refreshServerSideStore({ purge: true });
+      this.gridApi.paginationGoToFirstPage();
+      this.getFilter('',this.selectedMenuIndex);
+      this.filteredValues = [];
+      this.selectedFilterTotalCount = '';
+      this.customfilter = 'false';
+      this.from = '';
+      this.to = '';
+      this.SelectedFilterMainCount = [];
+      this.ShowFilterWithCount = [];
+      localStorage.setItem('mainFilterCount','[]');
+      localStorage.setItem('filterItem',JSON.stringify(this.candidatereqdata));
+      localStorage.setItem('Cgpa','{}');
+      this.cacheBlockSize = 0;
+      this.isFilterRecords = false;
+      // this.tabledef();
   }
 
 

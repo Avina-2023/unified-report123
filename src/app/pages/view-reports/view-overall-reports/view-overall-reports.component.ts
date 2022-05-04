@@ -48,7 +48,7 @@ export class ViewOverallReportsComponent implements OnInit {
     private route: ActivatedRoute,
     private sendData: SentDataToOtherComp,
   ) {
-    this.sendData.sendMessage(true);
+    this.sendData.sendMessage(true,'go');
   }
 
 
@@ -64,12 +64,16 @@ export class ViewOverallReportsComponent implements OnInit {
 
   getRoute() {
     this.route.paramMap.subscribe((param: any) => {
+      // console.log(param.params.id,'param.params.id')
       if (param && param.params && param.params.id) {
         let email = param.params.id
           ? this.ApiService.decrypt(param.params.id)
           : param.params.id;
         this.getReports(email);
-        this.getCandidateData(email);
+        // if(this.isaccess){
+          this.getCandidateData(email);
+        // }
+      
       }
     });
   }
@@ -84,9 +88,12 @@ export class ViewOverallReportsComponent implements OnInit {
   getReports(data) {
     let driveId = this.appconfig.getSessionStorage('driveInfo');
     let assessmentId = this.appconfig.getSessionStorage('assessmentId');
-    this.orgdetails = JSON.parse(this.appconfig.getLocalStorage('role'));
-    this.orgId = this.orgdetails && this.orgdetails[0].orgId;
-    this.roleCode = this.orgdetails && this.orgdetails[0].roles && this.orgdetails[0].roles[0].roleCode;
+    if(this.appconfig.getLocalStorage('role')){
+      this.orgdetails = JSON.parse(this.appconfig.getLocalStorage('role'));
+      this.orgId = this.orgdetails && this.orgdetails[0].orgId;
+      this.roleCode = this.orgdetails && this.orgdetails[0].roles && this.orgdetails[0].roles[0].roleCode;
+    }
+  
     const apiData = {
       email: data,
       driveId:driveId,

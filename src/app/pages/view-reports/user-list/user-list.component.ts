@@ -132,7 +132,7 @@ export class UserListComponent implements OnInit, OnChanges {
 // }
 
 openFilter(isClick){
-  this.sendData.sendMessage(isClick);
+  this.sendData.sendMessage(isClick,'openFilter');
 }
 
 }

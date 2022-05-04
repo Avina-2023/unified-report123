@@ -30,12 +30,15 @@
             </ng-continer>
         </mat-tab>
 
-        <mat-tab label="Job Recommendations" *ngIf="isaccess && jobRecommended">
-            <ng-continer *ngIf="candidateSkills; else noSkill">
-                <app-candidate-skills [candidateSkills]="candidateSkills"></app-candidate-skills>
-            </ng-continer>
+        <div *ngIf="isaccess">
+            <mat-tab label="Job Recommendations" *ngIf="jobRecommended">
+                <ng-continer *ngIf="candidateSkills; else noSkill">
+                    <app-candidate-skills [candidateSkills]="candidateSkills"></app-candidate-skills>
+                </ng-continer>
 
-        </mat-tab>
+            </mat-tab>
+        </div>
+
     </mat-tab-group>
 
 
