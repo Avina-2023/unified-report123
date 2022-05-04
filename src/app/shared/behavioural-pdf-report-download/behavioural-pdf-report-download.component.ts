@@ -40,7 +40,7 @@ export class BehaviouralPdfReportDownloadComponent implements OnInit {
 
   ngOnInit() {
       this.subscription = this.sendData.getMessage().subscribe(message => {
-        this.InAppReport = message;
+        this.InAppReport = message.data;
         if(this.data && this.InAppReport == true){
           this.getReportData();
           this.downloadAsPDF();
@@ -48,12 +48,12 @@ export class BehaviouralPdfReportDownloadComponent implements OnInit {
       });
 
     this.isaccess = this.appconfig.isComingFromMicroCert();
-    // if (this.data) {
-     
-    // }
 
-    this.orgdetails = JSON.parse(this.appconfig.getLocalStorage('role'));
-    this.orgId = this.orgdetails[0].orgId;
+    if(this.appconfig.getLocalStorage('role')){
+      this.orgdetails = JSON.parse(this.appconfig.getLocalStorage('role'));
+      this.orgId = this.orgdetails[0].orgId;
+    }
+
   }
 
   ngOnDestroy(){

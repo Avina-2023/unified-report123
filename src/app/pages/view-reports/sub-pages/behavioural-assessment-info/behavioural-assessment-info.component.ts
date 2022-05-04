@@ -267,10 +267,10 @@ ngOnDestroy() {
 downloadreport(val){
   if(val){
     this.isPdfdownable = val;
-    this.sendData.sendMessage(true);
+    this.sendData.sendMessage(true,'');
   }else{
     this.isPdfdownable = false;
-    this.sendData.sendMessage(false);
+    this.sendData.sendMessage(false,'');
   }
 
   
