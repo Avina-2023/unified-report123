@@ -480,11 +480,13 @@ figure {
                 margin-bottom: .62em;
                 width: 100%;
                 text-align: center;
+                z-index: 1;
                 @media only screen and (min-width: 1000px) {
                   text-align: left;
                 }
               }
               .content {
+                z-index: 1;
                 font-size: 1em;
                 color: #373331;
               }
@@ -523,15 +525,35 @@ figure {
       right: 0;
       top: -3%;
     }
-    // .benefits:after {
-    //   background-image: url('../../../assets/images/landing/Union.svg');
-    //   position: absolute;
-    //   content: "";
-    //   width: 35%;
-    //   height: 20%;
-    //   left: 0;
-    //   top: -3%;
-    // }
+    .benefits:after {
+      background-image: url('../../../assets/images/landing/Union_1.svg');
+      content: "";
+      position: absolute;
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: bottom;
+      bottom: -4%;
+      transform: translateY(50%);
+      transform: translateX(-50%);
+      height: 50%;
+      width: 100%;
+      @include mobile {
+        height: 18%;
+      }
+      @include sm {
+        height: 23%;
+      }
+      @include md {
+        height: 26%;
+      }
+      // @include lg {
+      //   display: block;
+      // }
+      // @include xl {
+      //   display: block;
+      // }
+
+    }
 
   }
 }
