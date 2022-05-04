@@ -94,7 +94,11 @@ export class ApiService {
    }
 
   getCandidatefilters(data){
-    return this.http.post(`${this.BASE_URL}/getCandidatefilters `,data,
+    return this.http.post(`${this.BASE_URL}/getCandidatefilters`,data,
     { reportProgress: true });
+  }
+
+  getcandidateList(data){
+    return this.http.post(`${this.BASE_URL}/candidateList`,data);
   }
 }
