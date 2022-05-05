@@ -43,4 +43,22 @@
     margin: 0px !important;
 }
 
+.noCard {
+    font-size: 30px;
+    text-align: center;
+    padding: 30px;
+    position: relative;
+    min-height: calc(100vh - 100px);
+    .imgCard {
+        margin-top: 3%;
+        width: 30%;
+    }
+}
+
+.noData {
+    font-size: 24px;
+    text-align: center;
+    color: #757575;
+}
+
 /////@at-root

@@ -36,12 +36,13 @@ export class ProfileInfoComponent implements OnInit, OnChanges {
   totalCount: any;
   driveUser: any;
   selectedMail: any;
-  userCount :number;
+  userCount = 0;
   prevbtn: boolean = false;
   orgdetails: any;
   orgId: any;
   scheduleType: any;
   rowIndex:any;
+  roles: any;
   @HostListener('window:scroll', ['$event'])
   handleScroll() {
     const windowScroll = window.pageYOffset;
@@ -57,12 +58,13 @@ export class ProfileInfoComponent implements OnInit, OnChanges {
     private appConfig: AppConfigService,
     private _loading: LoadingService,
   ) {
+    this.roles = this.appConfig.getLocalStorage('role') ? this.appConfig.getLocalStorage('role') : '';
   }
 
   ngOnInit(): void {
     this.getPersonalInfo();
-    if(this.appConfig.getLocalStorage('role')){
-      this.orgdetails = JSON.parse(this.appConfig.getLocalStorage('role'));
+    if(this.roles != 'undefined' && this.roles != null && this.roles != ''){
+      this.orgdetails = JSON.parse(this.roles);
       this.orgId = this.orgdetails[0].orgId;
     }
 
@@ -80,7 +82,7 @@ export class ProfileInfoComponent implements OnInit, OnChanges {
     this.route.paramMap.subscribe((param: any) => {
       if (param && param.params && param.params.id) {
         this.selectedMail = param.params.id;
-          this.getDriveUser()
+          this.getDriveUser();
 
       }
     });
@@ -195,13 +197,6 @@ export class ProfileInfoComponent implements OnInit, OnChanges {
         this.totalCount = data.total_count;
         this.driveUserdata = data.data;
         this.userCount = this.driveUserdata.findIndex((data) => data.email == this.selectedMail);
-        if(this.userCount == 0){
-          this.userCount + 1;
-        }else {
-          this.userCount;
-        }
-        // this.driveUserdata =   this.getUniqueListBy(this.driveUserdata,'email');
-        // this.userCount = this.userCount + 1;
       }else{
           
       }
@@ -215,16 +210,13 @@ export class ProfileInfoComponent implements OnInit, OnChanges {
       }
 
   nextUser() {
-    // this.userCount = this.userCount + 1;
-    this.userCount = this.driveUserdata.findIndex((data) => data.email == this.selectedMail);
     let expectedIndex = this.userCount != -1 ? this.userCount + 1 : null;
     let nextMail = this.driveUserdata[expectedIndex].email;
     this.appConfig.routeNavigationWithParam(APP_CONSTANTS.ENDPOINTS.REPORTS.VIEWREPORTS,nextMail);
   }
 
   prevUser() {
-    if (this.userCount != 1) {
-      // this.userCount = this.userCount - 1;
+    if (this.userCount != 0) {
       this.userCount = this.driveUserdata.findIndex(
         (data) => data.email == this.selectedMail
       );

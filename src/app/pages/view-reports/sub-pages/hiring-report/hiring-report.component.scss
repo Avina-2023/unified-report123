@@ -263,6 +263,14 @@
             background: #08558C;
             color: $whiteColor;
             width: 66%;
+            .spinner {
+                display: flex;
+                justify-content: center;
+                .matspinner {
+                    margin-top: -4px;
+                    margin-left: -6px;
+                }
+            }
             .actionBtn:hover,
             .actionBtn:focus {
                 background-color: #54B952;
@@ -372,7 +380,7 @@
         color: #607D8B;
         font-size: 16px;
         .count {
-            color: $primaryColor;
+            color: $primaryBlue;
             font-weight: 500;
         }
     }

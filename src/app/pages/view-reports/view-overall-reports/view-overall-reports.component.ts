@@ -27,6 +27,7 @@ export class ViewOverallReportsComponent implements OnInit {
   roleCode: any;
   jobRecommended = false;
   testTaken = false;
+  roles: any;
 //   sticky = false;
 //   menuPosition: number = 88;
 //   @HostListener('window:scroll', ['$event'])
@@ -49,6 +50,7 @@ export class ViewOverallReportsComponent implements OnInit {
     private sendData: SentDataToOtherComp,
   ) {
     this.sendData.sendMessage(true,'go');
+    this.roles = this.appconfig.getLocalStorage('role') ? this.appconfig.getLocalStorage('role') : '';
   }
 
 
@@ -88,8 +90,8 @@ export class ViewOverallReportsComponent implements OnInit {
   getReports(data) {
     let driveId = this.appconfig.getSessionStorage('driveInfo');
     let assessmentId = this.appconfig.getSessionStorage('assessmentId');
-    if(this.appconfig.getLocalStorage('role')){
-      this.orgdetails = JSON.parse(this.appconfig.getLocalStorage('role'));
+    if(this.roles != 'undefined' && this.roles != null && this.roles != ''){
+      this.orgdetails = JSON.parse(this.roles);
       this.orgId = this.orgdetails && this.orgdetails[0].orgId;
       this.roleCode = this.orgdetails && this.orgdetails[0].roles && this.orgdetails[0].roles[0].roleCode;
     }
