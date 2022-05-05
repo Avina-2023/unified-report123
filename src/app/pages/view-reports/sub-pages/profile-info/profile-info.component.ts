@@ -42,6 +42,7 @@ export class ProfileInfoComponent implements OnInit, OnChanges {
   orgId: any;
   scheduleType: any;
   rowIndex:any;
+  roles: any;
   @HostListener('window:scroll', ['$event'])
   handleScroll() {
     const windowScroll = window.pageYOffset;
@@ -57,12 +58,13 @@ export class ProfileInfoComponent implements OnInit, OnChanges {
     private appConfig: AppConfigService,
     private _loading: LoadingService,
   ) {
+    this.roles = this.appConfig.getLocalStorage('role') ? this.appConfig.getLocalStorage('role') : '';
   }
 
   ngOnInit(): void {
     this.getPersonalInfo();
-    if(this.appConfig.getLocalStorage('role')){
-      this.orgdetails = JSON.parse(this.appConfig.getLocalStorage('role'));
+    if(this.roles != 'undefined' && this.roles != null && this.roles != ''){
+      this.orgdetails = JSON.parse(this.roles);
       this.orgId = this.orgdetails[0].orgId;
     }
 
