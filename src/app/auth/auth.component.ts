@@ -59,8 +59,6 @@ export class AuthComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    console.log(this.router.url);
-
     this.userDetails  =   JSON.parse(sessionStorage.getItem('user'));
     if(this.userDetails){
       this.username = this.userDetails.attributes.firstName;

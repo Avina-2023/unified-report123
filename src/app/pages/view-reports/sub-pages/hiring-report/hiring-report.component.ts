@@ -129,6 +129,7 @@ candidatereqdata:any = {
   filterIndexValue: any;
   SelectedFilterMainCount:any = [];
   FilteredRecords: any;
+  Isspinner = false;
   constructor(private apiService: ApiService,private sendData: SentDataToOtherComp, private matDialog: MatDialog,private appconfig: AppConfigService,private toastr: ToastrService, private ApiService: ApiService,) {      
     this.serverSideStoreType = 'partial';
     this.masterDetail = true;
@@ -487,6 +488,8 @@ candidatereqdata:any = {
         filter: 'agTextColumnFilter',
         chartDataType: 'series',
         aggFunc: 'avg',
+        minWidth: 400,
+        maxWidth:600,
         filterParams: {
           suppressAndOrCondition: true,
           filterOptions: ['contains']
@@ -805,11 +808,14 @@ candidatereqdata:any = {
         let localStorageCGPA = localStorage.getItem('Cgpa');
         let fromAndTo = localStorageCGPA ? JSON.parse(localStorageCGPA) : [];
         this.customfilter  ? apiData.request.CGPA = [localStorageCGPA ? JSON.parse(localStorageCGPA) : null] : ''
-        localStorage.setItem('FilterData',JSON.stringify(apiData.request))
+        localStorage.setItem('FilterData',JSON.stringify(apiData.request));
+        this.gridApi.hideOverlay();
         this.candidateListSubscription =  this.ApiService.getHiringReport(apiData.request).subscribe((data1: any) => {
+          this.gridApi.hideOverlay();
          if(data1.success == false){
               this.toastr.warning('Your session has expired Please login again');
               this.apiService.logout()
+              this.gridApi.hideOverlay();
          }
         this.from = fromAndTo.from;
         this.to = fromAndTo.to;
@@ -835,6 +841,7 @@ candidatereqdata:any = {
         }
 
         );
+        this.gridApi.showNoRowsOverlay();
       }
       }, (err) => {
         params.fail();
@@ -842,8 +849,9 @@ candidatereqdata:any = {
           rowData: this.userList,
           rowCount: this.pageRowCount
         });
+      
       });
-      // this.gridApi.showNoRowsOverlay();
+      // 
       }
     }
 }
@@ -920,6 +928,7 @@ candidatereqdata:any = {
  
 
       }else{
+        this.Isspinner = true
         data = {
           Domain: [],
           Qualification: [],
@@ -929,10 +938,14 @@ candidatereqdata:any = {
 
       this.ApiService.getCandidatefilters(data).subscribe((response:any)=>{
           if(response.success){
+            this.Isspinner = false;
             this.filterTile = Object.keys(response.data);
             this.FilterData = response.data;
-            this.selectedFilterTotalCount = response && response.totalCount;
             this.selectedFilter(this.filterTile[index ? index : 0], index ? index : 0);
+            this.selectedFilterTotalCount = '';
+            this.selectedFilterTotalCount = response && response.totalCount;
+          }else{
+            this.Isspinner = true;
           }
       })
       
@@ -951,6 +964,7 @@ candidatereqdata:any = {
   }
 
   onSelection($event, key) {
+    this.Isspinner = true;
     this.selectedOptions.forEach(element => {
         element.default = true;
     });
@@ -1018,7 +1032,6 @@ candidatereqdata:any = {
       this.getFilter('',this.selectedMenuIndex);
     }
     this.filteredValues = [];
-    this.selectedFilterTotalCount = '';
     this.customfilter = 'false';
     this.from = '';
     this.to = '';
@@ -1029,6 +1042,7 @@ candidatereqdata:any = {
     localStorage.setItem('Cgpa','{}');
     this.cacheBlockSize = 0;
     this.isFilterRecords = false;
+    // this.selectedFilterTotalCount = '';
   }
 
   clearAlltab(){
