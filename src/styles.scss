@@ -274,8 +274,9 @@ mat-toolbar.header-toolbar {
         &:last-child {
             width: 100%;
             margin-right: 0;
-            max-height: 230px;
-            margin-left: 175px;
+            // max-height: 230px;
+            padding-left: 90px;
+            overflow: hidden;
         }
     }
     .profileplace {
@@ -318,7 +319,8 @@ mat-toolbar.header-toolbar {
         margin-bottom: 10px;
         text-align: left;
         white-space: pre-line;
-        width: 150px;
+        width: 100%;
+        padding-left: 10px;
         position: relative;
         &.drag {
             margin-top: 0;
@@ -336,7 +338,7 @@ mat-toolbar.header-toolbar {
     .img-container {
         display: flex;
         flex-direction: row;
-        max-width: 78%;
+        // max-width: 78%;
         min-height: 215px;
         position: relative;
         padding: 0;
@@ -907,6 +909,7 @@ ng-image-slider {
     right: 0;
     left: 0;
     top: 35%;
+    width: 100%;
 }
 
 button.sliderBtn,
@@ -932,44 +935,21 @@ button.sliderBtn,
         position: relative;
     }
     &.right {
-        right: 2px;
+        // right: 2px;
         &.doc {
-            right: -650px;
+            left: calc(100% - 51px);
         }
     }
     &.left {
-        left: 12px;
+        // left: 12px;
         &.doc {
             left: -40px;
+            right: 100%;
         }
     }
     &:disabled {
         pointer-events: none;
         opacity: 0.5;
-    }
-}
-
-@media only screen and (max-width: 1600px) {
-    button.sliderBtn,
-    .sliderBtn:focus {
-        &.right {
-            right: 12px;
-            &.doc {
-                right: -900px !important;
-            }
-        }
-    }
-}
-
-@media only screen and (max-width: 1366px) {
-    button.sliderBtn,
-    .sliderBtn:focus {
-        &.right {
-            right: 12px;
-            &.doc {
-                right: -600px !important;
-            }
-        }
     }
 }
 

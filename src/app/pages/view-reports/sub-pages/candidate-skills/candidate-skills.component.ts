@@ -27,13 +27,15 @@ export class CandidateSkillsComponent implements OnInit {
 
     scales : {
       yAxes: [{
-        // display:true,
           ticks: {
             callback: (label: any) => {
-              return label && label.length > 20 ? label.substr(0, 20) + '...' : label;
+              label = label.trim();
+              label = label.toLowerCase();
+              const str2 = label.charAt(0).toUpperCase() + label.slice(1);
+              return str2 && str2.length > 25 ? str2.substr(0, 25) + '...' : str2;
             },
             mirror: true,
-            padding: 140,
+            padding: 200,
             fontSize:16,
           },
       }],
@@ -133,7 +135,7 @@ export class CandidateSkillsComponent implements OnInit {
       data: [],
       backgroundColor: [],
       hoverBackgroundColor: [],
-      barThickness: 0
+      // barThickness: 0
 
     }]
     this.jobFitGap = [];
@@ -145,14 +147,24 @@ export class CandidateSkillsComponent implements OnInit {
       this.barChartLabels.push(element.jobname);
       this.barChartValue.push(element.calculationScore);
       this.barChartColorCode.push(element.colorCode);
-      this.barChartData = [
-        {
-          data: this.barChartValue,
-          backgroundColor:this.barChartColorCode,
-          hoverBackgroundColor:this.barChartColorCode,
-          barThickness: 50,
-        }
-      ];
+      if(this.barChartLabels.length > 10){
+        this.barChartData = [
+          {
+            data: this.barChartValue,
+            backgroundColor:this.barChartColorCode,
+            hoverBackgroundColor:this.barChartColorCode,
+          }
+        ];
+      }else{
+        this.barChartData = [
+          {
+            data: this.barChartValue,
+            backgroundColor:this.barChartColorCode,
+            hoverBackgroundColor:this.barChartColorCode,
+            barThickness: 50,
+          }
+        ];
+      }
      });
    }
 
