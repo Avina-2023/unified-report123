@@ -143,7 +143,7 @@ export class CompetencyAreasComponent implements OnInit {
             element.areaColor = this.domain[i];
             if(element.areaname == 'NA'){
                 element.areaname = 'XXXX';
-                this.isCompeShow = true;
+                this.isCompeShow = false;
             }
             areaSingle.push(element);
           });

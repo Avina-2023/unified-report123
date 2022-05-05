@@ -46,7 +46,7 @@
 
         <div *ngIf="isaccess">
             <span class="count-font">Total Count</span>
-            <div class="count"><span class="userCount">{{userCount}}</span> / <span class="totalCout">{{totalCount}}</span></div>
+            <div class="count"><span class="userCount">{{userCount + 1}}</span> / <span class="totalCout">{{totalCount}}</span></div>
         </div>
     </div>
     <div class="assessmentInfoarea">
@@ -155,11 +155,7 @@
                     <div class="assessmentHeaderinfo">
 
                         <app-doc-info [getAllReportsData]="getAllReportsData"></app-doc-info>
-
                     </div>
-                    <!-- <div class="SummaryInfoArea">
-    
-                        </div> -->
                 </div>
 
 
@@ -170,11 +166,11 @@
     <div class="clearfix"></div>
     <div *ngIf="isaccess">
         <div class="arrow" [class.stickybtn]="sticky" *ngIf="totalCount != 1">
-            <button class="btn" [disabled]="userCount == 1 && userCount != totalCount" (click)="prevUser()"> 
-                <mat-icon class="right" [disabled]="userCount == 1 && userCount != totalCount">keyboard_arrow_left</mat-icon>
+            <button class="btn" [disabled]="userCount == 0 && userCount != totalCount" (click)="prevUser()"> 
+                <mat-icon class="right" [disabled]="userCount == 0 && userCount != totalCount">keyboard_arrow_left</mat-icon>
             </button>
-            <button class="btn" [disabled]="userCount >= totalCount" (click)="nextUser()">
-               <mat-icon class="left" [disabled]="userCount >= totalCount"> keyboard_arrow_right</mat-icon>
+            <button class="btn" [disabled]="(userCount + 1) >= totalCount" (click)="nextUser()">
+               <mat-icon class="left" [disabled]="(userCount + 1) >= totalCount"> keyboard_arrow_right</mat-icon>
            </button>
         </div>
     </div>
