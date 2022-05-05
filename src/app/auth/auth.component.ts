@@ -34,6 +34,7 @@ export class AuthComponent implements OnInit {
   orgLogo: any;
   orgName: any;
   checkRouter: string;
+  roles: any;
 
   constructor(
     private appConfig: AppConfigService,
@@ -44,8 +45,7 @@ export class AuthComponent implements OnInit {
     private router: Router
   ) {
     this.checkRouter = this.router.url
-
-
+    this.roles = this.appConfig.getLocalStorage('role') ? this.appConfig.getLocalStorage('role') : '';
     this.subscription = this.sendData.getMessage().subscribe(message => {
       this.checkRouter = this.router.url
       if(message){
@@ -64,8 +64,8 @@ export class AuthComponent implements OnInit {
       this.username = this.userDetails.attributes.firstName;
     }
 
-    if(this.appConfig.getLocalStorage('role')){
-      this.orgdetails = JSON.parse(this.appConfig.getLocalStorage('role'));
+    if(this.roles != 'undefined' && this.roles != null && this.roles != ''){
+      this.orgdetails = this.roles ? JSON.parse(this.roles) : '';
       this.orgLogo = this.orgdetails[0].logoUrl;
       this.orgName = this.orgdetails[0].orgName;
     }
