@@ -10,7 +10,7 @@ figure {
   font-family: Lato, sans-serif !important;
   .contentArea {
     flex-grow: 1;
-    padding-top: 73px;
+    padding-top: 65px;
     .app-Header {
       display: inline-block;
       width: 100%;
@@ -25,14 +25,15 @@ figure {
         width: 100%;
         display: flex;
         align-items: center;
-        @include sm {
-          height: 400px;
-        }
-        @include md {
-          height: 470px;
-        }
-        @include lg {
-          height: 540px;
+        height: 100%;
+        // @include sm {
+        //   height: 400px;
+        // }
+        // @include md {
+        //   height: 470px;
+        // }
+        @include xl {
+          height: 550px;
         }
         .bannerWrapper {
           position: relative;
@@ -178,7 +179,6 @@ figure {
       font-size: 12px;
       max-width: 100%;
       width: 100%;
-      padding: 2em 0 0 0;
       @include md {
         font-size: 13px;
       }
@@ -191,6 +191,14 @@ figure {
       .skill-exchange {
         display: flex;
         background: $whiteColor;
+        padding-top: 2em;
+        padding-bottom: 1em;
+        @include lg {
+          padding-bottom: 2em;
+        }
+        @include xl {
+          padding-bottom: 2em;
+        }
         .flex-wrapper {
           display: flex;
           align-items: flex-start;
@@ -206,9 +214,9 @@ figure {
             width: 100%;
             figure {
               background-color: $whiteColor;
-              width: 70%;
+              width: 75%;
               @media only screen and (min-width: 1000px) {
-                width: 75%;
+                width: 85%;
               }
               img {
                 object-fit: contain;
@@ -222,7 +230,7 @@ figure {
             display: flex;
             flex-direction: column;
             width: 100%;
-            padding: 1em 0;
+            padding: 1.5em 0 1em 0;
             @media only screen and (min-width: 1000px) {
               padding: 2em 0 2em 2em;
             }
@@ -245,6 +253,7 @@ figure {
       width: 127px;
       height: 147px;
       left: 0;
+      top: -1.5em;
       @media (min-width: 200px) and (max-width: 480px) {
         width: 25%;
         height: 25%;
@@ -263,6 +272,7 @@ figure {
       right: 0;
       @media (min-width: 200px) and (max-width: 480px) {
         width: 25%;
+        height: 110px;
       }
     }
     .howItWorks {
@@ -437,7 +447,7 @@ figure {
           display: flex;
           width: 100%;
           align-items: center;
-          margin-top: 3.2em;
+          margin-top: 1.75em;
           flex-direction: column;
           @media only screen and (min-width: 1000px) {
             flex-direction: row;
@@ -495,13 +505,13 @@ figure {
           .content-wrapper:nth-child(2n + 1) {
             padding-right: 0px;
             @media only screen and (min-width: 1000px) {
-              padding-right: 100px;
+              padding-right: 6.25em;
             }
           }
           .content-wrapper:nth-child(2n) {
             padding-left: 0px;
             @media only screen and (min-width: 1000px) {
-              padding-left: 100px;
+              padding-left: 6.25em;
             }
           }
         }
