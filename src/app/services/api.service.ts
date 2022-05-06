@@ -76,7 +76,7 @@ export class ApiService {
   }
 
   getHiringReport(data){
-    return this.http.post(`${this.BASE_URL}/getAgegridReport`,data,
+    return this.http.post(`${this.BASE_URL}/getAgegridReportList`,data,
     { reportProgress: true });
     
   }
@@ -99,6 +99,6 @@ export class ApiService {
   }
 
   getcandidateList(data){
-    return this.http.post(`${this.BASE_URL}/candidateList`,data);
+    return this.http.post(`${this.BASE_URL}/getCandidateList`,data);
   }
 }
