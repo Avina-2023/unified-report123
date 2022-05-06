@@ -133,6 +133,7 @@ candidatereqdata:any = {
   Isspinner = false;
 
   demoimg = '/assets/images/Filter.svg'
+  FormateName: any;
   constructor(private apiService: ApiService,private sendData: SentDataToOtherComp, private matDialog: MatDialog,private appconfig: AppConfigService,private toastr: ToastrService, private ApiService: ApiService,) {      
     this.serverSideStoreType = 'partial';
     this.masterDetail = true;
@@ -201,16 +202,13 @@ candidatereqdata:any = {
           suppressAndOrCondition: true,
           filterOptions: ['contains']
         },
-        tooltipField:'firstname',
+        // tooltipField:'firstname',
         // width: 100,
         cellRenderer: (params) => {
           // && params.data.display == true
           if(params.value){
-            let FormateName = params.value;
-            FormateName = FormateName.trim();
-            FormateName = FormateName.toLowerCase();
-            const Name = FormateName.charAt(0).toUpperCase() + FormateName.slice(1);
-            return  Name;
+            this.FormateName = params.value;
+            return  this.titleCase(this.FormateName );
           } if(params.value == undefined){
             return  '';
           }else {
@@ -237,7 +235,7 @@ candidatereqdata:any = {
             FormateEmail = FormateEmail.toLowerCase();
             return '<span class="redColor">'+FormateEmail+'</span>' ;
 
-            // return '<span style="cursor: pointer"><span class="profileAvatar"><img src="'+this.demoimg+'"></span> <span>'+params.value+'</span> </span>'
+            // return '<span style="cursor: pointer"><span class="profileAvatar"><img src="'+this.demoimg+'"></span> <span>'+params+'</span> </span>'
           } 
           if(params.value == undefined){
             return '';
@@ -692,6 +690,8 @@ candidatereqdata:any = {
         }
       },
   ]
+
+
   }
 
 
@@ -754,6 +754,7 @@ candidatereqdata:any = {
     this.gridApi.closeToolPanel();
     this.autoSizeAll(false);
     this.showPivotSection();
+    // console.log(this.gridColumnApi)
     var datasource = this.callApiForCandidateList();
     params.api.setServerSideDatasource(datasource);
   }
@@ -764,6 +765,7 @@ candidatereqdata:any = {
     this.gridColumnApi = params.columnApi;
     this.gridApi.closeToolPanel();
     this.autoSizeAll(false)
+  
   }
 
   callApiForCandidateList() {
@@ -1120,4 +1122,12 @@ candidatereqdata:any = {
   closeDialog() {
     this.matDialog.closeAll();
   }
+
+   titleCase(str) {
+    var splitStr = str.toLowerCase().split(' ');
+    for (var i = 0; i < splitStr.length; i++) {
+        splitStr[i] = splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1);     
+    }
+    return splitStr.join(' '); 
+ }
 }
