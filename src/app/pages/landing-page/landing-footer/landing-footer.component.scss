@@ -8,6 +8,7 @@ footer {
     background-color: #323333;
     $fontsize: 13;
     font-size: #{$fontsize}px;
+    position: relative;
     @include lg {
         $fontsize: 14;
         font-size: #{$fontsize}px;
@@ -16,6 +17,12 @@ footer {
         $fontsize: 16;
         font-size: #{$fontsize}px;
     }
+}
+footer:before {
+  position: absolute;
+  content: '';
+  border-top: 1px solid #fff;
+  width: 100%;
 }
 .copyrightsTerms {
     // border-top: 1px solid $greyColor;
@@ -28,7 +35,7 @@ footer {
         flex-direction: row;
     }
     @include md {
-        padding: 3em 0;
+        padding: 1.4em 0;
     }
     ul li a, p {
         font-size: 0.875em;
