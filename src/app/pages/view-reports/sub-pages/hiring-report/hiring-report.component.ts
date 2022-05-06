@@ -8,6 +8,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { SentDataToOtherComp } from 'src/app/services/sendDataToOtherComp.service';
 import _ from 'lodash';
 import { AgChartThemeOverrides, ColDef, ColSpanParams, GridApi, IColumnToolPanel, SideBarDef } from '@ag-grid-enterprise/all-modules';
+import * as moment from 'moment';
 
 
 @Component({
@@ -203,7 +204,11 @@ candidatereqdata:any = {
         cellRenderer: (params) => {
           // && params.data.display == true
           if(params.value){
-            return  params.value;
+            let FormateName = params.value;
+            FormateName = FormateName.trim();
+            FormateName = FormateName.toLowerCase();
+            const Name = FormateName.charAt(0).toUpperCase() + FormateName.slice(1);
+            return  Name;
           } if(params.value == undefined){
             return  '';
           }else {
@@ -225,7 +230,10 @@ candidatereqdata:any = {
         tooltipField:'email',
         cellRenderer: (params) => {
           if(params.data ){
-            return '<span class="redColor">'+params.value+'</span>' ;
+            let FormateEmail = params.value;
+            FormateEmail = FormateEmail.trim();
+            FormateEmail = FormateEmail.toLowerCase();
+            return '<span class="redColor">'+FormateEmail+'</span>' ;
           } 
           if(params.value == undefined){
             return '';
@@ -348,24 +356,23 @@ candidatereqdata:any = {
         },
         cellRenderer: (params) => {
           if(params && params.value){
-            return '<span class="redColor">'+params.value+'</span>' ;
+            return '<div style="text-align: end;">'+params.value+'</div>' ;
           } if(params.value == undefined){
             return  '';
           }else{
-            return '-';
+            return '<div style="text-align:right;">'+'-'+'</div>';
           }
         },
-        // cellRenderer: 'agGroupCellRenderer',
       },
 
 
     
       {
-        headerName: 'Maxscore',
+        headerName: 'Max Score',
         field: 'testmaxscore',
         filter: 'agNumberColumnFilter',
         chartDataType: 'series',
-        maxWidth: 110,
+        maxWidth: 120,
         // tooltipField:'testmaxscore',
         filterParams: {
           suppressAndOrCondition: true,
@@ -408,7 +415,6 @@ candidatereqdata:any = {
             return '-';
           }
         },
-        // cellRenderer: 'agGroupCellRenderer',
         maxWidth: 200,
       },
 
@@ -452,13 +458,8 @@ candidatereqdata:any = {
              return '-';
           }
         }
-
-
         }
       },
-
-
-     
 
       {
         headerName: 'Qualification',
@@ -519,7 +520,7 @@ candidatereqdata:any = {
         tooltipField:'edu_percentage',
         cellRenderer: (params) => {
           if(params.value ){
-            return'<div style="text-align:right;">'+params.value+'</div>'
+            return'<div style="text-align:right;">'+params.value+'%'+'</div>'
           } if(params.value == undefined){
             return  '';
           } else {
@@ -534,10 +535,11 @@ candidatereqdata:any = {
         filter: 'agDateColumnFilter',
         maxWidth: 140,
         chartDataType: 'series',
-        tooltipField:'passedout',
+        // tooltipField:'passedout',
         cellRenderer: (params) => {
           if(params.value){
-            return params.value;
+            return moment(params.value).format('MMM YYYY');
+            // return params.value;
           } if(params.value == undefined){
             return  '';
           } else {
@@ -1020,6 +1022,7 @@ candidatereqdata:any = {
       localStorage.setItem('Cgpa','{}')
     }
     this.cacheBlockSize = 0;
+    // this.tabledef();
     this.gridApi.paginationGoToFirstPage();
     this.gridApi.refreshServerSideStore({ purge: true });
     this.closeDialog();
