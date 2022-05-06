@@ -131,6 +131,8 @@ candidatereqdata:any = {
   SelectedFilterMainCount:any = [];
   FilteredRecords: any;
   Isspinner = false;
+
+  demoimg = '/assets/images/Filter.svg'
   constructor(private apiService: ApiService,private sendData: SentDataToOtherComp, private matDialog: MatDialog,private appconfig: AppConfigService,private toastr: ToastrService, private ApiService: ApiService,) {      
     this.serverSideStoreType = 'partial';
     this.masterDetail = true;
@@ -234,6 +236,8 @@ candidatereqdata:any = {
             FormateEmail = FormateEmail.trim();
             FormateEmail = FormateEmail.toLowerCase();
             return '<span class="redColor">'+FormateEmail+'</span>' ;
+
+            // return '<span style="cursor: pointer"><span class="profileAvatar"><img src="'+this.demoimg+'"></span> <span>'+params.value+'</span> </span>'
           } 
           if(params.value == undefined){
             return '';
@@ -688,8 +692,6 @@ candidatereqdata:any = {
         }
       },
   ]
-
-
   }
 
 
@@ -752,7 +754,6 @@ candidatereqdata:any = {
     this.gridApi.closeToolPanel();
     this.autoSizeAll(false);
     this.showPivotSection();
-    // console.log(this.gridColumnApi)
     var datasource = this.callApiForCandidateList();
     params.api.setServerSideDatasource(datasource);
   }
@@ -763,7 +764,6 @@ candidatereqdata:any = {
     this.gridColumnApi = params.columnApi;
     this.gridApi.closeToolPanel();
     this.autoSizeAll(false)
-  
   }
 
   callApiForCandidateList() {
