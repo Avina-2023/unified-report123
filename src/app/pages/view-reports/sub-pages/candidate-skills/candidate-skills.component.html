@@ -1,70 +1,61 @@
-<ng-continer>
-    <div class="wall candidateSkillsBasicProfile-wrapper">
-        <div class="assessmentInfoarea candidateSkillsBasicProfile" *ngIf="false">
-            <mat-expansion-panel expanded="false">
-                <mat-expansion-panel-header #stickyMenu>
-                    <div class="expandheaderArea">
-                        <div class="width-270">
-                            <em class="icon-User"></em>
-                            <span>Name
+<div class="wall candidateSkillsBasicProfile-wrapper">
+    <div class="assessmentInfoarea candidateSkillsBasicProfile" *ngIf="false">
+        <mat-expansion-panel expanded="false">
+            <mat-expansion-panel-header #stickyMenu>
+                <div class="expandheaderArea">
+                    <div class="width-270">
+                        <em class="icon-User"></em>
+                        <span>Name
                                   <span class="color-black">{{personalInfo.firstname ? personalInfo.firstname : '-'}}</span>
-                            </span>
-                        </div>
+                        </span>
+                    </div>
 
-                        <div class="width-270">
-                            <em class="icon-Email"></em>
-                            <span>Email
+                    <div class="width-270">
+                        <em class="icon-Email"></em>
+                        <span>Email
                                   <span class="color-black">{{personalInfo.email ? personalInfo.email : '-'}}</span>
-                            </span>
-                        </div>
-                        <div *ngIf="personalInfo?.qrCodeURL" class="width-80">
-                            <img class="QaCode" [src]="personalInfo.qrCodeURL ? personalInfo.qrCodeURL : '-'" alt="" srcset="">
-                        </div>
+                        </span>
                     </div>
-                </mat-expansion-panel-header>
-            </mat-expansion-panel>
-        </div>
-
-        <div class="skills">
-            <div class="heading">Top 03 Jobs recommended</div>
-            <div class="recommendedJobs">
-                <div *ngFor=" let joberoles of top3jobs">
-                    <h3>{{joberoles?.calculationScore}}%<span> for {{joberoles?.jobname}}</span></h3>
-                    <mat-progress-bar mode="determinate" [color]="'#09568C'" [value]="joberoles?.calculationScore"></mat-progress-bar>
-                </div>
-            </div>
-        </div>
-
-        <div class="main-box">
-            <div class="right">
-                <div class="jobFitGap" *ngIf="jobFitGap.length > 0; else nojobfit">
-                    <div class="heading">Job fit-gap</div>
-                    <div class="width-65">
-                        <canvas class="chart" baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [plugins]="barChartPlugins" [legend]="barChartLegend" [chartType]="barChartType">
-                        </canvas>
+                    <div *ngIf="personalInfo?.qrCodeURL" class="width-80">
+                        <img class="QaCode" [src]="personalInfo.qrCodeURL ? personalInfo.qrCodeURL : '-'" alt="" srcset="">
                     </div>
                 </div>
-                <hr>
+            </mat-expansion-panel-header>
+        </mat-expansion-panel>
+    </div>
 
-                <div class="Jobs">
-                    <div class="">
-                        <div class="heading">
-                            Recommended Jobs
-                        </div>
-
-                        <div>
-                            <span *ngFor=" let joberoles of candidateSkills.jobrole" class="jobs">{{joberoles?.jobname}}</span>
-                        </div>
-                    </div>
-                </div>
+    <div class="skills">
+        <div class="heading">Top 03 Jobs recommended</div>
+        <div class="recommendedJobs">
+            <div *ngFor=" let joberoles of top3jobs">
+                <h3>{{joberoles?.calculationScore}}%<span> for {{joberoles?.jobname}}</span></h3>
+                <mat-progress-bar mode="determinate" [color]="'#09568C'" [value]="joberoles?.calculationScore"></mat-progress-bar>
             </div>
         </div>
     </div>
 
-</ng-continer>
+    <div class="main-box">
+        <div class="right">
+            <div class="jobFitGap" *ngIf="top7Jobs.length > 0; else nojobfit">
+                <div class="heading">Job fit-gap</div>
+                <div class="width-65">
+                    <canvas class="chart" baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [plugins]="barChartPlugins" [legend]="barChartLegend" [chartType]="barChartType">
+                        </canvas>
+                </div>
+            </div>
+            <!-- <hr> -->
+        </div>
+    </div>
 
-
-
+    <div class="Jobs">
+        <div class="heading">
+            Recommended Jobs
+        </div>
+        <div class="allJobs">
+            <span *ngFor=" let joberoles of candidateSkills.jobrole" class="jobs">{{joberoles?.jobname}}</span>
+        </div>
+    </div>
+</div>
 
 <ng-template #nojobfit>
     <div class="noCard">
