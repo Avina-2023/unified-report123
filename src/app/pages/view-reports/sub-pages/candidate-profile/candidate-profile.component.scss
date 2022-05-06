@@ -1,0 +1,63 @@
+@import "../../../../../assets/scss/variables.scss";
+
+.candidateProfile {
+    background-color: $whiteColor;
+    h4 {
+        font-size: 18px !important;
+        font-weight: 500 !important;
+        color: $blackColor;
+        line-height: normal !important;
+        border-bottom: 1px solid rgba(0,0,0,0.2);
+        padding: 20px 20px 13px 20px;
+        margin-bottom: 20px;
+    }
+    .candidateWrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 20px;
+    }
+    .profileWrapper {
+        display: flex;
+        align-items: center;
+        .candidateDetails {
+            margin-left: 15px;
+            > div {
+                span {
+                    font-size: 14px;
+                    font-weight: 400;
+                    line-height: 24px;
+                    &.name {
+                        font-size: 22px;
+                        font-weight: 400;
+                        color: $blackColor;
+                    }
+                    &.title {
+                        color: $mediumGrey;
+                        margin-right: 5px;
+                    }
+                    &.desc {
+                        color: $blackColor;
+                    }
+                }
+            }
+        }
+    }
+    figure {
+        position: relative;
+        img {
+            width: 100px;
+            height: 115px;
+            object-fit: cover;
+        }
+        em {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            color: $whiteColor;
+            font-size: 20px;
+            cursor: pointer;
+        }
+    }
+}
