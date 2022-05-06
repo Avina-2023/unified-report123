@@ -76,6 +76,7 @@ export class CandidateSkillsComponent implements OnInit {
   personalInfo: any;
   isJobFit: any;
   isaccess: any;
+  top7Jobs: any = [];
   constructor( private route: ActivatedRoute,private apiService: ApiService,private appConfig: AppConfigService,) {
 
    }
@@ -107,7 +108,8 @@ export class CandidateSkillsComponent implements OnInit {
   getCandidateData(email){
     this.candidateSkills = [];
     this.top3jobs = [];
-    this.jobFitGap = []
+    this.jobFitGap = [];
+    this.top7Jobs = [];
     let data = {
       email : email ? email : ''
     }
@@ -115,6 +117,9 @@ export class CandidateSkillsComponent implements OnInit {
       if(results.success){
         this.candidateSkills = results && results.data ? results.data[0] : '';
         this.top3jobs =  this.candidateSkills && this.candidateSkills.jobrole.slice(0, 3);
+        this.top7Jobs =  this.candidateSkills && this.candidateSkills.jobrole.slice(3, 10);
+        console.log(this.top7Jobs,'this.top7Jobs')
+        console.log(this.candidateSkills,'this.candidateSkills')
         this.isJobFit = results && results.jobRecommended;
         if(this.isJobFit){
           this.formateBarChartData();
@@ -142,8 +147,10 @@ export class CandidateSkillsComponent implements OnInit {
     this.barChartLabels = [];
     this.barChartValue = [];
     this.barChartColorCode = [];
-    this.jobFitGap = this.candidateSkills && this.candidateSkills.jobrole.splice(3);
-    this.jobFitGap.forEach(element => {
+    // this.top7Jobs = []
+    // this.jobFitGap = this.candidateSkills && this.candidateSkills.jobrole.splice(3);
+    console.log(this.top3jobs,'asdasdasd')
+    this.top7Jobs.forEach(element => {
       this.barChartLabels.push(element.jobname);
       this.barChartValue.push(element.calculationScore);
       this.barChartColorCode.push(element.colorCode);
