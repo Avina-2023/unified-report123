@@ -1,17 +1,17 @@
 <div class="wrapper">
-    <mat-toolbar class="header-toolbar" *ngIf="checkRouter =='/auth/reports/userlist'">
+    <mat-toolbar class="header-toolbar" *ngIf="checkRouter ==='/auth/reports/userlist'">
         <div class="first">
             <img alt="EduTech" class="beforeloginimg" [src]="this.orgLogo ? this.orgLogo  : 'https://assets.lntedutech.com/edutech_logo.svg'" />
         </div>
         <div *ngIf="isaccess" style="cursor: pointer;" class="logout">
             <span class="wel">Welcome, {{orgName ? orgName : 'Admin'}}</span>
-            <span>
+            <span class="logout1">
                 <em class="icon-logout"  matTooltip="Logout" (click)="logout()"></em>
             </span>
         </div>
     </mat-toolbar>
 
-    <mat-toolbar class="header-toolbar" *ngIf="checkRouter !='/auth/reports/userlist'">
+    <mat-toolbar class="header-toolbar" *ngIf="checkRouter !='/auth/reports/userlist' && checkRouter !='/auth/reports/dashboard' ">
         <div class="first">
             <img alt="EduTech" class="beforeloginimg" [src]="this.orgLogo ? this.orgLogo  : 'https://assets.lntedutech.com/edutech_logo.svg'" />
         </div>
@@ -21,19 +21,31 @@
     </mat-toolbar>
 
 
+    <mat-toolbar class="header-toolbar" *ngIf="checkRouter === '/auth/reports/dashboard'">
+        <div class="first">
+            <img alt="EduTech" class="beforeloginimg" [src]="this.orgLogo ? this.orgLogo  : 'https://assets.lntedutech.com/edutech_logo.svg'" />
+        </div>
+        <div *ngIf="isaccess" style="cursor: pointer;" class="logout">
+            <span class="userListNav" (click)="navToUserlist()"> Pre-assessed Candidates </span>
+            <span class="wel">Welcome, {{orgName ? orgName : 'Admin'}}</span>
+            <span class="logout1">
+                <em class="icon-logout"  matTooltip="Logout" (click)="logout()"></em>
+            </span>
+        </div>
+    </mat-toolbar>
+
+
+    <ng-template #matDialog>
+        <h1 class="popupHead" mat-dialog-title>Are you sure you want to logout?</h1>
+        <!-- <div mat-dialog-content>This dialog showcases the title, close, content and actions elements.</div> -->
+        <div class="action" mat-dialog-actions>
+            <button mat-button [mat-dialog-close]="true">Cancel </button>
+            <button class="confirm" mat-button (click)="closeDialog($event)">Confirm </button>
+        </div>
+    </ng-template>
 
     <div class="heightDiv">
         <router-outlet></router-outlet>
     </div>
     <footer class="footerPan">© 2021 L&T EduTech All Rights Reserved</footer>
 </div>
-
-
-<ng-template #matDialog>
-    <h1 class="popupHead" mat-dialog-title>Are you sure you want to logout?</h1>
-    <!-- <div mat-dialog-content>This dialog showcases the title, close, content and actions elements.</div> -->
-    <div class="action" mat-dialog-actions>
-        <button mat-button [mat-dialog-close]="true">Cancel </button>
-        <button class="confirm" mat-button (click)="closeDialog($event)">Confirm </button>
-    </div>
-</ng-template>
