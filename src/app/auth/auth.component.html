@@ -5,7 +5,7 @@
         </div>
         <div *ngIf="isaccess" style="cursor: pointer;" class="logout">
             <span class="wel">Welcome, {{orgName ? orgName : 'Admin'}}</span>
-            <span>
+            <span class="logout1">
                 <em class="icon-logout"  matTooltip="Logout" (click)="logout()"></em>
             </span>
         </div>
@@ -28,7 +28,7 @@
         <div *ngIf="isaccess" style="cursor: pointer;" class="logout">
             <span class="userListNav" (click)="navToUserlist()"> Pre-assessed Candidates </span>
             <span class="wel">Welcome, {{orgName ? orgName : 'Admin'}}</span>
-            <span>
+            <span class="logout1">
                 <em class="icon-logout"  matTooltip="Logout" (click)="logout()"></em>
             </span>
         </div>

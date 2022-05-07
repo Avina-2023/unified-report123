@@ -33,7 +33,7 @@ export class DashboardComponent implements OnInit {
   GetMongoCharts(){
     this.dashboard = this.sdk.createDashboard({
       dashboardId: '62751917-2c86-4776-81b4-5b281737ef06',
-      height:500,
+      // height: 100
       // filter:{batchid:this.BatchValue}
   
     });
