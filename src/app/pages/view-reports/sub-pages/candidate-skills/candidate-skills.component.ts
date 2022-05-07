@@ -1,5 +1,5 @@
 
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
@@ -83,7 +83,7 @@ export class CandidateSkillsComponent implements OnInit {
 
   ngOnInit(): void {
     this.isaccess = this.appConfig.isComingFromMicroCert();
-      this.getRoute();
+    this.getRoute();
       // this.getPersonalInfo();
   }
 
@@ -118,8 +118,6 @@ export class CandidateSkillsComponent implements OnInit {
         this.candidateSkills = results && results.data ? results.data[0] : '';
         this.top3jobs =  this.candidateSkills && this.candidateSkills.jobrole.slice(0, 3);
         this.top7Jobs =  this.candidateSkills && this.candidateSkills.jobrole.slice(3, 10);
-        console.log(this.top7Jobs,'this.top7Jobs')
-        console.log(this.candidateSkills,'this.candidateSkills')
         this.isJobFit = results && results.jobRecommended;
         if(this.isJobFit){
           this.formateBarChartData();
@@ -147,9 +145,6 @@ export class CandidateSkillsComponent implements OnInit {
     this.barChartLabels = [];
     this.barChartValue = [];
     this.barChartColorCode = [];
-    // this.top7Jobs = []
-    // this.jobFitGap = this.candidateSkills && this.candidateSkills.jobrole.splice(3);
-    console.log(this.top3jobs,'asdasdasd')
     this.top7Jobs.forEach(element => {
       this.barChartLabels.push(element.jobname);
       this.barChartValue.push(element.calculationScore);

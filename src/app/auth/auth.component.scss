@@ -14,7 +14,7 @@
  .wrapper {
      display: flex;
      flex-direction: column;
-     height: auto;
+     height: 100%;
      .heightDiv {
          flex-grow: 1;
      }
@@ -34,4 +34,18 @@
          color: #fff;
          margin-left: 10%;
      }
+ }
+ 
+ .userListNav {
+     font-size: 14px;
+     font-weight: 400;
+     margin-right: 20px;
+     cursor: pointer;
+ }
+ 
+ .userListNav:hover {
+     color: #09568C;
+     cursor: pointer;
+     transition: (.3s);
+     font-weight: 500;
  }
