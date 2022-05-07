@@ -41,15 +41,13 @@ export class LoginPageComponent  {
 
     this.apiService.login(apiData).subscribe((response: any)=> {
       if ((response && response.success) || (response && response.data) || (response && response.token)) {
-        
           if(response.data.attributes){
             this.appConfig.setLocalStorage('token', 'true');
             this.appConfig.setLocalStorage('role',response.data ? JSON.stringify(response.data.attributes.organisations)  : '');
             this.appConfig.setLocalStorage('email',response.data && response.data.attributes  ? response.data.attributes.email : '');
             this.disableButton = false;
-            this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.REPORTS.HOME);
-       
-              this.matDialog.closeAll();
+            this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.REPORTS.DASHBOARD);
+            this.matDialog.closeAll();
             
           }else {
             this.toastr.error('User not found please try with diffrent credentials');
