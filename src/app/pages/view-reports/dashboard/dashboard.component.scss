@@ -1,0 +1,20 @@
+.chartWrapper {
+    height: 100%;
+    .marCard {
+        height: 100%;
+        #mongocharts {
+            height: 100%;
+            >div {
+                height: 100%;
+                overflow: initial;
+            }
+        }
+    }
+}
+
+::ng-deep #mongocharts {
+    >div {
+        height: 100%;
+        overflow: initial;
+    }
+}
