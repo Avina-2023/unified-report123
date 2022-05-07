@@ -111,6 +111,11 @@ export class AuthComponent implements OnInit {
   }
 
 
+  navToDashboard(){
+    this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.REPORTS.DASHBOARD);
+  }
+
+
        /**
    * Listen and display the loading spinner.
    */
