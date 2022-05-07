@@ -4,6 +4,7 @@ import { ViewOverallReportsComponent } from './view-overall-reports/view-overall
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HiringReportComponent } from './sub-pages/hiring-report/hiring-report.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 const routes: Routes = [
   {
@@ -14,6 +15,9 @@ const routes: Routes = [
   },
   {
     path: `${APP_CONSTANTS.ROUTES.REPORTS.HIRINGREPORT}`, component: HiringReportComponent,
+  },
+  {
+    path: `${APP_CONSTANTS.ROUTES.REPORTS.DASHBOARD}`, component: DashboardComponent,
   },
   {
     path: `${APP_CONSTANTS.ROUTES.REPORTS.BEHAVIOUR_MODULE.HOME}`, loadChildren: () => import('../behavioural-report/behavioural-report.module').then(m => m.BehaviouralReportModule)

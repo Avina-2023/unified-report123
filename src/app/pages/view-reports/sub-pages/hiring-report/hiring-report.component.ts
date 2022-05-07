@@ -165,6 +165,7 @@ candidatereqdata:any = {
   }
 
   ngOnInit(): void {
+    this.sendData.sendMessage(true,'go');
     let localFilterval = localStorage.getItem('filterItem');
     this.getFilter(localFilterval ? JSON.parse(localFilterval) : '','');
     this.SelectedFilterMainCount = localStorage.getItem('mainFilterCount') ? JSON.parse(localStorage.getItem('mainFilterCount')) :   localStorage.setItem('mainFilterCount','[]');;

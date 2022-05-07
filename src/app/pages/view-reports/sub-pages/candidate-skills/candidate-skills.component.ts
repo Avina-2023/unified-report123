@@ -83,7 +83,7 @@ export class CandidateSkillsComponent implements OnInit {
 
   ngOnInit(): void {
     this.isaccess = this.appConfig.isComingFromMicroCert();
-      this.getRoute();
+    this.getRoute();
       // this.getPersonalInfo();
   }
 

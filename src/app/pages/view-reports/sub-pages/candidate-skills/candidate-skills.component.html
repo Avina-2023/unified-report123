@@ -43,18 +43,19 @@
                         </canvas>
                 </div>
             </div>
-            <!-- <hr> -->
+            <hr>
+            <div class="Jobs">
+                <div class="heading">
+                    Recommended Jobs
+                </div>
+                <div class="allJobs">
+                    <span *ngFor=" let joberoles of candidateSkills.jobrole" class="jobs">{{joberoles?.jobname}}</span>
+                </div>
+            </div>
         </div>
     </div>
 
-    <div class="Jobs">
-        <div class="heading">
-            Recommended Jobs
-        </div>
-        <div class="allJobs">
-            <span *ngFor=" let joberoles of candidateSkills.jobrole" class="jobs">{{joberoles?.jobname}}</span>
-        </div>
-    </div>
+
 </div>
 
 <ng-template #nojobfit>
