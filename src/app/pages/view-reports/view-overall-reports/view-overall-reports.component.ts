@@ -1,14 +1,12 @@
-import { ActivatedRoute, NavigationStart, Router } from '@angular/router';
+import { ActivatedRoute} from '@angular/router';
 import { APP_CONSTANTS } from './../../../utils/app-constants.service';
 import { AppConfigService } from './../../../utils/app-config.service';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from './../../../services/api.service';
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HostListener } from '@angular/core';
-import { PlatformLocation } from '@angular/common';
 import { SentDataToOtherComp } from 'src/app/services/sendDataToOtherComp.service';
 import { Subscription } from 'rxjs';
-import { ThrowStmt } from '@angular/compiler';
 @Component({
   selector: 'app-view-overall-reports',
   templateUrl: './view-overall-reports.component.html',
@@ -28,20 +26,6 @@ export class ViewOverallReportsComponent implements OnInit {
   jobRecommended = false;
   testTaken = false;
   roles: any;
-//   sticky = false;
-//   menuPosition: number = 88;
-//   @HostListener('window:scroll', ['$event'])
-//  handleScroll(){
-//     const windowScroll = window.pageYOffset;
-//     if(windowScroll >= this.menuPosition){
-//       console.log('in')
-//     this.sticky = true;
-//     this.sendData.sendMessage(this.sticky);
-//     } else {
-//     this.sticky = false;
-//      this.sendData.sendMessage(this.sticky);
-//     }
-//     }
   constructor(
     private toastr: ToastrService,
     private ApiService: ApiService,
