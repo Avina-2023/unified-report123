@@ -2,14 +2,28 @@
 
 .candidateProfile {
     background-color: $whiteColor;
+    .detailsWrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid rgba(0,0,0,0.2);
+        padding: 20px 20px 13px 20px;
+        margin-bottom: 20px;
+        span {
+            font-size: 19px;
+            font-weight: 500;
+            color: #000000;
+            &.userCount {
+                color: #c02222;
+            }
+        }
+    }
     h4 {
         font-size: 18px !important;
         font-weight: 500 !important;
         color: $blackColor;
         line-height: normal !important;
-        border-bottom: 1px solid rgba(0,0,0,0.2);
-        padding: 20px 20px 13px 20px;
-        margin-bottom: 20px;
+        margin-bottom: 0;
     }
     .candidateWrapper {
         display: flex;

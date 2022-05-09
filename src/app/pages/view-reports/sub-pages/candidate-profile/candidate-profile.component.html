@@ -1,5 +1,9 @@
 <section class="candidateProfile" *ngIf="profilePic">
-    <h4>Candidate Details</h4>
+    <div class="detailsWrapper">
+        <h4>Candidate Details</h4>
+        <div class="count">
+            <span class="userCount">{{userCount + 1}}</span><span class="totalCout"> / {{totalCount}}</span></div>
+    </div>
     <div class="candidateWrapper">
         <div class="profileWrapper">
             <div class="photoholder" #profil>

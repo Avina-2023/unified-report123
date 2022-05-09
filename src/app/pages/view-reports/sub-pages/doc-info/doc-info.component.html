@@ -1,6 +1,6 @@
 <section *ngIf="isaccess && profilePic">
     <div class="docInfoarea">
-        <div class="profileplace" *ngIf="profilePic">
+        <!-- <div class="profileplace" *ngIf="profilePic">
             <span>Profile Picture Snapshot</span>
             <div class="photoholder" #profil>
                 <ng-container *ngIf="profilePic">
@@ -14,7 +14,7 @@
                     <img src="../../../../../assets/images/noImg.jpg" class="imgProp" alt="Profile" />
                 </ng-container>
             </div>
-        </div>
+        </div> -->
 
         <div class="profileplace" *ngIf="idCardImg">
             <span>Identity Card Snapshot</span>
@@ -35,65 +35,34 @@
 
         <div class="docUpload">
             <ng-container *ngIf="certificationList && certificationList.length > 0">
-                <span>Uploaded Documents</span>
-                <div class="img-container">
-                    <ng-container *ngIf="
-              getAllReportsData &&
-              getAllReportsData.selfDefinedCertificates &&
-              getAllReportsData.selfDefinedCertificates.length > 0
-            ">
-                        <drag-scroll #nav [scrollbar-hidden]="true" [drag-scroll-y-disabled]="true" (reachesLeftBound)="leftBoundStat($event)" (reachesRightBound)="rightBoundStat($event)">
-                            <div drag-scroll-item *ngFor="let cert of certificationList; let i = index">
-                                <!--  [src]="(cert['url'] + blobkey)" -->
-                                <span class="drag">
-                  <img
-                    [src]="
-                      cert['type'] && cert['type'].includes('pdf')
-                        ? '../../../../../assets/images/pdf.jpg'
-                        : cert['type'] && cert['type'].includes('image')
-                        ? cert['url'] + blobkey
-                        : '../../../../../assets/images/noImg.jpg'
-                    "
-                    class="imgProp"
-                    #first
-                    alt="Eligibility"
-                  />
-                  <a
-                    *ngIf="cert['url']"
-                    (click)="openDialog(cert, viewImg)"
-                    [ngStyle]="{
-                      width: first.offsetWidth + 'px',
-                      height: first.offsetHeight + 'px'
-                    }"
-                    class="viewBtn"
-                    ><em class="icon-View"></em
-                  ></a>
-                  <span>{{ cert?.name }}</span>
+                <div class="imgContainer">
+                    <ng-container *ngIf="getAllReportsData && getAllReportsData.selfDefinedCertificates && getAllReportsData.selfDefinedCertificates.length > 0">
+                        <div *ngFor="let cert of certificationList; let i = index">
+                            <figure class="drag">
+                                <img [src]="cert['type'] && cert['type'].includes('pdf') ? '../../../../../assets/images/pdf.png' : cert['type'] && cert['type'].includes('image') ? cert['url'] + blobkey: '../../../../../assets/images/noImg.jpg'" class="imgProp" #first alt="Eligibility" />
+                            </figure>
+                            <div class="docName">
+                                <div class="heading5">{{ cert?.name }}</div>
+                                <span *ngIf="cert['url']" (click)="openDialog(cert, viewImg)" class="viewBtn">
+                                    View
                                 </span>
                             </div>
+                        </div>
+                        <!-- <drag-scroll #nav [scrollbar-hidden]="true" [drag-scroll-y-disabled]="true" (reachesLeftBound)="leftBoundStat($event)" (reachesRightBound)="rightBoundStat($event)">
                         </drag-scroll>
                         <div class="draggable-button-container" *ngIf="getAllReportsData.selfDefinedCertificates.length > 3">
-                            <button [disabled]="leftNavDisabled" class="sliderBtn left doc" (click)="moveLeft()">
-                <em class="icon-Back"></em>
-              </button>
-                            <button [disabled]="rightNavDisabled" class="sliderBtn right doc" (click)="moveRight()">
-                <em class="icon-right-next"></em>
-              </button>
-                        </div>
+                            <button [disabled]="leftNavDisabled" class="sliderBtn left doc" (click)="moveLeft()"><em class="icon-Back"></em></button>
+                            <button [disabled]="rightNavDisabled" class="sliderBtn right doc" (click)="moveRight()"><em class="icon-right-next"></em></button>
+                        </div> -->
                     </ng-container>
-                    <ng-container *ngIf="
-              getAllReportsData &&
-              getAllReportsData.selfDefinedCertificates &&
-              getAllReportsData.selfDefinedCertificates.length < 1
-            ">
+                    <ng-container *ngIf="getAllReportsData && getAllReportsData.selfDefinedCertificates && getAllReportsData.selfDefinedCertificates.length < 1">
                         <img src="../../../../../assets/images/noImg.jpg" class="imgProp" alt="Identity" />
                     </ng-container>
                 </div>
             </ng-container>
         </div>
-
     </div>
-    <div class="clearfix"></div>
+<div class="clearfix"></div>
 </section>
 <ng-template #viewImg id="viewImg" *ngIf="isaccess">
     <div class="progressText">

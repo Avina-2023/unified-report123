@@ -1,3 +1,4 @@
+@import "../../../../../assets/scss/variables.scss";
 .progressclose1 {
     position: absolute;
     width: 25px;
@@ -19,4 +20,40 @@
     position: relative;
     top: 2px;
     z-index: 1;
+}
+.imgContainer {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    > div {
+        display: flex;
+        width: 25%;
+        margin-bottom: 15px;
+        figure {
+            width: 15%;
+            margin: 0;
+            img {
+                width: 100%;
+            }
+        }
+        .docName {
+            width: 82%;
+            margin-left: 3%;
+            .heading5 {
+                font-size: 16px;
+                font-weight: 400;
+                color: $greyDark;
+                line-height: normal;
+            }
+            span {
+                font-size: 14px;
+                font-weight: 500;
+                color: $blueColor;
+                padding: 0;
+                margin-top: 8px;
+                cursor: pointer;
+            }
+        }
+    }
 }
