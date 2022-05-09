@@ -19,11 +19,13 @@ export const APP_CONSTANTS = {
     LOGIN: '/login',
     HOME: '/home',
     AUTH: '/auth',
+    LANDING: '/landing',
     REPORTS: {
       HOME: '/auth/reports',
       USERLIST: '/auth/reports/userlist',
       VIEWREPORTS: '/auth/reports/viewreport',
       HIRINGREPORT:'/auth/reports/hiring',
+      DASHBOARD:'/auth/reports/dashboard',
       BEHAVIOUR_MODULE: {
         BEHAVIOUR_MODULE_PAGE: '/auth/reports/behavioural',
         BEHAVIOUR_REPORT: '/auth/reports/behavioural/view'
@@ -34,6 +36,7 @@ export const APP_CONSTANTS = {
   // Routes
   ROUTES: {
     LOGIN: 'login',
+    LANDING: 'landing',
     HOME: 'home',
     AUTH: 'auth',
     REPORTS: {
@@ -41,6 +44,7 @@ export const APP_CONSTANTS = {
       USERLIST: 'userlist',
       VIEWREPORTS: 'viewreport',
       HIRINGREPORT:'hiring',
+      DASHBOARD:'dashboard',
       BEHAVIOUR_MODULE: {
         HOME: 'behavioural',
         BEHAVIOUR_REPORT: 'view'

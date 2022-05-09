@@ -46,7 +46,7 @@
 
         <div *ngIf="isaccess">
             <span class="count-font">Total Count</span>
-            <div class="count"><span class="userCount">{{userCount}}</span> / <span class="totalCout">{{totalCount}}</span></div>
+            <div class="count"><span class="userCount">{{userCount + 1}}</span> / <span class="totalCout">{{totalCount}}</span></div>
         </div>
     </div>
     <div class="assessmentInfoarea">
@@ -60,20 +60,25 @@
                             </span>
                     </div>
 
-                    <div class="width-270">
-                        <!-- <mat-icon>perm_identity</mat-icon> -->
+                    <!-- <div class="width-270">
+                     
                         <em class="icon-User"></em>
                         <span>Name
                                 <span class="color-black">{{personalInfo.firstname ? personalInfo.firstname : '-'}}</span>
                         </span>
-                    </div>
+                    </div> -->
 
                     <div class="width-270">
-                        <!-- <mat-icon> mail_outline</mat-icon> -->
                         <em class="icon-Email"></em>
                         <span>Email
                                 <span class="color-black">{{personalInfo.email ? personalInfo.email : '-'}}</span>
                         </span>
+                    </div>
+
+                    <div class="width-90">
+                        <div *ngIf="personalInfo?.qrCodeURL" class="width-80">
+                            <img class="QaCode" [src]="personalInfo.qrCodeURL ? personalInfo.qrCodeURL : '-'" alt="" srcset="">
+                        </div>
                     </div>
                 </div>
             </mat-expansion-panel-header>
@@ -150,11 +155,7 @@
                     <div class="assessmentHeaderinfo">
 
                         <app-doc-info [getAllReportsData]="getAllReportsData"></app-doc-info>
-
                     </div>
-                    <!-- <div class="SummaryInfoArea">
-    
-                        </div> -->
                 </div>
 
 
@@ -165,11 +166,11 @@
     <div class="clearfix"></div>
     <div *ngIf="isaccess">
         <div class="arrow" [class.stickybtn]="sticky" *ngIf="totalCount != 1">
-            <button class="btn" [disabled]="userCount == 1 && userCount != totalCount" (click)="prevUser()"> 
-                <mat-icon class="right" [disabled]="userCount == 1 && userCount != totalCount">keyboard_arrow_left</mat-icon>
+            <button class="btn" [disabled]="userCount == 0 && userCount != totalCount" (click)="prevUser()"> 
+                <mat-icon class="right" [disabled]="userCount == 0 && userCount != totalCount">keyboard_arrow_left</mat-icon>
             </button>
-            <button class="btn" [disabled]="userCount >= totalCount" (click)="nextUser()">
-               <mat-icon class="left" [disabled]="userCount >= totalCount"> keyboard_arrow_right</mat-icon>
+            <button class="btn" [disabled]="(userCount + 1) >= totalCount" (click)="nextUser()">
+               <mat-icon class="left" [disabled]="(userCount + 1) >= totalCount"> keyboard_arrow_right</mat-icon>
            </button>
         </div>
     </div>

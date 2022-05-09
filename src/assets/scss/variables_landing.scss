@@ -1,0 +1,94 @@
+$whiteColor: #ffffff;
+$blackColor: #000;
+$lightBlack: #373331;
+$lightWhite: #FEFFFF;
+$primaryColor: #2EA3F2;
+$secondaryColor: #08558C;
+$darkGrey: #222222;
+$mediumGrey: #333333;
+$darkMediumGrey: #444444;
+$lightGrey: #666666;
+$greyColor: #cdcdcd;
+$bgColor: #E9E9E9;
+$lightColor: #fafafa;
+$mobile-min: 200px; // Mobile view
+$screen-sm-min: 576px; // Mobile Devices
+$screen-md-min: 700px; // Small tablets (portrait view)
+$screen-lg-min: 992px; // Tablets and small desktops
+$screen-xl-min: 1200px; // Large tablets and desktops
+
+// mobile devices
+@mixin mobile {
+  @media (min-width: #{$mobile-min}) {
+      @content;
+  }
+}
+
+// Small devices
+@mixin sm {
+  @media (min-width: #{$screen-sm-min}) {
+      @content;
+  }
+}
+// Medium devices
+@mixin md {
+  @media (min-width: #{$screen-md-min}) {
+      @content;
+  }
+}
+// Large devices
+@mixin lg {
+  @media (min-width: #{$screen-lg-min}) {
+      @content;
+  }
+}
+// Extra large devices
+@mixin xl {
+  @media (min-width: #{$screen-xl-min}) {
+      @content;
+  }
+}
+
+.container {
+  max-width: 1170px;
+  width: 94%;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin: 0 auto;
+}
+
+.commonHeadingStyle {
+  color: $blackColor;
+  font-family: OpenSans, sans-serif;
+  font-size: 1.875em;
+  font-weight: 600;
+  line-height: 1.1;
+  position: relative;
+  margin-bottom: 16px;
+  @include md {
+    margin-bottom: 1.5em;
+  }
+  @include lg {
+    margin-bottom: 1.5em;
+  }
+  @include xl {
+    margin-bottom: 1.5em;
+  }
+}
+.commonHeadingStyle:after {
+  left: 0;
+  content: "";
+  position: absolute;
+  background-image: linear-gradient(
+    90deg,
+    #00bcef,
+    #00c0db,
+    #00c1b6,
+    #00be83,
+    #4eb749
+  );
+  width: 3em;
+  height: 4px;
+  border-radius: 1.25em;
+  bottom: -0.4em;
+}

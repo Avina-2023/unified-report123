@@ -9,21 +9,22 @@
     </div> -->
 
     <mat-tab-group>
-        <mat-tab label="Basic Profile Score">
-            <app-candidate-skills [getAllReportsData]="getAllReportsData"></app-candidate-skills>
+        <mat-tab label="Basic Profile">
+            <app-profile-info (driveName)="getSelectedDriveName($event)" (driveUserEmail)="getDriveBaisedUser($event)" [getAllReportsData]="getAllReportsData">
+            </app-profile-info>
         </mat-tab>
 
 
-        <mat-tab label="Test Analysis Score">
+        <mat-tab label="Test Analysis" *ngIf="testTaken">
             <ng-continer *ngIf="getAllReportsData && getAllReportsData.email; else nocard">
                 <!-- <div #stickyMenu class="menucontent" [class.sticky]="sticky"> -->
-                <app-profile-info (driveName)="getSelectedDriveName($event)" (driveUserEmail)="getDriveBaisedUser($event)" [getAllReportsData]="getAllReportsData">
-                </app-profile-info>
+                <!-- <app-profile-info (driveName)="getSelectedDriveName($event)" (driveUserEmail)="getDriveBaisedUser($event)" [getAllReportsData]="getAllReportsData">
+                </app-profile-info> -->
                 <!-- </div> -->
 
                 <!-- <app-doc-info [getAllReportsData]="getAllReportsData"></app-doc-info> -->
                 <app-assessment-info [driveName]="driveName" [getAllReportsData]="getAllReportsData"></app-assessment-info>
-                <!-- <app-competency-areas [getAllReportsData]="getAllReportsData"></app-competency-areas> -->
+                <app-competency-areas [getAllReportsData]="getAllReportsData"></app-competency-areas>
                 <app-quality-area [getAllReportsData]="getAllReportsData"></app-quality-area>
                 <app-behavioural-assessment-info [driveName]="driveName" [emailId]="emailId" [getAllReportsData]="getAllReportsData"></app-behavioural-assessment-info>
                 <!-- <app-behavioural-competency-areas [getAllReportsData]="getAllReportsData"></app-behavioural-competency-areas> -->
@@ -32,6 +33,16 @@
 
             </ng-continer>
         </mat-tab>
+
+        <div *ngIf="isaccess">
+            <mat-tab label="Job Recommendations" *ngIf="jobRecommended">
+                <ng-continer *ngIf="candidateSkills; else noSkill">
+                    <app-candidate-skills [candidateSkills]="candidateSkills"></app-candidate-skills>
+                </ng-continer>
+
+            </mat-tab>
+        </div>
+
     </mat-tab-group>
 
 
@@ -40,6 +51,15 @@
 <ng-template #nocard>
 
     <div class="noCard" *ngIf="getAllReportsData">
-        <div class=" noData ">No Data found</div>
+        <div class="noData">No Test Data Found</div>
+        <img class="imgCard" src='../../../../../assets/images/nodata.png'>
+    </div>
+</ng-template>
+
+<ng-template #noSkill>
+
+    <div class="noCard" *ngIf="candidateSkills">
+        <div class="noData">No Recommended Jobs found</div>
+        <img class="imgCard" src='../../../../../assets/images/nodata.png'>
     </div>
 </ng-template>

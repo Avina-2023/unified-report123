@@ -34,6 +34,7 @@ export class IsAccessGuard implements CanLoad {
                localStorage.setItem('token', 'true');
                sessionStorage.setItem('driveInfo', details.driveId);
                sessionStorage.setItem('assessmentId',details.assessmentId); 
+               this.appConfig.setLocalStorage('role',JSON.stringify(details.role));
                 return true
           }else {
             this.apiService.logout();

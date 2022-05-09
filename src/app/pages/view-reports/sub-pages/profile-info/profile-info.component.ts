@@ -36,12 +36,13 @@ export class ProfileInfoComponent implements OnInit, OnChanges {
   totalCount: any;
   driveUser: any;
   selectedMail: any;
-  userCount = 1;
+  userCount = 0;
   prevbtn: boolean = false;
   orgdetails: any;
   orgId: any;
   scheduleType: any;
   rowIndex:any;
+  roles: any;
   @HostListener('window:scroll', ['$event'])
   handleScroll() {
     const windowScroll = window.pageYOffset;
@@ -57,15 +58,19 @@ export class ProfileInfoComponent implements OnInit, OnChanges {
     private appConfig: AppConfigService,
     private _loading: LoadingService,
   ) {
+    this.roles = this.appConfig.getLocalStorage('role') ? this.appConfig.getLocalStorage('role') : '';
   }
 
   ngOnInit(): void {
     this.getPersonalInfo();
-    this.orgdetails = JSON.parse(this.appConfig.getLocalStorage('role'));
-    this.orgId = this.orgdetails[0].orgId;
+    if(this.roles != 'undefined' && this.roles != null && this.roles != ''){
+      this.orgdetails = JSON.parse(this.roles);
+      this.orgId = this.orgdetails[0].orgId;
+    }
+
     this.isaccess = this.appConfig.isComingFromMicroCert();
     this.getRoute();
-    this.getDriveUser(this.driveList && this.driveList[0].main_drivename ? this.driveList[0].main_drivename : this.selectScheduleName ,this.selectedMail ? this.selectedMail : '');
+  
 
   }
 
@@ -77,6 +82,8 @@ export class ProfileInfoComponent implements OnInit, OnChanges {
     this.route.paramMap.subscribe((param: any) => {
       if (param && param.params && param.params.id) {
         this.selectedMail = param.params.id;
+          this.getDriveUser();
+
       }
     });
   }
@@ -89,6 +96,9 @@ export class ProfileInfoComponent implements OnInit, OnChanges {
     this.scheduleType = this.getAllReportsData && this.getAllReportsData?.BehavioralAssessment ?  this.getAllReportsData?.BehavioralAssessment[0]?.testtype : '' ;
     this.selectScheduleName = this.getAllReportsData && this.getAllReportsData?.BehavioralAssessment ? this.getAllReportsData?.BehavioralAssessment[0]?.drivename : '';
     this.emitdriveNametoParent();
+    // if(this.driveList){
+    //   this.getDriveUser(this.driveList && this.driveList[0].main_drivename ? this.driveList[0].main_drivename : this.selectScheduleName ,this.selectedMail ? this.selectedMail : '');
+    // }
 
     this.personalInfo = {};
     this.personalInfo.firstname = this.getAllReportsData?.firstname;
@@ -98,6 +108,7 @@ export class ProfileInfoComponent implements OnInit, OnChanges {
     this.personalInfo.mobile = this.getAllReportsData?.mobile;
     this.personalInfo.gender = this.getAllReportsData?.gender;
     this.personalInfo.email = this.getAllReportsData?.email;
+    this.personalInfo.qrCodeURL = this.getAllReportsData?.qrCodeURL;
     this.personalInfo.address = this.getContactAddress('address');
     this.personalInfo.city = this.getContactAddress('city');
     this.personalInfo.institute = this.getLastEducationValue('institute');
@@ -178,25 +189,14 @@ export class ProfileInfoComponent implements OnInit, OnChanges {
     this.driveName.emit(this.driveselectedValue);
   }
 
-  getDriveUser(drive, email) {
-    let data;
-    if(this.orgdetails && this.orgdetails.roles && this.orgdetails.roles[0].roleCode == 'OADM'){
-      data = {
-        driveName: drive ? drive : this.driveselectedValue,
-        email: email ? email : '',
-        orgId: this.orgId ? this.orgId : '',
-      };
-    }else{
-      data = {
-        driveName: drive ? drive : this.driveselectedValue,
-        email: email ? email : '',
-      };
-    }
-    this.ApiService.getDriveBaisedUser(data).subscribe((data: any) => {
+  getDriveUser() {
+    const FilterData = localStorage.getItem('FilterData');
+    let requestFilterData = JSON.parse(FilterData);
+    this.ApiService.getcandidateList(requestFilterData).subscribe((data: any) => {
       if(data.success){
-        this.totalCount = data.noOfCandidates;
+        this.totalCount = data.total_count;
         this.driveUserdata = data.data;
-        this.driveUserdata =   this.getUniqueListBy(this.driveUserdata,'email')
+        this.userCount = this.driveUserdata.findIndex((data) => data.email == this.selectedMail);
       }else{
           
       }
@@ -210,20 +210,17 @@ export class ProfileInfoComponent implements OnInit, OnChanges {
       }
 
   nextUser() {
-    this.userCount = this.userCount + 1;
-    let index = this.driveUserdata.findIndex((data) => data.email == this.selectedMail);
-    let expectedIndex = index != -1 ? index + 1 : null;
+    let expectedIndex = this.userCount != -1 ? this.userCount + 1 : null;
     let nextMail = this.driveUserdata[expectedIndex].email;
     this.appConfig.routeNavigationWithParam(APP_CONSTANTS.ENDPOINTS.REPORTS.VIEWREPORTS,nextMail);
   }
 
   prevUser() {
-    if (this.userCount != 1) {
-      this.userCount = this.userCount - 1;
-      let index = this.driveUserdata.findIndex(
+    if (this.userCount != 0) {
+      this.userCount = this.driveUserdata.findIndex(
         (data) => data.email == this.selectedMail
       );
-      let expectedIndex = index != -1 ? index - 1 : null;
+      let expectedIndex = this.userCount != -1 ? this.userCount - 1 : null;
       let prevMail = this.driveUserdata[expectedIndex].email;
       this.appConfig.routeNavigationWithParam(
         APP_CONSTANTS.ENDPOINTS.REPORTS.VIEWREPORTS,

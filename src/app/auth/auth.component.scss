@@ -3,12 +3,11 @@
  }
  
  .wel {
-     vertical-align: middle;
-     font-size: 18px;
+     /* vertical-align: middle; */
+     font-size: 14px;
      margin-right: 10px;
-     line-height: 1px;
+     /* line-height: 1px; */
      font-weight: 400;
-     cursor: text;
  }
  
  .wrapper {
@@ -17,7 +16,13 @@
      height: 100%;
      .heightDiv {
          flex-grow: 1;
+         height: 100%;
      }
+ }
+ 
+ .logout1 {
+     font-size: 18px;
+     line-height: 0;
  }
  
  ::ng-deep .full-screen-modal .mat-dialog-container {}
@@ -28,9 +33,27 @@
  
  .action {
      display: flex !important;
-     justify-content: space-evenly!important;
+     justify-content: center !important;
      .confirm {
          background: #09568C;
          color: #fff;
+         margin-left: 10%;
      }
+ }
+ 
+ .userListNav {
+     font-size: 14px;
+     font-weight: 400;
+     padding-right: 15px;
+     margin-right: 20px;
+     cursor: pointer;
+     line-height: normal;
+     border-right: 1px solid;
+ }
+ 
+ .userListNav:hover {
+     color: #09568C;
+     cursor: pointer;
+     transition: (.3s);
+     font-weight: 500;
  }

@@ -1,33 +1,39 @@
-<div class="filterkey" *ngIf="isFilterRecords">
-    <div class="filter" *ngIf="ShowFilterWithCount && ShowFilterWithCount.length > 0 && ShowFilterWithCount">
-        Filtered Records : {{FilteredRecords}}
+<div class="filterkey">
+    <div class="filter" *ngIf="isFilterRecords">
+        Filtered Records : <span class="count">{{FilteredRecords ? FilteredRecords : 0 }}</span>
+    </div>
+
+    <div class="filter" *ngIf="!isFilterRecords">
+        Total Candidates : <span class="count">{{FilteredRecords ? FilteredRecords : pageRowCount }}</span>
     </div>
 
     <!-- *ngIf="ShowFilterWithCount && ShowFilterWithCount.length > 0 && ShowFilterWithCount && ShowFilterWithCount[0].count != 0 " -->
-
-    <div class="filtermain" *ngIf="ShowFilterWithCount && ShowFilterWithCount.length > 0">
-        <div *ngFor="let selectedFilter of ShowFilterWithCount">
-            <div class="tab" *ngIf="selectedFilter.count != 0">
-                <div class="filterval">
-                    {{selectedFilter.key}}
-                    <span>({{selectedFilter.count}})</span>
-                    <div>
-                        <mat-icon (click)="clearFilter(selectedFilter.key)" class="close">close</mat-icon>
+    <div *ngIf="isFilterRecords">
+        <div class="filtermain" *ngIf="ShowFilterWithCount && ShowFilterWithCount.length > 0">
+            <div *ngFor="let selectedFilter of ShowFilterWithCount">
+                <div class="tab" *ngIf="selectedFilter.count != 0">
+                    <div class="filterval">
+                        {{selectedFilter.key}}
+                        <span>({{selectedFilter.count}})</span>
+                        <div>
+                            <mat-icon (click)="clearFilter(selectedFilter.key)" class="close">close</mat-icon>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="clear" (click)="clearAll()">
-            Clear all
+            <div class="clear" (click)="clearAlltab()">
+                Clear all
+            </div>
         </div>
     </div>
+
 </div>
 
 <div class="outer-div">
     <div class="grid-wrapper">
-        <ag-grid-angular style="width: 99%; height: calc(100vh - 140px); margin:auto !important;font-size: 12px;" id="myGrid" class="ag-theme-alpine" [columnDefs]="columnDefs" [defaultColDef]="defaultColDef" [masterDetail]="masterDetail" [detailCellRendererParams]="detailCellRendererParams"
-            [rowData]="rowData" [enableRangeSelection]="true" [enableCharts]="true" [tooltipShowDelay]="0" [rowSelection]="'multiple'" [animateRows]="true" headerHeight="40" rowHeight="35" [suppressRowClickSelection]="true" [suppressRowTransform]="true" (cellClicked)="onCellClicked($event)"
+        <ag-grid-angular style="width: 99%; height: calc(100vh - 206px); margin:auto !important;font-size: 12px;" id="myGrid" class="ag-theme-alpine" [columnDefs]="columnDefs" [defaultColDef]="defaultColDef" [masterDetail]="masterDetail" [detailCellRendererParams]="detailCellRendererParams"
+            [rowData]="rowData" [enableRangeSelection]="true" [enableCharts]="true" [tooltipShowDelay]="0" [rowSelection]="'multiple'" [animateRows]="true" headerHeight="40" rowHeight="40" [suppressRowClickSelection]="true" [suppressRowTransform]="true" (cellClicked)="onCellClicked($event)"
             (filterModified)="getModel($event)" [pivotPanelShow]="'always'" [sideBar]="false" (gridReady)="onGridReady($event)" [rowModelType]="rowModelType" [serverSideStoreType]="serverSideStoreType" [maintainColumnOrder]="true" [cacheBlockSize]="cacheBlockSize"
             [chartThemeOverrides]="chartThemeOverrides" [suppressAggFuncInHeader]="true" [suppressColumnVirtualisation]="true" [autoGroupColumnDef]="autoGroupColumnDef" [pagination]="true" [paginationPageSize]="2500" [sideBar]="sideBar">
         </ag-grid-angular>
@@ -57,14 +63,14 @@
 <ng-template #filter>
     <div class="add-user-header">
         <div mat-dialog-title class="box">
-            <span class="filter"><img src="/assets/images/Filter.svg" alt="">Filters</span>
+            <span (click)="closeDialog()" class="filter"><img src="/assets/images/Filter.svg" alt="">Filters</span>
             <span class="clear" (click)="clearAll()">CLEAR ALL</span>
         </div>
     </div>
 
     <div class="main">
         <div class="left">
-            <mat-selection-list #filter [multiple]="false">
+            <mat-selection-list #filter [multiple]="false" disableRipple>
                 <mat-list-option class="hide-checkbox" [value]="filterValues" [selected]="filterIndex && i == filterIndexValue" *ngFor="let filterValues of filterTile;let i = index" (click)="selectedFilter(filter.selectedOptions.selected[0]?.value, i)">
                     <div class="mainHeader">{{filterValues}}
                         <div *ngIf="ShowFilterWithCount">
@@ -83,7 +89,7 @@
         </div>
 
         <div class="right">
-            <mat-selection-list #childfilter [(ngModel)]="selectedOptions" (click)="onSelection(childfilter, firstChildVal.key)">
+            <mat-selection-list disableRipple #childfilter [(ngModel)]="selectedOptions" (click)="onSelection(childfilter, firstChildVal.key)">
                 <div>
                     <mat-list-option class="child-checkbox" checkboxPosition="before" [selected]="childFilterValues.default" *ngFor="let childFilterValues of firstChildVal" [value]='childFilterValues'>
                         <div class="listView">
@@ -119,7 +125,13 @@
             </div>
 
             <div class="right">
-                <div class="actionBtn" (click)="applyFilter()">APPLY <span *ngIf="selectedFilterTotalCount && selectedFilterTotalCount !=0">({{selectedFilterTotalCount}})</span></div>
+                <div class="actionBtn spinner" (click)="applyFilter()">
+                    <mat-icon *ngIf="Isspinner">
+                        <mat-spinner strokeWidth="3" value="100" class="matspinner" color="accent" diameter="20">
+                        </mat-spinner>
+                    </mat-icon>
+                    APPLY <span *ngIf="selectedFilterTotalCount && selectedFilterTotalCount !=0">({{selectedFilterTotalCount}})</span>
+                </div>
             </div>
         </div>
     </footer>

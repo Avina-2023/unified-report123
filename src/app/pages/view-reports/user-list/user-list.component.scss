@@ -21,18 +21,42 @@
 }
 
 :host ::ng-deep .agTable-btn {
-    background-color: #ffffff;
+    background-color: #fff;
     color: #757575;
-    line-height: 30px;
-    display: flex;
-    // border: 1px solid #ab1a1a;
-    align-items: center;
-    margin-left: 10px;
-    font-size: 13px;
-    padding: 0 10px;
+    width: 101px;
+    height: 39px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 2px 2px 4px #0000001A;
+    border: 0.4891771078109741px solid #939393;
     border-radius: 3px;
-    width: 79px;
-    // text-shadow: 1px 1px 2px #8c1b1b, -1px -1px 2px #8c1b1b;
+    font-size: 15px;
+    .filterIcon {
+        display: inline-block;
+        width: 15px;
+        height: 13px;
+        margin-right: 6px;
+        background-size: cover;
+    }
+    .icon-bike {
+        background-image: url('../../../../assets/images/Filter.svg');
+    }
+}
+
+.agTable-btn:hover {
+    background-color: #009AFF;
+    transition: 0.7s;
+    color: $whiteColor;
+    font-size: 15px;
+    border: none;
+    .icon-bike:hover,
+    .icon-bike:focus {
+        background-image: url('../../../../assets/images/filterWhilte.svg');
+    }
+}
+
+.agTable-btn:hover .icon-bike {
+    transition: 0.7s;
+    background-image: url('../../../../assets/images/filterWhilte.svg');
 }
 
 :host ::ng-deep .mat-tab-header {
@@ -69,7 +93,7 @@
     display: contents;
 }
 
-.filterIcon {
-    width: 12px;
-    margin-right: 10px;
-}
+// .filterIcon {
+//     width: 16px;
+//     margin-right: 10px;
+// }

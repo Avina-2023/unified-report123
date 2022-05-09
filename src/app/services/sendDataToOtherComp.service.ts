@@ -8,7 +8,11 @@ export class SentDataToOtherComp {
   constructor() { }
   private subject = new Subject<any>();
 
-  sendMessage(data: any) {
+  sendMessage(data: any,value:any) {
+    data = {
+      data:data,
+      value:value
+    }
       this.subject.next( data );
   }
 

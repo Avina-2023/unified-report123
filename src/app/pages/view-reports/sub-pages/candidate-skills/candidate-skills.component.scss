@@ -71,7 +71,7 @@
         }
         .recommendedJobs {
             display: flex;
-            justify-content: space-evenly;
+            justify-content: space-between;
             margin-bottom: 2.5%;
             >div {
                 width: 30%;
@@ -153,13 +153,18 @@
 }
 
 .Jobs {
-    margin-bottom: 3%;
+    // margin-bottom: 3%;
     .jobs {
         background: #a9a9a959;
         padding: 9px;
         border-radius: 27px;
         margin-left: 1%;
         font-size: 13px;
+        margin-bottom: 10px;
+    }
+    .allJobs {
+        display: flex;
+        flex-wrap: wrap;
     }
 }
 
@@ -173,14 +178,21 @@
     padding: 30px;
     position: relative;
     min-height: calc(100vh - 100px);
+    .imgCard {
+        margin-top: 3%;
+        width: 30%;
+    }
 }
 
 .noData {
-    position: relative;
-    margin: 0 0 auto;
-    box-shadow: rgb(60 64 67 / 30%) 0px 1px 2px 0px, rgb(60 64 67 / 15%) 0px 1px 3px 1px;
-    padding: 2em;
-    border: solid #eee 1px;
+    font-size: 24px;
+    text-align: center;
+    color: #757575;
+    // position: relative;
+    // margin: 0 0 auto;
+    // box-shadow: rgb(60 64 67 / 30%) 0px 1px 2px 0px, rgb(60 64 67 / 15%) 0px 1px 3px 1px;
+    // padding: 2em;
+    // border: solid #eee 1px;
 }
 
 .candidateSkillsBasicProfile {

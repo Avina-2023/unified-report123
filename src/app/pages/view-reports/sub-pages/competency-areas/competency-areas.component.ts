@@ -22,6 +22,7 @@ export class CompetencyAreasComponent implements OnInit {
   verticaldomain = ['#FFC4A3', '#FFBC43', '#C84557', '#BAD252', '#2F9E77', '#1E9FAA', '#C89072', '#786965', '#5F5C5A', '#A889DF', '#AD7CA4', '#847EA6', '#6E87B2', '#8D8C88', '#EF9E6D', '#D29999','#1E94BE','#FFC325','#FFA2A2'];
   selectedHorizontalChartIndex = '0';
   verticalChartData: any[];
+  isCompeShow = true;
   constructor() {
   }
 
@@ -32,8 +33,6 @@ export class CompetencyAreasComponent implements OnInit {
 
   ngOnChanges() {
     this.getCompetancyData();
-
-   
   }
 
 
@@ -73,7 +72,6 @@ export class CompetencyAreasComponent implements OnInit {
 
   getCompetancyData(){
     this.competancyData = this.getAllReportsData?.competencyDetails;
-
     if (this.competancyData && this.competancyData.length > 0) {
       this.convertToPercentage();
       this.getAreasDataInitialize(this.competancyData);
@@ -83,22 +81,32 @@ export class CompetencyAreasComponent implements OnInit {
 
   convertToPercentage() {
     this.competancyData.forEach(element => {
-      if (element.score && element.maxscore) {
-        element.actualScore = element.score;
-        element.score = this.conversionFormula(element.score, element.maxscore);
+      if(parseInt(element.score) > 0 && element.competencyname != '' && element.competencyname != 'NA'){
+        if (element.score && element.maxscore) {
+          element.actualScore = element.score;
+          element.score = this.conversionFormula(element.score, element.maxscore);
+        }
+        element.skills.forEach(skills => {
+          if(parseInt(skills.score) > 0 && skills.skillname != '' && skills.skillname != 'NA'){
+            if (skills.score && skills.maxscore) {
+              skills.actualScore = skills.score;
+              skills.score = this.conversionFormula(skills.score, skills.maxscore);
+            }
+          skills.area.forEach(area => {
+            if (area.score && area.maxscore) {
+              area.actualScore = area.score;
+              area.score = this.conversionFormula(area.score, area.maxscore);
+            }
+          });
+          }else{
+            this.isCompeShow = false;
+          }
+
+        });
+      }else{
+        this.isCompeShow = false;
       }
-      element.skills.forEach(skills => {
-        if (skills.score && skills.maxscore) {
-          skills.actualScore = skills.score;
-          skills.score = this.conversionFormula(skills.score, skills.maxscore);
-        }
-      skills.area.forEach(area => {
-        if (area.score && area.maxscore) {
-          area.actualScore = area.score;
-          area.score = this.conversionFormula(area.score, area.maxscore);
-        }
-      });
-      });
+
     });
   }
 
@@ -131,11 +139,11 @@ export class CompetencyAreasComponent implements OnInit {
         skills.skills.forEach((area, i) => {
           if (area) {
           area.areaColor = this.domain[i];
-
           area.area.forEach(element => {
             element.areaColor = this.domain[i];
             if(element.areaname == 'NA'){
-                element.areaname = 'XXXX'
+                element.areaname = 'XXXX';
+                this.isCompeShow = false;
             }
             areaSingle.push(element);
           });
@@ -177,83 +185,4 @@ onPrevious() {
 dotChange(i) {
   this.counter = i;
 }
-
-// getDummyData() {
-//   return [
-//     {
-//     areaColor: "#FF8C00",
-//     areaSkills: [],
-//     competencyId: "C013",
-//     competencyname: "Behavioral213",
-//     maxscore: 100,
-//     score: 23,
-//     skills: []
-//     },
-//     {
-//       areaColor: "#FF8C00",
-//       areaSkills: [],
-//       competencyId: "C013",
-//       competencyname: "Behaviorals",
-//       maxscore: 100,
-//       score: 53,
-//       skills: []
-//       },
-//       {
-//         areaColor: "#FF8C00",
-//         areaSkills: [],
-//         competencyId: "C013",
-//         competencyname: "1ehavioral213",
-//         maxscore: 100,
-//         score: 13,
-//         skills: []
-//         },
-//         {
-//           areaColor: "#FF8C00",
-//           areaSkills: [],
-//           competencyId: "C013",
-//           competencyname: "2Behaviorals",
-//           maxscore: 100,
-//           score: 23,
-//           skills: []
-//         },
-//         {
-//           areaColor: "#FF8C00",
-//           areaSkills: [],
-//           competencyId: "C013",
-//           competencyname: "zehavioral213",
-//           maxscore: 100,
-//           score: 94,
-//           skills: []
-//           },
-//           {
-//             areaColor: "#FF8C00",
-//             areaSkills: [],
-//             competencyId: "C013",
-//             competencyname: "zz2Behaviorals",
-//             maxscore: 100,
-//             score: 73,
-//             skills: []
-//             },
-//             {
-//               areaColor: "#FF8C00",
-//               areaSkills: [],
-//               competencyId: "C013",
-//               competencyname: "wwzehavioral213",
-//               maxscore: 100,
-//               score: 44,
-//               skills: []
-//               },
-//               {
-//                 areaColor: "#FF8C00",
-//                 areaSkills: [],
-//                 competencyId: "C013",
-//                 competencyname: "eezz2Behaviorals",
-//                 maxscore: 100,
-//                 score: 73,
-//                 skills: []
-//                 }
-
-//   ]
-// }
-
 }

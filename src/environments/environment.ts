@@ -16,7 +16,8 @@ export const environment = {
   NODE_EDGE_URL: 'https://edgeservice.lntedutech.com',
   NODE_URL:  'https://uapcoreservice.lntedutech.com',
   PROCTOR_URL : 'http://lntproctor.lntedutech.com/api/storage/',
-  PROCTOR : 'https://lntproctor.lntedutech.com'
+  PROCTOR : 'https://lntproctor.lntedutech.com',
+  MONGOCHARTURL: 'https://charts.mongodb.com/charts-microcertuat-gzomw'
 
 };
 

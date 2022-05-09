@@ -1,0 +1,97 @@
+@import "variables_landing";
+ul {
+  margin: 0;
+}
+footer {
+    border-top: 1px solid rgba(0,0,0,0.15);
+    width: 100%;
+    background-color: #323333;
+    $fontsize: 13;
+    font-size: #{$fontsize}px;
+    position: relative;
+    @include lg {
+        $fontsize: 14;
+        font-size: #{$fontsize}px;
+    }
+    @include xl {
+        $fontsize: 16;
+        font-size: #{$fontsize}px;
+    }
+}
+footer:before {
+  position: absolute;
+  content: '';
+  border-top: 1px solid #fff;
+  width: 100%;
+}
+.copyrightsTerms {
+    // border-top: 1px solid $greyColor;
+    padding: 0.75em 0;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    text-align: center;
+    @include sm {
+        flex-direction: row;
+    }
+    @include md {
+        padding: 1.4em 0;
+    }
+    ul li a, p {
+        font-size: 0.875em;
+        color: $lightWhite;
+    }
+    p {
+        margin: 0;
+    }
+    ul {
+        li {
+            display: inline-block;
+            border-right: 1px solid $lightWhite;
+            padding-right: 10px;
+            margin-right: 10px;
+            a {
+                display: flex;
+                align-items: center ;
+                &:hover {
+                    em {
+                        color: $primaryColor;
+                    }
+                }
+                em {
+                    margin-right: 5px;
+                }
+            }
+            &:last-child {
+                border-right: none;
+                padding-right: 0;
+                margin-right: 0;
+            }
+        }
+    }
+}
+.copyrightsTerms {
+    p {
+        font-weight: 400;
+        color: $lightWhite;
+        a {
+            &:hover {
+                em {
+                    color: $primaryColor;
+                }
+                color: $primaryColor;
+            }
+        }
+    }
+    ul {
+        li {
+            line-height: normal;
+            a {
+                font-weight: 400;
+                &:hover {
+                    color: $primaryColor;
+                }
+            }
+        }
+    }
+}

@@ -34,13 +34,15 @@ export class BehaviouralPdfReportDownloadComponent implements OnInit {
     {score:"9-10",label:"STRENGTH",color:"green"}
   ];
   removeheading: any;
+  roles: any;
 
   constructor(private toastr: ToastrService,private appconfig: AppConfigService, private sendData: SentDataToOtherComp,) {
+    this.roles = this.appconfig.getLocalStorage('role') ? this.appconfig.getLocalStorage('role') : '';
   }
 
   ngOnInit() {
       this.subscription = this.sendData.getMessage().subscribe(message => {
-        this.InAppReport = message;
+        this.InAppReport = message.data;
         if(this.data && this.InAppReport == true){
           this.getReportData();
           this.downloadAsPDF();
@@ -48,12 +50,12 @@ export class BehaviouralPdfReportDownloadComponent implements OnInit {
       });
 
     this.isaccess = this.appconfig.isComingFromMicroCert();
-    // if (this.data) {
-     
-    // }
 
-    this.orgdetails = JSON.parse(this.appconfig.getLocalStorage('role'));
-    this.orgId = this.orgdetails[0].orgId;
+    if(this.roles != 'undefined' && this.roles != null && this.roles != ''){
+      this.orgdetails = JSON.parse(this.roles);
+      this.orgId = this.orgdetails[0].orgId;
+    }
+
   }
 
   ngOnDestroy(){
