@@ -108,7 +108,7 @@ candidatereqdata:any = {
   public rowData: any[] | null = [1, 2];
   public autoGroupColumnDef: ColDef = {
     flex: 1,
-    minWidth: 220,
+    minWidth: 320,
   };
   isFilterOpen: any;
 
@@ -131,8 +131,7 @@ candidatereqdata:any = {
   SelectedFilterMainCount:any = [];
   FilteredRecords: any;
   Isspinner = false;
-
-  demoimg = '/assets/images/Filter.svg'
+  demoimg:any;
   FormateName: any;
   constructor(private apiService: ApiService,private sendData: SentDataToOtherComp, private matDialog: MatDialog,private appconfig: AppConfigService,private toastr: ToastrService, private ApiService: ApiService,) {      
     this.serverSideStoreType = 'partial';
@@ -223,6 +222,8 @@ candidatereqdata:any = {
         filter: 'agTextColumnFilter',
         rowGroup: true, 
         hide: true,
+        minWidth: 400,
+        maxWidth:600,
         chartDataType: 'series',
         filterParams: {
           suppressAndOrCondition: true,
@@ -234,9 +235,20 @@ candidatereqdata:any = {
             let FormateEmail = params.value;
             FormateEmail = FormateEmail.trim();
             FormateEmail = FormateEmail.toLowerCase();
-            return '<span class="redColor">'+FormateEmail+'</span>' ;
+            // return '<span class="redColor">'+FormateEmail+'</span>' ;
 
-            // return '<span style="cursor: pointer"><span class="profileAvatar"><img src="'+this.demoimg+'"></span> <span>'+params+'</span> </span>'
+            if(params.data.gender == 'Male'){
+               this.demoimg = '/assets/images/Male.svg'
+            }
+            if(params.data.gender == 'Female'){
+              this.demoimg = '/assets/images/Female.svg'
+            }
+
+            if(params.data.gender == '-'){
+              this.demoimg = '/assets/images/NotSpecified.svg'
+            }
+
+           return '<span style="cursor: pointer"><span class="profileAvatar"><img src="'+[params.data.profileImage ? params.data.profileImage : this.demoimg]+'"></span> <span class="redColor">'+FormateEmail+'</span> </span>'
           } 
           if(params.value == undefined){
             return '';
@@ -1025,7 +1037,7 @@ candidatereqdata:any = {
       localStorage.setItem('Cgpa','{}')
     }
     this.cacheBlockSize = 0;
-    // this.tabledef();
+    this.tabledef();
     this.gridApi.paginationGoToFirstPage();
     this.gridApi.refreshServerSideStore({ purge: true });
     this.closeDialog();
@@ -1067,7 +1079,7 @@ candidatereqdata:any = {
       localStorage.setItem('Cgpa','{}');
       this.cacheBlockSize = 0;
       this.isFilterRecords = false;
-      // this.tabledef();
+      this.tabledef();
   }
 
 

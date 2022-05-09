@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="32" height="32" viewBox="0 0 32 32">
+  <defs>
+    <clipPath id="clip-path">
+      <path id="Path_16173" data-name="Path 16173" d="M-177.655-294.8a16,16,0,0,1-16,16,16,16,0,0,1-16-16,16,16,0,0,1,16-16A16,16,0,0,1-177.655-294.8Z" transform="translate(211.655 1329.167)" fill="#2c3842" clip-rule="evenodd"/>
+    </clipPath>
+  </defs>
+  <g id="Group_16106" data-name="Group 16106" transform="translate(55 -977.613)">
+    <path id="Path_16171" data-name="Path 16171" d="M-177.655-294.8a16,16,0,0,1-16,16,16,16,0,0,1-16-16,16,16,0,0,1,16-16A16,16,0,0,1-177.655-294.8Z" transform="translate(154.655 1288.417)" fill="#9494f4" fill-rule="evenodd"/>
+    <g id="Group_16096" data-name="Group 16096" transform="translate(-57 -40.75)" clip-path="url(#clip-path)">
+      <path id="Path_16172" data-name="Path 16172" d="M14.6,1040.475c.2-.036-3.208,1.365-8.009,3.984A2.668,2.668,0,0,0,5.345,1047v3.572h25.31v-3.986a3,3,0,0,0-1.708-2.278c-3.585-1.984-8.022-3.919-7.957-3.932Z"/>
+    </g>
+    <g id="Group_16107" data-name="Group 16107" transform="translate(-51.561 983.525)">
+      <path id="Path_16189" data-name="Path 16189" d="M12.857,16.056c3.573,0,5.857-5.388,5.857-8.2A5.857,5.857,0,0,0,7,7.857C7,10.668,9.284,16.056,12.857,16.056Z" transform="translate(-0.296 -2)" fill="#fca"/>
+    </g>
+  </g>
+</svg>
