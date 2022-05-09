@@ -169,33 +169,33 @@ ul {
 
 //Banner
 .owlCarouselWrapper {
-  .owl-theme {
-      .owl-nav {
-          display: none;
-      }
-      .owl-dots {
-          position: absolute;
-          bottom: .5em;
-          left: 48%;
-          .owl-dot {
-              span {
-                  background-color: #27BBEE;
-                  border-radius: 50%;
-                  margin: 0 0.4em;
-              }
-              &:hover {
-                  span {
-                      background-color: #27BBEE;
-                  }
-              }
-              &.active {
-                  span {
-                      background-color: #004684;
-                  }
-              }
-          }
-      }
-  }
+    .owl-theme {
+        .owl-nav {
+            display: none;
+        }
+        .owl-dots {
+            position: absolute;
+            bottom: .5em;
+            left: 48%;
+            .owl-dot {
+                span {
+                    background-color: #27BBEE;
+                    border-radius: 50%;
+                    margin: 0 0.4em;
+                }
+                &:hover {
+                    span {
+                        background-color: #27BBEE;
+                    }
+                }
+                &.active {
+                    span {
+                        background-color: #004684;
+                    }
+                }
+            }
+        }
+    }
 }
 
 mat-toolbar.header-toolbar {
@@ -230,7 +230,9 @@ mat-toolbar.header-toolbar {
     align-items: flex-end;
     flex-direction: row-reverse;
     border-top: 1px solid #efeeee;
-    padding-right: 5px
+    padding-right: 5px;
+    position: fixed;
+    bottom: 0px;
 }
 
 
