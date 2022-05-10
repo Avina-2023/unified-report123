@@ -25,9 +25,10 @@ export class LandingHeaderComponent implements OnInit {
 
   openUserFormDialog() {
     this.sectiondialogRef = this.matDialog.open(this.login, {
-      width: '581px',
-      height: '434px',
-      panelClass: 'popupModalContainerForaddUser',
+      width: '908px',
+      height: '524px',
+      panelClass: 'loginpopover',
+      
     });
   }
 
