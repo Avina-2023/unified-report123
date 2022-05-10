@@ -23,6 +23,8 @@ import { ChartsModule } from 'ng2-charts';
 import { BehaviouralReportModule } from '../behavioural-report/behavioural-report.module';
 import { CandidateSkillsComponent } from './sub-pages/candidate-skills/candidate-skills.component';
 import { CandidateProfileComponent } from './sub-pages/candidate-profile/candidate-profile.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+
 @NgModule({
   declarations: [
     ProfileInfoComponent,
@@ -37,7 +39,9 @@ import { CandidateProfileComponent } from './sub-pages/candidate-profile/candida
     BehaviouralQualityAreaComponent,
     HiringReportComponent,
     CandidateSkillsComponent,
-    CandidateProfileComponent
+    CandidateProfileComponent,
+    DashboardComponent,
+    
   ],
   imports: [
     CommonModule,

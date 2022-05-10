@@ -8,6 +8,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { SentDataToOtherComp } from 'src/app/services/sendDataToOtherComp.service';
 import _ from 'lodash';
 import { AgChartThemeOverrides, ColDef, ColSpanParams, GridApi, IColumnToolPanel, SideBarDef } from '@ag-grid-enterprise/all-modules';
+import * as moment from 'moment';
 
 
 @Component({
@@ -107,7 +108,7 @@ candidatereqdata:any = {
   public rowData: any[] | null = [1, 2];
   public autoGroupColumnDef: ColDef = {
     flex: 1,
-    minWidth: 220,
+    minWidth: 320,
   };
   isFilterOpen: any;
 
@@ -130,6 +131,8 @@ candidatereqdata:any = {
   SelectedFilterMainCount:any = [];
   FilteredRecords: any;
   Isspinner = false;
+  demoimg:any;
+  FormateName: any;
   constructor(private apiService: ApiService,private sendData: SentDataToOtherComp, private matDialog: MatDialog,private appconfig: AppConfigService,private toastr: ToastrService, private ApiService: ApiService,) {      
     this.serverSideStoreType = 'partial';
     this.masterDetail = true;
@@ -161,6 +164,7 @@ candidatereqdata:any = {
   }
 
   ngOnInit(): void {
+    this.sendData.sendMessage(true,'go');
     let localFilterval = localStorage.getItem('filterItem');
     this.getFilter(localFilterval ? JSON.parse(localFilterval) : '','');
     this.SelectedFilterMainCount = localStorage.getItem('mainFilterCount') ? JSON.parse(localStorage.getItem('mainFilterCount')) :   localStorage.setItem('mainFilterCount','[]');;
@@ -198,12 +202,13 @@ candidatereqdata:any = {
           suppressAndOrCondition: true,
           filterOptions: ['contains']
         },
-        tooltipField:'firstname',
+        // tooltipField:'firstname',
         // width: 100,
         cellRenderer: (params) => {
           // && params.data.display == true
           if(params.value){
-            return  params.value;
+            this.FormateName = params.value;
+            return  this.titleCase(this.FormateName );
           } if(params.value == undefined){
             return  '';
           }else {
@@ -217,6 +222,8 @@ candidatereqdata:any = {
         filter: 'agTextColumnFilter',
         rowGroup: true, 
         hide: true,
+        minWidth: 400,
+        maxWidth:600,
         chartDataType: 'series',
         filterParams: {
           suppressAndOrCondition: true,
@@ -225,7 +232,23 @@ candidatereqdata:any = {
         tooltipField:'email',
         cellRenderer: (params) => {
           if(params.data ){
-            return '<span class="redColor">'+params.value+'</span>' ;
+            let FormateEmail = params.value;
+            FormateEmail = FormateEmail.trim();
+            FormateEmail = FormateEmail.toLowerCase();
+            // return '<span class="redColor">'+FormateEmail+'</span>' ;
+
+            if(params.data.gender == 'Male'){
+               this.demoimg = '/assets/images/Male.svg'
+            }
+            if(params.data.gender == 'Female'){
+              this.demoimg = '/assets/images/Female.svg'
+            }
+
+            if(params.data.gender == '-'){
+              this.demoimg = '/assets/images/NotSpecified.svg'
+            }
+
+           return '<span style="cursor: pointer"><span class="profileAvatar"><img src="'+[params.data.profileImage ? params.data.profileImage : this.demoimg]+'"></span> <span class="redColor">'+FormateEmail+'</span> </span>'
           } 
           if(params.value == undefined){
             return '';
@@ -348,24 +371,23 @@ candidatereqdata:any = {
         },
         cellRenderer: (params) => {
           if(params && params.value){
-            return '<span class="redColor">'+params.value+'</span>' ;
+            return '<div style="text-align: end;">'+params.value+'</div>' ;
           } if(params.value == undefined){
             return  '';
           }else{
-            return '-';
+            return '<div style="text-align:right;">'+'-'+'</div>';
           }
         },
-        // cellRenderer: 'agGroupCellRenderer',
       },
 
 
     
       {
-        headerName: 'Maxscore',
+        headerName: 'Max Score',
         field: 'testmaxscore',
         filter: 'agNumberColumnFilter',
         chartDataType: 'series',
-        maxWidth: 110,
+        maxWidth: 120,
         // tooltipField:'testmaxscore',
         filterParams: {
           suppressAndOrCondition: true,
@@ -408,7 +430,6 @@ candidatereqdata:any = {
             return '-';
           }
         },
-        // cellRenderer: 'agGroupCellRenderer',
         maxWidth: 200,
       },
 
@@ -452,13 +473,8 @@ candidatereqdata:any = {
              return '-';
           }
         }
-
-
         }
       },
-
-
-     
 
       {
         headerName: 'Qualification',
@@ -519,7 +535,7 @@ candidatereqdata:any = {
         tooltipField:'edu_percentage',
         cellRenderer: (params) => {
           if(params.value ){
-            return'<div style="text-align:right;">'+params.value+'</div>'
+            return'<div style="text-align:right;">'+params.value+'%'+'</div>'
           } if(params.value == undefined){
             return  '';
           } else {
@@ -534,10 +550,11 @@ candidatereqdata:any = {
         filter: 'agDateColumnFilter',
         maxWidth: 140,
         chartDataType: 'series',
-        tooltipField:'passedout',
+        // tooltipField:'passedout',
         cellRenderer: (params) => {
           if(params.value){
-            return params.value;
+            return moment(params.value).format('MMM YYYY');
+            // return params.value;
           } if(params.value == undefined){
             return  '';
           } else {
@@ -809,9 +826,8 @@ candidatereqdata:any = {
         let fromAndTo = localStorageCGPA ? JSON.parse(localStorageCGPA) : [];
         this.customfilter  ? apiData.request.CGPA = [localStorageCGPA ? JSON.parse(localStorageCGPA) : null] : ''
         localStorage.setItem('FilterData',JSON.stringify(apiData.request));
-        this.gridApi.hideOverlay();
+        // this.gridApi.hideOverlay();
         this.candidateListSubscription =  this.ApiService.getHiringReport(apiData.request).subscribe((data1: any) => {
-          this.gridApi.hideOverlay();
          if(data1.success == false){
               this.toastr.warning('Your session has expired Please login again');
               this.apiService.logout()
@@ -821,7 +837,7 @@ candidatereqdata:any = {
         this.to = fromAndTo.to;
         this.userList = data1 && data1.data ? data1.data: [];
         if (this.userList.length > 0) {
-          this.gridApi.hideOverlay();
+     
           if(apiData.request.groupKeys.length > 0){
           }else{
             this.FilteredRecords = data1 ? data1.total_count : 0;
@@ -851,6 +867,7 @@ candidatereqdata:any = {
         });
       
       });
+      this.gridApi.hideOverlay();
       // 
       }
     }
@@ -920,6 +937,8 @@ candidatereqdata:any = {
       if(filteredValues){
         data = {
           ...filteredValues, 
+          email: this.appconfig.getLocalStorage('email'),
+          lastSelected: this.selectedKeyValue ? this.selectedKeyValue : ''
         }
 
         if(filteredValues.CGPA){
@@ -933,6 +952,8 @@ candidatereqdata:any = {
           Domain: [],
           Qualification: [],
           Gender:[],
+          email: this.appconfig.getLocalStorage('email'),
+          lastSelected: this.selectedKeyValue ? this.selectedKeyValue : ''
         }
       }
 
@@ -1020,6 +1041,7 @@ candidatereqdata:any = {
       localStorage.setItem('Cgpa','{}')
     }
     this.cacheBlockSize = 0;
+    this.tabledef();
     this.gridApi.paginationGoToFirstPage();
     this.gridApi.refreshServerSideStore({ purge: true });
     this.closeDialog();
@@ -1061,7 +1083,7 @@ candidatereqdata:any = {
       localStorage.setItem('Cgpa','{}');
       this.cacheBlockSize = 0;
       this.isFilterRecords = false;
-      // this.tabledef();
+      this.tabledef();
   }
 
 
@@ -1117,4 +1139,12 @@ candidatereqdata:any = {
   closeDialog() {
     this.matDialog.closeAll();
   }
+
+   titleCase(str) {
+    var splitStr = str.toLowerCase().split(' ');
+    for (var i = 0; i < splitStr.length; i++) {
+        splitStr[i] = splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1);     
+    }
+    return splitStr.join(' '); 
+ }
 }

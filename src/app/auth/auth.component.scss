@@ -1,38 +1,70 @@
- mat-toolbar {
-     justify-content: space-between;
- }
- 
- .wel {
-     vertical-align: middle;
-     font-size: 18px;
-     margin-right: 10px;
-     line-height: 1px;
-     font-weight: 400;
-     cursor: text;
- }
- 
- .wrapper {
-     display: flex;
-     flex-direction: column;
-     height: auto;
-     .heightDiv {
-         flex-grow: 1;
-         background-color: #f2f2f2;
-     }
- }
- 
+@import "../../assets/scss/variables.scss";
+mat-toolbar {
+    justify-content: space-between;
+}
+
+.wel {
+    font-size: 14px;
+    margin-right: 10px;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    .heightDiv {
+        flex-grow: 1;
+        height: 100%;
+    }
+}
+
+.homeBtn {
+    color: $primaryBlue;
+    margin-right: 10px;
+}
+
+.logout {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.logout1 {
+    font-size: 18px;
+    line-height: 0;
+}
+
  ::ng-deep .full-screen-modal .mat-dialog-container {}
- 
- .popupHead {
-     text-align: center !important;
- }
- 
- .action {
-     display: flex !important;
-     justify-content: center !important;
-     .confirm {
-         background: #09568C;
-         color: #fff;
-         margin-left: 10%;
-     }
- }
+
+.popupHead {
+    text-align: center !important;
+}
+
+.action {
+    display: flex !important;
+    justify-content: center !important;
+    .confirm {
+        background: #09568C;
+        color: #fff;
+        margin-left: 10%;
+    }
+}
+
+.userListNav {
+    font-size: 14px;
+    font-weight: 400;
+    padding-right: 15px;
+    margin-right: 20px;
+    cursor: pointer;
+    line-height: normal;
+    border-right: 1px solid;
+}
+
+.userListNav:hover {
+    color: #09568C;
+    cursor: pointer;
+    transition: (.3s);
+    font-weight: 500;
+}

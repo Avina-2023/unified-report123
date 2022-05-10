@@ -44,18 +44,23 @@ export class AuthComponent implements OnInit {
     private toastr: ToastrService,
     private router: Router
   ) {
-    this.checkRouter = this.router.url
+    this.checkRouter = this.router.url;
     this.roles = this.appConfig.getLocalStorage('role') ? this.appConfig.getLocalStorage('role') : '';
     this.subscription = this.sendData.getMessage().subscribe(message => {
-      this.checkRouter = this.router.url
+      this.checkRouter = this.router.url;
       if(message){
         if(this.router.url == '/auth/reports/userlist'){
-          this.InAppReport = true
+          this.InAppReport = true;
         }else{
-          this.InAppReport = false
+          this.InAppReport = false;
         }
       }
     });
+   }
+
+
+   ngOnChange(){
+    this.checkRouter = this.router.url;
    }
 
   ngOnInit(): void {
@@ -69,7 +74,6 @@ export class AuthComponent implements OnInit {
       this.orgLogo = this.orgdetails[0].logoUrl;
       this.orgName = this.orgdetails[0].orgName;
     }
-
     this.isaccess = this.appConfig.isComingFromMicroCert();
   }
 
@@ -100,6 +104,15 @@ export class AuthComponent implements OnInit {
     if (!this.isExpanded) {
       // this.isShowing = false;
     }
+  }
+
+  navToUserlist(){
+    this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.REPORTS.HOME);
+  }
+
+
+  navToDashboard(){
+    this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.REPORTS.DASHBOARD);
   }
 
 
