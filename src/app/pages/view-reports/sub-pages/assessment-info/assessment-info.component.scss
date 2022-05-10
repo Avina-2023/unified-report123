@@ -123,6 +123,69 @@
     margin-left: 4%;
 }
 
+.driveInfor {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 3%;
+    .left {
+        display: flex;
+        align-items: center;
+        figure {
+            border-radius: 50%;
+            border: 2px solid $blueColor;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 15px 0 0;
+            em {
+                font-size: 27px;
+                color: $blueColor;
+            }
+        }
+        > div {
+            span {
+                display: block;
+            }
+            .clgDrive {
+                font-size: 18px;
+                font-weight: 500;
+                color: $blackColor;
+                line-height: normal;
+                margin-bottom: 8px;
+            }
+            .driveSchedule {
+                font-size: 16px;
+                font-weight: 500;
+                color: $greyDark;
+                line-height: normal;
+            }
+        }
+    }
+    .right {
+        button {
+            border: 1px solid $blueColor;
+            border-radius: 4px;
+            padding: 10px 14px;
+            font-size: 14px;
+            font-weight: 400;
+            color: $color-blank;
+            display: flex;
+            align-items: center;
+            background-color: transparent;
+            em {
+                font-size: 18px;
+                margin-right: 8px;
+            }
+            span {
+                line-height: normal;
+            }
+        }
+    }
+}
+
 .ContentInfoDetails {
     display: flex;
     justify-content: space-between;
@@ -161,5 +224,55 @@
                 }
             }
         }
+    }
+}
+.scheduleDrive {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    .close {
+        position: absolute;
+        right: 20px;
+        top: 20px;
+        em {
+            font-size: 15px;
+            color: $blackColor;
+        }
+    }
+    .heading {
+        font-size: 20px;
+        font-weight: 500;
+        color: $blackColor;
+        line-height: normal;
+        border-bottom: 1px solid rgba(0,0,0,0.1);
+        padding: 20px;
+    }
+    .dropDown {
+        padding: 20px;
+        flex-grow: 1;
+    }
+    .submit {
+        border-top: 1px solid rgba(0,0,0,0.1);
+        margin-top: 20px;
+        padding: 20px;
+        display: flex;
+        justify-content: flex-end;
+        button {
+            font-size: 14px;
+            font-weight: 400;
+            color: $whiteColor;
+            line-height: normal;
+            background-color: $blueColor;
+            padding: 10px 14px;
+            border: none;
+            border-radius: 5px;
+        }
+    }
+}
+
+::ng-deep.selectDriveSchedule {
+    .mat-dialog-container {
+        padding: 0;
     }
 }

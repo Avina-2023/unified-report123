@@ -9,12 +9,18 @@
             <span class="ml-2" (click)="onBack()">Back</span>
         </div> -->
         <mat-tab-group>
-            <mat-tab label="Basic Profile">
+            <mat-tab>
+                <ng-template mat-tab-label>
+                  <em class="icon-BasicProfile"></em> <span>Basic Profile</span>
+                </ng-template>
                 <app-profile-info (driveName)="getSelectedDriveName($event)" (driveUserEmail)="getDriveBaisedUser($event)" [getAllReportsData]="getAllReportsData">
                 </app-profile-info>
             </mat-tab>
-    
-            <mat-tab label="Test Analysis" *ngIf="testTaken">
+
+            <mat-tab *ngIf="testTaken">
+                <ng-template mat-tab-label>
+                  <em class="icon-TestAnalysis"></em> <span>Test Analysis</span>
+                </ng-template>
                 <ng-continer *ngIf="getAllReportsData && getAllReportsData.email; else nocard">
                     <!-- <div #stickyMenu class="menucontent" [class.sticky]="sticky"> -->
                     <!-- <app-profile-info (driveName)="getSelectedDriveName($event)" (driveUserEmail)="getDriveBaisedUser($event)" [getAllReportsData]="getAllReportsData">
@@ -31,9 +37,12 @@
                     <div class="clearfix"></div>
                 </ng-continer>
             </mat-tab>
-    
+            
             <div *ngIf="isaccess">
-                <mat-tab label="Job Recommendations" *ngIf="jobRecommended">
+                <mat-tab *ngIf="jobRecommended">
+                    <ng-template mat-tab-label>
+                      <em class="icon-JobVacancy"></em> <span>Job Recommendations</span>
+                    </ng-template>
                     <ng-continer *ngIf="candidateSkills; else noSkill">
                         <app-candidate-skills [candidateSkills]="candidateSkills"></app-candidate-skills>
                     </ng-continer>

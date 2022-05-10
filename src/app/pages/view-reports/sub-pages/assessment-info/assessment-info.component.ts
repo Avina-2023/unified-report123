@@ -22,6 +22,7 @@ export class AssessmentInfoComponent implements OnInit, OnChanges {
   @ViewChild('sourceVideo',{static: false}) video: TemplateRef<any>;
   // @ViewChild('matDialog', {static: false}) matDialogRef: TemplateRef<any>;
   @ViewChild('matDialog1', {static: false}) matDialogRef1: TemplateRef<any>;
+  @ViewChild('selectDrive', {static: false}) selectDrive: TemplateRef<any>;
   assessmentsList: any;
   colorCode = 'Good';
   iconBase = 'like';
@@ -146,6 +147,19 @@ export class AssessmentInfoComponent implements OnInit, OnChanges {
     }
 
     this.getVideoFiles(assessment.roomId);
+  }
+
+  driveSelect() {
+    const dialogRef = this.matDialog.open(this.selectDrive, {
+      width: '500px',
+      height: '400px',
+      autoFocus: false,
+      closeOnNavigation: true,
+      panelClass: 'selectDriveSchedule'
+    });
+  }
+  driveClose() {
+    this.matDialog.closeAll();
   }
 
   closeBox() {

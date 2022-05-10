@@ -79,6 +79,23 @@
     }
     .mat-tab-label {
         height: 64px;
+        padding: 0 5px 0 0;
+        min-width: auto;
+        width: auto;
+        opacity: 1;
+        margin-right: 35px;
+        color: $label;
+        &.mat-tab-label-active {
+            color: $blueColor;
+        }
+        .mat-tab-label-content {
+            display: flex;
+            align-items: center;
+            em {
+                font-size: 20px;
+                margin-right: 8px;
+            }
+        }
     }
 }
 

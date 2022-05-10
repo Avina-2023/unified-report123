@@ -3,6 +3,24 @@
         <div class="heading6">Assessment Details</div>
     </div>
 
+    <div class="driveInfor">
+        <div class="left">
+            <figure>
+                <em class="icon-Drive"></em>
+            </figure>
+            <div>
+                <span class="clgDrive">Drive: VIT-Campus-Drive</span>
+                <spanc class="driveSchedule">Schedule: 1st-Batch-CC-Campus-Drive</spanc>
+            </div>
+        </div>
+        <div class="right">
+            <button (click)="driveSelect()">
+                <em class="icon-SelectDrive"></em>
+                <span>Select Drive and Schedule</span>
+            </button>
+        </div>
+    </div>
+
     <div class="assessmentInfoarea">
         <ng-container *ngIf="assessmentsList && assessmentsList.length > 0">
             <ng-container *ngFor="
@@ -289,6 +307,23 @@
 
     </div>
 </ng-template> -->
+
+<ng-template #selectDrive>
+    <div class="scheduleDrive">
+        <div class="close" (click)="driveClose()">
+            <span><em class="icon-Close"></em></span>
+        </div>
+        <div class="heading">
+            Select Drive and Schedule
+        </div>
+        <div class="dropDown">
+            DropDown content goes here
+        </div>
+        <div class="submit">
+            <button>Submit</button>
+        </div>
+    </div>
+</ng-template>
 
 <ng-template #matDialog1>
     <!-- <span class="closedailog" (click)="closeBox()"><em class="icon-Close btn-close"></em></span> -->
