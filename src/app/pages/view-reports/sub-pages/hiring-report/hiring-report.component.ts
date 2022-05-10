@@ -826,9 +826,8 @@ candidatereqdata:any = {
         let fromAndTo = localStorageCGPA ? JSON.parse(localStorageCGPA) : [];
         this.customfilter  ? apiData.request.CGPA = [localStorageCGPA ? JSON.parse(localStorageCGPA) : null] : ''
         localStorage.setItem('FilterData',JSON.stringify(apiData.request));
-        this.gridApi.hideOverlay();
+        // this.gridApi.hideOverlay();
         this.candidateListSubscription =  this.ApiService.getHiringReport(apiData.request).subscribe((data1: any) => {
-          this.gridApi.hideOverlay();
          if(data1.success == false){
               this.toastr.warning('Your session has expired Please login again');
               this.apiService.logout()
@@ -838,7 +837,7 @@ candidatereqdata:any = {
         this.to = fromAndTo.to;
         this.userList = data1 && data1.data ? data1.data: [];
         if (this.userList.length > 0) {
-          this.gridApi.hideOverlay();
+     
           if(apiData.request.groupKeys.length > 0){
           }else{
             this.FilteredRecords = data1 ? data1.total_count : 0;
@@ -868,6 +867,7 @@ candidatereqdata:any = {
         });
       
       });
+      this.gridApi.hideOverlay();
       // 
       }
     }
@@ -937,6 +937,7 @@ candidatereqdata:any = {
       if(filteredValues){
         data = {
           ...filteredValues, 
+          email: this.appconfig.getLocalStorage('email')
         }
 
         if(filteredValues.CGPA){
@@ -950,6 +951,7 @@ candidatereqdata:any = {
           Domain: [],
           Qualification: [],
           Gender:[],
+          email: this.appconfig.getLocalStorage('email')
         }
       }
 
