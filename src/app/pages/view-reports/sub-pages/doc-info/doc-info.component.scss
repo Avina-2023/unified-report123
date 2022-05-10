@@ -4,9 +4,9 @@
     width: 25px;
     height: 25px;
     background-color: #a9a9a866;
-    ;
     right: 7px;
     top: 8px;
+    z-index: 9;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -30,9 +30,15 @@
         display: flex;
         width: 25%;
         margin-bottom: 15px;
+        @media only screen and (min-width: 1540px) {
+            width: 20%;
+        }
         figure {
             width: 15%;
             margin: 0;
+            @media only screen and (min-width: 1540px) {
+                width: 12%;
+            }
             img {
                 width: 100%;
             }
@@ -55,5 +61,35 @@
                 cursor: pointer;
             }
         }
+    }
+}
+
+::ng-deep.pdfView {
+    position: absolute !important;
+    width: 65%;
+    right: 0;
+    top: 0;
+    @media only screen and (min-width: 1540px) {
+        width: 50%;
+    }
+}
+::ng-deep .candidateContainer {
+    .mat-tab-labels {
+        margin-left: 50px;
+    }
+    .mat-tab-label {
+        height: 64px;
+    }
+}
+
+.pdfView {
+    overflow: auto !important;
+    .ng2-pdf-viewer-container {
+        overflow-x: hidden !important;
+    }
+    .mat-dialog-container {
+        width: 200vh !important;
+        min-height: 600px !important;
+        padding: 0 !important;
     }
 }

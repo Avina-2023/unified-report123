@@ -122,3 +122,44 @@
 .m-l-6 {
     margin-left: 4%;
 }
+
+.ContentInfoDetails {
+    display: flex;
+    justify-content: space-between;
+    align-self: flex-start;
+    padding: 15px 30px;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    > div {
+        display: flex;
+        flex-direction: column;
+        .heading {
+            font-size: 15px;
+            font-weight: 400;
+            line-height: normal;
+            color: $mediumGrey;
+            margin-bottom: 7px;
+        }
+        .content {
+            font-size: 22px;
+            font-weight: 700;
+            color: $blackColor;
+            span {
+                font-size: 15px;
+                font-weight: 500;
+                color: $darkGrey;
+                margin-left: 3px;
+            }
+            .time {
+                font-size: 22px;
+                font-weight: 700;
+                color: $blackColor;
+                span {
+                    font-size: 15px;
+                    font-weight: 500;
+                    color: $darkGrey;
+                    margin-left: 3px;
+                }
+            }
+        }
+    }
+}

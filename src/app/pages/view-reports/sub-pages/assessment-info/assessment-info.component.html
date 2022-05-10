@@ -76,29 +76,28 @@
                     <div class="expandContentArea">
                         <div class="ContentInfoDetails">
                             <div>
-                                Scheduled Duration
-                                <span class="m-l-6">{{ assessment.duration ? assessment.duration : 0 }}<span>Mins</span></span>
+                                <span class="heading">Scheduled Duration</span>
+                                <span class="content">{{ assessment.duration ? assessment.duration : 0 }}<span>Mins</span></span>
                             </div>
                             <div *ngIf="assessment.source != 'ICP'">
-                                Test Taken Duration
-                                <span>{{ getTimetaken(assessment.timetaken)}}</span>
-                                <span>{{TimeTakenMins != undefined ? TimeTakenMins : '0' }}<span>Mins</span> {{timeTakenSec != undefined ? timeTakenSec : '0' }}<span>sec</span></span>
+                                <span class="heading">Test Taken Duration</span>
+                                <div class="content">
+                                    <span>{{ getTimetaken(assessment.timetaken)}}</span>
+                                    <span class="time">
+                                        {{TimeTakenMins != undefined ? TimeTakenMins : '0' }}<span>Mins</span> 
+                                        {{timeTakenSec != undefined ? timeTakenSec : '0' }}<span>sec</span>
+                                    </span>
+                                </div>
                             </div>
-                            <!-- <div>
-                                Marks Scored
-                                <span>{{ assessment.score
-                  }}<span></span></span>
-                            </div> -->
+                            <!-- <div>Marks Scored<span>{{ assessment.score}}<span></span></span></div> -->
                             <div>
-                                Proctoring
-                                <span>{{ assessment.proctored ? "Yes" : "No"}}
-                                    <a *ngIf="isaccess">
+                                <span class="heading">Proctoring</span>
+                                <span class="content">{{ assessment.proctored ? "Yes" : "No"}}
+                                    <ng-container *ngIf="isaccess">
                                         <!-- *ngIf="assessment.proctored && assessment.source != 'ICP'" -->
-                                        <span *ngIf="assessment.proctored"  class="warningColor pointer"
-                                        (click)="open(assessment)">View Details</span>
-                                </a>
+                                        <span *ngIf="assessment.proctored"  class="warningColor pointer" (click)="open(assessment)">View Details</span>
+                                    </ng-container>
                                 </span>
-
                             </div>
                             <!-- <div class="primaryInfo">
                                 Completion

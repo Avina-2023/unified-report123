@@ -414,19 +414,6 @@ mat-toolbar.header-toolbar {
     }
 }
 
-.pdfView {
-    position: relative !important;
-    overflow: auto !important;
-    .ng2-pdf-viewer-container {
-        overflow-x: hidden !important;
-    }
-    .mat-dialog-container {
-        width: 200vh !important;
-        min-height: 600px !important;
-        padding: 0 !important;
-    }
-}
-
 .uploadInProgress {
     padding: 20px 15px;
     background-color: $whiteColor;
@@ -550,7 +537,7 @@ ng-image-slider {
             align-items: center;
             padding: 0em 0.8em;
             border-right: 0.1em solid #e8e8e8;
-            justify-content: center;
+            justify-content: flex-start;
             //   min-width: 160px;
             &:last-child {
                 border: none;
