@@ -937,7 +937,8 @@ candidatereqdata:any = {
       if(filteredValues){
         data = {
           ...filteredValues, 
-          email: this.appconfig.getLocalStorage('email')
+          email: this.appconfig.getLocalStorage('email'),
+          lastSelected: this.selectedKeyValue ? this.selectedKeyValue : ''
         }
 
         if(filteredValues.CGPA){
@@ -951,7 +952,8 @@ candidatereqdata:any = {
           Domain: [],
           Qualification: [],
           Gender:[],
-          email: this.appconfig.getLocalStorage('email')
+          email: this.appconfig.getLocalStorage('email'),
+          lastSelected: this.selectedKeyValue ? this.selectedKeyValue : ''
         }
       }
 
