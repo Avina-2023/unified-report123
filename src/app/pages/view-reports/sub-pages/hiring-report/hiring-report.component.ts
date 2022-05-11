@@ -938,7 +938,7 @@ candidatereqdata:any = {
         data = {
           ...filteredValues, 
           email: this.appconfig.getLocalStorage('email'),
-          lastSelected: this.selectedKeyValue ? this.selectedKeyValue : ''
+          lastSelected: this.selectedKeyValue ? this.selectedKeyValue : this.appconfig.getLocalStorage('lastSelectedFilter')
         }
 
         if(filteredValues.CGPA){
@@ -953,7 +953,7 @@ candidatereqdata:any = {
           Qualification: [],
           Gender:[],
           email: this.appconfig.getLocalStorage('email'),
-          lastSelected: this.selectedKeyValue ? this.selectedKeyValue : ''
+          lastSelected: this.selectedKeyValue ? this.selectedKeyValue : this.appconfig.getLocalStorage('lastSelectedFilter')
         }
       }
 
@@ -982,9 +982,11 @@ candidatereqdata:any = {
     });
     this.firstChildVal = result[event];
     this.selectedKeyValue = event;
+   
   }
 
   onSelection($event, key) {
+    this.appconfig.setLocalStorage('lastSelectedFilter',this.selectedKeyValue)
     this.Isspinner = true;
     this.selectedOptions.forEach(element => {
         element.default = true;
@@ -1064,6 +1066,7 @@ candidatereqdata:any = {
     localStorage.setItem('Cgpa','{}');
     this.cacheBlockSize = 0;
     this.isFilterRecords = false;
+    this.selectedKeyValue = '';
     // this.selectedFilterTotalCount = '';
   }
 
