@@ -19,11 +19,10 @@ $custom-typography: mat-typography-config($font-family: '"Roboto", normal !impor
 @include mat-core($custom-typography);
 @import "../node_modules/ag-grid-community/dist/styles/ag-grid.css";
 @import "../node_modules/ag-grid-community/dist/styles/ag-theme-alpine.css";
-::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
-}
-
+// ::-webkit-scrollbar {
+//     width: 6px;
+//     height: 6px;
+// }
 .material-icons {
     font-family: 'Material Icons' !important;
 }
@@ -31,41 +30,37 @@ $custom-typography: mat-typography-config($font-family: '"Roboto", normal !impor
 
 /* Track */
 
-::-webkit-scrollbar-track:hover {
-    background-color: #eee;
-    opacity: .9;
-    width: 15px;
-}
-
-::-webkit-scrollbar-track {
-    width: 10px;
-    background-color: $whiteColor;
-}
-
+// ::-webkit-scrollbar-track:hover {
+//     background-color: #eee;
+//     opacity: .9;
+//     width: 15px;
+// }
+// ::-webkit-scrollbar-track {
+//     width: 10px;
+//     background-color: $whiteColor;
+// }
 
 /* Handle */
 
-::-webkit-scrollbar-thumb {
-    background-color: $thumbColor;
-    border-radius: 6px;
-    transition: background-color .2s linear, width .2s ease-in-out;
-    -webkit-transition: background-color .2s linear, width .2s ease-in-out;
-}
-
+// ::-webkit-scrollbar-thumb {
+//     background-color: $thumbColor;
+//     border-radius: 6px;
+//     transition: background-color .2s linear, width .2s ease-in-out;
+//     -webkit-transition: background-color .2s linear, width .2s ease-in-out;
+// }
 
 /* Handle on hover */
 
-::-webkit-scrollbar-thumb:hover {
-    background: $thumbHoverColor;
-    width: 15px;
-}
-
-.ag-body-horizontal-scroll-viewport {
-    height: 1px !important;
-    max-height: 1px !important;
-    min-height: 1px !important;
-}
-
+// ::-webkit-scrollbar-thumb:hover {
+//     background: $thumbHoverColor;
+//     width: 25px !important;
+//     height: 25px;
+// }
+// .ag-body-horizontal-scroll-viewport {
+//     height: 1px !important;
+//     max-height: 1px !important;
+//     min-height: 1px !important;
+// }
 .container {
     max-width: 1170px;
     width: 94%;
