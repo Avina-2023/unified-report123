@@ -9,6 +9,7 @@ import { ApiService } from '../../../../services/api.service';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment.prod';
 import { AppConfigService } from 'src/app/utils/app-config.service';
+import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
   selector: 'app-assessment-info',
@@ -46,7 +47,13 @@ export class AssessmentInfoComponent implements OnInit, OnChanges {
   showErrormsg = false;
   isaccess:any;
 
-  constructor(private appConfig: AppConfigService,private http: HttpClient ,public matDialog: MatDialog,private toastr: ToastrService, private ApiService: ApiService, ) {
+  driveselectedValue: any;
+  driveList: any;
+  driveListMain:any
+  selectDriveName: string;
+  selectScheduleName:string;
+  scheduleType: any;
+  constructor(private _loading: LoadingService,private appConfig: AppConfigService,private http: HttpClient ,public matDialog: MatDialog,private toastr: ToastrService, private ApiService: ApiService, ) {
 
 
   }
@@ -55,12 +62,47 @@ export class AssessmentInfoComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
     this.getAssessmentInfo();
+    this.getPersonalInfo();
     this.isaccess = this.appConfig.isComingFromMicroCert();
   }
 
   ngOnChanges() {
     this.getAssessmentInfo();
+    this.getPersonalInfo();
   }
+
+
+  getPersonalInfo() {
+    this.driveListMain =  this.getAllReportsData?.driveDetails ? this.getUniqueListBy(this.getAllReportsData?.driveDetails,'main_drivename')  : ''                
+    this.driveList = this.getAllReportsData?.driveDetails ? this.getUniqueListBy(this.getAllReportsData?.driveDetails,'drivename')  : '' 
+    this.driveselectedValue = this.driveList && this.driveList[0] ? this.driveList[0].drivename : '';
+    this.selectDriveName = this.driveList &&  this.driveList[0] ? this.driveList[0].main_drivename :  this.getAllReportsData && this.getAllReportsData?.BehavioralAssessment ?   this.getAllReportsData?.BehavioralAssessment[0]?.main_drivename : '';
+    this.scheduleType = this.getAllReportsData && this.getAllReportsData?.BehavioralAssessment ?  this.getAllReportsData?.BehavioralAssessment[0]?.testtype : '' ;
+    this.selectScheduleName = this.getAllReportsData && this.getAllReportsData?.BehavioralAssessment ? this.getAllReportsData?.BehavioralAssessment[0]?.drivename : '';
+    this.emitdriveNametoParent();
+
+  }
+
+    // getting Unique list of mail to perform next and prve
+    getUniqueListBy(arr, key) {
+      return [...new Map(arr.map(item => [item[key], item])).values()]
+    }
+
+  driveChange(e) {
+    this._loading.setLoading(true, 'loader');
+    setTimeout(() => {
+      this._loading.setLoading(false, 'loader');
+    }, 300);
+    this.driveselectedValue = e.value;
+    // this.getDriveUser(this.driveselectedValue,this.selectedMail ? this.selectedMail : '');
+    this.emitdriveNametoParent();
+  }
+
+
+  emitdriveNametoParent() {
+    this.driveName.emit(this.driveselectedValue);
+  }
+
 
   getAssessmentInfo() {
     if (this.getAllReportsData && this.getAllReportsData.driveDetails && this.getAllReportsData.driveDetails.length > 0 && this.getAllReportsData.selectedDriveName) {

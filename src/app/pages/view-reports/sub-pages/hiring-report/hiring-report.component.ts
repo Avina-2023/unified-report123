@@ -703,14 +703,11 @@ candidatereqdata:any = {
         }
       },
   ]
-
-
   }
 
 
   getSubTableDef(params,event){
     if (event.data && event.data.testtype === 'Personality & Behaviour') {
-
           this.columnDefsmini = [
             { headerName: 'Skill Name', field: 'skillname' },
             { headerName: 'Sten Score', field: 'stenScore' },
@@ -1066,7 +1063,7 @@ candidatereqdata:any = {
     localStorage.setItem('Cgpa','{}');
     this.cacheBlockSize = 0;
     this.isFilterRecords = false;
-    this.selectedKeyValue = '';
+    localStorage.setItem('lastSelectedFilter','');
     // this.selectedFilterTotalCount = '';
   }
 
@@ -1084,6 +1081,7 @@ candidatereqdata:any = {
       localStorage.setItem('mainFilterCount','[]');
       localStorage.setItem('filterItem',JSON.stringify(this.candidatereqdata));
       localStorage.setItem('Cgpa','{}');
+      localStorage.setItem('lastSelectedFilter','');
       this.cacheBlockSize = 0;
       this.isFilterRecords = false;
       this.tabledef();
@@ -1137,7 +1135,6 @@ candidatereqdata:any = {
     }
 
   }
-
 
   closeDialog() {
     this.matDialog.closeAll();

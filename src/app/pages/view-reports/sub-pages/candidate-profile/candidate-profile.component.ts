@@ -42,7 +42,7 @@ export class CandidateProfileComponent implements OnInit {
   }
 
   getDocInfo() {
-    this.profilePic = this.getAllReportsData && this.getAllReportsData.profileImage ? this.getAllReportsData.profileImage : null;
+    this.profilePic = this.getAllReportsData && this.getAllReportsData.profileImage ? this.getAllReportsData.profileImage : '/assets/images/NotSpecified.svg';
   }
 
   profileDialog(group, templateRef: TemplateRef<any>) {

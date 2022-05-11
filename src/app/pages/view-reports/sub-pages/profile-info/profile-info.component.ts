@@ -186,7 +186,7 @@ export class ProfileInfoComponent implements OnInit, OnChanges {
   }
 
   emitdriveNametoParent() {
-    this.driveName.emit(this.driveselectedValue);
+    this.driveName.emit(this.driveselectedValue); 
   }
 
   getDriveUser() {

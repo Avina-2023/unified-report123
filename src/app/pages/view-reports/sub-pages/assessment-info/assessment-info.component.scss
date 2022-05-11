@@ -145,7 +145,7 @@
                 color: $blueColor;
             }
         }
-        > div {
+        >div {
             span {
                 display: block;
             }
@@ -191,8 +191,8 @@
     justify-content: space-between;
     align-self: flex-start;
     padding: 15px 30px;
-    border-bottom: 1px solid rgba(0,0,0,0.1);
-    > div {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    >div {
         display: flex;
         flex-direction: column;
         .heading {
@@ -226,6 +226,7 @@
         }
     }
 }
+
 .scheduleDrive {
     position: relative;
     display: flex;
@@ -245,7 +246,7 @@
         font-weight: 500;
         color: $blackColor;
         line-height: normal;
-        border-bottom: 1px solid rgba(0,0,0,0.1);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
         padding: 20px;
     }
     .dropDown {
@@ -253,7 +254,7 @@
         flex-grow: 1;
     }
     .submit {
-        border-top: 1px solid rgba(0,0,0,0.1);
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
         margin-top: 20px;
         padding: 20px;
         display: flex;
@@ -275,4 +276,8 @@
     .mat-dialog-container {
         padding: 0;
     }
+}
+
+.select {
+    display: grid;
 }
