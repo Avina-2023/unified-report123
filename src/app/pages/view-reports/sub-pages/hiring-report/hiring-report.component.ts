@@ -1067,6 +1067,7 @@ candidatereqdata:any = {
     this.cacheBlockSize = 0;
     this.isFilterRecords = false;
     this.selectedKeyValue = '';
+    localStorage.setItem('lastSelectedFilter','');
     // this.selectedFilterTotalCount = '';
   }
 
@@ -1086,6 +1087,7 @@ candidatereqdata:any = {
       localStorage.setItem('Cgpa','{}');
       this.cacheBlockSize = 0;
       this.isFilterRecords = false;
+      localStorage.setItem('lastSelectedFilter','');
       this.tabledef();
   }
 
