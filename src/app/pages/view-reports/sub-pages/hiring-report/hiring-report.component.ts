@@ -1084,6 +1084,7 @@ candidatereqdata:any = {
       localStorage.setItem('lastSelectedFilter','');
       this.cacheBlockSize = 0;
       this.isFilterRecords = false;
+      localStorage.setItem('lastSelectedFilter','');
       this.tabledef();
   }
 
