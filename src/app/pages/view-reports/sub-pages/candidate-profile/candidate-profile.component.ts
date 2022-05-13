@@ -3,6 +3,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { environment } from 'src/environments/environment';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from '../../../../services/api.service';
+import { AppConfigService } from "src/app/utils/app-config.service";
+import { APP_CONSTANTS } from "src/app/utils/app-constants.service";
 
 @Component({
   selector: "app-candidate-profile",
@@ -22,11 +24,14 @@ export class CandidateProfileComponent implements OnInit {
   totalCount: any;
   driveUserdata = [];
   userCount = 0;
-
+  isaccess: any;
+  sticky: boolean = false;
+  prevbtn: boolean = false;
   constructor(
     private dialog: MatDialog,
     private route: ActivatedRoute,
-    private ApiService: ApiService
+    private ApiService: ApiService,
+    private appConfig: AppConfigService,
     ) { 
 
   }
@@ -34,6 +39,7 @@ export class CandidateProfileComponent implements OnInit {
   ngOnInit() {
     this.getDocInfo();
     this.getRoute();
+    this.isaccess = this.appConfig.isComingFromMicroCert();
   }
 
   ngOnChanges() {
@@ -95,5 +101,28 @@ export class CandidateProfileComponent implements OnInit {
         this.userCount = this.driveUserdata.findIndex((data:any) => data.email == this.selectedMail);
       }
     });
+  }
+
+  
+  nextUser() {
+    let expectedIndex = this.userCount != -1 ? this.userCount + 1 : null;
+    let nextMail = this.driveUserdata[expectedIndex].email;
+    this.appConfig.routeNavigationWithParam(APP_CONSTANTS.ENDPOINTS.REPORTS.VIEWREPORTS,nextMail);
+  }
+
+  prevUser() {
+    if (this.userCount != 0) {
+      this.userCount = this.driveUserdata.findIndex(
+        (data) => data.email == this.selectedMail
+      );
+      let expectedIndex = this.userCount != -1 ? this.userCount - 1 : null;
+      let prevMail = this.driveUserdata[expectedIndex].email;
+      this.appConfig.routeNavigationWithParam(
+        APP_CONSTANTS.ENDPOINTS.REPORTS.VIEWREPORTS,
+        prevMail
+      );
+    } else {
+      this.prevbtn = true;
+    }
   }
 }

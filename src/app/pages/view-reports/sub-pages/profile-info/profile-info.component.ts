@@ -1,7 +1,6 @@
 import {
   Component,
   EventEmitter,
-  HostListener,
   Input,
   OnChanges,
   OnInit,
@@ -11,7 +10,6 @@ import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { LoadingService } from 'src/app/services/loading.service';
 import { AppConfigService } from 'src/app/utils/app-config.service';
-import { APP_CONSTANTS } from 'src/app/utils/app-constants.service';
 import { ApiService } from '../../../../services/api.service';
 @Component({
   selector: 'app-profile-info',
@@ -30,7 +28,7 @@ export class ProfileInfoComponent implements OnInit, OnChanges {
   isaccess: any;
   selectDriveName: string;
   selectScheduleName:string;
-  sticky: boolean = false;
+  // sticky: boolean = false;
   subscription: Subscription;
   menuPosition: number = 164;
   totalCount: any;
@@ -43,15 +41,15 @@ export class ProfileInfoComponent implements OnInit, OnChanges {
   scheduleType: any;
   rowIndex:any;
   roles: any;
-  @HostListener('window:scroll', ['$event'])
-  handleScroll() {
-    const windowScroll = window.pageYOffset;
-    if (windowScroll >= this.menuPosition) {
-      this.sticky = true;
-    } else {
-      this.sticky = false;
-    }
-  }
+  // @HostListener('window:scroll', ['$event'])
+  // handleScroll() {
+  //   const windowScroll = window.pageYOffset;
+  //   if (windowScroll >= this.menuPosition) {
+  //     this.sticky = true;
+  //   } else {
+  //     this.sticky = false;
+  //   }
+  // }
   constructor(
     private route: ActivatedRoute,
     private ApiService: ApiService,
@@ -69,7 +67,7 @@ export class ProfileInfoComponent implements OnInit, OnChanges {
     }
 
     this.isaccess = this.appConfig.isComingFromMicroCert();
-    this.getRoute();
+    // this.getRoute();
   
 
   }
@@ -78,15 +76,15 @@ export class ProfileInfoComponent implements OnInit, OnChanges {
     this.getPersonalInfo();
   }
 
-  getRoute() {
-    this.route.paramMap.subscribe((param: any) => {
-      if (param && param.params && param.params.id) {
-        this.selectedMail = param.params.id;
-          this.getDriveUser();
+  // getRoute() {
+  //   this.route.paramMap.subscribe((param: any) => {
+  //     if (param && param.params && param.params.id) {
+  //       this.selectedMail = param.params.id;
+  //         // this.getDriveUser();
 
-      }
-    });
-  }
+  //     }
+  //   });
+  // }
 
   getPersonalInfo() {
     this.driveListMain =  this.getAllReportsData?.driveDetails ? this.getUniqueListBy(this.getAllReportsData?.driveDetails,'main_drivename')  : ''                
@@ -175,59 +173,59 @@ export class ProfileInfoComponent implements OnInit, OnChanges {
     return null;
   }
 
-  driveChange(e) {
-    this._loading.setLoading(true, 'loader');
-    setTimeout(() => {
-      this._loading.setLoading(false, 'loader');
-    }, 300);
-    this.driveselectedValue = e.value;
-    // this.getDriveUser(this.driveselectedValue,this.selectedMail ? this.selectedMail : '');
-    this.emitdriveNametoParent();
-  }
+  // driveChange(e) {
+  //   this._loading.setLoading(true, 'loader');
+  //   setTimeout(() => {
+  //     this._loading.setLoading(false, 'loader');
+  //   }, 300);
+  //   this.driveselectedValue = e.value;
+  //   // this.getDriveUser(this.driveselectedValue,this.selectedMail ? this.selectedMail : '');
+  //   this.emitdriveNametoParent();
+  // }
 
   emitdriveNametoParent() {
     this.driveName.emit(this.driveselectedValue); 
   }
 
-  getDriveUser() {
-    const FilterData = localStorage.getItem('FilterData');
-    let requestFilterData = JSON.parse(FilterData);
-    this.ApiService.getcandidateList(requestFilterData).subscribe((data: any) => {
-      if(data.success){
-        this.totalCount = data.total_count;
-        this.driveUserdata = data.data;
-        this.userCount = this.driveUserdata.findIndex((data) => data.email == this.selectedMail);
-      }else{
+  // getDriveUser() {
+  //   const FilterData = localStorage.getItem('FilterData');
+  //   let requestFilterData = JSON.parse(FilterData);
+  //   this.ApiService.getcandidateList(requestFilterData).subscribe((data: any) => {
+  //     if(data.success){
+  //       this.totalCount = data.total_count;
+  //       this.driveUserdata = data.data;
+  //       this.userCount = this.driveUserdata.findIndex((data) => data.email == this.selectedMail);
+  //     }else{
           
-      }
+  //     }
 
-    });
-  }
+  //   });
+  // }
 
   // getting Unique list of mail to perform next and prve
       getUniqueListBy(arr, key) {
           return [...new Map(arr.map(item => [item[key], item])).values()]
       }
 
-  nextUser() {
-    let expectedIndex = this.userCount != -1 ? this.userCount + 1 : null;
-    let nextMail = this.driveUserdata[expectedIndex].email;
-    this.appConfig.routeNavigationWithParam(APP_CONSTANTS.ENDPOINTS.REPORTS.VIEWREPORTS,nextMail);
-  }
+  // nextUser() {
+  //   let expectedIndex = this.userCount != -1 ? this.userCount + 1 : null;
+  //   let nextMail = this.driveUserdata[expectedIndex].email;
+  //   this.appConfig.routeNavigationWithParam(APP_CONSTANTS.ENDPOINTS.REPORTS.VIEWREPORTS,nextMail);
+  // }
 
-  prevUser() {
-    if (this.userCount != 0) {
-      this.userCount = this.driveUserdata.findIndex(
-        (data) => data.email == this.selectedMail
-      );
-      let expectedIndex = this.userCount != -1 ? this.userCount - 1 : null;
-      let prevMail = this.driveUserdata[expectedIndex].email;
-      this.appConfig.routeNavigationWithParam(
-        APP_CONSTANTS.ENDPOINTS.REPORTS.VIEWREPORTS,
-        prevMail
-      );
-    } else {
-      this.prevbtn = true;
-    }
-  }
+  // prevUser() {
+  //   if (this.userCount != 0) {
+  //     this.userCount = this.driveUserdata.findIndex(
+  //       (data) => data.email == this.selectedMail
+  //     );
+  //     let expectedIndex = this.userCount != -1 ? this.userCount - 1 : null;
+  //     let prevMail = this.driveUserdata[expectedIndex].email;
+  //     this.appConfig.routeNavigationWithParam(
+  //       APP_CONSTANTS.ENDPOINTS.REPORTS.VIEWREPORTS,
+  //       prevMail
+  //     );
+  //   } else {
+  //     this.prevbtn = true;
+  //   }
+  // }
 }

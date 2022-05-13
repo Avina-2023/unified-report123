@@ -5,7 +5,7 @@ import { ApiService } from './../../../services/api.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-
+import * as publicIp from 'public-ip';
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
@@ -17,6 +17,7 @@ export class LoginPageComponent  {
   hide = true;
   show = false;
   disableButton: boolean;
+  userIP: any;
 
 
   constructor(
@@ -48,7 +49,7 @@ export class LoginPageComponent  {
             this.disableButton = false;
             this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.REPORTS.DASHBOARD);
             this.matDialog.closeAll();
-            
+            this.getIPAddress();
           }else {
             this.toastr.error('User not found please try with diffrent credentials');
           }
@@ -76,4 +77,12 @@ export class LoginPageComponent  {
     return this.loginForm.get('password');
   }
 
+
+
+  getIPAddress(){
+    publicIp.v4().then((ip) => {
+      this.userIP = ip ?  ip : '';
+      this.appConfig.setLocalStorage('IP',this.userIP ? this.userIP : '');
+    });
+  }
 }

@@ -1,12 +1,11 @@
 @import "../../../../../assets/scss/variables.scss";
-
 .candidateProfile {
     background-color: $whiteColor;
     .detailsWrapper {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        border-bottom: 1px solid rgba(0,0,0,0.2);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.2);
         padding: 20px 20px 13px 20px;
         margin-bottom: 20px;
         span {
@@ -29,14 +28,21 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 0 20px;
+        padding: 0 50px;
+        position: relative;
+    }
+    .qrCode {
+        position: relative;
+        z-index: 3;
     }
     .profileWrapper {
         display: flex;
         align-items: center;
+        position: relative;
+        z-index: 3;
         .candidateDetails {
             margin-left: 15px;
-            > div {
+            >div {
                 span {
                     font-size: 14px;
                     font-weight: 400;
@@ -74,4 +80,33 @@
             cursor: pointer;
         }
     }
+}
+
+.mainArrow {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    z-index: 1;
+    .arrow {
+        display: flex;
+        justify-content: space-between;
+        cursor: pointer;
+        width: 100%;
+        z-index: 1;
+        padding: 0 10px;
+        button {
+            border: none;
+            background-color: transparent;
+            em {
+                font-size: 15px;
+                font-weight: bold;
+            }
+        }
+    }
+}
+
+::ng-deep .btn.disabled,
+.btn:disabled {
+    opacity: .40;
+    cursor: not-allowed;
 }

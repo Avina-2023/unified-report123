@@ -317,7 +317,7 @@
         </div>
         <div class="dropDown">
             <div class="select" *ngIf="scheduleType != 'Personality & Behaviour' && scheduleType != 'Personality and Behaviour'">
-                <mat-label>Drive Name {{scheduleType}}</mat-label>
+                <mat-label class="label">Drive Name {{scheduleType}}</mat-label>
                 <mat-select [(ngModel)]="selectDriveName" class="matSelect" name="list" placeholder="Drive Name">
                     <mat-option *ngFor="let mainlist of driveListMain" [value]="mainlist.main_drivename">
                         {{mainlist.main_drivename}}
@@ -327,7 +327,7 @@
 
             <div class="select " *ngIf="this.getAllReportsData && this.getAllReportsData?.BehavioralAssessment && this.getAllReportsData?.BehavioralAssessment[0]?.main_drivename">
 
-                <mat-label>Drive Name</mat-label>
+                <mat-label class="label">Drive Name</mat-label>
                 <mat-select [(ngModel)]="selectDriveName" class="matSelect" name="list" placeholder="Drive Name">
                     <mat-option [value]="selectDriveName">
                         {{selectDriveName}}
@@ -336,8 +336,8 @@
 
             </div>
 
-            <div class="select m-r-38" *ngIf="driveList && scheduleType != 'Personality & Behaviour' && scheduleType != 'Personality and Behaviour'">
-                <mat-label>Schedule Name</mat-label>
+            <div class="select m-t-10" *ngIf="driveList && scheduleType != 'Personality & Behaviour' && scheduleType != 'Personality and Behaviour'">
+                <mat-label class="label">Schedule Name</mat-label>
                 <mat-select class="matSelect" (selectionChange)="driveChange($event)" [(ngModel)]="driveselectedValue" name="list">
                     <mat-option *ngFor="let list of driveList" [value]="list.drivename">
                         {{list.drivename}}
@@ -345,9 +345,9 @@
                 </mat-select>
             </div>
 
-            <div class="select m-r-38" *ngIf="scheduleType == 'Personality & Behaviour' || scheduleType == 'Personality and Behaviour'">
+            <div class="select m-t-10" *ngIf="scheduleType == 'Personality & Behaviour' || scheduleType == 'Personality and Behaviour'">
 
-                <mat-label>Schedule Name</mat-label>
+                <mat-label class="label">Schedule Name</mat-label>
                 <mat-select [(ngModel)]="selectScheduleName" class="matSelect" name="list">
                     <mat-option [value]="this.selectScheduleName != 'undefined' ? this.selectScheduleName : ''">
                         {{this.selectScheduleName != 'undefined' ? this.selectScheduleName : ''}}
@@ -357,7 +357,7 @@
             </div>
         </div>
         <div class="submit">
-            <button>Submit</button>
+            <button (click)="emitdriveNametoParent()">Submit</button>
         </div>
     </div>
 </ng-template>

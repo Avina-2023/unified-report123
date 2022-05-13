@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, TemplateRef, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import * as moment from 'moment'; //in your component
 import _ from 'lodash';
@@ -19,7 +19,8 @@ import { LoadingService } from 'src/app/services/loading.service';
 export class AssessmentInfoComponent implements OnInit, OnChanges {
   proctor_url = environment.PROCTOR_URL;
   @Input() getAllReportsData;
-  @Input() driveName;
+  @Output() driveName: EventEmitter<any> = new EventEmitter<any>();
+  // @Input() driveName;
   @ViewChild('sourceVideo',{static: false}) video: TemplateRef<any>;
   // @ViewChild('matDialog', {static: false}) matDialogRef: TemplateRef<any>;
   @ViewChild('matDialog1', {static: false}) matDialogRef1: TemplateRef<any>;
@@ -46,7 +47,6 @@ export class AssessmentInfoComponent implements OnInit, OnChanges {
   inboundClick = false;
   showErrormsg = false;
   isaccess:any;
-
   driveselectedValue: any;
   driveList: any;
   driveListMain:any
@@ -73,6 +73,7 @@ export class AssessmentInfoComponent implements OnInit, OnChanges {
 
 
   getPersonalInfo() {
+    this.emitdriveNametoParent();
     this.driveListMain =  this.getAllReportsData?.driveDetails ? this.getUniqueListBy(this.getAllReportsData?.driveDetails,'main_drivename')  : ''                
     this.driveList = this.getAllReportsData?.driveDetails ? this.getUniqueListBy(this.getAllReportsData?.driveDetails,'drivename')  : '' 
     this.driveselectedValue = this.driveList && this.driveList[0] ? this.driveList[0].drivename : '';
@@ -114,7 +115,6 @@ export class AssessmentInfoComponent implements OnInit, OnChanges {
 
   covertToPercentage() {
     this.assessmentsList.forEach(element => {
-      
       if (element.score >=0 && element.maxscore) {
         let score = element.score / element.maxscore * 100;
         const percentage = score ? score : score.toFixed(2);

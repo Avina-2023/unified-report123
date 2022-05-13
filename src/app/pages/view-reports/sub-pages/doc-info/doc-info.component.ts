@@ -59,6 +59,9 @@ export class DocInfoComponent implements OnInit, OnChanges {
       // width: '35%',
       disableClose: false });
     }
+    if(group.type && group.type.includes('application/vnd.openxmlformats-officedocument.wordprocessingml.document')){
+      this.selectedURL = group['url'] + this.blobkey;
+    }
   }
 
   profileDialog(group, templateRef: TemplateRef<any>) {

@@ -24,7 +24,8 @@ import { BehaviouralReportModule } from '../behavioural-report/behavioural-repor
 import { CandidateSkillsComponent } from './sub-pages/candidate-skills/candidate-skills.component';
 import { CandidateProfileComponent } from './sub-pages/candidate-profile/candidate-profile.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-
+import { NgCircleProgressModule } from 'ng-circle-progress';
+import { NgxDocViewerModule } from 'ngx-doc-viewer';
 @NgModule({
   declarations: [
     ProfileInfoComponent,
@@ -53,6 +54,16 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     PdfViewerModule,
     ChartsModule,
     BehaviouralReportModule,
+    NgxDocViewerModule,
+    NgCircleProgressModule.forRoot({
+      // set defaults here
+      radius: 100,
+      outerStrokeWidth: 16,
+      innerStrokeWidth: 8,
+      outerStrokeColor: "#78C000",
+      innerStrokeColor: "#C7E596",
+      animationDuration: 300,
+    }),
     AgGridModule.withComponents([])
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]

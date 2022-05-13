@@ -281,3 +281,19 @@
 .select {
     display: grid;
 }
+
+.matSelect {
+    width: 330px;
+    border: 1px solid $blackColor;
+    padding: 10px;
+}
+
+.m-t-10 {
+    margin-top: 10%;
+}
+
+.label {
+    font-size: 18px;
+    color: $blackColor;
+    padding-bottom: 10px;
+}

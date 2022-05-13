@@ -30,6 +30,16 @@
                 <img class="QaCode" [src]="personalInfo.qrCodeURL ? personalInfo.qrCodeURL : '-'" alt="" srcset="">
             </figure>
         </div>
+        <div class="mainArrow" *ngIf="isaccess">
+            <div class="arrow" [class.stickybtn]="sticky" *ngIf="totalCount != 1">
+                <button class="arrow-btn" [disabled]="userCount == 0 && userCount != totalCount" (click)="prevUser()">
+                    <em [disabled]="userCount == 0 && userCount != totalCount" class="icon-LeftArrow"></em>
+                </button>
+                <button class="arrow-btn" [disabled]="(userCount + 1) >= totalCount" (click)="nextUser()">
+                    <em [disabled]="(userCount + 1) >= totalCount" class="icon-RightArrow"></em>
+               </button>
+            </div>
+        </div>
     </div>
 </section>
 
