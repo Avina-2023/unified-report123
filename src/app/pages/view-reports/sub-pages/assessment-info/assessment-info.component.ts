@@ -102,6 +102,7 @@ export class AssessmentInfoComponent implements OnInit, OnChanges {
 
   emitdriveNametoParent() {
     this.driveName.emit(this.driveselectedValue);
+    this.closeBox();
   }
 
 
