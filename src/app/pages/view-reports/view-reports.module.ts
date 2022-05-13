@@ -25,7 +25,6 @@ import { CandidateSkillsComponent } from './sub-pages/candidate-skills/candidate
 import { CandidateProfileComponent } from './sub-pages/candidate-profile/candidate-profile.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NgCircleProgressModule } from 'ng-circle-progress';
-import { NgxDocViewerModule } from 'ngx-doc-viewer';
 @NgModule({
   declarations: [
     ProfileInfoComponent,
@@ -54,7 +53,6 @@ import { NgxDocViewerModule } from 'ngx-doc-viewer';
     PdfViewerModule,
     ChartsModule,
     BehaviouralReportModule,
-    NgxDocViewerModule,
     NgCircleProgressModule.forRoot({
       // set defaults here
       radius: 100,
