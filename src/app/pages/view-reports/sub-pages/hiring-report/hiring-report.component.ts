@@ -8,8 +8,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { SentDataToOtherComp } from 'src/app/services/sendDataToOtherComp.service';
 import _ from 'lodash';
 import { AgChartThemeOverrides, ColDef, ColSpanParams, GridApi, IColumnToolPanel, SideBarDef } from '@ag-grid-enterprise/all-modules';
-import * as moment from 'moment';
-
+import * as publicIp from 'public-ip';
 
 @Component({
   selector: 'app-hiring-report',
@@ -133,8 +132,9 @@ candidatereqdata:any = {
   Isspinner = false;
   demoimg:any;
   FormateName: any;
+  userIP: any;
   constructor(private apiService: ApiService,private sendData: SentDataToOtherComp, private matDialog: MatDialog,private appconfig: AppConfigService,private toastr: ToastrService, private ApiService: ApiService,) {      
-    this.serverSideStoreType = 'partial';
+     this.serverSideStoreType = 'partial';
     this.masterDetail = true;
     this.rowModelType = 'serverSide';
     this.defaultColDef = {
@@ -175,7 +175,7 @@ candidatereqdata:any = {
     }
     this.ShowFilterWithCount = this.SelectedFilterMainCount;;
     this.tabledef();
-
+   
 
   }
 
@@ -547,13 +547,13 @@ candidatereqdata:any = {
       {
         headerName: 'Year of passing',
         field: 'passedout',
-        filter: 'agDateColumnFilter',
+        filter: 'agTextColumnFilter',
         maxWidth: 140,
         chartDataType: 'series',
         // tooltipField:'passedout',
         cellRenderer: (params) => {
           if(params.value){
-            return moment(params.value).format('MMM YYYY');
+            return params.value;
             // return params.value;
           } if(params.value == undefined){
             return  '';
@@ -703,14 +703,11 @@ candidatereqdata:any = {
         }
       },
   ]
-
-
   }
 
 
   getSubTableDef(params,event){
     if (event.data && event.data.testtype === 'Personality & Behaviour') {
-
           this.columnDefsmini = [
             { headerName: 'Skill Name', field: 'skillname' },
             { headerName: 'Sten Score', field: 'stenScore' },
@@ -938,11 +935,15 @@ candidatereqdata:any = {
         data = {
           ...filteredValues, 
           email: this.appconfig.getLocalStorage('email'),
-          lastSelected: this.selectedKeyValue ? this.selectedKeyValue : this.appconfig.getLocalStorage('lastSelectedFilter')
+          lastSelected: this.selectedKeyValue ? this.selectedKeyValue : this.appconfig.getLocalStorage('lastSelectedFilter'),
+          IP: this.appconfig.getLocalStorage('IP') ? this.appconfig.getLocalStorage('IP') : ''
         }
 
         if(filteredValues.CGPA){
-          data.CGPA = [cgpa]
+          data.CGPA = [cgpa],
+          data.email = this.appconfig.getLocalStorage('email'),
+          data.lastSelected = this.selectedKeyValue ? this.selectedKeyValue : this.appconfig.getLocalStorage('lastSelectedFilter'),
+          data.IP = this.appconfig.getLocalStorage('IP') ? this.appconfig.getLocalStorage('IP') : ''
         }
  
 
@@ -953,7 +954,8 @@ candidatereqdata:any = {
           Qualification: [],
           Gender:[],
           email: this.appconfig.getLocalStorage('email'),
-          lastSelected: this.selectedKeyValue ? this.selectedKeyValue : this.appconfig.getLocalStorage('lastSelectedFilter')
+          lastSelected: this.selectedKeyValue ? this.selectedKeyValue : this.appconfig.getLocalStorage('lastSelectedFilter'),
+          IP: this.appconfig.getLocalStorage('IP') ? this.appconfig.getLocalStorage('IP') : ''
         }
       }
 
@@ -1066,7 +1068,6 @@ candidatereqdata:any = {
     localStorage.setItem('Cgpa','{}');
     this.cacheBlockSize = 0;
     this.isFilterRecords = false;
-    this.selectedKeyValue = '';
     localStorage.setItem('lastSelectedFilter','');
     // this.selectedFilterTotalCount = '';
   }
@@ -1085,6 +1086,7 @@ candidatereqdata:any = {
       localStorage.setItem('mainFilterCount','[]');
       localStorage.setItem('filterItem',JSON.stringify(this.candidatereqdata));
       localStorage.setItem('Cgpa','{}');
+      localStorage.setItem('lastSelectedFilter','');
       this.cacheBlockSize = 0;
       this.isFilterRecords = false;
       localStorage.setItem('lastSelectedFilter','');
@@ -1139,7 +1141,6 @@ candidatereqdata:any = {
     }
 
   }
-
 
   closeDialog() {
     this.matDialog.closeAll();
