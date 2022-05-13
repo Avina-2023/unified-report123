@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, TemplateRef, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import * as moment from 'moment'; //in your component
 import _ from 'lodash';
@@ -9,6 +9,7 @@ import { ApiService } from '../../../../services/api.service';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment.prod';
 import { AppConfigService } from 'src/app/utils/app-config.service';
+import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
   selector: 'app-assessment-info',
@@ -18,10 +19,12 @@ import { AppConfigService } from 'src/app/utils/app-config.service';
 export class AssessmentInfoComponent implements OnInit, OnChanges {
   proctor_url = environment.PROCTOR_URL;
   @Input() getAllReportsData;
-  @Input() driveName;
+  @Output() driveName: EventEmitter<any> = new EventEmitter<any>();
+  // @Input() driveName;
   @ViewChild('sourceVideo',{static: false}) video: TemplateRef<any>;
   // @ViewChild('matDialog', {static: false}) matDialogRef: TemplateRef<any>;
   @ViewChild('matDialog1', {static: false}) matDialogRef1: TemplateRef<any>;
+  @ViewChild('selectDrive', {static: false}) selectDrive: TemplateRef<any>;
   assessmentsList: any;
   colorCode = 'Good';
   iconBase = 'like';
@@ -44,8 +47,13 @@ export class AssessmentInfoComponent implements OnInit, OnChanges {
   inboundClick = false;
   showErrormsg = false;
   isaccess:any;
-
-  constructor(private appConfig: AppConfigService,private http: HttpClient ,public matDialog: MatDialog,private toastr: ToastrService, private ApiService: ApiService, ) {
+  driveselectedValue: any;
+  driveList: any;
+  driveListMain:any
+  selectDriveName: string;
+  selectScheduleName:string;
+  scheduleType: any;
+  constructor(private _loading: LoadingService,private appConfig: AppConfigService,private http: HttpClient ,public matDialog: MatDialog,private toastr: ToastrService, private ApiService: ApiService, ) {
 
 
   }
@@ -54,12 +62,49 @@ export class AssessmentInfoComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
     this.getAssessmentInfo();
+    this.getPersonalInfo();
     this.isaccess = this.appConfig.isComingFromMicroCert();
   }
 
   ngOnChanges() {
     this.getAssessmentInfo();
+    this.getPersonalInfo();
   }
+
+
+  getPersonalInfo() {
+    this.emitdriveNametoParent();
+    this.driveListMain =  this.getAllReportsData?.driveDetails ? this.getUniqueListBy(this.getAllReportsData?.driveDetails,'main_drivename')  : ''                
+    this.driveList = this.getAllReportsData?.driveDetails ? this.getUniqueListBy(this.getAllReportsData?.driveDetails,'drivename')  : '' 
+    this.driveselectedValue = this.driveList && this.driveList[0] ? this.driveList[0].drivename : '';
+    this.selectDriveName = this.driveList &&  this.driveList[0] ? this.driveList[0].main_drivename :  this.getAllReportsData && this.getAllReportsData?.BehavioralAssessment ?   this.getAllReportsData?.BehavioralAssessment[0]?.main_drivename : '';
+    this.scheduleType = this.getAllReportsData && this.getAllReportsData?.BehavioralAssessment ?  this.getAllReportsData?.BehavioralAssessment[0]?.testtype : '' ;
+    this.selectScheduleName = this.getAllReportsData && this.getAllReportsData?.BehavioralAssessment ? this.getAllReportsData?.BehavioralAssessment[0]?.drivename : '';
+    this.emitdriveNametoParent();
+
+  }
+
+    // getting Unique list of mail to perform next and prve
+    getUniqueListBy(arr, key) {
+      return [...new Map(arr.map(item => [item[key], item])).values()]
+    }
+
+  driveChange(e) {
+    this._loading.setLoading(true, 'loader');
+    setTimeout(() => {
+      this._loading.setLoading(false, 'loader');
+    }, 300);
+    this.driveselectedValue = e.value;
+    // this.getDriveUser(this.driveselectedValue,this.selectedMail ? this.selectedMail : '');
+    this.emitdriveNametoParent();
+  }
+
+
+  emitdriveNametoParent() {
+    this.driveName.emit(this.driveselectedValue);
+    this.closeBox();
+  }
+
 
   getAssessmentInfo() {
     if (this.getAllReportsData && this.getAllReportsData.driveDetails && this.getAllReportsData.driveDetails.length > 0 && this.getAllReportsData.selectedDriveName) {
@@ -71,7 +116,6 @@ export class AssessmentInfoComponent implements OnInit, OnChanges {
 
   covertToPercentage() {
     this.assessmentsList.forEach(element => {
-      
       if (element.score >=0 && element.maxscore) {
         let score = element.score / element.maxscore * 100;
         const percentage = score ? score : score.toFixed(2);
@@ -146,6 +190,19 @@ export class AssessmentInfoComponent implements OnInit, OnChanges {
     }
 
     this.getVideoFiles(assessment.roomId);
+  }
+
+  driveSelect() {
+    const dialogRef = this.matDialog.open(this.selectDrive, {
+      width: '500px',
+      height: '400px',
+      autoFocus: false,
+      closeOnNavigation: true,
+      panelClass: 'selectDriveSchedule'
+    });
+  }
+  driveClose() {
+    this.matDialog.closeAll();
   }
 
   closeBox() {
