@@ -11,34 +11,56 @@ import { environment } from 'src/environments/environment.prod';
 export class DashboardComponent implements OnInit {
   dashboard:any;
   isaccess: boolean;
+  adminDashboardId = "62751917-2c86-4776-81b4-5b281737ef06";
+  ASAPDashboardId = "627e1615-ac96-47e5-872a-4accc918dfe0";
   sdk = new ChartsEmbedSDK({
     baseUrl: environment.MONGOCHARTURL,
     showAttribution: false
   });
-  constructor( private appConfig: AppConfigService,private sendData: SentDataToOtherComp) {
-   
+  OrgInfo: any;
+  constructor(private appConfig: AppConfigService,private sendData: SentDataToOtherComp) {
+
+ 
   }
 
   ngOnInit(): void {
     this.sendData.sendMessage(true,'go');
     this.isaccess = this.appConfig.isComingFromMicroCert(); 
-    if(this.isaccess){
-      setTimeout(() => {
-        this.GetMongoCharts(); 
-      }, 500);
-    }   
+    this.OrgInfo = this.appConfig.getLocalStorage('role') ? this.appConfig.getLocalStorage('role') : '';
+    if(this.OrgInfo){
+      this.getRole(this.OrgInfo);
+    }
+    // if(this.isaccess){
+    //   setTimeout(() => {
+    //     // this.GetMongoCharts(); 
+    //   }, 500);
+    // }   
   }
 
 
-  GetMongoCharts(){
+  GetMongoCharts(id){
     this.dashboard = this.sdk.createDashboard({
-      dashboardId: '62751917-2c86-4776-81b4-5b281737ef06',
-      // height: 100
-      // filter:{batchid:this.BatchValue}
-  
+      dashboardId: id,
     });
     this.dashboard.render(document.getElementById('mongocharts')).then(() =>{
     });
+  }
+
+  getRole(orgInfo){
+    let org = JSON.parse(orgInfo);
+     if(org && org[0].orgName === 'L&T asap'){
+      if(this.isaccess){
+        setTimeout(() => {
+          this.GetMongoCharts(this.ASAPDashboardId); 
+        }, 500);
+      } 
+     }else {
+      if(this.isaccess){
+        setTimeout(() => {
+          this.GetMongoCharts(this.adminDashboardId); 
+        }, 500);
+      } 
+     }
   }
 
 }
