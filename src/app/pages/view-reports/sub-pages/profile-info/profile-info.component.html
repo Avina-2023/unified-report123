@@ -1,8 +1,9 @@
 <section class="profilearea">
-    <div class="heading6">
+
+    <!-- <div class="heading6">
         Drive Information
-    </div>
-    <div class="totalCount">
+    </div> -->
+    <!-- <div class="totalCount">
 
         <div class="select" *ngIf="scheduleType != 'Personality & Behaviour' && scheduleType != 'Personality and Behaviour'">
             <mat-label>Drive Name {{scheduleType}}</mat-label>
@@ -48,123 +49,121 @@
             <span class="count-font">Total Count</span>
             <div class="count"><span class="userCount">{{userCount + 1}}</span> / <span class="totalCout">{{totalCount}}</span></div>
         </div>
-    </div>
+    </div> -->
     <div class="assessmentInfoarea">
-        <mat-expansion-panel expanded="true">
-            <!-- [class.sticky]="sticky"  [hideToggle]="sticky"-->
-            <mat-expansion-panel-header #stickyMenu>
-                <div class="expandheaderArea">
-                    <div class="">
-                        <em class="icon-Assessment"></em>
-                        <span class="head color-black">Candidate Details
+        <mat-accordion>
+            <mat-expansion-panel expanded="true">
+                <!-- [class.sticky]="sticky" [hideToggle]="sticky"-->
+                <mat-expansion-panel-header #stickyMenu>
+                    <div class="expandheaderArea">
+                        <div class="">
+                            <!-- <em class="icon-Assessment"></em> -->
+                            <span class="color-black">Primary Details</span>
+                        </div>
+
+                        <!-- <div class="width-270">
+                        
+                            <em class="icon-User"></em>
+                            <span>Name
+                                    <span class="color-black">{{personalInfo.firstname ? personalInfo.firstname : '-'}}</span>
                             </span>
+                        </div> -->
+
+                        <!-- <div class="width-270">
+                            <em class="icon-Email"></em>
+                            <span>Email
+                                    <span class="color-black">{{personalInfo.email ? personalInfo.email : '-'}}</span>
+                            </span>
+                        </div> -->
+
+                        <!-- <div class="width-90">
+                            <div *ngIf="personalInfo?.qrCodeURL" class="width-80">
+                                <img class="QaCode" [src]="personalInfo.qrCodeURL ? personalInfo.qrCodeURL : '-'" alt="" srcset="">
+                            </div>
+                        </div> -->
                     </div>
+                </mat-expansion-panel-header>
 
-                    <!-- <div class="width-270">
-                     
-                        <em class="icon-User"></em>
-                        <span>Name
-                                <span class="color-black">{{personalInfo.firstname ? personalInfo.firstname : '-'}}</span>
-                        </span>
-                    </div> -->
-
-                    <div class="width-270">
-                        <em class="icon-Email"></em>
-                        <span>Email
-                                <span class="color-black">{{personalInfo.email ? personalInfo.email : '-'}}</span>
-                        </span>
+                <div class="expandContentArea">
+                    <div class="ContentInfoDetails" *ngIf="personalInfo">
+                        <div class="primaryDetails commonStyle">
+                            <div class="commonContainer">
+                                <div>
+                                    <span>Name:</span>
+                                    <span>{{personalInfo.firstname ? personalInfo.firstname : '-'}}</span>
+                                </div>
+                                <div>
+                                    <span>Email:</span>
+                                    <span>{{personalInfo.email ? personalInfo.email : '-'}}</span>
+                                </div>
+                                <div>
+                                    <span>Date of Birth:</span>
+                                    <span>{{personalInfo.DOB ? personalInfo.DOB : '-'}}</span>
+                                </div>
+                                <div>
+                                    <span>Father's Name:</span>
+                                    <span>{{personalInfo.fathername ? personalInfo.fathername : '-'}}</span>
+                                </div>
+                                <div>
+                                    <span>Gender:</span>
+                                    <span>{{personalInfo.gender ? personalInfo.gender : '-'}}</span>
+                                </div>
+                                <div>
+                                    <span>Contact No:</span>
+                                    <span>{{personalInfo.mobile ? personalInfo.mobile : '-'}}</span>
+                                </div>
+                                <div>
+                                    <span>Address:</span>
+                                    <span>{{personalInfo.address ? personalInfo.address : '-'}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="eduDetails commonStyle">
+                            <div class="heading4">Education Details</div>
+                            <div class="commonContainer">
+                                <div>
+                                    <span>College/University:</span>
+                                    <span> {{personalInfo.institute ? personalInfo.institute : '-'}}</span>
+                                </div>
+                                <div>
+                                    <span>State/City:</span>
+                                    <span>{{personalInfo.city ? personalInfo.city : '-'}}</span>
+                                </div>
+                                <div>
+                                    <span>Specialization:</span>
+                                    <span> {{personalInfo.specialization ? personalInfo.specialization : '-'}}</span>
+                                </div>
+                                <div>
+                                    <span>Branch:</span>
+                                    <span>{{personalInfo.branch ? personalInfo.branch : '-'}}</span>
+                                </div>
+                                <div>
+                                    <span>Passing Year:</span>
+                                    <span>{{personalInfo.passedOut ? personalInfo.passedOut : '-'}}</span>
+                                </div>
+                                <div>
+                                    <span>Graduation Aggregate:</span>
+                                    <span>{{personalInfo.percentage ? personalInfo.percentage + '%' : '-' }}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="docDetails commonStyle">
+                            <div class="heading4">Document Details</div>
+                            <app-doc-info [getAllReportsData]="getAllReportsData"></app-doc-info>
+                        </div>
                     </div>
+                    <div class="ContentInfoSummary">
+                        <div class="assessmentHeaderinfo">
 
-                    <div class="width-90">
-                        <div *ngIf="personalInfo?.qrCodeURL" class="width-80">
-                            <img class="QaCode" [src]="personalInfo.qrCodeURL ? personalInfo.qrCodeURL : '-'" alt="" srcset="">
                         </div>
                     </div>
                 </div>
-            </mat-expansion-panel-header>
-
-            <div class="expandContentArea">
-                <div class="ContentInfoDetails">
-                    <div class="profileInfoarea" *ngIf="personalInfo">
-                        <div class="profileInfoSec">
-                            <div>
-                                Name:
-                                <span> {{personalInfo.firstname ? personalInfo.firstname : '-'}} </span>
-                            </div>
-                            <!-- <div>
-                                    Last Name:
-                                    <span>{{personalInfo.lastname ? personalInfo.lastname : '-'}}</span>
-                                </div> -->
-                            <div>
-                                Email:
-                                <span>{{personalInfo.email ? personalInfo.email : '-'}}</span>
-                            </div>
-                            <div>
-                                Date of Birth:
-                                <span>{{personalInfo.DOB ? personalInfo.DOB : '-'}}</span>
-                            </div>
-                            <div>
-                                Father's Name:
-                                <span>{{personalInfo.fathername ? personalInfo.fathername : '-'}}</span>
-                            </div>
-                            <div>
-                                Gender:
-                                <span>{{personalInfo.gender ? personalInfo.gender : '-'}}</span>
-                            </div>
-                            <div>
-                                Contact No:
-                                <span> {{personalInfo.mobile ? personalInfo.mobile : '-'}}</span>
-                            </div>
-                            <div>
-                                Address:
-                                <span>{{personalInfo.address ? personalInfo.address : '-'}}</span>
-                            </div>
-                        </div>
-                        <div class="profileInfoSec">
-                            <div>
-                                College/University:
-                                <span> {{personalInfo.institute ? personalInfo.institute : '-'}}</span>
-                            </div>
-                            <div>
-                                State/City:
-                                <span>{{personalInfo.city ? personalInfo.city : '-'}}</span>
-                            </div>
-                            <div>
-                                Specialization:
-                                <span> {{personalInfo.specialization ? personalInfo.specialization : '-'}}</span>
-                            </div>
-                            <div>
-                                Branch:
-                                <span>{{personalInfo.branch ? personalInfo.branch : '-'}}</span>
-                            </div>
-                            <div>
-                                Passing Year:
-                                <span>{{personalInfo.passedOut ? personalInfo.passedOut : '-'}}</span>
-                            </div>
-                            <div>
-                                Graduation Aggregate:
-                                <span>{{personalInfo.percentage ? personalInfo.percentage + '%' : '-' }}</span>
-                            </div>
-                        </div>
-                    </div>
-
-
-
-                </div>
-                <div class="ContentInfoSummary">
-                    <div class="assessmentHeaderinfo">
-
-                        <app-doc-info [getAllReportsData]="getAllReportsData"></app-doc-info>
-                    </div>
-                </div>
-
-
-            </div>
-        </mat-expansion-panel>
+            </mat-expansion-panel>
+        </mat-accordion>
     </div>
 
     <div class="clearfix"></div>
-    <div *ngIf="isaccess">
+    <!-- <div *ngIf="isaccess">
         <div class="arrow" [class.stickybtn]="sticky" *ngIf="totalCount != 1">
             <button class="btn" [disabled]="userCount == 0 && userCount != totalCount" (click)="prevUser()"> 
                 <mat-icon class="right" [disabled]="userCount == 0 && userCount != totalCount">keyboard_arrow_left</mat-icon>
@@ -173,6 +172,6 @@
                <mat-icon class="left" [disabled]="(userCount + 1) >= totalCount"> keyboard_arrow_right</mat-icon>
            </button>
         </div>
-    </div>
+    </div> -->
 
 </section>

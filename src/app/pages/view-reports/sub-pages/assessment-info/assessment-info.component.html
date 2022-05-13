@@ -3,6 +3,24 @@
         <div class="heading6">Assessment Details</div>
     </div>
 
+    <div class="driveInfor">
+        <div class="left">
+            <figure>
+                <em class="icon-Drive"></em>
+            </figure>
+            <div>
+                <span class="clgDrive">Drive: {{selectDriveName}}</span>
+                <spanc class="driveSchedule">Schedule: {{driveselectedValue}}</spanc>
+            </div>
+        </div>
+        <div class="right">
+            <button (click)="driveSelect()">
+                <em class="icon-SelectDrive"></em>
+                <span>Select Drive and Schedule</span>
+            </button>
+        </div>
+    </div>
+
     <div class="assessmentInfoarea">
         <ng-container *ngIf="assessmentsList && assessmentsList.length > 0">
             <ng-container *ngFor="
@@ -76,31 +94,29 @@
                     <div class="expandContentArea">
                         <div class="ContentInfoDetails">
                             <div>
-                                Scheduled Duration
-                                <span class="m-l-6">{{ assessment.duration ? assessment.duration : 0 }}<span>Mins</span></span>
+                                <span class="heading">Scheduled Duration</span>
+                                <span class="content">{{ assessment.duration ? assessment.duration : 0 }}<span>Mins</span></span>
                             </div>
                             <div *ngIf="assessment.source != 'ICP'">
-                                Test Taken Duration
-                                <span>{{ getTimetaken(assessment.timetaken)}}</span>
-                                <span>{{TimeTakenMins != undefined ? TimeTakenMins : '0' }}<span>Mins</span> {{timeTakenSec != undefined ? timeTakenSec : '0' }}<span>sec</span></span>
+                                <span class="heading">Test Taken Duration</span>
+                                <div class="content">
+                                    <span>{{ getTimetaken(assessment.timetaken)}}</span>
+                                    <span class="time">
+                                        {{TimeTakenMins != undefined ? TimeTakenMins : '0' }}<span>Mins</span> {{timeTakenSec != undefined ? timeTakenSec : '0' }}<span>sec</span>
+                                    </span>
+                                </div>
                             </div>
-                            <!-- <div>
-                                Marks Scored
-                                <span>{{ assessment.score
-                  }}<span></span></span>
-                            </div> -->
+                            <!-- <div>Marks Scored<span>{{ assessment.score}}<span></span></span></div> -->
                             <div>
-                                Proctoring
-                                <span>{{ assessment.proctored ? "Yes" : "No"}}
-                                    <a *ngIf="isaccess">
+                                <span class="heading">Proctoring</span>
+                                <span class="content">{{ assessment.proctored ? "Yes" : "No"}}
+                                    <ng-container *ngIf="isaccess">
                                         <!-- *ngIf="assessment.proctored && assessment.source != 'ICP'" -->
-                                        <span *ngIf="assessment.proctored"  class="warningColor pointer"
-                                        (click)="open(assessment)">View Details</span>
-                                </a>
-                                </span>
-
-                            </div>
-                            <!-- <div class="primaryInfo">
+                                        <span *ngIf="assessment.proctored"  class="warningColor pointer" (click)="open(assessment)">View Details</span>
+            </ng-container>
+            </span>
+            </div>
+            <!-- <div class="primaryInfo">
                                 Completion
                                 <span [ngClass]="{ warningColor: assessment?.teststatus === 'In Complete' && assessment?.teststatus === 'Not Taken', 
                                                    successColor: assessment?.teststatus === 'Complete'}">
@@ -111,130 +127,130 @@
                                     <span>{{assessment?.teststatus}}</span>
                                 </span>
                             </div> -->
-                        </div>
-                        <div class="ContentInfoSummary">
-                            <div class="assessmentHeaderinfo">
-                                <div class="Summaryhtxt" *ngIf="isaccess">
-                                    Sectional Summary
-                                    <!-- <span *ngIf="assessment.source != 'STEP'" class="primaryClick" (click)="questionview(assessment);inboundClick = !inboundClick"><em
+            </div>
+            <div class="ContentInfoSummary">
+                <div class="assessmentHeaderinfo">
+                    <div class="Summaryhtxt" *ngIf="isaccess">
+                        Sectional Summary
+                        <!-- <span *ngIf="assessment.source != 'STEP'" class="primaryClick" (click)="questionview(assessment);inboundClick = !inboundClick"><em
                                             class="icon-right-next"></em> View Questionwise Analysis</span> -->
-                                </div>
-                                <div *ngIf="inboundClick">
-                                    <ng-container *ngIf="listOfSections && listOfSections.length > 0">
-                                        <ng-container *ngFor="let sections of listOfSections; let j = index;">
-                                            <mat-expansion-panel [expanded]="false" *ngIf="listOfSections[0].testName == assessment.assessmentname">
-                                                <mat-expansion-panel-header>
-                                                    <div class="expandheaderArea">
-                                                        <div class="htxt">{{sections._id}}</div>
-                                                        <div class="txtinfo">
-                                                            <span> No. of Attempted Questions</span> {{sections.tableList.length}}
-                                                        </div>
-                                                    </div>
-                                                </mat-expansion-panel-header>
+                    </div>
+                    <div *ngIf="inboundClick">
+                        <ng-container *ngIf="listOfSections && listOfSections.length > 0">
+                            <ng-container *ngFor="let sections of listOfSections; let j = index;">
+                                <mat-expansion-panel [expanded]="false" *ngIf="listOfSections[0].testName == assessment.assessmentname">
+                                    <mat-expansion-panel-header>
+                                        <div class="expandheaderArea">
+                                            <div class="htxt">{{sections._id}}</div>
+                                            <div class="txtinfo">
+                                                <span> No. of Attempted Questions</span> {{sections.tableList.length}}
+                                            </div>
+                                        </div>
+                                    </mat-expansion-panel-header>
 
-                                                <div class="expandContentArea">
-                                                    <div class="ContentInfoSummary">
-                                                        <div class="SummaryInfoArea">
-                                                            <table class="question_table" border="0" cellpadding="0" cellspacing="0">
-                                                                <thead>
-                                                                    <tr>
-                                                                        <th>Question No.</th>
-                                                                        <th>Question Code</th>
-                                                                        <th>Question Type</th>
-                                                                        <th class="text-center">Correct / InCorrect</th>
-                                                                        <th>Answered / Unanswered</th>
-                                                                        <th>Score / Max Score</th>
-                                                                        <th>Time Spent (In min.)</th>
-                                                                    </tr>
-                                                                </thead>
-                                                                <tbody>
-                                                                    <tr *ngFor="let tableData of sections?.tableList; let j = index">
-                                                                        <td class="text-center">Q{{j+1}}</td>
-                                                                        <td>{{ tableData ? tableData.itemid : '-'}}</td>
-                                                                        <td>{{tableData ? tableData.type : '-'}}</td>
-                                                                        <td class="text-center"><span><em class="icon-{{ tableData.correct == true ? 'CheckMark' : 'uncheck' }}"></em></span></td>
-                                                                        <td>{{tableData ? tableData.status : '-'}}</td>
-                                                                        <td class="text-center">{{tableData ? tableData.score : '0'}} / {{tableData ? tableData.maxscore : '0'}}</td>
-                                                                        <td class="text-center">{{tableData ? tableData.timetaken : '-'}}</td>
-                                                                    </tr>
-                                                                </tbody>
-                                                            </table>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </mat-expansion-panel>
-                                        </ng-container>
-                                    </ng-container>
-                                </div>
+                                    <div class="expandContentArea">
+                                        <div class="ContentInfoSummary">
+                                            <div class="SummaryInfoArea">
+                                                <table class="question_table" border="0" cellpadding="0" cellspacing="0">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Question No.</th>
+                                                            <th>Question Code</th>
+                                                            <th>Question Type</th>
+                                                            <th class="text-center">Correct / InCorrect</th>
+                                                            <th>Answered / Unanswered</th>
+                                                            <th>Score / Max Score</th>
+                                                            <th>Time Spent (In min.)</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr *ngFor="let tableData of sections?.tableList; let j = index">
+                                                            <td class="text-center">Q{{j+1}}</td>
+                                                            <td>{{ tableData ? tableData.itemid : '-'}}</td>
+                                                            <td>{{tableData ? tableData.type : '-'}}</td>
+                                                            <td class="text-center"><span><em class="icon-{{ tableData.correct == true ? 'CheckMark' : 'uncheck' }}"></em></span></td>
+                                                            <td>{{tableData ? tableData.status : '-'}}</td>
+                                                            <td class="text-center">{{tableData ? tableData.score : '0'}} / {{tableData ? tableData.maxscore : '0'}}</td>
+                                                            <td class="text-center">{{tableData ? tableData.timetaken : '-'}}</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </mat-expansion-panel>
+                            </ng-container>
+                        </ng-container>
+                    </div>
 
-                            </div>
-                            <div class="SummaryInfoArea">
-                                <table class="summaryTable" border="0" cellpadding="0" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>Section Name</th>
-                                            <th>Questions Attempted</th>
-                                            <!-- <th>Attempted</th> -->
-                                            <th>Score Obtained</th>
-                                            <th>Percentage</th>
-                                            <th *ngIf="assessment.source != 'ICP' ">Time Taken</th>
-                                            <th></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <ng-container *ngIf="assessment.section && assessment.section.length > 0">
-                                            <tr *ngFor="let section of assessment.section;let j = index">
-                                                <td>{{ section.secname ? section.secname : '-' }}</td>
-                                                <td>
-                                                    <div class="progressbar color-bluebar" [ngStyle]="{
+                </div>
+                <div class="SummaryInfoArea">
+                    <table class="summaryTable" border="0" cellpadding="0" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Section Name</th>
+                                <th>Questions Attempted</th>
+                                <!-- <th>Attempted</th> -->
+                                <th>Score Obtained</th>
+                                <th>Percentage</th>
+                                <th *ngIf="assessment.source != 'ICP' ">Time Taken</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <ng-container *ngIf="assessment.section && assessment.section.length > 0">
+                                <tr *ngFor="let section of assessment.section;let j = index">
+                                    <td>{{ section.secname ? section.secname : '-' }}</td>
+                                    <td>
+                                        <div class="progressbar color-bluebar" [ngStyle]="{
                                                       width: (section.attendedquestions / section.overallquestions) * 100 + '%' }"></div>
-                                                    <div class="progressdata">
-                                                        <span>{{ section.attendedquestions ? section.attendedquestions :
+                                        <div class="progressdata">
+                                            <span>{{ section.attendedquestions ? section.attendedquestions :
                                                             '-' }}</span>
-                                                        <p *ngIf="assessment.source != 'STEP'">/ {{ section.overallquestions ? section.overallquestions : '-' }}</p>
-                                                    </div>
-                                                </td>
-                                                <!-- <td>
+                                            <p *ngIf="assessment.source != 'STEP'">/ {{ section.overallquestions ? section.overallquestions : '-' }}</p>
+                                        </div>
+                                    </td>
+                                    <!-- <td>
                                             <div class="progressbar color-bluebar" [ngStyle]="{'width':(section.attempt/section.overallattempt) * 100 + '%'}" ></div>
                                             <div class="progressdata"><span>{{section.attempt}}</span>/{{section.overallattempt}}</div>
                                                 </td> -->
-                                                <td>
-                                                    <div class="progressbar color-pinkbar" [ngStyle]="{
+                                    <td>
+                                        <div class="progressbar color-pinkbar" [ngStyle]="{
                                                      width:(section.score / section.overallscore) * 100 +'%'}"></div>
-                                                    <div class="progressdata">
-                                                        <span>{{ section.score ? section.score : 0 }}</span>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="progressbar color-greenbar" [ngStyle]="{
+                                        <div class="progressdata">
+                                            <span>{{ section.score ? section.score : 0 }}</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="progressbar color-greenbar" [ngStyle]="{
                                                       width: (section.accuracy / 100) * 100 + '%'}"></div>
-                                                    <div class="progressdata">
-                                                        <span>{{ section.accuracy ? section.accuracy : 0 }}%</span>
-                                                    </div>
-                                                </td>
+                                        <div class="progressdata">
+                                            <span>{{ section.accuracy ? section.accuracy : 0 }}%</span>
+                                        </div>
+                                    </td>
 
-                                                <td *ngIf="assessment.source != 'ICP' ">
-                                                    <div class="progressbar color-yellowbar" [ngStyle]="{
+                                    <td *ngIf="assessment.source != 'ICP' ">
+                                        <div class="progressbar color-yellowbar" [ngStyle]="{
                                                    width:(section.timetaken / section.overallduration) * 100 + '%'}">
-                                                    </div>
+                                        </div>
 
-                                                    <div *ngIf="section && section.timetaken" class="progressdata">
+                                        <div *ngIf="section && section.timetaken" class="progressdata">
 
-                                                        <span *ngIf="section.timetaken != 0">{{getTimetaker(section.timetaken)}}</span>
+                                            <span *ngIf="section.timetaken != 0">{{getTimetaker(section.timetaken)}}</span>
 
-                                                        <span *ngIf="section.timetaken != 0">{{TimeTakerMins != undefined ? TimeTakerMins + ' Mins ' : '0 Mins' }}
+                                            <span *ngIf="section.timetaken != 0">{{TimeTakerMins != undefined ? TimeTakerMins + ' Mins ' : '0 Mins' }}
                                                             {{timeTakerSec != undefined ? timeTakerSec + ' sec' : ''}}</span>
-                                                        <!-- /{{ section.overallduration }} -->
-                                                        <span *ngIf="section.timetaken == 0">{{section.timetaken}}</span>
-                                                    </div>
-                                                    <div *ngIf="!section.timetaken" class="progressdata">
-                                                        <span>{{'0'}}</span>
-                                                    </div>
+                                            <!-- /{{ section.overallduration }} -->
+                                            <span *ngIf="section.timetaken == 0">{{section.timetaken}}</span>
+                                        </div>
+                                        <div *ngIf="!section.timetaken" class="progressdata">
+                                            <span>{{'0'}}</span>
+                                        </div>
 
-                                                </td>
-                                                <td>
-                                                    <div class="likeSec">
-                                                        <em [ngClass]="
+                                    </td>
+                                    <td>
+                                        <div class="likeSec">
+                                            <em [ngClass]="
                                                             section.accuracy < 40
                                                             ? 'icon-Dislike'
                                                             : section.accuracy >= 40 &&
@@ -242,17 +258,17 @@
                                                             ? 'icon-Like average-color'
                                                             : 'icon-Like'
                                                         "></em>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        </ng-container>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </mat-expansion-panel>
-            </ng-container>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </ng-container>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            </div>
+            </mat-expansion-panel>
+        </ng-container>
         </ng-container>
     </div>
     <div class="clearfix"></div>
@@ -290,6 +306,61 @@
 
     </div>
 </ng-template> -->
+
+<ng-template #selectDrive>
+    <div class="scheduleDrive">
+        <div class="close" (click)="driveClose()">
+            <span><em class="icon-Close"></em></span>
+        </div>
+        <div class="heading">
+            Select Drive and Schedule
+        </div>
+        <div class="dropDown">
+            <div class="select" *ngIf="scheduleType != 'Personality & Behaviour' && scheduleType != 'Personality and Behaviour'">
+                <mat-label class="label">Drive Name {{scheduleType}}</mat-label>
+                <mat-select [(ngModel)]="selectDriveName" class="matSelect" name="list" placeholder="Drive Name">
+                    <mat-option *ngFor="let mainlist of driveListMain" [value]="mainlist.main_drivename">
+                        {{mainlist.main_drivename}}
+                    </mat-option>
+                </mat-select>
+            </div>
+
+            <div class="select " *ngIf="this.getAllReportsData && this.getAllReportsData?.BehavioralAssessment && this.getAllReportsData?.BehavioralAssessment[0]?.main_drivename">
+
+                <mat-label class="label">Drive Name</mat-label>
+                <mat-select [(ngModel)]="selectDriveName" class="matSelect" name="list" placeholder="Drive Name">
+                    <mat-option [value]="selectDriveName">
+                        {{selectDriveName}}
+                    </mat-option>
+                </mat-select>
+
+            </div>
+
+            <div class="select m-t-10" *ngIf="driveList && scheduleType != 'Personality & Behaviour' && scheduleType != 'Personality and Behaviour'">
+                <mat-label class="label">Schedule Name</mat-label>
+                <mat-select class="matSelect" (selectionChange)="driveChange($event)" [(ngModel)]="driveselectedValue" name="list">
+                    <mat-option *ngFor="let list of driveList" [value]="list.drivename">
+                        {{list.drivename}}
+                    </mat-option>
+                </mat-select>
+            </div>
+
+            <div class="select m-t-10" *ngIf="scheduleType == 'Personality & Behaviour' || scheduleType == 'Personality and Behaviour'">
+
+                <mat-label class="label">Schedule Name</mat-label>
+                <mat-select [(ngModel)]="selectScheduleName" class="matSelect" name="list">
+                    <mat-option [value]="this.selectScheduleName != 'undefined' ? this.selectScheduleName : ''">
+                        {{this.selectScheduleName != 'undefined' ? this.selectScheduleName : ''}}
+                    </mat-option>
+                </mat-select>
+
+            </div>
+        </div>
+        <div class="submit">
+            <button (click)="emitdriveNametoParent()">Submit</button>
+        </div>
+    </div>
+</ng-template>
 
 <ng-template #matDialog1>
     <!-- <span class="closedailog" (click)="closeBox()"><em class="icon-Close btn-close"></em></span> -->

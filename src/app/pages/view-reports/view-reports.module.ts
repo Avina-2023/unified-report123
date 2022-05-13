@@ -22,8 +22,9 @@ import { HiringReportComponent } from './sub-pages/hiring-report/hiring-report.c
 import { ChartsModule } from 'ng2-charts';
 import { BehaviouralReportModule } from '../behavioural-report/behavioural-report.module';
 import { CandidateSkillsComponent } from './sub-pages/candidate-skills/candidate-skills.component';
+import { CandidateProfileComponent } from './sub-pages/candidate-profile/candidate-profile.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-
+import { NgCircleProgressModule } from 'ng-circle-progress';
 @NgModule({
   declarations: [
     ProfileInfoComponent,
@@ -38,6 +39,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     BehaviouralQualityAreaComponent,
     HiringReportComponent,
     CandidateSkillsComponent,
+    CandidateProfileComponent,
     DashboardComponent,
     
   ],
@@ -51,6 +53,15 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     PdfViewerModule,
     ChartsModule,
     BehaviouralReportModule,
+    NgCircleProgressModule.forRoot({
+      // set defaults here
+      radius: 100,
+      outerStrokeWidth: 16,
+      innerStrokeWidth: 8,
+      outerStrokeColor: "#78C000",
+      innerStrokeColor: "#C7E596",
+      animationDuration: 300,
+    }),
     AgGridModule.withComponents([])
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]

@@ -1,0 +1,112 @@
+@import "../../../../../assets/scss/variables.scss";
+.candidateProfile {
+    background-color: $whiteColor;
+    .detailsWrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+        padding: 20px 20px 13px 20px;
+        margin-bottom: 20px;
+        span {
+            font-size: 19px;
+            font-weight: 500;
+            color: #000000;
+            &.userCount {
+                color: #c02222;
+            }
+        }
+    }
+    h4 {
+        font-size: 18px !important;
+        font-weight: 500 !important;
+        color: $blackColor;
+        line-height: normal !important;
+        margin-bottom: 0;
+    }
+    .candidateWrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 50px;
+        position: relative;
+    }
+    .qrCode {
+        position: relative;
+        z-index: 3;
+    }
+    .profileWrapper {
+        display: flex;
+        align-items: center;
+        position: relative;
+        z-index: 3;
+        .candidateDetails {
+            margin-left: 15px;
+            >div {
+                span {
+                    font-size: 14px;
+                    font-weight: 400;
+                    line-height: 24px;
+                    &.name {
+                        font-size: 22px;
+                        font-weight: 400;
+                        color: $blackColor;
+                    }
+                    &.title {
+                        color: $mediumGrey;
+                        margin-right: 5px;
+                    }
+                    &.desc {
+                        color: $blackColor;
+                    }
+                }
+            }
+        }
+    }
+    figure {
+        position: relative;
+        img {
+            width: 100px;
+            height: 115px;
+            object-fit: cover;
+        }
+        em {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            color: $whiteColor;
+            font-size: 20px;
+            cursor: pointer;
+        }
+    }
+}
+
+.mainArrow {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    z-index: 1;
+    .arrow {
+        display: flex;
+        justify-content: space-between;
+        cursor: pointer;
+        width: 100%;
+        z-index: 1;
+        padding: 0 10px;
+        button {
+            border: none;
+            background-color: transparent;
+            em {
+                font-size: 15px;
+                font-weight: bold;
+            }
+        }
+    }
+}
+
+::ng-deep .btn.disabled,
+.btn:disabled {
+    opacity: .40;
+    cursor: not-allowed;
+}
