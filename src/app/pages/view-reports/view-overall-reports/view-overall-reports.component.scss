@@ -1,3 +1,8 @@
+@import "../../../../assets/scss/variables.scss";
+.candidateContainer {
+    margin: 20px 0 0 0;
+    background-color: $whiteColor;
+}
 .noCard {
     font-size: 30px;
     text-align: center;

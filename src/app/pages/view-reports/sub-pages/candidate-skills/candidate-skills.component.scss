@@ -90,11 +90,20 @@
                     margin-left: 6px;
                 }
             }
-             ::ng-deep .mat-progress-bar-fill::after {
-                background-color: #009AFF !important;
-            }
-             ::ng-deep .mat-progress-bar-buffer {
-                background-color: #E6E6E6 !important;
+            .progess {
+                display: flex;
+                align-items: center;
+                .jobfor {
+                    font-size: 15px;
+                    color: #848484;
+                    margin-left: 5px;
+                }
+                .jobName {
+                    font-size: 18px;
+                    font-weight: 500;
+                    color: $blackColor;
+                    margin-top: 5px;
+                }
             }
         }
     }
@@ -153,14 +162,13 @@
 }
 
 .Jobs {
-    // margin-bottom: 3%;
     .jobs {
-        background: #a9a9a959;
+        background: #F2F2F2;
         padding: 9px;
-        border-radius: 27px;
         margin-left: 1%;
-        font-size: 13px;
+        font-size: 14px;
         margin-bottom: 10px;
+        border-left: 3px solid;
     }
     .allJobs {
         display: flex;
@@ -188,11 +196,6 @@
     font-size: 24px;
     text-align: center;
     color: #757575;
-    // position: relative;
-    // margin: 0 0 auto;
-    // box-shadow: rgb(60 64 67 / 30%) 0px 1px 2px 0px, rgb(60 64 67 / 15%) 0px 1px 3px 1px;
-    // padding: 2em;
-    // border: solid #eee 1px;
 }
 
 .candidateSkillsBasicProfile {

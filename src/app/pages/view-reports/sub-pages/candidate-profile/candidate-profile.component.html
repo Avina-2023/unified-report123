@@ -1,0 +1,53 @@
+<section class="candidateProfile" *ngIf="profilePic">
+    <div class="detailsWrapper">
+        <h4>Candidate Details</h4>
+        <div class="count">
+            <span class="userCount">{{userCount + 1}}</span><span class="totalCout"> / {{totalCount}}</span></div>
+    </div>
+    <div class="candidateWrapper">
+        <div class="profileWrapper">
+            <div class="photoholder" #profil>
+                <ng-container *ngIf="profilePic">
+                    <figure>
+                        <img [src]="profilePic + blobkey" class="imgProp" alt="Profile" />
+                        <a (click)="profileDialog(profilePic, viewImg)" [ngStyle]="{width: profil.offsetWidth + 'px', height: profil.offsetHeight + 'px' }" class="viewprofile">
+                            <em class="icon-View"></em>
+                        </a>
+                    </figure>
+                </ng-container>
+                <ng-container *ngIf="!profilePic">
+                    <img src="../../../../../assets/images/noImg.jpg" class="imgProp" alt="Profile" />
+                </ng-container>
+            </div>
+            <div class="candidateDetails">
+                <div><span class="name">{{personalInfo.firstname ? personalInfo.firstname : '-'}}</span></div>
+                <div><span class="title">Email:</span> <span class="desc">{{personalInfo.email ? personalInfo.email : '-'}}</span></div>
+                <div><span class="title">Contact No:</span><span class="desc">{{personalInfo.mobile ? personalInfo.mobile : '-'}}</span></div>
+            </div>
+        </div>
+        <div *ngIf="personalInfo?.qrCodeURL" class="qrCode">
+            <figure>
+                <img class="QaCode" [src]="personalInfo.qrCodeURL ? personalInfo.qrCodeURL : '-'" alt="" srcset="">
+            </figure>
+        </div>
+        <div class="mainArrow" *ngIf="isaccess">
+            <div class="arrow" [class.stickybtn]="sticky" *ngIf="totalCount != 1">
+                <button class="arrow-btn" [disabled]="userCount == 0 && userCount != totalCount" (click)="prevUser()">
+                    <em [disabled]="userCount == 0 && userCount != totalCount" class="icon-LeftArrow"></em>
+                </button>
+                <button class="arrow-btn" [disabled]="(userCount + 1) >= totalCount" (click)="nextUser()">
+                    <em [disabled]="(userCount + 1) >= totalCount" class="icon-RightArrow"></em>
+               </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<ng-template #viewImg id="viewImg">
+    <div class="progressText">
+        <div class="progressclose">
+            <span class="closebtn" (click)="closeDialog()"><em class="icon-Close"></em></span>
+        </div>
+        <img [src]="selectedURL" alt="" />
+    </div>
+</ng-template>

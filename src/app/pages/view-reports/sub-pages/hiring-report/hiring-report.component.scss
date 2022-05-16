@@ -86,9 +86,9 @@
 }
 
 ::ng-deep .ag-body-horizontal-scroll-viewport {
-    height: 3px !important;
-    max-height: 10px !important;
-    min-height: 7px !important;
+    height: 9px !important;
+    max-height: 21px !important;
+    min-height: 18px !important;
 }
 
 .outer-div {
@@ -295,7 +295,7 @@
         .left {
             background: #EFEFEF;
             height: 700px;
-            width: 150px;
+            width: auto;
             @media only screen and (min-width: 1440px) {
                 height: 832px !important;
             }

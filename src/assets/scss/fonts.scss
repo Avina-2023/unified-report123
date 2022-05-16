@@ -59,6 +59,21 @@
     -moz-osx-font-smoothing: grayscale;
   }
   
+  .icon-TestAnalysis:before {
+    content: "\e98f";
+  }
+  .icon-JobVacancy:before {
+    content: "\e98e";
+  }
+  .icon-BasicProfile:before {
+    content: "\e98c";
+  }
+  .icon-SelectDrive:before {
+    content: "\e98b";
+  }
+  .icon-Drive:before {
+    content: "\e98d";
+  }
   .icon-uncheck:before {
     content: "\e98a";
   }
@@ -488,4 +503,3 @@
   .icon-ArrowUp:before {
     content: "\ea32";
   }
-  
