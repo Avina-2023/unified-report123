@@ -10,7 +10,8 @@ export class AppConfigService {
   constructor(
     private activatedRoute: ActivatedRoute,
     private route: Router,
-  ) { }
+  ) {
+   }
 
 
   // get Current route
@@ -94,5 +95,4 @@ export class AppConfigService {
       return true;
     }
   }
-
 }

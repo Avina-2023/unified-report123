@@ -55,9 +55,12 @@ export class DocInfoComponent implements OnInit, OnChanges {
       this.selectedURL = group['url'] + this.blobkey;
       this.dialog.open(this.viewPDF, {
       panelClass: 'pdfView',
-      // height: '80%',
+      height: '100%',
       // width: '35%',
       disableClose: false });
+    }
+    if(group.type && group.type.includes('application/vnd.openxmlformats-officedocument.wordprocessingml.document')){
+      this.selectedURL = group['url'] + this.blobkey;
     }
   }
 

@@ -26,21 +26,26 @@
 
     <div class="skills">
         <div class="heading">Top 03 Jobs recommended</div>
-        <div class="recommendedJobs">
-            <div *ngFor=" let joberoles of top3jobs">
-                <h3>{{joberoles?.calculationScore}}%<span> for {{joberoles?.jobname}}</span></h3>
-                <mat-progress-bar mode="determinate" [color]="'#09568C'" [value]="joberoles?.calculationScore"></mat-progress-bar>
+        <div class="recommendedJobs" *ngIf="top3jobs">
+            <div *ngFor="let joberoles of top3jobs">
+                <div class="progess">
+                    <circle-progress [percent]="joberoles?.calculationScore" [radius]="50" [outerStrokeWidth]="10" [space]="-10" [innerStrokeWidth]="10" [outerStrokeColor]="joberoles?.colorCode" [innerStrokeColor]="'#F2F2F2'" [showSubtitle]="false" [animation]="true" [animationDuration]="300"
+                        [titleFontSize]="35" [subtitleFontWeight]="600" [subtitleFontSize]="31"></circle-progress>
+                    <div class="jobfor">Recommended for
+                        <div class="jobName">{{joberoles?.jobname}}</div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
     <div class="main-box">
         <div class="right">
-            <div class="jobFitGap" *ngIf="top7Jobs.length > 0; else nojobfit">
+            <div class="jobFitGap" *ngIf="top7Jobs && top7Jobs.length > 0; else nojobfit">
                 <div class="heading">Job fit-gap</div>
                 <div class="width-65">
                     <canvas class="chart" baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [plugins]="barChartPlugins" [legend]="barChartLegend" [chartType]="barChartType">
-                        </canvas>
+                    </canvas>
                 </div>
             </div>
             <hr>
@@ -48,8 +53,8 @@
                 <div class="heading">
                     Recommended Jobs
                 </div>
-                <div class="allJobs">
-                    <span *ngFor=" let joberoles of candidateSkills.jobrole" class="jobs">{{joberoles?.jobname}}</span>
+                <div class="allJobs" *ngIf="candidateSkills">
+                    <span [style.border-left-color]="joberoles.colorCode" *ngFor="let joberoles of candidateSkills.jobrole" class="jobs">{{joberoles?.jobname}}</span>
                 </div>
             </div>
         </div>
