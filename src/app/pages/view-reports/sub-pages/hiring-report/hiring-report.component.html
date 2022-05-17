@@ -72,7 +72,7 @@
         <div class="left">
             <mat-selection-list #filter [multiple]="false" disableRipple>
                 <mat-list-option class="hide-checkbox" [value]="filterValues" [selected]="filterIndex && i == filterIndexValue" *ngFor="let filterValues of filterTile;let i = index" (click)="selectedFilter(filter.selectedOptions.selected[0]?.value, i)">
-                    <div class="mainHeader">{{filterValues}}
+                    <div class="mainHeader">{{convertIntoCamelCase(filterValues)}}
                         <div *ngIf="ShowFilterWithCount">
                             <span *ngFor="let keyCount of ShowFilterWithCount">
                             <span *ngIf="filterValues == keyCount?.key ">
@@ -100,7 +100,7 @@
                 </div>
 
 
-                <!-- <div class="margin" *ngIf="selectedKeyValue == 'CGPA'">
+                <div class="margin" *ngIf="selectedKeyValue == 'CGPA'">
                     <mat-form-field appearance="outline">
                         <mat-label>From</mat-label>
                         <input type="number" [(ngModel)]="from" matInput autocomplete="off">
@@ -112,7 +112,7 @@
                         <input autocomplete="off" type="number" (input)="onSearchChange($event.target.value,from)" matInput [(ngModel)]="to">
                         <span matSuffix>%</span>
                     </mat-form-field>
-                </div> -->
+                </div>
 
             </mat-selection-list>
         </div>

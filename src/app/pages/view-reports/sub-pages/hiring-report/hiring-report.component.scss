@@ -193,7 +193,7 @@
     right: 0;
     // bottom: 3%;
     height: 100% !important;
-    width: 436px !important;
+    width: 500px !important;
     .add-user-header {
         background: #E5E5E5;
         z-index: 999;
@@ -255,7 +255,7 @@
             }
         }
         .left {
-            width: 150px;
+            width: 219px;
             background: #BFBFBF;
             .actionBtn:hover,
             .actionBtn:focus {
@@ -295,7 +295,7 @@
         .left {
             background: #EFEFEF;
             height: 700px;
-            width: auto;
+            width: 268px;
             @media only screen and (min-width: 1440px) {
                 height: 832px !important;
             }
@@ -320,6 +320,7 @@
                     display: flex;
                     font-size: 15px;
                     color: #3A3A3A;
+                    white-space: nowrap;
                     .subCount {
                         margin-right: 3px;
                         font-size: 15px;
@@ -330,7 +331,7 @@
             }
         }
         .right {
-            width: 280px;
+            width: 400px;
             padding-left: 10px;
             height: 500px;
             overflow: auto;
