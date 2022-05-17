@@ -63,6 +63,9 @@
 .btn-close {
     position: absolute;
     right: 0px;
+    .pointer {
+        cursor: pointer;
+    }
 }
 
 .primaryInfo span.successColor {

@@ -90,17 +90,17 @@ export class AssessmentInfoComponent implements OnInit, OnChanges {
     }
 
   driveChange(e) {
-    this._loading.setLoading(true, 'loader');
-    setTimeout(() => {
-      this._loading.setLoading(false, 'loader');
-    }, 300);
     this.driveselectedValue = e.value;
     // this.getDriveUser(this.driveselectedValue,this.selectedMail ? this.selectedMail : '');
-    this.emitdriveNametoParent();
+    // this.emitdriveNametoParent();
   }
 
 
   emitdriveNametoParent() {
+    this._loading.setLoading(true, 'loader');
+    setTimeout(() => {
+      this._loading.setLoading(false, 'loader');
+    }, 300);
     this.driveName.emit(this.driveselectedValue);
     this.closeBox();
   }

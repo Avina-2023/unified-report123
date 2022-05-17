@@ -19,7 +19,7 @@ export class DocInfoComponent implements OnInit, OnChanges {
   blobkey = environment.blobKey;
   profilePic: any;
   idCardImg: any;
-  certificationList: any;
+  certificationList: any = [];
   selectedURL: any;
   counter: number = 0;
   leftNavDisabled = false;
@@ -28,7 +28,7 @@ export class DocInfoComponent implements OnInit, OnChanges {
   constructor( private dialog: MatDialog,private appConfig: AppConfigService ) { }
 
   ngOnInit(): void {
-    this.getDocInfo();
+    // this.getDocInfo();
     this.isaccess = this.appConfig.isComingFromMicroCert();
   }
 
@@ -40,15 +40,13 @@ export class DocInfoComponent implements OnInit, OnChanges {
     this.profilePic = this.getAllReportsData && this.getAllReportsData.profileImage ? this.getAllReportsData.profileImage : null;
     this.idCardImg = this.getAllReportsData && this.getAllReportsData.IdcardImage ? this.getAllReportsData.IdcardImage : null;
     this.certificationList = this.getAllReportsData && this.getAllReportsData.selfDefinedCertificates && this.getAllReportsData.selfDefinedCertificates.length > 0 ? this.getAllReportsData.selfDefinedCertificates : null;
+    this.filterPDFImage(this.certificationList);
   }
-    // this.selectedURL = 'assets/images/high.jpg' + this.blobkey;
     openDialog(group, templateRef: TemplateRef<any>) {
     if (group.type && group.type.includes('image/')) {
       this.selectedURL = group['url'] + this.blobkey;
       this.dialog.open(this.viewImg, {
         panelClass: 'uploadInProgress',
-        // height: '80%',
-        // width: '35%',
         disableClose: false });
     }
     if (group.type && group.type.includes('pdf')) {
@@ -56,11 +54,7 @@ export class DocInfoComponent implements OnInit, OnChanges {
       this.dialog.open(this.viewPDF, {
       panelClass: 'pdfView',
       height: '100%',
-      // width: '35%',
       disableClose: false });
-    }
-    if(group.type && group.type.includes('application/vnd.openxmlformats-officedocument.wordprocessingml.document')){
-      this.selectedURL = group['url'] + this.blobkey;
     }
   }
 
@@ -68,8 +62,6 @@ export class DocInfoComponent implements OnInit, OnChanges {
       this.selectedURL = group + this.blobkey;
       this.dialog.open(templateRef, {
         panelClass: 'uploadInProgress',
-        // height: '80%',
-        // width: '35%',
         disableClose: false });
   }
   closeDialog() {
@@ -80,18 +72,29 @@ export class DocInfoComponent implements OnInit, OnChanges {
   }
 
 
-  moveLeft() {
-    this.ds.moveLeft();
-  }
-  moveRight() {
-    this.ds.moveRight();
-  }
-  leftBoundStat(reachesLeftBound: boolean) {
-    this.leftNavDisabled = reachesLeftBound;
-  }
+  // moveLeft() {
+  //   this.ds.moveLeft();
+  // }
+  // moveRight() {
+  //   this.ds.moveRight();
+  // }
+  // leftBoundStat(reachesLeftBound: boolean) {
+  //   this.leftNavDisabled = reachesLeftBound;
+  // }
 
-  rightBoundStat(reachesRightBound: boolean) {
-    this.rightNavDisabled = reachesRightBound;
+  // rightBoundStat(reachesRightBound: boolean) {
+  //   this.rightNavDisabled = reachesRightBound;
+  // }
+
+
+  filterPDFImage(data){
+    this.certificationList = [];
+    if(data){
+      data.forEach(element => {
+        if(element.type && element.type.includes('image/') || element.type && element.type.includes('pdf')){
+          this.certificationList.push(element)
+      }});
+    }
   }
 
 }
