@@ -1344,3 +1344,7 @@ textarea {
 .warningColor {
     color: $primaryColor !important;
 }
+
+.cdk-global-scrollblock {
+    overflow-y: hidden !important;
+}
