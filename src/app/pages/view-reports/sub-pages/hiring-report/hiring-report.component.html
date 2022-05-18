@@ -13,7 +13,10 @@
             <div *ngFor="let selectedFilter of ShowFilterWithCount">
                 <div class="tab" *ngIf="selectedFilter.count != 0">
                     <div class="filterval">
-                        {{selectedFilter.key}}
+
+                        <span *ngIf="selectedFilter.key != 'CGPA'">{{convertIntoCamelCase(selectedFilter.key)}}</span>
+                        <span *ngIf="selectedFilter.key == 'CGPA'">{{'Graduation Aggregate'}}</span>
+                        <!-- {{selectedFilter.key}} -->
                         <span>({{selectedFilter.count}})</span>
                         <div>
                             <mat-icon (click)="clearFilter(selectedFilter.key)" class="close">close</mat-icon>
@@ -72,7 +75,9 @@
         <div class="left">
             <mat-selection-list #filter [multiple]="false" disableRipple>
                 <mat-list-option class="hide-checkbox" [value]="filterValues" [selected]="filterIndex && i == filterIndexValue" *ngFor="let filterValues of filterTile;let i = index" (click)="selectedFilter(filter.selectedOptions.selected[0]?.value, i)">
-                    <div class="mainHeader">{{convertIntoCamelCase(filterValues)}}
+                    <div class="mainHeader">
+                        <span *ngIf="filterValues != 'CGPA'">{{convertIntoCamelCase(filterValues)}}</span>
+                        <span *ngIf="filterValues == 'CGPA'">{{'Graduation Aggregate'}}</span>
                         <div *ngIf="ShowFilterWithCount">
                             <span *ngFor="let keyCount of ShowFilterWithCount">
                             <span *ngIf="filterValues == keyCount?.key ">
@@ -89,7 +94,7 @@
         </div>
 
         <div class="right">
-            <mat-selection-list disableRipple #childfilter [(ngModel)]="selectedOptions" (click)="onSelection(childfilter, firstChildVal.key)">
+            <mat-selection-list disableRipple #childfilter [(ngModel)]="selectedOptions" (click)="onSelection()">
                 <div>
                     <mat-list-option class="child-checkbox" checkboxPosition="before" [selected]="childFilterValues.default" *ngFor="let childFilterValues of firstChildVal" [value]='childFilterValues'>
                         <div class="listView">
@@ -103,7 +108,7 @@
                 <div class="margin" *ngIf="selectedKeyValue == 'CGPA'">
                     <mat-form-field appearance="outline">
                         <mat-label>From</mat-label>
-                        <input type="number" [(ngModel)]="from" matInput autocomplete="off">
+                        <input type="number" (input)="onSearchChange('',from)" [(ngModel)]="from" matInput autocomplete="off">
                         <span matSuffix>%</span>
                     </mat-form-field>
 
