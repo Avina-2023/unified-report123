@@ -3,12 +3,14 @@ import { ToastrService } from 'ngx-toastr';
 import { AppConfigService } from 'src/app/utils/app-config.service';
 import { APP_CONSTANTS } from '../../../../utils/app-constants.service';
 import { ApiService } from '../../../../services/api.service';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { SentDataToOtherComp } from 'src/app/services/sendDataToOtherComp.service';
 import _ from 'lodash';
 import { AgChartThemeOverrides, ColDef, ColSpanParams, GridApi, IColumnToolPanel, SideBarDef } from '@ag-grid-enterprise/all-modules';
 import * as publicIp from 'public-ip';
+import { unix } from 'moment';
+import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-hiring-report',
@@ -133,7 +135,8 @@ candidatereqdata:any = {
   demoimg:any;
   FormateName: any;
   userIP: any;
-  constructor(private apiService: ApiService,private sendData: SentDataToOtherComp, private matDialog: MatDialog,private appconfig: AppConfigService,private toastr: ToastrService, private ApiService: ApiService,) {      
+  results$: Observable<any>;
+  constructor(private sendData: SentDataToOtherComp, private matDialog: MatDialog,private appconfig: AppConfigService,private toastr: ToastrService, private ApiService: ApiService,) {      
      this.serverSideStoreType = 'partial';
     this.masterDetail = true;
     this.rowModelType = 'serverSide';
@@ -175,7 +178,7 @@ candidatereqdata:any = {
     }
     this.ShowFilterWithCount = this.SelectedFilterMainCount;;
     this.tabledef();
-   
+   this.callSearch();
 
   }
 
@@ -545,7 +548,7 @@ candidatereqdata:any = {
       },
 
       {
-        headerName: 'Year of passing',
+        headerName: 'Year Of Passing',
         field: 'passedout',
         filter: 'agTextColumnFilter',
         maxWidth: 140,
@@ -764,7 +767,6 @@ candidatereqdata:any = {
     this.gridApi.closeToolPanel();
     this.autoSizeAll(false);
     this.showPivotSection();
-    // console.log(this.gridColumnApi)
     var datasource = this.callApiForCandidateList();
     params.api.setServerSideDatasource(datasource);
   }
@@ -827,7 +829,7 @@ candidatereqdata:any = {
         this.candidateListSubscription =  this.ApiService.getHiringReport(apiData.request).subscribe((data1: any) => {
          if(data1.success == false){
               this.toastr.warning('Your session has expired Please login again');
-              this.apiService.logout()
+              this.ApiService.logout()
               this.gridApi.hideOverlay();
          }
         this.from = fromAndTo.from;
@@ -928,6 +930,7 @@ candidatereqdata:any = {
       }
 
     getFilter(filteredValues,index){
+      this.selectedFilterTotalCount = '';
       localStorage.setItem('filterItem',filteredValues ? JSON.stringify(filteredValues) : JSON.stringify(this.candidatereqdata));
       let data;
       const cgpa = JSON.parse(localStorage.getItem('Cgpa'));
@@ -962,20 +965,38 @@ candidatereqdata:any = {
         }
       }
 
-      this.ApiService.getCandidatefilters(data).subscribe((response:any)=>{
-          if(response.success){
-            this.Isspinner = false;
-            this.filterTile = Object.keys(response.data);
-            this.FilterData = response.data;
-            this.selectedFilter(this.filterTile[index ? index : 0], index ? index : 0);
-            this.selectedFilterTotalCount = '';
-            this.selectedFilterTotalCount = response && response.totalCount;
-          }else{
-            this.Isspinner = true;
-          }
-      })
+      this.selectedFilterTotalCount = '';
+      setTimeout(() => {
+        this.ApiService.filterSubject.next({data: data, index: index});        
+      }, 0);
       
     }
+
+    callApi(data) {
+      this.Isspinner = true;
+      this.ApiService.getCandidatefilters(data.data).subscribe((response:any)=>{
+        if(response.success){
+          this.Isspinner = false;
+          this.filterTile = Object.keys(response.data);
+          this.FilterData = response.data;
+            const totalCount = response && response.totalCount;
+            this.selectedFilterTotalCount = totalCount;
+          this.selectedFilter(this.filterTile[data.index ? data.index : 0], data.index ? data.index : 0);
+          this.Isspinner = false;
+        }else{
+          this.Isspinner = false;
+        }
+    })
+
+    }
+
+    callSearch() {
+      this.ApiService.filterSubject.pipe(
+        debounceTime(1000),
+        distinctUntilChanged()).subscribe((res)=> {
+          this.callApi(res);
+        })
+  }
 
   selectedFilter(event, index){
     this.filterIndex = event;
@@ -990,9 +1011,8 @@ candidatereqdata:any = {
    
   }
 
-  onSelection($event, key) {
+  onSelection() {
     this.appconfig.setLocalStorage('lastSelectedFilter',this.selectedKeyValue)
-    this.Isspinner = true;
     this.selectedOptions.forEach(element => {
         element.default = true;
     });
@@ -1002,15 +1022,14 @@ candidatereqdata:any = {
       this.getFilter(this.filteredValues,this.selectedMenuIndex);
     }
    
-      let arr = []
-      // let filterCount = []
+      let arr = [];
       for (const key in this.filteredValues) {
         if (Object.prototype.hasOwnProperty.call(this.filteredValues, key)) {
           const element = this.filteredValues[key];
             if(this.filteredValues[key].length > 0){
               arr.push({key: key,count:this.filteredValues[key].length})
             }
-            if(key == 'CGPA' && this.from != undefined && this.to != undefined){
+            if(key == 'CGPA' && this.from != undefined && this.from != null && this.to != undefined && this.to != null){
               arr.push({key: key,count:this.filteredValues['CGPA'] = 1})
             }
                      
@@ -1020,9 +1039,9 @@ candidatereqdata:any = {
 }
 
 
+
   applyFilter(){
     this.customfilter = 'true';
-    // this.isFilterRecords = true;
     localStorage.setItem('mainFilterCount', this.ShowFilterWithCount ? JSON.stringify(this.ShowFilterWithCount) : '[]');
     if(this.ShowFilterWithCount.length > 0){
       this.isFilterRecords = true;
@@ -1030,7 +1049,7 @@ candidatereqdata:any = {
       this.isFilterRecords = false;
     }
     localStorage.setItem('customfilter','true');
-    if(this.from != undefined && this.to != undefined){
+    if(this.from != undefined && this.from != null && this.to != undefined && this.to != null){
       if(this.from <= this.to){
         this.CGPA = {
           from : parseInt(this.from),
@@ -1059,6 +1078,8 @@ candidatereqdata:any = {
   clearAll(){
     if(this.ShowFilterWithCount.length > 0){
       this.getFilter('',this.selectedMenuIndex);
+      this.selectedFilterTotalCount = '';
+      // this.tabledef();
     }
     this.filteredValues = [];
     this.customfilter = 'false';
@@ -1133,7 +1154,12 @@ candidatereqdata:any = {
   }
 
   onSearchChange(event,from){
-    if(event && from != undefined ){
+    this.Isspinner = true;
+
+    if(this.to !=undefined && this.to != null){
+      this.onSelection()
+    }
+    if(this.from != undefined && this.from != null && this.to != undefined && this.to != null){
       this.CGPA = {
         from : parseInt(this.from),
         to : parseInt(this.to)
@@ -1141,6 +1167,9 @@ candidatereqdata:any = {
       let setLocalvalues = this.CGPA;
       localStorage.setItem('Cgpa',JSON.stringify(setLocalvalues))
       this.getFilter(this.filteredValues,this.selectedMenuIndex)
+    }else{
+      this.Isspinner = false;
+      // this.toastr.warning('Please enter valid values')
     }
 
   }
