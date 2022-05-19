@@ -919,7 +919,7 @@ candidatereqdata:any = {
       openFilter() {
         // this.getFilter(this.filteredValues,this.selectedMenuIndex);
         this.filterDef = this.matDialog.open(this.filter, {
-          width: '800px',
+          width: '1000px',
           height: 'auto',
           panelClass: 'filterPopup',
           disableClose: true 
@@ -936,14 +936,16 @@ candidatereqdata:any = {
           ...filteredValues, 
           email: this.appconfig.getLocalStorage('email'),
           lastSelected: this.selectedKeyValue ? this.selectedKeyValue : this.appconfig.getLocalStorage('lastSelectedFilter'),
-          IP: this.appconfig.getLocalStorage('IP') ? this.appconfig.getLocalStorage('IP') : ''
+          IP: this.appconfig.getLocalStorage('IP') ? this.appconfig.getLocalStorage('IP') : '',
+          attributes: JSON.parse(this.appconfig.getLocalStorage('role'))
         }
 
         if(filteredValues.CGPA){
           data.CGPA = [cgpa],
           data.email = this.appconfig.getLocalStorage('email'),
           data.lastSelected = this.selectedKeyValue ? this.selectedKeyValue : this.appconfig.getLocalStorage('lastSelectedFilter'),
-          data.IP = this.appconfig.getLocalStorage('IP') ? this.appconfig.getLocalStorage('IP') : ''
+          data.IP = this.appconfig.getLocalStorage('IP') ? this.appconfig.getLocalStorage('IP') : '',
+          data.attributes= JSON.parse(this.appconfig.getLocalStorage('role'))
         }
  
 
@@ -955,7 +957,8 @@ candidatereqdata:any = {
           Gender:[],
           email: this.appconfig.getLocalStorage('email'),
           lastSelected: this.selectedKeyValue ? this.selectedKeyValue : this.appconfig.getLocalStorage('lastSelectedFilter'),
-          IP: this.appconfig.getLocalStorage('IP') ? this.appconfig.getLocalStorage('IP') : ''
+          IP: this.appconfig.getLocalStorage('IP') ? this.appconfig.getLocalStorage('IP') : '',
+          attributes: JSON.parse(this.appconfig.getLocalStorage('role'))
         }
       }
 
@@ -1152,5 +1155,13 @@ candidatereqdata:any = {
         splitStr[i] = splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1);     
     }
     return splitStr.join(' '); 
+ }
+
+ convertIntoCamelCase(FilterValues){
+     if(FilterValues.match(/(^[A-Z][a-z0-9]+)([A-Z])/g)){
+    return FilterValues.replace(/[A-Z]/g, ' $&').trim();
+    }else{
+      return FilterValues;
+    }
  }
 }

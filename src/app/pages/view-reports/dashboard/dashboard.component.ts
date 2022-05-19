@@ -29,12 +29,7 @@ export class DashboardComponent implements OnInit {
     this.OrgInfo = this.appConfig.getLocalStorage('role') ? this.appConfig.getLocalStorage('role') : '';
     if(this.OrgInfo){
       this.getRole(this.OrgInfo);
-    }
-    // if(this.isaccess){
-    //   setTimeout(() => {
-    //     // this.GetMongoCharts(); 
-    //   }, 500);
-    // }   
+    }   
   }
 
 
