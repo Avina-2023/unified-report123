@@ -31,7 +31,7 @@
             <div>
                 Assessment Overview
             </div>
-            <div>
+            <div class="overview">
                 <circle-progress [percent]="70" [radius]="50" [outerStrokeWidth]="10" [space]="-10" [innerStrokeWidth]="10" [outerStrokeColor]="'#54B952'" [innerStrokeColor]="'#C9FFC7'" [showSubtitle]="false" [titleFontSize]="35" [subtitleFontWeight]="600" [subtitleFontSize]="31"
                     [animationDuration]="0"></circle-progress>
                 <circle-progress [showUnits]="false" [percent]="70" [radius]="50" [outerStrokeWidth]="10" [space]="-10" [innerStrokeWidth]="10" [outerStrokeColor]="'#16BEF0'" [innerStrokeColor]="'#C3F1FF'" [showSubtitle]="false" [titleFontSize]="18" [animationDuration]="0"
@@ -40,15 +40,56 @@
         </div>
 
         <div class="duration">
-            <div>
+            <div class="title">
                 Duration summary
             </div>
             <div>
+                <canvas class="chartjs-gauge" baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend" [chartType]="barChartType">
+                </canvas>
+            </div>
 
+
+            <div class="summary">
+                <div class="summaryInfo">
+                    <span>Total Questions</span>
+                    <span>250</span>
+                </div>
+                <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
+            </div>
+            <div class="summary">
+                <div class="summaryInfo">
+                    <span>Total Questions</span>
+                    <span>250</span>
+                </div>
+                <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
+            </div>
+            <div class="summary">
+                <div class="summaryInfo">
+                    <span>Total Questions</span>
+                    <span>250</span>
+                </div>
+                <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
+            </div>
+            <div class="summary">
+                <div class="summaryInfo">
+                    <span>Total Questions</span>
+                    <span>250</span>
+                </div>
+                <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
+            </div>
+            <div class="summary">
+                <div class="summaryInfo">
+                    <span>Total Questions</span>
+                    <span>250</span>
+                </div>
+                <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
+            </div>
+            <div class="summary">
+                <div class="summaryInfo">
+                    <span>Total Questions</span>
+                    <span>250</span>
+                </div>
+                <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
             </div>
         </div>
-
-
-
     </div>
-</div>

@@ -979,6 +979,7 @@ candidatereqdata:any = {
           this.Isspinner = false;
           this.filterTile = Object.keys(response.data);
           this.FilterData = response.data;
+          console.log(this.FilterData,'this.FilterData')
             const totalCount = response && response.totalCount;
             this.selectedFilterTotalCount = totalCount;
           this.selectedFilter(this.filterTile[data.index ? data.index : 0], data.index ? data.index : 0);
@@ -1119,6 +1120,7 @@ candidatereqdata:any = {
 
 
   clearFilter(FilterKey){
+    this.selectedKeyValue = FilterKey;
     //Inside filter removing checkbox
     this.removedSelectedSingleFilter(FilterKey);
     this.removedFilterFromRequestArray(FilterKey);

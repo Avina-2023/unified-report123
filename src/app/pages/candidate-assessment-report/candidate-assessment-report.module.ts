@@ -13,6 +13,7 @@ import { BloomsTaxonomyComponent } from './sub-pages/blooms-taxonomy/blooms-taxo
 import { ComplexityAnalysisComponent } from './sub-pages/complexity-analysis/complexity-analysis.component';
 import { TimeSpentAnalysisComponent } from './sub-pages/time-spent-analysis/time-spent-analysis.component';
 import { NgCircleProgressModule } from 'ng-circle-progress';
+import { ChartsModule } from 'ng2-charts';
 @NgModule({
   declarations: [
     CandidateOverAllReportComponent,
@@ -29,6 +30,7 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
     SharedModule,
     MaterialModule,
     CandidateAssesmentReportRoutingModule,
+    ChartsModule,
     NgCircleProgressModule.forRoot({
       radius: 100,
       outerStrokeWidth: 16,

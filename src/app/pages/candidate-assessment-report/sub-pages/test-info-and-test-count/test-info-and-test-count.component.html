@@ -1,1 +1,53 @@
-<p>test-info-and-test-count works!</p>
+<div class="mainWrapper">
+    <div class="banner">
+        <div class="width-79">
+            <div class="ass-heading">Assessment Analytics</div>
+            <div class="sub-heading">Analysing doesn’t only mean checking your score and then aiming for better scores in the next mock. …</div>
+        </div>
+
+        <div>
+            <img [src]="'/assets/images/candidateReport/bannerImg.svg'">
+        </div>
+    </div>
+
+    <div class="test">
+        Select Test :
+        <div class="expan">
+            <mat-accordion class="example-headers-align" multi>
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            <div class="expanTitle">
+                                <span class="testImg"><img [src]="'/assets/images/candidateReport/book.svg'"></span>
+                                <span class="testname">LTPJT11_ Aptitude Assessment_07_May_2022</span>
+                            </div>
+
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                </mat-expansion-panel>
+            </mat-accordion>
+        </div>
+    </div>
+    <div class="testDetails">
+        <div class="testCard" [ngStyle]="{'background':'#FBF4FF'}">
+            <div class="count">80%</div>
+            <div class="cardTitle">Test Percentage</div>
+        </div>
+        <div class="testCard" [ngStyle]="{'background':'#FFF9F0'}">
+            <div class="count">250/300</div>
+            <div class="cardTitle">Score obtained</div>
+        </div>
+        <div class="testCard" [ngStyle]="{'background':'#FFF5FB'}">
+            <div class="count">210/250</div>
+            <div class="cardTitle">Questions Attempted</div>
+        </div>
+        <div class="testCard" [ngStyle]="{'background':'#F7FFF5'}">
+            <div class="count">144m 34s</div>
+            <div class="cardTitle">Time Spent</div>
+        </div>
+        <div class="testCard" [ngStyle]="{'background':'#E5EDF3'}">
+            <div class="count">73</div>
+            <div class="cardTitle">Percentile</div>
+        </div>
+    </div>
+</div>

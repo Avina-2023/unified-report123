@@ -105,9 +105,13 @@
                 font-weight: 500;
                 padding-bottom: 15px;
             }
+            .overview {
+                display: flex;
+                justify-content: space-evenly;
+            }
         }
         .duration {
-            >div {
+            .title {
                 text-align: center;
                 font-size: 18px;
                 font: normal normal medium 18px/35px Roboto;
@@ -115,7 +119,22 @@
                 color: #000000;
                 opacity: 1;
                 font-weight: 500;
-                padding-bottom: 15px;
+            }
+            .summary {
+                width: 75%;
+                margin-left: 11%;
+                margin-right: 11%;
+                padding-bottom: 8px;
+                .summaryInfo {
+                    display: flex;
+                    justify-content: space-between;
+                    font-size: 12px;
+                    padding-bottom: 4px;
+                }
+                 ::ng-deep.mat-progress-bar {
+                    height: 5px !important;
+                    border-radius: 5px !important;
+                }
             }
         }
     }
