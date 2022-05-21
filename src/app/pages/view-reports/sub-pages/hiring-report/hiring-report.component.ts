@@ -136,6 +136,8 @@ candidatereqdata:any = {
   FormateName: any;
   userIP: any;
   results$: Observable<any>;
+  filterApplied: boolean;
+  lastClickedLeftSection: { event: any; index: any; };
   constructor(private sendData: SentDataToOtherComp, private matDialog: MatDialog,private appconfig: AppConfigService,private toastr: ToastrService, private ApiService: ApiService,) {      
      this.serverSideStoreType = 'partial';
     this.masterDetail = true;
@@ -935,6 +937,7 @@ candidatereqdata:any = {
       let data;
       const cgpa = JSON.parse(localStorage.getItem('Cgpa'));
       if(filteredValues){
+        this.filterApplied = true;
         data = {
           ...filteredValues, 
           email: this.appconfig.getLocalStorage('email'),
@@ -953,6 +956,7 @@ candidatereqdata:any = {
  
 
       }else{
+        this.filterApplied = false;
         this.Isspinner = true
         data = {
           Domain: [],
@@ -979,9 +983,12 @@ candidatereqdata:any = {
           this.Isspinner = false;
           this.filterTile = Object.keys(response.data);
           this.FilterData = response.data;
+          this.filterTile = this.filterTile.map((element, i) => {
+              return {label: element, count: this.FilterData[element].filter(data => data?.default)}
+          });
             const totalCount = response && response.totalCount;
             this.selectedFilterTotalCount = totalCount;
-          this.selectedFilter(this.filterTile[data.index ? data.index : 0], data.index ? data.index : 0);
+          this.selectedFilter(this.filterTile[this.lastClickedLeftSection?.index ? this.lastClickedLeftSection?.index : 0]['label'], this.lastClickedLeftSection?.index ? this.lastClickedLeftSection?.index : 0);
           this.Isspinner = false;
         }else{
           this.Isspinner = false;
@@ -999,6 +1006,7 @@ candidatereqdata:any = {
   }
 
   selectedFilter(event, index){
+    this.lastClickedLeftSection = {event, index};
     this.filterIndex = event;
     localStorage.setItem('selectedIndex',index)
     this.filterIndexValue = localStorage.getItem('selectedIndex') ? localStorage.getItem('selectedIndex') : 0;
@@ -1076,11 +1084,10 @@ candidatereqdata:any = {
 
 
   clearAll(){
-    if(this.ShowFilterWithCount.length > 0){
+    if (this.filterApplied) {
       this.getFilter('',this.selectedMenuIndex);
-      this.selectedFilterTotalCount = '';
-      // this.tabledef();
     }
+    this.lastClickedLeftSection = null;
     this.filteredValues = [];
     this.customfilter = 'false';
     this.from = '';
