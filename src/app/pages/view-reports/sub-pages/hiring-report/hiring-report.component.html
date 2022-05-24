@@ -74,15 +74,15 @@
     <div class="main">
         <div class="left">
             <mat-selection-list #filter [multiple]="false" disableRipple>
-                <mat-list-option class="hide-checkbox" [value]="filterValues" [selected]="filterIndex && i == filterIndexValue" *ngFor="let filterValues of filterTile;let i = index" (click)="selectedFilter(filter.selectedOptions.selected[0]?.value, i)">
+                <mat-list-option class="hide-checkbox" [value]="filterValues?.label" [selected]="filterIndex && i == filterIndexValue" *ngFor="let filterValues of filterTile;let i = index" (click)="selectedFilter(filter?.selectedOptions.selected[0]?.value, i)">
                     <div class="mainHeader">
-                        <span *ngIf="filterValues != 'CGPA'">{{convertIntoCamelCase(filterValues)}}</span>
-                        <span *ngIf="filterValues == 'CGPA'">{{'Graduation Aggregate'}}</span>
-                        <div *ngIf="ShowFilterWithCount">
-                            <span *ngFor="let keyCount of ShowFilterWithCount">
-                            <span *ngIf="filterValues == keyCount?.key ">
-                             <span class="subCount" *ngIf="keyCount?.count != 0">
-                              ({{keyCount?.count}})
+                        <span *ngIf="filterValues?.label != 'CGPA'">{{convertIntoCamelCase(filterValues.label)}}</span>
+                        <span *ngIf="filterValues?.label == 'CGPA'">{{'Graduation Aggregate'}}</span>
+                        <div *ngIf="filterValues?.count?.length > 0">
+                            <span>
+                            <span>
+                             <span class="subCount">
+                                ({{filterValues?.count?.length}})
                              </span>
                             </span>
                             </span>
