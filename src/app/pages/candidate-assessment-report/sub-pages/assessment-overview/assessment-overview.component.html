@@ -1,0 +1,95 @@
+<div class="assesment-wrapper">
+    <div class="profile-wrapper">
+        <figure>
+            <img [src]="'/assets/images/NotSpecified.svg'" alt="" />
+        </figure>
+    </div>
+
+    <div class="profileInfo">
+        <div class="name">
+            Prabhu Bandari
+        </div>
+
+        <div class="align">
+            <div class="contact">
+                <span class="emailinfo">
+                    <img [src]="'/assets/images/candidateReport/email.svg'" alt=" ">
+                </span>
+                <span class="email">PrabhuBandari@gmail.com</span>
+            </div>
+
+            <div class="phoneNumber">
+                <span class="emailinfo">
+                    <img [src]="'/assets/images/candidateReport/phone.svg'" alt=" ">
+                </span>
+                <span class="email">9876543210</span>
+            </div>
+        </div>
+        <hr>
+
+        <div class="assessment">
+            <div>
+                Assessment Overview
+            </div>
+            <div class="overview">
+                <circle-progress [percent]="70" [radius]="45" [outerStrokeWidth]="8" [space]="-8" [innerStrokeWidth]="8" [outerStrokeColor]="'#54B952'" [innerStrokeColor]="'#C9FFC7'" [showSubtitle]="false" [titleFontSize]="30" [titleFontWeight]="500" [subtitleFontWeight]="600"
+                    [subtitleFontSize]="30" [animationDuration]="0" [unitsFontSize]="30"></circle-progress>
+                <circle-progress [showUnits]="false" [percent]="70" [radius]="45" [outerStrokeWidth]="8" [space]="-8" [innerStrokeWidth]="8" [outerStrokeColor]="'#16BEF0'" [innerStrokeColor]="'#C3F1FF'" [showSubtitle]="false" [titleFontWeight]="500" [titleFontSize]="18"
+                    [animationDuration]="0" [title]="['765/900']"></circle-progress>
+            </div>
+        </div>
+
+        <div class="duration">
+            <div class="title">
+                Duration summary
+            </div>
+            <div>
+                <canvas class="chartjs-gauge" baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend" [chartType]="barChartType">
+                </canvas>
+            </div>
+
+
+            <div class="summary">
+                <div class="summaryInfo">
+                    <span>Total Questions</span>
+                    <span>250</span>
+                </div>
+                <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
+            </div>
+            <div class="summary">
+                <div class="summaryInfo">
+                    <span>Total Questions</span>
+                    <span>250</span>
+                </div>
+                <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
+            </div>
+            <div class="summary">
+                <div class="summaryInfo">
+                    <span>Total Questions</span>
+                    <span>250</span>
+                </div>
+                <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
+            </div>
+            <div class="summary">
+                <div class="summaryInfo">
+                    <span>Total Questions</span>
+                    <span>250</span>
+                </div>
+                <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
+            </div>
+            <div class="summary">
+                <div class="summaryInfo">
+                    <span>Total Questions</span>
+                    <span>250</span>
+                </div>
+                <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
+            </div>
+            <div class="summary">
+                <div class="summaryInfo">
+                    <span>Total Questions</span>
+                    <span>250</span>
+                </div>
+                <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
+            </div>
+        </div>
+    </div>
