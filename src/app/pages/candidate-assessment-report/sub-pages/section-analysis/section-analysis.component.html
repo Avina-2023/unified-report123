@@ -8,6 +8,40 @@
                 <img class="icon" [src]="'/assets/images/candidateReport/barIcon.svg'"> View Complexity Analysis
             </div>
         </div>
-
+        <div class="SectionInfo">
+            <table id="section" class="tableInfo" border="0" cellpadding="0" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Section Name</th>
+                        <th>Questions Attempted</th>
+                        <th>Score Obtained</th>
+                        <th>Percentage</th>
+                        <th>Duration</th>
+                        <th>Percentile</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Analytical</td>
+                        <td><span class="qusAtt">55</span><span class="outof">/60</span></td>
+                        <td class="outof">44</td>
+                        <td>
+                            <circle-progress [percent]="70" [radius]="20" [outerStrokeWidth]="4" [space]="-4" [innerStrokeWidth]="4" [outerStrokeColor]="'#54B952'" [innerStrokeColor]="'#C9FFC7'" [showSubtitle]="false" [titleFontSize]="12" [subtitleFontWeight]="600" [titleFontWeight]="600"
+                                [subtitleFontSize]="12" [unitsFontSize]="12" [animationDuration]="0"></circle-progress>
+                        </td>
+                        <td>
+                            <div class="timer">
+                                <img class="timerIcon" [src]="'/assets/images/candidateReport/timer.svg'"> 23 Mins 20 Secs
+                            </div>
+                        </td>
+                        <td>
+                            <div class="percentile">
+                                65
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
