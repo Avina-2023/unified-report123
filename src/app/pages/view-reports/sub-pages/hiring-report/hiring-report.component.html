@@ -4,7 +4,7 @@
     </div>
 
     <div class="filter" *ngIf="!isFilterRecords">
-        Total Candidates : <span class="count">{{FilteredRecords ? FilteredRecords : pageRowCount }}</span>
+        Total Candidates : <span class="count">{{FilteredRecords ? FilteredRecords : 0 }}</span>
     </div>
 
     <!-- *ngIf="ShowFilterWithCount && ShowFilterWithCount.length > 0 && ShowFilterWithCount && ShowFilterWithCount[0].count != 0 " -->
@@ -99,7 +99,7 @@
                     <mat-list-option class="child-checkbox" checkboxPosition="before" [selected]="childFilterValues.default" *ngFor="let childFilterValues of firstChildVal" [value]='childFilterValues'>
                         <div class="listView">
                             {{childFilterValues.key}}
-                            <span class="count"> {{childFilterValues.count ? childFilterValues.count : ''}}</span>
+                            <span class="count"> {{convertIntoINDFormate(childFilterValues.count)}}</span>
                         </div>
                     </mat-list-option>
                 </div>

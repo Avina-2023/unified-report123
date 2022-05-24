@@ -833,33 +833,36 @@ candidatereqdata:any = {
               this.toastr.warning('Your session has expired Please login again');
               this.ApiService.logout()
               this.gridApi.hideOverlay();
-         }
-        this.from = fromAndTo.from;
-        this.to = fromAndTo.to;
-        this.userList = data1 && data1.data ? data1.data: [];
-        if (this.userList.length > 0) {
-     
-          if(apiData.request.groupKeys.length > 0){
-          }else{
-            this.FilteredRecords = data1 ? data1.total_count : 0;
-            this.FilteredRecords = this.FilteredRecords.toLocaleString('en-IN')
-          }
-          
-        this.pageRowCount = data1 && data1.total_count ? data1.total_count : 0;
-        params.success({
-          rowData: this.userList,
-          rowCount: this.pageRowCount
-        }
-        );
-      } else {
-        params.success({
-          rowData: this.userList,
-          rowCount: 0
-        }
+         }else{
+          this.from = fromAndTo.from;
+          this.to = fromAndTo.to;
+          this.userList = data1 && data1.data ? data1.data: [];
+          if (this.userList.length > 0) {
+       
+            if(apiData.request.groupKeys.length > 0){
 
-        );
-        this.gridApi.showNoRowsOverlay();
-      }
+            }else{
+              this.FilteredRecords = data1 ? data1.total_count : 0;
+              this.FilteredRecords = this.FilteredRecords.toLocaleString('en-IN')
+            }
+            
+          this.pageRowCount = data1 && data1.total_count ? data1.total_count : 0;
+          params.success({
+            rowData: this.userList,
+            rowCount: this.pageRowCount
+          }
+          );
+        } else {
+          params.success({
+            rowData: this.userList,
+            rowCount: 0
+          });
+          this.gridApi.showNoRowsOverlay();
+          this.FilteredRecords = 0;
+          this.FilteredRecords = this.FilteredRecords.toLocaleString('en-IN')
+        }
+         }
+
       }, (err) => {
         params.fail();
         params.success({
@@ -869,7 +872,6 @@ candidatereqdata:any = {
       
       });
       this.gridApi.hideOverlay();
-      // 
       }
     }
 }
@@ -983,6 +985,7 @@ candidatereqdata:any = {
           this.Isspinner = false;
           this.filterTile = Object.keys(response.data);
           this.FilterData = response.data;
+          
           this.filterTile = this.filterTile.map((element, i) => {
               return {label: element, count: this.FilterData[element].filter(data => data?.default)}
           });
@@ -1049,6 +1052,7 @@ candidatereqdata:any = {
 
 
   applyFilter(){
+    this.gridApi.showNoRowsOverlay();
     this.customfilter = 'true';
     localStorage.setItem('mainFilterCount', this.ShowFilterWithCount ? JSON.stringify(this.ShowFilterWithCount) : '[]');
     if(this.ShowFilterWithCount.length > 0){
@@ -1064,7 +1068,9 @@ candidatereqdata:any = {
           to : parseInt(this.to)
         }
         let setLocalvalues = this.CGPA;
-        localStorage.setItem('Cgpa',JSON.stringify(setLocalvalues))
+        localStorage.setItem('Cgpa',JSON.stringify(setLocalvalues));
+        
+
       }else {
         this.toastr.warning('Please enter valid CGPA');
         this.from = '';
@@ -1073,13 +1079,17 @@ candidatereqdata:any = {
       }
     }else{
       localStorage.setItem('Cgpa','{}')
+      this.from = '';
+      this.to = '';
+      this.toastr.warning('Please enter a valid Graduation Aggregate ')
     }
     this.cacheBlockSize = 0;
+    this.closeDialog();
     this.tabledef();
     this.gridApi.paginationGoToFirstPage();
     this.gridApi.refreshServerSideStore({ purge: true });
-    this.closeDialog();
-    this.getFilter(this.filteredValues,this.selectedMenuIndex);
+    // this.getFilter(this.filteredValues,this.selectedMenuIndex);
+
   }
 
 
@@ -1163,7 +1173,6 @@ candidatereqdata:any = {
 
   onSearchChange(event,from){
     this.Isspinner = true;
-
     if(this.to !=undefined && this.to != null){
       this.onSelection()
     }
@@ -1177,7 +1186,6 @@ candidatereqdata:any = {
       this.getFilter(this.filteredValues,this.selectedMenuIndex)
     }else{
       this.Isspinner = false;
-      // this.toastr.warning('Please enter valid values')
     }
 
   }
@@ -1195,11 +1203,14 @@ candidatereqdata:any = {
  }
 
  convertIntoCamelCase(FilterValues){
-   console.log(FilterValues)
      if(FilterValues.match(/(^[A-Z][a-z0-9]+)([A-Z])/g)){
     return FilterValues.replace(/[A-Z]/g, ' $&').trim();
     }else{
       return FilterValues;
     }
+ }
+
+ convertIntoINDFormate(count){
+    return count.toLocaleString('en-IN')
  }
 }
