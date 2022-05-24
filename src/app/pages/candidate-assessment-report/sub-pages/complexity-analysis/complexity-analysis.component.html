@@ -1,0 +1,24 @@
+<div class="sectionAnalysis">
+    <div class="section">
+        <div class="sectionHeader">
+            <div class="sectionTitle">
+                Complexity Analysis
+            </div>
+            <div class="view">
+                <img class="icon" [src]="'/assets/images/candidateReport/barIcon.svg'"> View Complexity Analysis
+            </div>
+        </div>
+        <hr>
+
+        <div class="legend">
+            <div>Correct Answer</div>
+            <div>Incorrect Answer</div>
+            <div>Unanswered</div>
+            <div>Unseen</div>
+        </div>
+
+        <div class="barcanvas">
+            <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend" [chartType]="barChartType"></canvas>
+        </div>
+    </div>
+</div>

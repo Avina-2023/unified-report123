@@ -10,6 +10,10 @@ const routes: Routes = [
       {
         path: `${APP_CONSTANTS.ROUTES.REPORTS.HOME}`, loadChildren: () => import('../pages/view-reports/view-reports.module').then(m => m.ViewReportsModule)
       },
+
+      {
+        path: `${APP_CONSTANTS.ROUTES.CANDIDATE.HOME}`, loadChildren: () => import('../pages/candidate-assessment-report/candidate-assessment-report.module').then(m => m.CandidateAssesmentReportModule)
+      },
       {
         path: '',
         redirectTo: `${APP_CONSTANTS.ROUTES.REPORTS.HOME}`,

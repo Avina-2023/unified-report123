@@ -1126,6 +1126,7 @@ candidatereqdata:any = {
 
 
   clearFilter(FilterKey){
+    this.selectedKeyValue = FilterKey;
     //Inside filter removing checkbox
     this.removedSelectedSingleFilter(FilterKey);
     this.removedFilterFromRequestArray(FilterKey);
