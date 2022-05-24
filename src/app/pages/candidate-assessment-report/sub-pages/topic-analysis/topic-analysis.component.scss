@@ -1,0 +1,115 @@
+@import "../../../../../assets/scss/variables.scss";
+.sectionAnalysis {
+    .section {
+        justify-content: space-between;
+        margin-top: 3%;
+        width: auto;
+        height: 341px;
+        background: #FFFFFF 0% 0% no-repeat padding-box;
+        box-shadow: 0px 3px 6px #00000029;
+        opacity: 1;
+        .sectionHeader {
+            display: flex;
+            justify-content: space-between;
+            padding: 1.5%;
+            width: 100%;
+        }
+        .sectionTitle {
+            text-align: left;
+            font: normal normal medium 18px/35px Roboto;
+            letter-spacing: 0px;
+            color: #000000;
+            opacity: 1;
+            font-size: 18px;
+            font-weight: 500;
+        }
+        .view {
+            color: #08558C;
+            font-size: 12px;
+            display: flex;
+            height: 16px;
+            cursor: pointer;
+            .icon {
+                margin-right: 4px;
+            }
+        }
+        .SectionInfo {
+            #section {
+                width: 99%;
+                margin-left: 0.5%;
+                margin-right: 0.5%;
+            }
+            #section td,
+            #section th {
+                border-bottom: 1px solid #ddd;
+                // padding: 8px;
+                // height: 44px;
+                padding-left: 20px;
+                color: $blackColor;
+            }
+            // #section tr:nth-child(even) {
+            //     background-color: #f2f2f2;
+            // }
+            // #section tr:hover {
+            //     background-color: #ddd;
+            // }
+            #section th {
+                padding-top: 12px;
+                padding-bottom: 12px;
+                text-align: left;
+                background-color: #E4E4E4;
+                color: $blackColor;
+            }
+            .qusAtt {
+                color: #08558C;
+                font-size: 17px;
+                letter-spacing: 0px;
+                opacity: 1;
+                font-weight: 500;
+            }
+            .outof {
+                color: $blackColor;
+                font-size: 17px;
+                letter-spacing: 0px;
+                opacity: 1;
+                font-weight: 500;
+            }
+            .timer {
+                display: flex;
+                align-items: center;
+                .timerIcon {
+                    margin-right: 8px;
+                }
+            }
+            .percentile {
+                width: 50px;
+                height: 25px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background: #08558C 0% 0% no-repeat padding-box;
+                border-radius: 4px;
+                opacity: 1;
+                color: #fff;
+            }
+            .subTopic {
+                color: #7C7C7C;
+                font-size: 12px;
+            }
+            .progessBar {
+                .align {
+                    margin-top: 10px;
+                    // width: 70%;
+                }
+                .score {
+                    font-size: 12px;
+                    font-weight: 500;
+                }
+                 ::ng-deep.mat-progress-bar {
+                    height: 14px !important;
+                    border-radius: 5px !important;
+                }
+            }
+        }
+    }
+}
