@@ -23,22 +23,9 @@ export class AssessmentOverviewComponent implements OnInit {
 
     plugins: {
       datalabels: {
-        // backgroundColor: 'rgba(0, 0, 0, 0.7)',
-        // borderColor: '#ffffff',
-        // color: function(context:any) {
-        //   return context.dataset.backgroundColor;
-        // },
-        // font: function(context) {
-        //   var w = context.chart.width;
-        //   return {
-        //     size: w < 512 ? 18 : 20
-        //   }
-        // },
         align: 'start',
         anchor: 'start',
         offset: 10,
-        // borderRadius: 4,
-        // borderWidth: 1,
         formatter: function(value, context) {
           var i = context.dataIndex;
           var len = context.dataset.data.length - 1;
