@@ -1075,13 +1075,15 @@ candidatereqdata:any = {
         this.toastr.warning('Please enter valid CGPA');
         this.from = '';
         this.to = '';
-        localStorage.setItem('Cgpa','{}')
+        localStorage.setItem('Cgpa','{}');
+        this.removedSelectedSingleFilter('CGPA');
       }
     }else{
-      localStorage.setItem('Cgpa','{}')
+      this.removedSelectedSingleFilter('CGPA');
       this.from = '';
       this.to = '';
       this.toastr.warning('Please enter a valid Graduation Aggregate ')
+      localStorage.setItem('Cgpa','{}')
     }
     this.cacheBlockSize = 0;
     this.closeDialog();
@@ -1146,6 +1148,7 @@ candidatereqdata:any = {
   }
 
   removedSelectedSingleFilter(FilterKey){
+    console.log(FilterKey,'FilterKey')
     const filteredremovedItem = this.ShowFilterWithCount.filter((item) => item.key !== FilterKey);
     this.ShowFilterWithCount = filteredremovedItem;
     localStorage.setItem('mainFilterCount',JSON.stringify(this.ShowFilterWithCount));
