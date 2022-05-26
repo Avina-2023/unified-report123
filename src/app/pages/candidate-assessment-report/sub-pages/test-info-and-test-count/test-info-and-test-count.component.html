@@ -13,17 +13,19 @@
     <div class="test">
         Select Test :
         <div class="expan">
-            <mat-accordion class="example-headers-align" multi>
+            <mat-accordion class="example-headers-align">
                 <mat-expansion-panel>
                     <mat-expansion-panel-header>
                         <mat-panel-title>
                             <div class="expanTitle">
                                 <span class="testImg"><img [src]="'/assets/images/candidateReport/book.svg'"></span>
-                                <span class="testname">LTPJT11_ Aptitude Assessment_07_May_2022</span>
+                                <span class="testname">{{selectedTest ? selectedTest : ''}}</span>
                             </div>
-
                         </mat-panel-title>
                     </mat-expansion-panel-header>
+                    <mat-selection-list [multiple]="false" disableRipple *ngIf="getTestNameList">
+                        <mat-list-option class="child-checkbox" *ngFor="let testname of getTestNameList;let i = index" [value]='testname.testName' (click)="selectedTestName(testname.testName, i)">{{testname.testName}}</mat-list-option>
+                    </mat-selection-list>
                 </mat-expansion-panel>
             </mat-accordion>
         </div>
