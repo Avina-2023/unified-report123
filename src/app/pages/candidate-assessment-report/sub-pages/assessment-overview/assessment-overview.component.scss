@@ -3,12 +3,27 @@
     height: 100%;
     .profile-wrapper {
         display: flex;
-        @media only screen and (min-width: 576px) {
-            flex-direction: column;
-            align-items: center;
-        }
-        @media only screen and (min-width: 1200px) {
-            flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        .perceentile {
+            width: 86px;
+            height: 62px;
+            background: #08558C 0% 0% no-repeat padding-box;
+            border-radius: 4px;
+            .percenCount {
+                font-size: 25px;
+                color: #ffffff;
+                display: flex;
+                justify-content: center;
+                margin-top: 12%;
+                margin-bottom: 6%;
+            }
+            .percenTitle {
+                font-size: 14px;
+                color: #fff;
+                display: flex;
+                justify-content: center;
+            }
         }
         figure {
             width: 35%;
@@ -54,44 +69,54 @@
             display: flex;
             margin-top: 10px;
             .emailinfo {
-                width: 20px;
-                height: 20px;
-                background: transparent linear-gradient(180deg, #1D6FF2 0%, #1AC8FC 100%) 0% 0% no-repeat padding-box;
-                opacity: 1;
-                border-radius: 50%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                text-align: center;
+                width: 10%;
+                figure {
+                    width: 20px;
+                    height: 20px;
+                    background: transparent linear-gradient(180deg, #1D6FF2 0%, #1AC8FC 100%) 0% 0% no-repeat padding-box;
+                    opacity: 1;
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    text-align: center;
+                    margin: 0;
+                }
                 .img {
                     height: 10px;
                     width: 10px;
                 }
             }
             .email {
-                margin-left: 5px;
+                width: 86%;
+                margin-left: 4%;
             }
         }
         .phoneNumber {
             display: flex;
             margin-top: 10px;
             .emailinfo {
-                width: 20px;
-                height: 20px;
-                background: transparent linear-gradient(180deg, #86FC6F 0%, #0CD419 100%) 0% 0% no-repeat padding-box;
-                opacity: 1;
-                border-radius: 50%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                text-align: center;
+                width: 10%;
+                figure {
+                    width: 20px;
+                    height: 20px;
+                    background: transparent linear-gradient(180deg, #86FC6F 0%, #0CD419 100%) 0% 0% no-repeat padding-box;
+                    opacity: 1;
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    text-align: center;
+                    margin: 0;
+                }
                 .img {
                     height: 10px;
                     width: 10px;
                 }
             }
             .email {
-                margin-left: 5px;
+                width: 86%;
+                margin-left: 4%;
             }
         }
         .assessment {
@@ -120,11 +145,41 @@
                 opacity: 1;
                 font-weight: 500;
             }
+            .canvasChart {
+                position: relative;
+                .canvasText {
+                    position: absolute;
+                    bottom: 20px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                }
+            }
             .summary {
                 width: 75%;
                 margin-left: 11%;
                 margin-right: 11%;
                 padding-bottom: 8px;
+                 ::ng-deep .mat-progress-bar-buffer {
+                    background-color: #e0e0e0 !important;
+                }
+                 ::ng-deep .yello-progress .mat-progress-bar-fill::after {
+                    background-color: #F0D691 !important;
+                }
+                 ::ng-deep .blue-progress .mat-progress-bar-fill::after {
+                    background-color: #08558C !important;
+                }
+                 ::ng-deep .green-progress .mat-progress-bar-fill::after {
+                    background-color: #7AC169 !important;
+                }
+                 ::ng-deep .red-progress .mat-progress-bar-fill::after {
+                    background-color: #C15D5D !important;
+                }
+                 ::ng-deep .grey-progress .mat-progress-bar-fill::after {
+                    background-color: #848484 !important;
+                }
+                 ::ng-deep .bro-progress .mat-progress-bar-fill::after {
+                    background-color: #6A4D00 !important;
+                }
                 .summaryInfo {
                     display: flex;
                     justify-content: space-between;

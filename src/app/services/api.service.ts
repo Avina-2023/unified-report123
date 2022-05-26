@@ -105,4 +105,13 @@ export class ApiService {
   getcandidateList(data){
     return this.http.post(`${this.BASE_URL}/getCandidateList`,data);
   }
+
+  // Assessment Analytics Report Api 
+  getTestSummary(data){
+    return this.http.post(`${this.BASE_URL}/getTestSummary`,data);
+  }
+
+  getTestDetails(data){
+  return this.http.post(`${this.BASE_URL}/getTestDetails`,data);
+  } 
 }
