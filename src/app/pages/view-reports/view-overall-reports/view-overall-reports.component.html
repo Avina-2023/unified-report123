@@ -1,4 +1,3 @@
-
 <div class="mainWrapper">
     <div style="margin-top: 20px;">
         <app-candidate-profile [getAllReportsData]="getAllReportsData"></app-candidate-profile>
@@ -11,7 +10,7 @@
         <mat-tab-group>
             <mat-tab>
                 <ng-template mat-tab-label>
-                  <em class="icon-BasicProfile"></em> <span>Basic Profile</span>
+                    <em class="icon-BasicProfile"></em> <span>Basic Profile</span>
                 </ng-template>
                 <app-profile-info (driveName)="getSelectedDriveName($event)" (driveUserEmail)="getDriveBaisedUser($event)" [getAllReportsData]="getAllReportsData">
                 </app-profile-info>
@@ -19,16 +18,16 @@
 
             <mat-tab *ngIf="testTaken">
                 <ng-template mat-tab-label>
-                  <em class="icon-TestAnalysis"></em> <span>Test Analysis</span>
+                    <em class="icon-TestAnalysis"></em> <span>Test Analysis</span>
                 </ng-template>
                 <ng-continer *ngIf="getAllReportsData && getAllReportsData.email; else nocard">
                     <!-- <div #stickyMenu class="menucontent" [class.sticky]="sticky"> -->
                     <!-- <app-profile-info (driveName)="getSelectedDriveName($event)" (driveUserEmail)="getDriveBaisedUser($event)" [getAllReportsData]="getAllReportsData">
                     </app-profile-info> -->
                     <!-- </div> -->
-    
+
                     <!-- <app-doc-info [getAllReportsData]="getAllReportsData"></app-doc-info> -->
-                    <app-assessment-info [driveName]="driveName" [getAllReportsData]="getAllReportsData"></app-assessment-info>
+                    <app-assessment-info (driveName)="getSelectedDriveName($event)" [driveName]="driveName" [getAllReportsData]="getAllReportsData"></app-assessment-info>
                     <app-competency-areas [getAllReportsData]="getAllReportsData"></app-competency-areas>
                     <app-quality-area [getAllReportsData]="getAllReportsData"></app-quality-area>
                     <app-behavioural-assessment-info [driveName]="driveName" [emailId]="emailId" [getAllReportsData]="getAllReportsData"></app-behavioural-assessment-info>
@@ -37,11 +36,11 @@
                     <div class="clearfix"></div>
                 </ng-continer>
             </mat-tab>
-            
+
             <div *ngIf="isaccess">
                 <mat-tab *ngIf="jobRecommended">
                     <ng-template mat-tab-label>
-                      <em class="icon-JobVacancy"></em> <span>Job Recommendations</span>
+                        <em class="icon-JobVacancy"></em> <span>Job Recommendations</span>
                     </ng-template>
                     <ng-continer *ngIf="candidateSkills; else noSkill">
                         <app-candidate-skills [candidateSkills]="candidateSkills"></app-candidate-skills>
@@ -56,9 +55,9 @@
             <img class="imgCard" src='../../../../../assets/images/nodata.png' alt="">
         </div>
     </ng-template>
-    
+
     <ng-template #noSkill>
-    
+
         <div class="noCard" *ngIf="candidateSkills">
             <div class="noData">No Recommended Jobs found</div>
             <img class="imgCard" src='../../../../../assets/images/nodata.png' alt="">

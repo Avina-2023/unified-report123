@@ -116,8 +116,11 @@ export class ViewOverallReportsComponent implements OnInit {
 
   getSelectedDriveName(e) {
     if (this.getAllReportsData) {
+    
       this.getAllReportsData.selectedDriveName = e;
       this.driveName = e;
+      console.log(this.getAllReportsData)
+      // console.log(this.driveName)
     }
   }
 

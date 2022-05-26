@@ -1,51 +1,118 @@
-    .sectionAnalysis {
-        .section {
+.sectionAnalysis {
+    .section {
+        justify-content: space-between;
+        margin-top: 3%;
+        width: auto;
+        height: auto;
+        background: #FFFFFF 0% 0% no-repeat padding-box;
+        box-shadow: 0px 3px 6px #00000029;
+        opacity: 1;
+        .sectionHeader {
+            display: flex;
             justify-content: space-between;
-            margin-top: 3%;
-            width: auto;
-            height: 341px;
-            background: #FFFFFF 0% 0% no-repeat padding-box;
-            box-shadow: 0px 3px 6px #00000029;
-            opacity: 1;
-            .sectionHeader {
-                display: flex;
-                justify-content: space-between;
-                padding: 1.5%;
-                width: 100%;
-            }
-            .sectionTitle {
-                text-align: left;
-                font: normal normal medium 18px/35px Roboto;
-                letter-spacing: 0px;
-                color: #000000;
-                opacity: 1;
-                font-size: 18px;
+            padding: 1.5%;
+            width: 100%;
+            .mins {
+                font-size: 20px;
                 font-weight: 500;
             }
-            .view {
-                color: #08558C;
-                font-size: 12px;
-                display: flex;
-                height: 16px;
-                cursor: pointer;
-                .icon {
-                    margin-right: 4px;
-                }
+        }
+        .sectionTitle {
+            text-align: left;
+            font: normal normal medium 18px/35px Roboto;
+            letter-spacing: 0px;
+            color: #000000;
+            opacity: 1;
+            font-size: 18px;
+            font-weight: 500;
+        }
+        .view {
+            color: #08558C;
+            font-size: 12px;
+            display: flex;
+            height: 16px;
+            cursor: pointer;
+            .icon {
+                margin-right: 4px;
             }
-            .chart {
+        }
+        .chart {
+            width: auto;
+            height: 540px;
+            .miniBox {
                 width: auto;
-                height: 540px;
-                background: antiquewhite;
+                height: 520px;
+                display: flex;
+                margin-left: 7%;
+                padding-top: 1%;
+                margin-right: 7%;
+                .heading {
+                    font-size: 18px;
+                    color: #565656;
+                    display: flex;
+                    margin-top: 20px;
+                    justify-content: center;
+                    font-weight: 500;
+                }
                 .left {
                     width: 50%;
                     height: auto;
-                    background-color: aqua;
+                    .pieChart {
+                        width: 100%;
+                        display: flex;
+                        justify-content: center;
+                        margin-top: 5%;
+                        canvas {
+                            width: 100% !important;
+                            height: 100% !important;
+                            max-width: 400px;
+                        }
+                    }
+                    .mainCard {
+                        display: flex;
+                        justify-content: center;
+                        margin-top: 10%;
+                        .Piecard {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            width: 310px;
+                            padding: 6px 12px;
+                            background-color: #F9F9F9;
+                            box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.25);
+                            >div {
+                                display: flex;
+                                align-items: center;
+                                &:last-child {
+                                    >div {
+                                        margin-left: 8px;
+                                        &:first-child {
+                                            margin-left: 0;
+                                        }
+                                    }
+                                }
+                                .legend {
+                                    width: 20px;
+                                    height: 20px;
+                                    background: #90C8FA;
+                                    border-radius: 4px;
+                                }
+                                .legendContent {
+                                    margin-left: 5px;
+                                }
+                            }
+                        }
+                    }
                 }
                 .right {
+                    background: #F9F9F9 0% 0% no-repeat padding-box;
+                    box-shadow: 0px 3px 6px #00000029;
                     width: 50%;
                     height: auto;
-                    background-color: blueviolet;
+                    display: flex;
+                    justify-content: center;
                 }
             }
         }
     }
+}
