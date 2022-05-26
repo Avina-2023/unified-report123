@@ -1,7 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { ChartConfiguration, ChartData, ChartDataSets, ChartOptions, ChartType } from 'chart.js';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
 import { BaseChartDirective, Label } from 'ng2-charts';
-import * as pluginDataLabels from 'chartjs-plugin-datalabels';
+
+
 @Component({
   selector: 'app-assessment-overview',
   templateUrl: './assessment-overview.component.html',
@@ -9,6 +10,11 @@ import * as pluginDataLabels from 'chartjs-plugin-datalabels';
 })
 export class AssessmentOverviewComponent implements OnInit {
   @ViewChild(BaseChartDirective) chart: BaseChartDirective | undefined;
+  @Input() getCandidateProfile;
+  public barChartLabels: Label[] = [];
+  public barChartType: ChartType = 'doughnut';
+  public barChartData: ChartDataSets[] = [];
+  public barChartLegend = false;
   public barChartOptions: ChartOptions = {
     responsive: true,
     circumference: Math.PI,
@@ -16,8 +22,8 @@ export class AssessmentOverviewComponent implements OnInit {
     cutoutPercentage : 90, // precent
     layout: {
       padding: {
-        left: 50,
-        right:50
+        left: 30,
+        right:30
       }
     },  
 
@@ -32,7 +38,8 @@ export class AssessmentOverviewComponent implements OnInit {
           if(i == len){
             return null;
           }
-          return '     Total duration '+ value+' m';
+          return '';
+          // Total duration '+ value+' m
         }
       }
     },
@@ -43,21 +50,18 @@ export class AssessmentOverviewComponent implements OnInit {
       enabled: false
   }
   };
-  public barChartLabels: Label[] = [];
-  public barChartType: ChartType = 'doughnut';
-  public barChartData: ChartDataSets[] = [
-    {
-      data: [40,190],
-      backgroundColor: [ "#6665DD",
-      "#F0D691",
-      ],
-    }
-  ];
 
-  public barChartLegend = false;
-  constructor() { }
-
-  ngOnInit(): void {
+  constructor() { 
   }
 
+  ngOnInit(): void {
+    if(this.getCandidateProfile){
+      console.log(this.getCandidateProfile,'this.getCandidateProfile')
+      const calDuration = (100 - parseInt(this.getCandidateProfile.timePercentage));
+      this.barChartData.push({
+        data:[100,calDuration],
+        backgroundColor: [ "#6665DD","#F0D691"],
+      })
+    } 
+  }
 }

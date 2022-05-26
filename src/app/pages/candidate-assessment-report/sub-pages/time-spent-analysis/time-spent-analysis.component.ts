@@ -18,13 +18,13 @@ export class TimeSpentAnalysisComponent implements OnInit {
         datasets: [
           { 
             data: [55,45],
-            backgroundColor: ['rgba(255, 0, 0, 1)','rgba(255, 0, 0, 0.1)'],
+            backgroundColor: ['#22538C','#91C8FA'],
             fill: false
           },
         ]
       },
       options: {
-        cutoutPercentage: 70,
+        cutoutPercentage: 60,
         legend: {
           display: false
         },

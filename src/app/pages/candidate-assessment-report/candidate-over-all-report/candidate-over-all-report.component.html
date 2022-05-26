@@ -1,11 +1,11 @@
 <div class="mainWrapper">
     <div class="subWrapper">
         <div class="left">
-            <app-assessment-overview></app-assessment-overview>
+            <app-assessment-overview *ngIf="getCandidateProfile" [getCandidateProfile]="getCandidateProfile"></app-assessment-overview>
         </div>
 
         <div class="right">
-            <app-test-info-and-test-count></app-test-info-and-test-count>
+            <app-test-info-and-test-count *ngIf="getTestNameList" [getTestNameList]="getTestNameList"></app-test-info-and-test-count>
             <app-section-analysis></app-section-analysis>
             <app-topic-analysis></app-topic-analysis>
             <app-blooms-taxonomy></app-blooms-taxonomy>

@@ -8,8 +8,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { SentDataToOtherComp } from 'src/app/services/sendDataToOtherComp.service';
 import _ from 'lodash';
 import { AgChartThemeOverrides, ColDef, ColSpanParams, GridApi, IColumnToolPanel, SideBarDef } from '@ag-grid-enterprise/all-modules';
-import * as publicIp from 'public-ip';
-import { unix } from 'moment';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 
 @Component({

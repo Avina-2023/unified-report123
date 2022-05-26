@@ -44,6 +44,18 @@
                     font-weight: 500;
                 }
             }
+             ::ng-deep.child-checkbox {
+                .mat-pseudo-checkbox::after {
+                    color: #fff;
+                }
+                .mat-pseudo-checkbox-checked,
+                .mat-accent .mat-pseudo-checkbox-checked {
+                    background: #54B952;
+                }
+            }
+             ::ng-deep.mat-expansion-panel-body {
+                padding: 0 !important;
+            }
         }
     }
     .testDetails {
