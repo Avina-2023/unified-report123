@@ -5,6 +5,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AppConfigService } from '../utils/app-config.service';
 import * as CryptoJS from 'crypto-js';
+import { debounceTime, map } from 'rxjs/operators';
+import { Observable, Subject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
@@ -13,6 +15,8 @@ export class ApiService {
   EDGE_URL = environment.NODE_EDGE_URL;
   Prourl = environment.NODE_URL;
   EncryptKEY = environment.encryptionKey;
+
+  filterSubject: Subject<any> = new Subject();
   constructor(
     private http: HttpClient,
     private appConfig: AppConfigService,
@@ -100,5 +104,37 @@ export class ApiService {
 
   getcandidateList(data){
     return this.http.post(`${this.BASE_URL}/getCandidateList`,data);
+  }
+
+  // Assessment Analytics Report Api 
+  getTestSummary(data){
+    return this.http.post(`${this.BASE_URL}/getTestSummary`,data);
+  }
+
+  getTestDetails(data){
+  return this.http.post(`${this.BASE_URL}/getTestDetails`,data);
+  } 
+
+  getTestSummaryCard(data){
+    return this.http.post(`${this.BASE_URL}/getTestSummaryCard`,data);
+  }
+
+  getSectionAnalysis(data){
+    return this.http.post(`${this.BASE_URL}/getSectionAnalysis`,data);
+  }
+
+  getTopicAnalysis(data){
+    return this.http.post(`${this.BASE_URL}/getTopicAnalysis`,data);
+  }
+
+  getTaxonomyAnalysis(data){
+    return this.http.post(`${this.BASE_URL}/getTaxonomyAnalysis`,data);
+  }
+  getComplexityAnalysisForTest(data){
+    return this.http.post(`${this.BASE_URL}/getComplexityAnalysisForTest`,data);
+  }
+
+  getTimeSpentAnalysis(data){
+    return this.http.post(`${this.BASE_URL}/getTimeSpentAnalysis`,data);
   }
 }

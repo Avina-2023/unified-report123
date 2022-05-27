@@ -1,0 +1,48 @@
+<div class="sectionAnalysis">
+    <div class="section">
+        <div class="sectionHeader">
+            <div class="sectionTitle">
+                Section Analysis
+            </div>
+            <div class="view">
+                <img class="icon" [src]="'/assets/images/candidateReport/barIcon.svg'"> View Complexity Analysis
+            </div>
+        </div>
+        <div class="SectionInfo">
+            <table id="section" class="tableInfo" border="0" cellpadding="0" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Section Name</th>
+                        <th>Questions Attempted</th>
+                        <th>Score Obtained</th>
+                        <th>Percentage</th>
+                        <th>Duration</th>
+                        <th>Percentile</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let tableData of getSectionAnalysisDetails">
+                        <td>{{tableData?.sectionName}}</td>
+                        <td><span class="qusAtt">{{tableData?.questionsAttempted}}</span><span class="outof">/{{tableData?.totalQuestions}}</span></td>
+                        <td class="outof">{{tableData?.scoreObtained}}</td>
+                        <td>
+                            <circle-progress [percent]="tableData?.percentage" [radius]="20" [outerStrokeWidth]="4" [space]="-4" [innerStrokeWidth]="4" [outerStrokeColor]="tableData?.colorCode" [innerStrokeColor]="'#E0E0E0'" [showSubtitle]="false" [titleFontSize]="12" [subtitleFontWeight]="600"
+                                [titleFontWeight]="600" [subtitleFontSize]="12" [unitsFontSize]="12" [animationDuration]="0"></circle-progress>
+                        </td>
+                        <td>
+                            <div class="timer">
+                                <span>{{getTimetaken(tableData?.duration)}}</span>
+                                <img class="timerIcon" [src]="'/assets/images/candidateReport/timer.svg'"> {{TimeTakenMins ? TimeTakenMins : 0}} Mins <span class="left" *ngIf="timeTakenSec">{{timeTakenSec ? timeTakenSec : 0}} Secs</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="percentile">
+                                {{tableData?.percentile}}
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

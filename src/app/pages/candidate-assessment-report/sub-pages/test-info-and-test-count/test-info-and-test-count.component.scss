@@ -1,0 +1,92 @@
+.mainWrapper {
+    .banner {
+        width: auto;
+        height: 145px;
+        background: transparent linear-gradient(90deg, #FFF8DB9F 0%, #FFCE239F 78%, #FFC8079F 100%) 0% 0% no-repeat padding-box;
+        opacity: 1;
+        display: flex;
+        align-items: center;
+        .ass-heading {
+            letter-spacing: 0px;
+            color: #000000;
+            opacity: 1;
+            font-size: 25px;
+            font-weight: 600;
+            justify-content: flex-start;
+            align-items: center;
+            margin-left: 3%;
+        }
+        .sub-heading {
+            margin-left: 3%;
+            font-size: 12px;
+            color: #555555;
+            margin-top: 1%;
+        }
+    }
+    .test {
+        font-size: 16px;
+        color: #444444;
+        margin-top: 2%;
+        .expan {
+            margin-top: 1%;
+             ::ng-deep.mat-expansion-panel-header {
+                padding: 0 9px;
+            }
+            .expanTitle {
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                .testImg {
+                    margin-right: 4%;
+                }
+                .testname {
+                    white-space: nowrap;
+                    font-weight: 500;
+                }
+            }
+             ::ng-deep.child-checkbox {
+                .mat-pseudo-checkbox::after {
+                    color: #fff;
+                }
+                .mat-pseudo-checkbox-checked,
+                .mat-accent .mat-pseudo-checkbox-checked {
+                    background: #54B952;
+                }
+            }
+             ::ng-deep.mat-expansion-panel-body {
+                padding: 0 !important;
+            }
+        }
+    }
+    .testDetails {
+        margin-top: 2%;
+        display: flex;
+        justify-content: space-between;
+        .testCard {
+            width: 175px;
+            height: 100px;
+            // background: #FBF4FF 0% 0% no-repeat padding-box;
+            box-shadow: 0px 3px 6px #00000029;
+            border-radius: 10px 10px 10px 0px;
+            opacity: 1;
+            .count {
+                text-align: center;
+                margin-top: 16%;
+                font-size: 25px;
+                font-weight: 500;
+                .mins {
+                    font-size: 15px;
+                }
+            }
+            .cardTitle {
+                text-align: center;
+                margin-top: 14px;
+                font-size: 12px;
+            }
+        }
+    }
+}
+
+.width-79 {
+    width: 79%;
+}

@@ -102,6 +102,7 @@ export class AssessmentInfoComponent implements OnInit, OnChanges {
       this._loading.setLoading(false, 'loader');
     }, 300);
     this.driveName.emit(this.driveselectedValue);
+    this.getAssessmentInfo();
     this.closeBox();
   }
 
@@ -110,6 +111,7 @@ export class AssessmentInfoComponent implements OnInit, OnChanges {
     if (this.getAllReportsData && this.getAllReportsData.driveDetails && this.getAllReportsData.driveDetails.length > 0 && this.getAllReportsData.selectedDriveName) {
       const assessmentDrive = this.getAllReportsData.driveDetails.find((x => x.drivename == this.getAllReportsData.selectedDriveName))
       this.assessmentsList = assessmentDrive ? assessmentDrive.assessments : '' ;
+     
       this.assessmentsList && this.assessmentsList.length > 0 ? this.covertToPercentage() : '';
     }
   }

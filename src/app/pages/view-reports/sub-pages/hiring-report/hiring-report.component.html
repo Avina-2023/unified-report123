@@ -4,7 +4,7 @@
     </div>
 
     <div class="filter" *ngIf="!isFilterRecords">
-        Total Candidates : <span class="count">{{FilteredRecords ? FilteredRecords : pageRowCount }}</span>
+        Total Candidates : <span class="count">{{FilteredRecords ? FilteredRecords : 0 }}</span>
     </div>
 
     <!-- *ngIf="ShowFilterWithCount && ShowFilterWithCount.length > 0 && ShowFilterWithCount && ShowFilterWithCount[0].count != 0 " -->
@@ -13,7 +13,10 @@
             <div *ngFor="let selectedFilter of ShowFilterWithCount">
                 <div class="tab" *ngIf="selectedFilter.count != 0">
                     <div class="filterval">
-                        {{selectedFilter.key}}
+
+                        <span *ngIf="selectedFilter.key != 'CGPA'">{{convertIntoCamelCase(selectedFilter.key)}}</span>
+                        <span *ngIf="selectedFilter.key == 'CGPA'">{{'Graduation Aggregate'}}</span>
+                        <!-- {{selectedFilter.key}} -->
                         <span>({{selectedFilter.count}})</span>
                         <div>
                             <mat-icon (click)="clearFilter(selectedFilter.key)" class="close">close</mat-icon>
@@ -71,13 +74,15 @@
     <div class="main">
         <div class="left">
             <mat-selection-list #filter [multiple]="false" disableRipple>
-                <mat-list-option class="hide-checkbox" [value]="filterValues" [selected]="filterIndex && i == filterIndexValue" *ngFor="let filterValues of filterTile;let i = index" (click)="selectedFilter(filter.selectedOptions.selected[0]?.value, i)">
-                    <div class="mainHeader">{{convertIntoCamelCase(filterValues)}}
-                        <div *ngIf="ShowFilterWithCount">
-                            <span *ngFor="let keyCount of ShowFilterWithCount">
-                            <span *ngIf="filterValues == keyCount?.key ">
-                             <span class="subCount" *ngIf="keyCount?.count != 0">
-                              ({{keyCount?.count}})
+                <mat-list-option class="hide-checkbox" [value]="filterValues?.label" [selected]="filterIndex && i == filterIndexValue" *ngFor="let filterValues of filterTile;let i = index" (click)="selectedFilter(filter?.selectedOptions.selected[0]?.value, i)">
+                    <div class="mainHeader">
+                        <span *ngIf="filterValues?.label != 'CGPA'">{{convertIntoCamelCase(filterValues.label)}}</span>
+                        <span *ngIf="filterValues?.label == 'CGPA'">{{'Graduation Aggregate'}}</span>
+                        <div *ngIf="filterValues?.count?.length > 0">
+                            <span>
+                            <span>
+                             <span class="subCount">
+                                ({{filterValues?.count?.length}})
                              </span>
                             </span>
                             </span>
@@ -89,12 +94,12 @@
         </div>
 
         <div class="right">
-            <mat-selection-list disableRipple #childfilter [(ngModel)]="selectedOptions" (click)="onSelection(childfilter, firstChildVal.key)">
+            <mat-selection-list disableRipple #childfilter [(ngModel)]="selectedOptions" (click)="onSelection()">
                 <div>
                     <mat-list-option class="child-checkbox" checkboxPosition="before" [selected]="childFilterValues.default" *ngFor="let childFilterValues of firstChildVal" [value]='childFilterValues'>
                         <div class="listView">
                             {{childFilterValues.key}}
-                            <span class="count"> {{childFilterValues.count ? childFilterValues.count : ''}}</span>
+                            <span class="count"> {{convertIntoINDFormate(childFilterValues.count)}}</span>
                         </div>
                     </mat-list-option>
                 </div>
@@ -103,13 +108,13 @@
                 <div class="margin" *ngIf="selectedKeyValue == 'CGPA'">
                     <mat-form-field appearance="outline">
                         <mat-label>From</mat-label>
-                        <input type="number" [(ngModel)]="from" matInput autocomplete="off">
+                        <input type="number" (input)="onSearchChange('',from)" [(ngModel)]="from" matInput autocomplete="off">
                         <span matSuffix>%</span>
                     </mat-form-field>
 
                     <mat-form-field appearance="outline">
                         <mat-label>To</mat-label>
-                        <input autocomplete="off" type="number" (input)="onSearchChange($event.target.value,from)" matInput [(ngModel)]="to">
+                        <input [disabled]="IsToFeildEnable" autocomplete="off" type="number" (input)="onSearchChange($event.target.value,from)" matInput [(ngModel)]="to">
                         <span matSuffix>%</span>
                     </mat-form-field>
                 </div>

@@ -27,7 +27,7 @@
                     <!-- </div> -->
 
                     <!-- <app-doc-info [getAllReportsData]="getAllReportsData"></app-doc-info> -->
-                    <app-assessment-info [driveName]="driveName" [getAllReportsData]="getAllReportsData"></app-assessment-info>
+                    <app-assessment-info (driveName)="getSelectedDriveName($event)" [driveName]="driveName" [getAllReportsData]="getAllReportsData"></app-assessment-info>
                     <app-competency-areas [getAllReportsData]="getAllReportsData"></app-competency-areas>
                     <app-quality-area [getAllReportsData]="getAllReportsData"></app-quality-area>
                     <app-behavioural-assessment-info [driveName]="driveName" [emailId]="emailId" [getAllReportsData]="getAllReportsData"></app-behavioural-assessment-info>
