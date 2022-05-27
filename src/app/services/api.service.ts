@@ -114,4 +114,27 @@ export class ApiService {
   getTestDetails(data){
   return this.http.post(`${this.BASE_URL}/getTestDetails`,data);
   } 
+
+  getTestSummaryCard(data){
+    return this.http.post(`${this.BASE_URL}/getTestSummaryCard`,data);
+  }
+
+  getSectionAnalysis(data){
+    return this.http.post(`${this.BASE_URL}/getSectionAnalysis`,data);
+  }
+
+  getTopicAnalysis(data){
+    return this.http.post(`${this.BASE_URL}/getTopicAnalysis`,data);
+  }
+
+  getTaxonomyAnalysis(data){
+    return this.http.post(`${this.BASE_URL}/getTaxonomyAnalysis`,data);
+  }
+  getComplexityAnalysisForTest(data){
+    return this.http.post(`${this.BASE_URL}/getComplexityAnalysisForTest`,data);
+  }
+
+  getTimeSpentAnalysis(data){
+    return this.http.post(`${this.BASE_URL}/getTimeSpentAnalysis`,data);
+  }
 }
