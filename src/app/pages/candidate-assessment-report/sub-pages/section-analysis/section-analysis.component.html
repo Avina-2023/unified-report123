@@ -21,22 +21,23 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Analytical</td>
-                        <td><span class="qusAtt">55</span><span class="outof">/60</span></td>
-                        <td class="outof">44</td>
+                    <tr *ngFor="let tableData of getSectionAnalysisDetails">
+                        <td>{{tableData?.sectionName}}</td>
+                        <td><span class="qusAtt">{{tableData?.questionsAttempted}}</span><span class="outof">/{{tableData?.totalQuestions}}</span></td>
+                        <td class="outof">{{tableData?.scoreObtained}}</td>
                         <td>
-                            <circle-progress [percent]="70" [radius]="20" [outerStrokeWidth]="4" [space]="-4" [innerStrokeWidth]="4" [outerStrokeColor]="'#54B952'" [innerStrokeColor]="'#C9FFC7'" [showSubtitle]="false" [titleFontSize]="12" [subtitleFontWeight]="600" [titleFontWeight]="600"
-                                [subtitleFontSize]="12" [unitsFontSize]="12" [animationDuration]="0"></circle-progress>
+                            <circle-progress [percent]="tableData?.percentage" [radius]="20" [outerStrokeWidth]="4" [space]="-4" [innerStrokeWidth]="4" [outerStrokeColor]="tableData?.colorCode" [innerStrokeColor]="'#E0E0E0'" [showSubtitle]="false" [titleFontSize]="12" [subtitleFontWeight]="600"
+                                [titleFontWeight]="600" [subtitleFontSize]="12" [unitsFontSize]="12" [animationDuration]="0"></circle-progress>
                         </td>
                         <td>
                             <div class="timer">
-                                <img class="timerIcon" [src]="'/assets/images/candidateReport/timer.svg'"> 23 Mins 20 Secs
+                                <span>{{getTimetaken(tableData?.duration)}}</span>
+                                <img class="timerIcon" [src]="'/assets/images/candidateReport/timer.svg'"> {{TimeTakenMins ? TimeTakenMins : 0}} Mins <span class="left" *ngIf="timeTakenSec">{{timeTakenSec ? timeTakenSec : 0}} Secs</span>
                             </div>
                         </td>
                         <td>
                             <div class="percentile">
-                                65
+                                {{tableData?.percentile}}
                             </div>
                         </td>
                     </tr>

@@ -7,7 +7,10 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class TestInfoAndTestCountComponent implements OnInit {
   @Input() getTestNameList;
+  @Input() getCardDetails;
   selectedTest:any;
+  TimeTakenMins: number;
+  timeTakenSec: number;
   constructor() { }
 
   ngOnInit(): void {
@@ -17,8 +20,18 @@ export class TestInfoAndTestCountComponent implements OnInit {
 
   selectedTestName(testName,index){
     this.selectedTest = testName
-    console.log(testName,index)
-    console.log(this.selectedTest,'selectedTest')
   }
+  getTimetaken(takenTime){
+    if(takenTime){
+      let convertTime1 = takenTime.toString();
+      let SplitTime1 = convertTime1.split(/([.])/);
+      this.TimeTakenMins = parseInt(SplitTime1[0]);
+      this.timeTakenSec = parseInt(SplitTime1[2]);
+    }else {
+      this.TimeTakenMins = 0;
+      this.timeTakenSec = 0;
+    }
+  }
+
 
 }

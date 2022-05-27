@@ -5,12 +5,12 @@
         </div>
 
         <div class="right">
-            <app-test-info-and-test-count *ngIf="getTestNameList" [getTestNameList]="getTestNameList"></app-test-info-and-test-count>
-            <app-section-analysis></app-section-analysis>
-            <app-topic-analysis></app-topic-analysis>
-            <app-blooms-taxonomy></app-blooms-taxonomy>
-            <app-complexity-analysis></app-complexity-analysis>
-            <app-time-spent-analysis></app-time-spent-analysis>
+            <app-test-info-and-test-count *ngIf="getTestNameList && getCardDetails" [getCardDetails]="getCardDetails" [getTestNameList]="getTestNameList"></app-test-info-and-test-count>
+            <app-section-analysis *ngIf="getSectionAnalysisDetails" [getSectionAnalysisDetails]="getSectionAnalysisDetails"></app-section-analysis>
+            <app-topic-analysis *ngIf="getTopAnalysisDetails" [getTopAnalysisDetails]="getTopAnalysisDetails"></app-topic-analysis>
+            <app-blooms-taxonomy *ngIf="getTaxonomyDetails" [getTaxonomyDetails]="getTaxonomyDetails"></app-blooms-taxonomy>
+            <app-complexity-analysis *ngIf="getComplexityDetails" [getComplexityDetails]="getComplexityDetails"></app-complexity-analysis>
+            <app-time-spent-analysis *ngIf="getTimeSpentDetails" [getTimeSpentDetails]="getTimeSpentDetails"></app-time-spent-analysis>
         </div>
     </div>
 </div>

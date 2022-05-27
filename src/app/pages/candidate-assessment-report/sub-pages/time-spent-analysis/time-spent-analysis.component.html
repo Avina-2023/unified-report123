@@ -5,7 +5,7 @@
                 Time Spent Analysis
             </div>
             <div>
-                Actual Duration : <span class="mins">180 Mins</span>
+                Actual Duration : <span class="mins">{{getTimeSpentDetails && getTimeSpentDetails.autualDuration}} Mins</span>
             </div>
         </div>
         <div class="chart">
@@ -13,18 +13,20 @@
                 <div class="left">
                     <div class="heading">Overall duration spent</div>
                     <div class="pieChart">
-                        <canvas id="canvas"></canvas>
+                        <canvas baseChart chartType="doughnut" [legend]="showLegend" [data]="doughnutChartData" [labels]="doughnutChartLabels" [options]="chartOptions">
+                        </canvas>
                     </div>
 
                     <div class="mainCard">
-                        <div class="Piecard">
+                        <div class="Piecard" *ngFor="let overall of getTimeSpentDetails.complexityData">
                             <div>
                                 <div class="legend"></div>
-                                <div class="legendContent">Easy</div>
+                                <div class="legendContent">{{overall && overall.complexity}}</div>
                             </div>
                             <div>
-                                <div class="minSec">63m 45s</div>
-                                <div class="percentage">55%</div>
+                                <span>{{getTimetaken(overall && overall.timetaken)}}</span>
+                                <div class="minSec">{{TimeTakenMins ? TimeTakenMins : 0}}m <span *ngIf="timeTakenSec">{{timeTakenSec ? timeTakenSec : 0}} s</span></div>
+                                <div class="percentage">{{overall && overall.percentage}}%</div>
                                 <div class="arrow"><em class="icon-RightArrow"></em></div>
                             </div>
                         </div>
