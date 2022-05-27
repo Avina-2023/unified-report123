@@ -32,23 +32,24 @@
     </div>
     <div class="testDetails">
         <div class="testCard" [ngStyle]="{'background':'#FBF4FF'}">
-            <div class="count">80%</div>
+            <div class="count">{{getCardDetails?.percentage}}%</div>
             <div class="cardTitle">Test Percentage</div>
         </div>
         <div class="testCard" [ngStyle]="{'background':'#FFF9F0'}">
-            <div class="count">250/300</div>
+            <div class="count">{{getCardDetails?.scoreObtained}}/{{getCardDetails?.totalScore}}</div>
             <div class="cardTitle">Score obtained</div>
         </div>
         <div class="testCard" [ngStyle]="{'background':'#FFF5FB'}">
-            <div class="count">210/250</div>
+            <div class="count">{{getCardDetails?.questionsAttempted}}/{{getCardDetails?.totalQuestions}}</div>
             <div class="cardTitle">Questions Attempted</div>
         </div>
         <div class="testCard" [ngStyle]="{'background':'#F7FFF5'}">
-            <div class="count">144m 34s</div>
+            <span>{{getTimetaken(getCardDetails?.timeSpent)}}</span>
+            <div class="count">{{TimeTakenMins !=undefined ? TimeTakenMins : 0}}<span class="mins">m </span>{{timeTakenSec !=undefined ? timeTakenSec : 0}}<span class="mins">s</span></div>
             <div class="cardTitle">Time Spent</div>
         </div>
         <div class="testCard" [ngStyle]="{'background':'#E5EDF3'}">
-            <div class="count">73</div>
+            <div class="count">{{getCardDetails?.percentile}}</div>
             <div class="cardTitle">Percentile</div>
         </div>
     </div>

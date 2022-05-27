@@ -18,7 +18,7 @@ import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 export class HiringReportComponent implements OnInit {
   @ViewChild('sectionDetails', {static: false}) opensection: TemplateRef<any>;
   @ViewChild('filter', {static: false}) filter: TemplateRef<any>;
-  
+  IsToFeildEnable = true;
   subscription: Subscription;
   selectedOption:any;
   selectedOptions:any = [];
@@ -1070,18 +1070,27 @@ candidatereqdata:any = {
         
 
       }else {
-        this.toastr.warning('Please enter valid CGPA');
+        this.toastr.warning('Please enter a valid Graduation Aggregate');
         this.from = '';
         this.to = '';
         localStorage.setItem('Cgpa','{}');
         this.removedSelectedSingleFilter('CGPA');
       }
     }else{
-      this.removedSelectedSingleFilter('CGPA');
-      this.from = '';
-      this.to = '';
-      this.toastr.warning('Please enter a valid Graduation Aggregate ')
-      localStorage.setItem('Cgpa','{}')
+      let checkCGPA = localStorage.getItem('Cgpa')
+      console.log(this.selectedKeyValue)
+      if(this.selectedKeyValue == 'CGPA'){
+        if( this.to == undefined && this.to == null){
+          console.log(this.selectedKeyValue,'selectedKeyValue')
+          this.removedSelectedSingleFilter('CGPA');
+          this.from = '';
+          this.to = '';
+          this.toastr.warning('Please enter a valid Graduation Aggregate ')
+          localStorage.setItem('Cgpa','{}')
+        }
+      }
+
+
     }
     this.cacheBlockSize = 0;
     this.closeDialog();
@@ -1146,7 +1155,6 @@ candidatereqdata:any = {
   }
 
   removedSelectedSingleFilter(FilterKey){
-    console.log(FilterKey,'FilterKey')
     const filteredremovedItem = this.ShowFilterWithCount.filter((item) => item.key !== FilterKey);
     this.ShowFilterWithCount = filteredremovedItem;
     localStorage.setItem('mainFilterCount',JSON.stringify(this.ShowFilterWithCount));
@@ -1173,21 +1181,27 @@ candidatereqdata:any = {
   }
 
   onSearchChange(event,from){
-    this.Isspinner = true;
-    if(this.to !=undefined && this.to != null){
-      this.onSelection()
-    }
-    if(this.from != undefined && this.from != null && this.to != undefined && this.to != null){
-      this.CGPA = {
-        from : parseInt(this.from),
-        to : parseInt(this.to)
+    if(from != null && from != undefined){
+      this.IsToFeildEnable = false;
+      this.Isspinner = true;
+      if(this.to !=undefined && this.to != null){
+        this.onSelection()
       }
-      let setLocalvalues = this.CGPA;
-      localStorage.setItem('Cgpa',JSON.stringify(setLocalvalues))
-      this.getFilter(this.filteredValues,this.selectedMenuIndex)
+      if(this.from != undefined && this.from != null && this.to != undefined && this.to != null){
+        this.CGPA = {
+          from : parseInt(this.from),
+          to : parseInt(this.to)
+        }
+        let setLocalvalues = this.CGPA;
+        localStorage.setItem('Cgpa',JSON.stringify(setLocalvalues))
+        this.getFilter(this.filteredValues,this.selectedMenuIndex)
+      }else{
+        this.Isspinner = false;
+      }
     }else{
-      this.Isspinner = false;
+        this.IsToFeildEnable = true
     }
+
 
   }
 

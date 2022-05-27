@@ -114,7 +114,7 @@
 
                     <mat-form-field appearance="outline">
                         <mat-label>To</mat-label>
-                        <input autocomplete="off" type="number" (input)="onSearchChange($event.target.value,from)" matInput [(ngModel)]="to">
+                        <input [disabled]="IsToFeildEnable" autocomplete="off" type="number" (input)="onSearchChange($event.target.value,from)" matInput [(ngModel)]="to">
                         <span matSuffix>%</span>
                     </mat-form-field>
                 </div>
