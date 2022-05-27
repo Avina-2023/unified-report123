@@ -11,6 +11,7 @@ import { BaseChartDirective, Label } from 'ng2-charts';
 export class AssessmentOverviewComponent implements OnInit {
   @ViewChild(BaseChartDirective) chart: BaseChartDirective | undefined;
   @Input() getCandidateProfile;
+
   public barChartLabels: Label[] = [];
   public barChartType: ChartType = 'doughnut';
   public barChartData: ChartDataSets[] = [];
@@ -55,13 +56,18 @@ export class AssessmentOverviewComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getDurationSummary();
+
+  }
+
+  getDurationSummary(){
     if(this.getCandidateProfile){
-      console.log(this.getCandidateProfile,'this.getCandidateProfile')
       const calDuration = (100 - parseInt(this.getCandidateProfile.timePercentage));
       this.barChartData.push({
         data:[100,calDuration],
         backgroundColor: [ "#6665DD","#F0D691"],
       })
-    } 
+    }
   }
+
 }

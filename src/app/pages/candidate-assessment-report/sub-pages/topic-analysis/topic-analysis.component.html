@@ -21,30 +21,31 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Construction Management
-                            <div class="subTopic">No. of Questions - 50</div>
+                    <tr *ngFor="let tableData of getTopAnalysisDetails">
+                        <td>{{tableData?.topicName}}
+                            <div class="subTopic">No. of Questions - {{tableData?.totalQuestions}}</div>
                         </td>
-                        <td><span class="qusAtt">55</span><span class="outof">/60</span></td>
+                        <td><span class="qusAtt">{{tableData?.questionAttempted}}</span><span class="outof">/{{tableData?.totalQuestions}}</span></td>
                         <td class="progessBar">
                             <div class="align">
-                                <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
-                                <div class="score">25 / 6</div>
+                                <mat-progress-bar [ngClass]="'grey-progress'+tableData?.colorCode" mode="determinate" [value]="tableData?.percentage"></mat-progress-bar>
+                                <div class="score">{{tableData?.scoreObtained}} / {{tableData?.totalScore}}</div>
                             </div>
 
                         </td>
                         <td>
-                            <circle-progress [percent]="70" [radius]="20" [outerStrokeWidth]="4" [space]="-4" [innerStrokeWidth]="4" [outerStrokeColor]="'#54B952'" [innerStrokeColor]="'#C9FFC7'" [showSubtitle]="false" [titleFontSize]="12" [subtitleFontWeight]="600" [titleFontWeight]="600"
-                                [subtitleFontSize]="12" [unitsFontSize]="12" [animationDuration]="0"></circle-progress>
+                            <circle-progress [percent]="tableData?.percentage" [radius]="20" [outerStrokeWidth]="4" [space]="-4" [innerStrokeWidth]="4" [outerStrokeColor]="'#'+tableData?.colorCode" [innerStrokeColor]="'#E0E0E0'" [showSubtitle]="false" [titleFontSize]="12" [subtitleFontWeight]="600"
+                                [titleFontWeight]="600" [subtitleFontSize]="12" [unitsFontSize]="12" [animationDuration]="0"></circle-progress>
                         </td>
                         <td>
                             <div class="timer">
-                                <img class="timerIcon" [src]="'/assets/images/candidateReport/timer.svg'"> 23 Mins 20 Secs
+                                <span>{{getTimetaken(tableData?.duration)}}</span>
+                                <img class="timerIcon" [src]="'/assets/images/candidateReport/timer.svg'"> {{TimeTakenMins ? TimeTakenMins : 0}} Mins <span class="left" *ngIf="timeTakenSec">{{timeTakenSec ? timeTakenSec : 0}} Secs</span>
                             </div>
                         </td>
                         <td>
                             <div class="percentile">
-                                65
+                                {{tableData?.percentile}}
                             </div>
                         </td>
                     </tr>
