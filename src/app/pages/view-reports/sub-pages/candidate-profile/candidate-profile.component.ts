@@ -125,4 +125,8 @@ export class CandidateProfileComponent implements OnInit {
       this.prevbtn = true;
     }
   }
+
+  convertIntoINDFormate(count){
+    return count.toLocaleString('en-IN')
+ }
 }

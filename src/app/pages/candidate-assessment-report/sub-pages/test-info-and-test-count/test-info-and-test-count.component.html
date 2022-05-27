@@ -1,0 +1,56 @@
+<div class="mainWrapper">
+    <div class="banner">
+        <div class="width-79">
+            <div class="ass-heading">Assessment Analytics</div>
+            <div class="sub-heading">Analysing doesn’t only mean checking your score and then aiming for better scores in the next mock. …</div>
+        </div>
+
+        <div>
+            <img [src]="'/assets/images/candidateReport/bannerImg.svg'">
+        </div>
+    </div>
+
+    <div class="test">
+        Select Test :
+        <div class="expan">
+            <mat-accordion class="example-headers-align">
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            <div class="expanTitle">
+                                <span class="testImg"><img [src]="'/assets/images/candidateReport/book.svg'"></span>
+                                <span class="testname">{{selectedTest ? selectedTest : ''}}</span>
+                            </div>
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <mat-selection-list [multiple]="false" disableRipple *ngIf="getTestNameList">
+                        <mat-list-option class="child-checkbox" *ngFor="let testname of getTestNameList;let i = index" [value]='testname.testName' (click)="selectedTestName(testname.testName, i)">{{testname.testName}}</mat-list-option>
+                    </mat-selection-list>
+                </mat-expansion-panel>
+            </mat-accordion>
+        </div>
+    </div>
+    <div class="testDetails">
+        <div class="testCard" [ngStyle]="{'background':'#FBF4FF'}">
+            <div class="count">{{getCardDetails?.percentage}}%</div>
+            <div class="cardTitle">Test Percentage</div>
+        </div>
+        <div class="testCard" [ngStyle]="{'background':'#FFF9F0'}">
+            <div class="count">{{getCardDetails?.scoreObtained}}/{{getCardDetails?.totalScore}}</div>
+            <div class="cardTitle">Score obtained</div>
+        </div>
+        <div class="testCard" [ngStyle]="{'background':'#FFF5FB'}">
+            <div class="count">{{getCardDetails?.questionsAttempted}}/{{getCardDetails?.totalQuestions}}</div>
+            <div class="cardTitle">Questions Attempted</div>
+        </div>
+        <div class="testCard" [ngStyle]="{'background':'#F7FFF5'}">
+            <span>{{getTimetaken(getCardDetails?.timeSpent)}}</span>
+            <div class="count">{{TimeTakenMins !=undefined ? TimeTakenMins : 0}}<span class="mins">m </span>{{timeTakenSec !=undefined ? timeTakenSec : 0}}<span class="mins">s</span></div>
+            <div class="cardTitle">Time Spent</div>
+        </div>
+        <div class="testCard" [ngStyle]="{'background':'#E5EDF3'}">
+            <div class="count">{{getCardDetails?.percentile}}</div>
+            <div class="cardTitle">Percentile</div>
+        </div>
+    </div>
+</div>

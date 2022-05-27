@@ -1,0 +1,107 @@
+<div class="assesment-wrapper">
+    <div class="profile-wrapper">
+        <figure>
+            <img [src]="getCandidateProfile ? getCandidateProfile.profileImage : '/assets/images/NotSpecified.svg'" alt="" />
+        </figure>
+        <div class="perceentile">
+            <div class="percenCount"> {{getCandidateProfile ? getCandidateProfile.percentile : ''}}</div>
+            <div class="percenTitle">Percentile</div>
+        </div>
+    </div>
+
+    <div class="profileInfo">
+        <div class="name">
+            {{getCandidateProfile ? getCandidateProfile.firstname +' '+getCandidateProfile.lastname : ''}}
+        </div>
+
+        <div class="align">
+            <div class="contact">
+                <span class="emailinfo">
+                    <figure>
+                        <img [src]="'/assets/images/candidateReport/email.svg'" alt="">
+                    </figure>
+                </span>
+                <span class="email">{{getCandidateProfile ? getCandidateProfile.email : ''}}</span>
+            </div>
+
+            <div class="phoneNumber">
+                <span class="emailinfo">
+                    <figure>
+                        <img [src]="'/assets/images/candidateReport/phone.svg'" alt="">
+                    </figure>
+                </span>
+                <span class="email">{{getCandidateProfile ? getCandidateProfile.mobile : ''}}</span>
+            </div>
+        </div>
+        <hr>
+
+        <div class="assessment">
+            <div>
+                Assessment Overview
+            </div>
+            <div class="overview">
+                <circle-progress [percent]="getCandidateProfile ? getCandidateProfile.percentage : 0" [radius]="45" [outerStrokeWidth]="8" [space]="-8" [innerStrokeWidth]="8" [outerStrokeColor]="'#54B952'" [innerStrokeColor]="'#C9FFC7'" [showSubtitle]="false" [titleFontSize]="30"
+                    [titleFontWeight]="500" [subtitleFontWeight]="600" [subtitleFontSize]="30" [animationDuration]="0" [unitsFontSize]="30"></circle-progress>
+
+                <circle-progress [showUnits]="false" [percent]="getCandidateProfile ? getCandidateProfile.scorePercentage : 0" [radius]="45" [outerStrokeWidth]="8" [space]="-8" [innerStrokeWidth]="8" [outerStrokeColor]="'#16BEF0'" [innerStrokeColor]="'#C3F1FF'" [showSubtitle]="true"
+                    [titleFontWeight]="500" [titleFontSize]="18" [subtitle]="'Scores Obtained'" [animationDuration]="0" [title]="[getCandidateProfile && getCandidateProfile.scoreObtain+'/'+getCandidateProfile.totalScore]"></circle-progress>
+            </div>
+        </div>
+
+        <div class="duration">
+            <div class="title">
+                Duration summary
+            </div>
+            <div class="canvasChart" *ngIf="getCandidateProfile">
+                <canvas class="chartjs-gauge" baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend" [chartType]="barChartType">
+                </canvas>
+                <div class="canvasText">
+                    <p>Test text</p>
+                </div>
+            </div>
+
+
+            <div class="summary">
+                <div class="summaryInfo">
+                    <span>Total Questions</span>
+                    <span>{{getCandidateProfile ? getCandidateProfile.totalQuestions : ''}}</span>
+                </div>
+                <mat-progress-bar class="yello-progress" mode="determinate" [value]="getCandidateProfile?.totalQuestionsPercentage"></mat-progress-bar>
+            </div>
+            <div class="summary">
+                <div class="summaryInfo">
+                    <span>Questions Attempted</span>
+                    <span>{{getCandidateProfile ? getCandidateProfile.questionAttempted : ''}}</span>
+                </div>
+                <mat-progress-bar class="blue-progress" mode="determinate" [value]="getCandidateProfile?.questionAttemptedPercentage"></mat-progress-bar>
+            </div>
+            <div class="summary">
+                <div class="summaryInfo">
+                    <span>Correct Answers</span>
+                    <span>{{getCandidateProfile ? getCandidateProfile.correctAnswers : ''}}</span>
+                </div>
+                <mat-progress-bar class="green-progress" mode="determinate" [value]="getCandidateProfile?.correctAnswersPercentage"></mat-progress-bar>
+            </div>
+            <div class="summary">
+                <div class="summaryInfo">
+                    <span>Incorrect Answers</span>
+                    <span>{{getCandidateProfile ? getCandidateProfile.inCorrect : ''}}</span>
+                </div>
+                <mat-progress-bar class="red-progress" mode="determinate" [value]="getCandidateProfile?.inCorrectPercentage"></mat-progress-bar>
+            </div>
+            <div class="summary">
+                <div class="summaryInfo">
+                    <span>Unanswered</span>
+                    <span>{{getCandidateProfile ? getCandidateProfile.unAnswered : ''}}</span>
+                </div>
+                <mat-progress-bar class="grey-progress" mode="determinate" [value]="getCandidateProfile?.unAnsweredPercentage"></mat-progress-bar>
+            </div>
+            <div class="summary">
+                <div class="summaryInfo">
+                    <span>Questions unseen</span>
+                    <span>{{getCandidateProfile ? getCandidateProfile.unseen : ''}}</span>
+                </div>
+                <mat-progress-bar class="bro-progress" mode="determinate" [value]="getCandidateProfile?.unseenPercentage"></mat-progress-bar>
+            </div>
+        </div>
+    </div>

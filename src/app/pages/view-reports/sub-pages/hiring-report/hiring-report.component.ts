@@ -3,12 +3,12 @@ import { ToastrService } from 'ngx-toastr';
 import { AppConfigService } from 'src/app/utils/app-config.service';
 import { APP_CONSTANTS } from '../../../../utils/app-constants.service';
 import { ApiService } from '../../../../services/api.service';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { SentDataToOtherComp } from 'src/app/services/sendDataToOtherComp.service';
 import _ from 'lodash';
 import { AgChartThemeOverrides, ColDef, ColSpanParams, GridApi, IColumnToolPanel, SideBarDef } from '@ag-grid-enterprise/all-modules';
-import * as publicIp from 'public-ip';
+import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-hiring-report',
@@ -18,7 +18,7 @@ import * as publicIp from 'public-ip';
 export class HiringReportComponent implements OnInit {
   @ViewChild('sectionDetails', {static: false}) opensection: TemplateRef<any>;
   @ViewChild('filter', {static: false}) filter: TemplateRef<any>;
-  
+  IsToFeildEnable = true;
   subscription: Subscription;
   selectedOption:any;
   selectedOptions:any = [];
@@ -133,7 +133,10 @@ candidatereqdata:any = {
   demoimg:any;
   FormateName: any;
   userIP: any;
-  constructor(private apiService: ApiService,private sendData: SentDataToOtherComp, private matDialog: MatDialog,private appconfig: AppConfigService,private toastr: ToastrService, private ApiService: ApiService,) {      
+  results$: Observable<any>;
+  filterApplied: boolean;
+  lastClickedLeftSection: { event: any; index: any; };
+  constructor(private sendData: SentDataToOtherComp, private matDialog: MatDialog,private appconfig: AppConfigService,private toastr: ToastrService, private ApiService: ApiService,) {      
      this.serverSideStoreType = 'partial';
     this.masterDetail = true;
     this.rowModelType = 'serverSide';
@@ -175,7 +178,7 @@ candidatereqdata:any = {
     }
     this.ShowFilterWithCount = this.SelectedFilterMainCount;;
     this.tabledef();
-   
+   this.callSearch();
 
   }
 
@@ -545,7 +548,7 @@ candidatereqdata:any = {
       },
 
       {
-        headerName: 'Year of passing',
+        headerName: 'Year Of Passing',
         field: 'passedout',
         filter: 'agTextColumnFilter',
         maxWidth: 140,
@@ -764,7 +767,6 @@ candidatereqdata:any = {
     this.gridApi.closeToolPanel();
     this.autoSizeAll(false);
     this.showPivotSection();
-    // console.log(this.gridColumnApi)
     var datasource = this.callApiForCandidateList();
     params.api.setServerSideDatasource(datasource);
   }
@@ -827,35 +829,38 @@ candidatereqdata:any = {
         this.candidateListSubscription =  this.ApiService.getHiringReport(apiData.request).subscribe((data1: any) => {
          if(data1.success == false){
               this.toastr.warning('Your session has expired Please login again');
-              this.apiService.logout()
+              this.ApiService.logout()
               this.gridApi.hideOverlay();
-         }
-        this.from = fromAndTo.from;
-        this.to = fromAndTo.to;
-        this.userList = data1 && data1.data ? data1.data: [];
-        if (this.userList.length > 0) {
-     
-          if(apiData.request.groupKeys.length > 0){
-          }else{
-            this.FilteredRecords = data1 ? data1.total_count : 0;
-            this.FilteredRecords = this.FilteredRecords.toLocaleString('en-IN')
-          }
-          
-        this.pageRowCount = data1 && data1.total_count ? data1.total_count : 0;
-        params.success({
-          rowData: this.userList,
-          rowCount: this.pageRowCount
-        }
-        );
-      } else {
-        params.success({
-          rowData: this.userList,
-          rowCount: 0
-        }
+         }else{
+          this.from = fromAndTo.from;
+          this.to = fromAndTo.to;
+          this.userList = data1 && data1.data ? data1.data: [];
+          if (this.userList.length > 0) {
+       
+            if(apiData.request.groupKeys.length > 0){
 
-        );
-        this.gridApi.showNoRowsOverlay();
-      }
+            }else{
+              this.FilteredRecords = data1 ? data1.total_count : 0;
+              this.FilteredRecords = this.FilteredRecords.toLocaleString('en-IN')
+            }
+            
+          this.pageRowCount = data1 && data1.total_count ? data1.total_count : 0;
+          params.success({
+            rowData: this.userList,
+            rowCount: this.pageRowCount
+          }
+          );
+        } else {
+          params.success({
+            rowData: this.userList,
+            rowCount: 0
+          });
+          this.gridApi.showNoRowsOverlay();
+          this.FilteredRecords = 0;
+          this.FilteredRecords = this.FilteredRecords.toLocaleString('en-IN')
+        }
+         }
+
       }, (err) => {
         params.fail();
         params.success({
@@ -865,7 +870,6 @@ candidatereqdata:any = {
       
       });
       this.gridApi.hideOverlay();
-      // 
       }
     }
 }
@@ -928,10 +932,12 @@ candidatereqdata:any = {
       }
 
     getFilter(filteredValues,index){
+      this.selectedFilterTotalCount = '';
       localStorage.setItem('filterItem',filteredValues ? JSON.stringify(filteredValues) : JSON.stringify(this.candidatereqdata));
       let data;
       const cgpa = JSON.parse(localStorage.getItem('Cgpa'));
       if(filteredValues){
+        this.filterApplied = true;
         data = {
           ...filteredValues, 
           email: this.appconfig.getLocalStorage('email'),
@@ -950,6 +956,7 @@ candidatereqdata:any = {
  
 
       }else{
+        this.filterApplied = false;
         this.Isspinner = true
         data = {
           Domain: [],
@@ -962,22 +969,45 @@ candidatereqdata:any = {
         }
       }
 
-      this.ApiService.getCandidatefilters(data).subscribe((response:any)=>{
-          if(response.success){
-            this.Isspinner = false;
-            this.filterTile = Object.keys(response.data);
-            this.FilterData = response.data;
-            this.selectedFilter(this.filterTile[index ? index : 0], index ? index : 0);
-            this.selectedFilterTotalCount = '';
-            this.selectedFilterTotalCount = response && response.totalCount;
-          }else{
-            this.Isspinner = true;
-          }
-      })
+      this.selectedFilterTotalCount = '';
+      setTimeout(() => {
+        this.ApiService.filterSubject.next({data: data, index: index});        
+      }, 0);
       
     }
 
+    callApi(data) {
+      this.Isspinner = true;
+      this.ApiService.getCandidatefilters(data.data).subscribe((response:any)=>{
+        if(response.success){
+          this.Isspinner = false;
+          this.filterTile = Object.keys(response.data);
+          this.FilterData = response.data;
+          
+          this.filterTile = this.filterTile.map((element, i) => {
+              return {label: element, count: this.FilterData[element].filter(data => data?.default)}
+          });
+            const totalCount = response && response.totalCount;
+            this.selectedFilterTotalCount = totalCount;
+          this.selectedFilter(this.filterTile[this.lastClickedLeftSection?.index ? this.lastClickedLeftSection?.index : 0]['label'], this.lastClickedLeftSection?.index ? this.lastClickedLeftSection?.index : 0);
+          this.Isspinner = false;
+        }else{
+          this.Isspinner = false;
+        }
+    })
+
+    }
+
+    callSearch() {
+      this.ApiService.filterSubject.pipe(
+        debounceTime(1000),
+        distinctUntilChanged()).subscribe((res)=> {
+          this.callApi(res);
+        })
+  }
+
   selectedFilter(event, index){
+    this.lastClickedLeftSection = {event, index};
     this.filterIndex = event;
     localStorage.setItem('selectedIndex',index)
     this.filterIndexValue = localStorage.getItem('selectedIndex') ? localStorage.getItem('selectedIndex') : 0;
@@ -990,9 +1020,8 @@ candidatereqdata:any = {
    
   }
 
-  onSelection($event, key) {
+  onSelection() {
     this.appconfig.setLocalStorage('lastSelectedFilter',this.selectedKeyValue)
-    this.Isspinner = true;
     this.selectedOptions.forEach(element => {
         element.default = true;
     });
@@ -1002,15 +1031,14 @@ candidatereqdata:any = {
       this.getFilter(this.filteredValues,this.selectedMenuIndex);
     }
    
-      let arr = []
-      // let filterCount = []
+      let arr = [];
       for (const key in this.filteredValues) {
         if (Object.prototype.hasOwnProperty.call(this.filteredValues, key)) {
           const element = this.filteredValues[key];
             if(this.filteredValues[key].length > 0){
               arr.push({key: key,count:this.filteredValues[key].length})
             }
-            if(key == 'CGPA' && this.from != undefined && this.to != undefined){
+            if(key == 'CGPA' && this.from != undefined && this.from != null && this.to != undefined && this.to != null){
               arr.push({key: key,count:this.filteredValues['CGPA'] = 1})
             }
                      
@@ -1020,9 +1048,10 @@ candidatereqdata:any = {
 }
 
 
+
   applyFilter(){
+    this.gridApi.showNoRowsOverlay();
     this.customfilter = 'true';
-    // this.isFilterRecords = true;
     localStorage.setItem('mainFilterCount', this.ShowFilterWithCount ? JSON.stringify(this.ShowFilterWithCount) : '[]');
     if(this.ShowFilterWithCount.length > 0){
       this.isFilterRecords = true;
@@ -1030,36 +1059,54 @@ candidatereqdata:any = {
       this.isFilterRecords = false;
     }
     localStorage.setItem('customfilter','true');
-    if(this.from != undefined && this.to != undefined){
+    if(this.from != undefined && this.from != null && this.to != undefined && this.to != null){
       if(this.from <= this.to){
         this.CGPA = {
           from : parseInt(this.from),
           to : parseInt(this.to)
         }
         let setLocalvalues = this.CGPA;
-        localStorage.setItem('Cgpa',JSON.stringify(setLocalvalues))
+        localStorage.setItem('Cgpa',JSON.stringify(setLocalvalues));
+        
+
       }else {
-        this.toastr.warning('Please enter valid CGPA');
+        this.toastr.warning('Please enter a valid Graduation Aggregate');
         this.from = '';
         this.to = '';
-        localStorage.setItem('Cgpa','{}')
+        localStorage.setItem('Cgpa','{}');
+        this.removedSelectedSingleFilter('CGPA');
       }
     }else{
-      localStorage.setItem('Cgpa','{}')
+      let checkCGPA = localStorage.getItem('Cgpa')
+      console.log(this.selectedKeyValue)
+      if(this.selectedKeyValue == 'CGPA'){
+        if( this.to == undefined && this.to == null){
+          console.log(this.selectedKeyValue,'selectedKeyValue')
+          this.removedSelectedSingleFilter('CGPA');
+          this.from = '';
+          this.to = '';
+          this.toastr.warning('Please enter a valid Graduation Aggregate ')
+          localStorage.setItem('Cgpa','{}')
+        }
+      }
+
+
     }
     this.cacheBlockSize = 0;
+    this.closeDialog();
     this.tabledef();
     this.gridApi.paginationGoToFirstPage();
     this.gridApi.refreshServerSideStore({ purge: true });
-    this.closeDialog();
-    this.getFilter(this.filteredValues,this.selectedMenuIndex);
+    // this.getFilter(this.filteredValues,this.selectedMenuIndex);
+
   }
 
 
   clearAll(){
-    if(this.ShowFilterWithCount.length > 0){
+    if (this.filterApplied) {
       this.getFilter('',this.selectedMenuIndex);
     }
+    this.lastClickedLeftSection = null;
     this.filteredValues = [];
     this.customfilter = 'false';
     this.from = '';
@@ -1098,6 +1145,7 @@ candidatereqdata:any = {
 
 
   clearFilter(FilterKey){
+    this.selectedKeyValue = FilterKey;
     //Inside filter removing checkbox
     this.removedSelectedSingleFilter(FilterKey);
     this.removedFilterFromRequestArray(FilterKey);
@@ -1133,15 +1181,27 @@ candidatereqdata:any = {
   }
 
   onSearchChange(event,from){
-    if(event && from != undefined ){
-      this.CGPA = {
-        from : parseInt(this.from),
-        to : parseInt(this.to)
+    if(from != null && from != undefined){
+      this.IsToFeildEnable = false;
+      this.Isspinner = true;
+      if(this.to !=undefined && this.to != null){
+        this.onSelection()
       }
-      let setLocalvalues = this.CGPA;
-      localStorage.setItem('Cgpa',JSON.stringify(setLocalvalues))
-      this.getFilter(this.filteredValues,this.selectedMenuIndex)
+      if(this.from != undefined && this.from != null && this.to != undefined && this.to != null){
+        this.CGPA = {
+          from : parseInt(this.from),
+          to : parseInt(this.to)
+        }
+        let setLocalvalues = this.CGPA;
+        localStorage.setItem('Cgpa',JSON.stringify(setLocalvalues))
+        this.getFilter(this.filteredValues,this.selectedMenuIndex)
+      }else{
+        this.Isspinner = false;
+      }
+    }else{
+        this.IsToFeildEnable = true
     }
+
 
   }
 
@@ -1163,5 +1223,9 @@ candidatereqdata:any = {
     }else{
       return FilterValues;
     }
+ }
+
+ convertIntoINDFormate(count){
+    return count.toLocaleString('en-IN')
  }
 }

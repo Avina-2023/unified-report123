@@ -29,8 +29,8 @@
         <div class="recommendedJobs" *ngIf="top3jobs">
             <div *ngFor="let joberoles of top3jobs">
                 <div class="progess">
-                    <circle-progress [percent]="joberoles?.calculationScore" [radius]="50" [outerStrokeWidth]="10" [space]="-10" [innerStrokeWidth]="10" [outerStrokeColor]="joberoles?.colorCode" [innerStrokeColor]="'#F2F2F2'" [showSubtitle]="false" [titleFontSize]="35" [subtitleFontWeight]="600"
-                        [subtitleFontSize]="31" [animationDuration]="0"></circle-progress>
+                    <circle-progress [percent]="joberoles?.calculationScore" [radius]="50" [outerStrokeWidth]="10" [space]="-10" [innerStrokeWidth]="10" [outerStrokeColor]="joberoles?.colorCode" [innerStrokeColor]="'#F2F2F2'" [showSubtitle]="false" [titleFontSize]="35" [subtitleFontSize]="35"
+                        [subtitleFontWeight]="600" [subtitleFontSize]="35" [animationDuration]="0"></circle-progress>
                     <div class="jobfor">Recommended for
                         <div class="jobName">{{joberoles?.jobname}}</div>
                     </div>
