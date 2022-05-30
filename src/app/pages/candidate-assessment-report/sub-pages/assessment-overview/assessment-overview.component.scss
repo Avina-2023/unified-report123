@@ -5,11 +5,14 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        position: relative;
         .perceentile {
-            width: 86px;
-            height: 62px;
             background: #08558C 0% 0% no-repeat padding-box;
             border-radius: 4px;
+            padding: 5px 10px;
+            position: absolute;
+            right: 15px;
+            bottom: 15px;
             .percenCount {
                 font-size: 25px;
                 color: #ffffff;

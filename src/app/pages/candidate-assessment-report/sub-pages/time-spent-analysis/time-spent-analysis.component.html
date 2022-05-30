@@ -13,12 +13,12 @@
                 <div class="left">
                     <div class="heading">Overall duration spent</div>
                     <div class="pieChart">
-                        <canvas baseChart chartType="doughnut" [legend]="showLegend" [data]="doughnutChartData" [labels]="doughnutChartLabels" [options]="chartOptions">
+                        <canvas baseChart chartType="doughnut" [legend]="showLegend" [datasets]="doughnutChartData" [labels]="doughnutChartLabels" [options]="chartOptions">
                         </canvas>
                     </div>
 
                     <div class="mainCard">
-                        <div class="Piecard" *ngFor="let overall of getTimeSpentDetails.complexityData">
+                        <div class="Piecard active" *ngFor="let overall of getTimeSpentDetails.complexityData">
                             <div>
                                 <div class="legend"></div>
                                 <div class="legendContent">{{overall && overall.complexity}}</div>
