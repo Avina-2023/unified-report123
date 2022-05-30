@@ -61,7 +61,9 @@ export class TimeSpentAnalysisComponent implements OnInit {
               formArray[2].color = '#22538C'
             }
        });
-       this.timeSpentOuterChart(formArray)
+       this.timeSpentOuterChart(formArray);
+       this.getTimeSpentDetails.complexityData = formArray;
+       console.log(this.getTimeSpentDetails,'this.getTimeSpentDetails')
   }
 
     timeSpentOuterChart(data){
