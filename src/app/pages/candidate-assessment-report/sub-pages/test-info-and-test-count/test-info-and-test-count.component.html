@@ -14,7 +14,7 @@
         Select Test :
         <div class="expan">
             <mat-accordion class="example-headers-align">
-                <mat-expansion-panel>
+                <mat-expansion-panel (click)="open(isExpand)" [expanded]="isExpand">
                     <mat-expansion-panel-header>
                         <mat-panel-title>
                             <div class="expanTitle">
@@ -24,7 +24,14 @@
                         </mat-panel-title>
                     </mat-expansion-panel-header>
                     <mat-selection-list [multiple]="false" disableRipple *ngIf="getTestNameList">
-                        <mat-list-option class="child-checkbox" *ngFor="let testname of getTestNameList;let i = index" [value]='testname.testName' (click)="selectedTestName(testname.testName, i)">{{testname.testName}}</mat-list-option>
+                        <mat-list-option [selected]="testname.testName === selectedTest" class="child-checkbox" *ngFor="let testname of getTestNameList;let i = index" [value]='testname.testName' (click)="selectedTestName(testname.testName, i)">
+                            <div class="dropDownList">
+                                <div>{{testname.testName}}</div>
+                                <div *ngIf="testname.testName === selectedTest ">
+                                    <mat-icon class="check">done</mat-icon>
+                                </div>
+                            </div>
+                        </mat-list-option>
                     </mat-selection-list>
                 </mat-expansion-panel>
             </mat-accordion>

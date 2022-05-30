@@ -38,8 +38,24 @@
                     <div class="heading">Level based durations spent</div>
                     <div class="pieChart">
 
-                    <canvas baseChart chartType="doughnut" [legend]="showLegendSubChart" [datasets]="doughnutChartDataSub" [labels]="doughnutChartLabelsSub" [options]="chartOptionsSub">
+                        <canvas baseChart chartType="doughnut" [legend]="showLegendSubChart" [datasets]="doughnutChartDataSub" [labels]="doughnutChartLabelsSub" [options]="chartOptionsSub">
                     </canvas>
+                    </div>
+                    <div class="mainCard">
+                        <div class="Piecard active" *ngFor="let overall of subChartArr">
+                            <div>
+                                <div class="legend" [ngClass]="{ green: overall.correct == true , red: overall.Incorrect, gray :overall.Unanswered == true }"></div>
+                                <div class="legendContent" *ngIf="overall.correct == true">Correct Answer</div>
+                                <div class="legendContent" *ngIf="overall.Incorrect == true">Incorrect Answer</div>
+                                <div class="legendContent" *ngIf="overall.Unanswered == true">Unanswer</div>
+                            </div>
+                            <div>
+                                <span>{{getTimetaken(overall && overall.timetaken)}}</span>
+                                <div class="minSec">{{TimeTakenMins ? TimeTakenMins : 0}}m <span *ngIf="timeTakenSec">{{timeTakenSec ? timeTakenSec : 0}}s</span></div>
+                                <div class="percentage">{{overall && overall.percentage}}%</div>
+
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

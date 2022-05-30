@@ -178,7 +178,6 @@ export class CandidateOverAllReportComponent implements OnInit {
   }
 
   getSelectedTestName($event){
-    console.log($event,'event')
     this.TestName = $event;
     if(this.TestName){
       this.getTestSummaryCard();

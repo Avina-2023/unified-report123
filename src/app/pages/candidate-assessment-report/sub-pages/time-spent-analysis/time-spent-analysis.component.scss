@@ -118,6 +118,8 @@
                 .right {
                     width: 50%;
                     height: auto;
+                    background: #F9F9F9 0% 0% no-repeat padding-box;
+                    box-shadow: 0px 3px 6px #00000029;
                     &::before {
                         content: '';
                         border-top: 20px solid transparent;
@@ -138,7 +140,58 @@
                             max-width: 400px;
                         }
                     }
-                    
+                    .mainCard {
+                        width: 310px;
+                        margin: 30px auto 0 auto;
+                        .Piecard {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            padding: 13px 11px;
+                            margin-bottom: 10px;
+                            width: 100%;
+                            cursor: pointer;
+                            .minSec {
+                                font-size: 17px;
+                                color: #000000;
+                                font-weight: 500;
+                            }
+                            .percentage {
+                                font-size: 17px;
+                                color: #000000;
+                            }
+                            >div {
+                                display: flex;
+                                align-items: center;
+                                &:last-child {
+                                    >div {
+                                        margin-left: 8px;
+                                        &:first-child {
+                                            margin-left: 0;
+                                        }
+                                    }
+                                }
+                                .green {
+                                    background: #7AC169 !important;
+                                }
+                                .red {
+                                    background: #C15D5D !important;
+                                }
+                                .gray {
+                                    background: #D3D3D4 !important;
+                                }
+                                .legend {
+                                    width: 20px;
+                                    height: 20px;
+                                    // background: #90C8FA;
+                                    border-radius: 4px;
+                                }
+                                .legendContent {
+                                    margin-left: 5px;
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }

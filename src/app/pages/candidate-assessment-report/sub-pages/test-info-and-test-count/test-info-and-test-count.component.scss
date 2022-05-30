@@ -32,6 +32,16 @@
              ::ng-deep.mat-expansion-panel-header {
                 padding: 0 9px;
             }
+            .dropDownList {
+                display: flex;
+                justify-content: space-between;
+                .check {
+                    font-size: 22px !important;
+                    color: #27BBEE;
+                    font-weight: 600;
+                    border: none;
+                }
+            }
             .expanTitle {
                 display: flex;
                 justify-content: flex-start;

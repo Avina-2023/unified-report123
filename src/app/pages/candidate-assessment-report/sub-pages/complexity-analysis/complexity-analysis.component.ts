@@ -71,14 +71,19 @@ export class ComplexityAnalysisComponent implements OnInit, OnChanges {
     let inCorrect:any = [];
     let unAnswered:any = [];
     let unseen:any = [];
-    console.log(this.getComplexityDetails,'getComplexityDetails')
-    this.getComplexityDetails.complexityData.forEach(element => {
-    this.barChartLabels.push(element.complexity);
-  
-    correct.push(element.correct)
-    inCorrect.push(element.inCorrect)
-    unAnswered.push(element.unAnswered)
-    unseen.push(element.unseen)
+    let barLabels = []
+    if(this.getComplexityDetails && this.getComplexityDetails.complexityData){
+      this.getComplexityDetails.complexityData.forEach(element => {
+        barLabels.push(element.complexity);
+        correct.push(element.correct)
+        inCorrect.push(element.inCorrect)
+        unAnswered.push(element.unAnswered)
+        unseen.push(element.unseen)
+        });
+    }
+
+
+    this.barChartLabels = barLabels;
     this.barChartData = [
       {
         data: correct,
@@ -109,11 +114,5 @@ export class ComplexityAnalysisComponent implements OnInit, OnChanges {
         hoverBackgroundColor: ['#D3D3D3', '#D3D3D3', '#D3D3D3', '#D3D3D3']
       },
     ]
-    
-    });
-    // console.log(correct,'correct')
-    // console.log(inCorrect,'inCorrect')
-    // console.log(unAnswered,'unAnswered')
-    // console.log(unseen,'unseen')
   }
 }
