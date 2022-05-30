@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-test-info-and-test-count',
@@ -11,15 +11,20 @@ export class TestInfoAndTestCountComponent implements OnInit {
   selectedTest:any;
   TimeTakenMins: number;
   timeTakenSec: number;
+
+  @Output() TestName: EventEmitter<any> = new EventEmitter<any>();
   constructor() { }
 
   ngOnInit(): void {
     this.selectedTest = this.getTestNameList && this.getTestNameList[0].testName;
+    this.TestName.emit(this.selectedTest);
   }
 
 
   selectedTestName(testName,index){
-    this.selectedTest = testName
+    this.selectedTest = testName;
+    this.TestName.emit(this.selectedTest);
+ 
   }
   getTimetaken(takenTime){
     if(takenTime){

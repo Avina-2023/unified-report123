@@ -32,6 +32,7 @@ export class IsAccessGuard implements CanLoad {
           if( details.email && (details.type  == 'microcert' || details.type  == 'campus')){
                localStorage.setItem('type',details.type);
                localStorage.setItem('token', 'true');
+               sessionStorage.setItem('email',details.email)
                sessionStorage.setItem('driveInfo', details.driveId);
                sessionStorage.setItem('assessmentId',details.assessmentId); 
                this.appConfig.setLocalStorage('role',JSON.stringify(details.role));

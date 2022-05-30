@@ -1,11 +1,11 @@
-<div class="mainWrapper">
+<div class="mainWrapper" *ngIf="getCandidateProfile else nocard">
     <div class="subWrapper">
         <div class="left">
             <app-assessment-overview *ngIf="getCandidateProfile" [getCandidateProfile]="getCandidateProfile"></app-assessment-overview>
         </div>
 
         <div class="right">
-            <app-test-info-and-test-count *ngIf="getTestNameList && getCardDetails" [getCardDetails]="getCardDetails" [getTestNameList]="getTestNameList"></app-test-info-and-test-count>
+            <app-test-info-and-test-count *ngIf="getTestNameList && getCardDetails" (TestName)="getSelectedTestName($event)" [getCardDetails]="getCardDetails" [getTestNameList]="getTestNameList"></app-test-info-and-test-count>
             <app-section-analysis *ngIf="getSectionAnalysisDetails" [getSectionAnalysisDetails]="getSectionAnalysisDetails"></app-section-analysis>
             <app-topic-analysis *ngIf="getTopAnalysisDetails" [getTopAnalysisDetails]="getTopAnalysisDetails"></app-topic-analysis>
             <app-blooms-taxonomy *ngIf="getTaxonomyDetails" [getTaxonomyDetails]="getTaxonomyDetails"></app-blooms-taxonomy>
@@ -14,3 +14,10 @@
         </div>
     </div>
 </div>
+
+<ng-template #nocard>
+    <div class="noCard">
+        <div class="noData">No candidate report found</div>
+        <img class="imgCard" src='../../../../../assets/images/nodata.png' alt="">
+    </div>
+</ng-template>
