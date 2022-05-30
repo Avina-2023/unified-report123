@@ -15,6 +15,8 @@ export class TimeSpentAnalysisComponent implements OnInit {
 
   //Main Pie Chart
   public doughnutChartLabels: Label[] = [];
+  public doughnutChartLabelsSub: Label[] = [];
+  
   // public doughnutChartData: any[] = [];
   public doughnutChartData: ChartDataSets[] = [
     {
@@ -22,10 +24,18 @@ export class TimeSpentAnalysisComponent implements OnInit {
       backgroundColor: [],
     }
   ];
+  public doughnutChartDataSub: ChartDataSets[] = [
+    {
+      data: [],
+      backgroundColor: [],
+    }
+  ];
   showLegend = false;
+  showLegendSubChart = false;
   chartOptions = {
     responsive: true
   };
+  
 
 
 
@@ -34,6 +44,9 @@ export class TimeSpentAnalysisComponent implements OnInit {
   public doughnutChartData1: number[] = [];
 
   chartOptions1 = {
+    responsive: true
+  };
+  chartOptionsSub = {
     responsive: true
   };
 
@@ -45,7 +58,23 @@ export class TimeSpentAnalysisComponent implements OnInit {
 
   }
 
-
+  selectedTimeChart(overall) {
+    let newLabels = [];
+    let colorcodes = ['#7AC169', '#C15D5D', '#D3D3D4'];
+    let newColorcodes = [];
+    let newPercentage = [];    
+    overall.levelData.forEach(element => {
+      for (const key in element) {
+        if (element[key] == true) {
+          newLabels.push(key);
+          key == 'correct' ? newColorcodes.push(colorcodes[0]) : key == 'Incorrect' ? newColorcodes.push(colorcodes[1]) : newColorcodes.push(colorcodes[2]);
+          newPercentage.push(element.percentage);
+        }
+      }
+    });
+    this.doughnutChartLabelsSub = newLabels;
+    this.doughnutChartDataSub = [{data: newPercentage, backgroundColor: newColorcodes}];
+  }
 
   getMainChart(){
     let formArray = [];
@@ -63,7 +92,7 @@ export class TimeSpentAnalysisComponent implements OnInit {
        });
        this.timeSpentOuterChart(formArray);
        this.getTimeSpentDetails.complexityData = formArray;
-       console.log(this.getTimeSpentDetails,'this.getTimeSpentDetails')
+       this.selectedTimeChart(this.getTimeSpentDetails.complexityData[0]);
   }
 
     timeSpentOuterChart(data){
