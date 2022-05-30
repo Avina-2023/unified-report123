@@ -18,7 +18,7 @@
                     </div>
 
                     <div class="mainCard">
-                        <div class="Piecard active" *ngFor="let overall of getTimeSpentDetails.complexityData">
+                        <div class="Piecard active" (click)="selectedTimeChart(overall)" *ngFor="let overall of getTimeSpentDetails.complexityData">
                             <div>
                                 <div class="legend" [ngStyle]="{background:overall.color}"></div>
                                 <div class="legendContent">{{overall && overall.complexity}}</div>
@@ -36,6 +36,11 @@
 
                 <div class="right">
                     <div class="heading">Level based durations spent</div>
+                    <div class="pieChart">
+
+                    <canvas baseChart chartType="doughnut" [legend]="showLegendSubChart" [datasets]="doughnutChartDataSub" [labels]="doughnutChartLabelsSub" [options]="chartOptionsSub">
+                    </canvas>
+                    </div>
                 </div>
             </div>
 
