@@ -13,19 +13,19 @@
                 <div class="left">
                     <div class="heading">Overall duration spent</div>
                     <div class="pieChart">
-                        <canvas baseChart chartType="doughnut" [legend]="showLegend" [data]="doughnutChartData" [labels]="doughnutChartLabels" [options]="chartOptions">
+                        <canvas baseChart chartType="doughnut" [legend]="showLegend" [datasets]="doughnutChartData" [labels]="doughnutChartLabels" [options]="chartOptions">
                         </canvas>
                     </div>
 
                     <div class="mainCard">
-                        <div class="Piecard" *ngFor="let overall of getTimeSpentDetails.complexityData">
+                        <div class="Piecard active" *ngFor="let overall of getTimeSpentDetails.complexityData">
                             <div>
-                                <div class="legend"></div>
+                                <div class="legend" [ngStyle]="{background:overall.color}"></div>
                                 <div class="legendContent">{{overall && overall.complexity}}</div>
                             </div>
                             <div>
                                 <span>{{getTimetaken(overall && overall.timetaken)}}</span>
-                                <div class="minSec">{{TimeTakenMins ? TimeTakenMins : 0}}m <span *ngIf="timeTakenSec">{{timeTakenSec ? timeTakenSec : 0}} s</span></div>
+                                <div class="minSec">{{TimeTakenMins ? TimeTakenMins : 0}}m <span *ngIf="timeTakenSec">{{timeTakenSec ? timeTakenSec : 0}}s</span></div>
                                 <div class="percentage">{{overall && overall.percentage}}%</div>
                                 <div class="arrow"><em class="icon-RightArrow"></em></div>
                             </div>

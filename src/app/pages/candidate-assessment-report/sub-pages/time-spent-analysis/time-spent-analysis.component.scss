@@ -40,12 +40,11 @@
             width: auto;
             height: 540px;
             .miniBox {
-                width: auto;
+                width: 800px;
                 height: 520px;
                 display: flex;
-                margin-left: 7%;
                 padding-top: 1%;
-                margin-right: 7%;
+                margin: 0 auto;
                 .heading {
                     font-size: 18px;
                     color: #565656;
@@ -69,18 +68,29 @@
                         }
                     }
                     .mainCard {
-                        // display: flex;
-                        // justify-content: center;
-                        margin-top: 30px;
+                        width: 310px;
+                        margin: 30px auto 0 auto;
                         .Piecard {
                             display: flex;
                             justify-content: space-between;
                             align-items: center;
-                            width: 310px;
                             padding: 13px 11px;
-                            margin-bottom: 11px;
+                            margin-bottom: 10px;
+                            width: 100%;
                             cursor: pointer;
-                            // background-color: #F9F9F9;
+                            .minSec {
+                                font-size: 17px;
+                                color: #000000;
+                                font-weight: 500;
+                            }
+                            .percentage {
+                                font-size: 17px;
+                                color: #000000;
+                            }
+                            &.active {
+                                box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
+                                background-color: #F9F9F9;
+                            }
                             >div {
                                 display: flex;
                                 align-items: center;
@@ -112,6 +122,16 @@
                     height: auto;
                     display: flex;
                     justify-content: center;
+                    position: relative;
+                    &::before {
+                        content: '';
+                        border-top: 20px solid transparent;
+                        border-right: 20px solid #F9F9F9;
+                        border-bottom: 20px solid transparent;
+                        position: absolute;
+                        left: -20px;
+                        bottom: 100px;
+                    }
                 }
             }
         }

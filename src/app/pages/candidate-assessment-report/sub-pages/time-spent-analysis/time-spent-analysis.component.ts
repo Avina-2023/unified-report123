@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ChartDataSets } from 'chart.js';
+import { Label } from 'ng2-charts';
 
 @Component({
   selector: 'app-time-spent-analysis',
@@ -12,14 +14,26 @@ export class TimeSpentAnalysisComponent implements OnInit {
   timeTakenSec: number;
 
   //Main Pie Chart
-  public doughnutChartLabels: string[] = [];
-  public doughnutChartData: number[] = [];
+  public doughnutChartLabels: Label[] = [];
+  // public doughnutChartData: any[] = [];
+  public doughnutChartData: ChartDataSets[] = [
+    {
+      data: [],
+      backgroundColor: [],
+    }
+  ];
+  showLegend = false;
+  chartOptions = {
+    responsive: true
+  };
+
+
 
   // Second Pie Chart
   public doughnutChartLabels1: string[] = [];
   public doughnutChartData1: number[] = [];
-  showLegend = false;
-  chartOptions = {
+
+  chartOptions1 = {
     responsive: true
   };
 
@@ -34,13 +48,34 @@ export class TimeSpentAnalysisComponent implements OnInit {
 
 
   getMainChart(){
+    let formArray = [];
     this.getTimeSpentDetails.complexityData.forEach(element => {
-         this.doughnutChartLabels.push(element.complexity)
-         this.doughnutChartData.push(element.percentage)
+            if(element.complexity == 'Low'){
+                formArray[0] = element;
+                formArray[0].color = '#90C8FA'
+            }else if (element.complexity == 'Medium'){
+              formArray[1] = element;
+              formArray[1].color = '#4B91F4'
+            }else{
+              formArray[2] = element;
+              formArray[2].color = '#22538C'
+            }
        });
+       this.timeSpentOuterChart(formArray);
+       this.getTimeSpentDetails.complexityData = formArray;
+       console.log(this.getTimeSpentDetails,'this.getTimeSpentDetails')
   }
 
-
+    timeSpentOuterChart(data){
+      let colorCode = [];
+      let chartdata = []
+      data.forEach(element => {
+        colorCode.push(element.color)
+        this.doughnutChartLabels.push(element.complexity)
+        chartdata.push(element.percentage)
+        this.doughnutChartData = [{data: chartdata,backgroundColor: colorCode}];
+        });
+    }
 
   
   getTimetaken(takenTime){
