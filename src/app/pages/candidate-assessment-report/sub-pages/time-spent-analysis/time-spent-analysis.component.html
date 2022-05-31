@@ -18,7 +18,7 @@
                     </div>
 
                     <div class="mainCard">
-                        <div class="Piecard active" (click)="selectedTimeChart(overall)" *ngFor="let overall of getTimeSpentDetails.complexityData">
+                        <div class="Piecard" [class.active]="selectedIndex === i" (click)="selectedTimeChart(overall,i)" *ngFor="let overall of getTimeSpentDetails.complexityData;let i = index ">
                             <div>
                                 <div class="legend" [ngStyle]="{background:overall.color}"></div>
                                 <div class="legendContent">{{overall && overall.complexity}}</div>

@@ -28,7 +28,6 @@ export class CandidateOverAllReportComponent implements OnInit {
     if(this.driveId &&  this.email){
       this.getUserProfileSummary();
       this.getTestName();
-     
     }else{
       this.toast.warning('Please try after sometime')
     }
@@ -179,7 +178,7 @@ export class CandidateOverAllReportComponent implements OnInit {
 
   getSelectedTestName($event){
     this.TestName = $event;
-    if(this.TestName){
+    if($event){
       this.getTestSummaryCard();
       this.getSectionAnalysis();
       this.getTopicAnalysis();
@@ -188,7 +187,4 @@ export class CandidateOverAllReportComponent implements OnInit {
       this.getTimeSpentAnalysis();
     }
   }
-
-  
-
 }

@@ -4,7 +4,8 @@
             <img [src]="getCandidateProfile ? getCandidateProfile.profileImage : '/assets/images/NotSpecified.svg'" alt="" />
         </figure>
         <div class="perceentile">
-            <div class="percenCount"> {{getCandidateProfile ? getCandidateProfile.percentile : ''}}</div>
+            <div class="percenCount">{{getCandidateProfile && getCandidateProfile.percentile}}
+                <span class="st">{{addPercentile(getCandidateProfile.percentile)}}</span></div>
             <div class="percenTitle">Percentile</div>
         </div>
     </div>

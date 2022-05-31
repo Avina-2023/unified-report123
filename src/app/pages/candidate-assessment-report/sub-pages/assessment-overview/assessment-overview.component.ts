@@ -72,6 +72,18 @@ export class AssessmentOverviewComponent implements OnInit {
     }
   }
 
+  addPercentile(val){
+    if(val == 1){
+      return 'st'
+    }else if(val == 2){
+      return 'nd'
+    }else if (val == 3){
+      return 'rd'
+    }else{
+      return 'th'
+    }
+  }
+
   getTimetaken(takenTime){
     if(takenTime){
       let convertTime1 = takenTime.toString();

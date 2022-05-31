@@ -17,6 +17,7 @@ export class TimeSpentAnalysisComponent implements OnInit, OnChanges {
   @Input() getTimeSpentDetails;
   TimeTakenMins: number;
   timeTakenSec: number;
+  selectedIndex: number = null;
   //Main Pie Chart
   public doughnutChartLabels: Label[] = [];
   public doughnutChartLabelsSub: Label[] = [];
@@ -36,17 +37,23 @@ export class TimeSpentAnalysisComponent implements OnInit, OnChanges {
   showLegendSubChart = false;
   chartOptions = {
     responsive: true,
+    plugins: {
+      datalabels: {
+        display: false
+      }
+    }
   };
 
   // Second Pie Chart
   public doughnutChartLabels1: string[] = [];
   public doughnutChartData1: number[] = [];
-
-  chartOptions1 = {
-    responsive: true,
-  };
   chartOptionsSub = {
     responsive: true,
+    plugins: {
+      datalabels: {
+        display: false
+      }
+    }
   };
   subChartArr: any;
 
@@ -57,7 +64,8 @@ export class TimeSpentAnalysisComponent implements OnInit, OnChanges {
     this.getMainChart();
   }
 
-  selectedTimeChart(overall) {
+  selectedTimeChart(overall,index) {
+    this.selectedIndex = index;
     let newLabels = [];
     let colorcodes = ['#7AC169', '#C15D5D', '#D3D3D4'];
     let newColorcodes = [];
@@ -106,7 +114,7 @@ export class TimeSpentAnalysisComponent implements OnInit, OnChanges {
 
     this.timeSpentOuterChart(formArray);
     this.getTimeSpentDetails.complexityData = formArray;
-    this.selectedTimeChart(this.getTimeSpentDetails.complexityData[0]);
+    this.selectedTimeChart(this.getTimeSpentDetails.complexityData[0],0);
   }
 
   timeSpentOuterChart(data) {
