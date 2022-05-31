@@ -5,7 +5,7 @@
         justify-content: space-between;
         margin-top: 3%;
         width: auto;
-        height: 341px;
+        height: auto;
         background: #FFFFFF 0% 0% no-repeat padding-box;
         box-shadow: 0px 3px 6px #00000029;
         opacity: 1;
@@ -93,6 +93,8 @@
                 align-items: center;
                 background: #08558C 0% 0% no-repeat padding-box;
                 border-radius: 4px;
+                font-size: 16px;
+                font-weight: 500;
                 opacity: 1;
                 color: #fff;
             }

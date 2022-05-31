@@ -12,10 +12,35 @@ export class ComplexityAnalysisComponent implements OnInit, OnChanges {
     responsive: true,
     scales: {
             xAxes: [{
-                stacked: true
+                stacked: true,
+                grid: {
+                  drawTicks: false
+                },
+                ticks: {
+                  max : 100,
+                  min : 0,
+                  stepSize:10,
+                },
+                gridLines:{
+                  offsetGridLines: false,
+                  display:true,
+                  borderDash: [7, 3],
+                  color: "rgba(112, 112, 112, .4)",
+                },
+                
             }],
             yAxes: [{
-                stacked: true
+                stacked: true,
+                grid: {
+                  drawTicks: false
+                },
+                
+                gridLines:{
+                  offsetGridLines: false,
+                  display: false,
+                  borderDash: [1, 3],
+                  color: "#b3b3b3"
+                }
             }]
         },
     layout:{
@@ -29,7 +54,7 @@ export class ComplexityAnalysisComponent implements OnInit, OnChanges {
     plugins: {
       datalabels: {
         anchor: "center",
-        align: "end",
+        // align: "end",
         color: '#FFFFFF',
         display: function(context) {
           if (context.dataset.data[context.dataIndex]) {

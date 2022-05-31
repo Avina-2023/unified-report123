@@ -52,7 +52,7 @@ export class AssessmentOverviewComponent implements OnInit {
   }
   };
   TimeTakenMins: number;
-  timeTakenSec: number;
+  timeTakenSec: any;
 
   constructor() { 
   }
@@ -89,7 +89,9 @@ export class AssessmentOverviewComponent implements OnInit {
       let convertTime1 = takenTime.toString();
       let SplitTime1 = convertTime1.split(/([.])/);
       this.TimeTakenMins = parseInt(SplitTime1[0]);
-      this.timeTakenSec = parseInt(SplitTime1[2]);
+      let sec = '0.' + SplitTime1[2];
+      let conIntoSec = parseFloat(sec) * 60;
+      this.timeTakenSec = conIntoSec.toFixed(0);
     }else {
       this.TimeTakenMins = 0;
       this.timeTakenSec = 0;

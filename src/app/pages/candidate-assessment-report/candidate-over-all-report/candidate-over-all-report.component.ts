@@ -60,11 +60,11 @@ export class CandidateOverAllReportComponent implements OnInit {
           this.TestName = res ? res.data[0].testName:'';
           if(this.TestName){
             this.getTestSummaryCard();
-            this.getSectionAnalysis();
-            this.getTopicAnalysis();
-            this.getTaxonomyAnalysis();
-            this.getComplexityAnalysis();
-            this.getTimeSpentAnalysis();
+            // this.getSectionAnalysis();
+            // this.getTopicAnalysis();
+            // this.getTaxonomyAnalysis();
+            // this.getComplexityAnalysis();
+            // this.getTimeSpentAnalysis();
           }
       }else{
         this.toast.warning(res.message);

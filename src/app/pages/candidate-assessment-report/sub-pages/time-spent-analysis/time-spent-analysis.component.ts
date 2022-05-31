@@ -16,7 +16,7 @@ export class TimeSpentAnalysisComponent implements OnInit, OnChanges {
   chart: any;
   @Input() getTimeSpentDetails;
   TimeTakenMins: number;
-  timeTakenSec: number;
+  timeTakenSec: any;
   selectedIndex: number = null;
   //Main Pie Chart
   public doughnutChartLabels: Label[] = [];
@@ -53,9 +53,12 @@ export class TimeSpentAnalysisComponent implements OnInit, OnChanges {
       datalabels: {
         display: false
       }
-    }
+    },
+  
   };
   subChartArr: any;
+  timeTakenSec2: any;
+  TimeTakenMins2: number;
 
   constructor() {}
 
@@ -64,7 +67,8 @@ export class TimeSpentAnalysisComponent implements OnInit, OnChanges {
     this.getMainChart();
   }
 
-  selectedTimeChart(overall,index) {
+  selectedTimeChart(overall,index,time) {
+    this.getTimetaken1(time)
     this.selectedIndex = index;
     let newLabels = [];
     let colorcodes = ['#7AC169', '#C15D5D', '#D3D3D4'];
@@ -114,7 +118,7 @@ export class TimeSpentAnalysisComponent implements OnInit, OnChanges {
 
     this.timeSpentOuterChart(formArray);
     this.getTimeSpentDetails.complexityData = formArray;
-    this.selectedTimeChart(this.getTimeSpentDetails.complexityData[0],0);
+    this.selectedTimeChart(this.getTimeSpentDetails.complexityData[0],0,this.getTimeSpentDetails.complexityData[0].timetaken);
   }
 
   timeSpentOuterChart(data) {
@@ -135,10 +139,26 @@ export class TimeSpentAnalysisComponent implements OnInit, OnChanges {
       let convertTime1 = takenTime.toString();
       let SplitTime1 = convertTime1.split(/([.])/);
       this.TimeTakenMins = parseInt(SplitTime1[0]);
-      this.timeTakenSec = parseInt(SplitTime1[2]);
+      let sec = '0.' + SplitTime1[2];
+      let conIntoSec = parseFloat(sec) * 60;
+      this.timeTakenSec = conIntoSec.toFixed(0);
     } else {
       this.TimeTakenMins = 0;
       this.timeTakenSec = 0;
+    }
+  }
+
+  getTimetaken1(takenTime) {
+    if (takenTime) {
+      let convertTime12 = takenTime.toString();
+      let SplitTime12 = convertTime12.split(/([.])/);
+      this.TimeTakenMins2 = parseInt(SplitTime12[0]);
+      let sec = '0.' + SplitTime12[2];
+      let conIntoSec = parseFloat(sec) * 60;
+      this.timeTakenSec2 = conIntoSec.toFixed(0);
+    } else {
+      this.TimeTakenMins2 = 0;
+      this.timeTakenSec2 = 0;
     }
   }
 }

@@ -5,20 +5,26 @@
                 Time Spent Analysis
             </div>
             <div>
-                Actual Duration : <span class="mins">{{getTimeSpentDetails && getTimeSpentDetails.autualDuration}} Mins</span>
+                Actual Duration : <span class="mins">{{getTimeSpentDetails && getTimeSpentDetails.autualDuration ? getTimeSpentDetails.autualDuration : 0  }}Mins </span>
             </div>
         </div>
-        <div class="chart">
+        <hr>
+        <div class="chart" *ngIf="getTimeSpentDetails.autualDuration > 0;else noCard">
             <div class="miniBox">
                 <div class="left">
                     <div class="heading">Overall duration spent</div>
                     <div class="pieChart">
                         <canvas baseChart chartType="doughnut" [legend]="showLegend" [datasets]="doughnutChartData" [labels]="doughnutChartLabels" [options]="chartOptions">
                         </canvas>
+                        <div class="canvasText">
+                            <span>{{getTimetaken(getTimeSpentDetails && getTimeSpentDetails.testTimetaken ? getTimeSpentDetails.testTimetaken : 0)}}</span>
+                            <p class="duration">{{TimeTakenMins ? TimeTakenMins : 0}}m <span *ngIf="timeTakenSec">{{timeTakenSec ? timeTakenSec : 0}}s</span></p>
+                            <p class="durationSpent">Duration spent</p>
+                        </div>
                     </div>
 
                     <div class="mainCard">
-                        <div class="Piecard" [class.active]="selectedIndex === i" (click)="selectedTimeChart(overall,i)" *ngFor="let overall of getTimeSpentDetails.complexityData;let i = index ">
+                        <div class="Piecard" [class.active]="selectedIndex === i" (click)="selectedTimeChart(overall,i,overall.timetaken)" *ngFor="let overall of getTimeSpentDetails.complexityData;let i = index ">
                             <div>
                                 <div class="legend" [ngStyle]="{background:overall.color}"></div>
                                 <div class="legendContent">{{overall && overall.complexity}}</div>
@@ -27,7 +33,7 @@
                                 <span>{{getTimetaken(overall && overall.timetaken)}}</span>
                                 <div class="minSec">{{TimeTakenMins ? TimeTakenMins : 0}}m <span *ngIf="timeTakenSec">{{timeTakenSec ? timeTakenSec : 0}}s</span></div>
                                 <div class="percentage">{{overall && overall.percentage}}%</div>
-                                <div class="arrow"><em class="icon-RightArrow"></em></div>
+                                <div *ngIf="selectedIndex === i" class="arrow"><em class="icon-RightArrow"></em></div>
                             </div>
                         </div>
                     </div>
@@ -37,9 +43,13 @@
                 <div class="right">
                     <div class="heading">Level based durations spent</div>
                     <div class="pieChart">
-
                         <canvas baseChart chartType="doughnut" [legend]="showLegendSubChart" [datasets]="doughnutChartDataSub" [labels]="doughnutChartLabelsSub" [options]="chartOptionsSub">
                     </canvas>
+                        <div class="canvasText">
+                            <!-- <spna>{{getTimetaken1(overall && overall.timetaken)}}</spna> -->
+                            <p class="duration">{{TimeTakenMins2 ? TimeTakenMins2 : 0}}m <span *ngIf="timeTakenSec2">{{timeTakenSec2 ? timeTakenSec2 : 0}}s</span></p>
+                            <p class="durationSpent">Duration spent</p>
+                        </div>
                     </div>
                     <div class="mainCard">
                         <div class="Piecard active" *ngFor="let overall of subChartArr">
@@ -59,9 +69,10 @@
                     </div>
                 </div>
             </div>
-
-
         </div>
-
     </div>
 </div>
+
+<ng-template #noCard>
+    <div class="NoCard">No Time Spent Analysis Found</div>
+</ng-template>

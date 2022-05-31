@@ -1,4 +1,7 @@
 .sectionAnalysis {
+    hr {
+        margin-top: 0 !important;
+    }
     .section {
         justify-content: space-between;
         margin-top: 3%;
@@ -58,13 +61,34 @@
                     height: auto;
                     .pieChart {
                         width: 100%;
+                        position: relative;
                         display: flex;
                         justify-content: center;
                         margin-top: 5%;
                         canvas {
                             width: 100% !important;
                             height: 100% !important;
-                            max-width: 400px;
+                            max-width: 500px;
+                        }
+                        .canvasText {
+                            position: absolute;
+                            bottom: 80px;
+                            left: 50%;
+                            transform: translateX(-50%);
+                            .duration {
+                                font-size: 14;
+                                font-weight: 600;
+                            }
+                            .durationSpent {
+                                font-size: 11px;
+                                color: #333333;
+                            }
+                            p {
+                                font-size: 15px;
+                                text-align: center;
+                                font-weight: 500;
+                                margin: 0;
+                            }
                         }
                     }
                     .mainCard {
@@ -132,12 +156,33 @@
                     .pieChart {
                         width: 100%;
                         display: flex;
+                        position: relative;
                         justify-content: center;
                         margin-top: 5%;
                         canvas {
                             width: 100% !important;
                             height: 100% !important;
-                            max-width: 400px;
+                            max-width: 500px;
+                        }
+                        .canvasText {
+                            position: absolute;
+                            bottom: 80px;
+                            left: 50%;
+                            transform: translateX(-50%);
+                            .duration {
+                                font-size: 14;
+                                font-weight: 600;
+                            }
+                            .durationSpent {
+                                font-size: 11px;
+                                color: #333333;
+                            }
+                            p {
+                                font-size: 15px;
+                                text-align: center;
+                                font-weight: 500;
+                                margin: 0;
+                            }
                         }
                     }
                     .mainCard {
