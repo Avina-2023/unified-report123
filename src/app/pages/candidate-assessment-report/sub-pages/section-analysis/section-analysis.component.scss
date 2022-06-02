@@ -186,6 +186,22 @@
     }
 }
 
+.legend {
+    margin: 1%;
+    display: flex;
+    justify-content: end;
+    .displayalign {
+        display: flex;
+        align-items: center;
+        margin-right: 10px;
+        color: #000000;
+        font-weight: 500;
+        >img {
+            margin-right: 5px;
+        }
+    }
+}
+
 .card1 {
     margin-top: 20%;
     display: flex;

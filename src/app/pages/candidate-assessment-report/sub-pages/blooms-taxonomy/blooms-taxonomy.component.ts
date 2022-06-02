@@ -43,7 +43,7 @@ export class BloomsTaxonomyComponent implements OnInit {
   open(){
     const dialogRef = this.matDialog.open(this.matDialogRef1, {
       width: '992px',
-      height: '554px',
+      height: 'auto',
       autoFocus: false,
       closeOnNavigation: true,
     });
