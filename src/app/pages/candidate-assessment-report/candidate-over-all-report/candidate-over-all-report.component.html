@@ -6,9 +6,9 @@
 
         <div class="right">
             <app-test-info-and-test-count *ngIf="getTestNameList && getCardDetails" (TestName)="getSelectedTestName($event)" [getCardDetails]="getCardDetails" [getTestNameList]="getTestNameList"></app-test-info-and-test-count>
-            <app-section-analysis *ngIf="getSectionAnalysisDetails" [getSectionAnalysisDetails]="getSectionAnalysisDetails"></app-section-analysis>
-            <app-topic-analysis *ngIf="getTopAnalysisDetails" [getTopAnalysisDetails]="getTopAnalysisDetails"></app-topic-analysis>
-            <app-blooms-taxonomy *ngIf="getTaxonomyDetails" [getTaxonomyDetails]="getTaxonomyDetails"></app-blooms-taxonomy>
+            <app-section-analysis *ngIf="getSectionAnalysisDetails" [getSectionAnalysisDetails]="getSectionAnalysisDetails" [testName]="TestName"></app-section-analysis>
+            <app-topic-analysis *ngIf="getTopAnalysisDetails" [getTopAnalysisDetails]="getTopAnalysisDetails" [testName]="TestName"></app-topic-analysis>
+            <app-blooms-taxonomy *ngIf="getTaxonomyDetails" [getTaxonomyDetails]="getTaxonomyDetails" [testName]="TestName"></app-blooms-taxonomy>
             <app-complexity-analysis *ngIf="getComplexityDetails" [getComplexityDetails]="getComplexityDetails"></app-complexity-analysis>
             <app-time-spent-analysis *ngIf="getTimeSpentDetails" [getTimeSpentDetails]="getTimeSpentDetails"></app-time-spent-analysis>
         </div>

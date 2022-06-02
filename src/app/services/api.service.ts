@@ -137,4 +137,15 @@ export class ApiService {
   getTimeSpentAnalysis(data){
     return this.http.post(`${this.BASE_URL}/getTimeSpentAnalysis`,data);
   }
+
+  getSectionWiseComplexityAnalysis(data){
+    return this.http.post(`${this.BASE_URL}/getSectionWiseComplexityAnalysis`,data);
+  }
+  getComplexityForTopicAnalysis(data){
+    return this.http.post(`${this.BASE_URL}/getComplexityForTopicAnalysis`,data);
+  }
+  getTaxonomyWiseComplexityAnalysis(data){
+    return this.http.post(`${this.BASE_URL}/getTaxonomyWiseComplexityAnalysis`,data);
+  }
+  
 }

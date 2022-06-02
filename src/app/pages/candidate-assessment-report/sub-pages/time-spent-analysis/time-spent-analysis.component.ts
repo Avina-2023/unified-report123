@@ -118,7 +118,7 @@ export class TimeSpentAnalysisComponent implements OnInit, OnChanges {
 
     this.timeSpentOuterChart(formArray);
     this.getTimeSpentDetails.complexityData = formArray;
-    this.selectedTimeChart(this.getTimeSpentDetails.complexityData[0],0,this.getTimeSpentDetails.complexityData[0].timetaken);
+    this.selectedTimeChart(this.getTimeSpentDetails && this.getTimeSpentDetails.complexityData[0],0,this.getTimeSpentDetails && this.getTimeSpentDetails.complexityData && this.getTimeSpentDetails.complexityData[0] && this.getTimeSpentDetails.complexityData[0].timetaken);
   }
 
   timeSpentOuterChart(data) {
