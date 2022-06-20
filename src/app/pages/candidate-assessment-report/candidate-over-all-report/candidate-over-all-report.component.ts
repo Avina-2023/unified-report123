@@ -1,5 +1,4 @@
-import { Component, ErrorHandler, OnInit } from '@angular/core';
-import { error } from 'console';
+import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { AppConfigService } from 'src/app/utils/app-config.service';
 import { ApiService } from './../../../services/api.service';
