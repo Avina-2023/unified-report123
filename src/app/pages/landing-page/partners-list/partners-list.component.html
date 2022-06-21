@@ -10,7 +10,7 @@
                             <section class="bannerSection">
                                 <div class="bannerWrapper">
                                     <div class="owlCarouselWrapper">
-                                        <owl-carousel-o [options]="customOptions">
+                                        <owl-carousel-o [options]="customOptions" #owlCar>
                                             <ng-container>
                                                 <ng-template class="imageWrapper" carouselSlide>
                                                     <figure>
@@ -39,6 +39,11 @@
                                                 </ng-template>
                                             </ng-container>
                                         </owl-carousel-o>
+
+                                        <div class="draggable-button-container">
+                                            <button class="sliderBtn left doc" (click)="owlCar.prev()"><em class="icon-LeftArrow"></em></button>
+                                            <button class="sliderBtn right doc" (click)="owlCar.next()"><em class="icon-RightArrow"></em></button>
+                                        </div>
                                     </div>
                                 </div>
                             </section>
@@ -52,7 +57,8 @@
                             <section class="bannerSection">
                                 <div class="bannerWrapper">
                                     <div class="owlCarouselWrapper">
-                                        <owl-carousel-o [options]="customOptions">
+
+                                        <owl-carousel-o [options]="customOptions" #owlCar1>
                                             <ng-container>
                                                 <ng-template class="imageWrapper" carouselSlide>
                                                     <figure>
@@ -61,6 +67,10 @@
                                                 </ng-template>
                                             </ng-container>
                                         </owl-carousel-o>
+                                        <div class="draggable-button-container">
+                                            <button class="sliderBtn left doc" (click)="owlCar1.prev()"><em class="icon-LeftArrow"></em></button>
+                                            <button class="sliderBtn right doc" (click)="owlCar1.next()"><em class="icon-RightArrow"></em></button>
+                                        </div>
                                     </div>
                                 </div>
                             </section>
@@ -74,7 +84,7 @@
                             <section class="bannerSection">
                                 <div class="bannerWrapper">
                                     <div class="owlCarouselWrapper">
-                                        <owl-carousel-o [options]="customOptions">
+                                        <owl-carousel-o [options]="customOptions" #owlCar2>
                                             <ng-container>
 
                                                 <ng-template class="imageWrapper" carouselSlide>
@@ -99,6 +109,10 @@
                                                 </ng-template>
                                             </ng-container>
                                         </owl-carousel-o>
+                                        <div class="draggable-button-container">
+                                            <button class="sliderBtn left doc" (click)="owlCar2.prev()"><em class="icon-LeftArrow"></em></button>
+                                            <button class="sliderBtn right doc" (click)="owlCar2.next()"><em class="icon-RightArrow"></em></button>
+                                        </div>
                                     </div>
                                 </div>
                             </section>

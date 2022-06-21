@@ -13,18 +13,15 @@ export class PartnersListComponent implements OnInit {
   // rightNavDisabled = false;
   customOptions: OwlOptions = {
     loop: true,
-    mouseDrag: false,
-    touchDrag: false,
-    pullDrag: false,
     autoplay: true,
     animateIn: 'fadeIn',
     animateOut: 'fadeOut',
-    autoplayTimeout: 1000,
+    autoplayTimeout: 2000,
     autoplayHoverPause: false,
     dots: false,
-    navSpeed: 1000,
-    navText: ['', ''],
-    nav: false,
+    navSpeed: 2000,
+    navText: ["<div class='nav-btn prev-slide'></div>","<div class='nav-btn next-slide'></div>"],
+    nav: true,
     autoHeight: true,
     autoWidth: true,
     responsive: {
@@ -57,6 +54,7 @@ export class PartnersListComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+   
   }
 
   
