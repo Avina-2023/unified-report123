@@ -4,11 +4,11 @@
             <div class="sectionTitle">
                 Bloom’s Taxonomy
             </div>
-            <div class="view">
+            <div class="view" (click)="open()">
                 <img class="icon" [src]="'/assets/images/candidateReport/barIcon.svg'"> View Complexity Analysis
             </div>
         </div>
-        <div class="SectionInfo">
+        <div class="SectionInfo" *ngIf="getTaxonomyDetails.length > 0; else noCard">
             <table id="section" class="tableInfo" border="0" cellpadding="0" cellspacing="0">
                 <thead>
                     <tr>
@@ -50,3 +50,83 @@
         </div>
     </div>
 </div>
+
+<ng-template #matDialog1>
+    <div class="popUpHead" mat-dialog-title>
+        <div class="heading">Bloom’s - Complexity Analysis</div>
+        <div class="close"><em (click)="closeBox()" class="icon-Close"></em></div>
+    </div>
+
+    <mat-dialog-content>
+        <div class="tables" *ngIf="data && data.length > 0;else noCard1">
+            <table>
+                <thead>
+                    <tr>
+                        <th rowspan="2">Section Name</th>
+                        <th colspan="4">Complexity Level</th>
+                    </tr>
+                    <tr>
+                        <th class="subHead">Easy Level</th>
+                        <th class="subHead">Medium Level</th>
+                        <th class="subHead">High Level</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let complexity of data">
+                        <td><b>{{complexity.sectionName}}</b></td>
+                        <td>No.of Questions <span>{{complexity.easytotal}}</span>
+                            <div class="questionAns" *ngFor="let easy of complexity.easylevel">
+                                <span><img [src]="'/assets/images/candidateReport/tick.svg'">{{easy.correct}}</span>
+                                <span><img [src]="'/assets/images/candidateReport/cross.svg'">{{easy.incorrect}}</span>
+                                <span><img [src]="'/assets/images/candidateReport/question.svg'">{{easy.Unanswered}}</span>
+                                <span><img [src]="'/assets/images/candidateReport/eyes.svg'">{{easy.Unseen}}</span>
+                            </div>
+                        </td>
+
+                        <td>No.of Questions <span>{{complexity.mediumtotal}}</span>
+                            <div class="questionAns" *ngFor="let medium of complexity.mediumlevel">
+                                <span><img [src]="'/assets/images/candidateReport/tick.svg'">{{medium.correct}}</span>
+                                <span><img [src]="'/assets/images/candidateReport/cross.svg'">{{medium.incorrect}}</span>
+                                <span><img [src]="'/assets/images/candidateReport/question.svg'">{{medium.Unanswered}}</span>
+                                <span><img [src]="'/assets/images/candidateReport/eyes.svg'">{{medium.Unseen}}</span>
+                            </div>
+                        </td>
+                        <td>No.of Questions <span>{{complexity.hightotal}}</span>
+                            <div class="questionAns" *ngFor="let high of complexity.highlevel">
+                                <span><img [src]="'/assets/images/candidateReport/tick.svg'">{{high.correct}}</span>
+                                <span><img [src]="'/assets/images/candidateReport/cross.svg'">{{high.incorrect}}</span>
+                                <span><img [src]="'/assets/images/candidateReport/question.svg'">{{high.Unanswered}}</span>
+                                <span><img [src]="'/assets/images/candidateReport/eyes.svg'">{{high.Unseen}}</span>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </mat-dialog-content>
+
+    <mat-dialog-actions align="start">
+        <div class="legend">
+            <div class="displayalign">
+                <img [src]="'/assets/images/candidateReport/tick.svg'">Correct Answer
+            </div>
+            <div class="displayalign">
+                <img [src]="'/assets/images/candidateReport/cross.svg'">Incorrect Answer
+            </div>
+            <div class="displayalign">
+                <img [src]="'/assets/images/candidateReport/question.svg'">Unanswered
+            </div>
+            <div class="displayalign">
+                <img [src]="'/assets/images/candidateReport/eyes.svg'">Unseen
+            </div>
+        </div>
+    </mat-dialog-actions>
+
+</ng-template>
+
+<ng-template #noCard>
+    <div class="NoCard">No Bloom’s Taxonomy Found</div>
+</ng-template>
+<ng-template #noCard1>
+    <div class="NoCard card1">No Bloom’s Taxonomy Found</div>
+</ng-template>

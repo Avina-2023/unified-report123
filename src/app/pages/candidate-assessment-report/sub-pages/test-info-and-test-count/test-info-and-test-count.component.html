@@ -14,7 +14,7 @@
         Select Test :
         <div class="expan">
             <mat-accordion class="example-headers-align">
-                <mat-expansion-panel>
+                <mat-expansion-panel (click)="open(isExpand)" [expanded]="isExpand">
                     <mat-expansion-panel-header>
                         <mat-panel-title>
                             <div class="expanTitle">
@@ -24,7 +24,14 @@
                         </mat-panel-title>
                     </mat-expansion-panel-header>
                     <mat-selection-list [multiple]="false" disableRipple *ngIf="getTestNameList">
-                        <mat-list-option class="child-checkbox" *ngFor="let testname of getTestNameList;let i = index" [value]='testname.testName' (click)="selectedTestName(testname.testName, i)">{{testname.testName}}</mat-list-option>
+                        <mat-list-option [selected]="testname.testName === selectedTest" class="child-checkbox" *ngFor="let testname of getTestNameList;let i = index" [value]='testname.testName' (click)="selectedTestName(testname.testName, i)">
+                            <div class="dropDownList">
+                                <div>{{testname.testName}}</div>
+                                <div *ngIf="testname.testName === selectedTest ">
+                                    <mat-icon class="check">done</mat-icon>
+                                </div>
+                            </div>
+                        </mat-list-option>
                     </mat-selection-list>
                 </mat-expansion-panel>
             </mat-accordion>
@@ -32,25 +39,50 @@
     </div>
     <div class="testDetails">
         <div class="testCard" [ngStyle]="{'background':'#FBF4FF'}">
-            <div class="count">{{getCardDetails?.percentage}}%</div>
+            <div class="count">{{getCardDetails && getCardDetails.percentage ? getCardDetails.percentage : '-'}}<span *ngIf="getCardDetails && getCardDetails.percentage">%</span></div>
             <div class="cardTitle">Test Percentage</div>
+            <div class="progessLine">
+                <div class="borderAlign" [ngStyle]="{'width': getCardDetails.percentage + '%','border-bottom-color':'#CB6FFF'}">
+
+                </div>
+            </div>
         </div>
         <div class="testCard" [ngStyle]="{'background':'#FFF9F0'}">
-            <div class="count">{{getCardDetails?.scoreObtained}}/{{getCardDetails?.totalScore}}</div>
+            <div class="count">{{getCardDetails && getCardDetails.scoreObtained ? getCardDetails.scoreObtained : '-'}}/{{getCardDetails && getCardDetails.totalScore ? getCardDetails.totalScore : '-'}}</div>
             <div class="cardTitle">Score obtained</div>
+            <div class="progessLine">
+                <div class="borderAlign" [ngStyle]="{'width': getCardDetails.scorePercentage + '%','border-bottom-color':'#D9BC91'}">
+
+                </div>
+            </div>
         </div>
         <div class="testCard" [ngStyle]="{'background':'#FFF5FB'}">
-            <div class="count">{{getCardDetails?.questionsAttempted}}/{{getCardDetails?.totalQuestions}}</div>
+            <div class="count">{{getCardDetails && getCardDetails.questionsAttempted ? getCardDetails.questionsAttempted : '-'}}/{{getCardDetails && getCardDetails.totalQuestions ? getCardDetails.totalQuestions : '-'}}</div>
             <div class="cardTitle">Questions Attempted</div>
+            <div class="progessLine">
+                <div class="borderAlign" [ngStyle]="{'width': getCardDetails.questionPercentage + '%','border-bottom-color':'#BF87A7'}">
+
+                </div>
+            </div>
         </div>
         <div class="testCard" [ngStyle]="{'background':'#F7FFF5'}">
             <span>{{getTimetaken(getCardDetails?.timeSpent)}}</span>
             <div class="count">{{TimeTakenMins !=undefined ? TimeTakenMins : 0}}<span class="mins">m </span>{{timeTakenSec !=undefined ? timeTakenSec : 0}}<span class="mins">s</span></div>
             <div class="cardTitle">Time Spent</div>
+            <div class="progessLine">
+                <div class="borderAlign" [ngStyle]="{'width': getCardDetails.timePercentage + '%','border-bottom-color':'#7FAF73'}">
+                </div>
+            </div>
+
         </div>
         <div class="testCard" [ngStyle]="{'background':'#E5EDF3'}">
-            <div class="count">{{getCardDetails?.percentile}}</div>
+            <div class="count">{{getCardDetails && getCardDetails.percentile ? getCardDetails.percentile : '-'}}</div>
             <div class="cardTitle">Percentile</div>
+            <div class="progessLine">
+                <div class="borderAlign" [ngStyle]="{'width': getCardDetails.percentilePercentage + '%','border-bottom-color':'#08558C'}">
+
+                </div>
+            </div>
         </div>
     </div>
 </div>

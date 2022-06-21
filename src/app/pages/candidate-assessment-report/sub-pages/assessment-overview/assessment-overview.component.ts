@@ -51,6 +51,8 @@ export class AssessmentOverviewComponent implements OnInit {
       enabled: false
   }
   };
+  TimeTakenMins: number;
+  timeTakenSec: any;
 
   constructor() { 
   }
@@ -67,6 +69,32 @@ export class AssessmentOverviewComponent implements OnInit {
         data:[100,calDuration],
         backgroundColor: [ "#6665DD","#F0D691"],
       })
+    }
+  }
+
+  addPercentile(val){
+    if(val == 1){
+      return 'st'
+    }else if(val == 2){
+      return 'nd'
+    }else if (val == 3){
+      return 'rd'
+    }else{
+      return 'th'
+    }
+  }
+
+  getTimetaken(takenTime){
+    if(takenTime){
+      let convertTime1 = takenTime.toString();
+      let SplitTime1 = convertTime1.split(/([.])/);
+      this.TimeTakenMins = parseInt(SplitTime1[0]);
+      let sec = '0.' + SplitTime1[2];
+      let conIntoSec = parseFloat(sec) * 60;
+      this.timeTakenSec = conIntoSec.toFixed(0);
+    }else {
+      this.TimeTakenMins = 0;
+      this.timeTakenSec = 0;
     }
   }
 

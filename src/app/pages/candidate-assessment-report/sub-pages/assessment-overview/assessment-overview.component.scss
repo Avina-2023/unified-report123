@@ -5,11 +5,16 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        position: relative;
         .perceentile {
-            width: 86px;
-            height: 62px;
             background: #08558C 0% 0% no-repeat padding-box;
             border-radius: 4px;
+            // padding: 5px 10px;
+            width: 86px;
+            height: 62px;
+            position: absolute;
+            right: 15px;
+            bottom: 15px;
             .percenCount {
                 font-size: 25px;
                 color: #ffffff;
@@ -17,6 +22,10 @@
                 justify-content: center;
                 margin-top: 12%;
                 margin-bottom: 6%;
+                .st {
+                    font-size: 12px;
+                    margin-top: -6px;
+                }
             }
             .percenTitle {
                 font-size: 14px;
@@ -152,6 +161,20 @@
                     bottom: 20px;
                     left: 50%;
                     transform: translateX(-50%);
+                    .totalDuration {
+                        color: #D9B75C;
+                        font-size: 17px;
+                        font-weight: 500;
+                    }
+                    .spent {
+                        color: #6665DD;
+                        font-size: 17px;
+                        font-weight: 500;
+                    }
+                    p {
+                        color: #000000;
+                        font-size: 14px;
+                    }
                 }
             }
             .summary {

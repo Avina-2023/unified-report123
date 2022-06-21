@@ -1,111 +1,403 @@
-@import 'variables_landing';
-figure {
-  margin: 0;
-}
-.hiringPartnres {
-  background-repeat: no-repeat;
-  background-size: cover;
-  width: 100%;
-  padding: 4em 0;
-  position: relative;
-  font-size: 12px;
-  @include md {
-    padding: 8em 0;
-  }
-  @include lg {
-    font-size: 14px;
-  }
-  @include xl {
-    font-size: 16px;
-  }
-  &::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #08558C;
-    opacity: 0.9;
-  }
-  .container {
-    position: relative;
-  }
-  .commonHeadingStyle {
-    color: $whiteColor;
-    font-family: OpenSans,sans-serif;
-    font-size: 1.875em;
-    font-weight: 600;
-    line-height: 1.1;
-    position: relative;
-    margin-bottom: 1.5em;
-  }
-  .commonHeadingStyle:after {
-    left: 0;
-    content: "";
-    position: absolute;
-    background-image: linear-gradient(90deg,#00bcef,#00c0db,#00c1b6,#00be83,#4eb749);
-    width: 3em;
-    height: 4px;
-    border-radius: 1.25em;
-    bottom: -0.4em;
-  }
-
-  .wrapper {
-    display: flex;
-    justify-content: space-between;
-    align-self: center;
-    flex-wrap: wrap;
-    @include md {
-      flex-wrap: nowrap;
-    }
-  }
-  .left {
-    width: 100%;
-    @include md {
-      width: 30%;
-    }
-    @include lg {
-      width: 25%;
-    }
-    p {
-      font-size: 1.125em;
-      font-weight: 300;
-      color: $whiteColor;
-      line-height: 1.5;
-    }
-  }
-  .right {
-    width: 100%;
-    @include md {
-      width: 65%;
-      margin-left: 5%;
-    }
-    @include lg {
-      width: 70%;
-    }
-    .figWrapper {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-wrap: wrap;
-    }
+    @import 'variables_landing';
     figure {
-      background-color: $whiteColor;
-      border-radius: 5px;
-      padding: 1em;
-      margin: 0.5em 0.5%;
-      width: 32%;
-      text-align: center;
-      img {
-        height: 40px;
-        object-fit: contain;
-        object-position: top;
-        width: 100%;
-        @include lg {
-          height: 60px;
-        }
-      }
+        margin: 0;
     }
-  }
-}
+    
+    .hiringPartnres {
+        background-repeat: no-repeat;
+        background-size: cover;
+        width: 100%;
+        padding: 4em 0;
+        position: relative;
+        font-size: 12px;
+        @include md {
+            padding: 3em 0;
+        }
+        @include lg {
+            font-size: 14px;
+        }
+        @include xl {
+            font-size: 16px;
+        }
+        &::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #fff;
+            opacity: 0.9;
+        }
+        .container {
+            position: relative;
+        }
+        .commonHeadingStyle {
+            color: #000;
+            font-family: OpenSans, sans-serif;
+            font-size: 1.875em;
+            font-weight: 600;
+            line-height: 1.1;
+            position: relative;
+            margin-bottom: 1.5em;
+        }
+        .commonHeadingStyle:after {
+            left: 0;
+            content: "";
+            position: absolute;
+            background-image: linear-gradient(90deg, #00bcef, #00c0db, #00c1b6, #00be83, #4eb749);
+            width: 3em;
+            height: 4px;
+            border-radius: 1.25em;
+            bottom: -0.4em;
+        }
+        .wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-self: center;
+            flex-wrap: wrap;
+            @include md {
+                flex-wrap: nowrap;
+            }
+        }
+        .left {
+            width: 100%;
+            @include md {
+                width: 30%;
+            }
+            @include lg {
+                width: 25%;
+            }
+            p {
+                font-size: 1.125em;
+                font-weight: 300;
+                color: $whiteColor;
+                line-height: 1.5;
+            }
+        }
+        .right {
+            width: 100%;
+            @include md {
+                width: 65%;
+                margin-left: 5%;
+            }
+            @include lg {
+                width: 70%;
+            }
+            .figWrapper {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-wrap: wrap;
+            }
+            figure {
+                background-color: $whiteColor;
+                border-radius: 5px;
+                padding: 1em;
+                margin: 0.5em 0.5%;
+                width: 32%;
+                text-align: center;
+                img {
+                    height: 40px;
+                    object-fit: contain;
+                    object-position: top;
+                    width: 100%;
+                    @include lg {
+                        height: 60px;
+                    }
+                }
+            }
+        }
+        .tabs {
+            .imgContainer {
+                position: relative;
+                font-size: 11px;
+                button.sliderBtn,
+                .sliderBtn:focus {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    background: #FFFFFF 0% 0% no-repeat padding-box;
+                    box-shadow: 0px 0px 6px #00000029;
+                    // opacity: 0.15;
+                    border: none;
+                    border-radius: 50%;
+                    height: 30px;
+                    width: 30px;
+                    position: absolute;
+                    border: 1px solid #dedede !important;
+                    padding: 3px;
+                    line-height: 1.5;
+                    z-index: 5;
+                    outline: none;
+                    top: 15.5em;
+                    padding-top: 5px;
+                    &.doc {
+                        top: 0;
+                        background-color: #fff;
+                        width: 30px;
+                        height: 30px;
+                        position: relative;
+                    }
+                    &.right {
+                        // right: 2px;
+                        &.doc {
+                            left: calc(100% - 139px);
+                        }
+                    }
+                    &.left {
+                        // left: 12px;
+                        &.doc {
+                            left: 23px;
+                            right: 100%;
+                        }
+                    }
+                    &:disabled {
+                        pointer-events: none;
+                        opacity: 0.5;
+                    }
+                }
+                .figWrapper {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    flex-wrap: wrap;
+                }
+                figure {
+                    background: #FFFFFF 0% 0% no-repeat padding-box;
+                    box-shadow: 4px 4px 10px #0000001F;
+                    border-radius: 5px;
+                    padding: 1em;
+                    margin: 0.5em 2.5%;
+                    width: 248px;
+                    text-align: center;
+                    img {
+                        height: 40px;
+                        object-fit: contain;
+                        object-position: top;
+                        width: 100%;
+                        @include lg {
+                            height: 60px;
+                        }
+                    }
+                }
+            }
+            .mat-tab-group {
+                width: 100%;
+            }
+             ::ng-deep .mat-tab-body {
+                background: #F6F6F6;
+            }
+             ::ng-deep .mat-tab-group.mat-primary .mat-ink-bar,
+            .mat-tab-nav-bar.mat-primary .mat-ink-bar {
+                background-color: #fff !important;
+                border: 2px solid #08558C;
+            }
+             ::ng-deep .mat-tab-list .mat-tab-labels {
+                color: blue;
+                background-color: #fff;
+            }
+             ::ng-deep .mat-tab-list .mat-tab-labels .mat-tab-label-active {
+                color: #08558C !important;
+                background-color: #fff;
+            }
+             ::ng-deep .mat-tab-label .mat-tab-label-content {
+                display: inline-flex;
+                justify-content: center;
+                align-items: center;
+                white-space: nowrap;
+                color: #08558C;
+            }
+            //  ::ng-deep.mat-tab-body-wrapper {
+            //     padding-bottom: 80px;
+            // }
+        }
+    }
+    
+    .wrapper {
+        position: relative;
+        // height: 100vh;
+    }
+    
+    .bannerSection {
+        position: relative;
+        width: 100%;
+        display: flex;
+        // align-items: center;
+        height: 100%;
+        @include xl {
+            height: 113px;
+        }
+        figure {
+            background: #FFFFFF 0% 0% no-repeat padding-box;
+            box-shadow: 4px 4px 10px #0000001F;
+            border-radius: 5px;
+            padding: 1em;
+            margin: 0.5em 2.5%;
+            margin-left: 17%;
+            width: 248px !important;
+            text-align: center;
+            img {
+                height: 40px;
+                object-fit: contain;
+                object-position: top;
+                width: 100%;
+                @include lg {
+                    height: 60px;
+                }
+            }
+        }
+        .bannerWrapper {
+            position: relative;
+            width: 100%;
+            .owlCarouselWrapper {
+                position: relative;
+                font-size: 11px;
+                @include mobile {
+                    font-size: 7px;
+                }
+                @include sm {
+                    font-size: 9px;
+                }
+                @include md {
+                    font-size: 11px;
+                }
+                @include lg {
+                    font-size: 14px;
+                }
+                @include xl {
+                    font-size: 16px;
+                }
+                .imageWrapper {
+                    position: relative;
+                }
+                figure {
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                    background-position: top center;
+                    width: 100%;
+                    &::before,
+                    &::after {
+                        content: "";
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
+                button.sliderBtn,
+                .sliderBtn:focus {
+                    background: #FFFFFF 0% 0% no-repeat padding-box;
+                    box-shadow: 0px 0px 6px #00000029;
+                    // opacity: 0.15;
+                    border: none;
+                    border-radius: 50%;
+                    height: 30px;
+                    width: 30px;
+                    position: absolute;
+                    border: 1px solid #dedede !important;
+                    padding: 3px;
+                    line-height: 1.5;
+                    z-index: 5;
+                    outline: none;
+                    top: 15.5em;
+                    padding-top: 5px;
+                    &.doc {
+                        top: 0;
+                        background-color: #fff;
+                        width: 30px;
+                        height: 30px;
+                        position: relative;
+                    }
+                    &.right {
+                        // right: 2px;
+                        &.doc {
+                            left: calc(100% - 139px);
+                        }
+                    }
+                    &.left {
+                        // left: 12px;
+                        &.doc {
+                            left: 23px;
+                            right: 100%;
+                        }
+                    }
+                    &:disabled {
+                        pointer-events: none;
+                        opacity: 0.5;
+                    }
+                }
+            }
+        }
+    }
+    
+    .carousel-wrap {
+        width: 1000px;
+        margin: auto;
+        position: relative;
+    }
+    
+    .owl-carousel .owl-nav {
+        overflow: hidden;
+        height: 0px;
+    }
+    
+    .owl-theme .owl-dots .owl-dot.active span,
+    .owl-theme .owl-dots .owl-dot:hover span {
+        background: #2caae1;
+    }
+    
+    .owl-carousel .item {
+        text-align: center;
+    }
+    
+    .owl-carousel .nav-btn {
+        height: 47px;
+        position: absolute;
+        width: 26px;
+        cursor: pointer;
+        top: 100px !important;
+    }
+    
+    .owl-carousel .owl-prev.disabled,
+    .owl-carousel .owl-next.disabled {
+        pointer-events: none;
+        opacity: 0.2;
+    }
+    
+    .owl-carousel .prev-slide {
+        background: url("../../../../assets/images/rightArrow.svg") no-repeat scroll 0 0;
+        // left: -33px;
+    }
+    
+    .owl-carousel .next-slide {
+        background: url("../../../../assets/images/rightArrow.svg") no-repeat scroll -24px 0px;
+        // right: -33px;
+    }
+    
+    .owl-carousel .prev-slide:hover {
+        background-position: 0px -53px;
+    }
+    
+    .owl-carousel .next-slide:hover {
+        background-position: -24px -53px;
+    }
+    
+    span.img-text {
+        text-decoration: none;
+        outline: none;
+        transition: all 0.4s ease;
+        -webkit-transition: all 0.4s ease;
+        -moz-transition: all 0.4s ease;
+        -o-transition: all 0.4s ease;
+        cursor: pointer;
+        width: 100%;
+        font-size: 23px;
+        display: block;
+        text-transform: capitalize;
+    }
+    
+    span.img-text:hover {
+        color: #2caae1;
+    }
