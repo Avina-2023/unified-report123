@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="294.258" height="172.845" viewBox="0 0 294.258 172.845">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.643" y1="1" x2="0.04" y2="0.5" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#004684"/>
+      <stop offset="0.447" stop-color="#0e71ab"/>
+      <stop offset="1" stop-color="#27bbee"/>
+    </linearGradient>
+  </defs>
+  <g id="Group_20236" data-name="Group 20236" transform="translate(-569.371 -1911.617)">
+    <circle id="Ellipse_233" data-name="Ellipse 233" cx="70" cy="70" r="70" transform="translate(641.5 1928)" fill="url(#linear-gradient)"/>
+    <path id="Icon_open-arrow-circle-right" data-name="Icon open-arrow-circle-right" d="M24.7-14.54,66.5,18,24.7,50.383V33.774l-104.824-.463V1.405L24.7,3.718Z" transform="translate(635.871 1962) rotate(180)" fill="#27bbee"/>
+    <path id="Icon_open-arrow-circle-right-2" data-name="Icon open-arrow-circle-right" d="M24.7-14.54,66.5,18,24.7,50.383V33.774l-104.824-.463V1.405L24.7,3.718Z" transform="translate(797.129 2034.079)" fill="#004684"/>
+    <circle id="Ellipse_232" data-name="Ellipse 232" cx="54" cy="54" r="54" transform="translate(657.5 1944)" fill="#fff"/>
+    <text id="Skills_Exchange" data-name="Skills
+Exchange" transform="translate(711.5 1992)" fill="#004684" font-size="20" font-family="OpenSans-Bold, Open Sans" font-weight="700"><tspan x="-25" y="0">Skills</tspan><tspan x="-47" y="27">Exchange</tspan></text>
+  </g>
+</svg>

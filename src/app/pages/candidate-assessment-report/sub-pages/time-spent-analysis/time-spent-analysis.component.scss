@@ -1,4 +1,7 @@
 .sectionAnalysis {
+    hr {
+        margin-top: 0 !important;
+    }
     .section {
         justify-content: space-between;
         margin-top: 3%;
@@ -40,12 +43,11 @@
             width: auto;
             height: 540px;
             .miniBox {
-                width: auto;
+                width: 800px;
                 height: 520px;
                 display: flex;
-                margin-left: 7%;
                 padding-top: 1%;
-                margin-right: 7%;
+                margin: 0 auto;
                 .heading {
                     font-size: 18px;
                     color: #565656;
@@ -59,28 +61,56 @@
                     height: auto;
                     .pieChart {
                         width: 100%;
+                        position: relative;
                         display: flex;
                         justify-content: center;
                         margin-top: 5%;
                         canvas {
                             width: 100% !important;
                             height: 100% !important;
-                            max-width: 400px;
+                            max-width: 500px;
+                        }
+                        .canvasText {
+                            position: absolute;
+                            bottom: 80px;
+                            left: 50%;
+                            transform: translateX(-50%);
+                            .duration {
+                                font-size: 14;
+                                font-weight: 600;
+                            }
+                            .durationSpent {
+                                font-size: 11px;
+                                color: #333333;
+                            }
+                            p {
+                                font-size: 15px;
+                                text-align: center;
+                                font-weight: 500;
+                                margin: 0;
+                            }
                         }
                     }
                     .mainCard {
-                        // display: flex;
-                        // justify-content: center;
-                        margin-top: 30px;
+                        width: 310px;
+                        margin: 30px auto 0 auto;
                         .Piecard {
                             display: flex;
                             justify-content: space-between;
                             align-items: center;
-                            width: 310px;
                             padding: 13px 11px;
-                            margin-bottom: 11px;
+                            margin-bottom: 10px;
+                            width: 100%;
                             cursor: pointer;
-                            // background-color: #F9F9F9;
+                            .minSec {
+                                font-size: 17px;
+                                color: #000000;
+                                font-weight: 500;
+                            }
+                            .percentage {
+                                font-size: 17px;
+                                color: #000000;
+                            }
                             >div {
                                 display: flex;
                                 align-items: center;
@@ -103,15 +133,110 @@
                                 }
                             }
                         }
+                        .active {
+                            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
+                            background-color: #F9F9F9;
+                        }
                     }
                 }
                 .right {
-                    background: #F9F9F9 0% 0% no-repeat padding-box;
-                    box-shadow: 0px 3px 6px #00000029;
                     width: 50%;
                     height: auto;
-                    display: flex;
-                    justify-content: center;
+                    background: #F9F9F9 0% 0% no-repeat padding-box;
+                    box-shadow: 0px 3px 6px #00000029;
+                    &::before {
+                        content: '';
+                        border-top: 20px solid transparent;
+                        border-right: 20px solid #F9F9F9;
+                        border-bottom: 20px solid transparent;
+                        position: absolute;
+                        left: -20px;
+                        bottom: 100px;
+                    }
+                    .pieChart {
+                        width: 100%;
+                        display: flex;
+                        position: relative;
+                        justify-content: center;
+                        margin-top: 5%;
+                        canvas {
+                            width: 100% !important;
+                            height: 100% !important;
+                            max-width: 500px;
+                        }
+                        .canvasText {
+                            position: absolute;
+                            bottom: 80px;
+                            left: 50%;
+                            transform: translateX(-50%);
+                            .duration {
+                                font-size: 14;
+                                font-weight: 600;
+                            }
+                            .durationSpent {
+                                font-size: 11px;
+                                color: #333333;
+                            }
+                            p {
+                                font-size: 15px;
+                                text-align: center;
+                                font-weight: 500;
+                                margin: 0;
+                            }
+                        }
+                    }
+                    .mainCard {
+                        width: 310px;
+                        margin: 30px auto 0 auto;
+                        .Piecard {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            padding: 13px 11px;
+                            margin-bottom: 10px;
+                            width: 100%;
+                            cursor: pointer;
+                            .minSec {
+                                font-size: 17px;
+                                color: #000000;
+                                font-weight: 500;
+                            }
+                            .percentage {
+                                font-size: 17px;
+                                color: #000000;
+                            }
+                            >div {
+                                display: flex;
+                                align-items: center;
+                                &:last-child {
+                                    >div {
+                                        margin-left: 8px;
+                                        &:first-child {
+                                            margin-left: 0;
+                                        }
+                                    }
+                                }
+                                .green {
+                                    background: #7AC169 !important;
+                                }
+                                .red {
+                                    background: #C15D5D !important;
+                                }
+                                .gray {
+                                    background: #D3D3D4 !important;
+                                }
+                                .legend {
+                                    width: 20px;
+                                    height: 20px;
+                                    // background: #90C8FA;
+                                    border-radius: 4px;
+                                }
+                                .legendContent {
+                                    margin-left: 5px;
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }

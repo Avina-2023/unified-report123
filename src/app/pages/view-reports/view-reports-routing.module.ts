@@ -5,6 +5,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HiringReportComponent } from './sub-pages/hiring-report/hiring-report.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { CandidateOverAllReportComponent } from '../candidate-assessment-report/candidate-over-all-report/candidate-over-all-report.component';
 
 const routes: Routes = [
   {
@@ -22,6 +23,9 @@ const routes: Routes = [
   {
     path: `${APP_CONSTANTS.ROUTES.REPORTS.BEHAVIOUR_MODULE.HOME}`, loadChildren: () => import('../behavioural-report/behavioural-report.module').then(m => m.BehaviouralReportModule)
   },
+  // {
+  //   path: `${APP_CONSTANTS.ROUTES.CANDIDATE.VIEWOVERALLREPORT}/:id`, component: CandidateOverAllReportComponent,
+  // },
   {
     path: '',
     redirectTo: `${APP_CONSTANTS.ROUTES.REPORTS.USERLIST}`,
