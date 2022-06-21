@@ -921,7 +921,6 @@ candidatereqdata:any = {
 
 
       openFilter() {
-        // this.getFilter(this.filteredValues,this.selectedMenuIndex);
         this.filterDef = this.matDialog.open(this.filter, {
           width: '1000px',
           height: 'auto',
@@ -1078,10 +1077,8 @@ candidatereqdata:any = {
       }
     }else{
       let checkCGPA = localStorage.getItem('Cgpa')
-      console.log(this.selectedKeyValue)
       if(this.selectedKeyValue == 'CGPA'){
         if( this.to == undefined && this.to == null){
-          console.log(this.selectedKeyValue,'selectedKeyValue')
           this.removedSelectedSingleFilter('CGPA');
           this.from = '';
           this.to = '';

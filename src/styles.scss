@@ -1349,3 +1349,12 @@ textarea {
 .cdk-global-scrollblock {
     overflow-y: hidden !important;
 }
+
+.NoCard {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    color: #6c757d;
+}
