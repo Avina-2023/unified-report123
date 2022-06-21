@@ -6,7 +6,7 @@ import { CandidateOverAllReportComponent } from './candidate-over-all-report/can
 
 const routes: Routes = [
   {
-    path: `${APP_CONSTANTS.ROUTES.CANDIDATE.VIEWOVERALLREPORT}`, component: CandidateOverAllReportComponent,
+    path: `${APP_CONSTANTS.ROUTES.CANDIDATE.VIEWOVERALLREPORT}/:id`, component: CandidateOverAllReportComponent,
   },
   {
     path: '',

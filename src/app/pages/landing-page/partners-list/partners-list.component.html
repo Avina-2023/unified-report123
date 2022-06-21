@@ -1,32 +1,125 @@
-     <!-- hiringPartnres -->
-     <section class="hiringPartnres" [ngStyle]="{'background-image': 'url(' + 'assets/images/landing/partners_bg.png' + ')'}">
-      <div class="container">
-          <div class="commonHeadingStyle">{{'Hiring Partners'}}</div>
-          <div class="wrapper">
-              <div class="left">
-                  <p>{{'L&T EduTech collaborates with 100+ recruiting partners, identify and understand the key talent expectations trending across the globe, design curriculum on right technologies, train learners with industry oriented practice eco-system to place them successfully.'}}</p>
-              </div>
-              <div class="right">
-                  <div class="figWrapper">
-                      <!-- <ng-container *ngFor="let img of images"> -->
-                          <figure>
-                            <img [src]="'assets/images/landing/L&T.png'" alt="">
-                        </figure>
-                          <figure>
-                            <img [src]="'assets/images/landing/L&T_NXT.png'" alt="">
-                        </figure>
-                          <figure>
-                            <img [src]="'assets/images/landing/L&T_Services_Stacked.png'" alt="">
-                        </figure>
-                          <figure>
-                            <img [src]="'assets/images/landing/LTI.png'" alt="">
-                        </figure>
-                          <figure>
-                            <img [src]="'assets/images/landing/Mindtree.png'" alt="">
-                        </figure>
-                      <!-- </ng-container> -->
-                  </div>
-              </div>
-          </div>
-      </div>
-  </section>
+<!-- hiringPartnres -->
+<section class="hiringPartnres">
+    <div class="container">
+        <div class="commonHeadingStyle">{{'Partners'}}</div>
+        <div class="wrapper tabs">
+            <mat-tab-group>
+                <mat-tab label="Hiring Partners">
+                    <div class="imgContainer">
+                        <ng-template matTabContent>
+                            <section class="bannerSection">
+                                <div class="bannerWrapper">
+                                    <div class="owlCarouselWrapper">
+                                        <owl-carousel-o [options]="customOptions" #owlCar>
+                                            <ng-container>
+                                                <ng-template class="imageWrapper" carouselSlide>
+                                                    <figure>
+                                                        <img src="assets/images/landing/L&T.png" alt="" />
+                                                    </figure>
+                                                </ng-template>
+                                                <ng-template class="imageWrapper" carouselSlide>
+                                                    <figure class="banner_2">
+                                                        <img src="assets/images/landing/L&T_NXT.png" alt="" />
+                                                    </figure>
+                                                </ng-template>
+                                                <ng-template class="imageWrapper" carouselSlide>
+                                                    <figure>
+                                                        <img src="assets/images/landing/L&T_Services_Stacked.png" alt="" />
+                                                    </figure>
+                                                </ng-template>
+                                                <ng-template class="imageWrapper" carouselSlide>
+                                                    <figure>
+                                                        <img src="assets/images/landing/LTI.png" alt="" />
+                                                    </figure>
+                                                </ng-template>
+                                                <ng-template class="imageWrapper" carouselSlide>
+                                                    <figure>
+                                                        <img src="assets/images/landing/Mindtree.png" alt="" />
+                                                    </figure>
+                                                </ng-template>
+                                            </ng-container>
+                                        </owl-carousel-o>
+
+                                        <div class="draggable-button-container">
+                                            <button class="sliderBtn left doc" (click)="owlCar.prev()"><em class="icon-LeftArrow"></em></button>
+                                            <button class="sliderBtn right doc" (click)="owlCar.next()"><em class="icon-RightArrow"></em></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </ng-template>
+                    </div>
+
+                </mat-tab>
+                <mat-tab label="Ecosystem Partners">
+                    <div class="imgContainer">
+                        <ng-template matTabContent>
+                            <section class="bannerSection">
+                                <div class="bannerWrapper">
+                                    <div class="owlCarouselWrapper">
+
+                                        <owl-carousel-o [options]="customOptions" #owlCar1>
+                                            <ng-container>
+                                                <ng-template class="imageWrapper" carouselSlide>
+                                                    <figure>
+                                                        <img src="assets/images/landing/newLanding/All_India_Council_for_Technical_Education_logo.png" alt="" />
+                                                    </figure>
+                                                </ng-template>
+                                            </ng-container>
+                                        </owl-carousel-o>
+                                        <div class="draggable-button-container">
+                                            <button class="sliderBtn left doc" (click)="owlCar1.prev()"><em class="icon-LeftArrow"></em></button>
+                                            <button class="sliderBtn right doc" (click)="owlCar1.next()"><em class="icon-RightArrow"></em></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </ng-template>
+                    </div>
+
+                </mat-tab>
+                <mat-tab label="Institutional Partners">
+                    <div class="imgContainer">
+                        <ng-template matTabContent>
+                            <section class="bannerSection">
+                                <div class="bannerWrapper">
+                                    <div class="owlCarouselWrapper">
+                                        <owl-carousel-o [options]="customOptions" #owlCar2>
+                                            <ng-container>
+
+                                                <ng-template class="imageWrapper" carouselSlide>
+                                                    <figure>
+                                                        <img src="assets/images/landing/newLanding/kpriet.png" alt="" />
+                                                    </figure>
+                                                </ng-template>
+                                                <ng-template class="imageWrapper" carouselSlide>
+                                                    <figure class="banner_2">
+                                                        <img src="assets/images/landing/newLanding/download.png" alt="" />
+                                                    </figure>
+                                                </ng-template>
+                                                <ng-template class="imageWrapper" carouselSlide>
+                                                    <figure>
+                                                        <img src="assets/images/landing/newLanding/logo-footer.png" alt="" />
+                                                    </figure>
+                                                </ng-template>
+                                                <ng-template class="imageWrapper" carouselSlide>
+                                                    <figure>
+                                                        <img src="assets/images/landing/newLanding/ANNAUNIVERSITYLOGO.png" alt="" />
+                                                    </figure>
+                                                </ng-template>
+                                            </ng-container>
+                                        </owl-carousel-o>
+                                        <div class="draggable-button-container">
+                                            <button class="sliderBtn left doc" (click)="owlCar2.prev()"><em class="icon-LeftArrow"></em></button>
+                                            <button class="sliderBtn right doc" (click)="owlCar2.next()"><em class="icon-RightArrow"></em></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </ng-template>
+                    </div>
+                </mat-tab>
+            </mat-tab-group>
+        </div>
+    </div>
+</section>
