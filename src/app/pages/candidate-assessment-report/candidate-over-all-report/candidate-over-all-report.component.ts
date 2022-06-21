@@ -1,6 +1,6 @@
-import { Component, ErrorHandler, OnInit } from '@angular/core';
-import { error } from 'console';
+import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { AppConfigService } from 'src/app/utils/app-config.service';
 import { ApiService } from './../../../services/api.service';
 @Component({
   selector: 'app-candidate-over-all-report',
@@ -16,24 +16,27 @@ export class CandidateOverAllReportComponent implements OnInit {
   getTaxonomyDetails:any;
   getComplexityDetails: any;
   getTimeSpentDetails: any;
-  constructor(private ApiService: ApiService,private toast: ToastrService,) { }
+  driveId: any;
+  email: any;
+  TestName: any;
+  constructor(private ApiService: ApiService,private toast: ToastrService, private appConig : AppConfigService) { }
 
   ngOnInit(): void {
-    this.getUserProfileSummary();
-    this.getTestName();
-    this.getTestSummaryCard();
-    this.getSectionAnalysis();
-    this.getTopicAnalysis();
-    this.getTaxonomyAnalysis();
-    this.getComplexityAnalysis();
-    this.getTimeSpentAnalysis();
+    this.driveId = this.appConig.getSessionStorage('driveInfo') ? this.appConig.getSessionStorage('driveInfo') : '';
+    this.email = this.appConig.getSessionStorage('email') ? this.appConig.getSessionStorage('email') : '';
+    if(this.driveId &&  this.email){
+      this.getUserProfileSummary();
+      this.getTestName();
+    }else{
+      this.toast.warning('Please try after sometime')
+    }
   }
 
 
   getUserProfileSummary(){
     let data = {
-      "driveId": "943",
-      "email": "venkat.s1@gmail.com"
+      "driveId": this.driveId,
+      "email":  this.email
     }
       this.ApiService.getTestSummary(data).subscribe((res:any)=>{
         if(res.success){
@@ -46,13 +49,22 @@ export class CandidateOverAllReportComponent implements OnInit {
 
   getTestName(){
     let data = {
-      "driveId": "943",
-      "email": "venkat.s1@gmail.com"
+      "driveId": this.driveId,
+      "email":  this.email
     }
 
     this.ApiService.getTestDetails(data).subscribe((res:any)=>{
       if(res.success){
           this.getTestNameList = res ? res.data : '';
+          this.TestName = res ? res.data[0].testName:'';
+          if(this.TestName){
+            this.getTestSummaryCard();
+            // this.getSectionAnalysis();
+            // this.getTopicAnalysis();
+            // this.getTaxonomyAnalysis();
+            // this.getComplexityAnalysis();
+            // this.getTimeSpentAnalysis();
+          }
       }else{
         this.toast.warning(res.message);
       }
@@ -60,13 +72,15 @@ export class CandidateOverAllReportComponent implements OnInit {
   }
 
   getTestSummaryCard(){
+    this.getCardDetails = [];
     let data = {
-      "driveId":"943",
-      "testName":"Java Microservices Test",
-      "email":"venkat.s1@gmail.com"
+      "driveId": this.driveId,
+      "email":  this.email,
+      "testName": this.TestName,
   }
 
   this.ApiService.getTestSummaryCard(data).subscribe((res:any)=>{
+    this.getCardDetails = [];
     if(res.success){
         this.getCardDetails = res ? res.data[0] : '';
     }else{
@@ -76,10 +90,11 @@ export class CandidateOverAllReportComponent implements OnInit {
   }
 
   getSectionAnalysis(){
+    this.getSectionAnalysisDetails = [];
     let data = {
-      "driveId":"943",
-      "testName":"Java Microservices Test",
-      "email":"venkat.s1@gmail.com"
+      "driveId": this.driveId,
+      "email":  this.email,
+      "testName": this.TestName,
   }
 
   this.ApiService.getSectionAnalysis(data).subscribe((res:any)=>{
@@ -92,10 +107,11 @@ export class CandidateOverAllReportComponent implements OnInit {
   }
 
   getTopicAnalysis(){
+    this.getTopAnalysisDetails = [];
     let data = {
-      "driveId":"943",
-      "testName":"Java Microservices Test",
-      "email":"venkat.s1@gmail.com"
+      "driveId": this.driveId,
+      "email":  this.email,
+      "testName": this.TestName,
   }
 
   this.ApiService.getTopicAnalysis(data).subscribe((res:any)=>{
@@ -108,10 +124,11 @@ export class CandidateOverAllReportComponent implements OnInit {
   }
 
   getTaxonomyAnalysis(){
+    this.getTaxonomyDetails = []
     let data = {
-      "driveId":"943",
-      "testName":"Java Microservices Test",
-      "email":"venkat.s1@gmail.com"
+      "driveId": this.driveId,
+      "email":  this.email,
+      "testName": this.TestName,
   }
 
   this.ApiService.getTaxonomyAnalysis(data).subscribe((res:any)=>{
@@ -124,10 +141,11 @@ export class CandidateOverAllReportComponent implements OnInit {
   }
 
   getComplexityAnalysis(){
+    this.getComplexityDetails = [];
     let data = {
-      "driveId":"943",
-      "testName":"Java Microservices Test",
-      "email":"venkat.s1@gmail.com"
+      "driveId": this.driveId,
+      "email":  this.email,
+      "testName": this.TestName,
   }
 
   this.ApiService.getComplexityAnalysisForTest(data).subscribe((res:any)=>{
@@ -141,10 +159,11 @@ export class CandidateOverAllReportComponent implements OnInit {
 
 
   getTimeSpentAnalysis(){
+    this.getTimeSpentDetails = [];
     let data = {
-      "driveId":"943",
-      "testName":"Java Microservices Test",
-      "email":"venkat.s1@gmail.com"
+      "driveId": this.driveId,
+      "email":  this.email,
+      "testName": this.TestName,
   }
 
   this.ApiService.getTimeSpentAnalysis(data).subscribe((res:any)=>{
@@ -156,8 +175,15 @@ export class CandidateOverAllReportComponent implements OnInit {
   })
   }
 
-
-
-  
-
+  getSelectedTestName($event){
+    this.TestName = $event;
+    if($event){
+      this.getTestSummaryCard();
+      this.getSectionAnalysis();
+      this.getTopicAnalysis();
+      this.getTaxonomyAnalysis();
+      this.getComplexityAnalysis();
+      this.getTimeSpentAnalysis();
+    }
+  }
 }

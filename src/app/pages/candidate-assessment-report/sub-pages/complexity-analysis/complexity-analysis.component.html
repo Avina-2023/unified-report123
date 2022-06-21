@@ -4,33 +4,39 @@
             <div class="sectionTitle">
                 Complexity Analysis
             </div>
-            <div class="view">
-                <img class="icon" [src]="'/assets/images/candidateReport/barIcon.svg'"> View Complexity Analysis
+            <div>
+                Total Questions : <span class="mins">{{getComplexityDetails && getComplexityDetails.totalQuestions ? getComplexityDetails.totalQuestions : 0}}</span>
             </div>
         </div>
         <hr>
+        <div *ngIf="getComplexityDetails.totalQuestions > 0; else noCard">
+            <div class="legend">
+                <div class="displayalign">
+                    <div class="legendColor" [ngStyle]="{'background':'#7AC169 0% 0% no-repeat padding-box'}"></div>
+                    Correct Answer
+                </div>
+                <div class="displayalign">
+                    <div class="legendColor" [ngStyle]="{'background':'#C15D5D 0% 0% no-repeat padding-box'}"></div>
+                    Incorrect Answer
+                </div>
+                <div class="displayalign">
+                    <div class="legendColor" [ngStyle]="{'background':'#588FB7 0% 0% no-repeat padding-box'}"></div>
+                    Unanswered
+                </div>
+                <div class="displayalign">
+                    <div class="legendColor" [ngStyle]="{'background':'#D3D3D3 0% 0% no-repeat padding-box'}"></div>
+                    Unseen
+                </div>
+            </div>
 
-        <div class="legend">
-            <div class="displayalign">
-                <div class="legendColor" [ngStyle]="{'background':'#7AC169 0% 0% no-repeat padding-box'}"></div>
-                Correct Answer
-            </div>
-            <div class="displayalign">
-                <div class="legendColor" [ngStyle]="{'background':'#C15D5D 0% 0% no-repeat padding-box'}"></div>
-                Incorrect Answer
-            </div>
-            <div class="displayalign">
-                <div class="legendColor" [ngStyle]="{'background':'#588FB7 0% 0% no-repeat padding-box'}"></div>
-                Unanswered
-            </div>
-            <div class="displayalign">
-                <div class="legendColor" [ngStyle]="{'background':'#D3D3D3 0% 0% no-repeat padding-box'}"></div>
-                Unseen
+            <div class="barcanvas">
+                <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend" [chartType]="barChartType"></canvas>
             </div>
         </div>
 
-        <div class="barcanvas">
-            <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend" [chartType]="barChartType"></canvas>
-        </div>
     </div>
 </div>
+
+<ng-template #noCard>
+    <div class="NoCard">No Complexity Analysis Found</div>
+</ng-template>
