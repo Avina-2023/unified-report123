@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { GlobalValidatorService } from 'src/app/globalvalidators/global-validator.service';
+import { ApiService } from 'src/app/services/api.service';
+import { AppConfigService } from 'src/app/utils/app-config.service';
 
 @Component({
   selector: 'app-register-page',
@@ -9,7 +12,10 @@ import { GlobalValidatorService } from 'src/app/globalvalidators/global-validato
 })
 export class RegisterPageComponent implements OnInit {
   registerForm: FormGroup;
-  constructor(public fb: FormBuilder,private glovbal_validators: GlobalValidatorService,) { }
+  success = true;
+  constructor(public fb: FormBuilder,private glovbal_validators: GlobalValidatorService,public apiService: ApiService,
+    public appConfig: AppConfigService,
+    public toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.formInitialize();
@@ -22,11 +28,30 @@ export class RegisterPageComponent implements OnInit {
       company: ['', [Validators.required]],
       mobile: ['', [Validators.required,this.glovbal_validators.mobileRegex()]],
       email: ['', [Validators.required, Validators.pattern(emailregex)]],
-      term:['', [Validators.required]],
+      // term:['',[Validators.required]],
     })
   }
 
   register(){
+    let data = {
+      mobile:this.registerForm.value.mobile,
+      email:this.registerForm.value.email,
+      name:this.registerForm.value.name,
+      company:this.registerForm.value.company,
+      // terms:this.registerForm.value.term,
+    }
+    this.apiService.postRegister(data).subscribe((response:any)=>{
+        if(response.success){
+          setTimeout(() => {
+            this.success = false;
+          }, 1000);
+        
+        }else{
+            this.success = true;
+            this.toastr.warning(response.message)
+        }
+    })
+    
 
   }
 

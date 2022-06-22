@@ -46,7 +46,7 @@
             font-weight: 500;
             position: absolute;
             width: 50%;
-            height: 100%;
+            height: 92%;
         }
         // }
     }
@@ -81,12 +81,20 @@
                     height: 43px;
                     margin-top: 10%;
                 }
-                .btn :disabled {
-                    background-color: #666666;
+                .btn:disabled {
+                    background-color: #6666666e;
                     cursor: not-allowed;
                 }
             }
         }
+    }
+    .example-section {
+        padding-top: 20px;
+        // a {
+        //     color: #0097CB;
+        //     font-size: 16px;
+        //     // font-weight: 500;
+        // }
     }
 }
 
@@ -98,6 +106,15 @@
 
 ::ng-deep.mat-form-field {
     width: 100%;
+}
+
+::ng-deep.mat-checkbox-checked:not(.mat-checkbox-disabled).mat-accent .mat-ripple-element,
+.mat-checkbox:active:not(.mat-checkbox-disabled).mat-accent .mat-ripple-element {
+    background: #0097CB !important;
+}
+
+::ng-deep.mat-checkbox-checked.mat-accent .mat-checkbox-background {
+    background-color: #0097CB!important;
 }
 
  ::ng-deep.mat-form-field-wrapper {
@@ -128,4 +145,24 @@
 
 .m-t-10 {
     margin-top: 5% !important;
+}
+
+.successMessage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.text {
+    font-size: 24px;
+    color: $blackColor;
+    p {
+        margin-top: 20px;
+    }
+}
+
+.subpara {
+    text-align: center;
+    margin-top: 15px;
 }

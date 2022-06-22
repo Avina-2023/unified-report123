@@ -15,8 +15,8 @@
 
     <div class="right">
         <div class="loginform">
-            <div class="signIn"> {{'Registration Form'}}</div>
-            <div class="login-sm">
+            <div class="signIn" *ngIf="success"> {{'Registration Form'}}</div>
+            <div class="login-sm" *ngIf="success; else noSkill">
                 <form class="form" [formGroup]="registerForm" autocomplete="off">
                     <mat-form-field appearance="outline">
                         <input matInput id="name" [placeholder]="'Name'" formControlName="name" maxlength="64" required>
@@ -56,9 +56,23 @@
                         <mat-error class="error" *ngIf="email?.errors?.required">{{'Email is required'}}</mat-error>
                         <mat-error class="error" *ngIf="email.errors?.pattern">{{'Please enter a valid Email'}}</mat-error>
                     </ng-container>
+                    <!-- <section class="example-section">
+                        <mat-checkbox formControlName="term" class="example-margin" required><a href="">Terms & Conditions</a></mat-checkbox>
+                    </section> -->
                     <button class="btn" [disabled]="!registerForm.valid" id="register" mat-button (click)="register()">{{'Register'}}</button>
                 </form>
             </div>
         </div>
     </div>
 </div>
+
+<ng-template #noSkill>
+    <div class="successMessage">
+        <img src="assets/images/check.png">
+        <div class="text">
+            <p>Employer Registered</p>
+            <p class="subpara">Successfully</p>
+        </div>
+    </div>
+
+</ng-template>
