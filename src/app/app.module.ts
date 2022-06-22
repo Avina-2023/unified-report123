@@ -25,6 +25,7 @@ import { LandingHeaderComponent } from './pages/landing-page/landing-header/land
 import { LandingFooterComponent } from './pages/landing-page/landing-footer/landing-footer.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { LoginPageComponent } from './pages/login/login-page/login-page.component';
+import { RegisterPageComponent } from './pages/register/register-page/register-page.component';
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
 };
@@ -38,7 +39,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     PartnersListComponent,
     LandingHeaderComponent,
     LandingFooterComponent,
-    LoginPageComponent
+    LoginPageComponent,
+    RegisterPageComponent
   ],
   imports: [
     BrowserModule,

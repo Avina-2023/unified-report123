@@ -16,7 +16,7 @@ header {
     padding: 10px 15px;
     height: 65px;
     font-size: 12px;
-    box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.15);
+    box-shadow: 0px 3px 5px 0px rgba(51, 36, 36, 0.15);
     width: 100%;
     @include lg {
         // padding: 10px 50px;
@@ -123,7 +123,7 @@ header {
         &:hover {
             span,
             em {
-                color: #2EA3F2;
+                color: #1B4E9B;
             }
         }
     }
@@ -160,19 +160,32 @@ header {
         }
     }
     .register {
-        padding: 0.375em 1.5em;
+        padding: 4px 19px 4px 19px;
         background-color: $whiteColor;
         color: $secondaryColor;
         font-size: 1.15em;
         font-weight: 400;
         border-radius: 5px;
-        border: 1px solid $primaryColor;
+        border: 1px solid #1B4E9B;
         box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2);
         transition: all 0.3s ease-in-out;
         display: none;
         &:hover {
             color: $whiteColor;
-            background-color: $primaryColor;
+            background-color: #1B4E9B;
+        }
+        .menubtn {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            margin-left: -6px;
+            .arrowIcon {
+                background-repeat: no-repeat;
+                display: inline-block;
+                fill: currentColor;
+                height: 0px;
+                width: 0px;
+            }
         }
         @include lg {
             display: inline-flex;
@@ -210,27 +223,42 @@ header {
         display: inline-block;
     }
     .register {
-        padding: 0.375em 1.5em;
+        padding: 4px 19px 4px 19px;
         background-color: $whiteColor;
         color: $secondaryColor;
         font-size: 1.15em;
         font-weight: 400;
         border-radius: 5px;
-        border: 1px solid $primaryColor;
+        margin-left: 3%;
+        border-radius: 3px;
+        border: 1px solid #1B4E9B;
         box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2);
         transition: all 0.3s ease-in-out;
         display: block;
         &:hover {
             color: $whiteColor;
-            background-color: $primaryColor;
+            background-color: #1B4E9B;
+        }
+        .menubtn {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            margin-left: -6px;
+            .arrowIcon {
+                background-repeat: no-repeat;
+                display: inline-block;
+                fill: currentColor;
+                height: 0px;
+                width: 0px;
+            }
         }
         @include lg {
             display: inline-flex;
-            padding: .7em 2.5em;
+            padding: 4px 19px 4px 19px;
         }
         @include xl {
             display: inline-flex;
-            padding: .7em 2.5em;
+            padding: 4px 19px 4px 19px;
         }
     }
 }
@@ -255,5 +283,17 @@ header {
 .loginpopover {
      ::ng-deep .mat-dialog-container {
         padding: 0px !important;
+    }
+}
+
+::ng-deep.mat-menu-content:not(:empty) {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+::ng-deep.mat-menu-content {
+    button:hover {
+        background-color: #1B4E9B !important;
+        color: $whiteColor;
     }
 }

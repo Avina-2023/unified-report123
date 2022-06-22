@@ -10,6 +10,7 @@ import { APP_CONSTANTS } from 'src/app/utils/app-constants.service';
 })
 export class LandingHeaderComponent implements OnInit {
   @ViewChild('filter', {static: false}) login: TemplateRef<any>;
+  @ViewChild('register', {static: false}) register: TemplateRef<any>;
   showAvatar = false;
   sectiondialogRef: any;
   constructor(public appConfig: AppConfigService,private matDialog: MatDialog) { }
@@ -23,8 +24,22 @@ export class LandingHeaderComponent implements OnInit {
     // this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.LOGIN);
   }
 
+  NavtoRegister(){
+    this.openregisterDialog();
+  }
+
   openUserFormDialog() {
     this.sectiondialogRef = this.matDialog.open(this.login, {
+      width: '908px',
+      height: '524px',
+      panelClass: 'loginpopover',
+      
+    });
+  }
+
+  
+  openregisterDialog() {
+    this.sectiondialogRef = this.matDialog.open(this.register, {
       width: '908px',
       height: '524px',
       panelClass: 'loginpopover',

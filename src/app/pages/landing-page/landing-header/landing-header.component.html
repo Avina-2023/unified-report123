@@ -17,6 +17,17 @@
             <ng-container *ngIf="!showAvatar">
                 <button class="register" (click)="NavtoLogin()">Login</button>
             </ng-container>
+            <ng-container>
+                <button class="register " [matMenuTriggerFor]="menu"><div class="menubtn">
+                    <div class="Registerbtn">Register</div>
+                    <mat-icon class="arrowIcon">arrow_drop_down</mat-icon>
+                </div>
+            </button>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item>Job Seekers</button>
+                    <button mat-menu-item (click)="NavtoRegister()">Employers</button>
+                </mat-menu>
+            </ng-container>
         </div>
     </div>
 </header>
@@ -24,4 +35,9 @@
 <ng-template #filter>
 
     <app-login-page></app-login-page>
+</ng-template>
+
+<ng-template #register>
+
+    <app-register-page></app-register-page>
 </ng-template>
