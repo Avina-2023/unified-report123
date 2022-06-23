@@ -239,9 +239,18 @@ figure {
                             color: $darkGrey;
                             font-size: 1em;
                             line-height: 25px;
-                            font-size: 16px;
+                            font-size: 13px;
                             letter-spacing: 0px;
                             // font: normal normal normal 16px/35px Lato, Regular;
+                            @include md {
+                                font-size: 13px;
+                            }
+                            @include lg {
+                                font-size: 14px;
+                            }
+                            @include xl {
+                                font-size: 16px;
+                            }
                         }
                     }
                 }
@@ -490,7 +499,7 @@ figure {
                 left: -25%;
                 top: 74%;
                 transform: translateY(-23%);
-                width: 100%;
+                width: 40%;
                 height: 360px;
             }
             .heading-container {
@@ -848,6 +857,7 @@ figure {
                 font-weight: 500;
                 width: auto;
                 color: #1B4E9B;
+                z-index: 3;
             }
         }
         // .benefits:before {
