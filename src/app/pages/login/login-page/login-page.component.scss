@@ -57,8 +57,8 @@
                     height: 43px;
                     margin-top: 10%;
                 }
-                .btn :disabled {
-                    background-color: #666666;
+                .btn:disabled {
+                    background-color: #6666666e;
                     cursor: not-allowed;
                 }
             }
@@ -92,8 +92,8 @@
 
 .close-button {
     position: absolute;
-    right: 10px;
-    top: 20px;
+    right: 2px;
+    top: 1px;
     background: transparent;
     border: none;
 }

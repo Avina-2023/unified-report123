@@ -9,8 +9,6 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
 })
 export class PartnersListComponent implements OnInit {
   @ViewChild(DragScrollComponent) ds: DragScrollComponent;
-  // leftNavDisabled = false;
-  // rightNavDisabled = false;
   customOptions: OwlOptions = {
     loop: true,
     autoplay: true,
@@ -28,48 +26,19 @@ export class PartnersListComponent implements OnInit {
       0: {
         items: 3,
       },
-      200: {
-        items: 3,
-      },
-      400: {
-        items: 3,
-      },
+      // 200: {
+      //   items: 4,
+      // },
+      // 400: {
+      //   items: 4,
+      // },
     
     }
   };
-  footerImag = [
-    {
-      image: 'assets/images/landing/L&T.png'
-    },
-    {
-      image: 'assets/images/landing/L&T_NXT.png'
-    },
-    {
-      image: 'assets/images/landing/L&T_Services_Stacked.png'
-    },
-    {
-      image: 'assets/images/landing/LTI.png'
-    }
-  ]
+
   constructor() { }
 
   ngOnInit(): void {
    
   }
-
-  
-  // moveLeft() {
-  //   this.ds.moveLeft();
-  // }
-  // moveRight() {
-  //   this.ds.moveRight();
-  // }
-  // leftBoundStat(reachesLeftBound: boolean) {
-  //   this.leftNavDisabled = reachesLeftBound;
-  // }
-
-  // rightBoundStat(reachesRightBound: boolean) {
-  //   this.rightNavDisabled = reachesRightBound;
-  // }
-
 }

@@ -147,5 +147,9 @@ export class ApiService {
   getTaxonomyWiseComplexityAnalysis(data){
     return this.http.post(`${this.BASE_URL}/getTaxonomyWiseComplexityAnalysis`,data);
   }
+
+  postRegister(data){
+    return this.http.post(`${this.BASE_URL}/employeeRegister`,data);
+  }
   
 }
