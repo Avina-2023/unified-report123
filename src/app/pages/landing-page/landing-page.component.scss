@@ -499,7 +499,7 @@ figure {
                 left: -25%;
                 top: 74%;
                 transform: translateY(-23%);
-                width: 100%;
+                width: 40%;
                 height: 360px;
             }
             .heading-container {
@@ -857,6 +857,7 @@ figure {
                 font-weight: 500;
                 width: auto;
                 color: #1B4E9B;
+                z-index: 3;
             }
         }
         // .benefits:before {

@@ -289,7 +289,7 @@
                             </div>
 
                             <div class="btn-body">
-                                <div class="btn">
+                                <div class="btn" (click)="openJobSeekers()">
                                     Build my skill profile now
                                 </div>
                             </div>
@@ -436,4 +436,7 @@
 
 <ng-template #register>
     <app-register-page></app-register-page>
+</ng-template>
+<ng-template #jobseekers>
+    <app-job-seekers></app-job-seekers>
 </ng-template>

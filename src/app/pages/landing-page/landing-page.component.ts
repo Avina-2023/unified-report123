@@ -9,6 +9,8 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
 })
 export class LandingPageComponent implements OnInit {
   @ViewChild('register', {static: false}) register: TemplateRef<any>;
+  @ViewChild('jobseekers', {static: false}) jobseekers: TemplateRef<any>;
+  
   sectiondialogRef: any;
   owlCarouselOptions: OwlOptions = {
     loop: true,
@@ -46,6 +48,19 @@ export class LandingPageComponent implements OnInit {
 
   openregisterDialog() {
     this.sectiondialogRef = this.matDialog.open(this.register, {
+      width: '908px',
+      height: '524px',
+      panelClass: 'loginpopover',
+      
+    });
+  }
+
+  openJobSeekers(){
+    this.openJobSeekersDialog();
+  }
+
+  openJobSeekersDialog() {
+    this.sectiondialogRef = this.matDialog.open(this.jobseekers, {
       width: '908px',
       height: '524px',
       panelClass: 'loginpopover',
