@@ -1,92 +1,91 @@
 <div class="certifyWrapper">
-  <div class="scroll-wrapper">
-  <header>
-    <div class="container">
-      <div class="wrapper">
-        <figure>
-          <img src="/assets/images/header_logo.png" alt="Logo" />
-        </figure>
-        <div class="heading" >
-          <img [src]="!nocard && certificateData?.verified ? '/assets/images/verified_Mob.svg' : '/assets/images/not_verified.svg'" alt="" />
-        </div>
-          <figure *ngIf="!nocard && certificateData?.verified" class="certified">
-            <img [src]="!nocard && certificateData?.verified ? '/assets/images/verified_tick.svg' : '/assets/images/not_verified_tick.svg'" alt="Certified" />
-          </figure>
-      </div>
-    </div>
-  </header>
-  <section class="certification" *ngIf="!nocard">
-    <div class="container">
-      <h1 class="candidate-header">Candidate Details</h1>
-      <div class="wrapper">
-        <div class="left">
-          <div class="profile-wrapper">
-          <figure>
-            <img [src] ="certificateData?.profileImage ? (certificateData?.profileImage + blobToken) :'https://assets.lntedutech.com/application_images/pro2.png'" alt="" />
-          </figure>
-          <div class="c-name" [ngStyle]="{'justify-content': certificateData?.firstname && certificateData?.firstname.length > 20 ? 'left' : 'center'}">{{certificateData?.firstname ? certificateData?.firstname : '-'}}</div>
-          </div>
-        </div>
-        <div class="right">
-          <ul>
-            <li>
-              <span>Email</span> <span>{{certificateData?.email ? certificateData?.email : '-'}}</span>
-            </li>
-            <li>
-              <span>Date of Birth</span> <span>{{certificateData?.DOB ? certificateData?.DOB : '-'}}</span>
-            </li>
-            <li>
-              <span>Gender</span> <span>{{certificateData?.gender ? certificateData?.gender : '-'}}</span>
-            </li>
-            <li>
-              <span>College/University</span> <span>{{certificateData?.college ? certificateData?.college : '-'}}</span>
-            </li>
-            <li>
-              <span>Specialization</span> <span>{{certificateData?.specialization ? certificateData?.specialization : '-'}}</span>
-            </li>
-            <li>
-              <span>Branch</span> <span>{{certificateData?.branch ? certificateData?.branch : '-'}}</span>
-            </li>
-            <li>
-              <span>Passing year</span> <span>{{certificateData?.passedout ? certificateData?.passedout : '-'}}</span>
-            </li>
-            <li>
-              <span>Graduation Aggregate</span> <span>{{certificateData?.percentage ? certificateData?.percentage : '-'}}</span>
-            </li>
-            <li>
-              <span>Contact No</span> <span>{{certificateData?.mobile ? certificateData?.mobile : '-'}}</span>
-            </li>
-            <li>
-              <span>Father's Name</span> <span>{{certificateData?.fathername ? certificateData?.fathername : '-'}}</span>
-            </li>
-            <li>
-              <span>Address</span> <span>{{certificateData?.addressCustom ? certificateData?.addressCustom : '-'}}</span>
-            </li>
+    <div class="scroll-wrapper">
+        <header>
+            <div class="container">
+                <div class="wrapper">
+                    <figure>
+                        <img src="/assets/images/header_logo.png" alt="Logo" />
+                    </figure>
+                    <div class="heading">
+                        <img [src]="!nocard && certificateData?.verified ? '/assets/images/verified_Mob.svg' : '/assets/images/not_verified.svg'" alt="" />
+                    </div>
+                    <figure *ngIf="!nocard && certificateData?.verified" class="certified">
+                        <img [src]="!nocard && certificateData?.verified ? '/assets/images/verified_tick.svg' : '/assets/images/not_verified_tick.svg'" alt="Certified" />
+                    </figure>
+                </div>
+            </div>
+        </header>
+        <section class="certification" *ngIf="!nocard">
+            <div class="container">
+                <h1 class="candidate-header">Candidate Details</h1>
+                <div class="wrapper">
+                    <div class="left">
+                        <div class="profile-wrapper">
+                            <figure>
+                                <img [src]="certificateData?.profileImage ? (certificateData?.profileImage + blobToken) :'https://assets.lntedutech.com/application_images/pro2.png'" alt="" />
+                            </figure>
+                            <div class="c-name" [ngStyle]="{'justify-content': certificateData?.firstname && certificateData?.firstname.length > 20 ? 'left' : 'center'}">{{certificateData?.firstname ? certificateData?.firstname : '-'}}</div>
+                        </div>
+                    </div>
+                    <div class="right">
+                        <ul>
+                            <li>
+                                <span>Email</span> <span>{{certificateData?.email ? certificateData?.email : '-'}}</span>
+                            </li>
+                            <li>
+                                <span>Date of Birth</span> <span>{{certificateData?.DOB ? certificateData?.DOB : '-'}}</span>
+                            </li>
+                            <li>
+                                <span>Gender</span> <span>{{certificateData?.gender ? certificateData?.gender : '-'}}</span>
+                            </li>
+                            <li>
+                                <span>College/University</span> <span>{{certificateData?.college ? certificateData?.college : '-'}}</span>
+                            </li>
+                            <li>
+                                <span>Specialization</span> <span>{{certificateData?.specialization ? certificateData?.specialization : '-'}}</span>
+                            </li>
+                            <li>
+                                <span>Branch</span> <span>{{certificateData?.branch ? certificateData?.branch : '-'}}</span>
+                            </li>
+                            <li>
+                                <span>Passing year</span> <span>{{certificateData?.passedout ? certificateData?.passedout : '-'}}</span>
+                            </li>
+                            <li>
+                                <span>Graduation Aggregate</span> <span>{{certificateData?.percentage ? certificateData?.percentage : '-'}}</span>
+                            </li>
+                            <li>
+                                <span>Contact No</span> <span>{{certificateData?.mobile ? certificateData?.mobile : '-'}}</span>
+                            </li>
+                            <li>
+                                <span>Father's Name</span> <span>{{certificateData?.fathername ? certificateData?.fathername : '-'}}</span>
+                            </li>
+                            <li>
+                                <span>Address</span> <span>{{certificateData?.addressCustom ? certificateData?.addressCustom : '-'}}</span>
+                            </li>
 
-          </ul>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div *ngIf="nocard" class="noDataFound">
+            <figure>
+                <img src="https://lmsassetspremium.lntedutech.com/portalicons/no-categories.webp" alt="" />
+            </figure>
+            <div class="heading3">No Details Found!</div>
         </div>
-      </div>
     </div>
-  </section>
-  <div *ngIf="nocard" class="noDataFound">
-    <figure>
-        <img src="https://lmsassetspremium.lntedutech.com/portalicons/no-categories.webp" alt="" />
-    </figure>
-    <div class="heading3">No Details Found!</div>
-  </div>
-  </div>
-  <footer>
-    <div class="container">
-      <div class="wrapper">
-        <span class="copyrights">
-          &copy; 2022 L&T EduTech. All rights reserved
+    <footer>
+        <div class="container">
+            <div class="wrapper">
+                <span class="copyrights">
+          &copy; ©2022 L&T EduTech. All Rights Reserved.
         </span>
-        <nav>
-          <a href="https://lntedutech.com/privacy-policy-2/">Privacy policy</a>
-          <!--<a href="#">Terms & conditions</a>-->
-        </nav>
-      </div>
-    </div>
-  </footer>
+                <nav>
+                    <a href="https://lntedutech.com/privacy-policy-2/">Privacy policy</a>
+                    <!--<a href="#">Terms & conditions</a>-->
+                </nav>
+            </div>
+        </div>
+    </footer>
 </div>
-
