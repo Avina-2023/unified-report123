@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 
 @Component({
@@ -7,7 +8,8 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
   styleUrls: ['./landing-page.component.scss']
 })
 export class LandingPageComponent implements OnInit {
-
+  @ViewChild('register', {static: false}) register: TemplateRef<any>;
+  sectiondialogRef: any;
   owlCarouselOptions: OwlOptions = {
     loop: true,
     mouseDrag: false,
@@ -31,9 +33,24 @@ export class LandingPageComponent implements OnInit {
     }
   }
 
-  constructor() { }
+  constructor(private matDialog: MatDialog) { }
 
   ngOnInit(): void {
+  }
+
+  
+  NavtoRegister(){
+    this.openregisterDialog();
+  }
+
+
+  openregisterDialog() {
+    this.sectiondialogRef = this.matDialog.open(this.register, {
+      width: '908px',
+      height: '524px',
+      panelClass: 'loginpopover',
+      
+    });
   }
 
 }

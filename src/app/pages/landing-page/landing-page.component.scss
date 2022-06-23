@@ -239,9 +239,18 @@ figure {
                             color: $darkGrey;
                             font-size: 1em;
                             line-height: 25px;
-                            font-size: 16px;
+                            font-size: 13px;
                             letter-spacing: 0px;
                             // font: normal normal normal 16px/35px Lato, Regular;
+                            @include md {
+                                font-size: 13px;
+                            }
+                            @include lg {
+                                font-size: 14px;
+                            }
+                            @include xl {
+                                font-size: 16px;
+                            }
                         }
                     }
                 }

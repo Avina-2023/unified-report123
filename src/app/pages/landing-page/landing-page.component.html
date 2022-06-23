@@ -420,7 +420,7 @@
                             </div>
 
                             <div class="btn-body">
-                                <div class="btn">
+                                <div class="btn" (click)="NavtoRegister()">
                                     Register Now
                                 </div>
                             </div>
@@ -433,3 +433,7 @@
     </div>
     <app-landing-footer></app-landing-footer>
 </div>
+
+<ng-template #register>
+    <app-register-page></app-register-page>
+</ng-template>

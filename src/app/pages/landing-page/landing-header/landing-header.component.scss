@@ -41,7 +41,7 @@ header {
     }
     .rightWrapper {
         text-align: right;
-        width: 40%;
+        // width: 40%;
     }
     .leftWrapper {
         width: 60%;
@@ -68,7 +68,7 @@ header {
 
 .edutechLogo {
     cursor: pointer;
-    width: 35%;
+    width: 80%;
     margin-right: 0;
     margin-left: 0;
     @include sm {
@@ -82,7 +82,7 @@ header {
         margin-left: 0;
     }
     @include xl {
-        width: 14.5%;
+        width: 28.5%;
     }
     @media only screen and (min-width: 1540px) {
         width: 23%;

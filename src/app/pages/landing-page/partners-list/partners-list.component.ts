@@ -28,12 +28,12 @@ export class PartnersListComponent implements OnInit {
       0: {
         items: 3,
       },
-      200: {
-        items: 3,
-      },
-      400: {
-        items: 3,
-      },
+      // 200: {
+      //   items: 4,
+      // },
+      // 400: {
+      //   items: 4,
+      // },
     
     }
   };

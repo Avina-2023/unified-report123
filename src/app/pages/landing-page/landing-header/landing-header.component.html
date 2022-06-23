@@ -24,7 +24,7 @@
                 </div>
             </button>
                 <mat-menu #menu="matMenu">
-                    <button mat-menu-item>Job Seekers</button>
+                    <button mat-menu-item (click)="NavtoJobSeekers()">Job Seekers</button>
                     <button mat-menu-item (click)="NavtoRegister()">Employers</button>
                 </mat-menu>
             </ng-container>
@@ -38,4 +38,7 @@
 
 <ng-template #register>
     <app-register-page></app-register-page>
+</ng-template>
+<ng-template #jobseekers>
+
 </ng-template>

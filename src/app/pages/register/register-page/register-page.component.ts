@@ -49,6 +49,7 @@ export class RegisterPageComponent implements OnInit {
         }else{
             this.success = true;
             this.toastr.warning(response.message)
+            // this.registerForm.reset();
         }
     })
     
