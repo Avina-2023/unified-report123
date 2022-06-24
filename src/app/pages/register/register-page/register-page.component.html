@@ -42,8 +42,8 @@
                     </mat-form-field>
 
                     <ng-container *ngIf="mobile.invalid && mobile.touched">
-                        <mat-error class="error" *ngIf="mobile?.errors?.required">{{'Mobile is required'}}</mat-error>
-                        <mat-error class="error" *ngIf="mobile.errors?.mobileRegex">{{'Please enter a valid Mobile'}}</mat-error>
+                        <mat-error class="error" *ngIf="mobile?.errors?.required">{{'Mobile number is required'}}</mat-error>
+                        <mat-error class="error" *ngIf="mobile.errors?.mobileRegex">{{'Please enter a valid Mobile number'}}</mat-error>
 
                     </ng-container>
 
@@ -53,8 +53,8 @@
                     </mat-form-field>
 
                     <ng-container *ngIf="email.invalid && email.touched">
-                        <mat-error class="error" *ngIf="email?.errors?.required">{{'Email is required'}}</mat-error>
-                        <mat-error class="error" *ngIf="email.errors?.pattern">{{'Please enter a valid Email'}}</mat-error>
+                        <mat-error class="error" *ngIf="email?.errors?.required">{{'Email id is required'}}</mat-error>
+                        <mat-error class="error" *ngIf="email.errors?.pattern">{{'Please enter a valid Email id'}}</mat-error>
                     </ng-container>
                     <!-- <section class="example-section">
                         <mat-checkbox formControlName="term" class="example-margin" required><a href="">Terms & Conditions</a></mat-checkbox>
