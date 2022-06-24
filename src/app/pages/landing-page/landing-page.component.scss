@@ -914,43 +914,114 @@ figure {
                 z-index: 3;
             }
         }
-        // .benefits:before {
-        //     background-image: url('../../../assets/images/landing/Union.svg');
-        //     position: absolute;
-        //     content: "";
-        //     width: 35%;
-        //     height: 20%;
-        //     right: 0;
-        //     top: -3%;
-        // }
-        // .benefits:after {
-        //     background-image: url('../../../assets/images/landing/Union_1.svg');
-        //     content: "";
-        //     position: absolute;
-        //     background-repeat: no-repeat;
-        //     background-size: contain;
-        //     background-position: bottom;
-        //     bottom: -4%;
-        //     transform: translateY(50%);
-        //     transform: translateX(-50%);
-        //     height: 50%;
-        //     width: 100%;
-        //     @include mobile {
-        //         height: 18%;
-        //     }
-        //     @include sm {
-        //         height: 23%;
-        //     }
-        //     @include md {
-        //         height: 26%;
-        //     }
-        //     // @include lg {
-        //     //   display: block;
-        //     // }
-        //     // @include xl {
-        //     //   display: block;
-        //     // }
-        // }
+    }
+}
+
+.contact {
+    position: relative;
+    width: 100%;
+    padding: 3em 0;
+    font-size: 12px;
+    z-index: 1;
+    // background: transparent linear-gradient(131deg, #F8FCFF 0%, #DEF6FF 100%) 0% 0% no-repeat padding-box;
+    @include md {
+        font-size: 13px;
+    }
+    @include lg {
+        font-size: 14px;
+    }
+    @include xl {
+        font-size: 16px;
+    }
+}
+
+.contactFooter {
+    // background: transparent linear-gradient(131deg, #F8FCFF 0%, #DEF6FF 100%) 0% 0% no-repeat padding-box;
+    display: flex;
+    .left {
+        width: 80%;
+        display: flex;
+        align-items: center;
+        .footerContact {
+            font-size: 14px;
+            .link {
+                color: #0056b3;
+                text-decoration: underline;
+            }
+        }
+    }
+    .right {
+        width: 20%;
+        display: flex;
+        align-items: flex-end;
+        .edutechLogo {
+            cursor: pointer;
+            width: 80%;
+            margin-right: 0;
+            margin-left: 0;
+            position: relative;
+            @include sm {
+                width: 20%;
+            }
+            @include md {
+                margin-right: 1.2em;
+            }
+            @include lg {
+                width: 13%;
+                margin-left: 0;
+            }
+            @include xl {
+                width: 30%;
+            }
+            @media only screen and (min-width: 1540px) {
+                width: 25%;
+            }
+            img {
+                width: 100%;
+            }
+            &::after {
+                content: '';
+                position: absolute;
+                top: 0;
+                right: -14px;
+                width: 2px;
+                height: 100%;
+                background: transparent linear-gradient(180deg, #54B952 0%, #34BCA3 85%, #16BEF0 100%) 0% 0% no-repeat padding-box;
+            }
+        }
+        .line {
+            width: 2px;
+            height: 50px;
+            position: absolute;
+            // margin-left: 6.5%;
+            background: transparent linear-gradient(180deg, #54B952 0%, #34BCA3 85%, #16BEF0 100%) 0% 0% no-repeat padding-box;
+            @include sm {
+                margin-left: 2.5%;
+            }
+            @include md {
+                margin-left: 4.5%;
+            }
+            @include lg {
+                margin-left: 6.5%;
+            }
+            @include xl {}
+            @media (min-width: 1200px) {
+                margin-left: 9.5%;
+            }
+            @media only screen and (min-width: 1540px) {
+                margin-left: 6.5%;
+            }
+        }
+        .head {
+            letter-spacing: 0px;
+            /* color: #08558C; */
+            opacity: 1;
+            font-size: 17px;
+            margin-left: 5px;
+            font-weight: 500;
+            line-height: normal;
+            font-family: Roboto, Condensed;
+        }
     }
 }
 
