@@ -56,7 +56,6 @@ export class RegisterPageComponent implements OnInit {
 
   }
 
-
   get name() {
     return this.registerForm.get('name');
   }
