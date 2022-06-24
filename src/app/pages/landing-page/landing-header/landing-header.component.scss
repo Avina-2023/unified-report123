@@ -16,13 +16,13 @@ header {
     padding: 10px 15px;
     height: 65px;
     font-size: 12px;
-    box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.15);
+    box-shadow: 0px 3px 5px 0px rgba(51, 36, 36, 0.15);
     width: 100%;
     @include lg {
-        // padding: 10px 50px;
+        padding: 10px 50px;
     }
     @include xl {
-        // padding: 10px 50px;
+        padding: 10px 50px;
     }
     .outline {
         position: absolute;
@@ -41,34 +41,51 @@ header {
     }
     .rightWrapper {
         text-align: right;
-        width: 40%;
+        // width: 40%;
     }
     .leftWrapper {
         width: 60%;
         display: flex;
         justify-content: flex-start;
-        align-items: center;
+        align-items: flex-end;
         .line {
-            width: 112px;
+            width: 2px;
             height: 50px;
-            border-right: 2px solid #08558C;
             position: absolute;
-            margin-left: 2%;
+            // margin-left: 6.5%;
+            background: transparent linear-gradient(180deg, #54B952 0%, #34BCA3 85%, #16BEF0 100%) 0% 0% no-repeat padding-box;
+            @include sm {
+                margin-left: 2.5%;
+            }
+            @include md {
+                margin-left: 4.5%;
+            }
+            @include lg {
+                margin-left: 6.5%;
+            }
+            @include xl {}
+            @media (min-width: 1200px) {
+                margin-left: 9.5%;
+            }
+            @media only screen and (min-width: 1540px) {
+                margin-left: 6.5%;
+            }
         }
         .head {
             letter-spacing: 0px;
-            color: #08558C;
+            /* color: #08558C; */
             opacity: 1;
             font-size: 20px;
-            margin-left: 22px;
+            margin-left: 5px;
             font-weight: 500;
+            font-family: Roboto, Condensed;
         }
     }
 }
 
 .edutechLogo {
     cursor: pointer;
-    width: 35%;
+    width: 80%;
     margin-right: 0;
     margin-left: 0;
     @include sm {
@@ -82,106 +99,13 @@ header {
         margin-left: 0;
     }
     @include xl {
-        width: 14.5%;
+        width: 16.5%;
     }
     @media only screen and (min-width: 1540px) {
-        width: 10%;
+        width: 11%;
     }
     img {
         width: 100%;
-    }
-}
-
-.signInRegister {
-    // grid-area: signIn;
-    text-align: right;
-    display: inline-flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: 10px;
-    @include md {
-        margin-top: 0;
-        justify-content: flex-end;
-    }
-    .recruiter {
-        display: none;
-        margin-right: 2.35em;
-        @include lg {
-            display: inline-flex;
-        }
-        a {
-            color: $mediumGrey;
-            font-size: 1.15em;
-            display: flex;
-            em {
-                font-size: 1.3em;
-            }
-        }
-        span {
-            margin-left: 5px;
-        }
-        &:hover {
-            span,
-            em {
-                color: #2EA3F2;
-            }
-        }
-    }
-    span,
-    button {
-        vertical-align: middle;
-        display: inline-block;
-    }
-    .cart {
-        color: $lightGrey;
-        display: inline-block;
-        margin-right: 2.5em;
-        line-height: normal;
-        @include xl {
-            margin-right: 1.75em;
-        }
-        em {
-            font-size: 1.5em;
-            color: $mediumGrey;
-            @include lg {
-                font-size: 1.25em;
-                margin-right: 0.5em;
-            }
-        }
-    }
-    .signIn {
-        margin-right: 1.75em;
-        font-size: 1.15em;
-        font-weight: 400;
-        color: $darkGrey;
-        display: none;
-        @include lg {
-            display: inline-flex;
-        }
-    }
-    .register {
-        padding: 0.375em 1.5em;
-        background-color: $whiteColor;
-        color: $secondaryColor;
-        font-size: 1.15em;
-        font-weight: 400;
-        border-radius: 5px;
-        border: 1px solid $primaryColor;
-        box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2);
-        transition: all 0.3s ease-in-out;
-        display: none;
-        &:hover {
-            color: $whiteColor;
-            background-color: $primaryColor;
-        }
-        @include lg {
-            display: inline-flex;
-            padding: 0.7em 2.55em;
-        }
-        @include xl {
-            display: inline-flex;
-            padding: 0.7em 2.55em;
-        }
     }
 }
 
@@ -210,27 +134,42 @@ header {
         display: inline-block;
     }
     .register {
-        padding: 0.375em 1.5em;
+        padding: 4px 19px 4px 19px;
         background-color: $whiteColor;
         color: $secondaryColor;
         font-size: 1.15em;
         font-weight: 400;
         border-radius: 5px;
-        border: 1px solid $primaryColor;
+        margin-left: 3%;
+        border-radius: 3px;
+        border: 1px solid #1B4E9B;
         box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2);
         transition: all 0.3s ease-in-out;
         display: block;
         &:hover {
             color: $whiteColor;
-            background-color: $primaryColor;
+            background-color: #1B4E9B;
+        }
+        .menubtn {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            margin-left: -6px;
+            .arrowIcon {
+                background-repeat: no-repeat;
+                display: inline-block;
+                fill: currentColor;
+                height: 0px;
+                width: 0px;
+            }
         }
         @include lg {
             display: inline-flex;
-            padding: .7em 2.5em;
+            padding: 4px 19px 4px 19px;
         }
         @include xl {
             display: inline-flex;
-            padding: .7em 2.5em;
+            padding: 4px 19px 4px 19px;
         }
     }
 }
@@ -255,5 +194,17 @@ header {
 .loginpopover {
      ::ng-deep .mat-dialog-container {
         padding: 0px !important;
+    }
+}
+
+::ng-deep.mat-menu-content:not(:empty) {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+::ng-deep.mat-menu-content {
+    button:hover {
+        background-color: #1B4E9B !important;
+        color: $whiteColor;
     }
 }

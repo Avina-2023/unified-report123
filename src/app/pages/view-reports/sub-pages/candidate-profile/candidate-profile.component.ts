@@ -127,6 +127,9 @@ export class CandidateProfileComponent implements OnInit {
   }
 
   convertIntoINDFormate(count){
-    return count.toLocaleString('en-IN')
+    if(count){
+      return count.toLocaleString('en-IN')
+    }
+
  }
 }
