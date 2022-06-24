@@ -171,3 +171,9 @@
 .mat-form-field-appearance-outline .mat-form-field-suffix {
     top: 0 !important;
 }
+
+::ng-deep.mat-form-field:not(.mat-form-field-appearance-legacy) .mat-form-field-prefix .mat-icon,
+.mat-form-field:not(.mat-form-field-appearance-legacy) .mat-form-field-suffix .mat-icon {
+    display: block;
+    color: #636c70;
+}
