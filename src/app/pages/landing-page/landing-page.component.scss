@@ -214,7 +214,16 @@ figure {
                         width: 100%;
                         figure {
                             background-color: $whiteColor;
-                            width: 75%;
+                            width: 100%;
+                            @include md {
+                                width: 75%;
+                            }
+                            @include lg {
+                                width: 75%;
+                            }
+                            @include xl {
+                                width: 75%;
+                            }
                             @media only screen and (min-width: 1000px) {
                                 width: 629px;
                                 margin-top: 5%;
@@ -552,7 +561,16 @@ figure {
                             margin-top: 0em;
                         }
                         figure {
-                            width: 80%;
+                            width: 100%;
+                            @include md {
+                                width: 100%;
+                            }
+                            @include lg {
+                                width: 80%;
+                            }
+                            @include xl {
+                                width: 80%;
+                            }
                             img {
                                 object-fit: contain;
                                 object-position: top;
@@ -598,7 +616,16 @@ figure {
                                     padding-bottom: 20px;
                                     >span {
                                         margin-left: 10px;
-                                        font-size: 18px;
+                                        font-size: 13px;
+                                        @include md {
+                                            font-size: 13px;
+                                        }
+                                        @include lg {
+                                            font-size: 18px;
+                                        }
+                                        @include xl {
+                                            font-size: 18px;
+                                        }
                                     }
                                 }
                             }
@@ -699,9 +726,18 @@ figure {
                 align-items: center;
                 .heading-content {
                     color: $darkGrey;
-                    font-size: 16px;
+                    font-size: 14px;
                     text-align: center;
                     z-index: 1;
+                    @include md {
+                        font-size: 13px;
+                    }
+                    @include lg {
+                        font-size: 16px;
+                    }
+                    @include xl {
+                        font-size: 16px;
+                    }
                     @media (min-width: 200px) and (max-width: 480px) {
                         margin-top: 1em;
                     }
@@ -741,7 +777,16 @@ figure {
                             margin-top: 0em;
                         }
                         figure {
-                            width: 80%;
+                            width: 100%;
+                            @include md {
+                                width: 80%;
+                            }
+                            @include lg {
+                                width: 80%;
+                            }
+                            @include xl {
+                                width: 80%;
+                            }
                             img {
                                 object-fit: contain;
                                 object-position: top;
@@ -779,9 +824,18 @@ figure {
                             }
                             .content {
                                 z-index: 1;
-                                font-size: 18px;
+                                font-size: 14px;
                                 letter-spacing: 0px;
                                 color: $darkGrey;
+                                @include md {
+                                    font-size: 13px;
+                                }
+                                @include lg {
+                                    font-size: 16px;
+                                }
+                                @include xl {
+                                    font-size: 16px;
+                                }
                             }
                         }
                     }
