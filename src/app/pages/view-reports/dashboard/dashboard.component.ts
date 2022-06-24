@@ -11,7 +11,7 @@ import { environment } from 'src/environments/environment.prod';
 export class DashboardComponent implements OnInit {
   dashboard:any;
   isaccess: boolean;
-  adminDashboardId = "62751917-2c86-4776-81b4-5b281737ef06";
+  adminDashboardId = "62947fea-df81-4a28-8a8c-6ee49b574433";
   ASAPDashboardId = "627e1615-ac96-47e5-872a-4accc918dfe0";
   sdk = new ChartsEmbedSDK({
     baseUrl: environment.MONGOCHARTURL,

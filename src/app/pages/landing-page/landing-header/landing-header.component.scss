@@ -19,10 +19,10 @@ header {
     box-shadow: 0px 3px 5px 0px rgba(51, 36, 36, 0.15);
     width: 100%;
     @include lg {
-        // padding: 10px 50px;
+        padding: 10px 50px;
     }
     @include xl {
-        // padding: 10px 50px;
+        padding: 10px 50px;
     }
     .outline {
         position: absolute;
@@ -89,112 +89,6 @@ header {
     }
     img {
         width: 100%;
-    }
-}
-
-.signInRegister {
-    // grid-area: signIn;
-    text-align: right;
-    display: inline-flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: 10px;
-    @include md {
-        margin-top: 0;
-        justify-content: flex-end;
-    }
-    .recruiter {
-        display: none;
-        margin-right: 2.35em;
-        @include lg {
-            display: inline-flex;
-        }
-        a {
-            color: $mediumGrey;
-            font-size: 1.15em;
-            display: flex;
-            em {
-                font-size: 1.3em;
-            }
-        }
-        span {
-            margin-left: 5px;
-        }
-        &:hover {
-            span,
-            em {
-                color: #1B4E9B;
-            }
-        }
-    }
-    span,
-    button {
-        vertical-align: middle;
-        display: inline-block;
-    }
-    .cart {
-        color: $lightGrey;
-        display: inline-block;
-        margin-right: 2.5em;
-        line-height: normal;
-        @include xl {
-            margin-right: 1.75em;
-        }
-        em {
-            font-size: 1.5em;
-            color: $mediumGrey;
-            @include lg {
-                font-size: 1.25em;
-                margin-right: 0.5em;
-            }
-        }
-    }
-    .signIn {
-        margin-right: 1.75em;
-        font-size: 1.15em;
-        font-weight: 400;
-        color: $darkGrey;
-        display: none;
-        @include lg {
-            display: inline-flex;
-        }
-    }
-    .register {
-        padding: 4px 19px 4px 19px;
-        background-color: $whiteColor;
-        color: $secondaryColor;
-        font-size: 1.15em;
-        font-weight: 400;
-        border-radius: 5px;
-        border: 1px solid #1B4E9B;
-        box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2);
-        transition: all 0.3s ease-in-out;
-        display: none;
-        &:hover {
-            color: $whiteColor;
-            background-color: #1B4E9B;
-        }
-        .menubtn {
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            margin-left: -6px;
-            .arrowIcon {
-                background-repeat: no-repeat;
-                display: inline-block;
-                fill: currentColor;
-                height: 0px;
-                width: 0px;
-            }
-        }
-        @include lg {
-            display: inline-flex;
-            padding: 0.7em 2.55em;
-        }
-        @include xl {
-            display: inline-flex;
-            padding: 0.7em 2.55em;
-        }
     }
 }
 
