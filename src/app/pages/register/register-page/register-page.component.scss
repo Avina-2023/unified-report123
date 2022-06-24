@@ -1,0 +1,179 @@
+@import "../../../../assets/scss/variables.scss";
+.container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    padding: 0px;
+    position: relative;
+    overflow: hidden;
+    .left {
+        width: 50%;
+        display: flex;
+        // flex-direction: column;
+        // justify-content: center;
+        border-right: 1px solid rgba(0, 0, 0, 0.2);
+        .logo {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 70px;
+        }
+        .beforeloginimg {
+            height: 50px;
+            position: absolute;
+            opacity: 1;
+            z-index: 1;
+            left: 0;
+            margin: 20px;
+        }
+        .mainlogo {
+            display: flex;
+            justify-content: center;
+            .leftimg {
+                width: 100%;
+                opacity: 0.50;
+            }
+        }
+        // .place {
+        //     position: absolute;
+        .text {
+            letter-spacing: 0px;
+            color: #004684;
+            opacity: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 40px;
+            font-weight: 500;
+            position: absolute;
+            width: 50%;
+            height: 92%;
+        }
+        // }
+    }
+    .right {
+        width: 50%;
+        display: flex;
+        align-items: center;
+        .loginform {
+            width: 100%;
+            .signIn {
+                margin-bottom: 7%;
+                text-align: left;
+                color: $blackColor;
+                font-size: 24px;
+                margin-left: 10%;
+                margin-right: 10%;
+            }
+            .login-sm {
+                .form {
+                    display: block;
+                    margin-left: 10%;
+                    margin-right: 10%;
+                }
+                .btn {
+                    display: flex;
+                    justify-content: center;
+                    background: $primaryBlue 0% 0% no-repeat padding-box;
+                    border-radius: 4px;
+                    opacity: 1;
+                    width: 100%;
+                    color: $whiteColor;
+                    height: 43px;
+                    margin-top: 10%;
+                }
+                .btn:disabled {
+                    background-color: #6666666e;
+                    cursor: not-allowed;
+                }
+            }
+        }
+    }
+    .example-section {
+        padding-top: 20px;
+        // a {
+        //     color: #0097CB;
+        //     font-size: 16px;
+        //     // font-weight: 500;
+        // }
+    }
+}
+
+::ng-deep.loginpopover {
+    .mat-dialog-container {
+        padding: 0;
+    }
+}
+
+::ng-deep.mat-form-field {
+    width: 100%;
+}
+
+::ng-deep.mat-checkbox-checked:not(.mat-checkbox-disabled).mat-accent .mat-ripple-element,
+.mat-checkbox:active:not(.mat-checkbox-disabled).mat-accent .mat-ripple-element {
+    background: #0097CB !important;
+}
+
+::ng-deep.mat-checkbox-checked.mat-accent .mat-checkbox-background {
+    background-color: #0097CB!important;
+}
+
+ ::ng-deep.mat-form-field-wrapper {
+    padding-bottom: 6px;
+    padding-left: 0px;
+}
+
+ ::ng-deep.mat-button-wrapper {
+    align-self: center;
+}
+
+::ng-deep.mat-form-field-infix {
+    padding: 10px !important;
+    border-top: 6px solid transparent !important;
+}
+
+.close-button {
+    position: absolute;
+    right: 2px;
+    top: 1px;
+    background: transparent;
+    border: none;
+}
+
+.close-icon {
+    color: #666666 !important;
+}
+
+.m-t-10 {
+    margin-top: 5% !important;
+}
+
+.successMessage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.text {
+    font-size: 24px;
+    color: $blackColor;
+    p {
+        margin-top: 20px;
+    }
+}
+
+.subpara {
+    text-align: center;
+    margin-top: 15px;
+}
+
+::ng-deep.mat-form-field-appearance-outline .mat-form-field-prefix,
+.mat-form-field-appearance-outline .mat-form-field-suffix {
+    top: 0 !important;
+}
+
+::ng-deep.mat-form-field:not(.mat-form-field-appearance-legacy) .mat-form-field-prefix .mat-icon,
+.mat-form-field:not(.mat-form-field-appearance-legacy) .mat-form-field-suffix .mat-icon {
+    display: block;
+    color: #636c70;
+}
