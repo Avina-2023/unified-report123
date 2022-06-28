@@ -313,6 +313,9 @@
                         // right: 2px;
                         &.doc {
                             left: calc(100% - 139px);
+                            @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+                                left: calc(100% - 61px);
+                            }
                         }
                     }
                     &.left {
@@ -320,6 +323,9 @@
                         &.doc {
                             left: 23px;
                             right: 100%;
+                            @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+                                left: 4px;
+                            }
                         }
                     }
                     &:disabled {

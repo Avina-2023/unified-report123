@@ -10,14 +10,14 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
 export class PartnersListComponent implements OnInit {
   @ViewChild(DragScrollComponent) ds: DragScrollComponent;
   customOptions: OwlOptions = {
-    loop: true,
-    autoplay: true,
+    // loop: true,
+    // autoplay: true,
     animateIn: 'fadeIn',
     animateOut: 'fadeOut',
-    autoplayTimeout: 2000,
+    // autoplayTimeout: 2000,
     autoplayHoverPause: false,
     dots: false,
-    navSpeed: 2000,
+    // navSpeed: 2000,
     navText: ["<div class='nav-btn prev-slide'></div>","<div class='nav-btn next-slide'></div>"],
     nav: true,
     autoHeight: true,

@@ -688,7 +688,7 @@ figure {
                     }
                     .flex-container {
                         display: flex;
-                        flex-wrap: nowrap;
+                        flex-wrap: wrap;
                         text-align: center;
                         margin-top: 3%;
                         @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
@@ -701,11 +701,12 @@ figure {
                         padding: 10px;
                         font-size: 16px;
                         color: #222222;
-                        flex: 50%;
+                        flex: 30%;
                         @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
                             text-align: center;
                             width: 160px;
                             font-size: 1em;
+                            flex: 35%;
                         }
                         >div {
                             margin-top: 8%;
@@ -746,6 +747,9 @@ figure {
                 width: 360px;
                 height: 360px;
                 opacity: 0.1;
+                @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+                    display: none;
+                }
             }
             .heading-container {
                 display: flex;
@@ -914,21 +918,29 @@ figure {
                     }
                     .flex-container {
                         display: flex;
-                        flex-wrap: nowrap;
+                        flex-wrap: wrap;
                         text-align: center;
                         margin-top: 3%;
+                        width: 100%;
                     }
                     .flex-item-left {
                         flex-direction: column;
                         padding: 10px;
                         font-size: 16px;
                         color: #222222;
-                        flex: 50%;
+                        flex: 30%;
+                        @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+                            font-size: 1em;
+                            flex: 35%;
+                        }
                         >div {
                             margin-top: 8%;
                         }
                         img {
                             width: 76px;
+                            @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+                                width: 50px;
+                            }
                         }
                     }
                 }
@@ -989,6 +1001,12 @@ figure {
         width: 20%;
         display: flex;
         align-items: flex-end;
+        @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+            width: 100%;
+            display: flex;
+            align-items: flex-end;
+            justify-content: end;
+        }
         .edutechLogo {
             cursor: pointer;
             width: 80%;
