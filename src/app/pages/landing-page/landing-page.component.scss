@@ -174,7 +174,7 @@ figure {
             max-width: 100%;
             width: 100%;
             @include md {
-                font-size: 13px;
+                font-size: 1.2em;
             }
             @include lg {
                 font-size: 14px;
@@ -250,7 +250,7 @@ figure {
                                 font-size: 1em;
                             }
                             @include md {
-                                font-size: 13px;
+                                font-size: 1em;
                                 // line-height: 0px;
                             }
                             @include lg {
@@ -275,6 +275,7 @@ figure {
             height: 147px;
             left: 0;
             top: -1.5em;
+            //for mobile
             @media (min-width: 200px) and (max-width: 480px) {
                 width: 25%;
                 height: 25%;
@@ -291,6 +292,7 @@ figure {
             height: 147px;
             bottom: 0;
             right: 0;
+            //for mobile
             @media (min-width: 200px) and (max-width: 480px) {
                 width: 25%;
                 height: 110px;
@@ -327,6 +329,10 @@ figure {
                 @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
                     display: none;
                 }
+                // Ipad Air
+                @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+                    display: none;
+                }
             }
             &::before {
                 content: "";
@@ -341,6 +347,10 @@ figure {
                 opacity: 0.1;
                 // for mobile
                 @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+                    display: none;
+                }
+                // Ipad Air
+                @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
                     display: none;
                 }
             }
@@ -359,6 +369,10 @@ figure {
                         @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
                             flex-direction: column;
                         }
+                        // Ipad Air
+                        @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+                            flex-direction: column;
+                        }
                         .card {
                             width: 450px;
                             height: 550px;
@@ -370,6 +384,13 @@ figure {
                             z-index: 1;
                             // for mobile
                             @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+                                width: auto;
+                                height: auto;
+                                margin-bottom: 12%;
+                                margin-top: 5%;
+                            }
+                            // Ipad Air
+                            @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
                                 width: auto;
                                 height: auto;
                                 margin-bottom: 12%;
@@ -391,10 +412,23 @@ figure {
                                         height: 150px;
                                         transform: translate(-50%, -52%);
                                     }
+                                    // Ipad Air
+                                    @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+                                        left: 50%;
+                                        margin-right: -57%;
+                                        width: 150px;
+                                        height: 150px;
+                                        transform: translate(-50%, -60%);
+                                    }
                                     .seekersImg {
                                         width: 100%;
+                                        //for mobile
                                         @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
                                             width: 110px;
+                                        }
+                                        // Ipad Air
+                                        @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+                                            width: 150px;
                                         }
                                     }
                                 }
@@ -410,6 +444,10 @@ figure {
                                 @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
                                     font-size: 1.5em;
                                 }
+                                // Ipad Air
+                                @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+                                    font-size: 2em;
+                                }
                             }
                             .list {
                                 >div {
@@ -420,6 +458,7 @@ figure {
                                     img {
                                         width: 24px;
                                         height: 24px;
+                                        //for mobile
                                         @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
                                             width: 20px;
                                             height: 20px;
@@ -445,7 +484,13 @@ figure {
                             display: flex;
                             justify-content: end;
                             align-items: center;
+                            //for mobile
                             @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+                                display: none;
+                                margin-bottom: 3%;
+                            }
+                            // Ipad Air
+                            @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
                                 display: none;
                                 margin-bottom: 3%;
                             }
@@ -470,6 +515,7 @@ figure {
                                 width: auto;
                                 position: absolute;
                                 top: 17%;
+                                //for mobile
                                 @media (min-width: 200px) and (max-width: 480px) {
                                     width: 25%;
                                 }
@@ -481,6 +527,11 @@ figure {
                             }
                         }
                     }
+                }
+                // Ipad Air
+                @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+                    display: flex;
+                    justify-content: center;
                 }
             }
         }
@@ -510,7 +561,13 @@ figure {
                 transform: translateY(-23%);
                 width: 40%;
                 height: 360px;
+                //for mobile
                 @media (min-width: 200px) and (max-width: 480px) {
+                    display: none;
+                }
+                // Ipad Air
+                @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+                    // display: flex;
                     display: none;
                 }
             }
@@ -525,8 +582,13 @@ figure {
                     font-size: 1em;
                     text-align: center;
                     z-index: 1;
+                    //for mobile
                     @media (min-width: 200px) and (max-width: 480px) {
                         margin-top: 1em;
+                    }
+                    // Ipad Air
+                    @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+                        font-size: 1.2em;
                     }
                 }
             }
@@ -545,6 +607,7 @@ figure {
                 @include xl {
                     margin: 3.2em 0 0 0;
                 }
+                //for mobile
                 @media (min-width: 200px) and (max-width: 480px) {
                     margin-top: 1.5em;
                 }
@@ -628,8 +691,12 @@ figure {
                                         @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
                                             font-size: 1em;
                                         }
+                                        // Ipad Air
+                                        @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+                                            font-size: 1.2em;
+                                        }
                                         @include md {
-                                            font-size: 13px;
+                                            font-size: 1.2;
                                         }
                                         @include lg {
                                             font-size: 18px;
@@ -640,10 +707,15 @@ figure {
                                     }
                                     .tickmark {
                                         // width: 100%;
+                                        //for mobile
                                         @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
                                             width: 4%;
                                         }
                                     }
+                                }
+                                // Ipad Air
+                                @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+                                    margin: 0 auto;
                                 }
                             }
                         }
@@ -691,6 +763,7 @@ figure {
                         flex-wrap: wrap;
                         text-align: center;
                         margin-top: 3%;
+                        //for mobile
                         @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
                             flex-wrap: wrap;
                             text-align: center;
@@ -702,6 +775,7 @@ figure {
                         font-size: 16px;
                         color: #222222;
                         flex: 30%;
+                        //for mobile
                         @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
                             text-align: center;
                             width: 160px;
@@ -713,6 +787,7 @@ figure {
                         }
                         img {
                             width: 76px;
+                            //for mobile
                             @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
                                 width: 50px;
                             }
@@ -747,7 +822,12 @@ figure {
                 width: 360px;
                 height: 360px;
                 opacity: 0.1;
+                //for mobile
                 @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+                    display: none;
+                }
+                // Ipad Air
+                @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
                     display: none;
                 }
             }
@@ -766,7 +846,7 @@ figure {
                         font-size: 1em;
                     }
                     @include md {
-                        font-size: 13px;
+                        font-size: 1.2em;
                     }
                     @include lg {
                         font-size: 16px;
@@ -774,6 +854,7 @@ figure {
                     @include xl {
                         font-size: 16px;
                     }
+                    //for mobile
                     @media (min-width: 200px) and (max-width: 480px) {
                         margin-top: 1em;
                     }
@@ -815,7 +896,7 @@ figure {
                         figure {
                             width: 100%;
                             @include md {
-                                width: 80%;
+                                width: 100%;
                             }
                             @include lg {
                                 width: 80%;
@@ -863,11 +944,24 @@ figure {
                                 font-size: 14px;
                                 letter-spacing: 0px;
                                 color: $darkGrey;
+                                p {
+                                    margin: 0 0 3px;
+                                    @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+                                        margin: 0;
+                                        white-space: nowrap;
+                                    }
+                                }
                                 @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
                                     font-size: 1em;
                                 }
+                                // Ipad Air
+                                @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+                                    font-size: 1.2em;
+                                    text-align: center;
+                                    width: 100%;
+                                }
                                 @include md {
-                                    font-size: 13px;
+                                    font-size: 1.2em;
                                 }
                                 @include lg {
                                     font-size: 16px;
@@ -959,6 +1053,9 @@ figure {
                 width: auto;
                 color: #1B4E9B;
                 z-index: 3;
+                @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+                    font-size: 14px;
+                }
             }
         }
     }
@@ -970,6 +1067,9 @@ figure {
     padding: 3em 0;
     font-size: 12px;
     z-index: 1;
+    @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+        padding: 1em 0;
+    }
     // background: transparent linear-gradient(131deg, #F8FCFF 0%, #DEF6FF 100%) 0% 0% no-repeat padding-box;
     @include md {
         font-size: 13px;
@@ -991,6 +1091,13 @@ figure {
         align-items: center;
         .footerContact {
             font-size: 14px;
+            @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+                font-size: 1em;
+            }
+            // Ipad Air
+            @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+                font-size: 1.2em;
+            }
             .link {
                 color: #0056b3;
                 text-decoration: underline;
@@ -1075,6 +1182,10 @@ figure {
             font-weight: 500;
             line-height: normal;
             font-family: Roboto, Condensed;
+        }
+        // Ipad Air
+        @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+            width: 30%;
         }
     }
 }

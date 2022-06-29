@@ -109,6 +109,29 @@
             }
         }
         .tabs {
+            .web {
+                //hide for mobile
+                @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+                    display: none;
+                }
+            }
+            .mobile {
+                //hide for Ipad Air
+                @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+                    display: none;
+                }
+                /* Desktops and laptops ----------- */
+                @media only screen and (min-width: 1224px) {
+                    display: none;
+                }
+                /* Large screens ----------- */
+                @media only screen and (min-width: 1824px) {
+                    display: none;
+                }
+                @media only screen and (min-device-width: 540px) and (max-device-width: 720px) {
+                    display: none;
+                }
+            }
             .imgContainer {
                 position: relative;
                 font-size: 11px;
@@ -208,9 +231,6 @@
                 white-space: nowrap;
                 color: #08558C;
             }
-            //  ::ng-deep.mat-tab-body-wrapper {
-            //     padding-bottom: 80px;
-            // }
         }
     }
     
@@ -237,6 +257,14 @@
             margin-left: 17%;
             width: 248px !important;
             text-align: center;
+            // Ipad Air
+            @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+                width: 193px !important;
+            }
+            // mobile
+            @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+                margin-left: 12%;
+            }
             img {
                 height: 40px;
                 object-fit: contain;
