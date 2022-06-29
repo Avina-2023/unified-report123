@@ -93,16 +93,17 @@ header {
     }
     @include md {
         margin-right: 2em;
+        width: 50%;
     }
     @include lg {
-        width: 13%;
+        width: 40%;
         margin-left: 0;
     }
     @include xl {
-        width: 16.5%;
+        width: 32.5%;
     }
     @media only screen and (min-width: 1540px) {
-        width: 11%;
+        width: 24%;
     }
     img {
         width: 100%;

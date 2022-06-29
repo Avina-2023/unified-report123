@@ -4,28 +4,28 @@
     </div>
     <div class="leftWrapper">
         <figure class="edutechLogo">
-            <img src="assets/images/pdfDownload/edutech_logo.svg" alt="L&T Logo">
+            <img src="assets/images/landing/newLogo.png" alt=" L&T Logo ">
         </figure>
-        <div class="line"></div>
-        <div class="head">
+        <!-- <div class="line "></div>
+        <div class="head ">
             Skills Exchange
-        </div>
+        </div> -->
     </div>
 
-    <div class="rightWrapper">
-        <div class="signInRegister">
-            <ng-container *ngIf="!showAvatar">
-                <button class="register" (click)="NavtoLogin()">Login</button>
+    <div class="rightWrapper ">
+        <div class="signInRegister ">
+            <ng-container *ngIf="!showAvatar ">
+                <button class="register " (click)="NavtoLogin() ">Login</button>
             </ng-container>
             <ng-container>
-                <button class="register" id="registerButton" [matMenuTriggerFor]="menu"><div class="menubtn">
-                    <div class="Registerbtn">Register</div>
-                    <mat-icon class="arrowIcon">arrow_drop_down</mat-icon>
+                <button class="register " id="registerButton " [matMenuTriggerFor]="menu "><div class="menubtn ">
+                    <div class="Registerbtn ">Register</div>
+                    <mat-icon class="arrowIcon ">arrow_drop_down</mat-icon>
                 </div>
             </button>
                 <mat-menu #menu="matMenu">
-                    <button mat-menu-item (click)="NavtoJobSeekers()">Job Seekers</button>
-                    <button mat-menu-item (click)="NavtoRegister()">Employers</button>
+                    <button mat-menu-item (click)="NavtoJobSeekers() ">Job Seekers</button>
+                    <button mat-menu-item (click)="NavtoRegister() ">Employers</button>
                 </mat-menu>
             </ng-container>
         </div>

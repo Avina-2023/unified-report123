@@ -26,13 +26,26 @@ export class PartnersListComponent implements OnInit {
       0: {
         items: 3,
       },
-      // 200: {
-      //   items: 4,
-      // },
-      // 400: {
-      //   items: 4,
-      // },
-    
+    }
+  };
+
+  customOptionsMobile: OwlOptions = {
+    loop: true,
+    autoplay: true,
+    animateIn: 'fadeIn',
+    animateOut: 'fadeOut',
+    autoplayTimeout: 2000,
+    autoplayHoverPause: false,
+    dots: false,
+    navSpeed: 2000,
+    navText: ["<div class='nav-btn prev-slide'></div>","<div class='nav-btn next-slide'></div>"],
+    nav: true,
+    autoHeight: true,
+    autoWidth: true,
+    responsive: {
+      0: {
+        items: 1,
+      },
     }
   };
 
