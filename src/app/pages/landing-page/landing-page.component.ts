@@ -1,7 +1,7 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { OwlOptions } from 'ngx-owl-carousel-o';
-
+import { environment } from 'src/environments/environment.prod';
 @Component({
   selector: 'app-landing-page',
   templateUrl: './landing-page.component.html',
@@ -10,16 +10,16 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
 export class LandingPageComponent implements OnInit {
   @ViewChild('register', {static: false}) register: TemplateRef<any>;
   @ViewChild('jobseekers', {static: false}) jobseekers: TemplateRef<any>;
-  
+  baseUrl= environment.OFFCAMPUSDRIVE
   sectiondialogRef: any;
   owlCarouselOptions: OwlOptions = {
-    loop: true,
+    // loop: true,
     mouseDrag: false,
     touchDrag: false,
     pullDrag: false,
-    autoplay: true,
-    animateIn: 'fadeIn',
-    animateOut: 'fadeOut',
+    // autoplay: true,
+    // animateIn: 'fadeIn',
+    // animateOut: 'fadeOut',
     // autoplayTimeout: 1000,
     autoplayHoverPause: false,
     dots: true,
@@ -43,6 +43,10 @@ export class LandingPageComponent implements OnInit {
   
   NavtoRegister(){
     this.openregisterDialog();
+  }
+
+  navToCampus(){
+    window.open(this.baseUrl, '_blank');
   }
 
 
