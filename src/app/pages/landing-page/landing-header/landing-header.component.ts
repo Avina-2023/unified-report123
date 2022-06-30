@@ -32,17 +32,22 @@ export class LandingHeaderComponent implements OnInit {
   }
 
   NavtoJobSeekers(){
-    window.open(this.baseUrl, '_blank');
+    this.openJobSeekersxDialog()
+  
   }
 
-  // openJobSeekersxDialog(){
-  //   this.sectiondialogRef = this.matDialog.open(this.jobseekers, {
-  //     width: '908px',
-  //     height: '524px',
-  //     panelClass: 'loginpopover',
+  NavtoCampus(){
+  window.open(this.baseUrl, '_blank');
+  }
+
+  openJobSeekersxDialog(){
+    this.sectiondialogRef = this.matDialog.open(this.jobseekers, {
+      width: '908px',
+      height: '524px',
+      panelClass: 'loginpopover',
       
-  //   });
-  // }
+    });
+  }
 
   openUserFormDialog() {
     this.sectiondialogRef = this.matDialog.open(this.login, {
