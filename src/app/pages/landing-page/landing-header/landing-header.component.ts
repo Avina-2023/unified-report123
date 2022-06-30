@@ -2,6 +2,7 @@ import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AppConfigService } from 'src/app/utils/app-config.service';
 import { APP_CONSTANTS } from 'src/app/utils/app-constants.service';
+import { environment } from 'src/environments/environment.prod';
 
 @Component({
   selector: 'app-landing-header',
@@ -14,6 +15,7 @@ export class LandingHeaderComponent implements OnInit {
   @ViewChild('jobseekers', {static: false}) jobseekers: TemplateRef<any>;
   showAvatar = false;
   sectiondialogRef: any;
+  baseUrl= environment.OFFCAMPUSDRIVE
   constructor(public appConfig: AppConfigService,private matDialog: MatDialog) { }
 
   ngOnInit(): void {
@@ -30,17 +32,17 @@ export class LandingHeaderComponent implements OnInit {
   }
 
   NavtoJobSeekers(){
-    this.openJobSeekersxDialog();
+    window.open(this.baseUrl, '_blank');
   }
 
-  openJobSeekersxDialog(){
-    this.sectiondialogRef = this.matDialog.open(this.jobseekers, {
-      width: '908px',
-      height: '524px',
-      panelClass: 'loginpopover',
+  // openJobSeekersxDialog(){
+  //   this.sectiondialogRef = this.matDialog.open(this.jobseekers, {
+  //     width: '908px',
+  //     height: '524px',
+  //     panelClass: 'loginpopover',
       
-    });
-  }
+  //   });
+  // }
 
   openUserFormDialog() {
     this.sectiondialogRef = this.matDialog.open(this.login, {
