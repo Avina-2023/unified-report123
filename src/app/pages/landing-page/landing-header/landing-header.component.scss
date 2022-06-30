@@ -209,3 +209,8 @@ header {
         color: $whiteColor;
     }
 }
+
+::ng-deep button.mat-menu-item {
+    width: 100%;
+    text-align: center;
+}
