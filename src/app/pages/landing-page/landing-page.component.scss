@@ -105,11 +105,20 @@ figure {
                         }
                         .bannerContent {
                             position: absolute;
-                            left: 5vw;
-                            top: 50%;
+                            left: 6vw;
+                            top: 41%;
                             width: 85%;
                             transform: translateY(-50%);
-                            font-family: OpenSans, sans-serif;
+                            z-index: 9;
+                            font: normal normal normal 20px/46px Roboto;
+                            // font-family: OpenSans, sans-serif;
+                            @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+                                font: normal;
+                                font-size: 6px;
+                            }
+                            @media only screen and (min-width: 1824px) {
+                                top: 44%;
+                            }
                             @include sm {
                                 width: 55%;
                             }
@@ -123,7 +132,7 @@ figure {
                             }
                             .heading {
                                 font-size: 2.85em;
-                                line-height: 1.1;
+                                line-height: 1;
                                 font-weight: 300;
                                 letter-spacing: 2px;
                                 strong {
@@ -134,20 +143,33 @@ figure {
                                 }
                             }
                             .heading-sub {
-                                font-size: 1em;
-                                line-height: 1.1;
-                                font-weight: 300;
-                                letter-spacing: 2px;
+                                font-size: 32px;
+                                // line-height: 1.1;
+                                // font-weight: 300;
+                                // letter-spacing: 2px;
+                                font-weight: normal !important;
                                 display: flex;
-                                margin-top: 0.8em;
+                                // margin-top: 0.8em;
                                 align-items: flex-end;
+                                font: normal normal normal 18px/46px Roboto;
+                                @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+                                    font: normal;
+                                    font-size: 4px;
+                                }
+                                .line-height {
+                                    line-height: 1.28em;
+                                    @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+                                        line-height: inherit;
+                                    }
+                                }
                                 span {
                                     display: block;
                                     font-size: 1.85em;
-                                    font-weight: 700;
+                                    // font-weight: 700;
                                     margin-top: 0.25em;
                                     letter-spacing: initial;
                                     line-height: 1.28em;
+                                    font-family: Roboto;
                                 }
                                 strong {
                                     display: block;
@@ -162,6 +184,30 @@ figure {
                                 color: $whiteColor;
                                 font-size: 1.3125em;
                                 margin: 1em 0 1.5em 0;
+                            }
+                            .register {
+                                margin-top: 4%;
+                                position: absolute;
+                                @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+                                    font: normal;
+                                    margin-top: 0;
+                                }
+                                .registerbtn {
+                                    width: 221px;
+                                    height: 61px;
+                                    color: $whiteColor;
+                                    border: none;
+                                    border-radius: 5px;
+                                    /* UI Properties */
+                                    background: #16BEF0 0% 0% no-repeat padding-box;
+                                    opacity: 1;
+                                    @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+                                        width: 80px;
+                                        height: 23px;
+                                        font-size: 9px;
+                                        line-height: 2;
+                                    }
+                                }
                             }
                         }
                     }

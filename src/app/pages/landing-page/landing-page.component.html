@@ -9,12 +9,29 @@
                             <owl-carousel-o [options]="owlCarouselOptions">
                                 <ng-container>
                                     <ng-template class="imageWrapper" carouselSlide>
+                                        <div class="bannerContent whiteColor">
+                                            <div class="heading ">
+                                                <strong>L&T Construction</strong>
+                                            </div>
+                                            <div class="heading-sub">
+                                                <span>Off-Campus Drive </span>
+                                                <!-- <strong>Next-Gen Talent</strong> -->
+                                            </div>
+                                            <div class="register">
+                                                <button (click)="navToCampus()" class="registerbtn">Register Now</button>
+                                            </div>
+                                        </div>
+                                        <figure>
+                                            <img src="assets/images/landing/Banner_3.jpg" alt="" />
+                                        </figure>
+                                    </ng-template>
+                                    <ng-template class="imageWrapper" carouselSlide>
                                         <div class="bannerContent blackColor">
                                             <div class="heading">
                                                 <strong>Kick-Start your Career</strong>
                                             </div>
-                                            <div class="heading-sub">
-                                                <span> with your </span> <strong>dream company</strong>
+                                            <div class="heading-sub line-height">
+                                                <span class="line-height"> with your </span> <strong>dream company</strong>
                                             </div>
                                         </div>
                                         <figure>
@@ -34,19 +51,7 @@
                                             <img src="assets/images/landing/Banner_2.jpg" alt="" />
                                         </figure>
                                     </ng-template>
-                                    <ng-template class="imageWrapper" carouselSlide>
-                                        <div class="bannerContent whiteColor">
-                                            <div class="heading ">
-                                                <strong>A Place to Network</strong>
-                                            </div>
-                                            <div class="heading-sub">
-                                                <span>with </span> <strong>Next-Gen Talent</strong>
-                                            </div>
-                                        </div>
-                                        <figure>
-                                            <img src="assets/images/landing/Banner_3.jpg" alt="" />
-                                        </figure>
-                                    </ng-template>
+
                                 </ng-container>
                             </owl-carousel-o>
                         </div>
