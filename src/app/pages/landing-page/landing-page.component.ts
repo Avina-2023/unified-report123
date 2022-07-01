@@ -10,8 +10,10 @@ import { environment } from 'src/environments/environment.prod';
 export class LandingPageComponent implements OnInit {
   @ViewChild('register', {static: false}) register: TemplateRef<any>;
   @ViewChild('jobseekers', {static: false}) jobseekers: TemplateRef<any>;
+  // @ViewChild('skillexchange', {static: false}) skillexchange: TemplateRef<any>;
   baseUrl= environment.OFFCAMPUSDRIVE
   sectiondialogRef: any;
+  // skillBanner:any;
   owlCarouselOptions: OwlOptions = {
     // loop: true,
     mouseDrag: false,
@@ -38,6 +40,10 @@ export class LandingPageComponent implements OnInit {
   constructor(private matDialog: MatDialog) { }
 
   ngOnInit(): void {
+    // setTimeout(() => {
+    //   // this.skillExchangeBanner();
+    // }, 100);
+  
   }
 
   
@@ -71,5 +77,14 @@ export class LandingPageComponent implements OnInit {
       
     });
   }
+
+
+  // skillExchangeBanner(){
+  //   this.skillBanner = this.matDialog.open(this.skillexchange, {
+  //     width: '100%',
+  //     height: '524px',
+  //     panelClass: 'loginpopover',
+  //   });
+  // }
 
 }
