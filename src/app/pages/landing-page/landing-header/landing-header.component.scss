@@ -213,6 +213,7 @@ header {
 ::ng-deep button.mat-menu-item {
     width: 100%;
     text-align: center;
+    border-bottom: 0.1px solid #cccccc45;
 }
 
 ::ng-deep.mat-menu-panel {
