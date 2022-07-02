@@ -33,7 +33,6 @@ export class LandingHeaderComponent implements OnInit {
 
   NavtoJobSeekers(){
     this.openJobSeekersxDialog()
-  
   }
 
   NavtoCampus(){
