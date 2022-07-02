@@ -151,5 +151,14 @@ export class ApiService {
   postRegister(data){
     return this.http.post(`${this.BASE_URL}/employeeRegister`,data);
   }
+
+  getSkillMasterList(data){
+    return this.http.post(`${this.BASE_URL}/getSkillList`,data,
+    { reportProgress: true });
+  }
+
+  skillMasterValidate(data){
+    return this.http.post(`${this.BASE_URL}/skillValidate`,data);
+  }
   
 }

@@ -34,6 +34,9 @@ export const APP_CONSTANTS = {
     CANDIDATE:{
       HOME:'/auth/candidate',
       VIEWOVERALLREPORT: '/auth/candidate/candidatereport'
+    },
+    SKILLMASTER:{
+      HOME:'/auth/skillmaster'
     }
   },
 
@@ -57,6 +60,9 @@ export const APP_CONSTANTS = {
     CANDIDATE:{
       HOME:'candidate',
       VIEWOVERALLREPORT:'candidatereport'
+    },
+    SKILLMASTER:{
+      HOME:'skillmaster'
     }
   }
 };
