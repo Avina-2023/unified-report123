@@ -14,7 +14,8 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./skill-master-list.component.scss']
 })
 export class SkillMasterListComponent implements OnInit {
-  @ViewChild('selectStatus', { static: false }) selectStatus: TemplateRef<any>;
+  @ViewChild('instructionSelect', { static: false }) instructionSelect: TemplateRef<any>;
+  @ViewChild('rejectSelect', { static: false }) rejectSelect: TemplateRef<any>;
   @ViewChild('sectionDetails', { static: false }) opensection: TemplateRef<any>;
   public rowModelType;
   public serverSideStoreType;
@@ -84,14 +85,17 @@ export class SkillMasterListComponent implements OnInit {
   demoimg: any;
   Isspinner = false;
   FormateName: any;
-  cacheBlockSize: any = 100;
+  cacheBlockSize: any = 50;
   rowData1: any;
   sectiondialogRef: any;
   skillMasterListSubscription: Subscription;
   skillMasterList: any = [];
   pageRowCount = 0;
-  statusList = ["All Skills", "Approved Skills", "Unapproved Skills", "Reject Skills"];
+  statusList = ["All Skills", "Approved Skills", "Unapproved Skills", "Rejected Skills"];
   statusSelectedValue = "All Skills";
+  rejectList = ["Duplicate Entry", "Invalid Data", "Others"];
+  rejectSelectedValue = "Duplicate Entry";
+  rejectOtherValue = "";
 
   constructor(public matDialog: MatDialog, private sendData: SentDataToOtherComp, private ApiService: ApiService, private appconfig: AppConfigService, private toastr: ToastrService) {
     this.serverSideStoreType = 'partial';
@@ -126,6 +130,13 @@ export class SkillMasterListComponent implements OnInit {
     this.gridApi.refreshServerSideStore({ purge: true });
   }
 
+  RejectChange(e) {
+    this.rejectSelectedValue = e.value;
+    if (e.value !== "Others") {
+      this.rejectOtherValue = "";
+    }
+  }
+
   onGridReady(params) {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
@@ -146,8 +157,8 @@ export class SkillMasterListComponent implements OnInit {
           apiData.request.status = "Approved";
         } else if (this.statusSelectedValue == "Unapproved Skills") {
           apiData.request.status = "Unapproved";
-        } else if (this.statusSelectedValue == "Reject Skills") {
-          apiData.request.status = "Reject";
+        } else if (this.statusSelectedValue == "Rejected Skills") {
+          apiData.request.status = "Rejected";
         }
         this.skillMasterListSubscription = this.ApiService.getSkillMasterList(apiData.request).subscribe((data1: any) => {
           if (data1.success == false) {
@@ -197,17 +208,31 @@ export class SkillMasterListComponent implements OnInit {
   }
 
 
-  statusSelect() {
-    const dialogRef = this.matDialog.open(this.selectStatus, {
+  InstructionSelect() {
+    const dialogRef = this.matDialog.open(this.instructionSelect, {
       width: '500px',
       height: '500px',
       autoFocus: false,
       closeOnNavigation: true,
-      panelClass: 'selectStatus'
+      panelClass: 'instructionSelect'
     });
   }
 
   instructionClose() {
+    this.matDialog.closeAll();
+  }
+
+  RejectSelect() {
+    const dialogRef = this.matDialog.open(this.rejectSelect, {
+      width: '500px',
+      height: '400px',
+      autoFocus: false,
+      closeOnNavigation: true,
+      panelClass: 'rejectSelect'
+    });
+  }
+
+  RejectClose() {
     this.matDialog.closeAll();
   }
 
@@ -423,25 +448,26 @@ export class SkillMasterListComponent implements OnInit {
     this.selectedRow = ids;
   }
 
-  approveSkillMaster(){
-    var apiData ={
-    "ids":this.selectedRow,
-    "status":"Approved",
-    "reason":"",
-    "approvedBy": this.appconfig.getLocalStorage('email') ? this.appconfig.getLocalStorage('email') : ''
-    } 
-    this.skillMasterListSubscription = this.ApiService.skillMasterValidate(apiData).subscribe(async(data1: any) => {
+  approveSkillMaster() {
+    var apiData = {
+      "ids": this.selectedRow,
+      "status": "Approved",
+      "reason": "",
+      "approvedBy": this.appconfig.getLocalStorage('email') ? this.appconfig.getLocalStorage('email') : ''
+    }
+    this.skillMasterListSubscription = this.ApiService.skillMasterValidate(apiData).subscribe((data1: any) => {
       if (data1.success == false) {
         this.toastr.warning('Unable to update, Please try again.');
         this.gridApi.hideOverlay();
       } else {
-         this.rowData = [];
-         this.selectedRow=[];
-         this.skillMasterList=[];
+        this.rowData = [];
+        this.selectedRow = [];
+        this.skillMasterList = [];
+        this.gridApi.deselectAll();
         this.toastr.success('Approved Updated Successfully');
-       await this.tabledef();
-       this.gridApi.paginationGoToFirstPage();
-       this.gridApi.refreshServerSideStore({ purge: true });
+        this.tabledef();
+        this.gridApi.paginationGoToFirstPage();
+        this.gridApi.refreshServerSideStore({ purge: true });
       }
     }, (err) => {
       this.toastr.warning('Connection failed, Please try again.');
@@ -450,7 +476,45 @@ export class SkillMasterListComponent implements OnInit {
     this.gridApi.hideOverlay();
   }
 
-  rejectSkillMaster(){
-    
+  rejectSkillMaster() {
+    if (this.rejectSelectedValue === "Others" && this.rejectOtherValue === "") {
+      this.toastr.warning('Please enter the value in Others');
+    } else {
+      let notes;
+      if (this.rejectOtherValue !== "") {
+        notes = this.rejectOtherValue;
+      } else {
+        notes = this.rejectSelectedValue;
+      }
+      var apiData = {
+        "ids": this.selectedRow,
+        "status": "Rejected",
+        "reason": notes,
+        "approvedBy": this.appconfig.getLocalStorage('email') ? this.appconfig.getLocalStorage('email') : ''
+      }
+      this.skillMasterListSubscription = this.ApiService.skillMasterValidate(apiData).subscribe((data1: any) => {
+        if (data1.success == false) {
+          this.toastr.warning('Unable to update, Please try again.');
+          this.gridApi.hideOverlay();
+        } else {
+          this.rowData = [];
+          this.selectedRow = [];
+          this.skillMasterList = [];
+          this.rejectOtherValue="";
+          this.rejectSelectedValue = "Duplicate Entry";
+          this.matDialog.closeAll();
+          this.gridApi.deselectAll();
+          this.toastr.success('Rejected Updated Successfully');
+          this.tabledef();
+          this.gridApi.paginationGoToFirstPage();
+          this.gridApi.refreshServerSideStore({ purge: true });
+        }
+      }, (err) => {
+        this.toastr.warning('Connection failed, Please try again.');
+        this.gridApi.hideOverlay();
+      });
+      this.gridApi.hideOverlay();
+      
+    }
   }
 }

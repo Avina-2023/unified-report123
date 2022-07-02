@@ -3,7 +3,7 @@
         <h2 class="result mb-0">Skill Master</h2>
         <div class="Row">
             <div class="Item">
-                <a (click)="statusSelect()" class="filterIcon">Instructions</a>
+                <a (click)="InstructionSelect()" class="filterIcon">Instructions</a>
             </div>
             <div class="Item"><button class="agTable-btn">
                     <span class=""></span>
@@ -25,14 +25,16 @@
             </mat-select>
         </div>
         <div *ngIf="selectedRow.length" class="Row">
-            <div *ngIf="(statusSelectedValue === 'Reject Skills' || statusSelectedValue === 'Unapproved Skills')" class="Item">
+            <div *ngIf="(statusSelectedValue === 'Rejected Skills' || statusSelectedValue === 'Unapproved Skills')"
+                class="Item">
                 <button (click)="approveSkillMaster()" class="agTable-btn">
                     <span class=""></span>
                     <span>Approve</span>
                 </button>
             </div>
-            <div *ngIf="(statusSelectedValue === 'Approved Skills' || statusSelectedValue === 'Unapproved Skills')" class="Item">
-                <button (click)="rejectSkillMaster()" class="agTable-btn">
+            <div *ngIf="(statusSelectedValue === 'Approved Skills' || statusSelectedValue === 'Unapproved Skills')"
+                class="Item">
+                <button (click)="RejectSelect()" class="agTable-btn">
                     <span class=""></span>
                     <span>Reject</span>
                 </button>
@@ -46,21 +48,20 @@
         <ag-grid-angular style="width: 99%; height: calc(100vh - 195px); margin:auto !important;font-size: 12px;"
             id="myGrid" class="ag-theme-alpine" [columnDefs]="columnDefs" [defaultColDef]="defaultColDef"
             [masterDetail]="masterDetail" [detailCellRendererParams]="detailCellRendererParams" [rowData]="rowData"
-            [enableRangeSelection]="true" [tooltipShowDelay]="0" [animateRows]="true"
-            headerHeight="45" rowHeight="45" [suppressRowClickSelection]="true" [suppressRowTransform]="true"
-            [rowSelection]="rowSelection" [pivotPanelShow]="'always'" [sideBar]="false"
-            (gridReady)="onGridReady($event)" [rowModelType]="rowModelType"     
-            [maintainColumnOrder]="true" [cacheBlockSize]="cacheBlockSize"
+            [enableRangeSelection]="true" [tooltipShowDelay]="0" [animateRows]="true" headerHeight="45" rowHeight="45"
+            [suppressRowClickSelection]="true" [suppressRowTransform]="true" [rowSelection]="rowSelection"
+            [pivotPanelShow]="'always'" [sideBar]="false" (gridReady)="onGridReady($event)"
+            [rowModelType]="rowModelType" [maintainColumnOrder]="true" [cacheBlockSize]="cacheBlockSize"
             (selectionChanged)="onSelectionChanged($event)" [chartThemeOverrides]="chartThemeOverrides"
             [suppressAggFuncInHeader]="true" [suppressColumnVirtualisation]="true"
-            [autoGroupColumnDef]="autoGroupColumnDef" [pagination]="true" [paginationPageSize]="2500"
-            [sideBar]="sideBar">
+            [autoGroupColumnDef]="autoGroupColumnDef" [serverSideStoreType]="serverSideStoreType" [pagination]="true"
+            [paginationPageSize]="50" [sideBar]="sideBar">
         </ag-grid-angular>
 
     </div>
 </div>
 
-<ng-template #selectStatus>
+<ng-template #instructionSelect>
     <div class="instruction">
         <div class="close" (click)="instructionClose()">
             <span class="pointer"><em class="icon-Close"></em></span>
@@ -93,6 +94,43 @@
         </div>
         <div class="submit">
             <button (click)="instructionClose()">Ok</button>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #rejectSelect>
+    <div class="instruction">
+        <div class="close" (click)="RejectClose()">
+            <span class="pointer"><em class="icon-Close"></em></span>
+        </div>
+        <div class="heading">
+            <h2>Reason for Rejection</h2>
+        </div>
+        <div>
+            <div class="statusList">
+                <mat-label class="label">Select your reason *</mat-label>
+                <mat-select class="matSelect1" (selectionChange)="RejectChange($event)" [(ngModel)]="rejectSelectedValue"
+                    name="list">
+                    <mat-option *ngFor="let list of rejectList" [value]="list">
+                        {{list}}
+                    </mat-option>
+                </mat-select>
+            </div>
+            <div *ngIf="rejectSelectedValue === 'Others'" class="otherNotes">
+                  <mat-label class="label">Enter your reason *</mat-label>
+                  <mat-form-field class="example-full-width" appearance="outline">
+                    <input matInput [(ngModel)]="rejectOtherValue">
+                  </mat-form-field>
+            </div>
+        
+        </div>
+        <div class="submit">
+            <div class="rejectClose">
+                <button (click)="RejectClose()">Cancel</button>
+            </div>
+            <div>
+                <button (click)="rejectSkillMaster()">Save</button>
+            </div>
         </div>
     </div>
 </ng-template>
