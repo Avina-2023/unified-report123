@@ -1,7 +1,7 @@
 <div class="wrapper">
     <mat-toolbar class="header-toolbar" *ngIf="checkRouter ==='/auth/reports/userlist'">
         <div class="first">
-            <img alt="EduTech" class="beforeloginimg" [src]="this.orgLogo ? this.orgLogo  : 'https://assets.lntedutech.com/edutech_logo.svg'" />
+            <img alt="EduTech" class="beforeloginimg" [src]="this.orgLogo ? this.orgLogo  : 'assets/images/landing/newLogo.png'" />
         </div>
         <div *ngIf="isaccess" class="logout">
             <mat-icon class="homeBtn" (click)="navToDashboard()">home</mat-icon>
@@ -15,7 +15,7 @@
 
     <mat-toolbar class="header-toolbar" *ngIf="checkRouter !='/auth/reports/userlist' && checkRouter !='/auth/reports/dashboard' ">
         <div class="first">
-            <img alt="EduTech" class="beforeloginimg" [src]="this.orgLogo ? this.orgLogo  : 'https://assets.lntedutech.com/edutech_logo.svg'" />
+            <img alt="EduTech" class="beforeloginimg" [src]="this.orgLogo ? this.orgLogo  : 'assets/images/landing/newLogo.png'" />
         </div>
         <div *ngIf="isaccess" class="logout">
             <span class="wel">Welcome, {{orgName ? orgName : 'Admin'}}</span>
@@ -25,7 +25,7 @@
 
     <mat-toolbar class="header-toolbar" *ngIf="checkRouter === '/auth/reports/dashboard'">
         <div class="first">
-            <img alt="EduTech" class="beforeloginimg" [src]="this.orgLogo ? this.orgLogo  : 'https://assets.lntedutech.com/edutech_logo.svg'" />
+            <img alt="EduTech" class="beforeloginimg" [src]="this.orgLogo ? this.orgLogo  : 'assets/images/landing/newLogo.png'" />
         </div>
         <div *ngIf="isaccess" class="logout">
             <span class="userListNav" (click)="navToUserlist()"> Pre-assessed Candidates </span>

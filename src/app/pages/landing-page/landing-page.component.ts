@@ -1,7 +1,7 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { OwlOptions } from 'ngx-owl-carousel-o';
-
+import { environment } from 'src/environments/environment.prod';
 @Component({
   selector: 'app-landing-page',
   templateUrl: './landing-page.component.html',
@@ -10,16 +10,18 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
 export class LandingPageComponent implements OnInit {
   @ViewChild('register', {static: false}) register: TemplateRef<any>;
   @ViewChild('jobseekers', {static: false}) jobseekers: TemplateRef<any>;
-  
+  // @ViewChild('skillexchange', {static: false}) skillexchange: TemplateRef<any>;
+  baseUrl= environment.OFFCAMPUSDRIVE
   sectiondialogRef: any;
+  // skillBanner:any;
   owlCarouselOptions: OwlOptions = {
-    loop: true,
+    // loop: true,
     mouseDrag: false,
     touchDrag: false,
     pullDrag: false,
-    autoplay: true,
-    animateIn: 'fadeIn',
-    animateOut: 'fadeOut',
+    // autoplay: true,
+    // animateIn: 'fadeIn',
+    // animateOut: 'fadeOut',
     // autoplayTimeout: 1000,
     autoplayHoverPause: false,
     dots: true,
@@ -38,11 +40,19 @@ export class LandingPageComponent implements OnInit {
   constructor(private matDialog: MatDialog) { }
 
   ngOnInit(): void {
+    // setTimeout(() => {
+    //   // this.skillExchangeBanner();
+    // }, 100);
+  
   }
 
   
   NavtoRegister(){
     this.openregisterDialog();
+  }
+
+  navToCampus(){
+    window.open(this.baseUrl, '_blank');
   }
 
 
@@ -67,5 +77,14 @@ export class LandingPageComponent implements OnInit {
       
     });
   }
+
+
+  // skillExchangeBanner(){
+  //   this.skillBanner = this.matDialog.open(this.skillexchange, {
+  //     width: '100%',
+  //     height: '524px',
+  //     panelClass: 'loginpopover',
+  //   });
+  // }
 
 }

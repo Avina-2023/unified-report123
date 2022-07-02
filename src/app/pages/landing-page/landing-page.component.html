@@ -9,12 +9,29 @@
                             <owl-carousel-o [options]="owlCarouselOptions">
                                 <ng-container>
                                     <ng-template class="imageWrapper" carouselSlide>
+                                        <div class="bannerContent whiteColor">
+                                            <div class="heading ">
+                                                <strong>Larsen & Toubro</strong>
+                                            </div>
+                                            <div class="heading-sub">
+                                                <span>Off-Campus Drive 2022 </span>
+                                                <!-- <strong>Next-Gen Talent</strong> -->
+                                            </div>
+                                            <div class="register">
+                                                <button (click)="navToCampus()" class="registerbtn">Apply Now</button>
+                                            </div>
+                                        </div>
+                                        <figure>
+                                            <img src="assets/images/landing/Banner_3.jpg" alt="" />
+                                        </figure>
+                                    </ng-template>
+                                    <ng-template class="imageWrapper" carouselSlide>
                                         <div class="bannerContent blackColor">
                                             <div class="heading">
                                                 <strong>Kick-Start your Career</strong>
                                             </div>
-                                            <div class="heading-sub">
-                                                <span> with your </span> <strong>dream company</strong>
+                                            <div class="heading-sub line-height">
+                                                <span class="line-height"> with your </span> <strong>dream company</strong>
                                             </div>
                                         </div>
                                         <figure>
@@ -34,19 +51,7 @@
                                             <img src="assets/images/landing/Banner_2.jpg" alt="" />
                                         </figure>
                                     </ng-template>
-                                    <ng-template class="imageWrapper" carouselSlide>
-                                        <div class="bannerContent whiteColor">
-                                            <div class="heading ">
-                                                <strong>A Place to Network</strong>
-                                            </div>
-                                            <div class="heading-sub">
-                                                <span>with </span> <strong>Next-Gen Talent</strong>
-                                            </div>
-                                        </div>
-                                        <figure>
-                                            <img src="assets/images/landing/Banner_3.jpg" alt="" />
-                                        </figure>
-                                    </ng-template>
+
                                 </ng-container>
                             </owl-carousel-o>
                         </div>
@@ -430,7 +435,6 @@
         </div>
     </section>
     <app-landing-footer></app-landing-footer>
-
 </div>
 
 <ng-template #register>
@@ -439,3 +443,14 @@
 <ng-template #jobseekers>
     <app-job-seekers></app-job-seekers>
 </ng-template>
+
+<!-- <ng-template #skillexchange>
+    <div class="bannerSection">
+        <button class="close-button" [mat-dialog-close]="true">
+        <mat-icon class="close-icon">close</mat-icon>
+      </button>
+        <figure>
+            <img class="banner" src="../../../assets/images/landing/Banner_1.jpg" />
+        </figure>
+    </div>
+</ng-template> -->
