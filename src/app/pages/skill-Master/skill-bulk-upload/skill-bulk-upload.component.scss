@@ -1,17 +1,160 @@
 @import "../../../../assets/scss/fonts.scss";
 @import '../../../../assets/scss/variables.scss';
 
+:host ::ng-deep .agTable-btn {
+    background-color: #fff;
+    color: #fff;
+    width: 113px;
+    height: 39px;
+    background: #004684 0% 0% no-repeat padding-box;
+    box-shadow: 2px 2px 4px #0000001A;
+    border: 0.4891771078109741px solid #939393;
+    border-radius: 3px;
+    font-size: 15px;
+    .filterIcon {
+        display: inline-block;
+        width: 15px;
+        height: 13px;
+        margin-right: 6px;
+        background-size: cover;
+    }
+    .icon-bike {
+        background-image: url('../../../../assets/images/Filter.svg');
+    }
+}
+
+::ng-deep .mat-tab-label {
+    padding-left: 30px !important; 
+    justify-content: left !important;
+  }
+
+//   ::ng-deep .mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar{
+//     background-color: green !important;
+//   }
+
+.agTable-btn:hover {
+    background-color: #009AFF;
+    transition: 0.7s;
+    color: $whiteColor;
+    font-size: 15px;
+    border: none;
+}
+
+
 .first {
     display: contents;
     .link {
         color: black;
         text-decoration: none
-    }
+    } 
 }
-.first {
-    display: contents;
+
+.search-icon {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4px 15px;
+    padding-top: 15px;
 }
 
 .result{
     padding-left: 16px;
+    padding-top: 19px;
+}
+
+.BulkSubTab{
+    padding-bottom: 57px;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+.subInstruction{
+    padding-left: 16px;
+}
+
+.submit {
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    padding: 20px;
+    display: flex;
+    justify-content: flex-end;
+    .nextButton {
+        font-size: 14px;
+        font-weight: 400;
+        color: $whiteColor;
+        line-height: normal;
+        background-color: $blueColor;
+        padding: 10px 14px;
+        border: none;
+        border-radius: 5px;
+    }
+}
+
+.imgPadding{
+    padding-top: 80px;
+}
+
+  .check{
+    background-color: red;
+  }
+
+.greenTickPadding{  
+    padding: 157px;
+}
+
+.greenLable{
+color: #5CB646;
+}
+
+.blueLable{
+    color: #004684;
+}
+.blackLable{
+    color: black;
+}
+
+.centerUploadFile, .centerDownloadFile{
+    width: 50%;
+    margin: 0 auto;  
+}
+.downloadFile{
+    display: flex;
+    align-items: center;
+}
+.mat-card{
+ background: #FAFAFA 0% 0% no-repeat padding-box;
+border: 0.5px solid #707070B0;
+opacity: 1;
+}
+
+.file-input {
+    display: none;
+  }
+
+  .file-upload{
+    margin-left: 18%;
+    margin-right: 18%;
+    width: auto;
+  }
+.mat-mini-fab.mat-accent{
+    background-color: #FAFAFA;
+}
+
+.mat-mini-fab:not([class*=mat-elevation-z]) {
+     box-shadow: 0px 3px 5px -1px #FAFAFA, 0px 6px 10px 0px #FAFAFA, 0px 1px 18px 0px #FAFAFA ; 
+}
+
+.instruction{
+    padding-bottom: 30px;
+    // background-color: #FAFAFA;
+
+}
+.instructionTab{
+    //width: 80%;
+    background-color: #FAFAFA;
+}
+
+.mat-expansion-panel:not(.mat-expanded) .mat-expansion-panel-header:hover:not([aria-disabled=true]) {
+    background-color: #FAFAFA;
 }

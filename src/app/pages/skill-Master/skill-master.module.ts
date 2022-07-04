@@ -1,4 +1,4 @@
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SkillMasterRoutingModule } from './skill-master-routing.module';
 import { SkillBulkUploadComponent } from './skill-bulk-upload/skill-bulk-upload.component';
@@ -19,6 +19,5 @@ import { SharedModule } from 'src/app/shared/shared.module';
     MaterialModule,
     SharedModule,
   ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]
 })
 export class SkillMasterModule { }
