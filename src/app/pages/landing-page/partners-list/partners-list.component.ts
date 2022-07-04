@@ -10,8 +10,8 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
 export class PartnersListComponent implements OnInit {
   @ViewChild(DragScrollComponent) ds: DragScrollComponent;
   customOptions: OwlOptions = {
-    loop: true,
-    autoplay: true,
+    // loop: true,
+    // autoplay: true,
     animateIn: 'fadeIn',
     animateOut: 'fadeOut',
     autoplayTimeout: 2000,
@@ -19,7 +19,7 @@ export class PartnersListComponent implements OnInit {
     dots: false,
     navSpeed: 2000,
     navText: ["<div class='nav-btn prev-slide'></div>","<div class='nav-btn next-slide'></div>"],
-    nav: true,
+    // nav: true,
     autoHeight: true,
     autoWidth: true,
     responsive: {
@@ -48,10 +48,30 @@ export class PartnersListComponent implements OnInit {
       },
     }
   };
+  hiringShow: any = true;
+  ecosystemShow: any;
+  institutionalShow: any;
 
   constructor() { }
 
   ngOnInit(): void {
    
+  }
+
+  hiring(){
+    this.hiringShow = true;
+    this.ecosystemShow = false;
+    this.institutionalShow = false
+
+  }
+  ecosystem(){
+    this.ecosystemShow = true;
+    this.hiringShow = false;
+    this.institutionalShow = false;
+  }
+  institutional(){
+    this.institutionalShow = true
+    this.ecosystemShow = false;
+    this.hiringShow = false;
   }
 }

@@ -27,7 +27,7 @@ figure {
                 align-items: center;
                 height: 100%;
                 @include xl {
-                    height: 550px;
+                    height: 522px;
                 }
                 .bannerWrapper {
                     position: relative;
@@ -452,6 +452,119 @@ figure {
                             background: #FFFFFF 0% 0% no-repeat padding-box;
                             box-shadow: 0px 3px 35px #00000029;
                             border-radius: 85px 0px;
+                            opacity: 1;
+                            // for mobile
+                            @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+                                width: auto;
+                                height: auto;
+                                margin-bottom: 12%;
+                                margin-top: 5%;
+                            }
+                            // Ipad Air
+                            @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+                                width: auto;
+                                height: auto;
+                                margin-bottom: 12%;
+                                margin-top: 5%;
+                            }
+                            .bg-white {
+                                .profileImage {
+                                    width: 150px;
+                                    height: 150px;
+                                    transform: translate(-50%, -68%);
+                                    position: absolute;
+                                    left: 50%;
+                                    margin-right: -50%;
+                                    // for mobile
+                                    @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+                                        left: 57%;
+                                        margin-right: -57%;
+                                        width: 150px;
+                                        height: 150px;
+                                        transform: translate(-50%, -52%);
+                                    }
+                                    // Ipad Air
+                                    @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+                                        left: 50%;
+                                        margin-right: -57%;
+                                        width: 150px;
+                                        height: 150px;
+                                        transform: translate(-50%, -60%);
+                                    }
+                                    .seekersImg {
+                                        width: 100%;
+                                        //for mobile
+                                        @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+                                            width: 110px;
+                                        }
+                                        // Ipad Air
+                                        @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+                                            width: 150px;
+                                        }
+                                    }
+                                }
+                            }
+                            .cardTitle {
+                                color: #004684;
+                                font-size: 24px;
+                                text-align: center;
+                                margin-top: 4%;
+                                font-weight: 600;
+                                margin-bottom: 25px;
+                                // for mobile
+                                @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+                                    font-size: 1.5em;
+                                }
+                                // Ipad Air
+                                @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+                                    font-size: 2em;
+                                }
+                            }
+                            .list {
+                                >div {
+                                    display: flex;
+                                    justify-content: start;
+                                    align-items: center;
+                                    padding-bottom: 15px;
+                                    img {
+                                        // width: 20px;
+                                        // height: 20px;
+                                        //for mobile
+                                        @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+                                            width: 20px;
+                                            height: 20px;
+                                        }
+                                    }
+                                    // for mobile
+                                    @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+                                        padding-bottom: 20px;
+                                    }
+                                    >span {
+                                        margin-left: 5%;
+                                        font-size: 14px;
+                                        color: #222222;
+                                        // for mobile
+                                        @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+                                            font-size: 1em;
+                                        }
+                                    }
+                                }
+                            }
+                            figure {
+                                text-align: center;
+                                padding-bottom: 15px;
+                            }
+                        }
+                        .card1 {
+                            width: 400px;
+                            height: 580px;
+                            box-shadow: 0px 0px 3px #2a2a2a24;
+                            border: 1px solid #EFEFEF;
+                            padding: 30px 35px 30px 35px;
+                            z-index: 1;
+                            background: #FFFFFF 0% 0% no-repeat padding-box;
+                            box-shadow: 0px 3px 35px #00000029;
+                            border-radius: 0px 85px;
                             opacity: 1;
                             // for mobile
                             @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
