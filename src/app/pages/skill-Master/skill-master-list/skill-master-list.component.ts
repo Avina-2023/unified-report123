@@ -7,7 +7,6 @@ import { ApiService } from '../../../services/api.service';
 import { ToastrService } from 'ngx-toastr';
 import { AppConfigService } from 'src/app/utils/app-config.service';
 import { Subscription } from 'rxjs';
-
 @Component({
   selector: 'app-skill-master-list',
   templateUrl: './skill-master-list.component.html',
@@ -122,9 +121,14 @@ export class SkillMasterListComponent implements OnInit {
     this.skillMasterListSubscription ? this.skillMasterListSubscription.unsubscribe() : '';
   }
 
+   navToSkillBulkUpload(){
+    this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.SKILLMASTER.SKILLBULKUPlOAD);
+  }
+
   statusChange(e) {
     this.gridApi.setFilterModel(null);
     this.statusSelectedValue = e.value;
+    this.gridApi.deselectAll();
     this.tabledef();
     this.gridApi.paginationGoToFirstPage();
     this.gridApi.refreshServerSideStore({ purge: true });
@@ -234,6 +238,8 @@ export class SkillMasterListComponent implements OnInit {
 
   RejectClose() {
     this.matDialog.closeAll();
+    this.rejectOtherValue="";
+    this.rejectSelectedValue = "Duplicate Entry";
   }
 
   titleCase(str) {
@@ -327,11 +333,11 @@ export class SkillMasterListComponent implements OnInit {
         filter: 'agDateColumnFilter',
         field: 'createdAt',
         maxWidth: 140,
-        tooltipField: 'createdAt',
+       // tooltipField: 'createdAt',
         chartDataType: 'series',
         cellRenderer: (params) => {
           if (params.value) {
-            return params.value;
+            return (new Date(params.value)).toString()
           } if (params.value == undefined) {
             return '';
           } else {
@@ -418,11 +424,11 @@ export class SkillMasterListComponent implements OnInit {
         filter: 'agDateColumnFilter',
         field: 'approvedAt',
         maxWidth: 140,
-        tooltipField: 'approvedAt',
+       // tooltipField: 'approvedAt',
         chartDataType: 'series',
         cellRenderer: (params) => {
           if (params.value) {
-            return params.value;
+            return (new Date(params.value)).toString();
           } if (params.value == undefined) {
             return '';
           } else {
@@ -439,7 +445,6 @@ export class SkillMasterListComponent implements OnInit {
 
 
   async onSelectionChanged(event) {
-
     var rowData = event.api.getSelectedNodes();
     var ids = [];
     await rowData.forEach(elem => {

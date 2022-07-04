@@ -36,7 +36,8 @@ export const APP_CONSTANTS = {
       VIEWOVERALLREPORT: '/auth/candidate/candidatereport'
     },
     SKILLMASTER:{
-      HOME:'/auth/skillmaster'
+      HOME:'/auth/skillmaster',
+      SKILLBULKUPlOAD:'/auth/skillmaster/skillbulkupload'
     }
   },
 
@@ -62,7 +63,8 @@ export const APP_CONSTANTS = {
       VIEWOVERALLREPORT:'candidatereport'
     },
     SKILLMASTER:{
-      HOME:'skillmaster'
+      HOME:'skillmaster',
+      SKILLBULKUPlOAD:'skillbulkupload'
     }
   }
 };

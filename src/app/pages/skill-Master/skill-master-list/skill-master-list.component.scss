@@ -1,6 +1,27 @@
 @import "../../../../assets/scss/fonts.scss";
 @import '../../../../assets/scss/variables.scss';
 
+// ::ng-deep .ag-theme-alpine {
+//     font-size: 12px !important;
+// }
+
+// ::ng-deep .ag-theme-alpine .ag-details-row {
+//     padding: 10px !important;
+//     font-size: 14px !important;
+// }
+
+// ::ng-deep .ag-theme-alpine .ag-cell,
+// .ag-theme-alpine .ag-full-width-row .ag-cell-wrapper.ag-row-group {
+//     font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-normal) var(--unnamed-font-size-14)/46px Roboto;
+//     letter-spacing: var(--unnamed-character-spacing-0);
+//     font: normal normal normal 14px/46px Roboto;
+//     font-size: 14px !important;
+//     line-height: normal !important;
+//     align-items: center!important;
+//     display: flex!important;
+//     align-items: center!important;
+// }
+
 ::ng-deep .red-btn {
     color: #CB0000;
     display: flex;
@@ -21,6 +42,19 @@
     justify-content: space-evenly;
     padding-right: 5em;
 }
+
+::ng-deep .mat-select-value{    
+    color: white!important; 
+ }
+
+::ng-deep .matSelect1 {
+        width: auto;
+        border: 1px solid $blackColor;
+        padding: 10px;
+         .mat-select-value{    
+            color: black !important; 
+         }
+    }
 
 .search-icon {
     display: flex;
@@ -102,12 +136,14 @@
 
 .outer-div {
     padding-bottom: 1%;
+    padding-top:11px;
 }
 
 .matSelect {
     width: 200px;
     border: 1px solid $blackColor;
     padding: 10px;
+    background-color: #004684;
 }
 
 .statusList{
@@ -133,12 +169,6 @@
     }
 }
 
-.matSelect1 {
-    width: auto;
-    border: 1px solid $blackColor;
-    padding: 10px;
-}
-
 .otherNotes{
     display: flex;
     flex-direction: column;
@@ -147,4 +177,48 @@
 
 .rejectClose{
     margin-right: 11px;
+}
+
+:host ::ng-deep .agTable-btn-Reject {
+    background-color: #F5CECE;
+    color: #333333;
+    width: 113px;
+    height: 39px;
+    background: #F5CECE 0% 0% no-repeat padding-box;
+    box-shadow: 2px 2px 4px #0000001A;
+    border: 0.4891771078109741px solid #CB0000;
+    border-radius: 3px;
+    font-size: 15px;
+}
+
+:host ::ng-deep .agTable-btn-Approve {
+    background-color: #CADEC5;
+    color: #333333;
+    width: 113px;
+    height: 39px;
+    background:#CADEC5 0% 0% no-repeat padding-box;
+    box-shadow: 2px 2px 4px #0000001A;
+    border: 0.4891771078109741px solid #5CB646;
+    border-radius: 3px;
+    font-size: 15px;
+}
+
+.agTable-btn-Reject:hover{
+    background-color: #CB0000;
+    transition: 0.7s;
+    color: $whiteColor;
+    font-size: 15px;
+    border: none;
+}
+
+.agTable-btn-Approve:hover{
+    background-color: #5CB646;
+    transition: 0.7s;
+    color: $whiteColor;
+    font-size: 15px;
+    border: none;
+}
+
+.grid-wrapper {
+    flex: 1 1 auto;
 }

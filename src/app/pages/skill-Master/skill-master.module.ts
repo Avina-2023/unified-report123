@@ -1,20 +1,24 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SkillMasterRoutingModule } from './skill-master-routing.module';
+import { SkillBulkUploadComponent } from './skill-bulk-upload/skill-bulk-upload.component';
+import {MatTabsModule} from '@angular/material/tabs';
 import { MaterialModule } from 'src/app/material/material.module';
-import { ChartsModule } from 'ng2-charts';
 import { SharedModule } from 'src/app/shared/shared.module';
+// import { SkillMasterListComponent } from './skill-master-list/skill-master-list.component';
 
 
 @NgModule({
   declarations: [
+    SkillBulkUploadComponent,
+    // SkillMasterListComponent
   ],
   imports: [
     CommonModule,
-    MaterialModule,
     SkillMasterRoutingModule,
-    ChartsModule,
-    SharedModule
+    MaterialModule,
+    SharedModule,
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]
 })
 export class SkillMasterModule { }

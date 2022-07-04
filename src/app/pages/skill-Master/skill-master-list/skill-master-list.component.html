@@ -5,7 +5,7 @@
             <div class="Item">
                 <a (click)="InstructionSelect()" class="filterIcon">Instructions</a>
             </div>
-            <div class="Item"><button class="agTable-btn">
+            <div class="Item"><button class="agTable-btn" (click)="navToSkillBulkUpload()">
                     <span class=""></span>
                     <span>+ Bulk Upload</span>
                 </button></div>
@@ -27,14 +27,14 @@
         <div *ngIf="selectedRow.length" class="Row">
             <div *ngIf="(statusSelectedValue === 'Rejected Skills' || statusSelectedValue === 'Unapproved Skills')"
                 class="Item">
-                <button (click)="approveSkillMaster()" class="agTable-btn">
+                <button (click)="approveSkillMaster()" class="agTable-btn-Approve">
                     <span class=""></span>
                     <span>Approve</span>
                 </button>
             </div>
             <div *ngIf="(statusSelectedValue === 'Approved Skills' || statusSelectedValue === 'Unapproved Skills')"
                 class="Item">
-                <button (click)="RejectSelect()" class="agTable-btn">
+                <button (click)="RejectSelect()" class="agTable-btn-Reject">
                     <span class=""></span>
                     <span>Reject</span>
                 </button>
@@ -126,10 +126,10 @@
         </div>
         <div class="submit">
             <div class="rejectClose">
-                <button (click)="RejectClose()">Cancel</button>
+                <button class="agTable-btn" (click)="RejectClose()">Cancel</button>
             </div>
             <div>
-                <button (click)="rejectSkillMaster()">Save</button>
+                <button class="agTable-btn" (click)="rejectSkillMaster()">Save</button>
             </div>
         </div>
     </div>
