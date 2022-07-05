@@ -27,7 +27,7 @@ figure {
                 align-items: center;
                 height: 100%;
                 @include xl {
-                    height: 550px;
+                    height: 522px;
                 }
                 .bannerWrapper {
                     position: relative;
@@ -83,7 +83,7 @@ figure {
                         .banner_2::before {
                             opacity: .4;
                             z-index: 1;
-                            background: linear-gradient(112deg, #26c1f6, #5CB646);
+                            // background: linear-gradient(112deg, #26c1f6, #5CB646);
                         }
                         .banner_2_div {
                             opacity: 1;
@@ -219,6 +219,12 @@ figure {
             font-size: 12px;
             max-width: 100%;
             width: 100%;
+            height: 537px;
+            background-color: #004684;
+            margin-top: -1%;
+            @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+                height: auto;
+            }
             @include md {
                 font-size: 1.2em;
             }
@@ -228,35 +234,25 @@ figure {
             @include xl {
                 font-size: 16px;
             }
-            .skill-exchange {
+            .container {
                 display: flex;
-                background: $whiteColor;
-                padding-top: 2em;
-                padding-bottom: 1em;
-                @include lg {
-                    padding-bottom: 2em;
+                flex-direction: column;
+                width: 100%;
+                justify-content: center;
+                align-items: center;
+                padding: 3em 0;
+                .commonHeadingStyle {
+                    color: $whiteColor;
                 }
-                @include xl {
-                    padding-bottom: 2em;
-                }
-                .flex-wrapper {
-                    display: flex;
-                    align-items: flex-end;
-                    flex-direction: column;
-                    @media only screen and (min-width: 1000px) {
-                        flex-direction: row;
-                    }
+                .heading-content {
                     .image-wrapper {
-                        flex-basis: 50%;
-                        display: flex;
                         align-items: center;
                         justify-content: center;
                         width: 100%;
                         figure {
-                            background-color: $whiteColor;
                             width: 100%;
                             @include md {
-                                width: 75%;
+                                width: 100%;
                             }
                             @include lg {
                                 width: 75%;
@@ -275,82 +271,142 @@ figure {
                             }
                         }
                     }
-                    .content-wrapper {
-                        flex-basis: 50%;
-                        display: flex;
-                        flex-direction: column;
-                        width: 100%;
-                        padding: 1.5em 0 1em 0;
-                        // @media only screen and (min-width: 1000px) {
-                        //     padding: 2em 0 2em 2em;
-                        // }
-                        .content {
-                            color: $darkGrey;
-                            font-size: 1em;
-                            line-height: 25px;
-                            font-size: 13px;
-                            letter-spacing: 0px;
-                            // for mobile
-                            @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
-                                line-height: 18px;
-                                font-size: 1em;
-                            }
-                            @include md {
-                                font-size: 1em;
-                                // line-height: 0px;
-                            }
-                            @include lg {
-                                font-size: 14px;
-                            }
-                            @include xl {
-                                font-size: 16px;
-                            }
-                        }
+                }
+                .para {
+                    padding: 3em 0;
+                    font-size: 18px;
+                    @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+                        font-size: 1em;
+                    }
+                    p {
+                        color: $whiteColor;
+                        text-align: center;
                     }
                 }
             }
+            // .skill-exchange {
+            //     display: flex;
+            //     background: $whiteColor;
+            //     padding-top: 2em;
+            //     padding-bottom: 1em;
+            //     @include lg {
+            //         padding-bottom: 2em;
+            //     }
+            //     @include xl {
+            //         padding-bottom: 2em;
+            //     }
+            //     .flex-wrapper {
+            //         display: flex;
+            //         align-items: flex-end;
+            //         flex-direction: column;
+            //         @media only screen and (min-width: 1000px) {
+            //             flex-direction: row;
+            //         }
+            //         .image-wrapper {
+            //             flex-basis: 50%;
+            //             display: flex;
+            //             align-items: center;
+            //             justify-content: center;
+            //             width: 100%;
+            //             figure {
+            //                 background-color: $whiteColor;
+            //                 width: 100%;
+            //                 @include md {
+            //                     width: 75%;
+            //                 }
+            //                 @include lg {
+            //                     width: 75%;
+            //                 }
+            //                 @include xl {
+            //                     width: 75%;
+            //                 }
+            //                 @media only screen and (min-width: 1000px) {
+            //                     width: 629px;
+            //                     margin-top: 5%;
+            //                 }
+            //                 img {
+            //                     object-fit: contain;
+            //                     object-position: top;
+            //                     width: 100%;
+            //                 }
+            //             }
+            //         }
+            //         .content-wrapper {
+            //             flex-basis: 50%;
+            //             display: flex;
+            //             flex-direction: column;
+            //             width: 100%;
+            //             padding: 1.5em 0 1em 0;
+            //             // @media only screen and (min-width: 1000px) {
+            //             //     padding: 2em 0 2em 2em;
+            //             // }
+            //             .content {
+            //                 color: $darkGrey;
+            //                 font-size: 1em;
+            //                 line-height: 25px;
+            //                 font-size: 13px;
+            //                 letter-spacing: 0px;
+            //                 // for mobile
+            //                 @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+            //                     line-height: 18px;
+            //                     font-size: 1em;
+            //                 }
+            //                 @include md {
+            //                     font-size: 1em;
+            //                     // line-height: 0px;
+            //                 }
+            //                 @include lg {
+            //                     font-size: 14px;
+            //                 }
+            //                 @include xl {
+            //                     font-size: 16px;
+            //                 }
+            //             }
+            //         }
+            //     }
+            // }
         }
-        .skill-exchange-Container::before {
-            content: "";
-            background-image: url("../../../assets/images/landing/dotsCut.png");
-            position: absolute;
-            background-repeat: no-repeat;
-            background-size: contain;
-            background-position: top;
-            width: 127px;
-            height: 147px;
-            left: 0;
-            top: -1.5em;
-            //for mobile
-            @media (min-width: 200px) and (max-width: 480px) {
-                width: 25%;
-                height: 25%;
-            }
-        }
-        .skill-exchange-Container::after {
-            content: "";
-            background-image: url("../../../assets/images/landing/dots.svg");
-            position: absolute;
-            background-repeat: no-repeat;
-            background-size: contain;
-            background-position: top;
-            width: 127px;
-            height: 147px;
-            bottom: 0;
-            right: 0;
-            //for mobile
-            @media (min-width: 200px) and (max-width: 480px) {
-                width: 25%;
-                height: 110px;
-            }
-        }
+        // .skill-exchange-Container::before {
+        //     content: "";
+        //     background-image: url("../../../assets/images/landing/dotsCut.png");
+        //     position: absolute;
+        //     background-repeat: no-repeat;
+        //     background-size: contain;
+        //     background-position: top;
+        //     width: 127px;
+        //     height: 147px;
+        //     left: 0;
+        //     top: -1.5em;
+        //     //for mobile
+        //     @media (min-width: 200px) and (max-width: 480px) {
+        //         width: 25%;
+        //         height: 25%;
+        //     }
+        // }
+        // .skill-exchange-Container::after {
+        //     content: "";
+        //     background-image: url("../../../assets/images/landing/dots.svg");
+        //     position: absolute;
+        //     background-repeat: no-repeat;
+        //     background-size: contain;
+        //     background-position: top;
+        //     width: 127px;
+        //     height: 147px;
+        //     bottom: 0;
+        //     right: 0;
+        //     //for mobile
+        //     @media (min-width: 200px) and (max-width: 480px) {
+        //         width: 25%;
+        //         height: 110px;
+        //     }
+        // }
         .howItWorks {
             position: relative;
             padding: 3em 0;
             width: 100%;
             font-size: 12px;
             z-index: 1;
-            background: #FEEFDC4D 0% 0% no-repeat padding-box;
+            // background: #FEEFDC4D 0% 0% no-repeat padding-box;
             @include md {
                 font-size: 13px;
             }
@@ -360,57 +416,58 @@ figure {
             @include xl {
                 font-size: 16px;
             }
-            &::after {
-                content: "";
-                position: absolute;
-                right: -12%;
-                top: 24%;
-                transform: translateY(-50%);
-                background-color: #56B35A;
-                border-radius: 50%;
-                width: 360px;
-                height: 360px;
-                opacity: 0.1;
-                // for mobile
-                @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
-                    display: none;
-                }
-                // Ipad Air
-                @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
-                    display: none;
-                }
-            }
-            &::before {
-                content: "";
-                position: absolute;
-                left: -7%;
-                top: 97%;
-                transform: translateY(-50%);
-                background-color: #56B35A;
-                border-radius: 50%;
-                width: 360px;
-                height: 360px;
-                opacity: 0.1;
-                // for mobile
-                @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
-                    display: none;
-                }
-                // Ipad Air
-                @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
-                    display: none;
-                }
-            }
+            // &::after {
+            //     content: "";
+            //     position: absolute;
+            //     right: -12%;
+            //     top: 24%;
+            //     transform: translateY(-50%);
+            //     background-color: #56B35A;
+            //     border-radius: 50%;
+            //     width: 360px;
+            //     height: 360px;
+            //     opacity: 0.1;
+            //     // for mobile
+            //     @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+            //         display: none;
+            //     }
+            //     // Ipad Air
+            //     @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+            //         display: none;
+            //     }
+            // }
+            // &::before {
+            //     content: "";
+            //     position: absolute;
+            //     left: -7%;
+            //     top: 97%;
+            //     transform: translateY(-50%);
+            //     background-color: #56B35A;
+            //     border-radius: 50%;
+            //     width: 360px;
+            //     height: 360px;
+            //     opacity: 0.1;
+            //     // for mobile
+            //     @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+            //         display: none;
+            //     }
+            //     // Ipad Air
+            //     @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+            //         display: none;
+            //     }
+            // }
             .howItWorksWrapper {
-                display: flex;
+                // display: flex;
                 .flex-wrapper {
-                    display: flex;
-                    align-items: flex-start;
-                    flex-direction: column;
+                    // display: flex;
+                    // align-items: flex-start;
+                    // flex-direction: column;
                     .content-wrapper {
-                        flex-basis: 40%;
+                        flex-basis: 100%;
                         display: flex;
                         width: 100%;
-                        margin-top: 8%;
+                        justify-content: space-evenly;
+                        // margin-top: 8%;
                         // for mobile
                         @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
                             flex-direction: column;
@@ -420,14 +477,16 @@ figure {
                             flex-direction: column;
                         }
                         .card {
-                            width: 450px;
-                            height: 550px;
-                            background: #FCFCFC 0% 0% no-repeat padding-box;
-                            box-shadow: 0px 0px 3px #2A2A2A24;
+                            width: 400px;
+                            height: 580px;
+                            box-shadow: 0px 0px 3px #2a2a2a24;
                             border: 1px solid #EFEFEF;
-                            border-radius: 5px;
                             padding: 30px 35px 30px 35px;
                             z-index: 1;
+                            background: #FFFFFF 0% 0% no-repeat padding-box;
+                            box-shadow: 0px 3px 35px #00000029;
+                            border-radius: 85px 0px;
+                            opacity: 1;
                             // for mobile
                             @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
                                 width: auto;
@@ -438,7 +497,7 @@ figure {
                             // Ipad Air
                             @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
                                 width: auto;
-                                height: auto;
+                                height: 530px;
                                 margin-bottom: 12%;
                                 margin-top: 5%;
                             }
@@ -481,9 +540,9 @@ figure {
                             }
                             .cardTitle {
                                 color: #004684;
-                                font-size: 26px;
-                                text-align: left;
-                                margin-top: 22%;
+                                font-size: 24px;
+                                text-align: center;
+                                margin-top: 4%;
                                 font-weight: 600;
                                 margin-bottom: 25px;
                                 // for mobile
@@ -500,14 +559,14 @@ figure {
                                     display: flex;
                                     justify-content: start;
                                     align-items: center;
-                                    padding-bottom: 30px;
+                                    padding-bottom: 15px;
                                     img {
-                                        width: 24px;
-                                        height: 24px;
+                                        // width: 20px;
+                                        // height: 20px;
                                         //for mobile
                                         @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
-                                            width: 20px;
-                                            height: 20px;
+                                            width: 14px;
+                                            height: 14px;
                                         }
                                     }
                                     // for mobile
@@ -516,13 +575,249 @@ figure {
                                     }
                                     >span {
                                         margin-left: 5%;
-                                        font-size: 16px;
+                                        font-size: 14px;
                                         color: #222222;
                                         // for mobile
                                         @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
                                             font-size: 1em;
                                         }
                                     }
+                                }
+                            }
+                            figure {
+                                text-align: center;
+                                padding-bottom: 15px;
+                            }
+                            .bage {
+                                width: 260px;
+                                height: 50px;
+                                background: #1F61C4 0% 0% no-repeat padding-box;
+                                opacity: 1;
+                                position: absolute;
+                                bottom: 46px;
+                                border-radius: 2px;
+                                left: -27px;
+                                z-index: 1;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                .bageTitle {
+                                    font-size: 16px;
+                                    color: #fff;
+                                    margin-right: 10px;
+                                    // for mobile
+                                    @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+                                        font-size: 14px;
+                                    }
+                                    // Ipad Air
+                                    @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+                                        font-size: 16px;
+                                    }
+                                }
+                                span {
+                                    bottom: 49px;
+                                    left: 0;
+                                    position: absolute;
+                                    width: 0;
+                                    height: 0;
+                                    border-bottom: 25px solid #004684;
+                                    border-left: 25px solid transparent;
+                                    @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+                                        bottom: 39px;
+                                        left: 0px;
+                                        position: absolute;
+                                        width: 0;
+                                        height: 0;
+                                        border-bottom: 20px solid #004684;
+                                        border-left: 20px solid transparent;
+                                    }
+                                    // Ipad Air
+                                    @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+                                        bottom: 35px;
+                                    }
+                                }
+                                @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+                                    width: 200px;
+                                    height: 39px;
+                                    left: -20px;
+                                    bottom: 11px;
+                                }
+                                // Ipad Air
+                                @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+                                    height: 36px;
+                                    width: 200px;
+                                    bottom: 32px;
+                                }
+                            }
+                        }
+                        .card1 {
+                            position: relative;
+                            width: 400px;
+                            height: 580px;
+                            box-shadow: 0px 0px 3px #2a2a2a24;
+                            border: 1px solid #EFEFEF;
+                            padding: 30px 35px 30px 35px;
+                            z-index: 1;
+                            background: #FFFFFF 0% 0% no-repeat padding-box;
+                            box-shadow: 0px 3px 35px #00000029;
+                            border-radius: 0px 85px;
+                            opacity: 1;
+                            // for mobile
+                            @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+                                width: auto;
+                                height: auto;
+                                margin-bottom: 12%;
+                                margin-top: 5%;
+                            }
+                            // Ipad Air
+                            @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+                                width: auto;
+                                height: 530px;
+                                margin-bottom: 12%;
+                                margin-top: 5%;
+                            }
+                            .bg-white {
+                                .profileImage {
+                                    width: 150px;
+                                    height: 150px;
+                                    transform: translate(-50%, -68%);
+                                    position: absolute;
+                                    left: 50%;
+                                    margin-right: -50%;
+                                    // for mobile
+                                    @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+                                        left: 57%;
+                                        margin-right: -57%;
+                                        width: 150px;
+                                        height: 150px;
+                                        transform: translate(-50%, -52%);
+                                    }
+                                    // Ipad Air
+                                    @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+                                        left: 50%;
+                                        margin-right: -57%;
+                                        width: 150px;
+                                        height: 150px;
+                                        transform: translate(-50%, -60%);
+                                    }
+                                    .seekersImg {
+                                        width: 100%;
+                                        //for mobile
+                                        @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+                                            width: 110px;
+                                        }
+                                        // Ipad Air
+                                        @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+                                            width: 150px;
+                                        }
+                                    }
+                                }
+                            }
+                            .cardTitle {
+                                color: #004684;
+                                font-size: 24px;
+                                text-align: center;
+                                margin-top: 4%;
+                                font-weight: 600;
+                                margin-bottom: 25px;
+                                // for mobile
+                                @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+                                    font-size: 1.5em;
+                                }
+                                // Ipad Air
+                                @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+                                    font-size: 2em;
+                                }
+                            }
+                            .list {
+                                >div {
+                                    display: flex;
+                                    justify-content: start;
+                                    align-items: center;
+                                    padding-bottom: 15px;
+                                    img {
+                                        // width: 20px;
+                                        // height: 20px;
+                                        //for mobile
+                                        @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+                                            width: 14px;
+                                            height: 14px;
+                                        }
+                                    }
+                                    // for mobile
+                                    @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+                                        padding-bottom: 20px;
+                                    }
+                                    >span {
+                                        margin-left: 5%;
+                                        font-size: 14px;
+                                        color: #222222;
+                                        // for mobile
+                                        @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+                                            font-size: 1em;
+                                        }
+                                    }
+                                }
+                            }
+                            figure {
+                                text-align: center;
+                                padding-bottom: 15px;
+                            }
+                            .bage {
+                                width: 260px;
+                                height: 50px;
+                                background: #1F61C4 0% 0% no-repeat padding-box;
+                                opacity: 1;
+                                position: absolute;
+                                right: -27px;
+                                bottom: 46px;
+                                border-radius: 2px;
+                                /* right: 0; */
+                                z-index: 1;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                .bageTitle {
+                                    font-size: 16px;
+                                    color: #fff;
+                                    margin-right: 10px;
+                                    @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+                                        font-size: 14px;
+                                    }
+                                }
+                                span {
+                                    bottom: 49px;
+                                    right: 0;
+                                    position: absolute;
+                                    width: 0;
+                                    height: 0;
+                                    border-bottom: 25px solid #004684;
+                                    border-right: 25px solid transparent;
+                                    @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+                                        bottom: 39px;
+                                        right: 0px;
+                                        position: absolute;
+                                        width: 0;
+                                        height: 0;
+                                        border-bottom: 20px solid #004684;
+                                        border-right: 20px solid transparent;
+                                    }
+                                    // Ipad Air
+                                    @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+                                        bottom: 35px;
+                                    }
+                                }
+                                @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+                                    width: 200px;
+                                    height: 39px;
+                                    right: -20px;
+                                    bottom: 11px;
+                                }
+                                // Ipad Air
+                                @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+                                    height: 36px;
+                                    width: 200px;
+                                    bottom: 32px;
                                 }
                             }
                         }
@@ -587,7 +882,15 @@ figure {
             padding: 3em 0;
             font-size: 12px;
             z-index: 1;
-            background: transparent linear-gradient(131deg, #F8FCFF 0%, #DEF6FF 100%) 0% 0% no-repeat padding-box;
+            //mobile
+            @media (min-width: 200px) and (max-width: 480px) {
+                padding: 0;
+            }
+            // Ipad Air
+            @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+                padding: 0;
+            }
+            // background: transparent linear-gradient(131deg, #F8FCFF 0%, #DEF6FF 100%) 0% 0% no-repeat padding-box;
             @include md {
                 font-size: 13px;
             }
@@ -596,26 +899,6 @@ figure {
             }
             @include xl {
                 font-size: 16px;
-            }
-            &::after {
-                background-image: url('../../../assets/images/landing/newLanding/Union.png');
-                background-repeat: no-repeat;
-                content: "";
-                position: absolute;
-                left: -25%;
-                top: 74%;
-                transform: translateY(-23%);
-                width: 40%;
-                height: 360px;
-                //for mobile
-                @media (min-width: 200px) and (max-width: 480px) {
-                    display: none;
-                }
-                // Ipad Air
-                @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
-                    // display: flex;
-                    display: none;
-                }
             }
             .heading-container {
                 display: flex;
@@ -721,11 +1004,20 @@ figure {
                             .content {
                                 z-index: 1;
                                 font-size: 1em;
-                                color: #373331;
+                                color: #222222;
+                                //for mobile
+                                @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+                                    margin: 0 auto;
+                                }
+                                // Ipad Air
+                                @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+                                    margin: 0 auto;
+                                }
                                 .listView {
                                     display: flex;
                                     align-items: center;
                                     padding-bottom: 20px;
+                                    color: #222222;
                                     //for mobile
                                     @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
                                         padding-bottom: 10px;
@@ -783,7 +1075,15 @@ figure {
                     margin-top: 0px;
                 }
                 .inner-wrapper:nth-child(2n+1) {
+                    /////////////////
                     flex-direction: column-reverse;
+                    @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+                        flex-direction: column;
+                    }
+                    // Ipad Air
+                    @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+                        flex-direction: column;
+                    }
                     @media only screen and (min-width: 1000px) {
                         flex-direction: row;
                     }
@@ -1126,23 +1426,39 @@ figure {
     @include xl {
         font-size: 16px;
     }
+    .container {
+        max-width: 1170px;
+        width: 94%;
+        padding-left: 15px;
+        padding-right: 15px;
+        margin: 0 auto;
+        .heading-container {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+        }
+    }
 }
 
 .contactFooter {
     // background: transparent linear-gradient(131deg, #F8FCFF 0%, #DEF6FF 100%) 0% 0% no-repeat padding-box;
     display: flex;
     .left {
-        width: 80%;
+        width: 100%;
         display: flex;
         align-items: center;
         .footerContact {
             font-size: 14px;
             @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
                 font-size: 1em;
+                text-align: center;
             }
             // Ipad Air
             @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
                 font-size: 1.2em;
+                text-align: center;
             }
             .link {
                 color: #0056b3;
@@ -1150,90 +1466,90 @@ figure {
             }
         }
     }
-    .right {
-        width: 20%;
-        display: flex;
-        align-items: flex-end;
-        @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
-            width: 100%;
-            display: flex;
-            align-items: flex-end;
-            justify-content: end;
-        }
-        .edutechLogo {
-            cursor: pointer;
-            width: 80%;
-            margin-right: 0;
-            margin-left: 0;
-            position: relative;
-            @include sm {
-                width: 100%;
-            }
-            @include md {
-                margin-right: 1.2em;
-                width: 100%;
-            }
-            @include lg {
-                width: 100%;
-                margin-left: 0;
-            }
-            @include xl {
-                width: 100%;
-            }
-            @media only screen and (min-width: 1540px) {
-                width: 100%;
-            }
-            img {
-                width: 100%;
-            }
-            // &::after {
-            //     content: '';
-            //     position: absolute;
-            //     top: 0;
-            //     right: -14px;
-            //     width: 2px;
-            //     height: 100%;
-            //     background: transparent linear-gradient(180deg, #54B952 0%, #34BCA3 85%, #16BEF0 100%) 0% 0% no-repeat padding-box;
-            // }
-        }
-        .line {
-            width: 2px;
-            height: 50px;
-            position: absolute;
-            // margin-left: 6.5%;
-            background: transparent linear-gradient(180deg, #54B952 0%, #34BCA3 85%, #16BEF0 100%) 0% 0% no-repeat padding-box;
-            @include sm {
-                margin-left: 2.5%;
-            }
-            @include md {
-                margin-left: 4.5%;
-            }
-            @include lg {
-                margin-left: 6.5%;
-            }
-            @include xl {}
-            @media (min-width: 1200px) {
-                margin-left: 9.5%;
-            }
-            @media only screen and (min-width: 1540px) {
-                margin-left: 6.5%;
-            }
-        }
-        .head {
-            letter-spacing: 0px;
-            /* color: #08558C; */
-            opacity: 1;
-            font-size: 17px;
-            margin-left: 5px;
-            font-weight: 500;
-            line-height: normal;
-            font-family: Roboto, Condensed;
-        }
-        // Ipad Air
-        @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
-            width: 30%;
-        }
-    }
+    // .right {
+    //     width: 20%;
+    //     display: flex;
+    //     align-items: flex-end;
+    //     @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+    //         width: 100%;
+    //         display: flex;
+    //         align-items: flex-end;
+    //         justify-content: end;
+    //     }
+    //     .edutechLogo {
+    //         cursor: pointer;
+    //         width: 80%;
+    //         margin-right: 0;
+    //         margin-left: 0;
+    //         position: relative;
+    //         @include sm {
+    //             width: 100%;
+    //         }
+    //         @include md {
+    //             margin-right: 1.2em;
+    //             width: 100%;
+    //         }
+    //         @include lg {
+    //             width: 100%;
+    //             margin-left: 0;
+    //         }
+    //         @include xl {
+    //             width: 100%;
+    //         }
+    //         @media only screen and (min-width: 1540px) {
+    //             width: 100%;
+    //         }
+    //         img {
+    //             width: 100%;
+    //         }
+    //         // &::after {
+    //         //     content: '';
+    //         //     position: absolute;
+    //         //     top: 0;
+    //         //     right: -14px;
+    //         //     width: 2px;
+    //         //     height: 100%;
+    //         //     background: transparent linear-gradient(180deg, #54B952 0%, #34BCA3 85%, #16BEF0 100%) 0% 0% no-repeat padding-box;
+    //         // }
+    //     }
+    //     .line {
+    //         width: 2px;
+    //         height: 50px;
+    //         position: absolute;
+    //         // margin-left: 6.5%;
+    //         background: transparent linear-gradient(180deg, #54B952 0%, #34BCA3 85%, #16BEF0 100%) 0% 0% no-repeat padding-box;
+    //         @include sm {
+    //             margin-left: 2.5%;
+    //         }
+    //         @include md {
+    //             margin-left: 4.5%;
+    //         }
+    //         @include lg {
+    //             margin-left: 6.5%;
+    //         }
+    //         @include xl {}
+    //         @media (min-width: 1200px) {
+    //             margin-left: 9.5%;
+    //         }
+    //         @media only screen and (min-width: 1540px) {
+    //             margin-left: 6.5%;
+    //         }
+    //     }
+    //     .head {
+    //         letter-spacing: 0px;
+    //         /* color: #08558C; */
+    //         opacity: 1;
+    //         font-size: 17px;
+    //         margin-left: 5px;
+    //         font-weight: 500;
+    //         line-height: normal;
+    //         font-family: Roboto, Condensed;
+    //     }
+    //     // Ipad Air
+    //     @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+    //         width: 30%;
+    //     }
+    // }
 }
 
 @media (min-width: 1000px) {
