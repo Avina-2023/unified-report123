@@ -14,7 +14,7 @@
                                                 <strong>Larsen & Toubro</strong>
                                             </div>
                                             <div class="heading-sub">
-                                                <span>Off-Campus Drive 2022 </span>
+                                                <span>Off Campus Drive 2022 </span>
                                                 <!-- <strong>Next-Gen Talent</strong> -->
                                             </div>
                                             <div class="register">
@@ -26,29 +26,42 @@
                                         </figure>
                                     </ng-template>
                                     <ng-template class="imageWrapper" carouselSlide>
-                                        <div class="bannerContent blackColor">
+                                        <!-- <div class="bannerContent blackColor">
                                             <div class="heading">
                                                 <strong>Kick-Start your Career</strong>
                                             </div>
                                             <div class="heading-sub line-height">
                                                 <span class="line-height"> with your </span> <strong>dream company</strong>
                                             </div>
-                                        </div>
+                                        </div> -->
                                         <figure>
-                                            <img src="assets/images/landing/Banner_1.jpg" alt="" />
+                                            <img src="assets/images/landing/newLanding/banner1.png" alt="" />
                                         </figure>
                                     </ng-template>
                                     <ng-template class="imageWrapper" carouselSlide>
-                                        <div class="bannerContent whiteColor banner_2_div">
+                                        <!-- <div class="bannerContent whiteColor banner_2_div">
                                             <div class="heading">
                                                 <strong>Hire your Workforce</strong>
                                             </div>
                                             <div class="heading">
                                                 <strong>from our Certified Talent Pool</strong>
                                             </div>
-                                        </div>
+                                        </div> -->
                                         <figure class="banner_2">
-                                            <img src="assets/images/landing/Banner_2.jpg" alt="" />
+                                            <img src="assets/images/landing/newLanding/banner2.png" alt="" />
+                                        </figure>
+                                    </ng-template>
+                                    <ng-template class="imageWrapper" carouselSlide>
+                                        <!-- <div class="bannerContent whiteColor banner_2_div">
+                                            <div class="heading">
+                                                <strong>Hire your Workforce</strong>
+                                            </div>
+                                            <div class="heading">
+                                                <strong>from our Certified Talent Pool</strong>
+                                            </div>
+                                        </div> -->
+                                        <figure class="banner_2">
+                                            <img src="assets/images/landing/newLanding/banner3.png" alt="" />
                                         </figure>
                                     </ng-template>
 
@@ -58,28 +71,42 @@
                     </div>
                 </section>
             </div>
+
             <section class="skill-exchange-Container">
-                <div class="container skill-exchange">
-                    <div class="flex-wrapper">
+                <div class="container">
+                    <div class="commonHeadingStyle">{{'What is Skills Exchange?'}}</div>
+                    <div class="heading-content">
                         <div class="image-wrapper">
                             <figure>
-                                <img [src]="'assets/images/landing/skill_exchange2.png'" alt="" srcset="">
+                                <img [src]="'assets/images/landing/newLanding/groupPeople.png'" alt="" srcset="">
                             </figure>
-                        </div>
-                        <div class="content-wrapper">
-                            <div class="heading-container">
-                                <div class="commonHeadingStyle">{{'Skills Exchange'}}</div>
-                            </div>
-                            <div class="content">
-                                L&T EduTech’s Skills Exchange is a platform for students and recent graduates to meet India’s premiere employers and vice versa. New graduates—students who are about to take their course-end examinations and recent graduates with up to two years of experience—can
-                                create customized profiles to showcase their talent, skillsets, credentials and assessment scores to prominent employers on the platform. Based on their profiles and the specific requirements of a job, these aspirants are
-                                further selected and shortlisted for the hiring process by employers.
-                                <br><br>The platform is also ideal for corporates looking to engage and employ skilled, talented, pre-assessed and job-ready candidates. Exclusive filtering is offered for corporates to get candidates vetted by L&T via
-                                its intensive courses and rigorous assessments.
+
+                            <div class="para">
+                                <p>L&T EduTech’s Skills Exchange is a platform for students and recent graduates</p>
+                                <p>to meet India’s premiere employers and vice versa.</p>
                             </div>
                         </div>
                     </div>
                 </div>
+                <!-- <div class="container skill-exchange">
+                    <div class="flex-wrapper"> -->
+                <!-- <div class="image-wrapper">
+                            <figure>
+                                <img [src]="'assets/images/landing/skill_exchange2.png'" alt="" srcset="">
+                            </figure>
+                        </div> -->
+                <!-- <div class="content-wrapper">
+                            <div class="heading-container">
+                                <div class="commonHeadingStyle">{{'Skills Exchange'}}</div>
+                            </div>
+                            <div class="content">
+                                <figure>
+                                    <img [src]="'assets/images/landing/skill_exchange2.png'" alt="" srcset="">
+                                </figure>
+                            </div>
+                        </div> -->
+                <!-- </div> -->
+                <!-- </div> -->
             </section>
 
             <section class="howItWorks">
@@ -87,48 +114,32 @@
                     <div class="flex-wrapper">
                         <div class="content-wrapper">
                             <div class="card">
-                                <div class="bg-white">
+                                <!-- <div class="bg-white">
                                     <div class="profileImage">
                                         <figure>
                                             <img class="seekersImg" [src]="'assets/images/landing/newLanding/jobseekers.png'">
                                         </figure>
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="cardTitle">
-                                    For Graduates / Job Seekers
+                                    For Fresh Graduates
+                                </div>
+                                <figure>
+                                    <img [src]="'assets/images/landing/newLanding/5293.png'" alt="" srcset="">
+                                </figure>
+                                <div class="list" *ngFor="let lisView of graduates">
+                                    <div class="listView">
+                                        <img [src]="lisView.image">
+                                        <span class="title">{{lisView.list}}</span>
+                                    </div>
                                 </div>
 
-                                <div class="list">
-                                    <div class="listView">
-                                        <img [src]="'assets/images/landing/newLanding/skillprofile.png'">
-                                        <span class="title">Create customized skill profile</span>
-                                    </div>
-                                    <div class="listView">
-                                        <img [src]="'assets/images/landing/newLanding/talent.png'">
-                                        <span class="title">Showcase core skillset and other talent</span>
-                                    </div>
-                                    <div class="listView">
-                                        <img [src]="'assets/images/landing/newLanding/scores.png'">
-                                        <span class="title">Showcase assessment scores</span>
-                                    </div>
-                                    <div class="listView">
-                                        <img [src]="'assets/images/landing/newLanding/organisations.png'">
-                                        <span class="title">Be visible to top organisations</span>
-                                    </div>
-                                    <div class="listView">
-                                        <img [src]="'assets/images/landing/newLanding/time.png'">
-                                        <span class="title">Get curated job notifications on time</span>
-                                    </div>
-                                    <div class="listView">
-                                        <img [src]="'assets/images/landing/newLanding/peers.png'">
-                                        <span class="title">Have a competitive edge over peers</span>
-                                    </div>
-                                    <div class="listView">
-                                        <img [src]="'assets/images/landing/newLanding/employers.png'">
-                                        <span class="title">Get access to multiple jobs from top employers</span>
-                                    </div>
-
+                                <div class="bage">
+                                    <div class="bageTitle" (click)="openJobSeekers()">Build Your Skill Profile</div>
+                                    <div><img src="assets/images/landing/newLanding/arrow-round-forward.svg" alt="Email" /></div>
+                                    <span></span>
                                 </div>
+
 
                             </div>
                             <div class="arrow">
@@ -136,47 +147,25 @@
                                     <img [src]="'assets/images/landing/newLanding/skillexchange.png'" alt="" srcset="">
                                 </figure>
                             </div>
-                            <div class="card">
-                                <div class="bg-white">
-                                    <div class="profileImage">
-                                        <figure>
-                                            <img class="seekersImg" [src]="'assets/images/landing/newLanding/foremployers.png'">
-                                        </figure>
-                                    </div>
-                                </div>
+
+
+                            <div class="card1">
                                 <div class="cardTitle">
                                     For Employers
                                 </div>
-
-                                <div class="list">
+                                <figure>
+                                    <img [src]="'assets/images/landing/newLanding/5294.png'" alt="" srcset="">
+                                </figure>
+                                <div class="list" *ngFor="let lisView of employers">
                                     <div>
-                                        <img [src]="'assets/images/landing/newLanding/pool.png'">
-                                        <span>Have access to a large talent pool</span>
+                                        <img [src]="lisView.image">
+                                        <span>{{lisView.list}}</span>
                                     </div>
-                                    <div>
-                                        <img [src]="'assets/images/landing/newLanding/candidates.png'">
-                                        <span>Have access to certified and skilled candidates</span>
-                                    </div>
-                                    <div>
-                                        <img [src]="'assets/images/landing/newLanding/pre-assessed.png'">
-                                        <span>Have access to pre-assessed candidates</span>
-                                    </div>
-                                    <div>
-                                        <img [src]="'assets/images/landing/newLanding/postings.png'">
-                                        <span>Make free and unlimited job postings</span>
-                                    </div>
-                                    <div>
-                                        <img [src]="'assets/images/landing/newLanding/hiring.png'">
-                                        <span>Enable just-in-time hiring</span>
-                                    </div>
-                                    <div>
-                                        <img [src]="'assets/images/landing/newLanding/ready.png'">
-                                        <span>Select from ready-to-be-deployed candidates</span>
-                                    </div>
-                                    <div>
-                                        <img [src]="'assets/images/landing/newLanding/profile.png'">
-                                        <span>Shortlist from skill-based profiles</span>
-                                    </div>
+                                </div>
+                                <div class="bage">
+                                    <div class="bageTitle" (click)="NavtoRegister()">Register Now</div>
+                                    <div><img src="assets/images/landing/newLanding/arrow-round-forward.svg" alt="Email" /></div>
+                                    <span></span>
                                 </div>
                             </div>
                         </div>
@@ -185,19 +174,20 @@
             </section>
             <section class="benefits">
                 <div class="container">
-                    <div class="heading-container">
+                    <!-- <div class="heading-container">
                         <div class="commonHeadingStyle">{{'Job Seekers'}}</div>
                         <div class="heading-content">
                             Transitioning from college to the professional world, many young people feel disoriented, confused, dissatisfied, and overwhelmed.<br> Skills Exchange is a one-of-a-kind platform that helps these talented and skilled new graduates
                             land jobs in-line with their education and core skillsets.
                         </div>
-                    </div>
+                    </div> -->
                     <div class="benefits-content-wrapper">
                         <div class="inner-wrapper">
                             <div class="image-wrapper">
-                                <figure>
+                                <!-- <figure>
                                     <img [src]="'assets/images/landing/newLanding/demandtalent.png'" alt="" srcset="">
-                                </figure>
+                                </figure> -->
+                                <div class="commonHeadingStyle">{{'Fresh Graduates'}}</div>
                             </div>
                             <div class="content-wrapper">
                                 <div class="flex-container">
@@ -206,33 +196,30 @@
                                     </div>
                                     <div class="content">
                                         <div class="listView">
-                                            <img class="tickmark" [src]="'assets/images/landing/newLanding/check.png'">
-                                            <span>Individuals certified by L&T EduTech</span>
+                                            <img class="tickmark" [src]="'assets/images/landing/newLanding/checkNew.svg'">
+                                            <span>Individual trained & certified by L&T EduTech</span>
                                         </div>
                                         <div class="listView">
-                                            <img class="tickmark" [src]="'assets/images/landing/newLanding/check.png'">
+                                            <img class="tickmark" [src]="'assets/images/landing/newLanding/checkNew.svg'">
                                             <span>Individuals pre-assessed by L&T EduTech</span>
                                         </div>
                                         <div class="listView">
-                                            <img class="tickmark" [src]="'assets/images/landing/newLanding/check.png'">
-                                            <span>Students who are about to take or have just taken the course-end examinations</span>
+                                            <img class="tickmark" [src]="'assets/images/landing/newLanding/checkNew.svg'">
+                                            <span>Students in the final year of graduation</span>
                                         </div>
                                         <div class="listView">
-                                            <img class="tickmark" [src]="'assets/images/landing/newLanding/check.png'">
-                                            <span>Recent graduates with up to two years of experience</span>
+                                            <img class="tickmark" [src]="'assets/images/landing/newLanding/checkNew.svg'">
+                                            <span>Recent graduates with 0-2 years of experience</span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="benefits-box">
+                        <!-- <div class="benefits-box">
                             <div class="heading">
                                 Benefits
                             </div>
-                            <!-- <div class="heading-content">
-                                Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                            </div> -->
                             <div class="flex-container">
                                 <div class="flex-item-left">
                                     <img [src]="'assets/images/landing/newLanding/steps.png'">
@@ -259,16 +246,12 @@
                                     <div>Land jobs that best suit your skills and interests</div>
                                 </div>
                             </div>
-                            <!-- <div class="flex-container">
-                               
-                            </div> -->
-
                             <div class="btn-body">
                                 <div class="btn" (click)="openJobSeekers()">
                                     Build my skill profile now
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
 
 
                         <!-- <div class="inner-wrapper">
@@ -329,8 +312,49 @@
                     </div>
                 </div>
             </section>
+
+            <hr>
+            <!-- who can Partners -->
+            <section class="benefits">
+                <div class="container">
+                    <div class="benefits-content-wrapper">
+                        <div class="inner-wrapper">
+                            <div class="image-wrapper">
+                                <div class="commonHeadingStyle">{{'Employers'}}</div>
+                            </div>
+                            <div class="content-wrapper">
+                                <div class="flex-container">
+                                    <div class="heading">
+                                        Who can Partner
+                                    </div>
+                                    <div class="content">
+                                        <div class="listView">
+                                            <img class="tickmark" [src]="'assets/images/landing/newLanding/checkNew.svg'">
+                                            <span>Open to all employers across Industry Sectors</span>
+                                        </div>
+                                        <div class="listView">
+                                            <img class="tickmark" [src]="'assets/images/landing/newLanding/checkNew.svg'">
+                                            <span>Looking to onboard fresh graduates</span>
+                                        </div>
+                                        <div class="listView">
+                                            <img class="tickmark" [src]="'assets/images/landing/newLanding/checkNew.svg'">
+                                            <span>Exploring to source from across the country</span>
+                                        </div>
+                                        <div class="listView">
+                                            <img class="tickmark" [src]="'assets/images/landing/newLanding/checkNew.svg'">
+                                            <span>Looking for trained and assessed graduates</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- end who can partners -->
+
             <!-- //Employers -->
-            <section class="employers">
+            <!-- <section class="employers">
                 <div class="container">
                     <div class="heading-container">
                         <div class="commonHeadingStyle">{{'Employers'}}</div>
@@ -364,9 +388,6 @@
                             <div class="heading">
                                 Benefits
                             </div>
-                            <!-- <div class="heading-content">
-                                Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                            </div> -->
                             <div class="flex-container">
                                 <div class="flex-item-left">
                                     <img [src]="'assets/images/landing/newLanding/pools.png'">
@@ -393,9 +414,6 @@
                                     <div>Improve productivity from day 1</div>
                                 </div>
                             </div>
-                            <!-- <div class="flex-container">
-                               
-                            </div> -->
 
                             <div class="btn-body">
                                 <div class="btn" (click)="NavtoRegister()">
@@ -405,7 +423,7 @@
                         </div>
                     </div>
                 </div>
-            </section>
+            </section> -->
 
         </div>
     </div>
@@ -420,17 +438,12 @@
                             <a class="link">contact@lntedutech.com</a>
                         </div>
                     </div>
-                    <div class="right">
+                    <!-- <div class="right">
                         <figure class="edutechLogo">
                             <img src="assets/images/landing/newLogo.png" alt="L&T Logo">
                         </figure>
-                        <!-- <div class="line"></div> -->
-                        <!-- <div class="head">
-                            Skills Exchange
-                        </div> -->
-                    </div>
+                    </div> -->
                 </div>
-
             </div>
         </div>
     </section>

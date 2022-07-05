@@ -48,10 +48,30 @@ export class PartnersListComponent implements OnInit {
       },
     }
   };
+  hiringShow: any = true;
+  ecosystemShow: any;
+  institutionalShow: any;
 
   constructor() { }
 
   ngOnInit(): void {
    
+  }
+
+  hiring(){
+    this.hiringShow = true;
+    this.ecosystemShow = false;
+    this.institutionalShow = false
+
+  }
+  ecosystem(){
+    this.ecosystemShow = true;
+    this.hiringShow = false;
+    this.institutionalShow = false;
+  }
+  institutional(){
+    this.institutionalShow = true
+    this.ecosystemShow = false;
+    this.hiringShow = false;
   }
 }

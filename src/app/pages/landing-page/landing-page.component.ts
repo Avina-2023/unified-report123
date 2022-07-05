@@ -37,6 +37,44 @@ export class LandingPageComponent implements OnInit {
     }
   }
 
+  graduates = [{
+      list:'Create customized skill profile',
+      image:'assets/images/landing/newLanding/check.png'
+  },{
+    list:'Showcase core skillset, assessment scores and other talent',
+    image:'assets/images/landing/newLanding/check.png'
+  },{
+    list:'Be visible to top organisations',
+    image:'assets/images/landing/newLanding/check.png'
+  },{
+    list:'Have a competitive edge over peers',
+    image:'assets/images/landing/newLanding/check.png'
+  },{
+    list:'Get access to multiple jobs from top employers',
+    image:'assets/images/landing/newLanding/check.png'
+  }
+
+]
+
+employers = [{
+  list:'Have access to a large talent pool',
+  image:'assets/images/landing/newLanding/check.png'
+},{
+list:'Have access to certified, pre-assessed and skilled candidates',
+image:'assets/images/landing/newLanding/check.png'
+},{
+list:'Enable just-in-time hiring',
+image:'assets/images/landing/newLanding/check.png'
+},{
+list:'Select from ready-to-be-deployed candidates',
+image:'assets/images/landing/newLanding/check.png'
+},{
+list:'Shortlist from skill-based profiles',
+image:'assets/images/landing/newLanding/check.png'
+}
+
+]
+
   constructor(private matDialog: MatDialog) { }
 
   ngOnInit(): void {
