@@ -4,7 +4,7 @@
       </button>
     <div class="left">
         <div class="mainlogo">
-            <img alt="EduTech" class="beforeloginimg" [src]="'https://assets.lntedutech.com/edutech_logo.svg'" />
+            <img alt="EduTech" class="beforeloginimg" src="assets/images/landing/newLogo.png" />
             <img alt="EduTech" class="leftimg" src="assets/images/register.png" />
         </div>
         <!-- <div> -->
@@ -15,6 +15,9 @@
 
     <div class="right">
         <div class="loginform">
+            <div class="logo">
+                <img alt="EduTech" class="beforeloginimg" src="assets/images/landing/newLogo.png" />
+            </div>
             <div class="signIn" *ngIf="success"> {{'Registration Form'}}</div>
             <div class="login-sm" *ngIf="success; else noSkill">
                 <form class="form" [formGroup]="registerForm" autocomplete="off">

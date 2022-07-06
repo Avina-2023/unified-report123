@@ -93,16 +93,17 @@ header {
     }
     @include md {
         margin-right: 2em;
+        width: 50%;
     }
     @include lg {
-        width: 13%;
+        width: 40%;
         margin-left: 0;
     }
     @include xl {
-        width: 16.5%;
+        width: 32.5%;
     }
     @media only screen and (min-width: 1540px) {
-        width: 11%;
+        width: 24%;
     }
     img {
         width: 100%;
@@ -207,4 +208,14 @@ header {
         background-color: #1B4E9B !important;
         color: $whiteColor;
     }
+}
+
+::ng-deep button.mat-menu-item {
+    width: 100%;
+    text-align: center;
+    border-bottom: 0.1px solid #cccccc45;
+}
+
+::ng-deep.mat-menu-panel {
+    max-width: 283px !important;
 }
