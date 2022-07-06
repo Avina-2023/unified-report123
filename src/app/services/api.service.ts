@@ -162,14 +162,7 @@ export class ApiService {
   }
 
   skillUploadValidator(data){
-    //const headers = new HttpHeaders({ 'enctype': 'multipart/form-data' });
-    const headers= new HttpHeaders()
-  .set('content-type', undefined)
-  .set('Access-Control-Allow-Origin', '*')
-  .set('mimetype','text/csv')
-  .set('Accept', 'application/json');
- 
-    return this.http.post(`${this.BASE_URL}/skillUploadValidator`,data,{headers:headers});
+   return this.http.post(`${this.BASE_URL}/skillUploadValidator`,data);
   }
   
 }

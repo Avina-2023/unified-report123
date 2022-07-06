@@ -55,10 +55,11 @@ export class SkillBulkUploadComponent implements OnInit {
   }
 
   onFileSelected(event) {
-    this.file = File = event.target.files[0];;
+    this.file = event.target.files[0];
     if (this.file) {
       this.fileName = this.file.name;
     }
+ 
   }
 
   cancleUpload() {
@@ -88,14 +89,13 @@ export class SkillBulkUploadComponent implements OnInit {
     var email = this.appconfig.getLocalStorage('email') ? this.appconfig.getLocalStorage('email') : '';
     var nameIndex = (email.indexOf("@"));
     var name = email.slice(0, nameIndex);
-    console.log(this.file)
     fd.append("skillFile", this.file);
     fd.append("email", email);
-    fd.append("name", name);
-    fd.append('mimetype', this.file.type);
-    this.skillMasterListSubscription = this.ApiService.skillUploadValidator(fd).subscribe((data: any) => {
+    fd.append("userName", name);
+    this.ApiService.skillUploadValidator(fd).subscribe((data: any) => {
       if (data.success == false) {
-        this.toastr.warning('Unable to upload, Please try again.');
+        this.toastr.warning('Unable to upload, Please check the file and try again.');
+        this.matDialog.closeAll();
       } else {
         if (data.totalCount===0) {
           this.tabSelect = 3;
