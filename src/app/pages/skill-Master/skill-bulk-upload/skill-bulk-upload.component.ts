@@ -1,4 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { ToastrService } from 'ngx-toastr';
+import { Subscription } from 'rxjs';
+import { AppConfigService } from 'src/app/utils/app-config.service';
+import { ApiService } from '../../../services/api.service';
+import { APP_CONSTANTS } from '../../../utils/app-constants.service';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
 
 
 @Component({
@@ -7,49 +15,131 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./skill-bulk-upload.component.scss']
 })
 export class SkillBulkUploadComponent implements OnInit {
+  @ViewChild('uploadModel', { static: false }) uploadModel: TemplateRef<any>;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  tabSelect=1;
+  skillMasterListSubscription: Subscription;
+  tabSelect = 0;
   fileName = '';
-  file:any;
+  file: any;
   panelOpenState = false;
-  constructor() { }
+  instructionCheck = false;
+  validateCheck = false;
+  updateCheck = false;
+  uploadcheck = false;
+  totalCount = 0;
+  validateErrorList = [];
+  displayedColumns: string[] = ['Skill Name', 'Domain', 'Error', 'Possition At'];
+  dataSource = new MatTableDataSource<any>(this.validateErrorList);
+
+  constructor(public matDialog: MatDialog, private ApiService: ApiService, private appconfig: AppConfigService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
   }
 
-  changeTab(value){
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+  }
+
+  changeTab(value) {
     this.tabSelect = value.index;
   }
 
-  nextTab(){
-    this.tabSelect = this.tabSelect+1;
+  nextTab() {
+    this.instructionCheck = true;
+    this.tabSelect = this.tabSelect + 1;
   }
 
-  previousTab(){
-    this.tabSelect = this.tabSelect-1;
+  previousTab() {
+    this.tabSelect = this.tabSelect - 1;
   }
 
   onFileSelected(event) {
     this.file = File = event.target.files[0];;
-
     if (this.file) {
-
-        this.fileName = this.file.name;
-
-        // const formData = new FormData();
-
-        // formData.append("thumbnail", this.file);
-
-
-        //const upload$ = this.http.post("/api/thumbnail-upload", formData);
-
-        //upload$.subscribe();
+      this.fileName = this.file.name;
     }
-}
+  }
 
-cancleUpload(){
-  this.fileName="";
-  this.file="";
-}
- 
+  cancleUpload() {
+    this.fileName = "";
+    this.file = "";
+  }
+
+
+  openUploadModel() {
+    this.uploadcheck = false;
+    const dialogRef = this.matDialog.open(this.uploadModel, {
+      width: '500px',
+      height: '300px',
+      autoFocus: false,
+      closeOnNavigation: true,
+      panelClass: 'uploadModel'
+    });
+  }
+
+
+  uploadModelClose() {
+    this.matDialog.closeAll();
+  }
+
+  saveUploadModel() {
+    const fd = new FormData();
+    var email = this.appconfig.getLocalStorage('email') ? this.appconfig.getLocalStorage('email') : '';
+    var nameIndex = (email.indexOf("@"));
+    var name = email.slice(0, nameIndex);
+    console.log(this.file)
+    fd.append("skillFile", this.file);
+    fd.append("email", email);
+    fd.append("name", name);
+    fd.append('mimetype', this.file.type);
+    this.skillMasterListSubscription = this.ApiService.skillUploadValidator(fd).subscribe((data: any) => {
+      if (data.success == false) {
+        this.toastr.warning('Unable to upload, Please try again.');
+      } else {
+        if (data.totalCount===0) {
+          this.tabSelect = 3;
+          this.instructionCheck = false;
+          this.updateCheck = true;
+          this.matDialog.closeAll();
+          this.toastr.success('File uploaded successfully');
+        } else {
+          this.toastr.warning('Failed to upload the file');
+          this.validateCheck = true;
+          this.uploadcheck = true;
+          this.tabSelect = 2;
+          this.validateErrorList = data.data;
+          this.dataSource = new MatTableDataSource<any>(this.validateErrorList);
+          this.totalCount = data.totalCount
+        }
+      }
+    }, (err) => {
+      this.toastr.warning('Connection failed, Please try again.');
+    });
+  }
+
+  navtostep2() {
+    this.tabSelect = 1;
+    this.instructionCheck = false;
+    this.validateCheck = false;
+    this.updateCheck = false;
+    this.cancleUpload();
+  }
+
+  navtoAddSkillList() {
+    this.tabSelect = 0;
+    this.instructionCheck = false;
+    this.validateCheck = false;
+    this.updateCheck = false;
+  }
+
+  navtoViewSkillList() {
+    this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.SKILLMASTER.HOME);
+  }
+
+  downloadTemplate() {
+    const excel = `assets/templates/skillmaster.csv`;
+    window.open(excel, '_blank');
+  }
+
 }

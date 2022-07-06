@@ -1,7 +1,7 @@
 
 import { APP_CONSTANTS } from './../utils/app-constants.service';
 import { environment } from './../../environments/environment';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AppConfigService } from '../utils/app-config.service';
 import * as CryptoJS from 'crypto-js';
@@ -159,6 +159,17 @@ export class ApiService {
 
   skillMasterValidate(data){
     return this.http.post(`${this.BASE_URL}/skillValidate`,data);
+  }
+
+  skillUploadValidator(data){
+    //const headers = new HttpHeaders({ 'enctype': 'multipart/form-data' });
+    const headers= new HttpHeaders()
+  .set('content-type', undefined)
+  .set('Access-Control-Allow-Origin', '*')
+  .set('mimetype','text/csv')
+  .set('Accept', 'application/json');
+ 
+    return this.http.post(`${this.BASE_URL}/skillUploadValidator`,data,{headers:headers});
   }
   
 }

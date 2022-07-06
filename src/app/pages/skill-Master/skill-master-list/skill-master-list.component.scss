@@ -222,3 +222,10 @@
 .grid-wrapper {
     flex: 1 1 auto;
 }
+
+.pointer{
+    font-size: small;
+}
+.pointer:hover{
+    cursor: pointer;
+}

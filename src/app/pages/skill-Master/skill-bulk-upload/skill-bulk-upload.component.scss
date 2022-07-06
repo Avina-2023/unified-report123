@@ -4,7 +4,7 @@
 :host ::ng-deep .agTable-btn {
     background-color: #fff;
     color: #fff;
-    width: 113px;
+    width: 113px; 
     height: 39px;
     background: #004684 0% 0% no-repeat padding-box;
     box-shadow: 2px 2px 4px #0000001A;
@@ -100,7 +100,8 @@
   }
 
 .greenTickPadding{  
-    padding: 157px;
+    //padding: 157px;
+    padding:13px
 }
 
 .greenLable{
@@ -112,6 +113,11 @@ color: #5CB646;
 }
 .blackLable{
     color: black;
+}
+
+.redLable{
+color: red;
+padding-top: 10px;
 }
 
 .centerUploadFile, .centerDownloadFile{
@@ -147,14 +153,112 @@ opacity: 1;
 
 .instruction{
     padding-bottom: 30px;
-    // background-color: #FAFAFA;
-
 }
 .instructionTab{
-    //width: 80%;
     background-color: #FAFAFA;
 }
 
 .mat-expansion-panel:not(.mat-expanded) .mat-expansion-panel-header:hover:not([aria-disabled=true]) {
     background-color: #FAFAFA;
+}
+
+.statusList{
+    display: flex;
+    flex-direction: column;
+}
+
+:host ::ng-deep .agTable-btn-Upload {
+    background-color: #fff;
+    color: #004684;
+    width: 113px;
+    height: 39px; 
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 2px 2px 4px #0000001A;
+    border: 0.4891771078109741px solid #939393;
+    border-radius: 3px;
+    font-size: 15px;
+    .filterIcon {
+        display: inline-block;
+        width: 15px;
+        height: 13px;
+        margin-right: 6px;
+        background-size: cover;
+    }
+    .icon-bike {
+        background-image: url('../../../../assets/images/Filter.svg');
+    }
+}
+
+.submitUpload {
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    padding: 20px;
+    display: flex;
+    justify-content: flex-end;
+    display: flex;
+    justify-content: space-evenly;
+    button {
+        font-size: 14px;
+        font-weight: 400;
+        color: $whiteColor;
+        line-height: normal;
+        background-color: $blueColor;
+        padding: 10px 14px;
+        border: none;
+        border-radius: 5px;
+    }
+}
+
+.uploadContent{
+    padding-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.pointer{
+    font-size: small;
+}
+.pointer:hover{
+    cursor: pointer;
+}
+
+.submitConfirm {
+    // border-top: 1px solid rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    padding: 20px;
+    display: flex;
+    //justify-content: flex-end;
+    // display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    align-items: center;
+    button {
+        font-size: 10px;
+        font-weight: 400;
+        color: $whiteColor;
+        line-height: normal;
+        background-color: $blueColor;
+        padding: 10px 14px;
+        border: none;
+        border-radius: 5px;
+    }
+}
+
+.uploadButton{
+    padding-left: 10px;
+    
+}
+.uploaddiv{
+    display: flex;
+}
+
+ .centervalidateFile{
+    padding-top: 30px;
+    width: 90%;
+    margin: 0 auto;  
+}
+
+table {
+  width: 100%;
 }

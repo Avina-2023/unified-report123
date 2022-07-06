@@ -57,10 +57,11 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatDialogModule } from '@angular/material/dialog';
 // import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatNativeDateModule } from '@angular/material/core';
+import {MatTableModule} from '@angular/material/table';
 
 // Material Data tables
 // ---------------------------------------------------------------
-// import { MatPaginatorModule } from '@angular/material/paginator';
+ import { MatPaginatorModule } from '@angular/material/paginator';
 // import { MatSortModule } from '@angular/material/sort';
 // import { MatTableModule } from '@angular/material/table';
 
@@ -89,7 +90,9 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatSidenavModule,
     MatSlideToggleModule,
     MatListModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatTableModule,
+    MatPaginatorModule
   ],
   exports: [
     MatMenuModule,
@@ -114,7 +117,9 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatSidenavModule,
     MatSlideToggleModule,
     MatListModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatTableModule,
+    MatPaginatorModule
   ],
 })
 export class MaterialModule { }
