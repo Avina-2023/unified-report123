@@ -39,38 +39,38 @@ export class LandingPageComponent implements OnInit {
 
   graduates = [{
       list:'Create customized skill profile',
-      image:'assets/images/landing/newLanding/check.png'
+      image:'assets/images/landing/newLanding/checkNew.png'
   },{
     list:'Showcase core skillset, assessment scores and other talent',
-    image:'assets/images/landing/newLanding/check.png'
+    image:'assets/images/landing/newLanding/checkNew.png'
   },{
     list:'Be visible to top organisations',
-    image:'assets/images/landing/newLanding/check.png'
+    image:'assets/images/landing/newLanding/checkNew.png'
   },{
     list:'Have a competitive edge over peers',
-    image:'assets/images/landing/newLanding/check.png'
+    image:'assets/images/landing/newLanding/checkNew.png'
   },{
     list:'Get access to multiple jobs from top employers',
-    image:'assets/images/landing/newLanding/check.png'
+    image:'assets/images/landing/newLanding/checkNew.png'
   }
 
 ]
 
 employers = [{
   list:'Have access to a large talent pool',
-  image:'assets/images/landing/newLanding/check.png'
+  image:'assets/images/landing/newLanding/checkNew.png'
 },{
 list:'Have access to certified, pre-assessed and skilled candidates',
-image:'assets/images/landing/newLanding/check.png'
+image:'assets/images/landing/newLanding/checkNew.png'
 },{
 list:'Enable just-in-time hiring',
-image:'assets/images/landing/newLanding/check.png'
+image:'assets/images/landing/newLanding/checkNew.png'
 },{
 list:'Select from ready-to-be-deployed candidates',
-image:'assets/images/landing/newLanding/check.png'
+image:'assets/images/landing/newLanding/checkNew.png'
 },{
 list:'Shortlist from skill-based profiles',
-image:'assets/images/landing/newLanding/check.png'
+image:'assets/images/landing/newLanding/checkNew.png'
 }
 
 ]
