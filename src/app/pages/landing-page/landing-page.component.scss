@@ -222,6 +222,9 @@ figure {
             height: 537px;
             background-color: #004684;
             margin-top: -1%;
+            @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+                height: auto;
+            }
             @include md {
                 font-size: 1.2em;
             }
@@ -241,9 +244,40 @@ figure {
                 .commonHeadingStyle {
                     color: $whiteColor;
                 }
+                .heading-content {
+                    .image-wrapper {
+                        align-items: center;
+                        justify-content: center;
+                        width: 100%;
+                        figure {
+                            width: 100%;
+                            @include md {
+                                width: 100%;
+                            }
+                            @include lg {
+                                width: 75%;
+                            }
+                            @include xl {
+                                width: 75%;
+                            }
+                            @media only screen and (min-width: 1000px) {
+                                width: 629px;
+                                margin-top: 5%;
+                            }
+                            img {
+                                object-fit: contain;
+                                object-position: top;
+                                width: 100%;
+                            }
+                        }
+                    }
+                }
                 .para {
                     padding: 3em 0;
                     font-size: 18px;
+                    @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+                        font-size: 1em;
+                    }
                     p {
                         color: $whiteColor;
                         text-align: center;
@@ -463,7 +497,7 @@ figure {
                             // Ipad Air
                             @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
                                 width: auto;
-                                height: auto;
+                                height: 530px;
                                 margin-bottom: 12%;
                                 margin-top: 5%;
                             }
@@ -531,8 +565,8 @@ figure {
                                         // height: 20px;
                                         //for mobile
                                         @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
-                                            width: 20px;
-                                            height: 20px;
+                                            width: 14px;
+                                            height: 14px;
                                         }
                                     }
                                     // for mobile
@@ -554,8 +588,70 @@ figure {
                                 text-align: center;
                                 padding-bottom: 15px;
                             }
+                            .bage {
+                                width: 260px;
+                                height: 50px;
+                                background: #1F61C4 0% 0% no-repeat padding-box;
+                                opacity: 1;
+                                position: absolute;
+                                bottom: 46px;
+                                border-radius: 2px;
+                                left: -27px;
+                                z-index: 1;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                .bageTitle {
+                                    font-size: 16px;
+                                    color: #fff;
+                                    margin-right: 10px;
+                                    // for mobile
+                                    @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+                                        font-size: 14px;
+                                    }
+                                    // Ipad Air
+                                    @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+                                        font-size: 16px;
+                                    }
+                                }
+                                span {
+                                    bottom: 49px;
+                                    left: 0;
+                                    position: absolute;
+                                    width: 0;
+                                    height: 0;
+                                    border-bottom: 25px solid #004684;
+                                    border-left: 25px solid transparent;
+                                    @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+                                        bottom: 39px;
+                                        left: 0px;
+                                        position: absolute;
+                                        width: 0;
+                                        height: 0;
+                                        border-bottom: 20px solid #004684;
+                                        border-left: 20px solid transparent;
+                                    }
+                                    // Ipad Air
+                                    @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+                                        bottom: 35px;
+                                    }
+                                }
+                                @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+                                    width: 200px;
+                                    height: 39px;
+                                    left: -20px;
+                                    bottom: 11px;
+                                }
+                                // Ipad Air
+                                @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+                                    height: 36px;
+                                    width: 200px;
+                                    bottom: 32px;
+                                }
+                            }
                         }
                         .card1 {
+                            position: relative;
                             width: 400px;
                             height: 580px;
                             box-shadow: 0px 0px 3px #2a2a2a24;
@@ -576,7 +672,7 @@ figure {
                             // Ipad Air
                             @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
                                 width: auto;
-                                height: auto;
+                                height: 530px;
                                 margin-bottom: 12%;
                                 margin-top: 5%;
                             }
@@ -644,8 +740,8 @@ figure {
                                         // height: 20px;
                                         //for mobile
                                         @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
-                                            width: 20px;
-                                            height: 20px;
+                                            width: 14px;
+                                            height: 14px;
                                         }
                                     }
                                     // for mobile
@@ -666,6 +762,63 @@ figure {
                             figure {
                                 text-align: center;
                                 padding-bottom: 15px;
+                            }
+                            .bage {
+                                width: 260px;
+                                height: 50px;
+                                background: #1F61C4 0% 0% no-repeat padding-box;
+                                opacity: 1;
+                                position: absolute;
+                                right: -27px;
+                                bottom: 46px;
+                                border-radius: 2px;
+                                /* right: 0; */
+                                z-index: 1;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                .bageTitle {
+                                    font-size: 16px;
+                                    color: #fff;
+                                    margin-right: 10px;
+                                    @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+                                        font-size: 14px;
+                                    }
+                                }
+                                span {
+                                    bottom: 49px;
+                                    right: 0;
+                                    position: absolute;
+                                    width: 0;
+                                    height: 0;
+                                    border-bottom: 25px solid #004684;
+                                    border-right: 25px solid transparent;
+                                    @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+                                        bottom: 39px;
+                                        right: 0px;
+                                        position: absolute;
+                                        width: 0;
+                                        height: 0;
+                                        border-bottom: 20px solid #004684;
+                                        border-right: 20px solid transparent;
+                                    }
+                                    // Ipad Air
+                                    @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+                                        bottom: 35px;
+                                    }
+                                }
+                                @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+                                    width: 200px;
+                                    height: 39px;
+                                    right: -20px;
+                                    bottom: 11px;
+                                }
+                                // Ipad Air
+                                @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+                                    height: 36px;
+                                    width: 200px;
+                                    bottom: 32px;
+                                }
                             }
                         }
                         .arrow {
@@ -729,6 +882,14 @@ figure {
             padding: 3em 0;
             font-size: 12px;
             z-index: 1;
+            //mobile
+            @media (min-width: 200px) and (max-width: 480px) {
+                padding: 0;
+            }
+            // Ipad Air
+            @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+                padding: 0;
+            }
             // background: transparent linear-gradient(131deg, #F8FCFF 0%, #DEF6FF 100%) 0% 0% no-repeat padding-box;
             @include md {
                 font-size: 13px;
@@ -739,26 +900,6 @@ figure {
             @include xl {
                 font-size: 16px;
             }
-            // &::after {
-            //     background-image: url('../../../assets/images/landing/newLanding/Union.png');
-            //     background-repeat: no-repeat;
-            //     content: "";
-            //     position: absolute;
-            //     left: -25%;
-            //     top: 74%;
-            //     transform: translateY(-23%);
-            //     width: 40%;
-            //     height: 360px;
-            //     //for mobile
-            //     @media (min-width: 200px) and (max-width: 480px) {
-            //         display: none;
-            //     }
-            //     // Ipad Air
-            //     @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
-            //         // display: flex;
-            //         display: none;
-            //     }
-            // }
             .heading-container {
                 display: flex;
                 flex-direction: column;
@@ -864,6 +1005,14 @@ figure {
                                 z-index: 1;
                                 font-size: 1em;
                                 color: #222222;
+                                //for mobile
+                                @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+                                    margin: 0 auto;
+                                }
+                                // Ipad Air
+                                @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+                                    margin: 0 auto;
+                                }
                                 .listView {
                                     display: flex;
                                     align-items: center;
@@ -926,7 +1075,15 @@ figure {
                     margin-top: 0px;
                 }
                 .inner-wrapper:nth-child(2n+1) {
+                    /////////////////
                     flex-direction: column-reverse;
+                    @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+                        flex-direction: column;
+                    }
+                    // Ipad Air
+                    @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+                        flex-direction: column;
+                    }
                     @media only screen and (min-width: 1000px) {
                         flex-direction: row;
                     }
@@ -1269,23 +1426,39 @@ figure {
     @include xl {
         font-size: 16px;
     }
+    .container {
+        max-width: 1170px;
+        width: 94%;
+        padding-left: 15px;
+        padding-right: 15px;
+        margin: 0 auto;
+        .heading-container {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+        }
+    }
 }
 
 .contactFooter {
     // background: transparent linear-gradient(131deg, #F8FCFF 0%, #DEF6FF 100%) 0% 0% no-repeat padding-box;
     display: flex;
     .left {
-        width: 80%;
+        width: 100%;
         display: flex;
         align-items: center;
         .footerContact {
             font-size: 14px;
             @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
                 font-size: 1em;
+                text-align: center;
             }
             // Ipad Air
             @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
                 font-size: 1.2em;
+                text-align: center;
             }
             .link {
                 color: #0056b3;
@@ -1293,90 +1466,90 @@ figure {
             }
         }
     }
-    .right {
-        width: 20%;
-        display: flex;
-        align-items: flex-end;
-        @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
-            width: 100%;
-            display: flex;
-            align-items: flex-end;
-            justify-content: end;
-        }
-        .edutechLogo {
-            cursor: pointer;
-            width: 80%;
-            margin-right: 0;
-            margin-left: 0;
-            position: relative;
-            @include sm {
-                width: 100%;
-            }
-            @include md {
-                margin-right: 1.2em;
-                width: 100%;
-            }
-            @include lg {
-                width: 100%;
-                margin-left: 0;
-            }
-            @include xl {
-                width: 100%;
-            }
-            @media only screen and (min-width: 1540px) {
-                width: 100%;
-            }
-            img {
-                width: 100%;
-            }
-            // &::after {
-            //     content: '';
-            //     position: absolute;
-            //     top: 0;
-            //     right: -14px;
-            //     width: 2px;
-            //     height: 100%;
-            //     background: transparent linear-gradient(180deg, #54B952 0%, #34BCA3 85%, #16BEF0 100%) 0% 0% no-repeat padding-box;
-            // }
-        }
-        .line {
-            width: 2px;
-            height: 50px;
-            position: absolute;
-            // margin-left: 6.5%;
-            background: transparent linear-gradient(180deg, #54B952 0%, #34BCA3 85%, #16BEF0 100%) 0% 0% no-repeat padding-box;
-            @include sm {
-                margin-left: 2.5%;
-            }
-            @include md {
-                margin-left: 4.5%;
-            }
-            @include lg {
-                margin-left: 6.5%;
-            }
-            @include xl {}
-            @media (min-width: 1200px) {
-                margin-left: 9.5%;
-            }
-            @media only screen and (min-width: 1540px) {
-                margin-left: 6.5%;
-            }
-        }
-        .head {
-            letter-spacing: 0px;
-            /* color: #08558C; */
-            opacity: 1;
-            font-size: 17px;
-            margin-left: 5px;
-            font-weight: 500;
-            line-height: normal;
-            font-family: Roboto, Condensed;
-        }
-        // Ipad Air
-        @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
-            width: 30%;
-        }
-    }
+    // .right {
+    //     width: 20%;
+    //     display: flex;
+    //     align-items: flex-end;
+    //     @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+    //         width: 100%;
+    //         display: flex;
+    //         align-items: flex-end;
+    //         justify-content: end;
+    //     }
+    //     .edutechLogo {
+    //         cursor: pointer;
+    //         width: 80%;
+    //         margin-right: 0;
+    //         margin-left: 0;
+    //         position: relative;
+    //         @include sm {
+    //             width: 100%;
+    //         }
+    //         @include md {
+    //             margin-right: 1.2em;
+    //             width: 100%;
+    //         }
+    //         @include lg {
+    //             width: 100%;
+    //             margin-left: 0;
+    //         }
+    //         @include xl {
+    //             width: 100%;
+    //         }
+    //         @media only screen and (min-width: 1540px) {
+    //             width: 100%;
+    //         }
+    //         img {
+    //             width: 100%;
+    //         }
+    //         // &::after {
+    //         //     content: '';
+    //         //     position: absolute;
+    //         //     top: 0;
+    //         //     right: -14px;
+    //         //     width: 2px;
+    //         //     height: 100%;
+    //         //     background: transparent linear-gradient(180deg, #54B952 0%, #34BCA3 85%, #16BEF0 100%) 0% 0% no-repeat padding-box;
+    //         // }
+    //     }
+    //     .line {
+    //         width: 2px;
+    //         height: 50px;
+    //         position: absolute;
+    //         // margin-left: 6.5%;
+    //         background: transparent linear-gradient(180deg, #54B952 0%, #34BCA3 85%, #16BEF0 100%) 0% 0% no-repeat padding-box;
+    //         @include sm {
+    //             margin-left: 2.5%;
+    //         }
+    //         @include md {
+    //             margin-left: 4.5%;
+    //         }
+    //         @include lg {
+    //             margin-left: 6.5%;
+    //         }
+    //         @include xl {}
+    //         @media (min-width: 1200px) {
+    //             margin-left: 9.5%;
+    //         }
+    //         @media only screen and (min-width: 1540px) {
+    //             margin-left: 6.5%;
+    //         }
+    //     }
+    //     .head {
+    //         letter-spacing: 0px;
+    //         /* color: #08558C; */
+    //         opacity: 1;
+    //         font-size: 17px;
+    //         margin-left: 5px;
+    //         font-weight: 500;
+    //         line-height: normal;
+    //         font-family: Roboto, Condensed;
+    //     }
+    //     // Ipad Air
+    //     @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+    //         width: 30%;
+    //     }
+    // }
 }
 
 @media (min-width: 1000px) {
