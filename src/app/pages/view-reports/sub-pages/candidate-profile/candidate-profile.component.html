@@ -1,7 +1,7 @@
 <section class="candidateProfile" *ngIf="profilePic">
     <div class="detailsWrapper">
         <h4>Candidate Details</h4>
-        <div class="count">
+        <div class="count" *ngIf="isaccess">
             <span class="userCount">{{convertIntoINDFormate(userCount + 1)}}</span><span class="totalCout"> / {{convertIntoINDFormate(totalCount)}}</span></div>
     </div>
     <div class="candidateWrapper">

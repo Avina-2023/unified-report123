@@ -224,6 +224,7 @@ figure {
             margin-top: -1%;
             @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
                 height: auto;
+                margin-top: -2%;
             }
             @include md {
                 font-size: 1.2em;
@@ -281,6 +282,9 @@ figure {
                     p {
                         color: $whiteColor;
                         text-align: center;
+                        @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+                            margin: 0;
+                        }
                     }
                 }
             }
@@ -406,7 +410,7 @@ figure {
             width: 100%;
             font-size: 12px;
             z-index: 1;
-            // background: #FEEFDC4D 0% 0% no-repeat padding-box;
+            background: #FAFAFA 0% 0% no-repeat padding-box;
             @include md {
                 font-size: 13px;
             }
@@ -881,7 +885,7 @@ figure {
         .benefits {
             position: relative;
             width: 100%;
-            padding: 3em 0;
+            padding: 2em 0;
             font-size: 12px;
             z-index: 1;
             //mobile
@@ -929,15 +933,15 @@ figure {
                 width: 100%;
                 flex-wrap: wrap;
                 margin: 12px 0 0 0;
-                @include md {
-                    margin: 3.2em 0 0 0;
-                }
-                @include lg {
-                    margin: 3.2em 0 0 0;
-                }
-                @include xl {
-                    margin: 3.2em 0 0 0;
-                }
+                // @include md {
+                //     margin: 3.2em 0 0 0;
+                // }
+                // @include lg {
+                //     margin: 3.2em 0 0 0;
+                // }
+                // @include xl {
+                //     margin: 3.2em 0 0 0;
+                // }
                 //for mobile
                 @media (min-width: 200px) and (max-width: 480px) {
                     margin-top: 1.5em;
@@ -951,11 +955,35 @@ figure {
                     @media only screen and (min-width: 1000px) {
                         flex-direction: row;
                     }
+                    .m-r-17 {
+                        padding-right: 17% !important;
+                        //for mobile
+                        @media (min-width: 200px) and (max-width: 480px) {
+                            padding-right: 0 !important;
+                        }
+                        // Ipad Air
+                        @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+                            padding-right: 0 !important;
+                        }
+                    }
                     .image-wrapper {
                         flex-basis: 50%;
                         margin-top: 1em;
+                        display: flex;
+                        justify-content: center;
+                        padding-right: 10%;
+                        //for mobile
+                        @media (min-width: 200px) and (max-width: 480px) {
+                            padding-right: 0;
+                        }
+                        // Ipad Air
+                        @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+                            padding-right: 0;
+                        }
                         @media only screen and (min-width: 1000px) {
+                            display: flex;
                             margin-top: 0em;
+                            justify-content: center;
                         }
                         figure {
                             width: 100%;
@@ -1025,7 +1053,7 @@ figure {
                                         padding-bottom: 10px;
                                     }
                                     >span {
-                                        margin-left: 10px;
+                                        margin-left: 15px;
                                         font-size: 13px;
                                         //for mobile
                                         @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
@@ -1238,8 +1266,11 @@ figure {
                     .image-wrapper {
                         flex-basis: 50%;
                         margin-top: 1em;
+                        justify-content: center;
+                        // padding-right: 10%;
                         @media only screen and (min-width: 1000px) {
                             margin-top: 0em;
+                            // padding-right: 10%;
                         }
                         figure {
                             width: 100%;
@@ -1573,10 +1604,9 @@ figure {
 //         height: 524px;
 //     }
 // }
-::ng-deep.mat-dialog-container {
-    padding: 0px !important;
-}
-
+// ::ng-deep.mat-dialog-container {
+//     padding: 0px !important;
+// }
 .close-button {
     position: absolute;
     right: 2px;
@@ -1587,4 +1617,9 @@ figure {
 
 .close-icon {
     color: #666666 !important;
+}
+
+hr {
+    margin: 0;
+    margin-top: 10px;
 }

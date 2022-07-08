@@ -12,6 +12,7 @@
         font-size: 12px;
         background: transparent linear-gradient(90deg, #16BEF0 0%, #54B952 100%) 0% 0% no-repeat padding-box;
         opacity: 1;
+        margin-top: 10px;
         @include md {
             padding: 3em 0;
         }
