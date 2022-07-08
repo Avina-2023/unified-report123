@@ -127,6 +127,8 @@ export class SkillBulkUploadComponent implements OnInit {
   }
 
   navtoAddSkillList() {
+    this.fileName = "";
+    this.file = "";
     this.tabSelect = 0;
     this.instructionCheck = false;
     this.validateCheck = false;
@@ -134,6 +136,8 @@ export class SkillBulkUploadComponent implements OnInit {
   }
 
   navtoViewSkillList() {
+    this.fileName = "";
+    this.file = "";
     this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.SKILLMASTER.HOME);
   }
 

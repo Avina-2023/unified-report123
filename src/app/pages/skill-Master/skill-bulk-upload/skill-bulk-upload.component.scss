@@ -3,10 +3,10 @@
 
 :host ::ng-deep .agTable-btn {
     background-color: #fff;
-    color: #fff;
-    width: 113px; 
+    color: #08558C;
+    width: 113px;
     height: 39px;
-    background: #004684 0% 0% no-repeat padding-box;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
     box-shadow: 2px 2px 4px #0000001A;
     border: 0.4891771078109741px solid #939393;
     border-radius: 3px;
@@ -33,7 +33,7 @@
 //   }
 
 .agTable-btn:hover {
-    background-color: #009AFF;
+    background-color: #08558C;
     transition: 0.7s;
     color: $whiteColor;
     font-size: 15px;
@@ -73,7 +73,7 @@
     padding-left: 16px;
 }
 
-.submit {
+::ng-deep .submit {
     border-top: 1px solid rgba(0, 0, 0, 0.1);
     margin-top: 20px;
     padding: 20px;
@@ -128,10 +128,15 @@ padding-top: 10px;
     display: flex;
     align-items: center;
 }
-.mat-card{
+ .mat-cardData{
  background: #FAFAFA 0% 0% no-repeat padding-box;
-border: 0.5px solid #707070B0;
+// border: 0.5px solid #707070B0;
+border: 0;
 opacity: 1;
+}
+
+.mat-cardData:not([class*=mat-elevation-z]) {
+    box-shadow: none !important;
 }
 
 .file-input {
@@ -158,6 +163,12 @@ opacity: 1;
     background-color: #FAFAFA;
 }
 
+.headerTableTab{
+    background-color: #FAFAFA;
+    border-color: #939393;
+    color: black;
+}
+
 .mat-expansion-panel:not(.mat-expanded) .mat-expansion-panel-header:hover:not([aria-disabled=true]) {
     background-color: #FAFAFA;
 }
@@ -169,7 +180,7 @@ opacity: 1;
 
 :host ::ng-deep .agTable-btn-Upload {
     background-color: #fff;
-    color: #004684;
+    color: #08558C;
     width: 113px;
     height: 39px; 
     background: #FFFFFF 0% 0% no-repeat padding-box;
@@ -189,7 +200,7 @@ opacity: 1;
     }
 }
 
-.submitUpload {
+::ng-deep .submitUpload {
     border-top: 1px solid rgba(0, 0, 0, 0.1);
     margin-top: 20px;
     padding: 20px;
@@ -200,11 +211,11 @@ opacity: 1;
     button {
         font-size: 14px;
         font-weight: 400;
-        color: $whiteColor;
+        color: #08558C;
         line-height: normal;
-        background-color: $blueColor;
+        background-color: $whiteColor;
         padding: 10px 14px;
-        border: none;
+        border: 0.4891771078109741px solid #939393;
         border-radius: 5px;
     }
 }

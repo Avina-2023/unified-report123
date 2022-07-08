@@ -151,7 +151,7 @@
     flex-direction: column;
 }
 
-.submit {
+::ng-deep .submit {
     border-top: 1px solid rgba(0, 0, 0, 0.1);
     margin-top: 20px;
     padding: 20px;
@@ -160,13 +160,22 @@
     button {
         font-size: 14px;
         font-weight: 400;
-        color: $whiteColor;
+        color: #08558C;
         line-height: normal;
-        background-color: $blueColor;
+        background-color: $whiteColor;
         padding: 10px 14px;
-        border: none;
+        box-shadow: 2px 2px 4px #0000001A;
+        border: 0.4891771078109741px solid #939393;
         border-radius: 5px;
     }
+}
+::ng-deep .subSubmit{
+    align-items: flex-end;
+    height: 212px;
+}
+
+::ng-deep .paddingbutton{
+    padding: 9px 33px !important;
 }
 
 .otherNotes{

@@ -24,6 +24,12 @@
                 </mat-option>
             </mat-select>
         </div>
+         <div class="Row">
+                <div class="Item"><button class="agTable-btn" (click)="exportCSV()">
+                        <span class=""></span>
+                        <span>Export CSV</span>
+                    </button></div>
+            </div>
         <div *ngIf="selectedRow.length" class="Row">
             <div *ngIf="(statusSelectedValue === 'Rejected Skills' || statusSelectedValue === 'Unapproved Skills')"
                 class="Item">
@@ -55,7 +61,7 @@
             (selectionChanged)="onSelectionChanged($event)" [chartThemeOverrides]="chartThemeOverrides"
             [suppressAggFuncInHeader]="true" [suppressColumnVirtualisation]="true"
             [autoGroupColumnDef]="autoGroupColumnDef" [serverSideStoreType]="serverSideStoreType" [pagination]="true"
-            [paginationPageSize]="50" [sideBar]="sideBar">
+            [paginationPageSize]="50" [sideBar]="sideBar" allColumns=true> 
         </ag-grid-angular>
 
     </div>
@@ -93,7 +99,7 @@
                 libero. Cras id dui. Aenean ut</p>
         </div>
         <div class="submit">
-            <button (click)="instructionClose()">Ok</button>
+            <button class="agTable-btn paddingbutton" (click)="instructionClose()">Ok</button>
         </div>
     </div>
 </ng-template>
@@ -108,7 +114,7 @@
         </div>
         <div>
             <div class="statusList">
-                <mat-label class="label">Select your reason *</mat-label>
+                <mat-label class="label"><b>Select your reason *</b></mat-label>
                 <mat-select class="matSelect1" (selectionChange)="RejectChange($event)" [(ngModel)]="rejectSelectedValue"
                     name="list">
                     <mat-option *ngFor="let list of rejectList" [value]="list">
@@ -117,14 +123,14 @@
                 </mat-select>
             </div>
             <div *ngIf="rejectSelectedValue === 'Others'" class="otherNotes">
-                  <mat-label class="label">Enter your reason *</mat-label>
+                  <mat-label class="label"><b>Enter your reason *</b></mat-label>
                   <mat-form-field class="example-full-width" appearance="outline">
                     <input matInput [(ngModel)]="rejectOtherValue">
                   </mat-form-field>
             </div>
         
         </div>
-        <div class="submit">
+        <div [ngClass]="[rejectSelectedValue === 'Others' ? 'submit' : 'subSubmit submit ']">
             <div class="rejectClose">
                 <button class="agTable-btn" (click)="RejectClose()">Cancel</button>
             </div>

@@ -94,21 +94,21 @@
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="centerUploadFile">
-                                <mat-card>
+                                <mat-card class="mat-cardData">
                                     <mat-card-content>
                                         <input type="file" accept="text/csv, application/octet-stream, ms-excel"
                                             class="file-input" (change)="onFileSelected($event)" #fileUpload>
                                         <div class="file-upload">
                                             <button mat-mini-fab class="upload-btn" (click)="fileUpload.click()">
                                                 <img src="assets/images/skillMaster/upload.svg">
-                                                <span class="blackLable">{{fileName || "Upload the Skills
+                                                <span class="blackLable subInstruction">{{fileName || "Upload the Skills
                                                     lists"}}</span>
                                             </button>
                                         </div>
                                     </mat-card-content>
                                     <div class="file-upload">
                                         <mat-card-actions>
-                                            (* File extension allowed .csv )
+                                            (<span class="redLable">*</span> File extension allowed .csv )
                                         </mat-card-actions>
                                     </div>
                                 </mat-card>
@@ -120,7 +120,7 @@
                                         </button>
                                     </div>
                                     <div>
-                                        <button (click)="openUploadModel()" class="agTable-btn">
+                                        <button class="agTable-btn" (click)="openUploadModel()">
                                             <span class=""></span>
                                             <span>Upload</span>
                                         </button>
@@ -131,12 +131,12 @@
                         </div>
                         <div class="col-sm-6 downloadFile">
                             <div class="centerDownloadFile">
-                                <mat-card>
+                                <mat-card class="mat-cardData">
                                     <mat-card-content>
                                         <div class="file-upload">
                                             <button mat-mini-fab (click)="downloadTemplate()" class="upload-btn">
                                                 <img src="assets/images/skillMaster/download.svg">
-                                                <span class="blackLable">Download Template</span>
+                                                <span class="blackLable subInstruction">Download Template</span>
                                             </button>
                                         </div>
                                     </mat-card-content>
@@ -151,7 +151,7 @@
                             (closed)="panelOpenState = false">
                             <mat-expansion-panel-header class="instructionTab">
                                 <mat-panel-title class="instructionTab">
-                                    <b>Instruction</b>
+                                    <b>Instruction:</b>
                                 </mat-panel-title>
                             </mat-expansion-panel-header>
                             <div class="BulkSubTab instructionTab">
@@ -207,13 +207,13 @@
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="centerUploadFile">
-                                <mat-card>
+                                <mat-card class="mat-cardData">
                                     <mat-card-content>
                                         <input type="file" accept="text/csv, application/octet-stream, ms-excel"
                                             class="file-input" (change)="navtostep2()" #fileUpload>
                                         <div class="file-upload">
                                             <button mat-mini-fab class="upload-btn" (click)="navtostep2()">
-                                                <span class="blackLable">{{fileName || "Upload the Skills
+                                                <span class="blackLable subInstruction">{{fileName || "Upload the Skills
                                                     lists"}}</span>
                                             </button>
                                             <div *ngIf="fileName" class="close" (click)="navtostep2()">
@@ -231,12 +231,12 @@
                         </div>
                         <div class="col-sm-6 downloadFile">
                             <div class="centerDownloadFile">
-                                <mat-card>
+                                <mat-card class="mat-cardData">
                                     <mat-card-content>
                                         <div class="file-upload">
                                             <button mat-mini-fab (click)="downloadTemplate()" class="upload-btn">
                                                 <img src="assets/images/skillMaster/download.svg">
-                                                <span class="blackLable">Download Template</span>
+                                                <span class="blackLable subInstruction">Download Template</span>
                                             </button>
                                         </div>
                                     </mat-card-content>
@@ -246,7 +246,7 @@
                     </div>
                     
                         <div class="centervalidateFile">
-                            <mat-card>
+                            <mat-card class="instructionTab">
                                 <mat-card-title>
                                     <h3><b>Errors Found</b></h3>
                                 </mat-card-title>
@@ -258,22 +258,22 @@
                                             <table mat-table [dataSource]="dataSource">
                                           
                                               <ng-container matColumnDef="Skill Name">
-                                                <th mat-header-cell *matHeaderCellDef> Skill Name </th>
+                                                <th class="headerTableTab" mat-header-cell *matHeaderCellDef> <b>Skill Name</b> </th>
                                                 <td mat-cell *matCellDef="let element"> {{element.skillName}} </td>
                                               </ng-container>
                                    
                                               <ng-container matColumnDef="Domain">
-                                                <th mat-header-cell *matHeaderCellDef> Domain </th>
+                                                <th class="headerTableTab" mat-header-cell *matHeaderCellDef> <b>Domain</b> </th>
                                                 <td mat-cell *matCellDef="let element"> {{element.domain}} </td>
                                               </ng-container>
                                           
                                               <ng-container matColumnDef="Error">
-                                                <th mat-header-cell *matHeaderCellDef> Error </th>
+                                                <th class="headerTableTab" mat-header-cell *matHeaderCellDef> <b>Error</b> </th>
                                                 <td mat-cell *matCellDef="let element" class="redLable"> {{element.message}} </td>
                                               </ng-container>
                                           
                                               <ng-container matColumnDef="Possition At">
-                                                <th mat-header-cell *matHeaderCellDef> Possition At </th>
+                                                <th class="headerTableTab" mat-header-cell *matHeaderCellDef> <b>Possition At</b> </th>
                                                 <td mat-cell *matCellDef="let element"> {{element.indexAt}} </td>
                                               </ng-container>
                                           
@@ -338,10 +338,10 @@
             </div>
             <div class="submitUpload">
                 <div class="nextButton">
-                    <button class="agTable-btn-Upload" (click)="uploadModelClose()">Cancel</button>
+                    <button class="agTable-btn" (click)="uploadModelClose()">Cancel</button>
                 </div>
                 <div>
-                    <button class="agTable-btn-Upload" (click)="saveUploadModel()">Save</button>
+                    <button class="agTable-btn" (click)="saveUploadModel()">Save</button>
                 </div>
             </div>
         </div>
@@ -353,7 +353,7 @@
             </div>
             <div class="submitUpload">
                 <div class="button">
-                    <button class="agTable-btn-Upload" (click)="uploadModelClose()">Ok</button>
+                    <button class="agTable-btn" (click)="uploadModelClose()">Ok</button>
                 </div>
             </div>
         </div>
