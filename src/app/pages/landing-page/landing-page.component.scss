@@ -224,6 +224,7 @@ figure {
             margin-top: -1%;
             @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
                 height: auto;
+                margin-top: -2%;
             }
             @include md {
                 font-size: 1.2em;
