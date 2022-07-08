@@ -68,7 +68,7 @@
                     </div>
                 </div>
             </mat-tab>
-            <mat-tab [disabled]="!instructionCheck"  label="2. Upload">
+            <mat-tab [disabled]="!instructionCheck" label="2. Upload">
                 <ng-template mat-tab-label>
                     <ng-template *ngIf="tabSelect === 1;then UploadShow; else UploadNotShow">
                     </ng-template>
@@ -244,52 +244,56 @@
                             </div>
                         </div>
                     </div>
-                    
-                        <div class="centervalidateFile">
-                            <mat-card class="instructionTab">
-                                <mat-card-title>
-                                    <h3><b>Errors Found</b></h3>
-                                </mat-card-title>
-                                <mat-card-content>
-                                    <div class="uploadButton">
-                                        <h4> <b>No.of Errors - {{totalCount}}</b></h4>
-                                        <h4><b>Clear the Errors in your excel file and Re-upload the file.</b></h4>
-                                        <div class="mat-elevation-z8">
-                                            <table mat-table [dataSource]="dataSource">
-                                          
-                                              <ng-container matColumnDef="Skill Name">
-                                                <th class="headerTableTab" mat-header-cell *matHeaderCellDef> <b>Skill Name</b> </th>
+
+                    <div class="centervalidateFile">
+                        <mat-card class="instructionTab">
+                            <mat-card-title>
+                                <h3><b>Errors Found</b></h3>
+                            </mat-card-title>
+                            <mat-card-content>
+                                <div class="uploadButton">
+                                    <h4> <b>No.of Errors - {{totalCount}}</b></h4>
+                                    <h4><b>Clear the Errors in your excel file and Re-upload the file.</b></h4>
+                                    <div class="mat-elevation-z8">
+                                        <table mat-table [dataSource]="dataSource">
+
+                                            <ng-container matColumnDef="Skill Name">
+                                                <th class="headerTableTab" mat-header-cell *matHeaderCellDef> <b>Skill
+                                                        Name</b> </th>
                                                 <td mat-cell *matCellDef="let element"> {{element.skillName}} </td>
-                                              </ng-container>
-                                   
-                                              <ng-container matColumnDef="Domain">
-                                                <th class="headerTableTab" mat-header-cell *matHeaderCellDef> <b>Domain</b> </th>
+                                            </ng-container>
+
+                                            <ng-container matColumnDef="Domain">
+                                                <th class="headerTableTab" mat-header-cell *matHeaderCellDef>
+                                                    <b>Domain</b> </th>
                                                 <td mat-cell *matCellDef="let element"> {{element.domain}} </td>
-                                              </ng-container>
-                                          
-                                              <ng-container matColumnDef="Error">
-                                                <th class="headerTableTab" mat-header-cell *matHeaderCellDef> <b>Error</b> </th>
-                                                <td mat-cell *matCellDef="let element" class="redLable"> {{element.message}} </td>
-                                              </ng-container>
-                                          
-                                              <ng-container matColumnDef="Possition At">
-                                                <th class="headerTableTab" mat-header-cell *matHeaderCellDef> <b>Possition At</b> </th>
+                                            </ng-container>
+
+                                            <ng-container matColumnDef="Error">
+                                                <th class="headerTableTab" mat-header-cell *matHeaderCellDef>
+                                                    <b>Error</b> </th>
+                                                <td mat-cell *matCellDef="let element" class="redLable">
+                                                    {{element.message}} </td>
+                                            </ng-container>
+
+                                            <ng-container matColumnDef="Possition At">
+                                                <th class="headerTableTab" mat-header-cell *matHeaderCellDef>
+                                                    <b>Possition At</b> </th>
                                                 <td mat-cell *matCellDef="let element"> {{element.indexAt}} </td>
-                                              </ng-container>
-                                          
-                                              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                                              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-                                            </table>
-                                          
-                                            <mat-paginator [pageSizeOptions]="[5, 10, 20]"
-                                                           showFirstLastButtons 
-                                                           aria-label="Select page of periodic elements">
-                                            </mat-paginator>
-                                          </div>
-                                          
+                                            </ng-container>
+
+                                            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                                        </table>
+
+                                        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
+                                            aria-label="Select page of periodic elements">
+                                        </mat-paginator>
                                     </div>
-                                </mat-card-content>
-                            </mat-card>
+
+                                </div>
+                            </mat-card-content>
+                        </mat-card>
                     </div>
                 </div>
             </mat-tab>

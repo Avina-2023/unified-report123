@@ -8,9 +8,9 @@ describe('SkillMasterListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SkillMasterListComponent ]
+      declarations: [SkillMasterListComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

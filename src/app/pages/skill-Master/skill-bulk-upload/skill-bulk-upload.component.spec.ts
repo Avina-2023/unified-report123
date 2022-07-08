@@ -8,9 +8,9 @@ describe('SkillBulkUploadComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SkillBulkUploadComponent ]
+      declarations: [SkillBulkUploadComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

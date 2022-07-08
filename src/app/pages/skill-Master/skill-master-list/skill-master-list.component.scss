@@ -43,18 +43,19 @@
     padding-right: 5em;
 }
 
-::ng-deep .mat-select-value{    
-    color: white!important; 
- }
+::ng-deep .mat-select-value {
+    color: white !important;
+}
 
 ::ng-deep .matSelect1 {
-        width: auto;
-        border: 1px solid $blackColor;
-        padding: 10px;
-         .mat-select-value{    
-            color: black !important; 
-         }
+    width: auto;
+    border: 1px solid $blackColor;
+    padding: 10px;
+
+    .mat-select-value {
+        color: black !important;
     }
+}
 
 .search-icon {
     display: flex;
@@ -66,11 +67,13 @@
 
 .first {
     display: contents;
+
     .link {
         color: black;
         text-decoration: none
     }
 }
+
 .first {
     display: contents;
 }
@@ -85,6 +88,7 @@
     border: 0.4891771078109741px solid #939393;
     border-radius: 3px;
     font-size: 15px;
+
     .filterIcon {
         display: inline-block;
         width: 15px;
@@ -92,6 +96,7 @@
         margin-right: 6px;
         background-size: cover;
     }
+
     .icon-bike {
         background-image: url('../../../../assets/images/Filter.svg');
     }
@@ -103,6 +108,7 @@
     color: $whiteColor;
     font-size: 15px;
     border: none;
+
     .icon-bike:hover,
     .icon-bike:focus {
         background-image: url('../../../../assets/images/filterWhilte.svg');
@@ -114,21 +120,23 @@
     background-image: url('../../../../assets/images/filterWhilte.svg');
 }
 
-.Row{
-    display:flex;
+.Row {
+    display: flex;
     align-items: center;
-  }
-  .Item{
-    display:flex;
-    flex:1;
-    flex-direction:column;
-    padding:0 10px 10px 0;
-  }
-  .Item > div{
-    background:#7ae;
-  }
+}
 
-  .label {
+.Item {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding: 0 10px 10px 0;
+}
+
+.Item>div {
+    background: #7ae;
+}
+
+.label {
     font-size: 13px;
     color: $blackColor;
     padding-bottom: 10px;
@@ -136,7 +144,7 @@
 
 .outer-div {
     padding-bottom: 1%;
-    padding-top:11px;
+    padding-top: 11px;
 }
 
 .matSelect {
@@ -146,7 +154,7 @@
     background-color: #004684;
 }
 
-.statusList{
+.statusList {
     display: flex;
     flex-direction: column;
 }
@@ -157,6 +165,7 @@
     padding: 20px;
     display: flex;
     justify-content: flex-end;
+
     button {
         font-size: 14px;
         font-weight: 400;
@@ -169,22 +178,23 @@
         border-radius: 5px;
     }
 }
-::ng-deep .subSubmit{
+
+::ng-deep .subSubmit {
     align-items: flex-end;
     height: 212px;
 }
 
-::ng-deep .paddingbutton{
+::ng-deep .paddingbutton {
     padding: 9px 33px !important;
 }
 
-.otherNotes{
+.otherNotes {
     display: flex;
     flex-direction: column;
-    padding-top : 25px
+    padding-top: 25px
 }
 
-.rejectClose{
+.rejectClose {
     margin-right: 11px;
 }
 
@@ -205,14 +215,14 @@
     color: #333333;
     width: 113px;
     height: 39px;
-    background:#CADEC5 0% 0% no-repeat padding-box;
+    background: #CADEC5 0% 0% no-repeat padding-box;
     box-shadow: 2px 2px 4px #0000001A;
     border: 0.4891771078109741px solid #5CB646;
     border-radius: 3px;
     font-size: 15px;
 }
 
-.agTable-btn-Reject:hover{
+.agTable-btn-Reject:hover {
     background-color: #CB0000;
     transition: 0.7s;
     color: $whiteColor;
@@ -220,7 +230,7 @@
     border: none;
 }
 
-.agTable-btn-Approve:hover{
+.agTable-btn-Approve:hover {
     background-color: #5CB646;
     transition: 0.7s;
     color: $whiteColor;
@@ -232,9 +242,10 @@
     flex: 1 1 auto;
 }
 
-.pointer{
+.pointer {
     font-size: small;
 }
-.pointer:hover{
+
+.pointer:hover {
     cursor: pointer;
 }

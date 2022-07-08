@@ -59,7 +59,7 @@ export class SkillBulkUploadComponent implements OnInit {
     if (this.file) {
       this.fileName = this.file.name;
     }
- 
+
   }
 
   cancleUpload() {
@@ -97,7 +97,7 @@ export class SkillBulkUploadComponent implements OnInit {
         this.toastr.warning('Unable to upload, Please check the file and try again.');
         this.matDialog.closeAll();
       } else {
-        if (data.totalCount===0) {
+        if (data.totalCount === 0) {
           this.tabSelect = 3;
           this.instructionCheck = false;
           this.updateCheck = true;

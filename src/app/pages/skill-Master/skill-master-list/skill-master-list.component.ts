@@ -121,7 +121,7 @@ export class SkillMasterListComponent implements OnInit {
     this.skillMasterListSubscription ? this.skillMasterListSubscription.unsubscribe() : '';
   }
 
-   navToSkillBulkUpload(){
+  navToSkillBulkUpload() {
     this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.SKILLMASTER.SKILLBULKUPlOAD);
   }
 
@@ -202,9 +202,9 @@ export class SkillMasterListComponent implements OnInit {
     }
   }
 
-  exportCSV(){
+  exportCSV() {
     this.gridApi.exportDataAsCsv({
-      columnKeys:["_id","skillName","domain"]
+      columnKeys: ["_id", "skillName", "domain"]
     });
   }
 
@@ -243,7 +243,7 @@ export class SkillMasterListComponent implements OnInit {
 
   RejectClose() {
     this.matDialog.closeAll();
-    this.rejectOtherValue="";
+    this.rejectOtherValue = "";
     this.rejectSelectedValue = "Duplicate Entry";
   }
 
@@ -344,7 +344,7 @@ export class SkillMasterListComponent implements OnInit {
         filter: 'agDateColumnFilter',
         field: 'createdAt',
         maxWidth: 140,
-       // tooltipField: 'createdAt',
+        // tooltipField: 'createdAt',
         chartDataType: 'series',
         cellRenderer: (params) => {
           if (params.value) {
@@ -435,7 +435,7 @@ export class SkillMasterListComponent implements OnInit {
         filter: 'agDateColumnFilter',
         field: 'approvedAt',
         maxWidth: 140,
-       // tooltipField: 'approvedAt',
+        // tooltipField: 'approvedAt',
         chartDataType: 'series',
         cellRenderer: (params) => {
           if (params.value) {
@@ -516,7 +516,7 @@ export class SkillMasterListComponent implements OnInit {
           this.rowData = [];
           this.selectedRow = [];
           this.skillMasterList = [];
-          this.rejectOtherValue="";
+          this.rejectOtherValue = "";
           this.rejectSelectedValue = "Duplicate Entry";
           this.matDialog.closeAll();
           this.gridApi.deselectAll();
@@ -530,7 +530,7 @@ export class SkillMasterListComponent implements OnInit {
         this.gridApi.hideOverlay();
       });
       this.gridApi.hideOverlay();
-      
+
     }
   }
 }
