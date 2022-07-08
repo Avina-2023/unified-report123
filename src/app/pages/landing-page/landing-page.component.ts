@@ -99,7 +99,6 @@ image:'assets/images/landing/newLanding/checkNew.png'
       width: '908px',
       height: '524px',
       panelClass: 'loginpopover',
-      
     });
   }
 

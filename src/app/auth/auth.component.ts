@@ -71,7 +71,7 @@ export class AuthComponent implements OnInit {
 
     if(this.roles != 'undefined' && this.roles != null && this.roles != ''){
       this.orgdetails = this.roles ? JSON.parse(this.roles) : '';
-      this.orgLogo = this.orgdetails[0].skillexchangelogo;
+      this.orgLogo =  this.orgdetails[0].skillexchangelogo ? this.orgdetails[0].skillexchangelogo : this.orgdetails[0].logoUrl;
       this.orgName = this.orgdetails[0].orgName;
     }
     this.isaccess = this.appConfig.isComingFromMicroCert();
