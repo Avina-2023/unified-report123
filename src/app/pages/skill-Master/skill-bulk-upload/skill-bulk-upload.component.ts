@@ -138,7 +138,7 @@ export class SkillBulkUploadComponent implements OnInit {
   navtoViewSkillList() {
     this.fileName = "";
     this.file = "";
-    this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.SKILLMASTER.HOME);
+    this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.SKILLMASTER.SKILLMASTERLIST);
   }
 
   downloadTemplate() {
