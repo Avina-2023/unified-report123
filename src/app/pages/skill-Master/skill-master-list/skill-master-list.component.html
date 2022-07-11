@@ -53,7 +53,7 @@
     <div class="grid-wrapper">
         <ag-grid-angular style="width: 99%; height: calc(100vh - 195px); margin:auto !important;font-size: 12px;"
             id="myGrid" class="ag-theme-alpine" [columnDefs]="columnDefs" [defaultColDef]="defaultColDef"
-            [masterDetail]="masterDetail" [detailCellRendererParams]="detailCellRendererParams" [rowData]="rowData"
+            [masterDetail]="masterDetail" [detailCellRendererParams]="detailCellRendererParams"  [overlayNoRowsTemplate]="overlayNoRowsTemplate" [rowData]="rowData"
             [enableRangeSelection]="true" [tooltipShowDelay]="0" [animateRows]="true" headerHeight="45" rowHeight="45"
             [suppressRowClickSelection]="true" [suppressRowTransform]="true" [rowSelection]="rowSelection"
             [pivotPanelShow]="'always'" [sideBar]="false" (gridReady)="onGridReady($event)"

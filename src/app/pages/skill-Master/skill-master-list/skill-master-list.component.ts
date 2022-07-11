@@ -28,6 +28,8 @@ export class SkillMasterListComponent implements OnInit {
   public selectedRow = [];
 
   public rowData: any[] | null = [1, 2];
+  public overlayNoRowsTemplate =
+    ' <span><br><br><img src="assets/images/skillMaster/norecord.svg" alt="" /> <br><br> <h3>No Records Found</h3></span>';
   public chartThemeOverrides: AgChartThemeOverrides = {
     common: {
       legend: {
@@ -173,11 +175,12 @@ export class SkillMasterListComponent implements OnInit {
               rowData: [],
               rowCount: 0,
             });
-            this.gridApi.hideOverlay();
+            this.gridApi.showNoRowsOverlay();
           } else {
             this.skillMasterList = data1 && data1.data ? data1.data : [];
             if (this.skillMasterList.length > 0) {
               this.pageRowCount = data1 && data1.totalCount ? data1.totalCount : 0;
+              this.gridApi.hideOverlay();
               params.success({
                 rowData: this.skillMasterList,
                 rowCount: this.pageRowCount
@@ -198,6 +201,7 @@ export class SkillMasterListComponent implements OnInit {
           });
         });
         this.gridApi.hideOverlay();
+        this.gridApi.showNoRowsOverlay();
       }
     }
   }
