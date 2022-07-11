@@ -64,6 +64,7 @@ export const APP_CONSTANTS = {
     },
     SKILLMASTER:{
       HOME:'skillmaster',
+      SKILLMASTERLIST:"skillmasterlist",
       SKILLBULKUPlOAD:'skillbulkupload'
     }
   }

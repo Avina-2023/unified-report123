@@ -6,14 +6,14 @@ import { SkillBulkUploadComponent } from './skill-bulk-upload/skill-bulk-upload.
 
 const routes: Routes = [
   {
-    path: `${APP_CONSTANTS.ROUTES.SKILLMASTER.HOME}`, component: SkillMasterListComponent,
+    path: `${APP_CONSTANTS.ROUTES.SKILLMASTER.SKILLMASTERLIST}`, component: SkillMasterListComponent,
   },
   {
     path: `${APP_CONSTANTS.ROUTES.SKILLMASTER.SKILLBULKUPlOAD}`, component: SkillBulkUploadComponent,
   },
   {
     path: '',
-    redirectTo: `${APP_CONSTANTS.ROUTES.SKILLMASTER.HOME}`,
+    redirectTo: `${APP_CONSTANTS.ROUTES.SKILLMASTER.SKILLMASTERLIST}`,
     pathMatch: 'full',
   }
 ];
