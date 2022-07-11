@@ -207,9 +207,16 @@ export class SkillMasterListComponent implements OnInit {
   }
 
   exportCSV() {
-    this.gridApi.exportDataAsCsv({
-      columnKeys: ["_id", "skillName", "domain"]
-    });
+    if(this.selectedRow.length){
+      this.gridApi.exportDataAsCsv({
+        columnKeys: ["_id", "skillName", "domain"],
+        onlySelected:true
+      });
+    }else{
+      this.gridApi.exportDataAsCsv({
+        columnKeys: ["_id", "skillName", "domain"],
+      });
+    }
   }
 
   autoSizeAll(skipHeader: boolean) {
