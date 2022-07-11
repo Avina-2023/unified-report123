@@ -15,19 +15,19 @@ export class LandingPageComponent implements OnInit {
   sectiondialogRef: any;
   // skillBanner:any;
   owlCarouselOptions: OwlOptions = {
-    // loop: true,
+    loop: true,
     mouseDrag: false,
     touchDrag: false,
     pullDrag: false,
-    // autoplay: true,
-    // animateIn: 'fadeIn',
-    // animateOut: 'fadeOut',
-    // autoplayTimeout: 1000,
+    autoplay: true,
+    animateIn: 'fadeIn',
+    animateOut: 'fadeOut',
+    autoplayTimeout: 1000,
     autoplayHoverPause: false,
     dots: true,
     navSpeed: 1000,
     navText: ['', ''],
-    nav: false,
+    nav: true,
     autoHeight: true,
     autoWidth: true,
     responsive: {
