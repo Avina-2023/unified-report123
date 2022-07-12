@@ -1,0 +1,53 @@
+.toolbarBody {
+    width: 60px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background-color: #EDEDED;
+}
+
+.filler {
+    flex: 1 1 auto;
+}
+
+.gap {
+    margin-right: 10px;
+}
+
+.selected {
+    width: 60px;
+    padding-left: 20px;
+    height: 36px;
+    background-color: #08558C
+}
+
+.notSelected {
+    width: 60px;
+    padding-left: 20px;
+
+    .userlistsvg {
+        background: #848484;
+    }
+
+    //background: #848484;
+}
+
+.skillmasterSelected {
+    width: 60px;
+    padding-left: 15px;
+    height: 38px;
+    background-color: #08558C;
+
+    .skillmastersvg {
+        filter: brightness(1.5);
+    }
+}
+
+.skillmasterNotSelected {
+    padding-left: 1px;
+}
+
+.skillmastersvg:hover,
+.userlistsvg:hover {
+    cursor: pointer;
+}

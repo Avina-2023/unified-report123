@@ -86,7 +86,7 @@ export class SkillMasterListComponent implements OnInit {
   demoimg: any;
   Isspinner = false;
   FormateName: any;
-  cacheBlockSize: any = 50;
+  cacheBlockSize: any = 100;
   rowData1: any;
   sectiondialogRef: any;
   skillMasterListSubscription: Subscription;
@@ -185,6 +185,8 @@ export class SkillMasterListComponent implements OnInit {
                 rowData: this.skillMasterList,
                 rowCount: this.pageRowCount
               });
+              this.gridApi.selectAllFiltered()
+              this.gridApi.selectAll();
             } else {
               params.success({
                 rowData: this.skillMasterList,
@@ -385,11 +387,11 @@ export class SkillMasterListComponent implements OnInit {
           if (params.value) {
             this.FormateName = params.value;
             if (this.FormateName == "Approved") {
-              return `<div class="green-btn"> <b class="dot">.</b>` + this.titleCase(this.FormateName) + `</div>`;
+              return `<div class="green-btns"> <span class="dot"></span>` + this.titleCase(this.FormateName) + `</div>`;
             } else if (this.FormateName == "Unapproved") {
-              return `<div class="yellow-btn"> <b class="dot">.</b>` + this.titleCase(this.FormateName) + `</div>`;
+              return `<div class="yellow-btns"> <span class="dot"></span>` + this.titleCase(this.FormateName) + `</div>`;
             } else {
-              return `<div class="red-btn"> <b class="dot">.</b>` + this.titleCase(this.FormateName) + `</div>`;
+              return `<div class="red-btns"> <span class="dot"></span>` + this.titleCase(this.FormateName) + `</div>`;
             }
           } if (params.value == undefined) {
             return '';

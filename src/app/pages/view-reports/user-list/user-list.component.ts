@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Component, OnChanges, OnInit } from '@angular/core';
 import * as CryptoJS from 'crypto-js';
 import { SentDataToOtherComp } from 'src/app/services/sendDataToOtherComp.service';
+
 @Component({
   selector: 'app-user-list',
   templateUrl: './user-list.component.html',

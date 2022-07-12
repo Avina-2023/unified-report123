@@ -99,10 +99,9 @@
                                         <input type="file" accept="text/csv, application/octet-stream, ms-excel"
                                             class="file-input" (change)="onFileSelected($event)" #fileUpload>
                                         <div class="file-upload">
-                                            <button mat-mini-fab class="upload-btn" (click)="fileUpload.click()">
+                                            <button  class="upload-btn" (click)="fileUpload.click()">
                                                 <img src="assets/images/skillMaster/upload.svg">
-                                                <span class="blackLable subInstruction">{{fileName || "Upload the Skills
-                                                    lists"}}</span>
+                                                <span class="blackLable subInstruction">{{fileName || "Upload the Skills lists"}}</span>
                                             </button>
                                         </div>
                                     </mat-card-content>
@@ -134,7 +133,7 @@
                                 <mat-card class="mat-cardData">
                                     <mat-card-content>
                                         <div class="file-upload">
-                                            <button mat-mini-fab (click)="downloadTemplate()" class="upload-btn">
+                                            <button (click)="downloadTemplate()" class="upload-btn">
                                                 <img src="assets/images/skillMaster/download.svg">
                                                 <span class="blackLable subInstruction">Download Template</span>
                                             </button>
@@ -212,9 +211,8 @@
                                         <input type="file" accept="text/csv, application/octet-stream, ms-excel"
                                             class="file-input" (change)="navtostep2()" #fileUpload>
                                         <div class="file-upload">
-                                            <button mat-mini-fab class="upload-btn" (click)="navtostep2()">
-                                                <span class="blackLable subInstruction">{{fileName || "Upload the Skills
-                                                    lists"}}</span>
+                                            <button class="upload-btn" (click)="navtostep2()">
+                                                <span class="blackLable subInstruction">{{fileName || "Upload the Skills lists"}}</span>
                                             </button>
                                             <div *ngIf="fileName" class="close" (click)="navtostep2()">
                                                 <span class="pointer"><em class="icon-Close"></em></span>
@@ -234,7 +232,7 @@
                                 <mat-card class="mat-cardData">
                                     <mat-card-content>
                                         <div class="file-upload">
-                                            <button mat-mini-fab (click)="downloadTemplate()" class="upload-btn">
+                                            <button (click)="downloadTemplate()" class="upload-btn">
                                                 <img src="assets/images/skillMaster/download.svg">
                                                 <span class="blackLable subInstruction">Download Template</span>
                                             </button>
@@ -317,7 +315,7 @@
                             <button class="agTable-btn-Upload" (click)="navtoAddSkillList()">ADD MORE SKILLS</button>
                         </div>
                         <div class="uploadButton">
-                            <button class="agTable-btn-Upload" (click)="navtoViewSkillList()">VIEW SKILL LIST</button>
+                            <button class="agTable-btn-Upload1" (click)="navtoViewSkillList()">VIEW SKILL LIST</button>
                         </div>
                     </div>
                 </div>

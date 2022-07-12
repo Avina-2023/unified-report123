@@ -1,0 +1,12 @@
+<mat-toolbar class="toolbarBody">
+    <br>
+    <div [ngClass]="[check === 'userlist' ? 'selected' : 'notSelected']">
+        <a (click)="validateClick('userlist')"><img class="userlistsvg" src="assets/images/skillMaster/userlisticon.svg"
+                alt="" /></a>
+    </div>
+    <br>
+    <div [ngClass]="[check === 'skillmaster' ? 'skillmasterSelected' : 'skillmasterNotSelected']">
+        <a (click)="validateClick('skillmaster')"><img class="skillmastersvg"
+                src="assets/images/skillMaster/skillmastericon.svg" alt="" /></a>
+    </div>
+</mat-toolbar>

@@ -177,6 +177,7 @@
     background-color: #FAFAFA;
     border-color: #939393;
     color: black;
+    padding: 10px;
 }
 
 .mat-expansion-panel:not(.mat-expanded) .mat-expansion-panel-header:hover:not([aria-disabled=true]) {
@@ -188,7 +189,7 @@
     flex-direction: column;
 }
 
-:host ::ng-deep .agTable-btn-Upload {
+ .agTable-btn-Upload {
     background-color: #fff;
     color: #08558C;
     width: 113px;
@@ -259,15 +260,28 @@
     flex-direction: column;
     align-items: center;
 
-    button {
+    .agTable-btn-Upload {
+        font-size: 10px;
+        font-weight: 400;
+        color: $blueColor;
+        line-height: normal;
+        background-color: $whiteColor;
+        border: 1px solid $blueColor ;
+        padding: 10px 14px;
+        border-radius: 5px;
+        width: 120px;
+    }
+
+    .agTable-btn-Upload1 {
         font-size: 10px;
         font-weight: 400;
         color: $whiteColor;
         line-height: normal;
         background-color: $blueColor;
-        padding: 10px 14px;
-        border: none;
+        border: none ;
+        padding: 13px 0px;
         border-radius: 5px;
+        width: 120px;
     }
 }
 
@@ -288,4 +302,11 @@
 
 table {
     width: 100%;
+    th{
+        border-right: 1px solid #ccc;
+    }
+}
+.upload-btn{
+    background-color: transparent;
+    border: none;
 }
