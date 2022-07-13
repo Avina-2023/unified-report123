@@ -26,7 +26,7 @@ export class PartnersListComponent implements OnInit {
       0: {
         items: 3,
       },
-    }
+    } 
   };
 
   customOptionsMobile: OwlOptions = {

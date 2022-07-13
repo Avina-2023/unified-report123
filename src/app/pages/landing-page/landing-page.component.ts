@@ -81,7 +81,6 @@ image:'assets/images/landing/newLanding/checkNew.png'
     // setTimeout(() => {
     //   // this.skillExchangeBanner();
     // }, 100);
-  
   }
 
   
