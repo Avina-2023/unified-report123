@@ -34,6 +34,10 @@
 //     background-color: green !important;
 //   }
 
+.containerBody{
+    padding: 6px;
+}
+
 .agTable-btn:hover {
     background-color: #08558C;
     transition: 0.7s;
@@ -311,4 +315,8 @@ table {
 .upload-btn{
     background-color: transparent;
     border: none;
+}
+
+.indexNumber{
+    font-size: 25px;
 }

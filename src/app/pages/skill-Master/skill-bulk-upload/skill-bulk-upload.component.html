@@ -1,3 +1,4 @@
+<div class="containerBody">
 <div class="search-icon mt-3 mb-0">
     <div class="first">
         <h2 class="result mb-0">Bulk Upload <span *ngIf="tabSelect === 1">
@@ -15,17 +16,17 @@
                     <ng-template *ngIf="tabSelect === 0;then InstructionShow; else InstructionNotShow">
                     </ng-template>
                     <ng-template #InstructionShow>
-                        <span class="blueLable">1. Instruction</span>
+                        <span class="blueLable"><span class="indexNumber">1</span>. Instruction</span>
                     </ng-template>
                     <ng-template #InstructionNotShow>
                         <ng-template *ngIf="tabSelect>0;then InstructionShow1; else InstructionNotShow1">
                         </ng-template>
                         <ng-template #InstructionShow1>
-                            <span class="greenLable">1. Instruction</span>
+                            <span class="greenLable"><span class="indexNumber">1</span>. Instruction</span>
                             <img class="greenTickPadding" src="assets/images/skillMaster/greenTick.svg">
                         </ng-template>
                         <ng-template #InstructionNotShow1>
-                            <span>1. Instruction</span>
+                            <span><span class="indexNumber">1</span>. Instruction</span>
                         </ng-template>
                     </ng-template>
                 </ng-template>
@@ -73,17 +74,17 @@
                     <ng-template *ngIf="tabSelect === 1;then UploadShow; else UploadNotShow">
                     </ng-template>
                     <ng-template #UploadShow>
-                        <span class="blueLable">2. Upload</span>
+                        <span class="blueLable"><span class="indexNumber">2</span>. Upload</span>
                     </ng-template>
                     <ng-template #UploadNotShow>
                         <ng-template *ngIf="tabSelect>1;then UploadShow1; else UploadNotShow1">
                         </ng-template>
                         <ng-template #UploadShow1>
-                            <span class="greenLable">2. Upload</span>
+                            <span class="greenLable"><span class="indexNumber">2</span>. Upload</span>
                             <img class="greenTickPadding" src="assets/images/skillMaster/greenTick.svg">
                         </ng-template>
                         <ng-template #UploadNotShow1>
-                            <span>2. Upload</span>
+                            <span><span class="indexNumber">2</span>. Upload</span>
                         </ng-template>
                     </ng-template>
                 </ng-template>
@@ -185,17 +186,17 @@
                     <ng-template *ngIf="tabSelect == 2;then ValidateShow; else ValidateNotShow">
                     </ng-template>
                     <ng-template #ValidateShow>
-                        <span class="blueLable">3. Validate</span>
+                        <span class="blueLable"><span class="indexNumber">3</span>. Validate</span>
                     </ng-template>
                     <ng-template #ValidateNotShow>
                         <ng-template *ngIf="tabSelect>2;then ValidateShow1; else ValidateNotShow1">
                         </ng-template>
                         <ng-template #ValidateShow1>
-                            <span class="greenLable">3. Validate</span>
+                            <span class="greenLable"><span class="indexNumber">3</span>. Validate</span>
                             <img class="greenTickPadding" src="assets/images/skillMaster/greenTick.svg">
                         </ng-template>
                         <ng-template #ValidateNotShow1>
-                            <span>3. Validate</span>
+                            <span><span class="indexNumber">3</span>. Validate</span>
                         </ng-template>
                     </ng-template>
                 </ng-template>
@@ -300,11 +301,11 @@
                     <ng-template *ngIf="tabSelect === 3;then ConfirmShow; else ConfirmNotShow">
                     </ng-template>
                     <ng-template #ConfirmShow>
-                        <span class="greenLable">4. Confirm</span>
+                        <span class="greenLable"><span class="indexNumber">4</span>. Confirm</span>
                         <img class="greenTickPadding" src="assets/images/skillMaster/greenTick.svg">
                     </ng-template>
                     <ng-template #ConfirmNotShow>
-                        <span>4. Confirm</span>
+                        <span><span class="indexNumber">4</span>. Confirm</span>
                     </ng-template>
                 </ng-template>
                 <div class="submitConfirm">
@@ -361,3 +362,4 @@
         </div>
     </div>
 </ng-template>
+</div>
