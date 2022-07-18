@@ -30,7 +30,7 @@ export class ApiService {
   }
 
   login(data: any) {
-    return this.http.post(`${this.BASE_URL}/login`, data);
+    return this.http.post(`${this.BASE_URL}/candidatelogin`, data);
   }
 
   getReportsDataAPI(data) {

@@ -5,8 +5,8 @@ figure {
 
 .body_area {
     width: 100%;
-    overflow: hidden;
-    overflow-y: auto;
+    overflow: auto;
+    height: 100%;
     font-family: Lato, sans-serif !important;
     .contentArea {
         flex-grow: 1;
