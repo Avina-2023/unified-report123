@@ -42,11 +42,11 @@ export class PartnersListComponent implements OnInit {
     nav: true,
     autoHeight: true,
     autoWidth: true,
-    responsive: {
-      0: {
-        items: 1,
-      },
-    }
+    // responsive: {
+    //   0: {
+    //     items: 1,
+    //   },
+    // }
   };
   hiringShow: any = true;
   ecosystemShow: any;
