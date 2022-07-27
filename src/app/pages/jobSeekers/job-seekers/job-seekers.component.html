@@ -15,9 +15,16 @@
 
     <div class="right">
         <div class="loginform">
-            <div class="signIn"> {{'Registration Form'}}</div>
+            <!-- <div class="signIn"> {{'Registration Form'}}</div> -->
             <div class="login-sm">
-                <form class="form" [formGroup]="freshGraduatesForm" autocomplete="off">
+                <div class="successMessage">
+                    <!-- <img src="assets/images/check.png"> -->
+                    <div class="text">
+                        <p>Currently enabled only for</p>
+                        <p class="subpara">partner colleges</p>
+                    </div>
+                </div>
+                <!-- <form class="form" [formGroup]="freshGraduatesForm" autocomplete="off">
                     <mat-form-field appearance="outline">
                         <input matInput id="name" [placeholder]="'Name'" formControlName="name" maxlength="64" required>
                         <mat-icon matPrefix class="icon-color">person_outline</mat-icon>
@@ -40,7 +47,7 @@
                         <mat-checkbox formControlName="term" class="example-margin" required><a href="">I agree</a></mat-checkbox>
                     </section>
                     <button class="btn" [disabled]="!freshGraduatesForm.valid" id="register" mat-button (click)="register()">{{"Submit"}}</button>
-                </form>
+                </form> -->
             </div>
         </div>
     </div>
