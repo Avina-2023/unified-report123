@@ -19,47 +19,12 @@
                             <div class="owlCarouselWrapper" *ngIf="hiringShow">
                                 <owl-carousel-o [options]="customOptions" #owlCar>
                                     <ng-container>
-                                        <ng-template class="imageWrapper" carouselSlide>
-                                            <figure>
-                                                <img src="assets/images/landing/L&T.png" alt="" />
-                                            </figure>
-                                        </ng-template>
-                                        <ng-template class="imageWrapper" carouselSlide>
-                                            <figure class="banner_2">
-                                                <img src="assets/images/landing/L&T_NXT.png" alt="" />
-                                            </figure>
-                                        </ng-template>
-                                        <ng-template class="imageWrapper" carouselSlide>
-                                            <figure>
-                                                <img src="assets/images/landing/L&T_Services_Stacked.png" alt="" />
-                                            </figure>
-                                        </ng-template>
-                                        <ng-template class="imageWrapper" carouselSlide>
-                                            <figure>
-                                                <img src="assets/images/landing/newLanding/LTI.png" alt="" />
-                                            </figure>
-                                        </ng-template>
-                                        <ng-template class="imageWrapper" carouselSlide>
-                                            <figure>
-                                                <img src="assets/images/landing/newLanding/Mindtree.png" alt="" />
-                                            </figure>
-                                        </ng-template>
-                                        <ng-template class="imageWrapper" carouselSlide>
-                                            <figure>
-                                                <img src="assets/images/landing/newLanding/ABB_logo.png" alt="" />
-                                            </figure>
-                                        </ng-template>
-                                        <ng-template class="imageWrapper" carouselSlide>
-                                            <figure>
-                                                <img src="assets/images/landing/newLanding/Otis-Logo.png" alt="" />
-                                            </figure>
-                                        </ng-template>
-                                        <ng-template class="imageWrapper" carouselSlide>
-                                            <figure>
-                                                <img src="assets/images/landing/newLanding/prime.png" alt="" />
-                                            </figure>
-                                        </ng-template>
-                                    </ng-container>
+                                    <ng-template *ngFor="let hiringImg of HiringPartners" class="imageWrapper" carouselSlide>
+                                        <figure >
+                                            <img [src]="hiringImg" alt="" />
+                                        </figure>
+                                </ng-template>
+                                </ng-container>
                                 </owl-carousel-o>
 
                                 <div class="draggable-button-container">
@@ -71,9 +36,10 @@
                             <div class="owlCarouselWrapper" *ngIf="ecosystemShow">
                                 <owl-carousel-o [options]="customOptions" #owlCar1>
                                     <ng-container>
-                                        <ng-template class="imageWrapper" carouselSlide>
+                                        <ng-template class="imageWrapper"  *ngFor="let ecosystemPartners of EcosystemPartners" carouselSlide>
                                             <figure class="secondSlide">
-                                                <img src="assets/images/landing/newLanding/aicte.png" alt="" />
+                                              
+                                                <img [src]="ecosystemPartners" alt="" />
                                             </figure>
                                         </ng-template>
                                     </ng-container>
@@ -87,25 +53,9 @@
                             <div class="owlCarouselWrapper" *ngIf="institutionalShow">
                                 <owl-carousel-o [options]="customOptions" #owlCar2>
                                     <ng-container>
-
-                                        <ng-template class="imageWrapper" carouselSlide>
+                                        <ng-template  *ngFor="let institutionalPartners of InstitutionalPartners" class="imageWrapper" carouselSlide>
                                             <figure>
-                                                <img src="assets/images/landing/newLanding/kpriet.png" alt="" />
-                                            </figure>
-                                        </ng-template>
-                                        <ng-template class="imageWrapper" carouselSlide>
-                                            <figure class="banner_2">
-                                                <img src="assets/images/landing/newLanding/download.png" alt="" />
-                                            </figure>
-                                        </ng-template>
-                                        <ng-template class="imageWrapper" carouselSlide>
-                                            <figure>
-                                                <img src="assets/images/landing/newLanding/logo-footer.png" alt="" />
-                                            </figure>
-                                        </ng-template>
-                                        <ng-template class="imageWrapper" carouselSlide>
-                                            <figure>
-                                                <img src="assets/images/landing/newLanding/ANNAUNIVERSITYLOGO.png" alt="" />
+                                                <img [src]="institutionalPartners" alt="" />
                                             </figure>
                                         </ng-template>
                                     </ng-container>
@@ -127,46 +77,11 @@
                             <div class="owlCarouselWrapper" *ngIf="hiringShow">
                                 <owl-carousel-o [options]="customOptionsMobile" #owlCar>
                                     <ng-container>
-                                        <ng-template class="imageWrapper" carouselSlide>
-                                            <figure>
-                                                <img src="assets/images/landing/L&T.png" alt="" />
+                                        <ng-template *ngFor="let hiringImg of HiringPartners" class="imageWrapper" carouselSlide>
+                                            <figure >
+                                                <img [src]="hiringImg" alt="" />
                                             </figure>
-                                        </ng-template>
-                                        <ng-template class="imageWrapper" carouselSlide>
-                                            <figure class="banner_2">
-                                                <img src="assets/images/landing/L&T_NXT.png" alt="" />
-                                            </figure>
-                                        </ng-template>
-                                        <ng-template class="imageWrapper" carouselSlide>
-                                            <figure>
-                                                <img src="assets/images/landing/L&T_Services_Stacked.png" alt="" />
-                                            </figure>
-                                        </ng-template>
-                                        <ng-template class="imageWrapper" carouselSlide>
-                                            <figure>
-                                                <img src="assets/images/landing/newLanding/LTI.png" alt="" />
-                                            </figure>
-                                        </ng-template>
-                                        <ng-template class="imageWrapper" carouselSlide>
-                                            <figure>
-                                                <img src="assets/images/landing/newLanding/Mindtree.png" alt="" />
-                                            </figure>
-                                        </ng-template>
-                                        <ng-template class="imageWrapper" carouselSlide>
-                                            <figure>
-                                                <img src="assets/images/landing/newLanding/ABB_logo.png" alt="" />
-                                            </figure>
-                                        </ng-template>
-                                        <ng-template class="imageWrapper" carouselSlide>
-                                            <figure>
-                                                <img src="assets/images/landing/newLanding/Otis-Logo.png" alt="" />
-                                            </figure>
-                                        </ng-template>
-                                        <ng-template class="imageWrapper" carouselSlide>
-                                            <figure>
-                                                <img src="assets/images/landing/newLanding/prime.png" alt="" />
-                                            </figure>
-                                        </ng-template>
+                                    </ng-template>
                                     </ng-container>
                                 </owl-carousel-o>
 
@@ -179,9 +94,10 @@
                             <div class="owlCarouselWrapper" *ngIf="ecosystemShow">
                                 <owl-carousel-o [options]="customOptionsMobile" #owlCar1>
                                     <ng-container>
-                                        <ng-template class="imageWrapper" carouselSlide>
+                                        <ng-template class="imageWrapper"  *ngFor="let ecosystemPartners of EcosystemPartners" carouselSlide>
                                             <figure>
-                                                <img src="assets/images/landing/newLanding/aicte.png" alt="" />
+                                              
+                                                <img [src]="ecosystemPartners" alt="" />
                                             </figure>
                                         </ng-template>
                                     </ng-container>
@@ -195,24 +111,9 @@
                             <div class="owlCarouselWrapper" *ngIf="institutionalShow">
                                 <owl-carousel-o [options]="customOptionsMobile" #owlCar2>
                                     <ng-container>
-                                        <ng-template class="imageWrapper" carouselSlide>
+                                        <ng-template  *ngFor="let institutionalPartners of InstitutionalPartners" class="imageWrapper" carouselSlide>
                                             <figure>
-                                                <img src="assets/images/landing/newLanding/kpriet.png" alt="" />
-                                            </figure>
-                                        </ng-template>
-                                        <ng-template class="imageWrapper" carouselSlide>
-                                            <figure class="banner_2">
-                                                <img src="assets/images/landing/newLanding/download.png" alt="" />
-                                            </figure>
-                                        </ng-template>
-                                        <ng-template class="imageWrapper" carouselSlide>
-                                            <figure>
-                                                <img src="assets/images/landing/newLanding/logo-footer.png" alt="" />
-                                            </figure>
-                                        </ng-template>
-                                        <ng-template class="imageWrapper" carouselSlide>
-                                            <figure>
-                                                <img src="assets/images/landing/newLanding/ANNAUNIVERSITYLOGO.png" alt="" />
+                                                <img [src]="institutionalPartners" alt="" />
                                             </figure>
                                         </ng-template>
                                     </ng-container>
