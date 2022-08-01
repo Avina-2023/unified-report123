@@ -151,5 +151,9 @@ export class ApiService {
   postRegister(data){
     return this.http.post(`${this.BASE_URL}/employeeRegister`,data);
   }
+
+  partnerfooterlist(){
+    return this.http.post(`${this.BASE_URL}/partnerfooterlist`,{});
+  }
   
 }
