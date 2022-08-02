@@ -17,15 +17,15 @@
 }
 
 .selected {
-    width: 60px;
+    width: 100%;
     padding-left: 20px;
-    height: 36px;
+  //  height: 50px;
     background-color: #08558C
 }
 
 .notSelected {
-    width: 60px;
-    padding-left: 20px;
+    width:100%;
+    padding-left: 0px;
 
     .userlistsvg {
         background: #848484;
@@ -35,9 +35,9 @@
 }
 
 .skillmasterSelected {
-    width: 60px;
+    width: 100%;
     padding-left: 15px;
-    height: 38px;
+  //  height: 50px;
     background-color: #08558C;
 
     .skillmastersvg {
@@ -54,6 +54,12 @@
     cursor: pointer;
 }
 
+.leftpaddinguser{
+  padding-left: 17px;
+}
+.leftpaddingskill{
+  padding-left: 10px;
+}
 
 
 

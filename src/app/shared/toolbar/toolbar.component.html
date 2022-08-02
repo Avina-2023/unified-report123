@@ -18,15 +18,14 @@
           <span><em class="icon-menu_open"></em></span>
         </li>
         <ng-container>
-          <li  (click)="validateClick('userlist')">
-            <span ><img class="userlistsvg" src="assets/images/skillMaster/userlisticon.svg"
-                alt="" /></span>
-            <span>{{"User List"}}</span>
+          <li [ngClass]="[check === 'userlist' ? 'selected' : 'notSelected']" (click)="validateClick('userlist')">
+            <img class="userlistsvg" src="assets/images/skillMaster/userlisticon.svg"
+                alt="" /> <span class="leftpaddinguser">{{"User List"}}</span>
           </li>
-          <li (click)="validateClick('skillmaster')">
-            <span ><img class="skillmastersvg"
-                src="assets/images/skillMaster/skillmastericon.svg" alt="" /></span>
-            <span>{{"Skill Master"}}</span>
+          <li [ngClass]="[check === 'skillmaster' ? 'skillmasterSelected' : 'skillmasterNotSelected']" (click)="validateClick('skillmaster')">
+            <img class="skillmastersvg"
+                src="assets/images/skillMaster/skillmastericon.svg" alt="" />
+            <span class="leftpaddingskill">{{"Skill Master"}}</span>
           </li>
         </ng-container>
       </ul>
@@ -40,13 +39,13 @@
               <span><em class="icon-menu"></em></span>
             </li>
             <ng-container >
-              <li (click)="validateClick('userlist')">
-                <span ><img class="userlistsvg" src="assets/images/skillMaster/userlisticon.svg"
-                    alt="" /></span>
+              <li [ngClass]="[check === 'userlist' ? 'selected' : 'notSelected']" (click)="validateClick('userlist')">
+                <img class="userlistsvg" src="assets/images/skillMaster/userlisticon.svg"
+                    alt="" />
               </li>
-              <li (click)="validateClick('skillmaster')">
-                <span ><img class="userlistsvg" src="assets/images/skillMaster/skillmastericon.svg"
-                    alt="" /></span>
+              <li [ngClass]="[check === 'skillmaster' ? 'skillmasterSelected' : 'skillmasterNotSelected']" (click)="validateClick('skillmaster')">
+                <img class="userlistsvg" src="assets/images/skillMaster/skillmastericon.svg"
+                    alt="" />
               </li>
             </ng-container>
           </ul>
@@ -54,24 +53,3 @@
       </mat-drawer>
     </mat-drawer-content>
   </mat-drawer-container>
-
-<!--   
-<mat-drawer-container class="example-container" >
-<mat-drawer #drawer class="drawer"  [opened]="!sidebarOpen">
-  <mat-toolbar class="header">
-    <mat-icon class="close"(click)="drawer.close()">close</mat-icon>
-  </mat-toolbar>
- 
-  <div class="contents">
-    Drawer
-  </div>
-</mat-drawer>
-
-<mat-toolbar class="main header">
-  <mat-icon
-    *ngIf="!drawer.opened"
-    (click)="drawer.toggle()">
-    menu
-  </mat-icon>
-</mat-toolbar>
-</mat-drawer-container> -->
