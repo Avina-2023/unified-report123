@@ -26,11 +26,13 @@
                             </mat-option>
                         </mat-select>
                     </div>
-                    <div class="Row">
-                        <div class="Item"><button class="agTable-btn" (click)="exportCSV()">
-                                <span class=""></span>
-                                <span>Export CSV</span>
-                            </button></div>
+                    <div *ngIf="!selectedRow.length" class="Row">
+                        <div class="exportcsv">
+                            <div><a (click)="exportCSV()">
+                                    <span class=""></span>
+                                    <span><img src="assets/images/skillMaster/export.svg"> Export CSV</span>
+                                </a></div>
+                        </div>
                     </div>
                     <div *ngIf="selectedRow.length" class="Row">
                         <div *ngIf="(statusSelectedValue === 'Rejected Skills' || statusSelectedValue === 'Unapproved Skills')"
@@ -46,6 +48,14 @@
                                 <span class=""></span>
                                 <span>Reject</span>
                             </button>
+                        </div>
+                        <div class="Row">
+                            <div class="exportcsv">
+                                <div><a (click)="exportCSV()">
+                                        <span class=""></span>
+                                        <span><img src="assets/images/skillMaster/export.svg"> Export CSV</span>
+                                    </a></div>
+                            </div>
                         </div>
                     </div>
                 </div>
