@@ -1,5 +1,5 @@
 <div class="wrapper">
-    <mat-toolbar class="header-toolbar" *ngIf="checkRouter ==='/auth/reports/userlist'">
+    <mat-toolbar class="header-toolbar" *ngIf="checkRouter ==='/auth/reports/userlist' || checkRouter ==='/auth/skillmaster/skillmasterlist'">
         <div class="first">
             <img alt="EduTech" class="beforeloginimg" [src]="this.orgLogo ? this.orgLogo  : 'assets/images/landing/newLogo.png'" />
         </div>
@@ -13,7 +13,7 @@
         </div>
     </mat-toolbar>
 
-    <mat-toolbar class="header-toolbar" *ngIf="checkRouter !='/auth/reports/userlist' && checkRouter !='/auth/reports/dashboard' ">
+    <mat-toolbar class="header-toolbar" *ngIf="checkRouter !='/auth/reports/userlist' && checkRouter !='/auth/reports/dashboard' &&  checkRouter != '/auth/skillmaster/skillmasterlist' ">
         <div class="first">
             <img alt="EduTech" class="beforeloginimg" [src]="this.orgLogo ? this.orgLogo  : 'assets/images/landing/newLogo.png'" />
         </div>

@@ -98,7 +98,7 @@
                                 <mat-card class="mat-cardData">
                                     <mat-card-content>
                                         <input type="file" accept="text/csv, application/octet-stream, ms-excel"
-                                            class="file-input" (change)="onFileSelected($event)" #fileUpload>
+                                            class="file-input" (change)="onFileSelected($event)" (click)="$event.target.value=null" #fileUpload>
                                         <div class="file-upload">
                                             <button  class="upload-btn" (click)="fileUpload.click()">
                                                 <img src="assets/images/skillMaster/upload.svg">
