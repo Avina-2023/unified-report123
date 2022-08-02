@@ -165,4 +165,8 @@ export class ApiService {
    return this.http.post(`${this.BASE_URL}/skillUploadValidator`,data);
   }
   
+  partnerfooterlist(){
+    return this.http.post(`${this.BASE_URL}/partnerfooterlist`,{});
+  }
+  
 }
