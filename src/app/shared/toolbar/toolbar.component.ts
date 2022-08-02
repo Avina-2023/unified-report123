@@ -9,7 +9,17 @@ import { APP_CONSTANTS } from '../../utils/app-constants.service';
   styleUrls: ['./toolbar.component.scss']
 })
 export class ToolbarComponent implements OnInit {
+  showFiller = false;
   check = "userlist";
+  sidebarOpen;
+  sideBar : [{
+    name: 'menu1',
+    icon: '/assets/images/skillMaster/userlisticon.svg'
+  },{
+    name: 'menu2',
+    icon:'/assets/images/skillMaster/skillmastericon.svg'
+  }
+]
   constructor(private appconfig: AppConfigService,private router: Router) { 
 
     if(this.router.url == '/auth/reports/userlist'){
@@ -20,7 +30,12 @@ export class ToolbarComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.sidebarOpen = true;
   //  this.check = this.appconfig.getLocalStorage('navMenu') ? this.appconfig.getLocalStorage('navMenu') : 'userlist';
+  }
+
+  sidebar() {
+    this.sidebarOpen = !this.sidebarOpen;
   }
 
   validateClick(value) {

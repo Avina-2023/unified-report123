@@ -1,3 +1,5 @@
+@import "../../../assets/scss/variables.scss";
+@import "variables";
 .toolbarBody {
     width: 60px;
     display: flex;
@@ -51,3 +53,275 @@
 .userlistsvg:hover {
     cursor: pointer;
 }
+
+
+
+
+//// side nav
+/// 
+/// @import "../../themes/themes.scss";
+.scroll-bar-height {
+    position: relative;
+    height: 100%;
+    // overflow: hidden;
+  }
+  .sideOpen {
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 56%;
+    transform: translate(-50%);
+    left: 235px;
+    transition: all 500ms;
+    z-index: 1000;
+    span {
+      transition-delay: 10s;
+      background: $primary-gray;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 400;
+      color: $whiteColor;
+      font-size: 16px;
+    }
+  }
+  
+  .sideClose {
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 56%;
+    transform: translate(-50%);
+    left: 9px;
+    z-index: 1000;
+    cursor: pointer;
+    span {
+      background: $primary-gray;
+      border-radius: 6px;
+      transition-delay: 10s;
+      left: 0 !important;
+      font-weight: 400;
+      color: $whiteColor;
+      text-align: right;
+      font-size: 16px;
+    }
+  }
+  .toolbar-wrapper {
+    position: relative;
+    padding: 0;
+    word-spacing: 0em;
+    display: flex;
+    height: 25px;
+    font-size: 13px;
+    align-items: center;
+    color: $black-1;
+    span {
+      margin: 0 0 0 1em;
+    }
+  }
+  .first-sidenav {
+    background: $wrapper-light-gray 0% 0% no-repeat padding-box;
+    height: 45px;
+    .sub-wrapper-nav {
+      width: 235px;
+      background: $primary-yellow 0% 0% no-repeat padding-box;
+    }
+    .main-toolbar {
+      display: flex;
+      height: 100%;
+      align-items: center;
+      border-bottom: solid $primary-gray 1px;
+      background: $whiteColor 0% 0% no-repeat padding-box;
+      .sub-navs {
+        cursor: pointer;
+        height: 100%;
+        padding: 2px 2em;
+        display: flex;
+        border-left: solid #fff 1px;
+        background-color: #eff0f2;
+        align-items: center;
+        flex-direction: row;
+        justify-content: center;
+        text-align: center;
+        outline: none;
+        color: #5c6873;
+        img {
+          filter: invert(43%) sepia(13%) saturate(450%) hue-rotate(167deg) brightness(88%) contrast(90%);
+        }
+        div:first-child {
+          img {
+            width: 30px;
+            height: 20px;
+          }
+        }
+        div:last-child {
+          margin: 0px 0 0 0;
+          padding: 0 0 0 0.5em;
+          font-size: 13px;
+        }
+      }
+      .sub-navs:hover {
+        background: rgba(27, 78, 155, 0.3);
+       }
+  
+      .active {
+        background: $common-button-bg !important;
+        outline: none;
+        font-weight: 400;
+        color: #fff;
+        img {
+          filter: invert(0%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%);
+        }
+      }
+    }
+  }
+  
+  .second-sidenav {
+    position: relative;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: $wrapper-light-gray 0% 0% no-repeat padding-box;
+    .toolbar-wrapper {
+      position: relative;
+      height: 35px;
+      display: flex;
+      align-items: center;
+    }
+    .sidenav {
+      width: 235px;
+      background-color: #f1f1f1;
+      ul {
+        overflow: hidden;
+        display: inline-flex;
+        flex-direction: column;
+        width: 100%;
+        box-sizing: border-box;
+        justify-content: center;
+        li {
+          padding: 15px 20px;
+          outline: none;
+          list-style: none;
+          margin: 0 0 15px 0;
+          color: $sidebar-black;
+          opacity: 1;
+          box-sizing: border-box;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          border-width: 0;
+          border-left-width: 5px;
+          border-style: solid;
+          border-color: transparent;
+          transition: all 750ms ease-in-out;
+          position: relative;
+
+          em {
+            font-size: 21px;
+          }
+          span:first-child {
+            padding: 0 0px;
+            font-size: 14px;
+          }
+          span:nth-of-type(2) {
+            padding: 0 0 0 15px;
+            font-size: 14px;
+          }
+          span:nth-of-type(3) {
+            float: right;
+            font-size: 15px;
+            display: none;
+          }
+        }
+      }
+    }
+    .main-container {
+      padding: 0px 0px 0px 0px;
+    }
+  }
+  .toolbar-hide-second {
+    margin: 60px 0 0 0 !important;
+    .sidenav {
+      ul {
+        margin: 50px 0 0 0;
+      }
+    }
+  }
+
+  ::ng-deep.mat-drawer-inner-container {
+    width: 100%;
+    height: 100%;
+    overflow: auto !important;
+  
+  }
+  
+  mat-drawer-container {
+    height: calc(100vh - 60px) !important;
+  }
+  
+  mat-drawer ul li span img {
+    width: 20px;
+    height: 20px;
+  }
+  .main-container.content {
+    display: flex;
+    flex-direction:row;
+  }
+  .side-iconmenu {
+    background-color: #f1f1f1;
+    position: relative;
+    // &.nil {
+    //   width: 0;
+    // }
+  }
+  
+  .sidemenu li {
+      padding: 15px 20px;
+      cursor: pointer;
+      font-size: 21px;
+      line-height: 0;
+      border-left: 5px solid transparent;
+      position: relative;
+      &.active {
+        background-color: #fff;
+        color: #000;
+        border-left-width: 5px;
+          border-right-width: 0;
+          border-style: solid;
+          border-image: linear-gradient(to bottom, #41b865, #00bcef) 1 100%;
+      }
+      &:first-child {
+        font-size: 18px;
+      }
+
+  }
+  
+  .mat-drawer-side {
+    z-index: 8;
+      box-shadow: 1px 3px 3px #0003 !important;
+  }
+  .main-section-padding {
+    padding: 0px 8px;
+  }
+
+  .scroll-height {
+    min-height: calc(100% - 30px);
+    position: relative;
+    width: 100%;
+    padding: 0 10px;
+    box-sizing: border-box;
+    @media (min-width: 100px) and (max-width: 480px) {
+      padding: 0 4px;
+    }
+  }
+
+  
+
+:host ::ng-deep.mat-drawer-content {
+    margin-left: 0 !important;
+}
+
+.side-iconmenu.nil {
+    width: 180px;
+    transform: none;
+    }

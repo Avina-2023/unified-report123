@@ -1,4 +1,4 @@
-<mat-toolbar class="toolbarBody">
+<!-- <mat-toolbar class="toolbarBody">
     <br>
     <div [ngClass]="[check === 'userlist' ? 'selected' : 'notSelected']">
         <a (click)="validateClick('userlist')"><img class="userlistsvg" src="assets/images/skillMaster/userlisticon.svg"
@@ -9,4 +9,69 @@
         <a (click)="validateClick('skillmaster')"><img class="skillmastersvg"
                 src="assets/images/skillMaster/skillmastericon.svg" alt="" /></a>
     </div>
+</mat-toolbar> -->
+
+<mat-drawer-container class="second-sidenav">
+    <mat-drawer class="sidenav" mode="side" [opened]="!sidebarOpen">
+      <ul>
+        <li (click)="sidebar()">
+          <span><em class="icon-menu_open"></em></span>
+        </li>
+        <ng-container>
+          <li  (click)="validateClick('userlist')">
+            <span ><img class="userlistsvg" src="assets/images/skillMaster/userlisticon.svg"
+                alt="" /></span>
+            <span>{{"User List"}}</span>
+          </li>
+          <li (click)="validateClick('skillmaster')">
+            <span ><img class="skillmastersvg"
+                src="assets/images/skillMaster/skillmastericon.svg" alt="" /></span>
+            <span>{{"Skill Master"}}</span>
+          </li>
+        </ng-container>
+      </ul>
+    </mat-drawer>
+
+    <mat-drawer-content class="main-container content">
+      <mat-drawer class="side-iconmenu" [class.nil]="!sidebarOpen" mode="side" [opened]="sidebarOpen">
+        <div class="sidemenu">
+          <ul>
+            <li (click)="sidebar()">
+              <span><em class="icon-menu"></em></span>
+            </li>
+            <ng-container >
+              <li (click)="validateClick('userlist')">
+                <span ><img class="userlistsvg" src="assets/images/skillMaster/userlisticon.svg"
+                    alt="" /></span>
+              </li>
+              <li (click)="validateClick('skillmaster')">
+                <span ><img class="userlistsvg" src="assets/images/skillMaster/skillmastericon.svg"
+                    alt="" /></span>
+              </li>
+            </ng-container>
+          </ul>
+        </div>
+      </mat-drawer>
+    </mat-drawer-content>
+  </mat-drawer-container>
+
+<!--   
+<mat-drawer-container class="example-container" >
+<mat-drawer #drawer class="drawer"  [opened]="!sidebarOpen">
+  <mat-toolbar class="header">
+    <mat-icon class="close"(click)="drawer.close()">close</mat-icon>
+  </mat-toolbar>
+ 
+  <div class="contents">
+    Drawer
+  </div>
+</mat-drawer>
+
+<mat-toolbar class="main header">
+  <mat-icon
+    *ngIf="!drawer.opened"
+    (click)="drawer.toggle()">
+    menu
+  </mat-icon>
 </mat-toolbar>
+</mat-drawer-container> -->
