@@ -1,7 +1,7 @@
 
 import { APP_CONSTANTS } from './../utils/app-constants.service';
 import { environment } from './../../environments/environment';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AppConfigService } from '../utils/app-config.service';
 import * as CryptoJS from 'crypto-js';
@@ -152,6 +152,19 @@ export class ApiService {
     return this.http.post(`${this.BASE_URL}/employeeRegister`,data);
   }
 
+  getSkillMasterList(data){
+    return this.http.post(`${this.BASE_URL}/getSkillList`,data,
+    { reportProgress: true });
+  }
+
+  skillMasterValidate(data){
+    return this.http.post(`${this.BASE_URL}/skillValidate`,data);
+  }
+
+  skillUploadValidator(data){
+   return this.http.post(`${this.BASE_URL}/skillUploadValidator`,data);
+  }
+  
   partnerfooterlist(){
     return this.http.post(`${this.BASE_URL}/partnerfooterlist`,{});
   }
