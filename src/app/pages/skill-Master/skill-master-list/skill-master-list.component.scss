@@ -23,44 +23,46 @@
 // }
 
 ::ng-deep .red-btns {
-    color: #CB0000;
+    color: #CB0000 ;
     display: flex;
-    justify-content: space-evenly;
     padding-right: 5em;
     align-items: center;
-    ::ng-deep .dot{
+     .dot{
         width: 10px;
         height: 10px;
         border-radius: 50%;
-        background-color: #CB0000;
+        background-color: #CB0000 ;
+        margin-right: 10px;
     }
 }
 
-::ng-deep .yellow-btns {
+
+:host ::ng-deep.yellow-btns {
     color: #FFCE00 ;
     display: flex;
-    justify-content: space-evenly;
     padding-right: 5em;
     align-items: center;
-    ::ng-deep .dot{
+     .dot{
         width: 10px;
         height: 10px;
         border-radius: 50%;
         background-color: #FFCE00 ;
+        margin-right: 10px;
     }
 }
 
+
 ::ng-deep .green-btns {
-    color: #5CB646;
+    color: #5CB646 ;
     display: flex;
-    justify-content: space-evenly;
     padding-right: 5em;
     align-items: center;
-    ::ng-deep .dot{
+     .dot{
         width: 10px;
         height: 10px;
         border-radius: 50%;
-        background-color: #5CB646;
+        background-color: #5CB646 ;
+        margin-right: 10px;
     }
 }
 

@@ -289,14 +289,16 @@ export class SkillMasterListComponent implements OnInit {
         field: 'skillName',
         filter: 'agTextColumnFilter',
         chartDataType: 'category',
+        minWidth:350,
+        maxWidth:350,
         aggFunc: 'sum',
         filterParams: {
           suppressAndOrCondition: true,
           filterOptions: ['contains']
         },
         tooltipField: 'skillName',
-        headerCheckboxSelection: this.statusSelectedValue != "All Skills" ? true : false,
-        headerCheckboxSelectionFilteredOnly: this.statusSelectedValue != "All Skills" ? true : false,
+        // headerCheckboxSelection: this.statusSelectedValue != "All Skills" ? true : false,
+        // headerCheckboxSelectionFilteredOnly: this.statusSelectedValue != "All Skills" ? true : false,
         checkboxSelection: this.statusSelectedValue != "All Skills" ? true : false,
         cellRenderer: (params) => {
           if (params.value) {
@@ -356,12 +358,14 @@ export class SkillMasterListComponent implements OnInit {
         headerName: 'CREATED ON',
         filter: 'agDateColumnFilter',
         field: 'createdAt',
-        maxWidth: 140,
+        minWidth:200,
+        maxWidth:200,
         // tooltipField: 'createdAt',
         chartDataType: 'series',
         cellRenderer: (params) => {
           if (params.value) {
-            return (new Date(params.value)).toString()
+            var date =new Date(params.value);
+            return (date.toLocaleString()).toString()
           } if (params.value == undefined) {
             return '';
           } else {
@@ -447,12 +451,14 @@ export class SkillMasterListComponent implements OnInit {
         headerName: 'APPROVED ON',
         filter: 'agDateColumnFilter',
         field: 'approvedAt',
-        maxWidth: 140,
+        minWidth:200,
+        maxWidth:200,
         // tooltipField: 'approvedAt',
         chartDataType: 'series',
         cellRenderer: (params) => {
           if (params.value) {
-            return (new Date(params.value)).toString();
+            var date =new Date(params.value);
+            return (date.toLocaleString()).toString()
           } if (params.value == undefined) {
             return '';
           } else {
