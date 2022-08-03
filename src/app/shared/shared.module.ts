@@ -12,6 +12,7 @@ import { HorizontalBarChartComponent } from './horizontal-bar-chart/horizontal-b
 import { RoundcanvasComponent } from './roundcanvas/roundcanvas.component';
 import { ChartsModule } from 'ng2-charts';
 import { BehaviouralPdfReportDownloadComponent } from './behavioural-pdf-report-download/behavioural-pdf-report-download.component';
+import { ToolbarComponent } from './toolbar/toolbar.component';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -24,7 +25,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     BarChartComponent,
     HorizontalBarChartComponent,
     RoundcanvasComponent,
-    BehaviouralPdfReportDownloadComponent
+    BehaviouralPdfReportDownloadComponent,
+    ToolbarComponent
     
   ],
   imports: [
@@ -50,6 +52,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     HorizontalBarChartComponent,
     RoundcanvasComponent,
     BehaviouralPdfReportDownloadComponent,
+    ToolbarComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
   providers: [
