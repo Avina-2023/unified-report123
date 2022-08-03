@@ -1,5 +1,5 @@
 <div class="wrapper">
-    <mat-toolbar class="header-toolbar" *ngIf="checkRouter ==='/auth/reports/userlist'">
+    <mat-toolbar class="header-toolbar" *ngIf="checkRouter ==='/auth/reports/userlist' || checkRouter ==='/auth/skillmaster/skillmasterlist'">
         <div class="first">
             <img alt="EduTech" class="beforeloginimg" [src]="this.orgLogo ? this.orgLogo  : 'assets/images/landing/newLogo.png'" />
         </div>
@@ -13,7 +13,7 @@
         </div>
     </mat-toolbar>
 
-    <mat-toolbar class="header-toolbar" *ngIf="checkRouter !='/auth/reports/userlist' && checkRouter !='/auth/reports/dashboard' ">
+    <mat-toolbar class="header-toolbar" *ngIf="checkRouter !='/auth/reports/userlist' && checkRouter !='/auth/reports/dashboard' &&  checkRouter != '/auth/skillmaster/skillmasterlist' ">
         <div class="first">
             <img alt="EduTech" class="beforeloginimg" [src]="this.orgLogo ? this.orgLogo  : 'assets/images/landing/newLogo.png'" />
         </div>
@@ -37,6 +37,16 @@
     </mat-toolbar>
 
 
+    <div class="mainCon">
+    <div *ngIf="checkRouter ==='/auth/reports/userlist' || checkRouter ==='/auth/skillmaster/skillmasterlist' || checkRouter ==='/auth/skillmaster/skillbulkupload' ">
+            <app-toolbar></app-toolbar>
+        </div>
+        <div class="heightDiv">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+
+
     <ng-template #matDialog>
         <h1 class="popupHead" mat-dialog-title>Are you sure you want to logout?</h1>
         <!-- <div mat-dialog-content>This dialog showcases the title, close, content and actions elements.</div> -->
@@ -46,8 +56,5 @@
         </div>
     </ng-template>
 
-    <div class="heightDiv">
-        <router-outlet></router-outlet>
-    </div>
     <footer class="footerPan">© 2021 L&T EduTech All Rights Reserved</footer>
 </div>

@@ -15,6 +15,9 @@ const routes: Routes = [
         path: `${APP_CONSTANTS.ROUTES.CANDIDATE.HOME}`, loadChildren: () => import('../pages/candidate-assessment-report/candidate-assessment-report.module').then(m => m.CandidateAssesmentReportModule)
       },
       {
+        path: `${APP_CONSTANTS.ROUTES.SKILLMASTER.HOME}`, loadChildren: () => import('../pages/skill-Master/skill-master.module').then(m => m.SkillMasterModule)
+      },
+      {
         path: '',
         redirectTo: `${APP_CONSTANTS.ROUTES.REPORTS.HOME}`,
         pathMatch: 'full',

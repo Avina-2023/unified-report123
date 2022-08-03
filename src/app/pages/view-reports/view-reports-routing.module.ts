@@ -6,7 +6,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HiringReportComponent } from './sub-pages/hiring-report/hiring-report.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CandidateOverAllReportComponent } from '../candidate-assessment-report/candidate-over-all-report/candidate-over-all-report.component';
-
+import { ToolbarComponent } from '../../shared/toolbar/toolbar.component';
 const routes: Routes = [
   {
     path: `${APP_CONSTANTS.ROUTES.REPORTS.VIEWREPORTS}/:id`, component: ViewOverallReportsComponent,
