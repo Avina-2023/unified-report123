@@ -29,8 +29,8 @@ export class SkillBulkUploadComponent implements OnInit {
   uploadcheck = false;
   totalCount = 0;
   validateErrorList = [];
-  displayedColumns: string[] = ['Skill Name', 'Domain', 'Error', 'Possition At'];
-  dataSource = new MatTableDataSource<any>(this.validateErrorList);
+  displayedColumns: string[] = ['Skill Name', 'Domain', 'Error', 'Position At'];
+  dataSource = new MatTableDataSource<any>([]);
 
   constructor(public matDialog: MatDialog, private ApiService: ApiService, private appconfig: AppConfigService, private toastr: ToastrService) { }
 
@@ -99,6 +99,8 @@ export class SkillBulkUploadComponent implements OnInit {
         this.matDialog.closeAll();
       } else {
         if (data.totalCount === 0) {
+          this.fileName = "";
+          this.file = "";
           this.tabSelect = 3;
           this.instructionCheck = false;
           this.updateCheck = true;
@@ -110,7 +112,7 @@ export class SkillBulkUploadComponent implements OnInit {
           this.uploadcheck = true;
           this.tabSelect = 2;
           this.validateErrorList = data.data;
-          this.dataSource = new MatTableDataSource<any>(this.validateErrorList);
+          this.dataSource.data = this.validateErrorList;
           this.totalCount = data.totalCount
         }
       }
