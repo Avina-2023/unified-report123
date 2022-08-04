@@ -72,9 +72,10 @@ export class SkillBulkUploadComponent implements OnInit {
     this.uploadcheck = false;
     const dialogRef = this.matDialog.open(this.uploadModel, {
       width: '500px',
-      height: '300px',
+      height: '270px',
       autoFocus: false,
       closeOnNavigation: true,
+      disableClose: true,
       panelClass: 'uploadModel'
     });
   }
@@ -94,7 +95,7 @@ export class SkillBulkUploadComponent implements OnInit {
     fd.append("userName", name);
     this.ApiService.skillUploadValidator(fd).subscribe((data: any) => {
       if (data.success == false) {
-        this.toastr.warning('Unable to upload, Please check the file and try again.');
+        this.toastr.warning('Please upload a file with correct headers');
         this.matDialog.closeAll();
       } else {
         if (data.totalCount === 0) {
