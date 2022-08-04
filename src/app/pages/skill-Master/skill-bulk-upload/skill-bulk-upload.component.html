@@ -96,7 +96,7 @@
                         <div class="col-sm-6">
                             <div class="centerUploadFile">
                                 <mat-card class="mat-cardData">
-                                    <mat-card-content>
+                                    <mat-card-content class="upload-border">
                                         <input type="file" accept="text/csv, application/octet-stream, ms-excel"
                                             class="file-input" (change)="onFileSelected($event)" (click)="$event.target.value=null" #fileUpload>
                                         <div class="file-upload">
@@ -120,7 +120,7 @@
                                         </button>
                                     </div>
                                     <div>
-                                        <button class="agTable-btn" (click)="openUploadModel()">
+                                        <button class="agTable-btn-blue" (click)="openUploadModel()">
                                             <span class=""></span>
                                             <span>Upload</span>
                                         </button>
@@ -132,7 +132,7 @@
                         <div class="col-sm-6 downloadFile">
                             <div class="centerDownloadFile">
                                 <mat-card class="mat-cardData">
-                                    <mat-card-content>
+                                    <mat-card-content class="upload-border">
                                         <div class="file-upload">
                                             <button (click)="downloadTemplate()" class="upload-btn">
                                                 <img src="assets/images/skillMaster/download.svg">
@@ -208,7 +208,7 @@
                         <div class="col-sm-6">
                             <div class="centerUploadFile">
                                 <mat-card class="mat-cardData">
-                                    <mat-card-content>
+                                    <mat-card-content class="upload-border">
                                         <input type="file" accept="text/csv, application/octet-stream, ms-excel"
                                             class="file-input" (change)="navtostep2()" #fileUpload>
                                         <div class="file-upload">
@@ -231,7 +231,7 @@
                         <div class="col-sm-6 downloadFile">
                             <div class="centerDownloadFile">
                                 <mat-card class="mat-cardData">
-                                    <mat-card-content>
+                                    <mat-card-content class="upload-border">
                                         <div class="file-upload">
                                             <button (click)="downloadTemplate()" class="upload-btn">
                                                 <img src="assets/images/skillMaster/download.svg">
@@ -344,19 +344,19 @@
                     <button class="agTable-btn" (click)="uploadModelClose()">Cancel</button>
                 </div>
                 <div>
-                    <button class="agTable-btn" (click)="saveUploadModel()">Save</button>
+                    <button class="agTable-btn-confirm" (click)="saveUploadModel()">Confirm</button>
                 </div>
             </div>
         </div>
         <div *ngIf="uploadcheck">
             <div class="uploadContent">
                 <div class="heading">
-                    <h3 class="redLable">Uploaded file contains Errors. Click on OK to see the Errors</h3>
+                    <h3 class="redLable">Uploaded file contains Errors. Click on OK to view the Errors</h3>
                 </div>
             </div>
             <div class="submitUpload">
                 <div class="button">
-                    <button class="agTable-btn" (click)="uploadModelClose()">Ok</button>
+                    <button class="agTable-btn-blue" (click)="uploadModelClose()">Ok</button>
                 </div>
             </div>
         </div>

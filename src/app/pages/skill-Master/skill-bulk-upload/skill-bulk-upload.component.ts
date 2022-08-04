@@ -19,7 +19,7 @@ export class SkillBulkUploadComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   skillMasterListSubscription: Subscription;
-  tabSelect = 0;
+  tabSelect = 1;
   fileName = '';
   file: any;
   panelOpenState = false;
@@ -72,7 +72,7 @@ export class SkillBulkUploadComponent implements OnInit {
     this.uploadcheck = false;
     const dialogRef = this.matDialog.open(this.uploadModel, {
       width: '500px',
-      height: '300px',
+      height: '270px',
       autoFocus: false,
       closeOnNavigation: true,
       panelClass: 'uploadModel'
