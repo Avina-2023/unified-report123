@@ -236,6 +236,7 @@ export class SkillMasterListComponent implements OnInit {
       height: '500px',
       autoFocus: false,
       closeOnNavigation: true,
+      disableClose: false,
       panelClass: 'instructionSelect'
     });
   }

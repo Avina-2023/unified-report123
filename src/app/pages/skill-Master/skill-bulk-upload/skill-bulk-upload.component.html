@@ -104,6 +104,9 @@
                                                 <img src="assets/images/skillMaster/upload.svg">
                                                 <span class="blackLable subInstruction">{{fileName || "Upload the Skills lists"}}</span>
                                             </button>
+                                            <div *ngIf="fileName" class="close" (click)="cancleUpload()">
+                                                <span class="pointer"><em class="icon-Close"></em></span>
+                                            </div>
                                         </div>
                                     </mat-card-content>
                                     <div class="file-upload">
@@ -131,7 +134,7 @@
                         </div>
                         <div class="col-sm-6 downloadFile">
                             <div class="centerDownloadFile">
-                                <mat-card class="mat-cardData">
+                                <mat-card class="mat-cardData subcard">
                                     <mat-card-content class="upload-border">
                                         <div class="file-upload">
                                             <button (click)="downloadTemplate()" class="upload-btn">
@@ -230,7 +233,7 @@
                         </div>
                         <div class="col-sm-6 downloadFile">
                             <div class="centerDownloadFile">
-                                <mat-card class="mat-cardData">
+                                <mat-card class="mat-cardData subcard">
                                     <mat-card-content class="upload-border">
                                         <div class="file-upload">
                                             <button (click)="downloadTemplate()" class="upload-btn">
@@ -254,12 +257,12 @@
                                     <h4> <b>No.of Errors - {{totalCount}}</b></h4>
                                     <h4><b>Clear the Errors in your excel file and Re-upload the file.</b></h4>
                                     <div class="mat-elevation-z8">
-                                        <table mat-table [dataSource]="dataSource">
+                                        <table class="upload-table" mat-table [dataSource]="dataSource">
 
                                             <ng-container matColumnDef="Skill Name">
                                                 <th class="headerTableTab" mat-header-cell *matHeaderCellDef> <b>Skill
                                                         Name</b> </th>
-                                                <td mat-cell *matCellDef="let element"> {{element.skillName}} </td>
+                                                <td class="p-24" mat-cell *matCellDef="let element"> {{element.skillName}} </td>
                                             </ng-container>
 
                                             <ng-container matColumnDef="Domain">
@@ -275,9 +278,9 @@
                                                     {{element.message}} </td>
                                             </ng-container>
 
-                                            <ng-container matColumnDef="Possition At">
+                                            <ng-container matColumnDef="Position At">
                                                 <th class="headerTableTab" mat-header-cell *matHeaderCellDef>
-                                                    <b>Possition At</b> </th>
+                                                    <b>Position At</b> </th>
                                                 <td mat-cell *matCellDef="let element"> {{element.indexAt}} </td>
                                             </ng-container>
 
@@ -357,7 +360,7 @@
             </div>
             <div class="submitUpload">
                 <div class="button">
-                    <button class="agTable-btn-blue" (click)="uploadModelClose()">Ok</button>
+                    <button class="agTable-btn-blue" (click)="uploadModelClose()">OK</button>
                 </div>
             </div>
         </div>
