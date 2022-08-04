@@ -39,11 +39,11 @@
               <span><em class="icon-menu"></em></span>
             </li>
             <ng-container >
-              <li [ngClass]="[check === 'userlist' ? 'selected' : 'notSelected']" (click)="validateClick('userlist')">
+              <li matTooltip="User List" [ngClass]="[check === 'userlist' ? 'selected' : 'notSelected']" (click)="validateClick('userlist')">
                 <img class="userlistsvg" src="assets/images/skillMaster/userlisticon.svg"
                     alt="" />
               </li>
-              <li [ngClass]="[check === 'skillmaster' ? 'skillmasterSelected' : 'skillmasterNotSelected']" (click)="validateClick('skillmaster')">
+              <li matTooltip="Skill Master" [ngClass]="[check === 'skillmaster' ? 'skillmasterSelected' : 'skillmasterNotSelected']" (click)="validateClick('skillmaster')">
                 <img class="userlistsvg" src="assets/images/skillMaster/skillmastericon.svg"
                     alt="" />
               </li>
