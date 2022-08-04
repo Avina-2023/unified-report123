@@ -19,7 +19,7 @@ export class SkillBulkUploadComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   skillMasterListSubscription: Subscription;
-  tabSelect = 1;
+  tabSelect = 0;
   fileName = '';
   file: any;
   panelOpenState = false;
