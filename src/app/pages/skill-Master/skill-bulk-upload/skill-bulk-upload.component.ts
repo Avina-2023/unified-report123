@@ -75,6 +75,7 @@ export class SkillBulkUploadComponent implements OnInit {
       height: '270px',
       autoFocus: false,
       closeOnNavigation: true,
+      disableClose: true,
       panelClass: 'uploadModel'
     });
   }

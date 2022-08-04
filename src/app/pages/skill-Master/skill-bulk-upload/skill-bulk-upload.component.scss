@@ -57,7 +57,9 @@
 //   ::ng-deep .mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar{
 //     background-color: green !important;
 //   }
-
+::ng-deep  .mat-tab-group[mat-stretch-tabs]>.mat-tab-header .mat-tab-label{
+    opacity: 1;
+}
 .containerBody{
     padding: 6px;
 }
@@ -144,6 +146,10 @@
 .greenTickPadding {
     //padding: 157px;
     padding: 13px
+}
+
+.greenOpacity{
+    opacity: 1 !important;
 }
 
 .greenLable {
@@ -277,8 +283,13 @@
     }
 }
 
+.uploadfailed{
+    height: 78px;
+    padding-bottom: 20px;
+}
+
 ::ng-deep .submitUpload {
-    margin-top: 20px;
+   // margin-top: 20px;
     padding: 20px;
     display: flex;
     justify-content: flex-end;
@@ -388,5 +399,5 @@ table {
 }
 
 .indexNumber{
-    font-size: 25px;
+    font-size: 20px;
 }

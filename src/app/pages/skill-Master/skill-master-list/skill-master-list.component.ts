@@ -283,6 +283,7 @@ export class SkillMasterListComponent implements OnInit {
         field: '_id',
         hide: true,
         suppressColumnsToolPanel: true,
+        filter: false
       },
       {
         headerName: 'Skill Name',
