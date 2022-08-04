@@ -16,17 +16,17 @@
                     <ng-template *ngIf="tabSelect === 0;then InstructionShow; else InstructionNotShow">
                     </ng-template>
                     <ng-template #InstructionShow>
-                        <span class="blueLable"><span class="indexNumber">1</span>. Instruction</span>
+                        <span class="blueLable"><span class="indexNumber">1 . Instruction</span></span>
                     </ng-template>
                     <ng-template #InstructionNotShow>
                         <ng-template *ngIf="tabSelect>0;then InstructionShow1; else InstructionNotShow1">
                         </ng-template>
                         <ng-template #InstructionShow1>
-                            <span class="greenLable"><span class="indexNumber">1</span>. Instruction</span>
+                            <span class="greenLable"><span class="indexNumber">1 . Instruction</span></span>
                             <img class="greenTickPadding" src="assets/images/skillMaster/greenTick.svg">
                         </ng-template>
                         <ng-template #InstructionNotShow1>
-                            <span><span class="indexNumber">1</span>. Instruction</span>
+                            <span><span class="indexNumber">1 . Instruction</span></span>
                         </ng-template>
                     </ng-template>
                 </ng-template>
@@ -60,7 +60,7 @@
                         <div class="first">
                             <h3 class="result mb-0"><b>Click on Next to continue</b></h3>
                             <div class="Row">
-                                <div class="Item"><button (click)="nextTab()" class="agTable-btn nextButton">
+                                <div class="Item"><button (click)="nextTab()" class="agTable-btn-blue nextButton">
                                         <span class=""></span>
                                         <span>Next</span>
                                     </button></div>
@@ -74,17 +74,17 @@
                     <ng-template *ngIf="tabSelect === 1;then UploadShow; else UploadNotShow">
                     </ng-template>
                     <ng-template #UploadShow>
-                        <span class="blueLable"><span class="indexNumber">2</span>. Upload</span>
+                        <span class="blueLable"><span class="indexNumber">2 . Upload</span></span>
                     </ng-template>
                     <ng-template #UploadNotShow>
                         <ng-template *ngIf="tabSelect>1;then UploadShow1; else UploadNotShow1">
                         </ng-template>
                         <ng-template #UploadShow1>
-                            <span class="greenLable"><span class="indexNumber">2</span>. Upload</span>
+                            <span class="greenLable"><span class="indexNumber">2 . Upload</span></span>
                             <img class="greenTickPadding" src="assets/images/skillMaster/greenTick.svg">
                         </ng-template>
                         <ng-template #UploadNotShow1>
-                            <span><span class="indexNumber">2</span>. Upload</span>
+                            <span><span class="indexNumber">2 . Upload</span></span>
                         </ng-template>
                     </ng-template>
                 </ng-template>
@@ -96,7 +96,7 @@
                         <div class="col-sm-6">
                             <div class="centerUploadFile">
                                 <mat-card class="mat-cardData">
-                                    <mat-card-content>
+                                    <mat-card-content class="upload-border">
                                         <input type="file" accept="text/csv, application/octet-stream, ms-excel"
                                             class="file-input" (change)="onFileSelected($event)" (click)="$event.target.value=null" #fileUpload>
                                         <div class="file-upload">
@@ -120,7 +120,7 @@
                                         </button>
                                     </div>
                                     <div>
-                                        <button class="agTable-btn" (click)="openUploadModel()">
+                                        <button class="agTable-btn-blue" (click)="openUploadModel()">
                                             <span class=""></span>
                                             <span>Upload</span>
                                         </button>
@@ -132,7 +132,7 @@
                         <div class="col-sm-6 downloadFile">
                             <div class="centerDownloadFile">
                                 <mat-card class="mat-cardData">
-                                    <mat-card-content>
+                                    <mat-card-content class="upload-border">
                                         <div class="file-upload">
                                             <button (click)="downloadTemplate()" class="upload-btn">
                                                 <img src="assets/images/skillMaster/download.svg">
@@ -186,17 +186,17 @@
                     <ng-template *ngIf="tabSelect == 2;then ValidateShow; else ValidateNotShow">
                     </ng-template>
                     <ng-template #ValidateShow>
-                        <span class="blueLable"><span class="indexNumber">3</span>. Validate</span>
+                        <span class="blueLable"><span class="indexNumber">3 . Validate</span></span>
                     </ng-template>
                     <ng-template #ValidateNotShow>
                         <ng-template *ngIf="tabSelect>2;then ValidateShow1; else ValidateNotShow1">
                         </ng-template>
                         <ng-template #ValidateShow1>
-                            <span class="greenLable"><span class="indexNumber">3</span>. Validate</span>
+                            <span class="greenLable"><span class="indexNumber">3 . Validate</span></span>
                             <img class="greenTickPadding" src="assets/images/skillMaster/greenTick.svg">
                         </ng-template>
                         <ng-template #ValidateNotShow1>
-                            <span><span class="indexNumber">3</span>. Validate</span>
+                            <span><span class="indexNumber">3 . Validate</span></span>
                         </ng-template>
                     </ng-template>
                 </ng-template>
@@ -208,7 +208,7 @@
                         <div class="col-sm-6">
                             <div class="centerUploadFile">
                                 <mat-card class="mat-cardData">
-                                    <mat-card-content>
+                                    <mat-card-content class="upload-border">
                                         <input type="file" accept="text/csv, application/octet-stream, ms-excel"
                                             class="file-input" (change)="navtostep2()" #fileUpload>
                                         <div class="file-upload">
@@ -231,7 +231,7 @@
                         <div class="col-sm-6 downloadFile">
                             <div class="centerDownloadFile">
                                 <mat-card class="mat-cardData">
-                                    <mat-card-content>
+                                    <mat-card-content class="upload-border">
                                         <div class="file-upload">
                                             <button (click)="downloadTemplate()" class="upload-btn">
                                                 <img src="assets/images/skillMaster/download.svg">
@@ -301,11 +301,11 @@
                     <ng-template *ngIf="tabSelect === 3;then ConfirmShow; else ConfirmNotShow">
                     </ng-template>
                     <ng-template #ConfirmShow>
-                        <span class="greenLable"><span class="indexNumber">4</span>. Confirm</span>
+                        <span class="greenLable"><span class="indexNumber">4 . Confirm</span></span>
                         <img class="greenTickPadding" src="assets/images/skillMaster/greenTick.svg">
                     </ng-template>
                     <ng-template #ConfirmNotShow>
-                        <span><span class="indexNumber">4</span>. Confirm</span>
+                        <span><span class="indexNumber">4 . Confirm</span></span>
                     </ng-template>
                 </ng-template>
                 <div class="submitConfirm">
@@ -327,9 +327,9 @@
 
 <ng-template #uploadModel>
     <div class="instruction">
-        <div class="close" (click)="uploadModelClose()">
+        <!-- <div *ngIf="!uploadcheck" class="close" (click)="uploadModelClose()">
             <span class="pointer"><em class="icon-Close"></em></span>
-        </div>
+        </div> -->
         <div *ngIf="!uploadcheck">
             <div class="uploadContent">
                 <div class="heading">
@@ -344,19 +344,20 @@
                     <button class="agTable-btn" (click)="uploadModelClose()">Cancel</button>
                 </div>
                 <div>
-                    <button class="agTable-btn" (click)="saveUploadModel()">Save</button>
+                    <button class="agTable-btn-confirm" (click)="saveUploadModel()">Confirm</button>
                 </div>
             </div>
         </div>
         <div *ngIf="uploadcheck">
             <div class="uploadContent">
+                <div>  <img class="uploadfailed" src="assets/images/skillMaster/uploadfailed.svg"></div>
                 <div class="heading">
-                    <h3 class="redLable">Uploaded file contains Errors. Click on OK to see the Errors</h3>
+                    <h3 class="blackLable">Uploaded file contains Errors. Click on OK to view the Errors</h3>
                 </div>
             </div>
             <div class="submitUpload">
                 <div class="button">
-                    <button class="agTable-btn" (click)="uploadModelClose()">Ok</button>
+                    <button class="agTable-btn-blue" (click)="uploadModelClose()">Ok</button>
                 </div>
             </div>
         </div>

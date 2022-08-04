@@ -283,9 +283,10 @@ export class SkillMasterListComponent implements OnInit {
         field: '_id',
         hide: true,
         suppressColumnsToolPanel: true,
+        filter: false
       },
       {
-        headerName: 'SKILL NAME',
+        headerName: 'Skill Name',
         field: 'skillName',
         filter: 'agTextColumnFilter',
         chartDataType: 'category',
@@ -312,7 +313,7 @@ export class SkillMasterListComponent implements OnInit {
         }
       },
       {
-        headerName: 'DOMAIN',
+        headerName: 'Domain',
         field: 'domain',
         filter: 'agTextColumnFilter',
         chartDataType: 'series',
@@ -333,7 +334,7 @@ export class SkillMasterListComponent implements OnInit {
         }
       },
       {
-        headerName: 'SOURCE',
+        headerName: 'Source',
         field: 'createdBy',
         filter: 'agTextColumnFilter',
         chartDataType: 'category',
@@ -355,7 +356,7 @@ export class SkillMasterListComponent implements OnInit {
         }
       },
       {
-        headerName: 'CREATED ON',
+        headerName: 'Created On',
         filter: 'agDateColumnFilter',
         field: 'createdAt',
         minWidth:200,
@@ -378,7 +379,7 @@ export class SkillMasterListComponent implements OnInit {
         },
       },
       {
-        headerName: 'STATUS',
+        headerName: 'Status',
         field: 'status',
         filter: 'agTextColumnFilter',
         chartDataType: 'category',
@@ -404,7 +405,7 @@ export class SkillMasterListComponent implements OnInit {
           }
         }
       }, {
-        headerName: 'NOTES',
+        headerName: 'Notes',
         field: 'reason',
         filter: 'agTextColumnFilter',
         chartDataType: 'category',
@@ -426,7 +427,7 @@ export class SkillMasterListComponent implements OnInit {
         }
       },
       {
-        headerName: 'APPROVED BY',
+        headerName: 'Approved By',
         field: 'approvedBy',
         filter: 'agTextColumnFilter',
         chartDataType: 'category',
@@ -448,7 +449,7 @@ export class SkillMasterListComponent implements OnInit {
         }
       },
       {
-        headerName: 'APPROVED ON',
+        headerName: 'Approved On',
         filter: 'agDateColumnFilter',
         field: 'approvedAt',
         minWidth:200,
