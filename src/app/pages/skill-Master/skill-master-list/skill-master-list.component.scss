@@ -205,6 +205,18 @@
         border: 0.4891771078109741px solid #939393;
         border-radius: 5px;
     }
+
+    .blue-button {
+        font-size: 14px;
+        font-weight: 400;
+        color: white;
+        line-height: normal;
+        background-color: #08558C;
+        padding: 10px 14px;
+        box-shadow: 2px 2px 4px #0000001A;
+        border: 0.4891771078109741px solid #939393;
+        border-radius: 5px;
+    }
 }
 
 ::ng-deep .subSubmit {

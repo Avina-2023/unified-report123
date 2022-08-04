@@ -198,6 +198,9 @@
     height: 116px;
     padding: 24px;
 }
+.subcard{
+    padding: 32px ;
+}
 
 .mat-cardData:not([class*=mat-elevation-z]) {
     box-shadow: none !important;
@@ -211,6 +214,13 @@
     margin-left: 18%;
     margin-right: 18%;
     width: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .close {
+        top: -3px;
+        position: relative;
+    }
 }
 
 .upload-border{
@@ -234,10 +244,12 @@
     padding-bottom: 93px;
 }
 
-::ng-deep .mat-dialog-container {
-    overflow-x: hidden !important;
-    overflow-y: hidden !important;
-  }
+::ng-deep .uploadModel {
+    .mat-dialog-container {
+        overflow-x: hidden !important;
+        overflow-y: hidden !important;
+      }
+} 
 
 .instructionTab {
     background-color: #FAFAFA;
@@ -400,4 +412,12 @@ table {
 
 .indexNumber{
     font-size: 20px;
+}
+.upload-table {
+    td {
+        padding-left: 10px;
+    }
+    .p-24 {
+        padding-left: 24px;
+    }
 }
