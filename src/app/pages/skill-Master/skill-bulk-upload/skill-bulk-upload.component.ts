@@ -37,6 +37,15 @@ export class SkillBulkUploadComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  trimFilename(fileName) {
+    if (fileName) {
+      let replaceFilename = '';
+      replaceFilename = fileName.length > 15 ? fileName.slice(0, 15) + '...' : fileName;
+      return replaceFilename;
+    }
+    return '';
+  }
+
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }
