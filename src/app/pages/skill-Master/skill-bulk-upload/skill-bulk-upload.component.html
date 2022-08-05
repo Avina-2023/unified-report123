@@ -102,7 +102,7 @@
                                         <div class="file-upload">
                                             <button  class="upload-btn" (click)="fileUpload.click()">
                                                 <img src="assets/images/skillMaster/upload.svg">
-                                                <span class="blackLable subInstruction">{{fileName || "Upload the Skills lists"}}</span>
+                                                <span [matTooltip]="fileName" class="blackLable subInstruction">{{ trimFilename(fileName) || "Upload the Skills lists"}}</span>
                                             </button>
                                             <div *ngIf="fileName" class="close" (click)="cancleUpload()">
                                                 <span class="pointer"><em class="icon-Close"></em></span>
@@ -216,7 +216,7 @@
                                             class="file-input" (change)="navtostep2()" #fileUpload>
                                         <div class="file-upload">
                                             <button class="upload-btn" (click)="navtostep2()">
-                                                <span class="blackLable subInstruction">{{fileName || "Upload the Skills lists"}}</span>
+                                                <span [matTooltip]="fileName" class="blackLable subInstruction">{{trimFilename(fileName) || "Upload the Skills lists"}}</span>
                                             </button>
                                             <div *ngIf="fileName" class="close" (click)="navtostep2()">
                                                 <span class="pointer"><em class="icon-Close"></em></span>
