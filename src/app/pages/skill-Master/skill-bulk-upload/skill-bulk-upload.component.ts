@@ -95,39 +95,43 @@ export class SkillBulkUploadComponent implements OnInit {
   }
 
   saveUploadModel() {
-    const fd = new FormData();
-    var email = this.appconfig.getLocalStorage('email') ? this.appconfig.getLocalStorage('email') : '';
-    var nameIndex = (email.indexOf("@"));
-    var name = email.slice(0, nameIndex);
-    fd.append("skillFile", this.file);
-    fd.append("email", email);
-    fd.append("userName", name);
-    this.ApiService.skillUploadValidator(fd).subscribe((data: any) => {
-      if (data.success == false) {
-        this.toastr.warning('Please upload a file with correct headers');
-        this.matDialog.closeAll();
-      } else {
-        if (data.totalCount === 0) {
-          this.fileName = "";
-          this.file = "";
-          this.tabSelect = 3;
-          this.instructionCheck = false;
-          this.updateCheck = true;
+    if (this.file.type == 'text/csv' || this.file.type == 'ms-excel' || this.file.type == 'application/octet-stream') {
+      const fd = new FormData();
+      var email = this.appconfig.getLocalStorage('email') ? this.appconfig.getLocalStorage('email') : '';
+      var nameIndex = (email.indexOf("@"));
+      var name = email.slice(0, nameIndex);
+      fd.append("skillFile", this.file);
+      fd.append("email", email);
+      fd.append("userName", name);
+      this.ApiService.skillUploadValidator(fd).subscribe((data: any) => {
+        if (data.success == false) {
+          this.toastr.warning('Please upload a file with correct headers');
           this.matDialog.closeAll();
-          this.toastr.success('File uploaded successfully');
         } else {
-          this.toastr.warning('Failed to upload the file');
-          this.validateCheck = true;
-          this.uploadcheck = true;
-          this.tabSelect = 2;
-          this.validateErrorList = data.data;
-          this.dataSource.data = this.validateErrorList;
-          this.totalCount = data.totalCount
+          if (data.totalCount === 0) {
+            this.cancleUpload();
+            this.tabSelect = 3;
+            this.instructionCheck = false;
+            this.updateCheck = true;
+            this.matDialog.closeAll();
+            this.toastr.success('File uploaded successfully');
+          } else {
+            this.toastr.warning('Failed to upload the file');
+            this.validateCheck = true;
+            this.uploadcheck = true;
+            this.tabSelect = 2;
+            this.validateErrorList = data.data;
+            this.dataSource.data = this.validateErrorList;
+            this.totalCount = data.totalCount
+          }
         }
-      }
-    }, (err) => {
-      this.toastr.warning('Connection failed, Please try again.');
-    });
+      }, (err) => {
+        this.toastr.warning('Connection failed, Please try again.');
+      });
+    } else {
+      this.uploadModelClose();
+      this.toastr.warning('Please upload the correct CSV file');
+    }
   }
 
   navtostep2() {
@@ -139,8 +143,7 @@ export class SkillBulkUploadComponent implements OnInit {
   }
 
   navtoAddSkillList() {
-    this.fileName = "";
-    this.file = "";
+    this.cancleUpload();
     this.tabSelect = 0;
     this.instructionCheck = false;
     this.validateCheck = false;
@@ -148,8 +151,7 @@ export class SkillBulkUploadComponent implements OnInit {
   }
 
   navtoViewSkillList() {
-    this.fileName = "";
-    this.file = "";
+    this.cancleUpload();
     this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.SKILLMASTER.SKILLMASTERLIST);
   }
 
