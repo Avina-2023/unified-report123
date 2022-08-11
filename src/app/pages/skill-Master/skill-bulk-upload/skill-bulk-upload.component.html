@@ -90,7 +90,7 @@
                 </ng-template>
                 <div class="BulkSubTab">
                     <h2 class="result">Upload Skill</h2>
-                    <h4 class="subInstruction">Download the given template to add new skills and upload the same
+                    <h4 class="subInstruction">Download the given template to add new skill and upload the same
                         here</h4>
                     <div class="row">
                         <div class="col-sm-6">
@@ -102,7 +102,7 @@
                                         <div class="file-upload">
                                             <button  class="upload-btn" (click)="fileUpload.click()">
                                                 <img src="assets/images/skillMaster/upload.svg">
-                                                <span [matTooltip]="fileName" class="blackLable subInstruction">{{ trimFilename(fileName) || "Upload the Skills lists"}}</span>
+                                                <span [matTooltip]="fileName" class="blackLable subInstruction">{{ trimFilename(fileName) || "Upload the Skill lists"}}</span>
                                             </button>
                                             <div *ngIf="fileName" class="close" (click)="cancleUpload()">
                                                 <span class="pointer"><em class="icon-Close"></em></span>
@@ -205,7 +205,7 @@
                 </ng-template>
                 <div class="BulkSubTab">
                     <h2 class="result">Upload Skill</h2>
-                    <h4 class="subInstruction">Download the given template to add new skills and upload the same
+                    <h4 class="subInstruction">Download the given template to add new skill and upload the same
                         here</h4>
                     <div class="row">
                         <div class="col-sm-6">
@@ -216,7 +216,7 @@
                                             class="file-input" (change)="navtostep2()" #fileUpload>
                                         <div class="file-upload">
                                             <button class="upload-btn" (click)="navtostep2()">
-                                                <span [matTooltip]="fileName" class="blackLable subInstruction">{{trimFilename(fileName) || "Upload the Skills lists"}}</span>
+                                                <span [matTooltip]="fileName" class="blackLable subInstruction">{{trimFilename(fileName) || "Upload the Skill lists"}}</span>
                                             </button>
                                             <div *ngIf="fileName" class="close" (click)="navtostep2()">
                                                 <span class="pointer"><em class="icon-Close"></em></span>
@@ -316,7 +316,7 @@
                     <h3>Your File has been uploaded successfully</h3>
                     <div class="uploaddiv">
                         <div class="uploadButton">
-                            <button class="agTable-btn-Upload" (click)="navtoAddSkillList()">ADD MORE SKILLS</button>
+                            <button class="agTable-btn-Upload" (click)="navtoAddSkillList()">ADD MORE SKILL</button>
                         </div>
                         <div class="uploadButton">
                             <button class="agTable-btn-Upload1" (click)="navtoViewSkillList()">VIEW SKILL LIST</button>
@@ -336,10 +336,10 @@
         <div *ngIf="!uploadcheck">
             <div class="uploadContent">
                 <div class="heading">
-                    <h3>Confirm to upload new skills list to database.</h3>
+                    <h3>Confirm to upload new skill list to database.</h3>
                 </div>
                 <div>
-                    <h3 class="blueLable">** Make sure you have added domain names for all skills</h3>
+                    <h3 class="blueLable">** Make sure you have added domain names for all skill</h3>
                 </div>
             </div>
             <div class="submitUpload">
