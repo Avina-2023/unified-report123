@@ -6,6 +6,7 @@ import { BehaviouralReportCanvasComponent } from './behavioural-report-canvas/be
 // import { BehaviouralPdfReportDownloadComponent } from '../../shared/behavioural-pdf-report-download/behavioural-pdf-report-download.component';
 import { MaterialModule } from 'src/app/material/material.module';
 import { ChartsModule } from 'ng2-charts';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { ChartsModule } from 'ng2-charts';
     CommonModule,
     MaterialModule,
     BehaviouralReportRoutingModule,
-    ChartsModule
+    ChartsModule,
+    SharedModule
   ],
 })
 export class BehaviouralReportModule { }
