@@ -319,20 +319,27 @@
                             border-radius: 20px 50px 50px 20px;
                             background-color: #ffffff;
                             padding: 3px 3px 3px 10px;
-                            font-size: 12px;
-                            font-weight: 500;
-                            color: #1D1D1B;
-                            line-height: normal;
                             text-align: -webkit-left;
                             span {
                                 border-radius: 50%;
                                 width: 37px;
-                                height: 35px;
+                                height: 37px;
                                 display: inline-flex;
                                 justify-content: center;
                                 align-items: center;
                                 font-size: 20px;
                                 color: #fff;
+                            }
+                            .skillsName {
+                                font-size: 12px;
+                                font-weight: 500;
+                                color: #1D1D1B;
+                                line-height: normal;
+                                width: 75%;
+                                justify-content: flex-start;
+                            }
+                            .skillsNumber {
+                                width: 25%;
                             }
                         }
                     }
@@ -970,4 +977,17 @@
     
     .justify {
         text-align: justify;
+    }
+
+    .numberCircle {
+        height: 60px;
+        width: 60px;
+        line-height: 60px;
+        border-radius: 50%;
+        text-align: center;
+        display: inline-block;
+    }
+
+    .paddingLeft{
+       padding-left:40px ;
     }
