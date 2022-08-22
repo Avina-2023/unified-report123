@@ -22,7 +22,7 @@
             </div>
             <div class="right">
                 <div><span>Email </span>: <span>{{email ? email : 'Nil'}}</span></div>
-                <div><span>Gender: </span>: <span>{{getAllBasicData?.gender ? getAllBasicData?.gender : 'Nil'}}</span></div>
+                <div><span>Gender </span>: <span>{{getAllBasicData?.gender ? getAllBasicData?.gender : 'Nil'}}</span></div>
                 <!-- <div><span>Education level </span>: <span>{{highestEducation?.institute ? highestEducation?.institute : 'Nil'}}</span></div> -->
             </div>
         </section>
@@ -37,7 +37,7 @@
         <!-- footer start -->
         <footer class="d-flex justify-content-between m-t-30">
             <div class="copyrights">
-                <p>Behavioural Profiling Report &nbsp;|&nbsp; ©2022 L&T EduTech. All Rights Reserved.</p>
+                <p>Behavioural Profiling Report &nbsp;|&nbsp; ©2021 L&T EduTech. All Rights Reserved.</p>
             </div>
             <figure class="logo">
                 <img src="/assets/images/pdfDownload/Logo1.png" alt="" />
@@ -66,7 +66,7 @@
             </section>
             <footer class="d-flex justify-content-between m-t-30">
                 <div class="copyrights">
-                    <p>Behavioural Profiling Report &nbsp;|&nbsp; ©2022 L&T EduTech. All Rights Reserved.</p>
+                    <p>Behavioural Profiling Report &nbsp;|&nbsp; ©2021 L&T EduTech. All Rights Reserved.</p>
                 </div>
                 <figure class="logo">
                     <img src="/assets/images/pdfDownload/Logo1.png" alt="" />
@@ -146,9 +146,12 @@
 
 
                                             <div class="right d-flex justify-content-between">
-                                                <button *ngFor="let skills of competency.skills; let s = index" [ngClass]="'a' + s + 1" class="d-flex align-items-center justify-content-between a01 ng-star-inserted">{{skills?.name}}
-                                        <span [ngStyle]="{background: skills?.colourcode}">{{skills?.stenScore ? skills?.stenScore : 0}}</span>
-                                    </button>
+                                                <button *ngFor="let skills of competency.skills; let s = index" [ngClass]="'a' + s + 1" class="d-flex align-items-center justify-content-between a01 ng-star-inserted">
+                                                    <span class="skillsName">{{skills?.name}}</span>
+                                                    <span class="skillsNumber" [ngStyle]="{background: skills?.colourcode}">
+                                                            {{skills?.stenScore ? skills?.stenScore : 0}}
+                                                    </span>
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
@@ -179,7 +182,7 @@
 
             <footer class="d-flex justify-content-between">
                 <div class="copyrights">
-                    <p>Behavioural Profiling Report &nbsp;|&nbsp; ©2022 L&T EduTech. All Rights Reserved.</p>
+                    <p>Behavioural Profiling Report &nbsp;|&nbsp; ©2021 L&T EduTech. All Rights Reserved.</p>
                 </div>
                 <figure class="logo">
                     <img src="/assets/images/pdfDownload/Logo1.png" alt="" />
@@ -232,8 +235,8 @@
                                                 <span>{{skillsDetail?.name}}: &nbsp;</span>
                                                 <span class="skillsDetail">{{skillsDetail?.scorebasedSkillDescription ? skillsDetail?.scorebasedSkillDescription : '-'}}</span>
                                             </div>
-                                            <div class="chart">
-                                                <app-behavioural-report-canvas [bgColor]="factors?.colourcode" [score]="skillsDetail?.stenScore ? skillsDetail?.stenScore : 0"></app-behavioural-report-canvas>
+                                            <div class="chart paddingLeft">
+                                                <span class="numberCircle" [ngStyle]="{'border': '2px solid' + factors?.colourcode,'color':factors?.colourcode}"> {{skillsDetail?.stenScore ? skillsDetail?.stenScore : 0}}</span>
                                             </div>
                                             <span class="pointer">
                                                 <img alt="" src="/assets/images/pdfDownload/arrow.svg">
@@ -263,7 +266,7 @@
                     </section>
                     <footer class="d-flex justify-content-between">
                         <div class="copyrights">
-                            <p>Behavioural Profiling Report &nbsp;|&nbsp; ©2022 L&T EduTech. All Rights Reserved.</p>
+                            <p>Behavioural Profiling Report &nbsp;|&nbsp; ©2021 L&T EduTech. All Rights Reserved.</p>
                         </div>
                         <figure class="logo">
                             <img src="/assets/images/pdfDownload/Logo1.png" alt="" />
@@ -320,7 +323,7 @@
 
                             <!-- <footer *ngIf="(a + 1) % 2 == 0" class="d-flex justify-content-between m-t">
                                 <div class="copyrights">
-                                    <p>Behavioural Profiling Report &nbsp;|&nbsp; ©2022 L&T EduTech. All Rights Reserved.</p>
+                                    <p>Behavioural Profiling Report &nbsp;|&nbsp; ©2021 L&T EduTech. All Rights Reserved.</p>
                                 </div>
                                 <figure class="logo">
                                     <img src="/assets/images/pdfDownload/Logo1.png" alt="" />
@@ -344,7 +347,7 @@
             </section>
             <!-- <footer class="d-flex justify-content-between">
                 <div class="copyrights">
-                    <p>Behavioural Profiling Report &nbsp;|&nbsp; ©2022 L&T EduTech. All Rights Reserved.</p>
+                    <p>Behavioural Profiling Report &nbsp;|&nbsp; ©2021 L&T EduTech. All Rights Reserved.</p>
                 </div>
                 <figure class="logo">
                     <img src="/assets/images/pdfDownload/Logo1.png" alt="" />
@@ -422,7 +425,7 @@
             </section>
             <!-- <footer class="d-flex justify-content-between">
                 <div class="copyrights">
-                    <p>Behavioural Profiling Report &nbsp;|&nbsp; ©2022 L&T EduTech. All Rights Reserved.</p>
+                    <p>Behavioural Profiling Report &nbsp;|&nbsp; ©2021 L&T EduTech. All Rights Reserved.</p>
                 </div>
                 <figure class="logo">
                     <img src="/assets/images/pdfDownload/Logo1.png" alt="" />
@@ -484,7 +487,7 @@
             <!--
             <footer class="d-flex justify-content-between">
                 <div class="copyrights">
-                    <p>Behavioural Profiling Report &nbsp;|&nbsp; ©2022 L&T EduTech. All Rights Reserved.</p>
+                    <p>Behavioural Profiling Report &nbsp;|&nbsp; ©2021 L&T EduTech. All Rights Reserved.</p>
                 </div>
                 <figure class="logo">
                     <img src="/assets/images/pdfDownload/Logo1.png" alt="" />
@@ -539,7 +542,7 @@
             </section>
             <!-- <footer class="d-flex justify-content-between">
                 <div class="copyrights">
-                    <p>Behavioural Profiling Report &nbsp;|&nbsp; ©2022 L&T EduTech. All Rights Reserved.</p>
+                    <p>Behavioural Profiling Report &nbsp;|&nbsp; ©2021 L&T EduTech. All Rights Reserved.</p>
                 </div>
                 <figure class="logo">
                     <img src="/assets/images/pdfDownload/Logo1.png" alt="" />
