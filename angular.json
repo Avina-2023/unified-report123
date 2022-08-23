@@ -62,13 +62,13 @@
                             "buildOptimizer": true,
                             "budgets": [{
                                     "type": "initial",
-                                    "maximumWarning": "20mb",
-                                    "maximumError": "20mb"
+                                    "maximumWarning": "100mb",
+                                    "maximumError": "100mb"
                                 },
                                 {
                                     "type": "anyComponentStyle",
-                                    "maximumWarning": "2mb",
-                                    "maximumError": "2mb"
+                                    "maximumWarning": "100mb",
+                                    "maximumError": "100mb"
                                 }
                             ]
                         }
