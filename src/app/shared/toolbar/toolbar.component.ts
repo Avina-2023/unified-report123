@@ -12,6 +12,7 @@ export class ToolbarComponent implements OnInit {
   showFiller = false;
   check = "userlist";
   sidebarOpen;
+  menuIconToggle: boolean;
   sideBar : [{
     name: 'menu1',
     icon: '/assets/images/skillMaster/userlisticon.svg'
@@ -20,6 +21,7 @@ export class ToolbarComponent implements OnInit {
     icon:'/assets/images/skillMaster/skillmastericon.svg'
   }
 ]
+  
   constructor(private appconfig: AppConfigService,private router: Router) { 
 
     if(this.router.url == '/auth/reports/userlist'){
@@ -48,5 +50,9 @@ export class ToolbarComponent implements OnInit {
       this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.SKILLMASTER.SKILLMASTERLIST);
     }
   }
+
+  changeIcon() {
+    this.menuIconToggle = !this.menuIconToggle;
+    }
 
 }

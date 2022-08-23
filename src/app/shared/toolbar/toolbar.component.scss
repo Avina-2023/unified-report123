@@ -284,7 +284,7 @@
   .sidemenu li {
       padding: 15px 20px;
       cursor: pointer;
-      font-size: 21px;
+      font-size: 14px;
       line-height: 0;
       border-left: 5px solid transparent;
       position: relative;
@@ -328,6 +328,13 @@
 }
 
 .side-iconmenu.nil {
-    width: 180px;
-    transform: none;
-    }
+  width: 80px;
+  transform: none;
+}
+
+mat-sidenav:not(.mat-drawer-opened) {
+  transform: translate3d(0, 0, 0) !important;
+  visibility: visible !important;
+  width: 60px !important;
+  overflow: hidden;
+}
