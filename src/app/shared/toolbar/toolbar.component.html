@@ -36,8 +36,8 @@
       <div class="sidemenu">
         <ul>
           <li (click)="sidebar();changeIcon();">
-            <span *ngIf="!menuIconToggle"><em class="icon-menu"></em></span>
-            <span *ngIf="menuIconToggle"><em class="icon-menu_open"></em></span>
+            <span *ngIf="!menuIconToggle"><em class="icon-menu_open"></em></span>
+            <span *ngIf="menuIconToggle"><em class="icon-menu"></em></span>
           </li>
           <ng-container>
             <li matTooltip="User List" [ngClass]="[check === 'userlist' ? 'selected' : 'notSelected']"
