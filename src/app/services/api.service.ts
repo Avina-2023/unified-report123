@@ -168,5 +168,9 @@ export class ApiService {
   partnerfooterlist(){
     return this.http.post(`${this.BASE_URL}/partnerfooterlist`,{});
   }
+
+  candidateRegistration(data){
+    return this.http.post(`${this.BASE_URL}/candidateRegister`,data)
+  }
   
 }
