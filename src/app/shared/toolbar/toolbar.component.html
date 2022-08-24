@@ -45,7 +45,7 @@
               <img class="userlistsvg" src="assets/images/skillMaster/userlisticon.svg" alt="" /> <span
                 class="leftpaddinguser" *ngIf="sidebarOpen">{{"User List"}}</span>
             </li>
-            <li matTooltip="Skill Master"
+            <li *ngIf='roleCode === "IADM"' matTooltip='Skill Master'
               [ngClass]="[check === 'skillmaster' ? 'skillmasterSelected' : 'skillmasterNotSelected']"
               (click)="validateClick('skillmaster')">
               <img class="userlistsvg" src="assets/images/skillMaster/skillmastericon.svg" alt="" />
