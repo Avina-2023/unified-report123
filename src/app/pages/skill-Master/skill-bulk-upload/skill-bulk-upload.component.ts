@@ -31,8 +31,18 @@ export class SkillBulkUploadComponent implements OnInit {
   validateErrorList = [];
   displayedColumns: string[] = ['Skill Name', 'Domain', 'Error', 'Position At'];
   dataSource = new MatTableDataSource<any>([]);
-
-  constructor(public matDialog: MatDialog, private ApiService: ApiService, private appconfig: AppConfigService, private toastr: ToastrService) { }
+  roles:any;
+  orgdetails:any;
+  roleCode:any;
+  
+  constructor(public matDialog: MatDialog, private ApiService: ApiService, private appconfig: AppConfigService, private toastr: ToastrService) {
+    this.roles = this.appconfig.getLocalStorage('role') ? this.appconfig.getLocalStorage('role') : '';
+    this.orgdetails = JSON.parse(this.roles);
+    this.roleCode = this.orgdetails && this.orgdetails[0].roles && this.orgdetails[0].roles[0].roleCode;
+    if(this.roleCode != "IADM"){
+      this.appconfig.routeNavigation('error');
+    }
+   }
 
   ngOnInit(): void {
   }

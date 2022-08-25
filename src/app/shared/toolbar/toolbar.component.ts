@@ -11,6 +11,9 @@ import { APP_CONSTANTS } from '../../utils/app-constants.service';
 export class ToolbarComponent implements OnInit {
   showFiller = false;
   check = "userlist";
+  roles:any;
+  orgdetails:any;
+  roleCode:any;
   sidebarOpen;
   menuIconToggle: boolean;
   sideBar : [{
@@ -23,7 +26,9 @@ export class ToolbarComponent implements OnInit {
 ]
   
   constructor(private appconfig: AppConfigService,private router: Router) { 
-
+    this.roles = this.appconfig.getLocalStorage('role') ? this.appconfig.getLocalStorage('role') : '';
+    this.orgdetails = JSON.parse(this.roles);
+    this.roleCode = this.orgdetails && this.orgdetails[0].roles && this.orgdetails[0].roles[0].roleCode;
     if(this.router.url == '/auth/reports/userlist'){
       this.check='userlist';
     }else{
