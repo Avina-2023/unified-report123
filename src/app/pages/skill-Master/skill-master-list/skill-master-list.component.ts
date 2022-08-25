@@ -97,8 +97,16 @@ export class SkillMasterListComponent implements OnInit {
   rejectList = ["Duplicate Entry", "Invalid Data", "Others"];
   rejectSelectedValue = "Duplicate Entry";
   rejectOtherValue = "";
-
+  roles:any;
+  orgdetails:any;
+  roleCode:any;
   constructor(public matDialog: MatDialog, private sendData: SentDataToOtherComp, private ApiService: ApiService, private appconfig: AppConfigService, private toastr: ToastrService) {
+    this.roles = this.appconfig.getLocalStorage('role') ? this.appconfig.getLocalStorage('role') : '';
+    this.orgdetails = JSON.parse(this.roles);
+    this.roleCode = this.orgdetails && this.orgdetails[0].roles && this.orgdetails[0].roles[0].roleCode;
+    if(this.roleCode != "IADM"){
+      this.appconfig.routeNavigation('error');
+    }
     this.serverSideStoreType = 'partial';
     this.rowModelType = 'serverSide';
     this.defaultColDef = {
