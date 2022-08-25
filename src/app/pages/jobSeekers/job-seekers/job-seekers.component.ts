@@ -3,12 +3,14 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { GlobalValidatorService } from 'src/app/globalvalidators/global-validator.service';
 import { ApiService } from 'src/app/services/api.service';
 import { ToastrService } from 'ngx-toastr';
+import{environment} from 'src/environments/environment'
 @Component({
   selector: 'app-job-seekers',
   templateUrl: './job-seekers.component.html',
   styleUrls: ['./job-seekers.component.scss']
 })
 export class JobSeekersComponent implements OnInit {
+  campusUrl = environment.CAMPUS_URL;
   freshGraduatesForm: FormGroup;
   success = true;
   newCandidate = true;
