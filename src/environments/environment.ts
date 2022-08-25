@@ -18,7 +18,8 @@ export const environment = {
   PROCTOR_URL : 'http://lntproctor.lntedutech.com/api/storage/',
   PROCTOR : 'https://lntproctor.lntedutech.com',
   MONGOCHARTURL: 'https://charts.mongodb.com/charts-microcertuat-gzomw',
-  OFFCAMPUSDRIVE:'https://campus.lntedutech.com/l#/open/off-campus/profile'
+  OFFCAMPUSDRIVE:'https://campus.lntedutech.com/l#/open/off-campus/profile',
+  CAMPUS_URL:'https://campus.lntedutech.com/l#/login'
 
 };
 
