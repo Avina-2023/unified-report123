@@ -35,9 +35,9 @@ export class LandingHeaderComponent implements OnInit {
     this.openJobSeekersxDialog()
   }
 
-  NavtoCampus(){
-  window.open(this.baseUrl, '_blank');
-  }
+  // NavtoCampus(){
+  // window.open(this.baseUrl, '_blank');
+  // }
 
   openJobSeekersxDialog(){
     this.sectiondialogRef = this.matDialog.open(this.jobseekers, {
