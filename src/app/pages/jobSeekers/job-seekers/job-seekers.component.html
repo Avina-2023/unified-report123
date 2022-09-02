@@ -13,7 +13,7 @@
         <!-- </div> -->
     </div>
     <div class="right">
-        <div class="loginform" *ngIf="false">
+        <div class="loginform" *ngIf="newCandidate">
             <div class="signIn"> {{'Registration Form'}}</div>
             <div class="login-sm">
                 <form class="form" [formGroup]="freshGraduatesForm" autocomplete="off">
@@ -49,7 +49,7 @@
                 </form>
             </div>
         </div>
-        <div *ngIf="true">
+        <div *ngIf="successmail">
             <div class="successMessage">
                 <img src="assets/images/candidate-email-icon.png">
                 <div class="text fontdata">
