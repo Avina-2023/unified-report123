@@ -15,7 +15,18 @@
     <div class="rightWrapper ">
         <div class="signInRegister ">
             <ng-container *ngIf="!showAvatar ">
-                <button class="register " (click)="NavtoLogin() ">Login</button>
+                <button class="register"  [matMenuTriggerFor]="loginmenu " [matMenuTriggerFor]="beforeMenu">
+                    <div class="menubtn">
+                        <div class="Registerbtn ">Login</div>
+                        <mat-icon class="arrowIcon ">arrow_drop_down</mat-icon>
+                    </div>
+                </button>
+                <mat-menu #loginmenu="matMenu" #beforeMenu="matMenu" xPosition="before" >
+                    <button mat-menu-item (click)="NavtoLogin()">Employers</button>
+                    <button mat-menu-item (click)="CampusLogin()">Candidates</button>
+                    <!-- <button mat-menu-item (click)="NavtoCampus() ">Larsen & Toubro
+                        Off Campus Drive 2022</button> -->
+                </mat-menu>
             </ng-container>
             <ng-container>
                 <button class="register " id="registerButton " [matMenuTriggerFor]="menu " [matMenuTriggerFor]="beforeMenu"><div class="menubtn ">
@@ -25,7 +36,7 @@
             </button>
                 <mat-menu #menu="matMenu" #beforeMenu="matMenu" xPosition="before" >
                     <button mat-menu-item (click)="NavtoRegister() ">Employers</button>
-                    <button mat-menu-item (click)="NavtoJobSeekers() ">Candidates</button>
+                    <button mat-menu-item (click)="NavtoJobSeekers() ">Fresh Graduates</button>
                     <!-- <button mat-menu-item (click)="NavtoCampus() ">Larsen & Toubro
                         Off Campus Drive 2022</button> -->
                 </mat-menu>
