@@ -13,7 +13,7 @@
         <!-- </div> -->
     </div>
     <div class="right">
-        <div class="loginform" *ngIf="newCandidate">
+        <div class="loginform" *ngIf="false">
             <div class="signIn"> {{'Registration Form'}}</div>
             <div class="login-sm">
                 <form class="form" [formGroup]="freshGraduatesForm" autocomplete="off">
@@ -40,21 +40,21 @@
                         </mat-error>
                     </mat-form-field>
                     <mat-checkbox formControlName="term" class="example-margin mt-1 ml-1" required>
-                        <label class="reg-msg mt-2"> I would like to get enrolled in Program where recruiters can search
-                            my</label>
-                        <label class="reg-msg mt-3">profile and contact me for the Job requirements.</label>
+                        <label class="reg-msg mt-2"> By clicking register, I agree to get enrolled in Skill Exchange Program</label>
+                        <label class="reg-msg mt-3"> where recruiters can search my profile and contact me for job requirements.</label>
                     </mat-checkbox>
                     <button class="btn" [disabled]="!freshGraduatesForm.valid" id="register" mat-button
-                        (click)="register()">{{"Submit"}}</button>
-                    <label class="warning pt-5 ml-1"><b>Note:</b> Use personal mail id for registration</label>
+                        (click)="register()">{{"Register"}}</button>
+                    <label class="warning pt-5 ml-1"><b>Note:</b> Use your personal email id for registration</label>
                 </form>
             </div>
         </div>
-        <div *ngIf="successmail">
+        <div *ngIf="true">
             <div class="successMessage">
                 <img src="assets/images/candidate-email-icon.png">
-                <div class="text">
-                    <p>Verification mail sent to your mail id.</p>
+                <div class="text fontdata">
+                    <p> A verification email has been sent to your email address, from assess.support@lntedutech.com.</p>
+                    <p> Please complete the registration process from link provided in email notification.</p>
                 </div>
             </div>
         </div>
@@ -62,7 +62,7 @@
             <div class="successMessage">
                 <img src="assets/images/candidate-email-icon.png">
                 <div class="text">
-                    <p>Your Profile already exists with us</p>
+                    <p>Your profile already exists with us.</p>
                     <a class="a-font" target="_blank" rel="campusurl" href="{{campusUrl}}"><u>Click here to Login</u></a>
                 </div>
             </div>
