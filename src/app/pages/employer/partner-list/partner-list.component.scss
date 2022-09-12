@@ -1,0 +1,170 @@
+.body {
+    height: 100vh;
+    background: linear-gradient(180deg, #1B4E9B 60%, #F2F2F2 40%);
+    padding-bottom: 20px;
+}
+
+.title {
+    color: #FFFFFF;
+    padding: 15px;
+}
+
+.partnerCardBody {
+    display: flex;
+    justify-content: space-around;
+
+    .partnerCard {
+        max-width: 400px;
+        width: 400px;
+        max-height: 125px;
+        height: 125px;
+        border-radius: 9px;
+
+        .cardTitle {
+            font-size: 14px;
+            color: #1B4E9B;
+        }
+
+        .cardValue {
+            font-size: 24px;
+            color: #4D4F5C;
+            display: flex;
+            justify-content: space-between;
+            padding-right: 20px;
+        }
+
+        .cardFooter {
+            font-size: 14px;
+            color: #262626;
+            padding-left: 15px;
+
+            .cardFootervalue {
+                padding-left: 3px;
+                color: #56B35A;
+            }
+        }
+    }
+}
+
+.partnerCardTableBody {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+
+    .partnerCard {
+        // max-width: 99%;
+        width: 99%;
+        // max-height: 330px;
+        // height: 330px;
+        border-radius: 9px;
+
+        .cardTitle {
+            font-size: 16px;
+            color: #1B4E9B;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .buttonSlide {
+            .mat-button-toggle-group {
+                height: 32px !important;
+                align-items: center !important;
+                font-size: 12px !important;
+            }
+
+            .mat-button-toggle {
+                background-color: #ffffff;
+                color: #004684;
+            }
+
+            .mat-button-toggle:hover {
+                background-color: #004684;
+                color: #ffffff !important;
+            }
+
+            .mat-button-toggle-checked {
+                background-color: #004684;
+                color: #ffffff !important;
+            }
+        }
+
+        .cardValue {
+            .companyURL {
+                height: 20px;
+            }
+
+            table {
+                width: 100%;
+                border-radius: 5px;
+                border: solid 1px #EDEDED;
+            }
+
+            th,
+            td {
+                text-align: center;
+            }
+
+            .mat-row:nth-child(even) {
+                background-color: #EDEDED;
+                color: black;
+            }
+
+            .mat-row:nth-child(odd) {
+                background-color: white;
+                color: black;
+            }
+
+            .mat-header-cell {
+                background-color: #EDEDED;
+                color: #1B4E9B;
+            }
+
+            .rectangleInActive {
+                font-size: 12px;
+                background: #ffd6c8d9;
+                padding: 5px 20px;
+                border-radius: 8px;
+                color: #FF474D;
+                display: flex;
+                justify-content: center;
+                align-items: baseline;
+                width: 84px;
+                margin: 0 auto;
+                flex-wrap: nowrap;
+            }
+
+            .rectangleActive {
+                font-size: 12px;
+                background: #c9e9c2;
+                ;
+                padding: 5px 20px;
+                border-radius: 8px;
+                color: #49AE31;
+                display: flex;
+                justify-content: center;
+                align-items: baseline;
+                width: 84px;
+                margin: 0 auto;
+                flex-wrap: nowrap;
+            }
+
+            .moreButton {
+                width: 20%;
+                margin: 5px 0;
+                border-radius: 50%;
+                // padding: 2px 0;
+                box-shadow: 0 2px 4px -1px rgb(0 0 0 / 20%);
+                background-color: white;
+                border: .5px solid #A9BBD5;
+                color: #1B4E9B;
+                cursor: pointer;
+
+                &:hover {
+                    background-color: #D2DEF1;
+                    color: #FFFFFF;
+
+                }
+            }
+        }
+    }
+}

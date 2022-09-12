@@ -172,5 +172,13 @@ export class ApiService {
   candidateRegistration(data){
     return this.http.post(`${this.BASE_URL}/candidateRegister`,data)
   }
+
+  partnerList(data){
+    return this.http.post(`${this.BASE_URL}/partnerList`,data)
+  }
+  
+  updatePartnerStatus(data){
+    return this.http.post(`${this.BASE_URL}/updatePartnerStatus`,data)
+  }
   
 }

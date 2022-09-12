@@ -31,6 +31,7 @@ import {MatTableModule} from '@angular/material/table';
 // Material Data tables
 // ---------------------------------------------------------------
  import { MatPaginatorModule } from '@angular/material/paginator';
+ import {MatButtonToggleModule} from '@angular/material/button-toggle';
 
 @NgModule({
   declarations: [],
@@ -59,7 +60,8 @@ import {MatTableModule} from '@angular/material/table';
     MatListModule,
     MatProgressSpinnerModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatButtonToggleModule
   ],
   exports: [
     MatMenuModule,
@@ -86,7 +88,8 @@ import {MatTableModule} from '@angular/material/table';
     MatListModule,
     MatProgressSpinnerModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatButtonToggleModule
   ],
 })
 export class MaterialModule { }
