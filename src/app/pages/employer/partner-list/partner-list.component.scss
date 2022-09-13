@@ -4,6 +4,10 @@
     padding-bottom: 20px;
 }
 
+.subBody {
+    padding-bottom: 75px;
+}
+
 .title {
     color: #FFFFFF;
     padding: 15px;
@@ -75,6 +79,7 @@
             .mat-button-toggle {
                 background-color: #ffffff;
                 color: #004684;
+                width: 75px;
             }
 
             .mat-button-toggle:hover {
@@ -165,6 +170,15 @@
 
                 }
             }
+
+            ::ng-deep .mat-paginator-page-size {
+                display: none !important;
+            }
+
+            ::ng-deep .mat-paginator-range-label {
+                display: none !important;
+            }
+
         }
     }
 }

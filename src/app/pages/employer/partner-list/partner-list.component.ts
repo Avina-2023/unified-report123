@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ApiService } from '../../../services/api.service';
 import { ToastrService } from 'ngx-toastr';
-
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
+import { AppConfigService } from 'src/app/utils/app-config.service';
+import { APP_CONSTANTS } from '../../../utils/app-constants.service';
 
 
 @Component({
@@ -12,18 +15,24 @@ import { ToastrService } from 'ngx-toastr';
 
 
 export class PartnerListComponent implements OnInit {
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+
   status = "all"
   displayedColumns: string[] = ['img', 'employerName', 'createdDate', 'industryType', 'spocName', 'spocEmail', 'status', "action"];
-  dataSource: any;
-
-  constructor(private ApiService: ApiService, private toastr: ToastrService) {
+  dataSource = new MatTableDataSource<any>([]);
+  totalPartnerCount = 0;
+  activePartnerCount = 0;
+  inActivePartnerCount = 0;
+  constructor(private ApiService: ApiService, private appconfig: AppConfigService, private toastr: ToastrService) {
     var data = {}
     this.ApiService.partnerList(data).subscribe((partnerList: any) => {
       if (partnerList.success == false) {
         this.toastr.warning('Connection failed, Please try again.');
       } else {
-        this.dataSource = partnerList
-        console.log("---->",partnerList)
+        this.dataSource.data = partnerList.data
+        this.totalPartnerCount = partnerList.totalCount;
+        this.activePartnerCount = partnerList.activeCount;
+        this.inActivePartnerCount = partnerList.inActiveCount;
       }
     }, (err) => {
       this.toastr.warning('Connection failed, Please try again.');
@@ -33,11 +42,13 @@ export class PartnerListComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+  }
   selectStatus() {
     var isApproved = this.status == 'active' ? true : this.status == 'inActive' ? false : "-";
     let data = {};
-    if ( isApproved !="-") {
+    if (isApproved != "-") {
       data = {
         "filterModel": {
           "isApproved": {
@@ -51,15 +62,18 @@ export class PartnerListComponent implements OnInit {
       if (partnerList.success == false) {
         this.toastr.warning('Connection failed, Please try again.');
       } else {
-        this.dataSource = partnerList
+        this.dataSource.data = partnerList.data;
+        this.totalPartnerCount = partnerList.totalCount;
+        this.activePartnerCount = partnerList.activeCount;
+        this.inActivePartnerCount = partnerList.inActiveCount;
       }
     }, (err) => {
       this.toastr.warning('Connection failed, Please try again.');
     });
   }
 
-  updateStatus(status,email){
-    this.ApiService.updatePartnerStatus({isApproved:status,email:email}).subscribe((partnerList: any) => {
+  updateStatus(status, email) {
+    this.ApiService.updatePartnerStatus({ isApproved: status, email: email }).subscribe((partnerList: any) => {
       if (partnerList.success == false) {
         this.toastr.warning('Connection failed, Please try again.');
       } else {
@@ -71,6 +85,8 @@ export class PartnerListComponent implements OnInit {
     });
   }
 
-
+  updatePartner(partnerData) {
+    this.appconfig.routeNavigationWithParam(APP_CONSTANTS.ENDPOINTS.PARTNER.ADDPARTNER, partnerData);
+  }
 
 }

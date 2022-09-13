@@ -7,12 +7,13 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MaterialModule } from 'src/app/material/material.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { PartnerListComponent } from './partner-list/partner-list.component';
-
+import { StylePaginatorDirective } from './partner-list/style-paginator.directive';
 
 @NgModule({
   declarations: [
     AddPartnerComponent,
-    PartnerListComponent
+    PartnerListComponent,
+    StylePaginatorDirective
   ],
   imports: [
     CommonModule,

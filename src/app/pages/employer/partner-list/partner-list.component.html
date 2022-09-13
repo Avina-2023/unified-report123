@@ -1,5 +1,5 @@
 <div class="body">
-  <div>
+  <div class="subBody">
     <h3 class="title">VIEW PARTNERS</h3>
     <div class="partnerCardBody">
       <div>
@@ -7,7 +7,7 @@
           <mat-card-title class="cardTitle">TOTAL PARTNERS</mat-card-title>
           <mat-card-content class="cardValue">
             <div>
-              <p>{{dataSource.totalCount}}</p>
+              <p>{{totalPartnerCount}}</p>
             </div>
             <div><img src="/assets/images/partner/partners.png" alt=""></div>
           </mat-card-content>
@@ -22,7 +22,7 @@
           <mat-card-title class="cardTitle">NO. OF ACTIVE PARTNERS</mat-card-title>
           <mat-card-content class="cardValue">
             <div>
-              <p>{{dataSource.activeCount}}</p>
+              <p>{{activePartnerCount}}</p>
             </div>
             <div><img src="/assets/images/partner/partners-active.png" alt=""></div>
           </mat-card-content>
@@ -37,7 +37,7 @@
           <mat-card-title class="cardTitle">NO. OF INACTIVE PARTNERS</mat-card-title>
           <mat-card-content class="cardValue">
             <div>
-              <p>{{dataSource.inActiveCount}}</p>
+              <p>{{inActivePartnerCount}}</p>
             </div>
             <div><img src="/assets/images/partner/partners-inactive.png" alt=""></div>
           </mat-card-content>
@@ -63,7 +63,7 @@
         </mat-card-title>
         <mat-card-content class="cardValue">
           <div>
-            <table mat-table [dataSource]="dataSource.data" class="">
+            <table mat-table [dataSource]="dataSource" class="">
 
               <ng-container matColumnDef="img">
                 <th mat-header-cell *matHeaderCellDef> </th>
@@ -116,14 +116,21 @@
                     </figure>
                   </div>
                   <mat-menu #menu="matMenu">
-                    <button *ngIf="element.isApproved == false" mat-menu-item (click)="updateStatus(true,element.email)">Activate</button>
-                    <button *ngIf="element.isApproved == true" mat-menu-item (click)="updateStatus(false,element.email)">Deactivate</button>
+                    <button *ngIf="element.isApproved == false" mat-menu-item
+                      (click)="updateStatus(true,element.email)">Activate</button>
+                    <button *ngIf="element.isApproved == true" mat-menu-item
+                      (click)="updateStatus(false,element.email)">Deactivate</button>
+                    <button mat-menu-item (click)="updatePartner(element)">Edit</button>
+
                   </mat-menu>
                 </td>
               </ng-container>
               <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
               <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
             </table>
+            <mat-paginator style-paginator [showTotalPages]="3" [length]="totalPartnerCount||8" [pageSize]="4"
+              [pageSizeOptions]="[4]">
+            </mat-paginator>
           </div>
         </mat-card-content>
       </mat-card>
