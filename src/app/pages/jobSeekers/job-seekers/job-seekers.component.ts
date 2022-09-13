@@ -3,7 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { GlobalValidatorService } from 'src/app/globalvalidators/global-validator.service';
 import { ApiService } from 'src/app/services/api.service';
 import { ToastrService } from 'ngx-toastr';
-import{environment} from 'src/environments/environment'
+import{environment} from 'src/environments/environment';
+import * as CryptoJS from 'crypto-js';
 @Component({
   selector: 'app-job-seekers',
   templateUrl: './job-seekers.component.html',
@@ -16,6 +17,7 @@ export class JobSeekersComponent implements OnInit {
   newCandidate = true;
   successmail = false;
   failuremail = false;
+  secretKey = "(!@#Passcode!@#)";
   constructor(public fb: FormBuilder, private glovbal_validators: GlobalValidatorService, public toastr: ToastrService, private ApiService: ApiService) { }
 
   ngOnInit(): void {
@@ -32,6 +34,7 @@ export class JobSeekersComponent implements OnInit {
   }
 
   register() {
+    this.freshGraduatesForm.value.email = CryptoJS.AES.encrypt(this.freshGraduatesForm.value.email.toLowerCase().trim(), this.secretKey.trim()).toString();
     this.ApiService.candidateRegistration(this.freshGraduatesForm.value).subscribe((res: any) => {
       if (res.newCandidate == true) {
         this.newCandidate = false
