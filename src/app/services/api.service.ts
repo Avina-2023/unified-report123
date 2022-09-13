@@ -13,6 +13,7 @@ import { Observable, Subject } from 'rxjs';
 export class ApiService {
   BASE_URL = environment.API_BASE_URL;
   EDGE_URL = environment.NODE_EDGE_URL;
+  SKILL_EDGE_URL = environment.SKILL_EDGE_URL;
   Prourl = environment.NODE_URL;
   EncryptKEY = environment.encryptionKey;
 
@@ -170,7 +171,7 @@ export class ApiService {
   }
 
   candidateRegistration(data){
-    return this.http.post(`${this.BASE_URL}/candidateRegister`,data)
+    return this.http.post(`${this.SKILL_EDGE_URL}/register`,data)
   }
   
 }

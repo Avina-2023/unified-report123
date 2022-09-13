@@ -18,6 +18,7 @@ export class JobSeekersComponent implements OnInit {
   successmail = false;
   failuremail = false;
   secretKey = "(!@#Passcode!@#)";
+  skillProfileUrl = environment.SKILL_PROFILE_URL;
   constructor(public fb: FormBuilder, private glovbal_validators: GlobalValidatorService, public toastr: ToastrService, private ApiService: ApiService) { }
 
   ngOnInit(): void {
