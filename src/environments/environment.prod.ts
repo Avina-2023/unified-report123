@@ -16,6 +16,6 @@ export const environment = {
   MONGOCHARTURL: 'https://charts.mongodb.com/charts-microcertuat-gzomw',
   OFFCAMPUSDRIVE:'https://campus-dev.lntedutech.com/l#/open/off-campus/profile',
   CAMPUS_URL:'http://campus-dev.lntedutech.com/l#/login',
-  SKILL_EDGE_URL :'http://skilledgedev.lntedutech.com',
+  SKILL_EDGE_URL :'https://skilledgedev.lntedutech.com',
   SKILL_PROFILE_URL :'https://profile-dev.lntedutech.com'
 };
