@@ -1,0 +1,142 @@
+<div class="body">
+  <div class="subBody">
+    <h3 class="title">VIEW PARTNERS</h3>
+    <div class="partnerCardBody">
+      <div>
+        <mat-card class="partnerCard">
+          <mat-card-title class="cardTitle">TOTAL PARTNERS</mat-card-title>
+          <mat-card-content class="cardValue">
+            <div>
+              <p>{{totalPartnerCount}}</p>
+            </div>
+            <div><img src="/assets/images/partner/partners.png" alt=""></div>
+          </mat-card-content>
+          <mat-card-footer class="cardFooter">
+            Since last month <span class="cardFootervalue"> <img src="/assets/images/partner/arrow-round-up.svg"
+                alt="">18%</span>
+          </mat-card-footer>
+        </mat-card>
+      </div>
+      <div>
+        <mat-card class="partnerCard">
+          <mat-card-title class="cardTitle">NO. OF ACTIVE PARTNERS</mat-card-title>
+          <mat-card-content class="cardValue">
+            <div>
+              <p>{{activePartnerCount}}</p>
+            </div>
+            <div><img src="/assets/images/partner/partners-active.png" alt=""></div>
+          </mat-card-content>
+          <mat-card-footer class="cardFooter">
+            Since last month <span class="cardFootervalue"> <img src="/assets/images/partner/arrow-round-up.svg"
+                alt="">13%</span>
+          </mat-card-footer>
+        </mat-card>
+      </div>
+      <div>
+        <mat-card class="partnerCard">
+          <mat-card-title class="cardTitle">NO. OF INACTIVE PARTNERS</mat-card-title>
+          <mat-card-content class="cardValue">
+            <div>
+              <p>{{inActivePartnerCount}}</p>
+            </div>
+            <div><img src="/assets/images/partner/partners-inactive.png" alt=""></div>
+          </mat-card-content>
+          <mat-card-footer class="cardFooter">
+            Since last month <span class="cardFootervalue"> <img src="/assets/images/partner/arrow-round-up.svg"
+                alt="">2%</span>
+          </mat-card-footer>
+        </mat-card>
+      </div>
+    </div>
+    <div class="partnerCardTableBody">
+      <mat-card class="partnerCard">
+        <mat-card-title class="cardTitle">
+          <div>PARTNER'S INFORMATION LIST</div>
+          <div class="buttonSlide">
+            <mat-button-toggle-group [(ngModel)]="status" (change)="selectStatus()" name="status"
+              aria-label="Font Style">
+              <mat-button-toggle value="all">All</mat-button-toggle>
+              <mat-button-toggle value="active">Active</mat-button-toggle>
+              <mat-button-toggle value="inActive">InActive</mat-button-toggle>
+            </mat-button-toggle-group>
+          </div>
+        </mat-card-title>
+        <mat-card-content class="cardValue">
+          <div>
+            <table mat-table [dataSource]="dataSource" class="">
+
+              <ng-container matColumnDef="img">
+                <th mat-header-cell *matHeaderCellDef> </th>
+                <td mat-cell *matCellDef="let element"> <img *ngIf="element.companyImgURL" class="companyURL"
+                    [src]="element.companyImgURL" alt=""> <span *ngIf="!element.companyImgURL">-</span> </td>
+              </ng-container>
+
+              <!-- Name Column -->
+              <ng-container matColumnDef="employerName">
+                <th mat-header-cell *matHeaderCellDef> Employer Name </th>
+                <td mat-cell *matCellDef="let element"> {{element.company?element.company:"-"}} </td>
+              </ng-container>
+
+              <!-- Weight Column -->
+              <ng-container matColumnDef="createdDate">
+                <th mat-header-cell *matHeaderCellDef> Created Date </th>
+                <td mat-cell *matCellDef="let element"> {{element.createdAt?element.createdAt:"-"}} </td>
+              </ng-container>
+
+              <!-- Symbol Column -->
+              <ng-container matColumnDef="industryType">
+                <th mat-header-cell *matHeaderCellDef> Industry Type </th>
+                <td mat-cell *matCellDef="let element"> {{element.industryType?element.industryType:"-"}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="spocName">
+                <th mat-header-cell *matHeaderCellDef> SPOC Name </th>
+                <td mat-cell *matCellDef="let element"> {{element.firstName?element.firstName+" "+element.lastName:"-"}}
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="spocEmail">
+                <th mat-header-cell *matHeaderCellDef> SPOC Email </th>
+                <td mat-cell *matCellDef="let element"> {{element.email?element.email:"-"}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="status">
+                <th mat-header-cell *matHeaderCellDef> Status </th>
+                <td mat-cell *matCellDef="let element"> <span
+                    [className]="element.isApproved == true ? 'rectangleActive' : 'rectangleInActive'">{{element.isApproved
+                    ?"ACTIVE":"INACTIVE"}}</span></td>
+              </ng-container>
+
+              <ng-container matColumnDef="action">
+                <th mat-header-cell *matHeaderCellDef> </th>
+                <td mat-cell *matCellDef="let element">
+                  <div class="moreButtonDiv" [matMenuTriggerFor]="menu">
+                    <figure>
+                      <img class="moreButton" src="../../../../assets/images/partner/more_options.svg">
+                    </figure>
+                  </div>
+                  <mat-menu #menu="matMenu">
+                    <button *ngIf="element.isApproved == false" mat-menu-item
+                      (click)="updateStatus(true,element.email)">Activate</button>
+                    <button *ngIf="element.isApproved == true" mat-menu-item
+                      (click)="updateStatus(false,element.email)">Deactivate</button>
+                    <button mat-menu-item (click)="updatePartner(element.email)">Edit</button>
+
+                  </mat-menu>
+                </td>
+              </ng-container>
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+            <div class="customPagination">
+              <mat-paginator style-paginator [showTotalPages]="3" [length]="totalPartnerCount||8" [pageSize]="4"
+                [pageSizeOptions]="[4]"
+                >
+              </mat-paginator>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

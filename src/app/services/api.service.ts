@@ -173,5 +173,17 @@ export class ApiService {
   candidateRegistration(data){
     return this.http.post(`${this.SKILL_EDGE_URL}/register`,data)
   }
+
+  partnerList(data){
+    return this.http.post(`${this.BASE_URL}/partnerList`,data)
+  }
+  
+  updatePartnerStatus(data){
+    return this.http.post(`${this.BASE_URL}/updatePartnerStatus`,data)
+  }
+
+   updatePartner(data){
+    return this.http.post(`${this.BASE_URL}/partnerdetailsupload`,data)
+  }
   
 }
