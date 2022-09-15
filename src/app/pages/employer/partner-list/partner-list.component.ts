@@ -20,9 +20,9 @@ export class PartnerListComponent implements OnInit {
   status = "all"
   displayedColumns: string[] = ['img', 'employerName', 'createdDate', 'industryType', 'spocName', 'spocEmail', 'status', "action"];
   dataSource = new MatTableDataSource<any>([]);
-  totalPartnerCount = 0;
-  activePartnerCount = 0;
-  inActivePartnerCount = 0;
+  totalPartnerCount :Number;
+  activePartnerCount :Number;
+  inActivePartnerCount :Number;
   constructor(private ApiService: ApiService, private appconfig: AppConfigService, private toastr: ToastrService) {
     var data = {}
     this.ApiService.partnerList(data).subscribe((partnerList: any) => {
@@ -85,8 +85,8 @@ export class PartnerListComponent implements OnInit {
     });
   }
 
-  updatePartner(partnerData) {
-    this.appconfig.routeNavigationWithParam(APP_CONSTANTS.ENDPOINTS.PARTNER.ADDPARTNER, partnerData);
+  updatePartner(email) {
+    this.appconfig.routeNavigationWithParam(APP_CONSTANTS.ENDPOINTS.PARTNER.ADDPARTNER,{email:this.ApiService.encrypt(email)});
   }
 
 }

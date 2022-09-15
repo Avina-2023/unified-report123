@@ -144,11 +144,11 @@ import {
         }
   
         if (i == this._rangeEnd) {
-          this.ren.insertBefore(
-            actionContainer,
-            this.createButton(this._pageGapTxt, this._rangeEnd),
-            nextPageNode
-          );
+          // this.ren.insertBefore(
+          //   actionContainer,
+          //   this.createButton(this._pageGapTxt, this._rangeEnd),
+          //   nextPageNode
+          // );
         }
       }
     }

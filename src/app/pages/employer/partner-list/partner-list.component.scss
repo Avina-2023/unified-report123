@@ -182,3 +182,26 @@
         }
     }
 }
+
+::ng-deep.customPagination {
+    .mat-icon-button, 
+    .mat-mini-fab {
+        width: 25px;
+        height: 25px;
+        line-height: 25px;
+    }
+    .mat-mini-fab {
+        &:not([class*=mat-elevation-z]) {
+            box-shadow: none;
+            border: 1px solid rgba(0,0,0,0.25);
+        }
+    } 
+    .mat-mini-fab, 
+    .mat-icon-button {
+        font-size: 12px;
+    }
+    .mat-paginator-icon {
+        line-height: 24px;
+        width: 20px;
+    }
+}

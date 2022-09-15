@@ -8,6 +8,7 @@ import { MaterialModule } from 'src/app/material/material.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { PartnerListComponent } from './partner-list/partner-list.component';
 import { StylePaginatorDirective } from './partner-list/style-paginator.directive';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,8 @@ import { StylePaginatorDirective } from './partner-list/style-paginator.directiv
     EmployerRoutingModule,
     MaterialModule,
     SharedModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
 })
 export class EmployerModule { }

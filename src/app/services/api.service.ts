@@ -180,5 +180,9 @@ export class ApiService {
   updatePartnerStatus(data){
     return this.http.post(`${this.BASE_URL}/updatePartnerStatus`,data)
   }
+
+   updatePartner(data){
+    return this.http.post(`${this.BASE_URL}/partnerdetailsupload`,data)
+  }
   
 }
