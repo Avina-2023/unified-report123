@@ -16,6 +16,8 @@ const routes: Routes = [
       },
       {
         path: `${APP_CONSTANTS.ROUTES.SKILLMASTER.HOME}`, loadChildren: () => import('../pages/skill-Master/skill-master.module').then(m => m.SkillMasterModule)
+      },{
+        path: `${APP_CONSTANTS.ROUTES.PARTNER.HOME}`, loadChildren: () => import('../pages/employer/partner.module').then(m => m.EmployerModule)
       },
       {
         path: '',
