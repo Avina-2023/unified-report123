@@ -80,4 +80,11 @@ export class PartnerListComponent implements OnInit {
     this.appconfig.routeNavigationWithParam(APP_CONSTANTS.ENDPOINTS.PARTNER.ADDPARTNER,{email:this.ApiService.encrypt(email)});
   }
 
+  convertDate(date){
+    date = new Date(date)
+    
+    return date.toDateString();
+    //return new Date(date)
+  }
+
 }

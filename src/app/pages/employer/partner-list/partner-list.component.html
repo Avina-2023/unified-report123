@@ -80,7 +80,7 @@
               <!-- Weight Column -->
               <ng-container matColumnDef="createdDate">
                 <th mat-header-cell *matHeaderCellDef> Created Date </th>
-                <td mat-cell *matCellDef="let element"> {{element.createdAt?element.createdAt:"-"}} </td>
+                <td mat-cell *matCellDef="let element"> {{element.createdAt?convertDate(element.createdAt):"-"}} </td>
               </ng-container>
 
               <!-- Symbol Column -->
@@ -111,7 +111,7 @@
                 <th mat-header-cell *matHeaderCellDef> </th>
                 <td mat-cell *matCellDef="let element">
                   <div class="moreButtonDiv" [matMenuTriggerFor]="menu">
-                    <figure class="doticon">
+                    <figure>
                       <img class="moreButton" src="../../../../assets/images/partner/more_options.svg">
                     </figure>
                   </div>
