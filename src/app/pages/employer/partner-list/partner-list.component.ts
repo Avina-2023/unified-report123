@@ -20,27 +20,14 @@ export class PartnerListComponent implements OnInit {
   status = "all"
   displayedColumns: string[] = ['img', 'employerName', 'createdDate', 'industryType', 'spocName', 'spocEmail', 'status', "action"];
   dataSource = new MatTableDataSource<any>([]);
-  totalPartnerCount :Number;
-  activePartnerCount :Number;
-  inActivePartnerCount :Number;
+  totalPartnerCount :number;
+  activePartnerCount :number;
+  inActivePartnerCount :number;
   constructor(private ApiService: ApiService, private appconfig: AppConfigService, private toastr: ToastrService) {
-    var data = {}
-    this.ApiService.partnerList(data).subscribe((partnerList: any) => {
-      if (partnerList.success == false) {
-        this.toastr.warning('Connection failed, Please try again.');
-      } else {
-        this.dataSource.data = partnerList.data
-        this.totalPartnerCount = partnerList.totalCount;
-        this.activePartnerCount = partnerList.activeCount;
-        this.inActivePartnerCount = partnerList.inActiveCount;
-      }
-    }, (err) => {
-      this.toastr.warning('Connection failed, Please try again.');
-    });
-
   }
 
   ngOnInit(): void {
+    this.fetchData({});
   }
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
@@ -58,6 +45,10 @@ export class PartnerListComponent implements OnInit {
         }
       };
     }
+    this.fetchData(data);
+  }
+
+  fetchData(data:any){
     this.ApiService.partnerList(data).subscribe((partnerList: any) => {
       if (partnerList.success == false) {
         this.toastr.warning('Connection failed, Please try again.');

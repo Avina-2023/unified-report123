@@ -31,9 +31,9 @@
                                 <div class="inputContainer">
                                     <label>Industry Type<span>*</span></label>
                                     <mat-form-field appearance="outline">
-                                        <mat-select formControlName="industryType">
-                                            <mat-option *ngFor="let item of menu" [value]="item.title">
-                                                {{item.title}}
+                                        <mat-select formControlName="industryType" placeholder="Select the Industry Type">
+                                            <mat-option *ngFor="let item of industryTypeArray" [value]="item.type">
+                                                {{item.type}}
                                             </mat-option>
                                         </mat-select>
                                     </mat-form-field>

@@ -166,8 +166,8 @@ export class ApiService {
    return this.http.post(`${this.BASE_URL}/skillUploadValidator`,data);
   }
   
-  partnerfooterlist(){
-    return this.http.post(`${this.BASE_URL}/partnerfooterlist`,{});
+  partnerfooterlist(data){
+    return this.http.post(`${this.BASE_URL}/partnerfooterlist`,data);
   }
 
   candidateRegistration(data){
@@ -184,6 +184,10 @@ export class ApiService {
 
    updatePartner(data){
     return this.http.post(`${this.BASE_URL}/partnerdetailsupload`,data)
+  }
+
+  industryType(data){
+    return this.http.post(`${this.BASE_URL}/industrytypelist`,data)
   }
   
 }
