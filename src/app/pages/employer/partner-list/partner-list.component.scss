@@ -141,7 +141,6 @@
             .rectangleActive {
                 font-size: 12px;
                 background: #c9e9c2;
-                ;
                 padding: 5px 20px;
                 border-radius: 8px;
                 color: #49AE31;
@@ -153,8 +152,12 @@
                 flex-wrap: nowrap;
             }
 
+            .doticon{
+                display: contents !important;
+            }
+
             .moreButton {
-                width: 20%;
+                width: 30% !important;
                 margin: 5px 0;
                 border-radius: 50%;
                 // padding: 2px 0;
@@ -205,3 +208,7 @@
         width: 20px;
     }
 }
+
+::ng-deep.mat-column-img {
+    max-width: 100px;
+   }

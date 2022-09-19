@@ -22,12 +22,11 @@ export class AddPartnerComponent implements OnInit {
   errorMsgforLogo = '';
   errorMsgforeoi = '';
   constructor(public fb: FormBuilder, private appconfig: AppConfigService, private route: ActivatedRoute, private ApiService: ApiService, private toastr: ToastrService) { }
-  menu: any = [
-    { title: "test" }
-  ]
+  industryTypeArray: any = []
   ngOnInit(): void {
     this.getRoute();
     this.formInitialize();
+    this.getIndustryType();
   }
 
   getRoute() {
@@ -84,6 +83,18 @@ export class AddPartnerComponent implements OnInit {
       description: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.pattern(emailregex)]],
     })
+  }
+
+  getIndustryType(){
+    this.ApiService.industryType({}).subscribe((industryTypeList: any) => {
+      if (industryTypeList.success == false) {
+        this.toastr.warning('Connection failed, Please try again.');
+      } else {
+        this.industryTypeArray = industryTypeList.data;
+      }
+    }, (err) => {
+      this.toastr.warning('Connection failed, Please try again.');
+    });
   }
 
   onEmployerLogoFileSelected(event) {
