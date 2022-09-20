@@ -19,8 +19,9 @@ export const environment = {
   PROCTOR : 'https://lntproctordev.lntedutech.com',
   MONGOCHARTURL: 'https://charts.mongodb.com/charts-microcertuat-gzomw',
   OFFCAMPUSDRIVE:'https://campus-qa.lntedutech.com/l#/open/off-campus/profile',
-  CAMPUS_URL:'https://campus-qa.lntedutech.com/l#/login'
-
+  CAMPUS_URL:'http://campus-dev.lntedutech.com/l#/login',
+  SKILL_EDGE_URL :'https://skilledgeqa.lntedutech.com',
+  SKILL_PROFILE_URL :'https://profile-qa.lntedutech.com'
 };
 
 /*

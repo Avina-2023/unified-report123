@@ -39,6 +39,11 @@ export const APP_CONSTANTS = {
       HOME:'/auth/skillmaster',
       SKILLMASTERLIST:"/auth/skillmaster/skillmasterlist",
       SKILLBULKUPlOAD:'/auth/skillmaster/skillbulkupload'
+    },
+    PARTNER:{
+      HOME:'/auth/partner',
+      PARTNERLIST:'/auth/partner/partnerlist',
+      ADDPARTNER:"/auth/partner/addpartner",
     }
   },
 
@@ -67,6 +72,11 @@ export const APP_CONSTANTS = {
       HOME:'skillmaster',
       SKILLMASTERLIST:"skillmasterlist",
       SKILLBULKUPlOAD:'skillbulkupload'
+    },
+    PARTNER:{
+      HOME:'partner',
+      PARTNERLIST:'partnerlist',
+      ADDPARTNER:"addpartner",
     }
   }
 };

@@ -81,7 +81,7 @@ export class PartnersListComponent implements OnInit {
   }
 
   getFooterLogo(){
-    this.ApiService.partnerfooterlist().subscribe((response: any) => {
+    this.ApiService.partnerfooterlist({}).subscribe((response: any) => {
         if(response.success){
            this.EcosystemPartners = response.data.EcosystemPartners;
            this.HiringPartners = response.data.HiringPartners;
