@@ -13,7 +13,7 @@
         <!-- </div> -->
     </div>
     <div class="right">
-        <div class="loginform" *ngIf="newCandidate">
+        <div class="loginform" *ngIf="registerform">
             <div class="signIn"> {{'Registration Form'}}</div>
             <div class="login-sm">
                 <form class="form" [formGroup]="freshGraduatesForm" autocomplete="off">
@@ -49,25 +49,24 @@
                 </form>
             </div>
         </div>
-        <div *ngIf="successmail">
+        <div *ngIf="newCandidate">
             <div class="successMessage">
                 <img src="assets/images/candidate-email-icon.png">
                 <div class="text fontdata">
-                    <label class="text-height">A verification email has been sent to your </label>
-                    <label class="text-height"> email address, from <b>assess.support@lntedutech.com.</b></label>
+                    <label class="text-height">{{msg}} </label>
+                    <!-- <label class="text-height"> email address, from <b>assess.support@lntedutech.com.</b></label>
                   <br>
                   <br>
                     <label class="text-height">Please complete the registration process from link provided</label>
-                   <label class="text-height">in email notification.</label>
-                   
+                   <label class="text-height">in email notification.</label> -->
                 </div>
             </div>
         </div>
-        <div *ngIf="failuremail">
+        <div *ngIf="existingCandidate">
             <div class="successMessage">
                 <img src="assets/images/candidate-email-icon.png">
                 <div class="text">
-                    <p>Your profile already exists with us.</p>
+                    <p>{{msg}}</p>
                     <a class="a-font" target="_blank" rel="skillProfileUrl" href="{{skillProfileUrl}}"><u>Click here to Login</u></a>
                 </div>
             </div>
