@@ -18,6 +18,7 @@ export class LandingHeaderComponent implements OnInit {
   sectiondialogRef: any;
   baseUrl= environment.OFFCAMPUSDRIVE
   campusUrl:any = environment.CAMPUS_URL;
+  SKILL_PROFILE_URL:any = environment.SKILL_PROFILE_URL;
   constructor(public appConfig: AppConfigService,private matDialog: MatDialog,private router:Router) { }
 
   ngOnInit(): void {
@@ -28,8 +29,8 @@ export class LandingHeaderComponent implements OnInit {
     this.openUserFormDialog();
     // this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.LOGIN);
   }
-  CampusLogin(){
-    window.open (this.campusUrl,'_blank')
+  candidateProfileLogin(){
+    window.open (this.SKILL_PROFILE_URL,'_blank')
   }
 
   NavtoRegister(){
