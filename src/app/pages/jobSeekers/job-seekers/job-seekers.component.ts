@@ -14,9 +14,11 @@ export class JobSeekersComponent implements OnInit {
   campusUrl = environment.CAMPUS_URL;
   freshGraduatesForm: FormGroup;
   success = true;
-  newCandidate = true;
-  successmail = false;
+  registerform = true;
+  newCandidate = false;
+  existingCandidate = false;
   failuremail = false;
+  msg = ''
   secretKey = "(!@#Passcode!@#)";
   skillProfileUrl = environment.SKILL_PROFILE_URL;
   constructor(public fb: FormBuilder, private glovbal_validators: GlobalValidatorService, public toastr: ToastrService, private ApiService: ApiService) { }
@@ -37,14 +39,14 @@ export class JobSeekersComponent implements OnInit {
   register() {
     this.freshGraduatesForm.value.email = CryptoJS.AES.encrypt(this.freshGraduatesForm.value.email.toLowerCase().trim(), this.secretKey.trim()).toString();
     this.ApiService.candidateRegistration(this.freshGraduatesForm.value).subscribe((res: any) => {
-      if (res.newCandidate == true) {
-        this.newCandidate = false
-        this.successmail = true
-        this.failuremail = false
+      if (res.success) {
+        this.newCandidate = true
+        this.registerform = false
+        this.msg = res.message
       } else {
-        this.newCandidate = false
-        this.successmail = false;
-        this.failuremail = true;
+        this.msg = res.message
+        this.registerform = false
+        this.existingCandidate = true;
       }
     })
   }
