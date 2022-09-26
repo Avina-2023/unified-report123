@@ -8,19 +8,19 @@ import { CertificateViewComponent } from './pages/certificate-view/certificate-v
 import { LandingPageComponent } from './pages/landing-page/landing-page.component';
 import { JobSeekersComponent } from './pages/jobSeekers/job-seekers/job-seekers.component'
 import { RegisterPageComponent } from './pages/register/register-page/register-page.component'
-import { AboutComponent } from './skillexchange/about/about.component';
+import { StaticpageComponent } from './staticpage/staticpage.component';
 const routes: Routes = [
+//  {
+//     path: `landing`, component: LandingPageComponent
+//   },
+//   {
+//     path: ``, component: LandingPageComponent, canActivate: [IsloggedInGuard]
+//   },
   {
-    path: `landing`, component: LandingPageComponent
+    path:'',redirectTo:'/static',pathMatch:'full'
   },
   {
-    // path: ``, component: LandingPageComponent, canActivate: [IsloggedInGuard]
-  },
-  {
-    path:'',redirectTo:'/about/',pathMatch:'full'
-  },
-  {
-    path:'about',component:AboutComponent
+    path:'static',component:StaticpageComponent
   },
   {
     path: `register`, component: JobSeekersComponent
@@ -46,7 +46,7 @@ const routes: Routes = [
     path: `**`,
     pathMatch: 'full',
     component: PagenotfoundComponent
-  }
+  } 
 ];
 
 @NgModule({
