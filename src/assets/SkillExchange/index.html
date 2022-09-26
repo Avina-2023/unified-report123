@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="theme-color" content="#e5e5e5" />
+	<!-- Google Fonts -->
+
+	<!-- CSS Styles  -->
+	<link rel="icon" type="image/x-icon" href="https://assets.lntedutech.com/favicon.ico">
+	<link rel="preconnect" href="https://fonts.googleapis.com/" />
+	<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
+	<link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&amp;display=swap" rel="stylesheet" />
+	<link rel="stylesheet" href="css/vendor/bootstrap.min.css" />
+	<link rel="stylesheet" href="css/vendor/animate.css" />
+	<link rel="stylesheet" href="css/vendor/swiper-bundle.min.css" />
+	<link rel="stylesheet" href="css/style.css" />
+	<link href="fonts/font-awesome.min.css" rel="stylesheet">
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"></script>
+	<title>Skill Exchange</title>
+</head>
+
+<body>
+	<header class="header">
+		<div class="header__container container">
+			<div class="header__top">
+				<a class="header__brand" href="index.html">
+					<img src="https://assets.lntedutech.com/SKILL_EXCHANGE.png" alt="" />
+				</a>
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
+					aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="header__button">
+					<div class="dropdown mr-2">
+						<button class="btn button--primary text-white regbtn dropdown-toggle" type="button"
+							id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							Register
+						</button>
+						<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+							<span class="dropdown-item" onclick="javascript:freshgraduates(this)">Fresh Graduates</span>
+							<span class="dropdown-item" onclick="javascript:freshemployers(this)">Employers</span>
+						</div>
+					</div>
+					<div class="dropdown">
+						<button class="btn button--primary text-white regbtn dropdown-toggle" type="button"
+							id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							Login
+						</button>
+						<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+							<span class="dropdown-item" onclick="javascript:freshlogin(this)">Fresh Graduates</span>
+
+						</div>
+					</div>
+				</div>
+				<nav class="navbar navbar-expand-xl">
+
+					<div class="collapse navbar-collapse" id="navbarContent">
+						<ul class="navbar-nav list-unstyled">
+							<li class="nav-item">
+								<a class="nav-link" href="About.html">About</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="Employer.html">Employers</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="Jobseeker.html">Job Seekers</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#">Partners <span class="fa fa-caret-down"></span></a>
+								<ul class="list-unstyled">
+									<li><a href="Hiring-Partners.html">Hiring Partners</a></li>
+									<li><a href="Institutional-Partners.html">Institutional Partners</a></li>
+								</ul>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="Contact.html">Contact</a>
+							</li>
+						</ul>
+					</div>
+
+				</nav>
+
+
+			</div>
+
+		</div>
+	</header>
+
+	<main class="main main--top">
+		<section class="section-hero">
+			<div class="section-hero__swiper swiper">
+				<div class="section-hero__wrapper swiper-wrapper">
+
+					<div class="section-hero__slide section-hero__slide--1 swiper-slide">
+						<div class="section-hero__container container">
+
+							<div class="section-hero__content">
+								<h1 class="section-hero__title wow animate__animated animate__fadeIn">Connecting Skilled
+									Talent with Industry</h1>
+								<p class="section-hero__text wow animate__animated animate__fadeIn">Skill Exchange is a
+									one-of-a-kind platform that provides talented and skilled new graduates smooth
+									transitioning from college to the professional world!</p>
+								<a href="#"
+									class="section-action__link button button--primary wow animate__animated animate__fadeInUp"
+									data-wow-delay="0.3s">Get Started</a>
+							</div>
+							<div class="section-hero__image1">
+								<img src="img/banner-image1.png" alt="" />
+							</div>
+						</div>
+					</div>
+					<div class="section-hero__slide section-hero__slide--2 swiper-slide">
+						<div class="section-hero__container container">
+							<div class="section-hero__content">
+								<h1 class="section-hero__title wow animate__animated animate__fadeIn">Enabling Industry
+									to Access Ready-to-Deploy Fresh Graduates</h1>
+								<p class="section-hero__text wow animate__animated animate__fadeIn">Access to millions
+									of Skill profiles to connect and recruit the fresh minds of India to fulfill hiring
+									needs and showcase productivity from day one!</p>
+								<a href="#"
+									class="section-action__link button button--primary wow animate__animated animate__fadeInUp"
+									data-wow-delay="0.3s">Get Started</a>
+							</div>
+							<div class="section-hero__image1">
+								<img src="img/banner-image2.png" alt="" />
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="section-hero__pagination container">
+					<div class="swiper-pagination"></div>
+				</div>
+			</div>
+		</section>
+
+		<section class="section-partners">
+			<div class="section-partners__container container">
+				<div class="section-partners__swiper swiper row wow animate__animated animate__fadeIn">
+					<ul class="section-partners__list swiper-wrapper list-unstyled" id="slider1">
+					</ul>
+				</div>
+			</div>
+		</section>
+
+
+		<section class="section-blocks">
+			<div class="section-blocks__container container">
+				<h2 class="section-roadmap__title wow animate__animated animate__fadeInLeft">Connecting skilled talent
+					with Industry</h2>
+				<p class="section-roadmap__text wow animate__animated animate__fadeIn" data-wow-delay="0.2s">L&T
+					EduTech’s Skill Exchange is a platform for students and recent graduates
+					to meet India’s premiere employers and vice versa.</p>
+				<div class="row">
+					<div class="section-blocks__item col-md-6 wow animate__animated animate__fadeIn">
+						<div class="section-blocks__item-wrapper section-blocks__item-wrapper--right-element">
+							<h3 class="section-blocks__item-title">Employers</h3>
+							<p class="section-blocks__item-text" style="margin-bottom: 10px;">Reach out to talent pool
+								of pre-assessed and certified fresh graduates with skills from the latest niche &
+								emerging technologies across domains pan India. Skill Exchange helps employers enable
+								just in time hiring and fulfil sudden surge in demands.</p>
+							<a class="link-demo link-demo--visited" href="Employer.html">Join as Hiring Partner >></a>
+						</div>
+					</div>
+					<div class="section-blocks__image section-blocks__image--1 col-md-6 wow animate__animated animate__fadeIn"
+						data-wow-delay="0.2s"></div>
+				</div>
+				<div class="row">
+					<div class="section-blocks__image section-blocks__image--2 col-md-6 wow animate__animated animate__fadeIn"
+						data-wow-delay="0.2s"></div>
+					<div class="section-blocks__item col-md-6 wow animate__animated animate__fadeIn">
+						<div class="section-blocks__item-wrapper section-blocks__item-wrapper--left-element">
+							<h3 class="section-blocks__item-title">Job Seekers</h3>
+							<p class="section-blocks__item-text" style="margin-bottom: 10px;">Skill Exchange helps
+								talented and skilled fresh graduates build skill profile and apply to drives from top
+								recruiters which helps in landing their dream job in line with their educational
+								qualification and core skill sets.</p>
+							<a class="link-demo link-demo--visited" href="Jobseeker.html">Build your Skill Profile
+								>></a>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="section-blocks__item col-md-6 wow animate__animated animate__fadeIn">
+						<div class="section-blocks__item-wrapper">
+							<h3 class="section-blocks__item-title">Institutions</h3>
+							<p class="section-blocks__item-text" style="margin-bottom: 10px;">L&T EduTech partner
+								Institutions will have access to facilitate domain specific placement opportunity and
+								exclusive partner drives to their final year students.</p>
+							<a class="link-demo link-demo--visited"
+								href="https://lntedutech.com/college-connect-partners/" target="_blank">Join as
+								Institutional Partner >></a>
+						</div>
+					</div>
+					<div class="section-blocks__image section-blocks__image--3 col-md-6 wow animate__animated animate__fadeIn"
+						data-wow-delay="0.2s"></div>
+				</div>
+			</div>
+		</section>
+
+		<section class="section-begin">
+			<div class="section-begin__container container">
+				<div class="section-begin__columns">
+					<div class="section-begin__column">
+						<div class="section-begin__image">
+							<img src="img/about1.png" alt="">
+						</div>
+					</div>
+					<div class="section-begin__column">
+						<div class="section-begin__wrapper">
+							<h2 class="section-begin__title">About Skill Exchange</h2>
+							<p class="section-begin__text">L&T EduTech’s Skills Exchange is a platform for students and
+								recent graduates to meet India’s premiere employers and vice versa. New
+								graduates—students who are about to take their course-end examinations and recent
+								graduates with up to two years of experience—can create customised profiles to showcase
+								their talent, skillsets, credentials and assessment scores to prominent employers on the
+								platform.</p>
+							<p class="section-begin__text">The platform is also ideal for corporates looking to engage
+								and employ skilled, talented, pre-assessed and job-ready candidates. Exclusive filtering
+								is offered for corporates to get candidates vetted by L&T via its intensive courses and
+								rigorous assessments</p>
+							<a href="About.html" class="button button--white">Know More</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+
+		<section class="section-team">
+			<div class="section-team__container container">
+				<h2 class="section-team__title">Institutional Partners</h2>
+				<div
+					class="section-team__swiper swiper wow animate__animated animate__fadeInUp swiper-initialized swiper-horizontal swiper-pointer-events swiper-backface-hidden animated">
+					<ul class="section-team__list swiper-wrapper list-unstyled slider2"
+						id="swiper-wrapper-6d97d85c62b73b3f" aria-live="polite">
+					</ul>
+				</div>
+			</div>
+		</section>
+		<section class="section-action">
+			<div class="section-action__container container">
+				<h2 class="section-action__title wow animate__animated animate__fadeInDown">Looking to hire Pre-Assessed
+					and Certified Fresh Graduates</h2>
+				<p class="section-action__text wow animate__animated animate__fadeIn" data-wow-delay="0.2s">
+					To join as a hiring partner, write to meher.k@lntecc.com
+				</p>
+				<a href="Employer.html"
+					class="section-action__link button button--white wow animate__animated animate__fadeInUp"
+					data-wow-delay="0.3s">Join as Hiring Partner</a>
+			</div>
+		</section>
+
+	</main>
+
+	<footer class="footer">
+		<div class="footer__container container">
+			<div class="footer__top">
+				<a class="footer__brand" href="index.html">
+					<img src="https://lntedutech.com/wp-content/uploads/2022/06/edutech_logo.png.webp" alt="" />
+				</a>
+				<div class="footer__social">
+					<ul class="footer__menu list-unstyled">
+						<li class="footer__menu-item">
+							<a class="footer__menu-link" href="about.html">About</a>
+						</li>
+						<li class="footer__menu-item">
+							<a class="footer__menu-link" href="Employer.html">Employers</a>
+						</li>
+						<li class="footer__menu-item">
+							<a class="footer__menu-link" href="Jobseeker.html">Job Seekers</a>
+						</li>
+						<li class="footer__menu-item">
+							<a class="footer__menu-link" href="Hiring-Partners.html">Partners</a>
+						</li>
+						<li class="footer__menu-item">
+							<a class="footer__menu-link" href="https://lntedutech.com/privacy-policy/"
+								target="_blank">Privacy Policy</a>
+						</li>
+						<li class="footer__menu-item">
+							<a class="footer__menu-link" href="Contact.html">Contact</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="footer__bottom">
+				<ul class="footer__menu list-unstyled">
+					<li class="footer__menu-item">
+						© 2022 <a class="footer__menu-link" href="https://lntedutech.com/" target="_blank">L&T
+							EduTech</a>. All Rights Reserved.
+					</li>
+				</ul>
+			</div>
+		</div>
+	</footer>
+
+	<div class="scroll-to-top"></div>
+
+	<!-- Javascript Files -->
+	<script src="js/vendor/jquery-3.6.0.min.js"></script>
+	<script src="js/vendor/bootstrap.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js"></script>
+	<script src="js/vendor/wow.min.js"></script>
+	<script src="js/vendor/swiper-bundle.min.js"></script>
+	<script src="js/script.js"></script>
+	<script>
+		new WOW().init();
+	</script>
+	<script>
+		window.onload = function () {
+			var sliderdata = [
+				{
+					"title": "KPR Institute of Engineering and Technology",
+					"img": "img/inst-partners/kpriet.jpg",
+					"img1": "img/partners/Lnt.png"
+				},
+				{
+					"title": "College of Engineering, Guindy (Anna University)",
+					"img": "img/inst-partners/coe-guindy.jpg",
+					"img1": "img/partners/Lnt-Nxt.png"
+				},
+				{
+					"title": "Chitkarauniversity",
+					"img": "img/inst-partners/Chitkarauniversity.jpg",
+					"img1": "img/partners/Lnt-Tech.png"
+				},
+				{
+					"img": "img/inst-partners/gtu.jpg",
+					"title": "Gujarat Technological University",
+					"img1": "img/partners/LTI-lets-solve.png"
+				},
+				{
+					"title": "jecrcUniversity",
+					"img": "img/inst-partners/jecrcUniversity.jpg",
+					"img1": "img/partners/mindtree.png"
+				},
+				{
+					"title": "JECRC University,<br>Rajasthan",
+					"img": "img/inst-partners/jecrcUniversity.jpg",
+					"img1": "img/partners/ABB_logo.png"
+				},
+				{
+					"title": "KSR College of Technology",
+					"img": "img/inst-partners/ksrct.jpg",
+					"img1": "img/partners/Otis-Logo.png"
+				},
+
+				{
+					"img": "img/inst-partners/gtu.jpg",
+					"title": "Gujarat Technological University",
+					"img1": "img/partners/prime.png"
+				},
+				{
+					"title": "jecrcUniversity",
+					"img": "img/inst-partners/jecrcUniversity.jpg",
+					"img1": "img/partners/Amadis-LOGO.jpg"
+				},
+				{
+					"title": "JECRC University,<br>Rajasthan",
+					"img": "img/inst-partners/jecrcUniversity.jpg",
+					"img1": "img/partners/Corrohealth-logo.jpg"
+				},
+				{
+					"title": "KSR College of Technology",
+					"img": "img/inst-partners/ksrct.jpg",
+					"img1": "img/partners/Omega_logo.jpg"
+				},
+				{
+					"img1": "img/partners/Prime-Logo.jpg"
+				},
+				{
+					"img1": "img/partners/Vaken_logo.jpg"
+				},
+				{
+					"img1": "img/partners/Bankzone_logo.jpg"
+				},
+				{
+					"img1": "img/partners/grootan.png"
+				},
+				{
+					"img1": "img/partners/rudram.png"
+				},
+				{
+					"img1": "img/partners/Bankbazaar-Logo.png"
+				}
+			]
+			const sliderinput = document.getElementById('slider1');
+			const slider2input = document.getElementsByClassName('slider2');
+			dataHtml = ''
+			slider2Html = ''
+			for (let x of sliderdata) {
+				dataHtml += `<li class="section-partners__item swiper-slide">
+						<div class="section-partners__image">
+							<img src=${x.img1} alt="" />
+						</div>
+					</li>`;
+				slider2Html += `<li class="section-team__item swiper-slide swiper-slide-active" role="group" aria-label="1 / 7">
+				<div class="section-team__item-wrapper">
+					<div class="section-team__item-image">
+						<img src=${x.img} alt="">
+					</div>
+					<div class="section-team__item-text">
+						<p class="section-team__item-name">${x.title}</p>
+						</div>
+				</div>
+			</li>`
+			}
+			sliderinput.innerHTML = dataHtml;
+			slider2input[0].innerHTML = slider2Html;
+		}
+
+		function freshgraduates(target) {
+			location.href = "https://skillexchange-dev.lntedutech.com/register"
+		}
+		function freshemployers(target) {
+			location.href = "https://skillexchange-dev.lntedutech.com/employers"
+		}
+		function freshlogin(target) {
+			location.href = "https://profile-dev.lntedutech.com"
+		}
+// freshgraduates();
+	</script>
+</body>
+
+</html>
