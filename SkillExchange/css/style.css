@@ -560,11 +560,7 @@ a.link-demo--visited:hover {
   padding-bottom: 11px;
   border-bottom: 1px solid #d1d1d1;
 }
-@media (min-width: 992px) {
-  .header__top {
-    
-  }
-}
+
 .header__brand {
   max-width: 180px;
 }
@@ -1068,11 +1064,7 @@ a.link-demo--visited:hover {
 .section-hero {
   margin-bottom: 0px;
 }
-@media (min-width: 768px) {
-  .section-hero {
-    
-  }
-}
+
 .section-hero__slide {
   padding-top: 136px;
   height: 698px;
@@ -1577,11 +1569,7 @@ a.link-demo--visited:hover {
 .section-perks__item-text {
   margin-bottom: 0;
 }
-.section-icon-list__item-icon1 {
-  
-  /* margin-bottom: 38px; */
-  
-}
+
 .section-icon-list__item-icon1 {
   width: 45px;
   height: 45px;
@@ -1760,9 +1748,7 @@ color: #fff;
   position: relative;
 }
 @media (min-width: 768px) {
-  .section-partners__container {
-    
-  }
+
 }
 .section-partners__swiper {
   padding-top: 0px;
@@ -2516,9 +2502,7 @@ color: #fff;
   border-radius: 20px;
 }
 @media (min-width: 768px) {
-  .section-image-numbers__image--1 {
-    
-  }
+
 }
 .section-image-numbers__image--1 img {
   width: 120px;
@@ -2574,9 +2558,7 @@ color: #fff;
   object-position: bottom center;
 }
 @media (min-width: 768px) {
-  .section-image-numbers__image--2 img {
-    
-  }
+
   .c-logo-1 {
     border-right: 1px solid #edeff0;
     border-bottom: 1px solid #edeff0;
@@ -3211,6 +3193,7 @@ text-align: center;  padding: 15px 10px;
   }
   
 }
+
 .regbtn{
   padding: 9px;
   width: 110px;

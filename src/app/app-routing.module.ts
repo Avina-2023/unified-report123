@@ -8,12 +8,19 @@ import { CertificateViewComponent } from './pages/certificate-view/certificate-v
 import { LandingPageComponent } from './pages/landing-page/landing-page.component';
 import { JobSeekersComponent } from './pages/jobSeekers/job-seekers/job-seekers.component'
 import { RegisterPageComponent } from './pages/register/register-page/register-page.component'
+import { AboutComponent } from './skillexchange/about/about.component';
 const routes: Routes = [
   {
     path: `landing`, component: LandingPageComponent
   },
   {
-    path: ``, component: LandingPageComponent, canActivate: [IsloggedInGuard]
+    // path: ``, component: LandingPageComponent, canActivate: [IsloggedInGuard]
+  },
+  {
+    path:'',redirectTo:'/about/',pathMatch:'full'
+  },
+  {
+    path:'about',component:AboutComponent
   },
   {
     path: `register`, component: JobSeekersComponent
