@@ -1,0 +1,158 @@
+<div class="body">
+    <div class="subBody">
+        <h3 class="title">VIEW PARTNERS</h3>
+        <div class="partnerCardBody">
+            <mat-card class="partnerCard">
+                <div class="cardTitle">
+                    <p>PARTNER'S INFORMATION LIST</p>
+                </div>
+                <mat-card-content class="cardValue">
+                    <div class="primaryWrapper">
+                        <div class="left">
+                            <form [formGroup]="registerForm">
+                                <div class="inputContainer">
+                                    <label>Employer Name<span>*</span></label>
+                                    <mat-form-field   appearance="outline">
+                                        <input matInput placeholder="Enter the Employer Name" formControlName="employerName">
+                                    </mat-form-field>
+                                    <ng-container *ngIf="employerName.invalid && employerName.touched">
+                                        <mat-error class="error" *ngIf="employerName?.errors?.required">{{'Employer Name is required'}}</mat-error>
+                                    </ng-container>
+                                </div>
+                                <div class="inputContainer">  
+                                    <label>Established Year<span>*</span></label>
+                                    <mat-form-field appearance="outline">
+                                        <input formControlName="establishedYear" matInput placeholder="Enter Establishment Year">
+                                    </mat-form-field>
+                                    <ng-container *ngIf="establishedYear.invalid && establishedYear.touched">
+                                        <mat-error class="error" *ngIf="establishedYear?.errors?.required">{{'Established Year is required'}}</mat-error>
+                                    </ng-container>
+                                </div>
+                                <div class="inputContainer">
+                                    <label>Industry Type<span>*</span></label>
+                                    <mat-form-field appearance="outline">
+                                        <mat-select formControlName="industryType" placeholder="Select the Industry Type">
+                                            <mat-option *ngFor="let item of industryTypeArray" [value]="item.type">
+                                                {{item.type}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                    <ng-container *ngIf="industryType.invalid && industryType.touched">
+                                        <mat-error class="error" *ngIf="industryType?.errors?.required">{{'Industry Type is required'}}</mat-error>
+                                    </ng-container>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="right">
+                            <label class="customLabel">Upload Employer Logo<span>*</span></label>
+                            <p class="errmsg" *ngIf="errorMsgforLogo">{{errorMsgforLogo}}</p>
+                            <div class="wrapper">
+                                <div>
+                                    <img *ngIf="!employerLogoFileName" class="cloudicon" src="/assets/images/partner/cloudicon.svg" alt="">
+                                    <img *ngIf="employerLogoFileName" class="cloudicon" [src]="employerLogoUrl" height="100" width="200">
+                                </div>
+                                <div class="buttonClass">
+                                    <div class="subButton">
+                                        <input type="file"  accept="image/png, image/jpeg"
+                                                class="file-input" (change)="onEmployerLogoFileSelected($event)" (click)="$event.target.value=null" #fileUpload>
+                                        <button mat-flat-button (click)="fileUpload.click()">Browse</button>
+                                    </div>
+                                </div>
+                                <div class="titlealign">
+                                    <p class="labeldes">Photo must be in jpeg or png format</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="primaryWrapper">
+                        <div class="heading">SPOC Details</div>
+                        <div class="midForm">
+                            <div class="left">
+                                <form [formGroup]="registerForm">
+                                    <div class="inputContainer">
+                                        <label>Name<span>*</span></label>
+                                        <mat-form-field appearance="outline">
+                                            <input formControlName="name" matInput placeholder="Enter SPOC Name">
+                                        </mat-form-field>
+                                        <ng-container *ngIf="name.invalid && name.touched">
+                                            <mat-error class="error" *ngIf="name?.errors?.required">{{'Name is required'}}</mat-error>
+                                        </ng-container>
+                                    </div>
+                                    <div class="inputContainer">
+                                        <label>Email<span>*</span></label>
+                                        <mat-form-field appearance="outline">
+                                            <input formControlName="email" matInput placeholder="Enter SPOC Email">
+                                        </mat-form-field>
+                                        <ng-container *ngIf="email.invalid && email.touched">
+                                            <mat-error class="error" *ngIf="email?.errors?.required">{{'Email is required'}}</mat-error>
+                                        </ng-container>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="left">
+                                <form [formGroup]="registerForm">
+                                    <div class="inputContainer">
+                                        <label>Designation<span>*</span></label>
+                                        <mat-form-field appearance="outline">
+                                            <input formControlName="designation" matInput placeholder="Enter SPOC Designation">
+                                        </mat-form-field>
+                                        <ng-container *ngIf="designation.invalid && designation.touched">
+                                            <mat-error class="error" *ngIf="designation?.errors?.required">{{'Designation is required'}}</mat-error>
+                                        </ng-container>
+                                    </div>
+                                    <div class="inputContainer">
+                                        <label>Mobile<span>*</span></label>
+                                        <mat-form-field appearance="outline">
+                                            <input formControlName="mobile" matInput placeholder="Enter SPOC Mobile Number">
+                                        </mat-form-field>
+                                        <ng-container *ngIf="mobile.invalid && mobile.touched">
+                                            <mat-error class="error" *ngIf="mobile?.errors?.required">{{'Mobile is required'}}</mat-error>
+                                        </ng-container>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="inputContainer">
+                        <form [formGroup]="registerForm">
+                        <label class="customLabel">Short Description<span>*</span></label>
+                        <mat-form-field appearance="outline">
+                            <textarea type formControlName="description" style="resize: none;" class="descstyle" matInput placeholder="Short Description"></textarea>
+                        </mat-form-field>
+                        <ng-container *ngIf="description.invalid && description.touched">
+                            <mat-error class="error" *ngIf="description?.errors?.required">{{'Description is required'}}</mat-error>
+                        </ng-container>
+                    </form>
+                    </div>
+                    <label class="customLabel">Upload EOI Form<span>*</span></label>
+                    <p class="errmsg" *ngIf="errorMsgforeoi">{{ errorMsgforeoi}}</p>
+                    <div class="primaryWrapper">
+                        <div class="eoiform">
+                            <div class="imgdata"><img *ngIf="!eoiFileName" class="cloudicon" src="/assets/images/partner/cloudicon.svg" alt="">
+                               <div> <img *ngIf="eoiFileName" class="cloudicon" src="/assets/images/partner/pdficon.svg" alt=""></div>
+                               <div> <p *ngIf="eoiFileName" >{{eoiFileName}}</p></div>
+                            </div>
+                            <div class="buttonClass2">
+                                <div class="subButton">
+                                    <input type="file"  accept="image/png, image/jpeg, application/pdf"
+                                    class="file-input" (change)="onEoiFileSelected($event)" (click)="$event.target.value=null" #fileUploadeoi>
+                                    <button formControlName="eoiForm" (click)="fileUploadeoi.click()" mat-flat-button>Browse</button>
+                                </div>
+                            </div>
+                            <div class="titlealign">
+                                <p class="labeldes">Form must be in jpeg or pdf format</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="buttonClass">
+                        <div class="subButton"> 
+                            <button mat-flat-button  [disabled]="!registerForm.valid" (click)="savePartner()">Save</button>
+                        </div>
+                        <div class="subButton2"> <button mat-flat-button>Cancel</button>
+                        </div>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </div> 
+    </div>
+</div>

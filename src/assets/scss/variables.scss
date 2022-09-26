@@ -38,6 +38,17 @@ $screen-sm-min: 576px;
 $screen-md-min: 700px; // Small tablets (portrait view)
 $screen-lg-min: 992px; // Tablets and small desktops
 $screen-xl-min: 1200px; // Large tablets and desktops
+
+// NAVBAR
+$primary-gray: #d9d9d9;
+$black-1: #5E5E5E;
+$wrapper-light-gray: #fff;
+$primary-yellow: #FFCC00;
+$common-button-bg: #1b4e9b;
+$primary-checkbox-color: #1b4e9b;
+$primary-hover-color: #004684;
+$primary-error-color: red;
+$primary-error-text: red;
 // Small devices
 @mixin sm {
     @media (min-width: #{$screen-sm-min}) {

@@ -1,4 +1,5 @@
 @import "../../../../assets/scss/variables.scss";
+
 .container {
     width: 100%;
     height: 100%;
@@ -6,18 +7,22 @@
     padding: 0px;
     position: relative;
     overflow: hidden;
+
     .left {
         width: 50%;
         display: flex;
         border-right: 1px solid rgba(0, 0, 0, 0.2);
+
         @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
             display: none;
         }
+
         .logo {
             display: flex;
             justify-content: center;
             margin-bottom: 70px;
         }
+
         .beforeloginimg {
             height: 50px;
             position: absolute;
@@ -26,14 +31,17 @@
             left: 0;
             margin: 20px;
         }
+
         .mainlogo {
             display: flex;
             justify-content: center;
+
             .leftimg {
                 width: 100%;
                 opacity: 0.50;
             }
         }
+
         // .place {
         //     position: absolute;
         .text {
@@ -49,17 +57,22 @@
             width: 50%;
             height: 92%;
         }
+
         // }
     }
+
     .right {
         width: 50%;
         display: flex;
         align-items: center;
+
         @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
             width: 100%;
         }
+
         .loginform {
             width: 100%;
+
             .signIn {
                 margin-bottom: 7%;
                 text-align: center;
@@ -68,12 +81,14 @@
                 margin-left: 10%;
                 margin-right: 10%;
             }
+
             .login-sm {
                 .form {
                     display: block;
                     margin-left: 10%;
                     margin-right: 10%;
                 }
+
                 .btn {
                     display: flex;
                     justify-content: center;
@@ -85,6 +100,7 @@
                     height: 43px;
                     margin-top: 10%;
                 }
+
                 .btn:disabled {
                     background-color: #6666666e;
                     cursor: not-allowed;
@@ -92,6 +108,7 @@
             }
         }
     }
+
     .example-section {
         padding-top: 20px;
         // a {
@@ -118,21 +135,24 @@
 }
 
 ::ng-deep.mat-checkbox-checked.mat-accent .mat-checkbox-background {
-    background-color: #0097CB!important;
+    background-color: #0097CB !important;
 }
 
- ::ng-deep.mat-form-field-wrapper {
+::ng-deep.mat-form-field-wrapper {
     padding-bottom: 6px;
     padding-left: 0px;
 }
 
- ::ng-deep.mat-button-wrapper {
+::ng-deep.mat-button-wrapper {
     align-self: center;
 }
 
 ::ng-deep.mat-form-field-infix {
     padding: 10px !important;
     border-top: 6px solid transparent !important;
+}
+::ng-deep.mat-checkbox-label {
+    line-height: 1;
 }
 
 .close-button {
@@ -156,17 +176,60 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    margin: 29px;
+}
+
+
+@media only screen and (max-width: 320px) and (min-width: 253px) {
+    .successMessage {
+        margin-left: 10%;
+    }
 }
 
 .text {
     font-size: 24px;
+    line-height: 1;
+    text-align: center;
     color: $blackColor;
+
     p {
         margin-top: 20px;
     }
 }
-
+.text-height{
+    line-height: 1.5;
+}
 .subpara {
     text-align: center;
     margin-top: 15px;
+}
+
+.checkbox-text {
+    font-size: 12px;
+    letter-spacing: 0px;
+    color: #373331;
+    opacity: 1;
+    line-height: 1;
+}
+.a-font{
+font-size: 14px;
+}
+.reg-msg{
+    display: block;
+    font-size: 11px;
+    line-height: 0;
+    margin: 10px 0px 2px 0px;
+}
+.warning{
+    color: #D12020;
+    font-size: 14px;
+}
+.icon-center{
+    position: relative;
+    top:-2px;
+}
+
+.fontdata{
+    font-size: 15px;
+    font-weight: 20px;
 }

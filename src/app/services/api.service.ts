@@ -1,7 +1,7 @@
 
 import { APP_CONSTANTS } from './../utils/app-constants.service';
 import { environment } from './../../environments/environment';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AppConfigService } from '../utils/app-config.service';
 import * as CryptoJS from 'crypto-js';
@@ -13,6 +13,7 @@ import { Observable, Subject } from 'rxjs';
 export class ApiService {
   BASE_URL = environment.API_BASE_URL;
   EDGE_URL = environment.NODE_EDGE_URL;
+  SKILL_EDGE_URL = environment.SKILL_EDGE_URL;
   Prourl = environment.NODE_URL;
   EncryptKEY = environment.encryptionKey;
 
@@ -152,8 +153,41 @@ export class ApiService {
     return this.http.post(`${this.BASE_URL}/employeeRegister`,data);
   }
 
-  partnerfooterlist(){
-    return this.http.post(`${this.BASE_URL}/partnerfooterlist`,{});
+  getSkillMasterList(data){
+    return this.http.post(`${this.BASE_URL}/getSkillList`,data,
+    { reportProgress: true });
+  }
+
+  skillMasterValidate(data){
+    return this.http.post(`${this.BASE_URL}/skillValidate`,data);
+  }
+
+  skillUploadValidator(data){
+   return this.http.post(`${this.BASE_URL}/skillUploadValidator`,data);
+  }
+  
+  partnerfooterlist(data){
+    return this.http.post(`${this.BASE_URL}/partnerfooterlist`,data);
+  }
+
+  candidateRegistration(data){
+    return this.http.post(`${this.SKILL_EDGE_URL}/register`,data)
+  }
+
+  partnerList(data){
+    return this.http.post(`${this.BASE_URL}/partnerList`,data)
+  }
+  
+  updatePartnerStatus(data){
+    return this.http.post(`${this.BASE_URL}/updatePartnerStatus`,data)
+  }
+
+   updatePartner(data){
+    return this.http.post(`${this.BASE_URL}/partnerdetailsupload`,data)
+  }
+
+  industryType(data){
+    return this.http.post(`${this.BASE_URL}/industrytypelist`,data)
   }
   
 }

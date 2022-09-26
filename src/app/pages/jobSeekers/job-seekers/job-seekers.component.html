@@ -1,7 +1,7 @@
 <div class="container">
     <button class="close-button" [mat-dialog-close]="true">
         <mat-icon class="close-icon">close</mat-icon>
-      </button>
+    </button>
     <div class="left">
         <div class="mainlogo">
             <img alt="EduTech" class="beforeloginimg" src="assets/images/landing/newLogo.png" />
@@ -12,48 +12,70 @@
         <div class="text m-t-10">Registration</div>
         <!-- </div> -->
     </div>
-
     <div class="right">
-        <div class="loginform">
-            <!-- <div class="signIn"> {{'Registration Form'}}</div> -->
+        <div class="loginform" *ngIf="registerform">
+            <div class="signIn"> {{'Registration Form'}}</div>
             <div class="login-sm">
-                <div class="successMessage">
-                    <!-- <img src="assets/images/check.png"> -->
-                    <div class="text">
-                        <p>Currently enabled only for</p>
-                        <p class="subpara">partner colleges</p>
-                    </div>
-                </div>
-                <!-- <form class="form" [formGroup]="freshGraduatesForm" autocomplete="off">
+                <form class="form" [formGroup]="freshGraduatesForm" autocomplete="off">
                     <mat-form-field appearance="outline">
-                        <input matInput id="name" [placeholder]="'Name'" formControlName="name" maxlength="64" required>
-                        <mat-icon matPrefix class="icon-color">person_outline</mat-icon>
+                        <input matInput id="user_name" class="pb-0" [placeholder]="'Name'" formControlName="user_name"
+                            maxlength="64" required>
+                        <mat-icon matPrefix class="icon-center">person_outline</mat-icon>
+                        <mat-error *ngIf="user_name.invalid && user_name.touched">
+                           <br>
+                            <div *ngIf="user_name?.errors?.required">
+                                {{'Name is required'}}
+                            </div>
+                        </mat-error>
                     </mat-form-field>
-
-                    <ng-container *ngIf="name.invalid && name.touched">
-                        <mat-error class="error" *ngIf="name?.errors?.required">{{'Name is required'}}</mat-error>
-                    </ng-container>
-
+                    <br>
+                    <br>
                     <mat-form-field appearance="outline">
                         <input matInput id="email" [placeholder]="'Email'" formControlName="email" required>
-                        <mat-icon matPrefix class="icon-color">mail_outline</mat-icon>
+                        <mat-icon matPrefix class="icon-center">mail_outline</mat-icon>
+                        <mat-error *ngIf="email.invalid && email.touched">
+                            <br>
+                            <div *ngIf="email?.errors?.required">
+                                {{'Email id is required'}}
+                            </div>
+                            <div *ngIf="email.errors?.pattern">
+                                {{'Please enter a valid Email id'}}
+                            </div>
+                        </mat-error>
                     </mat-form-field>
-
-                    <ng-container *ngIf="email.invalid && email.touched">
-                        <mat-error class="error" *ngIf="email?.errors?.required">{{'Email id is required'}}</mat-error>
-                        <mat-error class="error" *ngIf="email.errors?.pattern">{{'Please enter a valid Email id'}}</mat-error>
-                    </ng-container>
-                    <section class="example-section">
-                        <mat-checkbox formControlName="term" class="example-margin" required><a href="">I agree</a></mat-checkbox>
-                    </section>
-                    <button class="btn" [disabled]="!freshGraduatesForm.valid" id="register" mat-button (click)="register()">{{"Submit"}}</button>
-                </form> -->
+                    <br>
+                    <br>
+                    <mat-checkbox formControlName="term" class="example-margin mt-1 ml-1" required>
+                        <label class="reg-msg mt-2"> By clicking register, I agree to get enrolled in Skill Exchange Program</label>
+                        <label class="reg-msg mt-3"> where recruiters can search my profile and contact me for job requirements.</label>
+                    </mat-checkbox>
+                    <button class="btn" [disabled]="!freshGraduatesForm.valid" id="register" mat-button
+                        (click)="register()">{{"Register"}}</button>
+                    <label class="warning pt-5 ml-1"><b>Note:</b> Use your personal email id for registration</label>
+                </form>
+            </div>
+        </div>
+        <div *ngIf="newCandidate">
+            <div class="successMessage">
+                <img src="assets/images/candidate-email-icon.png">
+                <div class="text fontdata">
+                    <label class="text-height">{{msg}} </label>
+                    <!-- <label class="text-height"> email address, from <b>assess.support@lntedutech.com.</b></label>
+                  <br>
+                  <br>
+                    <label class="text-height">Please complete the registration process from link provided</label>
+                   <label class="text-height">in email notification.</label> -->
+                </div>
+            </div>
+        </div>
+        <div *ngIf="existingCandidate">
+            <div class="successMessage">
+                <img src="assets/images/candidate-email-icon.png">
+                <div class="text">
+                    <p>{{msg}}</p>
+                    <a class="a-font" target="_blank" rel="skillProfileUrl" href="{{skillProfileUrl}}"><u>Click here to Login</u></a>
+                </div>
             </div>
         </div>
     </div>
 </div>
-
-<ng-template #noSkill>
-
-
-</ng-template>

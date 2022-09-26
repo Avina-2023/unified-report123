@@ -1359,3 +1359,24 @@ textarea {
     font-size: 18px;
     color: #6c757d;
 }
+
+.sidebarOpened1 {
+    .footer-emailTrigger {
+      left: -252px !important;
+      .footer-common {
+        padding-left: 252px !important;
+      }
+    }
+  }
+
+  .sidenav {
+    ::-webkit-scrollbar {
+       width: 4px !important;
+   }
+    ::-webkit-scrollbar-thumb {
+       border-radius: 100px !important;
+   }
+   li {
+       margin: 0 !important;
+   }
+ }
