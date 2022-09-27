@@ -22,7 +22,8 @@
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"></script>
-	<title>Skill Exchange</title>
+	<!-- <link src="../src/environments/environment.ts"> -->
+		<title>Skill Exchange</title>
 </head>
 
 <body>
@@ -315,64 +316,118 @@
 	</script>
 	<script>
 		window.onload = function () {
-			var sliderdata = [
+			var sliderdata1 = [
 				{
-					"title": "KPR Institute of Engineering and Technology",
-					"img": "img/inst-partners/kpriet.jpg",
-					"img1": "img/partners/Lnt.png"
+					"title": "Anna University,<br> Chennai",
+					"img": "img/inst-partners/Annauniversity-logo.jpg",
+				
+				},
+				{
+					"title": "Indian Institute of Technology, Madras",
+					"img": "img/inst-partners/iitmadras.jpg",
+				
 				},
 				{
 					"title": "College of Engineering, Guindy (Anna University)",
 					"img": "img/inst-partners/coe-guindy.jpg",
-					"img1": "img/partners/Lnt-Nxt.png"
+			
 				},
 				{
-					"title": "Chitkarauniversity",
+					
+					"title": "Madras Institute of Technology (Anna University)",
+					"img": "img/inst-partners/mit-chennai.jpg",
+				
+				},
+				{
+					"title": "Alagappa College of Technology, Guindy (Anna University)",
+					"img": "img/inst-partners/Actech.jpg",
+					
+				},
+				{
+					"title": "School of Architectuire and Planning (Anna University)",
+					"img": "img/inst-partners/arch.jpg",
+				
+				},
+				{
+					"title": "BS Abdur Rahman Crescent Institute of Scienece and Technology",
+					"img": "img/inst-partners/crescent.jpg",
+				},
+
+				{
+					"title": "Chitkara University,<br> Punjab",
 					"img": "img/inst-partners/Chitkarauniversity.jpg",
-					"img1": "img/partners/Lnt-Tech.png"
+				
 				},
 				{
-					"img": "img/inst-partners/gtu.jpg",
 					"title": "Gujarat Technological University",
-					"img1": "img/partners/LTI-lets-solve.png"
-				},
-				{
-					"title": "jecrcUniversity",
-					"img": "img/inst-partners/jecrcUniversity.jpg",
-					"img1": "img/partners/mindtree.png"
+					"img": "img/inst-partners/gtu.jpg",
+				
 				},
 				{
 					"title": "JECRC University,<br>Rajasthan",
 					"img": "img/inst-partners/jecrcUniversity.jpg",
-					"img1": "img/partners/ABB_logo.png"
+					
 				},
 				{
 					"title": "KSR College of Technology",
 					"img": "img/inst-partners/ksrct.jpg",
+				
+				},
+				{   "title":"KPR Institute of Engineering and Technology",
+					"img":"img/inst-partners/kpriet.jpg",
+					
+				}
+			]
+
+
+
+			var sliderdata2 = [
+				{
+				
+					"img1": "img/partners/Lnt.png"
+				},
+				{
+					
+					"img1": "img/partners/Lnt-Nxt.png"
+				},
+				{
+					
+					"img1": "img/partners/Lnt-Tech.png"
+				},
+				{
+					
+					"img1": "img/partners/LTI-lets-solve.png"
+				},
+				{
+				
+					"img1": "img/partners/mindtree.png"
+				},
+				{
+					
+					"img1": "img/partners/ABB_logo.png"
+				},
+				{
+					
 					"img1": "img/partners/Otis-Logo.png"
 				},
 
 				{
-					"img": "img/inst-partners/gtu.jpg",
-					"title": "Gujarat Technological University",
+					
 					"img1": "img/partners/prime.png"
 				},
 				{
-					"title": "jecrcUniversity",
-					"img": "img/inst-partners/jecrcUniversity.jpg",
+					
 					"img1": "img/partners/Amadis-LOGO.jpg"
 				},
 				{
-					"title": "JECRC University,<br>Rajasthan",
-					"img": "img/inst-partners/jecrcUniversity.jpg",
+					
 					"img1": "img/partners/Corrohealth-logo.jpg"
 				},
 				{
-					"title": "KSR College of Technology",
-					"img": "img/inst-partners/ksrct.jpg",
+					
 					"img1": "img/partners/Omega_logo.jpg"
 				},
-				{
+				{ 
 					"img1": "img/partners/Prime-Logo.jpg"
 				},
 				{
@@ -391,16 +446,23 @@
 					"img1": "img/partners/Bankbazaar-Logo.png"
 				}
 			]
+
+
+
 			const sliderinput = document.getElementById('slider1');
 			const slider2input = document.getElementsByClassName('slider2');
 			dataHtml = ''
-			slider2Html = ''
-			for (let x of sliderdata) {
+			
+			for (let x of sliderdata2) {
 				dataHtml += `<li class="section-partners__item swiper-slide">
 						<div class="section-partners__image">
 							<img src=${x.img1} alt="" />
 						</div>
-					</li>`;
+					</li>`
+			}
+
+			slider2Html = ''
+			for (let x of sliderdata1) {
 				slider2Html += `<li class="section-team__item swiper-slide swiper-slide-active" role="group" aria-label="1 / 7">
 				<div class="section-team__item-wrapper">
 					<div class="section-team__item-image">
@@ -412,6 +474,7 @@
 				</div>
 			</li>`
 			}
+
 			sliderinput.innerHTML = dataHtml;
 			slider2input[0].innerHTML = slider2Html;
 		}
@@ -423,7 +486,8 @@
 			location.href = "/employers"
 		}
 		function freshlogin(target) {
-			location.href = "/login"
+			var login = "https://profile-dev.lntedutech.com/login"
+			location.href = login;
 		}
 // freshgraduates();
 	</script>
