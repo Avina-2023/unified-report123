@@ -41,9 +41,9 @@
 						Register
 					</button>
 					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-						<span class="dropdown-item" onclick="javascript:freshgraduates(this)">Fresh Graduates</span>
+						<a class="dropdown-item" href="/register">Fresh Graduates</a>
 						<div class="dropdown-divider"></div>
-						<span class="dropdown-item" onclick="javascript:freshemployers(this)">Employers</span>
+						<a class="dropdown-item" href="/employers">Employers</a>
 					</div>
 				</div>
 				<div class="dropdown">
@@ -52,10 +52,16 @@
 						Login
 					</button>
 					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-						<span class="dropdown-item" onclick="javascript:freshlogin(this)">Fresh Graduates</span>
+						<a class="dropdown-item" href="https://profile-dev.lntedutech.com/login">Fresh Graduates</a>
 					</div>
 				</div>
 			</div>
+
+	
+
+
+
+
 				<nav class="navbar navbar-expand-xl">
 					
 						<div class="collapse navbar-collapse" id="navbarContent">
@@ -67,7 +73,7 @@
 									<a class="nav-link" href="Employer.html">Employers</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link" href="Jobseeker.html">Job Seekers</a>
+									<a class="nav-link" href="Jobseeker.html">Fresh Graduates</a>
 								</li>
 								<li class="nav-item">
 									<a class="nav-link" href="#">Partners <span class="fa fa-caret-down"></span></a>
@@ -165,13 +171,13 @@
 					<div class="footer__social">
 						<ul class="footer__menu list-unstyled">
 							<li class="footer__menu-item">
-								<a class="footer__menu-link" href="about.html">About</a>
+								<a class="footer__menu-link" href="About.html">About</a>
 							</li>
 							<li class="footer__menu-item">
 								<a class="footer__menu-link" href="Employer.html">Employers</a>
 							</li>
 							<li class="footer__menu-item">
-								<a class="footer__menu-link" href="Jobseeker.html">Job Seekers</a>
+								<a class="footer__menu-link" href="Jobseeker.html">Fresh Graduates</a>
 							</li>
 							<li class="footer__menu-item">
 								<a class="footer__menu-link" href="Hiring-Partners.html">Partners</a>
@@ -219,10 +225,7 @@
 		function freshemployers(target) {
 			location.href = "/employers"
 		}
-		function freshlogin(target) {
-			var login = "https://profile-dev.lntedutech.com/login"
-			location.href = login;
-		}
+	
 	</script>
 			</body>
 </html>

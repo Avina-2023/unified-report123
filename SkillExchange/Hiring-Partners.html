@@ -41,9 +41,9 @@
 								Register
 							</button>
 							<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-								<span class="dropdown-item" onclick="javascript:freshgraduates(this)">Fresh Graduates</span>
+								<a class="dropdown-item" href="/register">Fresh Graduates</a>
 								<div class="dropdown-divider"></div>
-								<span class="dropdown-item" onclick="javascript:freshemployers(this)">Employers</span>
+								<a class="dropdown-item" href="/employers">Employers</a>
 							</div>
 						</div>
 						<div class="dropdown">
@@ -52,8 +52,7 @@
 								Login
 							</button>
 							<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-								<span class="dropdown-item" onclick="javascript:freshlogin(this)">Fresh Graduates</span>
-	
+								<a class="dropdown-item" href="https://profile-dev.lntedutech.com/login">Fresh Graduates</a>
 							</div>
 						</div>
 					</div>
@@ -68,7 +67,7 @@
 											<a class="nav-link" href="Employer.html">Employers</a>
 										</li>
 										<li class="nav-item">
-											<a class="nav-link" href="Jobseeker.html">Job Seekers</a>
+											<a class="nav-link" href="Jobseeker.html">Fresh Graduates</a>
 										</li>
 										<li class="nav-item">
 											<a class="nav-link" href="#">Partners <span class="fa fa-caret-down"></span></a>
@@ -212,7 +211,7 @@
 				<h2 class="section-banner__title">Looking to hire Pre-Assessed and Certified Fresh Graduates</h2>
 				<p class="section-banner__text">We'll be glad to have you onboard! To join as a hiring partner, write to meher.k@lntecc.com</p>
 			</div>
-			<a href="#" class="section-banner__link button button--white">Join as Hiring Partner</a>
+			<a href="/employers" class="section-banner__link button button--white">Join as Hiring Partner</a>
 		</div>
 	</div>
 </section>
@@ -226,13 +225,13 @@
 					<div class="footer__social">
 						<ul class="footer__menu list-unstyled">
 							<li class="footer__menu-item">
-								<a class="footer__menu-link" href="about.html">About</a>
+								<a class="footer__menu-link" href="About.html">About</a>
 							</li>
 							<li class="footer__menu-item">
 								<a class="footer__menu-link" href="Employer.html">Employers</a>
 							</li>
 							<li class="footer__menu-item">
-								<a class="footer__menu-link" href="Jobseeker.html">Job Seekers</a>
+								<a class="footer__menu-link" href="Jobseeker.html">Fresh Graduates</a>
 							</li>
 							<li class="footer__menu-item">
 								<a class="footer__menu-link" href="Hiring-Partners.html">Partners</a>
@@ -273,17 +272,6 @@
 		<script>
 			new WOW().init();
 		</script>
-		<script>
-		function freshgraduates(target) {
-			location.href = "/register"
-		}
-		function freshemployers(target) {
-			location.href = "/employers"
-		}
-		function freshlogin(target) {
-			var login = "https://profile-dev.lntedutech.com/login"
-			location.href = login;
-		}
-	</script>
+
 			</body>
 </html>
