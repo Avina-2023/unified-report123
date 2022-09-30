@@ -203,15 +203,15 @@
 				spaceBetween: 8,
 			},
 			768: {
-				slidesPerView: 4,
+				slidesPerView: 3,
 				spaceBetween: 16,
 			},
 			992: {
-				slidesPerView: 5,
+				slidesPerView: 4,
 				spaceBetween: 16,
 			},
 			1200: {
-				slidesPerView: 6,
+				slidesPerView: 5,
 				spaceBetween: 20,
 			},
 		},
