@@ -1,5 +1,5 @@
-<div class="container">
-    <button class="close-button" [mat-dialog-close]="true">
+<div class="container-fluid">
+    <button class="close-button" [mat-dialog-close]="true" routerLink="/static">
         <mat-icon class="close-icon">close</mat-icon>
     </button>
     <div class="left">
@@ -13,7 +13,7 @@
         <!-- </div> -->
     </div>
     <div class="right">
-        <div class="loginform" *ngIf="newCandidate">
+        <div class="loginform" *ngIf="registerform">
             <div class="signIn"> {{'Registration Form'}}</div>
             <div class="login-sm">
                 <form class="form" [formGroup]="freshGraduatesForm" autocomplete="off">
@@ -22,15 +22,19 @@
                             maxlength="64" required>
                         <mat-icon matPrefix class="icon-center">person_outline</mat-icon>
                         <mat-error *ngIf="user_name.invalid && user_name.touched">
+                           <br>
                             <div *ngIf="user_name?.errors?.required">
                                 {{'Name is required'}}
                             </div>
                         </mat-error>
                     </mat-form-field>
+                    <br>
+                    <br>
                     <mat-form-field appearance="outline">
                         <input matInput id="email" [placeholder]="'Email'" formControlName="email" required>
                         <mat-icon matPrefix class="icon-center">mail_outline</mat-icon>
                         <mat-error *ngIf="email.invalid && email.touched">
+                            <br>
                             <div *ngIf="email?.errors?.required">
                                 {{'Email id is required'}}
                             </div>
@@ -39,6 +43,8 @@
                             </div>
                         </mat-error>
                     </mat-form-field>
+                    <br>
+                    <br>
                     <mat-checkbox formControlName="term" class="example-margin mt-1 ml-1" required>
                         <label class="reg-msg mt-2"> By clicking register, I agree to get enrolled in Skill Exchange Program</label>
                         <label class="reg-msg mt-3"> where recruiters can search my profile and contact me for job requirements.</label>
@@ -49,25 +55,24 @@
                 </form>
             </div>
         </div>
-        <div *ngIf="successmail">
+        <div *ngIf="newCandidate">
             <div class="successMessage">
                 <img src="assets/images/candidate-email-icon.png">
                 <div class="text fontdata">
-                    <label class="text-height">A verification email has been sent to your </label>
-                    <label class="text-height"> email address, from <b>assess.support@lntedutech.com.</b></label>
+                    <label class="text-height">{{msg}} </label>
+                    <!-- <label class="text-height"> email address, from <b>assess.support@lntedutech.com.</b></label>
                   <br>
                   <br>
                     <label class="text-height">Please complete the registration process from link provided</label>
-                   <label class="text-height">in email notification.</label>
-                   
+                   <label class="text-height">in email notification.</label> -->
                 </div>
             </div>
         </div>
-        <div *ngIf="failuremail">
+        <div *ngIf="existingCandidate">
             <div class="successMessage">
                 <img src="assets/images/candidate-email-icon.png">
                 <div class="text">
-                    <p>Your profile already exists with us.</p>
+                    <p>{{msg}}</p>
                     <a class="a-font" target="_blank" rel="skillProfileUrl" href="{{skillProfileUrl}}"><u>Click here to Login</u></a>
                 </div>
             </div>
