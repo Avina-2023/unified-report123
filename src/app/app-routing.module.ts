@@ -11,7 +11,7 @@ import { RegisterPageComponent } from './pages/register/register-page/register-p
 import { StaticpageComponent } from './staticpage/staticpage.component';
 import { LoginPageComponent } from './pages/login/login-page/login-page.component';
 const routes: Routes = [
-  {
+ {
     path: `landing`, component: LandingPageComponent
   },
   {
