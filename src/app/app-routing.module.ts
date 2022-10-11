@@ -9,13 +9,14 @@ import { LandingPageComponent } from './pages/landing-page/landing-page.componen
 import { JobSeekersComponent } from './pages/jobSeekers/job-seekers/job-seekers.component'
 import { RegisterPageComponent } from './pages/register/register-page/register-page.component'
 import { StaticpageComponent } from './staticpage/staticpage.component';
+import { LoginPageComponent } from './pages/login/login-page/login-page.component';
 const routes: Routes = [
-//  {
-//     path: `landing`, component: LandingPageComponent
-//   },
-//   {
-//     path: ``, component: LandingPageComponent, canActivate: [IsloggedInGuard]
-//   },
+ {
+    path: `landing`, component: LandingPageComponent
+  },
+  {
+    path: `adminlogin`, component: LoginPageComponent,
+  },
   {
     path:'',redirectTo:'/static',pathMatch:'full'
   },
