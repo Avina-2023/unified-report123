@@ -4,7 +4,7 @@
     <div class="partnerCardBody">
       <div>
         <mat-card class="partnerCard">
-          <mat-card-title class="cardTitle">TOTAL PARTNERS</mat-card-title>
+          <mat-card-title class="cardTitle">Total Partners</mat-card-title>
           <mat-card-content class="cardValue">
             <div>
               <p>{{totalPartnerCount}}</p>
@@ -19,7 +19,7 @@
       </div>
       <div>
         <mat-card class="partnerCard">
-          <mat-card-title class="cardTitle">NO. OF ACTIVE PARTNERS</mat-card-title>
+          <mat-card-title class="cardTitle">No. of Active Partners</mat-card-title>
           <mat-card-content class="cardValue">
             <div>
               <p>{{activePartnerCount}}</p>
@@ -34,10 +34,25 @@
       </div>
       <div>
         <mat-card class="partnerCard">
-          <mat-card-title class="cardTitle">NO. OF INACTIVE PARTNERS</mat-card-title>
+          <mat-card-title class="cardTitle">No. of Inactive Partners</mat-card-title>
           <mat-card-content class="cardValue">
             <div>
               <p>{{inActivePartnerCount}}</p>
+            </div>
+            <div><img src="/assets/images/partner/partners-inactive.png" alt=""></div>
+          </mat-card-content>
+          <mat-card-footer class="cardFooter">
+            Since last month <span class="cardFootervalue"> <img src="/assets/images/partner/arrow-round-up.svg"
+                alt="">2%</span>
+          </mat-card-footer>
+        </mat-card>
+      </div>
+      <div>
+        <mat-card class="partnerCard">
+          <mat-card-title class="cardTitle">Pending Approvals</mat-card-title>
+          <mat-card-content class="cardValue">
+            <div>
+              <p>{{pendingCount}}</p>
             </div>
             <div><img src="/assets/images/partner/partners-inactive.png" alt=""></div>
           </mat-card-content>
@@ -61,6 +76,41 @@
             </mat-button-toggle-group>
           </div>
         </mat-card-title>
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-4">
+              <input matInput placeholder="Search by Company name" class="search">
+            </div>
+            <div class="col-md-3">
+              <mat-form-field class="example-form-field dateborder">
+                <input matInput [matDatepicker]="datepicker">
+                <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+                <mat-datepicker #datepicker>
+                  <mat-datepicker-actions>
+                    <button mat-button matDatepickerCancel>Cancel</button>
+                    <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+                  </mat-datepicker-actions>
+                </mat-datepicker>
+              </mat-form-field>
+            </div>
+            <div class="col-md-3">
+              <mat-form-field class="example-form-field dateborder">
+                <input matInput [matDatepicker]="datepicker">
+                <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+                <mat-datepicker #datepicker>
+                  <mat-datepicker-actions>
+                    <button mat-button matDatepickerCancel>Cancel</button>
+                    <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+                  </mat-datepicker-actions>
+                </mat-datepicker>
+              </mat-form-field>
+            </div>
+            <div class="col-md-2">
+              <button color="primary" type="submit" class="search-btn">Search</button>
+            </div>
+          </div>
+        </div>
+        <br>
         <mat-card-content class="cardValue">
           <div>
             <table mat-table [dataSource]="dataSource" class="">
@@ -102,9 +152,8 @@
 
               <ng-container matColumnDef="status">
                 <th mat-header-cell *matHeaderCellDef> Status </th>
-                <td mat-cell *matCellDef="let element"> <span
-                    [className]="element.isApproved == true ? 'rectangleActive' : 'rectangleInActive'">{{element.isApproved
-                    ?"ACTIVE":"INACTIVE"}}</span></td>
+                <td mat-cell *matCellDef="let element"> 
+                  <span [className]="(element.isActive == false && element.isApproved == false)?'rectanglePending':element.isActive == true ? 'rectangleActive' : 'rectangleInActive'">{{(element.isActive == false && element.isApproved == false)?"Pending": element.isActive?"ACTIVE":"INACTIVE"}}</span></td>
               </ng-container>
 
               <ng-container matColumnDef="action">
@@ -116,9 +165,9 @@
                     </figure>
                   </div>
                   <mat-menu #menu="matMenu">
-                    <button *ngIf="element.isApproved == false" mat-menu-item
+                    <button *ngIf="element.isActive == false" mat-menu-item
                       (click)="updateStatus(true,element.email)">Activate</button>
-                    <button *ngIf="element.isApproved == true" mat-menu-item
+                    <button *ngIf="element.isActive == true" mat-menu-item
                       (click)="updateStatus(false,element.email)">Deactivate</button>
                     <button mat-menu-item (click)="updatePartner(element.email)">Edit</button>
 

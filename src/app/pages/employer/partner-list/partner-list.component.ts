@@ -23,25 +23,29 @@ export class PartnerListComponent implements OnInit {
   totalPartnerCount :number;
   activePartnerCount :number;
   inActivePartnerCount :number;
+  pendingCount:number;
+
   constructor(private ApiService: ApiService, private appconfig: AppConfigService, private toastr: ToastrService) {
   }
 
   ngOnInit(): void {
-    this.fetchData({});
+    var data = {"filterModel":{"createdBy":{"filterType":"nin","values":["UapAdmin"]}}}
+    this.fetchData(data);
   }
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }
   selectStatus() {
     var isApproved = this.status == 'active' ? true : this.status == 'inActive' ? false : "-";
-    let data = {};
+    let data : any = {"filterModel":{"createdBy":{"filterType":"nin","values":["UapAdmin"]}}};
     if (isApproved != "-") {
       data = {
         "filterModel": {
           "isApproved": {
             "filterType": "set",
             "values": [isApproved]
-          }
+          },
+          "createdBy":{"filterType":"nin","values":["UapAdmin"]}
         }
       };
     }
@@ -57,6 +61,7 @@ export class PartnerListComponent implements OnInit {
         this.totalPartnerCount = partnerList.totalCount;
         this.activePartnerCount = partnerList.activeCount;
         this.inActivePartnerCount = partnerList.inActiveCount;
+        this.pendingCount = partnerList.pendingCount;
       }
     }, (err) => {
       this.toastr.warning('Connection failed, Please try again.');
