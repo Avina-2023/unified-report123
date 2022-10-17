@@ -1,0 +1,94 @@
+
+.top-bg{
+    background-color: #1B4E9B;
+    width: 100%;
+    height: 345px;
+    // display: flex;
+}
+:host ::ng-deep .mat-grid-list {
+        display: inherit;
+        position: inherit;
+}
+.topborder{
+    width: 100%;
+    height: 4px;
+    background: transparent linear-gradient(90deg, rgba(22, 190, 240, 1) 0%, rgba(84, 185, 82, 1) 100%) 0% 0% no-repeat padding-box;
+}
+.couning-card{
+    width: 295px;
+    height: 120px;
+}
+.update-info{
+    border: 1px solid #26C1F6;
+    width: 109px;
+    background: #26C1F6 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #2c28281c;
+    border-radius: 25px;
+    opacity: 1;
+    color: #fff;
+    padding: 6px;
+}
+.top-left{
+    position: relative;
+    left: 15%;
+    float: left;
+}
+.top-right{
+    position: relative;
+    right: 15%;
+    float: right;
+}
+.card{
+//     width: 295px;
+// height: 120px;
+// background: var(--unnamed-color-ffffff) 0% 0% no-repeat padding-box;
+background: #FFFFFF 0% 0% no-repeat padding-box;
+box-shadow: 0px 3px 6px #2C28281C;
+border-radius: 10px;
+opacity: 1;
+}
+.card-number{
+    color: #1B4E9B;
+}
+.card-inside-percentage-box{
+    background: #56B35A 0% 0% no-repeat padding-box;
+border-radius: 4px;
+opacity: 1;
+width: 33px;
+height: 23px;
+text-align: center;
+padding: 2px;
+font-weight: 500;
+color: #fff;
+}
+
+.chartcard{
+    background: var(--unnamed-color-ffffff) 0% 0% no-repeat padding-box;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 1px 1px 12px #00000033;
+    border-radius: 10px;
+    opacity: 1;
+    height: auto;
+    width: auto;
+}
+.cardcharts{
+    position: relative;
+    top: -30px;
+    padding: 5px;
+}
+
+.chart-wrapper{
+    position: relative;
+    right: 20%;
+}
+
+// mbl responsive
+@media only screen and (max-width: 768px) {
+
+    .cardcharts{
+        position: relative;
+        top: 360px;
+        padding: 5px;
+    }
+
+}
