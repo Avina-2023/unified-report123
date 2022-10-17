@@ -10,7 +10,7 @@
           height="60"
         />
         <div class="talentxt">
-          <strong>Connecting</strong>  
+          <strong>Connecting</strong>
           <span class="slim">
              Skilled Talent with Industry</span>
           <div class="decocolor"></div>
@@ -30,10 +30,10 @@
           <div class="animated animatedFadeInUp fadeInUp signIn"> Welcome</div>
         </div>
         <form class="form" [formGroup]="loginForm" autocomplete="off">
+
+          <mat-label class="label-color">Username</mat-label>
             <mat-form-field appearance="outline">
-                <!-- <mat-label class="label-color">{{'Username'}}</mat-label> -->
                 <input matInput id="username" [placeholder]="'Enter the User name'" formControlName="username" maxlength="64" required>
-                <mat-icon matPrefix class="icon-color">mail_outline</mat-icon>
             </mat-form-field>
 
             <ng-container *ngIf="username.invalid && username.touched">
@@ -41,10 +41,9 @@
                 <mat-error class="error" *ngIf="username.errors?.pattern">{{'Please enter a valid User name'}}</mat-error>
             </ng-container>
 
+            <mat-label class="label-color">Password</mat-label>
             <mat-form-field appearance="outline">
-                <!-- <mat-label class="label-color">{{'Password'}}</mat-label> -->
                 <input matInput [placeholder]="'Enter password'" [type]="hide ? 'password' : 'text'" formControlName="password" [ngClass]="{ 'is-invalid': password?.touched && password?.errors?.required}" required>
-                <mat-icon class="icon-color" matPrefix>lock_outline</mat-icon>
                 <span mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
                   <mat-icon style="cursor: pointer;" class="icon-color">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                 </span>
@@ -54,13 +53,13 @@
                 <mat-error class="error" *ngIf="password?.errors?.required">{{'Password is required'}}</mat-error>
             </ng-container>
             <button class="btn" [disabled]="!loginForm.valid" id="login" mat-button (click)="login()">{{'SIGN IN'}}</button>
+            <div class="mt-20 signupTxt">New User? <a class="forgot" href="/employers">Sign Up</a></div>
         </form>
       </div>
       </mat-card>
-    
+
     </div>
     </div>
     <!-- Footer area -->
     <div class="footer-section">© 2022 L&T Edutech. All Rights Reserved</div>
     </div>
-    

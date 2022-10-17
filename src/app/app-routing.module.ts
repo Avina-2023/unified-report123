@@ -27,9 +27,12 @@ const routes: Routes = [
   {
     path: `register`, component: JobSeekersComponent
   },
-  // {
-  //   path:`emp-dashboard`,component:SidebarComponent
-  // },
+  {
+    path:'sidebar',component:SidebarComponent
+  },
+  {
+    path: 'employers', component: RegisterPageComponent
+  },
   {
     path: 'employers', component: RegisterPageComponent
   },
@@ -52,7 +55,7 @@ const routes: Routes = [
     path: `**`,
     pathMatch: 'full',
     component: PagenotfoundComponent
-  } 
+  }
 ];
 
 @NgModule({
