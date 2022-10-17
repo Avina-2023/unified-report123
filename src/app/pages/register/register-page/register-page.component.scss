@@ -21,6 +21,7 @@
   }
 }
 
+
 .form-wrapper{
   display: flex;
   flex-direction: column;
@@ -35,6 +36,8 @@ width: 50%;
 mat-card{
   width:50%;
   margin:0 auto;
+  padding-top: 40px;
+  padding-bottom: 40px;
 }
 
 .ltext{
@@ -90,6 +93,12 @@ input.mat-input-element {
   font-size: 14px;
 }
 
+.form{
+    display: flex;
+    flex-direction: column;
+    align-content: flex-start;
+}
+
 :host ::ng-deep.mat-input-element {
   margin: 3px !important;
 }
@@ -131,7 +140,7 @@ input.mat-input-element {
   border-radius: 5px !important;
   width: 100%;
   padding: 5px 18px;
-  // margin-top: 20px;
+  margin-top: 20px;
 }
 .btn:hover {
   background: #28BBEE !important;
@@ -148,6 +157,18 @@ font-size: 16px;
 .sectionWrapper{
   display: flex;
   flex-direction: row;
+}
+
+mat-label{
+  margin-top:15px
+}
+.mt-20{
+  margin-top:20px !important
+}
+
+.signupTxt{
+  font-size: 12px;
+  text-align: center;
 }
 
 // Footer area
