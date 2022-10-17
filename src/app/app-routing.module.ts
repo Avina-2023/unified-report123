@@ -30,13 +30,13 @@ const routes: Routes = [
   {
     path:'sidebar',component:SidebarComponent
   },
-  // {
-  //   path: 'employers', component: RegisterPageComponent
-  // },
+  {
+    path: 'employers', component: RegisterPageComponent
+  },
   {
     path: '', loadChildren: () => import('./pages/login/login-routing.module').then(m => m.LoginRoutingModule), canActivate: [IsloggedInGuard]
   },
- 
+
   {
     path: `${APP_CONSTANTS.ROUTES.AUTH}`, loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule), canActivate: [IsAccessGuard]
   },
@@ -52,7 +52,7 @@ const routes: Routes = [
     path: `**`,
     pathMatch: 'full',
     component: PagenotfoundComponent
-  } 
+  }
 ];
 
 @NgModule({

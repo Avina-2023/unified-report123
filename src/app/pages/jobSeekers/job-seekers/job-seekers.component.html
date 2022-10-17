@@ -10,7 +10,7 @@
           height="60"
         />
         <div class="talentxt">
-            <strong> Kick-start </strong> 
+            <strong> Kick-start </strong>
           <span class="slim">
             your career with your dream company
             </span>
@@ -53,22 +53,17 @@
                     </div>
                 </mat-error>
             </mat-form-field>
-            <br>
-            <br>
-            <mat-checkbox formControlName="term" class="example-margin mt-1 ml-1" required>
-                <label class="reg-msg mt-2"> By clicking register, I agree to get enrolled in Skill Exchange Program</label>
-                <label class="reg-msg mt-3"> where recruiters can search my profile and contact me for job requirements.</label>
-            </mat-checkbox>
+
+            <div class="signupTxt">By registering, I agree to get enroll in the Skill Exchange Program where recruiters can search my profile and contact me for job Opportunities.</div>
             <button class="btn" [disabled]="!freshGraduatesForm.valid" id="register" mat-button
                 (click)="register()">{{"Register"}}</button>
-            <label class="warning pt-5 ml-1"><b>Note:</b> Use your personal email id for registration</label>
+            <label class="signupTxt"><b>Note:</b> Use your personal email id for registration</label>
         </form>
       </div>
       </mat-card>
-    
+
     </div>
     </div>
     <!-- Footer area -->
     <div class="footer-section">© 2022 L&T Edutech. All Rights Reserved</div>
     </div>
-    
