@@ -9,6 +9,8 @@ import { LandingPageComponent } from './pages/landing-page/landing-page.componen
 import { JobSeekersComponent } from './pages/jobSeekers/job-seekers/job-seekers.component'
 import { RegisterPageComponent } from './pages/register/register-page/register-page.component'
 import { StaticpageComponent } from './staticpage/staticpage.component';
+import { DashboardComponent } from './pages/empdashboard/dashboard/dashboard.component';
+import { SidebarComponent } from './pages/empdashboard/sidebar/sidebar.component';
 const routes: Routes = [
 //  {
 //     path: `landing`, component: LandingPageComponent
@@ -26,11 +28,18 @@ const routes: Routes = [
     path: `register`, component: JobSeekersComponent
   },
   {
-    path: 'employers', component: RegisterPageComponent
+    path:'sidebar',component:SidebarComponent
   },
   // {
-  //   path: '', loadChildren: () => import('./pages/login/login.module').then(m => m.LoginModule), canActivate: [IsloggedInGuard]
+  //   path: 'employers', component: RegisterPageComponent
   // },
+  {
+    path: `${APP_CONSTANTS.ROUTES.EMPDASHBOARD.HOME}`, component: DashboardComponent,
+  },
+  {
+    path: '', loadChildren: () => import('./pages/login/login-routing.module').then(m => m.LoginRoutingModule), canActivate: [IsloggedInGuard]
+  },
+ 
   {
     path: `${APP_CONSTANTS.ROUTES.AUTH}`, loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule), canActivate: [IsAccessGuard]
   },

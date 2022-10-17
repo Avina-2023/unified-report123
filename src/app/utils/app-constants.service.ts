@@ -77,6 +77,14 @@ export const APP_CONSTANTS = {
       HOME:'partner',
       PARTNERLIST:'partnerlist',
       ADDPARTNER:"addpartner",
+    },
+    EMPDASHBOARD:{
+      HOME:'dashboard',
+      COUNTCARD:'count',
+      DEMOGRAPHY:'demography',
+      DISCIPLINE:'discipline',
+      GRADUATION:'Graduation',
+      DEGREE :'Degree'
     }
   }
 };
