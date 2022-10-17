@@ -1,0 +1,116 @@
+<mat-drawer-container class="example-container mat-typography" autosize>
+    <mat-drawer #drawer mode="side" disableClose="true" opened="true">
+      <button mat-button (click)="isExpanded = !isExpanded" style="margin: 10px;">
+        <mat-icon aria-label="Menu">menu</mat-icon>
+      </button>
+  
+      <mat-nav-list>
+        <mat-list-item>
+          <h4 mat-line *ngIf="isExpanded">Dashboard</h4>
+          <div>
+            <img class="sidebar-icon" src="../../../../assets/images/emp-dashboard-icons/dashboard-small.png">
+            <h5 *ngIf="!isExpanded" class="active">Dashboard</h5>
+          </div>
+         
+        </mat-list-item>
+        <mat-list-item>
+          <h4 mat-line *ngIf="isExpanded">Profile</h4>
+          <div>
+            <img class="sidebar-icon" src="../../../../assets/images/emp-dashboard-icons/emp-user.png">
+            <h5 *ngIf="!isExpanded" class="sidebar-text">Profile</h5>
+          </div>
+          
+     
+       
+        </mat-list-item>
+        <mat-list-item>
+          <h4 mat-line *ngIf="isExpanded">LogOut</h4>
+          <div>
+            <img src="../../../../assets/images/emp-dashboard-icons/logout.png">
+            <h5 *ngIf="!isExpanded" class="sidebar-text">LogOut</h5>
+          </div>
+      
+          
+        </mat-list-item>
+      </mat-nav-list>
+    </mat-drawer>
+
+    <div class="example-sidenav-content">
+        <mat-toolbar class="toolbar-bg">
+            <div>
+                <img class="logo" src="https://assets.lntedutech.com/SKILL_EXCHANGE.png" >
+            </div>
+            <!-- <span class="example-spacer"></span> -->
+            <div class="toolbarright">       
+                <button class="demo-section" mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                  <img src="../../../../assets/images/emp-dashboard-icons/notification.png">
+                  </button>
+              
+                  <mat-menu #menu="matMenu"  xPosition="before"
+                  yPosition="below"
+                  pgcCenter>
+                    <div class="notification-head">
+                      <h5 class="float-left active">notification</h5>
+                      <h5>new1</h5>
+
+                    </div>
+                    
+                    <!-- <button mat-menu-item>
+                     <img class="notification-ic" src="../../../../assets/images/emp-dashboard-icons/small-ic-1.png">
+                
+                      <span class="active">Head1</span>
+                    </button>
+                    <button mat-menu-item class="p-0">
+                      <img class="notification-ic" src="../../../../assets/images/emp-dashboard-icons/userbig.png">
+                      <span>Head2</span>
+                    </button>
+                    <button mat-menu-item class="p-0">
+                      <img class="notification-ic" src="../../../../assets/images/emp-dashboard-icons/userbig.png">
+                      <span>Head3</span>
+                    </button> -->
+                  </mat-menu>
+             
+            
+            <div>
+        <ul class="select">
+            <li>
+                <input class="select_close" type="radio" name="awesomeness" id="awesomeness-close" value=""/>
+                <span class="select_label select_label-placeholder" style="font-size: 14px;">Welcome &nbsp; Employer 1</span>
+            </li>
+            
+            <li class="select_items">
+                <input class="select_expand" type="radio" name="awesomeness" id="awesomeness-opener"/>
+                <label class="select_closeLabel" for="awesomeness-close"></label>
+                
+                <ul class="select_options">
+                    <li class="select_option">
+                        <label class="select_label" for="awesomeness-ridiculous"><i class="material-icons red droupdownic">close</i>Change Password</label>
+                    </li>
+    
+                    <li class="select_option">
+                        <label class="select_label" for="awesomeness-reasonable"><i class="material-icons red droupdownic">close</i>Profile</label>
+                    </li>
+    
+                    <li class="select_option">
+                        <label class="select_label" for="awesomeness-lacking"><i class="material-icons red droupdownic">close</i>Logout</label>
+                    </li>
+                </ul>    
+                <label class="select_expandLabel" for="awesomeness-opener"></label>
+            </li>
+        </ul>
+        
+            
+    </div>
+    <div class="toolbar-pic">
+        <img src="../../../../assets/images/emp-dashboard-icons/user.png">
+     </div>  
+        </div>
+       
+          </mat-toolbar>
+    <app-dashboard></app-dashboard>
+    </div>
+  </mat-drawer-container>
+
+
+
+
