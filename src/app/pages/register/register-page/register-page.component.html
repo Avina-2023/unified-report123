@@ -27,65 +27,61 @@
       <div class="tLeft">Employer</div>
       <div class="animated animatedFadeInUp fadeInUp signIn"> Registration</div>
     </div>
+    <mat-label>Sign Up to your account</mat-label>
     <form class="form" [formGroup]="registerForm" autocomplete="off">
-      <div>
-        <mat-label>Name</mat-label>
+      <mat-label>Name</mat-label>
       <mat-form-field appearance="outline">
-          <input matInput id="name" [placeholder]="'Name'" formControlName="name" maxlength="64" required>
+        <input matInput id="name" [placeholder]="'Name'" formControlName="name" maxlength="64" required>
       </mat-form-field>
 
       <ng-container *ngIf="name.invalid && name.touched">
-          <mat-error class="error" *ngIf="name?.errors?.required">{{'Name is required'}}</mat-error>
+        <mat-error class="error" *ngIf="name?.errors?.required">{{'Name is required'}}</mat-error>
       </ng-container>
-      </div>
 
-      <div>
-        <mat-label>Designation</mat-label>
+      <mat-label>Designation</mat-label>
       <mat-form-field appearance="outline">
         <input matInput id="designation" [placeholder]="'Designation'" formControlName="designation" required>
-    </mat-form-field>
+      </mat-form-field>
 
-    <ng-container *ngIf="designation.invalid && designation.touched">
-      <mat-error class="error" *ngIf="designation?.errors?.required">{{'Designation is required'}}</mat-error>
-    </ng-container>
-      </div>
+      <ng-container *ngIf="designation.invalid && designation.touched">
+        <mat-error class="error" *ngIf="designation?.errors?.required">{{'Designation is required'}}</mat-error>
+      </ng-container>
 
-<div>
-  <mat-label>Company</mat-label>
-  <mat-form-field appearance="outline">
-      <input matInput id="company" [placeholder]="'Company'" formControlName="company" maxlength="64" required>
-  </mat-form-field>
+      <mat-label>Company</mat-label>
+      <mat-form-field appearance="outline">
+        <input matInput id="company" [placeholder]="'Company'" formControlName="company" maxlength="64" required>
+      </mat-form-field>
 
-  <ng-container *ngIf="company.invalid && company.touched">
-      <mat-error class="error" *ngIf="company?.errors?.required">{{'Company name is required'}}</mat-error>
-  </ng-container>
-</div>
+      <ng-container *ngIf="company.invalid && company.touched">
+        <mat-error class="error" *ngIf="company?.errors?.required">{{'Company name is required'}}</mat-error>
+      </ng-container>
 
-<div><mat-label>Designation</mat-label>
-  <mat-form-field appearance="outline">
-      <input matInput id="mobile" [placeholder]="'Mobile'" formControlName="mobile" maxlength="10" required>
-  </mat-form-field>
+      <mat-label>Designation</mat-label>
+      <mat-form-field appearance="outline">
+        <input matInput id="mobile" [placeholder]="'Mobile'" formControlName="mobile" maxlength="10" required>
+      </mat-form-field>
 
-  <ng-container *ngIf="mobile.invalid && mobile.touched">
-      <mat-error class="error" *ngIf="mobile?.errors?.required">{{'Mobile number is required'}}</mat-error>
-      <mat-error class="error" *ngIf="mobile.errors?.mobileRegex">{{'Please enter a valid Mobile number'}}</mat-error>
+      <ng-container *ngIf="mobile.invalid && mobile.touched">
+        <mat-error class="error" *ngIf="mobile?.errors?.required">{{'Mobile number is required'}}</mat-error>
+        <mat-error class="error" *ngIf="mobile.errors?.mobileRegex">{{'Please enter a valid Mobile number'}}</mat-error>
 
-  </ng-container></div>
+      </ng-container>
 
 
       <mat-label>Email</mat-label>
       <mat-form-field appearance="outline">
-          <input matInput id="email" [placeholder]="'Email'" formControlName="email" required>
+        <input matInput id="email" [placeholder]="'Email'" formControlName="email" required>
       </mat-form-field>
 
       <ng-container *ngIf="email.invalid && email.touched">
-          <mat-error class="error" *ngIf="email?.errors?.required">{{'Email id is required'}}</mat-error>
-          <mat-error class="error" *ngIf="email.errors?.pattern">{{'Please enter a valid Email id'}}</mat-error>
+        <mat-error class="error" *ngIf="email?.errors?.required">{{'Email id is required'}}</mat-error>
+        <mat-error class="error" *ngIf="email.errors?.pattern">{{'Please enter a valid Email id'}}</mat-error>
       </ng-container>
       <!-- <section class="example-section">
-          <mat-checkbox formControlName="term" class="example-margin" required><a href="">Terms & Conditions</a></mat-checkbox>
-      </section> -->
+              <mat-checkbox formControlName="term" class="example-margin" required><a href="">Terms & Conditions</a></mat-checkbox>
+          </section> -->
       <button class="btn" [disabled]="!registerForm.valid" id="register" mat-button (click)="register()">{{"I'm Interested"}}</button>
+      <div class="mt-20 signupTxt">New User? <a class="forgot" href="/">Sign Up</a></div>
     </form>
   </div>
   </mat-card>
