@@ -173,6 +173,27 @@ mat-sidenav:not(.mat-drawer-opened) {
 	position: relative;
 }
 ::ng-deep .mat-menu-content {
-	width: 200px !important; 
-	height: 120px !important; 
+	width: 250px !important; 
+    height: 264px !important;
+  }
+.notification-insidebox{
+	background-color: #1B4E9B;
+    color: #fff;
+    padding: 3px;
+    font-size: 10px;
+    height: 22px;
+    border-radius: 4px;
+	position: relative;
+	left: 40%;
+}
+.notification-text{
+	font-size: 19px;
+    text-transform: capitalize;
+    position: relative;
+	left: 15px;
+}
+.list:hover {
+	font-weight: bold;
+	background-color: #eeeeee;
+	cursor: pointer;
   }

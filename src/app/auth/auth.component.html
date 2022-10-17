@@ -40,12 +40,14 @@
     <div class="mainCon">
     <div *ngIf="checkRouter ==='/auth/reports/userlist' || checkRouter ==='/auth/skillmaster/skillmasterlist' || checkRouter ==='/auth/skillmaster/skillbulkupload' ">
             <app-toolbar></app-toolbar>
-        </div>
-        <div class="heightDiv">
-            <router-outlet></router-outlet>
-        </div>
     </div>
-
+    <div *ngIf="checkRouter ==='/auth/dashboard/dashboard' || checkRouter ==='auth/partner/partnerlist'">
+        <app-sidebar></app-sidebar>
+     </div>
+    <div class="heightDiv">
+            <router-outlet></router-outlet>
+    </div>
+    </div>
 
     <ng-template #matDialog>
         <h1 class="popupHead" mat-dialog-title>Are you sure you want to logout?</h1>

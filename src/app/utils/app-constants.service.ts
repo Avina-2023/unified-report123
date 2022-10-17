@@ -45,6 +45,9 @@ export const APP_CONSTANTS = {
       PARTNERLIST:'/auth/partner/partnerlist',
       ADDPARTNER:"/auth/partner/addpartner",
       PARTNERENQUIRY: "/auth/partner/partnerenquiry"
+    },
+    EMPDASHBOARD:{
+      HOME:'/auth/dashboard'
     }
   },
 

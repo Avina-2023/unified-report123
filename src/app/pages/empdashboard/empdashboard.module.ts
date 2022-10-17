@@ -9,12 +9,7 @@ import {CountdisplayCardComponent} from './countdisplay-card/countdisplay-card.c
 import {ChartsModule} from 'ng2-charts';
 import { DegreeChartComponent } from './degree-chart/degree-chart.component';
 import { GraduationChartComponent } from './graduation-chart/graduation-chart.component';
-import {MatGridListModule} from '@angular/material/grid-list';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
-import { SidebarComponent } from './sidebar/sidebar.component';
-import {MatSidenavModule} from '@angular/material/sidenav';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatMenuModule} from '@angular/material/menu';
+import { SharedModule } from 'src/app/shared/shared.module';
 @NgModule({
   declarations: [
     DashboardComponent,
@@ -23,18 +18,13 @@ import {MatMenuModule} from '@angular/material/menu';
     DisciplineChartComponent,
     DegreeChartComponent,
     GraduationChartComponent,
-    SidebarComponent
   ],
   imports: [
     CommonModule,
    EmployerRoutingModule,
     MaterialModule,
     ChartsModule,
-    MatGridListModule,
-    MatSnackBarModule,
-    MatSidenavModule,
-    MatToolbarModule,
-    MatMenuModule,
+    SharedModule
   ],
 })
 export class EmployerModule { }

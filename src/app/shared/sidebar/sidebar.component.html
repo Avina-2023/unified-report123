@@ -1,0 +1,38 @@
+<mat-drawer-container class="example-container mat-typography" autosize style="height: 100vh;">
+<!-- <mat-drawer-content> -->
+  <mat-drawer #drawer mode="side" disableClose="true" opened="true">
+    <button mat-button (click)="isExpanded = !isExpanded" style="margin: 10px;">
+      <mat-icon aria-label="Menu">menu</mat-icon>
+    </button>
+    <mat-nav-list>
+      <mat-list-item>
+        <h4 mat-line *ngIf="isExpanded">Dashboard</h4>
+        <div (click)="validateClick('empdashboard')">
+          <img class="sidebar-icon" src="../../../../assets/images/emp-dashboard-icons/dashboard-small.png">
+          <h5 *ngIf="!isExpanded" class="active">Dashboard</h5>
+        </div>
+      </mat-list-item>
+      <mat-list-item>
+        <h4 mat-line *ngIf="isExpanded">Profile</h4>
+        <div>
+          <img class="sidebar-icon" src="../../../../assets/images/emp-dashboard-icons/emp-user.png">
+          <h5 *ngIf="!isExpanded" class="sidebar-text">Profile</h5>
+        </div>
+      </mat-list-item>
+      <mat-list-item>
+        <h4 mat-line *ngIf="isExpanded">LogOut</h4>
+        <div>
+          <img src="../../../../assets/images/emp-dashboard-icons/logout.png">
+          <h5 *ngIf="!isExpanded" class="sidebar-text">LogOut</h5>
+        </div>
+      </mat-list-item>
+      <mat-list-item>
+        <h4 mat-line *ngIf="isExpanded">Hiring Partners</h4>
+        <div (click)="hiring()">
+          <img src="../../../../assets/images/emp-dashboard-icons/emp-user.png">
+          <h5 *ngIf="!isExpanded" class="sidebar-text">Hiring Partners</h5>
+        </div>
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-drawer>
+</mat-drawer-container>
