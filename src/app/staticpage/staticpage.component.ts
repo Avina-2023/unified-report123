@@ -12,5 +12,4 @@ export class StaticpageComponent implements OnInit {
   ngOnInit(): void {
     window.location.href = "/about/index.html";
   }
-
 }
