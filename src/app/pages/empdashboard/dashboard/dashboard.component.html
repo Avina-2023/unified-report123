@@ -1,0 +1,200 @@
+<div class="container-fluid p-0" style="overflow:hidden;">
+    <div class="topborder"></div>
+            <div class="top-bg p-4">
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <div class="top-left">
+                            <h4 class="text-white mb-0">Dashboard</h4>
+                            <h3 class="text-white mb-0">Welcome back, <span class="text-white h3"><b>Employer</b></span></h3>
+                            <button type="submit" class="update-info">Update Profile</button>
+                        </div>
+        
+                    </div>
+                    <div class="col-md-6">
+                        <div class="top-right">
+                            <h4 class="text-white mb-0">Profile Completion</h4>
+                        </div>
+        
+                    </div>
+                </div>
+                <div class="row mt-5">
+                    <div class="col-md-3">
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <div class="media d-flex">
+                                        <div class="media-body text-left">
+                                            <span>Total Candidates</span>
+                                            <h3 class="card-number">250,488</h3>
+                                        </div>
+                                        <div class="align-self-center">
+                                            <img class="font-large-2 float-right"
+                                                src="../../../assets/images/emp-dashboard-icons/small-ic-1.png">
+                                        </div>
+                                    </div>
+                                    <div class="media d-flex">
+                                        <div class="card-inside-percentage-box">
+                                            <span>8%</span>
+                                        </div>
+                                        <span class="ml-2">Since last month</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <div class="media d-flex">
+                                        <div class="media-body text-left">
+                                            <span>Basic Profiled Candidates</span>
+                                            <h3 class="card-number">112,262</h3>
+                                        </div>
+                                        <div class="align-self-center">
+                                            <img class="font-large-2 float-right"
+                                                src="../../../assets/images/emp-dashboard-icons/small-ic-2.png">
+                                        </div>
+                                    </div>
+                                    <div class="media d-flex">
+                                        <div class="card-inside-percentage-box">
+                                            <span>8%</span>
+                                        </div>
+                                        <span class="ml-2">Since last month</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <div class="media d-flex">
+                                        <div class="media-body text-left">
+                                            <span>Detailed Profile Candidates</span>
+                                            <h3 class="card-number">102,241</h3>
+                                        </div>
+                                        <div class="align-self-center">
+                                            <img class="font-large-2 float-right"
+                                                src="../../../assets/images/emp-dashboard-icons/small-ic-4.png">
+                                        </div>
+                                    </div>
+                                    <div class="media d-flex">
+                                        <div class="card-inside-percentage-box">
+                                            <span>8%</span>
+                                        </div>
+                                        <span class="ml-2">Since last month</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <div class="media d-flex">
+                                        <div class="media-body text-left">
+                                            <span>Total Candidates</span>
+                                            <h3 class="card-number">35,985</h3>
+                                        </div>
+                                        <div class="align-self-center">
+                                            <img class="font-large-2 float-right"
+                                                src="../../../assets/images/emp-dashboard-icons/small-ic-3.png">
+                                        </div>
+                                    </div>
+                                    <div class="media d-flex">
+                                        <div class="card-inside-percentage-box">
+                                            <span>8%</span>
+                                        </div>
+                                        <span class="ml-2">Since last month</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row cardcharts">
+                <div class="col-md-4">
+                    <div class="chartcard">
+                        <app-demography-chart></app-demography-chart>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="chartcard">
+                        <span>Profile by Year Pass Out</span>
+                        <div class="d-flex">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="chart-wrapper p-2"> 
+                                        <canvas baseChart 
+                                        [data]="doughnutChartData"
+                                        [options]="options" 
+                                        [colors]="doughnutChartColors"
+                                        [labels]="doughnutChartLabels"
+                                        [plugins]="doughnutChartPlugins"
+                                        [chartType]="doughnutChartType">
+                                      </canvas>    
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="d-grid">
+                                        <label>2021</label>
+                                        <label>2022</label>
+                                        <label>2023</label>
+                                        <label>All Others</label>    
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="d-grid">
+                                        <label>2021</label>
+                                        <label>2022</label>
+                                        <label>2023</label>
+                                        <label>All Others</label>    
+                                    </div>
+                                </div>
+        
+                            </div>
+                        
+                          
+                        </div>
+                       
+                    </div>
+                    <br>
+                    <div class="chartcard">
+                        <div class="chart-wrapper">
+                            <canvas baseChart 
+                            [data]="doughnutChartData"
+                            [options]="options" 
+                            [colors]="doughnutChartColors"
+                            [labels]="doughnutChartLabels"
+                            [plugins]="doughnutChartPlugins"
+                            [chartType]="doughnutChartType">
+                          </canvas>
+                        </div>
+                    </div>
+              
+                </div>
+                <div class="col-md-4">
+                    <div class="chartcard">
+        <app-discipline-chart></app-discipline-chart>
+                    </div>
+                </div>
+            </div>
+            <div class="row p-1">
+                <div class="col-md-4">
+                    <div class="chartcard">
+                        <app-graduation-chart></app-graduation-chart>
+                    </div>
+                  
+                </div>
+                <div class="col-md-8">
+                    <div class="chartcard">
+                    <app-degree-chart></app-degree-chart>   
+        </div>
+                </div>
+            </div>
+</div>
+
