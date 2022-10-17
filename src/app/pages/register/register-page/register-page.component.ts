@@ -26,6 +26,7 @@ export class RegisterPageComponent implements OnInit {
     this.registerForm = this.fb.group({
       name: ['', [Validators.required]],
       company: ['', [Validators.required]],
+      designation:['',[Validators.required]],
       mobile: ['', [Validators.required,this.glovbal_validators.mobileRegex()]],
       email: ['', [Validators.required, Validators.pattern(emailregex)]],
       // term:['',[Validators.required]],
@@ -37,6 +38,7 @@ export class RegisterPageComponent implements OnInit {
       mobile:this.registerForm.value.mobile,
       email:this.registerForm.value.email,
       name:this.registerForm.value.name,
+      designation:this.registerForm.value.designation,
       company:this.registerForm.value.company,
       // terms:this.registerForm.value.term,
     }
@@ -45,14 +47,14 @@ export class RegisterPageComponent implements OnInit {
           setTimeout(() => {
             this.success = false;
           }, 1000);
-        
+
         }else{
             this.success = true;
             this.toastr.warning(response.message)
             // this.registerForm.reset();
         }
     })
-    
+
 
   }
 
@@ -61,6 +63,9 @@ export class RegisterPageComponent implements OnInit {
   }
   get company() {
     return this.registerForm.get('company');
+  }
+  get designation() {
+    return this.registerForm.get('designation');
   }
   get mobile() {
     return this.registerForm.get('mobile');
