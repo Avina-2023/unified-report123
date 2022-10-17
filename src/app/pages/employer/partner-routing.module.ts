@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { APP_CONSTANTS } from 'src/app/utils/app-constants.service';
 import { AddPartnerComponent } from './add-partner/add-partner.component';
+import { PartnerEnquiriesComponent } from './partner-enquiries/partner-enquiries.component';
 import {  PartnerListComponent} from './partner-list/partner-list.component';
 
 const routes: Routes = [
@@ -10,6 +11,9 @@ const routes: Routes = [
   },
   {
     path: `${APP_CONSTANTS.ROUTES.PARTNER.ADDPARTNER}`, component: AddPartnerComponent,
+  },
+  {
+    path: `${APP_CONSTANTS.ROUTES.PARTNER.PARTNERENQUIRY}`, component: PartnerEnquiriesComponent,
   },
   {
     path: '',
