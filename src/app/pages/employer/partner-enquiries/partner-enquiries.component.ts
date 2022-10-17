@@ -18,7 +18,7 @@ export class PartnerEnquiriesComponent implements OnInit {
   displayedColumns: string[] = ['name', 'company', 'email', 'mobile', 'registeredDate'];
   dataSource = new MatTableDataSource<any>([]);
   totalPartnerCount :number;
-  searchData :string =''
+  searchData :string ='';
   constructor(private ApiService: ApiService, private appconfig: AppConfigService, private toastr: ToastrService) {
   }
 
@@ -31,8 +31,10 @@ export class PartnerEnquiriesComponent implements OnInit {
   }
  
   searchList(){
+    var val = this.searchData.toLowerCase()
+    var filter = { $regex: val, $options: 'i' }
     var data = {"filterModel":{
-      "$or":{"filterType":"or","values":[this.searchData]},
+      "$or":{"filterType":"or","values":[{company:filter},{designation:filter}]},
       "createdBy":{"filterType":"set","values":["UapAdmin"]}
   }} 
     this.fetchData(data);

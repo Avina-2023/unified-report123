@@ -24,26 +24,46 @@ export class PartnerListComponent implements OnInit {
   activePartnerCount :number;
   inActivePartnerCount :number;
   pendingCount:number;
-
+  searchData :string ='';
+  fromDate : Date;
+  toDate :Date;
   constructor(private ApiService: ApiService, private appconfig: AppConfigService, private toastr: ToastrService) {
-  }
-
-  ngOnInit(): void {
     var data = {"filterModel":{"createdBy":{"filterType":"nin","values":["UapAdmin"]}}}
     this.fetchData(data);
   }
+
+  ngOnInit(): void {
+  }
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
+
   }
   selectStatus() {
     var isApproved = this.status == 'active' ? true : this.status == 'inActive' ? false : "-";
     let data : any = {"filterModel":{"createdBy":{"filterType":"nin","values":["UapAdmin"]}}};
-    if (isApproved != "-") {
+    if(this.status == "pending" ){
+        data = {
+          "filterModel": {
+            "isApproved": {
+              "filterType": "set",
+              "values": [false]
+            },
+            "isActive": {
+              "filterType": "set",
+              "values": [false]
+            },
+            "createdBy":{"filterType":"nin","values":["UapAdmin"]}
+          }
+        };
+    }else if (isApproved != "-") {
       data = {
         "filterModel": {
-          "isApproved": {
+          "isActive": {
             "filterType": "set",
             "values": [isApproved]
+          }, "isApproved": {
+            "filterType": "set",
+            "values": [true]
           },
           "createdBy":{"filterType":"nin","values":["UapAdmin"]}
         }
@@ -90,6 +110,57 @@ export class PartnerListComponent implements OnInit {
     
     return date.toDateString();
     //return new Date(date)
+  }
+
+  searchList() {
+    if(this.fromDate == undefined && this.toDate == undefined){
+      this.searchOption();
+    }else if( this.fromDate !=undefined && this.toDate !=undefined){
+      this.searchOption();
+    }else{
+      this.toastr.warning('Please enter from and to date');
+    }
+  }
+
+  searchOption(){
+    var val = this.searchData.toLowerCase()
+    var filter = { $regex: val, $options: 'i' }
+    var isApproved = this.status == 'active' ? true : this.status == 'inActive' ? false : "-";
+    let data: any = { "filterModel": { "createdBy": { "filterType": "nin", "values": ["UapAdmin"] },"$or": { "filterType": "or", "values": [{ company: filter }, { industryType: filter }] } } };
+    if (this.status == "pending") {
+      data = {
+        "filterModel": {
+          "isApproved": {
+            "filterType": "set",
+            "values": [false]
+          },
+          "isActive": {
+            "filterType": "set",
+            "values": [false]
+          },
+          "createdBy": { "filterType": "nin", "values": ["UapAdmin"] },
+          "$or": { "filterType": "or", "values": [{ company: filter }, { industryType: filter }] }
+        }
+      };
+    } else if (isApproved != "-") {
+      data = {
+        "filterModel": {
+          "isActive": {
+            "filterType": "set",
+            "values": [isApproved]
+          }, "isApproved": {
+            "filterType": "set",
+            "values": [true]
+          },
+          "createdBy": { "filterType": "nin", "values": ["UapAdmin"] },
+          "$or": { "filterType": "or", "values": [{ company: filter }, { industryType: filter }] }
+        }
+      };
+    }
+    if(this.fromDate !=undefined && this.toDate !=undefined){
+     data.filterModel.createdAt={filterType: "date", type: "inRange", dateFrom: this.fromDate, dateTo: this.toDate};
+    }
+    this.fetchData(data);
   }
 
 }

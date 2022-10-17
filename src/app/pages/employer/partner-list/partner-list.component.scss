@@ -26,12 +26,12 @@
 
         .cardTitle {
             font-size: 14px;
-            color: #1B4E9B;
+            color: #4D4F5C;
         }
 
         .cardValue {
             font-size: 24px;
-            color: #4D4F5C;
+            color: #1B4E9B;
             display: flex;
             justify-content: space-between;
             padding-right: 20px;
@@ -43,8 +43,13 @@
             padding-left: 15px;
 
             .cardFootervalue {
-                padding-left: 3px;
-                color: #56B35A;
+                font: normal normal 300 12px/20px Roboto;
+                padding: 2px;
+                background-color: #56B35A;
+                text-align:center;
+                width:60px;
+                height:120px;
+                color:white;
             }
         }
     }

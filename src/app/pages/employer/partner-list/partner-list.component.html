@@ -9,11 +9,11 @@
             <div>
               <p>{{totalPartnerCount}}</p>
             </div>
-            <div><img src="/assets/images/partner/partners.png" alt=""></div>
+            <div><img src="/assets/images/partner/partners.svg" alt=""></div>
           </mat-card-content>
           <mat-card-footer class="cardFooter">
-            Since last month <span class="cardFootervalue"> <img src="/assets/images/partner/arrow-round-up.svg"
-                alt="">18%</span>
+            <span class="cardFootervalue"> <img src="/assets/images/partner/arrow-round-up.svg"
+              alt="">18%</span> Since last month
           </mat-card-footer>
         </mat-card>
       </div>
@@ -24,11 +24,11 @@
             <div>
               <p>{{activePartnerCount}}</p>
             </div>
-            <div><img src="/assets/images/partner/partners-active.png" alt=""></div>
+            <div><img src="/assets/images/partner/partners-active.svg" alt=""></div>
           </mat-card-content>
           <mat-card-footer class="cardFooter">
-            Since last month <span class="cardFootervalue"> <img src="/assets/images/partner/arrow-round-up.svg"
-                alt="">13%</span>
+            <span class="cardFootervalue"> <img src="/assets/images/partner/arrow-round-up.svg"
+              alt="">13%</span> Since last month 
           </mat-card-footer>
         </mat-card>
       </div>
@@ -39,11 +39,11 @@
             <div>
               <p>{{inActivePartnerCount}}</p>
             </div>
-            <div><img src="/assets/images/partner/partners-inactive.png" alt=""></div>
+            <div><img src="/assets/images/partner/partners-inactive.svg" alt=""></div>
           </mat-card-content>
           <mat-card-footer class="cardFooter">
-            Since last month <span class="cardFootervalue"> <img src="/assets/images/partner/arrow-round-up.svg"
-                alt="">2%</span>
+            <span class="cardFootervalue"> <img src="/assets/images/partner/arrow-round-up.svg"
+              alt="">2%</span> Since last month 
           </mat-card-footer>
         </mat-card>
       </div>
@@ -54,11 +54,11 @@
             <div>
               <p>{{pendingCount}}</p>
             </div>
-            <div><img src="/assets/images/partner/partners-inactive.png" alt=""></div>
+            <div><img src="/assets/images/partner/partners-pending.svg" alt=""></div>
           </mat-card-content>
           <mat-card-footer class="cardFooter">
-            Since last month <span class="cardFootervalue"> <img src="/assets/images/partner/arrow-round-up.svg"
-                alt="">2%</span>
+            <span class="cardFootervalue"> <img src="/assets/images/partner/arrow-round-up.svg"
+              alt="">2%</span> Since last month 
           </mat-card-footer>
         </mat-card>
       </div>
@@ -73,19 +73,20 @@
               <mat-button-toggle value="all">All</mat-button-toggle>
               <mat-button-toggle value="active">Active</mat-button-toggle>
               <mat-button-toggle value="inActive">InActive</mat-button-toggle>
+              <mat-button-toggle value="pending">Pending</mat-button-toggle>
             </mat-button-toggle-group>
           </div>
         </mat-card-title>
         <div class="container-fluid">
           <div class="row">
             <div class="col-md-4">
-              <input matInput placeholder="Search by Company name" class="search">
+              <input matInput  [(ngModel)]="searchData" placeholder="Search by Company name" class="search">
             </div>
             <div class="col-md-3">
               <mat-form-field class="example-form-field dateborder">
-                <input matInput [matDatepicker]="datepicker">
-                <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
-                <mat-datepicker #datepicker>
+                <input matInput [(ngModel)]="fromDate" [matDatepicker]="datepicker1">
+                <mat-datepicker-toggle  matSuffix [for]="datepicker1"></mat-datepicker-toggle>
+                <mat-datepicker #datepicker1>
                   <mat-datepicker-actions>
                     <button mat-button matDatepickerCancel>Cancel</button>
                     <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
@@ -95,7 +96,7 @@
             </div>
             <div class="col-md-3">
               <mat-form-field class="example-form-field dateborder">
-                <input matInput [matDatepicker]="datepicker">
+                <input [min]="fromDate" matInput [(ngModel)]="toDate" [matDatepicker]="datepicker">
                 <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
                 <mat-datepicker #datepicker>
                   <mat-datepicker-actions>
@@ -106,7 +107,7 @@
               </mat-form-field>
             </div>
             <div class="col-md-2">
-              <button color="primary" type="submit" class="search-btn">Search</button>
+              <button (click)="searchList()" color="primary" type="submit" class="search-btn">Search</button>
             </div>
           </div>
         </div>
@@ -178,8 +179,8 @@
               <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
             </table>
             <div class="customPagination">
-              <mat-paginator style-paginator [showTotalPages]="3" [length]="totalPartnerCount||8" [pageSize]="4"
-                [pageSizeOptions]="[4]"
+              <mat-paginator style-paginator [showTotalPages]="3" [length]="totalPartnerCount" [pageSize]="3"
+                [pageSizeOptions]="[3]"
                 >
               </mat-paginator>
             </div>
