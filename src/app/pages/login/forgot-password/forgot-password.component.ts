@@ -51,7 +51,8 @@ export class ForgotPasswordComponent implements OnInit {
 
       if (this.forgotPasswordForm.get('email').valid) {
         data = {
-          email: this.apiService.encryptnew(this.forgotPasswordForm.value.email,environment.cryptoEncryptionKey)
+          email: this.apiService.encryptnew(this.forgotPasswordForm.value.email,environment.cryptoEncryptionKey),
+          employer:true
         };
       }
 
