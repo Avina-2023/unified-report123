@@ -10,6 +10,7 @@ import { JobSeekersComponent } from './pages/jobSeekers/job-seekers/job-seekers.
 import { RegisterPageComponent } from './pages/register/register-page/register-page.component'
 import { StaticpageComponent } from './staticpage/staticpage.component';
 import { LoginPageComponent } from './pages/login/login-page/login-page.component';
+import { SidebarComponent } from './pages/empdashboard/sidebar/sidebar.component';
 const routes: Routes = [
  {
     path: `landing`, component: LandingPageComponent
@@ -27,11 +28,15 @@ const routes: Routes = [
     path: `register`, component: JobSeekersComponent
   },
   {
+    path:'sidebar',component:SidebarComponent
+  },
+  {
     path: 'employers', component: RegisterPageComponent
   },
-  // {
-  //   path: '', loadChildren: () => import('./pages/login/login.module').then(m => m.LoginModule), canActivate: [IsloggedInGuard]
-  // },
+  {
+    path: '', loadChildren: () => import('./pages/login/login-routing.module').then(m => m.LoginRoutingModule), canActivate: [IsloggedInGuard]
+  },
+
   {
     path: `${APP_CONSTANTS.ROUTES.AUTH}`, loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule), canActivate: [IsAccessGuard]
   },
@@ -47,7 +52,7 @@ const routes: Routes = [
     path: `**`,
     pathMatch: 'full',
     component: PagenotfoundComponent
-  } 
+  }
 ];
 
 @NgModule({

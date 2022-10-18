@@ -18,20 +18,20 @@
     justify-content: space-around;
 
     .partnerCard {
-        max-width: 400px;
-        width: 400px;
+        max-width: 280px;
+        width: 280px;
         max-height: 125px;
         height: 125px;
         border-radius: 9px;
 
         .cardTitle {
             font-size: 14px;
-            color: #1B4E9B;
+            color: #4D4F5C;
         }
 
         .cardValue {
             font-size: 24px;
-            color: #4D4F5C;
+            color: #1B4E9B;
             display: flex;
             justify-content: space-between;
             padding-right: 20px;
@@ -43,8 +43,13 @@
             padding-left: 15px;
 
             .cardFootervalue {
-                padding-left: 3px;
-                color: #56B35A;
+                font: normal normal 300 12px/20px Roboto;
+                padding: 2px;
+                background-color: #56B35A;
+                text-align:center;
+                width:60px;
+                height:120px;
+                color:white;
             }
         }
     }
@@ -124,12 +129,27 @@
                 color: #1B4E9B;
             }
 
+
             .rectangleInActive {
                 font-size: 12px;
-                background: #ffd6c8d9;
+                background: #B5CCFC;
                 padding: 5px 20px;
                 border-radius: 8px;
-                color: #FF474D;
+                color:#384255;
+                display: flex;
+                justify-content: center;
+                align-items: baseline;
+                width: 84px;
+                margin: 0 auto;
+                flex-wrap: nowrap;
+            }
+
+            .rectanglePending {
+                font-size: 12px;
+                background: #FAF5C9;
+                padding: 5px 20px;
+                border-radius: 8px;
+                color: #583906;
                 display: flex;
                 justify-content: center;
                 align-items: baseline;
@@ -140,10 +160,10 @@
 
             .rectangleActive {
                 font-size: 12px;
-                background: #c9e9c2;
+                background: #56B35A;
                 padding: 5px 20px;
                 border-radius: 8px;
-                color: #49AE31;
+                color: #358222;
                 display: flex;
                 justify-content: center;
                 align-items: baseline;
@@ -212,3 +232,42 @@
 ::ng-deep.mat-column-img {
     max-width: 100px;
    }
+
+
+   .search{
+    border: 1px solid #B4B4B4;
+    width: 97.5%;
+    height: 40px;
+    height: 39px;
+    padding: 5px;
+    top: 17px;
+    position: absolute;
+   }
+   .dateborder{
+    border: 1px solid #B4B4B4;
+    width: 100%;
+    height: 51px;
+    padding: 5px;
+    top: 16px;
+    padding: 5px;
+   position: absolute;
+   }
+   ::ng-deep .search-btn{
+    width: 100%;
+    margin-top: 16px;
+    height: 50px;
+    position: relative;
+    border: none;
+    color: #fff;
+    background: #1B4E9B;
+   }
+
+
+//    mbl responsive
+
+@media only screen and (max-width: 750px) {
+    .search-btn{
+        width: 27%;
+        left: 4px;
+    }
+}
