@@ -16,7 +16,7 @@ export class ApiService {
   SKILL_EDGE_URL = environment.SKILL_EDGE_URL;
   Prourl = environment.NODE_URL;
   EncryptKEY = environment.encryptionKey;
-
+  cryptoEncryptionKey = environment.cryptoEncryptionKey;
   filterSubject: Subject<any> = new Subject();
   constructor(
     private http: HttpClient,
@@ -75,6 +75,20 @@ export class ApiService {
       const bytes = CryptoJS.AES.decrypt(data, this.EncryptKEY);
       if (bytes.toString()) {
         return JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+      }
+      return data;
+    } catch (e) {
+      console.log(e);
+      return data;
+    }
+  }
+
+  decryptnew(data) {
+    try {
+      const bytes = CryptoJS.AES.decrypt(data, this.cryptoEncryptionKey);
+      // console.log(JSON.parse(bytes.toString(CryptoJS.enc.Utf8)));
+      if (bytes.toString()) {
+        return bytes.toString(CryptoJS.enc.Utf8);
       }
       return data;
     } catch (e) {

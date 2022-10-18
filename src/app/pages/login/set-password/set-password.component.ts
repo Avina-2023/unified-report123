@@ -7,7 +7,7 @@ import { environment } from '../../../../environments/environment';
 import { HttpUrlEncodingCodec } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { APP_CONSTANTS } from '../../../utils/app-constants.service';
-
+import * as CryptoJS from "crypto-js";
 
 @Component({
   selector: 'app-set-password',
@@ -44,7 +44,6 @@ export class SetPasswordComponent implements OnInit {
   ngOnInit() {
     this.formInitialize();
     this.getEncriptedMail();
-
   }
 
 
@@ -66,8 +65,8 @@ export class SetPasswordComponent implements OnInit {
     });
   }
 
-  getEncriptedMail(){
-    this.prePoulteEmailId = this.apiService.decrypt(decodeURI(this.prePoulteEmailId));
+  getEncriptedMail(){ 
+    this.prePoulteEmailId = this.apiService.decryptnew(decodeURIComponent(this.prePoulteEmailId));
     this.autoPopulateMail();     // Function to auto populate mail after form loads.
   }
 
