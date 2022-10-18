@@ -6,7 +6,7 @@
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
-  background: url('/assets/images/fg-bg.png') no-repeat;
+  background: url('/assets/images/lp-bg.png') no-repeat;
   background-color: #0000009E;
   background-blend-mode: multiply;
   background-size: auto ;
@@ -35,6 +35,8 @@ width: 50%;
 mat-card{
   width:60%;
   margin:0 auto;
+  padding-top: 40px;
+  padding-bottom: 40px;
 }
 
 .ltext{
@@ -68,6 +70,7 @@ mat-card{
     }
   }
 }
+
 .signIn {
   text-align: left;
   color: #262626;
@@ -84,9 +87,16 @@ mat-card{
   margin-bottom: 10px;
 }
 
+
+.form{
+  display: flex;
+  flex-direction: column;
+  align-content: flex-start;
+}
+
 input.mat-input-element {
   margin-top: 0px !important;
-  margin-bottom: 5px !important;
+  // margin-bottom: 5px !important;
   font-size: 14px;
 }
 
@@ -101,7 +111,7 @@ input.mat-input-element {
   color: #27BBEE !important;
 }
 :host ::ng-deep .mat-form-field-appearance-outline .mat-form-field-prefix, .mat-form-field-appearance-outline .mat-form-field-suffix {
-  top: 0px;
+  top: 0px !important;
 }
 
 :host ::ng-deep.mat-form-field-appearance-outline .mat-form-field-wrapper {
@@ -131,7 +141,7 @@ input.mat-input-element {
   border-radius: 5px !important;
   width: 100%;
   padding: 5px 18px;
-  // margin-top: 20px;
+  margin-top: 20px;
 }
 .btn:hover {
   background: #28BBEE !important;
@@ -150,10 +160,19 @@ font-size: 16px;
   flex-direction: row;
 }
 
+mat-label{
+  margin-top:15px
+}
+
+.mt-20{
+  margin-top:20px !important
+}
+
 .signupTxt{
   font-size: 12px;
-  margin-bottom: 0px !important;
   text-align: center;
+  margin-top: 10px;
+
 }
 
 // Footer area
