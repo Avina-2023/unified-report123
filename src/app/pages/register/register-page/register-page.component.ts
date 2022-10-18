@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { GlobalValidatorService } from 'src/app/globalvalidators/global-validator.service';
 import { ApiService } from 'src/app/services/api.service';
 import { AppConfigService } from 'src/app/utils/app-config.service';
+import { APP_CONSTANTS } from 'src/app/utils/app-constants.service';
 
 @Component({
   selector: 'app-register-page',
@@ -13,8 +15,13 @@ import { AppConfigService } from 'src/app/utils/app-config.service';
 export class RegisterPageComponent implements OnInit {
   registerForm: FormGroup;
   success = true;
+
+  @ViewChild('noSkill', { static: false }) matDialogRef: TemplateRef<any>;
+  dialogRef: any;
+
   constructor(public fb: FormBuilder,private glovbal_validators: GlobalValidatorService,public apiService: ApiService,
     public appConfig: AppConfigService,
+    private dialog: MatDialog,
     public toastr: ToastrService) { }
 
   ngOnInit(): void {
@@ -43,19 +50,30 @@ export class RegisterPageComponent implements OnInit {
       // terms:this.registerForm.value.term,
     }
     this.apiService.postRegister(data).subscribe((response:any)=>{
-        if(response.success){
-          setTimeout(() => {
-            this.success = false;
-          }, 1000);
-
+      if(response.success){
+          this.registerForm.reset();
+          this.matDialogOpen();
         }else{
-            this.success = true;
+            // this.success = true;
             this.toastr.warning(response.message)
-            // this.registerForm.reset();
+
         }
     })
 
 
+  }
+
+  closepops(){
+    this.dialogRef.close()
+    this.appConfig.routeNavigation("/");
+  }
+
+  matDialogOpen() {
+    this.dialogRef = this.dialog.open(this.matDialogRef, {
+      width: '500px',
+      disableClose: true,
+      hasBackdrop:true
+    });
   }
 
   get name() {

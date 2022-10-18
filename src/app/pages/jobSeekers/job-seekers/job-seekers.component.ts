@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { GlobalValidatorService } from 'src/app/globalvalidators/global-validator.service';
 import { ApiService } from 'src/app/services/api.service';
 import { ToastrService } from 'ngx-toastr';
 import{environment} from 'src/environments/environment';
 import * as CryptoJS from 'crypto-js';
+import { AppConfigService } from 'src/app/utils/app-config.service';
+import { MatDialog } from '@angular/material/dialog';
 @Component({
   selector: 'app-job-seekers',
   templateUrl: './job-seekers.component.html',
@@ -13,6 +15,8 @@ import * as CryptoJS from 'crypto-js';
 export class JobSeekersComponent implements OnInit {
   campusUrl = environment.CAMPUS_URL;
   freshGraduatesForm: FormGroup;
+  @ViewChild('noSkill', { static: false }) matDialogRef: TemplateRef<any>;
+
   success = true;
   registerform = true;
   newCandidate = false;
@@ -21,7 +25,8 @@ export class JobSeekersComponent implements OnInit {
   msg = ''
   secretKey = "(!@#Passcode!@#)";
   skillProfileUrl = environment.SKILL_PROFILE_URL;
-  constructor(public fb: FormBuilder, private glovbal_validators: GlobalValidatorService, public toastr: ToastrService, private ApiService: ApiService) { }
+  dialogRef: any;
+  constructor(public fb: FormBuilder,private dialog: MatDialog, private glovbal_validators: GlobalValidatorService, public toastr: ToastrService, private ApiService: ApiService,public appConfig: AppConfigService,    ) { }
 
   ngOnInit(): void {
     this.formInitialize()
@@ -32,7 +37,7 @@ export class JobSeekersComponent implements OnInit {
     this.freshGraduatesForm = this.fb.group({
       user_name: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.pattern(emailregex)]],
-      term: ['', [Validators.required]],
+      // term: ['', [Validators.required]],
     })
   }
 
@@ -43,10 +48,12 @@ export class JobSeekersComponent implements OnInit {
         this.newCandidate = true
         this.registerform = false
         this.msg = res.message
+        this.matDialogOpen()
       } else {
         this.msg = res.message
         this.registerform = false
         this.existingCandidate = true;
+        this.toastr.error(this.msg)
       }
     })
   }
@@ -56,5 +63,18 @@ export class JobSeekersComponent implements OnInit {
   }
   get email() {
     return this.freshGraduatesForm.get('email');
+  }
+
+  closepops(){
+    this.dialogRef.close()
+    this.appConfig.routeNavigation("/");
+  }
+
+  matDialogOpen() {
+    this.dialogRef = this.dialog.open(this.matDialogRef, {
+      width: '500px',
+      disableClose: true,
+      hasBackdrop:true
+    });
   }
 }
