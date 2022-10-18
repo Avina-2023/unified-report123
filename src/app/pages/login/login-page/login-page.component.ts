@@ -85,4 +85,8 @@ export class LoginPageComponent  {
       this.appConfig.setLocalStorage('IP',this.userIP ? this.userIP : '');
     });
   }
+
+  forgotPassword() {
+    this.appConfig.routeNavigation("forgot-password");
+  }
 }
