@@ -13,6 +13,9 @@ export class AppConfigService {
   ) {
    }
 
+   getCurrentYear() {
+    return new Date().getFullYear();
+  }
 
   // get Current route
   currentRoute() {
