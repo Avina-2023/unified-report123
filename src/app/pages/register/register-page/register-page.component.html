@@ -13,9 +13,7 @@
       <span class="slim">Build your Workforce from a Certified </span><strong>Talent Pool</strong>
       <div class="decocolor"></div>
       <p>
-        Skill Exchange is a one-of-a-kind platform that provides talented
-        and skilled new graduates smooth transitioning from college to the
-        professional world!
+        Complete the registration to Access to pre- Assessed, certified and industry-ready talent pool
       </p>
     </div>
   </div>
@@ -31,7 +29,7 @@
     <form class="form" [formGroup]="registerForm" autocomplete="off">
       <mat-label>Name</mat-label>
       <mat-form-field appearance="outline">
-        <input matInput id="name" [placeholder]="'Name'" formControlName="name" maxlength="64" required>
+        <input matInput id="name" [placeholder]="'Enter Name'" formControlName="name" maxlength="64" required>
       </mat-form-field>
 
       <ng-container *ngIf="name.invalid && name.touched">
@@ -40,7 +38,7 @@
 
       <mat-label>Designation</mat-label>
       <mat-form-field appearance="outline">
-        <input matInput id="designation" [placeholder]="'Designation'" formControlName="designation" required>
+        <input matInput id="designation" [placeholder]="'Enter Designation'" formControlName="designation" required>
       </mat-form-field>
 
       <ng-container *ngIf="designation.invalid && designation.touched">
@@ -49,16 +47,26 @@
 
       <mat-label>Company</mat-label>
       <mat-form-field appearance="outline">
-        <input matInput id="company" [placeholder]="'Company'" formControlName="company" maxlength="64" required>
+        <input matInput id="company" [placeholder]="'Enter Company'" formControlName="company" maxlength="64" required>
       </mat-form-field>
 
       <ng-container *ngIf="company.invalid && company.touched">
         <mat-error class="error" *ngIf="company?.errors?.required">{{'Company name is required'}}</mat-error>
       </ng-container>
 
-      <mat-label>Designation</mat-label>
+      <mat-label>Email</mat-label>
       <mat-form-field appearance="outline">
-        <input matInput id="mobile" [placeholder]="'Mobile'" formControlName="mobile" maxlength="10" required>
+        <input matInput id="email" [placeholder]="'Enter Email'" formControlName="email" required>
+      </mat-form-field>
+
+      <ng-container *ngIf="email.invalid && email.touched">
+        <mat-error class="error" *ngIf="email?.errors?.required">{{'Email id is required'}}</mat-error>
+        <mat-error class="error" *ngIf="email.errors?.pattern">{{'Please enter a valid Email id'}}</mat-error>
+      </ng-container>
+
+      <mat-label>Mobile</mat-label>
+      <mat-form-field appearance="outline">
+        <input matInput id="mobile" [placeholder]="'Enter Mobile'" formControlName="mobile" maxlength="10" required>
       </mat-form-field>
 
       <ng-container *ngIf="mobile.invalid && mobile.touched">
@@ -66,22 +74,11 @@
         <mat-error class="error" *ngIf="mobile.errors?.mobileRegex">{{'Please enter a valid Mobile number'}}</mat-error>
 
       </ng-container>
-
-
-      <mat-label>Email</mat-label>
-      <mat-form-field appearance="outline">
-        <input matInput id="email" [placeholder]="'Email'" formControlName="email" required>
-      </mat-form-field>
-
-      <ng-container *ngIf="email.invalid && email.touched">
-        <mat-error class="error" *ngIf="email?.errors?.required">{{'Email id is required'}}</mat-error>
-        <mat-error class="error" *ngIf="email.errors?.pattern">{{'Please enter a valid Email id'}}</mat-error>
-      </ng-container>
       <!-- <section class="example-section">
               <mat-checkbox formControlName="term" class="example-margin" required><a href="">Terms & Conditions</a></mat-checkbox>
           </section> -->
       <button class="btn" [disabled]="!registerForm.valid" id="register" mat-button (click)="register()">{{"I'm Interested"}}</button>
-      <div class="mt-20 signupTxt">New User? <a class="forgot" href="/">Sign In</a></div>
+      <div class="mt-20 signupTxt">Already have an account? <a class="forgot" href="/">Sign In</a></div>
     </form>
   </div>
   </mat-card>
