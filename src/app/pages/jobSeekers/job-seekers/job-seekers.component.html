@@ -28,6 +28,7 @@
           <div class="tLeft">Fresh Graduates</div>
           <div class="animated animatedFadeInUp fadeInUp signIn"> Registration</div>
         </div>
+        <div class="mt-2 ">Sign Up to your account</div>
         <form class="form" [formGroup]="freshGraduatesForm" autocomplete="off">
           <mat-label class="label-color">Name</mat-label>
             <mat-form-field appearance="outline">
@@ -56,7 +57,7 @@
             <div class="signupTxt">By registering, I agree to get enroll in the Skill Exchange Program where recruiters can search my profile and contact me for job Opportunities.</div>
             <button class="btn" [disabled]="!freshGraduatesForm.valid" id="register" mat-button
                 (click)="register()">{{"Register"}}</button>
-            <label class="signupTxt"><b>Note:</b> Use your personal email id for registration</label>
+            <!-- <label class="signupTxt"><b>Note:</b> Use your personal email id for registration</label> -->
         </form>
       </div>
       </mat-card>
@@ -66,3 +67,14 @@
     <!-- Footer area -->
     <div class="footer-section">© 2022 L&T Edutech. All Rights Reserved</div>
     </div>
+
+    <ng-template #noSkill>
+      <mat-icon class="close-icon" (click)="closepops()">close</mat-icon>
+    <div class="successMessage">
+        <img src="assets/images/check.png">
+        <div class="text">
+            <p>Verification mail sent to your mail id.</p>
+            <p class="subpara">to your mail id</p>
+  </div>
+  </div>
+  </ng-template>

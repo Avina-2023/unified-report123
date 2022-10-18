@@ -33,7 +33,7 @@ width: 50%;
 }
 
 mat-card{
-  width:60%;
+  width:56%;
   margin:0 auto;
   padding-top: 40px;
   padding-bottom: 40px;
@@ -76,7 +76,7 @@ mat-card{
   color: #262626;
   font-weight: bold !important;
   font-family: "Roboto" !important;
-  font-size: 35px;
+  font-size: 40px;
   margin-bottom: 10px;
 }
 .tLeft{
@@ -169,8 +169,8 @@ mat-label{
 }
 
 .signupTxt{
-  font-size: 12px;
-  text-align: center;
+  font-size: 11px;
+  text-align: justify;
   margin-top: 10px;
 
 }
@@ -208,4 +208,23 @@ mat-label{
     border-right: 8px solid #00000000;
     border-bottom: 6px solid #00519c;
     clear: both;
+  }
+
+  .successMessage{
+    display:flex;
+    flex-direction: column;
+    align-content: stretch;
+    align-items: center;
+    .text{
+      margin-top:10px;
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+    }
+  }
+  .close-icon{
+    float: right;
+    top:-24px;
+    right:-24px;
+    cursor: pointer;
   }
