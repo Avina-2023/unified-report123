@@ -29,18 +29,17 @@
           <div class="animated animatedFadeInUp fadeInUp signIn"> Registration</div>
         </div>
         <form class="form" [formGroup]="freshGraduatesForm" autocomplete="off">
+          <mat-label class="label-color">Name</mat-label>
             <mat-form-field appearance="outline">
                 <input matInput id="user_name"  [placeholder]="'Name'" formControlName="user_name"
                     maxlength="64" required>
                 <mat-error *ngIf="user_name.invalid && user_name.touched">
-                   <br>
                     <div *ngIf="user_name?.errors?.required">
                         {{'Name is required'}}
                     </div>
                 </mat-error>
             </mat-form-field>
-            <br>
-            <br>
+            <mat-label class="label-color">Email</mat-label>
             <mat-form-field appearance="outline">
                 <input matInput id="email" [placeholder]="'Email'" formControlName="email" required>
                 <mat-error *ngIf="email.invalid && email.touched">

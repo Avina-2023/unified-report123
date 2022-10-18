@@ -2,6 +2,8 @@ import { APP_CONSTANTS } from './../../utils/app-constants.service';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { SetPasswordComponent } from './set-password/set-password.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 const routes: Routes = [
   {
@@ -9,6 +11,12 @@ const routes: Routes = [
   },
   {
     path: `${APP_CONSTANTS.ROUTES.LOGIN}`, component: LoginPageComponent
+  },
+  {
+    path: `${APP_CONSTANTS.ROUTES.PASSWORD.FORGOT}`, component: ForgotPasswordComponent
+  },
+  {
+    path: `${APP_CONSTANTS.ROUTES.PASSWORD.RESET}`, component: SetPasswordComponent
   },
   {
     path: '',

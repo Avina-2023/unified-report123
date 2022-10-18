@@ -59,6 +59,17 @@ export class ApiService {
     }
   }
 
+  encryptnew(data, customSecretKey) {
+    try {
+      this.EncryptKEY = customSecretKey ? customSecretKey : this.EncryptKEY;
+      return CryptoJS.AES.encrypt(data, this.EncryptKEY).toString();
+      // return CryptoJS.AES.encrypt(JSON.stringify(data), this.EncryptKEY).toString();
+    } catch (e) {
+      console.log(e);
+      return data;
+    }
+  }
+
   decrypt(data) {
     try {
       const bytes = CryptoJS.AES.decrypt(data, this.EncryptKEY);
@@ -188,6 +199,15 @@ export class ApiService {
 
   industryType(data){
     return this.http.post(`${this.BASE_URL}/industrytypelist`,data)
+  }
+
+  forgotPassword(email) {
+    return this.http.post(`${this.BASE_URL}/userforgotPassword`, email);
+  }
+
+   passwordReset(data) {
+    // this.datas is api body data
+    return this.http.post(`${this.BASE_URL}/submitResetPassword`, data);
   }
   
 }
