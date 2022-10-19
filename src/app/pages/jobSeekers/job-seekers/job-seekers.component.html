@@ -57,8 +57,8 @@
 
             <div class="signupTxt">By registering, I agree to get enroll in the Skill Exchange Program where recruiters can search my profile and contact me for job Opportunities.</div>
             <button class="btn" [disabled]="!freshGraduatesForm.valid" id="register" mat-button
-                (click)="register()">{{"Register"}}</button>
-            <!-- <label class="signupTxt"><b>Note:</b> Use your personal email id for registration</label> -->
+                (click)="register()">{{"Submit"}}</button>
+            <div class="mt-20 signupTxt center">Already have an account? <a class="forgot" [href]="skillProfileUrl">Sign In</a></div>
         </form>
       </div>
       </mat-card>
