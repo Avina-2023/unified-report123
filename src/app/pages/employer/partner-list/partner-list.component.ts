@@ -88,8 +88,8 @@ export class PartnerListComponent implements OnInit {
     });
   }
 
-  updateStatus(status, email,id,firstName) {
-    this.ApiService.updatePartnerStatus({ isApproved: status, email: email,id:id,firstName:firstName }).subscribe((partnerList: any) => {
+  updateStatus(isActive, isApproved, email,id,firstName) {
+    this.ApiService.updatePartnerStatus({ isApproved: isApproved,isActive:isActive, email: email,id:id,firstName:firstName }).subscribe((partnerList: any) => {
       if (partnerList.success == false) {
         this.toastr.warning('Connection failed, Please try again.');
       } else {

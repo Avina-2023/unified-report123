@@ -25,7 +25,7 @@
       <div class="tLeft">Employer</div>
       <div class="animated animatedFadeInUp fadeInUp signIn"> Registration</div>
     </div>
-    <mat-label>Sign Up to your account</mat-label>
+    <mat-label class="mt-1">Sign Up to your account</mat-label>
     <form class="form" [formGroup]="registerForm" autocomplete="off">
       <mat-label>Name</mat-label>
       <mat-form-field appearance="outline">
@@ -92,6 +92,7 @@
 </div>
 
 <ng-template #noSkill>
+    <mat-icon class="close-icon" (click)="closepops()">close</mat-icon>
   <div class="successMessage">
       <img src="assets/images/check.png">
       <div class="text">
@@ -99,5 +100,4 @@
           <p class="subpara">Successfully</p>
 </div>
 </div>
-
 </ng-template>

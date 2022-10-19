@@ -76,8 +76,9 @@ mat-card{
   color: #262626;
   font-weight: bold !important;
   font-family: "Roboto" !important;
-  font-size: 35px;
-  margin-bottom: 10px;
+  font-size: 37px;
+  margin-bottom: 15px;
+  letter-spacing: 1px;
 }
 .tLeft{
   font-size: 24px;
@@ -171,6 +172,26 @@ mat-label{
   text-align: center;
 }
 
+
+.successMessage{
+  display:flex;
+  flex-direction: column;
+  align-content: stretch;
+  align-items: center;
+  .text{
+    margin-top:10px;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+  }
+}
+
+.close-icon{
+  float: right;
+  top:-24px;
+  right:-24px;
+  cursor: pointer;
+}
 // Footer area
 .footer-section{
   display: flex;

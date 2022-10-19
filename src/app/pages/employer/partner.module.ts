@@ -27,4 +27,4 @@ import { PartnerEnquiriesComponent } from './partner-enquiries/partner-enquiries
     ReactiveFormsModule
   ],
 })
-export class EmployerModule { }
+export class Adminmodule { }

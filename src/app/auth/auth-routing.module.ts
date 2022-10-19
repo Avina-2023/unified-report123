@@ -17,7 +17,7 @@ const routes: Routes = [
       {
         path: `${APP_CONSTANTS.ROUTES.SKILLMASTER.HOME}`, loadChildren: () => import('../pages/skill-Master/skill-master.module').then(m => m.SkillMasterModule)
       },{
-        path: `${APP_CONSTANTS.ROUTES.PARTNER.HOME}`, loadChildren: () => import('../pages/employer/partner.module').then(m => m.EmployerModule)
+        path: `${APP_CONSTANTS.ROUTES.PARTNER.HOME}`, loadChildren: () => import('../pages/employer/partner.module').then(m => m.Adminmodule)
       },
       {
         path: `${APP_CONSTANTS.ROUTES.EMPDASHBOARD.HOME}`, loadChildren: () => import('../pages/empdashboard/empdashboard.module').then(m => m.EmployerModule)

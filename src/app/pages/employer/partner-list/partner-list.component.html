@@ -167,9 +167,9 @@
                   </div>
                   <mat-menu #menu="matMenu">
                     <button *ngIf="element.isActive == false" mat-menu-item
-                      (click)="updateStatus(true,element.email,element._id,element.firstName)">Activate</button>
+                      (click)="updateStatus(element.isActive,element.isApproved,element.email,element._id,element.firstName)">Activate</button>
                     <button *ngIf="element.isActive == true" mat-menu-item
-                      (click)="updateStatus(false,element.email,element._id,element.firstName)">Deactivate</button>
+                      (click)="updateStatus(element.isActive,element.isApproved,element.email,element._id,element.firstName)">Deactivate</button>
                     <button mat-menu-item (click)="updatePartner(element.email)">Edit</button>
 
                   </mat-menu>
