@@ -42,7 +42,7 @@ export class RegisterPageComponent implements OnInit {
 
   register(){
     let data = {
-      mobile:this.registerForm.value.mobile,
+      mobile:this.registerForm.value.mobile.toString(),
       email:this.registerForm.value.email,
       name:this.registerForm.value.name,
       designation:this.registerForm.value.designation,
