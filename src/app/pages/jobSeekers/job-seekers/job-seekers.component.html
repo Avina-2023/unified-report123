@@ -35,8 +35,9 @@
                 <input matInput id="user_name"  [placeholder]="'Name'" formControlName="user_name"
                     maxlength="64" required>
                 <mat-error *ngIf="user_name.invalid && user_name.touched">
+                  <br>
                     <div *ngIf="user_name?.errors?.required">
-                        {{'Name is required'}}
+                        {{'Name is Required'}}
                     </div>
                 </mat-error>
             </mat-form-field>
@@ -46,10 +47,10 @@
                 <mat-error *ngIf="email.invalid && email.touched">
                     <br>
                     <div *ngIf="email?.errors?.required">
-                        {{'Email id is required'}}
+                        {{'Email Id is Required'}}
                     </div>
                     <div *ngIf="email.errors?.pattern">
-                        {{'Please enter a valid Email id'}}
+                        {{'Please Enter a Valid Email Id'}}
                     </div>
                 </mat-error>
             </mat-form-field>
@@ -65,7 +66,7 @@
     </div>
     </div>
     <!-- Footer area -->
-    <div class="footer-section">© 2022 L&T Edutech. All Rights Reserved</div>
+    <div class="footer-section">© 2022 L&T EduTech. All Rights Reserved</div>
     </div>
 
     <ng-template #noSkill>

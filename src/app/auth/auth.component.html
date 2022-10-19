@@ -14,7 +14,7 @@
     </mat-toolbar>
 
     <mat-toolbar class="header-toolbar p-3" *ngIf="checkRouter !='/auth/reports/userlist' && checkRouter !='/auth/reports/dashboard' &&  checkRouter != '/auth/skillmaster/skillmasterlist' && checkRouter != '/auth/dashboard/dashboard'">
-        
+
       <div class="first">
             <img alt="EduTech" class="beforeloginimg" [src]="this.orgLogo ? this.orgLogo  : 'assets/images/landing/newLogo.png'" />
         </div>
@@ -100,7 +100,7 @@
             </div>
           </div>
     </mat-toolbar>
-    
+
 
     <div class="mainCon">
     <div *ngIf=" checkRouter === '/auth/reports/dashboard' || checkRouter ==='/auth/reports/userlist' || checkRouter ==='/auth/skillmaster/skillmasterlist' || checkRouter ==='/auth/skillmaster/skillbulkupload' ">
@@ -133,7 +133,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="float-right">
-                        Powered by L&T Edutech
+                        Powered by L&T EduTech
                     </div>
                 </div>
             </div>
