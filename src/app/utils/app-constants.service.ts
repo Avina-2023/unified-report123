@@ -20,6 +20,11 @@ export const APP_CONSTANTS = {
     HOME: '/home',
     AUTH: '/auth',
     LANDING: '/landing',
+    PASSWORD: {
+      FORGOT: '/forgot-password',
+      RESET: '/resetpwd',
+      SETUP: '/setpwd'
+    },
     REPORTS: {
       HOME: '/auth/reports',
       USERLIST: '/auth/reports/userlist',
@@ -54,6 +59,11 @@ export const APP_CONSTANTS = {
   // Routes
   ROUTES: {
     LOGIN: 'login',
+    PASSWORD: {
+      FORGOT: 'forgot-password',
+      RESET: 'resetpwd',
+      SETUP: 'setpwd'
+    },
     LANDING: 'landing',
     HOME: 'home',
     AUTH: 'auth',
