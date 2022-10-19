@@ -37,8 +37,8 @@
             </mat-form-field>
 
             <ng-container *ngIf="username.invalid && username.touched">
-                <mat-error class="error" *ngIf="username?.errors?.required">{{'User name is required'}}</mat-error>
-                <mat-error class="error" *ngIf="username.errors?.pattern">{{'Please enter a valid User name'}}</mat-error>
+                <mat-error class="error" *ngIf="username?.errors?.required">{{'Username is Required'}}</mat-error>
+                <mat-error class="error" *ngIf="username.errors?.pattern">{{'Please Enter a valid Username'}}</mat-error>
             </ng-container>
 
             <mat-label class="label-color">Password</mat-label>
@@ -50,7 +50,7 @@
             </mat-form-field>
 
             <ng-container *ngIf="password?.invalid && password?.touched">
-                <mat-error class="error" *ngIf="password?.errors?.required">{{'Password is required'}}</mat-error>
+                <mat-error class="error" *ngIf="password?.errors?.required">{{'Password is Required'}}</mat-error>
             </ng-container>
             <button class="btn" [disabled]="!loginForm.valid" id="login" mat-button (click)="login()">{{'SIGN IN'}}</button>
             <div class="mt-20 signupTxt">New User? <a class="forgot" href="/employers">Sign Up</a></div>
@@ -64,5 +64,5 @@
     </div>
     </div>
     <!-- Footer area -->
-    <div class="footer-section">© 2022 L&T Edutech. All Rights Reserved</div>
+    <div class="footer-section">© 2022 L&T EduTech. All Rights Reserved</div>
     </div>

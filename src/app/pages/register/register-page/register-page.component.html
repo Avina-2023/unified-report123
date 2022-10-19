@@ -33,7 +33,7 @@
       </mat-form-field>
 
       <ng-container *ngIf="name.invalid && name.touched">
-        <mat-error class="error" *ngIf="name?.errors?.required">{{'Name is required'}}</mat-error>
+        <mat-error class="error" *ngIf="name?.errors?.required">{{'Name is Required'}}</mat-error>
       </ng-container>
 
       <mat-label>Designation</mat-label>
@@ -42,7 +42,7 @@
       </mat-form-field>
 
       <ng-container *ngIf="designation.invalid && designation.touched">
-        <mat-error class="error" *ngIf="designation?.errors?.required">{{'Designation is required'}}</mat-error>
+        <mat-error class="error" *ngIf="designation?.errors?.required">{{'Designation is Required'}}</mat-error>
       </ng-container>
 
       <mat-label>Company</mat-label>
@@ -51,7 +51,7 @@
       </mat-form-field>
 
       <ng-container *ngIf="company.invalid && company.touched">
-        <mat-error class="error" *ngIf="company?.errors?.required">{{'Company name is required'}}</mat-error>
+        <mat-error class="error" *ngIf="company?.errors?.required">{{'Company Name is Required'}}</mat-error>
       </ng-container>
 
       <mat-label>Email</mat-label>
@@ -60,8 +60,8 @@
       </mat-form-field>
 
       <ng-container *ngIf="email.invalid && email.touched">
-        <mat-error class="error" *ngIf="email?.errors?.required">{{'Email id is required'}}</mat-error>
-        <mat-error class="error" *ngIf="email.errors?.pattern">{{'Please enter a valid Email id'}}</mat-error>
+        <mat-error class="error" *ngIf="email?.errors?.required">{{'Email Id is Required'}}</mat-error>
+        <mat-error class="error" *ngIf="email.errors?.pattern">{{'Please Enter a Valid Email Id'}}</mat-error>
       </ng-container>
 
       <mat-label>Mobile</mat-label>
@@ -70,8 +70,8 @@
       </mat-form-field>
 
       <ng-container *ngIf="mobile.invalid && mobile.touched">
-        <mat-error class="error" *ngIf="mobile?.errors?.required">{{'Mobile number is required'}}</mat-error>
-        <mat-error class="error" *ngIf="mobile.errors?.mobileRegex">{{'Please enter a valid Mobile number'}}</mat-error>
+        <mat-error class="error" *ngIf="mobile?.errors?.required">{{'Mobile Number is Required'}}</mat-error>
+        <mat-error class="error" *ngIf="mobile.errors?.mobileRegex">{{'Please Enter a Valid Mobile Number'}}</mat-error>
 
       </ng-container>
       <!-- <section class="example-section">
@@ -88,7 +88,7 @@
 
 
 <!-- Footer area -->
-<div class="footer-section">© 2022 L&T Edutech. All Rights Reserved</div>
+<div class="footer-section">© 2022 L&T EduTech. All Rights Reserved</div>
 </div>
 
 <ng-template #noSkill>
