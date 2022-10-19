@@ -37,7 +37,7 @@ export class ToolbarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.sidebarOpen = true;
+    this.sidebarOpen = false;
   //  this.check = this.appconfig.getLocalStorage('navMenu') ? this.appconfig.getLocalStorage('navMenu') : 'userlist';
   }
 

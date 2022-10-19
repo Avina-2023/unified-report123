@@ -41,14 +41,21 @@ export class LoginPageComponent  {
     }
 
     this.apiService.login(apiData).subscribe((response: any)=> {
+
       if ((response && response.success) || (response && response.data) || (response && response.token)) {
           if(response.data.attributes){
             this.appConfig.setLocalStorage('token', 'true');
             this.appConfig.setLocalStorage('role',response.data ? JSON.stringify(response.data.attributes.organisations)  : '');
             this.appConfig.setLocalStorage('email',response.data && response.data.attributes  ? response.data.attributes.email : '');
+            this.appConfig.setLocalStorage('firstName',response.data && response.data.attributes  ? response.data.attributes.firstName : '');
             this.disableButton = false;
-            // this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.REPORTS.DASHBOARD);
-            this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.EMPDASHBOARD.HOME);
+            console.log(response.data.attributes.oldAdmin)
+            if(response.data.attributes.oldAdmin == true){
+          this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.REPORTS.DASHBOARD);
+            }
+            else{
+              this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.EMPDASHBOARD.HOME);
+            }
             this.matDialog.closeAll();
             this.getIPAddress();
           }else {

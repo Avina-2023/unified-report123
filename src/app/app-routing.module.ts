@@ -28,17 +28,11 @@ const routes: Routes = [
     path: `register`, component: JobSeekersComponent
   },
   {
-    path:'sidebar',component:SidebarComponent
-  },
-  {
     path: 'employers', component: RegisterPageComponent
   },
   {
-    path: 'employers', component: RegisterPageComponent
+    path: '', loadChildren: () => import('./pages/login/login-routing.module').then(m => m.LoginRoutingModule), canActivate: [IsloggedInGuard]
   },
-  // {
-  //   path: '', loadChildren: () => import('./pages/login/login-routing.module').then(m => m.LoginRoutingModule), canActivate: [IsloggedInGuard]
-  // },
  
   {
     path: `${APP_CONSTANTS.ROUTES.AUTH}`, loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)

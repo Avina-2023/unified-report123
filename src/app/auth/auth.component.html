@@ -3,20 +3,22 @@
         <div class="first">
             <img alt="EduTech" class="beforeloginimg" [src]="this.orgLogo ? this.orgLogo  : 'assets/images/landing/newLogo.png'" />
         </div>
+        <div class="filler"></div>
         <div *ngIf="isaccess" class="logout">
             <mat-icon class="homeBtn" (click)="navToDashboard()">home</mat-icon>
-            <!-- <button mat-button class="homeBtn" (click)="navToDashboard()">Home</button> -->
-            <span class="wel">Welcome, {{orgName ? orgName : 'Admin'}}</span>
+            <span class="wel">Welcome2, {{orgName ? orgName : 'Admin'}}</span>
             <span class="logout1">
                 <em class="icon-logout"  matTooltip="Logout" (click)="logout()"></em>
             </span>
         </div>
     </mat-toolbar>
 
-    <mat-toolbar class="header-toolbar p-3" *ngIf="checkRouter !='/auth/reports/userlist' && checkRouter !='/auth/reports/dashboard' &&  checkRouter != '/auth/skillmaster/skillmasterlist' ">
-        <div class="first">
+    <mat-toolbar class="header-toolbar p-3" *ngIf="checkRouter !='/auth/reports/userlist' && checkRouter !='/auth/reports/dashboard' &&  checkRouter != '/auth/skillmaster/skillmasterlist' && checkRouter != '/auth/dashboard/dashboard'">
+        
+      <div class="first">
             <img alt="EduTech" class="beforeloginimg" [src]="this.orgLogo ? this.orgLogo  : 'assets/images/landing/newLogo.png'" />
         </div>
+        <div class="filler"></div>
         <div *ngIf="isaccess" class="logout">
             <span class="wel">Welcome, {{orgName ? orgName : 'Admin'}}</span>
         </div>
@@ -27,6 +29,7 @@
         <div class="first">
             <img alt="EduTech" class="beforeloginimg" [src]="this.orgLogo ? this.orgLogo  : 'assets/images/landing/newLogo.png'" />
         </div>
+        <div class="filler"></div>
         <div *ngIf="isaccess" class="logout">
             <span class="userListNav" (click)="navToUserlist()"> Pre-assessed Candidates </span>
             <span class="wel">Welcome, {{orgName ? orgName : 'Admin'}}</span>
@@ -36,12 +39,74 @@
         </div>
     </mat-toolbar>
 
+    <mat-toolbar class="p-3" *ngIf=" checkRouter ==='/auth/dashboard/dashboard' || checkRouter ==='/auth/partner/partnerlist'">
+        <div>
+            <img class="logo" src="https://assets.lntedutech.com/SKILL_EXCHANGE.png">
+          </div>
+          <div class="toolbarright">
+            <button class="demo-section" mat-icon-button [matMenuTriggerFor]="menu"
+              aria-label="Example icon-button with a menu">
+              <img src="../../assets/images/emp-dashboard-icons/notification.png">
+            </button>
+            <mat-menu #menu="matMenu" xPosition="before" yPosition="below" pgcCenter>
+              <div class="notification-head">
+                <div>
+                  <label class="notification-text">notification</label>
+                </div>
+                <div class="notification-insidebox">
+                  <span>1 New</span>
+                </div>
+              </div>
+              <div class="">
+                <mat-list>
+                  <mat-list-item class="list" *ngFor="let notificationitem of notificationlist">
+                    <div mat-line>{{notificationitem.name}}</div>
+                    <div mat-line>{{notificationitem.text}} </div>
+                    <img src="../../../../assets/images/emp-dashboard-icons/user.png">
+                  </mat-list-item>
+                </mat-list>
+              </div>
+            </mat-menu>
+            <div>
+              <ul class="select">
+                <li>
+                  <input class="select_close" type="radio" name="awesomeness" id="awesomeness-close" value="" />
+                  <span class="select_label select_label-placeholder loginuser">Welcome , {{userName}}</span>
+                </li>
+                <li class="select_items">
+                  <input class="select_expand" type="radio" name="awesomeness" id="awesomeness-opener" />
+                  <label class="select_closeLabel" for="awesomeness-close"></label>
+                  <ul class="select_options">
+                    <li class="select_option" *ngIf='roleCode === "EMP"'>
+                      <label class="select_label" for="awesomeness-ridiculous"><i
+                          class="material-icons red droupdownic">close</i>Change Password</label>
+                    </li>
+                    <li class="select_option" *ngIf='roleCode === "EMP"'>
+                      <label class="select_label" for="awesomeness-reasonable"><i
+                          class="material-icons red droupdownic">close</i>Profile</label>
+                    </li>
+                    <li class="select_option"  *ngIf='roleCode === "SADM" || roleCode === "OADM" || roleCode === "ADM" || roleCode === "HR" || roleCode === "ISADM" || roleCode === "IADM" || roleCode === "EMP"'>
+                      <label class="select_label"   for="awesomeness-lacking">
+                        <img class="dropdownic"(click)="logout()"  src="../../assets/images/emp-dashboard-icons/logout.png">
+                        <span class="dropdowntxt" (click)="logout()">Logout</span></label>
+                    </li>
+                  </ul>
+                  <label class="select_expandLabel" for="awesomeness-opener"></label>
+                </li>
+              </ul>
+            </div>
+            <div class="toolbar-pic">
+              <img src="../../../../assets/images/emp-dashboard-icons/user.png">
+            </div>
+          </div>
+    </mat-toolbar>
+    
 
     <div class="mainCon">
-    <div *ngIf="checkRouter ==='/auth/reports/userlist' || checkRouter ==='/auth/skillmaster/skillmasterlist' || checkRouter ==='/auth/skillmaster/skillbulkupload' ">
+    <div *ngIf=" checkRouter === '/auth/reports/dashboard' || checkRouter ==='/auth/reports/userlist' || checkRouter ==='/auth/skillmaster/skillmasterlist' || checkRouter ==='/auth/skillmaster/skillbulkupload' ">
             <app-toolbar></app-toolbar>
     </div>
-    <div *ngIf="checkRouter ==='/auth/dashboard/dashboard' || checkRouter ==='auth/partner/partnerlist'">
+    <div *ngIf="checkRouter ==='/auth/dashboard/dashboard' || checkRouter ==='/auth/partner/partnerlist'||checkRouter ==='/auth/partner/addpartner'||checkRouter ==='/auth/partner/partnerenquiry'">
         <app-sidebar></app-sidebar>
      </div>
     <div class="heightDiv">
@@ -58,5 +123,20 @@
         </div>
     </ng-template>
 
-    <footer class="footerPan">© 2021 L&T EduTech. All Rights Reserved</footer>
+    <footer class="footerblue">
+        <div class="conatiner-fluid">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="text-left">
+                        <span>© 2022 L&T EduTech. All Rights Reserved</span>
+                      </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="float-right">
+                        Powered by L&T Edutech
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
 </div>
