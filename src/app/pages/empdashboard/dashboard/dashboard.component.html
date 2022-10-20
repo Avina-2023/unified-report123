@@ -123,10 +123,10 @@
             </div>
         </div>
         <div class="col-md-4">
-            <div class="chartcard">
-                <span>Profile by Year Pass Out</span>
+            <div class="chartcard">   
                 <div class="d-flex">
                     <div class="row">
+                        <span class="progress-inside-head">Profile by Year Pass Out</span>
                         <div class="col-md-10">
                             <div class="chart-wrapper p-2">
                                 <canvas baseChart [data]="doughnutChartData" [options]="options"
@@ -155,11 +155,27 @@
                 </div>
             </div>
             <br>
-            <div class="chartcard">
-                <div class="chart-wrapper">
-                    <canvas baseChart [data]="doughnutChartData" [options]="options" [colors]="doughnutChartColors"
-                        [labels]="doughnutChartLabels" [plugins]="doughnutChartPlugins" [chartType]="doughnutChartType">
-                    </canvas>
+            <div class="chartcard"> 
+                <span class="progress-inside-head">Profile by Gender</span>  
+                <div class="d-flex">
+                    <canvas baseChart [data]="doughnutChartData" [options]="options2"
+                    [colors]="doughnutChartColors" [labels]="doughnutChartLabels"
+                 [chartType]="doughnutChartType">
+                </canvas>
+                </div>
+                <div class="d-flex p-4">
+                    <div class="align-indication pr-5 pl-5">
+                        <div class="progress-male male"></div>
+                        <span>Male</span>
+                    </div> 
+                    <div class="align-indication pr-5">
+                        <div class="progress-male female"></div>
+                        <span>Female</span>
+                    </div>    
+                    <div class="align-indication pr-5">
+                        <div class="progress-male others"></div>
+                        <span>Others</span>
+                    </div>       
                 </div>
             </div>
 

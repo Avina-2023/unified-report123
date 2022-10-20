@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
+// import {Chart} from 'chart.js';
+// import {TreemapController,TreemapElement} from 'chartjs-chart-treemap'
 @Component({
   selector: 'app-discipline-chart',
   templateUrl: './discipline-chart.component.html',

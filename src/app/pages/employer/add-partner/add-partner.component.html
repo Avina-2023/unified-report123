@@ -4,7 +4,7 @@
         <div class="partnerCardBody">
             <mat-card class="partnerCard">
                 <div class="cardTitle">
-                    <p>PARTNER'S INFORMATION LIST</p>
+                    <p>Partner's Information Form</p>
                 </div>
                 <mat-card-content class="cardValue">
                     <div class="primaryWrapper">
@@ -44,11 +44,11 @@
                             </form>
                         </div>
                         <div class="right">
-                            <label class="customLabel">Upload Employer Logo<span>*</span></label>
+                            <label class="customLabel2">Upload Employer Logo<span>*</span></label>
                             <p class="errmsg" *ngIf="errorMsgforLogo">{{errorMsgforLogo}}</p>
                             <div class="wrapper">
                                 <div>
-                                    <img *ngIf="!employerLogoFileName" class="cloudicon" src="/assets/images/partner/cloudicon.svg" alt="">
+                                    <img *ngIf="!employerLogoFileName" class="cloudicon" src="/assets/images/partner/cloud-upload-blu.svg" alt="">
                                     <img *ngIf="employerLogoFileName" class="cloudicon" [src]="employerLogoUrl" height="100" width="200">
                                 </div>
                                 <div class="buttonClass">
@@ -106,7 +106,21 @@
                                             <input formControlName="mobile" matInput placeholder="Enter SPOC Mobile Number">
                                         </mat-form-field>
                                         <ng-container *ngIf="mobile.invalid && mobile.touched">
-                                            <mat-error class="error" *ngIf="mobile?.errors?.required">{{'Mobile is required'}}</mat-error>
+                                            <!-- <mat-error class="error" *ngIf="mobile?.errors?.required">{{'Mobile is required'}}</mat-error>
+                                            <mat-error class="error" *ngIf="mobile?.errors?.maxLength">{{'Mobile should be accepted 10 digits'}}</mat-error> -->
+                                            <mat-error *ngIf="registerForm.controls['mobile'].invalid ">
+                                                <div *ngIf="registerForm.controls['mobile'].errors.required">
+                                                    Mobile is required
+                                                </div>
+                                                
+                                                <div *ngIf="registerForm.controls['mobile'].errors.maxlength">
+                                                    Mobile should be accepted 10 digits
+                                                </div>
+                                                
+                                                <div *ngIf="registerForm.controls['mobile'].errors.pattern">
+                                                    Invalid Mobile number
+                                                </div>
+                                            </mat-error>
                                         </ng-container>
                                     </div>
                                 </form>
@@ -115,7 +129,7 @@
                     </div>
                     <div class="inputContainer">
                         <form [formGroup]="registerForm">
-                        <label class="customLabel">Short Description<span>*</span></label>
+                        <label class="customLabel2">Short Description<span>*</span></label>
                         <mat-form-field appearance="outline">
                             <textarea type formControlName="description" style="resize: none;" class="descstyle" matInput placeholder="Short Description"></textarea>
                         </mat-form-field>
@@ -124,11 +138,11 @@
                         </ng-container>
                     </form>
                     </div>
-                    <label class="customLabel">Upload EOI Form<span>*</span></label>
+                    <label class="customLabel2">Upload EOI Form<span>*</span></label>
                     <p class="errmsg" *ngIf="errorMsgforeoi">{{ errorMsgforeoi}}</p>
                     <div class="primaryWrapper">
                         <div class="eoiform">
-                            <div class="imgdata"><img *ngIf="!eoiFileName" class="cloudicon" src="/assets/images/partner/cloudicon.svg" alt="">
+                            <div class="imgdata"><img *ngIf="!eoiFileName" class="cloudicon" src="/assets/images/partner/cloud-upload-blu.svg" alt="">
                                <div> <img *ngIf="eoiFileName" class="cloudicon" src="/assets/images/partner/pdficon.svg" alt=""></div>
                                <div> <p *ngIf="eoiFileName" >{{eoiFileName}}</p></div>
                             </div>

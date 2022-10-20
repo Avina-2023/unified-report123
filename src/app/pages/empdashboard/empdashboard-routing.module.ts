@@ -8,7 +8,6 @@ import { DegreeChartComponent } from './degree-chart/degree-chart.component';
 import { DemographyChartComponent } from './demography-chart/demography-chart.component';
 import { DisciplineChartComponent } from './discipline-chart/discipline-chart.component'
 import { GraduationChartComponent } from './graduation-chart/graduation-chart.component';
-import { SidebarComponent } from '../../shared/sidebar/sidebar.component';
 
 const routes: Routes = [
   {
