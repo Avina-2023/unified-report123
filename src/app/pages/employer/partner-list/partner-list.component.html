@@ -1,66 +1,76 @@
 <div class="body">
   <div class="subBody">
-    <h3 class="title">VIEW PARTNERS</h3>
+    <h3 class="title">Manage Partners</h3>
     <div class="partnerCardBody">
-      <div>
-        <mat-card class="partnerCard">
-          <mat-card-title class="cardTitle">Total Partners</mat-card-title>
-          <mat-card-content class="cardValue">
-            <div>
-              <p>{{totalPartnerCount}}</p>
+        <div class="container-fluid">
+          <div class="row p-1">
+            <div class="col-md-3">
+              <mat-card class="partnerCard">
+                <mat-card-title class="cardTitle">Total Partners</mat-card-title>
+                <mat-card-content class="cardValue">
+                  <div>
+                    <p>{{totalPartnerCount}}</p>
+                  </div>
+                  <div><img src="/assets/images/partner/partners.svg" alt=""></div>
+                </mat-card-content>
+                <!-- <div class="media d-flex">
+                  <div class="card-inside-percentage-box">
+                      <span>8%</span>
+                  </div>
+                  <span class="ml-2">Since last month</span>
+              </div> -->
+                <mat-card-footer class="cardFooter">
+                  <span class="cardFootervalue"> <img src="/assets/images/partner/arrow-round-up.svg"
+                    alt="">18%</span> Since last month
+                </mat-card-footer>
+              </mat-card>
             </div>
-            <div><img src="/assets/images/partner/partners.svg" alt=""></div>
-          </mat-card-content>
-          <mat-card-footer class="cardFooter">
-            <span class="cardFootervalue"> <img src="/assets/images/partner/arrow-round-up.svg"
-              alt="">18%</span> Since last month
-          </mat-card-footer>
-        </mat-card>
-      </div>
-      <div>
-        <mat-card class="partnerCard">
-          <mat-card-title class="cardTitle">No. of Active Partners</mat-card-title>
-          <mat-card-content class="cardValue">
-            <div>
-              <p>{{activePartnerCount}}</p>
+            <div class="col-md-3">
+              <mat-card class="partnerCard">
+                <mat-card-title class="cardTitle">No. of Active Partners</mat-card-title>
+                <mat-card-content class="cardValue">
+                  <div>
+                    <p>{{activePartnerCount}}</p>
+                  </div>
+                  <div><img src="/assets/images/partner/partners-active.svg" alt=""></div>
+                </mat-card-content>
+                <mat-card-footer class="cardFooter">
+                  <span class="cardFootervalue"> <img src="/assets/images/partner/arrow-round-up.svg"
+                    alt="">13%</span> Since last month 
+                </mat-card-footer>
+              </mat-card>
             </div>
-            <div><img src="/assets/images/partner/partners-active.svg" alt=""></div>
-          </mat-card-content>
-          <mat-card-footer class="cardFooter">
-            <span class="cardFootervalue"> <img src="/assets/images/partner/arrow-round-up.svg"
-              alt="">13%</span> Since last month 
-          </mat-card-footer>
-        </mat-card>
-      </div>
-      <div>
-        <mat-card class="partnerCard">
-          <mat-card-title class="cardTitle">No. of Inactive Partners</mat-card-title>
-          <mat-card-content class="cardValue">
-            <div>
-              <p>{{inActivePartnerCount}}</p>
+            <div class="col-md-3">
+              <mat-card class="partnerCard">
+                <mat-card-title class="cardTitle">No. of Inactive Partners</mat-card-title>
+                <mat-card-content class="cardValue">
+                  <div>
+                    <p>{{inActivePartnerCount}}</p>
+                  </div>
+                  <div><img src="/assets/images/partner/partners-inactive.svg" alt=""></div>
+                </mat-card-content>
+                <mat-card-footer class="cardFooter">
+                  <span class="cardFootervalue"> <img src="/assets/images/partner/arrow-round-up.svg"
+                    alt="">2%</span> Since last month 
+                </mat-card-footer>
+              </mat-card>
             </div>
-            <div><img src="/assets/images/partner/partners-inactive.svg" alt=""></div>
-          </mat-card-content>
-          <mat-card-footer class="cardFooter">
-            <span class="cardFootervalue"> <img src="/assets/images/partner/arrow-round-up.svg"
-              alt="">2%</span> Since last month 
-          </mat-card-footer>
-        </mat-card>
-      </div>
-      <div>
-        <mat-card class="partnerCard">
-          <mat-card-title class="cardTitle">Pending Approvals</mat-card-title>
-          <mat-card-content class="cardValue">
-            <div>
-              <p>{{pendingCount}}</p>
+            <div class="col-md-3">
+              <mat-card class="partnerCard">
+                <mat-card-title class="cardTitle">Pending Approvals</mat-card-title>
+                <mat-card-content class="cardValue">
+                  <div>
+                    <p>{{pendingCount}}</p>
+                  </div>
+                  <div><img src="/assets/images/partner/partners-pending.svg" alt=""></div>
+                </mat-card-content>
+                <mat-card-footer class="cardFooter">
+                  <span class="cardFootervalue"> <img src="/assets/images/partner/arrow-round-up.svg"
+                    alt="">2%</span> Since last month 
+                </mat-card-footer>
+              </mat-card>
             </div>
-            <div><img src="/assets/images/partner/partners-pending.svg" alt=""></div>
-          </mat-card-content>
-          <mat-card-footer class="cardFooter">
-            <span class="cardFootervalue"> <img src="/assets/images/partner/arrow-round-up.svg"
-              alt="">2%</span> Since last month 
-          </mat-card-footer>
-        </mat-card>
+          </div>
       </div>
     </div>
     <div class="partnerCardTableBody">
@@ -114,7 +124,11 @@
         <br>
         <mat-card-content class="cardValue">
           <div>
-            <table mat-table [dataSource]="dataSource" class="">
+            <table mat-table [dataSource]="dataSource"  class="">
+              <ng-container matColumnDef="sno">
+                <th mat-header-cell *matHeaderCellDef> S.No</th>
+                <td mat-cell *matCellDef="let element;let i = index" >{{i + 1}}</td>
+              </ng-container>
 
               <ng-container matColumnDef="img">
                 <th mat-header-cell *matHeaderCellDef> </th>
@@ -125,7 +139,7 @@
               <!-- Name Column -->
               <ng-container matColumnDef="employerName">
                 <th mat-header-cell *matHeaderCellDef> Employer Name </th>
-                <td mat-cell *matCellDef="let element"> {{element.company?element.company:"-"}} </td>
+                <td mat-cell *matCellDef="let element;">{{element.company?element.company:"-"}} </td>
               </ng-container>
 
               <!-- Weight Column -->
@@ -142,7 +156,7 @@
 
               <ng-container matColumnDef="spocName">
                 <th mat-header-cell *matHeaderCellDef> SPOC Name </th>
-                <td mat-cell *matCellDef="let element"> {{element.firstName?element.firstName+" "+element.lastName:"-"}}
+                <td mat-cell *matCellDef="let element"> {{element.firstName?element.firstName:"-"}}
                 </td>
               </ng-container>
 
@@ -179,7 +193,7 @@
               <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
             </table>
             <div class="customPagination">
-              <mat-paginator style-paginator [showTotalPages]="3" [length]="totalPartnerCount" [pageSize]="3"
+              <mat-paginator style-paginator [showTotalPages]="3" [length]="totalPartnerCount||3" [pageSize]="3"
                 [pageSizeOptions]="[3]"
                 >
               </mat-paginator>

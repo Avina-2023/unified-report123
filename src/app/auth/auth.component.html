@@ -13,14 +13,14 @@
         </div>
     </mat-toolbar>
 
-    <mat-toolbar class="header-toolbar p-3" *ngIf="checkRouter !='/auth/reports/userlist' && checkRouter !='/auth/reports/dashboard' &&  checkRouter != '/auth/skillmaster/skillmasterlist' && checkRouter != '/auth/dashboard/dashboard'">
+    <mat-toolbar class="header-toolbar p-3" *ngIf="checkRouter !='/auth/reports/userlist' && checkRouter !='/auth/reports/dashboard' &&  checkRouter != '/auth/skillmaster/skillmasterlist' && checkRouter != '/auth/dashboard/dashboard' && checkRouter != '/auth/partner/addpartner' && checkRouter !='/auth/partner/partnerlist' && checkRouter !='/auth/partner/partnerenquiry'">
         
       <div class="first">
             <img alt="EduTech" class="beforeloginimg" [src]="this.orgLogo ? this.orgLogo  : 'assets/images/landing/newLogo.png'" />
         </div>
         <div class="filler"></div>
         <div *ngIf="isaccess" class="logout">
-            <span class="wel">Welcome, {{orgName ? orgName : 'Admin'}}</span>
+            <span class="wel">Welcome2, {{orgName ? orgName : 'Admin'}}</span>
         </div>
     </mat-toolbar>
 
@@ -39,7 +39,7 @@
         </div>
     </mat-toolbar>
 
-    <mat-toolbar class="p-3" *ngIf=" checkRouter ==='/auth/dashboard/dashboard' || checkRouter ==='/auth/partner/partnerlist'">
+    <mat-toolbar class="p-3" *ngIf=" checkRouter ==='/auth/dashboard/dashboard' || checkRouter ==='/auth/partner/partnerlist' || checkRouter ==='/auth/partner/addpartner' ||  checkRouter ==='/auth/partner/partnerenquiry'">
         <div>
             <img class="logo" src="https://assets.lntedutech.com/SKILL_EXCHANGE.png">
           </div>
@@ -77,18 +77,22 @@
                   <input class="select_expand" type="radio" name="awesomeness" id="awesomeness-opener" />
                   <label class="select_closeLabel" for="awesomeness-close"></label>
                   <ul class="select_options">
-                    <li class="select_option" *ngIf='roleCode === "EMP"'>
-                      <label class="select_label" for="awesomeness-ridiculous"><i
-                          class="material-icons red droupdownic">close</i>Change Password</label>
+                    <li class="select_option dropdownic" *ngIf='roleCode === "EMP"'>
+                      <label class="select_label dropdownic">
+                        <img alt="changepassword" class="dropdownic" src="../../assets/images/emp-dashboard-icons/changepassword.svg">
+                        <span class="dropdowntxt dropdownic" >Change Password</span>
+                      </label>
                     </li>
-                    <li class="select_option" *ngIf='roleCode === "EMP"'>
-                      <label class="select_label" for="awesomeness-reasonable"><i
-                          class="material-icons red droupdownic">close</i>Profile</label>
+                    <li class="select_option dropdownic" *ngIf='roleCode === "EMP"'>
+                      <label class="select_label dropdownic">
+                        <img alt="profile" class="dropdownic" style="height: 19px;" src="../../assets/images/emp-dashboard-icons/profile.svg">
+                        <span class="dropdowntxt dropdownic" >Profile</span>
+                        </label>
                     </li>
-                    <li class="select_option"  *ngIf='roleCode === "SADM" || roleCode === "OADM" || roleCode === "ADM" || roleCode === "HR" || roleCode === "ISADM" || roleCode === "IADM" || roleCode === "EMP"'>
-                      <label class="select_label"   for="awesomeness-lacking">
-                        <img class="dropdownic"(click)="logout()"  src="../../assets/images/emp-dashboard-icons/logout.png">
-                        <span class="dropdowntxt" (click)="logout()">Logout</span></label>
+                    <li class="select_option dropdownic"  (click)="logout()"  *ngIf='roleCode === "SADM" || roleCode === "OADM" || roleCode === "ADM" || roleCode === "HR" || roleCode === "ISADM" || roleCode === "IADM" || roleCode === "EMP"'>
+                      <label class="select_label dropdownic" >
+                        <img alt="logout" class="dropdownic"  src="../../assets/images/emp-dashboard-icons/logout.svg">
+                        <span class="dropdowntxt dropdownic" >Logout</span></label>
                     </li>
                   </ul>
                   <label class="select_expandLabel" for="awesomeness-opener"></label>
@@ -106,12 +110,17 @@
     <div *ngIf=" checkRouter === '/auth/reports/dashboard' || checkRouter ==='/auth/reports/userlist' || checkRouter ==='/auth/skillmaster/skillmasterlist' || checkRouter ==='/auth/skillmaster/skillbulkupload' ">
             <app-toolbar></app-toolbar>
     </div>
-    <div *ngIf="checkRouter ==='/auth/dashboard/dashboard' || checkRouter ==='/auth/partner/partnerlist'||checkRouter ==='/auth/partner/addpartner'||checkRouter ==='/auth/partner/partnerenquiry'">
+    <div *ngIf="checkRouter ==='/auth/dashboard/dashboard' || checkRouter ==='/auth/partner/partnerlist' ||checkRouter ==='/auth/partner/addpartner' || checkRouter ==='/auth/partner/partnerenquiry'">
         <app-sidebar></app-sidebar>
      </div>
     <div class="heightDiv">
             <router-outlet></router-outlet>
     </div>
+    <!-- <div class="scrollbar" id="style-1">
+      <div class="force-overflow">
+        <router-outlet></router-outlet>
+      </div>
+    </div> -->
     </div>
 
     <ng-template #matDialog>
@@ -122,21 +131,15 @@
             <button class="confirm" mat-button (click)="closeDialog($event)">Confirm </button>
         </div>
     </ng-template>
-
     <footer class="footerblue">
-        <div class="conatiner-fluid">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="text-left">
-                        <span>© 2022 L&T EduTech. All Rights Reserved</span>
-                      </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="float-right">
-                        Powered by L&T Edutech
-                    </div>
-                </div>
-            </div>
+      <div class="d-flex">
+        <div class="text-left p-1">
+          <span>© 2022 L&T EduTech. All Rights Reserved</span>
         </div>
-    </footer>
+        <div class="filler"></div>
+        <div class="float-right p-1">
+         <span> Powered by L&T Edutech</span>
+      </div>
+      </div>
+  </footer>
 </div>

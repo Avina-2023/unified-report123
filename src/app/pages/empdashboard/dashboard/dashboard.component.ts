@@ -9,7 +9,33 @@ import { MultiDataSet, Label, PluginServiceGlobalRegistrationAndOptions, Colors 
 export class DashboardComponent implements OnInit {
 
   showFiller = false;
-  doughnutChartLabels: Label[] = ['BMW', 'Ford', 'Tesla'];
+  text1 = 'hlo'
+  constructor() { }
+
+  ngOnInit(): void {
+  }
+// progress bar chart 1
+public options: ChartOptions = {
+  responsive: true,
+  layout: {
+    padding: {
+      left: 0,
+      right: 0,
+      bottom: 0,
+      top: 0
+    }
+  },
+  legend: {
+    display: false,
+  },
+  plugins: {
+    datalabels: {
+      display: false
+    }
+  },
+  cutoutPercentage: 70
+}
+  doughnutChartLabels: Label[] = ['2021', '2022', '2023','All Others'];
   public doughnutChartColors: Colors[] = [
     {
       backgroundColor:
@@ -45,7 +71,8 @@ export class DashboardComponent implements OnInit {
       ctx.fillText(txt1, centerX, centerY + 10);
     }
   }]
-  public options: ChartOptions = {
+  // progress bar chart 2
+  public options2: ChartOptions = {
     responsive: true,
     layout: {
       padding: {
@@ -63,13 +90,9 @@ export class DashboardComponent implements OnInit {
         display: false
       }
     },
-    cutoutPercentage: 70
-
+    cutoutPercentage: 80
   }
-  constructor() { }
-
-  ngOnInit(): void {
-  }
+  
 
 
   // profile circle
