@@ -25,11 +25,48 @@
         overflow: auto;
     }
 }
+.scrollbar
+{
+	// margin-left: 30px;
+	float: left;
+	// height: 300px;
+	// width: 65px;
+	// background: #F5F5F5;
+	overflow-y: scroll;
+	// margin-bottom: 25px;
+}
 
+.force-overflow
+{
+	min-height: 450px;
+}
 .homeBtn {
     color: $primaryBlue;
     margin-right: 10px;
     cursor: pointer;
+}
+
+#style-1::-webkit-scrollbar-track
+{
+	// -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	// border-radius: 10px;
+	// background-color: #F5F5F5;
+	visibility: hidden;
+}
+
+#style-1::-webkit-scrollbar
+{
+	visibility: hidden;
+	width: 0px;
+	// background-color: #F5F5F5;
+}
+
+#style-1::-webkit-scrollbar-thumb
+{
+	visibility: hidden;
+	// border-radius: 10px;
+	// -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	// background-color: #555;
 }
 
 .logout {
@@ -90,6 +127,9 @@
 .footerblue{
     background-color: #09568C;
     color: #fff;
+	span{
+		font-size: 11px;
+	}
 }
 
 
@@ -125,9 +165,9 @@
 			opacity: .6;
 		}
 		
-		&:hover::after {opacity: 1}
+		// &:hover::after {opacity: 1}
 
-		&:checked::after {transform: translate(-50%, -50%) rotate(90deg) scaleX(-1) scaleY(1.75);}
+		 &:checked::after {transform: translate(-50%, -50%) rotate(90deg) scaleX(-1) scaleY(1.75);}
 	}
 	
 	&_expandLabel {
@@ -160,7 +200,7 @@
 	&_input {display: none}
 	
 	&_label {
-		transition: all 250ms cubic-bezier(.4,.25,.3,1);
+		// transition: all 250ms cubic-bezier(.4,.25,.3,1);
 		display: block;
 		height: 0;
 		font-size: 1.2rem;
@@ -190,11 +230,14 @@
 			+ .select_options {
 				.select_label {
 					height: 40px;
-                    font-size: 14px;
+                    font-size: 12px;
 					&:hover {background-color: #f7f7f7}
 				}
 				
 				+ .select_expandLabel {display: none}
+				label{
+					border-bottom: 1px solid #ede9e9;
+				}
 			}
 		}
 	}
@@ -258,9 +301,11 @@
 }
 .dropdownic{
     position: relative;
-    right: 9px;
+	right: 0px;
 	cursor: pointer;
+	padding-left: 4px;
 }
+
 .dropdowntxt{
 	color: #858585;
 	cursor: pointer;

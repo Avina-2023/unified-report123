@@ -7,7 +7,6 @@ import { JobSeekersComponent } from './pages/jobSeekers/job-seekers/job-seekers.
 import { RegisterPageComponent } from './pages/register/register-page/register-page.component'
 import { StaticpageComponent } from './staticpage/staticpage.component';
 import { LoginPageComponent } from './pages/login/login-page/login-page.component';
-import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { APP_CONSTANTS } from './utils/app-constants.service';
 import { IsloggedInGuard } from './guards/islogged-in.guard';
 import { CertificateViewComponent } from './pages/certificate-view/certificate-view.component';

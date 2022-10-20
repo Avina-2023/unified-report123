@@ -73,13 +73,14 @@ export class AddPartnerComponent implements OnInit {
 
   formInitialize() {
     const emailregex: RegExp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    
     this.registerForm = this.fb.group({
       employerName: ['', [Validators.required]],
       establishedYear: ['', [Validators.required]],
       industryType: ['', [Validators.required]],
       name: ['', [Validators.required]],
       designation: ['', [Validators.required]],
-      mobile: ['', [Validators.required]],
+      mobile: ['', Validators.compose([Validators.required, Validators.minLength(10),Validators.maxLength(10),Validators.pattern('[1-9]{1}[0-9]{9}')])],
       description: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.pattern(emailregex)]],
     })

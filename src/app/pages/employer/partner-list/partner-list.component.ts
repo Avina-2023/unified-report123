@@ -18,7 +18,7 @@ export class PartnerListComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
   status = "all"
-  displayedColumns: string[] = ['img', 'employerName', 'createdDate', 'industryType', 'spocName', 'spocEmail', 'status', "action"];
+  displayedColumns: string[] = ['sno','img', 'employerName', 'createdDate', 'industryType', 'spocName', 'spocEmail', 'status', "action"];
   dataSource = new MatTableDataSource<any>([]);
   totalPartnerCount :number;
   activePartnerCount :number;
