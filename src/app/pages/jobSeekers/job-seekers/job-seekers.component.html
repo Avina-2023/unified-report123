@@ -35,8 +35,9 @@
                 <input matInput id="user_name"  [placeholder]="'Name'" formControlName="user_name"
                     maxlength="64" required>
                 <mat-error *ngIf="user_name.invalid && user_name.touched">
+                  <br>
                     <div *ngIf="user_name?.errors?.required">
-                        {{'Name is required'}}
+                        {{'Name is Required'}}
                     </div>
                 </mat-error>
             </mat-form-field>
@@ -46,18 +47,18 @@
                 <mat-error *ngIf="email.invalid && email.touched">
                     <br>
                     <div *ngIf="email?.errors?.required">
-                        {{'Email id is required'}}
+                        {{'Email Id is Required'}}
                     </div>
                     <div *ngIf="email.errors?.pattern">
-                        {{'Please enter a valid Email id'}}
+                        {{'Please Enter a Valid Email Id'}}
                     </div>
                 </mat-error>
             </mat-form-field>
 
             <div class="signupTxt">By registering, I agree to get enroll in the Skill Exchange Program where recruiters can search my profile and contact me for job Opportunities.</div>
             <button class="btn" [disabled]="!freshGraduatesForm.valid" id="register" mat-button
-                (click)="register()">{{"Register"}}</button>
-            <!-- <label class="signupTxt"><b>Note:</b> Use your personal email id for registration</label> -->
+                (click)="register()">{{"Submit"}}</button>
+            <div class="mt-20 signupTxt center">Already have an account? <a class="forgot" [href]="skillProfileUrl">Sign In</a></div>
         </form>
       </div>
       </mat-card>
@@ -65,7 +66,7 @@
     </div>
     </div>
     <!-- Footer area -->
-    <div class="footer-section">© 2022 L&T Edutech. All Rights Reserved</div>
+    <div class="footer-section">© 2022 L&T EduTech. All Rights Reserved</div>
     </div>
 
     <ng-template #noSkill>
