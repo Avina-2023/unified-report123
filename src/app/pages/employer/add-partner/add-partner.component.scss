@@ -29,6 +29,11 @@
 .title {
     color: #FFFFFF;
     padding: 15px;
+    margin-bottom: 0;
+    opacity: 0.7;
+    padding-bottom: 0;
+    left: 12px;
+    position: relative;
 }
 
 .file-input {
@@ -45,11 +50,15 @@
         border-radius: 9px;
 
         .cardTitle {
-            padding: 10px;
-            font-size: 16px;
-            color: #1B4E9B;
             display: flex;
             border-bottom: 1px solid #B4B4B4;
+            text-align: left;
+            font: normal normal normal 16px/21px Roboto;
+            letter-spacing: 0.32px;
+            color: #1B4E9B;
+            font-size: 14px;
+            font-weight: 500;
+            text-transform: none;
         }
 
         .cardValue {
@@ -67,6 +76,8 @@
     .heading {
         position: absolute;
         left: 20px;
+        font-size: 15px;
+    font-weight: 600;
         top: -12px;
         background-color: #FFFFFF;
         padding: 3px 10px;
@@ -77,8 +88,8 @@
             label {
                 display: block;
                 color: #262626;
-                font-size: 16px;
-                font-weight: 700;
+                font-size: 14px;
+                font-weight: 400;
                 margin-bottom: 0.5em;
 
                 span {
@@ -150,7 +161,7 @@
     .subButton{
         padding-right: 10px;
         ::ng-deep.mat-flat-button{
-            background-color: #26C1F6 !important;
+            background-color: #1B4E9B !important;
             color: #FFFFFF;
             border-radius: 25px;
           }
@@ -172,7 +183,7 @@
     .subButton{
         padding-right: 10px;
         ::ng-deep.mat-flat-button{
-            background-color: #26C1F6 !important;
+            background-color: #1B4E9B !important;
             color: #FFFFFF;
             border-radius: 25px;
           }
@@ -292,7 +303,15 @@ button.mat-raised-button {
         background-color: darkblue;
     }
 }
-
+.customLabel2{
+        color: #262626;
+        font-size: 16px;
+        // font-weight: 500;
+        span{
+            color: red;
+        }
+    
+}
 .customLabel{
     color: #262626;
     font-size: 16px;
@@ -314,3 +333,4 @@ label{
     color: #848484;
     font-size: 14px;
 }
+
