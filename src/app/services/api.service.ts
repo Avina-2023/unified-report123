@@ -223,5 +223,9 @@ export class ApiService {
     // this.datas is api body data
     return this.http.post(`${this.BASE_URL}/submitResetPassword`, data);
   }
+
+  candidatedashboard(){
+    return this.http.get(`${this.BASE_URL}/candidatedashboard`);
+  }
   
 }
