@@ -189,8 +189,16 @@
 
         }
     }
-}
 
+}
+.search-btn-one{
+    width: 8% !important;
+    height: 39px !important;
+    position: relative !important;
+    border: none;
+    color: #fff;
+    background: #1B4E9B;
+   }
 ::ng-deep.customPagination {
     .mat-icon-button, 
     .mat-mini-fab {
@@ -235,14 +243,7 @@
     background: #1B4E9B;
    }
 
-   .search-btn-one{
-    width: 8% !important;
-    height: 39px !important;
-    position: relative;
-    border: none;
-    color: #fff;
-    background: #1B4E9B;
-   }
+ 
 
 //    mbl responsive
 

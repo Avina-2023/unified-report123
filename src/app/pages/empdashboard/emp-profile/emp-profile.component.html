@@ -1,0 +1,341 @@
+<div class="container-fluid p-0">
+    <div class="topborder">
+    </div>
+    <div class="top-bg p-4">
+        <p class="cardTitle">Employer Profile</p>
+        <div class="row mt-4">
+            <div class="col-md-4 mb-3">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="companyimg">
+                            <img src="../../../../assets/images/landing/L&T.png">
+                        </div>
+                        <div class="divider1"></div>
+                        <div class="left-companyname card-body">
+                            <label class="companyname">Larsen & Toubro Ltd</label>
+                            <label class="companyestd">Since 1946</label>
+                            <label class="companytype">Construction</label>
+                        </div>
+                        <div class="divider"></div>
+                        <div class="left-userinfo card-body">
+                            <label class="heading">SPOC Details:</label>
+                            <table>
+                                <tr>
+                                    <td>Name:</td>
+                                    <td><span>SPOC Name</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Designation:</td>
+                                    <td><span>SPOC Designation</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Email:</td>
+                                    <td><span>SPOC Email</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Mobile::</td>
+                                    <td><span>+00 1234567890</span></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="divider"></div>
+                        <div class="left-userinfo card-body">
+                            <label class="heading">Short Description : </label>
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an
+                                unknown printer took a galley</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8 p-0 mb-3">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="right-form">
+                            <div class="headtitle">
+                                <label class="title">Detailed Information</label>
+                            </div>
+                            <div class="divider"></div>
+                            <div class="aligntop" id="style-3">
+                                <form [formGroup]="profileForm" #myForm="ngForm" (ngSubmit)="profile()">
+                                    <div class="row d-flex alignp1">
+                                        <div class="col-md-6 col-sm-12 alignp">
+                                            <label>Employee Size<span>*</span></label>
+                                            <mat-form-field class="form-filed-width" appearance="outline">
+                                                <input matInput class="heighttext" placeholder="Enter the Employee Size"
+                                                    formControlName="empSize">
+                                                <mat-error *ngIf="profileForm.controls['empSize'].invalid ">
+                                                    <div *ngIf="profileForm.controls['empSize'].errors?.required">
+                                                        Employee size is required
+                                                    </div>
+                                                    <!-- <div *ngIf="profileForm.controls['empSize'].errors?.pattern">
+                                                        Employee size is invalid
+                                                    </div> -->
+                                                </mat-error>
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="col-md-6 col-sm-12 alignp">
+                                            <label>Website Address<span>*</span></label>
+                                            <mat-form-field class="form-filed-width" appearance="outline">
+                                                <input matInput class="heighttext"
+                                                    placeholder="Enter Website Address Here"
+                                                    formControlName="websiteAddress">
+                                                    <mat-error *ngIf="profileForm.controls['websiteAddress'].invalid ">
+                                                        <div *ngIf="profileForm.controls['websiteAddress'].errors?.required">
+                                                            websiteAddress is required
+                                                        </div>
+                                                    </mat-error>
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                    <div class="alignp1 mt-4 mb-2">
+                                        <h4><b>Chairman/CXO Details:</b></h4>
+                                    </div>
+                                    <div class="row d-flex alignp1">
+                                        <div class="col-md-4 col-sm-12 alignp">
+                                            <label>Chairman/CXO Name <span>*</span></label>
+                                            <mat-form-field class="form-filed-width" appearance="outline">
+                                                <input matInput class="heighttext" placeholder="Enter Name Here"
+                                                    formControlName="chairmanName">
+                                                    <mat-error *ngIf="profileForm.controls['chairmanName'].invalid ">
+                                                        <div *ngIf="profileForm.controls['chairmanName'].errors?.required">
+                                                            Chairman name is required
+                                                        </div>
+                                                    </mat-error>
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="col-md-4 col-sm-12 alignp">
+                                            <label>Chairman/CXO Email</label>
+                                            <mat-form-field class="form-filed-width" appearance="outline">
+                                                <input matInput class="heighttext" placeholder="Enter Email Here"
+                                                    formControlName="chairmanEmail">
+                                                    <mat-error *ngIf="profileForm.controls['chairmanEmail'].invalid ">
+                                                        <div *ngIf="profileForm.controls['chairmanEmail'].errors?.required">
+                                                            Chairman Email is required
+                                                        </div>
+                                                    </mat-error>
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="col-md-4 col-sm-12 alignp">
+                                            <label>Chairman/CXO Mobile Number</label>
+                                            <mat-form-field class="form-filed-width" appearance="outline">
+                                                <input matInput class="heighttext"
+                                                    placeholder="Enter Mobile Number Here"
+                                                    formControlName="mobileNumber">
+                                                    <mat-error *ngIf="profileForm.controls['mobileNumber'].invalid ">
+                                                        <div *ngIf="profileForm.controls['mobileNumber'].errors?.required">
+                                                            Mobile Number is required
+                                                        </div>
+                                                    </mat-error>
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                    <div class="alignp1 mt-4 mb-4">
+                                        <h4><b>CHRO Details:</b></h4>
+                                    </div>
+                                    <div class="row d-flex alignp1">
+                                        <div class="col-md-4 col-sm-12 alignp">
+                                            <label>CHRO Name <span>*</span></label>
+                                            <mat-form-field class="form-filed-width" appearance="outline">
+                                                <input matInput class="heighttext" placeholder="Enter Name Here"
+                                                    formControlName="chroName">
+                                                    <mat-error *ngIf="profileForm.controls['chroName'].invalid ">
+                                                        <div *ngIf="profileForm.controls['chroName'].errors?.required">
+                                                            CHRO name is required
+                                                        </div>
+                                                    </mat-error>
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="col-md-4 col-sm-12 alignp">
+                                            <label>CHRO Email<span>*</span></label>
+                                            <mat-form-field class="form-filed-width" appearance="outline">
+                                                <input matInput class="heighttext" placeholder="Enter Email Here"
+                                                    formControlName="chroEmail">
+                                                    <mat-error *ngIf="profileForm.controls['chroEmail'].invalid ">
+                                                        <div *ngIf="profileForm.controls['chroEmail'].errors?.required">
+                                                            CHRO email is required
+                                                        </div>
+                                                    </mat-error>
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="col-md-4 col-sm-12 alignp">
+                                            <label>CHRO Mobile Number<span>*</span></label>
+                                            <mat-form-field class="form-filed-width" appearance="outline">
+                                                <input matInput class="heighttext"
+                                                    placeholder="Enter Mobile Number Here"
+                                                    formControlName="chromobileNumber">
+                                                    <mat-error *ngIf="profileForm.controls['chromobileNumber'].invalid ">
+                                                        <div *ngIf="profileForm.controls['chromobileNumber'].errors?.required">
+                                                            CHRO mobile number is required
+                                                        </div>
+                                                    </mat-error>
+                                            </mat-form-field>
+                                        </div>
+                                    </div>                   
+                                    <div class="alignp1 mt-4">
+                                        <fieldset>
+                                            <legend>HR Contact Details:</legend>
+                                            <ng-container formArrayName="hrContactDetails" *ngFor="let contact of hrContactDetails.controls; index as i">
+                                              <ng-container [formGroupName]="i" class="d-flex">
+                                                <div class="row hrright" >
+                                                    <div class="hrdetailsinput" >
+                                                        <mat-form-field class="form-filed-width" appearance="outline">
+                                                            <input matInput class="heighttext" placeholder="Enter Name "
+                                                                formControlName="hrName">
+                                                        </mat-form-field>
+                                                    </div>
+                                                    <div  class="hrdetailsinput"  >
+                                                        <mat-form-field class="form-filed-width" appearance="outline">
+                                                            <input matInput class="heighttext"
+                                                                placeholder="Enter Designation"
+                                                                formControlName="hrdesignation">
+                                                        </mat-form-field>
+                                                    </div>
+                                                    <div  class="hrdetailsinput" >
+                                                        <mat-form-field class="form-filed-width" appearance="outline">
+                                                            <input matInput class="heighttext" placeholder="Enter Email"
+                                                                formControlName="hrEmail">
+                                                        </mat-form-field>
+                                                    </div>
+                                                    <div  class="hrdetailsinput"  >
+                                                        <mat-form-field class="form-filed-width" appearance="outline">
+                                                            <input matInput class="heighttext"
+                                                                placeholder="Enter Mobile Number "
+                                                                formControlName="hrMobilenumber">
+                                                        </mat-form-field>
+                                                    </div>
+                                                    <div  style="width: 5%;">
+                                                        <button class="btn-remove" type="button" (click)="removeContactField(i)">x</button>
+                                                    </div>
+                                                </div>
+                                             
+                                              </ng-container>
+                                            </ng-container>
+                                        
+                                            <button class="addhrdetils" type="button" (click)="addContactField()"><u>Add More Contacts</u></button>
+                                          </fieldset>
+                                        </div>
+                                    <div class="alignp1 mt-4 mb-2">
+                                        <h4><b>Registered Address:</b></h4>
+                                        <div class="row d-flex alignp">
+                                            <div class="col-md-12 col-sm-12 alignp">
+                                                <label>Address Line1 <span>*</span></label>
+                                                <mat-form-field class="form-filed-width" appearance="outline">
+                                                    <input matInput class="heighttext" placeholder="Enter AAddress Here"
+                                                        formControlName="addressOne">
+                                                        <mat-error *ngIf="profileForm.controls['addressOne'].invalid ">
+                                                            <div *ngIf="profileForm.controls['addressOne'].errors?.required">
+                                                                Address Line1 is required
+                                                            </div>
+                                                        </mat-error>
+                                                </mat-form-field>
+                                            </div>
+                                            <div class="col-md-12 col-sm-12 mt-3 alignp">
+                                                <label>Address Line2<span>*</span></label>
+                                                <mat-form-field class="form-filed-width" appearance="outline">
+                                                    <input matInput class="heighttext" placeholder="Enter Address Here"
+                                                        formControlName="addressTwo">
+                                                        <mat-error *ngIf="profileForm.controls['addressTwo'].invalid ">
+                                                            <div *ngIf="profileForm.controls['addressTwo'].errors?.required">
+                                                                Address Line2 is required
+                                                            </div>
+                                                        </mat-error>
+                                                </mat-form-field>
+                                            </div>
+                                            <div class="col-md-6 col-sm-12 mt-3 alignp">
+                                                <label>District<span>*</span></label>
+                                                <mat-form-field class="form-filed-width" appearance="outline">
+                                                    <input matInput class="heighttext" placeholder="Enter Address Here"
+                                                        formControlName="district">
+                                                        <!-- <mat-error *ngIf="profileForm.controls['district'].invalid ">
+                                                            <div *ngIf="profileForm.controls['district'].errors?.required">
+                                                                District is required
+                                                            </div>
+                                                        </mat-error> -->
+                                                </mat-form-field>
+                                            </div>
+                                            <div class="col-md-6 col-sm-12 mt-3 alignp">
+                                                <label>Pincode<span>*</span></label>
+                                                <mat-form-field class="form-filed-width" appearance="outline">
+                                                    <input matInput class="heighttext" placeholder="Enter Address Here"
+                                                        formControlName="pincode">
+                                                        <!-- <mat-error *ngIf="profileForm.controls['pincode'].invalid ">
+                                                            <div *ngIf="profileForm.controls['pincode'].errors?.required">
+                                                                pincode is required
+                                                            </div>
+                                                        </mat-error> -->
+                                                </mat-form-field>
+                                            </div>
+                                            <div class="col-md-6 col-sm-12 mt-3 alignp">
+                                                <label>State<span>*</span></label>
+                                                <mat-form-field class="form-filed-width" appearance="outline">
+                                                    <input matInput class="heighttext" placeholder="Enter Address Here"
+                                                        formControlName="state">
+                                                         <!-- <mat-error *ngIf="profileForm.controls['state'].invalid ">
+                                                            <div *ngIf="profileForm.controls['state'].errors?.required">
+                                                                state is required
+                                                            </div>
+                                                        </mat-error> -->
+                                                </mat-form-field>
+                                            </div>
+                                            <div class="col-md-6 col-sm-12 mt-3 alignp">
+                                                <label>Country<span>*</span></label>
+                                                <mat-form-field class="form-filed-width" appearance="outline">
+                                                    <input matInput class="heighttext" placeholder="Enter Address Here"
+                                                        formControlName="country">
+                                                         <!-- <mat-error *ngIf="profileForm.controls['country'].invalid ">
+                                                            <div *ngIf="profileForm.controls['country'].errors?.required">
+                                                                country is required
+                                                            </div>
+                                                        </mat-error> -->
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+                                        <div>
+                                        </div>
+                                    </div>
+                                    <div class="alignp1 mt-4 mb-2">
+                                        <h4 class="mb-0"><b>Presence In India:</b></h4>
+                                        <div class="row d-flex alignp">
+                                            <div class="col-md-12 alignp">
+                                                <mat-form-field class="form-filed-width" appearance="outline">
+                                                    <mat-chip-list #chipList aria-label="Fruit selection">
+                                                      <mat-chip class="matchip"
+                                                        *ngFor="let fruit of stateone"
+                                                        (removed)="remove(fruit)">
+                                                        {{fruit}}
+                                                        <button matChipRemove style="display: contents;">
+                                                          <mat-icon class="ic-clr">cancel</mat-icon>
+                                                        </button>
+                                                      </mat-chip>
+                                                      <input class="heighttext"
+                                                        #stateInput
+                                                        formControlName="stateCtrlone"
+                                                        [matChipInputFor]="chipList"
+                                                        [matChipInputSeparatorKeyCodes]="separatorKeysCodes">
+                                                    </mat-chip-list>
+                                                  </mat-form-field>
+                                                  <div class="otherDiv">
+                                                    <mat-chip-list #chipList>
+                                                        <mat-chip *ngFor="let selectstate of states | async" [value]="selectstate" [disabled]="selectstate.active"  (click)="selectstate.active?false:selectMe(selectstate)">
+                                                            {{selectstate.name}}
+                                                        </mat-chip>
+                                                    </mat-chip-list>
+                                                </div> 
+                                            </div> 
+                                            </div>
+                                            </div>
+                                            <div class="d-flex formbtns">
+                                                <button mat-raised-button class="save" type="submit">save</button>
+                                                <button mat-raised-button class="cancel" type="submit">cancel</button>
+                                            </div>
+                                   
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

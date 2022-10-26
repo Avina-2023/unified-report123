@@ -21,7 +21,7 @@ export class SidebarComponent implements OnInit {
     this.roles = this.appconfig.getLocalStorage('role') ? this.appconfig.getLocalStorage('role') : '';
     this.orgdetails = JSON.parse(this.roles);
     this.roleCode = this.orgdetails && this.orgdetails[0].roles && this.orgdetails[0].roles[0].roleCode;
-    if(this.router.url == '/auth/dashboard/dashboard'){
+    if(this.router.url == '/auth/employer/dashboard'){
       this.check='empdashboard';
     }else{
       this.check='partner';
@@ -54,7 +54,9 @@ export class SidebarComponent implements OnInit {
     this.ngOnInit();
     this.router.navigate(['/static']);
    }
-
+   profile(){
+    this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.EMPDASHBOARD.PROFILE)
+   }
 
    sideBar(){
     if((this.roleCode =='SADM' && 'ISADM')){
