@@ -89,7 +89,9 @@ export class AuthComponent implements OnInit {
 notification() {
 }
 
-
+profile(){
+  this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.EMPDASHBOARD.PROFILE)
+}
 
   ngOnInit(): void {
     this.userName = localStorage.getItem('firstName')

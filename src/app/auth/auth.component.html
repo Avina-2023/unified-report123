@@ -83,7 +83,7 @@
                         <span class="dropdowntxt dropdownic" >Change Password</span>
                       </label>
                     </li>
-                    <li class="select_option dropdownic" *ngIf='roleCode === "EMP"'>
+                    <li class="select_option dropdownic" (click)="profile()" *ngIf='roleCode === "EMP"'>
                       <label class="select_label dropdownic">
                         <img alt="profile" class="dropdownic" style="height: 19px;" src="../../assets/images/emp-dashboard-icons/profile.svg">
                         <span class="dropdowntxt dropdownic" >Profile</span>
