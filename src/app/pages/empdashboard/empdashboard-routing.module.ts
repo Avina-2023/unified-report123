@@ -7,6 +7,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { DegreeChartComponent } from './degree-chart/degree-chart.component';
 import { DemographyChartComponent } from './demography-chart/demography-chart.component';
 import { DisciplineChartComponent } from './discipline-chart/discipline-chart.component'
+import { EmpProfileComponent } from './emp-profile/emp-profile.component';
 import { GraduationChartComponent } from './graduation-chart/graduation-chart.component';
 
 const routes: Routes = [
@@ -27,7 +28,11 @@ const routes: Routes = [
   },
   {
     path: `${APP_CONSTANTS.ROUTES.EMPDASHBOARD.GRADUATION}`, component: GraduationChartComponent
-  },      
+  },  
+  {
+    path:`${APP_CONSTANTS.ROUTES.EMPDASHBOARD.PROFILE}`,component:EmpProfileComponent
+  },
+
  
   {
     path: '',

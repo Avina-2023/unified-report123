@@ -8,16 +8,16 @@
           <h5 *ngIf="!isExpanded" class="active">Dashboard</h5>
         </div>
       </mat-list-item>
-      <mat-list-item *ngIf='roleCode === "EMP"'>
+      <mat-list-item (click)="profile()" *ngIf='roleCode === "EMP"'>
         <h4 mat-line *ngIf="isExpanded">Profile</h4>
         <div>
           <img class="sidebar-icon1" src="../../../../assets/images/emp-dashboard-icons/emp-user.png">
           <h5 *ngIf="!isExpanded" class="sidebar-text">Profile</h5>
         </div>
       </mat-list-item>
-      <mat-list-item *ngIf='roleCode === "EMP"'>
+      <mat-list-item (click)="logout()" *ngIf='roleCode === "EMP"'>
         <h4 mat-line *ngIf="isExpanded">LogOut</h4>
-        <div (click)="logout()">
+        <div >
           <img class="sidebar-icon1" src="../../../../assets/images/emp-dashboard-icons/logout.png">
           <h5 *ngIf="!isExpanded" class="sidebar-text">LogOut</h5>
         </div>
