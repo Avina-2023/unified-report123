@@ -227,5 +227,9 @@ export class ApiService {
   candidatedashboard(){
     return this.http.get(`${this.BASE_URL}/candidatedashboard`);
   }
+
+  empProfileDetails(data){
+    return this.http.post(`${this.BASE_URL}/partnerList`,data)
+  }
   
 }
