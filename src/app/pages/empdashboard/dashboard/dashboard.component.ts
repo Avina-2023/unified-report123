@@ -14,9 +14,11 @@ export class DashboardComponent implements OnInit {
   showFiller = false;
   text1 = 'hlo'
   dashBoardDetails:any;
+  username:any;
   constructor(private apiService:ApiService,private toaster:ToastrService) { }
 
   ngOnInit(): void {
+    this.username = localStorage.getItem('firstName')
     this.getCandidateDashBoard()
   }
 // progress bar chart 1

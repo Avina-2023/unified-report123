@@ -3,6 +3,8 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormGroup,Validators,FormBuilder, NgForm, FormArray, FormControl } from '@angular/forms';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
+import { ApiService } from 'src/app/services/api.service';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-emp-profile',
   templateUrl: './emp-profile.component.html',
@@ -13,6 +15,8 @@ export class EmpProfileComponent implements OnInit {
   stateCtrl = new FormControl('');
   states: Observable<string[]>;
   stateone: any[] = [];
+  empProfile:any;
+  editCompany:any;
   allStates :any = [
     {
     "key": "AN",
@@ -193,12 +197,11 @@ export class EmpProfileComponent implements OnInit {
     "key": "WB",
     "active":false,
     "name": "West Bengal"
-    }
-    ]
+    }]
 
   @ViewChild('stateInput') stateInput: ElementRef<HTMLInputElement>;
   profileForm:FormGroup;
-  constructor(private fb:FormBuilder) { 
+  constructor(private fb:FormBuilder,private apiService:ApiService,private toaster:ToastrService) { 
     this.states = this.stateCtrl.valueChanges.pipe(
       startWith(null),
       map((selectstate: any) => (selectstate ? this._filter(selectstate) : this.allStates.slice())),
@@ -207,6 +210,9 @@ export class EmpProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.createProfile()
+    this.empDetails()
+    this.HRspocPatch()
+    console.log('hloooo',this.HRspocPatch())
   }
 
   private _filter(value: string): string[] {
@@ -247,7 +253,14 @@ this.profileForm = this.fb.group({
   district:['',Validators.required],
   state:['',Validators.required],
   country:['',Validators.required],
-  stateCtrlone:new FormControl([], Validators.required)
+  stateCtrlone:new FormControl(this.stateone, Validators.required)
+})
+}
+
+
+updateProfile(){
+this.profileForm.patchValue({
+  empSize:this.editCompany.empSize,
 })
 }
 hrcontact = {
@@ -282,11 +295,69 @@ removeContactField(index: number): void {
 
 
 
-profile(){
-  console.log(this.profileForm.value)
+  profile() {
+    console.log(this.profileForm.value)
+    var obj = {
+      email: localStorage.getItem('email'),
+      detailedInformation: this.profileForm.value,
+      detailedInformationType: true
+    }
+    this.apiService.updatePartner(obj).subscribe((data: any) => {
+      console.log(data)
+      if (data.success == false) {
+        this.toaster.warning(data.message);
+      } else {
+        this.toaster.success(data.message);
+      }
+    }, (err) => {
+      this.toaster.warning('Connection failed, Please try again.');
+    });
+  }
+
+  HRspocPatch() {
+    let spoc = this.profileForm.get("hrContactDetails") as FormArray;
+    for (let i = 0; i < this.empProfile.spoc; i++) {
+      spoc.controls[i].patchValue({
+        hrName: this.empProfile.spoc[i].hrName,
+        hrdesignation: this.empProfile.spoc[i].hrdesignation,
+        hrEmail: this.empProfile.spoc[i].hrEmail,
+        hrMobilenumber: this.empProfile.spoc[i].hrMobilenumber,
+      });
+    }
+  }
+  
+
+empDetails(){
+  this.empProfile=[];
+  var apiData = {"filterModel":{"email":{"filterType":"set","values":[localStorage.getItem('email')]}}}
+  this.apiService.empProfileDetails(apiData).subscribe((result:any)=>{
+    if(result.success){
+      this.empProfile=result.data 
+      this.profileForm.patchValue({
+        empSize: result.data[0].detailedInformation.empSize,
+        websiteAddress:result.data[0].detailedInformation.websiteAddress,
+        chairmanName:result.data[0].detailedInformation.chairmanName,
+        chairmanEmail:result.data[0].detailedInformation.chairmanEmail,
+        mobileNumber:result.data[0].detailedInformation.mobileNumber,
+        chroName:result.data[0].detailedInformation.chroName,
+        chroEmail:result.data[0].detailedInformation.chroEmail,
+        chromobileNumber:result.data[0].detailedInformation.chromobileNumber,
+        hrContactDetails: result.data[0].detailedInformation.hrContactDetails,
+        hrName:result.data[0].detailedInformation.hrName,
+        hrdesignation:result.data[0].detailedInformation.hrdesignation,
+        hrEmail:result.data[0].detailedInformation.hrEmail,
+        hrMobilenumber:result.data[0].detailedInformation.hrMobilenumber,
+        addressOne:result.data[0].detailedInformation.addressOne,
+        addressTwo:result.data[0].detailedInformation.addressTwo,
+        pincode:result.data[0].detailedInformation.pincode,
+        district:result.data[0].detailedInformation.district,
+        state:result.data[0].detailedInformation.state,
+        country:result.data[0].detailedInformation.country,
+        stateCtrlone:result.data[0].detailedInformation.stateCtrlone,
+      })  
+    }else{
+      this.toaster.error(result.message)
+    }
+  })
 }
-
-
-
-
 }

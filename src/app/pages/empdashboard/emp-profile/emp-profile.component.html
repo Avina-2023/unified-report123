@@ -8,13 +8,13 @@
                 <div class="card">
                     <div class="card-content">
                         <div class="companyimg">
-                            <img src="../../../../assets/images/landing/L&T.png">
+                            <img src="{{empProfile[0]?.companyImgURL}}">
                         </div>
                         <div class="divider1"></div>
                         <div class="left-companyname card-body">
-                            <label class="companyname">Larsen & Toubro Ltd</label>
-                            <label class="companyestd">Since 1946</label>
-                            <label class="companytype">Construction</label>
+                            <label class="companyname">{{ empProfile[0]?.company }}</label>
+                            <label class="companyestd">Since {{empProfile[0]?.establishedYear}}</label>
+                            <label class="companytype">{{empProfile[0]?.industryType}}</label>
                         </div>
                         <div class="divider"></div>
                         <div class="left-userinfo card-body">
@@ -22,19 +22,19 @@
                             <table>
                                 <tr>
                                     <td>Name:</td>
-                                    <td><span>SPOC Name</span></td>
+                                    <td><span>{{ empProfile[0]?.firstName }}</span></td>
                                 </tr>
                                 <tr>
                                     <td>Designation:</td>
-                                    <td><span>SPOC Designation</span></td>
+                                    <td><span>{{ empProfile[0]?.designation }}</span></td>
                                 </tr>
                                 <tr>
                                     <td>Email:</td>
-                                    <td><span>SPOC Email</span></td>
+                                    <td><span>{{ empProfile[0]?.email }}</span></td>
                                 </tr>
                                 <tr>
                                     <td>Mobile::</td>
-                                    <td><span>+00 1234567890</span></td>
+                                    <td><span>{{ empProfile[0]?.mobile }}</span></td>
                                 </tr>
                             </table>
                         </div>
