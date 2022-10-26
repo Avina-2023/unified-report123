@@ -10,6 +10,10 @@ import {ChartsModule} from 'ng2-charts';
 import { DegreeChartComponent } from './degree-chart/degree-chart.component';
 import { GraduationChartComponent } from './graduation-chart/graduation-chart.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { EmpProfileComponent } from './emp-profile/emp-profile.component';
+import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule} from '@angular/forms';
+import {MatChipsModule} from '@angular/material/chips';
 @NgModule({
   declarations: [
     DashboardComponent,
@@ -18,13 +22,17 @@ import { SharedModule } from 'src/app/shared/shared.module';
     DisciplineChartComponent,
     DegreeChartComponent,
     GraduationChartComponent,
+    EmpProfileComponent,
   ],
   imports: [
     CommonModule,
    EmployerRoutingModule,
     MaterialModule,
     ChartsModule,
-    SharedModule
+    SharedModule,
+    MatChipsModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
 })
 export class EmployerModule { }

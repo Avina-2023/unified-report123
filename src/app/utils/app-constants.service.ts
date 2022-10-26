@@ -52,7 +52,8 @@ export const APP_CONSTANTS = {
       PARTNERENQUIRY: "/auth/partner/partnerenquiry"
     },
     EMPDASHBOARD:{
-      HOME:'/auth/dashboard'
+      HOME:'/auth/dashboard',
+      PROFILE:'/auth/dashboard/profile'
     }
   },
 
@@ -99,7 +100,8 @@ export const APP_CONSTANTS = {
       DEMOGRAPHY:'demography',
       DISCIPLINE:'discipline',
       GRADUATION:'Graduation',
-      DEGREE :'Degree'
+      DEGREE :'Degree',
+      PROFILE:'profile'
     }
   }
 };

@@ -1,0 +1,237 @@
+.topborder{
+    width: 100%;
+    height: 4px;
+    background: transparent linear-gradient(90deg, #16bef0 0%, #54b952 100%) 0% 0% no-repeat padding-box;
+}
+.top-bg {
+    background-color: #1B4E9B;
+    width: 100%;
+    height: 345px;
+}
+.cardTitle {
+    display: flex;
+    text-align: left;
+    font: normal normal normal 16px/21px Roboto;
+    letter-spacing: 0.32px;
+    color: #fff;
+    font-size: 16px;
+    opacity: 0.7;
+    text-transform: none;
+}
+.companyimg{
+    text-align: center;
+    position: relative;
+}
+.left-companyname{
+    display: grid;
+    text-align: center;
+    .companyname{
+        color: #1B4E9B;
+        font-size: 17px;
+        font-weight: 500;
+    }
+    .companyestd{
+        color: #373331;
+        font-weight: 500;
+    }
+    .companytype{
+        color: #373331;
+        font-weight: 600;
+    }
+}
+.divider1{
+    border: 2px solid #ebebeb;
+    width: 58%;
+    left: 78px;
+    border-radius: 50%;
+    text-align: center;
+    position: relative;
+}
+.divider{
+    border: 1px solid #e7e3e3;
+}
+.left-userinfo{
+    display: grid;
+    .heading{
+        color: #1B4E9B;
+        font-size: 17px;
+        margin-bottom: 15px;
+    }
+    td{
+        font-size: 16px;
+        padding: 6px;
+        font-weight: 500;
+        position: relative;
+    }
+    span{
+        position: relative;
+    font-weight: 200;
+    }
+    p{
+        color: #262626;
+    }
+}
+.right-form{
+     height: 605px;
+     .headtitle{
+        position: relative
+     }
+    .title{
+        color: #1B4E9B;
+        padding: 12px;
+        font-size: 18px;
+    }
+    label{
+        margin: 0px;
+        padding: 0px;
+    }
+    span{
+        color: #C20000;
+    }
+    .form-filed-width{
+        width: 100%;
+    }
+    .fullborder{
+border: 1px solid;
+    }
+}
+.alignp{
+    // padding: 0px 10px 0px 10px;
+}
+.alignp1{
+    padding: 0px 25px 0px 25px;
+}
+#style-3{
+    position: relative;
+    top: 25px;
+    height: 500px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+#style-3::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px #fff;
+    background-color: transparent;
+}
+
+#style-3::-webkit-scrollbar {
+    width: 6px;
+    background-color: transparent;
+}
+
+#style-3::-webkit-scrollbar-thumb {
+    background-color: #fff;
+}
+
+.heighttext{
+    height: 39px;
+}
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-infix {
+    padding: 0em 0 0em 0;
+}
+::ng-deep .mat-form-field-wrapper{
+    padding-bottom: 0;
+}
+.primaryWrapper {
+    margin-top: 20px !important;
+    display: flex;
+    position: relative;
+    padding: 0px 3px 0px 20px;
+    .heading {
+        position: absolute;
+        left: 38px;
+        font-size: 17px;
+        font-weight: 600;
+        top: -12px;
+        background-color: #FFFFFF;
+        padding: 3px 10px;
+    }
+    .midForm {
+        width: 98%;
+        padding: 20px 10px;
+        border: 0.5px solid #B4B4B4;
+        border-radius: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+.adddetails{
+    color: #1c4d98;
+    background-color: #fff;
+    border: none;
+}
+::ng-deep .mat-form-field-subscript-wrapper{
+    position: relative;
+    top:41px;
+}
+
+.otherDiv{
+    border-bottom: 1px solid #e0e0e0;
+    border-right: 1px solid #e0e0e0;
+    border-left: 1px solid #e0e0e0;
+    padding: 10px;
+}
+.matchip{
+    background-color: #1B4E9B;
+    color: #fff;
+    font-weight: 100;
+    font-size: 11px;
+}
+.ic-clr{
+    color: #fff;
+}
+.hrdetailsb{
+    border: 1px solid;
+}
+
+fieldset {
+    legend {
+      color: #000;
+      font-size: 14px;
+      font-weight: 600;
+
+    }
+    padding: 20px;
+    border: 1px solid #e7e3e3;
+}
+  
+  .btn-remove{
+    border: none;
+    color: #C20000;
+    background-color: #fff;
+  }
+  
+  .addhrdetils{
+    position: relative;
+    float: right;
+    border: none;
+    background-color: #fff;
+    color: #1B4E9B;
+  }
+  .hrdetailsinput{
+    width:22%;
+    margin: 5px;
+  }
+  .hrright{
+    position: relative;
+    left: 3%;
+  }
+  .formbtns{
+    position: relative;
+    justify-content: center;
+    .save{
+        border: none;
+        background-color: #1B4E9B;
+       color: #fff;
+       height:40px;
+       margin: 1%;
+       
+    }
+    .cancel{
+        border: none;
+        background-color: #e0e0e0;
+      color: #000;
+      height: 40px;
+      margin: 1%;
+    }
+  }
