@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ChartType, ChartOptions } from 'chart.js';
 import { MultiDataSet, Label, PluginServiceGlobalRegistrationAndOptions, Colors } from 'ng2-charts';
+import { ToastrService } from 'ngx-toastr';
+import { Observable } from 'rxjs';
+import { ApiService } from 'src/app/services/api.service';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -10,9 +13,11 @@ export class DashboardComponent implements OnInit {
 
   showFiller = false;
   text1 = 'hlo'
-  constructor() { }
+  dashBoardDetails:any;
+  constructor(private apiService:ApiService,private toaster:ToastrService) { }
 
   ngOnInit(): void {
+    this.getCandidateDashBoard()
   }
 // progress bar chart 1
 public options: ChartOptions = {
@@ -93,7 +98,17 @@ public options: ChartOptions = {
     cutoutPercentage: 80
   }
   
-
+ //dashboard
+  getCandidateDashBoard(){
+    this.dashBoardDetails=[];
+        this.apiService.candidatedashboard().subscribe((result:any)=>{
+              if(result.success){
+                this.dashBoardDetails=result.data
+              }else{
+                this.toaster.error(result.message)
+              }
+        })
+  }
 
   // profile circle
 
