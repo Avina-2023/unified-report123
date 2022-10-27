@@ -4,6 +4,8 @@ import { MultiDataSet, Label, PluginServiceGlobalRegistrationAndOptions, Colors 
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { ApiService } from 'src/app/services/api.service';
+import { APP_CONSTANTS } from 'src/app/utils/app-constants.service';
+import {AppConfigService} from '../../../utils/app-config.service'
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -15,12 +17,15 @@ export class DashboardComponent implements OnInit {
   text1 = 'hlo'
   dashBoardDetails:any;
   username:any;
-  constructor(private apiService:ApiService,private toaster:ToastrService) { }
+  constructor(private apiService:ApiService,private toaster:ToastrService,private appConfig:AppConfigService) { }
 
   ngOnInit(): void {
     this.username = localStorage.getItem('firstName')
     this.getCandidateDashBoard()
   }
+  profile(){
+  this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.EMPDASHBOARD.PROFILE)
+}
 // progress bar chart 1
 public options: ChartOptions = {
   responsive: true,

@@ -6,7 +6,7 @@
                 <div class="top-left">
                     <h4 class="text-white mb-0">Dashboard</h4>
                     <h3 class="text-white mb-0">Welcome back, <span class="text-white h3"><b>{{username}}</b></span></h3>
-                    <button type="submit" class="update-info">Update Profile</button>
+                    <button type="submit" class="update-info" (click)="profile()">Update Profile</button>
                 </div>
 
             </div>
@@ -96,7 +96,7 @@
                         <div class="card-body">
                             <div class="media d-flex">
                                 <div class="media-body text-left">
-                                    <span>Total Candidates</span>
+                                    <span> Assessed Candidates</span>
                                     <h3 class="card-number">{{ dashBoardDetails[0]?.assessedCandidates }}</h3>
                                 </div>
                                 <div class="align-self-center">
