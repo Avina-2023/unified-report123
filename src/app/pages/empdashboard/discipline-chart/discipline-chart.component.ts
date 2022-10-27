@@ -89,13 +89,31 @@ export class DisciplineChartComponent implements OnInit {
           ]
         }
       ],
-
       chart: {
-        height: 350,
-        type: "treemap"
+        height: 450,
+        type: "treemap",
+        toolbar:{
+          show:false
+        }
       },
-      title: {
-        text: "Basic Treemap"
+      // title: {
+      //   text: "Basic Treemap"
+      // },
+      plotOptions:{
+        treemap:{
+          enableShades: true,
+          colorScale:{
+            inverse:true,
+            ranges:[
+              {
+                from: 0,
+                to: 219,
+                color: "#004684",
+              }
+            ],
+
+          }
+        }
       }
     };
 
@@ -106,8 +124,18 @@ export class DisciplineChartComponent implements OnInit {
 
   }
 
+
   ngAfterViewInit() {
     // this.context = this.myCanvas.nativeElement.getContext('2d');
+    setTimeout(() => {
+      this.chartOptions.plotOptions.treemap.colorScale.ranges = [{
+        from: 0,
+        to: 219,
+        color: "#000000",
+      }]
+
+    }, 5000);
+
   }
 
 
