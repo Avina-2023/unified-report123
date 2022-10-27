@@ -1,13 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { ChartOptions, ChartType, ChartDataSets } from "chart.js";
 import { Label, Color } from "ng2-charts";
-import "../rounded-corners"
+import "../rounded-corners";
+import { ApiService } from 'src/app/services/api.service'; 
 @Component({
   selector: 'app-graduation-chart',
   templateUrl: './graduation-chart.component.html',
   styleUrls: ['./graduation-chart.component.scss']
 })
 export class GraduationChartComponent implements OnInit {
+  bardata = [];
   public barChartOptions: ChartOptions = {
     scales: {
       yAxes: [   
@@ -34,7 +36,7 @@ export class GraduationChartComponent implements OnInit {
     barRoundness: 0.2,
     
   };
-  public barChartLabels: Label[] = ["UG", "PG", "Diploma","CA","CS","ICWA"];
+  public barChartLabels: Label[] = [];
   public barChartType: ChartType = "roundedBar" as ChartType;
   public barChartLegend = true;
   public barChartPlugins = [];
@@ -49,11 +51,28 @@ export class GraduationChartComponent implements OnInit {
   
 
   public barChartData: ChartDataSets[] = [
-    { data: [65, 30, 20]},
+    { data: []},
   ];
-  constructor() { }
+  constructor(private apiservice:ApiService) { }
 
   ngOnInit(): void {
+    this.graduationChart()
+  }
+
+  graduationChart(){
+    this.apiservice.candidatedashboard().subscribe((result:any)=>{
+      for (let i = 0; i < result.data[0].specializationDetails.length; i++) {
+        const element = result.data[0].specializationDetails[i]; 
+        this.barChartLabels.push(element.name)
+        this.bardata.push(element.total)
+        this.barChartData = [
+          {
+            data: this.bardata,
+            barThickness: 30,
+          }
+        ];
+      }
+    })
   }
 
 }
