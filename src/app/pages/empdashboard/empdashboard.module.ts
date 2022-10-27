@@ -14,6 +14,7 @@ import { EmpProfileComponent } from './emp-profile/emp-profile.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {FormsModule} from '@angular/forms';
 import {MatChipsModule} from '@angular/material/chips';
+import { NgApexchartsModule } from 'ng-apexcharts';
 @NgModule({
   declarations: [
     DashboardComponent,
@@ -32,7 +33,8 @@ import {MatChipsModule} from '@angular/material/chips';
     SharedModule,
     MatChipsModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    NgApexchartsModule
   ],
 })
 export class EmployerModule { }
