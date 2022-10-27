@@ -8,13 +8,13 @@
                 <div class="card">
                     <div class="card-content">
                         <div class="companyimg">
-                            <img src="{{empProfile[0]?.companyImgURL}}">
+                            <img src="{{empProfile?.companyImgURL}}">
                         </div>
                         <div class="divider1"></div>
                         <div class="left-companyname card-body">
-                            <label class="companyname">{{ empProfile[0]?.company }}</label>
-                            <label class="companyestd">Since {{empProfile[0]?.establishedYear}}</label>
-                            <label class="companytype">{{empProfile[0]?.industryType}}</label>
+                            <label class="companyname">{{ empProfile?.company }}</label>
+                            <label class="companyestd">Since {{empProfile?.establishedYear}}</label>
+                            <label class="companytype">{{empProfile?.industryType}}</label>
                         </div>
                         <div class="divider"></div>
                         <div class="left-userinfo card-body">
@@ -22,26 +22,26 @@
                             <table>
                                 <tr>
                                     <td>Name:</td>
-                                    <td><span>{{ empProfile[0]?.firstName }}</span></td>
+                                    <td><span>{{ empProfile?.firstName }}</span></td>
                                 </tr>
                                 <tr>
                                     <td>Designation:</td>
-                                    <td><span>{{ empProfile[0]?.designation }}</span></td>
+                                    <td><span>{{ empProfile?.designation }}</span></td>
                                 </tr>
                                 <tr>
                                     <td>Email:</td>
-                                    <td><span>{{ empProfile[0]?.email }}</span></td>
+                                    <td><span>{{ empProfile?.email }}</span></td>
                                 </tr>
                                 <tr>
                                     <td>Mobile::</td>
-                                    <td><span>{{ empProfile[0]?.mobile }}</span></td>
+                                    <td><span>{{ empProfile?.mobile }}</span></td>
                                 </tr>
                             </table>
                         </div>
                         <div class="divider"></div>
                         <div class="left-userinfo card-body">
                             <label class="heading">Short Description : </label>
-                            <p>{{empProfile[0]?.description}}</p>
+                            <p>{{empProfile?.description}}</p>
                         </div>
                     </div>
                 </div>
@@ -180,7 +180,13 @@
                                                         <mat-form-field class="form-filed-width" appearance="outline">
                                                             <input matInput class="heighttext" placeholder="Enter Name "
                                                                 formControlName="hrName">
+                                                                <!-- <mat-error *ngIf="profileForm.controls['hrName'].invalid ">
+                                                                    <div *ngIf="profileForm.controls['hrName'].errors?.required">
+                                                                        Name is required
+                                                                    </div>
+                                                                </mat-error> -->
                                                         </mat-form-field>
+                                                        
                                                     </div>
                                                     <div  class="hrdetailsinput"  >
                                                         <mat-form-field class="form-filed-width" appearance="outline">
@@ -245,11 +251,11 @@
                                                 <mat-form-field class="form-filed-width" appearance="outline">
                                                     <input matInput class="heighttext" placeholder="Enter Address Here"
                                                         formControlName="district">
-                                                        <!-- <mat-error *ngIf="profileForm.controls['district'].invalid ">
+                                                        <mat-error *ngIf="profileForm.controls['district'].invalid ">
                                                             <div *ngIf="profileForm.controls['district'].errors?.required">
                                                                 District is required
                                                             </div>
-                                                        </mat-error> -->
+                                                        </mat-error>
                                                 </mat-form-field>
                                             </div>
                                             <div class="col-md-6 col-sm-12 mt-3 alignp">
@@ -257,11 +263,11 @@
                                                 <mat-form-field class="form-filed-width" appearance="outline">
                                                     <input matInput class="heighttext" placeholder="Enter Address Here"
                                                         formControlName="pincode">
-                                                        <!-- <mat-error *ngIf="profileForm.controls['pincode'].invalid ">
+                                                        <mat-error *ngIf="profileForm.controls['pincode'].invalid ">
                                                             <div *ngIf="profileForm.controls['pincode'].errors?.required">
-                                                                pincode is required
+                                                                Pincode is required
                                                             </div>
-                                                        </mat-error> -->
+                                                        </mat-error>
                                                 </mat-form-field>
                                             </div>
                                             <div class="col-md-6 col-sm-12 mt-3 alignp">
@@ -269,11 +275,11 @@
                                                 <mat-form-field class="form-filed-width" appearance="outline">
                                                     <input matInput class="heighttext" placeholder="Enter Address Here"
                                                         formControlName="state">
-                                                         <!-- <mat-error *ngIf="profileForm.controls['state'].invalid ">
+                                                         <mat-error *ngIf="profileForm.controls['state'].invalid ">
                                                             <div *ngIf="profileForm.controls['state'].errors?.required">
-                                                                state is required
+                                                                State is required
                                                             </div>
-                                                        </mat-error> -->
+                                                        </mat-error>
                                                 </mat-form-field>
                                             </div>
                                             <div class="col-md-6 col-sm-12 mt-3 alignp">
@@ -281,11 +287,11 @@
                                                 <mat-form-field class="form-filed-width" appearance="outline">
                                                     <input matInput class="heighttext" placeholder="Enter Address Here"
                                                         formControlName="country">
-                                                         <!-- <mat-error *ngIf="profileForm.controls['country'].invalid ">
+                                                         <mat-error *ngIf="profileForm.controls['country'].invalid ">
                                                             <div *ngIf="profileForm.controls['country'].errors?.required">
-                                                                country is required
+                                                                Country is required
                                                             </div>
-                                                        </mat-error> -->
+                                                        </mat-error>
                                                 </mat-form-field>
                                             </div>
                                         </div>
@@ -297,34 +303,38 @@
                                         <div class="row d-flex alignp">
                                             <div class="col-md-12 alignp">
                                                 <mat-form-field class="form-filed-width" appearance="outline">
-                                                    <mat-chip-list #chipList aria-label="Fruit selection">
+                                                    <mat-chip-list #chipList>
                                                       <mat-chip class="matchip"
-                                                        *ngFor="let fruit of stateone"
-                                                        (removed)="remove(fruit)">
-                                                        {{fruit}}
+                                                        *ngFor="let removestate of stateone;let i = index"  [value]="selectstate" 
+                                                        (removed)="remove(removestate,i)">
+                                                        {{removestate}}
                                                         <button matChipRemove style="display: contents;">
                                                           <mat-icon class="ic-clr">cancel</mat-icon>
                                                         </button>
                                                       </mat-chip>
-                                                      <input class="heighttext"
+                                                      <!-- <input class="heighttext"
                                                         #stateInput
                                                         formControlName="stateCtrlone"
                                                         [matChipInputFor]="chipList"
-                                                        [matChipInputSeparatorKeyCodes]="separatorKeysCodes">
+                                                        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"> -->
                                                     </mat-chip-list>
                                                   </mat-form-field>
                                                   <div class="otherDiv">
                                                     <mat-chip-list #chipList>
-                                                        <mat-chip *ngFor="let selectstate of states | async" [value]="selectstate" [disabled]="selectstate.active"  (click)="selectstate.active?false:selectMe(selectstate)">
-                                                            {{selectstate.name}}
+                                                        <mat-chip *ngFor="let selectstate of states;let i =index " [value]="selectstate"   (click)="selectMe(selectstate,i)">
+                                                            {{selectstate}}
                                                         </mat-chip>
+                                                        
                                                     </mat-chip-list>
                                                 </div> 
                                             </div> 
                                             </div>
                                             </div>
                                             <div class="d-flex formbtns">
-                                                <button mat-raised-button class="save" type="submit">save</button>
+                                                <!-- <button mat-raised-button class="save" type="submit">save</button> -->
+                                                
+                                         <button *ngIf="!empProfile?.detailedInformation" mat-raised-button class="save" type="submit">save</button>
+                                                <button *ngIf="empProfile.detailedInformation" mat-raised-button class="save" type="submit">Edit</button>
                                                 <button mat-raised-button class="cancel" type="submit">cancel</button>
                                             </div>
                                    
