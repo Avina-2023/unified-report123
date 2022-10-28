@@ -9,13 +9,35 @@ export class DemographyChartComponent implements OnInit {
   tooltip: any;
   countrycode = 'Andhra_Pradesh_2_'
   @Input() item:any;
+  stateDetails:any= [
+    {
+        "total": 1,
+        "name": "Assam"
+    },
+    {
+        "total": 2,
+        "name": "Telangana"
+    },
+    {
+        "total": 5005,
+        "name": "Tamil Nadu"
+    },
+    {
+        "total": 29,
+        "name": "-"
+    },
+    {
+        "total": 1,
+        "name": "Andhra Pradesh"
+    }
+]
   constructor() { }
 
   ngOnInit(): void {
 
   }
   onClick(value) {
-    console.log(value);
+    // console.log(value);
     var state = value.split(" ").join("");
     this.router.navigate(["state", state]);
   }
@@ -29,7 +51,7 @@ export class DemographyChartComponent implements OnInit {
 
   out_state(value) {
     this.tooltip = "";
-    console.log(value);
+    // console.log(value);
   }
 
 

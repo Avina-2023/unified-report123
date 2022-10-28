@@ -15,7 +15,7 @@ export class PartnerEnquiriesComponent implements OnInit {
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
-  displayedColumns: string[] = ['sno','name', 'company', 'email', 'mobile', 'registeredDate'];
+  displayedColumns: string[] = ['sno','name','designation', 'company', 'email', 'mobile', 'registeredDate'];
   dataSource = new MatTableDataSource<any>([]);
   totalPartnerCount :number;
   searchData :string ='';
