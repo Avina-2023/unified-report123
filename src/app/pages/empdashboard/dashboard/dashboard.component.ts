@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ChartType, ChartOptions } from 'chart.js';
 import { MultiDataSet, Label, PluginServiceGlobalRegistrationAndOptions, Colors } from 'ng2-charts';
 import { ToastrService } from 'ngx-toastr';
-import { Observable } from 'rxjs';
 import { ApiService } from 'src/app/services/api.service';
 import { APP_CONSTANTS } from 'src/app/utils/app-constants.service';
 import {AppConfigService} from '../../../utils/app-config.service'
@@ -19,14 +18,20 @@ export class DashboardComponent implements OnInit {
   username:any;
   labels:any;
 
-
   graduactionData:any
   disciplineData:any
   degreeData:any
+  roles: any;
+  orgdetails: any;
+  roleCode: any;
+  demography: any;
 
   constructor(private apiService:ApiService,private toaster:ToastrService,private appConfig:AppConfigService) { }
 
   ngOnInit(): void {
+    this.roles = this.appConfig.getLocalStorage('role') ? this.appConfig.getLocalStorage('role') : '';
+    this.orgdetails = JSON.parse(this.roles);
+    this.roleCode = this.orgdetails && this.orgdetails[0].roles && this.orgdetails[0].roles[0].roleCode;
     this.username = localStorage.getItem('firstName')
     this.getCandidateDashBoard()
   }
@@ -54,7 +59,7 @@ public options: ChartOptions = {
   },
   cutoutPercentage: 70
 }
- 
+
   public doughnutChartColors: Colors[] = [
     {
       backgroundColor:
@@ -90,7 +95,7 @@ public options: ChartOptions = {
     }
   }]
 
-// char1 
+// char1
 
 
 
@@ -128,6 +133,7 @@ public options: ChartOptions = {
                 this.graduactionData=this.dashBoardDetails[0].levelDetails
                 this.disciplineData=this.dashBoardDetails[0].disciplineDetails
                 this.degreeData=this.dashBoardDetails[0].specializationDetails
+                this.demography = this.dashBoardDetails[0].stateDetails;
 
                 for (let i = 0; i < result.data[0].genderDetails.length; i++) {
                   const element = result.data[0].genderDetails[i];
@@ -147,7 +153,9 @@ public options: ChartOptions = {
 
 
 
-  //  circle chart
+  //  emp role only show this function
+
+
 
 
 

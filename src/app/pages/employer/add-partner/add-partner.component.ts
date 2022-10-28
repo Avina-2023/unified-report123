@@ -73,7 +73,7 @@ export class AddPartnerComponent implements OnInit {
 
   formInitialize() {
     const emailregex: RegExp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    
+
     this.registerForm = this.fb.group({
       employerName: ['', [Validators.required]],
       establishedYear: ['', [Validators.required]],
@@ -99,6 +99,7 @@ export class AddPartnerComponent implements OnInit {
   }
 
   onEmployerLogoFileSelected(event) {
+    this.errorMsgforLogo='';
     this.employerLogoFile = event.target.files[0];
     if (this.employerLogoFile) {
       this.employerLogoFileName = this.employerLogoFile.name;
@@ -110,6 +111,7 @@ export class AddPartnerComponent implements OnInit {
     }
   }
   onEoiFileSelected(event) {
+    this.errorMsgforeoi='';
     this.eoiFile = event.target.files[0];
     if (this.eoiFile) {
       this.eoiFileName = this.eoiFile.name;
@@ -117,10 +119,10 @@ export class AddPartnerComponent implements OnInit {
   }
   savePartner() {
     if (this.existsUser == "false" && this.employerLogoFileName == "") {
-      this.errorMsgforLogo = "Employer Logo is required"
+      this.errorMsgforLogo = "Employer Logo is Required"
       this.toastr.warning(this.errorMsgforLogo);
     } else if (this.existsUser == "false" && this.eoiFileName == "") {
-      this.errorMsgforeoi = "EOF form is required"
+      this.errorMsgforeoi = "EOF Form is Required"
       this.toastr.warning(this.errorMsgforeoi);
     } else {
       this.errorMsgforeoi = "";

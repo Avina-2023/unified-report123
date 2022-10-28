@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 @Component({
   selector: 'app-demography-chart',
   templateUrl: './demography-chart.component.html',
@@ -6,8 +6,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DemographyChartComponent implements OnInit {
   router: any;
-  tooltip: string;
+  tooltip: any;
   countrycode = 'Andhra_Pradesh_2_'
+  @Input() item:any;
   stateDetails:any= [
     {
         "total": 1,
@@ -42,9 +43,10 @@ export class DemographyChartComponent implements OnInit {
   }
 
   over_state(value) {
-    this.tooltip = value;
-    // console.log("hello");
-    // console.log(value);
+    let result = this.item.find(el => el.name == value);
+
+    this.tooltip = result?result:{name:value,total:0};
+
   }
 
   out_state(value) {
