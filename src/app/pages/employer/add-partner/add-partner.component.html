@@ -75,7 +75,7 @@
                                             <input formControlName="name" matInput placeholder="Enter SPOC Name">
                                         </mat-form-field>
                                         <ng-container *ngIf="name.invalid && name.touched">
-                                            <mat-error class="error" *ngIf="name?.errors?.required">{{'Name is required'}}</mat-error>
+                                            <mat-error class="error" *ngIf="name?.errors?.required">{{'Name is Required'}}</mat-error>
                                         </ng-container>
                                     </div>
                                     <div class="inputContainer">
@@ -84,7 +84,7 @@
                                             <input formControlName="email" matInput placeholder="Enter SPOC Email">
                                         </mat-form-field>
                                         <ng-container *ngIf="email.invalid && email.touched">
-                                            <mat-error class="error" *ngIf="email?.errors?.required">{{'Email is required'}}</mat-error>
+                                            <mat-error class="error" *ngIf="email?.errors?.required">{{'Email is Required'}}</mat-error>
                                         </ng-container>
                                     </div>
                                 </form>
@@ -97,7 +97,7 @@
                                             <input formControlName="designation" matInput placeholder="Enter SPOC Designation">
                                         </mat-form-field>
                                         <ng-container *ngIf="designation.invalid && designation.touched">
-                                            <mat-error class="error" *ngIf="designation?.errors?.required">{{'Designation is required'}}</mat-error>
+                                            <mat-error class="error" *ngIf="designation?.errors?.required">{{'Designation is Required'}}</mat-error>
                                         </ng-container>
                                     </div>
                                     <div class="inputContainer">
@@ -110,7 +110,7 @@
                                             <mat-error class="error" *ngIf="mobile?.errors?.maxLength">{{'Mobile should be accepted 10 digits'}}</mat-error> -->
                                             <mat-error *ngIf="registerForm.controls['mobile'].invalid ">
                                                 <div *ngIf="registerForm.controls['mobile'].errors.required">
-                                                    Mobile is required
+                                                    Mobile is Required
                                                 </div>
                                                 
                                                 <div *ngIf="registerForm.controls['mobile'].errors.maxlength">
@@ -118,7 +118,7 @@
                                                 </div>
                                                 
                                                 <div *ngIf="registerForm.controls['mobile'].errors.pattern">
-                                                    Invalid Mobile number
+                                                    Invalid Mobile Number
                                                 </div>
                                             </mat-error>
                                         </ng-container>
@@ -134,7 +134,7 @@
                             <textarea type formControlName="description" style="resize: none;" class="descstyle" matInput placeholder="Short Description"></textarea>
                         </mat-form-field>
                         <ng-container *ngIf="description.invalid && description.touched">
-                            <mat-error class="error" *ngIf="description?.errors?.required">{{'Description is required'}}</mat-error>
+                            <mat-error class="error" *ngIf="description?.errors?.required">{{'Description is Eequired'}}</mat-error>
                         </ng-container>
                     </form>
                     </div>
