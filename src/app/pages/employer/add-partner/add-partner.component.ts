@@ -117,10 +117,10 @@ export class AddPartnerComponent implements OnInit {
   }
   savePartner() {
     if (this.existsUser == "false" && this.employerLogoFileName == "") {
-      this.errorMsgforLogo = "Employer Logo Name is required"
+      this.errorMsgforLogo = "Employer Logo is required"
       this.toastr.warning(this.errorMsgforLogo);
     } else if (this.existsUser == "false" && this.eoiFileName == "") {
-      this.errorMsgforeoi = "EOF is required"
+      this.errorMsgforeoi = "EOF form is required"
       this.toastr.warning(this.errorMsgforeoi);
     } else {
       this.errorMsgforeoi = "";
