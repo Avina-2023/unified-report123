@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ChartOptions, ChartType, ChartDataSets } from "chart.js";
 import { Label, Color } from "ng2-charts";
 import "../rounded-corners";
@@ -10,6 +10,7 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class GraduationChartComponent implements OnInit {
   bardata = [];
+  @Input() item;
   public barChartOptions: ChartOptions = {
     scales: {
       yAxes: [   
@@ -17,6 +18,7 @@ export class GraduationChartComponent implements OnInit {
           gridLines:{
                borderDash:[8,4],
           },
+          display: true,
           stacked: true  
         }
       ],
@@ -58,11 +60,14 @@ export class GraduationChartComponent implements OnInit {
   ngOnInit(): void {
     this.graduationChart()
   }
-
+  ngAfterViewInit() {
+    setTimeout(() => {
+      this.graduationChart()
+    }, 5000);
+  }
   graduationChart(){
-    this.apiservice.candidatedashboard().subscribe((result:any)=>{
-      for (let i = 0; i < result.data[0].specializationDetails.length; i++) {
-        const element = result.data[0].specializationDetails[i]; 
+      for (let i = 0; i < this.item?.length; i++) {
+        const element = this.item[i]; 
         this.barChartLabels.push(element.name)
         this.bardata.push(element.total)
         this.barChartData = [
@@ -72,7 +77,6 @@ export class GraduationChartComponent implements OnInit {
           }
         ];
       }
-    })
   }
 
 }
