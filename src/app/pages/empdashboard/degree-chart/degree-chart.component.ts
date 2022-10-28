@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
 import { Label } from 'ng2-charts';
-import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-degree-chart',
@@ -9,6 +8,7 @@ import { ApiService } from 'src/app/services/api.service';
   styleUrls: ['./degree-chart.component.scss']
 })
 export class DegreeChartComponent implements OnInit {
+  @Input() item;
   barChartOptions: ChartOptions = {
     responsive: true,
     legend:{
@@ -17,9 +17,10 @@ export class DegreeChartComponent implements OnInit {
     scales : {
       yAxes: [{
         ticks: {
-          max : 10,
-          min : 0,
+          // max : 5000,
+          // min : 0,
           // stepSize:1,
+          display: true
         },  
       }],
       xAxes: [{
@@ -49,14 +50,19 @@ export class DegreeChartComponent implements OnInit {
 
     },   
   ];
-  constructor( private apiservice:ApiService) { }
+  constructor() { }
   ngOnInit(){
     this.degreeChart()
+ 
+  }
+  ngAfterViewInit() {
+    setTimeout(() => {
+      this.degreeChart()
+    }, 5000);
   }
   degreeChart(){
-    this.apiservice.candidatedashboard().subscribe((result:any)=>{
-      for (let i = 0; i < result.data[0].levelDetails.length; i++) {
-        const element = result.data[0].levelDetails[i];
+      for (let i = 0; i < this.item.length; i++) {
+        const element = this.item[i];
         this.barChartLabels.push(element.name);
         this.bardata.push(element.total)
         this.barChartData = [
@@ -69,6 +75,5 @@ export class DegreeChartComponent implements OnInit {
           }
         ]; 
       }
-    })
   }
 }

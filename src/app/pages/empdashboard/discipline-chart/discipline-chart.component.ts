@@ -1,5 +1,5 @@
 import { createViewChild } from '@angular/compiler/src/core';
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import {
   ApexAxisChartSeries,
   ApexTitleSubtitle,
@@ -25,7 +25,8 @@ export type ChartOptions = {
 
 export class DisciplineChartComponent implements OnInit {
   @ViewChild('chart') chart: ChartComponent;
-
+  @Input() item;
+  heatdata:any;
   context: CanvasRenderingContext2D;
   public chartOptions: Partial<ChartOptions>;
 
@@ -35,7 +36,7 @@ export class DisciplineChartComponent implements OnInit {
         {
           data: [
             {
-              x: "New Delhi",
+              x: "loading...",
               y: 218
             },
             {
@@ -121,23 +122,26 @@ export class DisciplineChartComponent implements OnInit {
    }
 
   ngOnInit(): void {
-
+this.disciplineChart()
   }
 
 
   ngAfterViewInit() {
-    // this.context = this.myCanvas.nativeElement.getContext('2d');
     setTimeout(() => {
-      this.chartOptions.plotOptions.treemap.colorScale.ranges = [{
-        from: 0,
-        to: 219,
-        color: "#000000",
-      }]
-
+      // this.chartOptions.plotOptions.treemap.colorScale.ranges = [{
+      //   from: 0,
+      //   to: 219,
+      //   color: "#000000",
+      // }]
+      this.disciplineChart()
     }, 5000);
-
   }
 
-
-
+  disciplineChart(){
+    this.heatdata = this.item
+    this.chartOptions.series[0].data= this.heatdata
+    for (let i = 0; i < this.item?.length; i++) {
+      const element = this.item[i];
+    }
+  }
 }
