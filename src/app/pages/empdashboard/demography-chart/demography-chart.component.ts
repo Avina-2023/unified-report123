@@ -43,10 +43,10 @@ export class DemographyChartComponent implements OnInit {
   }
 
   over_state(value) {
-    console.log(this.item)
-    this.tooltip = {name:"test",total:599};
-    console.log("hello");
-    console.log(value);
+    let result = this.item.find(el => el.name == value);
+
+    this.tooltip = result?result:{name:value,total:0};
+
   }
 
   out_state(value) {
