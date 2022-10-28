@@ -23,6 +23,7 @@ export class DashboardComponent implements OnInit {
   graduactionData:any
   disciplineData:any
   degreeData:any
+  demography: any;
 
   constructor(private apiService:ApiService,private toaster:ToastrService,private appConfig:AppConfigService) { }
 
@@ -54,7 +55,7 @@ public options: ChartOptions = {
   },
   cutoutPercentage: 70
 }
- 
+
   public doughnutChartColors: Colors[] = [
     {
       backgroundColor:
@@ -90,7 +91,7 @@ public options: ChartOptions = {
     }
   }]
 
-// char1 
+// char1
 
 
 
@@ -128,6 +129,7 @@ public options: ChartOptions = {
                 this.graduactionData=this.dashBoardDetails[0].levelDetails
                 this.disciplineData=this.dashBoardDetails[0].disciplineDetails
                 this.degreeData=this.dashBoardDetails[0].specializationDetails
+                this.demography = this.dashBoardDetails[0].stateDetails;
 
                 for (let i = 0; i < result.data[0].genderDetails.length; i++) {
                   const element = result.data[0].genderDetails[i];
