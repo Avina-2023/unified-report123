@@ -26,7 +26,7 @@
                             <div class="media d-flex">
                                 <div class="media-body text-left">
                                     <span>Total Candidates</span>
-                                    <h3 class="card-number">{{ dashBoardDetails[0]?.totalCandidate }}</h3>
+                                    <h3 class="card-number">{{ dashBoardDetails[0]?.cardDetails.totalCandidate }}</h3>
                                 </div>
                                 <div class="align-self-center">
                                     <img class="font-large-2 float-right"
@@ -35,7 +35,7 @@
                             </div>
                             <div class="media d-flex">
                                 <div class="card-inside-percentage-box">
-                                    <span>8%</span>
+                                    <span>{{ dashBoardDetails[0]?.cardDetails.totalCandidateIncrease }} %</span>
                                 </div>
                                 <span class="ml-2">Since last month</span>
                             </div>
@@ -50,7 +50,7 @@
                             <div class="media d-flex">
                                 <div class="media-body text-left">
                                     <span>Basic Profiled Candidates</span>
-                                    <h3 class="card-number">{{ dashBoardDetails[0]?.basicCandidate }}</h3>
+                                    <h3 class="card-number">{{ dashBoardDetails[0]?.cardDetails.basicCandidate }}</h3>
                                 </div>
                                 <div class="align-self-center">
                                     <img class="font-large-2 float-right"
@@ -59,7 +59,7 @@
                             </div>
                             <div class="media d-flex">
                                 <div class="card-inside-percentage-box">
-                                    <span>8%</span>
+                                    <span>{{ dashBoardDetails[0]?.cardDetails.basicCandidateIncrease }}</span>
                                 </div>
                                 <span class="ml-2">Since last month</span>
                             </div>
@@ -74,7 +74,7 @@
                             <div class="media d-flex">
                                 <div class="media-body text-left">
                                     <span>Detailed Profile Candidates</span>
-                                    <h3 class="card-number">{{ dashBoardDetails[0]?.detailedCandidate }}</h3>
+                                    <h3 class="card-number">{{ dashBoardDetails[0]?.cardDetails.detailedCandidate }}</h3>
                                 </div>
                                 <div class="align-self-center">
                                     <img class="font-large-2 float-right"
@@ -83,7 +83,7 @@
                             </div>
                             <div class="media d-flex">
                                 <div class="card-inside-percentage-box">
-                                    <span>8%</span>
+                                    <span>{{ dashBoardDetails[0]?.cardDetails.basicCandidateIncrease }}</span>
                                 </div>
                                 <span class="ml-2">Since last month</span>
                             </div>
@@ -98,7 +98,7 @@
                             <div class="media d-flex">
                                 <div class="media-body text-left">
                                     <span> Assessed Candidates</span>
-                                    <h3 class="card-number">{{ dashBoardDetails[0]?.assessedCandidates }}</h3>
+                                    <h3 class="card-number">{{ dashBoardDetails[0]?.cardDetails.assessedCandidates }}</h3>
                                 </div>
                                 <div class="align-self-center">
                                     <img class="font-large-2 float-right"
@@ -107,7 +107,7 @@
                             </div>
                             <div class="media d-flex">
                                 <div class="card-inside-percentage-box">
-                                    <span>8%</span>
+                                    <span>{{ dashBoardDetails[0]?.cardDetails.assessedCandidatesIncrease }}</span>
                                 </div>
                                 <span class="ml-2">Since last month</span>
                             </div>
@@ -139,16 +139,17 @@
                         <div class="col-md-2 pro-text mt-3">
                             <div class="d-flex">
                                 <div class="d-grid">
-                                    <label class="yeard-flex"><div class="circle circle1"></div>2021</label>
-                                    <label class="yeard-flex"><div class="circle circle2"></div>2022</label>
-                                    <label class="yeard-flex"><div class="circle circle3"></div>2023</label>
-                                    <label class="yeard-flex" style="width: 62px;margin-top: 11px;"><div class="circle circle4"></div>All Others</label>
+                                    <label class="yeard-flex"><div class="circle circle1"></div>{{ dashBoardDetails[0]?.yearDetails[0].year }}</label>
+                                    <label class="yeard-flex"><div class="circle circle2"></div>{{ dashBoardDetails[0]?.yearDetails[1].year }}</label>
+                                    <label class="yeard-flex"><div class="circle circle3"></div>{{ dashBoardDetails[0]?.yearDetails[2].year }}</label>
+                                    <label class="yeard-flex" style="width: 62px;margin-top: 11px;"><div class="circle circle4"></div>{{ dashBoardDetails[0]?.yearDetails[3].year }}</label>
                                 </div>
                                 <div class="d-grid protext2">
-                                    <label>78,876</label>
-                                    <label>75,480</label>
-                                    <label>75,480</label>
-                                    <label>70,876</label>
+                                    <label>{{ dashBoardDetails[0]?.yearDetails[0].total }}</label>
+                                    <label>{{ dashBoardDetails[0]?.yearDetails[1].total }}</label>
+                                    <label>{{ dashBoardDetails[0]?.yearDetails[2].total }}</label>
+                                    <label>{{ dashBoardDetails[0]?.yearDetails[2].total }}</label>
+                                    <label>{{ dashBoardDetails[0]?.yearDetails[3].total }}</label>
                                 </div>
                             </div>
                         </div>
@@ -184,20 +185,20 @@
         <div class="col-md-4">
             <div class="chartcard">
               <span class="progress-inside-head">Profile by Discipline</span>
-                <app-discipline-chart></app-discipline-chart>
+                <app-discipline-chart [item]="disciplineData"></app-discipline-chart>
             </div>
         </div>
     </div>
     <div class="row p-1">
         <div class="col-md-4">
             <div class="chartcard">
-                <app-graduation-chart></app-graduation-chart>
+                <app-graduation-chart [item]="graduactionData"></app-graduation-chart>
             </div>
 
         </div>
         <div class="col-md-8">
             <div class="chartcard">
-                <app-degree-chart></app-degree-chart>
+                <app-degree-chart [item]="degreeData"></app-degree-chart>
             </div>
         </div>
     </div>
