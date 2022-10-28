@@ -103,19 +103,26 @@
               <img src="../../../../assets/images/emp-dashboard-icons/user.png">
             </div>
           </div>
+          
     </mat-toolbar>
+
+    <div class="footer" *ngIf=" checkRouter ==='/auth/dashboard/dashboard' || checkRouter ==='/auth/partner/partnerlist' || checkRouter ==='/auth/partner/addpartner' ||  checkRouter ==='/auth/partner/partnerenquiry'|| checkRouter ==='/auth/dashboard/profile'">
+      <app-footer></app-footer>
+    </div>
 
 
     <div class="mainCon">
     <div *ngIf=" checkRouter === '/auth/reports/dashboard' || checkRouter ==='/auth/reports/userlist' || checkRouter ==='/auth/skillmaster/skillmasterlist' || checkRouter ==='/auth/skillmaster/skillbulkupload' ">
             <app-toolbar></app-toolbar>
+           
     </div>
     <div *ngIf="checkRouter ==='/auth/dashboard/dashboard' || checkRouter ==='/auth/partner/partnerlist' ||checkRouter ==='/auth/partner/addpartner' || checkRouter ==='/auth/partner/partnerenquiry' || checkRouter ==='/auth/dashboard/profile'">
         <app-sidebar></app-sidebar>
      </div>
     <div class="heightDiv">
-            <router-outlet></router-outlet>
-    </div>
+            <router-outlet></router-outlet> 
+
+ </div>
     <!-- <div class="scrollbar" id="style-1">
       <div class="force-overflow">
         <router-outlet></router-outlet>
@@ -131,15 +138,5 @@
             <button class="confirm" mat-button (click)="closeDialog($event)">Confirm </button>
         </div>
     </ng-template>
-    <footer class="footerblue">
-      <div class="d-flex">
-        <div class="text-left p-1">
-          <span>© 2022 L&T EduTech. All Rights Reserved</span>
-        </div>
-        <div class="filler"></div>
-        <div class="float-right p-1">
-         <span> Powered by L&T Edutech</span>
-      </div>
-      </div>
-  </footer>
+
 </div>

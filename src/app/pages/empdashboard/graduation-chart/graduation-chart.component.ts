@@ -31,6 +31,7 @@ export class GraduationChartComponent implements OnInit {
         }
       ],
     },
+    
     legend:{
       display:false 
     },
