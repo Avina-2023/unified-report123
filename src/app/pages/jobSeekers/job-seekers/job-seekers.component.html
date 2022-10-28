@@ -32,7 +32,7 @@
         <form class="form" [formGroup]="freshGraduatesForm" autocomplete="off">
           <mat-label class="label-color">Name</mat-label>
             <mat-form-field appearance="outline">
-                <input matInput id="user_name"  [placeholder]="'Name'" formControlName="user_name"
+                <input matInput id="user_name"  [placeholder]="'Enter Name'" formControlName="user_name"
                     maxlength="64" required>
                 <mat-error *ngIf="user_name.invalid && user_name.touched">
                   <br>
@@ -43,7 +43,7 @@
             </mat-form-field>
             <mat-label class="label-color">Email</mat-label>
             <mat-form-field appearance="outline">
-                <input matInput id="email" [placeholder]="'Email'" formControlName="email" required>
+                <input matInput id="email" [placeholder]="'Enter Email'" formControlName="email" required>
                 <mat-error *ngIf="email.invalid && email.touched">
                     <br>
                     <div *ngIf="email?.errors?.required">
@@ -74,7 +74,7 @@
     <div class="successMessage">
         <img src="assets/images/check.png">
         <div class="text">
-            <p>Verification mail sent</p>
+            <p>Verification mail has been sent</p>
             <p class="subpara">to your mail id</p>
   </div>
   </div>
