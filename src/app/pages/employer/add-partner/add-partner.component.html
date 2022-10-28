@@ -16,16 +16,16 @@
                                         <input matInput placeholder="Enter the Employer Name" formControlName="employerName">
                                     </mat-form-field>
                                     <ng-container *ngIf="employerName.invalid && employerName.touched">
-                                        <mat-error class="error" *ngIf="employerName?.errors?.required">{{'Employer Name is required'}}</mat-error>
+                                        <mat-error class="error" *ngIf="employerName?.errors?.required">{{'Employer Name is Required'}}</mat-error>
                                     </ng-container>
                                 </div>
-                                <div class="inputContainer">  
+                                <div class="inputContainer">
                                     <label>Established Year<span>*</span></label>
                                     <mat-form-field appearance="outline">
                                         <input formControlName="establishedYear" matInput placeholder="Enter Establishment Year">
                                     </mat-form-field>
                                     <ng-container *ngIf="establishedYear.invalid && establishedYear.touched">
-                                        <mat-error class="error" *ngIf="establishedYear?.errors?.required">{{'Established Year is required'}}</mat-error>
+                                        <mat-error class="error" *ngIf="establishedYear?.errors?.required">{{'Established Year is Required'}}</mat-error>
                                     </ng-container>
                                 </div>
                                 <div class="inputContainer">
@@ -38,7 +38,7 @@
                                         </mat-select>
                                     </mat-form-field>
                                     <ng-container *ngIf="industryType.invalid && industryType.touched">
-                                        <mat-error class="error" *ngIf="industryType?.errors?.required">{{'Industry Type is required'}}</mat-error>
+                                        <mat-error class="error" *ngIf="industryType?.errors?.required">{{'Industry Type is Required'}}</mat-error>
                                     </ng-container>
                                 </div>
                             </form>
@@ -101,7 +101,7 @@
                                         </ng-container>
                                     </div>
                                     <div class="inputContainer">
-                                        <label>Mobile<span>*</span></label>
+                                        <label>Mobile Number<span>*</span></label>
                                         <mat-form-field appearance="outline">
                                             <input formControlName="mobile" matInput placeholder="Enter SPOC Mobile Number">
                                         </mat-form-field>
@@ -110,13 +110,13 @@
                                             <mat-error class="error" *ngIf="mobile?.errors?.maxLength">{{'Mobile should be accepted 10 digits'}}</mat-error> -->
                                             <mat-error *ngIf="registerForm.controls['mobile'].invalid ">
                                                 <div *ngIf="registerForm.controls['mobile'].errors.required">
-                                                    Mobile is Required
+                                                    Mobile Number is Required
                                                 </div>
-                                                
+
                                                 <div *ngIf="registerForm.controls['mobile'].errors.maxlength">
                                                     Mobile should be accepted 10 digits
                                                 </div>
-                                                
+
                                                 <div *ngIf="registerForm.controls['mobile'].errors.pattern">
                                                     Invalid Mobile Number
                                                 </div>
@@ -134,7 +134,7 @@
                             <textarea type formControlName="description" style="resize: none;" class="descstyle" matInput placeholder="Short Description"></textarea>
                         </mat-form-field>
                         <ng-container *ngIf="description.invalid && description.touched">
-                            <mat-error class="error" *ngIf="description?.errors?.required">{{'Description is Eequired'}}</mat-error>
+                            <mat-error class="error" *ngIf="description?.errors?.required">{{'Description is Required'}}</mat-error>
                         </ng-container>
                     </form>
                     </div>
@@ -159,7 +159,7 @@
                         </div>
                     </div>
                     <div class="buttonClass">
-                        <div class="subButton"> 
+                        <div class="subButton">
                             <button mat-flat-button  [disabled]="!registerForm.valid" (click)="savePartner()">Save</button>
                         </div>
                         <div class="subButton2"> <button mat-flat-button>Cancel</button>
@@ -167,6 +167,6 @@
                     </div>
                 </mat-card-content>
             </mat-card>
-        </div> 
+        </div>
     </div>
 </div>

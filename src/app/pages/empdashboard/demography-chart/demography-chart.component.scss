@@ -29,20 +29,22 @@
       fill: rgb(216, 156, 101);
     }
   }
-  
+
   .jkspetial {
     fill: rgba(238, 240, 241, 0.966);
     &:hover {
       fill: rgb(216, 156, 101);
     }
   }
-  
+
   .map_box {
     text-align: end;
-    height: 80px;
+    height: 100px;
     // margin-top: 1rem;
+
     &--details {
-      border-radius: 1rem;
+      border-radius: 4px;
+      padding:10px !important;
       background: var(--unnamed-color-ffffff) 0% 0% no-repeat padding-box;
       background: #FFFFFF 0% 0% no-repeat padding-box;
     //   max-width: 100%;
@@ -71,8 +73,7 @@
 //     position: relative;
 //     width: auto;
 // }
-  
 
 
 
-  
+

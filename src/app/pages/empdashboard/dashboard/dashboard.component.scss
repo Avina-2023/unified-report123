@@ -256,13 +256,13 @@ opacity: 1;
     0%, 33% { --pgPercentage: 0; }
     100% { --pgPercentage: var(--value); }
   }
-  
+
   @property --pgPercentage {
     syntax: '<number>';
     inherits: false;
     initial-value: 0;
   }
-  
+
   div[role="progressbar"] {
     --size: 6rem;
     --fg: #26C1F6;
@@ -274,7 +274,7 @@ opacity: 1;
     border-radius: 50%;
     display: grid;
     place-items: center;
-    background: 
+    background:
       radial-gradient(closest-side, #1B4E9B 80%, transparent 0 99.9%, white 0),
       conic-gradient(var(--fg) calc(var(--pgPercentage) * 1%), var(--bg) 0)
       ;
@@ -282,7 +282,7 @@ opacity: 1;
     font-size: calc(var(--size) / 5);
     color: #fff;
   }
-  
+
   div[role="progressbar"]::before {
     counter-reset: percentage var(--value);
     content: counter(percentage) '%';
