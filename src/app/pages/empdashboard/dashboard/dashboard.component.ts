@@ -14,14 +14,17 @@ import {AppConfigService} from '../../../utils/app-config.service'
 export class DashboardComponent implements OnInit {
 
   showFiller = false;
-  text1 = 'hlo'
   dashBoardDetails:any;
+  doughnutChartDisplayFirst:any;
   username:any;
+  labels:any;
   constructor(private apiService:ApiService,private toaster:ToastrService,private appConfig:AppConfigService) { }
 
   ngOnInit(): void {
     this.username = localStorage.getItem('firstName')
     this.getCandidateDashBoard()
+    this.doughnutChartFirst()
+    this.doughnutChartSecond()
   }
   profile(){
   this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.EMPDASHBOARD.PROFILE)
@@ -47,7 +50,7 @@ public options: ChartOptions = {
   },
   cutoutPercentage: 70
 }
-  doughnutChartLabels: Label[] = ['2021', '2022', '2023','All Others'];
+ 
   public doughnutChartColors: Colors[] = [
     {
       backgroundColor:
@@ -60,9 +63,8 @@ public options: ChartOptions = {
 
     }
   ];
-  doughnutChartData: MultiDataSet = [
-    [15, 45, 20, 23],
-  ];
+  doughnutChartLabels: Label[] = ['2021', '2022', '2023','All Others'];
+  doughnutChartData: MultiDataSet = [[15, 45, 20, 23]];
   doughnutChartType: ChartType = 'doughnut';
   doughnutChartPlugins: PluginServiceGlobalRegistrationAndOptions[] = [{
     afterDraw(chart) {
@@ -83,7 +85,22 @@ public options: ChartOptions = {
       ctx.fillText(txt1, centerX, centerY + 10);
     }
   }]
+
+// char1 
+
+doughnutChartFirst(){
+  this.apiService.candidatedashboard().subscribe((result:any)=>{
+    console.log(result.data[0].yearDetails)
+  //   result.data[0].yearDetails.forEach(element => {
+  //   console.log(element)
+  // });
+  })
+}
+
   // progress bar chart 2
+  doughnutChartLabelstwo: Label[] = [];
+  doughnutChartDatatwo: MultiDataSet = [];
+  doughnutChartTypetwo: ChartType = 'doughnut';
   public options2: ChartOptions = {
     responsive: true,
     layout: {
@@ -104,7 +121,25 @@ public options: ChartOptions = {
     },
     cutoutPercentage: 80
   }
-  
+  doughnutChartSecond(){
+    this.apiService.candidatedashboard().subscribe((result:any)=>{
+      for (let i = 0; i < result.data[0].genderDetails.length; i++) {
+        const element = result.data[0].genderDetails[i];
+        this.doughnutChartLabelstwo.push(element.gender)
+        this.doughnutChartDatatwo.push(element.total)
+      }
+        })
+  }
+
+
+
+
+
+
+
+
+
+
  //dashboard
   getCandidateDashBoard(){
     this.dashBoardDetails=[];
@@ -117,6 +152,11 @@ public options: ChartOptions = {
         })
   }
 
-  // profile circle
+
+
+  //  circle chart
+
+
+
 
 }
