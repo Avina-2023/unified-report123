@@ -1,18 +1,18 @@
-<h5>Profile by Demography</h5>
 <div class="map_box">
-    
+
     <div class="map_box--details">
-       
+
       <a class="map_box--state" *ngIf="tooltip != ''">
-        {{ tooltip }}
+        {{ tooltip.name }}
+        {{ tooltip.total }}
         <!-- <div class="chartcard" *ngIf="tooltip != ''">
-           
+
         </div> -->
         </a>
     </div>
   </div>
 
-  
+
   <div class="map">
     <svg
       width="100%"
@@ -34,7 +34,7 @@
         (mouseover)="over_state('Bihar')"
         (mouseout)="out_state('Bihar')"
         (click)="onClick('Bihar')"
-        
+
         >
         <!-- <span class="tooltip-text" id="top">I'm a tooltip!</span> -->
         <path
@@ -50,10 +50,10 @@
     C943.072,557.754,927.438,554.07,911.904,549.971L911.904,549.971L911.904,549.971z"
         >
       <title id="barLegend"></title>
-        
+
         </path>
-        
-        
+
+
       </a>
       <a
         (mouseover)="over_state('Sikkim')"
@@ -1217,7 +1217,7 @@
     C257.084,939.308,256.942,939.279,256.785,939.259L256.785,939.259L256.785,939.259z"
         >
           <title>{{ tooltip }}</title>
-          
+
         </path>
       </a>
       <a
@@ -1403,7 +1403,7 @@
           </path>
         </a>
       </g>
-  
+
       <a
         (mouseover)="over_state('Arunachal Pradesh')"
         (mouseout)="out_state('Arunachal Pradesh')"
@@ -2629,4 +2629,3 @@
     </svg>
   </div>
 
-  
