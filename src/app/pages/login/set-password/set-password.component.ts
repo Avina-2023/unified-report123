@@ -50,14 +50,24 @@ export class SetPasswordComponent implements OnInit {
   verifyPassword() {
     this.activatedRoute.queryParams.subscribe(params => {
       if (params['email'] && params['temp-token']) {
-        this.passwordTempToken = params['temp-token'];
-        this.prePoulteEmailId = params['email'];
-        this.apiemail = params['email'];
-        this.currentRoute = 'Create';
-        if (this.router.url.includes(APP_CONSTANTS.ENDPOINTS.PASSWORD.RESET)) {
-          this.type = 'reset';
-          this.currentRoute = 'Reset';
-        }
+        var email =this.apiService.decryptnew(decodeURIComponent(params['email']));
+        this.apiService.emailvalidationCheck({email:email}).subscribe((success: any) => {
+          if(success.data || success.success == false){
+            this.toastr.error(`Invalid link`);
+            this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.PASSWORD.FORGOT);
+           }else{
+            this.passwordTempToken = params['temp-token'];
+            this.prePoulteEmailId = params['email'];
+            this.apiemail = params['email'];
+            this.currentRoute = 'Create';
+            if (this.router.url.includes(APP_CONSTANTS.ENDPOINTS.PASSWORD.RESET)) {
+              this.type = 'reset';
+              this.currentRoute = 'Reset';
+            }
+           }
+        }, (error) => {
+        this.toastr.success(error.message);
+      });
       } else {
         this.toastr.error(`Invalid URL found`);
         this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.PASSWORD.FORGOT);

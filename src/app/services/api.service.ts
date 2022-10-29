@@ -231,5 +231,8 @@ export class ApiService {
   empProfileDetails(data){
     return this.http.post(`${this.BASE_URL}/partnerList`,data)
   }
-  
+
+  emailvalidationCheck(data){
+    return this.http.post(`${this.BASE_URL}/emailvalidationCheck`,data)
+  }
 }
