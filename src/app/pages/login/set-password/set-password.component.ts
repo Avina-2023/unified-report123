@@ -49,16 +49,16 @@ export class SetPasswordComponent implements OnInit {
 
   verifyPassword() {
     this.activatedRoute.queryParams.subscribe(params => {
-      if (params['email'] && params['temp-token']) {
-        var email =this.apiService.decryptnew(decodeURIComponent(params['email']));
+      if (params['userId'] && params['temp-token']) {
+        var email =this.apiService.decryptnew(decodeURIComponent(params['userId']));
         this.apiService.emailvalidationCheck({email:email}).subscribe((success: any) => {
           if(success.data || success.success == false){
             this.toastr.error(`Invalid link`);
             this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.LOGIN);
            }else{
             this.passwordTempToken = params['temp-token'];
-            this.prePoulteEmailId = params['email'];
-            this.apiemail = params['email'];
+            this.prePoulteEmailId = params['userId'];
+            this.apiemail = params['userId'];
             this.currentRoute = 'Create';
             if (this.router.url.includes(APP_CONSTANTS.ENDPOINTS.LOGIN)) {
               this.type = 'reset';
@@ -99,7 +99,7 @@ export class SetPasswordComponent implements OnInit {
       this.createForm.patchValue({
         email: this.prePoulteEmailId ? this.prePoulteEmailId : ''
       });
-      this.createForm.controls['email'].disable();
+      this.createForm.controls['userId'].disable();
     // }
   }
 
