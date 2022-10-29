@@ -1,6 +1,6 @@
 <div class="body">
     <div class="subBody">
-        <h3 class="title">Add PARTNER</h3>
+        <h3 class="title">Add Partner</h3>
         <div class="partnerCardBody">
             <mat-card class="partnerCard">
                 <div class="cardTitle">
@@ -19,7 +19,7 @@
                                         <mat-error class="error" *ngIf="employerName?.errors?.required">{{'Employer Name is Required'}}</mat-error>
                                     </ng-container>
                                 </div>
-                                <div class="inputContainer">  
+                                <div class="inputContainer">
                                     <label>Established Year<span>*</span></label>
                                     <mat-form-field appearance="outline">
                                         <input formControlName="establishedYear" matInput placeholder="Enter Establishment Year">
@@ -101,7 +101,7 @@
                                         </ng-container>
                                     </div>
                                     <div class="inputContainer">
-                                        <label>Mobile<span>*</span></label>
+                                        <label>Mobile Number<span>*</span></label>
                                         <mat-form-field appearance="outline">
                                             <input formControlName="mobile" matInput placeholder="Enter SPOC Mobile Number">
                                         </mat-form-field>
@@ -112,11 +112,11 @@
                                                 <div *ngIf="registerForm.controls['mobile'].errors.required">
                                                     Mobile Number is Required
                                                 </div>
-                                                
+
                                                 <div *ngIf="registerForm.controls['mobile'].errors.maxlength">
                                                     Mobile should be accepted 10 digits
                                                 </div>
-                                                
+
                                                 <div *ngIf="registerForm.controls['mobile'].errors.pattern">
                                                     Invalid Mobile Number
                                                 </div>
@@ -159,7 +159,7 @@
                         </div>
                     </div>
                     <div class="buttonClass">
-                        <div class="subButton"> 
+                        <div class="subButton">
                             <button mat-flat-button  [disabled]="!registerForm.valid" (click)="savePartner()">Save</button>
                         </div>
                         <div class="subButton2"> <button mat-flat-button>Cancel</button>
@@ -167,6 +167,6 @@
                     </div>
                 </mat-card-content>
             </mat-card>
-        </div> 
+        </div>
     </div>
 </div>
