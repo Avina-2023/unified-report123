@@ -35,9 +35,10 @@ export class LoginPageComponent  {
   login() {
     this.disableButton = true;
     const apiData = {
-      email: this.loginForm.value.username.trim(),
+      userId: this.loginForm.value.userId.trim(),
       pass: this.loginForm.value.password.trim(),
       loginfrom:"unifiedreport",
+      type:"employerLogin"
     }
 
     this.apiService.login(apiData).subscribe((response: any)=> {
@@ -47,6 +48,7 @@ export class LoginPageComponent  {
             this.appConfig.setLocalStorage('token', 'true');
             this.appConfig.setLocalStorage('role',response.data ? JSON.stringify(response.data.attributes.organisations)  : '');
             this.appConfig.setLocalStorage('email',response.data && response.data.attributes  ? response.data.attributes.email : '');
+            this.appConfig.setLocalStorage('userId',response.data && response.data.attributes  ? response.data.attributes.userId : '');
             this.appConfig.setLocalStorage('firstName',response.data && response.data.attributes  ? response.data.attributes.firstName : '');
             this.appConfig.setLocalStorage('profileCompletion',response.data && response.data.attributes && response.data.attributes.profileCompletion  ? response.data.attributes.profileCompletion : '');
             this.disableButton = false;
@@ -74,13 +76,13 @@ export class LoginPageComponent  {
   formInitialize() {
     const emailregex: RegExp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     this.loginForm = this.fb.group({
-      username: ['', [Validators.required]],
+      userId: ['', [Validators.required]],
       password: ['', [Validators.required]],
     })
   }
 
-  get username() {
-    return this.loginForm.get('username');
+  get userId() {
+    return this.loginForm.get('userId');
   }
   get password() {
     return this.loginForm.get('password');

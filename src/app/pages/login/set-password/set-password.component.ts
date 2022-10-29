@@ -54,13 +54,13 @@ export class SetPasswordComponent implements OnInit {
         this.apiService.emailvalidationCheck({email:email}).subscribe((success: any) => {
           if(success.data || success.success == false){
             this.toastr.error(`Invalid link`);
-            this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.PASSWORD.FORGOT);
+            this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.LOGIN);
            }else{
             this.passwordTempToken = params['temp-token'];
             this.prePoulteEmailId = params['email'];
             this.apiemail = params['email'];
             this.currentRoute = 'Create';
-            if (this.router.url.includes(APP_CONSTANTS.ENDPOINTS.PASSWORD.RESET)) {
+            if (this.router.url.includes(APP_CONSTANTS.ENDPOINTS.LOGIN)) {
               this.type = 'reset';
               this.currentRoute = 'Reset';
             }
@@ -70,14 +70,16 @@ export class SetPasswordComponent implements OnInit {
       });
       } else {
         this.toastr.error(`Invalid URL found`);
-        this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.PASSWORD.FORGOT);
+        this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.LOGIN);
       }
     });
   }
 
   getEncriptedMail(){ 
+    setTimeout(() => {
     this.prePoulteEmailId = this.apiService.decryptnew(decodeURIComponent(this.prePoulteEmailId));
     this.autoPopulateMail();     // Function to auto populate mail after form loads.
+    }, 1000);
   }
 
   formInitialize() {
@@ -93,12 +95,12 @@ export class SetPasswordComponent implements OnInit {
   }
 
   autoPopulateMail() {
-    if (this.currentRoute) {
+    // if (this.currentRoute) {
       this.createForm.patchValue({
         email: this.prePoulteEmailId ? this.prePoulteEmailId : ''
       });
       this.createForm.controls['email'].disable();
-    }
+    // }
   }
 
   get email() {
