@@ -18,7 +18,13 @@ export class EmpProfileComponent implements OnInit {
   empProfile: any;
   empProfile1: any;
   editCompany: any;
-  a: any;
+    //-----------------------phone number validation messages----------------------//
+    InvalidNumber ='Mobile Number is Invalid'
+    NumberRequired ='Mobile Number is Required'
+    // ------------------------emial validation messages-------------------//
+    InvalidEmail =' Email is Invalid '
+    EmailRequired ='Email is Required'
+
   allStates: any = ['Andaman and Nicobar Islands', 'Andhra Pradesh', 'Arunachal Pradesh',
     'Assam', 'Bihar', 'Chandigarh', 'Chhattisgarh', 'Dadra and Nagar Haveli', 'Daman and Diu',
     'Delhi', 'Goa', 'Gujarat', 'Haryana', 'Himachal Pradesh', 'Jammu and Kashmir', 'Jharkhand',
@@ -63,15 +69,36 @@ export class EmpProfileComponent implements OnInit {
       empSize: ['', [Validators.required]],
       websiteAddress: ['', [Validators.required]],
       chairmanName: ['', [Validators.required]],
-      chairmanEmail: ['', [Validators.required]],
-      mobileNumber: ['', [Validators.required]],
+      chairmanEmail: ['',  [
+        Validators.required,
+        Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
+      ]],
+      mobileNumber: ['',  [
+        Validators.required,
+        Validators.minLength(10),
+        Validators.maxLength(10),
+        Validators.pattern('[1-9]{1}[0-9]{9}'),
+      ],],
       chroName: ['', [Validators.required]],
-      chroEmail: ['', [Validators.required]],
-      chromobileNumber: ['', [Validators.required]],
+      chroEmail: ['',  [
+        Validators.required,
+        Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
+      ]],
+      chromobileNumber: ['',[
+        Validators.required,
+        Validators.minLength(10),
+        Validators.maxLength(10),
+        Validators.pattern('[1-9]{1}[0-9]{9}'),
+      ],],
       hrContactDetails: this.buildContacts(this.hrcontact.hrContactDetails),
       addressOne: ['', Validators.required],
       addressTwo: ['', Validators.required],
-      pincode: ['', Validators.required],
+      pincode: ['',  Validators.compose([
+        Validators.required,
+        Validators.minLength(6),
+        Validators.maxLength(6),
+        Validators.pattern('[1-9]{1}[0-9]{5}'),
+      ]),],
       // hrName:['',Validators.re],
       district: ['', Validators.required],
       state: ['', Validators.required],
