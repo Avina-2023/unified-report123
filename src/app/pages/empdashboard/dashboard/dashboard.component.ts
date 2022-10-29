@@ -16,6 +16,7 @@ export class DashboardComponent implements OnInit {
   dashBoardDetails:any;
   doughnutChartDisplayFirst:any;
   username:any;
+  profileCompletion:any;
   labels:any;
 
   graduactionData:any
@@ -33,6 +34,7 @@ export class DashboardComponent implements OnInit {
     this.orgdetails = JSON.parse(this.roles);
     this.roleCode = this.orgdetails && this.orgdetails[0].roles && this.orgdetails[0].roles[0].roleCode;
     this.username = localStorage.getItem('firstName')
+    this.profileCompletion = localStorage.getItem('profileCompletion')
     this.getCandidateDashBoard()
   }
   profile(){
