@@ -78,7 +78,7 @@ export class DisciplineChartComponent implements OnInit {
   ngOnChanges(changes: SimpleChange) {
     console.log(changes)
     if (changes['item']?.currentValue) {
-        this.item = changes['item']?.currentValue
+        this.heatdata = changes['item']?.currentValue
         this.disciplineeChart()
     }
 }
@@ -87,7 +87,7 @@ export class DisciplineChartComponent implements OnInit {
 
   disciplineeChart(){
 
-    this.heatdata = this.item
+    // this.heatdata = this.item
     // this.heatdata[0].x = "Computer Science/IT"
     this.heatdata.splice(0, 1)
     let maxval = Math.max(...this.item.map(o => o.y))
