@@ -24,7 +24,7 @@ export type ChartOptions = {
 })
 
 export class DisciplineChartComponent implements OnInit {
-  @ViewChild('chart') chart: ChartComponent;
+  @ViewChild('decip') decip: ChartComponent;
   @Input() item :any;
   heatdata:any = [];
   context: CanvasRenderingContext2D;
@@ -35,8 +35,8 @@ export class DisciplineChartComponent implements OnInit {
       series: [
         {
           data: [{
-            x:"load",
-            y:23
+            x:" ",
+            y:0
           }]
         }
       ],
@@ -58,7 +58,7 @@ export class DisciplineChartComponent implements OnInit {
             ranges:[
               {
                 from: 0,
-                to: 200,
+                to: 0,
                 color: "#004684",
               }
             ],
@@ -98,5 +98,7 @@ export class DisciplineChartComponent implements OnInit {
     //   // this.chartOptions.series[0].data.push(element)
     // });
     console.log(this.item)
+    this.decip.updateSeries(this.chartOptions.series)
+    // this.decip.plotOptions.treemap.colorScale.ranges[0].to = maxval;
   }
 }
