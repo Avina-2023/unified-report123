@@ -12,7 +12,7 @@ export class DegreeChartComponent implements OnInit {
   barChartOptions: ChartOptions = {
     responsive: true,
     legend:{
-      display:false 
+      display:false
     },
     scales : {
       yAxes: [{
@@ -21,7 +21,7 @@ export class DegreeChartComponent implements OnInit {
           // min : 0,
           // stepSize:1,
           display: true
-        },  
+        },
       }],
       xAxes: [{
           ticks: {
@@ -36,8 +36,8 @@ export class DegreeChartComponent implements OnInit {
   barChartPlugins = [];
   bardata = [];
   public barChartData: any = [
-  { 
-    data:[], 
+  {
+    data:[],
     // borderWidth: 0.5,
     // barPercentage:0.5,
     hoverBackgroundColor:'rgba(27, 78, 155, 1)',
@@ -48,12 +48,12 @@ export class DegreeChartComponent implements OnInit {
     // radius:10,
     borderRadius:25,
 
-    },   
+    },
   ];
   constructor() { }
   ngOnInit(){
     this.degreeChart()
- 
+
   }
   ngAfterViewInit() {
     setTimeout(() => {
@@ -61,7 +61,8 @@ export class DegreeChartComponent implements OnInit {
     }, 5000);
   }
   degreeChart(){
-      for (let i = 0; i < this.item.length; i++) {
+    if(this.item&&this.item.length)
+      {for (let i = 0; i < this.item.length; i++) {
         const element = this.item[i];
         this.barChartLabels.push(element.name);
         this.bardata.push(element.total)
@@ -73,7 +74,7 @@ export class DegreeChartComponent implements OnInit {
             barThickness: 30,
             borderRadius: 25
           }
-        ]; 
-      }
+        ];
+      }}
   }
 }
