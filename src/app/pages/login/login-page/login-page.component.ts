@@ -48,6 +48,7 @@ export class LoginPageComponent  {
             this.appConfig.setLocalStorage('role',response.data ? JSON.stringify(response.data.attributes.organisations)  : '');
             this.appConfig.setLocalStorage('email',response.data && response.data.attributes  ? response.data.attributes.email : '');
             this.appConfig.setLocalStorage('firstName',response.data && response.data.attributes  ? response.data.attributes.firstName : '');
+            this.appConfig.setLocalStorage('profileCompletion',response.data && response.data.attributes && response.data.attributes.profileCompletion  ? response.data.attributes.profileCompletion : '');
             this.disableButton = false;
             console.log(response.data.attributes.oldAdmin)
             if(response.data.attributes.oldAdmin == true){
