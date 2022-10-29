@@ -21,6 +21,11 @@
 .companyimg{
     text-align: center;
     position: relative;
+  
+}
+.img-size{
+    height: 103px;
+    width: 250px;
 }
 .left-companyname{
     display: grid;
@@ -235,3 +240,17 @@ fieldset {
       margin: 1%;
     }
   }
+  .error-msg{
+    font-size: 13px;
+    margin-top: 5px;
+  }
+  @media only screen and (max-width: 800px) {
+    .img-size{
+        height: 88px;
+        width: 160px;
+    }
+    .divider1 {
+        width: 45%;
+        left: 51px;
+  }
+}
