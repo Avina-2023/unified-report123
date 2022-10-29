@@ -1,5 +1,5 @@
 import { createViewChild } from '@angular/compiler/src/core';
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, SimpleChange, ViewChild } from '@angular/core';
 import {
   ApexAxisChartSeries,
   ApexTitleSubtitle,
@@ -25,8 +25,8 @@ export type ChartOptions = {
 
 export class DisciplineChartComponent implements OnInit {
   @ViewChild('chart') chart: ChartComponent;
-  @Input() item;
-  heatdata:any;
+  @Input() item :any;
+  heatdata:any = [];
   context: CanvasRenderingContext2D;
   public chartOptions: Partial<ChartOptions>;
 
@@ -34,60 +34,10 @@ export class DisciplineChartComponent implements OnInit {
     this.chartOptions = {
       series: [
         {
-          data: [
-            {
-              x: "loading...",
-              y: 218
-            },
-            {
-              x: "Kolkata",
-              y: 149
-            },
-            {
-              x: "Mumbai",
-              y: 184
-            },
-            {
-              x: "Ahmedabad",
-              y: 55
-            },
-            {
-              x: "Bangaluru",
-              y: 84
-            },
-            {
-              x: "Pune",
-              y: 31
-            },
-            {
-              x: "Chennai",
-              y: 70
-            },
-            {
-              x: "Jaipur",
-              y: 30
-            },
-            {
-              x: "Surat",
-              y: 44
-            },
-            {
-              x: "Hyderabad",
-              y: 68
-            },
-            {
-              x: "Lucknow",
-              y: 28
-            },
-            {
-              x: "Indore",
-              y: 19
-            },
-            {
-              x: "Kanpur",
-              y: 29
-            }
-          ]
+          data: [{
+            x:"load",
+            y:23
+          }]
         }
       ],
       chart: {
@@ -108,7 +58,7 @@ export class DisciplineChartComponent implements OnInit {
             ranges:[
               {
                 from: 0,
-                to: 219,
+                to: 200,
                 color: "#004684",
               }
             ],
@@ -122,26 +72,31 @@ export class DisciplineChartComponent implements OnInit {
    }
 
   ngOnInit(): void {
-this.disciplineChart()
+// this.disciplineeChart()
   }
 
-
-  ngAfterViewInit() {
-    setTimeout(() => {
-      // this.chartOptions.plotOptions.treemap.colorScale.ranges = [{
-      //   from: 0,
-      //   to: 219,
-      //   color: "#000000",
-      // }]
-      this.disciplineChart()
-    }, 5000);
-  }
-
-  disciplineChart(){
-    this.heatdata = this.item
-    this.chartOptions.series[0].data= this.heatdata
-    for (let i = 0; i < this.item?.length; i++) {
-      const element = this.item[i];
+  ngOnChanges(changes: SimpleChange) {
+    console.log(changes)
+    if (changes['item']?.currentValue) {
+        this.item = changes['item']?.currentValue
+        this.disciplineeChart()
     }
+}
+
+
+
+  disciplineeChart(){
+
+    this.heatdata = this.item
+    // this.heatdata[0].x = "Computer Science/IT"
+    this.heatdata.splice(0, 1)
+    let maxval = Math.max(...this.item.map(o => o.y))
+    this.chartOptions.series[0].data=this.heatdata
+    this.chartOptions.plotOptions.treemap.colorScale.ranges[0].to = maxval;
+    // this.heatdata.forEach(element => {
+    //   if( element.name && element.name != null)
+    //   // this.chartOptions.series[0].data.push(element)
+    // });
+    console.log(this.item)
   }
 }
