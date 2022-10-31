@@ -55,7 +55,7 @@
                             </div>
                             <div class="divider"></div>
                             <div class="aligntop" id="style-3">
-                                <form [formGroup]="profileForm" #myForm="ngForm" (ngSubmit)="profile()">
+                                <form [formGroup]="profileForm" #myForm="ngForm" (submit)="profile()">
                                     <div class="row d-flex alignp1">
                                         <div class="col-md-6 col-sm-12 alignp">
                                             <label>Employee Size<span>*</span></label>
@@ -120,7 +120,7 @@
                                         <div class="col-md-4 col-sm-12 alignp">
                                             <label>Chairman/CXO Mobile Number</label>
                                             <mat-form-field class="form-filed-width" appearance="outline">
-                                                <input matInput class="heighttext" 
+                                                <input matInput class="heighttext"
                                                     placeholder="Enter Mobile Number Here"
                                                     formControlName="mobileNumber">
                                                     <mat-error *ngIf="profileForm.controls['mobileNumber'].invalid ">
@@ -168,7 +168,7 @@
                                         <div class="col-md-4 col-sm-12 alignp">
                                             <label>CHRO Mobile Number<span>*</span></label>
                                             <mat-form-field class="form-filed-width" appearance="outline">
-                                                <input matInput class="heighttext"
+                                                <input matInput class="heighttext" max="10"
                                                     placeholder="Enter Mobile Number Here"
                                                     formControlName="chromobileNumber">
                                                     <mat-error *ngIf="profileForm.controls['chromobileNumber'].invalid ">
@@ -181,7 +181,7 @@
                                                     </mat-error>
                                             </mat-form-field>
                                         </div>
-                                    </div>                   
+                                    </div>
                                     <div class="alignp1 mt-4">
                                         <fieldset>
                                             <legend>HR Contact Details:</legend>
@@ -198,7 +198,7 @@
                                                                     </div>
                                                                 </mat-error> -->
                                                         </mat-form-field>
-                                                        
+
                                                     </div>
                                                     <div  class="hrdetailsinput"  >
                                                         <mat-form-field class="form-filed-width" appearance="outline">
@@ -224,10 +224,10 @@
                                                         <button class="btn-remove" type="button" (click)="removeContactField(i)">x</button>
                                                     </div>
                                                 </div>
-                                             
+
                                               </ng-container>
                                             </ng-container>
-                                        
+
                                             <button class="addhrdetils" type="button" (click)="addContactField()"><u>Add More Contacts</u></button>
                                           </fieldset>
                                         </div>
@@ -271,25 +271,7 @@
                                                 </mat-form-field>
                                             </div>
                                             <div class="col-md-6 col-sm-12 mt-4 alignp">
-                                                <label>Pincode<span>*</span></label>
-                                                <mat-form-field class="form-filed-width" appearance="outline">
-                                                    <input matInput class="heighttext" placeholder="Enter Address Here"
-                                                        formControlName="pincode">
-                                                        <mat-error *ngIf="profileForm.controls['pincode'].invalid ">
-                                                            <div class="error-msg" *ngIf="profileForm.controls['pincode'].errors?.required">
-                                                                Pincode is required
-                                                            </div>
-                                                            <div class="error-msg" *ngIf="profileForm.controls['pincode'].errors?.pattern">
-                                                                Pincode should be in numericals only
-                                                            </div>
-                                                            <div class="error-msg" *ngIf="profileForm.controls['pincode'].errors?.maxlength">
-                                                                Pincode should be in six
-                                                            </div>
-                                                        </mat-error>
-                                                </mat-form-field>
-                                            </div>
-                                            <div class="col-md-6 col-sm-12 mt-4 alignp">
-                                                <label>State<span>*</span></label>
+                                             <label>State<span>*</span></label>
                                                 <mat-form-field class="form-filed-width" appearance="outline">
                                                     <input matInput class="heighttext" placeholder="Enter Address Here"
                                                         formControlName="state">
@@ -301,7 +283,7 @@
                                                 </mat-form-field>
                                             </div>
                                             <div class="col-md-6 col-sm-12 mt-4 alignp">
-                                                <label>Country<span>*</span></label>
+                                               <label>Country<span>*</span></label>
                                                 <mat-form-field class="form-filed-width" appearance="outline">
                                                     <input matInput class="heighttext" placeholder="Enter Address Here"
                                                         formControlName="country">
@@ -312,6 +294,24 @@
                                                         </mat-error>
                                                 </mat-form-field>
                                             </div>
+                                            <div class="col-md-6 col-sm-12 mt-4 alignp">
+                                              <label>Pincode<span>*</span></label>
+                                              <mat-form-field class="form-filed-width" appearance="outline">
+                                                  <input matInput class="heighttext" placeholder="Enter Address Here"
+                                                      formControlName="pincode" max="6" >
+                                                      <mat-error *ngIf="profileForm.controls['pincode'].invalid ">
+                                                          <div class="error-msg" *ngIf="profileForm.controls['pincode'].errors?.required">
+                                                              Pincode is required
+                                                          </div>
+                                                          <div class="error-msg" *ngIf="profileForm.controls['pincode'].errors?.pattern">
+                                                              Pincode should be in numericals only
+                                                          </div>
+                                                          <div class="error-msg" *ngIf="profileForm.controls['pincode'].errors?.maxlength">
+                                                              Invlid Pincode
+                                                          </div>
+                                                      </mat-error>
+                                              </mat-form-field>
+                                            </div>
                                         </div>
                                         <div>
                                         </div>
@@ -320,11 +320,11 @@
                                         <h4 class="mb-0"><b>Presence In India:</b></h4>
                                         <div class="row d-flex alignp">
                                             <div class="col-md-12 alignp">
-                                                <mat-form-field class="form-filed-width" appearance="outline">
+                                                <mat-form-field class="form-filed-width" appearance="outline" *ngIf="stateone.length">
                                                     <mat-chip-list #chipList>
                                                       <mat-chip class="matchip heighttext"
-                                                        *ngFor="let removestate of stateone;let i = index"  [value]="selectstate" 
-                                                        (removed)="remove(removestate,i)">
+                                                        *ngFor="let removestate of stateone;let i = index"  [value]=""
+                                                        (removed)="remove(removestate)">
                                                         {{removestate}}
                                                         <button matChipRemove style="display: contents;">
                                                           <mat-icon class="ic-clr">cancel</mat-icon>
@@ -337,16 +337,16 @@
                                                         <mat-chip *ngFor="let selectstate of states;let i =index " [value]="selectstate"   (click)="selectMe(selectstate,i)">
                                                             {{selectstate}}
                                                         </mat-chip>
-                                                        
+
                                                     </mat-chip-list>
-                                                </div> 
-                                            </div> 
+                                                </div>
+                                            </div>
                                             </div>
                                             </div>
                                             <div class="d-flex formbtns">
                                          <button *ngIf="!empProfile?.detailedInformation" mat-raised-button class="save" type="submit">save</button>
                                                 <button *ngIf="empProfile.detailedInformation" mat-raised-button class="save" type="submit">Edit</button>
-                                                <button mat-raised-button class="cancel" type="submit">cancel</button>
+                                                <!-- <button mat-raised-button class="cancel" type="submit">cancel</button> -->
                                             </div>
                                 </form>
                             </div>

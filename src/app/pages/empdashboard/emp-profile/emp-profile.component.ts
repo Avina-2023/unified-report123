@@ -140,6 +140,7 @@ export class EmpProfileComponent implements OnInit {
 
 //submit profile
   profile() {
+    console.log("inside");
     var obj = {
       email: localStorage.getItem('email'),
       detailedInformation: this.profileForm.value,
@@ -154,9 +155,9 @@ export class EmpProfileComponent implements OnInit {
         }
       }, (err) => {
         this.toaster.warning('Connection failed, Please try again.');
-      });  
+      });
     }
-  
+
   }
 //  hr details patch value
   HRspocPatch() {
