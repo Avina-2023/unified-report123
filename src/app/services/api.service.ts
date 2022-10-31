@@ -232,7 +232,7 @@ export class ApiService {
     return this.http.post(`${this.BASE_URL}/partnerList`,data)
   }
 
-  emailvalidationCheck(data){
-    return this.http.post(`${this.BASE_URL}/emailvalidationCheck`,data)
+  uservalidationCheck(data){
+    return this.http.post(`${this.BASE_URL}/uservalidationCheck`,data)
   }
 }

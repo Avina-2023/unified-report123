@@ -50,8 +50,8 @@ export class SetPasswordComponent implements OnInit {
   verifyPassword() {
     this.activatedRoute.queryParams.subscribe(params => {
       if (params['userId'] && params['temp-token']) {
-        var email =this.apiService.decryptnew(decodeURIComponent(params['userId']));
-        this.apiService.emailvalidationCheck({email:email}).subscribe((success: any) => {
+        var userId =this.apiService.decryptnew(decodeURIComponent(params['userId']));
+        this.apiService.uservalidationCheck({userId:userId}).subscribe((success: any) => {
           if(success.data || success.success == false){
             this.toastr.error(`Invalid link`);
             this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.LOGIN);
@@ -83,9 +83,9 @@ export class SetPasswordComponent implements OnInit {
   }
 
   formInitialize() {
-    const emailregex: RegExp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+   // const emailregex: RegExp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     this.createForm = this.fb.group({
-      email: ['', [Validators.required, Validators.pattern(emailregex), Validators.maxLength(100)]],
+      email: ['', [Validators.required, Validators.maxLength(100)]],
       // temp: ['', [Validators.required]],
       password: ['', [Validators.required, this.patternValidator(), Validators.maxLength(30)]],
       confirmpassword: ['', [Validators.required]]
@@ -99,7 +99,7 @@ export class SetPasswordComponent implements OnInit {
       this.createForm.patchValue({
         email: this.prePoulteEmailId ? this.prePoulteEmailId : ''
       });
-      this.createForm.controls['userId'].disable();
+      this.createForm.controls['email'].disable();
     // }
   }
 
@@ -119,14 +119,15 @@ export class SetPasswordComponent implements OnInit {
   submit() {
     if (this.createForm.valid) {
       const apiData = {
-        email: this.apiemail,
+        userId: this.apiemail,
         userSecretkey: this.passwordTempToken ? this.passwordTempToken : '',
-        password: this.apiService.encryptnew(this.createForm.value.password,environment.cryptoEncryptionKey)
+        password: this.apiService.encryptnew(this.createForm.value.password,environment.cryptoEncryptionKey),
+        type:"employer"
       };
       this.apiService.passwordReset(apiData).subscribe((success: any) => {
-          this.toastr.success((this.currentRoute.includes('Reset')) ? `Password has been reset successfully` :
-          `Account has been created Successfully`);
-        this.appConfig.routeNavigationWithQueryParam(APP_CONSTANTS.ENDPOINTS.LOGIN, { mail: apiData.email });
+          this.toastr.success((this.currentRoute.includes('Reset')) ? `Password has been updated successfully` :
+          `Password has been updated Successfully`);
+        this.appConfig.routeNavigationWithQueryParam(APP_CONSTANTS.ENDPOINTS.LOGIN, { mail: apiData.userId });
       }, (error) => {
         this.toastr.success(error.message);
       });
