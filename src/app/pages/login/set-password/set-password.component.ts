@@ -50,8 +50,8 @@ export class SetPasswordComponent implements OnInit {
   verifyPassword() {
     this.activatedRoute.queryParams.subscribe(params => {
       if (params['userId'] && params['temp-token']) {
-        var email =this.apiService.decryptnew(decodeURIComponent(params['userId']));
-        this.apiService.emailvalidationCheck({email:email}).subscribe((success: any) => {
+        var userId =this.apiService.decryptnew(decodeURIComponent(params['userId']));
+        this.apiService.uservalidationCheck({userId:userId}).subscribe((success: any) => {
           if(success.data || success.success == false){
             this.toastr.error(`Invalid link`);
             this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.LOGIN);
