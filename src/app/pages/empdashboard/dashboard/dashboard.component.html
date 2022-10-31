@@ -133,30 +133,41 @@
                     <div class="row">
                         <div class="chart-title align">Profile by Year Pass Out</div>
                         <div class="col-md-10">
-                            <div class="chart-wrapper p-2">
+                            <div class="leftchart">
+                                <div class="chartinsidetext">
+                                    <div class="insidetext1">{{ dashBoardDetails[0]?.cardDetails.totalCandidate }}</div>
+                                    <div class="insidetext2"> Total Candidates</div>
+                                </div>
                                 <canvas baseChart [data]="doughnutChartData" [options]="options"
                                     [colors]="doughnutChartColors" [labels]="doughnutChartLabels"
-                                    [plugins]="doughnutChartPlugins" [chartType]="doughnutChartType">
+                                 [chartType]="doughnutChartType">
                                 </canvas>
                             </div>
+                           
                         </div>
-                        <div class="col-md-2 pro-text mt-3">
-                            <div class="d-flex">
-                                <div class="d-grid">
-                                    <label class="yeard-flex"><div class="circle circle1"></div>{{ dashBoardDetails[0]?.yearDetails[0].year }}</label>
-                                    <label class="yeard-flex"><div class="circle circle2"></div>{{ dashBoardDetails[0]?.yearDetails[1].year }}</label>
-                                    <label class="yeard-flex"><div class="circle circle3"></div>{{ dashBoardDetails[0]?.yearDetails[2].year }}</label>
-                                    <label class="yeard-flex" style="width: 62px;margin-top: 11px;"><div class="circle circle4"></div>{{ dashBoardDetails[0]?.yearDetails[3].year }}</label>
-                                </div>
-                                <div class="d-grid protext2">
-                                    <label>{{ dashBoardDetails[0]?.yearDetails[0].total }}</label>
-                                    <label>{{ dashBoardDetails[0]?.yearDetails[1].total }}</label>
-                                    <label>{{ dashBoardDetails[0]?.yearDetails[2].total }}</label>
-                                    <label>{{ dashBoardDetails[0]?.yearDetails[2].total }}</label>
-                                    <label>{{ dashBoardDetails[0]?.yearDetails[3].total }}</label>
-                                </div>
+                        <div class="col-md-2">
+                            <div class="rightchart">
+                                <div *ngFor="let elem of dashBoardDetails[0]?.yearDetails; index as i" >
+                                    <div class="d-flex">
+                                     <div class="d-grid">
+                                         <label [ngClass]="'circle circle'+i"></label>
+                                     </div>
+                                     <div class="d-grid">
+                                         <div *ngIf="i+1!=4" class="yeard-flex">{{elem.year }}</div>
+                                         <div *ngIf="i+1==4" class="yeard-flex">{{ elem.year }}</div>
+                                     </div>
+                                     <div class="d-grid protext2" >
+                                         <div class="yeard-flex2">{{ elem.total }}</div>
+                                     </div>
+                                    </div>
+                                 </div> 
                             </div>
+                        
                         </div>
+                  
+                   
+                        
+                        
                     </div>
                 </div>
             </div>
@@ -165,7 +176,7 @@
                 <div class="chart-title">Profile by Gender</div>
                 <div class="d-flex">
                     <canvas baseChart [data]="doughnutChartDatatwo" [options]="options2"
-                    [colors]="doughnutChartColors" [labels]="doughnutChartLabelstwo"
+                    [colors]="doughnutChartColorstwo" [labels]="doughnutChartLabelstwo"
                  [chartType]="doughnutChartTypetwo">
                 </canvas>
                 </div>
