@@ -66,7 +66,7 @@ export class LoginPageComponent  {
           }
 
       } else {
-        this.toastr.error('Invalid Login Credentials');
+        this.toastr.error("User is Deactivated Please Contact Admin");
       }
     }, (err)=> {
       this.disableButton = false;

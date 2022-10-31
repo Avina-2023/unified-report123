@@ -21,11 +21,11 @@
 .companyimg{
     text-align: center;
     position: relative;
-  
+
 }
 .img-size{
-    height: 103px;
-    width: 250px;
+    height: 150px;
+   // width: 250px;
 }
 .left-companyname{
     display: grid;
@@ -95,6 +95,13 @@
     }
     .form-filed-width{
         width: 100%;
+    }
+    .form-filed-dropdown{
+        width: 100%;
+        height: 50px !important;
+        .heighttext{
+            height: 50px;
+        }
     }
     .fullborder{
 border: 1px solid;
@@ -166,7 +173,6 @@ border: 1px solid;
     border: none;
 }
 ::ng-deep .mat-form-field-subscript-wrapper{
-    position: relative;
     top:41px;
 }
 
@@ -199,13 +205,13 @@ fieldset {
     padding: 20px;
     border: 1px solid #e7e3e3;
 }
-  
+
   .btn-remove{
     border: none;
     color: #C20000;
     background-color: #fff;
   }
-  
+
   .addhrdetils{
     position: relative;
     float: right;
@@ -230,7 +236,7 @@ fieldset {
        color: #fff;
        height:40px;
        margin: 1%;
-       
+
     }
     .cancel{
         border: none;
@@ -246,8 +252,8 @@ fieldset {
   }
   @media only screen and (max-width: 800px) {
     .img-size{
-        height: 88px;
-        width: 160px;
+        height: 70px;
+        //width: 160px;
     }
     .divider1 {
         width: 45%;
