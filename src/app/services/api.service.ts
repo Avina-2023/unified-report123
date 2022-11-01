@@ -243,4 +243,8 @@ export class ApiService {
   getDistrict(data){
     return this.http.post(`${this.BASE_URL}/districtList`,data)
   }
+
+  imageUpload(data){
+    return this.http.post(`${this.BASE_URL}/imageUpload`,data)
+  }
 }
