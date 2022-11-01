@@ -130,7 +130,7 @@
 
 // toolbar for dashboard
 
-// tool  bar select 
+// tool  bar select
 .select {
     width: 175px;
     height: 30px;
@@ -138,14 +138,14 @@
     list-style-type: none;
     top: 11px;
     position: absolute;
-	
+
 	&_expand {
 		width: 0;
 		height: 40px;
 		position: absolute;
 		top: 0;
 		right: 0;
-		
+
 		&::after {
 			content: '\003E';
 			position: absolute;
@@ -159,12 +159,12 @@
 			transition: all 250ms cubic-bezier(.4,.25,.3,1);
 			opacity: .6;
 		}
-		
+
 		// &:hover::after {opacity: 1}
 
 		 &:checked::after {transform: translate(-50%, -50%) rotate(90deg) scaleX(-1) scaleY(1.75);}
 	}
-	
+
 	&_expandLabel {
 		display: block;
 		width: 100%;
@@ -174,9 +174,9 @@
 		left: 0;
 		cursor: pointer;
 	}
-	
+
 	&_close {display: none}
-	
+
 	&_closeLabel {
 		width: 100vw;
 		height: 100vh;
@@ -185,15 +185,15 @@
 		left: 0;
 		display: none;
 	}
-	
+
 	&_items {
 		padding-top: 40px;
         position: relative;
         z-index: 1;
 	}
-	
+
 	&_input {display: none}
-	
+
 	&_label {
 		// transition: all 250ms cubic-bezier(.4,.25,.3,1);
 		display: block;
@@ -217,18 +217,18 @@
 			background-color: transparent;
 		}
 	}
-	
+
 	&_expand:checked {
 		+ .select_closeLabel {
 			display: block;
-			
+
 			+ .select_options {
 				.select_label {
 					height: 40px;
                     font-size: 12px;
 					&:hover {background-color: #f7f7f7}
 				}
-				
+
 				+ .select_expandLabel {display: none}
 				label{
 					border-bottom: 1px solid #ede9e9;
@@ -236,7 +236,7 @@
 			}
 		}
 	}
-	
+
 	&_input:checked + .select_label {
 		height: 40px;
 		margin-top: -40px;
@@ -270,10 +270,7 @@
 	display: flex;
 	position: relative;
 }
-::ng-deep .mat-menu-content {
-	width: 250px !important; 
-    height: 264px !important;
-  }
+
   .demo-section{
     position: relative;
     top: 9px;
