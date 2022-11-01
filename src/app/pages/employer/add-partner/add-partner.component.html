@@ -9,7 +9,7 @@
                 <mat-card-content class="cardValue">
                     <div class="primaryWrapper">
                         <div class="left">
-                            <form [formGroup]="registerForm">
+                            <form [formGroup]="registerForm" enctype="multipart/form-data">
                                 <div class="inputContainer">
                                     <label>Employer Name<span>*</span></label>
                                     <mat-form-field   appearance="outline">
@@ -68,7 +68,7 @@
                         <div class="heading">SPOC Details</div>
                         <div class="midForm">
                             <div class="left">
-                                <form [formGroup]="registerForm">
+                                <form [formGroup]="registerForm" enctype="multipart/form-data">
                                     <div class="inputContainer">
                                         <label>Name<span>*</span></label>
                                         <mat-form-field appearance="outline">
@@ -90,7 +90,7 @@
                                 </form>
                             </div>
                             <div class="left">
-                                <form [formGroup]="registerForm">
+                                <form [formGroup]="registerForm" enctype="multipart/form-data">
                                     <div class="inputContainer">
                                         <label>Designation<span>*</span></label>
                                         <mat-form-field appearance="outline">
@@ -128,7 +128,7 @@
                         </div>
                     </div>
                     <div class="inputContainer">
-                        <form [formGroup]="registerForm">
+                        <form [formGroup]="registerForm" enctype="multipart/form-data">
                         <label class="customLabel2">Short Description<span>*</span></label>
                         <mat-form-field appearance="outline">
                             <textarea type formControlName="description" style="resize: none;" class="descstyle" matInput placeholder="Short Description"></textarea>
