@@ -151,7 +151,7 @@
             display: contents;
         }
     }
-   
+
 }
 
 .buttonClass{
@@ -168,7 +168,7 @@
     }
 
     .subButton2{
-        padding-right: 10px;  
+        padding-right: 10px;
         ::ng-deep.mat-flat-button{
             background-color: #848484 !important;
             color: #FFFFFF;
@@ -190,7 +190,7 @@
     }
 
     .subButton2{
-        padding-right: 10px;  
+        padding-right: 10px;
         ::ng-deep.mat-flat-button{
             background-color: #848484 !important;
             color: #FFFFFF;
@@ -202,7 +202,7 @@ button.mat-raised-button {
     background-color: 'blue';
   }
 
-::ng-deep.inputContainer {
+.inputContainer {
     .mat-form-field {
         width: 98%;
     }
@@ -236,7 +236,7 @@ button.mat-raised-button {
         margin: 0;
         padding-bottom: 5px;
     }
-    
+
 
     .mat-form-field-appearance-outline .mat-form-field-label {
         margin-top: -0em;
@@ -310,7 +310,7 @@ button.mat-raised-button {
         span{
             color: red;
         }
-    
+
 }
 .customLabel{
     color: #262626;
