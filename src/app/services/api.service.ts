@@ -235,4 +235,12 @@ export class ApiService {
   uservalidationCheck(data){
     return this.http.post(`${this.BASE_URL}/uservalidationCheck`,data)
   }
+
+  getState(data){
+    return this.http.post(`${this.BASE_URL}/stateList`,data)
+  }
+
+  getDistrict(data){
+    return this.http.post(`${this.BASE_URL}/districtList`,data)
+  }
 }

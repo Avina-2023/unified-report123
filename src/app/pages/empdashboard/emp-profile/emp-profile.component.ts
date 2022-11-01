@@ -34,20 +34,48 @@ export class EmpProfileComponent implements OnInit {
 
   ]
 
+  allCountry: any = [{id:1,name:'India',countryId:101}]
+  stateArray:any=[] ;
+  districtArray:any=[];
+
   @ViewChild('stateInput') stateInput: ElementRef<HTMLInputElement>;
   profileForm: FormGroup;
-  hrDetails: any;
+  hrDetails: any=[];
   constructor(private fb: FormBuilder, private apiService: ApiService, private toaster: ToastrService) {
     this.states = this.allStates
-
   }
 
   ngOnInit(): void {
     this.createProfile()
     this.empDetails()
     this.HRspocPatch()
+    this.getState()
   }
-
+  
+  getState(){
+    this.profileForm.controls['country'].setValue(101);
+    this.apiService.getState({country_id:101}).subscribe((data: any) => {
+      if (data.success == false) {
+        this.toaster.warning(data.message);
+      } else {
+        this.stateArray = data.data 
+      }
+    }, (err) => {
+      this.toaster.warning('Connection failed, Please try again.');
+    });
+  }
+ 
+  selectState(e){
+    this.apiService.getDistrict({state_id:e.target.value}).subscribe((data: any) => {
+      if (data.success == false) {
+        this.toaster.warning(data.message);
+      } else {
+        this.districtArray = data.data 
+      }
+    }, (err) => {
+      this.toaster.warning('Connection failed, Please try again.');
+    });
+  }
 
   remove(selectstate: any): void {
     const index = this.stateone.indexOf(selectstate);
@@ -103,7 +131,7 @@ export class EmpProfileComponent implements OnInit {
       district: ['', Validators.required],
       state: ['', Validators.required],
       country: ['', Validators.required],
-      stateCtrlone: new FormControl(this.stateone, Validators.required)
+      // stateCtrlone: new FormControl(this.stateone, Validators.required)
     })
   }
 
@@ -131,6 +159,9 @@ export class EmpProfileComponent implements OnInit {
     this.hrContactDetails.push(this.fb.group({ hrName: null, hrdesignation: null, hrEmail: null, hrMobilenumber: null }))
   }
 
+  get empSize() {
+    return this.profileForm.get('empSize');
+  }
   removeContactField(index: number): void {
     if (this.hrContactDetails.length > 1) this.hrContactDetails.removeAt(index);
     else this.hrContactDetails.patchValue([{ hrName: null, hrdesignation: null, hrEmail: null, hrMobilenumber: null }]);
@@ -140,7 +171,6 @@ export class EmpProfileComponent implements OnInit {
 
 //submit profile
   profile() {
-    console.log("inside");
     var obj = {
       email: localStorage.getItem('email'),
       detailedInformation: this.profileForm.value,
@@ -167,7 +197,7 @@ export class EmpProfileComponent implements OnInit {
     this.apiService.empProfileDetails(apiData).subscribe((result: any) => {
       if (result.success) {
         this.empProfile1 = result.data[0]
-        this.hrDetails = this.empProfile1?.detailedInformation?.hrContactDetails;
+        this.hrDetails = this.empProfile1 && this.empProfile1.detailedInformation?this.empProfile1?.detailedInformation?.hrContactDetails:[];
         for (let i = 0; i < this.hrDetails.length; i++) {
           spoc.controls[i].patchValue({
             hrName: this.hrDetails[i].hrName,
@@ -189,7 +219,10 @@ export class EmpProfileComponent implements OnInit {
     this.apiService.empProfileDetails(apiData).subscribe((result: any) => {
       if (result.success) {
         this.empProfile = result.data[0]
-        this.profileForm.patchValue({
+        if(this.empProfile.detailedInformation){
+          var obj = {target:{value:this.empProfile.detailedInformation.state}}
+          this.selectState(obj)
+          this.profileForm.patchValue({
           empSize: this.empProfile.detailedInformation.empSize,
           websiteAddress: this.empProfile.detailedInformation.websiteAddress,
           chairmanName: this.empProfile.detailedInformation.chairmanName,
@@ -210,6 +243,7 @@ export class EmpProfileComponent implements OnInit {
           this.profileForm.value.stateCtrlone.push(element ? element : '')
           this.states.splice(element, i)
         });
+      }
       } else {
         this.toaster.error(result.message)
       }
