@@ -29,29 +29,29 @@ export class ForgotPasswordComponent implements OnInit {
   }
 
   formInitialize() {
-    // const userIdregex: RegExp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    // const usernameregex: RegExp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     const mobileRegex: RegExp = /^[1-9][0-9]{9}$/;
     this.forgotPasswordForm = this.fb.group({
       mobile: ['', [Validators.required, Validators.pattern(mobileRegex)]],
-      userId: ['', [Validators.required, Validators.maxLength(100)]],
+      username: ['', [Validators.required, Validators.maxLength(100)]],
     });
   }
 
   get mobile() {
     return this.forgotPasswordForm.get('mobile');
   }
-  get userId() {
-    return this.forgotPasswordForm.get('userId');
+  get username() {
+    return this.forgotPasswordForm.get('username');
   }
 
   submit() {
 
-    if ( this.forgotPasswordForm.get('userId').valid) {
+    if ( this.forgotPasswordForm.get('username').valid) {
       let data;
 
-      if (this.forgotPasswordForm.get('userId').valid) {
+      if (this.forgotPasswordForm.get('username').valid) {
         data = {
-          userId: this.apiService.encryptnew(this.forgotPasswordForm.value.userId,environment.cryptoEncryptionKey),
+          userId: this.apiService.encryptnew(this.forgotPasswordForm.value.username,environment.cryptoEncryptionKey),
           employer:true,
           type:"employerForgot"
         };
