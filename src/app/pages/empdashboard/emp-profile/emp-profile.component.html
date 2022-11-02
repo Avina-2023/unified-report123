@@ -33,14 +33,14 @@
                                     <td><span>{{ empProfile?.email }}</span></td>
                                 </tr>
                                 <tr>
-                                    <td>Mobile::</td>
+                                    <td>Mobile:</td>
                                     <td><span>{{ empProfile?.mobile }}</span></td>
                                 </tr>
                             </table>
                         </div>
                         <div class="divider"></div>
                         <div class="left-userinfo card-body">
-                            <label class="heading">Short Description : </label>
+                            <label class="heading">Short Description: </label>
                             <p>{{empProfile?.description}}</p>
                         </div>
                     </div>
@@ -76,7 +76,7 @@
                                             <label>Website Address<span>*</span></label>
                                             <mat-form-field class="form-filed-width" appearance="outline">
                                                 <input matInput class="heighttext"
-                                                    placeholder="Enter Website Address Here"
+                                                    placeholder="Enter Website Address"
                                                     formControlName="websiteAddress">
                                                     <mat-error *ngIf="profileForm.controls['websiteAddress'].invalid ">
                                                         <div class="error-msg" *ngIf="profileForm.controls['websiteAddress'].errors?.required">
@@ -93,7 +93,7 @@
                                         <div class="col-md-4 col-sm-12 alignp">
                                             <label>Chairman/CXO Name <span>*</span></label>
                                             <mat-form-field class="form-filed-width" appearance="outline">
-                                                <input matInput class="heighttext" placeholder="Enter Name Here"
+                                                <input matInput class="heighttext" placeholder="Enter Name"
                                                     formControlName="chairmanName">
                                                     <mat-error *ngIf="profileForm.controls['chairmanName'].invalid ">
                                                         <div class="error-msg" *ngIf="profileForm.controls['chairmanName'].errors?.required">
@@ -105,7 +105,7 @@
                                         <div class="col-md-4 col-sm-12 alignp">
                                             <label>Chairman/CXO Email</label>
                                             <mat-form-field class="form-filed-width" appearance="outline">
-                                                <input matInput class="heighttext" placeholder="Enter Email Here"
+                                                <input matInput class="heighttext" placeholder="Enter Email"
                                                     formControlName="chairmanEmail">
                                                     <mat-error *ngIf="profileForm.controls['chairmanEmail'].invalid ">
                                                         <div class="error-msg" *ngIf="profileForm.controls['chairmanEmail'].errors?.required">
@@ -121,7 +121,7 @@
                                             <label>Chairman/CXO Mobile Number</label>
                                             <mat-form-field class="form-filed-width" appearance="outline">
                                                 <input matInput class="heighttext"
-                                                    placeholder="Enter Mobile Number Here"
+                                                    placeholder="Enter Mobile Number"
                                                     formControlName="mobileNumber">
                                                     <mat-error *ngIf="profileForm.controls['mobileNumber'].invalid ">
                                                         <div class="error-msg" *ngIf="profileForm.controls['mobileNumber'].errors?.required">
@@ -141,7 +141,7 @@
                                         <div class="col-md-4 col-sm-12 alignp">
                                             <label>CHRO Name <span>*</span></label>
                                             <mat-form-field class="form-filed-width" appearance="outline">
-                                                <input matInput class="heighttext" placeholder="Enter Name Here"
+                                                <input matInput class="heighttext" placeholder="Enter Name"
                                                     formControlName="chroName">
                                                     <mat-error *ngIf="profileForm.controls['chroName'].invalid ">
                                                         <div class="error-msg" *ngIf="profileForm.controls['chroName'].errors?.required">
@@ -153,7 +153,7 @@
                                         <div class="col-md-4 col-sm-12 alignp">
                                             <label>CHRO Email<span>*</span></label>
                                             <mat-form-field class="form-filed-width" appearance="outline">
-                                                <input matInput class="heighttext" placeholder="Enter Email Here"
+                                                <input matInput class="heighttext" placeholder="Enter Email"
                                                     formControlName="chroEmail">
                                                     <mat-error *ngIf="profileForm.controls['chroEmail'].invalid ">
                                                         <div class="error-msg" *ngIf="profileForm.controls['chroEmail'].errors?.required">
@@ -169,7 +169,7 @@
                                             <label>CHRO Mobile Number<span>*</span></label>
                                             <mat-form-field class="form-filed-width" appearance="outline">
                                                 <input matInput class="heighttext" max="10"
-                                                    placeholder="Enter Mobile Number Here"
+                                                    placeholder="Enter Mobile Number"
                                                     formControlName="chromobileNumber">
                                                     <mat-error *ngIf="profileForm.controls['chromobileNumber'].invalid ">
                                                         <div class="error-msg" *ngIf="profileForm.controls['chromobileNumber'].errors?.required">
@@ -237,7 +237,7 @@
                                             <div class="col-md-12 col-sm-12 alignp">
                                                 <label>Address Line1 <span>*</span></label>
                                                 <mat-form-field class="form-filed-width" appearance="outline">
-                                                    <input matInput class="heighttext" placeholder="Enter AAddress Here"
+                                                    <input matInput class="heighttext" placeholder="Enter Address"
                                                         formControlName="addressOne">
                                                         <mat-error *ngIf="profileForm.controls['addressOne'].invalid ">
                                                             <div class="error-msg" *ngIf="profileForm.controls['addressOne'].errors?.required">
@@ -249,7 +249,7 @@
                                             <div class="col-md-12 col-sm-12 mt-4 alignp">
                                                 <label>Address Line2<span>*</span></label>
                                                 <mat-form-field class="form-filed-width" appearance="outline">
-                                                    <input matInput class="heighttext" placeholder="Enter Address Here"
+                                                    <input matInput class="heighttext" placeholder="Enter Address"
                                                         formControlName="addressTwo">
                                                         <mat-error *ngIf="profileForm.controls['addressTwo'].invalid ">
                                                             <div class="error-msg" *ngIf="profileForm.controls['addressTwo'].errors?.required">
@@ -283,7 +283,7 @@
                                                     </select>
                                                     <mat-error *ngIf="profileForm.controls['district'].invalid ">
                                                         <div class="error-msg" *ngIf="profileForm.controls['district'].errors?.required">
-                                                            district is Required
+                                                            District is Required
                                                         </div>
                                                     </mat-error>
                                                   </mat-form-field>
@@ -306,11 +306,11 @@
                                             <div class="col-md-6 col-sm-12 mt-4 alignp">
                                               <label>Pincode<span>*</span></label>
                                               <mat-form-field class="form-filed-width" appearance="outline">
-                                                  <input matInput class="heighttext" placeholder="Enter Address Here"
+                                                  <input matInput class="heighttext" placeholder="Enter Address"
                                                       formControlName="pincode" type="text" maxlength="6" >
                                                       <mat-error *ngIf="profileForm.controls['pincode'].invalid ">
                                                           <div class="error-msg" *ngIf="profileForm.controls['pincode'].errors?.required">
-                                                              Pincode is required
+                                                            Pincode is Required
                                                           </div>
                                                           <div class="error-msg" *ngIf="profileForm.controls['pincode'].errors?.pattern">
                                                               Pincode should be in numericals only
@@ -330,7 +330,7 @@
                                         <div class="row d-flex alignp">
                                             <div class="col-md-12 alignp">
                                                 <mat-form-field class="form-filed-width" appearance="outline" *ngIf="stateone.length">
-                                                    <mat-chip-list #chipList>
+                                                    <mat-chip-list #chipList class="chiplist">
                                                       <mat-chip class="matchip heighttext"
                                                         *ngFor="let removestate of stateone;let i = index"  [value]=""
                                                         (removed)="remove(removestate)">
@@ -343,7 +343,7 @@
                                                   </mat-form-field>
                                                   <div class="otherDiv">
                                                     <mat-chip-list #chipList>
-                                                        <mat-chip *ngFor="let selectstate of states;let i =index " [value]="selectstate"   (click)="selectMe(selectstate,i)">
+                                                        <mat-chip class="selectChip" *ngFor="let selectstate of states;let i =index " [value]="selectstate"   (click)="selectMe(selectstate,i)">
                                                             {{selectstate}}
                                                         </mat-chip>
 
