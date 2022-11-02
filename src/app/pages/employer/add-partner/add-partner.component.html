@@ -9,11 +9,11 @@
                 <mat-card-content class="cardValue">
                     <div class="primaryWrapper">
                         <div class="left">
-                            <form [formGroup]="registerForm">
+                            <form [formGroup]="registerForm" enctype="multipart/form-data">
                                 <div class="inputContainer">
                                     <label>Employer Name<span>*</span></label>
                                     <mat-form-field   appearance="outline">
-                                        <input matInput placeholder="Enter the Employer Name" formControlName="employerName">
+                                        <input matInput placeholder="Enter the Employer Name" formControlName="employerName" required>
                                     </mat-form-field>
                                     <ng-container *ngIf="employerName.invalid && employerName.touched">
                                         <mat-error class="error" *ngIf="employerName?.errors?.required">{{'Employer Name is Required'}}</mat-error>
@@ -22,11 +22,24 @@
                                 <div class="inputContainer">
                                     <label>Established Year<span>*</span></label>
                                     <mat-form-field appearance="outline">
-                                        <input formControlName="establishedYear" matInput placeholder="Enter Establishment Year">
+                                        <input formControlName="establishedYear" type="text" maxlength="4" matInput placeholder="Enter Establishment Year">
                                     </mat-form-field>
                                     <ng-container *ngIf="establishedYear.invalid && establishedYear.touched">
-                                        <mat-error class="error" *ngIf="establishedYear?.errors?.required">{{'Established Year is Required'}}</mat-error>
+                                        <mat-error *ngIf="registerForm.controls['establishedYear'].invalid ">
+                                            <div *ngIf="registerForm.controls['establishedYear'].errors.required">
+                                                Established Year is Required
+                                            </div>
+
+                                            <div *ngIf="registerForm.controls['establishedYear'].errors.maxlength">
+                                                Established Year should be accepted 4 digits
+                                            </div>
+
+                                            <div *ngIf="registerForm.controls['establishedYear'].errors.pattern">
+                                                Invalid Established Year
+                                            </div>
+                                        </mat-error>
                                     </ng-container>
+
                                 </div>
                                 <div class="inputContainer">
                                     <label>Industry Type<span>*</span></label>
@@ -68,7 +81,7 @@
                         <div class="heading">SPOC Details</div>
                         <div class="midForm">
                             <div class="left">
-                                <form [formGroup]="registerForm">
+                                <form [formGroup]="registerForm" enctype="multipart/form-data">
                                     <div class="inputContainer">
                                         <label>Name<span>*</span></label>
                                         <mat-form-field appearance="outline">
@@ -90,7 +103,7 @@
                                 </form>
                             </div>
                             <div class="left">
-                                <form [formGroup]="registerForm">
+                                <form [formGroup]="registerForm" enctype="multipart/form-data">
                                     <div class="inputContainer">
                                         <label>Designation<span>*</span></label>
                                         <mat-form-field appearance="outline">
@@ -103,7 +116,7 @@
                                     <div class="inputContainer">
                                         <label>Mobile Number<span>*</span></label>
                                         <mat-form-field appearance="outline">
-                                            <input formControlName="mobile" maxlength="10" matInput placeholder="Enter SPOC Mobile Number">
+                                            <input formControlName="mobile" type="text" maxlength="10" matInput placeholder="Enter SPOC Mobile Number">
                                         </mat-form-field>
                                         <ng-container *ngIf="mobile.invalid && mobile.touched">
                                             <!-- <mat-error class="error" *ngIf="mobile?.errors?.required">{{'Mobile is required'}}</mat-error>
@@ -128,7 +141,7 @@
                         </div>
                     </div>
                     <div class="inputContainer">
-                        <form [formGroup]="registerForm">
+                        <form [formGroup]="registerForm" enctype="multipart/form-data">
                         <label class="customLabel2">Short Description<span>*</span></label>
                         <mat-form-field appearance="outline">
                             <textarea type formControlName="description" style="resize: none;" class="descstyle" matInput placeholder="Short Description"></textarea>

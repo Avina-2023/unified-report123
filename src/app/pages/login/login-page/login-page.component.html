@@ -31,14 +31,14 @@
         </div>
         <form class="form" [formGroup]="loginForm" autocomplete="off">
 
-          <mat-label class="label-color">User Id</mat-label>
+          <mat-label class="label-color">User Name</mat-label>
             <mat-form-field appearance="outline">
-                <input matInput id="userId" [placeholder]="'Enter the User Id'" formControlName="userId" maxlength="64" required>
+                <input matInput id="username" [placeholder]="'Enter the User Name'" formControlName="username" maxlength="64" required>
             </mat-form-field>
 
-            <ng-container *ngIf="userId.invalid && userId.touched">
-                <mat-error class="error" *ngIf="userId?.errors?.required">{{'User Id is Required'}}</mat-error>
-                <mat-error class="error" *ngIf="userId.errors?.pattern">{{'Please Enter a valid User Id'}}</mat-error>
+            <ng-container *ngIf="username.invalid && username.touched">
+                <mat-error class="error" *ngIf="username?.errors?.required">{{'User Name is Required'}}</mat-error>
+                <mat-error class="error" *ngIf="username.errors?.pattern">{{'Please Enter a valid User Name'}}</mat-error>
             </ng-container>
 
             <mat-label class="label-color">Password</mat-label>
