@@ -131,7 +131,7 @@ export class EmpProfileComponent implements OnInit {
       district: ['', Validators.required],
       state: ['', Validators.required],
       country: ['', Validators.required],
-      // stateCtrlone: new FormControl(this.stateone, Validators.required)
+      stateCtrlone: new FormControl(this.stateone)
     })
   }
 
@@ -239,10 +239,12 @@ export class EmpProfileComponent implements OnInit {
           country: this.empProfile.detailedInformation.country,
           // stateCtrlone:result.data[0].detailedInformation.stateCtrlone,
         })
-        this.empProfile.detailedInformation.stateCtrlone.forEach((element, i) => {
-          this.profileForm.value.stateCtrlone.push(element ? element : '')
-          this.states.splice(element, i)
-        });
+        if(this.empProfile.detailedInformation && this.empProfile.detailedInformation.stateCtrlone.length){
+          this.empProfile.detailedInformation.stateCtrlone.forEach((element, i) => {
+            this.profileForm.value.stateCtrlone.push(element ? element : '')
+            this.states.splice(element, i)
+          });
+        }        
       }
       } else {
         this.toaster.error(result.message)
