@@ -29,17 +29,17 @@
                                             <div *ngIf="registerForm.controls['establishedYear'].errors.required">
                                                 Established Year is Required
                                             </div>
-    
+
                                             <div *ngIf="registerForm.controls['establishedYear'].errors.maxlength">
                                                 Established Year should be accepted 4 digits
                                             </div>
-    
+
                                             <div *ngIf="registerForm.controls['establishedYear'].errors.pattern">
                                                 Invalid Established Year
                                             </div>
-                                        </mat-error>                                    
+                                        </mat-error>
                                     </ng-container>
-                                
+
                                 </div>
                                 <div class="inputContainer">
                                     <label>Industry Type<span>*</span></label>
@@ -126,9 +126,9 @@
                                                     Mobile Number is Required
                                                 </div>
 
-                                                <div *ngIf="registerForm.controls['mobile'].errors.maxlength">
+                                                <!-- <div *ngIf="registerForm.controls['mobile'].errors.maxlength">
                                                     Mobile should be accepted 10 digits
-                                                </div>
+                                                </div> -->
 
                                                 <div *ngIf="registerForm.controls['mobile'].errors.pattern">
                                                     Invalid Mobile Number
