@@ -1,6 +1,6 @@
 <mat-drawer-container class="example-container mat-typography" autosize style="height: 100vh;">
   <mat-drawer #drawer mode="side" disableClose="true" opened="true">
-    <mat-nav-list>
+    <mat-nav-list class="mathigh">
       <mat-list-item *ngIf='roleCode === "EMP"'>
         <span class="headerfont" mat-line *ngIf="isExpanded">Dashboard</span>
         <div (click)="validateClick('empdashboard')">
@@ -12,14 +12,14 @@
         <span class="headerfont" mat-line *ngIf="isExpanded">Profile</span>
         <div>
           <img class="sidebar-icon1" src="../../../../assets/images/emp-dashboard-icons/emp-user.png">
-          <span *ngIf="!isExpanded" class="sidebar-text headerfont">Profile</span>
+          <div *ngIf="!isExpanded" class="sidebar-text headerfont">Profile</div>
         </div>
       </mat-list-item>
       <mat-list-item (click)="logout()" *ngIf='roleCode === "EMP"'>
         <span class="headerfont" mat-line *ngIf="isExpanded">LogOut</span>
         <div >
           <img class="sidebar-icon1" src="../../../../assets/images/emp-dashboard-icons/logout.png">
-          <span *ngIf="!isExpanded" class="sidebar-text headerfont">LogOut</span>
+          <div *ngIf="!isExpanded" class="sidebar-text headerfont">LogOut</div>
         </div>
       </mat-list-item>
       <mat-list-item  [ngClass]="[check === 'empdashboard' ? 'selected' : 'notSelected']"
@@ -48,19 +48,19 @@
       <ng-container *ngIf="menuIconToggle" >
         <mat-list-item  [ngClass]="[check === 'partner' ? 'selected' : 'notSelected']"
         (click)="hiring()" *ngIf='roleCode === "SADM" || roleCode === "OADM" || roleCode === "ADM" || roleCode === "HR" || roleCode === "ISADM" || roleCode === "IADM"' [routerLink]="['/addpartner']" [routerLinkActive]="['is-active']">
-           <div class="sidebar-admin" >
+           <div class="sidebar-admin pl-3" >
               <span class="headerfont"  mat-line *ngIf="isExpanded">Add Partners</span>
             </div>
         </mat-list-item>
         <mat-list-item  [ngClass]="[check === 'partner' ? 'selected' : 'notSelected']"
         (click)="manage()" *ngIf='roleCode === "SADM" || roleCode === "OADM" || roleCode === "ADM" || roleCode === "HR" || roleCode === "ISADM" || roleCode === "IADM"' [routerLinkActive]="['is-active']">
-          <div class="sidebar-admin">
+          <div class="sidebar-admin pl-3">
             <span class="headerfont"  mat-line *ngIf="isExpanded">Manage Partners</span>
           </div>
         </mat-list-item>
         <mat-list-item  [ngClass]="[check === 'partner' ? 'selected' : 'notSelected']"
          (click)="partners()" *ngIf='roleCode === "SADM" || roleCode === "OADM" || roleCode === "ADM" || roleCode === "HR" || roleCode === "ISADM" || roleCode === "IADM"' [routerLinkActive]="['is-active']">
-          <div class="sidebar-admin" >
+          <div class="sidebar-admin pl-3" >
             <span class="headerfont"  mat-line *ngIf="isExpanded">Partners Enquiries</span>
           </div>
         </mat-list-item>

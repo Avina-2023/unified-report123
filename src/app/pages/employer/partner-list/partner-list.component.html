@@ -87,7 +87,7 @@
             </mat-button-toggle-group>
           </div>
         </mat-card-title>
-          <div class="row">
+          <div class="row pl-3">
             <div class="col-md-4 p-0">
               <input matInput  [(ngModel)]="searchData" placeholder="Search by Company name, Industry Type" class="search">
             </div>
@@ -113,6 +113,7 @@
             </div>
             <div class="col-md-2 p-0">
               <button (click)="searchList()" color="primary" type="submit" class="search-btn">Search</button>
+              <a class="clearData" (click)="clearSearch()">Clear all</a>
             </div>
         </div>
         <br>

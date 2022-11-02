@@ -124,6 +124,13 @@ export class PartnerListComponent implements OnInit {
     }
   }
 
+  clearSearch(){
+    this.searchData  ='';
+    this.fromDate =null;
+    this.toDate =null;
+    this.selectStatus()
+  }
+
   searchOption(){
     var val = this.searchData.toLowerCase()
     var filter = { $regex: val, $options: 'i' }
