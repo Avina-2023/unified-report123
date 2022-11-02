@@ -33,7 +33,7 @@ import {
       pageSize: 0,
       previousPageIndex: 0
     };
-      private _showTotalPages = 2;
+
     @Input()
     get showTotalPages(): number {
       return this._showTotalPages;
@@ -41,6 +41,7 @@ import {
     set showTotalPages(value: number) {
       this._showTotalPages = value % 2 == 0 ? value + 1 : value;
     }
+    private _showTotalPages = 2;
 
     get inc(): number {
       return this._showTotalPages % 2 == 0
@@ -49,7 +50,7 @@ import {
     }
 
     get numOfPages(): number {
-      return this._showTotalPages //this.matPag.getNumberOfPages();
+      return this.matPag.getNumberOfPages();
     }
 
     get lastPageIndex(): number {
@@ -137,7 +138,7 @@ import {
         if (i >= this._rangeStart && i <= this._rangeEnd) {
           this.ren.insertBefore(
             actionContainer,
-            this.createButton(i, this._showTotalPages),
+            this.createButton(i, this.matPag.pageIndex),
             nextPageNode
           );
         }
