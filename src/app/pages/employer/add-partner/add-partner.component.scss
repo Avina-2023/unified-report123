@@ -228,13 +228,13 @@ button.mat-raised-button {
 
     input.mat-input-element {
         line-height: normal;
-        font-size: 0.825em;
+        font-size: 1.1em;
         font-weight: 400;
     }
 
-    .mat-form-field-appearance-outline .mat-form-field-wrapper {
+    ::ng-deep .mat-form-field-appearance-outline .mat-form-field-wrapper {
         margin: 0;
-        padding-bottom: 5px;
+        padding-bottom: 5px !important;
     }
 
 
@@ -258,6 +258,7 @@ button.mat-raised-button {
     .mat-form-field.mat-form-field-invalid .mat-form-field-label,
     .mat-form-field-appearance-outline.mat-form-field-invalid.mat-form-field-invalid .mat-form-field-outline-thick {
         color: red;
+        font-size: 12px;
     }
 
     .mat-form-field-prefix {
@@ -321,7 +322,7 @@ button.mat-raised-button {
     }
 }
 .errmsg{
-    font-size: 14px;
+    font-size: 12px;
     color: red;
 }
 

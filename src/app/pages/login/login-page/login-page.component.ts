@@ -62,11 +62,11 @@ export class LoginPageComponent  {
             this.matDialog.closeAll();
             this.getIPAddress();
           }else {
-            this.toastr.error('User not found please try with diffrent credentials');
+            this.toastr.error(response.message);
           }
 
       } else {
-        this.toastr.error("User is Deactivated Please Contact Admin");
+        this.toastr.error(response.message);
       }
     }, (err)=> {
       this.disableButton = false;

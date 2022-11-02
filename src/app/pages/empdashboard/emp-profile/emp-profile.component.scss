@@ -106,6 +106,14 @@
     .fullborder{
 border: 1px solid;
     }
+    .selectChip:hover{
+        cursor: pointer;
+    }
+    .chiplist{
+       ::ng-deep .mat-chip-list-wrapper{
+            margin: 0px !important;
+        }
+    }
 }
 .alignp{
     // padding: 0px 10px 0px 10px;
@@ -177,9 +185,7 @@ border: 1px solid;
 }
 
 .otherDiv{
-    border-bottom: 1px solid #e0e0e0;
-    border-right: 1px solid #e0e0e0;
-    border-left: 1px solid #e0e0e0;
+    border: 1px solid #e0e0e0;
     padding: 10px;
 }
 .matchip{
@@ -200,6 +206,7 @@ fieldset {
       color: #000;
       font-size: 14px;
       font-weight: 600;
+      width: 125px;
 
     }
     padding: 20px;

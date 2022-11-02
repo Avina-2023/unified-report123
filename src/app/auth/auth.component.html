@@ -48,7 +48,7 @@
               aria-label="Example icon-button with a menu">
               <img src="../../assets/images/emp-dashboard-icons/notification.png">
             </button>
-            <mat-menu #menu="matMenu" xPosition="before" yPosition="below" pgcCenter>
+            <mat-menu #menu="matMenu"  xPosition="before" yPosition="below" pgcCenter>
               <div class="notification-head">
                 <div>
                   <label class="notification-text">notification</label>
@@ -67,7 +67,7 @@
                 </mat-list>
               </div>
             </mat-menu>
-            <div>
+            <div class="matme">
               <ul class="select">
                 <li>
                   <input class="select_close" type="radio" name="awesomeness" id="awesomeness-close" value="" />
@@ -103,7 +103,6 @@
               <img src="../../../../assets/images/emp-dashboard-icons/user.png">
             </div>
           </div>
-          
     </mat-toolbar>
 
     <div class="footer" *ngIf=" checkRouter ==='/auth/dashboard/dashboard' || checkRouter ==='/auth/partner/partnerlist' || checkRouter ==='/auth/partner/addpartner' ||  checkRouter ==='/auth/partner/partnerenquiry'|| checkRouter ==='/auth/dashboard/profile'">
@@ -112,12 +111,14 @@
 
 
     <div class="mainCon">
+      <div class="topborder"></div> 
     <div *ngIf=" checkRouter === '/auth/reports/dashboard' || checkRouter ==='/auth/reports/userlist' || checkRouter ==='/auth/skillmaster/skillmasterlist' || checkRouter ==='/auth/skillmaster/skillbulkupload' ">
             <app-toolbar></app-toolbar>
            
     </div>
     <div *ngIf="checkRouter ==='/auth/dashboard/dashboard' || checkRouter ==='/auth/partner/partnerlist' ||checkRouter ==='/auth/partner/addpartner' || checkRouter ==='/auth/partner/partnerenquiry' || checkRouter ==='/auth/dashboard/profile'">
-        <app-sidebar></app-sidebar>
+       
+      <app-sidebar></app-sidebar>
      </div>
     <div class="heightDiv">
             <router-outlet></router-outlet> 

@@ -22,24 +22,24 @@
                                 <div class="inputContainer">
                                     <label>Established Year<span>*</span></label>
                                     <mat-form-field appearance="outline">
-                                        <input formControlName="establishedYear" type="text" maxlength="4" matInput placeholder="Enter Establishment Year">
+                                        <input formControlName="establishedYear" type="text" maxlength="4" matInput placeholder="Enter Established Year">
                                     </mat-form-field>
                                     <ng-container *ngIf="establishedYear.invalid && establishedYear.touched">
-                                        <mat-error *ngIf="registerForm.controls['establishedYear'].invalid ">
+                                        <mat-error class="error" *ngIf="registerForm.controls['establishedYear'].invalid ">
                                             <div *ngIf="registerForm.controls['establishedYear'].errors.required">
                                                 Established Year is Required
                                             </div>
-    
+
                                             <div *ngIf="registerForm.controls['establishedYear'].errors.maxlength">
                                                 Established Year should be accepted 4 digits
                                             </div>
-    
+
                                             <div *ngIf="registerForm.controls['establishedYear'].errors.pattern">
                                                 Invalid Established Year
                                             </div>
-                                        </mat-error>                                    
+                                        </mat-error>
                                     </ng-container>
-                                
+
                                 </div>
                                 <div class="inputContainer">
                                     <label>Industry Type<span>*</span></label>
@@ -72,7 +72,7 @@
                                     </div>
                                 </div>
                                 <div class="titlealign">
-                                    <p class="labeldes">Photo must be in jpeg or png format</p>
+                                    <p class="labeldes">Photo must be in .jpeg or .png format</p>
                                 </div>
                             </div>
                         </div>
@@ -121,14 +121,14 @@
                                         <ng-container *ngIf="mobile.invalid && mobile.touched">
                                             <!-- <mat-error class="error" *ngIf="mobile?.errors?.required">{{'Mobile is required'}}</mat-error>
                                             <mat-error class="error" *ngIf="mobile?.errors?.maxLength">{{'Mobile should be accepted 10 digits'}}</mat-error> -->
-                                            <mat-error *ngIf="registerForm.controls['mobile'].invalid ">
+                                            <mat-error class="error" *ngIf="registerForm.controls['mobile'].invalid ">
                                                 <div *ngIf="registerForm.controls['mobile'].errors.required">
                                                     Mobile Number is Required
                                                 </div>
 
-                                                <div *ngIf="registerForm.controls['mobile'].errors.maxlength">
+                                                <!-- <div *ngIf="registerForm.controls['mobile'].errors.maxlength">
                                                     Mobile should be accepted 10 digits
-                                                </div>
+                                                </div> -->
 
                                                 <div *ngIf="registerForm.controls['mobile'].errors.pattern">
                                                     Invalid Mobile Number
@@ -167,7 +167,7 @@
                                 </div>
                             </div>
                             <div class="titlealign">
-                                <p class="labeldes">Form must be in jpeg or pdf format</p>
+                                <p class="labeldes">Form must be in .jpeg or .pdf format</p>
                             </div>
                         </div>
                     </div>
