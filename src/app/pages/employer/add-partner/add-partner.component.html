@@ -103,7 +103,7 @@
                                     <div class="inputContainer">
                                         <label>Mobile Number<span>*</span></label>
                                         <mat-form-field appearance="outline">
-                                            <input formControlName="mobile" matInput placeholder="Enter SPOC Mobile Number">
+                                            <input formControlName="mobile" maxlength="10" matInput placeholder="Enter SPOC Mobile Number">
                                         </mat-form-field>
                                         <ng-container *ngIf="mobile.invalid && mobile.touched">
                                             <!-- <mat-error class="error" *ngIf="mobile?.errors?.required">{{'Mobile is required'}}</mat-error>
@@ -113,9 +113,9 @@
                                                     Mobile Number is Required
                                                 </div>
 
-                                                <div *ngIf="registerForm.controls['mobile'].errors.maxlength">
+                                                <!-- <div *ngIf="registerForm.controls['mobile'].errors.maxlength">
                                                     Mobile should be accepted 10 digits
-                                                </div>
+                                                </div> -->
 
                                                 <div *ngIf="registerForm.controls['mobile'].errors.pattern">
                                                     Invalid Mobile Number

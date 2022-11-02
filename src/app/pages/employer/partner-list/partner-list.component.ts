@@ -15,10 +15,11 @@ import { APP_CONSTANTS } from '../../../utils/app-constants.service';
 
 
 export class PartnerListComponent implements OnInit {
-  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+  @ViewChild('mynation', { static: false }) paginator: MatPaginator;
 
+  pagesize = 5;
   status = "all"
-  displayedColumns: string[] = ['sno','img', 'employerName', 'createdDate', 'industryType', 'spocName', 'spocEmail', 'status', "action"];
+  displayedColumns: string[] = ['sno','img', 'employerName', 'industryType', 'spocName', 'spocEmail', 'createdDate', 'status', "action"];
   dataSource = new MatTableDataSource<any>([]);
   totalPartnerCount :number;
   activePartnerCount :number;
@@ -27,6 +28,7 @@ export class PartnerListComponent implements OnInit {
   searchData :string ='';
   fromDate : Date;
   toDate :Date;
+  totalPages: number = 1;
   constructor(private ApiService: ApiService, private appconfig: AppConfigService, private toastr: ToastrService) {
     var data = {"filterModel":{"createdBy":{"filterType":"nin","values":["UapAdmin"]}}}
     this.fetchData(data);
@@ -82,6 +84,9 @@ export class PartnerListComponent implements OnInit {
         this.activePartnerCount = partnerList.activeCount;
         this.inActivePartnerCount = partnerList.inActiveCount;
         this.pendingCount = partnerList.pendingCount;
+        this.totalPages = Math.ceil(this.totalPartnerCount/5)
+        this.dataSource.paginator = this.paginator;
+        this.paginator.firstPage()
       }
     }, (err) => {
       this.toastr.warning('Connection failed, Please try again.');
@@ -105,12 +110,6 @@ export class PartnerListComponent implements OnInit {
     this.appconfig.routeNavigationWithParam(APP_CONSTANTS.ENDPOINTS.PARTNER.ADDPARTNER,{email:this.ApiService.encrypt(email)});
   }
 
-  convertDate(date){
-    date = new Date(date)
-    
-    return date.toDateString();
-    //return new Date(date)
-  }
 
   searchList() {
     if(this.fromDate == undefined && this.toDate == undefined){
