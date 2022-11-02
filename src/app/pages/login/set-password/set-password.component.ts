@@ -26,6 +26,7 @@ export class SetPasswordComponent implements OnInit {
   capsOn: any;
   getCurrentYear = this.appConfig.getCurrentYear();
   apiemail: any;
+  deCryuserId: any;
 
   constructor(
     private fb: FormBuilder,
@@ -50,8 +51,8 @@ export class SetPasswordComponent implements OnInit {
   verifyPassword() {
     this.activatedRoute.queryParams.subscribe(params => {
       if (params['userId'] && params['temp-token']) {
-        var userId =this.apiService.decryptnew(decodeURIComponent(params['userId']));
-        this.apiService.uservalidationCheck({userId:userId}).subscribe((success: any) => {
+        this.deCryuserId =this.apiService.decryptnew(decodeURIComponent(params['userId']));
+        this.apiService.uservalidationCheck({userId:this.deCryuserId}).subscribe((success: any) => {
           if(success.data || success.success == false){
             this.toastr.error(`Invalid link`);
             this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.LOGIN);
@@ -75,11 +76,8 @@ export class SetPasswordComponent implements OnInit {
     });
   }
 
-  getEncriptedMail(){ 
-    setTimeout(() => {
-    this.prePoulteEmailId = this.apiService.decryptnew(decodeURIComponent(this.prePoulteEmailId));
+  getEncriptedMail(){
     this.autoPopulateMail();     // Function to auto populate mail after form loads.
-    }, 1000);
   }
 
   formInitialize() {
@@ -97,7 +95,7 @@ export class SetPasswordComponent implements OnInit {
   autoPopulateMail() {
     // if (this.currentRoute) {
       this.createForm.patchValue({
-        email: this.prePoulteEmailId ? this.prePoulteEmailId : ''
+        email: this.deCryuserId ? this.deCryuserId : ''
       });
       this.createForm.controls['email'].disable();
     // }
@@ -125,11 +123,15 @@ export class SetPasswordComponent implements OnInit {
         type:"employer"
       };
       this.apiService.passwordReset(apiData).subscribe((success: any) => {
+        if(success.success){
           this.toastr.success((this.currentRoute.includes('Reset')) ? `Password has been updated successfully` :
           `Password has been updated Successfully`);
         this.appConfig.routeNavigationWithQueryParam(APP_CONSTANTS.ENDPOINTS.LOGIN, { mail: apiData.userId });
+        }else{
+          this.toastr.error(success.message);
+        }
       }, (error) => {
-        this.toastr.success(error.message);
+        this.toastr.error(error.message);
       });
     } else {
       this.validateAllFields(this.createForm);
