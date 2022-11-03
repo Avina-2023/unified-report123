@@ -52,7 +52,6 @@ export class SidebarComponent implements OnInit {
   }
   validateClick(value) {
     this.check = value;
-    console.log("-----",this.check)
     if (value == "empdashboard") {
       this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.EMPDASHBOARD.HOME);
     } else if (value == "partnerlist") {
