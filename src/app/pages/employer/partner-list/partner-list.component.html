@@ -87,12 +87,16 @@
             </mat-button-toggle-group>
           </div>
         </mat-card-title>
-          <div class="row pl-3">
+          <div class="row pl-3 data">
             <div class="col-md-4 p-0">
-              <input matInput  [(ngModel)]="searchData" placeholder="Search by Company name, Industry Type" class="search">
+              <mat-form-field appearance="outline">
+                <input matInput  [(ngModel)]="searchData" placeholder="Search by Company name, Industry Type" class="">
+              </mat-form-field>
             </div>
             <div class="col-md-3 p-0">
-                <input matInput [(ngModel)]="fromDate" for="dp1" placeholder="Enter Start Date" [matDatepicker]="datepicker1" class="search">
+                <mat-form-field appearance="outline">
+                  <input matInput [(ngModel)]="fromDate" for="dp1" placeholder="Enter Start Date" [matDatepicker]="datepicker1" class="">
+                </mat-form-field>
                 <mat-datepicker-toggle class="toggle-pos"  matSuffix [for]="datepicker1" id="dp1"></mat-datepicker-toggle>
                 <mat-datepicker #datepicker1>
                   <mat-datepicker-actions>
@@ -102,7 +106,9 @@
                 </mat-datepicker>
             </div>
             <div class="col-md-3 p-0">
-                <input [min]="fromDate" class="search" placeholder="Enter End Date" matInput [(ngModel)]="toDate" [matDatepicker]="datepicker">
+                <mat-form-field appearance="outline">
+                  <input [min]="fromDate"  placeholder="Enter End Date" matInput [(ngModel)]="toDate" [matDatepicker]="datepicker">
+                </mat-form-field>
                 <mat-datepicker-toggle class="toggle-pos" matSuffix [for]="datepicker"></mat-datepicker-toggle>
                 <mat-datepicker #datepicker>
                   <mat-datepicker-actions>

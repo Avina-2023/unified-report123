@@ -40,6 +40,12 @@ export class PartnerEnquiriesComponent implements OnInit {
     this.fetchData(data);
   }
 
+  clearSearch(){
+    this.searchData  ='';
+    this.searchList()
+  }
+
+
   fetchData(data:any){
     this.ApiService.partnerList(data).subscribe((partnerList: any) => {
       if (partnerList.success == false) {

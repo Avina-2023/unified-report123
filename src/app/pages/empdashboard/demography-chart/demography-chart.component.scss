@@ -39,7 +39,7 @@
 
   .map_box {
     text-align: end;
-    height: 100px;
+    height: 40px;
     // margin-top: 1rem;
 
     &--details {
@@ -52,6 +52,7 @@
       text-align: center;
       display: inline-block;
       box-shadow: 1px 1px 12px #00000033;
+      display: none;
     }
     &--state {
       font-size: 1rem;

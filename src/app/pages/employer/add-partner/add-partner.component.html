@@ -97,7 +97,14 @@
                                             <input formControlName="email" matInput placeholder="Enter SPOC Email">
                                         </mat-form-field>
                                         <ng-container *ngIf="email.invalid && email.touched">
-                                            <mat-error class="error" *ngIf="email?.errors?.required">{{'Email is Required'}}</mat-error>
+                                            <mat-error class="error" *ngIf="registerForm.controls['email'].invalid ">
+                                                <div *ngIf="registerForm.controls['email'].errors.required">
+                                                    Email is Required
+                                                </div>
+                                                <div *ngIf="registerForm.controls['email'].errors.pattern">
+                                                    Invalid Email
+                                                </div>
+                                            </mat-error>
                                         </ng-container>
                                     </div>
                                 </form>
@@ -173,9 +180,7 @@
                     </div>
                     <div class="buttonClass">
                         <div class="subButton">
-                            <button mat-flat-button   (click)="savePartner()">Save</button>
-                        </div>
-                        <div class="subButton2"> <button mat-flat-button>Cancel</button>
+                            <button mat-flat-button [disabled]="!registerForm.valid"  (click)="savePartner()">Save</button>
                         </div>
                     </div>
                 </mat-card-content>
