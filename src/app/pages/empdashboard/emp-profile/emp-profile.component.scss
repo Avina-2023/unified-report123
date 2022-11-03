@@ -102,6 +102,13 @@
         .heighttext{
             height: 50px;
         }
+        .selectText{
+            height: 36px;
+            padding-top: 11px;
+            ::ng-deep.mat-select-trigger{
+                height: 2.525em !important;
+            }
+        }
     }
     .fullborder{
 border: 1px solid;
@@ -181,7 +188,7 @@ border: 1px solid;
     border: none;
 }
 ::ng-deep .mat-form-field-subscript-wrapper{
-    top:41px;
+    top:34px !important;
 }
 
 .otherDiv{
