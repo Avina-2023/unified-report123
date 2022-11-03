@@ -79,6 +79,9 @@ export class PartnerListComponent implements OnInit {
       if (partnerList.success == false) {
         this.toastr.warning('Connection failed, Please try again.');
       } else {
+        partnerList.data.forEach((element,index) => {
+          element.sno = index+1;
+        });
         this.dataSource.data = partnerList.data;
         this.totalPartnerCount = partnerList.totalCount;
         this.activePartnerCount = partnerList.activeCount;
@@ -119,6 +122,13 @@ export class PartnerListComponent implements OnInit {
     }else{
       this.toastr.warning('Please enter from and to date');
     }
+  }
+
+  clearSearch(){
+    this.searchData  ='';
+    this.fromDate =null;
+    this.toDate =null;
+    this.selectStatus()
   }
 
   searchOption(){

@@ -17,7 +17,7 @@ export class DemographyChartComponent implements OnInit {
   }
 
   ngOnChanges(changes: SimpleChange) {
-    console.log(changes,"---demograp")
+    // console.log(changes,"---demograp")
     if (changes['item']?.currentValue) {
         this.item = changes['item']?.currentValue
     }
@@ -29,7 +29,7 @@ export class DemographyChartComponent implements OnInit {
   }
 
   over_state(value) {
-    console.log(this.item)
+    // console.log(this.item)
     let result = this.item.find(el => el.name == value);
 
     this.tooltip = result?result:{name:value,total:0};

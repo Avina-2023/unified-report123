@@ -67,6 +67,10 @@
             }
         }
     }
+
+    ::ng-deep .mat-form-field-appearance-outline .mat-form-field-infix {
+        padding: 0 0 10px 0 !important;
+    }
 }
 
 .primaryWrapper {
