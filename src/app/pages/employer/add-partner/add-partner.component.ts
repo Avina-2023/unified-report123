@@ -63,6 +63,7 @@ export class AddPartnerComponent implements OnInit {
             });
             this.employerLogoFileName = details?.companyImgURL ? "profile Image" : "";
             this.employerLogoUrl = details?.companyImgURL;
+            this.eoiFormUrl = details?.eoiFormUrl;
             this.eoiFileName = "EOIForm";
           }
         }, (err) => {

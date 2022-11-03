@@ -66,7 +66,7 @@ export class EmpProfileComponent implements OnInit {
   }
  
   selectState(e){
-    this.apiService.getDistrict({state_id:e.target.value}).subscribe((data: any) => {
+    this.apiService.getDistrict({state_id:e.value}).subscribe((data: any) => {
       if (data.success == false) {
         this.toaster.warning(data.message);
       } else {
@@ -151,6 +151,10 @@ export class EmpProfileComponent implements OnInit {
     return this.profileForm.get('stateCtrlone');
   }
 
+  get state() {
+    return this.profileForm.get('state');
+  }
+
   buildContacts(hrdetilas: { hrName: string; hrdesignation: string; hrEmail: string; hrMobilenumber: string }[] = []) {
     return this.fb.array(hrdetilas.map(hrcontact => this.fb.group(hrcontact)));
   }
@@ -220,7 +224,7 @@ export class EmpProfileComponent implements OnInit {
       if (result.success) {
         this.empProfile = result.data[0]
         if(this.empProfile.detailedInformation){
-          var obj = {target:{value:this.empProfile.detailedInformation.state}}
+          var obj = {value:this.empProfile.detailedInformation.state}
           this.selectState(obj)
           this.profileForm.patchValue({
           empSize: this.empProfile.detailedInformation.empSize,
@@ -234,11 +238,12 @@ export class EmpProfileComponent implements OnInit {
           addressOne: this.empProfile.detailedInformation.addressOne,
           addressTwo: this.empProfile.detailedInformation.addressTwo,
           pincode: this.empProfile.detailedInformation.pincode,
-          district: this.empProfile.detailedInformation.district,
-          state: this.empProfile.detailedInformation.state,
-          country: this.empProfile.detailedInformation.country,
+          district: parseInt(this.empProfile.detailedInformation.district),
+          state: parseInt(this.empProfile.detailedInformation.state),
+          country: parseInt(this.empProfile.detailedInformation.country),
           // stateCtrlone:result.data[0].detailedInformation.stateCtrlone,
         })
+        console.log("--------",this.empProfile.detailedInformation.state)
         if(this.empProfile.detailedInformation && this.empProfile.detailedInformation.stateCtrlone.length){
           this.empProfile.detailedInformation.stateCtrlone.forEach((element, i) => {
             this.profileForm.value.stateCtrlone.push(element ? element : '')
