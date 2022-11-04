@@ -9,8 +9,8 @@
                   <input [(ngModel)]="searchData" matInput placeholder="Search by Company name, Designation" class="">
                 </mat-form-field>
             </div>
-            <button color="primary" (click)="searchList()" type="submit" class="search-btn-one">Search</button>
-            <a class="clearData" (click)="clearSearch()">Clear all</a>
+            <button color="primary" [disabled]="(this.searchData == '')?true:false" (click)="searchList()" type="submit" [ngClass]="(this.searchData != '')?'search-btn-one':'notAllow'" >Search</button>
+            <a class="clearData" *ngIf="(this.searchData == '')?false:true" (click)="clearSearch()">Clear all</a>
         </mat-card-title>
           <mat-card-content class="cardValue">
             <div>
@@ -55,6 +55,9 @@
                 </ng-container>  
                 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                 <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                <tr class="mat-row" *matNoDataRow>
+                  <td class="mat-cell nodata" colspan="8">No Data Found</td>
+                </tr>
               </table>
               <div class="customPagination">
                 <!-- <mat-paginator style-paginator [showTotalPages]="10" [length]="totalPartnerCount||10" [pageSize]="10"
