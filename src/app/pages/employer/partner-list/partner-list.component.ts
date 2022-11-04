@@ -1,7 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ContentChild, OnInit, ViewChild } from '@angular/core';
 import { ApiService } from '../../../services/api.service';
 import { ToastrService } from 'ngx-toastr';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatNoDataRow, MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { AppConfigService } from 'src/app/utils/app-config.service';
 import { APP_CONSTANTS } from '../../../utils/app-constants.service';
@@ -16,7 +16,7 @@ import { APP_CONSTANTS } from '../../../utils/app-constants.service';
 
 export class PartnerListComponent implements OnInit {
   @ViewChild('mynation', { static: false }) paginator: MatPaginator;
-
+  @ContentChild(MatNoDataRow) noDataRow: MatNoDataRow;
   pagesize = 5;
   status = "all"
   displayedColumns: string[] = ['sno','img', 'employerName', 'industryType', 'spocName', 'spocEmail', 'createdDate', 'status', "action"];
@@ -137,16 +137,20 @@ export class PartnerListComponent implements OnInit {
 
 
   searchList() {
-    if (this.fromDate == undefined && this.toDate == undefined) {
-      this.searchOption();
-    } else if (this.fromDate != undefined && this.toDate != undefined) {
-      if (this.fromDate <= this.toDate) {
+    if(this.fromDate == undefined && this.toDate == undefined && this.searchData  == ""){
+      this.toastr.warning('No data found');
+    }else{
+      if (this.fromDate == undefined && this.toDate == undefined) {
         this.searchOption();
+      } else if (this.fromDate != undefined && this.toDate != undefined) {
+        if (this.fromDate <= this.toDate) {
+          this.searchOption();
+        } else {
+          this.toastr.warning('To date must be greater than or equal to from date');
+        }
       } else {
-        this.toastr.warning('To date must be greater than or equal to from date');
+        this.toastr.warning('Please enter from and to date');
       }
-    } else {
-      this.toastr.warning('Please enter from and to date');
     }
   }
 

@@ -118,8 +118,8 @@
                 </mat-datepicker>  
             </div>
             <div class="col-md-2 p-0">
-              <button (click)="searchList()" color="primary" type="submit" class="search-btn">Search</button>
-              <a class="clearData" (click)="clearSearch()">Clear all</a>
+              <button (click)="searchList()" [disabled]="(fromDate == undefined && toDate == undefined && searchData  == '')?true:false" color="primary" type="submit" [ngClass]="(fromDate == undefined && toDate == undefined && searchData  == '')?'notAllow':'search-btn'" >Search</button>
+              <a class="clearData" *ngIf="(fromDate == undefined && toDate == undefined && searchData  == '')?false:true" (click)="clearSearch()">Clear all</a>
             </div>
         </div>
         <br>
@@ -188,9 +188,12 @@
 
                   </mat-menu>
                 </td>
-              </ng-container>
+              </ng-container>   
               <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
               <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+              <tr class="mat-row" *matNoDataRow>
+                <td class="mat-cell nodata" colspan="8">No Data Found</td>
+              </tr>
             </table>
             <!-- <div class="customPagination" >
               <mat-paginator style-paginator #mynation [showTotalPages]="totalPages" [length]="totalPartnerCount||3" [pageSize]="pagesize"

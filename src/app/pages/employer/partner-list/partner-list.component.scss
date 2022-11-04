@@ -116,8 +116,11 @@
             }
 
             th,
-            td {
+            td {         
                 text-align: start;
+                &.nodata {
+                    text-align: center;
+                }
             }
 
             .mat-row:nth-child(even) {
@@ -287,6 +290,17 @@
     color: #fff;
     background: #1B4E9B;
     border-radius: 5px;
+    cursor: pointer;
+   }
+   .notAllow{
+    width: 50%;
+    padding: 10px;
+    position: relative;
+    border: none;
+    color: #fff;
+    background: #1B4E9B;
+    border-radius: 5px;
+    cursor: not-allowed;
    }
    .card-inside-percentage-box{
     background: #56B35A 0% 0% no-repeat padding-box;

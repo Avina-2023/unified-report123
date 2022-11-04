@@ -71,7 +71,7 @@
             font-size: 16px;
             color: #1B4E9B;
             display: flex;
-            justify-content: space-between;
+            // justify-content: space-between;
         }
 
         .buttonSlide {
@@ -112,6 +112,9 @@
             th,
             td {
                 text-align: start;
+                &.nodata {
+                    text-align: center;
+                }
             }
 
             .mat-row:nth-child(even) {
@@ -204,6 +207,16 @@
     padding: 10px;
     border-radius: 5px;
    }
+   .notAllow{
+    width: 10%;
+    position: relative !important;
+    border: none;
+    color: #fff;
+    background: #1B4E9B;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: not-allowed;
+  }
 .d-flex {
     display: flex !important;
     justify-content: flex-start !important;
@@ -357,3 +370,5 @@
     text-decoration: underline;
     cursor: pointer;
   }
+
+  
