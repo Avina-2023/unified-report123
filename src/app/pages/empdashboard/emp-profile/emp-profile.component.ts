@@ -163,7 +163,13 @@ export class EmpProfileComponent implements OnInit {
   }
 
   addContactField() {
-    this.hrContactDetails.push(this.fb.group({ hrName: null, hrdesignation: null, hrEmail: null, hrMobilenumber: null }))
+    var length = this.hrContactDetails.value.length-1;
+    var data =this.hrContactDetails.value[length];
+    if(data.hrName!=null && data.hrdesignation!=null && data.hrEmail!=null && data.hrMobilenumber!=null){
+      this.hrContactDetails.push(this.fb.group({ hrName: null, hrdesignation: null, hrEmail: null, hrMobilenumber: null }))
+    }else{
+      this.toaster.warning('Make sure, you have entered HR contact details');
+    }
   }
 
   get empSize() {
