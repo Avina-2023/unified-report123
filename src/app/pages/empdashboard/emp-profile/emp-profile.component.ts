@@ -92,6 +92,7 @@ export class EmpProfileComponent implements OnInit {
       this.states.splice(index, 1)
     }
   }
+  // public myreg = /(^|\s)((https?:\/\/)?[\w-]+(\.[\w-]+)+\.?(:\d+)?(\/\S*)?)/gi
   createProfile() {
     this.profileForm = this.fb.group({
       empSize: ['', [Validators.required]],
@@ -102,12 +103,14 @@ export class EmpProfileComponent implements OnInit {
         Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
       ]],
       mobileNumber: ['',  [
-        Validators.required,
+        // Validators.required,
         Validators.minLength(10),
         Validators.maxLength(10),
         Validators.pattern('[1-9]{1}[0-9]{9}'),
       ],],
-      chroName: ['', [Validators.required]],
+      chroName: ['', [
+        //Validators.required
+      ]],
       chroEmail: ['',  [
         Validators.required,
         Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
@@ -190,6 +193,8 @@ export class EmpProfileComponent implements OnInit {
       }, (err) => {
         this.toaster.warning('Connection failed, Please try again.');
       });
+    }else{
+      this.toaster.warning('Please fill all the red highlighted fields to proceed further');
     }
 
   }

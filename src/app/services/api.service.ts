@@ -247,4 +247,7 @@ export class ApiService {
   imageUpload(data){
     return this.http.post(`${this.BASE_URL}/imageUpload`,data)
   }
+  partnerListDashboard(){
+    return this.http.get(`${this.BASE_URL}/partnerListDashboard`)
+  }
 }

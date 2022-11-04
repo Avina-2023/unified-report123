@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { AppConfigService } from 'src/app/utils/app-config.service';
 import { APP_CONSTANTS } from 'src/app/utils/app-constants.service';
 
@@ -18,10 +18,18 @@ export class SidebarComponent implements OnInit {
   menuIconToggle: boolean;
   check = "empdashboard";
   constructor(private appconfig: AppConfigService,public router:Router) {
+    this.router.events.subscribe(event => {
+      if(event instanceof NavigationEnd) {
+        this.navBarSelector()
+      }
+    })
     this.roles = this.appconfig.getLocalStorage('role') ? this.appconfig.getLocalStorage('role') : '';
     this.orgdetails = JSON.parse(this.roles);
     this.roleCode = this.orgdetails && this.orgdetails[0].roles && this.orgdetails[0].roles[0].roleCode;
-    
+    this.navBarSelector()
+  }
+
+  navBarSelector() {
     switch (this.router.url) {
       case '/auth/employer/dashboard':
         this.check = 'empdashboard';
@@ -45,7 +53,7 @@ export class SidebarComponent implements OnInit {
         this.check = 'empdashboard';
         break;
     }
-   }
+  }
 
   ngOnInit(): void {
     this.sideBar()
@@ -53,6 +61,7 @@ export class SidebarComponent implements OnInit {
   validateClick(value) {
     this.check = value;
     if (value == "empdashboard") {
+      this.menuIconToggle = false;
       this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.EMPDASHBOARD.HOME);
     } else if (value == "partnerlist") {
       this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.PARTNER.HOME);
