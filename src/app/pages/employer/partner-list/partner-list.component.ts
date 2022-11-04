@@ -21,6 +21,9 @@ export class PartnerListComponent implements OnInit {
   status = "all"
   displayedColumns: string[] = ['sno','img', 'employerName', 'industryType', 'spocName', 'spocEmail', 'createdDate', 'status', "action"];
   dataSource = new MatTableDataSource<any>([]);
+  tableEmpty:Boolean=false;
+  emptyData = new MatTableDataSource([{ empty: "row" }]);
+  totalPartnerDashboardCount:number;
   totalPartnerCount :number;
   activePartnerCount :number;
   inActivePartnerCount :number;
@@ -31,11 +34,13 @@ export class PartnerListComponent implements OnInit {
   totalPages: number = 1;
   constructor(private ApiService: ApiService, private appconfig: AppConfigService, private toastr: ToastrService) {
     var data = {"filterModel":{"createdBy":{"filterType":"nin","values":["UapAdmin"]}}}
+    this.fetchDashboardData();
     this.fetchData(data);
   }
 
   ngOnInit(): void {
   }
+  
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
 
@@ -74,6 +79,21 @@ export class PartnerListComponent implements OnInit {
     this.fetchData(data);
   }
 
+  fetchDashboardData(){
+    this.ApiService.partnerListDashboard().subscribe((partnerListDash: any) => {
+      if (partnerListDash.success == false) {
+        this.toastr.warning('Connection failed, Please try again.');
+      } else {
+        this.totalPartnerDashboardCount = partnerListDash.data.totalCount;
+        this.activePartnerCount = partnerListDash.data.activeCount;
+        this.inActivePartnerCount = partnerListDash.data.inActiveCount;
+        this.pendingCount = partnerListDash.data.pendingCount;
+      }
+    }, (err) => {
+      this.toastr.warning('Connection failed, Please try again.');
+    });
+  }
+
   fetchData(data:any){
     this.ApiService.partnerList(data).subscribe((partnerList: any) => {
       if (partnerList.success == false) {
@@ -82,11 +102,13 @@ export class PartnerListComponent implements OnInit {
         partnerList.data.forEach((element,index) => {
           element.sno = index+1;
         });
+        if(partnerList.data.length==0){
+          this.tableEmpty=true
+        }else{
+          this.tableEmpty=false
+        }
         this.dataSource.data = partnerList.data;
         this.totalPartnerCount = partnerList.totalCount;
-        this.activePartnerCount = partnerList.activeCount;
-        this.inActivePartnerCount = partnerList.inActiveCount;
-        this.pendingCount = partnerList.pendingCount;
         this.totalPages = Math.ceil(this.totalPartnerCount/5)
         this.dataSource.paginator = this.paginator;
         this.paginator.firstPage()
@@ -115,11 +137,15 @@ export class PartnerListComponent implements OnInit {
 
 
   searchList() {
-    if(this.fromDate == undefined && this.toDate == undefined){
+    if (this.fromDate == undefined && this.toDate == undefined) {
       this.searchOption();
-    }else if( this.fromDate !=undefined && this.toDate !=undefined){
-      this.searchOption();
-    }else{
+    } else if (this.fromDate != undefined && this.toDate != undefined) {
+      if (this.fromDate <= this.toDate) {
+        this.searchOption();
+      } else {
+        this.toastr.warning('To date must be greater than or equal to from date');
+      }
+    } else {
       this.toastr.warning('Please enter from and to date');
     }
   }

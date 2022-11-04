@@ -17,6 +17,8 @@ export class PartnerEnquiriesComponent implements OnInit {
 
   displayedColumns: string[] = ['sno','name','designation', 'company', 'email', 'mobile', 'registeredDate'];
   dataSource = new MatTableDataSource<any>([]);
+  emptyData = new MatTableDataSource([{ empty: "row" }]);
+
   totalPartnerCount :number;
   searchData :string ='';
   constructor(private ApiService: ApiService, private appconfig: AppConfigService, private toastr: ToastrService) {

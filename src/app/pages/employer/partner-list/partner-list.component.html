@@ -9,7 +9,7 @@
                 <mat-card-title class="cardTitle">Total Partners</mat-card-title>
                 <mat-card-content class="cardValue">
                   <div>
-                    <p>{{totalPartnerCount}}</p>
+                    <p>{{totalPartnerDashboardCount}}</p>
                   </div>
                   <div><img src="/assets/images/partner/partners.svg" alt=""></div>
                 </mat-card-content>
@@ -90,7 +90,7 @@
           <div class="row pl-3 data">
             <div class="col-md-4 p-0">
               <mat-form-field appearance="outline">
-                <input matInput  [(ngModel)]="searchData" placeholder="Search by Company name, Industry Type" class="">
+                <input matInput  [(ngModel)]="searchData" placeholder="Search by Employer name, Industry Type" class="">
               </mat-form-field>
             </div>
             <div class="col-md-3 p-0">
@@ -115,7 +115,7 @@
                     <button mat-button matDatepickerCancel>Cancel</button>
                     <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
                   </mat-datepicker-actions>
-                </mat-datepicker>
+                </mat-datepicker>  
             </div>
             <div class="col-md-2 p-0">
               <button (click)="searchList()" color="primary" type="submit" class="search-btn">Search</button>
