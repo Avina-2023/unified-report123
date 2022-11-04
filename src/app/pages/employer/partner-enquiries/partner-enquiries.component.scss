@@ -1,0 +1,374 @@
+.body {
+    height: 100vh;
+    background: linear-gradient(180deg, #1B4E9B 60%, #F2F2F2 40%);
+    padding-bottom: 20px;
+}
+
+.subBody {
+    padding-bottom: 75px;
+}
+
+.title {
+    color: #FFFFFF;
+    padding: 15px;
+    margin-bottom: 0;
+    opacity: 0.7;
+    padding-bottom: 0;
+    left: 12px;
+    position: relative;
+}
+
+.partnerCardBody {
+    display: flex;
+    justify-content: space-around;
+
+    .partnerCard {
+        max-width: 400px;
+        width: 400px;
+        max-height: 125px;
+        height: 125px;
+        border-radius: 9px;
+
+        .cardTitle {
+            font-size: 14px;
+            color: #1B4E9B;
+        }
+
+        .cardValue {
+            font-size: 24px;
+            color: #4D4F5C;
+            display: flex;
+            justify-content: space-between;
+            padding-right: 20px;
+        }
+
+        .cardFooter {
+            font-size: 14px;
+            color: #262626;
+            padding-left: 15px;
+
+            .cardFootervalue {
+                padding-left: 3px;
+                color: #56B35A;
+            }
+        }
+    }
+}
+
+.partnerCardTableBody {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+
+    .partnerCard {
+        // max-width: 99%;
+        width: 99%;
+        // max-height: 330px;
+        // height: 330px;
+        border-radius: 9px;
+
+        .cardTitle {
+            font-size: 16px;
+            color: #1B4E9B;
+            display: flex;
+            // justify-content: space-between;
+        }
+
+        .buttonSlide {
+            .mat-button-toggle-group {
+                height: 32px !important;
+                align-items: center !important;
+                font-size: 12px !important;
+            }
+
+            .mat-button-toggle {
+                background-color: #ffffff;
+                color: #004684;
+                width: 75px;
+            }
+
+            .mat-button-toggle:hover {
+                background-color: #004684;
+                color: #ffffff !important;
+            }
+
+            .mat-button-toggle-checked {
+                background-color: #004684;
+                color: #ffffff !important;
+            }
+        }
+
+        .cardValue {
+            .companyURL {
+                height: 20px;
+            }
+
+            table {
+                width: 100%;
+                border-radius: 5px;
+                border: solid 1px #EDEDED;
+            }
+
+            th,
+            td {
+                text-align: start;
+                &.nodata {
+                    text-align: center;
+                }
+            }
+
+            .mat-row:nth-child(even) {
+                background-color: #EDEDED;
+                color: black;
+            }
+
+            .mat-row:nth-child(odd) {
+                background-color: white;
+                color: black;
+            }
+
+            .mat-header-cell {
+                background-color: #EDEDED;
+                color: #1B4E9B;
+            }
+
+            .rectangleInActive {
+                font-size: 12px;
+                background: #ffd6c8d9;
+                padding: 5px 20px;
+                border-radius: 8px;
+                color: #FF474D;
+                display: flex;
+                justify-content: center;
+                align-items: baseline;
+                width: 84px;
+                margin: 0 auto;
+                flex-wrap: nowrap;
+            }
+
+            .rectangleActive {
+                font-size: 12px;
+                background: #c9e9c2;
+                padding: 5px 20px;
+                border-radius: 8px;
+                color: #49AE31;
+                display: flex;
+                justify-content: center;
+                align-items: baseline;
+                width: 84px;
+                margin: 0 auto;
+                flex-wrap: nowrap;
+            }
+
+            .doticon{
+                display: contents !important;
+            }
+
+            .moreButton {
+                width: 30% !important;
+                margin: 5px 0;
+                border-radius: 50%;
+                // padding: 2px 0;
+                box-shadow: 0 2px 4px -1px rgb(0 0 0 / 20%);
+                background-color: white;
+                border: .5px solid #A9BBD5;
+                color: #1B4E9B;
+                cursor: pointer;
+
+                &:hover {
+                    background-color: #D2DEF1;
+                    color: #FFFFFF;
+
+                }
+            }
+
+            // ::ng-deep .mat-paginator-page-size {
+            //     display: none !important;
+            // }
+
+            // ::ng-deep .mat-paginator-range-label {
+            //     display: none !important;
+            // }
+
+        }
+    }
+
+}
+.inputCom {
+    width: 83%;
+}
+.search-btn-one{
+    width: 10%;
+    // height: 39px !important;
+    position: relative !important;
+    border: none;
+    color: #fff;
+    background: #1B4E9B;
+    padding: 10px;
+    border-radius: 5px;
+   }
+   .notAllow{
+    width: 10%;
+    position: relative !important;
+    border: none;
+    color: #fff;
+    background: #1B4E9B;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: not-allowed;
+  }
+.d-flex {
+    display: flex !important;
+    justify-content: flex-start !important;
+    align-items: center !important;
+}
+::ng-deep.customPagination {
+    .mat-icon-button, 
+    .mat-mini-fab {
+        width: 25px;
+        height: 25px;
+        line-height: 25px;
+    }
+    .mat-mini-fab {
+        &:not([class*=mat-elevation-z]) {
+            box-shadow: none;
+            border: 1px solid rgba(0,0,0,0.25);
+        }
+    } 
+    .mat-mini-fab, 
+    .mat-icon-button {
+        font-size: 12px;
+    }
+    .mat-paginator-icon {
+        line-height: 24px;
+        width: 20px;
+    }
+}
+
+::ng-deep.mat-column-img {
+    max-width: 100px;
+   }
+   .search{
+    border: 1px solid #B4B4B4;
+    width: 90%;
+    height: 40px;
+    height: 39px;
+    padding: 5px;
+    top: 17px;  
+    position: absolute;
+   }
+   ::ng-deep .search-btn{
+    width: 8%;
+    height: 41px;
+    position: relative;
+    border: none;
+    color: #fff;
+    background: #1B4E9B;
+   }
+
+ 
+
+//    mbl responsive
+
+@media only screen and (max-width: 750px) {
+    .search-btn{
+        width: 27%;
+        left: 4px;
+    }
+}
+
+::ng-deep.cardTitle {
+    align-items: center;
+    .mat-form-field {
+        width: 98%;
+    }
+
+    .mat-form-field-label-wrapper {
+        top: 0;
+        padding-top: 0;
+        overflow: initial;
+    }
+
+    .mat-form-field-infix {
+        border-top: 0;
+    }
+
+    .mat-form-field-appearance-outline .mat-form-field-outline {
+        top: 0;
+    }
+    .mat-form-field-appearance-outline .mat-form-field-infix {
+        padding: 10px 0 !important;
+    }
+
+    input.mat-input-element,
+    .mat-form-field-appearance-outline .mat-form-field-flex {
+        margin-top: 0;
+    }
+
+    input.mat-input-element {
+        line-height: normal;
+        font-size: 1.1em;
+        font-weight: 400;
+    }
+
+    .mat-form-field-appearance-outline .mat-form-field-wrapper {
+        margin: 0;
+        padding-bottom: 0 !important;
+    }
+
+
+    .mat-form-field-appearance-outline .mat-form-field-label {
+        margin-top: -0em;
+        top: 1em;
+    }
+
+    .mat-label {
+        color: rgba(55, 51, 49, 0.6);
+        font-size: 0.825em;
+        font-weight: 400;
+    }
+
+    .mat-warn .mat-input-element,
+    .mat-form-field-invalid .mat-input-element {
+        caret-color: red;
+    }
+
+    .error,
+    .mat-form-field.mat-form-field-invalid .mat-form-field-label,
+    .mat-form-field-appearance-outline.mat-form-field-invalid.mat-form-field-invalid .mat-form-field-outline-thick {
+        color: red;
+        font-size: 12px;
+    }
+
+    .mat-form-field-prefix {
+        display: none;
+    }
+
+    .mat-form-field-appearance-outline .mat-form-field-outline {
+        color: #8E8E8E;
+    }
+
+    .mat-form-field-appearance-outline .mat-form-field-suffix {
+        top: 0.25em;
+    }
+
+    .mat-form-field-appearance-outline .mat-form-field-outline-thick {
+        color: #8E8E8E;
+    }
+
+    .mat-form-field-appearance-outline .mat-form-field-outline-thick .mat-form-field-outline-start,
+    .mat-form-field-appearance-outline .mat-form-field-outline-thick .mat-form-field-outline-end,
+    .mat-form-field-appearance-outline .mat-form-field-outline-thick .mat-form-field-outline-gap {
+        border-width: 1px;
+    }
+
+}
+
+.clearData{
+    padding-left: 5px;
+    color: #004684;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+  

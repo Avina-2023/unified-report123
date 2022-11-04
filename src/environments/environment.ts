@@ -21,7 +21,8 @@ export const environment = {
   OFFCAMPUSDRIVE:'https://campus.lntedutech.com/l#/open/off-campus/profile',
   CAMPUS_URL:'https://campus.lntedutech.com/l#/login',
   SKILL_EDGE_URL :'https://skilledge.lntedutech.com',
-  SKILL_PROFILE_URL :'https://profile.lntedutech.com'
+  SKILL_PROFILE_URL :'https://profile.lntedutech.com',
+  cryptoEncryptionKey:"(!@#Passcode!@#)"
 };
 
 /*

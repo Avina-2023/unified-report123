@@ -20,6 +20,11 @@ export const APP_CONSTANTS = {
     HOME: '/home',
     AUTH: '/auth',
     LANDING: '/landing',
+    PASSWORD: {
+      FORGOT: '/forgot-password',
+      RESET: '/resetpwd',
+      SETUP: '/setpwd'
+    },
     REPORTS: {
       HOME: '/auth/reports',
       USERLIST: '/auth/reports/userlist',
@@ -44,12 +49,22 @@ export const APP_CONSTANTS = {
       HOME:'/auth/partner',
       PARTNERLIST:'/auth/partner/partnerlist',
       ADDPARTNER:"/auth/partner/addpartner",
+      PARTNERENQUIRY: "/auth/partner/partnerenquiry"
+    },
+    EMPDASHBOARD:{
+      HOME:'/auth/dashboard',
+      PROFILE:'/auth/dashboard/profile'
     }
   },
 
   // Routes
   ROUTES: {
     LOGIN: 'login',
+    PASSWORD: {
+      FORGOT: 'forgot-password',
+      RESET: 'resetpwd',
+      SETUP: 'setpwd'
+    },
     LANDING: 'landing',
     HOME: 'home',
     AUTH: 'auth',
@@ -77,6 +92,16 @@ export const APP_CONSTANTS = {
       HOME:'partner',
       PARTNERLIST:'partnerlist',
       ADDPARTNER:"addpartner",
+      PARTNERENQUIRY:"partnerenquiry"
+    },
+    EMPDASHBOARD:{
+      HOME:'dashboard',
+      COUNTCARD:'count',
+      DEMOGRAPHY:'demography',
+      DISCIPLINE:'discipline',
+      GRADUATION:'Graduation',
+      DEGREE :'Degree',
+      PROFILE:'profile'
     }
   }
 };

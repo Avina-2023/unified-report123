@@ -1,32 +1,45 @@
 <div class="body">
     <div class="subBody">
-        <h3 class="title">VIEW PARTNERS</h3>
+        <h3 class="title">Add Partner</h3>
         <div class="partnerCardBody">
             <mat-card class="partnerCard">
                 <div class="cardTitle">
-                    <p>PARTNER'S INFORMATION LIST</p>
+                    <p>Partner's Information Form</p>
                 </div>
                 <mat-card-content class="cardValue">
                     <div class="primaryWrapper">
                         <div class="left">
-                            <form [formGroup]="registerForm">
+                            <form [formGroup]="registerForm" enctype="multipart/form-data">
                                 <div class="inputContainer">
                                     <label>Employer Name<span>*</span></label>
                                     <mat-form-field   appearance="outline">
-                                        <input matInput placeholder="Enter the Employer Name" formControlName="employerName">
+                                        <input matInput placeholder="Enter the Employer Name" formControlName="employerName" required>
                                     </mat-form-field>
                                     <ng-container *ngIf="employerName.invalid && employerName.touched">
-                                        <mat-error class="error" *ngIf="employerName?.errors?.required">{{'Employer Name is required'}}</mat-error>
+                                        <mat-error class="error" *ngIf="employerName?.errors?.required">{{'Employer Name is Required'}}</mat-error>
                                     </ng-container>
                                 </div>
-                                <div class="inputContainer">  
+                                <div class="inputContainer">
                                     <label>Established Year<span>*</span></label>
                                     <mat-form-field appearance="outline">
-                                        <input formControlName="establishedYear" matInput placeholder="Enter Establishment Year">
+                                        <input formControlName="establishedYear" type="text" maxlength="4" matInput placeholder="Enter Established Year">
                                     </mat-form-field>
                                     <ng-container *ngIf="establishedYear.invalid && establishedYear.touched">
-                                        <mat-error class="error" *ngIf="establishedYear?.errors?.required">{{'Established Year is required'}}</mat-error>
+                                        <mat-error class="error" *ngIf="registerForm.controls['establishedYear'].invalid ">
+                                            <div *ngIf="registerForm.controls['establishedYear'].errors.required">
+                                                Established Year is Required
+                                            </div>
+
+                                            <div *ngIf="registerForm.controls['establishedYear'].errors.maxlength">
+                                                Established Year should be accepted 4 digits
+                                            </div>
+
+                                            <div *ngIf="registerForm.controls['establishedYear'].errors.pattern">
+                                                Invalid Established Year
+                                            </div>
+                                        </mat-error>
                                     </ng-container>
+
                                 </div>
                                 <div class="inputContainer">
                                     <label>Industry Type<span>*</span></label>
@@ -38,17 +51,17 @@
                                         </mat-select>
                                     </mat-form-field>
                                     <ng-container *ngIf="industryType.invalid && industryType.touched">
-                                        <mat-error class="error" *ngIf="industryType?.errors?.required">{{'Industry Type is required'}}</mat-error>
+                                        <mat-error class="error" *ngIf="industryType?.errors?.required">{{'Industry Type is Required'}}</mat-error>
                                     </ng-container>
                                 </div>
                             </form>
                         </div>
                         <div class="right">
-                            <label class="customLabel">Upload Employer Logo<span>*</span></label>
+                            <label class="customLabel2">Upload Employer Logo<span>*</span></label>
                             <p class="errmsg" *ngIf="errorMsgforLogo">{{errorMsgforLogo}}</p>
                             <div class="wrapper">
                                 <div>
-                                    <img *ngIf="!employerLogoFileName" class="cloudicon" src="/assets/images/partner/cloudicon.svg" alt="">
+                                    <img *ngIf="!employerLogoFileName" class="cloudicon" src="/assets/images/partner/cloud-upload-blu.svg" alt="">
                                     <img *ngIf="employerLogoFileName" class="cloudicon" [src]="employerLogoUrl" height="100" width="200">
                                 </div>
                                 <div class="buttonClass">
@@ -59,7 +72,7 @@
                                     </div>
                                 </div>
                                 <div class="titlealign">
-                                    <p class="labeldes">Photo must be in jpeg or png format</p>
+                                    <p class="labeldes">Photo must be in .jpeg or .png format</p>
                                 </div>
                             </div>
                         </div>
@@ -68,14 +81,14 @@
                         <div class="heading">SPOC Details</div>
                         <div class="midForm">
                             <div class="left">
-                                <form [formGroup]="registerForm">
+                                <form [formGroup]="registerForm" enctype="multipart/form-data">
                                     <div class="inputContainer">
                                         <label>Name<span>*</span></label>
                                         <mat-form-field appearance="outline">
                                             <input formControlName="name" matInput placeholder="Enter SPOC Name">
                                         </mat-form-field>
                                         <ng-container *ngIf="name.invalid && name.touched">
-                                            <mat-error class="error" *ngIf="name?.errors?.required">{{'Name is required'}}</mat-error>
+                                            <mat-error class="error" *ngIf="name?.errors?.required">{{'Name is Required'}}</mat-error>
                                         </ng-container>
                                     </div>
                                     <div class="inputContainer">
@@ -84,29 +97,50 @@
                                             <input formControlName="email" matInput placeholder="Enter SPOC Email">
                                         </mat-form-field>
                                         <ng-container *ngIf="email.invalid && email.touched">
-                                            <mat-error class="error" *ngIf="email?.errors?.required">{{'Email is required'}}</mat-error>
+                                            <mat-error class="error" *ngIf="registerForm.controls['email'].invalid ">
+                                                <div *ngIf="registerForm.controls['email'].errors.required">
+                                                    Email is Required
+                                                </div>
+                                                <div *ngIf="registerForm.controls['email'].errors.pattern">
+                                                    Invalid Email
+                                                </div>
+                                            </mat-error>
                                         </ng-container>
                                     </div>
                                 </form>
                             </div>
                             <div class="left">
-                                <form [formGroup]="registerForm">
+                                <form [formGroup]="registerForm" enctype="multipart/form-data">
                                     <div class="inputContainer">
                                         <label>Designation<span>*</span></label>
                                         <mat-form-field appearance="outline">
                                             <input formControlName="designation" matInput placeholder="Enter SPOC Designation">
                                         </mat-form-field>
                                         <ng-container *ngIf="designation.invalid && designation.touched">
-                                            <mat-error class="error" *ngIf="designation?.errors?.required">{{'Designation is required'}}</mat-error>
+                                            <mat-error class="error" *ngIf="designation?.errors?.required">{{'Designation is Required'}}</mat-error>
                                         </ng-container>
                                     </div>
                                     <div class="inputContainer">
-                                        <label>Mobile<span>*</span></label>
+                                        <label>Mobile Number<span>*</span></label>
                                         <mat-form-field appearance="outline">
-                                            <input formControlName="mobile" matInput placeholder="Enter SPOC Mobile Number">
+                                            <input formControlName="mobile" type="text" maxlength="10" matInput placeholder="Enter SPOC Mobile Number">
                                         </mat-form-field>
                                         <ng-container *ngIf="mobile.invalid && mobile.touched">
-                                            <mat-error class="error" *ngIf="mobile?.errors?.required">{{'Mobile is required'}}</mat-error>
+                                            <!-- <mat-error class="error" *ngIf="mobile?.errors?.required">{{'Mobile is required'}}</mat-error>
+                                            <mat-error class="error" *ngIf="mobile?.errors?.maxLength">{{'Mobile should be accepted 10 digits'}}</mat-error> -->
+                                            <mat-error class="error" *ngIf="registerForm.controls['mobile'].invalid ">
+                                                <div *ngIf="registerForm.controls['mobile'].errors.required">
+                                                    Mobile Number is Required
+                                                </div>
+
+                                                <!-- <div *ngIf="registerForm.controls['mobile'].errors.maxlength">
+                                                    Mobile should be accepted 10 digits
+                                                </div> -->
+
+                                                <div *ngIf="registerForm.controls['mobile'].errors.pattern">
+                                                    Invalid Mobile Number
+                                                </div>
+                                            </mat-error>
                                         </ng-container>
                                     </div>
                                 </form>
@@ -114,21 +148,21 @@
                         </div>
                     </div>
                     <div class="inputContainer">
-                        <form [formGroup]="registerForm">
-                        <label class="customLabel">Short Description<span>*</span></label>
+                        <form [formGroup]="registerForm" enctype="multipart/form-data">
+                        <label class="customLabel2">Short Description<span>*</span></label>
                         <mat-form-field appearance="outline">
                             <textarea type formControlName="description" style="resize: none;" class="descstyle" matInput placeholder="Short Description"></textarea>
                         </mat-form-field>
                         <ng-container *ngIf="description.invalid && description.touched">
-                            <mat-error class="error" *ngIf="description?.errors?.required">{{'Description is required'}}</mat-error>
+                            <mat-error class="error" *ngIf="description?.errors?.required">{{'Description is Required'}}</mat-error>
                         </ng-container>
                     </form>
                     </div>
-                    <label class="customLabel">Upload EOI Form<span>*</span></label>
+                    <label class="customLabel2">Upload EOI Form<span>*</span></label>
                     <p class="errmsg" *ngIf="errorMsgforeoi">{{ errorMsgforeoi}}</p>
                     <div class="primaryWrapper">
                         <div class="eoiform">
-                            <div class="imgdata"><img *ngIf="!eoiFileName" class="cloudicon" src="/assets/images/partner/cloudicon.svg" alt="">
+                            <div class="imgdata"><img *ngIf="!eoiFileName" class="cloudicon" src="/assets/images/partner/cloud-upload-blu.svg" alt="">
                                <div> <img *ngIf="eoiFileName" class="cloudicon" src="/assets/images/partner/pdficon.svg" alt=""></div>
                                <div> <p *ngIf="eoiFileName" >{{eoiFileName}}</p></div>
                             </div>
@@ -140,19 +174,17 @@
                                 </div>
                             </div>
                             <div class="titlealign">
-                                <p class="labeldes">Form must be in jpeg or pdf format</p>
+                                <p class="labeldes">Form must be in .jpeg or .pdf format</p>
                             </div>
                         </div>
                     </div>
                     <div class="buttonClass">
-                        <div class="subButton"> 
-                            <button mat-flat-button  [disabled]="!registerForm.valid" (click)="savePartner()">Save</button>
-                        </div>
-                        <div class="subButton2"> <button mat-flat-button>Cancel</button>
+                        <div class="subButton">
+                            <button mat-flat-button [disabled]="!registerForm.valid"  (click)="savePartner()">Save</button>
                         </div>
                     </div>
                 </mat-card-content>
             </mat-card>
-        </div> 
+        </div>
     </div>
 </div>

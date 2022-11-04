@@ -46,7 +46,7 @@ export class BarChartComponent implements OnInit, OnChanges, AfterViewInit {
       datalabels: {
         anchor: 'end',
         align: 'end',
-        font: {
+        font: { 
           size: 10,
         },
       }

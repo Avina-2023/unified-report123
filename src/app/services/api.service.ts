@@ -16,7 +16,7 @@ export class ApiService {
   SKILL_EDGE_URL = environment.SKILL_EDGE_URL;
   Prourl = environment.NODE_URL;
   EncryptKEY = environment.encryptionKey;
-
+  cryptoEncryptionKey = environment.cryptoEncryptionKey;
   filterSubject: Subject<any> = new Subject();
   constructor(
     private http: HttpClient,
@@ -59,11 +59,36 @@ export class ApiService {
     }
   }
 
+  encryptnew(data, customSecretKey) {
+    try {
+      this.EncryptKEY = customSecretKey ? customSecretKey : this.EncryptKEY;
+      return CryptoJS.AES.encrypt(data, this.EncryptKEY).toString();
+      // return CryptoJS.AES.encrypt(JSON.stringify(data), this.EncryptKEY).toString();
+    } catch (e) {
+      console.log(e);
+      return data;
+    }
+  }
+
   decrypt(data) {
     try {
       const bytes = CryptoJS.AES.decrypt(data, this.EncryptKEY);
       if (bytes.toString()) {
         return JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+      }
+      return data;
+    } catch (e) {
+      console.log(e);
+      return data;
+    }
+  }
+
+  decryptnew(data) {
+    try {
+      const bytes = CryptoJS.AES.decrypt(data, this.cryptoEncryptionKey);
+      // console.log(JSON.parse(bytes.toString(CryptoJS.enc.Utf8)));
+      if (bytes.toString()) {
+        return bytes.toString(CryptoJS.enc.Utf8);
       }
       return data;
     } catch (e) {
@@ -189,5 +214,40 @@ export class ApiService {
   industryType(data){
     return this.http.post(`${this.BASE_URL}/industrytypelist`,data)
   }
-  
+
+  forgotPassword(email) {
+    return this.http.post(`${this.BASE_URL}/userforgotPassword`, email);
+  }
+
+   passwordReset(data) {
+    // this.datas is api body data
+    return this.http.post(`${this.BASE_URL}/submitResetPassword`, data);
+  }
+
+  candidatedashboard(){
+    return this.http.get(`${this.BASE_URL}/candidatedashboard`);
+  }
+
+  empProfileDetails(data){
+    return this.http.post(`${this.BASE_URL}/partnerList`,data)
+  }
+
+  uservalidationCheck(data){
+    return this.http.post(`${this.BASE_URL}/uservalidationCheck`,data)
+  }
+
+  getState(data){
+    return this.http.post(`${this.BASE_URL}/stateList`,data)
+  }
+
+  getDistrict(data){
+    return this.http.post(`${this.BASE_URL}/districtList`,data)
+  }
+
+  imageUpload(data){
+    return this.http.post(`${this.BASE_URL}/imageUpload`,data)
+  }
+  partnerListDashboard(){
+    return this.http.get(`${this.BASE_URL}/partnerListDashboard`)
+  }
 }

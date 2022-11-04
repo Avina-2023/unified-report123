@@ -16,6 +16,7 @@ export class AddPartnerComponent implements OnInit {
   employerLogoFileName = '';
   employerLogoFile: any;
   employerLogoUrl: string;
+  eoiFormUrl:string;
   eoiFileName = '';
   eoiFile: any;
   existsUser = "false";
@@ -62,7 +63,8 @@ export class AddPartnerComponent implements OnInit {
             });
             this.employerLogoFileName = details?.companyImgURL ? "profile Image" : "";
             this.employerLogoUrl = details?.companyImgURL;
-            this.eoiFileName = details?.eoiForms[0].name;
+            this.eoiFormUrl = details?.eoiFormUrl;
+            this.eoiFileName = "EOIForm";
           }
         }, (err) => {
           this.toastr.warning('Connection failed, Please try again.');
@@ -73,13 +75,14 @@ export class AddPartnerComponent implements OnInit {
 
   formInitialize() {
     const emailregex: RegExp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
     this.registerForm = this.fb.group({
       employerName: ['', [Validators.required]],
-      establishedYear: ['', [Validators.required]],
+      establishedYear: ['', Validators.compose([Validators.required, Validators.minLength(4),Validators.maxLength(4),Validators.pattern('[1-9]{1}[0-9]{3}')])],
       industryType: ['', [Validators.required]],
       name: ['', [Validators.required]],
       designation: ['', [Validators.required]],
-      mobile: ['', [Validators.required]],
+      mobile: ['', Validators.compose([Validators.required, Validators.minLength(10),Validators.maxLength(10),Validators.pattern('[1-9]{1}[0-9]{9}')])],
       description: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.pattern(emailregex)]],
     })
@@ -98,45 +101,67 @@ export class AddPartnerComponent implements OnInit {
   }
 
   onEmployerLogoFileSelected(event) {
+    this.errorMsgforLogo='';
     this.employerLogoFile = event.target.files[0];
-    if (this.employerLogoFile) {
-      this.employerLogoFileName = this.employerLogoFile.name;
-      var reader = new FileReader();
-      reader.readAsDataURL(this.employerLogoFile);
-      reader.onload = () => {
-        this.employerLogoUrl = reader.result as string;
+    const fd = new FormData();
+    fd.append("uploadFile",event.target.files[0]);
+    fd.append("type", "profile");
+    this.ApiService.imageUpload(fd).subscribe((imageData: any) => {
+      if (imageData.success == false) {
+        this.toastr.warning(imageData.message);
+      } else {
+        this.employerLogoFileName = event.target.files[0].name;
+        this.employerLogoUrl = imageData.data
       }
-    }
+    }, (err) => {
+      this.toastr.warning('Connection failed, Please try again.');
+    });
   }
   onEoiFileSelected(event) {
+    this.errorMsgforeoi='';
     this.eoiFile = event.target.files[0];
-    if (this.eoiFile) {
-      this.eoiFileName = this.eoiFile.name;
-    }
+    const fd = new FormData();
+    fd.append("uploadFile",event.target.files[0]);
+    fd.append("type", "EOF");
+    this.ApiService.imageUpload(fd).subscribe((imageData: any) => {
+      if (imageData.success == false) {
+        this.toastr.warning(imageData.message);
+      } else {
+        this.eoiFormUrl = imageData.data
+        this.eoiFileName = this.eoiFile.name;
+      }
+    }, (err) => {
+      this.toastr.warning('Connection failed, Please try again.');
+    });
+  
   }
   savePartner() {
     if (this.existsUser == "false" && this.employerLogoFileName == "") {
-      this.errorMsgforLogo = "Employer Logo Name is required"
+      this.errorMsgforLogo = "Employer Logo is Required"
       this.toastr.warning(this.errorMsgforLogo);
     } else if (this.existsUser == "false" && this.eoiFileName == "") {
-      this.errorMsgforeoi = "EOF is required"
+      this.errorMsgforeoi = "EOF Form is Required"
       this.toastr.warning(this.errorMsgforeoi);
-    } else {
+    } else if(!this.registerForm.valid){
+      this.toastr.warning("Please fill all the red highlighted fields to proceed further");
+    }else{
       this.errorMsgforeoi = "";
       this.errorMsgforLogo = "";
-      const fd = new FormData();
-      fd.append("employerName", this.registerForm.value.employerName);
-      fd.append("establishedYear", this.registerForm.value.employerName);
-      fd.append("industryType", this.registerForm.value.industryType);
-      fd.append("employerLogo", this.employerLogoFile);
-      fd.append("name", this.registerForm.value.name);
-      fd.append("designation", this.registerForm.value.designation);
-      fd.append("mobile", this.registerForm.value.mobile);
-      fd.append("description", this.registerForm.value.description);
-      fd.append("eoiForm", this.eoiFile);
-      fd.append("email", this.registerForm.value.email);
-      fd.append("existsUser", this.existsUser);
-      this.ApiService.updatePartner(fd).subscribe((data: any) => {
+      var obj = {
+            "employerName": this.registerForm.value.employerName,
+            "establishedYear": this.registerForm.value.establishedYear,
+            "industryType": this.registerForm.value.industryType,
+            "companyImgURL": this.employerLogoUrl,
+            "name":this.registerForm.value.name,
+            "designation":this.registerForm.value.designation,
+            "mobile":this.registerForm.value.mobile,
+            "description":this.registerForm.value.description,
+            "eoiFormUrl":this.eoiFormUrl,
+            "email":this.registerForm.value.email,
+            "existsUser":this.existsUser
+      }
+      this.ApiService.updatePartner(obj).subscribe((data: any) => {
+        console.log(data)
         if (data.success == false) {
           this.toastr.warning(data.message);
         } else {

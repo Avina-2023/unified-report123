@@ -9,12 +9,14 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { PartnerListComponent } from './partner-list/partner-list.component';
 import { StylePaginatorDirective } from './partner-list/style-paginator.directive';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { PartnerEnquiriesComponent } from './partner-enquiries/partner-enquiries.component';
 
 @NgModule({
   declarations: [
     AddPartnerComponent,
     PartnerListComponent,
-    StylePaginatorDirective
+    StylePaginatorDirective,
+    PartnerEnquiriesComponent
   ],
   imports: [
     CommonModule,
@@ -25,4 +27,4 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule
   ],
 })
-export class EmployerModule { }
+export class Adminmodule { }

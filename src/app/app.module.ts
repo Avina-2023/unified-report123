@@ -29,6 +29,8 @@ import { RegisterPageComponent } from './pages/register/register-page/register-p
 import { JobSeekersComponent } from './pages/jobSeekers/job-seekers/job-seekers.component';
 import { SkillMasterListComponent } from './pages/skill-Master/skill-master-list/skill-master-list.component';
 import { StaticpageComponent } from './staticpage/staticpage.component';
+import { SetPasswordComponent } from './pages/login/set-password/set-password.component';
+import { ForgotPasswordComponent } from './pages/login/forgot-password/forgot-password.component';
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
 };
@@ -43,10 +45,12 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     LandingHeaderComponent,
     LandingFooterComponent,
     LoginPageComponent,
+    ForgotPasswordComponent,
+    SetPasswordComponent,
     RegisterPageComponent,
     JobSeekersComponent,
     SkillMasterListComponent,
-    StaticpageComponent,
+    StaticpageComponent
   ],
   imports: [
     BrowserModule,

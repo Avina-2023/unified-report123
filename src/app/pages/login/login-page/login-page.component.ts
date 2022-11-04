@@ -35,27 +35,38 @@ export class LoginPageComponent  {
   login() {
     this.disableButton = true;
     const apiData = {
-      email: this.loginForm.value.username.trim(),
+      userId: this.loginForm.value.username.trim(),
       pass: this.loginForm.value.password.trim(),
       loginfrom:"unifiedreport",
+      type:"employerLogin"
     }
 
     this.apiService.login(apiData).subscribe((response: any)=> {
+
       if ((response && response.success) || (response && response.data) || (response && response.token)) {
           if(response.data.attributes){
             this.appConfig.setLocalStorage('token', 'true');
             this.appConfig.setLocalStorage('role',response.data ? JSON.stringify(response.data.attributes.organisations)  : '');
             this.appConfig.setLocalStorage('email',response.data && response.data.attributes  ? response.data.attributes.email : '');
+            this.appConfig.setLocalStorage('username',response.data && response.data.attributes  ? response.data.attributes.username : '');
+            this.appConfig.setLocalStorage('firstName',response.data && response.data.attributes  ? response.data.attributes.firstName : '');
+            this.appConfig.setLocalStorage('profileCompletion',response.data && response.data.attributes && response.data.attributes.profileCompletion  ? response.data.attributes.profileCompletion : '');
             this.disableButton = false;
-            this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.REPORTS.DASHBOARD);
+            console.log(response.data.attributes.oldAdmin)
+            if(response.data.attributes.oldAdmin == true){
+          this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.REPORTS.DASHBOARD);
+            }
+            else{
+              this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.EMPDASHBOARD.HOME);
+            }
             this.matDialog.closeAll();
             this.getIPAddress();
           }else {
-            this.toastr.error('User not found please try with diffrent credentials');
+            this.toastr.error(response.message);
           }
 
       } else {
-        this.toastr.error('Invalid Login Credentials');
+        this.toastr.error(response.message);
       }
     }, (err)=> {
       this.disableButton = false;
@@ -84,5 +95,9 @@ export class LoginPageComponent  {
       this.userIP = ip ?  ip : '';
       this.appConfig.setLocalStorage('IP',this.userIP ? this.userIP : '');
     });
+  }
+
+  forgotPassword() {
+    this.appConfig.routeNavigation("forgot-password");
   }
 }

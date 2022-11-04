@@ -35,6 +35,8 @@ export class AuthComponent implements OnInit {
   orgName: any;
   checkRouter: string;
   roles: any;
+  roleCode:any;
+  userName : any;
 
   constructor(
     private appConfig: AppConfigService,
@@ -46,6 +48,8 @@ export class AuthComponent implements OnInit {
   ) {
     this.checkRouter = this.router.url;
     this.roles = this.appConfig.getLocalStorage('role') ? this.appConfig.getLocalStorage('role') : '';
+    this.orgdetails = JSON.parse(this.roles);
+    this.roleCode = this.orgdetails && this.orgdetails[0].roles && this.orgdetails[0].roles[0].roleCode;
     this.subscription = this.sendData.getMessage().subscribe(message => {
       this.checkRouter = this.router.url;
       if(message){
@@ -63,7 +67,34 @@ export class AuthComponent implements OnInit {
     this.checkRouter = this.router.url;
    }
 
+
+
+ // notification list 
+
+ notificationlist: any = [
+  {
+    name: 'Head1',
+    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit Nunc lectus risus, accumsan vel orci a, suscipit cursus diam.',
+  },
+  {
+    name: 'Head2',
+    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit Nunc lectus risus, accumsan vel orci a, suscipit cursus diam.',
+  },
+  {
+    name: 'Head3',
+    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit Nunc lectus risus, accumsan vel orci a, suscipit cursus diam.',
+  },
+];
+
+notification() {
+}
+
+profile(){
+  this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.EMPDASHBOARD.PROFILE)
+}
+
   ngOnInit(): void {
+    this.userName = localStorage.getItem('firstName')
     this.userDetails  =   JSON.parse(sessionStorage.getItem('user'));
     if(this.userDetails){
       this.username = this.userDetails.attributes.firstName;
@@ -77,9 +108,9 @@ export class AuthComponent implements OnInit {
     this.isaccess = this.appConfig.isComingFromMicroCert();
   }
 
-  logout() {
-    this.matDialogOpen();
-  }
+  // logout() {
+  //   this.matDialogOpen();
+  // }
 
   matDialogOpen() {
     const dialogRef = this.dialog.open(this.matDialogRef, {
@@ -119,5 +150,18 @@ export class AuthComponent implements OnInit {
        /**
    * Listen and display the loading spinner.
    */
+
+// dashboard role id based dropdown
+
+
+
+logout(){
+  localStorage.clear();
+  this.ngOnInit();
+  this.router.navigate(['/static']);
+ }
+
+
+
 
 }

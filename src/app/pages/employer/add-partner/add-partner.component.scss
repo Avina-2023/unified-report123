@@ -29,6 +29,11 @@
 .title {
     color: #FFFFFF;
     padding: 15px;
+    margin-bottom: 0;
+    opacity: 0.7;
+    padding-bottom: 0;
+    left: 12px;
+    position: relative;
 }
 
 .file-input {
@@ -45,11 +50,15 @@
         border-radius: 9px;
 
         .cardTitle {
-            padding: 10px;
-            font-size: 16px;
-            color: #1B4E9B;
             display: flex;
             border-bottom: 1px solid #B4B4B4;
+            text-align: left;
+            font: normal normal normal 16px/21px Roboto;
+            letter-spacing: 0.32px;
+            color: #1B4E9B;
+            font-size: 14px;
+            font-weight: 500;
+            text-transform: none;
         }
 
         .cardValue {
@@ -57,6 +66,10 @@
                 height: 73px;
             }
         }
+    }
+
+    ::ng-deep .mat-form-field-appearance-outline .mat-form-field-infix {
+        padding: 0 0 10px 0 !important;
     }
 }
 
@@ -67,6 +80,8 @@
     .heading {
         position: absolute;
         left: 20px;
+        font-size: 15px;
+    font-weight: 600;
         top: -12px;
         background-color: #FFFFFF;
         padding: 3px 10px;
@@ -77,8 +92,8 @@
             label {
                 display: block;
                 color: #262626;
-                font-size: 16px;
-                font-weight: 700;
+                font-size: 14px;
+                font-weight: 400;
                 margin-bottom: 0.5em;
 
                 span {
@@ -92,6 +107,7 @@
         width: 49%;
         .wrapper {
             padding: 10px;
+            height: 218pX;
             border: 1px dashed #B4B4B4;
             border-radius: 5px;
             display: flex;
@@ -139,7 +155,7 @@
             display: contents;
         }
     }
-   
+
 }
 
 .buttonClass{
@@ -149,14 +165,14 @@
     .subButton{
         padding-right: 10px;
         ::ng-deep.mat-flat-button{
-            background-color: #26C1F6 !important;
+            background-color: #1B4E9B !important;
             color: #FFFFFF;
             border-radius: 25px;
           }
     }
 
     .subButton2{
-        padding-right: 10px;  
+        padding-right: 10px;
         ::ng-deep.mat-flat-button{
             background-color: #848484 !important;
             color: #FFFFFF;
@@ -171,14 +187,14 @@
     .subButton{
         padding-right: 10px;
         ::ng-deep.mat-flat-button{
-            background-color: #26C1F6 !important;
+            background-color: #1B4E9B !important;
             color: #FFFFFF;
             border-radius: 25px;
           }
     }
 
     .subButton2{
-        padding-right: 10px;  
+        padding-right: 10px;
         ::ng-deep.mat-flat-button{
             background-color: #848484 !important;
             color: #FFFFFF;
@@ -190,7 +206,7 @@ button.mat-raised-button {
     background-color: 'blue';
   }
 
-::ng-deep.inputContainer {
+.inputContainer {
     .mat-form-field {
         width: 98%;
     }
@@ -216,15 +232,15 @@ button.mat-raised-button {
 
     input.mat-input-element {
         line-height: normal;
-        font-size: 0.825em;
+        font-size: 1.1em;
         font-weight: 400;
     }
 
-    .mat-form-field-appearance-outline .mat-form-field-wrapper {
+    ::ng-deep .mat-form-field-appearance-outline .mat-form-field-wrapper {
         margin: 0;
-        padding-bottom: 5px;
+        padding-bottom: 5px !important;
     }
-    
+
 
     .mat-form-field-appearance-outline .mat-form-field-label {
         margin-top: -0em;
@@ -246,6 +262,7 @@ button.mat-raised-button {
     .mat-form-field.mat-form-field-invalid .mat-form-field-label,
     .mat-form-field-appearance-outline.mat-form-field-invalid.mat-form-field-invalid .mat-form-field-outline-thick {
         color: red;
+        font-size: 12px;
     }
 
     .mat-form-field-prefix {
@@ -291,7 +308,15 @@ button.mat-raised-button {
         background-color: darkblue;
     }
 }
+.customLabel2{
+        color: #262626;
+        font-size: 16px;
+        // font-weight: 500;
+        span{
+            color: red;
+        }
 
+}
 .customLabel{
     color: #262626;
     font-size: 16px;
@@ -301,7 +326,7 @@ button.mat-raised-button {
     }
 }
 .errmsg{
-    font-size: 14px;
+    font-size: 12px;
     color: red;
 }
 
@@ -312,4 +337,8 @@ label{
 .labeldes{
     color: #848484;
     font-size: 14px;
+}
+
+::ng-deep .mat-form-field-appearance-outline .mat-select-arrow-wrapper {
+    transform: translateY(0%) !important;
 }
