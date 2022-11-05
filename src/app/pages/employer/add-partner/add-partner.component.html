@@ -13,7 +13,7 @@
                                 <div class="inputContainer">
                                     <label>Employer Name<span>*</span></label>
                                     <mat-form-field   appearance="outline">
-                                        <input matInput placeholder="Enter the Employer Name" formControlName="employerName" required>
+                                        <input matInput placeholder="Enter Employer Name" formControlName="employerName" required>
                                     </mat-form-field>
                                     <ng-container *ngIf="employerName.invalid && employerName.touched">
                                         <mat-error class="error" *ngIf="employerName?.errors?.required">{{'Employer Name is Required'}}</mat-error>
@@ -44,7 +44,7 @@
                                 <div class="inputContainer">
                                     <label>Industry Type<span>*</span></label>
                                     <mat-form-field appearance="outline">
-                                        <mat-select formControlName="industryType" placeholder="Select the Industry Type">
+                                        <mat-select formControlName="industryType" placeholder="Select Industry Type">
                                             <mat-option *ngFor="let item of industryTypeArray" [value]="item.type">
                                                 {{item.type}}
                                             </mat-option>
@@ -151,7 +151,7 @@
                         <form [formGroup]="registerForm" enctype="multipart/form-data">
                         <label class="customLabel2">Short Description<span>*</span></label>
                         <mat-form-field appearance="outline">
-                            <textarea type formControlName="description" style="resize: none;" class="descstyle" matInput placeholder="Short Description"></textarea>
+                            <textarea type="textarea" maxlength="250" formControlName="description" style="resize: none;" class="descstyle" matInput placeholder="Short Description"></textarea>
                         </mat-form-field>
                         <ng-container *ngIf="description.invalid && description.touched">
                             <mat-error class="error" *ngIf="description?.errors?.required">{{'Description is Required'}}</mat-error>
