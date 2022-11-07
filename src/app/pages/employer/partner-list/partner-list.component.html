@@ -9,7 +9,7 @@
                 <mat-card-title class="cardTitle">Total Partners</mat-card-title>
                 <mat-card-content class="cardValue">
                   <div>
-                    <p>{{totalPartnerCount}}</p>
+                    <p>{{totalPartnerDashboardCount}}</p>
                   </div>
                   <div><img src="/assets/images/partner/partners.svg" alt=""></div>
                 </mat-card-content>
@@ -87,12 +87,16 @@
             </mat-button-toggle-group>
           </div>
         </mat-card-title>
-          <div class="row pl-3">
+          <div class="row pl-3 data">
             <div class="col-md-4 p-0">
-              <input matInput  [(ngModel)]="searchData" placeholder="Search by Company name, Industry Type" class="search">
+              <mat-form-field appearance="outline">
+                <input matInput  [(ngModel)]="searchData" placeholder="Search by Employer name, Industry Type" class="">
+              </mat-form-field>
             </div>
             <div class="col-md-3 p-0">
-                <input matInput [(ngModel)]="fromDate" for="dp1" placeholder="Enter Start Date" [matDatepicker]="datepicker1" class="search">
+                <mat-form-field appearance="outline">
+                  <input matInput [(ngModel)]="fromDate" for="dp1" placeholder="Enter Start Date" [matDatepicker]="datepicker1" class="">
+                </mat-form-field>
                 <mat-datepicker-toggle class="toggle-pos"  matSuffix [for]="datepicker1" id="dp1"></mat-datepicker-toggle>
                 <mat-datepicker #datepicker1>
                   <mat-datepicker-actions>
@@ -102,18 +106,20 @@
                 </mat-datepicker>
             </div>
             <div class="col-md-3 p-0">
-                <input [min]="fromDate" class="search" placeholder="Enter End Date" matInput [(ngModel)]="toDate" [matDatepicker]="datepicker">
+                <mat-form-field appearance="outline">
+                  <input [min]="fromDate"  placeholder="Enter End Date" matInput [(ngModel)]="toDate" [matDatepicker]="datepicker">
+                </mat-form-field>
                 <mat-datepicker-toggle class="toggle-pos" matSuffix [for]="datepicker"></mat-datepicker-toggle>
                 <mat-datepicker #datepicker>
                   <mat-datepicker-actions>
                     <button mat-button matDatepickerCancel>Cancel</button>
                     <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
                   </mat-datepicker-actions>
-                </mat-datepicker>
+                </mat-datepicker>  
             </div>
             <div class="col-md-2 p-0">
-              <button (click)="searchList()" color="primary" type="submit" class="search-btn">Search</button>
-              <a class="clearData" (click)="clearSearch()">Clear all</a>
+              <button (click)="searchList()" [disabled]="(fromDate == undefined && toDate == undefined && searchData  == '')?true:false" color="primary" type="submit" [ngClass]="(fromDate == undefined && toDate == undefined && searchData  == '')?'notAllow':'search-btn'" >Search</button>
+              <a class="clearData" *ngIf="(fromDate == undefined && toDate == undefined && searchData  == '')?false:true" (click)="clearSearch()">Clear all</a>
             </div>
         </div>
         <br>
@@ -182,9 +188,12 @@
 
                   </mat-menu>
                 </td>
-              </ng-container>
+              </ng-container>   
               <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
               <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+              <tr class="mat-row" *matNoDataRow>
+                <td class="mat-cell nodata" colspan="8">No Data Found</td>
+              </tr>
             </table>
             <!-- <div class="customPagination" >
               <mat-paginator style-paginator #mynation [showTotalPages]="totalPages" [length]="totalPartnerCount||3" [pageSize]="pagesize"

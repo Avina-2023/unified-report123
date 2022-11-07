@@ -66,7 +66,7 @@ export class EmpProfileComponent implements OnInit {
   }
  
   selectState(e){
-    this.apiService.getDistrict({state_id:e.target.value}).subscribe((data: any) => {
+    this.apiService.getDistrict({state_id:e.value}).subscribe((data: any) => {
       if (data.success == false) {
         this.toaster.warning(data.message);
       } else {
@@ -92,6 +92,7 @@ export class EmpProfileComponent implements OnInit {
       this.states.splice(index, 1)
     }
   }
+  // public myreg = /(^|\s)((https?:\/\/)?[\w-]+(\.[\w-]+)+\.?(:\d+)?(\/\S*)?)/gi
   createProfile() {
     this.profileForm = this.fb.group({
       empSize: ['', [Validators.required]],
@@ -102,12 +103,14 @@ export class EmpProfileComponent implements OnInit {
         Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
       ]],
       mobileNumber: ['',  [
-        Validators.required,
+        // Validators.required,
         Validators.minLength(10),
         Validators.maxLength(10),
         Validators.pattern('[1-9]{1}[0-9]{9}'),
       ],],
-      chroName: ['', [Validators.required]],
+      chroName: ['', [
+        //Validators.required
+      ]],
       chroEmail: ['',  [
         Validators.required,
         Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
@@ -151,12 +154,22 @@ export class EmpProfileComponent implements OnInit {
     return this.profileForm.get('stateCtrlone');
   }
 
+  get state() {
+    return this.profileForm.get('state');
+  }
+
   buildContacts(hrdetilas: { hrName: string; hrdesignation: string; hrEmail: string; hrMobilenumber: string }[] = []) {
     return this.fb.array(hrdetilas.map(hrcontact => this.fb.group(hrcontact)));
   }
 
   addContactField() {
-    this.hrContactDetails.push(this.fb.group({ hrName: null, hrdesignation: null, hrEmail: null, hrMobilenumber: null }))
+    var length = this.hrContactDetails.value.length-1;
+    var data =this.hrContactDetails.value[length];
+    if(data.hrName!=null && data.hrdesignation!=null && data.hrEmail!=null && data.hrMobilenumber!=null){
+      this.hrContactDetails.push(this.fb.group({ hrName: null, hrdesignation: null, hrEmail: null, hrMobilenumber: null }))
+    }else{
+      this.toaster.warning('Make sure, you have entered HR contact details');
+    }
   }
 
   get empSize() {
@@ -186,6 +199,8 @@ export class EmpProfileComponent implements OnInit {
       }, (err) => {
         this.toaster.warning('Connection failed, Please try again.');
       });
+    }else{
+      this.toaster.warning('Please fill all the red highlighted fields to proceed further');
     }
 
   }
@@ -220,7 +235,7 @@ export class EmpProfileComponent implements OnInit {
       if (result.success) {
         this.empProfile = result.data[0]
         if(this.empProfile.detailedInformation){
-          var obj = {target:{value:this.empProfile.detailedInformation.state}}
+          var obj = {value:this.empProfile.detailedInformation.state}
           this.selectState(obj)
           this.profileForm.patchValue({
           empSize: this.empProfile.detailedInformation.empSize,
@@ -234,11 +249,12 @@ export class EmpProfileComponent implements OnInit {
           addressOne: this.empProfile.detailedInformation.addressOne,
           addressTwo: this.empProfile.detailedInformation.addressTwo,
           pincode: this.empProfile.detailedInformation.pincode,
-          district: this.empProfile.detailedInformation.district,
-          state: this.empProfile.detailedInformation.state,
-          country: this.empProfile.detailedInformation.country,
+          district: parseInt(this.empProfile.detailedInformation.district),
+          state: parseInt(this.empProfile.detailedInformation.state),
+          country: parseInt(this.empProfile.detailedInformation.country),
           // stateCtrlone:result.data[0].detailedInformation.stateCtrlone,
         })
+        console.log("--------",this.empProfile.detailedInformation.state)
         if(this.empProfile.detailedInformation && this.empProfile.detailedInformation.stateCtrlone.length){
           this.empProfile.detailedInformation.stateCtrlone.forEach((element, i) => {
             this.profileForm.value.stateCtrlone.push(element ? element : '')

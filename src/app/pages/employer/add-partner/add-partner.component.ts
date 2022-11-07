@@ -63,6 +63,7 @@ export class AddPartnerComponent implements OnInit {
             });
             this.employerLogoFileName = details?.companyImgURL ? "profile Image" : "";
             this.employerLogoUrl = details?.companyImgURL;
+            this.eoiFormUrl = details?.eoiFormUrl;
             this.eoiFileName = "EOIForm";
           }
         }, (err) => {
@@ -141,7 +142,9 @@ export class AddPartnerComponent implements OnInit {
     } else if (this.existsUser == "false" && this.eoiFileName == "") {
       this.errorMsgforeoi = "EOF Form is Required"
       this.toastr.warning(this.errorMsgforeoi);
-    } else {
+    } else if(!this.registerForm.valid){
+      this.toastr.warning("Please fill all the red highlighted fields to proceed further");
+    }else{
       this.errorMsgforeoi = "";
       this.errorMsgforLogo = "";
       var obj = {

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { AppConfigService } from 'src/app/utils/app-config.service';
 import { APP_CONSTANTS } from 'src/app/utils/app-constants.service';
 
@@ -18,35 +18,65 @@ export class SidebarComponent implements OnInit {
   menuIconToggle: boolean;
   check = "empdashboard";
   constructor(private appconfig: AppConfigService,public router:Router) {
+    this.router.events.subscribe(event => {
+      if(event instanceof NavigationEnd) {
+        this.navBarSelector()
+      }
+    })
     this.roles = this.appconfig.getLocalStorage('role') ? this.appconfig.getLocalStorage('role') : '';
     this.orgdetails = JSON.parse(this.roles);
     this.roleCode = this.orgdetails && this.orgdetails[0].roles && this.orgdetails[0].roles[0].roleCode;
-    if(this.router.url == '/auth/employer/dashboard'){
-      this.check='empdashboard';
-    }else{
-      this.check='partner';
+    this.navBarSelector()
+  }
+
+  navBarSelector() {
+    switch (this.router.url) {
+      case '/auth/employer/dashboard':
+        this.check = 'empdashboard';
+        break;
+      case '/auth/partner/addpartner':
+        this.menuIconToggle = true
+        this.check = 'addpartner';
+        break;
+      case '/auth/partner/partnerlist':
+        this.menuIconToggle = true
+        this.check = 'partnerlist';
+        break;
+      case '/auth/partner/partnerenquiry':
+        this.menuIconToggle = true
+        this.check = 'partnerenquiries';
+        break;
+      case '/auth/dashboard/profile':
+        this.check = 'empprofile';
+        break;
+      default:
+        this.check = 'empdashboard';
+        break;
     }
-   }
+  }
 
   ngOnInit(): void {
     this.sideBar()
   }
   validateClick(value) {
     this.check = value;
-
     if (value == "empdashboard") {
+      this.menuIconToggle = false;
       this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.EMPDASHBOARD.HOME);
-    } else if (value == "partner") {
+    } else if (value == "partnerlist") {
       this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.PARTNER.HOME);
     }
    }
-   hiring(){
+   hiring(value){
+    this.check = value;
     this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.PARTNER.ADDPARTNER)
    }
-   manage(){
+   manage(value){
+    this.check = value;
     this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.PARTNER.PARTNERLIST)
    }
-   partners(){
+   partners(value){
+    this.check = value;
     this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.PARTNER.PARTNERENQUIRY)
    }
    logout(){
@@ -54,7 +84,8 @@ export class SidebarComponent implements OnInit {
     this.ngOnInit();
     this.router.navigate(['/static']);
    }
-   profile(){
+   profile(value){
+    this.check = value;
     this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.EMPDASHBOARD.PROFILE)
    }
 

@@ -60,7 +60,7 @@
                                         <div class="col-md-6 col-sm-12 alignp">
                                             <label>Employee Size<span>*</span></label>
                                             <mat-form-field class="form-filed-width" appearance="outline">
-                                                <input matInput class="heighttext" placeholder="Enter the Employee Size"
+                                                <input matInput class="heighttext" placeholder="Enter Employee Size"
                                                     formControlName="empSize">
                                                 <mat-error *ngIf="profileForm.controls['empSize'].invalid ">
                                                     <div class="error-msg"*ngIf="profileForm.controls['empSize'].errors?.required">
@@ -77,10 +77,13 @@
                                             <mat-form-field class="form-filed-width" appearance="outline">
                                                 <input matInput class="heighttext"
                                                     placeholder="Enter Website Address"
-                                                    formControlName="websiteAddress">
+                                                    formControlName="websiteAddress" pattern="https?://.*">
                                                     <mat-error *ngIf="profileForm.controls['websiteAddress'].invalid ">
                                                         <div class="error-msg" *ngIf="profileForm.controls['websiteAddress'].errors?.required">
                                                             Website Address is Required
+                                                        </div>
+                                                        <div class="error-msg" *ngIf="profileForm.controls['websiteAddress'].errors?.pattern">
+                                                            Please enter a valid URL
                                                         </div>
                                                     </mat-error>
                                             </mat-form-field>
@@ -120,7 +123,7 @@
                                         <div class="col-md-4 col-sm-12 alignp">
                                             <label>Chairman/CXO Mobile Number</label>
                                             <mat-form-field class="form-filed-width" appearance="outline">
-                                                <input matInput class="heighttext"
+                                                <input type="text" maxlength="10" matInput class="heighttext"
                                                     placeholder="Enter Mobile Number"
                                                     formControlName="mobileNumber">
                                                     <mat-error *ngIf="profileForm.controls['mobileNumber'].invalid ">
@@ -168,7 +171,7 @@
                                         <div class="col-md-4 col-sm-12 alignp">
                                             <label>CHRO Mobile Number<span>*</span></label>
                                             <mat-form-field class="form-filed-width" appearance="outline">
-                                                <input matInput class="heighttext" max="10"
+                                                <input type="text" maxlength="10" matInput class="heighttext"
                                                     placeholder="Enter Mobile Number"
                                                     formControlName="chromobileNumber">
                                                     <mat-error *ngIf="profileForm.controls['chromobileNumber'].invalid ">
@@ -215,7 +218,7 @@
                                                     </div>
                                                     <div  class="hrdetailsinput"  >
                                                         <mat-form-field class="form-filed-width" appearance="outline">
-                                                            <input matInput class="heighttext"
+                                                            <input matInput class="heighttext" type="text" maxlength="10"
                                                                 placeholder="Enter Mobile Number "
                                                                 formControlName="hrMobilenumber">
                                                         </mat-form-field>
@@ -261,11 +264,12 @@
                                                <div class="col-md-6 col-sm-12 mt-4 alignp">
                                                 <label>State<span>*</span></label>
                                                  <mat-form-field class="form-filed-dropdown" appearance="outline">
-                                                     <select class="heighttext" formControlName="state" (change)="selectState($event)" matNativeControl name="state">
-                                                        <option *ngFor="let elem of stateArray" [value]="elem.id">
+                                                     <mat-select class="selectText" formControlName="state" placeholder="Select State"
+                                                     (selectionChange)="selectState($event)">
+                                                        <mat-option *ngFor="let elem of stateArray" [value]="elem.id">
                                                          {{elem.name}}
-                                                       </option>
-                                                     </select>
+                                                       </mat-option>
+                                                     </mat-select>
                                                      <mat-error *ngIf="profileForm.controls['state'].invalid ">
                                                          <div class="error-msg" *ngIf="profileForm.controls['state'].errors?.required">
                                                             State is Required
@@ -276,11 +280,11 @@
                                             <div class="col-md-6 col-sm-12 mt-4 alignp">
                                                 <label>District<span>*</span></label>
                                                 <mat-form-field class="form-filed-dropdown" appearance="outline">
-                                                    <select class="heighttext" formControlName="district" matNativeControl name="district" disabled>
-                                                       <option *ngFor="let elem of districtArray" [value]="elem.id">
+                                                    <mat-select  placeholder="Select District" class="selectText"  formControlName="district" matNativeControl name="district">
+                                                       <mat-option *ngFor="let elem of districtArray" [value]="elem.id">
                                                         {{elem.name}}
-                                                      </option>
-                                                    </select>
+                                                      </mat-option>
+                                                    </mat-select>
                                                     <mat-error *ngIf="profileForm.controls['district'].invalid ">
                                                         <div class="error-msg" *ngIf="profileForm.controls['district'].errors?.required">
                                                             District is Required
@@ -291,11 +295,11 @@
                                             <div class="col-md-6 col-sm-12 mt-4 alignp">
                                                <label>Country<span>*</span></label>
                                                 <mat-form-field class="form-filed-dropdown" appearance="outline">
-                                                    <select class="heighttext" formControlName="country" matNativeControl name="country">
-                                                      <option *ngFor="let elem of allCountry" [value]="elem.countryId" [selected]="elem.countryId == '101'">
+                                                    <mat-select placeholder="Select Country" class="selectText" formControlName="country" matNativeControl name="country">
+                                                      <mat-option *ngFor="let elem of allCountry" [value]="elem.countryId" [selected]="elem.countryId == '101'">
                                                         {{elem.name}}
-                                                      </option>
-                                                    </select>
+                                                      </mat-option>
+                                                    </mat-select>
                                                     <mat-error *ngIf="profileForm.controls['country'].invalid ">
                                                         <div class="error-msg" *ngIf="profileForm.controls['country'].errors?.required">
                                                             Country is Required
@@ -306,7 +310,7 @@
                                             <div class="col-md-6 col-sm-12 mt-4 alignp">
                                               <label>Pincode<span>*</span></label>
                                               <mat-form-field class="form-filed-width" appearance="outline">
-                                                  <input matInput class="heighttext" placeholder="Enter Address"
+                                                  <input matInput class="heighttext" placeholder="Enter Pincode"
                                                       formControlName="pincode" type="text" maxlength="6" >
                                                       <mat-error *ngIf="profileForm.controls['pincode'].invalid ">
                                                           <div class="error-msg" *ngIf="profileForm.controls['pincode'].errors?.required">
@@ -354,7 +358,7 @@
                                             </div>
                                             <div class="d-flex formbtns">
                                          <button *ngIf="!empProfile?.detailedInformation" mat-raised-button class="save" type="submit">save</button>
-                                                <button *ngIf="empProfile.detailedInformation" mat-raised-button class="save" type="submit">Edit</button>
+                                                <button *ngIf="empProfile.detailedInformation" mat-raised-button class="save" type="submit">Update</button>
                                                 <!-- <button mat-raised-button class="cancel" type="submit">cancel</button> -->
                                             </div>
                                 </form>
