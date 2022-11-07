@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { APP_CONSTANTS } from 'src/app/utils/app-constants.service';
 import { PartnerListComponent } from '../employer/partner-list/partner-list.component';
+import { ChangePasswordComponent } from './changePassword/changePassword.component';
 import { CountdisplayCardComponent } from './countdisplay-card/countdisplay-card.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { DegreeChartComponent } from './degree-chart/degree-chart.component';
@@ -28,12 +29,15 @@ const routes: Routes = [
   },
   {
     path: `${APP_CONSTANTS.ROUTES.EMPDASHBOARD.GRADUATION}`, component: GraduationChartComponent
-  },  
+  },
   {
     path:`${APP_CONSTANTS.ROUTES.EMPDASHBOARD.PROFILE}`,component:EmpProfileComponent
   },
+  {
+    path:`${APP_CONSTANTS.ROUTES.EMPDASHBOARD.CHANGEPWD}`,component:ChangePasswordComponent
+  },
 
- 
+
   {
     path: '',
     redirectTo: `${APP_CONSTANTS.ROUTES.EMPDASHBOARD.HOME}`,
