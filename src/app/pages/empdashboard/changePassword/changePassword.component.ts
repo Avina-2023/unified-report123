@@ -17,6 +17,7 @@ export class ChangePasswordComponent implements OnInit {
   toggleVisibility = true;
   toggleVisibilityConfirmPassword = true;
   toggleVisibilityTempPassword = true;
+  toggleVisibilityoldPassword = true;
   currentRoute: string;
   passwordTempToken: any;
   prePoulteEmailId: any;
@@ -28,36 +29,22 @@ export class ChangePasswordComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private router: Router,
     private apiService: ApiService,
     private appConfig: AppConfigService,
-    private activatedRoute: ActivatedRoute,
     private toastr: ToastrService
   ) {
-    // if (this.router.url.includes(CONSTANT.ENDPOINTS.PASSWORD.RESET)) {
-      this.verifyPassword();
-    // } else {
-    // }
+    this.apiemail = this.appConfig.getLocalStorage('email') ? this.appConfig.getLocalStorage('email') : '';
    }
 
   ngOnInit() {
     this.formInitialize();
-    this.getEncriptedMail();
   }
 
-
-  verifyPassword() {
-
-  }
-
-  getEncriptedMail(){
-    this.autoPopulateMail();     // Function to auto populate mail after form loads.
-  }
 
   formInitialize() {
    // const emailregex: RegExp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     this.createForm = this.fb.group({
-      email: ['', [Validators.required, Validators.maxLength(100)]],
+      oldpassword: ['', [Validators.required]],
       // temp: ['', [Validators.required]],
       password: ['', [Validators.required, this.patternValidator(), Validators.maxLength(30)]],
       confirmpassword: ['', [Validators.required]]
@@ -66,17 +53,10 @@ export class ChangePasswordComponent implements OnInit {
     // , this.autoPopulateMail(); // Function to auto populate mail after form loads.
   }
 
-  autoPopulateMail() {
-    // if (this.currentRoute) {
-      this.createForm.patchValue({
-        email: this.deCryuserId ? this.deCryuserId : ''
-      });
-      this.createForm.controls['email'].disable();
-    // }
-  }
 
-  get email() {
-    return this.createForm.get('email');
+
+  get oldpassword() {
+    return this.createForm.get('oldpassword');
   }
   get password() {
     return this.createForm.get('password');
@@ -91,14 +71,15 @@ export class ChangePasswordComponent implements OnInit {
   submit() {
     if (this.createForm.valid) {
       const apiData = {
-        userId: this.apiemail,
-        userSecretkey: this.passwordTempToken ? this.passwordTempToken : '',
-        password: this.apiService.encryptnew(this.createForm.value.password,environment.cryptoEncryptionKey),
-        type:"employer"
+        userId: this.apiService.encryptnew(this.apiemail,environment.cryptoEncryptionKey),
+        password: this.apiService.encryptnew(this.createForm.value.oldpassword,environment.cryptoEncryptionKey),
+        newPassword: this.apiService.encryptnew(this.createForm.value.password,environment.cryptoEncryptionKey),
+        // type:"employer"
       };
-      this.apiService.passwordReset(apiData).subscribe((success: any) => {
+      this.apiService.changePassword(apiData).subscribe((success: any) => {
         if(success.success){
           this.toastr.success(`Password has been updated Successfully`);
+          localStorage.clear();
         this.appConfig.routeNavigationWithQueryParam(APP_CONSTANTS.ENDPOINTS.LOGIN, { mail: apiData.userId });
         }else{
           this.toastr.error(success.message);
@@ -155,5 +136,6 @@ export class ChangePasswordComponent implements OnInit {
 
     return pass && confirm && pass.value !== confirm.value ? { notMatch: true } : null;
   }
+
 
 }
