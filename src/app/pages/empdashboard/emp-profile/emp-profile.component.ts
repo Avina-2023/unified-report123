@@ -99,7 +99,7 @@ export class EmpProfileComponent implements OnInit {
       websiteAddress: ['', [Validators.required]],
       chairmanName: ['', [Validators.required]],
       chairmanEmail: ['',  [
-        Validators.required,
+        //Validators.required,
         Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
       ]],
       mobileNumber: ['',  [
@@ -109,7 +109,7 @@ export class EmpProfileComponent implements OnInit {
         Validators.pattern('[1-9]{1}[0-9]{9}'),
       ],],
       chroName: ['', [
-        //Validators.required
+        Validators.required
       ]],
       chroEmail: ['',  [
         Validators.required,
@@ -165,7 +165,7 @@ export class EmpProfileComponent implements OnInit {
   addContactField() {
     var length = this.hrContactDetails.value.length-1;
     var data =this.hrContactDetails.value[length];
-    if(data.hrName!=null && data.hrdesignation!=null && data.hrEmail!=null && data.hrMobilenumber!=null){
+    if(data.hrName!=null && data.hrdesignation!=null && data.hrEmail!=null && data.hrMobilenumber!=null && data.hrName!='' && data.hrdesignation!='' && data.hrEmail!='' && data.hrMobilenumber!=''){
       this.hrContactDetails.push(this.fb.group({ hrName: null, hrdesignation: null, hrEmail: null, hrMobilenumber: null }))
     }else{
       this.toaster.warning('Make sure, you have entered HR contact details');
