@@ -23,11 +23,9 @@ export class PartnerListComponent implements OnInit {
   dataSource = new MatTableDataSource<any>([]);
   tableEmpty:Boolean=false;
   emptyData = new MatTableDataSource([{ empty: "row" }]);
-  totalPartnerDashboardCount:number;
   totalPartnerCount :number;
-  activePartnerCount :number;
-  inActivePartnerCount :number;
-  pendingCount:number;
+  dashboard_cards:any;
+
   searchData :string ='';
   fromDate : Date;
   toDate :Date;
@@ -40,7 +38,7 @@ export class PartnerListComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  
+
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
 
@@ -84,10 +82,10 @@ export class PartnerListComponent implements OnInit {
       if (partnerListDash.success == false) {
         this.toastr.warning('Connection failed, Please try again.');
       } else {
-        this.totalPartnerDashboardCount = partnerListDash.data.totalCount;
-        this.activePartnerCount = partnerListDash.data.activeCount;
-        this.inActivePartnerCount = partnerListDash.data.inActiveCount;
-        this.pendingCount = partnerListDash.data.pendingCount;
+        this.dashboard_cards = partnerListDash.data;
+        // this.activePartnerCount = partnerListDash.data.activeCount;
+        // this.inActivePartnerCount = partnerListDash.data.inActiveCount;
+        // this.pendingCount = partnerListDash.data.pendingCount;
       }
     }, (err) => {
       this.toastr.warning('Connection failed, Please try again.');

@@ -53,7 +53,8 @@ export const APP_CONSTANTS = {
     },
     EMPDASHBOARD:{
       HOME:'/auth/dashboard',
-      PROFILE:'/auth/dashboard/profile'
+      PROFILE:'/auth/dashboard/profile',
+      CHANGEPWD:'/auth/dashboard/changePwd'
     }
   },
 
@@ -101,7 +102,8 @@ export const APP_CONSTANTS = {
       DISCIPLINE:'discipline',
       GRADUATION:'Graduation',
       DEGREE :'Degree',
-      PROFILE:'profile'
+      PROFILE:'profile',
+      CHANGEPWD:'changePwd'
     }
   }
 };

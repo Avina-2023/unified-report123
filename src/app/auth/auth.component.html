@@ -13,8 +13,8 @@
         </div>
     </mat-toolbar>
 
-    <mat-toolbar class="header-toolbar p-3" *ngIf="checkRouter !='/auth/reports/userlist' && checkRouter !='/auth/reports/dashboard' &&  checkRouter != '/auth/skillmaster/skillmasterlist' && checkRouter != '/auth/dashboard/dashboard' && checkRouter != '/auth/partner/addpartner' && checkRouter !='/auth/partner/partnerlist' && checkRouter !='/auth/partner/partnerenquiry' && checkRouter !='/auth/dashboard/profile'">
-        
+    <mat-toolbar class="header-toolbar p-3" *ngIf="checkRouter !='/auth/reports/userlist' && checkRouter !='/auth/reports/dashboard' &&  checkRouter != '/auth/skillmaster/skillmasterlist' && checkRouter != '/auth/dashboard/dashboard' && checkRouter != '/auth/partner/addpartner' && checkRouter !='/auth/partner/partnerlist' && checkRouter !='/auth/partner/partnerenquiry' && checkRouter !='/auth/dashboard/profile'&& checkRouter !='/auth/dashboard/changePwd'">
+
       <div class="first">
             <img alt="EduTech" class="beforeloginimg" [src]="this.orgLogo ? this.orgLogo  : 'assets/images/landing/newLogo.png'" />
         </div>
@@ -39,7 +39,7 @@
         </div>
     </mat-toolbar>
 
-    <mat-toolbar class="p-3" *ngIf=" checkRouter ==='/auth/dashboard/dashboard' || checkRouter ==='/auth/partner/partnerlist' || checkRouter ==='/auth/partner/addpartner' ||  checkRouter ==='/auth/partner/partnerenquiry'|| checkRouter ==='/auth/dashboard/profile'">
+    <mat-toolbar class="p-3" *ngIf=" checkRouter ==='/auth/dashboard/dashboard' || checkRouter ==='/auth/partner/partnerlist' || checkRouter ==='/auth/partner/addpartner' ||  checkRouter ==='/auth/partner/partnerenquiry'|| checkRouter ==='/auth/dashboard/profile'|| checkRouter ==='/auth/dashboard/changePwd'">
         <div>
             <img class="logo" src="https://assets.lntedutech.com/SKILL_EXCHANGE.png">
           </div>
@@ -77,19 +77,19 @@
                   <input class="select_expand" type="radio" name="awesomeness" id="awesomeness-opener" />
                   <label class="select_closeLabel" for="awesomeness-close"></label>
                   <ul class="select_options">
-                    <!-- <li class="select_option dropdownic" *ngIf='roleCode === "EMP"'>
-                      <label class="select_label dropdownic">
+                    <li class="select_option dropdownic" (click)="changePwd()" *ngIf='roleCode === "EMP"'>
+                      <label class="select_label dropdownic" for="awesomeness-close">
                         <img alt="changepassword" class="dropdownic" src="../../assets/images/emp-dashboard-icons/changepassword.svg">
                         <span class="dropdowntxt dropdownic" >Change Password</span>
                       </label>
-                    </li> -->
-                    <li class="select_option dropdownic" (click)="profile()" *ngIf='roleCode === "EMP"'>
+                    </li>
+                    <li class="select_option dropdownic" for="awesomeness-close" (click)="profile()" *ngIf='roleCode === "EMP"'>
                       <label class="select_label dropdownic">
                         <img alt="profile" class="dropdownic" style="height: 19px;" src="../../assets/images/emp-dashboard-icons/profile.svg">
                         <span class="dropdowntxt dropdownic" >Profile</span>
                         </label>
                     </li>
-                    <li class="select_option dropdownic"  (click)="logout()"  *ngIf='roleCode === "SADM" || roleCode === "OADM" || roleCode === "ADM" || roleCode === "HR" || roleCode === "ISADM" || roleCode === "IADM" || roleCode === "EMP"'>
+                    <li class="select_option dropdownic" for="awesomeness-close"  (click)="logout()"  *ngIf='roleCode === "SADM" || roleCode === "OADM" || roleCode === "ADM" || roleCode === "HR" || roleCode === "ISADM" || roleCode === "IADM" || roleCode === "EMP"'>
                       <label class="select_label dropdownic" >
                         <img alt="logout" class="dropdownic"  src="../../assets/images/emp-dashboard-icons/logout.svg">
                         <span class="dropdowntxt dropdownic" >Logout</span></label>
@@ -105,23 +105,23 @@
           </div>
     </mat-toolbar>
 
-    <div class="footer" *ngIf=" checkRouter ==='/auth/dashboard/dashboard' || checkRouter ==='/auth/partner/partnerlist' || checkRouter ==='/auth/partner/addpartner' ||  checkRouter ==='/auth/partner/partnerenquiry'|| checkRouter ==='/auth/dashboard/profile'">
+    <div class="footer" *ngIf=" checkRouter ==='/auth/dashboard/dashboard' || checkRouter ==='/auth/partner/partnerlist' || checkRouter ==='/auth/partner/addpartner' ||  checkRouter ==='/auth/partner/partnerenquiry'|| checkRouter ==='/auth/dashboard/profile'|| checkRouter ==='/auth/dashboard/changePwd'">
       <app-footer></app-footer>
     </div>
 
 
     <div class="mainCon">
-      <div class="topborder"></div> 
+      <div class="topborder"></div>
     <div *ngIf=" checkRouter === '/auth/reports/dashboard' || checkRouter ==='/auth/reports/userlist' || checkRouter ==='/auth/skillmaster/skillmasterlist' || checkRouter ==='/auth/skillmaster/skillbulkupload' ">
             <app-toolbar></app-toolbar>
-           
+
     </div>
-    <div *ngIf="checkRouter ==='/auth/dashboard/dashboard' || checkRouter ==='/auth/partner/partnerlist' ||checkRouter ==='/auth/partner/addpartner' || checkRouter ==='/auth/partner/partnerenquiry' || checkRouter ==='/auth/dashboard/profile'">
-       
+    <div *ngIf="checkRouter ==='/auth/dashboard/dashboard' || checkRouter ==='/auth/partner/partnerlist' ||checkRouter ==='/auth/partner/addpartner' || checkRouter ==='/auth/partner/partnerenquiry' || checkRouter ==='/auth/dashboard/profile'|| checkRouter ==='/auth/dashboard/changePwd'">
+
       <app-sidebar></app-sidebar>
      </div>
     <div class="heightDiv">
-            <router-outlet></router-outlet> 
+            <router-outlet></router-outlet>
 
  </div>
     <!-- <div class="scrollbar" id="style-1">

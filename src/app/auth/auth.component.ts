@@ -69,7 +69,7 @@ export class AuthComponent implements OnInit {
 
 
 
- // notification list 
+ // notification list
 
  notificationlist: any = [
   {
@@ -88,7 +88,9 @@ export class AuthComponent implements OnInit {
 
 notification() {
 }
-
+changePwd(){
+  this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.EMPDASHBOARD.CHANGEPWD)
+}
 profile(){
   this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.EMPDASHBOARD.PROFILE)
 }
@@ -122,7 +124,7 @@ profile(){
 
       this.dialog.closeAll();
       this.apiService.logout();
-  
+
   }
 
   mouseenter() {
