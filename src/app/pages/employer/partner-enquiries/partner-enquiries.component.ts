@@ -57,10 +57,14 @@ export class PartnerEnquiriesComponent implements OnInit {
 
 
   fetchData(data:any){
+    data.type="partnerEnquiries"
     this.ApiService.partnerList(data).subscribe((partnerList: any) => {
       if (partnerList.success == false) {
         this.toastr.warning('Connection failed, Please try again.');
       } else {
+        partnerList.data.forEach((element,index) => {
+          element.sno = index+1;
+        });
         this.dataSource.data = partnerList.data;
         this.totalPartnerCount = partnerList.totalCount;
       }
@@ -68,12 +72,4 @@ export class PartnerEnquiriesComponent implements OnInit {
       this.toastr.warning('Connection failed, Please try again.');
     });
   }
-
-  convertDate(date){
-    date = new Date(date)
-    
-    return date.toDateString();
-    //return new Date(date)
-  }
-
 }

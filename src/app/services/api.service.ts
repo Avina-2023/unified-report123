@@ -108,7 +108,7 @@ export class ApiService {
   getHiringReport(data){
     return this.http.post(`${this.BASE_URL}/getAgegridReportList`,data,
     { reportProgress: true });
-    
+
   }
 
   getBehaviourReport(data){
@@ -132,14 +132,14 @@ export class ApiService {
     return this.http.post(`${this.BASE_URL}/getCandidateList`,data);
   }
 
-  // Assessment Analytics Report Api 
+  // Assessment Analytics Report Api
   getTestSummary(data){
     return this.http.post(`${this.BASE_URL}/getTestSummary`,data);
   }
 
   getTestDetails(data){
   return this.http.post(`${this.BASE_URL}/getTestDetails`,data);
-  } 
+  }
 
   getTestSummaryCard(data){
     return this.http.post(`${this.BASE_URL}/getTestSummaryCard`,data);
@@ -190,7 +190,7 @@ export class ApiService {
   skillUploadValidator(data){
    return this.http.post(`${this.BASE_URL}/skillUploadValidator`,data);
   }
-  
+
   partnerfooterlist(data){
     return this.http.post(`${this.BASE_URL}/partnerfooterlist`,data);
   }
@@ -202,7 +202,7 @@ export class ApiService {
   partnerList(data){
     return this.http.post(`${this.BASE_URL}/partnerList`,data)
   }
-  
+
   updatePartnerStatus(data){
     return this.http.post(`${this.BASE_URL}/updatePartnerStatus`,data)
   }
@@ -222,6 +222,10 @@ export class ApiService {
    passwordReset(data) {
     // this.datas is api body data
     return this.http.post(`${this.BASE_URL}/submitResetPassword`, data);
+  }
+  changePassword (data) {
+    // this.datas is api body data
+    return this.http.post(`${this.BASE_URL}/changePassword `, data);
   }
 
   candidatedashboard(){
