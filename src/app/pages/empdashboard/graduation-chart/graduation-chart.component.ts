@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, SimpleChange } from '@angular/core';
 import { ChartOptions, ChartType, ChartDataSets } from "chart.js";
 import { Label, Color } from "ng2-charts";
 import "../rounded-corners";
@@ -65,6 +65,12 @@ export class GraduationChartComponent implements OnInit {
     setTimeout(() => {
       this.graduationChart()
     }, 5000);
+  }
+  ngOnChanges(changes: SimpleChange) {
+    if (changes['item']?.currentValue) {
+      this.item = changes['item']?.currentValue
+    }
+    this.graduationChart()
   }
   graduationChart(){
       for (let i = 0; i < this.item?.length; i++) {

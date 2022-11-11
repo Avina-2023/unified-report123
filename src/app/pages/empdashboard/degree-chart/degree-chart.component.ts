@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, SimpleChange } from '@angular/core';
 import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
 import { Label } from 'ng2-charts';
 
@@ -8,13 +8,14 @@ import { Label } from 'ng2-charts';
   styleUrls: ['./degree-chart.component.scss']
 })
 export class DegreeChartComponent implements OnInit {
-  @Input() item;
+  @Input() btech;
+  @Input() item: Array<any>;
   barChartOptions: ChartOptions = {
     responsive: true,
-    legend:{
-      display:false
+    legend: {
+      display: false
     },
-    scales : {
+    scales: {
       yAxes: [{
         ticks: {
           // max : 5000,
@@ -24,10 +25,10 @@ export class DegreeChartComponent implements OnInit {
         },
       }],
       xAxes: [{
-          ticks: {
-              display: true
-          }
-        }],
+        ticks: {
+          display: true
+        }
+      }],
     },
   };
   public barChartLabels: Label[] = [];
@@ -36,33 +37,41 @@ export class DegreeChartComponent implements OnInit {
   barChartPlugins = [];
   bardata = [];
   public barChartData: any = [
-  {
-    data:[],
-    // borderWidth: 0.5,
-    // barPercentage:0.5,
-    hoverBackgroundColor:'rgba(27, 78, 155, 1)',
-    backgroundColor:'rgba(27, 78, 155, 1)',
-    borderColor:'rgba(27, 78, 155, 1)',
-    // hoverBorderColor:'rgba(27, 78, 155, 1)',
-    barThickness: 30,
-    // radius:10,
-    borderRadius:25,
+    {
+      data: [],
+      // borderWidth: 0.5,
+      // barPercentage:0.5,
+      hoverBackgroundColor: 'rgba(27, 78, 155, 1)',
+      backgroundColor: 'rgba(27, 78, 155, 1)',
+      borderColor: 'rgba(27, 78, 155, 1)',
+      // hoverBorderColor:'rgba(27, 78, 155, 1)',
+      barThickness: 30,
+      // radius:10,
+      borderRadius: 25,
 
     },
   ];
   constructor() { }
-  ngOnInit(){
-    this.degreeChart()
-
+  ngOnInit() {
+    // this.degreeChart()
   }
+
+  ngOnChanges(changes: SimpleChange) {
+    if (changes['item']?.currentValue) {
+      this.item = changes['item']?.currentValue
+    }
+    this.degreeChart()
+  }
+
   ngAfterViewInit() {
     setTimeout(() => {
       this.degreeChart()
     }, 5000);
   }
-  degreeChart(){
-    if(this.item&&this.item.length)
-      {for (let i = 0; i < this.item.length; i++) {
+
+  degreeChart() {
+    if (this.item && this.item.length) {
+      for (let i = 0; i < this.item.length; i++) {
         const element = this.item[i];
         this.barChartLabels.push(element.name);
         this.bardata.push(element.total)
@@ -70,11 +79,12 @@ export class DegreeChartComponent implements OnInit {
           {
             data: this.bardata,
             backgroundColor: ['rgba(27, 78, 155, 1)'],
-            hoverBackgroundColor:['rgba(27, 78, 155, 1)'],
+            hoverBackgroundColor: ['rgba(27, 78, 155, 1)'],
             barThickness: 30,
             borderRadius: 25
           }
         ];
-      }}
+      }
+    }
   }
 }
