@@ -50,7 +50,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     RegisterPageComponent,
     JobSeekersComponent,
     SkillMasterListComponent,
-    StaticpageComponent
+    StaticpageComponent,
   ],
   imports: [
     BrowserModule,

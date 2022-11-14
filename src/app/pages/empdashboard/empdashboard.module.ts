@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { EmployerRoutingModule } from './empdashboard-routing.module';
 import { DisciplineChartComponent } from './discipline-chart/discipline-chart.component';
@@ -16,6 +16,7 @@ import {FormsModule} from '@angular/forms';
 import {MatChipsModule} from '@angular/material/chips';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { ChangePasswordComponent } from './changePassword/changePassword.component';
+import { Ng2GoogleChartsModule } from 'ng2-google-charts';
 @NgModule({
   declarations: [
     DashboardComponent,
@@ -36,7 +37,9 @@ import { ChangePasswordComponent } from './changePassword/changePassword.compone
     MatChipsModule,
     ReactiveFormsModule,
     FormsModule,
-    NgApexchartsModule
+    NgApexchartsModule,
+    Ng2GoogleChartsModule,
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]
 })
 export class EmployerModule { }
