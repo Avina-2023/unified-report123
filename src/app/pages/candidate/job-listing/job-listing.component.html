@@ -1,3 +1,90 @@
-<p>
-  job-listing works!
-</p>
+<div class="flex-layout">
+  <div class="overall_box">
+
+    <div class="card" *ngFor="let item of joblist">
+      <mat-card class="example_card">
+        <div class="job_card">
+          <div class="comp-image">
+            <img [src]="item.companyimage" class="comp_logo" alt="logo">
+          </div>
+          <div class="card_title">
+            <p class="job_designation">
+              {{item.jobtitle}}
+            </p>
+            <p class="comp_name">
+              {{item.companyname}}
+            </p>
+          </div>
+        </div>
+        <div class="job_description">
+          {{item.jobdescription}}
+        </div>
+        <div class="specialization">
+          <button>
+            {{item.specialization}}
+          </button>
+        </div>
+        <div class="misc_details">
+          <div class="misc_row"><span>
+              <mat-icon class="misc_icon"> school</mat-icon>
+            </span>
+            <span class="misc_col">{{item.education}} </span>
+          </div>
+
+          <div class="misc_row"><span>
+              <mat-icon class="misc_icon"> location_on</mat-icon>
+            </span>
+            <span class="misc_col">{{item.location}} </span>
+          </div>
+
+          <div class="misc_row"><span>
+              <mat-icon class="misc_icon"> work</mat-icon>
+            </span>
+            <span class="misc_col">{{item.jobtype}} </span>
+          </div>
+        </div>
+        <div class="misc_save"> <span>
+            <mat-icon class="misc_icon">bookmark_border </mat-icon>
+          </span>
+        </div>
+
+
+      </mat-card>
+    </div>
+  </div>
+  <div class="filter">
+    <div style="position: fixed;top: 0;width: 100%;padding: 25px 20px 10px 20px;border-bottom: 1px solid #e7e7e7;z-index: 999;background: #fff;">
+      <p><mat-icon class="misc_icon">filter_list</mat-icon><span  class="job_designation">All Filters</span></p>
+    </div>
+    <div class="filt_list">
+    <div class="filter_col">
+      <p><mat-icon class="misc_icon">school</mat-icon><span  class="job_designation">Education</span></p>
+      <div *ngFor="let course of education"><mat-checkbox  color="primary" class="green">{{course}}</mat-checkbox></div>
+    </div>
+    <div class="filter_col">
+      <p class="job_designation"><mat-icon class="misc_icon">workspace_premium</mat-icon><span  class="job_designation">Specialization</span></p>
+      <div *ngFor="let course of education"><mat-checkbox  color="primary" (change)="getdata(course)">{{course}}</mat-checkbox></div>
+    </div>
+    <div class="filter_col">
+      <p class="job_designation"><mat-icon class="misc_icon">emoji_objects</mat-icon>Skill Set</p>
+      <div *ngFor="let course of education"><mat-checkbox  color="primary">{{course}}</mat-checkbox></div>
+    </div>
+    <div class="filter_col">
+      <p class="job_designation"><mat-icon class="misc_icon">business_center</mat-icon>Job Type</p>
+      <div *ngFor="let course of education"><mat-checkbox  color="primary">{{course}}</mat-checkbox></div>
+    </div>
+    <div class="filter_col">
+      <p class="job_designation"><mat-icon class="misc_icon">location_on</mat-icon>Location</p>
+      <div *ngFor="let course of education"><mat-checkbox  color="primary">{{course}}</mat-checkbox></div>
+    </div>
+    <div class="filter_col">
+      <p class="job_designation"><mat-icon class="misc_icon">work_outline</mat-icon>Industries</p>
+      <div *ngFor="let course of education"><mat-checkbox  color="primary">{{course}}</mat-checkbox></div>
+    </div>
+    <div class="filter_col">
+      <p class="job_designation"><mat-icon class="misc_icon">business</mat-icon>Top Companies</p>
+      <div *ngFor="let course of education"><mat-checkbox  color="primary">{{course}}</mat-checkbox></div>
+    </div>
+  </div>
+  </div>
+</div>

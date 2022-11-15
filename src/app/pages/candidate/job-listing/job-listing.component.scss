@@ -1,0 +1,163 @@
+
+.flex-layout{
+    width: 100%;
+    display:flex;
+    flex-wrap: wrap;
+  }
+  
+  .overall_box{
+    width: 74%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    border-right: 1px solid #e7e7e7;
+  }
+  
+  .example_card {
+  max-width: 280px;
+  margin-bottom: 25px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top:20px;
+  padding:10px;
+  }
+  .job_card {
+  display: flex;
+  border-bottom: 1px solid #80808029;
+  }
+  .card {
+  display: flex;
+  flex-wrap: wrap;
+  }
+  
+  .comp-image {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  height: 44px;
+  width: 44px;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin: 0 4px 0 4px;
+  border: 1px solid #eaedf3;
+  border-radius: 4px;
+  overflow: hidden;
+  }
+  .comp_logo {
+  max-width: 44px;
+  max-height: 44px;
+  }
+  
+  
+  .card_title {
+  margin: 10px 20px;
+  line-height: 11px;
+  
+  .comp_name {
+    color: #ad9999;
+    font-weight: 200;
+  }
+  }
+  .job_designation {
+    font-size: 15px;
+    font-weight: 500;
+  }
+  
+  .job_description {
+  color: #726b6bc2;
+  font-size: 13px;
+  text-align: left;
+  font-weight: 400;
+  margin-top: 10px;
+  }
+  
+  .specialization {
+  margin-top: 20px;
+  
+  button {
+    background: rgb(122 203 232 / 22%);
+      color: #00b5f5;
+      font-weight: 600;
+      border: 1px solid rgb(255 255 255 / 53%);
+      margin: 0px 7px;
+      border-radius: 3px;
+      padding: 4px;
+      font-size: 10px;
+  }
+  }
+  .misc_details {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 10px;
+  
+  span {
+    font-size: 12px;
+    color: #a39d9d;
+    margin: 0px 4px;
+  }
+  .misc_row{
+    display:flex;
+    margin: 0px 4px;
+  }
+  .misc_icon {
+    font-size: 12px;
+    margin-top: 11px;
+    height: auto;
+    width: auto;
+  }
+  .misc_col{			
+    font-size: 11px;
+    color: #a39d9d;
+    margin: 8px 0px;
+    }
+  
+  }
+  .misc_save{
+    float:right;
+    margin-top: -30px;
+  }
+  
+  .filter {
+  width: 25%;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+  max-height: 750px;
+  
+  .filt_list {
+    margin-top: 70px;
+  }
+  
+  .misc_icon{
+    font-size: 18px;
+  }
+  p{
+    display: flex;
+  }
+  .filter_col {
+    
+      padding: 20px;
+      border-bottom: 1px solid #e7e7e7;
+      align-content: flex-start;
+  
+  div{
+    color: #919191;
+    font-weight: 300;
+  }
+  }
+  }
+  
+  
+  .example-additional-selection {
+    opacity: 0.75;
+    font-size: 0.75em;
+  }
+  
+  
+  ::-webkit-scrollbar {
+    display: none;
+    }
