@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { APP_CONSTANTS } from 'src/app/utils/app-constants.service';
-import { PartnerListComponent } from '../employer/partner-list/partner-list.component';
 import { ChangePasswordComponent } from './changePassword/changePassword.component';
 import { CountdisplayCardComponent } from './countdisplay-card/countdisplay-card.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
