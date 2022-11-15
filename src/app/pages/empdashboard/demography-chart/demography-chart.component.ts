@@ -31,10 +31,12 @@ export class DemographyChartComponent implements OnInit {
   ['Punjab', 'Punjab: 201,032,714'],
   ['Karnataka', 'Karnataka: 186,134,000'],
   ['Bihar', 'Bihar: 500'],
+  // ['Andhra Pradesh','Andhra Pradesh:89039']
 ]
   public geoChart: GoogleChartInterface = {
     chartType: 'GeoChart',
     dataTable: this.datatableval,
+    
     options: {
       region: 'IN', // INDIA
       colorAxis: {colors: ['#00F919', '#0FFFE4', '#1FA20F','#156930','#033E3B']},
@@ -42,8 +44,11 @@ export class DemographyChartComponent implements OnInit {
       backgroundColor: '#00000',
       datalessRegionColor: '#00000',
       defaultColor: '#00000',
-      'height': 600,
+      // width: 600,
+      height: 530,
     }
+    
+    
   };
 
   constructor() { }
