@@ -100,11 +100,6 @@ export class PartnerListComponent implements OnInit {
         partnerList.data.forEach((element,index) => {
           element.sno = index+1;
         });
-        if(partnerList.data.length==0){
-          this.tableEmpty=true
-        }else{
-          this.tableEmpty=false
-        }
         this.dataSource.data = partnerList.data;
         this.totalPartnerCount = partnerList.totalCount;
         this.totalPages = Math.ceil(this.totalPartnerCount/5)
