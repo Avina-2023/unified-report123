@@ -1,7 +1,7 @@
 <div class="flex-layout">
   <div class="overall_box">
 
-    <div class="card" *ngFor="let item of joblist">
+    <div class="card_flex" *ngFor="let item of joblist">
       <mat-card class="example_card">
         <div class="job_card">
           <div class="comp-image">
@@ -53,7 +53,7 @@
     </div>
   </div>
   <div class="filter">
-    <div style="position: fixed;top: 0;width: 100%;padding: 25px 20px 10px 20px;border-bottom: 1px solid #e7e7e7;z-index: 999;background: #fff;">
+    <div style="position: fixed;width: 100%;padding: 25px 20px 10px 20px;border-bottom: 1px solid #e7e7e7;z-index: 999;background: #fff;">
       <p><mat-icon class="misc_icon">filter_list</mat-icon><span  class="job_designation">All Filters</span></p>
     </div>
     <div class="filt_list">
@@ -82,7 +82,7 @@
       <div *ngFor="let course of education"><mat-checkbox  color="primary">{{course}}</mat-checkbox></div>
     </div>
     <div class="filter_col">
-      <p class="job_designation"><mat-icon class="misc_icon">business</mat-icon>Top Companiess</p>
+      <p class="job_designation"><mat-icon class="misc_icon">business</mat-icon>Top Companies</p>
       <div *ngFor="let course of education"><mat-checkbox  color="primary">{{course}}</mat-checkbox></div>
     </div>
   </div>

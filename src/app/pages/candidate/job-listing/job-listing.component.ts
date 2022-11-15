@@ -100,10 +100,7 @@ export class JobListingComponent implements OnInit {
 ];
 
 
-  constructor() {
-
-    alert('hello')
-   }
+  constructor() {}
 
   ngOnInit() {
   }

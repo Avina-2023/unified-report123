@@ -1,8 +1,9 @@
-
+@import "/src/assets/scss/candidate_dashboard.scss";
 .flex-layout{
     width: 100%;
     display:flex;
     flex-wrap: wrap;
+    background: #fff;
   }
   
   .overall_box{
@@ -12,6 +13,8 @@
     flex-wrap: wrap;
     align-content: flex-start;
     border-right: 1px solid #e7e7e7;
+    height: 90vh;
+    overflow:auto;
   }
   
   .example_card {
@@ -26,7 +29,7 @@
   display: flex;
   border-bottom: 1px solid #80808029;
   }
-  .card {
+  .card_flex {
   display: flex;
   flex-wrap: wrap;
   }
@@ -126,7 +129,8 @@
   width: 25%;
   overflow-y: scroll;
   scroll-behavior: smooth;
-  max-height: 750px;
+  height: 90vh;
+  
   
   .filt_list {
     margin-top: 70px;
