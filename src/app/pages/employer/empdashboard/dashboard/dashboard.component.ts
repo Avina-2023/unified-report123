@@ -4,7 +4,7 @@ import { MultiDataSet, Label, PluginServiceGlobalRegistrationAndOptions, Colors 
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from 'src/app/services/api.service';
 import { APP_CONSTANTS } from 'src/app/utils/app-constants.service';
-import {AppConfigService} from '../../../utils/app-config.service'
+import {AppConfigService} from 'src/app/utils/app-config.service'
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -43,7 +43,7 @@ color:any;
     this.getCandidateDashBoard()
   }
   profile(){
-    
+
   this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.EMPDASHBOARD.PROFILE)
 }
 // progress bar chart 1
@@ -65,7 +65,7 @@ public options: ChartOptions = {
       display: false
     }
   },
-  
+
   cutoutPercentage: 70
 }
 
@@ -80,7 +80,7 @@ public options: ChartOptions = {
 
     }
   ];
- 
+
   doughnutChartLabels: Label[] = [];
   doughnutChartData: MultiDataSet = [];
   doughnutChartType: ChartType = 'doughnut';
@@ -134,7 +134,7 @@ public options: ChartOptions = {
     this.dashBoardDetails=[];
         this.apiService.candidatedashboard().subscribe((result:any)=>{
               if(result.success){
-                this.dashBoardDetails=result.data 
+                this.dashBoardDetails=result.data
                 this.graduactionData=this.dashBoardDetails[0].levelDetails
                 this.disciplineData=this.dashBoardDetails[0].disciplineDetails
                 this.degreeData=this.dashBoardDetails[0].specializationDetails
@@ -144,7 +144,7 @@ public options: ChartOptions = {
                   const element = result.data[0].genderDetails[i];
                   this.doughnutChartLabelstwo.push(element.gender)
                   this.doughnutChartDatatwo.push(element.total)
-                }      
+                }
                 for (let j = 0; j < result.data[0].yearDetails.length; j++) {
                   const chart2 = result.data[0].yearDetails[j];
                   this.doughnutChartLabels.push(chart2.year)

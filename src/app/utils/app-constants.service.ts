@@ -20,6 +20,13 @@ export const APP_CONSTANTS = {
     HOME: '/home',
     AUTH: '/auth',
     LANDING: '/landing',
+    CNDIDATELANDING:'/candidateview',
+    CANDIDATEDASH:{
+      DASHBOARD:'/candidateview/dashboard',
+      JOBLIST:'/candidateview/findjobs',
+      JOBSSAVED:'/candidateview/savedjobs',
+      JOBSAPPLIED:'/candidateview/appliedjobs'
+    },
     PASSWORD: {
       FORGOT: '/forgot-password',
       RESET: '/resetpwd',
@@ -69,6 +76,13 @@ export const APP_CONSTANTS = {
     LANDING: 'landing',
     HOME: 'home',
     AUTH: 'auth',
+    CNDIDATELANDING:'candidateview',
+    CANDIDATEDASH:{
+      DASHBOARD:'dashboard',
+      JOBLIST:'findjobs',
+      JOBSSAVED:'savedjobs',
+      JOBSAPPLIED:'appliedjobs'
+    },
     REPORTS: {
       HOME: 'reports',
       USERLIST: 'userlist',
