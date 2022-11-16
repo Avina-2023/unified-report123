@@ -45,7 +45,7 @@ export class DemographyChartComponent implements OnInit {
       datalessRegionColor: '#00000',
       defaultColor: '#00000',
       // width: 600,
-      height: 530,
+      height: 450,
     }
     
     

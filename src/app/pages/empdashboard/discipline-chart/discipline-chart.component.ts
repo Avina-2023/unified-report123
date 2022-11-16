@@ -41,7 +41,7 @@ export class DisciplineChartComponent implements OnInit {
         }
       ],
       chart: {
-        height: 520,
+        height: 440,
         type: "treemap",
         toolbar:{
           show:false

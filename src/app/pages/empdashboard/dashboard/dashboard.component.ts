@@ -100,8 +100,8 @@ public options: ChartOptions = {
   public doughnutChartColorstwo: Colors[] = [{
     backgroundColor:
       [
-        'rgba(255, 183, 77, 1)', // female
         "rgba(255, 87, 34, 1)", // male
+        'rgba(255, 183, 77, 1)', // female
         'rgba(96, 125, 139, 1)',  //others
       ],
 
@@ -126,7 +126,7 @@ public options: ChartOptions = {
         display: false
       }
     },
-    cutoutPercentage: 80
+    cutoutPercentage: 70
   }
 
  //dashboard
