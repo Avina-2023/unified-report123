@@ -7,6 +7,8 @@ import { JobListingComponent } from './job-listing/job-listing.component';
 import {JobListItemComponent} from './job-display-pages/job-list-item/job-list-item.component'  
 import { JobAppliedListComponent } from './job-display-pages/job-applied-list/job-applied-list.component';
 import { JobSavedListComponent } from './job-display-pages/job-saved-list/job-saved-list.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { CommonPaginatorComponent } from './candidateCommons/common-paginator/common-paginator.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -18,7 +20,9 @@ import { JobSavedListComponent } from './job-display-pages/job-saved-list/job-sa
     JobListingComponent,
     JobListItemComponent,
     JobAppliedListComponent,
-    JobSavedListComponent
+    JobSavedListComponent,
+    DashboardComponent,
+    CommonPaginatorComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]
 })
