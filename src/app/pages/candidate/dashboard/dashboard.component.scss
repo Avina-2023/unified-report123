@@ -1,0 +1,101 @@
+@import "/src/assets/scss/candidate_dashboard.scss";
+
+.overflowbox {
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    border-right: 1px solid #e7e7e7;
+    height: 90vh;
+    overflow: auto;
+}
+
+.dashboardcards {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    align-content: flex-end;
+    justify-content: space-around;
+    .box {
+        width: 219px;
+        margin-bottom: 10px;
+        .singlecard {
+            height: 75px;
+            width: 100%;
+            padding: 0;
+            border-radius: 10px;
+
+            .both {
+                display: flex;
+
+                .bigleft {
+                    width: 90%;
+                    height: 75px;
+                    opacity: 0.9;
+                    
+                    border-radius: 10px 0px 50px 10px;
+                    // padding: 18px;
+
+                    .left {
+                        width: 90%;
+                        height: 75px;
+                        opacity: 0.9;
+                        // border-right: 6px solid #22a3ff9c;
+                        // background-color: #3D67B7;
+
+                        padding: 18px;
+
+                        .smalltext {
+                            font-size: 14px;
+                            color: #FFFFFF;
+                            font-weight: 200;
+                        }
+
+                        .bigtext {
+                            font-size: 20px;
+                            color: #FFFFFF;
+                            font-weight: 500;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.singlecardbg0 {
+    background-color: #26BBEF;
+}
+
+.singlecardbg1 {
+    background-color: #FF9A78;
+}
+
+.singlecardbg2 {
+    background-color: #10E596;
+}
+
+.singlecardbg3 {
+    background-color: #FDBC64;
+}
+
+.singlecardborder0 {
+    border-right: 6px solid #22a3ff9c;
+    background-color: #3D67B7;
+}
+
+.singlecardborder1 {
+    border-right: 6px solid #bd8e8eb8;
+    background-color: #3D67B7;
+    
+}
+
+.singlecardborder2 {
+    border-right: 6px solid #84d38a9c;
+    background-color: #3D67B7;
+}
+
+.singlecardborder3 {
+    border-right: 6px solid #f7d2809c;
+    background-color: #3D67B7;
+}
