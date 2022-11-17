@@ -1,7 +1,8 @@
-
 <div class="appHeader">
-  <div  class="d-flex">
-    <button mat-flat-button (click)="drawer.toggle()"><mat-icon>menu</mat-icon></button>
+  <div class="d-flex">
+    <button mat-flat-button (click)="isExpanded = !isExpanded">
+      <mat-icon>menu</mat-icon>
+    </button>
     <img class="hearder-logo " alt="" src="assets/images/landing/newLogo.png">
   </div>
 
@@ -11,23 +12,41 @@
   </div>
 </div>
 <div>
-<mat-drawer-container class="example-container" [hasBackdrop]="true">
-  <mat-drawer #drawer [mode]="'over'" style="width:250px">
-    <div class="navItems">
-      <mat-icon >home</mat-icon> <span class="ml-2">Hello</span>
-    </div>
-    <div>
-      Hello
-    </div>
-  </mat-drawer>
-  <mat-drawer-content>
-<div class="content-pos">
-  <router-outlet></router-outlet>
-</div>
-</mat-drawer-content>
-</mat-drawer-container>
-<div class="appFooter">
-  <app-footer></app-footer>
-</div>
-</div>
+  <mat-sidenav-container class="example-container" autosize>
+    <mat-sidenav #sidenav class="example-sidenav" mode="side" opened="true" (mouseenter)="mouseenter()"
+      (mouseleave)="mouseleave()">
+      <mat-nav-list>
+        <mat-list-item class="navItems" [routerLink]="routelinks.CNDIDATELANDING">
+          <mat-icon mat-list-icon>home</mat-icon>
+          <span class="full-width" *ngIf="isExpanded || isShowing">Dashboard</span>
+        </mat-list-item>
+        <mat-list-item class="navItems" [routerLink]="routelinks.CANDIDATEDASH.JOBLIST">
+          <mat-icon mat-list-icon>home</mat-icon>
+          <span class="full-width" *ngIf="isExpanded || isShowing">Find & Apply Jobs</span>
+        </mat-list-item>
+        <mat-list-item class="navItems" [routerLink]="routelinks.CANDIDATEDASH.JOBSAPPLIED">
+          <mat-icon mat-list-icon>home</mat-icon>
+          <span class="full-width" *ngIf="isExpanded || isShowing">Applied Jobs</span>
+        </mat-list-item>
+        <mat-list-item class="navItems" [routerLink]="routelinks.CANDIDATEDASH.JOBSSAVED">
+          <mat-icon mat-list-icon>home</mat-icon>
+          <span class="full-width" *ngIf="isExpanded || isShowing">Saved Jobs</span>
+        </mat-list-item>
+        <mat-list-item class="navItems">
+          <mat-icon mat-list-icon>home</mat-icon>
+          <span class="full-width" *ngIf="isExpanded || isShowing">Log Out</span>
+        </mat-list-item>
+      </mat-nav-list>
+      <mat-nav-list>
+      </mat-nav-list>
+    </mat-sidenav>
 
+    <div class="example-sidenav-content">
+      <router-outlet></router-outlet>
+    </div>
+
+  </mat-sidenav-container>
+  <div class="appFooter">
+    <app-footer></app-footer>
+  </div>
+</div>
