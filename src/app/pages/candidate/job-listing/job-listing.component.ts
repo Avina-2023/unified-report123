@@ -10,6 +10,7 @@ import { MatDialog } from '@angular/material/dialog';
 
 
 export class JobListingComponent implements OnInit {
+
 @ViewChild('moreItems', { static: false }) matDialogRef: TemplateRef<any>;
   title = 'edutech';
   education = ['B.Tech','B.Sc','B.Com','BE'];
@@ -325,6 +326,7 @@ filter_info = {
 	}
 ]
 }
+	filterItems: any;
 
   constructor(public dialog: MatDialog) {}
 
@@ -335,7 +337,13 @@ filter_info = {
     alert(value);
   }
 
-  openDialog() {
-    this.dialog.open(this.matDialogRef);
+  openDialog(displayValue) {
+    this.filterItems = displayValue;
+	console.log(this.filterItems);
+	this.dialog.open(this.matDialogRef);
   }
+
+  
+
 }
+

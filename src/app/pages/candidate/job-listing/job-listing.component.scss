@@ -21,7 +21,8 @@
  .flex-layout {
     ::ng-deep {
   .mat-select{
-    width: 14%;  
+    width: 12%; 
+    padding: 0px 8px; 
   .mat-select-trigger {
       text-align: center;  
     }
@@ -45,6 +46,12 @@
     .mat-checkbox-layout .mat-checkbox-label{
       white-space: pre-wrap;
     }
+    .panelPosition{
+      .mat-select-min-line{
+      color: #727171d1;
+      font-weight: 400;
+      }
+      }
   }
 }
 
@@ -60,6 +67,7 @@
   flex-wrap: wrap!important;
   overflow: scroll!important;
 }*/
+
 
 
 .flex-layout{
@@ -192,7 +200,15 @@
   overflow-y: scroll;
   scroll-behavior: smooth;
   height: 90vh;
-  
+  .fil_head{
+    position: fixed;
+    width: 100%;
+    padding: 25px 20px 10px 20px;
+    border-bottom: 1px solid #e7e7e763;
+    z-index: 999;
+    background: #fff;
+    box-shadow: 1px 1px 1px 1px #e7e7e763;
+  }
   
   .filt_list {
     margin-top: 70px;
@@ -203,14 +219,13 @@
   }
   
   .filter_col {
-    
       padding: 20px;
       border-bottom: 1px solid #e7e7e7;
       align-content: flex-start;
   
   div{
-    color: #919191;
-    font-weight: 300;
+    color: #9d9d9d;
+    font-weight: 400;
   }
   button{
     font-size: 13.5px;
@@ -220,14 +235,81 @@
   }
   }
   }
+
+  ::ng-deep .fldName label {
+    font-size: 13px!important;
+}
   
-  
+  .dlog_template{
+    display:flex;
+    width:100%;
+    h1{
+      display: flex;
+      width: 50%;
+      float: left;
+    }
+    .close_div{
+      padding: 0px;
+      margin-bottom: 0px;
+      width: 50%; 
+      flex-direction: row-reverse;
+      .close-icon{
+        text-align: center;
+        margin-top: -20px;
+        padding: 0px;
+      }
+    }
+    
+  }
+
+
   .example-additional-selection {
     opacity: 0.75;
     font-size: 0.75em;
   }
   
+  .mob_fil{
+    display:none;
+  }
   
   ::-webkit-scrollbar {
     display: none;
     }
+
+
+    @media only screen and (max-width: 600px) {
+      .filter{
+       display: none;
+       }
+       .job_board, .example_card,.results_dash {
+        width: 100%!important;
+        max-width: 100%;
+       }
+       .mat-select{
+       width: 35%!important;
+         padding: 0px 8px!important;
+       }
+       .mob_fil{
+        position: relative;
+    display: flex;
+    background: #fff;
+    overflow: hidden;
+    z-index: 999;
+    width: 100% !important;
+    max-width: 100%;
+    border-bottom: 2px solid #e7e7e770;
+    div{
+      padding: 10px 20px 10px 20px;
+    }
+    .fil_results{
+      float:left; 
+      width: 65%;
+    }
+    .fil_btn{
+      width:35%;
+      border-left:2px solid #e7e7e770;
+      color: #41c7f7;
+    }
+       }
+       
+     }
