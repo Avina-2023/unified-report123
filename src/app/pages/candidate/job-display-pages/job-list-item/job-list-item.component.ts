@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-job-list-item',
@@ -6,9 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./job-list-item.component.scss']
 })
 export class JobListItemComponent implements OnInit {
-
+  public isActive:boolean = true;
+  public isDisabled:boolean = true;
+   @Input() data:any;
+   @Input() savedButton = false;
   constructor() { }
-
   ngOnInit() {
   }
 
