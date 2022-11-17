@@ -4,10 +4,12 @@ import { CandidateComponent } from './candidate.component';
 import { CandidateRoutes } from './candidate.routing';
 import { MaterialModule } from 'src/app/material/material.module';
 import { JobListingComponent } from './job-listing/job-listing.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   imports: [
     CommonModule,
+    SharedModule,
     CandidateRoutes,
     MaterialModule
   ],

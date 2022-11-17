@@ -1,6 +1,33 @@
-<p>
-  candidate works!
-</p>
+
+<div class="appHeader">
+  <div  class="d-flex">
+    <button mat-flat-button (click)="drawer.toggle()"><mat-icon>menu</mat-icon></button>
+    <img class="hearder-logo " alt="" src="assets/images/landing/newLogo.png">
+  </div>
+
+  <div _ngcontent-lak-c187="" class="toolbar-pic">
+    <span>hello</span>
+    <img _ngcontent-lak-c187="" src="../../../../assets/images/emp-dashboard-icons/user.png">
+  </div>
+</div>
+<div>
+<mat-drawer-container class="example-container" [hasBackdrop]="true">
+  <mat-drawer #drawer [mode]="'over'" style="width:250px">
+    <div class="navItems">
+      <mat-icon >home</mat-icon> <span class="ml-2">Hello</span>
+    </div>
+    <div>
+      Hello
+    </div>
+  </mat-drawer>
+  <mat-drawer-content>
 <div class="content-pos">
   <router-outlet></router-outlet>
 </div>
+</mat-drawer-content>
+</mat-drawer-container>
+<div class="appFooter">
+  <app-footer></app-footer>
+</div>
+</div>
+
