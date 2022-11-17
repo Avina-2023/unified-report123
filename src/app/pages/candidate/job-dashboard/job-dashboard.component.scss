@@ -1,5 +1,10 @@
 @import "/src/assets/scss/candidate_dashboard.scss";
 
+
+.flix{
+  height: 90vh;
+}
+
 .overflowbox {
     width: 100%;
     flex-direction: row;
@@ -32,7 +37,7 @@
                     width: 90%;
                     height: 75px;
                     opacity: 0.9;
-                    
+
                     border-radius: 10px 0px 50px 10px;
                     // padding: 18px;
 
@@ -87,7 +92,7 @@
 .singlecardborder1 {
     border-right: 6px solid #bd8e8eb8;
     background-color: #3D67B7;
-    
+
 }
 
 .singlecardborder2 {

@@ -1,16 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  selector: 'app-job-dashboard',
+  templateUrl: './job-dashboard.component.html',
+  styleUrls: ['./job-dashboard.component.scss']
 })
-export class DashboardComponent implements OnInit {
+export class JobDashboardComponent implements OnInit {
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
   dashboardCards: any = [
     {
       'name': 'jobs Available',
@@ -29,4 +25,9 @@ export class DashboardComponent implements OnInit {
       'count': "10"
     }
   ]
+  constructor() { }
+
+  ngOnInit() {
+  }
+
 }

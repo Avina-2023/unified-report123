@@ -32,6 +32,7 @@ import { SkillMasterListComponent } from './pages/skill-Master/skill-master-list
 import { StaticpageComponent } from './staticpage/staticpage.component';
 import { SetPasswordComponent } from './pages/login/set-password/set-password.component';
 import { ForgotPasswordComponent } from './pages/login/forgot-password/forgot-password.component';
+import { CandidateModule } from './pages/candidate/candidate.module';
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
 };
