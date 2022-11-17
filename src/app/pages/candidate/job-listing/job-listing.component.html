@@ -1,6 +1,14 @@
 <div class="flex-layout">
+  <div class="job_board">
+    <div class="results_dash" *ngFor="let item of joblist; count as c">
+      <p style="float:left;">Results Showing ({{c}})</p>
+      <p style="text-align: right;">Sort by: </p>
+      <mat-select class="panelPosition" placeholder="Relevance">
+        <mat-option value="relevance">Relevance</mat-option>
+        <mat-option value="recently posted">Recently Posted</mat-option>
+      </mat-select>
+    </div>
   <div class="overall_box">
-
     <div class="card_flex" *ngFor="let item of joblist">
       <mat-card class="example_card">
         <div class="job_card">
@@ -47,44 +55,37 @@
             <mat-icon class="misc_icon">bookmark_border </mat-icon>
           </span>
         </div>
-
-
       </mat-card>
     </div>
   </div>
+</div>
   <div class="filter">
     <div style="position: fixed;width: 100%;padding: 25px 20px 10px 20px;border-bottom: 1px solid #e7e7e7;z-index: 999;background: #fff;">
       <p><mat-icon class="misc_icon">filter_list</mat-icon><span  class="job_designation">All Filters</span></p>
+      
     </div>
     <div class="filt_list">
-    <div class="filter_col">
-      <p><mat-icon class="misc_icon">school</mat-icon><span  class="job_designation">Education</span></p>
-      <div *ngFor="let course of education"><mat-checkbox  color="primary" class="green">{{course}}</mat-checkbox></div>
-    </div>
-    <div class="filter_col">
-      <p class="job_designation"><mat-icon class="misc_icon">workspace_premium</mat-icon><span  class="job_designation">Specialization</span></p>
-      <div *ngFor="let course of education"><mat-checkbox  color="primary" (change)="getdata(course)">{{course}}</mat-checkbox></div>
-    </div>
-    <div class="filter_col">
-      <p class="job_designation"><mat-icon class="misc_icon">emoji_objects</mat-icon>Skill Set</p>
-      <div *ngFor="let course of education"><mat-checkbox  color="primary">{{course}}</mat-checkbox></div>
-    </div>
-    <div class="filter_col">
-      <p class="job_designation"><mat-icon class="misc_icon">business_center</mat-icon>Job Type</p>
-      <div *ngFor="let course of education"><mat-checkbox  color="primary">{{course}}</mat-checkbox></div>
-    </div>
-    <div class="filter_col">
-      <p class="job_designation"><mat-icon class="misc_icon">location_on</mat-icon>Location</p>
-      <div *ngFor="let course of education"><mat-checkbox  color="primary">{{course}}</mat-checkbox></div>
-    </div>
-    <div class="filter_col">
-      <p class="job_designation"><mat-icon class="misc_icon">work_outline</mat-icon>Industries</p>
-      <div *ngFor="let course of education"><mat-checkbox  color="primary">{{course}}</mat-checkbox></div>
-    </div>
-    <div class="filter_col">
-      <p class="job_designation"><mat-icon class="misc_icon">business</mat-icon>Top Companies</p>
-      <div *ngFor="let course of education"><mat-checkbox  color="primary">{{course}}</mat-checkbox></div>
+    <div class="filter_col" *ngFor="let fillist of filter_info.data">
+      <p><mat-icon class="misc_icon">{{fillist.iconName}}</mat-icon><span  class="job_designation">{{fillist.fieldName}}</span></p>
+      <div *ngFor="let course of fillist.subContent.slice(0, 4);"><mat-checkbox  color="primary">{{course.name}}</mat-checkbox></div>
+      <button mat-button (click)="openDialog()">+{{4}} more</button>
     </div>
   </div>
   </div>
 </div>
+<ng-template #moreItems>
+  
+    <div style="display:flex;"><h1 style="display: flex;width: 50%;float: left;" class="job_designation" mat-dialog-title>Education</h1>
+    <div mat-dialog-actions>
+      <button style="text-align: center;margin-top: -20px;padding: 0px;" mat-button class="close-icon" [mat-dialog-close]="true">
+        <mat-icon>close</mat-icon>
+    </button>
+    </div></div>
+    <br>
+    <div mat-dialog-content>
+    <div class="filter_col" *ngFor="let fillist of filter_info.data">
+        <div *ngFor="let course of fillist.subContent"><mat-checkbox  color="primary">{{course.name}}</mat-checkbox></div>
+    </div>
+     </div>
+    
+</ng-template>
