@@ -1,0 +1,22 @@
+<div class="flix">
+  <div class="overflowbox">
+    <div class="dashboardcards">
+        <div class="box" *ngFor = "let item of dashboardCards; let i = index">
+            <mat-card [ngClass]="'singlecard singlecardbg'+i">
+                <div class="both">
+                    <div  [ngClass]="'bigleft singlecardborder'+i">
+                    <div class="left">
+                        <div class="smalltext">
+                         {{item.name}}
+                        </div>
+                        <div class="bigtext">
+                            {{item.count}}
+                        </div>
+                    </div>
+                </div>
+                </div>
+        </mat-card>
+        </div>
+    </div>
+</div>
+</div>

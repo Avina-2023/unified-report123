@@ -1,0 +1,48 @@
+
+.appHeader {
+  border-bottom: 1px solid grey;
+  height: 65px;
+  padding:14px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  background-color: #fff;
+
+  .hearder-logo {
+    width: 170px;
+  }
+
+  .toolbar-pic{
+    span{
+      padding-right: 20px;
+    }
+    img{
+      width: 35px;
+    }
+  }
+}
+.appFooter {
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+  z-index: 2;
+}
+.content-pos {
+  height: 85vh;
+  overflow: hidden;
+}
+
+//NAV ITEMS
+
+.navItems{
+  color: #373331;
+  padding: 20px 25px;
+  border-left:5px solid #ff562200
+
+}
+.navItems:hover{
+    color: #FF5722;
+    background-color: #FF572233;
+    border-left:5px solid #FF5722
+  }
