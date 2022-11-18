@@ -1,8 +1,11 @@
 <div class="flex-layout">
   <div class="job_board">
+    <div class="find_job">
+      Find Jobs
+    </div>
     <div class="mob_fil">
       <div class="fil_results">Selected Results</div>
-      <div class="fil_btn">
+      <div class="fil_btn" (click)="mobDialog()">
         <mat-icon class="misc_icon">filter_list</mat-icon><span>Filters (3)</span>
       </div>
     </div>
@@ -73,10 +76,10 @@
     </div>
     <div class="filt_list">
       <div class="filter_col" *ngFor="let fillist of filter_info.data">
-        <p  style="cursor: pointer;user-select: none;" (click)="fillist.isShow=!fillist.isShow">
+        <p style="cursor: pointer;user-select: none;" (click)="fillist.isShow=!fillist.isShow">
           <mat-icon class="misc_icon">{{fillist.iconName}}</mat-icon><span
             class="job_designation">{{fillist.fieldName}}</span>
-            <mat-icon style="width: 30%;text-align-last: end;" class="clickBtn" class="misc_icon">expand_more</mat-icon>
+          <mat-icon style="width: 30%;text-align-last: end;" class="clickBtn" class="misc_icon">expand_more</mat-icon>
         </p>
         <div *ngFor="let course of fillist.subContent.slice(0, 4);">
           <mat-checkbox class="fldName" color="primary" *ngIf="!fillist.isShow">{{course.name}}</mat-checkbox>
@@ -99,11 +102,17 @@
   </div>
   <br>
   <div mat-dialog-content>
-    <div class="filter_col">
-      <div *ngFor="let course of filterItems.subContent">
+    <div class="filter_col mat_dlg_cnt">
+        <div *ngFor="let course of filterItems.subContent">
         <mat-checkbox color="primary">{{course.name}}</mat-checkbox>
       </div>
     </div>
   </div>
 
+</ng-template>
+
+<ng-template #mobFilter>
+  <div class="filter_col" *ngFor="let fillist of filter_info.data">
+    {{fillist.fieldName}}
+  </div>
 </ng-template>
