@@ -34,6 +34,11 @@ export class ApiService {
     return this.http.post(`${this.BASE_URL}/candidatelogin`, data);
   }
 
+     // userlogin
+  student_login(loginData) {
+      return this.http.post(`${this.BASE_URL}/userLogin`, loginData);
+    }
+
   getReportsDataAPI(data) {
     return this.http.post(`${this.BASE_URL}/getunifiedReport`, data);
   }
