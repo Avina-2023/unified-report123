@@ -1,5 +1,6 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { countReset } from 'console';
 
 @Component({
 	selector: 'app-job-listing',
@@ -116,47 +117,80 @@ export class JobListingComponent implements OnInit {
 		'saved': 'true'
 	}
 	];
-    ShareInfoLength = this.joblist.length;
+	ShareInfoLength = this.joblist.length;
 	filter_info = {
 		"data": [
 			{
 				"subContent": [
 					{
-						"name": "Bachelor Degree in Computer Science",
+						"name": "B.Tech",
 						"totalCount": 1
 					},
 					{
-						"name": "Bachelor Degree in Electrical",
+						"name": "B.Sc.",
 						"totalCount": 1
 					},
 					{
-						"name": "Bachelor Degree in Electronics",
+						"name": "B.Com",
 						"totalCount": 1
 					},
 					{
-						"name": "Bachelor Degree in Electronics & Communication",
+						"name": "BE",
 						"totalCount": 1
 					},
 					{
-						"name": "Bachelor Degree in Mathematics",
+						"name": "MBA",
 						"totalCount": 1
 					},
 					{
-						"name": "Bachelor Degree in Mechanical",
+						"name": "Graduation not required",
 						"totalCount": 1
 					},
 					{
-						"name": "Bachelor Degree in Mechanical",
+						"name": "Medical",
 						"totalCount": 3
 					},
 					{
-						"name": "Bachelor Degree in Science",
+						"name": "CA",
 						"totalCount": 1
 					},
 					{
-						"name": "Bachelor Degree in Space",
+						"name": "M.Com",
+						"totalCount": 1
+					},
+					{
+						"name": "M.Com",
+						"totalCount": 1
+					},
+					{
+						"name": "BE",
+						"totalCount": 1
+					},
+					{
+						"name": "MBA",
+						"totalCount": 1
+					},
+					{
+						"name": "Graduation not required",
+						"totalCount": 1
+					},
+					{
+						"name": "Medical",
+						"totalCount": 3
+					},
+					{
+						"name": "CA",
+						"totalCount": 1
+					},
+					{
+						"name": "M.Com",
+						"totalCount": 1
+					},
+					{
+						"name": "M.Com",
 						"totalCount": 1
 					}
+
 				],
 				"iconName": "school",
 				"fieldName": "Education"
@@ -164,7 +198,7 @@ export class JobListingComponent implements OnInit {
 			{
 				"subContent": [
 					{
-						"name": null,
+						"name": "Mechanical Engineering",
 						"totalCount": 1
 					},
 					{
@@ -180,7 +214,7 @@ export class JobListingComponent implements OnInit {
 						"totalCount": 1
 					},
 					{
-						"name": "Mechanical Engineering",
+						"name": "Mechatronics Engineering",
 						"totalCount": 6
 					},
 					{
@@ -200,6 +234,22 @@ export class JobListingComponent implements OnInit {
 					{
 						"name": "Python",
 						"totalCount": 10
+					},
+					{
+						"name": "Javascript",
+						"totalCount": 8
+					},
+					{
+						"name": "Angular",
+						"totalCount": 4
+					},
+					{
+						"name": "Node JS",
+						"totalCount": 8
+					},
+					{
+						"name": "PHP",
+						"totalCount": 4
 					}
 				],
 				"iconName": "emoji_objects",
@@ -208,23 +258,19 @@ export class JobListingComponent implements OnInit {
 			{
 				"subContent": [
 					{
-						"name": null,
+						"name": "Fulltime",
 						"totalCount": 1
 					},
 					{
-						"name": "",
+						"name": "Part - Time",
 						"totalCount": 3
 					},
 					{
-						"name": "Fulltime",
+						"name": "Contract",
 						"totalCount": 3
 					},
 					{
-						"name": "Halftime",
-						"totalCount": 2
-					},
-					{
-						"name": "Parttime",
+						"name": "Intern/Apprenticeship",
 						"totalCount": 2
 					}
 				],
@@ -234,7 +280,7 @@ export class JobListingComponent implements OnInit {
 			{
 				"subContent": [
 					{
-						"name": null,
+						"name": "Kolkata",
 						"totalCount": 1
 					},
 					{
@@ -327,12 +373,14 @@ export class JobListingComponent implements OnInit {
 			}
 		]
 	}
+
 	filterItems: any;
+    selectedValues: any[] = [];
 
 	constructor(public dialog: MatDialog) { }
 
 	ngOnInit() {
-	
+
 	}
 
 	getdata(value: string) {
@@ -341,7 +389,7 @@ export class JobListingComponent implements OnInit {
 
 	openDialog(displayValue) {
 		this.filterItems = displayValue;
-		console.log(this.filterItems);
+		//console.log(this.filterItems);
 		this.dialog.open(this.matDialogRef);
 	}
 
@@ -350,7 +398,17 @@ export class JobListingComponent implements OnInit {
 		this.dialog.open(this.mobDialogRef);
 	}
 
-
+	checkboxChecked(event,data) {
+		//console.log(event)
+		if(event?.checked){
+			data.is_checked = true
+			this.selectedValues.push(data);
+		}else{
+			data.is_checked = false
+			this.selectedValues = this.selectedValues.filter(item => item.name !== data.name);
+		}	
+		
+   }
 
 }
 

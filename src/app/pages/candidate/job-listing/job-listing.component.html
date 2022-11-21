@@ -9,8 +9,8 @@
         <mat-icon class="misc_icon">filter_list</mat-icon><span>Filters (3)</span>
       </div>
     </div>
-    <div class="results_dash" *ngFor="let item of joblist; count as c">
-      <p style="float:left;">Results Showing ({{c}})</p>
+    <div class="results_dash">
+      <p style="float:left;">Results Showing ({{ShareInfoLength}})</p>
       <p style="text-align: right;">Sort by: </p>
       <mat-select class="panelPosition" placeholder="Relevance">
         <mat-option value="relevance">Relevance</mat-option>
@@ -73,6 +73,12 @@
       <p>
         <mat-icon class="misc_icon">filter_list</mat-icon><span class="job_designation">All Filters</span>
       </p>
+      <div class="demo">
+        <div class="checkedVal" *ngFor="let chkbox of selectedValues">
+          {{chkbox.name}} <mat-icon>close</mat-icon>
+        </div>
+        
+      </div>
     </div>
     <div class="filt_list">
       <div class="filter_col" *ngFor="let fillist of filter_info.data">
@@ -81,11 +87,16 @@
             class="job_designation">{{fillist.fieldName}}</span>
           <mat-icon style="width: 30%;text-align-last: end;" class="clickBtn" class="misc_icon">expand_more</mat-icon>
         </p>
-        <div *ngFor="let course of fillist.subContent.slice(0, 4);">
-          <mat-checkbox class="fldName" color="primary" *ngIf="!fillist.isShow">{{course.name}}</mat-checkbox>
-        </div>
-        <button mat-button (click)="openDialog(fillist)">+{{4}} more</button>
+        <div *ngFor="let course of fillist.subContent; let i = index">
+          <span *ngIf="i<4">
+            <mat-checkbox (change)="checkboxChecked($event,course)" [checked]="course.is_checked" class="fldName"
+              color="primary" *ngIf="!fillist.isShow">{{course.name}} ({{course.totalCount}})
+            </mat-checkbox>
+          </span>
 
+        </div>
+        <button *ngIf="(fillist.subContent.length)>4" mat-button
+          (click)="openDialog(fillist)">+{{fillist.subContent.length-4}} more</button>
       </div>
     </div>
   </div>
@@ -103,16 +114,37 @@
   <br>
   <div mat-dialog-content>
     <div class="filter_col mat_dlg_cnt">
-        <div *ngFor="let course of filterItems.subContent">
-        <mat-checkbox color="primary">{{course.name}}</mat-checkbox>
+      <div *ngFor="let course of filterItems.subContent">
+        <mat-checkbox class="mat_courses" (change)="checkboxChecked($event,course)" [checked]="course.is_checked"
+          color="primary">{{course.name}} ({{course.totalCount}})</mat-checkbox>
       </div>
     </div>
+    <button class="aply_btn" mat-raised-button color="primary">Apply</button>
   </div>
 
 </ng-template>
 
 <ng-template #mobFilter>
-  <div class="filter_col" *ngFor="let fillist of filter_info.data">
-    {{fillist.fieldName}}
+
+  <div class="filt_mob_top">
+    <mat-icon [mat-dialog-close]>west</mat-icon>
+    <p class="fil_text">All Filters (count)</p>
+    <p class="apply_top_menu">
+      <button>Apply</button>
+    </p>
+  </div>
+  <div class="mob_courses">
+    <div class="sub_crse">
+      <div *ngFor="let fillist of filter_info.data">
+        <div class="field_crse" (click)="filterItems=fillist.subContent">{{fillist.fieldName}}</div>
+      </div>
+    </div>
+    <div class="mob_card_crse">
+      <span *ngIf="filterItems">
+        <mat-checkbox color="primary" class="mob_filter_res" *ngFor="let item of filterItems">{{item.name}}
+          ({{item.totalCount}})
+        </mat-checkbox>
+      </span>
+    </div>
   </div>
 </ng-template>
