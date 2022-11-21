@@ -1,22 +1,80 @@
-<div class="flix">
-  <div class="overflowbox">
-    <div class="dashboardcards">
-        <div class="box" *ngFor = "let item of dashboardCards; let i = index">
-            <mat-card [ngClass]="'singlecard singlecardbg'+i">
-                <div class="both">
-                    <div  [ngClass]="'bigleft singlecardborder'+i">
-                    <div class="left">
-                        <div class="smalltext">
-                         {{item.name}}
-                        </div>
-                        <div class="bigtext">
-                            {{item.count}}
+<div class="user-name">
+    <div class="username-N">
+        Welcome,&nbsp;
+    </div>
+    <div class="username-B">
+        Candidate
+    </div>
+</div>
+<div class="overflowbox">
+
+    <div class="displaygrid">
+        <div class="dashboardcards">
+            <div class="box" *ngFor="let item of dashboardCards; let i = index">
+                <mat-card [ngClass]="'singlecard singlecardbg'+i">
+                    <div class="both">
+                        <div [ngClass]="'bigleft singlecardborder'+i">
+                            <div class="left">
+                                <div class="smalltext">
+                                    {{item.name}}
+                                </div>
+                                <div class="bigtext">
+                                    {{item.count}}
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                </div>
-        </mat-card>
+                </mat-card>
+            </div>
         </div>
+        <div class="barchart">
+            <div class="baralignment">
+                <div class="left">Data</div>
+                <div class="right">
+                    <!-- <mat-form-field class="form-filed-dropdown" appearance="outline">
+                        <mat-select class="selectText" >
+                            <mat-option>2020</mat-option>
+                            <mat-option>2021</mat-option>
+                            <mat-option>2022</mat-option>
+                        </mat-select>
+                    </mat-form-field> -->
+                </div>
+            </div>
+            <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart"
+                [dataLabels]="chartOptions.dataLabels" [plotOptions]="chartOptions.plotOptions"
+                [yaxis]="chartOptions.yaxis" [legend]="chartOptions.legend" [fill]="chartOptions.fill"
+                [stroke]="chartOptions.stroke" [tooltip]="chartOptions.tooltip" [xaxis]="chartOptions.xaxis">
+            </apx-chart>
+
+        </div>
+    </div>
+    <div class="card-right">
+        <div class="candidatebg">
+            <div class="userprofile">
+                <img src="../../../../assets/images/candidate-userprofile.png">
+                <div class="bg-white">
+                    <div class="profilename">
+                        John Doe
+                    </div>
+                    <div class="big">Software Engineer</div>
+                    <div class="small">Chennai, Tamil Nadu, India</div>
+                    <hr>
+                    <div class="profile-progress">
+                        <span>Profile Completion</span>
+                        <div role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"
+                            style="--value:43"></div>
+                    </div>
+                    <hr>
+                    <div class="profile-buttons">
+                        <button class="buttons view-profile">View Profile</button>
+                        <button class="buttons edit-profile">Edit Profile</button>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
     </div>
 </div>
 </div>

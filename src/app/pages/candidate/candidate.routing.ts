@@ -6,6 +6,7 @@ import {JobSavedListComponent} from './job-display-pages/job-saved-list/job-save
 import {JobListItemComponent} from './job-display-pages/job-list-item/job-list-item.component'
 import { JobAppliedListComponent } from './job-display-pages/job-applied-list/job-applied-list.component';
 import { JobDashboardComponent } from './job-dashboard/job-dashboard.component';
+
 const routes: Routes = [
   {
     path: '', component: CandidateComponent,

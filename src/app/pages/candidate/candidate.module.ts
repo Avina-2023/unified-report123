@@ -10,12 +10,15 @@ import { JobAppliedListComponent } from './job-display-pages/job-applied-list/jo
 import { JobSavedListComponent } from './job-display-pages/job-saved-list/job-saved-list.component';
 import { JobDashboardComponent } from './job-dashboard/job-dashboard.component';
 import { CommonPaginatorComponent } from './candidateCommons/common-paginator/common-paginator.component';
+import { NgApexchartsModule } from "ng-apexcharts";
+
 @NgModule({
   imports: [
     CommonModule,
     SharedModule,
     CandidateRoutes,
-    MaterialModule
+    MaterialModule,
+    NgApexchartsModule
   ],
   declarations: [
     JobDashboardComponent,
