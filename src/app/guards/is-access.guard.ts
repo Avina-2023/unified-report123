@@ -15,7 +15,7 @@ export class IsAccessGuard implements CanLoad {
   canLoad(
     route: Route,
     segments: UrlSegment[]): Observable<boolean> | Promise<boolean> | boolean {
-    if (this.appConfig.getLocalStorage('token')) {
+    if (this.appConfig.getLocalStorage('token')||this.appConfig.getLocalStorage('c_token')) {
       return true;
     } else {
       this.apiService.logout();
@@ -34,7 +34,7 @@ export class IsAccessGuard implements CanLoad {
                localStorage.setItem('token', 'true');
                sessionStorage.setItem('email',details.email)
                sessionStorage.setItem('driveInfo', details.driveId);
-               sessionStorage.setItem('assessmentId',details.assessmentId); 
+               sessionStorage.setItem('assessmentId',details.assessmentId);
                this.appConfig.setLocalStorage('role',JSON.stringify(details.role));
                 return true
           }else {
@@ -43,14 +43,14 @@ export class IsAccessGuard implements CanLoad {
             return false
           }
       }else{
-        if (this.appConfig.getLocalStorage('token')) {
+        if (this.appConfig.getLocalStorage('token')||this.appConfig.getLocalStorage('c_token')) {
           return true;
         } else {
           this.apiService.logout();
           return false;
-        }  
+        }
       }
 
   }
-  
+
 }

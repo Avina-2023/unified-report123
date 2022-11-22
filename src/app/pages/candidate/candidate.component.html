@@ -34,7 +34,7 @@
           <span class="full-width" *ngIf="isExpanded || isShowing">Saved Jobs</span>
         </mat-list-item>
 
-        <mat-list-item class="navItems lastitem" [routerLink]="routelinks.CANDIDATEDASH.JOBSSAVED">
+        <mat-list-item class="navItems lastitem" (click)="logout()">
           <mat-icon mat-list-icon class="material-symbols-outlined">logout_outline</mat-icon>
           <span class="full-width" *ngIf="isExpanded || isShowing">Logout</span>
         </mat-list-item>

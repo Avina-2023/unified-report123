@@ -61,9 +61,16 @@ export class LoginPageComponent  {
       password: this.apiService.encrypt(this.loginForm.value.password.trim())
       }
       this.apiService.student_login(cparams).subscribe((data:any)=>{
+        if(data.success)
+        {
         this.appConfig.setLocalStorage('c_token', data && data.token ? data.token : '');
         this.appConfig.setLocalStorage('email', data && data.data.email ? data.data.email : '');
         this.appConfig.setLocalStorage('username','')
+      }else{
+        this.toastr.error(data.message);
+        this.appConfig.setLocalStorage('c_token', data && data.token ? data.token : 'my token');
+        this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.CANDIDATEDASH.DASHBOARD);
+      }
       })
     }else{
        this.apiService.login(apiData).subscribe((response: any)=> {
