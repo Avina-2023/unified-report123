@@ -40,7 +40,7 @@ color:any;
     this.roleCode = this.orgdetails && this.orgdetails[0].roles && this.orgdetails[0].roles[0].roleCode;
     this.username = localStorage.getItem('firstName')
     this.profileCompletion = localStorage.getItem('profileCompletion')
-    this.getCandidateDashBoard()
+    this.getEmpDashBoard()
   }
   profile(){
 
@@ -130,9 +130,9 @@ public options: ChartOptions = {
   }
 
  //dashboard
-  getCandidateDashBoard(){
+  getEmpDashBoard(){
     this.dashBoardDetails=[];
-        this.apiService.candidatedashboard().subscribe((result:any)=>{
+        this.apiService.empdashboard().subscribe((result:any)=>{
               if(result.success){
                 this.dashBoardDetails=result.data
                 this.graduactionData=this.dashBoardDetails[0].levelDetails
