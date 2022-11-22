@@ -14,6 +14,7 @@ export class CandidateComponent implements OnInit {
   sideNavMode: MatDrawerMode = 'over'
   isShowing: boolean = false;
   routelinks = APP_CONSTANTS.ENDPOINTS
+  candidateName = localStorage.getItem('name')
   constructor(public router:Router, private apiservice:ApiService) {
     this.router.events.subscribe(event => {
       if(event instanceof NavigationEnd) {
