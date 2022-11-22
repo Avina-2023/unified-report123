@@ -1,6 +1,6 @@
 <div class="appHeader">
   <div class="d-flex">
-    <button mat-flat-button (click)="isExpanded = !isExpanded">
+    <button mat-flat-button (click)="isExpanded = !isExpanded; sideNavMode=sideNavMode=='over'?'side':'over'">
       <mat-icon>menu</mat-icon>
     </button>
     <img class="hearder-logo " alt="" src="assets/images/landing/newLogo.png">
@@ -12,36 +12,39 @@
   </div>
 </div>
 <div>
-  <mat-sidenav-container class="example-container" autosize>
-    <mat-sidenav #sidenav class="example-sidenav" mode="side" opened="true" (mouseenter)="mouseenter()"
+  <mat-sidenav-container class="example-container" autosize [hasBackdrop]="false">
+    <mat-sidenav #sidenav class="example-sidenav" [mode]="sideNavMode"  opened="true" (mouseenter)="mouseenter()"
       (mouseleave)="mouseleave()">
       <mat-nav-list>
-        <mat-list-item class="navItems" [routerLink]="routelinks.CNDIDATELANDING">
-          <mat-icon mat-list-icon>home</mat-icon>
+        <mat-list-item class="navItems" [ngClass]="router.url==routelinks.CANDIDATEDASH.DASHBOARD? 'active':''" [routerLink]="routelinks.CNDIDATELANDING">
+          <div class="innerLine"></div>
+          <mat-icon mat-list-icon>home_outline</mat-icon>
           <span class="full-width" *ngIf="isExpanded || isShowing">Dashboard</span>
         </mat-list-item>
-        <mat-list-item class="navItems" [routerLink]="routelinks.CANDIDATEDASH.JOBLIST">
-          <mat-icon mat-list-icon>home</mat-icon>
+        <mat-list-item class="navItems" [ngClass]="router.url==routelinks.CANDIDATEDASH.JOBLIST? 'active':''" [routerLink]="routelinks.CANDIDATEDASH.JOBLIST">
+          <mat-icon mat-list-icon>search</mat-icon>
           <span class="full-width" *ngIf="isExpanded || isShowing">Find & Apply Jobs</span>
         </mat-list-item>
-        <mat-list-item class="navItems" [routerLink]="routelinks.CANDIDATEDASH.JOBSAPPLIED">
-          <mat-icon mat-list-icon>home</mat-icon>
+        <mat-list-item class="navItems" [ngClass]="router.url==routelinks.CANDIDATEDASH.JOBSAPPLIED? 'active':''" [routerLink]="routelinks.CANDIDATEDASH.JOBSAPPLIED">
+          <mat-icon mat-list-icon>check_circle_outline</mat-icon>
           <span class="full-width" *ngIf="isExpanded || isShowing">Applied Jobs</span>
         </mat-list-item>
-        <mat-list-item class="navItems" [routerLink]="routelinks.CANDIDATEDASH.JOBSSAVED">
-          <mat-icon mat-list-icon>home</mat-icon>
+        <mat-list-item class="navItems" [ngClass]="router.url==routelinks.CANDIDATEDASH.JOBSSAVED? 'active':''" [routerLink]="routelinks.CANDIDATEDASH.JOBSSAVED">
+          <mat-icon mat-list-icon class="material-symbols-outlined">bookmark_outline</mat-icon>
           <span class="full-width" *ngIf="isExpanded || isShowing">Saved Jobs</span>
         </mat-list-item>
-        <mat-list-item class="navItems">
-          <mat-icon mat-list-icon>home</mat-icon>
-          <span class="full-width" *ngIf="isExpanded || isShowing">Log Out</span>
+
+        <mat-list-item class="navItems lastitem" (click)="logout()">
+          <mat-icon mat-list-icon class="material-symbols-outlined">logout_outline</mat-icon>
+          <span class="full-width" *ngIf="isExpanded || isShowing">Logout</span>
         </mat-list-item>
+
       </mat-nav-list>
       <mat-nav-list>
       </mat-nav-list>
     </mat-sidenav>
 
-    <div class="example-sidenav-content">
+    <div [ngClass]="sideNavMode=='over'?'navMarginOver':'navMarginSide'">
       <router-outlet></router-outlet>
     </div>
 

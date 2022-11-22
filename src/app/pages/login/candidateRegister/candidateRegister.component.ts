@@ -43,6 +43,7 @@ export class candidateRegister implements OnInit {
 
   register() {
     this.freshGraduatesForm.value.email = CryptoJS.AES.encrypt(this.freshGraduatesForm.value.email.toLowerCase().trim(), this.secretKey.trim()).toString();
+    console.log(CryptoJS.AES.decrypt(this.freshGraduatesForm.value.email,this.secretKey.trim()))
     this.ApiService.candidateRegistration(this.freshGraduatesForm.value).subscribe((res: any) => {
       if (res.success) {
         this.newCandidate = true

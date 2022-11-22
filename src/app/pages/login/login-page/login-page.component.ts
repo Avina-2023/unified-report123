@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import * as publicIp from 'public-ip';
+import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
@@ -18,6 +19,7 @@ export class LoginPageComponent  {
   show = false;
   disableButton: boolean;
   userIP: any;
+  isCandidate:boolean = true;
 
 
   constructor(
@@ -25,8 +27,20 @@ export class LoginPageComponent  {
     public apiService: ApiService,
     public appConfig: AppConfigService,
     public toastr: ToastrService,
-    private matDialog: MatDialog
-  ) { }
+    private matDialog: MatDialog,
+    public router:Router,
+    private activatedRoute: ActivatedRoute,
+
+  ) {
+
+    this.activatedRoute.queryParams.subscribe(params => {
+      if(params.from == 'freshGrad'){
+        this.isCandidate = true;
+      }else{
+        this.isCandidate = false;
+      }
+    })
+  }
 
   ngOnInit(): void {
     this.formInitialize();
@@ -41,7 +55,25 @@ export class LoginPageComponent  {
       type:"employerLogin"
     }
 
-    this.apiService.login(apiData).subscribe((response: any)=> {
+    if(this.isCandidate){
+      let cparams = {
+        email: this.apiService.encrypt(this.loginForm.value.username.trim()),
+      password: this.apiService.encrypt(this.loginForm.value.password.trim())
+      }
+      this.apiService.student_login(cparams).subscribe((data:any)=>{
+        if(data.success)
+        {
+        this.appConfig.setLocalStorage('c_token', data && data.token ? data.token : '');
+        this.appConfig.setLocalStorage('email', data && data.data.email ? data.data.email : '');
+        this.appConfig.setLocalStorage('username','')
+      }else{
+        this.toastr.error(data.message);
+        this.appConfig.setLocalStorage('c_token', data && data.token ? data.token : 'my token');
+        this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.CANDIDATEDASH.DASHBOARD);
+      }
+      })
+    }else{
+       this.apiService.login(apiData).subscribe((response: any)=> {
 
       if ((response && response.success) || (response && response.data) || (response && response.token)) {
           if(response.data.attributes){
@@ -71,6 +103,8 @@ export class LoginPageComponent  {
     }, (err)=> {
       this.disableButton = false;
     });
+    }
+
   }
 
   formInitialize() {
