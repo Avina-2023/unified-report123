@@ -14,10 +14,10 @@ export class IsloggedInGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      if (this.appConfig.getLocalStorage('c_token')) {
+      if (this.appConfig.getLocalStorage('token')) {
         this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.EMPDASHBOARD.HOME);
         return false;
-      } else if(this.appConfig.getLocalStorage('token')){
+      } else if(this.appConfig.getLocalStorage('c_token')){
         this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.CANDIDATEDASH.DASHBOARD);
         return false
       }else{

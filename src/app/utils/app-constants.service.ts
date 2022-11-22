@@ -17,7 +17,8 @@ export const APP_CONSTANTS = {
   // Route endpoints
   ENDPOINTS: {
     LOGIN: '/login',
-    HOME: '/home',
+    // HOME: '/home',
+    HOME: '/static',
     AUTH: '/auth',
     LANDING: '/landing',
     CNDIDATELANDING:'/candidateview',
