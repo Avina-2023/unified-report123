@@ -27,12 +27,17 @@ export class ApiService {
   logout() {
     this.appConfig.clearLocalStorage();
     this.appConfig.clearSessionStorage();
-    return this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.LANDING);
+    return this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.HOME);
   }
 
   login(data: any) {
     return this.http.post(`${this.BASE_URL}/candidatelogin`, data);
   }
+
+     // userlogin
+  student_login(loginData) {
+      return this.http.post(`${this.BASE_URL}/userLogin`, loginData);
+    }
 
   getReportsDataAPI(data) {
     return this.http.post(`${this.BASE_URL}/getunifiedReport`, data);

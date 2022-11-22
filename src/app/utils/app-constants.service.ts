@@ -17,7 +17,8 @@ export const APP_CONSTANTS = {
   // Route endpoints
   ENDPOINTS: {
     LOGIN: '/login',
-    HOME: '/home',
+    // HOME: '/home',
+    HOME: '/static',
     AUTH: '/auth',
     LANDING: '/landing',
     CNDIDATELANDING:'/candidateview',
@@ -25,7 +26,8 @@ export const APP_CONSTANTS = {
       DASHBOARD:'/candidateview/dashboard',
       JOBLIST:'/candidateview/findjobs',
       JOBSSAVED:'/candidateview/savedjobs',
-      JOBSAPPLIED:'/candidateview/appliedjobs'
+      JOBSAPPLIED:'/candidateview/appliedjobs',
+      PAGINATION :'/candidateview/page'
     },
     PASSWORD: {
       FORGOT: '/forgot-password',
@@ -81,7 +83,8 @@ export const APP_CONSTANTS = {
       DASHBOARD:'dashboard',
       JOBLIST:'findjobs',
       JOBSSAVED:'savedjobs',
-      JOBSAPPLIED:'appliedjobs'
+      JOBSAPPLIED:'appliedjobs',
+      PAGINATION:'page',
     },
     REPORTS: {
       HOME: 'reports',

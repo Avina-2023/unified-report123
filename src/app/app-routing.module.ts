@@ -37,7 +37,7 @@ const routes: Routes = [
     path: `${APP_CONSTANTS.ROUTES.AUTH}`, loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
   },
   {
-    path: `${APP_CONSTANTS.ROUTES.CNDIDATELANDING}`, loadChildren: () => import('./pages/candidate/candidate.module').then(m => m.CandidateModule)
+    path: `${APP_CONSTANTS.ROUTES.CNDIDATELANDING}`, loadChildren: () => import('./pages/candidate/candidate.module').then(m => m.CandidateModule),canActivate:[IsAccessGuard]
   },
   {
     path: `certificate`, component: CertificateViewComponent
