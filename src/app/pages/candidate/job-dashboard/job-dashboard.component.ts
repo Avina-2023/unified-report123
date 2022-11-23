@@ -116,8 +116,7 @@ export class JobDashboardComponent implements OnInit {
     }
     else if (e.value == 1) {
       this.year = this.appConfig.getCurrentYear() - 1
-      this.email = 'deenabandhutekarla@gmail.com'
-      // this.email = localStorage.getItem('email')
+      this.email = localStorage.getItem('email')
       const obj1 = {};
       if (Object.keys(obj1).length === 0) {
         Object.assign(obj1, { "year": this.year, "email": this.email });
@@ -132,8 +131,7 @@ export class JobDashboardComponent implements OnInit {
     }
     else if (e.value == 2) {
       this.year = this.appConfig.getCurrentYear() - 2
-      this.email = 'deenabandhutekarla@gmail.com'
-      // this.email = localStorage.getItem('email')
+      this.email = localStorage.getItem('email')
       const obj1 = {};
       if (Object.keys(obj1).length === 0) {
         Object.assign(obj1, { "year": this.year, "email": this.email });
@@ -154,8 +152,7 @@ export class JobDashboardComponent implements OnInit {
 
   getCandidateDashBoard() {
     this.year = this.appConfig.getCurrentYear()
-    this.email = 'deenabandhutekarla@gmail.com'
-    // this.email = localStorage.getItem('email')
+    this.email = localStorage.getItem('email')
     this.objDetails = {};
     if (Object.keys(this.objDetails).length === 0) {
       Object.assign(this.objDetails, { "year": this.year, "email": this.email });
