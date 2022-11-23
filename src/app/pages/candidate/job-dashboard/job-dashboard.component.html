@@ -1,4 +1,4 @@
-<div class="overflowbox">
+<div class="overflowbox" >
     <div class="leftside">
         <div class="user">
             <div class="user-name">
@@ -82,20 +82,17 @@
                     <div class="left">Data</div>
                     <div class="right">
                         <mat-form-field class="form-filed-dropdown" appearance="outline">
-                            <mat-select class="selectText">
-                                <mat-option>2022</mat-option>
-                                <mat-option>2021</mat-option>
-                                <mat-option>2020</mat-option>
+                            <mat-select class="selectText" (selectionChange)="getCandidateDashBoard($event)" placeholder="2022">
+                                <mat-option *ngFor="let val of allyears" [value]="val.year">{{val.year}}</mat-option>
                             </mat-select>
                         </mat-form-field>
                     </div>
                 </div>
-                <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart"
-                    [dataLabels]="chartOptions.dataLabels" [plotOptions]="chartOptions.plotOptions"
-                    [yaxis]="chartOptions.yaxis" [legend]="chartOptions.legend" [fill]="chartOptions.fill"
-                    [stroke]="chartOptions.stroke" [tooltip]="chartOptions.tooltip" [xaxis]="chartOptions.xaxis">
+                <apx-chart [series]="ChartData" [chart]="chartOptions.chart" [dataLabels]="chartOptions.dataLabels"
+                    [plotOptions]="chartOptions.plotOptions" [yaxis]="chartOptions.yaxis" [legend]="chartOptions.legend"
+                    [fill]="chartOptions.fill" [stroke]="chartOptions.stroke" [tooltip]="chartOptions.tooltip"
+                    [xaxis]="chartOptions.xaxis">
                 </apx-chart>
-
             </div>
         </div>
     </div>
@@ -110,7 +107,6 @@
                 </div>
             </div>
         </div>
-
         <div class="candidatebg">
             <div class="userprofile">
                 <img src="../../../../assets/images/candidate-userprofile.png">
@@ -132,10 +128,7 @@
                         <button class="buttons edit-profile">Edit Profile</button>
                     </div>
                 </div>
-
             </div>
-
         </div>
-
     </div>
 </div>
