@@ -259,5 +259,9 @@ export class ApiService {
   partnerListDashboard(){
     return this.http.get(`${this.BASE_URL}/partnerListDashboard`)
   }
-  //
+
+  // Joblist API
+  joblistingDashboard(data){
+    return this.http.post(`${this.BASE_URL}/joblist`,data)
+  }
 }

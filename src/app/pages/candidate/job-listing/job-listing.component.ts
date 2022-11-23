@@ -1,6 +1,6 @@
+import { ApiService } from 'src/app/services/api.service';
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { countReset } from 'console';
 
 @Component({
 	selector: 'app-job-listing',
@@ -25,7 +25,8 @@ export class JobListingComponent implements OnInit {
 		'education': 'B.Tech',
 		'location': 'Chennai',
 		'jobtype': 'Full Time',
-		'isSelected': false	},
+		'isSelected': false
+	},
 	{
 		'jobtitle': 'Autocad Engineer',
 		'companyname': 'L&T Construction',
@@ -46,7 +47,8 @@ export class JobListingComponent implements OnInit {
 		'education': 'B.Tech',
 		'location': 'Bangalore',
 		'jobtype': 'Full Time',
-		'isSelected': false	}
+		'isSelected': false
+	}
 		,
 	{
 		'jobtitle': 'Junior Developer',
@@ -57,7 +59,8 @@ export class JobListingComponent implements OnInit {
 		'education': 'B.Tech',
 		'location': 'Chennai',
 		'jobtype': 'Full Time',
-		'isSelected': false	},
+		'isSelected': false
+	},
 	{
 		'jobtitle': 'Autocad Engineer',
 		'companyname': 'CGI',
@@ -78,7 +81,8 @@ export class JobListingComponent implements OnInit {
 		'education': 'B.Tech',
 		'location': 'Bangalore',
 		'jobtype': 'Full Time',
-		'isSelected': false	},
+		'isSelected': false
+	},
 	{
 		'jobtitle': 'Autocad Engineer',
 		'companyname': 'CGI',
@@ -99,7 +103,8 @@ export class JobListingComponent implements OnInit {
 		'education': 'B.Tech',
 		'location': 'Bangalore',
 		'jobtype': 'Full Time',
-		'isSelected': false	},
+		'isSelected': false
+	},
 	{
 		'jobtitle': 'Junior Tester',
 		'companyname': 'L&T Construction',
@@ -109,7 +114,8 @@ export class JobListingComponent implements OnInit {
 		'education': 'B.Tech',
 		'location': 'Bangalore',
 		'jobtype': 'Full Time',
-		'isSelected': false	}
+		'isSelected': false
+	}
 	];
 	ShareInfoLength = this.joblist.length;
 	filter_info = {
@@ -369,59 +375,93 @@ export class JobListingComponent implements OnInit {
 	}
 
 	filterItems: any;
-    selectedValues: any[] = [];
+	selectedValues: any[] = [];
 
-	constructor(public dialog: MatDialog) { }
+
+	constructor(public dialog: MatDialog, private apiservice:ApiService) { }
 
 	ngOnInit() {
+   this.getJobList();
 
 	}
 
-	
+
 	openDialog(displayValue) {
 		this.filterItems = displayValue;
-		//console.log(this.filterItems);
 		this.dialog.open(this.matDialogRef);
 	}
 
 	mobDialog() {
-		//    alert('works');
 		this.dialog.open(this.mobDialogRef);
+		this.fil_elements(this.filter_info.data, this.filter_info.data[0].subContent, 0)
+
 	}
 
-	checkboxChecked(event,data) {
-		//console.log(event)
-		if(event?.checked){
+	checkboxChecked(event, data) {
+		if (event?.checked) {
 			data.is_checked = true
 			this.selectedValues.push(data);
 		}
-		else{
+		else {
 			data.is_checked = false;
 			this.selectedValues = this.selectedValues.filter(item => item.name !== data.name);
-		}	
-		
-   }
+		}
 
-   closeSelectedValues(data,index){
-	data.is_checked = false
-	this.selectedValues.splice(index,1);
-	
-   }
+	}
 
-   fil_elements(data,i){
-		data.forEach((element,ind) => {
-			if(ind==i){
-				element.active=true
-			}else{
-				element.active=false
+	closeSelectedValues(data, index) {
+		data.is_checked = false
+		this.selectedValues.splice(index, 1);
+
+	}
+
+	fil_elements(data, subcontent, i) {
+		data.forEach((element, ind) => {
+			if (ind == i) {
+				element.active = true
+			} else {
+				element.active = false
 			}
 		});
-   }
+		this.filterItems = subcontent;
+	}
 
-   bookMarkIcon(item){
-	item.isSelected = !item.isSelected
-   }
+	bookMarkIcon(item) {
+		item.isSelected = !item.isSelected
+	}
 
+	clearFilters(response) {
+		response.forEach(element => {
+			element.subContent.forEach(item => {
+				item.is_checked = false;
+			});
+		});
+		this.selectedValues.splice(0);
+
+	}
+
+
+// API Call
+
+getJobList(){
+	let params:any = 
+	{
+		"pageNumber":1,
+		"itemsPerPage":9,
+		// "filter":{          
+		// "education":["B.E"],
+		// "jobType":["Full Time"]
+		// },  
+		"sort":"relevance",
+		"specialization":"Computer Science Engineering",
+		// "email":"deenabandhutekarla@gmail.com"
+		// "isApplied":false,              
+		// "isSelected":false            
+	}
+	this.apiservice.joblistingDashboard(params).subscribe((data)=>{
+		console.log(data);
+	})
+}
 }
 
 
