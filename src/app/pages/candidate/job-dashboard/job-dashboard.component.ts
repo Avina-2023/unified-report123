@@ -46,13 +46,11 @@ export class JobDashboardComponent implements OnInit {
   public shortlisted: any;
   public ChartData: any = [];
   public objDetails: any;
-
   public allyears = [
-    { value: '0', year: '2022' },
-    { value: '1', year: '2021' },
-    { value: '2', year: '2020' },
+    { year: new Date().getFullYear() },
+    { year: new Date().getFullYear() - 1 },
+    { year: new Date().getFullYear() - 2 },
   ];
-
   constructor(private apiService: ApiService, private appConfig: AppConfigService) {
     this.chartOptions = {
       series: [],
@@ -104,58 +102,22 @@ export class JobDashboardComponent implements OnInit {
     };
   }
   ngOnInit(): void {
-    this.getCandidateDashBoard()
+    this.getCandidateDashBoard("")
   }
 
-
-  // Based on selct year dashboard data 
-
-  selectYear(e) {
-    if (e.value == 0) {
-      this.getCandidateDashBoard()
+  // candidate Dashboard Barchart   
+  getCandidateDashBoard(e) {
+    let year
+    if (e.value) {
+      year = e.value
     }
-    else if (e.value == 1) {
-      this.year = this.appConfig.getCurrentYear() - 1
-      this.email = localStorage.getItem('email')
-      const obj1 = {};
-      if (Object.keys(obj1).length === 0) {
-        Object.assign(obj1, { "year": this.year, "email": this.email });
-      }
-      this.apiService.candidateDashboard(obj1).subscribe((res: any) => {
-        if (res.success) {
-          this.ChartData = res.data.series;
-          this.chartOptions.series.push(this.ChartData)
-          console.log(this.ChartData)
-        }
-      })
+    else {
+      year = this.appConfig.getCurrentYear()
     }
-    else if (e.value == 2) {
-      this.year = this.appConfig.getCurrentYear() - 2
-      this.email = localStorage.getItem('email')
-      const obj1 = {};
-      if (Object.keys(obj1).length === 0) {
-        Object.assign(obj1, { "year": this.year, "email": this.email });
-      }
-      this.apiService.candidateDashboard(obj1).subscribe((res: any) => {
-        if (res.success) {
-          this.ChartData = res.data.series;
-          this.chartOptions.series.push(this.ChartData)
-          console.log(this.ChartData)
-        }
-      })
-    }
-  }
-
-
-// candidate Dashboard Barchart   
-
-
-  getCandidateDashBoard() {
-    this.year = this.appConfig.getCurrentYear()
     this.email = localStorage.getItem('email')
     this.objDetails = {};
     if (Object.keys(this.objDetails).length === 0) {
-      Object.assign(this.objDetails, { "year": this.year, "email": this.email });
+      Object.assign(this.objDetails, { "year": year, "email": this.email });
     }
     this.apiService.candidateDashboard(this.objDetails).subscribe((res: any) => {
       if (res.success) {
@@ -166,6 +128,7 @@ export class JobDashboardComponent implements OnInit {
         this.shortlisted = this.candidateDahboard.shortlistedCount;
         this.ChartData = res.data.series;
         this.chartOptions.series.push(this.ChartData)
+        console.log('chart', this.ChartData)
       }
     })
   }
