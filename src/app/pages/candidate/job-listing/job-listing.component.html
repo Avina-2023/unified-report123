@@ -10,12 +10,14 @@
       </div>
     </div>
     <div class="results_dash">
-      <p style="float:left;">Results Showing ({{ShareInfoLength}})</p>
-      <p style="text-align: right;">Sort by: </p>
-      <mat-select class="panelPosition" placeholder="Relevance">
-        <mat-option value="relevance">Relevance</mat-option>
-        <mat-option value="recently posted">Recently Posted</mat-option>
-      </mat-select>
+      <div>Results Showing ({{ShareInfoLength}})</div>
+      <div class="sort">
+        <p>Sort by: </p>
+        <mat-select class="panelPosition" placeholder="Relevance">
+          <mat-option value="relevance">Relevance</mat-option>
+          <mat-option value="recently posted">Recently Posted</mat-option>
+        </mat-select>
+      </div>
     </div>
     <div class="overall_box">
       <div class="card_flex" *ngFor="let item of joblist">
@@ -60,8 +62,9 @@
               <span class="misc_col">{{item.jobtype}} </span>
             </div>
           </div>
-          <div class="misc_save"> <span>
-              <mat-icon class="misc_icon">bookmark_border </mat-icon>
+          <div class="misc_save" >
+            <span>
+              <mat-icon (click)="bookMarkIcon(item)" [ngClass]="item.isSelected ? 'saved_icon':'unsaved_icon'">{{item.isSelected?'bookmark':'bookmark_border'}} </mat-icon>
             </span>
           </div>
         </mat-card>
@@ -74,10 +77,11 @@
         <mat-icon class="misc_icon">filter_list</mat-icon><span class="job_designation">All Filters</span>
       </p>
       <div class="demo">
-        <div class="checkedVal" *ngFor="let chkbox of selectedValues">
-          {{chkbox.name}} <mat-icon>close</mat-icon>
+        <div class="checkedVal" *ngFor="let chkbox of selectedValues;let i = index">
+          {{chkbox.name}} <mat-icon (click)="closeSelectedValues(chkbox,i)"
+            style="font-size: 16px!important; text-align: end;cursor: pointer;">close</mat-icon>
         </div>
-        
+
       </div>
     </div>
     <div class="filt_list">
@@ -135,8 +139,10 @@
   </div>
   <div class="mob_courses">
     <div class="sub_crse">
-      <div *ngFor="let fillist of filter_info.data">
-        <div class="field_crse" (click)="filterItems=fillist.subContent">{{fillist.fieldName}}</div>
+      <div *ngFor="let fillist of filter_info.data;let indx = index">
+        <div class="field_crse"  (click)="filterItems = fillist.subContent; fil_elements(filter_info.data,indx)" [ngClass]="fillist.active?'redlab':''">
+          {{fillist.fieldName}} <mat-icon *ngIf="fillist.active">arrow_forward_ios</mat-icon>
+        </div>
       </div>
     </div>
     <div class="mob_card_crse">

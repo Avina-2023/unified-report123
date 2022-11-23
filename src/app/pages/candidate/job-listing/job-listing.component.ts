@@ -25,8 +25,7 @@ export class JobListingComponent implements OnInit {
 		'education': 'B.Tech',
 		'location': 'Chennai',
 		'jobtype': 'Full Time',
-		'saved': 'true'
-	},
+		'isSelected': false	},
 	{
 		'jobtitle': 'Autocad Engineer',
 		'companyname': 'L&T Construction',
@@ -36,7 +35,7 @@ export class JobListingComponent implements OnInit {
 		'education': 'B.Tech',
 		'location': 'Maharashtra',
 		'jobtype': 'Full Time',
-		'saved': 'false'
+		'isSelected': false
 	},
 	{
 		'jobtitle': 'Junior Programmer',
@@ -47,8 +46,7 @@ export class JobListingComponent implements OnInit {
 		'education': 'B.Tech',
 		'location': 'Bangalore',
 		'jobtype': 'Full Time',
-		'saved': 'true'
-	}
+		'isSelected': false	}
 		,
 	{
 		'jobtitle': 'Junior Developer',
@@ -59,8 +57,7 @@ export class JobListingComponent implements OnInit {
 		'education': 'B.Tech',
 		'location': 'Chennai',
 		'jobtype': 'Full Time',
-		'saved': 'true'
-	},
+		'isSelected': false	},
 	{
 		'jobtitle': 'Autocad Engineer',
 		'companyname': 'CGI',
@@ -70,7 +67,7 @@ export class JobListingComponent implements OnInit {
 		'education': 'B.Tech',
 		'location': 'Maharashtra',
 		'jobtype': 'Full Time',
-		'saved': 'false'
+		'isSelected': false
 	},
 	{
 		'jobtitle': 'Junior Programmer',
@@ -81,8 +78,7 @@ export class JobListingComponent implements OnInit {
 		'education': 'B.Tech',
 		'location': 'Bangalore',
 		'jobtype': 'Full Time',
-		'saved': 'true'
-	},
+		'isSelected': false	},
 	{
 		'jobtitle': 'Autocad Engineer',
 		'companyname': 'CGI',
@@ -92,7 +88,7 @@ export class JobListingComponent implements OnInit {
 		'education': 'B.Tech',
 		'location': 'Maharashtra',
 		'jobtype': 'Full Time',
-		'saved': 'false'
+		'isSelected': false
 	},
 	{
 		'jobtitle': 'Junior Programmer',
@@ -103,8 +99,7 @@ export class JobListingComponent implements OnInit {
 		'education': 'B.Tech',
 		'location': 'Bangalore',
 		'jobtype': 'Full Time',
-		'saved': 'true'
-	},
+		'isSelected': false	},
 	{
 		'jobtitle': 'Junior Tester',
 		'companyname': 'L&T Construction',
@@ -114,8 +109,7 @@ export class JobListingComponent implements OnInit {
 		'education': 'B.Tech',
 		'location': 'Bangalore',
 		'jobtype': 'Full Time',
-		'saved': 'true'
-	}
+		'isSelected': false	}
 	];
 	ShareInfoLength = this.joblist.length;
 	filter_info = {
@@ -383,10 +377,7 @@ export class JobListingComponent implements OnInit {
 
 	}
 
-	getdata(value: string) {
-		alert(value);
-	}
-
+	
 	openDialog(displayValue) {
 		this.filterItems = displayValue;
 		//console.log(this.filterItems);
@@ -403,12 +394,34 @@ export class JobListingComponent implements OnInit {
 		if(event?.checked){
 			data.is_checked = true
 			this.selectedValues.push(data);
-		}else{
-			data.is_checked = false
+		}
+		else{
+			data.is_checked = false;
 			this.selectedValues = this.selectedValues.filter(item => item.name !== data.name);
 		}	
 		
    }
 
+   closeSelectedValues(data,index){
+	data.is_checked = false
+	this.selectedValues.splice(index,1);
+	
+   }
+
+   fil_elements(data,i){
+		data.forEach((element,ind) => {
+			if(ind==i){
+				element.active=true
+			}else{
+				element.active=false
+			}
+		});
+   }
+
+   bookMarkIcon(item){
+	item.isSelected = !item.isSelected
+   }
+
 }
+
 

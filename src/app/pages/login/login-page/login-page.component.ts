@@ -7,6 +7,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import * as publicIp from 'public-ip';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
@@ -57,19 +58,18 @@ export class LoginPageComponent  {
 
     if(this.isCandidate){
       let cparams = {
-        email: this.apiService.encrypt(this.loginForm.value.username.trim()),
-      password: this.apiService.encrypt(this.loginForm.value.password.trim())
+        email: this.apiService.encryptnew(this.loginForm.value.username.trim(),environment.cryptoEncryptionKey),
+      password: this.apiService.encryptnew(this.loginForm.value.password.trim(),environment.cryptoEncryptionKey)
       }
       this.apiService.student_login(cparams).subscribe((data:any)=>{
         if(data.success)
         {
         this.appConfig.setLocalStorage('c_token', data && data.token ? data.token : '');
         this.appConfig.setLocalStorage('email', data && data.data.email ? data.data.email : '');
-        this.appConfig.setLocalStorage('username','')
-      }else{
-        this.toastr.error(data.message);
-        this.appConfig.setLocalStorage('c_token', data && data.token ? data.token : 'my token');
+        this.appConfig.setLocalStorage('name',data && data.data.personal_details?data.data.personal_details.name:'N/A')
         this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.CANDIDATEDASH.DASHBOARD);
+      }else{
+        this.appConfig.setLocalStorage('c_token', data && data.token ? data.token : 'my token');
       }
       })
     }else{
