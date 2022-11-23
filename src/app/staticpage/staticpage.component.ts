@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AppConfigService } from '../utils/app-config.service';
+import { APP_CONSTANTS } from '../utils/app-constants.service';
 
 @Component({
   selector: 'app-staticpage',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StaticpageComponent implements OnInit {
 
-  constructor() { }
+  constructor(private appconfig: AppConfigService) { }
 
   ngOnInit(): void {
-    window.location.href = "/about/index.html";
+    if(this.appconfig.getLocalStorage('token')){
+      this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.EMPDASHBOARD.HOME);
+    }else if(this.appconfig.getLocalStorage('c_token')){
+      this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.CANDIDATEDASH.DASHBOARD);
+    }else{
+      window.location.href = "/about/index.html";
+    }
+
   }
 }

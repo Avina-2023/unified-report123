@@ -1,4 +1,5 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { ThrowStmt } from '@angular/compiler';
+import { Component, OnInit, SimpleChange, ViewChild } from '@angular/core';
 import {
   ApexAxisChartSeries,
   ApexChart,
@@ -12,6 +13,9 @@ import {
   ApexFill,
   ApexTooltip
 } from "ng-apexcharts";
+import { element } from 'protractor';
+import { ApiService } from 'src/app/services/api.service';
+import { AppConfigService } from 'src/app/utils/app-config.service'
 export type ChartOptions = {
   series: ApexAxisChartSeries;
   chart: ApexChart;
@@ -32,26 +36,24 @@ export type ChartOptions = {
 export class JobDashboardComponent implements OnInit {
   @ViewChild("chart") chart: ChartComponent;
   public chartOptions: Partial<ChartOptions>;
-  constructor() {
+  // public date:any;
+  public year: any;
+  public email: any
+  public candidateDahboard: any;
+  public jobsAvailable: any;
+  public jobApplied: any;
+  public profileView: any;
+  public shortlisted: any;
+  public ChartData: any = [];
+  public objDetails: any;
+  public allyears = [
+    { year: new Date().getFullYear() },
+    { year: new Date().getFullYear() - 1 },
+    { year: new Date().getFullYear() - 2 },
+  ];
+  constructor(private apiService: ApiService, private appConfig: AppConfigService) {
     this.chartOptions = {
-      series: [
-        {
-          name: "Jobs Available",
-          data: [44, 55, 57, 56, 61, 58, 63, 60, 66]
-        },
-        {
-          name: "Jobs Applied",
-          data: [76, 85, 101, 98, 87, 105, 91, 114, 94]
-        },
-        {
-          name: "Profile Viewed",
-          data: [35, 41, 36, 26, 45, 48, 52, 53, 41]
-        },
-        {
-          name: "Shortlisted",
-          data: [5, 1, 6, 6, 5, 8, 2, 3, 1]
-        }
-      ],
+      series: [],
       chart: {
         type: "bar",
         height: 350,
@@ -69,7 +71,7 @@ export class JobDashboardComponent implements OnInit {
       dataLabels: {
         enabled: false,
         style: {
-          colors: ['#26BBEF', '#FF9A78', '#10E596','#FDBC64']
+          colors: ['#26BBEF', '#FF9A78', '#10E596', '#FDBC64']
         }
       },
       stroke: {
@@ -79,6 +81,7 @@ export class JobDashboardComponent implements OnInit {
       },
       xaxis: {
         categories: [
+          "Jan",
           "Feb",
           "Mar",
           "Apr",
@@ -87,48 +90,46 @@ export class JobDashboardComponent implements OnInit {
           "Jul",
           "Aug",
           "Sep",
-          "Oct"
+          "Oct",
+          "Nov",
+          "Dec"
         ]
       },
-      // yaxis: {
-      //   title: {
-      //     text: "$ (thousands)"
-      //   }
-      // },
       fill: {
         opacity: 1,
-        colors:['#26BBEF', '#FF9A78', '#10E596','#FDBC64']
+        colors: ['#26BBEF', '#FF9A78', '#10E596', '#FDBC64']
       },
-      // tooltip: {
-      //   y: {
-      //     formatter: function(val) {
-      //       return "$ " + val + " thousands";
-      //     }
-      //   }
-      // }
     };
-   }
-
-  ngOnInit(): void {
   }
-  dashboardCards: any = [
-    {
-      'name': 'jobs Available',
-      'count': "60"
-    },
-    {
-      'name': 'jobs Applied',
-      'count': "62"
-    },
-    {
-      'name': 'Profile Viewed',
-      'count': "23"
-    },
-    {
-      'name': 'Shortlisted',
-      'count': "10"
-    }
-  ]
- 
+  ngOnInit(): void {
+    this.getCandidateDashBoard("")
+  }
 
+  // candidate Dashboard Barchart   
+  getCandidateDashBoard(e) {
+    let year
+    if (e.value) {
+      year = e.value
+    }
+    else {
+      year = this.appConfig.getCurrentYear()
+    }
+    this.email = localStorage.getItem('email')
+    this.objDetails = {};
+    if (Object.keys(this.objDetails).length === 0) {
+      Object.assign(this.objDetails, { "year": year, "email": this.email });
+    }
+    this.apiService.candidateDashboard(this.objDetails).subscribe((res: any) => {
+      if (res.success) {
+        this.candidateDahboard = res.data
+        this.jobsAvailable = this.candidateDahboard.jobAvailableCount
+        this.jobApplied = this.candidateDahboard.jobAppliedCount;
+        this.profileView = this.candidateDahboard.profileViewedCount;
+        this.shortlisted = this.candidateDahboard.shortlistedCount;
+        this.ChartData = res.data.series;
+        this.chartOptions.series.push(this.ChartData)
+        console.log('chart', this.ChartData)
+      }
+    })
+  }
 }

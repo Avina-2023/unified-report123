@@ -233,8 +233,8 @@ export class ApiService {
     return this.http.post(`${this.BASE_URL}/changePassword `, data);
   }
 
-  candidatedashboard(){
-    return this.http.get(`${this.BASE_URL}/candidatedashboard`);
+  empdashboard(){
+    return this.http.get(`${this.BASE_URL}/dashboard`);
   }
 
   empProfileDetails(data){
@@ -263,5 +263,11 @@ export class ApiService {
   // Joblist API
   joblistingDashboard(data){
     return this.http.post(`${this.BASE_URL}/joblist`,data)
+  }
+  // candidate apis
+
+  candidateDashboard(data){
+    return this.http.post(`${this.BASE_URL}/candidatedashboard`,data)
+
   }
 }

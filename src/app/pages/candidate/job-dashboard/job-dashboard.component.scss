@@ -1,8 +1,8 @@
 @import "/src/assets/scss/candidate_dashboard.scss";
 
 
-.flix{
-  height: 90vh;
+.flix {
+    height: 90vh;
 }
 
 .overflowbox {
@@ -10,31 +10,83 @@
     flex-direction: row;
     display: flex;
     border-right: 1px solid #e7e7e7;
-    height: 90vh;
+    height: 85vh;
     overflow: auto;
     /* align-items: flex-start; */
     justify-content: space-between;
 }
+::-webkit-scrollbar {
+    width: 6px;
+    background-color: transparent;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background-color: #FFFFFF;
+  }
+  
+  ::-webkit-scrollbar-track {
+    // -webkit-box-shadow: inset 0 0 1px #FFFFFF(0, 0, 0, 0.1);
+    background-color: transparent;
+  }
+
+.leftside {
+    display: grid;
+
+    .user {
+        display: grid;
+
+        .user-name {
+            display: flex;
+            margin-left: 14px;
+            margin-top: 15px;
+
+            .username-N {
+                text-align: left;
+                letter-spacing: 0px;
+                color: #000000;
+                opacity: 1;
+                font-size: 24px;
+                font-weight: 300;
+            }
+
+            .username-B {
+                text-align: left;
+                letter-spacing: 0px;
+                color: #000000;
+                opacity: 1;
+                font-size: 24px;
+                font-weight: 500;
+            }
+        }
+    }
+}
 
 .user-name {
     display: flex;
-    margin-left: 15px;
-    position: relative;
-    top: 29px;
-}
+    margin-left: 14px;
+    margin-top: 15px;
 
-.username-N {
-    font-weight: 400;
-    font-size: 24px;
-}
+    .username-N {
+        text-align: left;
+        letter-spacing: 0px;
+        color: #000000;
+        opacity: 1;
+        font-size: 24px;
+        font-weight: 300;
+    }
 
-.username-B {
-    font-weight: 400;
-    font-size: 24px;
+    .username-B {
+        text-align: left;
+        letter-spacing: 0px;
+        color: #000000;
+        opacity: 1;
+        font-size: 24px;
+        font-weight: 500;
+    }
 }
 
 .displaygrid {
-    margin-top: 30px;
+    // margin-top: 30px;
 
     .dashboardcards {
         display: flex;
@@ -102,6 +154,9 @@
         .baralignment {
             display: flex;
             justify-content: space-between;
+            align-items: center;
+            height: 87px;
+            margin-bottom: -20px;
 
             .left {
                 text-align: left;
@@ -117,17 +172,21 @@
                 border-radius: 5px 5px 0px 0px;
                 opacity: 1;
                 margin: 2%;
-                .form-filed-dropdown{
+
+                .form-filed-dropdown {
                     width: 100%;
-                    height: 50px !important;
-                    .heighttext{
+                    width: 93px !important;
+
+                    .heighttext {
                         height: 50px;
                     }
-                    .selectText{
-                        height: 36px;
-                        padding-top: 11px;
-                        ::ng-deep.mat-select-trigger{
-                            height: 2.525em !important;
+
+                    .selectText {
+                        height: 0px;
+                        // padding-top: 11px;
+
+                        ::ng-deep.mat-select-trigger {
+                            height: 0.525em !important;
                         }
                     }
                 }
@@ -140,6 +199,11 @@
     width: 25%;
     height: inherit;
     background-color: #fff;
+
+    .visibleuser {
+        visibility: hidden;
+        position: absolute;
+    }
 
     .candidatebg {
         background-image: url('../../../../assets/images/candidate-profile-bg.png');
@@ -293,54 +357,69 @@
 }
 
 //  tab media queries
-// @media only screen and (max-width: 800px) {
-//     .overflowbox {
-//           width: 100%;
-//     display: flex;
-//     flex-direction: column !important;
-//     /* flex-wrap: nowrap; */
-//     border-right: 1px solid #e7e7e7;
-//     overflow: auto;
-//     align-items: center;
-//     justify-content: flex-start;
+@media only screen and (max-width:1254px) {
+    .overflowbox {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        border-right: 1px solid #e7e7e7;
+        overflow: auto;
+        flex-wrap: wrap;
 
-//         .dashboardcards {
-//             order: 2 !important;
-//             // height: 0px;
-//             align-items: center;
-//             flex-direction: column;
-//         }
+        .leftside {
+            order: 2 !important;
+        }
 
-//         .card-right {
-//             width: 100%;
-//             // height: 69vh;
-//             // background-color: #FFFFFF;
-//             order: 1 !important;
+        .dashboardcards {
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: row;
 
-//             .candidatebg {
-//                 height: 100px;
+            .box {
+                margin: 10px;
+            }
 
-//                 .userprofile {
-//                     top: 35px;
-//                     .bg-white{
-//                         background-color: #FFFFFF;
-//                     }
-//                 }
-//             }
-//         }
-//     }
-// }
+            .barchart {
+                margin: 0px;
+            }
+        }
+
+        .card-right {
+            width: 100%;
+            height: 100vh;
+
+            .visibleuser {
+                visibility: visible;
+                position: inherit;
+            }
+
+            .candidatebg {
+                height: 100px;
+                order: 1 !important;
+
+                .userprofile {
+                    top: 35px;
+
+                    .bg-white {
+                        background-color: #FFFFFF;
+                    }
+                }
+            }
+
+        }
+    }
+}
+
 // mobile media queries
 
 @media only screen and (max-width: 600px) {
     .user-name {
         display: flex;
-        /* margin-left: 15px; */
-        position: relative;
-        /* top: 29px; */
-        align-content: space-around;
-        justify-content: center;
-        top: 0;
+        /* margin-left: 14px; */
+        /* margin-top: 15px; */
+        margin: 25px 0px 25px 6px;
+        flex-direction: row;
+        justify-content: flex-start;
     }
 
     .overflowbox {
@@ -351,10 +430,19 @@
         border-right: 1px solid #e7e7e7;
         overflow: auto;
 
+        .leftside {
+            display: contents;
+        }
+
         .card-right {
             width: 100%;
-            order: 2 !important;
-            height: 60vh;
+            order: 1 !important;
+            height: 56vh;
+
+            .visibleuser {
+                visibility: hidden;
+                position: absolute;
+            }
 
             .candidatebg {
                 height: 100px;
@@ -370,10 +458,13 @@
         }
 
         .displaygrid {
-            order: 3 !important;
+            order: 2 !important;
 
+            // .user{
+            //     order: 1 !important;
+            // }
             .dashboardcards {
-                // order: 2 !important;
+                order: 1 !important;
                 // height: 0px;
                 align-items: center;
                 flex-direction: column;
