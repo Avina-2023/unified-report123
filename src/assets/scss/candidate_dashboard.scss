@@ -1,3 +1,6 @@
 ::ng-deep body{
 background: #fff;
 }
+::ng-deep.mat-form-field-appearance-outline .mat-form-field-infix {
+    padding: 4px;
+}
