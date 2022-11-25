@@ -1,5 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
-
+import {Component, Input, OnInit } from '@angular/core';
 @Component({
   selector: 'app-job-list-item',
   templateUrl: './job-list-item.component.html',
@@ -8,13 +7,10 @@ import { Component, Input, OnInit } from '@angular/core';
 export class JobListItemComponent implements OnInit {
   public isActive:boolean = true;
   public isDisabled:boolean = true;
-  
-   @Input() data:any;
-   @Input() visibleItems:any
-   @Input() savedButton = false;
+  @Input() data:any;
+  @Input() savedButton = false;
   constructor() { }
   ngOnInit() {
-   console.log('murali',this.data)
   }
 
 }
