@@ -3,7 +3,6 @@ import { APP_CONSTANTS } from 'src/app/utils/app-constants.service';
 import { CandidateComponent } from './candidate.component';
 import { JobListingComponent } from './job-listing/job-listing.component';
 import {JobSavedListComponent} from './job-display-pages/job-saved-list/job-saved-list.component';
-import {JobListItemComponent} from './job-display-pages/job-list-item/job-list-item.component'
 import { JobAppliedListComponent } from './job-display-pages/job-applied-list/job-applied-list.component';
 import { JobDashboardComponent } from './job-dashboard/job-dashboard.component';
 
