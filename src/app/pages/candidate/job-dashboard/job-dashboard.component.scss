@@ -11,9 +11,15 @@
     display: flex;
     border-right: 1px solid #e7e7e7;
     height: 85vh;
-    overflow: auto;
+    // overflow: auto;
     /* align-items: flex-start; */
     justify-content: space-between;
+    // display: flex;
+//   height: 600px;
+//   flex-wrap: wrap;
+overflow-x: hidden !important;
+  align-content: stretch;
+//   overflow: scroll; 
 }
 ::-webkit-scrollbar {
     width: 6px;
@@ -30,8 +36,8 @@
   }
 
 .leftside {
-    display: grid;
-
+    // display: grid;
+width: 75%;
     .user {
         display: grid;
 
@@ -514,3 +520,4 @@
 //       }
 //   }
 // }
+

@@ -128,7 +128,6 @@ export class JobDashboardComponent implements OnInit {
         this.shortlisted = this.candidateDahboard.shortlistedCount;
         this.ChartData = res.data.series;
         this.chartOptions.series.push(this.ChartData)
-        console.log('chart', this.ChartData)
       }
     })
   }

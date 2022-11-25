@@ -1,4 +1,4 @@
-<div class="appHeader">
+<!-- <div class="appHeader">
   <div class="d-flex">
     <button mat-flat-button (click)="isExpanded = !isExpanded; sideNavMode=sideNavMode=='over'?'side':'over'">
       <mat-icon>menu</mat-icon>
@@ -10,11 +10,23 @@
     <span>{{candidateName}}</span>
     <img _ngcontent-lak-c187="" src="../../../../assets/images/emp-dashboard-icons/user.png">
   </div>
-</div>
-<div>
-  <mat-sidenav-container class="example-container" autosize [hasBackdrop]="false">
-    <mat-sidenav #sidenav class="example-sidenav" [mode]="sideNavMode"  opened="true" (mouseenter)="mouseenter()"
-      (mouseleave)="mouseleave()">
+</div> -->
+<mat-toolbar class="appHeader" layout="row" style="position: fixed;">
+  <button mat-icon-button class="menu-icon">
+      <mat-icon (click)="isExpanded = !isExpanded;" class="mat-24" aria-label="Menu">menu</mat-icon>
+  </button>
+  <img class="hearder-logo " alt="" src="assets/images/landing/newLogo.png">
+  <span class="toolbar-spacer"></span>
+  <div class="toolbar-pic">
+    <span>{{candidateName}}</span>
+    <img  src="../../../../assets/images/emp-dashboard-icons/user.png">
+  </div>
+</mat-toolbar>
+<div class="content">
+  <mat-sidenav-container class="example-container" style="margin-top: 64px !important;"  autosize [hasBackdrop]="false">
+    <mat-sidenav #sidenav mode="side" opened="true" class="sidenav">
+    <!-- <mat-sidenav #sidenav class="example-sidenav" fullscreen [mode]="sideNavMode"  opened="true" (mouseenter)="mouseenter()"
+      (mouseleave)="mouseleave()"> -->
       <mat-nav-list>
         <mat-list-item class="navItems" [ngClass]="router.url==routelinks.CANDIDATEDASH.DASHBOARD? 'active':''" [routerLink]="routelinks.CNDIDATELANDING">
           <div class="innerLine"></div>
@@ -43,11 +55,11 @@
       <mat-nav-list>
       </mat-nav-list>
     </mat-sidenav>
-
-    <div [ngClass]="sideNavMode=='over'?'navMarginOver':'navMarginSide'">
+    <mat-sidenav-content style="overflow-x:hidden !important" >
+    <div>
       <router-outlet></router-outlet>
     </div>
-
+  </mat-sidenav-content>
   </mat-sidenav-container>
   <div class="appFooter">
     <app-footer></app-footer>
