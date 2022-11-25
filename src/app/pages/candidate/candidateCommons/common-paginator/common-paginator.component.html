@@ -1,0 +1,18 @@
+
+<div class="pagination">
+    <div class="left-arrow">
+      <button [disabled]="value.page === 1"   (click)="selectPage(value.page - 1)"><mat-icon class="icon">chevron_left</mat-icon></button>  
+    </div>
+    <button class="number"
+      *ngFor="let page of visiblePages"
+      [ngClass]="value.page === page && 'selected'"
+      (click)="selectPage(page)">
+      {{ page }}
+    </button>
+    <div class="right-arrow">
+         <button [disabled]="value.page === totalPages" (click)="selectPage(value.page + 1)"><mat-icon class="icon"> chevron_right</mat-icon></button>   
+    </div>
+  </div>
+
+
+  

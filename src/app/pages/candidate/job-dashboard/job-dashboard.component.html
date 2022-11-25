@@ -1,0 +1,136 @@
+<div class="overflowbox" >
+    <div class="leftside">
+        <div class="user">
+            <div class="user-name">
+                <div class="username-N">
+                    Welcome,&nbsp;
+                </div>
+                <div class="username-B">
+                    Candidate
+                </div>
+            </div>
+        </div>
+        <div class="displaygrid">
+            <div class="dashboardcards">
+                <div class="box">
+                    <mat-card class="singlecard singlecardbg0">
+                        <div class="both">
+                            <div class="bigleft singlecardborder0">
+                                <div class="left">
+                                    <div class="smalltext">
+                                        jobs Available
+                                    </div>
+                                    <div class="bigtext">
+                                        {{ jobsAvailable }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </mat-card>
+                </div>
+                <div class="box">
+                    <mat-card class="singlecard singlecardbg1">
+                        <div class="both">
+                            <div class="bigleft singlecardborder1">
+                                <div class="left">
+                                    <div class="smalltext">
+                                        jobs Applied
+                                    </div>
+                                    <div class="bigtext">
+                                        {{ jobApplied }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </mat-card>
+                </div>
+                <div class="box">
+                    <mat-card class="singlecard singlecardbg2">
+                        <div class="both">
+                            <div class="bigleft singlecardborder2">
+                                <div class="left">
+                                    <div class="smalltext">
+                                        Profile Viewed
+                                    </div>
+                                    <div class="bigtext">
+                                        {{ profileView }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </mat-card>
+                </div>
+                <div class="box">
+                    <mat-card class="singlecard singlecardbg3">
+                        <div class="both">
+                            <div class="bigleft singlecardborder3">
+                                <div class="left">
+                                    <div class="smalltext">
+                                        Shortlisted
+                                    </div>
+                                    <div class="bigtext">
+                                        {{ shortlisted }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </mat-card>
+                </div>
+            </div>
+            <div class="barchart">
+                <div class="baralignment">
+                    <div class="left">Data</div>
+                    <div class="right">
+                        <mat-form-field class="form-filed-dropdown" appearance="outline">
+                            <mat-select class="selectText" (selectionChange)="getCandidateDashBoard($event)" placeholder="2022">
+                                <mat-option *ngFor="let val of allyears" [value]="val.year">{{val.year}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <apx-chart [series]="ChartData" [chart]="chartOptions.chart" [dataLabels]="chartOptions.dataLabels"
+                    [plotOptions]="chartOptions.plotOptions" [yaxis]="chartOptions.yaxis" [legend]="chartOptions.legend"
+                    [fill]="chartOptions.fill" [stroke]="chartOptions.stroke" [tooltip]="chartOptions.tooltip"
+                    [xaxis]="chartOptions.xaxis">
+                </apx-chart>
+            </div>
+        </div>
+    </div>
+    <div class="card-right">
+        <div class="d-flex visibleuser">
+            <div class="user-name">
+                <div class="username-N">
+                    Welcome,&nbsp;
+                </div>
+                <div class="username-B">
+                    Candidate
+                </div>
+            </div>
+        </div>
+        <div class="candidatebg">
+            <div class="userprofile">
+                <img src="../../../../assets/images/candidate-userprofile.png">
+                <div class="bg-white">
+                    <div class="profilename">
+                        John Doe
+                    </div>
+                    <div class="big">Software Engineer</div>
+                    <div class="small">Chennai, Tamil Nadu, India</div>
+                    <hr>
+                    <div class="profile-progress">
+                        <span>Profile Completion</span>
+                        <div role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"
+                            style="--value:43"></div>
+                    </div>
+                    <hr>
+                    <div class="profile-buttons">
+                        <button class="buttons view-profile">View Profile</button>
+                        <button class="buttons edit-profile">Edit Profile</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

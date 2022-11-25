@@ -8,11 +8,11 @@ import * as CryptoJS from 'crypto-js';
 import { AppConfigService } from 'src/app/utils/app-config.service';
 import { MatDialog } from '@angular/material/dialog';
 @Component({
-  selector: 'app-job-seekers',
-  templateUrl: './job-seekers.component.html',
-  styleUrls: ['./job-seekers.component.scss']
+  selector: 'app-candidateRegister',
+  templateUrl: './candidateRegister.component.html',
+  styleUrls: ['./candidateRegister.component.scss']
 })
-export class JobSeekersComponent implements OnInit {
+export class candidateRegister implements OnInit {
   campusUrl = environment.CAMPUS_URL;
   freshGraduatesForm: FormGroup;
   @ViewChild('noSkill', { static: false }) matDialogRef: TemplateRef<any>;
@@ -43,6 +43,7 @@ export class JobSeekersComponent implements OnInit {
 
   register() {
     this.freshGraduatesForm.value.email = CryptoJS.AES.encrypt(this.freshGraduatesForm.value.email.toLowerCase().trim(), this.secretKey.trim()).toString();
+    console.log(CryptoJS.AES.decrypt(this.freshGraduatesForm.value.email,this.secretKey.trim()))
     this.ApiService.candidateRegistration(this.freshGraduatesForm.value).subscribe((res: any) => {
       if (res.success) {
         this.newCandidate = true

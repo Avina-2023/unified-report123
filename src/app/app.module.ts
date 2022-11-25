@@ -25,12 +25,14 @@ import { LandingHeaderComponent } from './pages/landing-page/landing-header/land
 import { LandingFooterComponent } from './pages/landing-page/landing-footer/landing-footer.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { LoginPageComponent } from './pages/login/login-page/login-page.component';
-import { RegisterPageComponent } from './pages/register/register-page/register-page.component';
-import { JobSeekersComponent } from './pages/jobSeekers/job-seekers/job-seekers.component';
+import { RegisterPageComponent } from './pages/login/register-page/register-page.component';
+// import { JobSeekersComponent } from './pages/login/candidateRegister/candidateRegister.component';
+import {candidateRegister} from './pages/login/candidateRegister/candidateRegister.component'
 import { SkillMasterListComponent } from './pages/skill-Master/skill-master-list/skill-master-list.component';
 import { StaticpageComponent } from './staticpage/staticpage.component';
 import { SetPasswordComponent } from './pages/login/set-password/set-password.component';
 import { ForgotPasswordComponent } from './pages/login/forgot-password/forgot-password.component';
+import { CandidateModule } from './pages/candidate/candidate.module';
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
 };
@@ -48,7 +50,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     ForgotPasswordComponent,
     SetPasswordComponent,
     RegisterPageComponent,
-    JobSeekersComponent,
+    // JobSeekersComponent,
+    candidateRegister,
     SkillMasterListComponent,
     StaticpageComponent
   ],
