@@ -5,6 +5,7 @@ import { JobListingComponent } from './job-listing/job-listing.component';
 import {JobSavedListComponent} from './job-display-pages/job-saved-list/job-saved-list.component';
 import { JobAppliedListComponent } from './job-display-pages/job-applied-list/job-applied-list.component';
 import { JobDashboardComponent } from './job-dashboard/job-dashboard.component';
+import { JobDescriptionComponent } from './job-description/job-description.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,9 @@ const routes: Routes = [
       },
       {
         path:`${APP_CONSTANTS.ROUTES.CANDIDATEDASH.JOBSAPPLIED}`,component:JobAppliedListComponent
+      },
+      {
+        path:`${APP_CONSTANTS.ROUTES.CANDIDATEDASH.JOBDESCRIPTION}`,component:JobDescriptionComponent
       },
       {
         path:'',redirectTo:`${APP_CONSTANTS.ROUTES.CANDIDATEDASH.DASHBOARD}`,pathMatch:'full'
