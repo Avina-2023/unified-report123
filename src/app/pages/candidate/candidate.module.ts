@@ -11,6 +11,8 @@ import { JobSavedListComponent } from './job-display-pages/job-saved-list/job-sa
 import { JobDashboardComponent } from './job-dashboard/job-dashboard.component';
 import { CommonPaginatorComponent } from './candidateCommons/common-paginator/common-paginator.component';
 import { NgApexchartsModule } from "ng-apexcharts";
+import { JobDescriptionComponent } from './job-description/job-description.component';
+import { TimeAgoPipe } from 'src/app/pipe/timeago.pipe';
 
 @NgModule({
   imports: [
@@ -27,7 +29,9 @@ import { NgApexchartsModule } from "ng-apexcharts";
     JobListItemComponent,
     JobAppliedListComponent,
     JobSavedListComponent,
-    CommonPaginatorComponent
+    JobDescriptionComponent,
+    CommonPaginatorComponent,
+    TimeAgoPipe
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]
 })
