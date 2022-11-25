@@ -33,59 +33,64 @@
       <div class="card_flex" *ngFor="let item of joblist;let i=index">
         <mat-card class="example_card" (click)="gotojob(item)">
           <div class="job_card">
-            <div class="comp-image">
-              <img [src]="item.companyLogo" class="comp_logo" alt="logo">
+            <div class="inner_card">
+              <div class="comp-image">
+                <img [src]="item.companyLogo" class="comp_logo" alt="logo">
+              </div>
+              <div class="card_title">
+                <p class="job_designation">
+                  {{item.jobTitle}}
+                </p>
+                <p class="comp_name">
+                  {{item.company}}
+                </p>
+              </div>
             </div>
-            <div class="card_title">
-              <p class="job_designation">
-                {{item.jobTitle}}
-              </p>
-              <p class="comp_name">
-                {{item.company}}
-              </p>
-            </div>
-          </div>
-          <div class="job_description" [innerHTML]="sampleContent[i].slice(0, 90).concat('...') ">
-          </div>
-          <div class="card_flex">
-            <div class="specialization" *ngFor="let subItem of item.specialization">
-              <button>
-                {{subItem}}
-              </button>
-            </div>
-          </div>
-          <div class="misc_details">
-            <div class="misc_row"><span>
-                <mat-icon class="misc_icon"> school</mat-icon>
-              </span>
-              <span *ngFor="let subItem of item.education">
-                <span class="misc_col">{{subItem}}, </span>
+            <div class="misc_save">
+              <span>
+                <mat-icon (click)="bookMarkIcon(item)" [ngClass]="item.isSelected ? 'saved_icon':'unsaved_icon'">
+                  {{item.isSelected?'bookmark':'bookmark_border'}} </mat-icon>
               </span>
             </div>
 
-            <div class="misc_row"><span>
-                <mat-icon class="misc_icon"> location_on</mat-icon>
-              </span>
-              <span class="green">
-                <span *ngFor="let subItem of item.jobLocation">
+          </div>
+          <div class="sample_class">
+            <div class="job_description" [innerHTML]="sampleContent[i].slice(0, 80).concat('...') ">
+            </div>
+            <div class="expertise">
+              <div class="specialization" *ngFor="let subItem of item.specialization">
+                <button>
+                  {{subItem}}
+                </button>
+              </div>
+            </div>
+            <div class="misc_details">
+              <div class="misc_row"><span>
+                  <mat-icon class="misc_icon"> school</mat-icon>
+                </span>
+                <span *ngFor="let subItem of item.education">
                   <span class="misc_col">{{subItem}}, </span>
                 </span>
-              </span>
+              </div>
+
+              <div class="misc_row"><span>
+                  <mat-icon class="misc_icon"> location_on</mat-icon>
+                </span>
+                <p class="locate">
+                  <span *ngFor="let subItem of item.jobLocation">
+                    <span class="misc_col">{{subItem}}, </span>
+                  </span>
+                </p>
+              </div>
+
+              <div class="misc_row"><span>
+                  <mat-icon class="misc_icon"> work</mat-icon>
+                </span>
+                <span class="misc_col">{{item.jobType}} </span>
+              </div>
             </div>
 
-            <div class="misc_row"><span>
-                <mat-icon class="misc_icon"> work</mat-icon>
-              </span>
-              <span class="misc_col">{{item.jobType}} </span>
-            </div>
           </div>
-          <div class="misc_save">
-            <span>
-              <mat-icon (click)="bookMarkIcon(item)" [ngClass]="item.isSelected ? 'saved_icon':'unsaved_icon'">
-                {{item.isSelected?'bookmark':'bookmark_border'}} </mat-icon>
-            </span>
-          </div>
-
         </mat-card>
       </div>
     </div>

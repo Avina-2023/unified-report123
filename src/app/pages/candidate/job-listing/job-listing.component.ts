@@ -388,7 +388,7 @@ export class JobListingComponent implements OnInit {
 	data: any;
 	filterObj = {};
 	sortData = 'relevance';
-	jobId: any =  '';
+	jobId: any = '';
 
 
 	constructor(public dialog: MatDialog, private apiservice: ApiService, private appconfig: AppConfigService, public router:Router) { }

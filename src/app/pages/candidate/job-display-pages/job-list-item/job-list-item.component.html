@@ -1,12 +1,13 @@
+
 <div class="overflowbox">
   <div class="card_flex" *ngFor="let item of data">
     <mat-card class="listcard">
       <mat-card-header>
         <div class="card_header">
-          <img class="img" src="{{item.companyimage}}">
+          <img class="img" src="{{item.companyLogo}}">
           <div class="cardgrid">
-            <div class="title">{{item.jobtitle}}</div>
-            <div class="subtitle">{{item.companyname}}</div>
+            <div class="title">{{item.jobTitle}}</div>
+            <div class="subtitle">{{item.company}}</div>
           </div>
         </div>
       </mat-card-header>
@@ -19,7 +20,7 @@
       <hr class="hrline">
       <mat-card-content>
         <p class="description-p">
-          {{item.jobdescription}}
+          {{item.jobDescription}}
         </p>
         <div class="specialization">
           <span class="specialization-box" *ngFor="let elem of item.specialization"> {{elem}}</span>
@@ -34,7 +35,7 @@
       <div class="cardfooter_row"><span>
         <mat-icon class="icon"> location_on</mat-icon>
       </span>
-      <span class="smalltext">Chennai</span>
+      <span class="smalltext">{{item.address}}</span>
     </div>
         <div class="cardfooter_row"><span>
             <mat-icon class="icon"> business_center</mat-icon>
@@ -47,7 +48,6 @@
           </span>
           <span class="smalltext">Applied 3 Days ago </span>
         </div>
-
       </div>
       <div class="misc_save" *ngIf="savedButton"> <span>
           <mat-icon class="misc_icon">bookmark_border</mat-icon>
@@ -56,3 +56,4 @@
     </mat-card>
   </div>
 </div>
+

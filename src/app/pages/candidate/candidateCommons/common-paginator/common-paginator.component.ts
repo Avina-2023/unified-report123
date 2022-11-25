@@ -13,90 +13,39 @@ export interface PaginationValue {
 })
 
 export class CommonPaginatorComponent implements OnInit {
-  @Input() value: PaginationValue = { page: 1, pageSize: 5 };
-  @Input() total = 3;
-  @Input() visibleRangeLength = 3;
-  // @Output() valueChange = new EventEmitter<PaginationValue>();
-
+  public value = 1;
+  public totalPages = 10;
+  // public visibleRangeLength = 5;
   public visiblePages: number[];
+  @Output() send = new EventEmitter;
+  @Input() totalcount:any;
   constructor() { }
-
-
- 
-  writeValue(value: PaginationValue): void {
-    if (!value) return;
-
-    this.value = value;
-    this.updateTotalPages();
-    this.updateVisiblePages();
-  }
-
-  public totalPages: number;
- 
-
   ngOnInit(): void {
     this.updateVisiblePages();
-    // console.log(this.valueChange)
   }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes.total || changes.value) this.updateTotalPages();
-  }
-
+  // select paginator number
   public selectPage(page: number): void {
-    console.log(page)
-    this.value = { ...this.value, page };
+    this.value = page;
+    let pages = {
+      "value":this.value,
+      // "length":this.visibleRangeLength
+    }
+    this.send.emit(pages)
     this.updateVisiblePages();
-
   }
-  public selectPageSize(pageSize: string): void {
-    this.value = { page: 1, pageSize: +pageSize };
-    this.updateTotalPages();
-    this.updateVisiblePages();
-    // this.valueChange.emit(this.value);
-
-    
-  }
-
-
+//  active and inactive paginator
   private updateVisiblePages(): void {
-    const length = Math.min(this.totalPages, this.visibleRangeLength);
+    const length = Math.min(this.totalcount);
     const startIndex = Math.max(
       Math.min(
-        this.value.page - Math.ceil(length / 2),
-        this.totalPages - length
+        this.value - Math.ceil(length / 2),
+        this.totalcount - length
       ),
       0
     );
-
     this.visiblePages = Array.from(
       new Array(length).keys(),
       (item) => item + startIndex + 1
     );
   }
-
-  private updateTotalPages(): void {
-    this.totalPages = Math.ceil(this.total / this.value.pageSize);
-  }
-  // ngOnInit(): void {
-    //this.updateVisiblePages()
-  // }
-
-  // public selectPage(page: number) {
-  //   console.log('hlo', page)
-  //   this.value = page;
-  //   this.updateVisiblePages()
-  // }
-  // private updateVisiblePages(): void {
-  //   const length = Math.min(this.totalPages, this.visibleRangeLength);
-  //   const startIndex = Math.max(
-  //     Math.min(
-  //       this.value - (length / 2),
-  //       this.totalPages - length),0);
-  //   this.visiblePages = Array.from(
-  //     new Array(length).keys(),
-  //     (item) => item + startIndex + 1
-  //   )
-
-  // }
 }

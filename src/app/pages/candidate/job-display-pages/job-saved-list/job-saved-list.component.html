@@ -1,4 +1,7 @@
-<p>
-  job-saved-list works!
-</p>
-<app-job-list-item [data] = "savedjobs" [savedButton]="true"></app-job-list-item>
+<div class="savedjobs">
+ <div class="text">Saved Jobs</div>
+</div>
+  <app-job-list-item [data]="savedjobs" [savedButton]="true"></app-job-list-item>
+  <div class="pagination">
+    <app-common-paginator *ngIf="total"  (send)="some($event)" [totalcount]="total"></app-common-paginator>
+  </div>
