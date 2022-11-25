@@ -43,11 +43,14 @@ export class JobDescriptionComponent implements OnInit {
   }
 
   getRoute() {
-    this.route.paramMap.subscribe((param: any) => {
-      console.log("---->",param)
-
-
-    });
+    this.router.events.pipe(
+      filter(e => e instanceof NavigationStart),
+      map(() => {
+        const currentState = this.router.getCurrentNavigation();
+        console.log(currentState.extras.state)
+        return currentState.extras.state;
+      })
+    );
   }
 
   openDialog(verify){

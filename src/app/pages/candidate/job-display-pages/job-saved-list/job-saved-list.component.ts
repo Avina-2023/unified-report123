@@ -28,7 +28,7 @@ export class JobSavedListComponent implements OnInit {
         "pageNumber": this.pageNumber,
         "itemsPerPage": this.itemsPerPage,
         "email":email,
-        "isApplied": true,
+        "isSelected": true,
         "sort": "s",
         "specialization": "s"
       };
