@@ -11,6 +11,7 @@ import { JobSavedListComponent } from './job-display-pages/job-saved-list/job-sa
 import { JobDashboardComponent } from './job-dashboard/job-dashboard.component';
 import { CommonPaginatorComponent } from './candidateCommons/common-paginator/common-paginator.component';
 import { NgApexchartsModule } from "ng-apexcharts";
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
@@ -18,7 +19,8 @@ import { NgApexchartsModule } from "ng-apexcharts";
     SharedModule,
     CandidateRoutes,
     MaterialModule,
-    NgApexchartsModule
+    NgApexchartsModule,
+    FormsModule
   ],
   declarations: [
     JobDashboardComponent,

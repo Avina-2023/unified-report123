@@ -269,6 +269,13 @@ export class ApiService {
   jobfilterDashboard(data) {
     return this.http.post(`${this.BASE_URL}/jobfilter`, data)
   }
+
+  // Save Jobs API
+  saveJobsDashboard(data) {
+    return this.http.post(`${this.BASE_URL}/saveJobs`, data)
+  }
+
+
   // candidate apis
 
   candidateDashboard(data) {
