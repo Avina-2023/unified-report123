@@ -3,6 +3,8 @@ import { MatDialog,  } from '@angular/material/dialog';
 import { APP_CONSTANTS } from 'src/app/utils/app-constants.service';
 import { ApiService } from 'src/app/services/api.service';
 import { AppConfigService } from 'src/app/utils/app-config.service';
+import { ActivatedRoute, NavigationStart, Router } from '@angular/router';
+import { filter, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-job-description',
@@ -13,17 +15,39 @@ export class JobDescriptionComponent implements OnInit {
   jobDescription: any;
   @ViewChild('incompleteProfile',{static: false}) matDialogRef: TemplateRef<any>;
   @ViewChild('successApply',{static: false}) applySuccess: TemplateRef<any>;
+
   dialogData: any;
+  descriptionData: any;
 
 
   constructor(
     private skillexService:ApiService,
     private appConfig: AppConfigService,
-    private mdDialog: MatDialog
+    private mdDialog: MatDialog,
+    public router: Router,
+    public route: ActivatedRoute
   ) { }
 
   ngOnInit() {
-    this.getpageData();
+    // this.descriptionData = this.router.events.pipe(
+    //   filter(e => e instanceof NavigationStart),
+    //   map(() => {
+    //     const currentState = this.router.getCurrentNavigation();
+    //     console.log(currentState.extras.state)
+    //     return currentState.extras.state;
+    //   })
+    // );
+
+    // this.getpageData();
+    this.getRoute()
+  }
+
+  getRoute() {
+    this.route.paramMap.subscribe((param: any) => {
+      console.log("---->",param)
+
+
+    });
   }
 
   openDialog(verify){

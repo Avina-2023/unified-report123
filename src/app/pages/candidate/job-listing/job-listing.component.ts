@@ -2,6 +2,9 @@ import { ApiService } from 'src/app/services/api.service';
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { I } from '@angular/cdk/keycodes';
+import { AppConfigService } from 'src/app/utils/app-config.service';
+import { APP_CONSTANTS } from 'src/app/utils/app-constants.service';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-job-listing',
@@ -388,7 +391,7 @@ export class JobListingComponent implements OnInit {
 	jobId: any =  '';
 
 
-	constructor(public dialog: MatDialog, private apiservice: ApiService) { }
+	constructor(public dialog: MatDialog, private apiservice: ApiService, private appconfig: AppConfigService, public router:Router) { }
 
 	ngOnInit() {
 		this.getJobList();
@@ -526,8 +529,8 @@ export class JobListingComponent implements OnInit {
 			"sort": this.sortData,
 			"specialization": "Computer Science Engineering",
 			"email": "deenabandhutekarla@gmail.com"
-			// "isApplied":false,              
-			// "isSelected":false            
+			// "isApplied":false,
+			// "isSelected":false
 		}
 		this.apiservice.joblistingDashboard(params).subscribe((response: any) => {
 
@@ -560,7 +563,15 @@ export class JobListingComponent implements OnInit {
 		});
 	}
 
-	
+  gotojob(item){
+    this.router.navigate([APP_CONSTANTS.ENDPOINTS.CANDIDATEDASH.JOBDESCRIPTION], {
+      state: item
+    });
+    // this.appconfig.routeNavigationWithParam(APP_CONSTANTS.ENDPOINTS.CANDIDATEDASH.JOBDESCRIPTION,item)
+    console.log(item)
+  }
+
+
 }
 
 

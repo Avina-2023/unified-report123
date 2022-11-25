@@ -31,7 +31,7 @@
     </div>
     <div class="overall_box">
       <div class="card_flex" *ngFor="let item of joblist;let i=index">
-        <mat-card class="example_card">
+        <mat-card class="example_card" (click)="gotojob(item)">
           <div class="job_card">
             <div class="comp-image">
               <img [src]="item.companyLogo" class="comp_logo" alt="logo">

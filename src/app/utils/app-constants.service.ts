@@ -28,7 +28,7 @@ export const APP_CONSTANTS = {
       JOBSSAVED:'/candidateview/savedjobs',
       JOBSAPPLIED:'/candidateview/appliedjobs',
       PAGINATION :'/candidateview/page',
-      JOBDESCRIPTION:'/candidateview/jobescription',
+      JOBDESCRIPTION:'/candidateview/jobdescription',
     },
     PASSWORD: {
       FORGOT: '/forgot-password',
