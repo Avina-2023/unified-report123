@@ -1,16 +1,21 @@
 @import "/src/assets/scss/candidate_dashboard.scss";
-*{
-  font-family:lato!important;
-  .mat-icon{
+
+* {
+  font-family: lato !important;
+
+  .mat-icon {
     font-family: "Material Icons" !important;
   }
 }
 
-::ng-deep{
-  .mat-option.mat-active, .mat-option:hover{
-  background:none!important;
+::ng-deep {
+
+  .mat-option.mat-active,
+  .mat-option:hover {
+    background: none !important;
+  }
 }
-}
+
 ::-webkit-scrollbar {
   display: none;
 }
@@ -18,6 +23,7 @@
 .job_board {
   width: 75%;
   border-right: 1px solid #e7e7e7;
+  height: 100vh;
 
 }
 
@@ -39,11 +45,12 @@
   div {
     font-weight: 600;
   }
-  .sort{
+
+  .sort {
     display: flex;
 
   }
-  
+
 }
 
 .flex-layout {
@@ -91,7 +98,7 @@
     white-space: initial !important;
     padding: 0px 5px !important;
     color: #707070;
-    font-weight: 200;
+    font-weight: 400;
     font-size: 13px;
   }
 
@@ -126,6 +133,9 @@
   padding: 10px;
   min-width: 300px;
   width: min-content;
+  border: 1px solid #70707033;
+  box-shadow: none;
+  border-radius: 10px
 }
 
 .job_card {
@@ -168,15 +178,15 @@
 
   .comp_name {
     color: #70707099;
-    font-weight: 200;
+    font-weight: 400;
     font-size: 12px;
   }
 }
 
 .job_designation {
-  font-size: 14px!important;
-  font-weight: bold!important;
-  color: #000!important;
+  font-size: 14px !important;
+  font-weight: bold !important;
+  color: #000 !important;
 }
 
 .job_description {
@@ -187,14 +197,14 @@
 }
 
 .specialization {
-  margin-top: 20px;
+  // margin-top: 20px;
 
   button {
     background: #26BBEF33;
     color: #0097CC;
     font-weight: 500;
     border: 1px solid rgb(255 255 255 / 53%);
-    margin: 0px 7px;
+    margin: 3px 7px;
     border-radius: 3px;
     padding: 4px 8px;
     font-size: 12px;
@@ -202,26 +212,24 @@
 }
 
 .misc_details {
-  display: flex;
-  flex-wrap: wrap;
   margin-top: 10px;
 
   span {
     font-size: 12px;
     color: #8C8C8C;
-    margin: 0px 4px;
   }
 
   .misc_row {
     display: flex;
-    margin: 0px 4px;
+    margin: 0px 3px;
+    padding: 2px 0px;
   }
 
   .misc_icon {
-    font-size: 12px;
-    margin-top: 5px;
+    font-size: 15px !important;
     height: auto;
     width: auto;
+    margin: 0px 4px;
   }
 
 
@@ -229,33 +237,45 @@
   .misc_col {
     font-size: 12px;
     color: #707070;
-    margin: 8px 0px;
+    margin: 0px 2px;
   }
 
 }
 
 .misc_save {
-  float: right;
-  margin-top: -30px;
   cursor: pointer;
+  float: right;
 
-  .mat-icon{
-    color:#26BBEF;
+  .mat-icon {
+    color: #26BBEF;
   }
-  .unsaved_icon,.saved_icon{
-    font-size: 22px!important;
-    margin-top: -3px;
+
+  .unsaved_icon,
+  .saved_icon {
+    font-size: 22px !important;
+    margin-top: 4px;
   }
-  .unsaved_icon{
-    color: lightgrey;
+
+  .unsaved_icon {
+    color: #ababab;
   }
 }
+
 
 .filter {
   width: 25%;
   overflow-y: scroll;
   scroll-behavior: smooth;
   height: 86vh;
+
+  .clear_filter {
+    color: #26BBEF;
+    position: absolute;
+    right: 4%;
+    font-weight: 600;
+    font-size: 13px;
+    cursor: pointer;
+  }
 
   .fil_head {
     position: relative;
@@ -264,6 +284,21 @@
     border-bottom: 1px solid #e7e7e763;
     background: #fff;
     box-shadow: 1px 1px 1px 1px #e7e7e763;
+
+    ::-webkit-scrollbar {
+      display: inline-block;
+      width: 6px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #4cbca0;
+      border-radius: 10px;
+      height: 50%;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #0089b3;
+    }
   }
 
   .filt_list {
@@ -292,6 +327,14 @@
       text-decoration: underline;
     }
   }
+}
+
+.clear_filter {
+  color: #26BBEF;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  margin-left: 25px
 }
 
 ::ng-deep .fldName label {
@@ -354,9 +397,11 @@
   display: none;
 }
 
-.demo {
+.fil_output {
   display: flex;
   flex-wrap: wrap;
+  max-height: 65px;
+  overflow: auto;
 
   .checkedVal {
     padding: 1px 8px 0px 8px;
@@ -370,15 +415,40 @@
 }
 
 
+@media only screen and (min-width: 300px) and (max-width: 400px) {
+  .overall_box {
+    height: 65vh;
+  }
+}
+
+@media only screen and (max-width: 300px) {
+  .overall_box {
+    height: 50vh;
+  }
+}
 
 @media only screen and (max-width: 600px) {
   .filter {
     display: none;
   }
 
+  .fil_output {
+    display: -webkit-box !important;
+    flex-wrap: nowrap;
+    padding: 4px 0px 8px 0px !important;
+
+    .checkedVal {
+      height: fit-content;
+      width: max-content !important;
+    }
+  }
+
   ::ng-deep .cdk-overlay-pane {
-    width: inherit !important;
-    max-width: inherit !important;
+    //   width: inherit !important;
+    //  max-width: inherit !important;
+    //  max-width: min-content;
+    // transform: translateX(-95px) translateY(-4px)!important;
+    min-width: -webkit-fill-available !important;
   }
 
   .job_board,
@@ -398,18 +468,34 @@
     border-bottom: 2px solid #e7e7e770;
 
     div {
-      padding: 5px 10px;
+      padding: 2px 4px;
     }
 
     .fil_results {
       float: left;
       width: 65%;
+
+      ::-webkit-scrollbar {
+        display: inline-block;
+        height: 4px;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: #4cbca0;
+        border-radius: 10px;
+        width: 50%;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: #0089b3;
+      }
     }
 
     .fil_btn {
       width: 35%;
       border-left: 2px solid #e7e7e770;
       color: #41c7f7;
+      padding: 10px;
 
       span {
         font-size: 12px;
@@ -485,13 +571,13 @@
     }
 
     .fil_text {
-      width: 40% !important;
+      width: 60% !important;
       font-weight: 600 !important;
       margin-top: 3px !important;
     }
 
     .apply_top_menu {
-      width: 50%;
+      width: 30%;
       text-align: end;
 
       button {
@@ -539,10 +625,11 @@
 
 }
 
-.redlab{
+.redlab {
   color: red;
-  mat-icon{
-    font-size: 14px!important;
+
+  mat-icon {
+    font-size: 14px !important;
     float: right;
   }
 }
