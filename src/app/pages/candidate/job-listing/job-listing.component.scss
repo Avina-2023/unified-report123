@@ -315,6 +315,16 @@
     border-bottom: 1px solid #e7e7e7;
     align-content: flex-start;
 
+    .filter_head{
+    cursor: pointer;
+    user-select: none;
+    }
+
+    .expand_icon{
+      width: 30%;
+      text-align-last: end;
+    }
+
     div {
       color: #9d9d9d;
       font-weight: 400;
@@ -412,6 +422,11 @@
     border-radius: 18px;
     font-size: 13px;
   }
+  .close_icon{
+    font-size: 16px!important;
+    text-align: end;
+    cursor: pointer;
+    }
 }
 
 
