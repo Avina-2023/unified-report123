@@ -23,6 +23,7 @@
 .job_board {
   width: 75%;
   border-right: 1px solid #e7e7e7;
+  height: 100vh;
 
 }
 
@@ -196,7 +197,7 @@
 }
 
 .specialization {
-  margin-top: 20px;
+  // margin-top: 20px;
 
   button {
     background: #26BBEF33;
@@ -211,26 +212,24 @@
 }
 
 .misc_details {
-  display: flex;
-  flex-wrap: wrap;
   margin-top: 10px;
 
   span {
     font-size: 12px;
     color: #8C8C8C;
-    margin: 0px 2px;
   }
 
   .misc_row {
     display: flex;
     margin: 0px 3px;
+    padding: 2px 0px;
   }
 
   .misc_icon {
     font-size: 15px !important;
-    margin-top: 8px;
     height: auto;
     width: auto;
+    margin: 0px 4px;
   }
 
 
@@ -238,15 +237,14 @@
   .misc_col {
     font-size: 12px;
     color: #707070;
-    margin: 8px 4px;
+    margin: 0px 2px;
   }
 
 }
 
 .misc_save {
   cursor: pointer;
-  right: 0%;
-  position: absolute;
+  float: right;
 
   .mat-icon {
     color: #26BBEF;
@@ -291,13 +289,15 @@
       display: inline-block;
       width: 6px;
     }
+
     ::-webkit-scrollbar-thumb {
-      background: #4cbca0; 
+      background: #4cbca0;
       border-radius: 10px;
       height: 50%;
     }
+
     ::-webkit-scrollbar-thumb:hover {
-      background: #0089b3; 
+      background: #0089b3;
     }
   }
 
@@ -415,6 +415,17 @@
 }
 
 
+@media only screen and (min-width: 300px) and (max-width: 400px) {
+  .overall_box {
+    height: 65vh;
+  }
+}
+
+@media only screen and (max-width: 300px) {
+  .overall_box {
+    height: 50vh;
+  }
+}
 
 @media only screen and (max-width: 600px) {
   .filter {
@@ -424,7 +435,7 @@
   .fil_output {
     display: -webkit-box !important;
     flex-wrap: nowrap;
-    padding: 4px 0px 8px 0px!important;
+    padding: 4px 0px 8px 0px !important;
 
     .checkedVal {
       height: fit-content;
@@ -468,13 +479,15 @@
         display: inline-block;
         height: 4px;
       }
+
       ::-webkit-scrollbar-thumb {
-        background: #4cbca0; 
+        background: #4cbca0;
         border-radius: 10px;
         width: 50%;
       }
+
       ::-webkit-scrollbar-thumb:hover {
-        background: #0089b3; 
+        background: #0089b3;
       }
     }
 
