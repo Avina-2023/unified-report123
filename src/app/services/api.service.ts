@@ -287,4 +287,10 @@ export class ApiService {
   candidateJoblist(data){
     return this.http.post(`${this.BASE_URL}/joblist`,data)
   }
+  savedJobs(data){
+    return this.http.post(`${this.BASE_URL}/submitJobForm`,data)
+  }
+  candidateDetails(data){
+    return this.http.post(`${this.BASE_URL}/getcandidatedetail`,data)
+  }
 }
