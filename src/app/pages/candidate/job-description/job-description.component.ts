@@ -50,6 +50,7 @@ export class JobDescriptionComponent implements OnInit {
 		'isSelected': false
 	}
 	];
+  jobDetails:any;
 
   constructor(
     private skillexService:ApiService,
@@ -60,28 +61,11 @@ export class JobDescriptionComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    // this.descriptionData = this.router.events.pipe(
-    //   filter(e => e instanceof NavigationStart),
-    //   map(() => {
-    //     const currentState = this.router.getCurrentNavigation();
-    //     console.log(currentState.extras.state)
-    //     return currentState.extras.state;
-    //   })
-    // );
-
-    // this.getpageData();
     this.getRoute()
   }
 
   getRoute() {
-    this.router.events.pipe(
-      filter(e => e instanceof NavigationStart),
-      map(() => {
-        const currentState = this.router.getCurrentNavigation();
-        console.log(currentState.extras.state)
-        return currentState.extras.state;
-      })
-    );
+    this.jobDetails = window.history.state;
   }
 
   openDialog(verify){
