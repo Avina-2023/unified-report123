@@ -19,6 +19,37 @@ export class JobDescriptionComponent implements OnInit {
   dialogData: any;
   descriptionData: any;
 
+  jobList = 
+  [{
+		'jobRole': 'Software Developer',
+		'company': 'CGI',
+		'companyLogo': 'https://www.freepnglogos.com/uploads/logo-3d-png/3d-company-logos-design-logo-online-2.png',
+    'location': 'Chennai',
+    'jobOverview':'Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs.',
+	'jobDescription': [
+	{
+	"item": "Lorem ipsum, or lipsum as it is sometimes known, is dummy text"
+	}
+	],
+    'jobRequirements': [
+	{
+	"item": "Lorem ipsum, or lipsum as it is sometimes known, is dummy text"
+	}
+	],
+    'about': 'Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs.',
+		'jobTitle': 'Associate',
+    'jobType': 'Full Time',
+    'specialization': ["Computer Science", "IT"],
+    'yearofPassout': '2022',
+    'division': 'Manufacturing',
+    'keyskills': '["java", "python","Visual Studio", "ASP.Net","Agile Scrum","UI Development"]',
+		'education': ['B.Tech','B.Tech'],
+		'jobtype': 'Full Time',
+    'lastDatetoApply': '2022-11-06T05:52:09.627Z',
+	'postedDate': '28-11-2022',
+		'isSelected': false
+	}
+	];
 
   constructor(
     private skillexService:ApiService,

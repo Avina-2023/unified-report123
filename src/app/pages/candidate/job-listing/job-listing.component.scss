@@ -136,6 +136,7 @@
   border: 1px solid #70707033;
   box-shadow: none;
   border-radius: 10px;
+  cursor: pointer;
 }
 
 .job_card {
@@ -280,7 +281,7 @@
 }
 
 .misc_save {
-  cursor: pointer;
+  z-index: 999;
 
   .mat-icon {
     color: #26BBEF;

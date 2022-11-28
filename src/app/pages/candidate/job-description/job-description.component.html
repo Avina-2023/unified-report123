@@ -1,14 +1,14 @@
 <div class="pageWrapper">
-  <div class="custom-card">
+  <div class="custom-card" *ngFor="let item of jobList">
      <div class="coverImage">
-        <div><img (error)="'/assets/images/compCover.png'" [src]="jobDescription?.bannerImage?jobDescription.bannerImage:'/assets/images/compCover.png'"/></div>
-        <div class='companyLogo'><img (error)="'/assets/images/compPlaceholder.png'" [src]="jobDescription?.companyLogo?jobDescription.companyLogo:'/assets/images/compPlaceholder.png'" /></div>
+        <div><img (error)="'/assets/images/compCover.png'" [src]="jobDescription?.bannerImage?jobDescription.bannerImage:'/assets/images/job_description_background.png'"/></div>
+        <div class='companyLogo'><img class="comp_logo" (error)="'/assets/images/compPlaceholder.png'" [src]="item.companyLogo" /></div>
      </div>
      <div class="jobtopcontainer">
         <div class="JT-left">
-           <div class='compTitle'><strong>{{jobDescription?.jobTitle}}</strong></div>
-           <div class='genTitle'>{{jobDescription?.company}}</div>
-           <div class="genText"><em class="icon-pin_drop_black_24dp iconSpace"></em>{{jobDescription?.address}}</div>
+           <div class='compTitle'><strong>{{item.jobRole}}</strong></div>
+           <div class='genTitle'>{{item.company}}</div>
+           <div class="genText"><mat-icon class="misc_icon"> location_on</mat-icon>{{item.location}}</div>
         </div>
         <div class="JT-right">
            <div class="genText calign"><em class="icon-insert_invitation iconSpace"></em>Posted {{jobDescription?.postedDate|timeAgo}}</div>
