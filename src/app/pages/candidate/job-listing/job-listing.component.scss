@@ -8,17 +8,20 @@
   }
 }
 
+
 ::ng-deep {
 
   .mat-option.mat-active,
   .mat-option:hover {
     background: none !important;
   }
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
 }
 
-::-webkit-scrollbar {
-  display: none;
-}
+
 
 .job_board {
   width: 75%;
@@ -118,7 +121,6 @@
 
 .overall_box {
   display: flex;
-  flex-direction: row;
   flex-wrap: wrap;
   align-content: flex-start;
   height: 70vh;
@@ -131,21 +133,49 @@
   margin-right: 10px;
   margin-top: 10px;
   padding: 10px;
-  min-width: 300px;
-  width: min-content;
   border: 1px solid #70707033;
   box-shadow: none;
-  border-radius: 10px
+  border-radius: 10px;
+  cursor: pointer;
 }
 
 .job_card {
   display: flex;
   border-bottom: 1px solid #80808029;
+  justify-content: space-between;
+}
+
+.inner_card {
+  display: flex;
 }
 
 .card_flex {
+  width: 33.33%;
+}
+
+.expertise {
   display: flex;
+  scroll-behavior: smooth;
+  width: auto;
   flex-wrap: wrap;
+
+  ng-deep {
+    ::-webkit-scrollbar {
+      display: inline-block !important;
+      height: 6px !important;
+      width: 10px !important;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #4cbca0;
+      border-radius: 10px;
+      height: 50%;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #0089b3;
+    }
+  }
 }
 
 .comp-image {
@@ -225,6 +255,14 @@
     padding: 2px 0px;
   }
 
+  .locate {
+    white-space: nowrap;
+    width: 60%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    margin-bottom: 0px;
+  }
+
   .misc_icon {
     font-size: 15px !important;
     height: auto;
@@ -241,10 +279,12 @@
   }
 
 }
-
+.paginationdisplay{
+  display: flex;
+  justify-content: space-around;
+}
 .misc_save {
-  cursor: pointer;
-  float: right;
+  z-index: 999;
 
   .mat-icon {
     color: #26BBEF;
@@ -314,6 +354,16 @@
     padding: 20px;
     border-bottom: 1px solid #e7e7e7;
     align-content: flex-start;
+
+    .filter_head {
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .expand_icon {
+      width: 30%;
+      text-align-last: end;
+    }
 
     div {
       color: #9d9d9d;
@@ -412,6 +462,12 @@
     border-radius: 18px;
     font-size: 13px;
   }
+
+  .close_icon {
+    font-size: 16px !important;
+    text-align: end;
+    cursor: pointer;
+  }
 }
 
 
@@ -430,6 +486,10 @@
 @media only screen and (max-width: 600px) {
   .filter {
     display: none;
+  }
+
+  .results_dash{
+    padding: 0px 5px;
   }
 
   .fil_output {
@@ -453,8 +513,12 @@
 
   .job_board,
   .example_card {
-    width: 100% !important;
-    max-width: 100%;
+    width: -webkit-fill-available !important;
+  }
+
+
+  .card_flex {
+    width: 100%;
   }
 
   .mob_fil {
@@ -552,10 +616,6 @@
     visibility: hidden;
   }
 
-  .example_card {
-    min-width: min-content !important;
-  }
-
   ::ng-deep .mat-checkbox-layout {
     white-space: initial !important;
   }
@@ -594,10 +654,15 @@
 
 }
 
+@media only screen and (min-width: 1010px) and (max-width: 1050px) {
+  .card_flex {
+    width: 50%;
+  }
+}
+
 @media only screen and (min-width: 730px) and (max-width: 950px) {
   .example_card {
-    min-width: fit-content !important;
-    width: auto !important;
+    width: -webkit-fill-available;
   }
 
   .job_board {
@@ -607,6 +672,10 @@
   .filter {
     width: 35% !important;
     height: 80vh;
+  }
+
+  .card_flex {
+    width: 100%;
   }
 }
 
@@ -622,6 +691,14 @@
     overflow: inherit !important;
   }
 
+  .example_card {
+    height: 300px;
+  }
+
+  .sample_class {
+    height: 210px;
+    overflow: scroll;
+  }
 
 }
 

@@ -269,10 +269,28 @@ export class ApiService {
   jobfilterDashboard(data) {
     return this.http.post(`${this.BASE_URL}/jobfilter`, data)
   }
+
+  // Save Jobs API
+  saveJobsDashboard(data) {
+    return this.http.post(`${this.BASE_URL}/saveJobs`, data)
+  }
+
+
   // candidate apis
 
-  candidateDashboard(data) {
-    return this.http.post(`${this.BASE_URL}/candidatedashboard`, data)
+  candidateDashboard(data){
+    return this.http.post(`${this.BASE_URL}/candidatedashboard`,data)
+  }
 
+// Note : applied-jobs and savedjob common api body was diffrent
+
+  candidateJoblist(data){
+    return this.http.post(`${this.BASE_URL}/joblist`,data)
+  }
+  savedJobs(data){
+    return this.http.post(`${this.BASE_URL}/submitJobForm`,data)
+  }
+  candidateDetails(data){
+    return this.http.post(`${this.BASE_URL}/getcandidatedetail`,data)
   }
 }

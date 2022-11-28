@@ -1,8 +1,13 @@
+<div class="appliedjobs">
+    <div class="text">Applied Jobs</div>
+</div>
+<div class="norecords">
+  <mat-card *ngIf="totallength==0">
+    <span>No Applied Jobs</span></mat-card>
+</div>
 
-<app-common-paginator [total]="visibleItems.total"
-[pageSize]="pageSize"
-(valueChange)="onPageChange($event)"></app-common-paginator>
-<app-job-list-item [data]="visibleItems.items" ></app-job-list-item>
 
-
-<!-- <app-job-list-item *ngFor="let item of visibleItems.items,let i=index" [item]="item"></app-job-list-item> -->
+<app-job-list-item [data]="appliedjobs" ></app-job-list-item>
+<div class="pagination">
+  <app-common-paginator *ngIf="total"  (send)="some($event)" [totalcount]="total"></app-common-paginator>
+</div>

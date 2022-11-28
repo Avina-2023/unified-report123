@@ -1,0 +1,144 @@
+<div class="pageWrapper">
+   <div class="custom-card">
+      <div class="coverImage">
+         <div><img (error)="'/assets/images/compCover.png'"
+               [src]="jobDescription?.bannerImage?jobDescription.bannerImage:'/assets/images/job_description_background.png'" />
+         </div>
+         <div class='companyLogo'><img class="comp_logo" (error)="'/assets/images/compPlaceholder.png'"
+               [src]="jobDetails.companyLogo" /></div>
+      </div>
+      <div class="jobtopcontainer">
+         <div class="JT-left">
+            <div class='compTitle'><strong>{{jobDetails.jobRole}}</strong></div>
+            <div class='genTitle'>{{jobDetails.company}}</div>
+            <div class="genText">
+               <mat-icon class="misc_icon"> location_on</mat-icon>
+               <div class="locate" *ngFor="let item of jobDetails.jobLocation">{{item}}, </div>
+            </div>
+         </div>
+         <div class="JT-right">
+            <div class="genText calign"><mat-icon class="misc_icon"> event_note</mat-icon>Posted
+               {{jobDetails.createdOn|timeAgo}}</div>
+               <div class="eventnote">Last Date to Apply: {{jobDetails.lastDatetoApply|date}}</div>
+           <div class="flx_butn"> <button class="save btn" >Save</button>
+            <button class="btn" (click)="applyJob()">Apply</button></div>
+         </div>
+      </div>
+   </div>
+   <div class="descriptionArea">
+      <!-- [innerHTML]="jobDescription.jobDescription" -->
+      <div class="custom-card cardpad LAlign">
+
+         <div class="desTitle">
+            Job Overview<br>
+            <p>{{jobDetails.overview}}</p>
+         </div>
+
+         <div class="desTitle">
+            Job Description
+            <ul>
+               <li *ngFor="let content of jobDetails.description">{{content.item}}</li>
+            </ul>
+         </div>
+         <div class="desTitle">
+            Job Requirements
+            <ul>
+               <li *ngFor="let content of jobDetails.requirement">{{content.item}}</li>
+            </ul>
+         </div>
+      </div>
+      <div class="custom-card cardpad RAlign">
+         <div class="listspace">
+            <div class="desTitle">
+               Job Title:
+            </div>
+            <div class="genText">
+               {{jobDetails.jobRole}}
+            </div>
+         </div>
+         <div class="listspace">
+            <div class="desTitle">
+               Job Type:
+            </div>
+            <div class="genText">
+               {{jobDetails.jobType}}
+            </div>
+         </div>
+         <div class="listspace">
+            <div class="desTitle">
+               Education:
+            </div>
+            <div class="job_options">
+               <div class="genText" *ngFor="let content of jobDetails.education">
+                  <div class="spacing">{{content}},</div>
+               </div>
+            </div>
+         </div>
+         <div class="listspace">
+            <div class="desTitle">
+               Specialization
+            </div>
+            <div class="job_options">
+               <div class="genText" *ngFor="let content of jobDetails.specialization">
+                  <button>{{content}}</button>
+               </div>
+            </div>
+         </div>
+         <div class="listspace">
+            <div class="desTitle">
+               Year of Passing:
+            </div>
+            <div class="genText">
+               {{jobDetails.yearofPassout}}
+            </div>
+         </div>
+         <div class="listspace">
+            <div class="desTitle">
+               Industries:
+            </div>
+            <div class="genText">
+               {{jobDetails.division}}
+            </div>
+         </div>
+
+         <div class="listspace">
+            <div class="desTitle">
+               Key Skills:
+            </div>
+            <div class="job_options">
+               <div class="genText" *ngFor="let content of jobDetails.skillSet">
+                  <button>{{content}}</button>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+
+   <div class="descriptionArea">
+      <div class="custom-card cardpad about">
+
+         <div class="desTitle">
+           About Company:<br>
+            <p>{{jobDetails.about}}</p>
+         </div>
+      </div>
+   </div>
+</div>
+
+<ng-template #incompleteProfile>
+   <div class="wrapper">
+      <div class="closer"><em class="icon-close_black" mat-dialog-close="true"></em></div>
+      <div><img src="/assets/images/aler.png"></div>
+      <div class="message">Please complete your profile to apply for Jobs</div>
+      <div class="link" (click)="gotopage('profile')">Go to profile</div>
+   </div>
+</ng-template>
+
+<ng-template #successApply>
+   <div class="wrapper">
+      <div class="closer"><em class="icon-close_black" mat-dialog-close="true"></em></div>
+      <div><img class="ticsize" src="/assets/images/002-tick1.svg"></div>
+      <div class="message">Thank you for applying for the Job</div>
+      <div class="msgsub">You will be soon contacted by the recruiter</div>
+   </div>
+</ng-template>
