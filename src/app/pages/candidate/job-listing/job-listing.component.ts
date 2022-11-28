@@ -538,7 +538,7 @@ export class JobListingComponent implements OnInit {
 				this.joblist = response.data;
 
 				this.joblist.forEach(element => {
-					this.sampleContent.push(element.jobDescription);
+					this.sampleContent.push(element.overview);
 				});
 			} else {
 				//console.log('data.message');
@@ -563,13 +563,11 @@ export class JobListingComponent implements OnInit {
 		});
 	}
 
-  gotojob(item){
-    this.router.navigate([APP_CONSTANTS.ENDPOINTS.CANDIDATEDASH.JOBDESCRIPTION], {
-      state: item
-    });
-    // this.appconfig.routeNavigationWithParam(APP_CONSTANTS.ENDPOINTS.CANDIDATEDASH.JOBDESCRIPTION,item)
-    console.log(item)
-  }
+	gotojob(item) {
+		this.router.navigate([APP_CONSTANTS.ENDPOINTS.CANDIDATEDASH.JOBDESCRIPTION], {
+			state: item
+		});
+	}
 
 
 }
