@@ -30,7 +30,7 @@ export class LandingHeaderComponent implements OnInit {
     // this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.LOGIN);
   }
   candidateProfileLogin(){
-    window.open (this.SKILL_PROFILE_URL,'_blank')
+    window.open (this.SKILL_PROFILE_URL,'profile_redir')
   }
 
   NavtoRegister(){
@@ -50,7 +50,7 @@ export class LandingHeaderComponent implements OnInit {
       width: '908px',
       height: '524px',
       panelClass: 'loginpopover',
-      
+
     });
   }
 
@@ -59,17 +59,17 @@ export class LandingHeaderComponent implements OnInit {
       width: '908px',
       height: '524px',
       panelClass: 'loginpopover',
-      
+
     });
   }
 
-  
+
   openregisterDialog() {
     this.sectiondialogRef = this.matDialog.open(this.register, {
       width: '908px',
       height: '524px',
       panelClass: 'loginpopover',
-      
+
     });
   }
 
