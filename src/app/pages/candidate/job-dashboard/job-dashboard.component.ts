@@ -16,6 +16,7 @@ import {
 import { element } from 'protractor';
 import { ApiService } from 'src/app/services/api.service';
 import { AppConfigService } from 'src/app/utils/app-config.service'
+import { environment } from 'src/environments/environment';
 export type ChartOptions = {
   series: ApexAxisChartSeries;
   chart: ApexChart;
@@ -105,7 +106,7 @@ export class JobDashboardComponent implements OnInit {
     this.getCandidateDashBoard("")
   }
 
-  // candidate Dashboard Barchart   
+  // candidate Dashboard Barchart
   getCandidateDashBoard(e) {
     let year
     if (e.value) {
@@ -130,5 +131,11 @@ export class JobDashboardComponent implements OnInit {
         this.chartOptions.series.push(this.ChartData)
       }
     })
+  }
+
+  gotoProfile(){
+    let emailval = this.appConfig.getLocalStorage('email')
+    let enc_email = encodeURIComponent(this.apiService.encryptnew(emailval,environment.cryptoEncryptionKey))
+    window.open(environment.SKILL_PROFILE_URL+'/externallogin?extId='+enc_email, 'profile_redir');
   }
 }
