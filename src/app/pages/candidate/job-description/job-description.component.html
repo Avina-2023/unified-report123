@@ -18,8 +18,10 @@
          </div>
          <div class="JT-right">
             <div class="genText calign"><mat-icon class="misc_icon"> event_note</mat-icon>Posted
-               {{jobDetails.postedDate|timeAgo}}</div>
-            <button class="btn" (click)="applyJob()">Apply</button>
+               {{jobDetails.createdOn|timeAgo}}</div>
+               <div class="eventnote">Last Date to Apply: {{jobDetails.lastDatetoApply|date}}</div>
+           <div class="flx_butn"> <button class="save btn" >Save</button>
+            <button class="btn" (click)="applyJob()">Apply</button></div>
          </div>
       </div>
    </div>
