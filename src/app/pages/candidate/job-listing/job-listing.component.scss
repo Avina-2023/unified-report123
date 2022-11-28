@@ -485,6 +485,10 @@
     display: none;
   }
 
+  .results_dash{
+    padding: 0px 5px;
+  }
+  
   .fil_output {
     display: -webkit-box !important;
     flex-wrap: nowrap;
@@ -607,10 +611,6 @@
     color: red;
     float: right;
     visibility: hidden;
-  }
-
-  .example_card {
-    min-width: min-content !important;
   }
 
   ::ng-deep .mat-checkbox-layout {
