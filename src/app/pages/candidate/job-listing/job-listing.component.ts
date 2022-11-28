@@ -528,7 +528,7 @@ export class JobListingComponent implements OnInit {
 			"filter": this.filterObj,
 			"sort": this.sortData,
 			"specialization": "Computer Science Engineering",
-			"email": "deenabandhutekarla@gmail.com"
+			"email": this.appconfig.getLocalStorage("email")
 			// "isApplied":false,
 			// "isSelected":false
 		}

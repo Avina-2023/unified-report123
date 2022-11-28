@@ -34,6 +34,7 @@ export class JobDescriptionComponent implements OnInit {
 
   getRoute() {
     this.jobDetails = window.history.state;
+    console.log(this.jobDetails);
   }
 
   openDialog(verify){
