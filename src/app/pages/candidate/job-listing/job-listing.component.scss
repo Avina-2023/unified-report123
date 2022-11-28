@@ -279,7 +279,10 @@
   }
 
 }
-
+.paginationdisplay{
+  display: flex;
+  justify-content: space-around;
+}
 .misc_save {
   z-index: 999;
 
@@ -488,7 +491,7 @@
   .results_dash{
     padding: 0px 5px;
   }
-  
+
   .fil_output {
     display: -webkit-box !important;
     flex-wrap: nowrap;
