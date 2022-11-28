@@ -39,7 +39,8 @@ export class JobDashboardComponent implements OnInit {
   public chartOptions: Partial<ChartOptions>;
   // public date:any;
   public year: any;
-  public email: any
+  public email: any;
+  public username:any;
   public candidateDahboard: any;
   public jobsAvailable: any;
   public jobApplied: any;
@@ -72,9 +73,10 @@ export class JobDashboardComponent implements OnInit {
       dataLabels: {
         enabled: false,
         style: {
-          colors: ['#26BBEF', '#FF9A78', '#10E596', '#FDBC64']
+          colors: [ '#FF9A78', '#26BBEF','#10E596', '#FDBC64']
         }
       },
+
       stroke: {
         show: true,
         width: 2,
@@ -104,6 +106,8 @@ export class JobDashboardComponent implements OnInit {
   }
   ngOnInit(): void {
     this.getCandidateDashBoard("")
+   this.username = localStorage.getItem('name') ;
+   this.email = localStorage.getItem('email')
   }
 
   // candidate Dashboard Barchart

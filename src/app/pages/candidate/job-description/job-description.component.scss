@@ -1,58 +1,87 @@
-div{
+div {
   font-family: Lato !important;
 }
-li{
+
+li {
   font-family: Lato !important;
 }
+
 .btn {
   font-size: 16px;
-  background: #004f9b !important;
+  background: #26BBEF !important;
   color: white;
   border-radius: 5px !important;
-  width: 55%;
+  width: 100%;
   padding: 5px 18px;
   margin-top: 20px;
   float: right;
   font-family: Lato !important;
 }
+
 .btn:hover {
   background: #003363 !important;
   transition: ease-out .3s;
 }
 
 
-.pageWrapper{
-  padding:10px 20px;
+.pageWrapper {
+  padding: 10px 20px;
 
 
 
-    .custom-card:hover {
-      box-shadow: 0 0px 9px 0 rgb(0 0 0 / 20%);
-    }
+  .custom-card:hover {
+    box-shadow: 0 0px 9px 0 rgb(0 0 0 / 20%);
+  }
 
-  .coverImage{
+  .coverImage {
     position: relative;
     width: 100%;
-    img{
+
+    img {
       width: 100%;
       height: 200px;
     }
-    .companyLogo{
+
+    .companyLogo {
       position: absolute;
       top: 150px;
       left: 45px;
-      img{
-        height: 100px;
+      display: -webkit-inline-box;
+      display: -ms-inline-flexbox;
+      display: inline-flex;
+      height: 84px;
+      width: 84px;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      margin: 0 4px 0 4px;
+      //border: 1px solid #eaedf3;
+      border-radius: 4px;
+      overflow: hidden;
+      //background: #fafafa;
+
+      img {
+        max-width: 100%;
+        max-height: 100%;
       }
 
     }
   }
 
 
-  .descriptionArea{
+  .descriptionArea {
     display: flex;
-    justify-content:space-between;
-    margin-top:15px;
+    justify-content: space-between;
+    margin-top: 15px;
+    margin-bottom: 40px;
+
+    .about {
+      width: 70%;
+      margin-top: -20px;
+    }
   }
 }
 
@@ -60,91 +89,185 @@ li{
   box-shadow: 0px 0px 3px #00000033;
   transition: 0.3s;
   border-radius: 10px;
+  background: #fff;
 
-.jobtopcontainer {
-  margin-top:60px;
-  padding: 10px 30px;
+  .jobtopcontainer {
+    margin-top: 60px;
+    padding: 10px 30px;
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.job_options {
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap;
+
+  .spacing {
+    padding-right: 4px;
+  }
+
+  button {
+    margin: 3px;
+    color: #0097CC;
+    background: #26BBEF33 0% 0% no-repeat padding-box;
+    border-radius: 3px;
+    border-width: 0px;
+    padding: 3px 8px 1px 8px;
+    font-size: 13px;
+  }
 }
-}
-.cardpad{
+
+.cardpad {
   padding: 20px;
 }
-.LAlign{
-  width:100%;
+
+.LAlign {
+  width: 100%;
 }
-.RAlign{
-  width:60%;
-  margin-left:15px
+
+.RAlign {
+  width: 40%;
+  margin-left: 15px
 }
-.compTitle{
+
+.compTitle {
   font-size: 20px;
   color: #000;
 }
-.genTitle{
+
+.genTitle {
   font-size: 14px;
-  color:#707070;
+  color: #707070;
   padding-top: 4px;
 }
-.genText{
+
+.genText {
   font-size: 14px;
   color: #707070BF;
   padding-top: 4px;
+  display: flex;
+  flex-wrap: wrap;
+
+  .misc_icon {
+    margin-top: -3px;
+  }
+
+  .locate {
+    padding-right: 2px;
+  }
 }
-.desTitle{
+
+.desTitle {
   font-size: 14px;
   color: #000000;
   padding-top: 14px;
   font-weight: 600;
-  ul li{
+
+  p {
+    color: #707070BF;
+    font-weight: normal;
+    font-size: 14px;
+    margin-top: 10px;
+  }
+
+  ul {
+    margin-top: 10px;
+  }
+
+  ul li {
     font-size: 14px;
     color: #707070CC;
     margin-left: 18px;
     padding: 3px 0px;
     font-weight: normal;
+    list-style-type: disc;
   }
 }
 
 .iconSpace {
   margin-right: 5px;
 }
-.calign{
+
+.calign {
   display: flex;
   align-items: center;
 }
 
-  .wrapper{
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: space-around;
+  margin: 20px;
+
+  .closer {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    align-content: space-around;
-    margin: 20px;
-    .closer{
-      display: flex;
     width: 100%;
     justify-content: flex-end;
-    em{
+
+    em {
       width: 20px;
-    }
-    }
-    .ticsize{
-      width:90px
-    }
-    .message{
-      font-weight: bold;
-      font-size: 20px;
-      margin-top: 30px;
-    }
-    .link{
-      color:blue;
-      text-decoration: underline;
-      cursor:pointer;
-    }
-    .msgsub{
-      font-weight: bold;
-      font-size: 17px;
-      // margin-bottom: 70px;
     }
   }
 
+  .ticsize {
+    width: 90px
+  }
+
+  .message {
+    font-weight: bold;
+    font-size: 20px;
+    margin-top: 30px;
+  }
+
+  .link {
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+  .msgsub {
+    font-weight: bold;
+    font-size: 17px;
+    // margin-bottom: 70px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .coverImage{ 
+    img{
+    height: 130px!important;
+    }
+  }
+    .companyLogo{
+    left: 20px!important;
+    top: 85px!important;
+    }
+    
+    .jobtopcontainer{
+    margin-top: 40px!important;
+    }
+
+  .pageWrapper{
+      padding: 0px 10px;
+  .compTitle{
+    font-size: 16px;
+  }
+  .genText{
+    font-size: 13px;
+    margin-top: 5px;
+  }
+  .descriptionArea{
+  display: block;
+  }
+  .RAlign{
+  width: 100%;
+  margin-left: 0px;
+  margin-top: 20px;
+  }
+  .about{
+  width: 100%!important;
+  }
+  }
+}

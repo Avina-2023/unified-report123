@@ -16,7 +16,9 @@ export class JobAppliedListComponent implements OnInit {
   public pageNumber: any = 1;
   public itemsPerPage: any = 5;
   public total:any;
+  public totallength:any;
   public appliedjobs: any;
+  public appliedlenghth:any;
   constructor(private apiService: ApiService, private toastr: ToastrService) { }
 
   ngOnInit() {
@@ -38,10 +40,10 @@ export class JobAppliedListComponent implements OnInit {
         "sort": "s",
         "specialization": "s"
       };
-      console.log(objDetails)
     this.apiService.candidateJoblist(objDetails).subscribe((res: any) => {
       if (res.success) {
         this.appliedjobs = res.data;
+        this.totallength = this.appliedjobs.length
         this.total = Math.ceil(res.totalCount/this.itemsPerPage);
       }
       else {

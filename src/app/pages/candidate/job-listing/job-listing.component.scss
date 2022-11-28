@@ -136,6 +136,7 @@
   border: 1px solid #70707033;
   box-shadow: none;
   border-radius: 10px;
+  cursor: pointer;
 }
 
 .job_card {
@@ -280,7 +281,7 @@
 }
 
 .misc_save {
-  cursor: pointer;
+  z-index: 999;
 
   .mat-icon {
     color: #26BBEF;
@@ -484,6 +485,10 @@
     display: none;
   }
 
+  .results_dash{
+    padding: 0px 5px;
+  }
+  
   .fil_output {
     display: -webkit-box !important;
     flex-wrap: nowrap;
@@ -606,10 +611,6 @@
     color: red;
     float: right;
     visibility: hidden;
-  }
-
-  .example_card {
-    min-width: min-content !important;
   }
 
   ::ng-deep .mat-checkbox-layout {
