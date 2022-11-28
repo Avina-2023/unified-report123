@@ -10,6 +10,7 @@ export class JobSavedListComponent implements OnInit {
   public pageNumber: any = 1;
   public itemsPerPage: any = 5;
   public savedjobs:any;
+  public totallength:any
   public total:any;
   constructor(private apiService: ApiService, private toastr: ToastrService) { }
   ngOnInit() {
@@ -36,6 +37,7 @@ export class JobSavedListComponent implements OnInit {
        this.savedjobs = res.data;
       if (res.success) {
         this.savedjobs = res.data;
+        this.totallength = this.savedjobs.length
         this.total = Math.ceil(res.totalCount/this.itemsPerPage);
       }
       else {

@@ -16,6 +16,17 @@
         opacity: 1;
     }
 }
+.norecords {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  position: relative;
+  top: 100px;
+  span{
+    font-weight: 600;
+  }
+}
 .pagination{
   display: flex;
   justify-content: space-around;
