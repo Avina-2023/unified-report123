@@ -93,6 +93,10 @@
           </div>
         </mat-card>
       </div>
+
+    </div>
+    <div class="paginationdisplay">
+      <app-common-paginator *ngIf="total"  (send)="some($event)" [totalcount]="total"></app-common-paginator>
     </div>
   </div>
 
@@ -136,6 +140,8 @@
     </div>
   </div>
 </div>
+
+
 <ng-template #moreItems>
 
   <div class="dlog_template">
