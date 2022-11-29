@@ -49,7 +49,10 @@ export class JobDashboardComponent implements OnInit {
   public ChartData: any = [];
   public objDetails: any;
   public Details: any;
-  public profilepercentage:any
+  public profilepercentage:any;
+  public userstate:any;
+  public usercountry:any;
+  public usercity:any;
   public allyears = [
     { year: new Date().getFullYear() },
     { year: new Date().getFullYear() - 1 },
@@ -155,6 +158,9 @@ export class JobDashboardComponent implements OnInit {
       if (res.success) {
         this.Details = res.data;
        this.profilepercentage= Math.ceil(this.Details.profilePercentage)
+       this.usercity = this.Details.permanentaddress.permanent_city
+       this.userstate =this.Details.permanentaddress.permanent_state
+       this.usercountry = this.Details.permanentaddress.permanent_country
       }
     });
   }

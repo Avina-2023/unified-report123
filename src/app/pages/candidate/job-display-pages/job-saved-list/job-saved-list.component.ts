@@ -7,8 +7,8 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./job-saved-list.component.scss']
 })
 export class JobSavedListComponent implements OnInit {
-  public pageNumber: any = 1;
-  public itemsPerPage: any = 5;
+  public pageNumber: any ;
+  public itemsPerPage: any;
   public savedjobs:any;
   public totallength:any
   public total:any;
@@ -26,8 +26,8 @@ export class JobSavedListComponent implements OnInit {
     const email = localStorage.getItem('email')
     var objDetails = {};
       objDetails= {
-        "pageNumber": this.pageNumber,
-        "itemsPerPage": this.itemsPerPage,
+        "pageNumber": this.pageNumber? this.pageNumber : 1,
+        "itemsPerPage": this.itemsPerPage ? this.itemsPerPage :5,
         "email":email,
         "isSelected": true,
         "sort": "s",

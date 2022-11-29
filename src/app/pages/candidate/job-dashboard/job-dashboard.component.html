@@ -83,9 +83,10 @@
                     <div class="right">
                         <mat-form-field class="form-filed-dropdown" appearance="outline">
                             <mat-select class="selectText" (selectionChange)="getCandidateDashBoard($event)" placeholder="2022">
-                                <mat-option *ngFor="let val of allyears" [value]="val.year">{{val.year}}</mat-option>
+                                <mat-option class="text-center" *ngFor="let val of allyears" [value]="val.year">{{val.year}}</mat-option>
                             </mat-select>
                         </mat-form-field>
+
                     </div>
                 </div>
                 <apx-chart [series]="ChartData" [chart]="chartOptions.chart" [dataLabels]="chartOptions.dataLabels"
@@ -114,8 +115,8 @@
                     <div class="profilename">
                         {{username}}
                     </div>
-                    <div class="big">Software Engineer</div>
-                    <div class="small">Chennai, Tamil Nadu, India</div>
+                    <div class="big" >-</div>
+                    <div class="small">{{usercity}}, {{userstate}}, {{usercountry}}</div>
                     <hr>
                     <div class="profile-progress">
                         <span>Profile Completion</span>
