@@ -93,11 +93,11 @@
           </div>
         </mat-card>
       </div>
+      <div class="paginationdisplay">
+        <app-common-paginator *ngIf="total"  (send)="some($event)" [totalcount]="total"></app-common-paginator>
+      </div>
+    </div>
 
-    </div>
-    <div class="paginationdisplay">
-      <app-common-paginator *ngIf="total"  (send)="some($event)" [totalcount]="total"></app-common-paginator>
-    </div>
   </div>
 
 
