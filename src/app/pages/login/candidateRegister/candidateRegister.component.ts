@@ -7,6 +7,7 @@ import{environment} from 'src/environments/environment';
 import * as CryptoJS from 'crypto-js';
 import { AppConfigService } from 'src/app/utils/app-config.service';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-candidateRegister',
   templateUrl: './candidateRegister.component.html',
@@ -26,7 +27,7 @@ export class candidateRegister implements OnInit {
   secretKey = "(!@#Passcode!@#)";
   skillProfileUrl = environment.SKILL_PROFILE_URL;
   dialogRef: any;
-  constructor(public fb: FormBuilder,private dialog: MatDialog, private glovbal_validators: GlobalValidatorService, public toastr: ToastrService, private ApiService: ApiService,public appConfig: AppConfigService,    ) { }
+  constructor(public fb: FormBuilder,private dialog: MatDialog, private glovbal_validators: GlobalValidatorService, public toastr: ToastrService, private ApiService: ApiService,public appConfig: AppConfigService, private router:Router   ) { }
 
   ngOnInit(): void {
     this.formInitialize()
@@ -54,7 +55,11 @@ export class candidateRegister implements OnInit {
         this.msg = res.message
         this.registerform = false
         this.existingCandidate = true;
-        this.toastr.error(this.msg)
+        this.toastr.error(this.msg);
+        let currentUrl = this.router.url;
+        this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+        this.router.navigate([currentUrl]);
+        });
       }
     })
   }

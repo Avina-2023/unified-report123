@@ -11,9 +11,9 @@
         </div>
       </mat-card-header>
       <div class="misc_save" *ngIf="savedButton">
-        <button class="saved" *ngIf="item?.isSelected == false" (click)="apply(item)">Apply
+        <button class="saved" *ngIf="item?.isApplied == false"  (click)="apply(item)">Apply
         </button>
-        <button class="saved isDisabled" [disabled]="isDisabled" *ngIf="item?.isSelected == true">Applied
+        <button class="saved isDisabled" [disabled]="isDisabled" *ngIf="item?.isApplied == true">Applied
         </button>
       </div>
       <hr class="hrline">
