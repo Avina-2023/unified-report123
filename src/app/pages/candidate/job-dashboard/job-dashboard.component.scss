@@ -1,4 +1,4 @@
-@import "/src/assets/scss/candidate_dashboard.scss";
+// @import "/src/assets/scss/candidate_dashboard.scss";
 
 
 .flix {
@@ -150,7 +150,9 @@ width: 75%;
             }
         }
     }
-
+    ::ng-deep .mat-form-field-appearance-outline .mat-form-field-infix {
+      padding: 0.5em 0 0.5em 0;
+  }
     .barchart {
         background: #FFFFFF 0% 0% no-repeat padding-box;
         box-shadow: 0px 0px 4px #00000029;
@@ -194,6 +196,7 @@ width: 75%;
 
                         ::ng-deep.mat-select-trigger {
                             height: 0.525em !important;
+                            text-align: center;
                         }
                     }
                 }
