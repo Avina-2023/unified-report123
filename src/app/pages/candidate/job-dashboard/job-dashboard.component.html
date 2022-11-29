@@ -18,7 +18,7 @@
                             <div class="bigleft singlecardborder0">
                                 <div class="left">
                                     <div class="smalltext">
-                                        jobs Available
+                                        Jobs Available
                                     </div>
                                     <div class="bigtext">
                                         {{ jobsAvailable }}
@@ -34,7 +34,7 @@
                             <div class="bigleft singlecardborder1">
                                 <div class="left">
                                     <div class="smalltext">
-                                        jobs Applied
+                                        Jobs Applied
                                     </div>
                                     <div class="bigtext">
                                         {{ jobApplied }}
@@ -79,7 +79,7 @@
             </div>
             <div class="barchart">
                 <div class="baralignment">
-                    <div class="left">Data</div>
+                    <div class="left">Performance</div>
                     <div class="right">
                         <mat-form-field class="form-filed-dropdown" appearance="outline">
                             <mat-select class="selectText" (selectionChange)="getCandidateDashBoard($event)" placeholder="2022">
@@ -90,9 +90,9 @@
                     </div>
                 </div>
                 <apx-chart [series]="ChartData" [chart]="chartOptions.chart" [dataLabels]="chartOptions.dataLabels"
-                    [plotOptions]="chartOptions.plotOptions" [yaxis]="chartOptions.yaxis" [legend]="chartOptions.legend"
+                    [plotOptions]="chartOptions.plotOptions"
                     [fill]="chartOptions.fill" [stroke]="chartOptions.stroke" [tooltip]="chartOptions.tooltip"
-                    [xaxis]="chartOptions.xaxis">
+                   >
                 </apx-chart>
             </div>
         </div>
@@ -116,7 +116,9 @@
                         {{username}}
                     </div>
                     <div class="big" >-</div>
-                    <div class="small">{{usercity}}, {{userstate}}, {{usercountry}}</div>
+                    <div class="small" *ngIf="!usercity">-</div>
+
+                    <div class="small" *ngIf="usercity">{{usercity}}, {{userstate}}, {{usercountry}}</div>
                     <hr>
                     <div class="profile-progress">
                         <span>Profile Completion</span>

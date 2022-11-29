@@ -88,7 +88,7 @@ export class JobDashboardComponent implements OnInit {
       stroke: {
         show: true,
         width: 2,
-        colors: ['#26BBEF', '#FF9A78', '#10E596', '#FDBC64'],
+        colors: ['#26BBEF', '#FF9A78', '#10E596'],
       },
       xaxis: {
         categories: [
@@ -108,7 +108,7 @@ export class JobDashboardComponent implements OnInit {
       },
       fill: {
         opacity: 1,
-        colors: ['#26BBEF', '#FF9A78', '#10E596', '#FDBC64'],
+        colors: ['#26BBEF', '#FF9A78', '#10E596'],
       },
     };
   }

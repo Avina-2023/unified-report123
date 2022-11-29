@@ -23,12 +23,19 @@ export class JobListItemComponent implements OnInit ,AfterViewInit {
     obj = {
       jobId: item.jobId,
       email: localStorage.getItem('email'),
+      jobDetails:{
+        education:item.education,
+        specialization:item.specialization,
+        yearofPassout:item.yearofPassout,
+        eligiblityCriteria:item.eligiblityCriteria
+      }
     };
-    this.apiService.saveJobsDashboard(obj).subscribe((res: any) => {
+    this.apiService.savedJobs(obj).subscribe((res: any) => {
       if (res.success) {
-        this.toastr.success('successfully applied');
+        this.toastr.success(res.message);
+        item.isApplied = true;
       } else {
-        this.toastr.warning('Connection failed, Please try again.');
+        this.toastr.warning(res.message);
       }
     });
   }
@@ -41,13 +48,13 @@ export class JobListItemComponent implements OnInit ,AfterViewInit {
     };
     this.apiService.saveJobsDashboard(jobParams).subscribe((res: any) => {
       if (res.success) {
-        this.toastr.success('successfully applied');
+        this.toastr.success(res.message);
         let currentUrl = this.router.url;
         this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
             this.router.navigate([currentUrl]);
         });
       } else {
-        this.toastr.warning('Connection failed, Please try again.');
+        this.toastr.warning(res.message);
       }
     });
   }
