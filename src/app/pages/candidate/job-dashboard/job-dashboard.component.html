@@ -18,7 +18,7 @@
                             <div class="bigleft singlecardborder0">
                                 <div class="left">
                                     <div class="smalltext">
-                                        jobs Available
+                                        Jobs Available
                                     </div>
                                     <div class="bigtext">
                                         {{ jobsAvailable }}
@@ -34,7 +34,7 @@
                             <div class="bigleft singlecardborder1">
                                 <div class="left">
                                     <div class="smalltext">
-                                        jobs Applied
+                                        Jobs Applied
                                     </div>
                                     <div class="bigtext">
                                         {{ jobApplied }}
@@ -116,7 +116,9 @@
                         {{username}}
                     </div>
                     <div class="big" >-</div>
-                    <div class="small">{{usercity}}, {{userstate}}, {{usercountry}}</div>
+                    <div class="small" *ngIf="!usercity">-</div>
+
+                    <div class="small" *ngIf="usercity">{{usercity}}, {{userstate}}, {{usercountry}}</div>
                     <hr>
                     <div class="profile-progress">
                         <span>Profile Completion</span>

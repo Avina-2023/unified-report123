@@ -8,6 +8,11 @@
   align-items: center;
   flex-direction: row;
   background-color: #fff;
+  .menu-icon{
+    top: 0;
+    position: relative;
+    right: 7px;
+  }
 
   .hearder-logo {
     width: 170px;
@@ -79,10 +84,10 @@
 }
 .lastitem{
   position: absolute;
-  bottom:45px;
+  bottom:5px;
 }
 .lastitem:hover{
-  bottom:45px;
+  bottom:5px;
 }
 .mat-toolbar.mat-primary{
   position: fixed;
