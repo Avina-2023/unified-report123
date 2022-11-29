@@ -139,8 +139,8 @@ export class JobListingComponent implements OnInit {
 
 		let jobParams: any =
 		{
-			"email ": this.appconfig.getLocalStorage("email"),
-			"jobId ": item.jobId
+			"email": this.appconfig.getLocalStorage("email"),
+			"jobId": item.jobId
 		}
 		this.apiservice.saveJobsDashboard(jobParams).subscribe((res: any) => {
 			if (res.success) {
