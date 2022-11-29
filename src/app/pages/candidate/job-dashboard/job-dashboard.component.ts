@@ -78,14 +78,14 @@ export class JobDashboardComponent implements OnInit {
       dataLabels: {
         enabled: false,
         style: {
-          colors: ['#FF9A78', '#26BBEF', '#10E596', '#FDBC64'],
+          colors: ['#26BBEF', '#FF9A78', '#10E596', '#FDBC64'],
         },
       },
 
       stroke: {
         show: true,
         width: 2,
-        colors: ['transparent'],
+        colors: ['#26BBEF', '#FF9A78', '#10E596', '#FDBC64'],
       },
       xaxis: {
         categories: [
@@ -154,7 +154,7 @@ export class JobDashboardComponent implements OnInit {
     this.apiService.candidateDetails(obj).subscribe((res: any) => {
       if (res.success) {
         this.Details = res.data;
-       this.profilepercentage= this.Details.profilePercentage
+       this.profilepercentage= Math.ceil(this.Details.profilePercentage)
       }
     });
   }
