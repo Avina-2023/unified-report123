@@ -67,6 +67,7 @@ export class LoginPageComponent  {
         this.appConfig.setLocalStorage('c_token', data && data.token ? data.token : '');
         this.appConfig.setLocalStorage('email', data && data.data.email ? data.data.email : '');
         this.appConfig.setLocalStorage('name',data && data.data.personal_details?data.data.personal_details.name:'N/A')
+        this.appConfig.setLocalStorage('profileImage',data && data.data.personal_details?data.data.personal_details.profileImage:'')
         this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.CANDIDATEDASH.DASHBOARD);
       }else{
         // this.appConfig.setLocalStorage('c_token', data && data.token ? data.token : 'my token');

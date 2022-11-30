@@ -129,7 +129,7 @@
         </div>
         <div class="candidatebg">
             <div class="userprofile">
-                <img src="../../../../assets/images/candidate-userprofile.png">
+                <img width="150px" [src]="this.Details.profileImage?this.Details.profileImage:'../../../../assets/images/candidate-userprofile.png'">
                 <div class="bg-white">
                     <div class="profilename">
                         {{username}}

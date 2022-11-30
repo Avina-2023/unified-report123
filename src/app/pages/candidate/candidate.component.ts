@@ -16,7 +16,8 @@ export class CandidateComponent implements OnInit {
   isShowing: boolean = false;
   routelinks = APP_CONSTANTS.ENDPOINTS
   candidateName = localStorage.getItem('name')
-  constructor(public router:Router, private apiservice:ApiService,private appConfig: AppConfigService) {
+  profileimge: any;
+  constructor(public router:Router, private apiservice:ApiService, private appconfig:AppConfigService) {
     this.router.events.subscribe(event => {
       if(event instanceof NavigationEnd) {
 
@@ -25,6 +26,10 @@ export class CandidateComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.profileimge = this.appconfig.getLocalStorage('profileImage');
+  }
+  ngOnChanges(){
+    this.profileimge = this.appconfig.getLocalStorage('profileImage');
 
   }
 
@@ -44,7 +49,7 @@ export class CandidateComponent implements OnInit {
     this.apiservice.logout();
   }
   gotoProfile(){
-    let emailval = this.appConfig.getLocalStorage('email')
+    let emailval = this.appconfig.getLocalStorage('email')
     let enc_email = encodeURIComponent(this.apiservice.encryptnew(emailval,environment.cryptoEncryptionKey))
     // window.open(environment.SKILL_PROFILE_URL+'/externallogin?extId='+enc_email, 'profile_redir');
     window.location.replace(environment.SKILL_PROFILE_URL+'/externallogin?extId='+enc_email);
