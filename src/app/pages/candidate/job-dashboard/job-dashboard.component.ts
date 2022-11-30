@@ -159,6 +159,7 @@ export class JobDashboardComponent implements OnInit {
     this.apiService.candidateDetails(obj).subscribe((res: any) => {
       if (res.success) {
         this.Details = res.data;
+        this.appConfig.setLocalStorage('profileImage',this.Details.profileImage);
         this.profilepercentage = Math.ceil(this.Details.profilePercentage);
         this.usercity = this.Details.permanentaddress.permanent_city;
         this.userstate = this.Details.permanentaddress.permanent_state;

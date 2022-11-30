@@ -6,12 +6,12 @@
   <span class="toolbar-spacer"></span>
   <div class="toolbar-pic">
     <span class="username">{{candidateName}}</span>
-    <img  src="../../../../assets/images/emp-dashboard-icons/user.png">
+    <img  [src]="profileimge?profileimge:'../../../../assets/images/emp-dashboard-icons/user.png'">
   </div>
 </mat-toolbar>
 <div class="content">
   <mat-sidenav-container class="example-container" style="margin-top: 64px !important;"  autosize [hasBackdrop]="false">
-    <mat-sidenav #sidenav mode="side" opened="true" class="sidenav" (mouseenter)="mouseenter()"
+    <mat-sidenav #sidenav [mode]="sideNavMode" opened="true" class="sidenav" (mouseenter)="mouseenter()"
     (mouseleave)="mouseleave()">
       <mat-nav-list>
         <mat-list-item class="navItems" [ngClass]="router.url==routelinks.CANDIDATEDASH.DASHBOARD? 'active':''" [routerLink]="routelinks.CNDIDATELANDING">
@@ -37,7 +37,7 @@
           <span class="full-width" *ngIf="isExpanded || isShowing">Saved Jobs</span>
         </mat-list-item>
 
-        <mat-list-item class="navItems lastitem" (click)="logout()">
+        <mat-list-item class=" lastitem" (click)="logout()">
           <mat-icon mat-list-icon class="material-symbols-outlined">logout_outline</mat-icon>
           <span class="full-width" *ngIf="isExpanded || isShowing">Logout</span>
         </mat-list-item>
@@ -46,7 +46,7 @@
       </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content style="overflow-x:hidden !important" >
-    <div>
+    <div [ngClass]="sideNavMode=='over'?'navMarginOver':'navMarginSide'">
       <router-outlet></router-outlet>
     </div>
   </mat-sidenav-content>
