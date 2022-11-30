@@ -21,6 +21,10 @@ export class CommonPaginatorComponent implements OnInit {
   @Input() totalcount:any;
   constructor() { }
   ngOnInit(): void {
+
+
+  }
+  ngOnChanges() {
     this.updateVisiblePages();
   }
   // select paginator number

@@ -86,6 +86,7 @@
               <div class="misc_row"><span>
                   <mat-icon class="misc_icon"> work</mat-icon>
                 </span>
+                <span class="smalltext" *ngIf="!item.jobType">-</span>
                 <span class="misc_col">{{item.jobType}} </span>
               </div>
             </div>
@@ -95,6 +96,7 @@
       </div>
 
     </div>
+
     <div class="paginationdisplay">
       <app-common-paginator *ngIf="total"  (send)="some($event)" [totalcount]="total"></app-common-paginator>
     </div>
@@ -196,3 +198,7 @@
     </div>
   </div>
 </ng-template>
+<div class="norecords">
+  <mat-card *ngIf="totallength==0">
+    <span>No Applied Jobs</span></mat-card>
+</div>

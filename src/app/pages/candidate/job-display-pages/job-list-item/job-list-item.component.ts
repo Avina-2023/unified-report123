@@ -12,6 +12,7 @@ export class JobListItemComponent implements OnInit ,AfterViewInit {
   public isDisabled: boolean = true;
   @Input() data: any;
   @Input() savedButton = false;
+  @Input() showApplied = false;
   constructor(
     private apiService: ApiService,
     private toastr: ToastrService,
