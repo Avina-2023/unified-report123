@@ -198,7 +198,6 @@
     </div>
   </div>
 </ng-template>
-<div class="norecords">
-  <mat-card *ngIf="totallength==0">
-    <span>No Applied Jobs</span></mat-card>
+<div *ngIf="totallength==0">
+    <app-no-data-found [from]="'find'"></app-no-data-found>
 </div>
