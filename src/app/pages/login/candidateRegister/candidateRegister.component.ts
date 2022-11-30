@@ -25,7 +25,7 @@ export class candidateRegister implements OnInit {
   failuremail = false;
   msg = ''
   secretKey = "(!@#Passcode!@#)";
-  skillProfileUrl = environment.SKILL_PROFILE_URL;
+  skillProfileUrl = "/login?from=freshGrad";
   dialogRef: any;
   constructor(public fb: FormBuilder,private dialog: MatDialog, private glovbal_validators: GlobalValidatorService, public toastr: ToastrService, private ApiService: ApiService,public appConfig: AppConfigService, private router:Router   ) { }
 

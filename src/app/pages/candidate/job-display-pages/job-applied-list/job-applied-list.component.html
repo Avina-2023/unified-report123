@@ -7,7 +7,7 @@
 </div>
 
 
-<app-job-list-item [data]="appliedjobs" ></app-job-list-item>
+<app-job-list-item [data]="appliedjobs" [showApplied]="true"></app-job-list-item>
 <div class="pagination">
   <app-common-paginator *ngIf="total"  (send)="some($event)" [totalcount]="total"></app-common-paginator>
 </div>
