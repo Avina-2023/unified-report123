@@ -14,6 +14,7 @@ import { NgApexchartsModule } from "ng-apexcharts";
 import { FormsModule } from '@angular/forms';
 import { JobDescriptionComponent } from './job-description/job-description.component';
 import { TimeAgoPipe } from 'src/app/pipe/timeago.pipe';
+import { NoDataFoundComponent } from './candidateCommons/no-data-found/no-data-found.component';
 
 @NgModule({
   imports: [
@@ -33,7 +34,8 @@ import { TimeAgoPipe } from 'src/app/pipe/timeago.pipe';
     JobSavedListComponent,
     JobDescriptionComponent,
     CommonPaginatorComponent,
-    TimeAgoPipe
+    TimeAgoPipe,
+    NoDataFoundComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]
 })

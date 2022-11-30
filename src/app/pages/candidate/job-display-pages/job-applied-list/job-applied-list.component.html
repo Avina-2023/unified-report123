@@ -1,9 +1,12 @@
 <div class="appliedjobs">
     <div class="text">Applied Jobs</div>
 </div>
-<div class="norecords">
+<!-- <div class="norecords">
   <mat-card *ngIf="totallength==0">
     <span>No Applied Jobs</span></mat-card>
+</div> -->
+<div *ngIf="totallength==0">
+  <app-no-data-found [from]="'applied'"></app-no-data-found>
 </div>
 
 

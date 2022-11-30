@@ -77,10 +77,15 @@ item: any;
     };
     this.skillexService.saveJobsDashboard(jobParams).subscribe((res: any) => {
       if (res.success) {
-        this.toaster.success("Job saved successfully");
+        console.log(res)
+        if(res && res.data !=undefined && res.data  ){
+          this.toaster.success("Job saved successfully");
+        }else{
+          this.toaster.success("Job removed successfully");
+        }
         this.jobDetails.isSelected= !this.jobDetails.isSelected;
       } else {
-        this.toaster.warning("Job removed successfully");
+        this.toaster.warning("Connection failed");
       }
     });
   }
