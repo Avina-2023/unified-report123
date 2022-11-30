@@ -187,7 +187,7 @@ export class JobListingComponent implements OnInit {
 		this.apiservice.joblistingDashboard(params).subscribe((response: any) => {
 			if (response.success) {
 				this.joblist = response.data;
-        this.totallength = this.joblist.length
+        this.totallength = response.totalCount;
         this.total = Math.ceil(response.totalCount/this.itemsPerPage);
         console.log(this.total)
 				this.joblist.forEach(element => {
