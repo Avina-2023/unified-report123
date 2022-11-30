@@ -168,6 +168,7 @@ export class JobDashboardComponent implements OnInit {
   gotoProfile(){
     let emailval = this.appConfig.getLocalStorage('email')
     let enc_email = encodeURIComponent(this.apiService.encryptnew(emailval,environment.cryptoEncryptionKey))
-    window.open(environment.SKILL_PROFILE_URL+'/externallogin?extId='+enc_email, 'profile_redir');
+    // window.open(environment.SKILL_PROFILE_URL+'/externallogin?extId='+enc_email, 'profile_redir');
+    window.location.replace(environment.SKILL_PROFILE_URL+'/externallogin?extId='+enc_email);
   }
 }
