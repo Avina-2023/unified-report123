@@ -1,7 +1,7 @@
 
 .appHeader {
-  border-bottom: 1px solid grey;
-  height: 65px;
+  border-bottom: 1px solid #eee;
+  // height: 65px;
   padding:14px 20px;
   display: flex;
   justify-content: space-between;
@@ -59,12 +59,12 @@
 }
 //NAV ITEMS
 
-// .navMarginOver{
-//   margin-left: 65px;
-// }
-// .navMarginSide{
-//   margin-left: 0px;
-// }
+.navMarginOver{
+  margin-left: 65px;
+}
+.navMarginSide{
+  margin-left: 0px;
+}
 
 .navItems{
   color: #70707099;
@@ -80,9 +80,13 @@
 .lastitem{
   position: absolute;
   bottom:45px;
+  color: #70707099;
+  padding: 20px 35px;
+  font-size: 14px;
 }
 .lastitem:hover{
   bottom:45px;
+  color:#FF5722;
 }
 .mat-toolbar.mat-primary{
   position: fixed;
