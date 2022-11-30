@@ -4,7 +4,7 @@ import { NavigationEnd, Router, RouterEvent } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
 import { AppConfigService } from 'src/app/utils/app-config.service';
 import { APP_CONSTANTS } from 'src/app/utils/app-constants.service';
-
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-candidatedash',
   templateUrl: './candidate.component.html',
@@ -47,5 +47,12 @@ export class CandidateComponent implements OnInit {
   }
   logout(){
     this.apiservice.logout();
+  }
+  gotoProfile(){
+    let emailval = this.appconfig.getLocalStorage('email')
+    let enc_email = encodeURIComponent(this.apiservice.encryptnew(emailval,environment.cryptoEncryptionKey))
+    // window.open(environment.SKILL_PROFILE_URL+'/externallogin?extId='+enc_email, 'profile_redir');
+    window.location.replace(environment.SKILL_PROFILE_URL+'/externallogin?extId='+enc_email);
+
   }
 }

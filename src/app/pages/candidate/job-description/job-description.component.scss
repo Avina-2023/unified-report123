@@ -12,14 +12,13 @@ li {
   color: white;
   border-radius: 5px !important;
   width: 100%;
-  padding: 5px 18px;
-  margin-top: 20px;
+  padding: 0px 15px;
+  margin: 20px 10px 0px 10px;
   float: right;
   font-family: Lato !important;
 }
 
 .btn:hover {
-  background: #003363 !important;
   transition: ease-out .3s;
 }
 
@@ -83,6 +82,15 @@ li {
       margin-top: -20px;
     }
   }
+}
+
+.save{
+  background: #fff!important;
+  border-color: #26bbef;
+  color: #26bbef;
+}
+.flx_butn{
+  display: flex;
 }
 
 .custom-card {
@@ -193,6 +201,12 @@ li {
   display: flex;
   align-items: center;
 }
+.eventnote{
+  color: red;
+font-weight: 500;
+margin-top: 5px;
+margin-bottom: 0px;
+}
 
 .wrapper {
   display: flex;
@@ -240,6 +254,17 @@ li {
     height: 130px!important;
     }
   }
+
+  .eventnote{
+    position: absolute;
+    width: 140px;
+    right: 3%;
+    top: 14%;
+    }
+    .flx_butn{
+    margin-top: 20px;
+    }
+  
     .companyLogo{
     left: 20px!important;
     top: 85px!important;
@@ -247,6 +272,20 @@ li {
     
     .jobtopcontainer{
     margin-top: 40px!important;
+    display: block!important;
+    padding: 10px;
+    .JT-right {
+      width: 100%;
+      margin-top: 10px;
+  }
+  .calign{
+    width: 50%;
+  }
+  .btn{
+    margin: 0px 10px!important;
+    width: 40%!important;
+    background: #26bbef;
+    }
     }
 
   .pageWrapper{

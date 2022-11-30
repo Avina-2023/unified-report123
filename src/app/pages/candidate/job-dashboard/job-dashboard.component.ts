@@ -15,7 +15,7 @@ import {
 } from 'ng-apexcharts';
 import { element } from 'protractor';
 import { ApiService } from 'src/app/services/api.service';
-import { AppConfigService } from 'src/app/utils/app-config.service'
+import { AppConfigService } from 'src/app/utils/app-config.service';
 import { environment } from 'src/environments/environment';
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -49,7 +49,10 @@ export class JobDashboardComponent implements OnInit {
   public ChartData: any = [];
   public objDetails: any;
   public Details: any;
-  public profilepercentage:any
+  public profilepercentage: any;
+  public userstate: any;
+  public usercountry: any;
+  public usercity: any;
   public allyears = [
     { year: new Date().getFullYear() },
     { year: new Date().getFullYear() - 1 },
@@ -78,14 +81,16 @@ export class JobDashboardComponent implements OnInit {
       dataLabels: {
         enabled: false,
         style: {
-          colors: ['#FF9A78', '#26BBEF', '#10E596', '#FDBC64'],
+          colors: ['#26BBEF', '#FF9A78', '#10E596', '#FDBC64'],
         },
       },
-
+      legend: {
+        show: false,
+      },
       stroke: {
         show: true,
         width: 2,
-        colors: ['transparent'],
+        colors: ['#26BBEF', '#FF9A78', '#10E596'],
       },
       xaxis: {
         categories: [
@@ -105,7 +110,7 @@ export class JobDashboardComponent implements OnInit {
       },
       fill: {
         opacity: 1,
-        colors: ['#26BBEF', '#FF9A78', '#10E596', '#FDBC64'],
+        colors: ['#26BBEF', '#FF9A78', '#10E596'],
       },
     };
   }
@@ -155,7 +160,10 @@ export class JobDashboardComponent implements OnInit {
       if (res.success) {
         this.Details = res.data;
         this.appConfig.setLocalStorage('profileImage',this.Details.profileImage);
-       this.profilepercentage= Math.ceil(this.Details.profilePercentage)
+        this.profilepercentage = Math.ceil(this.Details.profilePercentage);
+        this.usercity = this.Details.permanentaddress.permanent_city;
+        this.userstate = this.Details.permanentaddress.permanent_state;
+        this.usercountry = this.Details.permanentaddress.permanent_country;
       }
     });
   }
@@ -163,6 +171,7 @@ export class JobDashboardComponent implements OnInit {
   gotoProfile(){
     let emailval = this.appConfig.getLocalStorage('email')
     let enc_email = encodeURIComponent(this.apiService.encryptnew(emailval,environment.cryptoEncryptionKey))
-    window.open(environment.SKILL_PROFILE_URL+'/externallogin?extId='+enc_email, 'profile_redir');
+    // window.open(environment.SKILL_PROFILE_URL+'/externallogin?extId='+enc_email, 'profile_redir');
+    window.location.replace(environment.SKILL_PROFILE_URL+'/externallogin?extId='+enc_email);
   }
 }

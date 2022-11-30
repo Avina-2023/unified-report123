@@ -26,7 +26,6 @@
 .job_board {
   width: 75%;
   border-right: 1px solid #e7e7e7;
-  height: 100vh;
 
 }
 
@@ -114,11 +113,22 @@
 
 .flex-layout {
   width: 100%;
+  height: 82vh;
   display: flex;
   flex-wrap: wrap;
   background: #fff;
 }
-
+.norecords {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  position: relative;
+  top: 150px;
+  span{
+    font-weight: 600;
+  }
+}
 .overall_box {
   display: flex;
   flex-wrap: wrap;
@@ -279,7 +289,13 @@
   }
 
 }
-
+.paginationdisplay{
+  display: flex;
+  justify-content: space-around;
+  width: 80%;
+  position:fixed;
+  margin-top: -9px;
+}
 .misc_save {
   z-index: 999;
 
@@ -488,7 +504,7 @@
   .results_dash{
     padding: 0px 5px;
   }
-  
+
   .fil_output {
     display: -webkit-box !important;
     flex-wrap: nowrap;

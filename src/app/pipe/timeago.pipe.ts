@@ -18,6 +18,8 @@ export class TimeAgoPipe implements PipeTransform, OnDestroy {
   transform(value: string) {
     this.removeTimer();
     let d = new Date(value);
+    // console.log(value);
+    // console.log(d);
     let now = new Date();
     let seconds = Math.round(Math.abs((now.getTime() - d.getTime()) / 1000));
     let timeToUpdate = Number.isNaN(seconds)

@@ -6,6 +6,7 @@
     <span>No saved Jobs</span></mat-card>
 </div>
   <app-job-list-item [data]="savedjobs" [savedButton]="true"></app-job-list-item>
+
   <div class="pagination">
     <app-common-paginator *ngIf="total"  (send)="some($event)" [totalcount]="total"></app-common-paginator>
   </div>

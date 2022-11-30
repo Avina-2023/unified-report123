@@ -18,8 +18,13 @@
          </div>
          <div class="JT-right">
             <div class="genText calign"><mat-icon class="misc_icon"> event_note</mat-icon>Posted
-               {{jobDetails.postedDate|timeAgo}}</div>
-            <button class="btn" (click)="applyJob()">Apply</button>
+               {{jobDetails.createdOn|timeAgo}}</div>
+               <div class="eventnote">Last Date to Apply: {{jobDetails.lastDatetoApply|date}}</div>
+           <div class="flx_butn"> <button class="save btn" *ngIf="jobDetails.isSelected == false" (click)="saved()" >Save</button>
+            <button class="save btn"   *ngIf="jobDetails.isSelected == true" (click)="saved()" >Saved</button>
+            <button class="btn"  *ngIf="jobDetails.isApplied == false" (click)="applyJob()">Apply</button>
+            <button class="btn" [disabled]="true" *ngIf="jobDetails.isApplied == true">Applied</button>
+          </div>
          </div>
       </div>
    </div>

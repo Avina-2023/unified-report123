@@ -5,6 +5,7 @@ import { ApiService } from 'src/app/services/api.service';
 import { AppConfigService } from 'src/app/utils/app-config.service';
 import { ActivatedRoute, NavigationStart, Router } from '@angular/router';
 import { filter, map } from 'rxjs/operators';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-job-description',
@@ -19,9 +20,11 @@ export class JobDescriptionComponent implements OnInit {
   dialogData: any;
   descriptionData: any;
   jobDetails:any;
+item: any;
 
   constructor(
     private skillexService:ApiService,
+    private toaster:ToastrService,
     private appConfig: AppConfigService,
     private mdDialog: MatDialog,
     public router: Router,
@@ -66,25 +69,42 @@ export class JobDescriptionComponent implements OnInit {
     //   }
     // });
   }
-  applyJob(){
-    let param =
-    {
-      "email":this.appConfig.getLocalStorage('email'),
-      "jobId":"34567"
-    }
-    // this.skillexService.submitJobForm(param).subscribe((jobdata:any) => {
 
-    //   if(jobdata.success){
-    //     this.appConfig.success(jobdata.message);
-    //     this.openDialog('success')
-    //   }else{
-    //     if(jobdata.message =="Profile not filled"){
-    //       this.openDialog('fail')
-    //     }else{
-    //       this.appConfig.error(jobdata.message);
-    //     }
-    //   }
-    // });
+  saved() {
+    let jobParams: any = {
+      email: localStorage.getItem('email'),
+      jobId: this.jobDetails.jobId,
+    };
+    this.skillexService.saveJobsDashboard(jobParams).subscribe((res: any) => {
+      if (res.success) {
+        this.toaster.success("Job saved successfully");
+        this.jobDetails.isSelected= !this.jobDetails.isSelected;
+      } else {
+        this.toaster.warning("Job removed successfully");
+      }
+    });
+  }
+
+  applyJob(){
+    let obj =
+    {
+      email:this.appConfig.getLocalStorage('email'),
+      jobId:this.jobDetails.jobId,
+      jobDetails:{
+        education:this.jobDetails.education,
+        specialization:this.jobDetails.specialization,
+        yearofPassout:this.jobDetails.yearofPassout,
+        eligiblityCriteria:this.jobDetails.eligiblityCriteria
+      }
+    }
+      this.skillexService.savedJobs(obj).subscribe((res: any) => {
+        if (res.success) {
+          this.toaster.success(res.message);
+          this.jobDetails.isApplied= !this.jobDetails.isApplied;
+        } else {
+          this.toaster.warning(res.message);
+        }
+      });
 
     }
 

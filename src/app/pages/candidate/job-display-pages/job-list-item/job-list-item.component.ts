@@ -1,51 +1,66 @@
-import {Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, AfterViewInit } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-job-list-item',
   templateUrl: './job-list-item.component.html',
-  styleUrls: ['./job-list-item.component.scss']
+  styleUrls: ['./job-list-item.component.scss'],
 })
-export class JobListItemComponent implements OnInit {
-  public isActive:boolean = true;
-  public isDisabled:boolean = true;
-  @Input() data:any;
+export class JobListItemComponent implements OnInit ,AfterViewInit {
+  public isActive: boolean = true;
+  public isDisabled: boolean = true;
+  @Input() data: any;
   @Input() savedButton = false;
-  constructor(private apiService: ApiService, private toastr: ToastrService) { }
-  ngOnInit() {
-  }
-  apply(item){
-   var obj ={};
-   obj={
-    "jobId":item.jobId,
-    "email":localStorage.getItem('email')
-   }
-  this.apiService.saveJobsDashboard(obj).subscribe((res:any)=>{
-    if (res.success) {
-      this.toastr.success('successfully applied')
-    }
-    else {
-      this.toastr.warning('Connection failed, Please try again.');
-    }
-  });
+  @Input() showApplied = false;
+  constructor(
+    private apiService: ApiService,
+    private toastr: ToastrService,
+    public router:Router
+  ) {}
+  ngOnInit() {}
+  apply(item) {
+    var obj = {};
+    obj = {
+      jobId: item.jobId,
+      email: localStorage.getItem('email'),
+      jobDetails:{
+        education:item.education,
+        specialization:item.specialization,
+        yearofPassout:item.yearofPassout,
+        eligiblityCriteria:item.eligiblityCriteria
+      }
+    };
+    this.apiService.savedJobs(obj).subscribe((res: any) => {
+      if (res.success) {
+        this.toastr.success(res.message);
+        item.isApplied = true;
+      } else {
+        this.toastr.warning(res.message);
+      }
+    });
   }
 
   bookMarkIcon(item) {
-		item.isSelected = !item.isSelected;
-
-		let jobParams: any =
-		{
-			"email ": "deenabandhutekarla@gmail.com",
-			"jobId ": item.jobId
-		}
-		this.apiService.saveJobsDashboard(jobParams).subscribe((res: any) => {
+    item.isSelected = !item.isSelected;
+    let jobParams: any = {
+      email: localStorage.getItem('email'),
+      jobId: item.jobId,
+    };
+    this.apiService.saveJobsDashboard(jobParams).subscribe((res: any) => {
       if (res.success) {
-        this.toastr.success('successfully applied')
+        this.toastr.success(res.message);
+        let currentUrl = this.router.url;
+        this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+            this.router.navigate([currentUrl]);
+        });
+      } else {
+        this.toastr.warning(res.message);
       }
-      else {
-        this.toastr.warning('Connection failed, Please try again.');
-      }
+    });
+  }
 
-		});
-	}
+  ngAfterViewInit() {
+
+  }
 }

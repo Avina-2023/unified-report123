@@ -22,7 +22,7 @@
   flex-direction: column;
   flex-wrap: nowrap;
   position: relative;
-  top: 100px;
+  top: 150px;
   span{
     font-weight: 600;
   }
@@ -30,4 +30,5 @@
 .pagination{
   display: flex;
   justify-content: space-around;
+  // margin: 5px;
 }

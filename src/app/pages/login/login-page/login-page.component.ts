@@ -70,7 +70,8 @@ export class LoginPageComponent  {
         this.appConfig.setLocalStorage('profileImage',data && data.data.personal_details?data.data.personal_details.profileImage:'')
         this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.CANDIDATEDASH.DASHBOARD);
       }else{
-        this.appConfig.setLocalStorage('c_token', data && data.token ? data.token : 'my token');
+        // this.appConfig.setLocalStorage('c_token', data && data.token ? data.token : 'my token');
+        this.toastr.warning(data.message)
       }
       })
     }else{
