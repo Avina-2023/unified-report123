@@ -127,47 +127,35 @@
             </div>
         </div>
         <div class="col-md-4 p-0">
-            <div class="chartcard">
-                <div class="d-flex">
-                    <div class="row">
-                        <div class="chart-title align">Profile by Year of Pass Out</div>
-                        <div class="col-md-10">
-                            <div class="leftchart">
-                                <div class="chartinsidetext">
-                                    <div class="insidetext1">{{ dashBoardDetails[0]?.cardDetails.totalCandidate }}</div>
-                                    <div class="insidetext2"> Total Candidates</div>
-                                </div>
-                                <canvas baseChart [data]="doughnutChartData" [options]="options"
-                                    [colors]="doughnutChartColors" [labels]="doughnutChartLabels"
-                                 [chartType]="doughnutChartType">
-                                </canvas>
-                            </div>
-                        </div>
-                        <div class="col-md-2">
-                            <div class="rightchart">
-                                <div *ngFor="let elem of dashBoardDetails[0]?.yearDetails; index as i" >
-                                    <div class="d-flex">
-                                     <div class="d-grid">
-                                         <label [ngClass]="'circle circle'+i"></label>
-                                     </div>
-                                     <div class="d-grid">
-                                         <div *ngIf="i+1!=4" class="yeard-flex">{{elem.year }}</div>
-                                         <div *ngIf="i+1==4" class="yeard-flex">{{ elem.year }}</div>
-                                     </div>
-                                     <div class="d-grid protext2" >
-                                         <div class="yeard-flex2">{{ elem.total }}</div>
-                                     </div>
-                                    </div>
-                                 </div>
-                            </div>
-                        </div>
-
-
-
-
-                    </div>
-                </div>
+          <div class="chartcard">
+            <div class="chart-title mb-3">Profile by Year of Pass Out</div>
+            <div class="flex">
+              <div class="chart1">
+                <canvas baseChart [data]="doughnutChartData" [options]="options"
+                [colors]="doughnutChartColors" [labels]="doughnutChartLabels"
+             [chartType]="doughnutChartType">
+            </canvas>
             </div>
+            <div class="rightchart">
+              <table>
+                  <tbody>
+                      <tr class="flex" *ngFor="let elem of dashBoardDetails[0]?.yearDetails; index as i">
+                          <td> <label [ngClass]="'circle circle'+i"></label></td>
+                          <td>
+                            <div *ngIf="i+1!=4" class="yeard-flex">{{elem.year }}</div>
+                            <div *ngIf="i+1==4" class="yeard-flex">{{ elem.year }}</div>
+                          </td>
+                          <td>
+                              <div class="chart1total">
+                                  <div class="yeard-flex2">{{ elem.total }}</div>
+                              </div>
+                          </td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+            </div>
+        </div>
             <br>
             <div class="chartcard">
                 <div class="chart-title">Profile by Gender</div>
@@ -178,7 +166,7 @@
                         [chartType]="doughnutChartTypetwo">
                     </canvas>
                 </div>
-                <div class="rightchart">
+                <div class="rightchart1">
                   <table>
                       <tbody>
                           <tr *ngFor="let elem of dashBoardDetails[0]?.genderDetails; index as i">
@@ -196,7 +184,6 @@
                   </table>
               </div>
                 </div>
-
             </div>
 
         </div>
