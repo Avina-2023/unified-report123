@@ -2,7 +2,7 @@ import { Component, Input, OnInit, SimpleChange } from '@angular/core';
 import { ChartOptions, ChartType, ChartDataSets } from "chart.js";
 import { Label, Color } from "ng2-charts";
 import "../rounded-corners";
-import { ApiService } from 'src/app/services/api.service'; 
+import { ApiService } from 'src/app/services/api.service';
 @Component({
   selector: 'app-graduation-chart',
   templateUrl: './graduation-chart.component.html',
@@ -13,31 +13,31 @@ export class GraduationChartComponent implements OnInit {
   @Input() item;
   public barChartOptions: ChartOptions = {
     scales: {
-      yAxes: [   
+      yAxes: [
         {
           gridLines:{
                borderDash:[8,4],
           },
           display: true,
-          stacked: true  
+          stacked: true
         }
       ],
-      xAxes: [   
+      xAxes: [
         {
           gridLines:{
           display:false
         },
-          stacked: false  
+          stacked: false
         }
       ],
     },
-    
+
     legend:{
-      display:false 
+      display:false
     },
     responsive: true,
     barRoundness: 0.2,
-    
+
   };
   public barChartLabels: Label[] = [];
   public barChartType: ChartType = "roundedBar" as ChartType;
@@ -51,7 +51,7 @@ export class GraduationChartComponent implements OnInit {
       hoverBorderColor: "rgba(251, 99, 64, 1)"
     }
   ];
-  
+
 
   public barChartData: ChartDataSets[] = [
     { data: []},
@@ -74,7 +74,7 @@ export class GraduationChartComponent implements OnInit {
   }
   graduationChart(){
       for (let i = 0; i < this.item?.length; i++) {
-        const element = this.item[i]; 
+        const element = this.item[i];
         this.barChartLabels.push(element.name)
         this.bardata.push(element.total)
         this.barChartData = [
