@@ -265,6 +265,7 @@
 }
 
 .yeard-flex {
+  width: 73px;
     display: flex;
     font-size: 13px;
     text-align: left;
@@ -302,6 +303,12 @@
 .rightchart{
   position: relative;
   right: 99px;
+  top: 20px;
+
+}
+.rightchart1{
+  position: relative;
+  right: 99px;
   top: 60px;
 
 }
@@ -312,7 +319,7 @@ position: relative;
 .chart2{
   position: relative;
   right: 68px;
-  padding: 30px 0px 0px 0px;
+  padding: 20px 0px 0px 0px;
 }
 .chart1{
   position: relative;
@@ -332,7 +339,7 @@ position: relative;
 .chart1total{
   position: relative;
   left: 25px;
-  top: -6px;
+  top: 0px;
 }
 .progress-male {
   height: 10px;
@@ -426,10 +433,4 @@ div[role="progressbar"]::before {
 .leftchart{
     position: relative;
     right: 71px;
-}
-.rightchart{
-    position: relative;
-    right: 99px;
-    top: 36px;
-
 }
