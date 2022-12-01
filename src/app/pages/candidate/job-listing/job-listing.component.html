@@ -46,28 +46,23 @@
             </div>
             <div class="misc_save" (click)="bookMarkIcon(item)">
               <span>
-                <mat-icon  [ngClass]="item.isSelected ? 'saved_icon':'unsaved_icon'">
+                <mat-icon [ngClass]="item.isSelected ? 'saved_icon':'unsaved_icon'">
                   {{item.isSelected?'bookmark':'bookmark_border'}} </mat-icon>
               </span>
             </div>
 
+
           </div>
           <div class="sample_class" (click)="gotojob(item)">
-            <div class="job_description" [innerHTML]="sampleContent[i].slice(0, 80).concat('...') ">
-            </div>
-            <div class="expertise">
-              <div class="specialization" *ngFor="let subItem of item.specialization">
-                <button>
-                  {{subItem}}
-                </button>
-              </div>
-            </div>
+            <!-- <div class="job_description" [innerHTML]="sampleContent[i].slice(0, 80).concat('...') ">
+            </div> -->
+
             <div class="misc_details">
               <div class="misc_row"><span>
                   <mat-icon class="misc_icon"> school</mat-icon>
                 </span>
-                <span *ngFor="let subItem of item.education">
-                  <span class="misc_col">{{subItem}}, </span>
+                <span *ngFor="let subItem of item.education;let i=index; let isLast=last">
+                  <span class="misc_col">{{subItem}}<span class="misc_col" *ngIf="!isLast && i < item.jobLocation.length">,</span> </span>
                 </span>
               </div>
 
@@ -75,19 +70,32 @@
                   <mat-icon class="misc_icon"> location_on</mat-icon>
                 </span>
                 <p class="locate">
-                  <span *ngFor="let subItem of item.jobLocation">
-                    <span class="misc_col">{{subItem}}, </span>
+                  <span *ngFor="let subItem of item.jobLocation;let i=index; let isLast=last">
+                    <span class="misc_col">{{subItem}}<span class="misc_col" *ngIf="!isLast && i < item.jobLocation.length">,</span></span>
                   </span>
                 </p>
               </div>
 
-              <div class="misc_row"><span>
+              <div class="misc_row" *ngIf="item.jobType"><span>
                   <mat-icon class="misc_icon"> work</mat-icon>
                 </span>
-                <span class="smalltext" *ngIf="!item.jobType">-</span>
-                <span class="misc_col">{{item.jobType}} </span>
+                <span class="misc_col" >{{item.jobType}} </span>
               </div>
             </div>
+
+            <div class="expertise" *ngIf="item.specialization">
+                <div class="specialization" *ngFor="let subItem of item.specialization; let ind = index">
+                  <button *ngIf="ind<2">
+                    {{subItem}}
+                  </button>
+                </div>
+                <div class="specialization" *ngIf="item.specialization.length-2>0">
+                  <button>
+                    +{{item.specialization.length-2}} more
+                  </button>
+                </div>
+            </div>
+
 
           </div>
         </mat-card>
