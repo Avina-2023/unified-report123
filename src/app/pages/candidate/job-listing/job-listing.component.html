@@ -11,8 +11,6 @@
             {{chkbox.name}} <mat-icon class="close_icon" (click)="closeSelectedValues(chkbox,i)">close</mat-icon>
           </div>
         </div>
-
-
       </div>
       <div class="fil_btn" (click)="mobDialog()">
         <mat-icon class="misc_icon">filter_list</mat-icon><span>Filters ({{this.selectedValues.length}})</span>
@@ -39,7 +37,7 @@
               </div>
               <div class="card_title">
                 <p class="job_designation">
-                  {{item.jobTitle}}
+                  {{item.jobRole}}
                 </p>
                 <p class="comp_name">
                   {{item.company}}
@@ -199,5 +197,5 @@
   </div>
 </ng-template>
 <div *ngIf="totallength==0">
-    <app-no-data-found [from]="'find'"></app-no-data-found>
+    <app-no-data-found *ngIf="totallength" [from]="'find'"></app-no-data-found>
 </div>

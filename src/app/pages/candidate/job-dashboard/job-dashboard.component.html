@@ -129,13 +129,12 @@
         </div>
         <div class="candidatebg">
             <div class="userprofile">
-                <img width="150px" [src]="this.Details.profileImage?this.Details.profileImage:'../../../../assets/images/candidate-userprofile.png'">
+                <img  class="avatar" [src]="this.Details.profileImage?this.Details.profileImage:'../../../../assets/images/candidate-userprofile.png'">
                 <div class="bg-white">
                     <div class="profilename">
                         {{username}}
                     </div>
-                    <div class="big" >-</div>
-                    <div class="small" *ngIf="!usercity">-</div>
+                    <!-- <div class="big" >-</div> -->
 
                     <div class="small" *ngIf="usercity">{{usercity}}, {{userstate}}, {{usercountry}}</div>
                     <hr>
