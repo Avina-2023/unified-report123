@@ -1,6 +1,13 @@
 ::ng-deep body{
 background: #fff;
 }
+* {
+  font-family: lato !important;
+
+  .mat-icon {
+    font-family: "Material Icons" !important;
+  }
+}
 ::ng-deep.mat-form-field-appearance-outline .mat-form-field-infix {
     padding: 4px;
 }
