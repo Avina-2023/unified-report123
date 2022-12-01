@@ -61,8 +61,8 @@
               <div class="misc_row"><span>
                   <mat-icon class="misc_icon"> school</mat-icon>
                 </span>
-                <span *ngFor="let subItem of item.education">
-                  <span class="misc_col">{{subItem}}, </span>
+                <span *ngFor="let subItem of item.education;let i=index; let isLast=last">
+                  <span class="misc_col">{{subItem}}<span class="misc_col" *ngIf="!isLast && i < item.jobLocation.length">,</span> </span>
                 </span>
               </div>
 
@@ -70,8 +70,8 @@
                   <mat-icon class="misc_icon"> location_on</mat-icon>
                 </span>
                 <p class="locate">
-                  <span *ngFor="let subItem of item.jobLocation">
-                    <span class="misc_col">{{subItem}}, </span>
+                  <span *ngFor="let subItem of item.jobLocation;let i=index; let isLast=last">
+                    <span class="misc_col">{{subItem}}<span class="misc_col" *ngIf="!isLast && i < item.jobLocation.length">,</span></span>
                   </span>
                 </p>
               </div>
