@@ -32,18 +32,18 @@
       <!-- [innerHTML]="jobDescription.jobDescription" -->
       <div class="custom-card cardpad LAlign">
 
-         <div class="desTitle">
+         <div class="desTitle" *ngIf="jobDetails.overview">
             Job Overview<br>
             <p>{{jobDetails.overview}}</p>
          </div>
 
-         <div class="desTitle">
+         <div class="desTitle" *ngIf="jobDetails.description.length">
             Job Description
             <ul>
                <li *ngFor="let content of jobDetails.description">{{content.item}}</li>
             </ul>
          </div>
-         <div class="desTitle">
+         <div class="desTitle" *ngIf="jobDetails.requirement.length">
             Job Requirements
             <ul>
                <li *ngFor="let content of jobDetails.requirement">{{content.item}}</li>
@@ -53,10 +53,10 @@
       <div class="custom-card cardpad RAlign">
          <div class="listspace">
             <div class="desTitle">
-               Job Title:
+               Job Title / Position:
             </div>
             <div class="genText">
-               {{jobDetails.jobRole}}
+               {{jobDetails.jobTitle}}
             </div>
          </div>
          <div class="listspace">

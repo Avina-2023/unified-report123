@@ -352,6 +352,7 @@
       font-size: 18px;
       font-weight: 600;
       color: #000;
+      margin-top:10px;
       text-transform: capitalize;
     }
 
@@ -529,6 +530,18 @@
       }
     }
   }
+}
+.avatar {
+  width:128px;
+  margin: 10px;
+  border:2px solid #fff;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  box-shadow: 0px 1px 10px 3px rgb(0 0 0 / 60%);
+-moz-box-shadow: 0px 1px 10px 3px rgb(0 0 0 / 60%);
+-webkit-box-shadow: 0px 1px 10px 3px rgb(0 0 0 / 60%);
+-o-box-shadow: 0px 1px 10px 3px rgb(0 0 0 / 60%);
 }
 
 // @media only screen and (max-width: 375px) {
