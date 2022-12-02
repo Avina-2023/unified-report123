@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AppConfigService } from './../../../utils/app-config.service';
 import { ApiService } from './../../../services/api.service';
 import { environment } from '../../../../environments/environment';
@@ -15,14 +15,25 @@ export class ForgotPasswordComponent implements OnInit {
   forgotPasswordForm: FormGroup;
   notTrue = false;
   getCurrentYear = this.appConfig.getCurrentYear();
+  isCandidate: boolean;
 
   constructor(
     private fb: FormBuilder,
     private router: Router,
     private apiService: ApiService,
     private appConfig: AppConfigService,
-    private toastr: ToastrService
-  ) { }
+    private toastr: ToastrService,
+    private activatedRoute: ActivatedRoute,
+  ) {
+
+    this.activatedRoute.queryParams.subscribe(params => {
+      if(params.from == 'freshGrad'){
+        this.isCandidate = true;
+      }else{
+        this.isCandidate = false;
+      }
+    })
+  }
 
   ngOnInit() {
     this.formInitialize();
@@ -45,34 +56,64 @@ export class ForgotPasswordComponent implements OnInit {
   }
 
   submit() {
+if(this.isCandidate){
 
-    if ( this.forgotPasswordForm.get('username').valid) {
-      let data;
+    let data;
 
-      if (this.forgotPasswordForm.get('username').valid) {
-        data = {
-          userId: this.apiService.encryptnew(this.forgotPasswordForm.value.username,environment.cryptoEncryptionKey),
-          employer:true,
-          type:"employerForgot"
-        };
-      }
+    if (this.forgotPasswordForm.get('username').valid) {
+      data = {
+        email: this.apiService.encryptnew(this.forgotPasswordForm.value.username,environment.cryptoEncryptionKey),
 
-      // this.appConfig.consoleLog('Registration Data which is passed to API', data);
-      // API
-
-      this.apiService.forgotPassword(data).subscribe((success: any) => {
-        if(success.success){
-          this.toastr.success(success.message);
-          this.appConfig.routeNavigation("/login");
-          }else{
-            this.toastr.error(success.message);
-          }
-      }, (err) => {
-        this.toastr.warning('Connection failed, Please try again.');
-      });
-    } else {
-      this.validateAllFields(this.forgotPasswordForm);
+      };
     }
+
+    // this.appConfig.consoleLog('Registration Data which is passed to API', data);
+    // API
+console.log('candiate',data)
+    this.apiService.forgotPassword(data).subscribe((success: any) => {
+      if(success.success){
+        this.toastr.success(success.message);
+        // this.appConfig.routeNavigation("/login");
+        this.appConfig.routeNavigationWithQueryParam("login",{from:"freshGrad"});
+        }else{
+          this.toastr.error(success.message);
+        }
+    }, (err) => {
+      this.toastr.warning('Connection failed, Please try again.');
+    });
+
+}else{
+
+    let data;
+
+    if (this.forgotPasswordForm.get('username').valid) {
+      data = {
+        userId: this.apiService.encryptnew(this.forgotPasswordForm.value.username,environment.cryptoEncryptionKey),
+        employer:true,
+        type:"employerForgot"
+      };
+    }
+
+    // this.appConfig.consoleLog('Registration Data which is passed to API', data);
+    // API
+console.log('emp',data)
+    this.apiService.forgotPassword(data).subscribe((success: any) => {
+      if(success.success){
+        this.toastr.success(success.message);
+        // this.appConfig.routeNavigation("/login");
+          this.appConfig.routeNavigationWithQueryParam("login",{from:"employer"});
+
+        }else{
+          this.toastr.error(success.message);
+        }
+    }, (err) => {
+      this.toastr.warning('Connection failed, Please try again.');
+    });
+
+}
+    //  else {
+    //   this.validateAllFields(this.forgotPasswordForm);
+    // }
 
   }
   // To validate all fields after submit
@@ -88,7 +129,12 @@ export class ForgotPasswordComponent implements OnInit {
   }
 
   signIn() {
-    this.appConfig.routeNavigation("login");
+    // this.appConfig.routeNavigation("login");
+    if(this.isCandidate){
+      this.appConfig.routeNavigationWithQueryParam("login",{from:"freshGrad"});
+    }else{
+      this.appConfig.routeNavigationWithQueryParam("login",{from:"employer"});
+    }
   }
 
   inputChanged(f) {
