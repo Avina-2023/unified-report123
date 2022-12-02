@@ -9,7 +9,7 @@
                 <mat-card-title class="cardTitle">Total Partners</mat-card-title>
                 <mat-card-content class="cardValue">
                   <div>
-                    <p>{{totalPartnerDashboardCount}}</p>
+                    <p>{{dashboard_cards.totalCount}}</p>
                   </div>
                   <div><img src="/assets/images/partner/partners.svg" alt=""></div>
                 </mat-card-content>
@@ -21,7 +21,7 @@
               </div> -->
                 <mat-card-footer class="cardFooter">
                   <span class="cardFootervalue"> <img src="/assets/images/partner/arrow-round-up.svg"
-                    alt="">18%</span> Since last month
+                    alt="">{{dashboard_cards.totalIncreased}}%</span> Since last month
                 </mat-card-footer>
               </mat-card>
             </div>
@@ -30,13 +30,13 @@
                 <mat-card-title class="cardTitle">No. of Active Partners</mat-card-title>
                 <mat-card-content class="cardValue">
                   <div>
-                    <p>{{activePartnerCount}}</p>
+                    <p>{{dashboard_cards.activeCount}}</p>
                   </div>
                   <div><img src="/assets/images/partner/partners-active.svg" alt=""></div>
                 </mat-card-content>
                 <mat-card-footer class="cardFooter">
                   <span class="cardFootervalue"> <img src="/assets/images/partner/arrow-round-up.svg"
-                    alt="">13%</span> Since last month
+                    alt="">{{dashboard_cards.activeIncreased}}%</span> Since last month
                 </mat-card-footer>
               </mat-card>
             </div>
@@ -45,13 +45,13 @@
                 <mat-card-title class="cardTitle">No. of Inactive Partners</mat-card-title>
                 <mat-card-content class="cardValue">
                   <div>
-                    <p>{{inActivePartnerCount}}</p>
+                    <p>{{dashboard_cards.inActiveCount}}</p>
                   </div>
                   <div><img src="/assets/images/partner/partners-inactive.svg" alt=""></div>
                 </mat-card-content>
                 <mat-card-footer class="cardFooter">
                   <span class="cardFootervalue"> <img src="/assets/images/partner/arrow-round-up.svg"
-                    alt="">2%</span> Since last month
+                    alt="">{{dashboard_cards.inActiveIncreased}}%</span> Since last month
                 </mat-card-footer>
               </mat-card>
             </div>
@@ -60,13 +60,13 @@
                 <mat-card-title class="cardTitle">Pending Approvals</mat-card-title>
                 <mat-card-content class="cardValue">
                   <div>
-                    <p>{{pendingCount}}</p>
+                    <p>{{dashboard_cards.pendingCount}}</p>
                   </div>
                   <div><img src="/assets/images/partner/partners-pending.svg" alt=""></div>
                 </mat-card-content>
                 <mat-card-footer class="cardFooter">
                   <span class="cardFootervalue"> <img src="/assets/images/partner/arrow-round-up.svg"
-                    alt="">2%</span> Since last month
+                    alt="">{{dashboard_cards.pendingIncreased}}%</span> Since last month
                 </mat-card-footer>
               </mat-card>
             </div>
@@ -115,7 +115,7 @@
                     <button mat-button matDatepickerCancel>Cancel</button>
                     <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
                   </mat-datepicker-actions>
-                </mat-datepicker>  
+                </mat-datepicker>
             </div>
             <div class="col-md-2 p-0">
               <button (click)="searchList()" [disabled]="(fromDate == undefined && toDate == undefined && searchData  == '')?true:false" color="primary" type="submit" [ngClass]="(fromDate == undefined && toDate == undefined && searchData  == '')?'notAllow':'search-btn'" >Search</button>
@@ -188,7 +188,7 @@
 
                   </mat-menu>
                 </td>
-              </ng-container>   
+              </ng-container>
               <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
               <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
               <tr class="mat-row" *matNoDataRow>

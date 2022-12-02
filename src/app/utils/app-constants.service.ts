@@ -17,9 +17,19 @@ export const APP_CONSTANTS = {
   // Route endpoints
   ENDPOINTS: {
     LOGIN: '/login',
-    HOME: '/home',
+    // HOME: '/home',
+    HOME: '/static',
     AUTH: '/auth',
     LANDING: '/landing',
+    CNDIDATELANDING:'/candidateview',
+    CANDIDATEDASH:{
+      DASHBOARD:'/candidateview/dashboard',
+      JOBLIST:'/candidateview/findjobs',
+      JOBSSAVED:'/candidateview/savedjobs',
+      JOBSAPPLIED:'/candidateview/appliedjobs',
+      PAGINATION :'/candidateview/page',
+      JOBDESCRIPTION:'/candidateview/jobdescription',
+    },
     PASSWORD: {
       FORGOT: '/forgot-password',
       RESET: '/resetpwd',
@@ -53,7 +63,8 @@ export const APP_CONSTANTS = {
     },
     EMPDASHBOARD:{
       HOME:'/auth/dashboard',
-      PROFILE:'/auth/dashboard/profile'
+      PROFILE:'/auth/dashboard/profile',
+      CHANGEPWD:'/auth/dashboard/changePwd'
     }
   },
 
@@ -68,6 +79,15 @@ export const APP_CONSTANTS = {
     LANDING: 'landing',
     HOME: 'home',
     AUTH: 'auth',
+    CNDIDATELANDING:'candidateview',
+    CANDIDATEDASH:{
+      DASHBOARD:'dashboard',
+      JOBLIST:'findjobs',
+      JOBSSAVED:'savedjobs',
+      JOBSAPPLIED:'appliedjobs',
+      JOBDESCRIPTION:'jobdescription',
+      PAGINATION:'page',
+    },
     REPORTS: {
       HOME: 'reports',
       USERLIST: 'userlist',
@@ -101,7 +121,8 @@ export const APP_CONSTANTS = {
       DISCIPLINE:'discipline',
       GRADUATION:'Graduation',
       DEGREE :'Degree',
-      PROFILE:'profile'
+      PROFILE:'profile',
+      CHANGEPWD:'changePwd'
     }
   }
 };

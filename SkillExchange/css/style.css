@@ -12,7 +12,7 @@ body {
   line-height: 22px;
   color: #111111;
   background-color: #eeeeee;
-  
+
 }
 @media (min-width: 992px) {
   body {
@@ -35,10 +35,10 @@ body.menu-opened {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%; 
+  width: 100%;
   background-color: #fff;
   border-bottom: 0px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.4); 
+  box-shadow: 0 0 10px rgba(0,0,0,0.4);
   transition: all 500ms cubic-bezier(0.55, 0, 0.1, 1);
   animation: smoothScroll 1s forwards;
   }
@@ -622,7 +622,7 @@ a.link-demo--visited:hover {
   .header__navbar {
     top: 82px;
   }
-  
+
 }
 .header__button {
   display: none;
@@ -757,7 +757,7 @@ a.link-demo--visited:hover {
   background-color: #e5e5e5;
   padding-top: 0;
   padding-bottom: 0;
-  z-index: 2; 
+  z-index: 2;
 }
 @media (min-width: 1366px) {
   .navbar {
@@ -855,7 +855,7 @@ a.link-demo--visited:hover {
 	padding: 10px;
 	font-size:14px;
   line-height: 35px;
-	border-top:none; 
+	border-top:none;
   color: #fff;
 }
 .navbar .navbar-nav li ul li:first-child {
@@ -1146,7 +1146,7 @@ a.link-demo--visited:hover {
     flex-shrink: 0;
     max-width: 450px;
   }
- 
+
 }
 .section-hero__container {
   position: relative;
@@ -1191,7 +1191,7 @@ a.link-demo--visited:hover {
   z-index: 2;
 }
 @media (min-width: 1366px) {
-  
+
   .section-hero__text {
     margin-top: 0px;
     margin-bottom: 20px;
@@ -1600,7 +1600,7 @@ a.link-demo--visited:hover {
   margin-right: 10px;
   margin-top: -5px;
   margin-bottom: 10px;
-  
+
 }
 .section-blog {
   margin-bottom: 60px;
@@ -1752,7 +1752,7 @@ color: #fff;
     font-size: 19px;
     line-height: 29px;
   }
-  
+
   .section-cards__card {
     min-height: 275px;
     margin-bottom: 18px;
@@ -2044,7 +2044,7 @@ color: #fff;
 .section-join {
   margin-bottom: 60px;
   padding-top: 80px;
-  
+
 }
 @media (min-width: 768px) {
   .section-join {
@@ -2073,7 +2073,7 @@ color: #fff;
   .section-join__text {
     padding-right: 100px;
   }
-  
+
 .section-begin__column:not(:last-child) {
   margin-right: 180px;
 }
@@ -2243,7 +2243,7 @@ color: #fff;
     left: -60px;
     transform: rotate(-45deg);
   }
-  
+
 }
 .section-blocks__item-wrapper::after {
   content: "";
@@ -2494,14 +2494,14 @@ color: #fff;
   .section-image-numbers__images {
     padding-right: 30px;
   }
-  
+
 }
 @media (min-width: 1366px) {
   .section-image-numbers__images {
     padding-right: 70px;
     padding-bottom: 40px;
   }
-  
+
 }
 .section-image-numbers__image {
   display: flex;
@@ -2581,10 +2581,10 @@ color: #fff;
   }
   .c-logo-2 {
   border-right: 0px solid #edeff0;
-  border-bottom: 1px solid #edeff0; 
+  border-bottom: 1px solid #edeff0;
   text-align: center; padding: 15px 10px;
   }
-  
+
 }
 .c-logo-1 {
   border-bottom: 1px solid #edeff0;
@@ -3206,7 +3206,7 @@ text-align: center;  padding: 15px 10px;
   .faq-page .section-faq {
     margin-bottom: 0;
   }
-  
+
 }
 
 .regbtn{
@@ -3218,4 +3218,15 @@ text-align: center;  padding: 15px 10px;
 
 .border-0{
   border: none;
+}
+
+
+/* login buttons mbl responsive */
+.loginbtnsmbl{
+  display: none;
+}
+@media only screen and (max-width: 700px) {
+  .loginbtnsmbl{
+display: flex;
+}
 }

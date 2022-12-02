@@ -1,0 +1,732 @@
+@import "/src/assets/scss/candidate_dashboard.scss";
+
+* {
+  font-family: lato !important;
+
+  .mat-icon {
+    font-family: "Material Icons" !important;
+  }
+}
+
+
+::ng-deep {
+
+  .mat-option.mat-active,
+  .mat-option:hover {
+    background: none !important;
+  }
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+
+
+.job_board {
+  width: 75%;
+  border-right: 1px solid #e7e7e7;
+
+}
+
+.find_job {
+  background: #e7e7e747;
+  padding: 10px 10px;
+  font-weight: 400;
+  font-size: 13px;
+  color: #707070;
+}
+
+.results_dash {
+  display: flex;
+  padding: 10px 20px 0px 10px;
+  background: #fff;
+  margin-top: 7px;
+  justify-content: space-between;
+
+  div {
+    font-weight: 600;
+  }
+
+  .sort {
+    display: flex;
+
+  }
+
+}
+
+.flex-layout {
+  ::ng-deep {
+    .mat-select {
+      width: 146px;
+      padding: 0px 8px;
+
+      .mat-select-trigger {
+        text-align: center;
+      }
+    }
+
+    .mat-select-value {
+      text-align: start;
+    }
+
+
+
+    .mat-option {
+      background: #fff !important;
+      color: lightgrey;
+    }
+
+    .panelPosition {
+      .mat-select-min-line {
+        color: #707070;
+        font-weight: 400;
+      }
+    }
+  }
+}
+
+::ng-deep {
+  .mat-checkbox-frame {
+    border-color: #bfbfbf;
+    border-width: 1px;
+  }
+
+  .mat-select-panel {
+    margin-top: 35px !important;
+  }
+
+  .mat-checkbox-layout .mat-checkbox-label {
+    white-space: initial !important;
+    padding: 0px 5px !important;
+    color: #707070;
+    font-weight: 400;
+    font-size: 13px;
+  }
+
+  .mat-checkbox-checked.mat-primary .mat-checkbox-background {
+    background-color: #26BBEF;
+  }
+}
+
+
+
+.flex-layout {
+  width: 100%;
+  height: 82vh;
+  display: flex;
+  flex-wrap: wrap;
+  background: #fff;
+}
+.norecords {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  position: relative;
+  top: 150px;
+  span{
+    font-weight: 600;
+  }
+}
+.overall_box {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  height: 70vh;
+  overflow: auto;
+}
+
+.example_card {
+  margin-bottom: 25px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 10px;
+  padding: 10px;
+  border: 1px solid #70707033;
+  box-shadow: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.job_card {
+  display: flex;
+  border-bottom: 1px solid #80808029;
+  justify-content: space-between;
+}
+
+.inner_card {
+  display: flex;
+}
+
+.card_flex {
+  width: 33.33%;
+}
+
+.expertise {
+  display: flex;
+  scroll-behavior: smooth;
+  width: auto;
+  flex-wrap: wrap;
+
+  ng-deep {
+    ::-webkit-scrollbar {
+      display: inline-block !important;
+      height: 6px !important;
+      width: 10px !important;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #4cbca0;
+      border-radius: 10px;
+      height: 50%;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #0089b3;
+    }
+  }
+}
+
+.comp-image {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  height: 44px;
+  width: 44px;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin: 0 4px 0 4px;
+  border: 1px solid #eaedf3;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.comp_logo {
+  max-width: 44px;
+  max-height: 44px;
+}
+
+
+.card_title {
+  margin: 10px 20px;
+  line-height: 11px;
+
+  .comp_name {
+    color: #70707099;
+    font-weight: 400;
+    font-size: 12px;
+  }
+}
+
+.job_designation {
+  font-size: 14px !important;
+  font-weight: bold !important;
+  color: #000 !important;
+  line-height: 1.2;
+}
+
+.job_description {
+  color: #707070;
+  font-size: 13px;
+  text-align: left;
+  margin-top: 10px;
+}
+
+.specialization {
+  // margin-top: 20px;
+
+  button {
+    background: #26BBEF33;
+    color: #0097CC;
+    font-weight: 500;
+    border: 1px solid rgb(255 255 255 / 53%);
+    margin: 3px 7px;
+    border-radius: 3px;
+    padding: 4px 8px;
+    font-size: 12px;
+  }
+}
+
+.misc_details {
+  margin-top: 10px;
+
+  span {
+    font-size: 12px;
+    color: #8C8C8C;
+  }
+
+  .misc_row {
+    display: flex;
+    margin: 0px 3px;
+    padding: 2px 0px;
+  }
+
+  .locate {
+    white-space: nowrap;
+    width: 80%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    margin-bottom: 0px;
+  }
+
+  .misc_icon {
+    font-size: 15px !important;
+    height: auto;
+    width: auto;
+    margin: 0px 4px;
+  }
+
+
+
+  .misc_col {
+    font-size: 12px;
+    color: #707070;
+    margin: 0px 2px;
+  }
+
+}
+.paginationdisplay{
+  display: flex;
+  justify-content: space-around;
+  width: 80%;
+  position:fixed;
+  bottom: 30px;
+  background: #f2f2f2;
+}
+.misc_save {
+  z-index: 999;
+
+  .mat-icon {
+    color: #26BBEF;
+  }
+
+  .unsaved_icon,
+  .saved_icon {
+    font-size: 22px !important;
+    margin-top: 4px;
+  }
+
+  .unsaved_icon {
+    color: #ababab;
+  }
+}
+
+
+.filter {
+  width: 25%;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+  height: 86vh;
+
+  .clear_filter {
+    color: #26BBEF;
+    position: absolute;
+    right: 4%;
+    font-weight: 600;
+    font-size: 13px;
+    cursor: pointer;
+  }
+
+  .fil_head {
+    position: relative;
+    width: 100%;
+    padding: 25px 20px 10px 20px;
+    border-bottom: 1px solid #e7e7e763;
+    background: #fff;
+    box-shadow: 1px 1px 1px 1px #e7e7e763;
+
+    ::-webkit-scrollbar {
+      display: inline-block;
+      width: 6px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #4cbca0;
+      border-radius: 10px;
+      height: 50%;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #0089b3;
+    }
+  }
+
+  .filt_list {
+    height: 70vh;
+    overflow-y: scroll;
+  }
+
+  .misc_icon {
+    font-size: 18px;
+  }
+
+  .filter_col {
+    padding: 20px;
+    border-bottom: 1px solid #e7e7e7;
+    align-content: flex-start;
+
+    .filter_head {
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .expand_icon {
+      width: 30%;
+      text-align-last: end;
+    }
+
+    div {
+      color: #9d9d9d;
+      font-weight: 400;
+    }
+
+    button {
+      font-size: 13.5px;
+      color: #26BBEF;
+      font-weight: 400;
+      text-decoration: underline;
+    }
+  }
+}
+
+.clear_filter {
+  color: #26BBEF;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  margin-left: 25px
+}
+
+::ng-deep .fldName label {
+  font-size: 13px !important;
+}
+
+.dlog_template {
+  display: flex;
+  width: 100%;
+  height: 43px;
+  border-bottom: 2px solid #e7e7e764;
+  padding: 5px 10px;
+
+  h1 {
+    display: flex;
+    width: 50%;
+    float: left;
+  }
+
+  .close_div {
+    padding: 0px;
+    margin-bottom: 0px;
+    width: 50%;
+    flex-direction: row-reverse;
+
+    .close-icon {
+      text-align: center;
+      margin-top: -20px;
+      padding: 0px;
+    }
+  }
+
+}
+
+.aply_btn {
+  background-color: #26BBEF;
+  margin: 10px 20px;
+  float: right;
+}
+
+
+.mat_dlg_cnt {
+  width: 100%;
+  display: grid;
+  flex-wrap: wrap;
+  grid-template-columns: auto auto auto;
+  font-size: 12px;
+}
+
+.mat_courses {
+  padding: 0px 15px !important;
+}
+
+.example-additional-selection {
+  opacity: 0.75;
+  font-size: 0.75em;
+}
+
+.mob_fil {
+  display: none;
+}
+
+.fil_output {
+  display: flex;
+  flex-wrap: wrap;
+  max-height: 65px;
+  overflow: auto;
+
+  .checkedVal {
+    padding: 1px 8px 0px 8px;
+    border: 1px solid #26BBEF;
+    background: #26BBEF;
+    color: #fff;
+    margin: 4px;
+    border-radius: 18px;
+    font-size: 13px;
+  }
+
+  .close_icon {
+    font-size: 16px !important;
+    text-align: end;
+    cursor: pointer;
+  }
+}
+
+
+@media only screen and (min-width: 300px) and (max-width: 400px) {
+  .overall_box {
+    height: 65vh;
+  }
+}
+
+@media only screen and (max-width: 300px) {
+  .overall_box {
+    height: 50vh;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .filter {
+    display: none;
+  }
+
+  .results_dash{
+    padding: 0px 5px;
+  }
+
+  .fil_output {
+    display: -webkit-box !important;
+    flex-wrap: nowrap;
+    padding: 4px 0px 8px 0px !important;
+
+    .checkedVal {
+      height: fit-content;
+      width: max-content !important;
+    }
+  }
+
+  ::ng-deep .cdk-overlay-pane {
+    //   width: inherit !important;
+    //  max-width: inherit !important;
+    //  max-width: min-content;
+    // transform: translateX(-95px) translateY(-4px)!important;
+    min-width: -webkit-fill-available !important;
+  }
+
+  .job_board,
+  .example_card {
+    width: -webkit-fill-available !important;
+  }
+
+
+  .card_flex {
+    width: 100%;
+  }
+
+  .mob_fil {
+    position: relative;
+    display: flex;
+    background: #fff;
+    overflow: hidden;
+    z-index: 999;
+    width: 100% !important;
+    max-width: 100%;
+    border-bottom: 2px solid #e7e7e770;
+
+    div {
+      padding: 2px 4px;
+    }
+
+    .fil_results {
+      float: left;
+      width: 65%;
+
+      ::-webkit-scrollbar {
+        display: inline-block;
+        height: 4px;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: #4cbca0;
+        border-radius: 10px;
+        width: 50%;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: #0089b3;
+      }
+    }
+
+    .fil_btn {
+      width: 35%;
+      border-left: 2px solid #e7e7e770;
+      color: #41c7f7;
+      padding: 10px;
+
+      span {
+        font-size: 12px;
+      }
+    }
+  }
+
+  ::ng-deep .mat-dialog-container {
+    padding: 0px !important;
+  }
+
+  .mat-select {
+    width: 80px !important;
+  }
+
+  .mob_courses {
+    display: flex;
+    width: 100%;
+  }
+
+  .sub_crse {
+    width: 40%;
+  }
+
+  .mob_card_crse {
+    right: 0%;
+    width: 60%;
+    font-size: 12px;
+
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+    height: 100vh;
+    padding: 10px;
+    align-content: flex-start;
+    border-left: 1px solid #8f8f8f61;
+
+    span {
+      display: grid;
+    }
+  }
+
+  .field_crse {
+    border-bottom: 1px solid #8f8f8f61;
+    padding: 15px 10px;
+    width: 100%;
+    font-size: 12px;
+    font-weight: 500;
+  }
+
+  .icon_hide {
+    font-size: 14px !important;
+    color: red;
+    float: right;
+    visibility: hidden;
+  }
+
+  ::ng-deep .mat-checkbox-layout {
+    white-space: initial !important;
+  }
+
+  .filt_mob_top {
+    display: flex;
+    width: 100%;
+    padding: 15px 10px 0px 10px;
+    border-bottom: 1px solid #8f8f8f61;
+
+    mat-icon {
+      width: 10%;
+    }
+
+    .fil_text {
+      width: 60% !important;
+      font-weight: 600 !important;
+      margin-top: 3px !important;
+    }
+
+    .apply_top_menu {
+      width: 30%;
+      text-align: end;
+
+      button {
+        color: #fff;
+        background: #26BBEF;
+        border: #26BBEF;
+        padding: 8px 23px;
+        border-radius: 4px;
+        margin-top: -6px;
+      }
+    }
+
+  }
+
+}
+
+@media only screen and (min-width: 1010px) and (max-width: 1050px) {
+  .card_flex {
+    width: 50%;
+  }
+}
+
+@media only screen and (min-width: 730px) and (max-width: 950px) {
+  .example_card {
+    width: -webkit-fill-available;
+  }
+
+  .job_board {
+    width: 65% !important;
+  }
+
+  .filter {
+    width: 35% !important;
+    height: 80vh;
+  }
+
+  .card_flex {
+    width: 100%;
+  }
+}
+
+
+@media only screen and (min-width: 900px) {
+  ::ng-deep .mat-dialog-container {
+    position: absolute !important;
+    width: max-content !important;
+    height: max-content !important;
+    right: 10% !important;
+    top: 20% !important;
+    padding: 0px !important;
+    overflow: inherit !important;
+  }
+
+  .example_card {
+    height: 300px;
+  }
+
+  .sample_class {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    max-height: 175px!important;
+    height: 175px;
+    overflow: scroll!important;
+  }
+
+}
+
+.redlab {
+  color: red;
+
+  mat-icon {
+    font-size: 14px !important;
+    float: right;
+  }
+}

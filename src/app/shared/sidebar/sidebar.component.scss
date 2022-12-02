@@ -35,7 +35,8 @@ mat-sidenav:not(.mat-drawer-opened) {
 }
 
 ::ng-deep.mat-list-item-content{
-	padding: 0px;
+	padding: 5px !important;
+  left: 4px;
 }
 .sidebar-icon{
 	position: relative;
@@ -81,7 +82,12 @@ left: 30px;
 }
 
 .headerfont{
+  text-align: left;
   font-size: 14px;
+  font-family: Roboto;
+  letter-spacing: 0.55px;
+  opacity: 1;
+  font-weight: 400;
 
 }
 
@@ -95,6 +101,10 @@ margin-top: 5px;
 }
 
 .mathigh{
+  // width: 75px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
   mat-list-item{
     height: 60px!important;
   }

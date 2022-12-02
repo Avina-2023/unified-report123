@@ -3,8 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { IsAccessGuard } from './guards/is-access.guard';
 import { PagenotfoundComponent } from './pages/pagenotfound/pagenotfound.component';
 import { LandingPageComponent } from './pages/landing-page/landing-page.component';
-import { JobSeekersComponent } from './pages/jobSeekers/job-seekers/job-seekers.component'
-import { RegisterPageComponent } from './pages/register/register-page/register-page.component'
+import { candidateRegister } from './pages/login/candidateRegister/candidateRegister.component'
+import { RegisterPageComponent } from './pages/login/register-page/register-page.component'
 import { StaticpageComponent } from './staticpage/staticpage.component';
 import { LoginPageComponent } from './pages/login/login-page/login-page.component';
 import { APP_CONSTANTS } from './utils/app-constants.service';
@@ -24,7 +24,7 @@ const routes: Routes = [
     path:'static',component:StaticpageComponent
   },
   {
-    path: `register`, component: JobSeekersComponent
+    path: `register`, component: candidateRegister
   },
   {
     path: 'employers', component: RegisterPageComponent
@@ -32,9 +32,12 @@ const routes: Routes = [
   {
     path: '', loadChildren: () => import('./pages/login/login-routing.module').then(m => m.LoginRoutingModule), canActivate: [IsloggedInGuard]
   },
- 
+
   {
     path: `${APP_CONSTANTS.ROUTES.AUTH}`, loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
+  },
+  {
+    path: `${APP_CONSTANTS.ROUTES.CNDIDATELANDING}`, loadChildren: () => import('./pages/candidate/candidate.module').then(m => m.CandidateModule),canActivate:[IsAccessGuard]
   },
   {
     path: `certificate`, component: CertificateViewComponent
