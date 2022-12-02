@@ -420,6 +420,10 @@
     position: relative;
     top: -2px;
 }
+::ng-deep .mat-select-value-text {
+  position: relative;
+  top: -2px;
+}
 //  tab media queries
 @media only screen and (max-width: 1254px) {
   .overflowbox {
