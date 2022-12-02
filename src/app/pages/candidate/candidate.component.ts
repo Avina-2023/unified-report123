@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDrawerMode } from '@angular/material/sidenav';
 import { NavigationEnd, Router, RouterEvent } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
+import { SentDataToOtherComp } from 'src/app/services/sendDataToOtherComp.service';
 import { AppConfigService } from 'src/app/utils/app-config.service';
 import { APP_CONSTANTS } from 'src/app/utils/app-constants.service';
 import { environment } from 'src/environments/environment';
@@ -17,7 +18,7 @@ export class CandidateComponent implements OnInit {
   routelinks = APP_CONSTANTS.ENDPOINTS
   candidateName = localStorage.getItem('name')
   profileimge: any;
-  constructor(public router:Router, private apiservice:ApiService, private appconfig:AppConfigService) {
+  constructor(public router:Router, private apiservice:ApiService, private appconfig:AppConfigService, private msgData : SentDataToOtherComp) {
     this.router.events.subscribe(event => {
       if(event instanceof NavigationEnd) {
 
@@ -26,12 +27,18 @@ export class CandidateComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.profileimge = this.appconfig.getLocalStorage('profileImage');
-  }
-  ngOnChanges(){
-    this.profileimge = this.appconfig.getLocalStorage('profileImage');
+    this.msgData.getMessage().subscribe((data)=>{
+      if(data.data=='profileImage'&& data.value){
+        this.profileimge=data.value
+      }
+    })
+    
 
   }
+  // ngOnChanges(){
+  //   this.profileimge = this.appconfig.getLocalStorage('profileImage');
+
+  // }
 
 
   mouseenter() {
