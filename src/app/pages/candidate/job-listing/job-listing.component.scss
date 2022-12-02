@@ -113,10 +113,19 @@
 
 .flex-layout {
   width: 100%;
-  height: 82vh;
+  flex-direction: row;
   display: flex;
-  flex-wrap: wrap;
-  background: #fff;
+  border-right: 1px solid #e7e7e7;
+  height: 85vh;
+  // overflow: auto;
+  /* align-items: flex-start; */
+  justify-content: space-between;
+  // display: flex;
+  //   height: 600px;
+  //   flex-wrap: wrap;
+  overflow-x: hidden !important;
+  align-content: stretch;
+  //   overflow: scroll;
 }
 .norecords {
   display: flex;
@@ -681,11 +690,11 @@
   }
 
   .job_board {
-    width: 65% !important;
+    width: 65%;
   }
 
   .filter {
-    width: 35% !important;
+    width: 35%;
     height: 80vh;
   }
 
