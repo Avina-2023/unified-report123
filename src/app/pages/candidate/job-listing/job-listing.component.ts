@@ -4,7 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { I } from '@angular/cdk/keycodes';
 import { AppConfigService } from 'src/app/utils/app-config.service';
 import { APP_CONSTANTS } from 'src/app/utils/app-constants.service';
-import { Router } from '@angular/router';
+import { NavigationExtras, Router } from '@angular/router';
 
 @Component({
 	selector: 'app-job-listing',
@@ -208,9 +208,9 @@ export class JobListingComponent implements OnInit {
 	}
 
 	gotojob(item) {
-		this.router.navigate([APP_CONSTANTS.ENDPOINTS.CANDIDATEDASH.JOBDESCRIPTION], {
-			state: item
-		});
+    let extras:NavigationExtras = {state:{itemData:item}}
+    this.appconfig.setLocalStorage('jobDesc',JSON.stringify(item))
+		this.router.navigateByUrl(APP_CONSTANTS.ENDPOINTS.CANDIDATEDASH.JOBDESCRIPTION, extras);
 	}
 
 
