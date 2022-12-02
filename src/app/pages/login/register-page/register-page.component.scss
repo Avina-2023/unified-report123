@@ -34,7 +34,7 @@ width: 50%;
 }
 
 mat-card{
-  width:50%;
+  width:65%;
   margin:0 auto;
   padding-top: 40px;
   padding-bottom: 40px;
@@ -133,6 +133,108 @@ input.mat-input-element {
   margin-top: 6px;
 }
 
+.mblview{
+  display: none;
+}
+// mobile
+@media (max-width: 425px) and (max-width: 320px) {
+  .talentxt{
+    display: none
+  }
+.left{
+  display: none;
+}
+  .sectionWrapper {
+    display: flex;
+    flex-direction: column;
+  }
+  .mat-card {
+    width: 85%;
+    margin: 0 auto;
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+
+  .ltext {
+    text-align: center;
+    // align-items: left;
+    /* display: flex; */
+    flex-direction: column;
+    /* margin-left: 100px; */
+    line-height: 1.5;
+  }
+  }
+
+
+  @media (max-width: 767px) {
+    .mblview{
+display: block;
+      text-align: center;
+    }
+    .right {
+      width: 100%;
+      position: relative;
+      top: 60px;
+  }
+  .left{
+    width: 0%;
+    display: none;
+  }
+  .ltext{
+    .talentxt {
+     margin-top: 0px;
+    font-size: 40px;
+    color: white;
+    width: 80%;
+  }
+  }
+  .talentxt{
+    display: none
+  }
+  .sectionWrapper {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+  .ltext {
+    text-align: center;
+    flex-direction: column;
+     margin-left: 80px;
+    line-height: 1.5;
+  }
+
+  .mat-card{
+      width: 75%;
+  }
+  }
+
+  @media only screen and (max-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+    .talentxt{
+      display: none
+    }
+    .mblview{
+display: block;
+      text-align: center;
+    }
+    .right {
+      width: 100%;
+      position: relative;
+      top: 60px;
+  }
+  .left{
+    width: 0%;
+  }
+  .ltext{
+    .talentxt {
+     margin-top: 0px;
+    font-size: 40px;
+    color: white;
+    width: 80%;
+  }
+  }
+  .mat-card{
+      width: 75%;
+  }
+  }
 // ==button
 .btn {
   font-size: 16px;

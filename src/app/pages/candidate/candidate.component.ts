@@ -28,10 +28,10 @@ export class CandidateComponent implements OnInit {
   ngOnInit() {
     this.profileimge = this.appconfig.getLocalStorage('profileImage');
   }
-  ngOnChanges(){
-    this.profileimge = this.appconfig.getLocalStorage('profileImage');
+  // ngOnChanges(){
+  //   this.profileimge = this.appconfig.getLocalStorage('profileImage');
 
-  }
+  // }
 
 
   mouseenter() {

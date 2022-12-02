@@ -134,6 +134,11 @@ export class LoginPageComponent  {
   }
 
   forgotPassword() {
-    this.appConfig.routeNavigation("forgot-password");
+    if(this.isCandidate){
+      this.appConfig.routeNavigationWithQueryParam("forgot-password",{from:"freshGrad"});
+    }else{
+      this.appConfig.routeNavigationWithQueryParam("forgot-password",{from:"employer"});
+    }
+
   }
 }
