@@ -25,6 +25,7 @@ li {
 
 .pageWrapper {
   padding: 10px 20px;
+  height: 84vh;
 
 
 
@@ -249,7 +250,7 @@ margin-bottom: 0px;
 }
 
 @media only screen and (max-width: 600px) {
-  .coverImage{ 
+  .coverImage{
     img{
     height: 130px!important;
     }
@@ -264,12 +265,12 @@ margin-bottom: 0px;
     .flx_butn{
     margin-top: 20px;
     }
-  
+
     .companyLogo{
     left: 20px!important;
     top: 85px!important;
     }
-    
+
     .jobtopcontainer{
     margin-top: 40px!important;
     display: block!important;

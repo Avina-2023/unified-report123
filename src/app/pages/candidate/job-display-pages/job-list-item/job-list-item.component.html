@@ -18,7 +18,7 @@
       </div>
       <hr class="hrline">
       <mat-card-content>
-        <p class="description-p">
+        <p class="description-p" *ngIf="item.overview">
           {{item.overview}}
         </p>
         <div class="specialization">
@@ -29,12 +29,12 @@
         <div class="cardfooter_row"><span>
           <mat-icon class="icon" [class.active]="isActive"> school</mat-icon>
         </span>
-        <span class="smalltext"*ngFor="let elem of item.education;let i=index; let isLast=last">{{elem}}<span class="misc_col" *ngIf="!isLast && i < item.jobLocation.length">,</span></span>
+        <span class="smalltext"*ngFor="let elem of item.education;let i=index; let isLast=last">{{elem}}<span class="misc_col" *ngIf="!isLast && i < item.jobLocation.length">&nbsp;</span></span>
       </div>
       <div class="cardfooter_row"><span>
         <mat-icon class="icon"> location_on</mat-icon>
       </span>
-      <span class="smalltext" *ngFor="let elem of item.jobLocation;let i=index; let isLast=last">{{elem}}<span class="misc_col" *ngIf="!isLast && i < item.jobLocation.length">,</span> </span>
+      <span class="smalltext" *ngFor="let elem of item.jobLocation;let i=index; let isLast=last">{{elem}}<span class="misc_col" *ngIf="!isLast && i < item.jobLocation.length">&nbsp;</span> </span>
     </div>
         <div class="cardfooter_row"  *ngIf="item.jobType"><span>
             <mat-icon class="icon"> business_center</mat-icon>
