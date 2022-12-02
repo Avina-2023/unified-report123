@@ -13,7 +13,7 @@
             <div class='genTitle'>{{jobDetails.company}}</div>
             <div class="genText">
                <mat-icon class="misc_icon"> location_on</mat-icon>
-               <div class="locate" *ngFor="let item of jobDetails.jobLocation">{{item}}, </div>
+               <div class="locate" *ngFor="let item of jobDetails.jobLocation;let i=index; let isLast=last">{{item}}<span class="misc_col" *ngIf="!isLast && i < jobDetails.jobLocation.length">&nbsp;</span> </div>
             </div>
          </div>
          <div class="JT-right">
@@ -72,8 +72,8 @@
                Education:
             </div>
             <div class="job_options">
-               <div class="genText" *ngFor="let content of jobDetails.education">
-                  <div class="spacing">{{content}},</div>
+               <div class="genText" *ngFor="let content of jobDetails.education;let i=index; let isLast=last">
+                  <div class="spacing">{{content}}<span class="misc_col" *ngIf="!isLast && i < jobDetails.education.length">&nbsp;</span> </div>
                </div>
             </div>
          </div>
