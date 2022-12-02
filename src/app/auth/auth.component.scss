@@ -12,14 +12,21 @@
 }
 
 .wrapper {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    .heightDiv {
-        flex-grow: 1;
-        height: 85%;
-        overflow: auto;
-    }
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+
+	.heightDivOld {
+		flex-grow: 1;
+		height: 100%;
+		overflow: auto;
+	}
+
+	.heightDiv {
+		flex-grow: 1;
+		height: 85%;
+		overflow: auto;
+	}
 }
 .scrollbar
 {
@@ -69,6 +76,10 @@
     // cursor: pointer;
     display: flex;
     align-items: center;
+}
+.header-toolbar{
+	display: flex !important;
+    justify-content: space-between !important;
 }
 
 .logout1 {
