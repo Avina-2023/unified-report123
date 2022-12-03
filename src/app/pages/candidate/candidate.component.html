@@ -21,7 +21,7 @@
         </mat-list-item>
         <mat-list-item class="navItems" (click)="gotoProfile()" >
           <div class="innerLine"></div>
-          <mat-icon mat-list-icon>person</mat-icon>
+          <mat-icon mat-list-icon>person_filled</mat-icon>
           <span class="full-width" *ngIf="isExpanded || isShowing">My Profile</span>
         </mat-list-item>
         <mat-list-item class="navItems" [ngClass]="router.url==routelinks.CANDIDATEDASH.JOBLIST || router.url==routelinks.CANDIDATEDASH.JOBDESCRIPTION? 'active':''" [routerLink]="routelinks.CANDIDATEDASH.JOBLIST">
@@ -40,8 +40,7 @@
           <span class="full-width" *ngIf="isExpanded || isShowing">Saved Jobs</span>
         </mat-list-item>
 
-        <mat-list-item class=" lastitem" (click)="logout()">
-
+        <mat-list-item class=" lastitem hrlogout" (click)="logout()">
           <mat-icon mat-list-icon class="material-symbols-outlined">logout_outline</mat-icon>
           <span class="full-width" *ngIf="isExpanded || isShowing">Logout</span>
         </mat-list-item>

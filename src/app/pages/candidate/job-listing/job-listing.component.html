@@ -20,7 +20,7 @@
       <div>Total Results ({{this.totallength}})</div>
       <div class="sort">
         <p>Sort by: </p>
-        <mat-select class="panelPosition" [(ngModel)]="sortData" (selectionChange)="getJobList()"
+        <mat-select class="panelPosition" appearance="outline" [(ngModel)]="sortData" (selectionChange)="getJobList()"
           placeholder="Relevance">
           <mat-option value="relevance">Relevance</mat-option>
           <mat-option value="recently posted">Recently Posted</mat-option>
@@ -100,12 +100,12 @@
           </div>
         </mat-card>
       </div>
-
+      <div class="paginationdisplay">
+        <app-common-paginator *ngIf="total"  (send)="some($event)" [totalcount]="total"></app-common-paginator>
+      </div>
     </div>
 
-    <div class="paginationdisplay">
-      <app-common-paginator *ngIf="total"  (send)="some($event)" [totalcount]="total"></app-common-paginator>
-    </div>
+
   </div>
 
 
