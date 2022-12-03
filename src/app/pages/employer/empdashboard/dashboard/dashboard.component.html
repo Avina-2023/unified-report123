@@ -37,7 +37,7 @@
                             </div>
                             <div class="media d-flex">
                                 <div class="card-inside-percentage-box">
-                                    <span>{{ dashBoardDetails[0]?.cardDetails.totalCandidateIncrease }} %</span>
+                                    <span><mat-icon class="misc_icon">arrow_right_alt</mat-icon>{{ dashBoardDetails[0]?.cardDetails.totalCandidateIncrease }} %</span>
                                 </div>
                                 <span class="ml-2 card-last-text">Since last month</span>
                             </div>
@@ -61,7 +61,7 @@
                             </div>
                             <div class="media d-flex">
                                 <div class="card-inside-percentage-box">
-                                    <span>{{ dashBoardDetails[0]?.cardDetails.basicCandidateIncrease }}%</span>
+                                    <span><mat-icon class="misc_icon">arrow_right_alt</mat-icon>{{ dashBoardDetails[0]?.cardDetails.basicCandidateIncrease }}%</span>
                                 </div>
                                 <span class="ml-2 card-last-text">Since last month</span>
                             </div>
@@ -85,7 +85,7 @@
                             </div>
                             <div class="media d-flex">
                                 <div class="card-inside-percentage-box">
-                                    <span>{{ dashBoardDetails[0]?.cardDetails.basicCandidateIncrease }}%</span>
+                                    <span><mat-icon class="misc_icon">arrow_right_alt</mat-icon>{{ dashBoardDetails[0]?.cardDetails.basicCandidateIncrease }}%</span>
                                 </div>
                                 <span class="ml-2 card-last-text">Since last month</span>
                             </div>
@@ -109,7 +109,7 @@
                             </div>
                             <div class="media d-flex">
                                 <div class="card-inside-percentage-box">
-                                    <span>{{ dashBoardDetails[0]?.cardDetails.assessedCandidatesIncrease }}%</span>
+                                    <span><mat-icon class="misc_icon">arrow_right_alt</mat-icon>{{ dashBoardDetails[0]?.cardDetails.assessedCandidatesIncrease }}%</span>
                                 </div>
                                 <span class="ml-2 card-last-text">Since last month</span>
                             </div>
@@ -197,12 +197,14 @@
     <div class="row pl-4 pr-4 bottom-chart-align">
         <div class="col-md-4">
             <div class="chartcard">
+                <div class="chart-title spacing">Profile by Graduation Level</div>
                 <app-graduation-chart [item]="graduactionData"></app-graduation-chart>
             </div>
 
         </div>
         <div class="col-md-8 pl-0">
             <div class="chartcard">
+                <div class="chart-title spacing">Profile by Degree</div>
                 <app-degree-chart [item]="degreeData"></app-degree-chart>
             </div>
         </div>

@@ -1,7 +1,19 @@
+::ng-deep {
+    .mat-toolbar {
+        background: #fff;
+    }
+    
+}
+.container-fluid.p-0{
+    overflow: inherit!important;
+    margin-bottom: 100px;
+}
+
+
 .top-bg {
     background-color: #1B4E9B;
     width: 100%;
-    height: 375px;
+    height: 240px;
     // display: flex;
 }
 
@@ -32,10 +44,10 @@
     }
 
     .welcome-text {
-        font-size: 24px;
+        font-size: 22px;
         text-align: left;
         letter-spacing: NaNpx;
-        color: #e5e5e5 !important;
+        color: #fff!important;
         text-transform: capitalize;
         opacity: 0.9;
         position: relative;
@@ -97,15 +109,19 @@
     box-shadow: 0px 3px 6px #2C28281C;
     border-radius: 10px;
     opacity: 1;
+    .card-content{
+        width: 100%;
+    }
 }
 
 .card-head {
-  text-align: left;
-  font-size: 14px;
-  letter-spacing: 0px;
-  color: #343434;
-  text-transform: capitalize;
-  opacity: 1;
+    text-align: left;
+    font-size: 14px;
+    letter-spacing: 0px;
+    color: #343434;
+    text-transform: capitalize;
+    opacity: 1;
+    font-weight: 500;
 
 }
 
@@ -130,21 +146,33 @@
 .bottom-chart-align {
     position: relative;
     bottom: 40px;
+    top: 85px;
 }
 
 .card-inside-percentage-box {
     background: #56B35A 0% 0% no-repeat padding-box;
     border-radius: 4px;
     opacity: 1;
-    width: 37px;
+    width: 45px;
     height: 23px;
     text-align: center;
-    padding: 2px;
+    padding: 5px;
     font-weight: 500;
     font-size: 11px;
     color: #fff;
+    span{
+        display: flex;
+        justify-content: end;
+    }
 }
-
+.misc_icon{
+    width: 35%;
+    margin-top: -3px;
+    transform: rotate(270deg);
+    position: absolute;
+    left: -7%;
+    top: 66%;
+}
 .align-indication {
     align-items: center;
     display: flex;
@@ -188,6 +216,9 @@
         color: #000000;
         opacity: 1;
     }
+    .spacing {
+        margin-bottom: 15px;
+    }
 
     .align {
         position: relative;
@@ -197,7 +228,7 @@
 
 .cardcharts {
     position: relative;
-    top: -50px;
+    top: 70px;
     padding: 5px;
 }
 
@@ -265,7 +296,7 @@
 }
 
 .yeard-flex {
-  width: 73px;
+    width: 73px;
     display: flex;
     font-size: 13px;
     text-align: left;
@@ -296,69 +327,78 @@
 
 
 
-.leftchart{
-  position: relative;
-  right: 71px;
+.leftchart {
+    position: relative;
+    right: 71px;
 }
-.rightchart{
-  position: relative;
-  right: 99px;
-  top: 20px;
+
+.rightchart {
+    position: relative;
+    right: 99px;
+    top: 20px;
 
 }
-.rightchart1{
-  position: relative;
-  right: 99px;
-  top: 60px;
+
+.rightchart1 {
+    position: relative;
+    right: 99px;
+    top: 60px;
 
 }
-.flex{
-display: flex;
-position: relative;
+
+.flex {
+    display: flex;
+    position: relative;
 }
-.chart2{
-  position: relative;
-  right: 68px;
-  padding: 20px 0px 0px 0px;
+
+.chart2 {
+    position: relative;
+    right: 68px;
+    padding: 20px 0px 0px 0px;
 }
-.chart1{
-  position: relative;
-  right: 68px;
+
+.chart1 {
+    position: relative;
+    right: 68px;
 }
-.chart2data{
-  position: relative;
-  top: 30px;
-  right: 80px;
+
+.chart2data {
+    position: relative;
+    top: 30px;
+    right: 80px;
 
 }
-.chart2total{
-  position: relative;
-  left: 50px;
-  top: -6px;
+
+.chart2total {
+    position: relative;
+    left: 50px;
+    top: -6px;
 }
-.chart1total{
-  position: relative;
-  left: 25px;
-  top: 0px;
+
+.chart1total {
+    position: relative;
+    left: 25px;
+    top: 0px;
 }
+
 .progress-male {
-  height: 10px;
-  width: 10px;
-  position: relative;
-  right: 4px;
+    height: 10px;
+    width: 10px;
+    position: relative;
+    right: 4px;
 
 }
 
 .mbox0 {
-  background-color: #FFB74D;
+    background-color: #FFB74D;
 }
 
 .mbox1 {
-  background-color: #FF5722;
+    background-color: #FF5722;
 }
 
 .mbox2 {
-  background-color: #607D8B;
+    background-color: #607D8B;
 }
 
 //   progress bar
@@ -384,7 +424,7 @@ position: relative;
 div[role="progressbar"] {
     --size: 6rem;
     --fg: #26C1F6;
-    --bg: #def;
+    --bg: #87a2c3;
     --pgPercentage: var(--value);
     animation: growProgressBar 3s 1 forwards;
     width: var(--size);
@@ -410,6 +450,7 @@ div[role="progressbar"]::before {
     position: relative;
     text-align: center;
     top: 90px;
+
     .insidetext1 {
         font: normal normal 300 17px/19px Roboto;
         letter-spacing: 0px;
@@ -430,7 +471,7 @@ div[role="progressbar"]::before {
     }
 }
 
-.leftchart{
+.leftchart {
     position: relative;
     right: 71px;
 }
