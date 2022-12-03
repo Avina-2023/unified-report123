@@ -40,14 +40,12 @@ mat-sidenav:not(.mat-drawer-opened) {
 }
 .sidebar-icon{
 	position: relative;
-	left: 25%;
 }
 .active{
 	color: #1B4E9B;
 }
 .sidebar-text{
 	position: relative;
-	left: 6px;
 }
 
 .list:hover {
@@ -57,7 +55,6 @@ mat-sidenav:not(.mat-drawer-opened) {
   }
   .sidebar-icon1{
 	position: relative;
-    left: 16px;
   }
   .left1{
 left: 30px;
@@ -82,12 +79,13 @@ left: 30px;
 }
 
 .headerfont{
-  text-align: left;
-  font-size: 14px;
+  text-align: center;
+  font-size: 12px;
   font-family: Roboto;
   letter-spacing: 0.55px;
   opacity: 1;
   font-weight: 400;
+  padding: 0px 3px;
 
 }
 
@@ -98,6 +96,7 @@ margin-top: 5px;
 
 .sidemenu{
   width: 100%;
+  text-align: center;
 }
 
 .mathigh{
@@ -108,4 +107,10 @@ margin-top: 5px;
   mat-list-item{
     height: 60px!important;
   }
+}
+
+::ng-deep{
+  .mat-list-base{
+  padding-top: 4px;
+}
 }

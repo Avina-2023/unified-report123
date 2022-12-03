@@ -129,7 +129,7 @@
         </div>
         <div class="candidatebg">
             <div class="userprofile">
-                <img  class="avatar" [src]="this.Details?.profileImage?this.Details?.profileImage:'../../../../assets/images/candidate-userprofile.png'">
+                <img  class="avatar" [src]="this.Details?.profileImage?this.Details?.profileImage+blobToken:'../../../../assets/images/candidate-userprofile.png'">
                 <div class="bg-white">
                     <div class="profilename">
                         {{username}}
@@ -137,7 +137,7 @@
                     <!-- <div class="big" >-</div> -->
 
                     <div class="small" *ngIf="usercity">{{usercity}}, {{userstate}}, {{usercountry}}</div>
-                    <hr>
+                    <hr class="hrline">
                     <div class="profile-progress">
                         <span>Profile Completion</span>
                         <div role="progressbar" aria-valuenow="{{profilepercentage}}" aria-valuemin="0" aria-valuemax="100"
