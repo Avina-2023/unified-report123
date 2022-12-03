@@ -9,7 +9,7 @@
   flex-direction: row;
   display: flex;
   border-right: 1px solid #e7e7e7;
-  height: 85vh;
+  height: 86vh;
   // overflow: auto;
   /* align-items: flex-start; */
   justify-content: space-between;
@@ -80,6 +80,7 @@
     opacity: 1;
     font-size: 24px;
     font-weight: 300;
+    font-family: Lato!important;
   }
 
   .username-B {
@@ -89,6 +90,7 @@
     opacity: 1;
     font-size: 24px;
     font-weight: 500;
+    font-family: Lato!important;
   }
 }
 
@@ -119,15 +121,16 @@
           .bigleft {
             width: 90%;
             height: 75px;
-            opacity: 0.9;
-
+            // opacity: 0.9;
+            margin-top: 5px;
+            font-family: Lato!important;
             border-radius: 10px 0px 50px 10px;
             // padding: 18px;
 
             .left {
               width: 90%;
               height: 75px;
-              opacity: 0.9;
+              // opacity: 0.9;
               // border-right: 6px solid #22a3ff9c;
               // background-color: #3D67B7;
 
@@ -137,12 +140,14 @@
                 font-size: 14px;
                 color: #ffffff;
                 font-weight: 200;
+                font-family: Lato!important;
               }
 
               .bigtext {
                 font-size: 20px;
                 color: #ffffff;
                 font-weight: 500;
+                font-family: Lato!important;
               }
             }
           }
@@ -173,6 +178,7 @@
         letter-spacing: 0.28px;
         color: #707070;
         opacity: 1;
+        font-family: Lato!important;
         margin: 2%;
       }
 
@@ -197,6 +203,8 @@
             ::ng-deep.mat-select-trigger {
               height: 0.525em !important;
               text-align: center;
+              font-family: lato;
+              font-size: 12px;
             }
           }
         }
@@ -235,6 +243,7 @@
         .text {
           text-align: left;
           font-size: 12px;
+          font-family: Lato!important;
           letter-spacing: 0.24px;
           color: #707070;
           opacity: 1;
@@ -246,7 +255,10 @@
     }
   }
 }
-
+.hrline{
+  position: relative;
+  top: 10px;
+}
 .card-right {
   width: 25%;
   height: inherit;
@@ -270,11 +282,12 @@
         display: flex;
         align-content: center;
         justify-content: center;
-
+        position: relative;
+        top: 10px;
         span {
           font-size: 14px;
-          font-weight: 600;
           color: #000;
+          font-family: Lato!important;
           position: relative;
           top: 17px;
           right: 15px;
@@ -305,6 +318,7 @@
           font-size: calc(var(--size) / 5);
           color: #26bbef;
           font-size: 15px;
+          font-family: Lato!important;
           font-weight: 600;
         }
 
@@ -325,6 +339,7 @@
           min-width: 104px;
           height: 35px;
           font-weight: 400;
+          font-family: Lato!important;
           letter-spacing: 0px;
           opacity: 1;
           margin: 10px;
@@ -352,6 +367,7 @@
       font-size: 18px;
       font-weight: 600;
       color: #000;
+      font-family: Lato!important;
       margin-top:10px;
       text-transform: capitalize;
     }
@@ -371,6 +387,7 @@
       text-align: center;
       font-size: 12px;
       top: 10px;
+      font-family: Lato!important;
       position: relative;
       // font-weight: 300;
       letter-spacing: 0px;
@@ -418,11 +435,11 @@
 ::ng-deep .mat-select-placeholder {
     transition: color 400ms 133.3333333333ms cubic-bezier(0.25, 0.8, 0.25, 1);
     position: relative;
-    top: -2px;
+    top: -1px;
 }
 ::ng-deep .mat-select-value-text {
   position: relative;
-  top: -2px;
+  top: -1px;
 }
 //  tab media queries
 @media only screen and (max-width: 1254px) {
