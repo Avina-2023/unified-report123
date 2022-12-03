@@ -11,3 +11,9 @@ background: #fff;
 ::ng-deep.mat-form-field-appearance-outline .mat-form-field-infix {
     padding: 4px;
 }
+::ng-deep .mat-drawer:not(.mat-drawer-side) {
+  box-shadow: none;
+  border-right : 1px solid #eee;
+  padding: 2px;
+  // border-right:1px solid #eee
+}
