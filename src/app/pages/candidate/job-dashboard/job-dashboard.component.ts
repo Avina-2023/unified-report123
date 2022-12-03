@@ -15,6 +15,7 @@ import {
 } from 'ng-apexcharts';
 import { element } from 'protractor';
 import { ApiService } from 'src/app/services/api.service';
+import { SentDataToOtherComp } from 'src/app/services/sendDataToOtherComp.service';
 import { AppConfigService } from 'src/app/utils/app-config.service';
 import { environment } from 'src/environments/environment';
 export type ChartOptions = {
@@ -53,6 +54,7 @@ export class JobDashboardComponent implements OnInit {
   public userstate: any;
   public usercountry: any;
   public usercity: any;
+  blobToken = environment.blobToken;
   public allyears = [
     { year: new Date().getFullYear() },
     { year: new Date().getFullYear() - 1 },
@@ -60,7 +62,8 @@ export class JobDashboardComponent implements OnInit {
   ];
   constructor(
     private apiService: ApiService,
-    private appConfig: AppConfigService
+    private appConfig: AppConfigService,
+    private msgData : SentDataToOtherComp
   ) {
     this.chartOptions = {
       series: [],
@@ -159,7 +162,8 @@ export class JobDashboardComponent implements OnInit {
     this.apiService.candidateDetails(obj).subscribe((res: any) => {
       if (res.success) {
         this.Details = res.data;
-        this.appConfig.setLocalStorage('profileImage',this.Details.profileImage);
+        this.msgData.sendMessage("profileImage",this.Details.profileImage + environment.blobToken)
+        this.appConfig.setLocalStorage('profileImage',this.Details.profileImage + environment.blobToken);
         this.profilepercentage = Math.ceil(this.Details.profilePercentage);
         this.usercity = this.Details.permanentaddress.permanent_city;
         this.userstate = this.Details.permanentaddress.permanent_state;
