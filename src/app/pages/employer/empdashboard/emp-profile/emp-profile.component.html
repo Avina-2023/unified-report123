@@ -60,7 +60,7 @@
                                         <div class="col-md-6 col-sm-12 alignp">
                                             <label>Employee Size<span>*</span></label>
                                             <mat-form-field class="form-filed-width" appearance="outline">
-                                                <input matInput class="heighttext" placeholder="Enter Employee Size"
+                                                <input (keypress)="numberOnly($event)" matInput class="heighttext" placeholder="Enter Employee Size"
                                                     formControlName="empSize">
                                                 <mat-error *ngIf="profileForm.controls['empSize'].invalid ">
                                                     <div class="error-msg"*ngIf="profileForm.controls['empSize'].errors?.required">
@@ -223,7 +223,7 @@
                                                                 formControlName="hrMobilenumber">
                                                         </mat-form-field>
                                                     </div>
-                                                    <div  style="width: 5%;">
+                                                    <div class="close-icon">
                                                         <button class="btn-remove" type="button" (click)="removeContactField(i)">x</button>
                                                     </div>
                                                 </div>

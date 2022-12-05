@@ -18,12 +18,12 @@ export class EmpProfileComponent implements OnInit {
   empProfile: any;
   empProfile1: any;
   editCompany: any;
-    //-----------------------phone number validation messages----------------------//
-    InvalidNumber ='Mobile Number is Invalid'
-    NumberRequired ='Mobile Number is Required'
-    // ------------------------emial validation messages-------------------//
-    InvalidEmail =' Email is Invalid '
-    EmailRequired ='Email is Required'
+  //-----------------------phone number validation messages----------------------//
+  InvalidNumber = 'Mobile Number is Invalid'
+  NumberRequired = 'Mobile Number is Required'
+  // ------------------------emial validation messages-------------------//
+  InvalidEmail = ' Email is Invalid '
+  EmailRequired = 'Email is Required'
 
   allStates: any = ['Andaman and Nicobar Islands', 'Andhra Pradesh', 'Arunachal Pradesh',
     'Assam', 'Bihar', 'Chandigarh', 'Chhattisgarh', 'Dadra and Nagar Haveli', 'Daman and Diu',
@@ -34,13 +34,13 @@ export class EmpProfileComponent implements OnInit {
 
   ]
 
-  allCountry: any = [{id:1,name:'India',countryId:101}]
-  stateArray:any=[] ;
-  districtArray:any=[];
+  allCountry: any = [{ id: 1, name: 'India', countryId: 101 }]
+  stateArray: any = [];
+  districtArray: any = [];
 
   @ViewChild('stateInput') stateInput: ElementRef<HTMLInputElement>;
   profileForm: FormGroup;
-  hrDetails: any=[];
+  hrDetails: any = [];
   constructor(private fb: FormBuilder, private apiService: ApiService, private toaster: ToastrService) {
     this.states = this.allStates
   }
@@ -51,26 +51,26 @@ export class EmpProfileComponent implements OnInit {
     this.HRspocPatch()
     this.getState()
   }
-  
-  getState(){
+
+  getState() {
     this.profileForm.controls['country'].setValue(101);
-    this.apiService.getState({country_id:101}).subscribe((data: any) => {
+    this.apiService.getState({ country_id: 101 }).subscribe((data: any) => {
       if (data.success == false) {
         this.toaster.warning(data.message);
       } else {
-        this.stateArray = data.data 
+        this.stateArray = data.data
       }
     }, (err) => {
       this.toaster.warning('Connection failed, Please try again.');
     });
   }
- 
-  selectState(e){
-    this.apiService.getDistrict({state_id:e.value}).subscribe((data: any) => {
+
+  selectState(e) {
+    this.apiService.getDistrict({ state_id: e.value }).subscribe((data: any) => {
       if (data.success == false) {
         this.toaster.warning(data.message);
       } else {
-        this.districtArray = data.data 
+        this.districtArray = data.data
       }
     }, (err) => {
       this.toaster.warning('Connection failed, Please try again.');
@@ -98,11 +98,11 @@ export class EmpProfileComponent implements OnInit {
       empSize: ['', [Validators.required]],
       websiteAddress: ['', [Validators.required]],
       chairmanName: ['', [Validators.required]],
-      chairmanEmail: ['',  [
+      chairmanEmail: ['', [
         //Validators.required,
         Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
       ]],
-      mobileNumber: ['',  [
+      mobileNumber: ['', [
         // Validators.required,
         Validators.minLength(10),
         Validators.maxLength(10),
@@ -111,11 +111,11 @@ export class EmpProfileComponent implements OnInit {
       chroName: ['', [
         Validators.required
       ]],
-      chroEmail: ['',  [
+      chroEmail: ['', [
         Validators.required,
         Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
       ]],
-      chromobileNumber: ['',[
+      chromobileNumber: ['', [
         Validators.required,
         Validators.minLength(10),
         Validators.maxLength(10),
@@ -124,7 +124,7 @@ export class EmpProfileComponent implements OnInit {
       hrContactDetails: this.buildContacts(this.hrcontact.hrContactDetails),
       addressOne: ['', Validators.required],
       addressTwo: ['', Validators.required],
-      pincode: ['',  Validators.compose([
+      pincode: ['', Validators.compose([
         Validators.required,
         Validators.minLength(6),
         Validators.maxLength(6),
@@ -163,11 +163,11 @@ export class EmpProfileComponent implements OnInit {
   }
 
   addContactField() {
-    var length = this.hrContactDetails.value.length-1;
-    var data =this.hrContactDetails.value[length];
-    if(data.hrName!=null && data.hrdesignation!=null && data.hrEmail!=null && data.hrMobilenumber!=null && data.hrName!='' && data.hrdesignation!='' && data.hrEmail!='' && data.hrMobilenumber!=''){
+    var length = this.hrContactDetails.value.length - 1;
+    var data = this.hrContactDetails.value[length];
+    if (data.hrName != null && data.hrdesignation != null && data.hrEmail != null && data.hrMobilenumber != null && data.hrName != '' && data.hrdesignation != '' && data.hrEmail != '' && data.hrMobilenumber != '') {
       this.hrContactDetails.push(this.fb.group({ hrName: null, hrdesignation: null, hrEmail: null, hrMobilenumber: null }))
-    }else{
+    } else {
       this.toaster.warning('Make sure, you have entered HR contact details');
     }
   }
@@ -182,14 +182,14 @@ export class EmpProfileComponent implements OnInit {
 
 
 
-//submit profile
+  //submit profile
   profile() {
     var obj = {
       email: localStorage.getItem('email'),
       detailedInformation: this.profileForm.value,
       detailedInformationType: true
     }
-    if(this.profileForm.valid){
+    if (this.profileForm.valid) {
       this.apiService.updatePartner(obj).subscribe((data: any) => {
         if (data.success == false) {
           this.toaster.warning(data.message);
@@ -199,12 +199,12 @@ export class EmpProfileComponent implements OnInit {
       }, (err) => {
         this.toaster.warning('Connection failed, Please try again.');
       });
-    }else{
+    } else {
       this.toaster.warning('Please fill all the red highlighted fields to proceed further');
     }
 
   }
-//  hr details patch value
+  //  hr details patch value
   HRspocPatch() {
     this.empProfile1 = [];
     let spoc = this.profileForm.get("hrContactDetails") as FormArray;
@@ -212,7 +212,7 @@ export class EmpProfileComponent implements OnInit {
     this.apiService.empProfileDetails(apiData).subscribe((result: any) => {
       if (result.success) {
         this.empProfile1 = result.data[0]
-        this.hrDetails = this.empProfile1 && this.empProfile1.detailedInformation?this.empProfile1?.detailedInformation?.hrContactDetails:[];
+        this.hrDetails = this.empProfile1 && this.empProfile1.detailedInformation ? this.empProfile1?.detailedInformation?.hrContactDetails : [];
         for (let i = 0; i < this.hrDetails.length; i++) {
           spoc.controls[i].patchValue({
             hrName: this.hrDetails[i].hrName,
@@ -234,37 +234,46 @@ export class EmpProfileComponent implements OnInit {
     this.apiService.empProfileDetails(apiData).subscribe((result: any) => {
       if (result.success) {
         this.empProfile = result.data[0]
-        if(this.empProfile.detailedInformation){
-          var obj = {value:this.empProfile.detailedInformation.state}
+        if (this.empProfile.detailedInformation) {
+          var obj = { value: this.empProfile.detailedInformation.state }
           this.selectState(obj)
           this.profileForm.patchValue({
-          empSize: this.empProfile.detailedInformation.empSize,
-          websiteAddress: this.empProfile.detailedInformation.websiteAddress,
-          chairmanName: this.empProfile.detailedInformation.chairmanName,
-          chairmanEmail: this.empProfile.detailedInformation.chairmanEmail,
-          mobileNumber: this.empProfile.detailedInformation.mobileNumber,
-          chroName: this.empProfile.detailedInformation.chroName,
-          chroEmail: this.empProfile.detailedInformation.chroEmail,
-          chromobileNumber: this.empProfile.detailedInformation.chromobileNumber,
-          addressOne: this.empProfile.detailedInformation.addressOne,
-          addressTwo: this.empProfile.detailedInformation.addressTwo,
-          pincode: this.empProfile.detailedInformation.pincode,
-          district: parseInt(this.empProfile.detailedInformation.district),
-          state: parseInt(this.empProfile.detailedInformation.state),
-          country: parseInt(this.empProfile.detailedInformation.country),
-          // stateCtrlone:result.data[0].detailedInformation.stateCtrlone,
-        })
-        console.log("--------",this.empProfile.detailedInformation.state)
-        if(this.empProfile.detailedInformation && this.empProfile.detailedInformation.stateCtrlone.length){
-          this.empProfile.detailedInformation.stateCtrlone.forEach((element, i) => {
-            this.profileForm.value.stateCtrlone.push(element ? element : '')
-            this.states.splice(element, i)
-          });
-        }        
-      }
+            empSize: this.empProfile.detailedInformation.empSize,
+            websiteAddress: this.empProfile.detailedInformation.websiteAddress,
+            chairmanName: this.empProfile.detailedInformation.chairmanName,
+            chairmanEmail: this.empProfile.detailedInformation.chairmanEmail,
+            mobileNumber: this.empProfile.detailedInformation.mobileNumber,
+            chroName: this.empProfile.detailedInformation.chroName,
+            chroEmail: this.empProfile.detailedInformation.chroEmail,
+            chromobileNumber: this.empProfile.detailedInformation.chromobileNumber,
+            addressOne: this.empProfile.detailedInformation.addressOne,
+            addressTwo: this.empProfile.detailedInformation.addressTwo,
+            pincode: this.empProfile.detailedInformation.pincode,
+            district: parseInt(this.empProfile.detailedInformation.district),
+            state: parseInt(this.empProfile.detailedInformation.state),
+            country: parseInt(this.empProfile.detailedInformation.country),
+            // stateCtrlone:result.data[0].detailedInformation.stateCtrlone,
+          })
+          console.log("--------", this.empProfile.detailedInformation.state)
+          if (this.empProfile.detailedInformation && this.empProfile.detailedInformation.stateCtrlone.length) {
+            this.empProfile.detailedInformation.stateCtrlone.forEach((element, i) => {
+              this.profileForm.value.stateCtrlone.push(element ? element : '')
+              this.states.splice(element, i)
+            });
+          }
+        }
       } else {
         this.toaster.error(result.message)
       }
     })
+  }
+
+  numberOnly(event): boolean {
+    const charCode = (event.which) ? event.which : event.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+      return false;
+    }
+    return true;
+
   }
 }
