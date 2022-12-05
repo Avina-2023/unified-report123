@@ -54,7 +54,7 @@ export class JobDashboardComponent implements OnInit {
   public userstate: any;
   public usercountry: any;
   public usercity: any;
-  blobToken = environment.blobToken
+  blobToken = environment.blobToken;
   public allyears = [
     { year: new Date().getFullYear() },
     { year: new Date().getFullYear() - 1 },

@@ -5,7 +5,6 @@
     flex-wrap: wrap;
     align-content: flex-start;
     overflow: auto;
-    width: 100%;
     border-right: 1px solid #e7e7e7;
     height: 76vh;
     justify-content: space-between;
@@ -27,7 +26,11 @@
   }
 .card_flex {
     // display: flex;
+    width: 100%;
     flex-wrap: wrap;
+    position: relative;
+    top: 30px;
+    left: 5px;
 }
 
 .listcard {
@@ -47,7 +50,7 @@
             height: 48px;
             width: 48px;
             padding: 3px;
-            border: 1px solid #70707033;
+            // border: 1px solid #70707033;
             border-radius: 10px;
             opacity: 1;
         }

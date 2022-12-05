@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 export class JobListItemComponent implements OnInit ,AfterViewInit {
   public isActive: boolean = true;
   public isDisabled: boolean = true;
+  public currentdate:any = new Date();
   @Input() data: any;
   @Input() savedButton = false;
   @Input() showApplied = false;
@@ -18,7 +19,9 @@ export class JobListItemComponent implements OnInit ,AfterViewInit {
     private toastr: ToastrService,
     public router:Router
   ) {}
-  ngOnInit() {}
+  ngOnInit() {
+    this.currentdate =this.currentdate.toISOString()
+  }
   apply(item) {
     var obj = {};
     obj = {
