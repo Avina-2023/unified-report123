@@ -1,6 +1,6 @@
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { FormGroup, Validators, FormBuilder, NgForm, FormArray, FormControl } from '@angular/forms';
+import { FormGroup, Validators, FormBuilder, NgForm, FormArray, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { ApiService } from 'src/app/services/api.service';
@@ -136,6 +136,7 @@ export class EmpProfileComponent implements OnInit {
       country: ['', Validators.required],
       stateCtrlone: new FormControl(this.stateone)
     })
+    //console.log(this.hrContactDetails.at(0).value.hrdesignation.Invalid)
   }
 
   hrcontact = {
@@ -202,6 +203,8 @@ export class EmpProfileComponent implements OnInit {
     } else {
       this.toaster.warning('Please fill all the red highlighted fields to proceed further');
     }
+   // console.log(this.hrContactDetails.at(0).errors?.required);
+    
 
   }
   //  hr details patch value
