@@ -1,25 +1,46 @@
-
+@import "/src/assets/scss/candidate_dashboard.scss";
 .appHeader {
-  border-bottom: 1px solid grey;
-  height: 65px;
+  border-bottom: 1px solid #eee;
+  // height: 65px;
   padding:14px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-direction: row;
   background-color: #fff;
+  .menu-icon{
+    top: 0;
+    position: relative;
+    right: 7px;
+  }
 
   .hearder-logo {
     width: 170px;
   }
-
+  .toolbar-spacer {
+    flex: 1 1 auto;
+}
   .toolbar-pic{
+    .username{
+      font-size: 12px;
+      letter-spacing: 0px;
+      color: #4D4F5C;
+      opacity: 1;
+      text-transform: capitalize;
+    }
     span{
       padding-right: 20px;
     }
-    img{
-      width: 35px;
-    }
+      img {
+        width:38px;
+        height: 38px;
+        margin: 10px;
+        border-radius: 50%;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+
+      }
+
   }
 }
 .appFooter {
@@ -32,11 +53,27 @@
   height: 85vh;
   overflow: hidden;
 }
+.sidenav{
+  overflow-x: hidden !important;
+  padding: 0px;
+}
+::-webkit-scrollbar {
+  width: 6px;
+  background-color: transparent;
+}
 
+::-webkit-scrollbar-thumb {
+  background-color: #FFFFFF;
+}
+
+::-webkit-scrollbar-track {
+  // -webkit-box-shadow: inset 0 0 1px #FFFFFF(0, 0, 0, 0.1);
+  background-color: transparent;
+}
 //NAV ITEMS
 
 .navMarginOver{
-  margin-left: 65px;
+  margin-left: 75px;
 }
 .navMarginSide{
   margin-left: 0px;
@@ -55,10 +92,29 @@
 }
 .lastitem{
   position: absolute;
-  bottom:45px;
+  bottom:5px;
+  color: #70707099;
+  padding: 20px 35px;
+  font-size: 14px;
 }
 .lastitem:hover{
-  bottom:45px;
+  color:#FF5722;
+  bottom:5px;
+}
+
+.mat-toolbar.mat-primary{
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 9;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.24);
+}
+.content {
+  overflow: auto;
+  // padding-left: 10px;
+  // padding-right: 10px;
+  height: 100%;
 }
 .navItems:hover{
     color: #FF5722;
@@ -75,4 +131,16 @@
   mat-icon{
     color :#FF5722
   }
+}
+
+.mat-list-base{
+  padding-top: 0px;
+}
+.full-width{
+  margin-right:25px;
+  margin-top: 4px;
+
+}
+.hrlogout{
+  border-top: 1px solid #eee;
 }

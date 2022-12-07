@@ -53,7 +53,7 @@
                 <mat-error class="error" *ngIf="password?.errors?.required">{{'Password is Required'}}</mat-error>
             </ng-container>
             <button class="btn" [disabled]="!loginForm.valid" id="login" mat-button (click)="login()">{{'SIGN IN'}}</button>
-            <div class="mt-20 signupTxt">New User? <a class="forgot" href="/employers">Sign Up</a></div>
+            <div class="mt-20 signupTxt">New User? <a class="forgot" href="/register">Sign Up</a></div>
         </form>
         <mat-label>
           <a  class="forgot" (click)="forgotPassword()">{{'Forgot password?'}}</a>

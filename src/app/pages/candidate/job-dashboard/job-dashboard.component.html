@@ -6,7 +6,7 @@
                     Welcome,&nbsp;
                 </div>
                 <div class="username-B">
-                    Candidate
+                    {{username}}
                 </div>
             </div>
         </div>
@@ -18,7 +18,7 @@
                             <div class="bigleft singlecardborder0">
                                 <div class="left">
                                     <div class="smalltext">
-                                        jobs Available
+                                        Jobs Available
                                     </div>
                                     <div class="bigtext">
                                         {{ jobsAvailable }}
@@ -34,7 +34,7 @@
                             <div class="bigleft singlecardborder1">
                                 <div class="left">
                                     <div class="smalltext">
-                                        jobs Applied
+                                        Jobs Applied
                                     </div>
                                     <div class="bigtext">
                                         {{ jobApplied }}
@@ -79,20 +79,40 @@
             </div>
             <div class="barchart">
                 <div class="baralignment">
-                    <div class="left">Data</div>
+                    <div class="left">Performance</div>
                     <div class="right">
                         <mat-form-field class="form-filed-dropdown" appearance="outline">
                             <mat-select class="selectText" (selectionChange)="getCandidateDashBoard($event)" placeholder="2022">
-                                <mat-option *ngFor="let val of allyears" [value]="val.year">{{val.year}}</mat-option>
+                                <mat-option class="text-center" *ngFor="let val of allyears" [value]="val.year">{{val.year}}</mat-option>
                             </mat-select>
                         </mat-form-field>
+
                     </div>
                 </div>
                 <apx-chart [series]="ChartData" [chart]="chartOptions.chart" [dataLabels]="chartOptions.dataLabels"
-                    [plotOptions]="chartOptions.plotOptions" [yaxis]="chartOptions.yaxis" [legend]="chartOptions.legend"
+                    [plotOptions]="chartOptions.plotOptions" [legend]="chartOptions.legend"
                     [fill]="chartOptions.fill" [stroke]="chartOptions.stroke" [tooltip]="chartOptions.tooltip"
                     [xaxis]="chartOptions.xaxis">
                 </apx-chart>
+                <div class="legends">
+                  <div class="alignment">
+                    <div class="round1"></div>
+                    <div class="text">Jobs Available</div>
+                  </div>
+
+                  <div class="alignment">
+                    <div class="round2"></div>
+                    <div class="text">Jobs Applied</div>
+                  </div>
+                  <div class="alignment">
+                    <div class="round3"></div>
+                    <div class="text">Profile Viewed</div>
+                  </div>
+                  <div class="alignment">
+                    <div class="round4"></div>
+                    <div class="text">Shortlisted</div>
+                  </div>
+                </div>
             </div>
         </div>
     </div>
@@ -103,32 +123,35 @@
                     Welcome,&nbsp;
                 </div>
                 <div class="username-B">
-                    Candidate
+                    {{username}}
                 </div>
             </div>
         </div>
         <div class="candidatebg">
             <div class="userprofile">
-                <img src="../../../../assets/images/candidate-userprofile.png">
+                <img  class="avatar" [src]="this.Details?.profileImage?this.Details?.profileImage+blobToken:'../../../../assets/images/candidate-userprofile.png'">
                 <div class="bg-white">
                     <div class="profilename">
-                        John Doe
+                        {{username}}
                     </div>
-                    <div class="big">Software Engineer</div>
-                    <div class="small">Chennai, Tamil Nadu, India</div>
-                    <hr>
+                    <!-- <div class="big" >-</div> -->
+
+                    <div class="small" *ngIf="usercity">{{usercity}}, {{userstate}}, {{usercountry}}</div>
+                    <hr class="hrline">
                     <div class="profile-progress">
                         <span>Profile Completion</span>
-                        <div role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"
-                            style="--value:43"></div>
+                        <div role="progressbar" aria-valuenow="{{profilepercentage}}" aria-valuemin="0" aria-valuemax="100"
+                            style="--value:{{profilepercentage}}"></div>
                     </div>
                     <hr>
                     <div class="profile-buttons">
-                        <button class="buttons view-profile">View Profile</button>
-                        <button class="buttons edit-profile">Edit Profile</button>
+                        <button class="buttons view-profile" (click)="gotoProfile()">View Profile</button>
+                        <button class="buttons edit-profile" (click)="gotoProfile()">Edit Profile</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+

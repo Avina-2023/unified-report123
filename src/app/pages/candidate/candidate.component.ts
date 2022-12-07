@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { MatDrawerMode } from '@angular/material/sidenav';
 import { NavigationEnd, Router, RouterEvent } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
+import { SentDataToOtherComp } from 'src/app/services/sendDataToOtherComp.service';
+import { AppConfigService } from 'src/app/utils/app-config.service';
 import { APP_CONSTANTS } from 'src/app/utils/app-constants.service';
-
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-candidatedash',
   templateUrl: './candidate.component.html',
@@ -15,7 +17,8 @@ export class CandidateComponent implements OnInit {
   isShowing: boolean = false;
   routelinks = APP_CONSTANTS.ENDPOINTS
   candidateName = localStorage.getItem('name')
-  constructor(public router:Router, private apiservice:ApiService) {
+  profileimge: any;
+  constructor(public router:Router, private apiservice:ApiService, private appconfig:AppConfigService, private msgData : SentDataToOtherComp) {
     this.router.events.subscribe(event => {
       if(event instanceof NavigationEnd) {
 
@@ -24,8 +27,18 @@ export class CandidateComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.msgData.getMessage().subscribe((data)=>{
+      if(data.data=='profileImage'&& data.value){
+        this.profileimge=data.value
+      }
+    })
+    
 
   }
+  // ngOnChanges(){
+  //   this.profileimge = this.appconfig.getLocalStorage('profileImage');
+
+  // }
 
 
   mouseenter() {
@@ -41,5 +54,12 @@ export class CandidateComponent implements OnInit {
   }
   logout(){
     this.apiservice.logout();
+  }
+  gotoProfile(){
+    let emailval = this.appconfig.getLocalStorage('email')
+    let enc_email = encodeURIComponent(this.apiservice.encryptnew(emailval,environment.cryptoEncryptionKey))
+    // window.open(environment.SKILL_PROFILE_URL+'/externallogin?extId='+enc_email, 'profile_redir');
+    window.location.assign(environment.SKILL_PROFILE_URL+'/externallogin?extId='+enc_email);
+
   }
 }

@@ -19,6 +19,13 @@
   </div>
 </div>
 <div class="right mb-20">
+  <div class="mblview">
+    <img
+    src="assets/images/SE_White.png"
+    width="250px"
+    height="60"
+  />
+  </div>
   <mat-card class="matcustom">
   <div class="form-wrapper">
     <div>
@@ -78,7 +85,7 @@
               <mat-checkbox formControlName="term" class="example-margin" required><a href="">Terms & Conditions</a></mat-checkbox>
           </section> -->
       <button class="btn" [disabled]="!registerForm.valid" id="register" mat-button (click)="register()">{{"I'm Interested"}}</button>
-      <div class="mt-20 signupTxt">Already have an account? <a class="forgot" href="/login">Sign In</a></div>
+      <div class="mt-20 signupTxt">Already have an account? <a class="forgot" href="/login?from=employer">Sign In</a></div>
     </form>
   </div>
   </mat-card>
