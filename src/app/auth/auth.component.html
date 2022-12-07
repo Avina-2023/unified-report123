@@ -13,7 +13,7 @@
         </div>
     </mat-toolbar>
 
-    <mat-toolbar class="header-toolbar p-3" *ngIf="checkRouter !='/auth/reports/userlist' && checkRouter !='/auth/reports/dashboard' &&  checkRouter != '/auth/skillmaster/skillmasterlist' && checkRouter != '/auth/dashboard/dashboard' && checkRouter != '/auth/partner/addpartner' && checkRouter !='/auth/partner/partnerlist' && checkRouter !='/auth/partner/partnerenquiry' && checkRouter !='/auth/dashboard/profile'&& checkRouter !='/auth/dashboard/changePwd'">
+    <mat-toolbar class="header-toolbar p-3" *ngIf="checkRouter !='/auth/reports/userlist' && checkRouter !='/auth/reports/dashboard' &&  checkRouter != '/auth/skillmaster/skillmasterlist' && checkRouter != '/auth/dashboard/dashboard' && checkRouter != '/auth/partner/addpartner' && checkRouter !='/auth/partner/partnerlist' && checkRouter !='/auth/partner/partnerenquiry' && checkRouter !='/auth/dashboard/profile'&& checkRouter !='/auth/dashboard/changePwd'&& checkRouter !='/auth/drive/managedrive'&& checkRouter !='/auth/drive/drivesettings'">
 
       <div class="first">
             <img alt="EduTech" class="beforeloginimg" [src]="this.orgLogo ? this.orgLogo  : 'assets/images/landing/newLogo.png'" />
@@ -39,7 +39,7 @@
         </div>
     </mat-toolbar>
 
-    <mat-toolbar class="p-3" *ngIf=" checkRouter ==='/auth/dashboard/dashboard' || checkRouter ==='/auth/partner/partnerlist' || checkRouter ==='/auth/partner/addpartner' ||  checkRouter ==='/auth/partner/partnerenquiry'|| checkRouter ==='/auth/dashboard/profile'|| checkRouter ==='/auth/dashboard/changePwd'">
+    <mat-toolbar class="p-3" *ngIf=" checkRouter ==='/auth/dashboard/dashboard' || checkRouter ==='/auth/partner/partnerlist' || checkRouter ==='/auth/partner/addpartner' ||  checkRouter ==='/auth/partner/partnerenquiry'|| checkRouter ==='/auth/dashboard/profile'|| checkRouter ==='/auth/dashboard/changePwd'|| checkRouter ==='/auth/drive/managedrive'|| checkRouter ==='/auth/drive/drivesettings'">
         <div>
             <img class="logo" src="https://assets.lntedutech.com/SKILL_EXCHANGE.png">
           </div>
@@ -105,7 +105,7 @@
           </div>
     </mat-toolbar>
 
-    <div class="footer" *ngIf=" checkRouter ==='/auth/dashboard/dashboard' || checkRouter ==='/auth/partner/partnerlist' || checkRouter ==='/auth/partner/addpartner' ||  checkRouter ==='/auth/partner/partnerenquiry'|| checkRouter ==='/auth/dashboard/profile'|| checkRouter ==='/auth/dashboard/changePwd'">
+    <div class="footer" *ngIf=" checkRouter ==='/auth/dashboard/dashboard' || checkRouter ==='/auth/partner/partnerlist' || checkRouter ==='/auth/partner/addpartner' ||  checkRouter ==='/auth/partner/partnerenquiry'|| checkRouter ==='/auth/dashboard/profile'|| checkRouter ==='/auth/dashboard/changePwd'|| checkRouter ==='/auth/drive/managedrive'|| checkRouter ==='/auth/drive/drivesettings'">
       <app-footer></app-footer>
     </div>
 
@@ -116,7 +116,7 @@
             <app-toolbar></app-toolbar>
 
     </div>
-    <div *ngIf="checkRouter ==='/auth/dashboard/dashboard' || checkRouter ==='/auth/partner/partnerlist' ||checkRouter ==='/auth/partner/addpartner' || checkRouter ==='/auth/partner/partnerenquiry' || checkRouter ==='/auth/dashboard/profile'|| checkRouter ==='/auth/dashboard/changePwd'">
+    <div *ngIf="checkRouter ==='/auth/dashboard/dashboard' || checkRouter ==='/auth/partner/partnerlist' ||checkRouter ==='/auth/partner/addpartner' || checkRouter ==='/auth/partner/partnerenquiry' || checkRouter ==='/auth/dashboard/profile'|| checkRouter ==='/auth/dashboard/changePwd'|| checkRouter ==='/auth/drive/managedrive'|| checkRouter ==='/auth/drive/drivesettings'">
 
       <app-sidebar></app-sidebar>
      </div>

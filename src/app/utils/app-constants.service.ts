@@ -60,6 +60,12 @@ export const APP_CONSTANTS = {
       ADDPARTNER:"/auth/partner/addpartner",
       PARTNERENQUIRY: "/auth/partner/partnerenquiry"
     },
+    VIEWDRIVE:{
+      HOME: '/auth/drive',
+      MANAGEDRIVE:'/auth/drive/managedrive',
+      DRIVESETTINGS:'/auth/drive/drivesettings'
+    },
+
     EMPDASHBOARD:{
       HOME:'/auth/dashboard',
       PROFILE:'/auth/dashboard/profile',
@@ -112,6 +118,12 @@ export const APP_CONSTANTS = {
       ADDPARTNER:"addpartner",
       PARTNERENQUIRY:"partnerenquiry"
     },
+    DRIVE:{
+      HOME: 'drive',
+      MANAGEDRIVE:'managedrive',
+      DRIVESETTINGS:'drivesettings'
+    },
+    
     EMPDASHBOARD:{
       HOME:'dashboard',
       COUNTCARD:'count',
