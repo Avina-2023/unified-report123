@@ -136,7 +136,7 @@ public options: ChartOptions = {
               if(result.success){
                 this.dashBoardDetails=result.data
                 this.graduactionData=this.dashBoardDetails[0].levelDetails
-                this.disciplineData=this.dashBoardDetails[0].disciplineDetails
+                this.disciplineData=this.dashBoardDetails[0].disciplineDetails.sort((a, b) => b.y - a.y).slice(0,15)
                 this.degreeData=this.dashBoardDetails[0].specializationDetails
                 this.demography = this.dashBoardDetails[0].stateDetails;
 

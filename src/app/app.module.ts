@@ -33,6 +33,7 @@ import { StaticpageComponent } from './staticpage/staticpage.component';
 import { SetPasswordComponent } from './pages/login/set-password/set-password.component';
 import { ForgotPasswordComponent } from './pages/login/forgot-password/forgot-password.component';
 import { CandidateModule } from './pages/candidate/candidate.module';
+
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
 };
@@ -53,7 +54,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     // JobSeekersComponent,
     candidateRegister,
     SkillMasterListComponent,
-    StaticpageComponent
+    StaticpageComponent, 
+   
   ],
   imports: [
     BrowserModule,
@@ -68,6 +70,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     PerfectScrollbarModule,
     AgGridModule,
     CarouselModule,
+    // PopupCellRenderer,
     ToastrModule.forRoot(
       {
         timeOut: 3000,

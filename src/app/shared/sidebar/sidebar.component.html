@@ -32,6 +32,36 @@
           </span> -->
         </div>
       </mat-list-item>
+
+
+      <mat-list-item [ngClass]="['notSelected']"
+        *ngIf='roleCode === "SADM" || roleCode === "OADM" || roleCode === "ADM" || roleCode === "HR" || roleCode === "ISADM" || roleCode === "IADM"'
+        [routerLinkActive]="['is-active']">
+        <div class="sidebar-admin" (click)="changeIcon()">
+          <div class="sidebar-icon-admin">
+            <mat-icon>school_filled</mat-icon>
+          </div>
+          <span class="headerfont" (click)="validateClick('managedrive')" mat-line *ngIf="isExpanded">Drive</span>
+          <div class="arrow" >
+            <span *ngIf="!menuIconToggle" class="position-relative left2 headerfont">
+              <mat-icon>arrow_drop_down</mat-icon>
+            </span>
+            <span *ngIf="menuIconToggle" class="position-relative left2 headerfont">
+              <mat-icon>arrow_drop_up</mat-icon>
+            </span>
+          </div>
+        </div>
+      </mat-list-item>
+
+      <ng-container *ngIf="menuIconToggle" >
+        <mat-list-item  [ngClass]="[check === 'managedrive' ? 'selected' : 'notSelected']"
+        (click)="drive('managedrive')" *ngIf='roleCode === "SADM" || roleCode === "OADM" || roleCode === "ADM" || roleCode === "HR" || roleCode === "ISADM" || roleCode === "IADM"' [routerLink]="['/manage-drive']" [routerLinkActive]="['is-active']">
+           <div class="sidebar-admin pl-3" >
+              <span class="headerfont"  mat-line *ngIf="isExpanded">Manage Drive</span>
+            </div>
+        </mat-list-item>
+      </ng-container>
+
       <mat-list-item [ngClass]="['notSelected']"
       *ngIf='roleCode === "SADM" || roleCode === "OADM" || roleCode === "ADM" || roleCode === "HR" || roleCode === "ISADM" || roleCode === "IADM"' [routerLinkActive]="['is-active']">
         <div class="sidebar-admin" (click)="changeIcon()">
@@ -45,6 +75,7 @@
           </span>
         </div>
       </mat-list-item>
+      
       <ng-container *ngIf="menuIconToggle" >
         <mat-list-item  [ngClass]="[check === 'addpartner' ? 'selected' : 'notSelected']"
         (click)="hiring('addpartner')" *ngIf='roleCode === "SADM" || roleCode === "OADM" || roleCode === "ADM" || roleCode === "HR" || roleCode === "ISADM" || roleCode === "IADM"' [routerLink]="['/addpartner']" [routerLinkActive]="['is-active']">
@@ -64,6 +95,7 @@
             <span class="headerfont"  mat-line *ngIf="isExpanded">Partners Enquiries</span>
           </div>
         </mat-list-item>
+
       </ng-container>
     </mat-nav-list>
   </mat-drawer>

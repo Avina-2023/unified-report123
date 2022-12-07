@@ -11,12 +11,14 @@ import { StylePaginatorDirective } from './partner-list/style-paginator.directiv
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PartnerEnquiriesComponent } from './partner-enquiries/partner-enquiries.component';
 
+
+
 @NgModule({
   declarations: [
     AddPartnerComponent,
     PartnerListComponent,
     StylePaginatorDirective,
-    PartnerEnquiriesComponent
+    PartnerEnquiriesComponent, 
   ],
   imports: [
     CommonModule,
@@ -24,6 +26,7 @@ import { PartnerEnquiriesComponent } from './partner-enquiries/partner-enquiries
     MaterialModule,
     SharedModule,
     FormsModule,
+
     ReactiveFormsModule
   ],
 })

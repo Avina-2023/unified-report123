@@ -24,6 +24,9 @@ const routes: Routes = [
         path: `${APP_CONSTANTS.ROUTES.EMPDASHBOARD.HOME}`, loadChildren: () => import('../pages/employer/empdashboard/empdashboard.module').then(m => m.EmployerModule),canActivate:[IsAccessGuard]
       },
       {
+        path: `${APP_CONSTANTS.ROUTES.DRIVE.HOME}`, loadChildren: () => import('../pages/employer/drive/drive.module').then(m => m.DriveModule)
+      },
+      {
         path: '',
         redirectTo: `${APP_CONSTANTS.ROUTES.REPORTS.HOME}`,
         pathMatch: 'full',
