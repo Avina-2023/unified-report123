@@ -1,0 +1,87 @@
+<header class="header" style="background-color: #fff;">
+  <div class="header__container container">
+    <div class="header__top">
+      <a class="header__brand" [routerLink]="routerData.LANDINGPAGE.HOME">
+        <img src="https://assets.lntedutech.com/SKILL_EXCHANGE.png" alt="" />
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
+        aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="header__button">
+        <div class="dropdown mr-2">
+          <!-- <button class="btn button--primary text-white regbtn dropdown-toggle" type="button" id="dropdownMenuButton"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Register
+          </button> -->
+          <nav class="navbar navbar-expand-xl">
+            <div class="collapse navbar-collapse" id="navbarContent">
+              <ul class="navbar-nav list-unstyled">
+                <li class="nav-item">
+                  <a class="nav-link">Register <span class="fa fa-caret-down"></span></a>
+                  <ul class="list-unstyled">
+                    <li><a [routerLink]="endPoints.REGISTER">Fresh Graduates</a></li>
+                    <li><a [routerLink]="endPoints.EMPLOYERS" >Employers</a></li>
+                  </ul>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link">Login <span class="fa fa-caret-down"></span></a>
+                  <ul class="list-unstyled">
+                    <li><a [routerLink]="endPoints.LOGIN" [queryParams]="{from:'freshGrad'}">Fresh Graduates</a></li>
+                    <li><a [routerLink]="endPoints.LOGIN" [queryParams]="{from:'employer'}">Employers</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </nav>
+          <!-- <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="/register">Fresh Graduates</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="/employers">Employers</a>
+          </div> -->
+        </div>
+        <!-- <div class="dropdown">
+          <button class="btn button--primary text-white regbtn dropdown-toggle" type="button" id="dropdownMenuButton"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Login
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="/login?from=freshGrad">Fresh Graduates</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="/login?from=employer">Employers</a>
+          </div>
+        </div> -->
+      </div>
+      <nav class="navbar navbar-expand-xl">
+
+        <div class="collapse navbar-collapse" id="navbarContent">
+          <ul class="navbar-nav list-unstyled">
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="routerData.LANDINGPAGE.ABOUT">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="routerData.LANDINGPAGE.EMPLOYER">Employers</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="routerData.LANDINGPAGE.FRESHGRADUATES">Fresh Graduates</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" >Partners <span class="fa fa-caret-down"></span></a>
+              <ul class="list-unstyled">
+                <li><a [routerLink]="routerData.LANDINGPAGE.HIRINGPARTNER">Hiring Partners</a></li>
+                <li><a [routerLink]="routerData.LANDINGPAGE.INSTITUTIONALPARTNERS">Institutional Partners</a></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="routerData.LANDINGPAGE.CONTACT">Contact</a>
+            </li>
+          </ul>
+        </div>
+
+      </nav>
+
+
+    </div>
+
+  </div>
+</header>
