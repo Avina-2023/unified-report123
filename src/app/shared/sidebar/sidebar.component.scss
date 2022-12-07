@@ -21,6 +21,12 @@ mat-sidenav:not(.mat-drawer-opened) {
 .sidebar-admin{
 	display: flex;
 }
+.sidebar-icon-drive{
+  top: 137px;
+left: 25px;
+width: 18px;
+height: 15px;
+}
 .sidebar-icon-admin{
 	height: 19px;
 	position: relative;
@@ -107,6 +113,9 @@ margin-top: 5px;
   mat-list-item{
     height: 60px!important;
   }
+}
+.arrow{
+  float:right !important;
 }
 
 ::ng-deep{

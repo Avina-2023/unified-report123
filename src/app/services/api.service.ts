@@ -17,6 +17,7 @@ export class ApiService {
   Prourl = environment.NODE_URL;
   EncryptKEY = environment.encryptionKey;
   cryptoEncryptionKey = environment.cryptoEncryptionKey;
+  
   filterSubject: Subject<any> = new Subject();
   constructor(
     private http: HttpClient,
@@ -53,6 +54,9 @@ export class ApiService {
 
   getDriveBaisedUser(data) {
     return this.http.post(`${this.BASE_URL}/driveCandidateList`, data);
+  }
+  getAGgridData(data){
+    return this.http.post(`${this.BASE_URL}/joblistwithaggrid`,data);
   }
 
   encrypt(data) {

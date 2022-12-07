@@ -34,6 +34,11 @@ export class SidebarComponent implements OnInit {
       case '/auth/employer/dashboard':
         this.check = 'empdashboard';
         break;
+      case '/auth/employer/drive/managedrive':
+        this.menuIconToggle = true
+        this.check = 'managedrive';
+        break;
+
       case '/auth/partner/addpartner':
         this.menuIconToggle = true
         this.check = 'addpartner';
@@ -70,6 +75,10 @@ export class SidebarComponent implements OnInit {
    hiring(value){
     this.check = value;
     this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.PARTNER.ADDPARTNER)
+   }
+   drive(value){
+    this.check = value;
+    this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.VIEWDRIVE.MANAGEDRIVE)
    }
    manage(value){
     this.check = value;

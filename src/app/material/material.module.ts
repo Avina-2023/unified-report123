@@ -29,6 +29,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatTableModule} from '@angular/material/table';
 import {MatChipsModule} from '@angular/material/chips';
+
 // Material Data tables
 // ---------------------------------------------------------------
  import { MatPaginatorModule } from '@angular/material/paginator';
