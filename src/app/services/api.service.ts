@@ -58,7 +58,9 @@ export class ApiService {
   getAGgridData(data){
     return this.http.post(`${this.BASE_URL}/joblistwithaggrid`,data);
   }
-
+getAGgridPatnerList(data){
+  return this.http.post(`${this.BASE_URL}/partnerList`,data);
+}
   encrypt(data) {
     try {
       return CryptoJS.AES.encrypt(JSON.stringify(data), this.EncryptKEY).toString();
