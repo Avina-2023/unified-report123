@@ -39,7 +39,7 @@ export class ManageDriveComponent implements OnInit {
   }
   arrayofData: any = [];
 
-  // Ag Grid Secction
+  // Ag Grid Section
 
   tabledata() {
     this.columnDefs = [
