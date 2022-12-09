@@ -16,6 +16,7 @@ export class SidebarComponent implements OnInit {
   orgdetails:any;
   roleCode:any;
   menuIconToggle: boolean;
+  driveIconToggle: boolean;
   check = "empdashboard";
   constructor(private appconfig: AppConfigService,public router:Router) {
     this.router.events.subscribe(event => {
@@ -35,7 +36,7 @@ export class SidebarComponent implements OnInit {
         this.check = 'empdashboard';
         break;
       case '/auth/employer/drive/managedrive':
-        this.menuIconToggle = true
+        this.driveIconToggle = true
         this.check = 'managedrive';
         break;
 
@@ -109,6 +110,10 @@ export class SidebarComponent implements OnInit {
    changeIcon() {
     this.menuIconToggle = !this.menuIconToggle;
     }
+    changedriveIcon(){
+      this.driveIconToggle = !this.driveIconToggle;
+    }
+    
 
 
 
