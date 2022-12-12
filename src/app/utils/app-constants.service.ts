@@ -21,6 +21,19 @@ export const APP_CONSTANTS = {
     HOME: '/static',
     AUTH: '/auth',
     LANDING: '/landing',
+    REGISTER:"/register",
+    EMPLOYERS:"/employers",
+    LANDINGPAGE:{
+      LANDINGPAGE:"/",
+      HOME:"/home",
+      ABOUT:"/about",
+      EMPLOYER:"/employer",
+      FRESHGRADUATES:"/FreshGraduates",
+      HIRINGPARTNER:"/hiringpartner",
+      INSTITUTIONALPARTNERS:"/institutionalpartners",
+      CONTACT:"/contact"
+    },
+
     CNDIDATELANDING:'/candidateview',
     CANDIDATEDASH:{
       DASHBOARD:'/candidateview/dashboard',
@@ -83,6 +96,18 @@ export const APP_CONSTANTS = {
       SETUP: 'setpwd'
     },
     LANDING: 'landing',
+    REGISTER:"register",
+    EMPLOYERS:"employers",
+    LANDINGPAGE:{
+      LANDINGPAGE:"",
+      HOME:"home",
+      ABOUT:"about",
+      EMPLOYER:"employer",
+      FRESHGRADUATES:"FreshGraduates",
+      HIRINGPARTNER:"hiringpartner",
+      INSTITUTIONALPARTNERS:"institutionalpartners",
+      CONTACT:"contact"
+    },
     HOME: 'home',
     AUTH: 'auth',
     CNDIDATELANDING:'candidateview',

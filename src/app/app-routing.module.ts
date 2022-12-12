@@ -3,22 +3,25 @@ import { RouterModule, Routes } from '@angular/router';
 import { IsAccessGuard } from './guards/is-access.guard';
 import { PagenotfoundComponent } from './pages/pagenotfound/pagenotfound.component';
 import { LandingPageComponent } from './pages/landing-page/landing-page.component';
-import { candidateRegister } from './pages/login/candidateRegister/candidateRegister.component'
-import { RegisterPageComponent } from './pages/login/register-page/register-page.component'
+import { candidateRegister } from './pages/login/candidateRegister/candidateRegister.component';
+import { RegisterPageComponent } from './pages/login/register-page/register-page.component';
 import { StaticpageComponent } from './staticpage/staticpage.component';
 import { LoginPageComponent } from './pages/login/login-page/login-page.component';
 import { APP_CONSTANTS } from './utils/app-constants.service';
 import { IsloggedInGuard } from './guards/islogged-in.guard';
 import { CertificateViewComponent } from './pages/certificate-view/certificate-view.component';
 const routes: Routes = [
+  {
+    path: `${APP_CONSTANTS.ROUTES.LANDINGPAGE.LANDINGPAGE}`, loadChildren: () => import('./pages/landing-screen/landing-screen.module').then(m => m.LandingScreenModule)
+  },
  {
-    path: `landing`, component: LandingPageComponent
+    path: `landingold`, component: LandingPageComponent
   },
   {
     path: `adminlogin`, component: LoginPageComponent,
   },
   {
-    path:'',redirectTo:'/static',pathMatch:'full'
+    path:'htmlStatic',redirectTo:'/static',pathMatch:'full' // path should be empty string for static html
   },
   {
     path:'static',component:StaticpageComponent
@@ -32,7 +35,6 @@ const routes: Routes = [
   {
     path: '', loadChildren: () => import('./pages/login/login-routing.module').then(m => m.LoginRoutingModule), canActivate: [IsloggedInGuard]
   },
-
   {
     path: `${APP_CONSTANTS.ROUTES.AUTH}`, loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
   },
