@@ -1,4 +1,16 @@
-<p>
-  job-applied-list works!
-</p>
-<app-job-list-item [data]="appliedjobs"></app-job-list-item>
+<div class="appliedjobs">
+    <div class="text">Applied Jobs</div>
+</div>
+<!-- <div class="norecords">
+  <mat-card *ngIf="totallength==0">
+    <span>No Applied Jobs</span></mat-card>
+</div> -->
+<div *ngIf="totallength==0">
+  <app-no-data-found [from]="'applied'"></app-no-data-found>
+</div>
+
+
+<app-job-list-item *ngIf="totallength" [data]="appliedjobs" [showApplied]="true"></app-job-list-item>
+<div class="pagination">
+  <app-common-paginator *ngIf="total"  (send)="some($event)" [totalcount]="total"></app-common-paginator>
+</div>

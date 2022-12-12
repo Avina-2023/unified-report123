@@ -22,6 +22,7 @@ export class SidebarComponent implements OnInit {
   roleCode:any;
   menuIconToggle: boolean;
   menuIconToggle1:boolean;
+  driveIconToggle: boolean;
   check = "empdashboard";
   constructor(private appconfig: AppConfigService,public router:Router, public dialog: MatDialog, private loaded: LoadingService) {
     this.router.events.subscribe(event => {
@@ -40,6 +41,11 @@ export class SidebarComponent implements OnInit {
       case '/auth/employer/dashboard':
         this.check = 'empdashboard';
         break;
+      case '/auth/employer/drive/managedrive':
+        this.driveIconToggle = true
+        this.check = 'managedrive';
+        break;
+
       case '/auth/partner/addpartner':
         this.menuIconToggle = true
         this.check = 'addpartner';
@@ -82,6 +88,10 @@ export class SidebarComponent implements OnInit {
     this.check = value;
     this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.PARTNER.ADDPARTNER)
    }
+   drive(value){
+    this.check = value;
+    this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.VIEWDRIVE.MANAGEDRIVE)
+   }
    manage(value){
     this.check = value;
     this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.PARTNER.PARTNERLIST)
@@ -117,6 +127,10 @@ export class SidebarComponent implements OnInit {
    changeIcon() {
     this.menuIconToggle = !this.menuIconToggle;
     }
+    changedriveIcon(){
+      this.driveIconToggle = !this.driveIconToggle;
+    }
+
 
 
 

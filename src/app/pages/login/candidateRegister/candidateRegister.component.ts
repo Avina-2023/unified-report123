@@ -7,6 +7,7 @@ import{environment} from 'src/environments/environment';
 import * as CryptoJS from 'crypto-js';
 import { AppConfigService } from 'src/app/utils/app-config.service';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-candidateRegister',
   templateUrl: './candidateRegister.component.html',
@@ -24,9 +25,9 @@ export class candidateRegister implements OnInit {
   failuremail = false;
   msg = ''
   secretKey = "(!@#Passcode!@#)";
-  skillProfileUrl = environment.SKILL_PROFILE_URL;
+  skillProfileUrl = "/login?from=freshGrad";
   dialogRef: any;
-  constructor(public fb: FormBuilder,private dialog: MatDialog, private glovbal_validators: GlobalValidatorService, public toastr: ToastrService, private ApiService: ApiService,public appConfig: AppConfigService,    ) { }
+  constructor(public fb: FormBuilder,private dialog: MatDialog, private glovbal_validators: GlobalValidatorService, public toastr: ToastrService, private ApiService: ApiService,public appConfig: AppConfigService, private router:Router   ) { }
 
   ngOnInit(): void {
     this.formInitialize()
@@ -43,6 +44,7 @@ export class candidateRegister implements OnInit {
 
   register() {
     this.freshGraduatesForm.value.email = CryptoJS.AES.encrypt(this.freshGraduatesForm.value.email.toLowerCase().trim(), this.secretKey.trim()).toString();
+    console.log(CryptoJS.AES.decrypt(this.freshGraduatesForm.value.email,this.secretKey.trim()))
     this.ApiService.candidateRegistration(this.freshGraduatesForm.value).subscribe((res: any) => {
       if (res.success) {
         this.newCandidate = true
@@ -53,7 +55,11 @@ export class candidateRegister implements OnInit {
         this.msg = res.message
         this.registerform = false
         this.existingCandidate = true;
-        this.toastr.error(this.msg)
+        this.toastr.error(this.msg);
+        let currentUrl = this.router.url;
+        this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+        this.router.navigate([currentUrl]);
+        });
       }
     })
   }

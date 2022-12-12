@@ -1,0 +1,157 @@
+<div class="overflowbox" >
+    <div class="leftside">
+        <div class="user">
+            <div class="user-name">
+                <div class="username-N">
+                    Welcome,&nbsp;
+                </div>
+                <div class="username-B">
+                    {{username}}
+                </div>
+            </div>
+        </div>
+        <div class="displaygrid">
+            <div class="dashboardcards">
+                <div class="box">
+                    <mat-card class="singlecard singlecardbg0">
+                        <div class="both">
+                            <div class="bigleft singlecardborder0">
+                                <div class="left">
+                                    <div class="smalltext">
+                                        Jobs Available
+                                    </div>
+                                    <div class="bigtext">
+                                        {{ jobsAvailable }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </mat-card>
+                </div>
+                <div class="box">
+                    <mat-card class="singlecard singlecardbg1">
+                        <div class="both">
+                            <div class="bigleft singlecardborder1">
+                                <div class="left">
+                                    <div class="smalltext">
+                                        Jobs Applied
+                                    </div>
+                                    <div class="bigtext">
+                                        {{ jobApplied }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </mat-card>
+                </div>
+                <div class="box">
+                    <mat-card class="singlecard singlecardbg2">
+                        <div class="both">
+                            <div class="bigleft singlecardborder2">
+                                <div class="left">
+                                    <div class="smalltext">
+                                        Profile Viewed
+                                    </div>
+                                    <div class="bigtext">
+                                        {{ profileView }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </mat-card>
+                </div>
+                <div class="box">
+                    <mat-card class="singlecard singlecardbg3">
+                        <div class="both">
+                            <div class="bigleft singlecardborder3">
+                                <div class="left">
+                                    <div class="smalltext">
+                                        Shortlisted
+                                    </div>
+                                    <div class="bigtext">
+                                        {{ shortlisted }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </mat-card>
+                </div>
+            </div>
+            <div class="barchart">
+                <div class="baralignment">
+                    <div class="left">Performance</div>
+                    <div class="right">
+                        <mat-form-field class="form-filed-dropdown" appearance="outline">
+                            <mat-select class="selectText" (selectionChange)="getCandidateDashBoard($event)" placeholder="2022">
+                                <mat-option class="text-center" *ngFor="let val of allyears" [value]="val.year">{{val.year}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                    </div>
+                </div>
+                <apx-chart [series]="ChartData" [chart]="chartOptions.chart" [dataLabels]="chartOptions.dataLabels"
+                    [plotOptions]="chartOptions.plotOptions" [legend]="chartOptions.legend"
+                    [fill]="chartOptions.fill" [stroke]="chartOptions.stroke" [tooltip]="chartOptions.tooltip"
+                    [xaxis]="chartOptions.xaxis">
+                </apx-chart>
+                <div class="legends">
+                  <div class="alignment">
+                    <div class="round1"></div>
+                    <div class="text">Jobs Available</div>
+                  </div>
+
+                  <div class="alignment">
+                    <div class="round2"></div>
+                    <div class="text">Jobs Applied</div>
+                  </div>
+                  <div class="alignment">
+                    <div class="round3"></div>
+                    <div class="text">Profile Viewed</div>
+                  </div>
+                  <div class="alignment">
+                    <div class="round4"></div>
+                    <div class="text">Shortlisted</div>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-right">
+        <div class="d-flex visibleuser">
+            <div class="user-name">
+                <div class="username-N">
+                    Welcome,&nbsp;
+                </div>
+                <div class="username-B">
+                    {{username}}
+                </div>
+            </div>
+        </div>
+        <div class="candidatebg">
+            <div class="userprofile">
+                <img  class="avatar" [src]="this.Details?.profileImage?this.Details?.profileImage+blobToken:'../../../../assets/images/candidate-userprofile.png'">
+                <div class="bg-white">
+                    <div class="profilename">
+                        {{username}}
+                    </div>
+                    <!-- <div class="big" >-</div> -->
+
+                    <div class="small" *ngIf="usercity">{{usercity}}, {{userstate}}, {{usercountry}}</div>
+                    <hr class="hrline">
+                    <div class="profile-progress">
+                        <span>Profile Completion</span>
+                        <div role="progressbar" aria-valuenow="{{profilepercentage}}" aria-valuemin="0" aria-valuemax="100"
+                            style="--value:{{profilepercentage}}"></div>
+                    </div>
+                    <hr>
+                    <div class="profile-buttons">
+                        <button class="buttons view-profile" (click)="gotoProfile()">View Profile</button>
+                        <button class="buttons edit-profile" (click)="gotoProfile()">Edit Profile</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

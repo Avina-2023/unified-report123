@@ -3,13 +3,14 @@ import { AuthComponent } from './auth.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { EmpRequirmentsComponent } from '../pages/employer/emp-requirments/emp-requirments.component';
+import { IsAccessGuard } from '../guards/is-access.guard';
 
 const routes: Routes = [
   {
     path: '', component: AuthComponent,
     children: [
       {
-        path: `${APP_CONSTANTS.ROUTES.REPORTS.HOME}`, loadChildren: () => import('../pages/view-reports/view-reports.module').then(m => m.ViewReportsModule)
+        path: `${APP_CONSTANTS.ROUTES.REPORTS.HOME}`, loadChildren: () => import('../pages/view-reports/view-reports.module').then(m => m.ViewReportsModule),canActivate:[IsAccessGuard],data:{key:'user'}
       },
 
       {
@@ -18,10 +19,13 @@ const routes: Routes = [
       {
         path: `${APP_CONSTANTS.ROUTES.SKILLMASTER.HOME}`, loadChildren: () => import('../pages/skill-Master/skill-master.module').then(m => m.SkillMasterModule)
       },{
-        path: `${APP_CONSTANTS.ROUTES.PARTNER.HOME}`, loadChildren: () => import('../pages/employer/partner.module').then(m => m.Adminmodule)
+        path: `${APP_CONSTANTS.ROUTES.PARTNER.HOME}`, loadChildren: () => import('../pages/employer/partner.module').then(m => m.Adminmodule),canActivate:[IsAccessGuard]
       },
       {
-        path: `${APP_CONSTANTS.ROUTES.EMPDASHBOARD.HOME}`, loadChildren: () => import('../pages/employer/empdashboard/empdashboard.module').then(m => m.EmployerModule)
+        path: `${APP_CONSTANTS.ROUTES.EMPDASHBOARD.HOME}`, loadChildren: () => import('../pages/employer/empdashboard/empdashboard.module').then(m => m.EmployerModule),canActivate:[IsAccessGuard]
+      },
+      {
+        path: `${APP_CONSTANTS.ROUTES.DRIVE.HOME}`, loadChildren: () => import('../pages/employer/drive/drive.module').then(m => m.DriveModule)
       },
       {
         path: `${APP_CONSTANTS.ROUTES.EMPDASHBOARD.REQUIRMENT}`, component: EmpRequirmentsComponent

@@ -17,7 +17,8 @@ export const APP_CONSTANTS = {
   // Route endpoints
   ENDPOINTS: {
     LOGIN: '/login',
-    HOME: '/home',
+    // HOME: '/home',
+    HOME: '/static',
     AUTH: '/auth',
     LANDING: '/landing',
     CNDIDATELANDING:'/candidateview',
@@ -25,7 +26,9 @@ export const APP_CONSTANTS = {
       DASHBOARD:'/candidateview/dashboard',
       JOBLIST:'/candidateview/findjobs',
       JOBSSAVED:'/candidateview/savedjobs',
-      JOBSAPPLIED:'/candidateview/appliedjobs'
+      JOBSAPPLIED:'/candidateview/appliedjobs',
+      PAGINATION :'/candidateview/page',
+      JOBDESCRIPTION:'/candidateview/jobdescription',
     },
     PASSWORD: {
       FORGOT: '/forgot-password',
@@ -58,6 +61,12 @@ export const APP_CONSTANTS = {
       ADDPARTNER:"/auth/partner/addpartner",
       PARTNERENQUIRY: "/auth/partner/partnerenquiry"
     },
+    VIEWDRIVE:{
+      HOME: '/auth/drive',
+      MANAGEDRIVE:'/auth/drive/managedrive',
+      DRIVESETTINGS:'/auth/drive/drivesettings'
+    },
+
     EMPDASHBOARD:{
       HOME:'/auth/dashboard',
       PROFILE:'/auth/dashboard/profile',
@@ -84,7 +93,9 @@ export const APP_CONSTANTS = {
       DASHBOARD:'dashboard',
       JOBLIST:'findjobs',
       JOBSSAVED:'savedjobs',
-      JOBSAPPLIED:'appliedjobs'
+      JOBSAPPLIED:'appliedjobs',
+      JOBDESCRIPTION:'jobdescription',
+      PAGINATION:'page',
     },
     REPORTS: {
       HOME: 'reports',
@@ -112,6 +123,12 @@ export const APP_CONSTANTS = {
       ADDPARTNER:"addpartner",
       PARTNERENQUIRY:"partnerenquiry"
     },
+    DRIVE:{
+      HOME: 'drive',
+      MANAGEDRIVE:'managedrive',
+      DRIVESETTINGS:'drivesettings'
+    },
+    
     EMPDASHBOARD:{
       HOME:'dashboard',
       COUNTCARD:'count',

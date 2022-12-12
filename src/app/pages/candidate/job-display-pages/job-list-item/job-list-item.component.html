@@ -1,29 +1,27 @@
-<p>
-  job-list-item works!
-</p>
-
 <div class="overflowbox">
   <div class="card_flex" *ngFor="let item of data">
     <mat-card class="listcard">
       <mat-card-header>
         <div class="card_header">
-          <img class="img" src="{{item.companyimage}}">
+          <img class="img" src="{{item.companyLogo}}">
           <div class="cardgrid">
-            <div class="title">{{item.jobtitle}}</div>
-            <div class="subtitle">{{item.companyname}}</div>
+            <div class="title">{{item.jobRole}}</div>
+            <div class="subtitle">{{item.company}}</div>
           </div>
         </div>
       </mat-card-header>
       <div class="misc_save" *ngIf="savedButton">
-        <button class="saved" *ngIf="item?.saved == 'true'">Apply
+        <button class="saved" *ngIf="item?.isApplied == false && currentdate<item?.lastDatetoApply"  (click)="apply(item)">Apply
         </button>
-        <button class="saved isDisabled" [disabled]="isDisabled" *ngIf="item?.saved == 'false'">Applied
+        <button class="saved isDisabled" [disabled]="isDisabled" *ngIf="item?.isApplied == true">Applied
+        </button>
+        <button class="saved isDisabled" [disabled]="isDisabled" *ngIf="item?.isApplied == false && currentdate>item?.lastDatetoApply">Expired
         </button>
       </div>
       <hr class="hrline">
       <mat-card-content>
-        <p class="description-p">
-          {{item.jobdescription}}
+        <p class="description-p" *ngIf="item.overview">
+          {{item.overview}}
         </p>
         <div class="specialization">
           <span class="specialization-box" *ngFor="let elem of item.specialization"> {{elem}}</span>
@@ -33,30 +31,47 @@
         <div class="cardfooter_row"><span>
           <mat-icon class="icon" [class.active]="isActive"> school</mat-icon>
         </span>
-        <span class="smalltext">B.Tech</span>
+        <span class="smalltext"*ngFor="let elem of item.education;let i=index; let isLast=last">{{elem}}<span class="misc_col" *ngIf="!isLast && i < item.education.length">&nbsp;</span></span>
       </div>
       <div class="cardfooter_row"><span>
         <mat-icon class="icon"> location_on</mat-icon>
       </span>
-      <span class="smalltext">Chennai</span>
+      <span class="smalltext" *ngFor="let elem of item.jobLocation;let i=index; let isLast=last">{{elem}}<span class="misc_col" *ngIf="!isLast && i < item.jobLocation.length">&nbsp;</span> </span>
     </div>
-        <div class="cardfooter_row"><span>
+        <div class="cardfooter_row"  *ngIf="item.jobType"><span>
             <mat-icon class="icon"> business_center</mat-icon>
           </span>
-          <span class="smalltext">Full-Time</span>
+          <span class="smalltext">{{item.jobType}}</span>
         </div>
-      
-        <div class="cardfooter_row"><span>
-            <mat-icon class="icon">check_circle_outline</mat-icon>
-          </span>
-          <span class="smalltext">Applied 3 Days ago </span>
-        </div>
-       
+
+
+          <div class="cardfooter_row" *ngIf="savedButton">
+            <div *ngIf="!item.createdOn">
+            <span>
+              <mat-icon class="icon"> calendar_month</mat-icon>
+            </span>
+              <span class="smalltext">Posted &nbsp;{{item.createdOn|timeAgo}}</span>
+            </div>
+          </div>
+
+          <div  class="cardfooter_row" *ngIf="showApplied">
+            <div *ngIf="item.isAppliedDate">
+            <span>
+              <mat-icon class="icon">check_circle_outline</mat-icon>
+            </span>
+            <span class="smalltext">Applied &nbsp;{{item.isAppliedDate|timeAgo}}</span>
+          </div>
+          </div>
+
       </div>
       <div class="misc_save" *ngIf="savedButton"> <span>
-          <mat-icon class="misc_icon">bookmark_border</mat-icon>
+          <!-- <mat-icon class="misc_icon" *ngIf="item?.isSelected == true">bookmark_border</mat-icon>
+          <mat-icon class="misc_icon" *ngIf="item?.isSelected == false">bookmark_border</mat-icon> -->
+          <mat-icon (click)="bookMarkIcon(item)" [ngClass]="item.isSelected ? 'saved_icon':'unsaved_icon'">
+            {{item.isSelected?'bookmark':'bookmark_border'}} </mat-icon>
         </span>
       </div>
     </mat-card>
   </div>
 </div>
+
