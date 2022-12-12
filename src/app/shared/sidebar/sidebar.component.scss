@@ -48,10 +48,7 @@ mat-sidenav:not(.mat-drawer-opened) {
   top: 9px;
 }
 
-::ng-deep.mat-list-item-content {
-  //padding: 5px !important;
-  //left: 4px;
-}
+
 
 .sidebar-icon {
   position: relative;
@@ -95,8 +92,6 @@ mat-sidenav:not(.mat-drawer-opened) {
 
 .notSelected {
   width: 100%;
-  padding-left: 0px;
-
 }
 
 .headerfont {
@@ -115,12 +110,10 @@ mat-sidenav:not(.mat-drawer-opened) {
   margin-top: 5px;
 }
 
-
 .sidemenu {
   width: 100%;
   text-align: center;
 }
-
 
 .mathgt {
   width: 200px;
@@ -156,10 +149,6 @@ mat-sidenav:not(.mat-drawer-opened) {
  width: 100px;
 }
 
-
-
-
-
 ::ng-deep {
   .mat-list-base {
     padding-top: 0px;
@@ -167,5 +156,11 @@ mat-sidenav:not(.mat-drawer-opened) {
   .sidebar_wdth mat-drawer .mat-drawer-inner-container .mat-list-base .mat-list-item .mat-list-item-content{
     padding: 0px!important;
    }
+   .cdk-overlay-connected-position-bounding-box{
+    left: 100px !important;
+      top: 185px !important;
+  }
+
 }
+
 
