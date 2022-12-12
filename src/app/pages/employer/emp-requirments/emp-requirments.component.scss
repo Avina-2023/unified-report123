@@ -1,0 +1,561 @@
+.body{
+display: flex;
+top: 20px;
+left: 75px;
+background: #1B4E9B 0% 0% no-repeat ;
+opacity: 1;
+width: 100%;
+height: 210px;
+}
+
+.toggle-pos{
+  position: absolute;
+  right: 0px;
+}
+
+.title{
+display: flex;
+padding-left: 25px;
+padding-top: 30px;
+height: 50px;
+text-align: left;
+font: normal normal 300 18px/24px Roboto;
+letter-spacing: 0px;
+color: #FFFFFF;
+text-transform: capitalize;
+opacity: 1;
+
+}
+
+.bg{
+  background-color: #FFFFFF;
+  margin:2%;
+  padding:2%;
+  border-radius:10px;
+}
+
+::ng-deep.data {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+  flex-direction: row;
+  align-items: flex-start;
+  .mat-form-field {
+      width: 100%;
+
+  }
+
+  .mat-form-field-label-wrapper {
+
+      top: 0;
+      padding-top: 0;
+      overflow: initial;
+
+  }
+
+  .mat-form-field-infix {
+      border-top: 0;
+
+  }
+
+  .mat-form-field-appearance-outline .mat-form-field-outline {
+    height: 40px;
+      top: 0px;
+
+  }
+  .mat-form-field-appearance-outline .mat-form-field-infix {
+      padding: 10px 0 !important;
+
+  }
+
+  input.mat-input-element,
+  .mat-form-field-appearance-outline .mat-form-field-flex {
+      margin-top: 0px;
+
+  }
+
+  input.mat-input-element {
+      line-height: normal;
+      font-size: 1.1em;
+      font-weight: 400;
+
+  }
+
+  .mat-form-field-appearance-outline .mat-form-field-wrapper {
+      margin: 0;
+      padding-bottom: 0px !important;
+
+  }
+
+
+  .mat-form-field-appearance-outline .mat-form-field-label {
+
+      margin-top: -0em;
+      top: 1em;
+
+
+  }
+
+  .mat-label {
+      color: rgba(55, 51, 49, 0.6);
+      font-size: 0.825em;
+      font-weight: 400;
+
+  }
+
+  .mat-warn .mat-input-element,
+  .mat-form-field-invalid .mat-input-element {
+      caret-color: red;
+  }
+
+  .error,
+  .mat-form-field.mat-form-field-invalid .mat-form-field-label,
+  .mat-form-field-appearance-outline.mat-form-field-invalid.mat-form-field-invalid .mat-form-field-outline-thick {
+      color: red;
+      font-size: 12px;
+
+  }
+
+
+
+  .mat-form-field-appearance-outline .mat-form-field-outline {
+      color: #8E8E8E;
+
+  }
+
+  .mat-form-field-appearance-outline .mat-form-field-suffix {
+      top: 0.5em;
+
+  }
+
+  .mat-form-field-appearance-outline .mat-form-field-outline-thick {
+      color: #8E8E8E;
+
+  }
+
+  .mat-form-field-appearance-outline .mat-form-field-outline-thick .mat-form-field-outline-start,
+  .mat-form-field-appearance-outline .mat-form-field-outline-thick .mat-form-field-outline-end,
+  .mat-form-field-appearance-outline .mat-form-field-outline-thick .mat-form-field-outline-gap {
+      border-width: 1px;
+
+  }
+
+.searchIcon{
+  display: contents;
+}
+.closeIcon{
+  display: contents;
+}
+.inputContainer{
+  padding-left: 1px;
+
+}
+
+}
+
+
+.matsort{
+width: 15px;
+height: 9px;
+text-align: left;
+font: normal normal 300 14px/19px Roboto;
+letter-spacing: 0.14px;
+color: #848484;
+opacity: 1;
+
+}
+
+ .search-btn{
+  width: 50%;
+  padding: 10px;
+  position: relative;
+  border: none;
+  color: #fff;
+  background: #1B4E9B;
+  border-radius: 5px;
+  cursor: pointer;
+
+ }
+
+
+ ::ng-deep{
+  .search{
+  .mat-form-field-prefix, .mat-form-field-suffix {
+      top: 0px!important;
+  }
+  }
+  }
+
+ .clearData{
+  padding-left: 5px;
+  color: #004684;
+  text-decoration: underline;
+  cursor: pointer;
+  display: flex;
+  justify-content: flex-end;
+  position: relative;
+  top: -17px;
+  text-decoration: none;
+
+}
+
+
+.card1Border{
+  margin-top: 24px !important;
+  padding-top: 15px;
+  padding-bottom: 20px;
+  background-color: white;
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+border: 1px solid #70707033;
+border-radius: 10px;
+}
+.main-wrapper{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1%;
+}
+
+.logoHeadleft{
+display: flex;
+padding-left: 22px;
+margin: 0px !important;
+margin-right: 100px !important;
+display: flex;
+justify-content: flex-start;
+height: 38px;
+}
+.locations{
+display: flex;
+padding-left: .5px;
+}
+.avatar{
+display: flex;
+width: 48px;
+height: 38px;
+opacity: 1;
+}
+.designation{
+height: 19px;
+padding-right: 2px;
+text-align: left;
+font: normal normal bold 14px/19px Roboto;
+letter-spacing: 0px;
+color: #000000;
+opacity: 1;
+}
+.locationOn{
+padding: 0px !important;
+margin-left: -7px;
+display: flex;
+justify-content: space-around;
+height: 3px;
+background: #FFFFFF 0% 0% no-repeat padding-box;
+opacity: 1;
+}
+.location{
+top: 288px;
+left: 221px;
+width: 45px;
+height: 16px;
+text-align: left;
+font: normal normal normal 12px/20px Roboto;
+letter-spacing: 0.24px;
+color: #707070;
+opacity: 1;
+}
+
+.commonDiv{
+  display: flex;
+  justify-content: space-between;
+}
+
+.headCenter{
+margin-right: 55px;
+text-align: center;
+letter-spacing: 0.33px;
+opacity: 1;
+  }
+  .application{
+    text-align: center;
+    font: normal normal 300 13px/19px Roboto;
+    letter-spacing: 0.33px;
+    color: #262626;
+    margin: 0px !important;
+
+  }
+
+  ::ng-deep .mat-typography p {
+    margin: 0 0 0px;
+  }
+
+  .date{
+  height: 18px;
+  text-align: center;
+  font: normal normal normal 13px/19px Roboto;
+  letter-spacing: 0.33px;
+  color: #FF0000;
+
+  .ad-banner {
+    width: 400px;
+}
+  }
+
+  .activeBg{
+    opacity: 1;
+  margin-right: 25px;
+  margin-top: 8px;
+  height: 26px;
+  display: flex;
+  flex-wrap: wrap;
+  border-radius: 3px;
+  opacity: 1;
+  border: 0;
+    background-color: #49AE3166;
+    color: #306325;
+
+    width: 74px;
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+
+  }
+  .pendingBg{
+    opacity: 1;
+    margin-right: 25px;
+    margin-top: 8px;
+    height: 26px;
+    display: flex;
+    flex-wrap: wrap;
+    border-radius: 3px;
+    opacity: 1;
+    background-color:#26C1F666;
+    color: #045874;
+
+    width: 74px;
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+
+  }
+  .closedBg{
+    opacity: 1;
+    margin-right: 25px;
+    margin-top: 8px;
+    height: 26px;
+    display: flex;
+    flex-wrap: wrap;
+    border-radius: 3px;
+    opacity: 1;
+    background-color:#84848466;
+    color: #686868;
+
+    width: 74px;
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+
+  }
+  .expiredBg{
+    opacity: 1;
+    margin-right: 25px;
+    margin-top: 8px;
+    height: 26px;
+    display: flex;
+    flex-wrap: wrap;
+    border-radius: 3px;
+    opacity: 1;
+    background-color:#FFC30066;
+    color: #A5892B;
+
+    width: 74px;
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+
+  }
+
+.line{
+  margin-left: .8cm;
+  margin-right: .7cm;
+}
+.content{
+  display: flex;
+  padding-left: .8cm;
+  height: 37px;
+  text-align: left;
+  font: normal normal normal 14px/18px Roboto;
+  letter-spacing: 0px;
+  color: #707070;
+  opacity: 1;
+  }
+
+.departMent{
+  padding: 5px;
+  font: normal normal normal 12px/20px Roboto;
+  color: #0097CC;
+  opacity: 1;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 18px;
+
+.departmentBorder{
+  padding: 5px 7px;
+    width: auto;
+    background: #26BBEF33 0% 0% no-repeat padding-box;
+    border-radius: 3px;
+    opacity: 1;
+    margin: 5px;
+
+span{
+      color: #0097CC;
+     }
+  }
+}
+
+
+.lastLine{
+  display: flex;
+  justify-content: space-between;
+
+
+.lastLeftline{
+  display: flex;
+  flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between !important;
+    padding: 0px 25px;
+
+
+
+.workTime{
+height: 18px;
+text-align: left;
+font: normal normal normal 13px/20px Roboto;
+letter-spacing: 0.26px;
+color: #707070;
+opacity: 1;
+}
+
+.drotation{
+padding-right: 0px;
+}
+
+.yearofPassing{
+padding-left: 15px;
+height: 18px;
+text-align: left;
+font: normal normal normal 13px/20px Roboto;
+letter-spacing: 0.26px;
+color: #707070;
+opacity: 1;
+
+.passedout{
+  padding: 0.5px 1px;
+  border-radius: 3px;
+  opacity: 1;
+  margin: 0.1px;
+}
+}
+
+
+.accountbalance{
+  padding-left: 0px;
+}
+
+.packAge{
+ padding-left: 15px;
+height: 18px;
+text-align: left;
+font: normal normal normal 13px/20px Roboto;
+letter-spacing: 0.26px;
+color: #707070;
+opacity: 1;
+}
+.android{
+  padding-left:0px;
+}
+.daysLeft{
+padding-left: 15px;
+height: 18px;
+text-align: left;
+font: normal normal normal 13px/20px Roboto;
+letter-spacing: 0.26px;
+color: #707070;
+opacity: 1;
+}
+
+
+.bookmark{
+  padding-right: 0px;
+}
+.bTech{
+padding-left: 15px;
+height: 18px;
+text-align: left;
+font: normal normal normal 13px/20px Roboto;
+letter-spacing: 0.26px;
+color: #707070;
+opacity: 1;
+
+}
+}
+
+
+.lastRightline{
+  padding-right: 20px;
+
+
+.settings{
+padding-right: 5px;
+width: 49px;
+text-align: left;
+text-decoration: underline;
+font: normal normal normal 13px/20px Roboto;
+color: #0097CC;
+opacity: 1;
+}
+
+.applied{
+padding-right: 20px;
+width: 99px;
+text-align: left;
+text-decoration: underline;
+font: normal normal normal 13px/20px Roboto;
+color: #0097CC;
+opacity: 1;
+}
+}
+}
+
+::ng-deep{
+  .mat-form-field-appearance-outline .mat-select-arrow-wrapper {
+  transform: none!important;
+}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

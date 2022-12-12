@@ -2,6 +2,7 @@ import { APP_CONSTANTS } from './../utils/app-constants.service';
 import { AuthComponent } from './auth.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { EmpRequirmentsComponent } from '../pages/employer/emp-requirments/emp-requirments.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,9 @@ const routes: Routes = [
       },
       {
         path: `${APP_CONSTANTS.ROUTES.EMPDASHBOARD.HOME}`, loadChildren: () => import('../pages/employer/empdashboard/empdashboard.module').then(m => m.EmployerModule)
+      },
+      {
+        path: `${APP_CONSTANTS.ROUTES.EMPDASHBOARD.REQUIRMENT}`, component: EmpRequirmentsComponent
       },
       {
         path: '',

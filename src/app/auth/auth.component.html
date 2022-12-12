@@ -1,4 +1,6 @@
 <div class="wrapper">
+<!-- header start -->
+   <!-- old -->
     <mat-toolbar class="header-toolbar p-3" *ngIf="checkRouter ==='/auth/reports/userlist' || checkRouter ==='/auth/skillmaster/skillmasterlist'">
         <div class="first">
             <img alt="EduTech" class="beforeloginimg" [src]="this.orgLogo ? this.orgLogo  : 'assets/images/landing/newLogo.png'" />
@@ -12,8 +14,8 @@
             </span>
         </div>
     </mat-toolbar>
-
-    <mat-toolbar class="header-toolbar p-3" *ngIf="checkRouter !='/auth/reports/userlist' && checkRouter !='/auth/reports/dashboard' &&  checkRouter != '/auth/skillmaster/skillmasterlist' && checkRouter != '/auth/dashboard/dashboard' && checkRouter != '/auth/partner/addpartner' && checkRouter !='/auth/partner/partnerlist' && checkRouter !='/auth/partner/partnerenquiry' && checkRouter !='/auth/dashboard/profile'&& checkRouter !='/auth/dashboard/changePwd'">
+ <!-- old -->
+    <mat-toolbar class="header-toolbar p-3" *ngIf="checkRouter !='/auth/reports/userlist' && checkRouter !='/auth/reports/dashboard' &&  checkRouter != '/auth/skillmaster/skillmasterlist' && checkRouter != '/auth/dashboard/dashboard' && checkRouter != '/auth/partner/addpartner' && checkRouter !='/auth/partner/partnerlist' && checkRouter !='/auth/partner/partnerenquiry' && checkRouter !='/auth/dashboard/profile'&& checkRouter !='/auth/dashboard/changePwd'&& checkRouter !='/auth/jobrequirment'">
 
       <div class="first">
             <img alt="EduTech" class="beforeloginimg" [src]="this.orgLogo ? this.orgLogo  : 'assets/images/landing/newLogo.png'" />
@@ -24,7 +26,7 @@
         </div>
     </mat-toolbar>
 
-
+ <!-- old -->
     <mat-toolbar class="header-toolbar p-3" *ngIf="checkRouter === '/auth/reports/dashboard'">
         <div class="first">
             <img alt="EduTech" class="beforeloginimg" [src]="this.orgLogo ? this.orgLogo  : 'assets/images/landing/newLogo.png'" />
@@ -39,7 +41,9 @@
         </div>
     </mat-toolbar>
 
-    <mat-toolbar class="p-3" *ngIf=" checkRouter ==='/auth/dashboard/dashboard' || checkRouter ==='/auth/partner/partnerlist' || checkRouter ==='/auth/partner/addpartner' ||  checkRouter ==='/auth/partner/partnerenquiry'|| checkRouter ==='/auth/dashboard/profile'|| checkRouter ==='/auth/dashboard/changePwd'">
+
+     <!-- new -->
+    <mat-toolbar class="p-3" *ngIf=" checkRouter ==='/auth/dashboard/dashboard' || checkRouter ==='/auth/partner/partnerlist' || checkRouter ==='/auth/partner/addpartner' ||  checkRouter ==='/auth/partner/partnerenquiry'|| checkRouter ==='/auth/dashboard/profile'|| checkRouter ==='/auth/dashboard/changePwd'|| checkRouter =='/auth/jobrequirment'">
         <div>
             <img class="logo" src="https://assets.lntedutech.com/SKILL_EXCHANGE.png">
           </div>
@@ -105,18 +109,23 @@
           </div>
     </mat-toolbar>
 
-    <div class="footer" *ngIf=" checkRouter ==='/auth/dashboard/dashboard' || checkRouter ==='/auth/partner/partnerlist' || checkRouter ==='/auth/partner/addpartner' ||  checkRouter ==='/auth/partner/partnerenquiry'|| checkRouter ==='/auth/dashboard/profile'|| checkRouter ==='/auth/dashboard/changePwd'">
+
+    <!-- footer start -->
+     <!-- new -->
+    <div class="footer" *ngIf=" checkRouter ==='/auth/dashboard/dashboard' || checkRouter ==='/auth/partner/partnerlist' || checkRouter ==='/auth/partner/addpartner' ||  checkRouter ==='/auth/partner/partnerenquiry'|| checkRouter ==='/auth/dashboard/profile'|| checkRouter ==='/auth/dashboard/changePwd'|| checkRouter ==='/auth/jobrequirment'">
       <app-footer></app-footer>
     </div>
 
-
+ <!-- old -->
     <div class="mainCon">
       <div class="topborder"></div>
     <div *ngIf=" checkRouter === '/auth/reports/dashboard' || checkRouter ==='/auth/reports/userlist' || checkRouter ==='/auth/skillmaster/skillmasterlist' || checkRouter ==='/auth/skillmaster/skillbulkupload' ">
             <app-toolbar></app-toolbar>
 
     </div>
-    <div *ngIf="checkRouter ==='/auth/dashboard/dashboard' || checkRouter ==='/auth/partner/partnerlist' ||checkRouter ==='/auth/partner/addpartner' || checkRouter ==='/auth/partner/partnerenquiry' || checkRouter ==='/auth/dashboard/profile'|| checkRouter ==='/auth/dashboard/changePwd'">
+
+     <!-- new -->
+    <div *ngIf="checkRouter ==='/auth/dashboard/dashboard' || checkRouter ==='/auth/partner/partnerlist' ||checkRouter ==='/auth/partner/addpartner' || checkRouter ==='/auth/partner/partnerenquiry' || checkRouter ==='/auth/dashboard/profile'|| checkRouter ==='/auth/dashboard/changePwd'|| checkRouter ==='/auth/jobrequirment'">
 
       <app-sidebar></app-sidebar>
      </div>
@@ -141,3 +150,4 @@
     </ng-template>
 
 </div>
+

@@ -254,4 +254,9 @@ export class ApiService {
   partnerListDashboard(){
     return this.http.get(`${this.BASE_URL}/partnerListDashboard`)
   }
+
+  viewjobRequirments(data){
+    return this.http.post(`${this.BASE_URL}/joblistwithaggrid`,data)
+  }
+
 }
