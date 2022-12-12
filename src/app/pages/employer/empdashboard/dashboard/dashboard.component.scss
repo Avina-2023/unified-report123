@@ -15,7 +15,6 @@
     background-color: #1B4E9B;
     width: 100%;
     height: 240px;
-    // display: flex;
 }
 
 :host ::ng-deep .mat-grid-list {
@@ -37,10 +36,8 @@
     .dashboard-text {
         text-align: left;
         font-size: 18px;
-        letter-spacing: 0px;
         color: #e5e5e5 !important;
         text-transform: capitalize;
-        // opacity: 0.7;
         font-weight: 200;
     }
 
@@ -91,7 +88,6 @@
 
 .top-right {
     position: relative;
-    // right: 15%;
     float: right;
     top: 25px;
 
@@ -103,14 +99,10 @@
 }
 
 .card {
-    //     width: 295px;
-    // height: 120px;
-    // background: var(--unnamed-color-ffffff) 0% 0% no-repeat padding-box;
     background: #FFFFFF 0% 0% no-repeat padding-box;
     box-shadow: 0px 3px 6px #2C28281C;
     border-radius: 10px;
     opacity: 1;
-
     .card-content {
         width: 100%;
     }
@@ -119,7 +111,6 @@
 .card-head {
     text-align: left;
     font-size: 14px;
-    letter-spacing: 0px;
     color: #343434;
     text-transform: capitalize;
     opacity: 1;
@@ -130,17 +121,16 @@
 .card-number {
     color: #1B4E9B;
     text-align: left;
-    letter-spacing: 0px;
     opacity: 1;
     margin-bottom: 20px;
-    margin-top: 5px;
+    margin-top: 2px;
     font-size: 22px;
 }
 
 .card-last-text {
     text-align: left;
     font-size: 12px;
-    letter-spacing: 0px;
+
     color: #262626;
     opacity: 1;
 }
@@ -155,27 +145,26 @@
     background: #56B35A 0% 0% no-repeat padding-box;
     border-radius: 4px;
     opacity: 1;
-    width: 45px;
-    height: 23px;
-    text-align: center;
-    padding: 5px;
-    font-weight: 500;
-    font-size: 11px;
+    font-size: 14px;
     color: #fff;
+    display: flex;
+    width: min-content;
+    padding: 3px 3px 0px 3px;
+    white-space: nowrap;
 
-    span {
-        display: flex;
-        justify-content: end;
+    span:first-child {
+        width: 20%;
+        margin: 0px 4px 0px 0px;
+    }
+
+    span:last-child {
+        width: 80%;
+        margin-top: 2px;
     }
 }
 
 .misc_icon {
-    width: 35%;
-    margin-top: -3px;
     transform: rotate(270deg);
-    position: absolute;
-    left: -7%;
-    top: 66%;
 }
 
 .align-indication {
@@ -230,7 +219,6 @@
     font-size: 18px;
     text-align: left;
     font: normal normal 300 18px/24px Roboto;
-    letter-spacing: 0px;
     color: #000000;
     opacity: 0.8;
     font-weight: 400;
@@ -311,7 +299,6 @@
     font-size: 13px;
     text-align: left;
     font: normal normal medium 13px/20px Roboto;
-    letter-spacing: 0px;
     color: rgba(77, 79, 92, 1);
     opacity: 1;
     font-weight: 500;
@@ -323,7 +310,6 @@
     font-weight: 300;
     text-align: right;
     font: normal normal normal 13px/20px Roboto;
-    letter-spacing: 0px;
     color: rgba(77, 79, 92, 1);
     opacity: 1;
 }
@@ -454,7 +440,7 @@ div[role="progressbar"]::before {
 
     .insidetext1 {
         font: normal normal 300 17px/19px Roboto;
-        letter-spacing: 0px;
+
         font-size: 17px;
         color: rgba(77, 79, 92, 1);
         opacity: 1;
@@ -464,7 +450,7 @@ div[role="progressbar"]::before {
         font-size: 12px;
         text-align: left;
         font: normal normal 300 12px/19px Roboto;
-        letter-spacing: 0px;
+
         color: rgba(77, 79, 92, 1);
         opacity: 1;
         position: relative;

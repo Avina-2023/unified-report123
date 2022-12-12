@@ -203,8 +203,8 @@ export class EmpProfileComponent implements OnInit {
     } else {
       this.toaster.warning('Please fill all the red highlighted fields to proceed further');
     }
-   // console.log(this.hrContactDetails.at(0).errors?.required);
-    
+    // console.log(this.hrContactDetails.at(0).errors?.required);
+
 
   }
   //  hr details patch value
