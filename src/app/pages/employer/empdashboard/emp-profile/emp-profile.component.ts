@@ -136,7 +136,7 @@ export class EmpProfileComponent implements OnInit {
       country: ['', Validators.required],
       stateCtrlone: new FormControl(this.stateone)
     })
-    //console.log(this.hrContactDetails.at(0).value.hrdesignation.Invalid)
+    console.log(this.hrContactDetails.at(0).validator)
   }
 
   hrcontact = {
