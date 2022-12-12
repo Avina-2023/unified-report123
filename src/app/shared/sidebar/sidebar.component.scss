@@ -85,8 +85,6 @@ mat-sidenav:not(.mat-drawer-opened) {
 
 .selected {
   width: 100%;
-  // padding-left: 20px;
-  //  height: 50px;
   background-color: #EDEDED;
   color: #1B4E9B;
 
@@ -130,20 +128,26 @@ mat-sidenav:not(.mat-drawer-opened) {
 
 .mathigh,
 .mathgt {
-  // width: 75px;
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
-
+}
+.mathigh{
   mat-list-item {
     height: 60px !important;
   }
 }
+::ng-deep{
+.mathgt .mat-list-item-content {
+  border-bottom: 1px solid #ededed;
+  }
+}
+
 
 .arrow {
   position: absolute;
   right: 5%;
-  top: 18%;
+  top: 11%;
   .mat-icon{
     font-size: 32px!important;
     }
