@@ -19,6 +19,7 @@ export class ApiService {
   cryptoEncryptionKey = environment.cryptoEncryptionKey;
   
   filterSubject: Subject<any> = new Subject();
+  partnersubject: Subject<any> = new Subject();
   constructor(
     private http: HttpClient,
     private appConfig: AppConfigService,

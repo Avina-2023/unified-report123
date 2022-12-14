@@ -41,6 +41,9 @@ export class EmpProfileComponent implements OnInit {
   @ViewChild('stateInput') stateInput: ElementRef<HTMLInputElement>;
   profileForm: FormGroup;
   hrDetails: any = [];
+  formBuilder: any;
+  hrContactDetails: any;
+  addcontact: any;
   constructor(private fb: FormBuilder, private apiService: ApiService, private toaster: ToastrService) {
     this.states = this.allStates
   }
@@ -48,8 +51,10 @@ export class EmpProfileComponent implements OnInit {
   ngOnInit(): void {
     this.createProfile()
     this.empDetails()
+    
     this.HRspocPatch()
     this.getState()
+    
   }
 
   getState() {
@@ -121,7 +126,8 @@ export class EmpProfileComponent implements OnInit {
         Validators.maxLength(10),
         Validators.pattern('[1-9]{1}[0-9]{9}'),
       ],],
-      hrContactDetails: this.buildContacts(this.hrcontact.hrContactDetails),
+      hrContactDetails : this.fb.array([]),
+      // hrContactDetails: this.buildContacts(this.hrcontact.hrContactDetails),
       addressOne: ['', Validators.required],
       addressTwo: ['', Validators.required],
       pincode: ['', Validators.compose([
@@ -130,7 +136,7 @@ export class EmpProfileComponent implements OnInit {
         Validators.maxLength(6),
         Validators.pattern('[1-9]{1}[0-9]{5}'),
       ]),],
-      // hrName:['',Validators.re],
+     
       district: ['', Validators.required],
       state: ['', Validators.required],
       country: ['', Validators.required],
@@ -138,19 +144,39 @@ export class EmpProfileComponent implements OnInit {
     })
     //console.log(this.hrContactDetails.at(0).value.hrdesignation.Invalid)
   }
-
-  hrcontact = {
-    hrContactDetails: [{ hrName: '', hrdesignation: '', hrEmail: '', hrMobilenumber: '' }]
+  addhrContactDetails(hrName="", hrdesignation="",hrEmail="",hrMobilenumber=""){
+    let hrContactDetails = this.hrContactDetails.controls as FormArray;
+    hrContactDetails.push(this.fb.group({
+      hrName: [hrName,[
+              Validators.required,
+            ],],
+             hrdesignation: [hrdesignation,[
+              Validators.required,
+            ],],
+              hrEmail: [hrEmail,[
+                Validators.required,
+                Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
+              ],],
+               hrMobilenumber: [hrMobilenumber,[
+              Validators.required,
+              Validators.minLength(10),
+              Validators.maxLength(10),
+              Validators.pattern('[1-9]{1}[0-9]{9}'),
+            ],]
+    }));
   }
+  // hrcontact = {
+  //   hrContactDetails: [{ hrName: '', hrdesignation: '', hrEmail: '', hrMobilenumber: '' }]
+  // }
 
-  form: FormGroup = this.fb.group({
-    contacts: this.buildContacts(this.hrcontact.hrContactDetails)
-  });
+  // form: FormGroup = this.fb.group({
+  //   contacts: this.buildContacts(this.hrcontact.hrContactDetails)
+  // });
 
 
-  get hrContactDetails(): FormArray {
-    return this.profileForm.get('hrContactDetails') as FormArray;
-  }
+  // get hrContactDetails(): FormArray {
+  //   return this.profileForm.get('hrContactDetails') as FormArray;
+  // }
   get chips() {
     return this.profileForm.get('stateCtrlone');
   }
@@ -159,38 +185,56 @@ export class EmpProfileComponent implements OnInit {
     return this.profileForm.get('state');
   }
 
-  buildContacts(hrdetilas: { hrName: string; hrdesignation: string; hrEmail: string; hrMobilenumber: string }[] = []) {
-    return this.fb.array(hrdetilas.map(hrcontact => this.fb.group(hrcontact)));
-  }
+  // buildContacts(hrdetilas: { hrName: string; hrdesignation: string; hrEmail: string; hrMobilenumber: string }[] = []) {
+  //   return this.fb.array(hrdetilas.map(hrcontact => this.fb.group(hrcontact)));
+  // }
 
-  addContactField() {
-    var length = this.hrContactDetails.value.length - 1;
-    var data = this.hrContactDetails.value[length];
-    if (data.hrName != null && data.hrdesignation != null && data.hrEmail != null && data.hrMobilenumber != null && data.hrName != '' && data.hrdesignation != '' && data.hrEmail != '' && data.hrMobilenumber != '') {
-      this.hrContactDetails.push(this.fb.group({ hrName: null, hrdesignation: null, hrEmail: null, hrMobilenumber: null }))
-    } else {
-      this.toaster.warning('Make sure, you have entered HR contact details');
-    }
-  }
+  // addContactField() {
+  //   var length = this.hrContactDetails.value.length - 1;
+  //   var data = this.hrContactDetails.value[length];
+  //   if (data.hrName != null && data.hrdesignation != null && data.hrEmail != null && data.hrMobilenumber != null && data.hrName != '' && data.hrdesignation != '' && data.hrEmail != '' && data.hrMobilenumber != '') {
+  //     this.hrContactDetails.push(this.fb.group({ 
+  //       hrName: ['bbfs',[
+  //       Validators.required,
+  //     ],],
+  //      hrdesignation: ['',[
+  //       Validators.required,
+  //     ],],
+  //       hrEmail: ['',[
+  //         Validators.required,
+  //         Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
+  //       ],],
+  //        hrMobilenumber: ['',[
+  //       Validators.required,
+  //       Validators.minLength(10),
+  //       Validators.maxLength(10),
+  //       Validators.pattern('[1-9]{1}[0-9]{9}'),
+  //     ],],}))
+  //   } else {
+  //     this.toaster.warning('Make sure, you have entered HR contact details');
+  //   }
+  // }
 
   get empSize() {
     return this.profileForm.get('empSize');
   }
-  removeContactField(index: number): void {
-    if (this.hrContactDetails.length > 1) this.hrContactDetails.removeAt(index);
-    else this.hrContactDetails.patchValue([{ hrName: null, hrdesignation: null, hrEmail: null, hrMobilenumber: null }]);
-  }
-
-
-
+  
+  // removeContactField(index: number): void {
+  //   if (this.hrContactDetails.length > 1) this.hrContactDetails.removeAt(index);
+  //   else this.hrContactDetails.patchValue([{ hrName: null, hrdesignation: null, hrEmail: null, hrMobilenumber: null }]);
+  // }
   //submit profile
   profile() {
     var obj = {
       email: localStorage.getItem('email'),
       detailedInformation: this.profileForm.value,
-      detailedInformationType: true
+      detailedInformationType: true,
+    
     }
+    // debugger;
+    // console.log(this.profileForm.valid);
     if (this.profileForm.valid) {
+    
       this.apiService.updatePartner(obj).subscribe((data: any) => {
         if (data.success == false) {
           this.toaster.warning(data.message);
@@ -201,6 +245,7 @@ export class EmpProfileComponent implements OnInit {
         this.toaster.warning('Connection failed, Please try again.');
       });
     } else {
+      this.profileForm.markAllAsTouched();
       this.toaster.warning('Please fill all the red highlighted fields to proceed further');
     }
    // console.log(this.hrContactDetails.at(0).errors?.required);
@@ -218,6 +263,7 @@ export class EmpProfileComponent implements OnInit {
         this.hrDetails = this.empProfile1 && this.empProfile1.detailedInformation ? this.empProfile1?.detailedInformation?.hrContactDetails : [];
         for (let i = 0; i < this.hrDetails.length; i++) {
           spoc.controls[i].patchValue({
+            
             hrName: this.hrDetails[i].hrName,
             hrdesignation: this.hrDetails[i].hrdesignation,
             hrEmail: this.hrDetails[i].hrEmail,
@@ -249,6 +295,7 @@ export class EmpProfileComponent implements OnInit {
             chroName: this.empProfile.detailedInformation.chroName,
             chroEmail: this.empProfile.detailedInformation.chroEmail,
             chromobileNumber: this.empProfile.detailedInformation.chromobileNumber,
+            
             addressOne: this.empProfile.detailedInformation.addressOne,
             addressTwo: this.empProfile.detailedInformation.addressTwo,
             pincode: this.empProfile.detailedInformation.pincode,
