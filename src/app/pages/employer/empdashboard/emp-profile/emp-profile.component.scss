@@ -280,20 +280,24 @@
 
 fieldset {
     legend {
-        color: #000;
-        font-size: 14px;
+        color: #262626;
+        font-size: 16px;
         font-weight: 600;
-        width: 125px;
+        width: fit-content;
+        opacity: 0.9;
+        padding: 0px 5px;
 
     }
 
     padding: 20px;
     border: 1px solid #e7e3e3;
 }
-.close-icon{
+
+.close-icon {
     width: 5%;
     margin: auto;
 }
+
 .btn-remove {
     border: none;
     color: red;
@@ -311,6 +315,7 @@ fieldset {
     color: #1B4E9B;
     top: 20px;
     left: 15px;
+    font-weight: 500;
 }
 
 .hrdetailsinput {
@@ -328,13 +333,13 @@ fieldset {
     justify-content: center;
 
     .save {
-    background-color: #1B4E9B;
-    color: #fff;
-    border-radius: 30px;
-    font-weight: 100;
-    margin: 1%;
-    padding: 0px 24px;
-    text-align: center;
+        background-color: #1B4E9B;
+        color: #fff;
+        border-radius: 30px;
+        font-weight: 100;
+        margin: 1%;
+        padding: 0px 24px;
+        text-align: center;
 
     }
 

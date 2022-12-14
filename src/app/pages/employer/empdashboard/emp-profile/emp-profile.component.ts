@@ -142,7 +142,7 @@ export class EmpProfileComponent implements OnInit {
       country: ['', Validators.required],
       stateCtrlone: new FormControl(this.stateone)
     })
-    //console.log(this.hrContactDetails.at(0).value.hrdesignation.Invalid)
+    console.log(this.hrContactDetails.at(0).validator)
   }
   addhrContactDetails(hrName="", hrdesignation="",hrEmail="",hrMobilenumber=""){
     let hrContactDetails = this.hrContactDetails.controls as FormArray;
@@ -248,8 +248,8 @@ export class EmpProfileComponent implements OnInit {
       this.profileForm.markAllAsTouched();
       this.toaster.warning('Please fill all the red highlighted fields to proceed further');
     }
-   // console.log(this.hrContactDetails.at(0).errors?.required);
-    
+    // console.log(this.hrContactDetails.at(0).errors?.required);
+
 
   }
   //  hr details patch value

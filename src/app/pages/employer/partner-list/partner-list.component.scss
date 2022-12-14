@@ -1,5 +1,5 @@
 .body {
-    height: 100vh;
+    height: 70vh;
     background: linear-gradient(180deg, #1B4E9B 60%, #F2F2F2 40%);
     padding-bottom: 20px;
 }
@@ -11,9 +11,10 @@
 .title {
     color: #FFFFFF;
     padding: 15px;
-    opacity: 0.7;
+    opacity: 0.8;
     margin-bottom: 0px;
-
+    font-size: 20px!important;
+    font-weight: 100!important;
 }
 
 .partnerCardBody {
@@ -30,6 +31,7 @@
         .cardTitle {
             font-size: 14px;
             color: #4D4F5C;
+            margin-bottom: 2px;
         }
 
         .cardValue {
@@ -41,19 +43,20 @@
         }
 
         .cardFooter {
-            font-size: 14px;
+            font-size: 13px;
             color: #262626;
             padding-left: 15px;
 
             .cardFootervalue {
                 font: normal normal 300 12px/20px Roboto;
                 border-radius: 15% !important;
-                padding: 3px;
+                padding: 3px 4px 2px 3px;
                 background-color: #56B35A;
                 text-align:center;
-                width:60px;
-                height:120px;
                 color:white;
+                span:first-child{
+                    padding-right:2px;
+                }
             }
         }
     }

@@ -17,7 +17,7 @@ export class CandidateComponent implements OnInit {
   isShowing: boolean = false;
   routelinks = APP_CONSTANTS.ENDPOINTS
   candidateName = localStorage.getItem('name')
-  profileimge: any;
+  profileimge: any ="";
   constructor(public router:Router, private apiservice:ApiService, private appconfig:AppConfigService, private msgData : SentDataToOtherComp) {
     this.router.events.subscribe(event => {
       if(event instanceof NavigationEnd) {
@@ -27,9 +27,10 @@ export class CandidateComponent implements OnInit {
   }
 
   ngOnInit() {
+
     this.msgData.getMessage().subscribe((data)=>{
-      if(data.data=='profileImage'&& data.value){
-        this.profileimge=data.value
+      if(data.data=='profileImage'&& data.value !="" && data.value != undefined){
+        this.profileimge=data.value + environment.blobToken
       }
     })
     
