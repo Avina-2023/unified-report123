@@ -2,9 +2,10 @@ import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, Validators, FormBuilder, NgForm, FormArray, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { map, startWith } from 'rxjs/operators';
+import { map, retry, startWith } from 'rxjs/operators';
 import { ApiService } from 'src/app/services/api.service';
 import { ToastrService } from 'ngx-toastr';
+import { GlobalValidatorService } from 'src/app/globalvalidators/global-validator.service';
 @Component({
   selector: 'app-emp-profile',
   templateUrl: './emp-profile.component.html',
@@ -42,9 +43,9 @@ export class EmpProfileComponent implements OnInit {
   profileForm: FormGroup;
   hrDetails: any = [];
   formBuilder: any;
-  hrContactDetails: any;
+ 
   addcontact: any;
-  constructor(private fb: FormBuilder, private apiService: ApiService, private toaster: ToastrService) {
+  constructor( private globalValidation : GlobalValidatorService,private fb: FormBuilder, private apiService: ApiService, private toaster: ToastrService) {
     this.states = this.allStates
   }
 
@@ -126,8 +127,7 @@ export class EmpProfileComponent implements OnInit {
         Validators.maxLength(10),
         Validators.pattern('[1-9]{1}[0-9]{9}'),
       ],],
-      hrContactDetails : this.fb.array([]),
-      // hrContactDetails: this.buildContacts(this.hrcontact.hrContactDetails),
+
       addressOne: ['', Validators.required],
       addressTwo: ['', Validators.required],
       pincode: ['', Validators.compose([
@@ -140,43 +140,25 @@ export class EmpProfileComponent implements OnInit {
       district: ['', Validators.required],
       state: ['', Validators.required],
       country: ['', Validators.required],
-      stateCtrlone: new FormControl(this.stateone)
+      stateCtrlone: new FormControl(this.stateone),
+
+      hrContactDetails : this.fb.array([this.hrDetailsInitArr()]),
     })
-    console.log(this.hrContactDetails.at(0).validator)
   }
-  addhrContactDetails(hrName="", hrdesignation="",hrEmail="",hrMobilenumber=""){
-    let hrContactDetails = this.hrContactDetails.controls as FormArray;
-    hrContactDetails.push(this.fb.group({
-      hrName: [hrName,[
-              Validators.required,
-            ],],
-             hrdesignation: [hrdesignation,[
-              Validators.required,
-            ],],
-              hrEmail: [hrEmail,[
-                Validators.required,
-                Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
-              ],],
-               hrMobilenumber: [hrMobilenumber,[
-              Validators.required,
-              Validators.minLength(10),
-              Validators.maxLength(10),
-              Validators.pattern('[1-9]{1}[0-9]{9}'),
-            ],]
-    }));
+
+
+  hrDetailsInitArr(){
+    return this.fb.group({
+      hrName: [null,[Validators.required]],
+      hrdesignation: [null,[Validators.required]],
+      hrEmail: [null,[Validators.required,this.globalValidation.email()]],
+      hrMobilenumber:  [null,[Validators.required,this.globalValidation.mobileRegex()]],
+    })
   }
-  // hrcontact = {
-  //   hrContactDetails: [{ hrName: '', hrdesignation: '', hrEmail: '', hrMobilenumber: '' }]
-  // }
 
-  // form: FormGroup = this.fb.group({
-  //   contacts: this.buildContacts(this.hrcontact.hrContactDetails)
-  // });
-
-
-  // get hrContactDetails(): FormArray {
-  //   return this.profileForm.get('hrContactDetails') as FormArray;
-  // }
+  get hrContactDetails() {
+    return this.profileForm.get('hrContactDetails') as FormArray;
+  }
   get chips() {
     return this.profileForm.get('stateCtrlone');
   }
@@ -185,44 +167,24 @@ export class EmpProfileComponent implements OnInit {
     return this.profileForm.get('state');
   }
 
-  // buildContacts(hrdetilas: { hrName: string; hrdesignation: string; hrEmail: string; hrMobilenumber: string }[] = []) {
-  //   return this.fb.array(hrdetilas.map(hrcontact => this.fb.group(hrcontact)));
-  // }
-
-  // addContactField() {
-  //   var length = this.hrContactDetails.value.length - 1;
-  //   var data = this.hrContactDetails.value[length];
-  //   if (data.hrName != null && data.hrdesignation != null && data.hrEmail != null && data.hrMobilenumber != null && data.hrName != '' && data.hrdesignation != '' && data.hrEmail != '' && data.hrMobilenumber != '') {
-  //     this.hrContactDetails.push(this.fb.group({ 
-  //       hrName: ['bbfs',[
-  //       Validators.required,
-  //     ],],
-  //      hrdesignation: ['',[
-  //       Validators.required,
-  //     ],],
-  //       hrEmail: ['',[
-  //         Validators.required,
-  //         Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
-  //       ],],
-  //        hrMobilenumber: ['',[
-  //       Validators.required,
-  //       Validators.minLength(10),
-  //       Validators.maxLength(10),
-  //       Validators.pattern('[1-9]{1}[0-9]{9}'),
-  //     ],],}))
-  //   } else {
-  //     this.toaster.warning('Make sure, you have entered HR contact details');
-  //   }
-  // }
+  addContactField() {
+    if (this.hrContactDetails.valid) {
+          return this.hrContactDetails.push(this.hrDetailsInitArr())
+    } else {
+      this.toaster.warning('Make sure, you have entered HR contact details');
+      this.globalValidation.validateAllFormArrays(this.profileForm.get('hrContactDetails') as FormArray)
+    }
+  }
 
   get empSize() {
     return this.profileForm.get('empSize');
   }
   
-  // removeContactField(index: number): void {
-  //   if (this.hrContactDetails.length > 1) this.hrContactDetails.removeAt(index);
-  //   else this.hrContactDetails.patchValue([{ hrName: null, hrdesignation: null, hrEmail: null, hrMobilenumber: null }]);
-  // }
+  removeContactField(index: number): void {
+    if (this.hrContactDetails.length > 1) this.hrContactDetails.removeAt(index);
+    else this.hrContactDetails.patchValue([{ hrName: null, hrdesignation: null, hrEmail: null, hrMobilenumber: null }]);
+  
+  }
   //submit profile
   profile() {
     var obj = {
@@ -248,28 +210,29 @@ export class EmpProfileComponent implements OnInit {
       this.profileForm.markAllAsTouched();
       this.toaster.warning('Please fill all the red highlighted fields to proceed further');
     }
-    // console.log(this.hrContactDetails.at(0).errors?.required);
-
-
   }
   //  hr details patch value
   HRspocPatch() {
     this.empProfile1 = [];
-    let spoc = this.profileForm.get("hrContactDetails") as FormArray;
     var apiData = { "filterModel": { "email": { "filterType": "set", "values": [localStorage.getItem('email')] } } }
     this.apiService.empProfileDetails(apiData).subscribe((result: any) => {
       if (result.success) {
         this.empProfile1 = result.data[0]
-        this.hrDetails = this.empProfile1 && this.empProfile1.detailedInformation ? this.empProfile1?.detailedInformation?.hrContactDetails : [];
-        for (let i = 0; i < this.hrDetails.length; i++) {
-          spoc.controls[i].patchValue({
-            
-            hrName: this.hrDetails[i].hrName,
-            hrdesignation: this.hrDetails[i].hrdesignation,
-            hrEmail: this.hrDetails[i].hrEmail,
-            hrMobilenumber: this.hrDetails[i].hrMobilenumber,
-          });
-        }
+        this.hrDetails = this.empProfile1 && this.empProfile1.detailedInformation && this.empProfile1?.detailedInformation?.hrContactDetails;
+       if(this.hrDetails.length > 0){
+        this.hrContactDetails.clear();
+        this.hrDetails.forEach((element,i)=>{
+          this.hrContactDetails.push(
+            this.fb.group({
+              hrName: [this.hrDetails[i].hrName,[Validators.required]],
+              hrdesignation: [this.hrDetails[i].hrdesignation, [Validators.required]],
+              hrEmail: [this.hrDetails[i].hrEmail,[Validators.required,this.globalValidation.email()]],
+              hrMobilenumber:  [this.hrDetails[i].hrMobilenumber,[Validators.required,this.globalValidation.mobileRegex()]],
+            })
+          )
+        })
+       }
+
       } else {
 
       }
