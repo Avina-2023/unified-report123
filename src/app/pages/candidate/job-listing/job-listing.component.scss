@@ -155,7 +155,7 @@
 
 .job_card {
   display: flex;
-  border-bottom: 1px solid #80808029;
+  // border-bottom: 1px solid #80808029;
   justify-content: space-between;
 }
 
@@ -197,17 +197,14 @@
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
   display: inline-flex;
-  height: 44px;
-  width: 44px;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
+  height: 37px;
+  width: 80px;
   justify-content: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
-  margin: 0 4px 0 4px;
-  // border: 1px solid #eaedf3;
+  margin: 0px 4px 0 4px;
   border-radius: 4px;
+  /* border: 1px solid; */
+  border: 1px solid #70707066;
   overflow: hidden;
 }
 
@@ -220,6 +217,7 @@
 .card_title {
   margin: 10px 2px;
   line-height: 11px;
+  border-bottom: 2px solid #e7e7e770;
 
   .comp_name {
     color: #70707099;
@@ -246,12 +244,17 @@
   // margin-top: 20px;
 
   button {
-    background: rgba(122, 203, 232, 0.22);
-    color: #00b5f5;
+    background: #C7C7C70D 0% 0% no-repeat padding-box;
+    border: 1px solid #70707080;
+    border-radius: 3px;
+    opacity: 1;
+    /* background: rgba(122, 203, 232, 0.22); */
+    /* color: #00b5f5; */
     width: max-content;
     font-weight: 600;
-    border: 1px solid rgba(255, 255, 255, 0.53);
-    margin: 2px 1px;
+    /* border: 1px solid rgba(255, 255, 255, 0.53); */
+    color: #707070;
+    margin: 0px 1px;
     border-radius: 3px;
     padding: 4px;
     font-size: 10px;
@@ -541,7 +544,7 @@
     z-index: 999;
     width: 100% !important;
     max-width: 100%;
-    border-bottom: 2px solid #e7e7e770;
+
 
     div {
       padding: 2px 4px;
