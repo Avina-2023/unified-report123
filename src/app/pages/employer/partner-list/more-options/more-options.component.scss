@@ -1,0 +1,29 @@
+.moreButton {
+    width: 75% !important;
+    margin: 5px 0;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px -1px rgb(0 0 0 / 20%);
+    background-color: white;
+    border: .5px solid #A9BBD5;
+    color: #1B4E9B;
+    cursor: pointer;
+
+    &:hover {
+        background-color: #D2DEF1;
+        color: #FFFFFF;
+
+    }
+}
+.mat-icon {
+    height: 24px;
+    /* position: relative; */
+    display: flex;
+    justify-content: center;
+    width: 24px;
+    top: 5px;
+  }
+  .icon {
+    display: flex;
+  
+    box-shadow: #b4b4b4;
+  }

@@ -84,6 +84,9 @@ export const APP_CONSTANTS = {
       HOME:'/auth/dashboard',
       PROFILE:'/auth/dashboard/profile',
       CHANGEPWD:'/auth/dashboard/changePwd'
+    },
+    EMPJOBS:{
+      REQUIRMENT:'auth/jobrequirment'
     }
   },
 
@@ -159,7 +162,8 @@ export const APP_CONSTANTS = {
       GRADUATION:'Graduation',
       DEGREE :'Degree',
       PROFILE:'profile',
-      CHANGEPWD:'changePwd'
+      CHANGEPWD:'changePwd',
+      REQUIRMENT:'jobrequirment'
     }
   }
 };

@@ -17,7 +17,7 @@ export class ApiService {
   Prourl = environment.NODE_URL;
   EncryptKEY = environment.encryptionKey;
   cryptoEncryptionKey = environment.cryptoEncryptionKey;
-  
+
   filterSubject: Subject<any> = new Subject();
   constructor(
     private http: HttpClient,
@@ -58,7 +58,9 @@ export class ApiService {
   getAGgridData(data){
     return this.http.post(`${this.BASE_URL}/joblistwithaggrid`,data);
   }
-
+getAGgridPatnerList(data){
+  return this.http.post(`${this.BASE_URL}/partnerList`,data);
+}
   encrypt(data) {
     try {
       return CryptoJS.AES.encrypt(JSON.stringify(data), this.EncryptKEY).toString();
@@ -262,6 +264,10 @@ export class ApiService {
   }
   partnerListDashboard() {
     return this.http.get(`${this.BASE_URL}/partnerListDashboard`)
+  }
+
+  viewjobRequirments(data){
+    return this.http.post(`${this.BASE_URL}/joblistwithaggrid`,data)
   }
 
   // Joblist API
