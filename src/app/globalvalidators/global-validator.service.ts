@@ -62,6 +62,8 @@ export class GlobalValidatorService {
         }
       });
     }
+
+    
   
     // To trim the form group
     cleanForm(formGroup: FormGroup) {
