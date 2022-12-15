@@ -64,6 +64,10 @@ export class SidebarComponent implements OnInit {
       default:
         this.check = 'empdashboard';
         break;
+        case '/auth/postrequirment/postJob':
+        this.menuIconToggle = true
+        this.check = 'emppostrequirments';
+        break;
       case '/auth/jobrequirment/work':
         this.menuIconToggle = true
         this.check = 'emprequirments';
@@ -109,6 +113,12 @@ export class SidebarComponent implements OnInit {
     // this.loaded.setLoading();
     this.check = value;
     this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.EMPJOBS.REQUIRMENT)
+  }
+
+  postJob(value:any){
+    // this.loaded.setLoading();
+    this.check = value;
+    this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.EMPJOBS.POSTREQUIRMENT)
   }
 
    profile(value){

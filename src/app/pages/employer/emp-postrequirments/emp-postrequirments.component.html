@@ -1,0 +1,146 @@
+<div class="body">
+  <div>
+    <h3 class="title">Post Job Requirements</h3>
+    <!-- White Border bg -->
+    <div class="bg">
+      <h3 class="jobDetails">Job Details</h3>
+      <div class="">
+        <div class="col-md-12 col-sm-12 alignp">
+          <label>Job Role <span>*</span></label>
+          <mat-form-field class="job-form-width" appearance="outline">
+            <input matInput class="heighttext" placeholder="Software Developer" formControlName="">
+          </mat-form-field>
+        </div>
+
+        <div class="col-md-12 col-sm-12 alignp">
+          <label>Job Title <span>*</span></label>
+          <mat-form-field class="job-form-width" appearance="outline">
+            <input matInput class="heighttext" placeholder="Associate" formControlName="">
+          </mat-form-field>
+        </div>
+
+        <div class=" sameline">
+          <div class="col-md-6 col-sm-12 alignp">
+            <label>Job Location<span>*</span></label>
+            <mat-form-field class="job-form-width" appearance="outline">
+              <input matInput class="heighttext" placeholder=" Chennai, Bangalore" formControlName="">
+
+            </mat-form-field>
+          </div>
+          <div class="col-md-6 col-sm-12 alignp">
+            <label>Job Type<span>*</span></label>
+            <mat-form-field class="job-form-width" appearance="outline">
+
+              <mat-select formControlName="droupDown" placeholder="-select-">
+                <mat-option *ngFor="let item of selectArray" [value]="item">
+                  {{ item }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <div class="alignp1 mt-4" style="padding:17px">
+        <fieldset class="educationField" style=" padding: 20px;border: 1px solid #e7e3e3;">
+          <legend style="width: fit-content;">Education </legend>
+          <div class="edu-field">
+            <div class="">
+
+              <mat-form-field class="form-filed-width" appearance="outline">
+                <mat-select formControlName="droupDown" placeholder="Any Graduation" (change)="firstDropDownChanged($event.target.value)">
+
+                  <mat-option *ngFor="let itemList of graduation" [value]="item">
+                    {{ itemList }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+
+            </div>
+            <div class="">
+              <mat-form-field class="form-filed-width" appearance="outline">
+                <mat-select formControlName="droupDown" placeholder="Any Degree">
+                  <mat-option *ngFor="let item of val2" [value]="item">
+                    {{ item }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+             <div class="">
+               <mat-form-field class="form-filed-width" appearance="outline">
+                <mat-select formControlName="droupDown" placeholder="Any Course">
+                  <mat-option *ngFor="let item of anycourseArray" [value]="item">
+                    {{ item }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="">
+              <mat-form-field class="form-filed-width" appearance="outline">
+                <input matInput class="heighttext" type="text" maxlength=""
+                  placeholder="-- Select Specialization (Multiple Select) --" formControlName="" required>
+              </mat-form-field>
+            </div>
+
+          </div>
+        </fieldset>
+      </div>
+      <!-- key skills -->
+      <div class="col-md-12 col-sm-12 alignp">
+        <label class="keyskills">Key Skills<span>*</span></label>
+        <mat-form-field class="key-skills-width" appearance="outline">
+
+          <mat-select formControlName="droupDown" placeholder="-- Select Skill Set (Multiple Select) --">
+            <mat-option *ngFor="let item of keyskillArray" [value]="item">
+              {{ item }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <!-- job description -->
+
+      <div class="col-md-12 col-sm-12 alignp">
+        <label class="jobDescription"> Job Description<span>*</span></label>
+        <mat-form-field class="job-form-width" appearance="outline">
+          <input matInput class="heighttext"
+            placeholder="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+            formControlName="">
+        </mat-form-field>
+      </div>
+
+      <!-- drive date -->
+      <div class="drivesameline">
+        <div class="col-md-6 col-sm-12 alignp">
+          <div>
+            <label>Drive Date<span>*</span></label>
+            <mat-form-field appearance="outline">
+              <input matInput [(ngModel)]="fromDate" for="dp1" placeholder="15-12-2022" [matDatepicker]="datepicker1"
+                class="">
+              <mat-datepicker-toggle class="toggle-pos" matSuffix [for]="datepicker1" id=""></mat-datepicker-toggle>
+              <mat-datepicker #datepicker1>
+                <mat-datepicker-actions>
+                  <button mat-button matDatepickerCancel>Cancel</button>
+                  <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+                </mat-datepicker-actions>
+              </mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div>
+
+          </div>
+        </div>
+        <div class="col-md-6 col-sm-12 alignp">
+          <label>Last Date to Apply<span>*</span></label>
+          <mat-form-field appearance="outline">
+            <input [min]="fromDate" placeholder="15-12-2022" matInput [(ngModel)]="toDate" [matDatepicker]="datepicker">
+            <mat-datepicker-toggle class="toggle-pos" matSuffix [for]="datepicker"></mat-datepicker-toggle>
+            <mat-datepicker #datepicker>
+              <mat-datepicker-actions>
+                <button mat-button matDatepickerCancel>Cancel</button>
+                <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+              </mat-datepicker-actions>
+            </mat-datepicker>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+  </div>

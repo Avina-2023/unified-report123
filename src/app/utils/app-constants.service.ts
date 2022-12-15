@@ -73,7 +73,8 @@ export const APP_CONSTANTS = {
       CHANGEPWD:'/auth/dashboard/changePwd'
     },
     EMPJOBS:{
-      REQUIRMENT:'auth/jobrequirment'
+      REQUIRMENT:'auth/jobrequirment',
+      POSTREQUIRMENT:'auth/postrequirment'
     }
   },
 
@@ -128,7 +129,7 @@ export const APP_CONSTANTS = {
       MANAGEDRIVE:'managedrive',
       DRIVESETTINGS:'drivesettings'
     },
-    
+
     EMPDASHBOARD:{
       HOME:'dashboard',
       COUNTCARD:'count',
@@ -138,6 +139,7 @@ export const APP_CONSTANTS = {
       DEGREE :'Degree',
       PROFILE:'profile',
       CHANGEPWD:'changePwd',
+      POSTREQUIRMENT:'postrequirment',
       REQUIRMENT:'jobrequirment'
     }
   }

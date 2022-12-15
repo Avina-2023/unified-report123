@@ -2,6 +2,7 @@ import { APP_CONSTANTS } from './../utils/app-constants.service';
 import { AuthComponent } from './auth.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { EmpPostrequirmentsComponent } from '../pages/employer/emp-postrequirments/emp-postrequirments.component';
 import { EmpRequirmentsComponent } from '../pages/employer/emp-requirments/emp-requirments.component';
 import { IsAccessGuard } from '../guards/is-access.guard';
 
@@ -26,6 +27,9 @@ const routes: Routes = [
       },
       {
         path: `${APP_CONSTANTS.ROUTES.DRIVE.HOME}`, loadChildren: () => import('../pages/employer/drive/drive.module').then(m => m.DriveModule)
+      },
+      {
+        path: `${APP_CONSTANTS.ROUTES.EMPDASHBOARD.POSTREQUIRMENT}`, component: EmpPostrequirmentsComponent
       },
       {
         path: `${APP_CONSTANTS.ROUTES.EMPDASHBOARD.REQUIRMENT}`, component: EmpRequirmentsComponent
