@@ -49,18 +49,18 @@ export class PartnerListComponent implements OnInit {
   columnDefs: any = [];
   private gridApi!: GridApi;
   public gridOptions: GridOptions;
+  public rowModelType;
+  public serverSideStoreType;
   selectedRow: any[];
   partnerlistdata: any;
   paginationPageSize: number;
+  
   constructor(
     private ApiService: ApiService ,
     private appconfig: AppConfigService,
-    private toastr: ToastrService
-  ) 
-   
+    private toastr: ToastrService,
 
-  
-  
+  ) 
   {
     var data = {
       filterModel: { createdBy: { filterType: 'nin', values: ['UapAdmin'] } },
@@ -69,9 +69,14 @@ export class PartnerListComponent implements OnInit {
     this.fetchData(data);
     this.fetchDashboardData();
     this.gridOptions = <GridOptions>{
+      context: {
+        componentParent: this
+    },
       frameworkComponents: {
         moreOptions: MoreOptionsComponent,
       },
+     
+
     };
   }
 
@@ -79,7 +84,12 @@ export class PartnerListComponent implements OnInit {
    
     this.tabledata();
     this.getAGgrid();
- 
+ this.ApiService.partnersubject.subscribe((result:boolean) =>{
+  if (result){
+    this.getAGgrid()
+  }
+  
+ })
     
   }
   
@@ -91,7 +101,7 @@ export class PartnerListComponent implements OnInit {
 
     // console.log(this.partnerlistdata);
     this.columnDefs = [
-      { headerName: 'S.No', field: 'id', minWidth: 100 ,
+      { headerName: 'S.No', field: '_id', minWidth: 85 ,
     cellRenderer: function(params){
       return params.rowIndex +1;
     }
@@ -113,11 +123,9 @@ export class PartnerListComponent implements OnInit {
     },
       { headerName: 'Status', 
       field: 'isActive',
-      minWidth: 150 ,
+      minWidth: 100 ,
      
       cellRenderer: (data: any) => {
-        
-        if(data && data.value && data.value) {
           if (data.value == false ) {
             if (data.data.isApproved == false){
               return  '<button mat-button disabled class="pending-button">Pending</button>';
@@ -127,23 +135,17 @@ export class PartnerListComponent implements OnInit {
           } else if (data.value == true ) {
             return'<button mat-button disabled class="active-button">Active</button>';
           }
-        } else {
-          return '';
-        }
-        
-       
+         else {
+          return '';}  
     }
-      // cellRenderer: (data)=>{
-      //   console.log(data);
-        
-      //   return moment(data.data.isApproved)
-      // }
     
     },
-      { headerName: '', field: '', minWidth: 100 ,
+      { headerName: '', field: '', minWidth: 75 ,
       cellRenderer: 'moreOptions'
     }
     ];
+    this.rowModelType = 'serverSide';
+    this.serverSideStoreType = 'partial';
     this.paginationPageSize = 10;
     this.defaultColDef = {
       editable: true,
@@ -160,12 +162,16 @@ export class PartnerListComponent implements OnInit {
   };
   onGridReady(params: any) {
     this.gridApi = params.api;
+    var datasource = this.getAGgrid();
+    params.api.setServerSideDatasource(datasource);
   }
   getAGgrid() {
+    
     let data = '';
     this.ApiService.getAGgridPatnerList(data).subscribe((Response: any) => {
       if (Response.success) {
         this.partnerlistdata = Response.data;
+        
       } else {
         alert('failed');
       }
@@ -252,34 +258,34 @@ export class PartnerListComponent implements OnInit {
     );
   }
 
-  updateStatus(isActive, isApproved, email, userId, firstName) {
-    this.ApiService.updatePartnerStatus({
-      isApproved: isApproved,
-      isActive: isActive,
-      email: email,
-      userId: userId,
-      firstName: firstName,
-    }).subscribe(
-      (partnerList: any) => {
-        if (partnerList.success == false) {
-          this.toastr.warning('Connection failed, Please try again.');
-        } else {
-          this.selectStatus();
-          this.toastr.success('Status updated Successfully');
-        }
-      },
-      (err) => {
-        this.toastr.warning('Connection failed, Please try again.');
-      }
-    );
-  }
+  // updateStatus(isActive, isApproved, email, userId, firstName) {
+  //   this.ApiService.updatePartnerStatus({
+  //     isApproved: isApproved,
+  //     isActive: isActive,
+  //     email: email,
+  //     userId: userId,
+  //     firstName: firstName,
+  //   }).subscribe(
+  //     (partnerList: any) => {
+  //       if (partnerList.success == false) {
+  //         this.toastr.warning('Connection failed, Please try again.');
+  //       } else {
+  //         this.selectStatus();
+  //         this.toastr.success('Status updated Successfully');
+  //       }
+  //     },
+  //     (err) => {
+  //       this.toastr.warning('Connection failed, Please try again.');
+  //     }
+  //   );
+  // }
 
-  updatePartner(email) {
-    this.appconfig.routeNavigationWithParam(
-      APP_CONSTANTS.ENDPOINTS.PARTNER.ADDPARTNER,
-      { email: this.ApiService.encrypt(email) }
-    );
-  }
+  // updatePartner(email) {
+  //   this.appconfig.routeNavigationWithParam(
+  //     APP_CONSTANTS.ENDPOINTS.PARTNER.ADDPARTNER,
+  //     { email: this.ApiService.encrypt(email) }
+  //   );
+  // }
 
   searchList() {
     if (
