@@ -11,15 +11,18 @@ import { LandingScreenRoutes } from './landing-screen.routing';
 import { LandingHeaderComponent } from './commons/landing-header/landing-header.component';
 import { LandingFooterComponent } from './commons/landing-footer/landing-footer.component';
 import { LandingHomeComponent } from './landing-Home/landing-Home.component';
-
+import {CarouselModule} from 'ngx-owl-carousel-o';
+import { MaterialModule } from 'src/app/material/material.module';
 @NgModule({
   imports: [
     CommonModule,
+    CarouselModule,
+    MaterialModule,
     LandingScreenRoutes
   ],
-  declarations: [ 
-     LandingHomeComponent,  
-     LandingAboutComponent, 
+  declarations: [
+     LandingHomeComponent,
+     LandingAboutComponent,
      LandingEmployersComponent,
      LandingFreshGraduateComponent,
      LandingHiringPartnerComponent,
@@ -28,7 +31,7 @@ import { LandingHomeComponent } from './landing-Home/landing-Home.component';
      LandingScreenComponent,
      LandingHeaderComponent,
      LandingFooterComponent
-     
+
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]
 })

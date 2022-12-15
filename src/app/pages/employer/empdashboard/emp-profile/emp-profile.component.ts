@@ -2,9 +2,10 @@ import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, Validators, FormBuilder, NgForm, FormArray, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { map, startWith } from 'rxjs/operators';
+import { map, retry, startWith } from 'rxjs/operators';
 import { ApiService } from 'src/app/services/api.service';
 import { ToastrService } from 'ngx-toastr';
+import { GlobalValidatorService } from 'src/app/globalvalidators/global-validator.service';
 @Component({
   selector: 'app-emp-profile',
   templateUrl: './emp-profile.component.html',
@@ -41,15 +42,20 @@ export class EmpProfileComponent implements OnInit {
   @ViewChild('stateInput') stateInput: ElementRef<HTMLInputElement>;
   profileForm: FormGroup;
   hrDetails: any = [];
-  constructor(private fb: FormBuilder, private apiService: ApiService, private toaster: ToastrService) {
+  formBuilder: any;
+ 
+  addcontact: any;
+  constructor( private globalValidation : GlobalValidatorService,private fb: FormBuilder, private apiService: ApiService, private toaster: ToastrService) {
     this.states = this.allStates
   }
 
   ngOnInit(): void {
     this.createProfile()
     this.empDetails()
+    
     this.HRspocPatch()
     this.getState()
+    
   }
 
   getState() {
@@ -121,7 +127,7 @@ export class EmpProfileComponent implements OnInit {
         Validators.maxLength(10),
         Validators.pattern('[1-9]{1}[0-9]{9}'),
       ],],
-      hrContactDetails: this.buildContacts(this.hrcontact.hrContactDetails),
+
       addressOne: ['', Validators.required],
       addressTwo: ['', Validators.required],
       pincode: ['', Validators.compose([
@@ -130,25 +136,27 @@ export class EmpProfileComponent implements OnInit {
         Validators.maxLength(6),
         Validators.pattern('[1-9]{1}[0-9]{5}'),
       ]),],
-      // hrName:['',Validators.re],
+     
       district: ['', Validators.required],
       state: ['', Validators.required],
       country: ['', Validators.required],
-      stateCtrlone: new FormControl(this.stateone)
+      stateCtrlone: new FormControl(this.stateone),
+
+      hrContactDetails : this.fb.array([this.hrDetailsInitArr()]),
     })
-    console.log(this.hrContactDetails.at(0).validator)
   }
 
-  hrcontact = {
-    hrContactDetails: [{ hrName: '', hrdesignation: '', hrEmail: '', hrMobilenumber: '' }]
+
+  hrDetailsInitArr(){
+    return this.fb.group({
+      hrName: [null,[Validators.required]],
+      hrdesignation: [null,[Validators.required]],
+      hrEmail: [null,[Validators.required,this.globalValidation.email()]],
+      hrMobilenumber:  [null,[Validators.required,this.globalValidation.mobileRegex()]],
+    })
   }
 
-  form: FormGroup = this.fb.group({
-    contacts: this.buildContacts(this.hrcontact.hrContactDetails)
-  });
-
-
-  get hrContactDetails(): FormArray {
+  get hrContactDetails() {
     return this.profileForm.get('hrContactDetails') as FormArray;
   }
   get chips() {
@@ -159,38 +167,36 @@ export class EmpProfileComponent implements OnInit {
     return this.profileForm.get('state');
   }
 
-  buildContacts(hrdetilas: { hrName: string; hrdesignation: string; hrEmail: string; hrMobilenumber: string }[] = []) {
-    return this.fb.array(hrdetilas.map(hrcontact => this.fb.group(hrcontact)));
-  }
-
   addContactField() {
-    var length = this.hrContactDetails.value.length - 1;
-    var data = this.hrContactDetails.value[length];
-    if (data.hrName != null && data.hrdesignation != null && data.hrEmail != null && data.hrMobilenumber != null && data.hrName != '' && data.hrdesignation != '' && data.hrEmail != '' && data.hrMobilenumber != '') {
-      this.hrContactDetails.push(this.fb.group({ hrName: null, hrdesignation: null, hrEmail: null, hrMobilenumber: null }))
+    if (this.hrContactDetails.valid) {
+          return this.hrContactDetails.push(this.hrDetailsInitArr())
     } else {
       this.toaster.warning('Make sure, you have entered HR contact details');
+      this.globalValidation.validateAllFormArrays(this.profileForm.get('hrContactDetails') as FormArray)
     }
   }
 
   get empSize() {
     return this.profileForm.get('empSize');
   }
+  
   removeContactField(index: number): void {
     if (this.hrContactDetails.length > 1) this.hrContactDetails.removeAt(index);
     else this.hrContactDetails.patchValue([{ hrName: null, hrdesignation: null, hrEmail: null, hrMobilenumber: null }]);
+  
   }
-
-
-
   //submit profile
   profile() {
     var obj = {
       email: localStorage.getItem('email'),
       detailedInformation: this.profileForm.value,
-      detailedInformationType: true
+      detailedInformationType: true,
+    
     }
+    // debugger;
+    // console.log(this.profileForm.valid);
     if (this.profileForm.valid) {
+    
       this.apiService.updatePartner(obj).subscribe((data: any) => {
         if (data.success == false) {
           this.toaster.warning(data.message);
@@ -201,29 +207,32 @@ export class EmpProfileComponent implements OnInit {
         this.toaster.warning('Connection failed, Please try again.');
       });
     } else {
+      this.profileForm.markAllAsTouched();
       this.toaster.warning('Please fill all the red highlighted fields to proceed further');
     }
-   // console.log(this.hrContactDetails.at(0).errors?.required);
-    
-
   }
   //  hr details patch value
   HRspocPatch() {
     this.empProfile1 = [];
-    let spoc = this.profileForm.get("hrContactDetails") as FormArray;
     var apiData = { "filterModel": { "email": { "filterType": "set", "values": [localStorage.getItem('email')] } } }
     this.apiService.empProfileDetails(apiData).subscribe((result: any) => {
       if (result.success) {
         this.empProfile1 = result.data[0]
-        this.hrDetails = this.empProfile1 && this.empProfile1.detailedInformation ? this.empProfile1?.detailedInformation?.hrContactDetails : [];
-        for (let i = 0; i < this.hrDetails.length; i++) {
-          spoc.controls[i].patchValue({
-            hrName: this.hrDetails[i].hrName,
-            hrdesignation: this.hrDetails[i].hrdesignation,
-            hrEmail: this.hrDetails[i].hrEmail,
-            hrMobilenumber: this.hrDetails[i].hrMobilenumber,
-          });
-        }
+        this.hrDetails = this.empProfile1 && this.empProfile1.detailedInformation && this.empProfile1?.detailedInformation?.hrContactDetails;
+       if(this.hrDetails.length > 0){
+        this.hrContactDetails.clear();
+        this.hrDetails.forEach((element,i)=>{
+          this.hrContactDetails.push(
+            this.fb.group({
+              hrName: [this.hrDetails[i].hrName,[Validators.required]],
+              hrdesignation: [this.hrDetails[i].hrdesignation, [Validators.required]],
+              hrEmail: [this.hrDetails[i].hrEmail,[Validators.required,this.globalValidation.email()]],
+              hrMobilenumber:  [this.hrDetails[i].hrMobilenumber,[Validators.required,this.globalValidation.mobileRegex()]],
+            })
+          )
+        })
+       }
+
       } else {
 
       }
@@ -249,6 +258,7 @@ export class EmpProfileComponent implements OnInit {
             chroName: this.empProfile.detailedInformation.chroName,
             chroEmail: this.empProfile.detailedInformation.chroEmail,
             chromobileNumber: this.empProfile.detailedInformation.chromobileNumber,
+            
             addressOne: this.empProfile.detailedInformation.addressOne,
             addressTwo: this.empProfile.detailedInformation.addressTwo,
             pincode: this.empProfile.detailedInformation.pincode,

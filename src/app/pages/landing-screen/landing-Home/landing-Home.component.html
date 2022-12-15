@@ -1,62 +1,34 @@
 <main class="main main--top">
-  <section class="section-hero">
-    <div class="section-hero__swiper swiper">
-      <div class="section-hero__wrapper swiper-wrapper">
-
-        <div class="section-hero__slide section-hero__slide--1 swiper-slide">
+  <owl-carousel-o [options]="bannerOptions" >
+    <ng-container *ngFor="let banner of bannerslider;let i=index" >
+      <ng-template carouselSlide >
+        <div #hslider [ngClass]="'section-hero__slide swiper-slide section-hero__slide--'+i" (mouseover)="slidehover(hslider,$event)" (mouseleave)="removeslidehover(hslider,$event)">
           <div class="section-hero__container container">
-
             <div class="section-hero__content">
-              <h1 class="section-hero__title wow animate__animated animate__fadeIn">Connecting Skilled
-                Talent with Industry</h1>
-              <p class="section-hero__text wow animate__animated animate__fadeIn">Skill Exchange is a
-                one-of-a-kind platform that provides talented and skilled new graduates smooth
-                transitioning from college to the professional world!</p>
+              <h1 class="section-hero__title">{{banner.title}}</h1>
+              <p class="section-hero__text">{{banner.subtitle}}</p>
               <a [routerLink]="endPoints.LANDINGPAGE.FRESHGRADUATES"
-                class="section-action__link button button--primary wow animate__animated animate__fadeInUp"
+                class="section-action__link button button--primary slideup"
                 data-wow-delay="0.3s">Get Started</a>
             </div>
             <div class="section-hero__image1">
-              <img src="https://assets.lntedutech.com/Skillexchange/banner-image1.png" alt="" />
+              <img src="{{banner.bannerimg}}" alt="" />
             </div>
           </div>
-        </div>
-
-
-
-
-        <div class="section-hero__slide section-hero__slide--2 swiper-slide">
-          <div class="section-hero__container container">
-
-            <div class="section-hero__content">
-              <h1 class="section-hero__title wow animate__animated animate__fadeIn">Enabling Industry
-                to Access Ready-to-Deploy Fresh Graduates</h1>
-              <p class="section-hero__text wow animate__animated animate__fadeIn">Access to millions
-                of Skill profiles to connect and recruit the fresh minds of India to fulfill hiring
-                needs and showcase productivity from day one!</p>
-              <a [routerLink]="endPoints.LANDINGPAGE.EMPLOYER"
-                class="section-action__link button button--primary wow animate__animated animate__fadeInUp"
-                data-wow-delay="0.3s">Get Started</a>
-            </div>
-            <div class="section-hero__image1">
-              <img src="https://assets.lntedutech.com/Skillexchange/banner-image2.png" alt="" />
-            </div>
           </div>
-        </div>
-
-
-      </div>
-      <div class="section-hero__pagination container">
-        <div class="swiper-pagination"></div>
-      </div>
-    </div>
-  </section>
-
+      </ng-template>
+    </ng-container>
+  </owl-carousel-o>
   <section class="section-partners">
     <div class="section-partners__container container">
-      <div class="section-partners__swiper swiper row wow animate__animated animate__fadeIn">
-        <ul class="section-partners__list swiper-wrapper list-unstyled" id="slider1" [innerHTML]="sliderhtml1">
-        </ul>
+      <div >
+        <owl-carousel-o [options]="customOptions" >
+          <ng-container *ngFor="let img of sliderdata1" >
+            <ng-template carouselSlide >
+              <img class="section-team__item-image" [src]="img.img1">
+            </ng-template>
+          </ng-container>
+        </owl-carousel-o>
       </div>
     </div>
   </section>
@@ -64,13 +36,13 @@
 
   <section class="section-blocks">
     <div class="section-blocks__container container">
-      <h2 class="section-roadmap__title wow animate__animated animate__fadeInLeft">Connecting skilled talent
+      <h2 class="section-roadmap__title slide-right">Connecting skilled talent
         with Industry</h2>
-      <p class="section-roadmap__text wow animate__animated animate__fadeIn" data-wow-delay="0.2s">L&T
+      <p class="section-roadmap__text" >L&T
         EduTech’s Skill Exchange is a platform for students and recent graduates
         to meet India’s premiere employers and vice versa.</p>
       <div class="row">
-        <div class="section-blocks__item col-md-6 wow animate__animated animate__fadeIn">
+        <div class="section-blocks__item col-md-6" >
           <div class="section-blocks__item-wrapper section-blocks__item-wrapper--right-element">
             <h3 class="section-blocks__item-title">Employers</h3>
             <p class="section-blocks__item-text" style="margin-bottom: 10px;">Reach out to talent pool
@@ -80,13 +52,12 @@
             <a class="link-demo link-demo--visited" [routerLink]="endPoints.LANDINGPAGE.EMPLOYER">Join as Hiring Partner >></a>
           </div>
         </div>
-        <div class="section-blocks__image section-blocks__image--1 col-md-6 wow animate__animated animate__fadeIn"
-          data-wow-delay="0.2s"></div>
+        <div class="section-blocks__image section-blocks__image--1 col-md-6 "></div>
       </div>
       <div class="row">
-        <div class="section-blocks__image section-blocks__image--2 col-md-6 wow animate__animated animate__fadeIn"
+        <div class="section-blocks__image section-blocks__image--2 col-md-6"
           data-wow-delay="0.2s"></div>
-        <div class="section-blocks__item col-md-6 wow animate__animated animate__fadeIn">
+        <div class="section-blocks__item col-md-6   ">
           <div class="section-blocks__item-wrapper section-blocks__item-wrapper--left-element">
             <h3 class="section-blocks__item-title">Fresh Graduates</h3>
             <p class="section-blocks__item-text" style="margin-bottom: 10px;">Skill Exchange helps
@@ -144,15 +115,20 @@
     </div>
   </section>
 
-
-  <section class="section-team">
+  <section class="section-team slideup">
     <div class="section-team__container container">
       <h2 class="section-team__title">Institutional Partners</h2>
-      <div
-        class="section-team__swiper swiper wow animate__animated animate__fadeInUp swiper-initialized swiper-horizontal swiper-pointer-events swiper-backface-hidden animated">
-        <ul class="section-team__list swiper-wrapper list-unstyled slider2" 
-          id="swiper-wrapper-6d97d85c62b73b3f" aria-live="polite" [innerHTML]="sliderhtml2">
-        </ul>
+      <div >
+        <owl-carousel-o [options]="customOptions" class="slideup" >
+          <ng-container *ngFor="let slide of sliderdata2" >
+            <ng-template carouselSlide >
+              <mat-card class="slidercard">
+                <img [src]="slide.img" [title]="slide.title">
+                <div class="section-team__item-name">{{slide.title}}</div>
+              </mat-card>
+            </ng-template>
+          </ng-container>
+        </owl-carousel-o>
       </div>
       <div class="text-center" style="padding:20px 0px;">
         <a class="link-demo link-demo" [routerLink]="endPoints.LANDINGPAGE.INSTITUTIONALPARTNERS">View All</a>
@@ -162,16 +138,14 @@
   </section>
   <section class="section-action">
     <div class="section-action__container container">
-      <h2 class="section-action__title wow animate__animated animate__fadeInDown">Looking to hire Pre-Assessed
+      <h2 class="section-action__title slideDown">Looking to hire Pre-Assessed
         and Certified Fresh Graduates</h2>
-      <p class="section-action__text wow animate__animated animate__fadeIn" data-wow-delay="0.2s">
+      <p class="section-action__text slideIn">
         To join as a hiring partner, write to meher.k@lntecc.com
       </p>
       <a [routerLink]="endPoints.LANDINGPAGE.EMPLOYER"
-        class="section-action__link button button--white wow animate__animated animate__fadeInUp"
-        data-wow-delay="0.3s">Join as Hiring Partner</a>
+        class="section-action__link button button--white slideup">Join as Hiring Partner</a>
     </div>
   </section>
   <app-landing-footer></app-landing-footer>
-  <div style="padding-bottom: 50px;"></div>
 </main>

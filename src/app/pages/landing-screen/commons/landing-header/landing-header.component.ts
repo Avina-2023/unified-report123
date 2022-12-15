@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { APP_CONSTANTS } from 'src/app/utils/app-constants.service';
 
 @Component({
@@ -10,10 +11,14 @@ export class LandingHeaderComponent implements OnInit {
 
   routerData = APP_CONSTANTS.ROUTES;
   endPoints = APP_CONSTANTS.ENDPOINTS;
+  visible:boolean = false
+  constructor(public router:Router) { }
 
-  constructor() { }
 
   ngOnInit() {
+  }
+  footerTrigger(){
+    this.visible = !this.visible
   }
 
 }

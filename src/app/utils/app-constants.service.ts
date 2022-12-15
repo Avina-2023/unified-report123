@@ -17,8 +17,8 @@ export const APP_CONSTANTS = {
   // Route endpoints
   ENDPOINTS: {
     LOGIN: '/login',
-    // HOME: '/home',
-    HOME: '/static',
+    HOME: '/home',
+    // HOME: '/static',
     AUTH: '/auth',
     LANDING: '/landing',
     REGISTER:"/register",
@@ -84,6 +84,9 @@ export const APP_CONSTANTS = {
       HOME:'/auth/dashboard',
       PROFILE:'/auth/dashboard/profile',
       CHANGEPWD:'/auth/dashboard/changePwd'
+    },
+    EMPJOBS:{
+      REQUIRMENT:'auth/jobrequirment'
     }
   },
 
@@ -150,7 +153,7 @@ export const APP_CONSTANTS = {
       MANAGEDRIVE:'managedrive',
       DRIVESETTINGS:'drivesettings'
     },
-    
+
     EMPDASHBOARD:{
       HOME:'dashboard',
       COUNTCARD:'count',
@@ -159,7 +162,8 @@ export const APP_CONSTANTS = {
       GRADUATION:'Graduation',
       DEGREE :'Degree',
       PROFILE:'profile',
-      CHANGEPWD:'changePwd'
+      CHANGEPWD:'changePwd',
+      REQUIRMENT:'jobrequirment'
     }
   }
 };

@@ -166,7 +166,7 @@ export class AuthComponent implements OnInit {
   logout() {
     localStorage.clear();
     this.ngOnInit();
-    this.router.navigate(['/static']);
+    this.router.navigate(['/home']);
   }
 
 
