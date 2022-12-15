@@ -17,10 +17,23 @@ export const APP_CONSTANTS = {
   // Route endpoints
   ENDPOINTS: {
     LOGIN: '/login',
-    // HOME: '/home',
-    HOME: '/static',
+    HOME: '/home',
+    // HOME: '/static',
     AUTH: '/auth',
     LANDING: '/landing',
+    REGISTER:"/register",
+    EMPLOYERS:"/employers",
+    LANDINGPAGE:{
+      LANDINGPAGE:"/",
+      HOME:"/home",
+      ABOUT:"/about",
+      EMPLOYER:"/employer",
+      FRESHGRADUATES:"/FreshGraduates",
+      HIRINGPARTNER:"/hiringpartner",
+      INSTITUTIONALPARTNERS:"/institutionalpartners",
+      CONTACT:"/contact"
+    },
+
     CNDIDATELANDING:'/candidateview',
     CANDIDATEDASH:{
       DASHBOARD:'/candidateview/dashboard',
@@ -86,6 +99,18 @@ export const APP_CONSTANTS = {
       SETUP: 'setpwd'
     },
     LANDING: 'landing',
+    REGISTER:"register",
+    EMPLOYERS:"employers",
+    LANDINGPAGE:{
+      LANDINGPAGE:"",
+      HOME:"home",
+      ABOUT:"about",
+      EMPLOYER:"employer",
+      FRESHGRADUATES:"FreshGraduates",
+      HIRINGPARTNER:"hiringpartner",
+      INSTITUTIONALPARTNERS:"institutionalpartners",
+      CONTACT:"contact"
+    },
     HOME: 'home',
     AUTH: 'auth',
     CNDIDATELANDING:'candidateview',
@@ -128,7 +153,7 @@ export const APP_CONSTANTS = {
       MANAGEDRIVE:'managedrive',
       DRIVESETTINGS:'drivesettings'
     },
-    
+
     EMPDASHBOARD:{
       HOME:'dashboard',
       COUNTCARD:'count',
