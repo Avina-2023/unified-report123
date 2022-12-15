@@ -1,3 +1,4 @@
+import { AlertDialogComponent } from './alert-dialog/alert-dialog.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { MaterialModule } from './../material/material.module';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
@@ -29,8 +30,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     BehaviouralPdfReportDownloadComponent,
     ToolbarComponent,
     BehaviouralReportCanvasComponent,
-    SidebarComponent
-    
+    SidebarComponent,
+    AlertDialogComponent
   ],
   imports: [
     CommonModule,

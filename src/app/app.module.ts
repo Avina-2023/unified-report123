@@ -29,7 +29,6 @@ import { RegisterPageComponent } from './pages/login/register-page/register-page
 // import { JobSeekersComponent } from './pages/login/candidateRegister/candidateRegister.component';
 import {candidateRegister} from './pages/login/candidateRegister/candidateRegister.component'
 import { SkillMasterListComponent } from './pages/skill-Master/skill-master-list/skill-master-list.component';
-import { StaticpageComponent } from './staticpage/staticpage.component';
 import { SetPasswordComponent } from './pages/login/set-password/set-password.component';
 import { ForgotPasswordComponent } from './pages/login/forgot-password/forgot-password.component';
 import { EmpPostrequirmentsComponent } from './pages/employer/emp-postrequirments/emp-postrequirments.component';
@@ -56,8 +55,6 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     // JobSeekersComponent,
     candidateRegister,
     SkillMasterListComponent,
-    StaticpageComponent,
-    EmpPostrequirmentsComponent,
     EmpRequirmentsComponent
   ],
   imports: [

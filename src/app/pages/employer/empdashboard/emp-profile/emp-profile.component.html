@@ -200,18 +200,23 @@
                                         <fieldset>
                                             <legend>HR Contact Details:</legend>
                                             <ng-container formArrayName="hrContactDetails"
-                                                *ngFor="let contact of hrContactDetails.controls; index as i">
-                                                <ng-container [formGroupName]="i" class="d-flex">
-                                                    <div class="row hrright">
+                                                *ngFor="let hrContactDetail of hrContactDetails.controls; index as i">
+                                                    <div class="row hrright" [formGroupName]="i">
                                                         <div class="hrdetailsinput">
                                                             <mat-form-field class="form-filed-width"
                                                                 appearance="outline">
                                                                 <input matInput class="heighttext"
-                                                                    placeholder="Enter Name" formControlName="hrName"
-                                                                    required>
-                                                                <!-- <mat-error *ngIf="profileForm.controls['hrName'].invalid ">
+                                                                    placeholder="Enter Name" formControlName="hrName" required
+                                                                    >
+                                                                    <mat-error >
+                                                                        <div class="error-msg"
+                                                                            *ngIf="hrContactDetails.controls[i]?.controls?.hrName.errors">
+                                                                            HR Name is Required
+                                                                        </div>
+                                                                    </mat-error>
+                                                                <!-- <mat-error >
                                                                     <div *ngIf="profileForm.controls['hrName'].errors?.required">
-                                                                        Name is required
+                                                                      HR  {{Name is required}}
                                                                     </div>
                                                                 </mat-error> -->
                                                             </mat-form-field>
@@ -223,6 +228,14 @@
                                                                 <input matInput class="heighttext"
                                                                     placeholder="Enter Designation"
                                                                     formControlName="hrdesignation" required>
+                                                                   
+                                                                    <mat-error >
+                                                                        <div class="error-msg"
+                                                                            *ngIf="hrContactDetails.controls[i].controls.hrdesignation.errors?.required">
+                                                                            Designation is Required
+                                                                        </div>
+                                                                     
+                                                                    </mat-error>
                                                             </mat-form-field>
                                                         </div>
                                                         <div class="hrdetailsinput">
@@ -231,6 +244,14 @@
                                                                 <input matInput class="heighttext"
                                                                     placeholder="Enter Email" formControlName="hrEmail"
                                                                     required>
+                                                                    <mat-error *ngIf="hrContactDetails.controls[i].controls.hrEmail.invalid " >
+                                                                        <div class="error-msg" *ngIf="hrContactDetails.controls[i].controls.hrEmail.errors?.required ">
+                                                                            Email is Required
+                                                                        </div>
+                                                                        <div class="error-msg"  *ngIf="hrContactDetails.controls[i].controls.hrEmail.errors?.email ">
+                                                                            Invalid Email
+                                                                        </div>
+                                                                    </mat-error>
                                                             </mat-form-field>
                                                         </div>
                                                         <div class="hrdetailsinput">
@@ -239,6 +260,14 @@
                                                                 <input matInput class="heighttext" type="text"
                                                                     maxlength="10" placeholder="Enter Mobile Number "
                                                                     formControlName="hrMobilenumber" required>
+                                                                    <mat-error *ngIf="hrContactDetails.controls[i].controls.hrMobilenumber.invalid " >
+                                                                        <div class="error-msg" *ngIf="hrContactDetails.controls[i].controls.hrMobilenumber.errors?.required ">
+                                                                            Mobile Number is Required
+                                                                        </div>
+                                                                        <div class="error-msg"  *ngIf="hrContactDetails.controls[i].controls.hrMobilenumber.errors?.mobileRegex ">
+                                                                            Invalid Mobile Number
+                                                                        </div>
+                                                                    </mat-error>
                                                             </mat-form-field>
                                                         </div>
                                                         <div class="close-icon">
@@ -247,7 +276,7 @@
                                                         </div>
                                                     </div>
 
-                                                </ng-container>
+
                                             </ng-container>
 
                                             <button class="addhrdetils" type="button" (click)="addContactField()"><u>Add
