@@ -39,7 +39,7 @@ export class MoreOptionsComponent implements ICellRendererAngularComp {
   data:any;
   status: string;
   getAGgrid: any;
-  partnerlistdata: any;
+  partnerListAgData: any;
   params:any;
   constructor(
     private toastr: ToastrService,

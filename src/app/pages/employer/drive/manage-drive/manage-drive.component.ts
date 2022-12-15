@@ -18,13 +18,26 @@ import * as moment from 'moment';
 export class ManageDriveComponent implements OnInit {
   rowData: any;
   getdataag: any;
-  public sideBar = 'filters';
+  
   public gridColumnApi: any;
   columnDefs: any = [];
   private gridApi!: GridApi;
   public gridOptions: GridOptions;
   lastDatetoApply: string;
   selectedRow: any[];
+ 
+  sideBar = {
+    toolPanels: [
+    {id: 'filters',
+    labelDefault: 'Filters',
+    labelKey: 'filters',
+    iconKey: 'filter',
+    toolPanel: 'agFiltersToolPanel',
+    }
+    ], defaultToolPanel: ''
+  };
+
+
   constructor(private apiService: ApiService) {
     this.gridOptions = <GridOptions>{
       frameworkComponents: {

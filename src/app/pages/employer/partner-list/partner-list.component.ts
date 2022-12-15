@@ -44,17 +44,46 @@ export class PartnerListComponent implements OnInit {
   //aggrid
   data:any;
   rowData: any;
-  public sideBar = 'filters';
-  public gridColumnApi: any;
+  
   columnDefs: any = [];
   private gridApi!: GridApi;
   public gridOptions: GridOptions;
-  public rowModelType;
-  public serverSideStoreType;
+  // public rowModelType;
+  // public gridColumnApi;
+  // public serverSideStoreType;
+  // public defaultColDef: ColDef;
+  // public columnDefsmini;
   selectedRow: any[];
   partnerlistdata: any;
+  // public rowData: any[] | null = [];
   paginationPageSize: number;
-  
+  // partnerListAgGridSubscription: Subscription;
+  // partnerListAgData:  any = [];
+  pageRowCount = 0;
+  pagination: boolean;
+  sideBar = {
+
+    toolPanels: [
+
+    {id: 'filters',
+
+    labelDefault: 'Filters',
+
+    labelKey: 'filters',
+
+    iconKey: 'filter',
+
+    toolPanel: 'agFiltersToolPanel',
+
+    }
+
+    ], defaultToolPanel: ''
+
+  };
+  defaultColDef: {
+    // editable: true,
+    sortable: boolean; resizable: boolean; filter: boolean; flex: number; minWidth: number;
+  };
   constructor(
     private ApiService: ApiService ,
     private appconfig: AppConfigService,
@@ -99,31 +128,56 @@ export class PartnerListComponent implements OnInit {
 
   tabledata() {
 
-    // console.log(this.partnerlistdata);
+    // console.log(this.partnerListAgData);
     this.columnDefs = [
-      { headerName: 'S.No', field: '_id', minWidth: 85 ,
+      { headerName: 'S.No', field: '_id', minWidth: 85 , filter: false,
     cellRenderer: function(params){
       return params.rowIndex +1;
     }
     },
-      { headerName: 'Employer Name', field: 'company', minWidth: 170 },
+      { headerName: 'Employer Name', field: 'company', minWidth: 170,  filter: 'agTextColumnFilter',filterParams: {
+        suppressAndOrCondition: true,
+        filterOptions: ['contains']
+      }, },
       { headerName: '', field: 'companyImgURL', minWidth: 50,
       cellRenderer: function(params){
         let val = encodeURI(params.value);
         return `<img width="30px" height"22px" src=${val}>`;
       }
     },
-      { headerName: 'Industry Type', field: 'industryType', minWidth: 200 },
-      { headerName: 'SPOC Name', field: 'firstName', minWidth: 170 },
-      { headerName: 'SPOC Email', field: 'email', minWidth: 250 },
-      { headerName: 'Created Date', field: 'createdAt', minWidth: 150,
+      { headerName: 'Industry Type', field: 'industryType', minWidth: 200, filter: 'agTextColumnFilter' ,
+      filterParams: {
+        suppressAndOrCondition: true,
+        filterOptions: ['contains']
+      },},
+      { headerName: 'SPOC Name', field: 'firstName', minWidth: 170, filter: 'agTextColumnFilter',
+      filterParams: {
+        suppressAndOrCondition: true,
+        filterOptions: ['contains']
+      }, },
+      { headerName: 'SPOC Email', field: 'email', minWidth: 250, filter: 'agTextColumnFilter',
+      filterParams: {
+        suppressAndOrCondition: true,
+        filterOptions: ['contains' ]
+      },
+     },
+      { headerName: 'Created Date', field: 'createdAt', minWidth: 150, filter: 'agDateColumnFilter',
     cellRenderer: (data)=>{
       return moment(data.createdAt).format('MMM d, y')
-    }
+    },
+    filterParams: {
+      suppressAndOrCondition: true,
+      filterOptions: ['equals', 'lessThan', 'greaterThan', 'inRange'],
+    },
     },
       { headerName: 'Status', 
       field: 'isActive',
       minWidth: 100 ,
+      filter: 'agTextColumnFilter',
+      filterParams: {
+        suppressAndOrCondition: true,
+        filterOptions: ['contains' ]
+      },
      
       cellRenderer: (data: any) => {
           if (data.value == false ) {
@@ -144,39 +198,82 @@ export class PartnerListComponent implements OnInit {
       cellRenderer: 'moreOptions'
     }
     ];
-    this.rowModelType = 'serverSide';
-    this.serverSideStoreType = 'partial';
+    // this.rowModelType = 'serverSide';
+    // this.serverSideStoreType = 'partial';
+    // this.pagination = true;
     this.paginationPageSize = 10;
     this.defaultColDef = {
-      editable: true,
+      // editable: true,
       sortable: true,
       resizable: true,
       filter: true,
       flex: 1,
       minWidth: 190,
+      // enableFilter: true,
+      
     };
   }
-  public defaultColDef: ColDef = {
-    flex: 1,
-    minWidth: 100,
-  };
+  
   onGridReady(params: any) {
     this.gridApi = params.api;
-    var datasource = this.getAGgrid();
-    params.api.setServerSideDatasource(datasource);
+    
   }
   getAGgrid() {
-    
     let data = '';
     this.ApiService.getAGgridPatnerList(data).subscribe((Response: any) => {
       if (Response.success) {
         this.partnerlistdata = Response.data;
-        
       } else {
         alert('failed');
       }
     });
   }
+//   getAGgrid(){
+//     return {
+//       getRows: (params) => {
+//         let apiData: any = params;
+//         this.partnerListAgGridSubscription = this.ApiService.getAGgridPatnerList(apiData.request).subscribe((data1: any) => {
+//           console.log(data1);
+          
+//           if (data1.success == false) {
+//             params.fail();
+//             params.success({
+//               rowData: [],
+//               rowCount: 0,
+//         });
+//         this.gridApi.showNoRowsOverlay();
+//       }else {
+// this.partnerListAgData = data1 && data1.data ? data1.data : [];
+// if (this.partnerListAgData.length > 0) {
+//   this.pageRowCount = data1 && data1.data.length ? data1.data.length : 0;
+//   this.gridApi.hideOverlay();
+//   params.success({
+//     rowData: this.partnerListAgData,
+//     rowCount: this.pageRowCount
+//   });
+//   this.gridApi.selectAllFiltered()
+//   this.gridApi.selectAll();
+// } else {
+//   params.success({
+//     rowData: this.partnerListAgData,
+//     rowCount: 0
+//   });
+//   this.gridApi.showNoRowsOverlay();
+// }
+// }
+// },(err) => {
+//   params.fail();
+//   params.success({
+//     rowData: [],
+//     rowCount: 0,
+//   });
+// });
+//   this.gridApi.hideOverlay();
+//   this.gridApi.showNoRowsOverlay();
+// }
+//   }
+// }
+
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }
