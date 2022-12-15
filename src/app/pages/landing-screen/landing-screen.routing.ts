@@ -10,7 +10,7 @@ import { LandingInstitutionalPartnerComponent } from './landing-InstitutionalPar
 import { LandingContactComponent } from './landing-contact/landing-contact.component';
 
 
-const routes: Routes =[ 
+const routes: Routes =[
   {
     path: '', component: LandingScreenComponent,
     children: [
@@ -33,7 +33,7 @@ const routes: Routes =[
         path: `${APP_CONSTANTS.ROUTES.LANDINGPAGE.INSTITUTIONALPARTNERS}`, component:LandingInstitutionalPartnerComponent
       },
       {
-        path: `${APP_CONSTANTS.ROUTES.LANDINGPAGE.CONTACT}`, component:LandingContactComponent
+        path: `${APP_CONSTANTS.ROUTES.LANDINGPAGE.CONTACT}`, component:LandingContactComponent,
       },
       {
         path:'',redirectTo:`${APP_CONSTANTS.ROUTES.LANDINGPAGE.HOME}`,pathMatch:'full'

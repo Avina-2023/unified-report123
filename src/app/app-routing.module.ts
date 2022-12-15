@@ -5,7 +5,7 @@ import { PagenotfoundComponent } from './pages/pagenotfound/pagenotfound.compone
 import { LandingPageComponent } from './pages/landing-page/landing-page.component';
 import { candidateRegister } from './pages/login/candidateRegister/candidateRegister.component';
 import { RegisterPageComponent } from './pages/login/register-page/register-page.component';
-import { StaticpageComponent } from './staticpage/staticpage.component';
+
 import { LoginPageComponent } from './pages/login/login-page/login-page.component';
 import { APP_CONSTANTS } from './utils/app-constants.service';
 import { IsloggedInGuard } from './guards/islogged-in.guard';
@@ -20,12 +20,9 @@ const routes: Routes = [
   {
     path: `adminlogin`, component: LoginPageComponent,
   },
-  {
-    path:'htmlStatic',redirectTo:'/static',pathMatch:'full' // path should be empty string for static html
-  },
-  {
-    path:'static',component:StaticpageComponent
-  },
+  // {
+  //   path:'htmlStatic',redirectTo:'/static',pathMatch:'full' // path should be empty string for static html
+  // },
   {
     path: `register`, component: candidateRegister
   },
