@@ -46,7 +46,9 @@ export class JobListingComponent implements OnInit {
 
 	openDialog(displayValue) {
 		this.filterItems = displayValue;
-		this.dialog.open(this.matDialogRef);
+		this.dialog.open(this.matDialogRef, {
+			panelClass: 'spec_desk_dialog'
+		});
 	}
 
 	mobDialog() {

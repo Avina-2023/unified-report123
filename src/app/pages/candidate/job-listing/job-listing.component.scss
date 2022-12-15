@@ -26,7 +26,7 @@
 
 .find_job {
   background: #e7e7e747;
-  padding: 10px 10px;
+  padding: 10px 20px;
   font-weight: 400;
   font-size: 13px;
   color: #707070;
@@ -34,7 +34,7 @@
 
 .results_dash {
   display: flex;
-  padding: 10px 20px 0px 10px;
+  padding: 10px 20px 0px 20px;
   margin-top: 7px;
   justify-content: space-between;
 
@@ -139,6 +139,7 @@
   align-content: flex-start;
   height: 70vh;
   overflow: auto;
+  padding: 0px 20px;
 }
 
 .example_card {
@@ -693,7 +694,8 @@
 }
 
 @media only screen and (min-width: 900px) {
-  ::ng-deep .mat-dialog-container {
+  ::ng-deep .spec_desk_dialog{
+   .mat-dialog-container {
     position: absolute !important;
     width: max-content !important;
     height: max-content !important;
@@ -702,6 +704,9 @@
     padding: 0px !important;
     overflow: inherit !important;
   }
+}
+
+
 
   .example_card {
     height: 300px;
