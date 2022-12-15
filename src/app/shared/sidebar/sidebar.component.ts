@@ -103,7 +103,7 @@ export class SidebarComponent implements OnInit {
    logout(){
     localStorage.clear();
     this.ngOnInit();
-    this.router.navigate(['/static']);
+    this.router.navigate(['/home']);
    }
    work(value:any){
     // this.loaded.setLoading();

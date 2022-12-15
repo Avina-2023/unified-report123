@@ -17,8 +17,8 @@ export const APP_CONSTANTS = {
   // Route endpoints
   ENDPOINTS: {
     LOGIN: '/login',
-    // HOME: '/home',
-    HOME: '/static',
+    HOME: '/home',
+    // HOME: '/static',
     AUTH: '/auth',
     LANDING: '/landing',
     REGISTER:"/register",
@@ -153,7 +153,7 @@ export const APP_CONSTANTS = {
       MANAGEDRIVE:'managedrive',
       DRIVESETTINGS:'drivesettings'
     },
-    
+
     EMPDASHBOARD:{
       HOME:'dashboard',
       COUNTCARD:'count',
