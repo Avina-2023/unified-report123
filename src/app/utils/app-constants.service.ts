@@ -25,6 +25,8 @@ export const APP_CONSTANTS = {
     CANDIDATEDASH:{
       DASHBOARD:'/candidateview/dashboard',
       JOBLIST:'/candidateview/findjobs',
+      RESUMEBUILDER:'/candidateview/resumebuilder',
+      RESUMETEMPLATE:'/candidateview/resumetemplate',
       JOBSSAVED:'/candidateview/savedjobs',
       JOBSAPPLIED:'/candidateview/appliedjobs',
       PAGINATION :'/candidateview/page',
@@ -92,6 +94,8 @@ export const APP_CONSTANTS = {
     CANDIDATEDASH:{
       DASHBOARD:'dashboard',
       JOBLIST:'findjobs',
+      RESUMEBUILDER:'resumebuilder',
+      RESUMETEMPLATE:'resumetemplate',
       JOBSSAVED:'savedjobs',
       JOBSAPPLIED:'appliedjobs',
       JOBDESCRIPTION:'jobdescription',
