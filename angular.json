@@ -28,8 +28,7 @@
                         "aot": true,
                         "assets": [
                             "src/favicon.ico",
-                            "src/assets",
-                            {"glob": "**/*","input": "./SkillExchange/","output": "/about/"}
+                            "src/assets"
                         ],
                         "styles": [
                             "src/styles.scss",
@@ -39,19 +38,17 @@
                             "node_modules/ngx-toastr/toastr.css",
                             "./node_modules/ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.carousel.min.css",
                             "./node_modules/ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.theme.default.min.css"
-                            
                         ],
                         "stylePreprocessorOptions": {
                             "includePaths": [
                                 "src/assets/scss/"
-                              
+
                             ]
                         },
                         "scripts": [
                             "node_modules/jquery/dist/jquery.slim.min.js",
                             "node_modules/jquery/dist/jquery.min.js",
                             "node_modules/bootstrap/dist/js/bootstrap.min.js"
-
                         ]
                     },
                     "configurations": {
