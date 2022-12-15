@@ -15,6 +15,7 @@ import { ToastrService } from 'ngx-toastr';
 export class JobDescriptionComponent implements OnInit {
   jobDescription: any;
   @ViewChild('incompleteProfile',{static: false}) matDialogRef: TemplateRef<any>;
+  @ViewChild('eligiblity',{static: false}) eligiblitypop: TemplateRef<any>;
   @ViewChild('successApply',{static: false}) applySuccess: TemplateRef<any>;
 
   dialogData: any;
@@ -44,8 +45,8 @@ item: any;
     console.log(this.jobDetails);
   }
 
-  openDialog(verify){
-   this.dialogData =  this.mdDialog.open((verify=='success'?this.applySuccess:this.matDialogRef), {
+  openDialog(dialogval){
+   this.dialogData =  this.mdDialog.open(dialogval, {
       width: '500px',
       height: 'auto',
       autoFocus: false,
@@ -108,11 +109,18 @@ item: any;
     }
       this.skillexService.savedJobs(obj).subscribe((res: any) => {
         if (res.success) {
-          this.toaster.success(res.message);
+          // this.toaster.success(res.message);
+          this.openDialog(this.applySuccess)
           this.jobDetails.isApplied= !this.jobDetails.isApplied;
         } else {
-          this.toaster.warning(res.message);
+          // this.toaster.warning(res.message);
+          if(res.message == "Please complete your profile to apply for this job")
+          {this.openDialog(this.matDialogRef)}
+          if(res.message == "You are not eligible to apply for this job"){
+            this.openDialog(this.eligiblitypop)
+          }
         }
+
       });
 
     }
