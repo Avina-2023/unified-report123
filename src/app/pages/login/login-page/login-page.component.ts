@@ -21,6 +21,7 @@ export class LoginPageComponent  {
   disableButton: boolean;
   userIP: any;
   isCandidate:boolean = true;
+  labelname:any;
 
 
   constructor(
@@ -34,6 +35,11 @@ export class LoginPageComponent  {
 
   ) {
 
+    if(this.router.url == '/login?from=freshGrad'){
+      this.labelname = 'Email'
+    }else{
+      this.labelname = 'User ID'
+    }
     this.activatedRoute.queryParams.subscribe(params => {
       if(params.from == 'freshGrad'){
         this.isCandidate = true;

@@ -124,32 +124,22 @@
   }
 
 }
+@media only screen and (min-width: 1366px) {
 
-// @media only screen and (min-width: 576px) {
-// .footer {
-//     padding-top: 100px !important;
-//     padding-bottom: 30px;
-// }
-
-// }
-
-@media only screen and (min-width: 768px) {
-  .footer {
-    padding-top: 100px !important;
-    padding-bottom: 30px;
+  .footer{
+  display: none !important;
 }
 }
 @media only screen and (min-width: 576px) {
-  .footer {
+.footer {
     padding-top: 100px !important;
     padding-bottom: 30px;
 }
+.loginbtnsmbl {
+  display: grid;
 }
-@media only screen and (min-width: 992px) {
-  // .navbar-toggler{
-  //   display: flex;
-  // }
-.footer{
-  display: none;
+.regbtn{
+  margin: 1px;
 }
 }
+
