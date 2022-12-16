@@ -77,12 +77,26 @@
     </div>
 
     <ng-template #noSkill>
-      <mat-icon class="close-icon" (click)="closepops()">close</mat-icon>
-    <div class="successMessage">
+      <div style="position: relative;"><mat-icon class="close-icon" mat-dialog-close="true">close</mat-icon></div>
+      <div class="successMessage">
         <img src="assets/images/check.png">
         <div class="text">
-            <p>Verification mail has been sent</p>
-            <p class="subpara">to your mail id</p>
-  </div>
-  </div>
+          <p>Verification mail has been sent</p>
+          <p >to your email</p>
+        </div>
+      </div>
+  </ng-template>
+
+  <ng-template #notactive>
+    <div style="position: relative;"><mat-icon class="close-icon" mat-dialog-close="true">close</mat-icon></div>
+    <div class="successMessage">
+      <img src="/assets/images/alert-image.png">
+      <div class="text">
+        <p>Looks like you already have an account</p>
+        <div class="subpara">Oops, our records shows your account is not active</div>
+        <div width="60%" >
+          <button class="btn" mat-button (click)="resendEmail()">Activate Account</button>
+        </div>
+      </div>
+    </div>
   </ng-template>
