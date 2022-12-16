@@ -156,11 +156,13 @@ mat-sidenav:not(.mat-drawer-opened) {
   .sidebar_wdth mat-drawer .mat-drawer-inner-container .mat-list-base .mat-list-item .mat-list-item-content{
     padding: 0px!important;
    }
-   .cdk-overlay-connected-position-bounding-box{
-    left: 100px !important;
-      top: 185px !important;
-  }
+  //  .cdk-overlay-connected-position-bounding-box{
+  //   left: 100px !important;
+  //     top: 185px !important;
+  // }
 
 }
-
+.display{
+  display: none;
+}
 

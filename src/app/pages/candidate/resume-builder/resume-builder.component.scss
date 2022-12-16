@@ -1,0 +1,130 @@
+.overall_section {
+    height: 86vh;
+    background: #fff;
+
+    .top_head {
+        color: #707070;
+        padding: 15px 30px;
+        background: #fafafa;
+        font-size: 13px;
+        font-weight: 500;
+    }
+
+    .template {
+        padding: 15px 30px;
+
+        .template-title {
+            font-size: 17px;
+            color: #000;
+            font-weight: 600;
+        }
+    }
+
+
+    .resume_box {
+        padding: 20px 40px;
+        cursor: pointer;
+    }
+
+    .resume {
+        position: relative;
+        width: 200px;
+    }
+
+    .res-image {
+        opacity: 1;
+        display: block;
+        width: 100%;
+        height: auto;
+        transition: .5s ease;
+        backface-visibility: hidden;
+        border: 4px solid #e4e4e4;
+    }
+
+    .middle-icon {
+        transition: .5s ease;
+        opacity: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        text-align: center;
+    }
+
+    .resume:hover {
+        background: #c1c1c12b;
+        transition-delay: 0ms;
+    }
+
+    .resume:hover .res-image {
+        opacity: 0.1;
+    }
+
+
+    .resume:hover .middle-icon {
+        opacity: 1;
+    }
+
+    .misc_icon {
+        color: grey;
+        font-size: 28px !important;
+    }
+
+    .res-download {
+        position: absolute;
+        top: -7%;
+        right: -7%;
+        background: #26BBEF;
+        color: #fff;
+        padding: 10px;
+        border-radius: 99px;
+        width: 35px;
+        height: 35px;
+    }
+
+}
+
+.icon-Close{
+    float: right;
+    font-weight: bold;
+    color: #000;
+    font-size: 12px;
+}
+.alert_div{
+    margin-top: 20px;
+    text-align: center;
+    p{
+    font-size: 19px;
+    color: #000;
+    font-weight: 400;
+}
+span{
+    color: #1B4E9B;
+    text-decoration: underline;
+    font-weight: 400;
+    font-size: 18px;
+}
+}
+.alert_msg{
+    text-align: center;
+    margin-top: 80px;
+    span{
+     color: #222222;
+     font-size: 13px;
+    }
+}
+
+
+.template_res{
+    cursor: pointer;
+}
+
+
+    ::ng-deep .resume_desk_dialog{
+     .mat-dialog-container {
+        border-radius: 0px!important;
+        padding: 20px!important;
+        width: 600px!important;
+    }
+  }
