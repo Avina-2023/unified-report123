@@ -8,26 +8,23 @@ li {
 
 .btn {
   font-size: 16px;
-  background: #26BBEF !important;
+  background: #26bbef !important;
   color: white;
   border-radius: 5px !important;
   width: 100%;
-  padding: 0px 15px;
-  margin: 20px 10px 0px 10px;
+  padding: 5px 0px;
+  margin: 8px 0px 0px 20px;
   float: right;
   font-family: Lato !important;
 }
 
 .btn:hover {
-  transition: ease-out .3s;
+  transition: ease-out 0.3s;
 }
-
 
 .pageWrapper {
   padding: 10px 20px;
   height: 84vh;
-
-
 
   .custom-card:hover {
     box-shadow: 0 0px 9px 0 rgb(0 0 0 / 20%);
@@ -45,12 +42,12 @@ li {
     .companyLogo {
       position: absolute;
       top: 150px;
-      left: 45px;
+      left: 22px;
       display: -webkit-inline-box;
       display: -ms-inline-flexbox;
       display: inline-flex;
-      height: 84px;
-      width: 84px;
+      height: 88px;
+      width: 125px;
       -webkit-box-pack: center;
       -ms-flex-pack: center;
       justify-content: center;
@@ -67,10 +64,8 @@ li {
         max-width: 100%;
         max-height: 100%;
       }
-
     }
   }
-
 
   .descriptionArea {
     display: flex;
@@ -85,12 +80,12 @@ li {
   }
 }
 
-.save{
-  background: #fff!important;
+.save {
+  background: #fff !important;
   border-color: #26bbef;
   color: #26bbef;
 }
-.flx_butn{
+.flx_butn {
   display: flex;
 }
 
@@ -101,10 +96,26 @@ li {
   background: #fff;
 
   .jobtopcontainer {
-    margin-top: 60px;
+    margin-top: 45px;
     padding: 10px 30px;
     display: flex;
     justify-content: space-between;
+    .JT-left{
+      display: grid;
+      .genTitle {
+        font-size: 14px;
+        color: #707070;
+        padding-top: 9px;
+    }
+    .genText1{
+      font-size: 14px;
+      color: #707070bf;
+      padding-top: 4px;
+      display: flex;
+      flex-wrap: wrap;
+      position: relative;
+      top: 5px;
+    }}
   }
 }
 
@@ -116,14 +127,23 @@ li {
     padding-right: 4px;
   }
 
-  button {
-    margin: 3px;
-    color: #0097CC;
-    background: #26BBEF33 0% 0% no-repeat padding-box;
-    border-radius: 3px;
-    border-width: 0px;
-    padding: 3px 8px 1px 8px;
-    font-size: 13px;
+  .genText {
+    .specialization-box {
+      background: #c7c7c70d 0% 0% no-repeat padding-box;
+      border: 1px solid #70707080;
+      border-radius: 3px;
+      opacity: 1;
+      /* background: rgba(122, 203, 232, 0.22); */
+      /* color: #00b5f5; */
+      width: max-content;
+      font-weight: 600;
+      /* border: 1px solid rgba(255, 255, 255, 0.53); */
+      color: #707070;
+      margin: 0px 1px;
+      border-radius: 3px;
+      padding: 4px;
+      font-size: 10px;
+    }
   }
 }
 
@@ -137,7 +157,7 @@ li {
 
 .RAlign {
   width: 40%;
-  margin-left: 15px
+  margin-left: 15px;
 }
 
 .compTitle {
@@ -153,7 +173,7 @@ li {
 
 .genText {
   font-size: 14px;
-  color: #707070BF;
+  color: #707070bf;
   padding-top: 4px;
   display: flex;
   flex-wrap: wrap;
@@ -174,7 +194,7 @@ li {
   font-weight: 600;
 
   p {
-    color: #707070BF;
+    color: #707070bf;
     font-weight: normal;
     font-size: 14px;
     margin-top: 10px;
@@ -186,7 +206,7 @@ li {
 
   ul li {
     font-size: 14px;
-    color: #707070CC;
+    color: #707070cc;
     margin-left: 18px;
     padding: 3px 0px;
     font-weight: normal;
@@ -200,13 +220,13 @@ li {
 
 .calign {
   display: flex;
-  align-items: center;
+  justify-content: flex-end;
 }
-.eventnote{
+.eventnote {
   color: red;
-font-weight: 500;
-margin-top: 5px;
-margin-bottom: 0px;
+  font-weight: 500;
+  margin-top: 5px;
+  margin-bottom: 0px;
 }
 
 .wrapper {
@@ -226,7 +246,7 @@ margin-bottom: 0px;
   }
 
   .ticsize {
-    width: 90px
+    width: 90px;
   }
 
   .message {
@@ -249,64 +269,65 @@ margin-bottom: 0px;
 }
 
 @media only screen and (max-width: 600px) {
-  .coverImage{
-    img{
-    height: 130px!important;
+  .coverImage {
+    img {
+      height: 130px !important;
     }
   }
 
-  .eventnote{
+  .eventnote {
     position: absolute;
     width: 140px;
     right: 3%;
     top: 14%;
-    }
-    .flx_butn{
+  }
+  .flx_butn {
     margin-top: 20px;
-    }
+  }
 
-    .companyLogo{
-    left: 20px!important;
-    top: 85px!important;
-    }
+  .companyLogo {
+    left: 20px !important;
+    top: 85px !important;
+  }
 
-    .jobtopcontainer{
-    margin-top: 40px!important;
-    display: block!important;
+  .jobtopcontainer {
+    margin-top: 40px !important;
+    display: block !important;
     padding: 10px;
     .JT-right {
       width: 100%;
       margin-top: 10px;
-  }
-  .calign{
-    width: 50%;
-  }
-  .btn{
-    margin: 0px 10px!important;
-    width: 40%!important;
-    background: #26bbef;
     }
+    .calign {
+      width: 50%;
+    }
+    .btn {
+      margin: 0px 10px !important;
+      width: 40% !important;
+      background: #26bbef;
     }
 
-  .pageWrapper{
-      padding: 0px 10px;
-  .compTitle{
-    font-size: 16px;
   }
-  .genText{
-    font-size: 13px;
-    margin-top: 5px;
-  }
-  .descriptionArea{
-  display: block;
-  }
-  .RAlign{
-  width: 100%;
-  margin-left: 0px;
-  margin-top: 20px;
-  }
-  .about{
-  width: 100%!important;
-  }
+
+  .pageWrapper {
+    padding: 0px 10px;
+    .compTitle {
+      font-size: 16px;
+    }
+    .genText {
+      font-size: 13px;
+      margin-top: 5px;
+    }
+    .descriptionArea {
+      display: block;
+    }
+    .RAlign {
+      width: 100%;
+      margin-left: 0px;
+      margin-top: 20px;
+    }
+    .about {
+      width: 100% !important;
+    }
   }
 }
