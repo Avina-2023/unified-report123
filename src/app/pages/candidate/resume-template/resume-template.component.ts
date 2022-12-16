@@ -36,7 +36,7 @@ export class ResumeTemplateComponent implements OnInit {
       this.workVisible = true;
     }
   }
-  
+
   gotoResumePage(){
     this.router.navigateByUrl(APP_CONSTANTS.ENDPOINTS.CANDIDATEDASH.RESUMEBUILDER);
   }
