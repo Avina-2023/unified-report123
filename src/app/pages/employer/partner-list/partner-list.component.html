@@ -91,11 +91,13 @@
             [sideBar]="sideBar"
             [defaultColDef]="defaultColDef"
             (gridReady)="onGridReady($event)"
-            [rowData]="partnerlistdata"
+            [rowData]="partnerListAgData"
             [pagination]="true"
             [paginationPageSize]="paginationPageSize"
              [paginateChildRows]="true"
             [gridOptions]= "gridOptions"
+            [rowModelType]="rowModelType"
+            [serverSideStoreType]="serverSideStoreType"
             >
         </ag-grid-angular>
         

@@ -10,6 +10,7 @@ import { GridOptions } from '@ag-grid-enterprise/all-modules';
 import * as moment from 'moment';
 import { MoreOptionsComponent } from './more-options/more-options.component';
 import { E } from '@angular/cdk/keycodes';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-partner-list',
   templateUrl: './partner-list.component.html',
@@ -43,22 +44,22 @@ export class PartnerListComponent implements OnInit {
   totalPages: number = 1;
   //aggrid
   data:any;
-  rowData: any;
+  // rowData: any;
   
   columnDefs: any = [];
   private gridApi!: GridApi;
   public gridOptions: GridOptions;
-  // public rowModelType;
-  // public gridColumnApi;
-  // public serverSideStoreType;
-  // public defaultColDef: ColDef;
-  // public columnDefsmini;
+  public rowModelType;
+  public gridColumnApi;
+  public serverSideStoreType;
+  public defaultColDef: ColDef;
+  public columnDefsmini;
   selectedRow: any[];
-  partnerlistdata: any;
-  // public rowData: any[] | null = [];
+  // partnerlistdata: any;
+  public rowData: any[] | null = [];
   paginationPageSize: number;
-  // partnerListAgGridSubscription: Subscription;
-  // partnerListAgData:  any = [];
+  partnerListAgGridSubscription: Subscription;
+  partnerListAgData:  any = [];
   pageRowCount = 0;
   pagination: boolean;
   sideBar = {
@@ -80,10 +81,10 @@ export class PartnerListComponent implements OnInit {
     ], defaultToolPanel: ''
 
   };
-  defaultColDef: {
-    // editable: true,
-    sortable: boolean; resizable: boolean; filter: boolean; flex: number; minWidth: number;
-  };
+  // defaultColDef: {
+  //   // editable: true,
+  //   sortable: boolean; resizable: boolean; filter: boolean; flex: number; minWidth: number;
+  // };
   constructor(
     private ApiService: ApiService ,
     private appconfig: AppConfigService,
@@ -103,6 +104,7 @@ export class PartnerListComponent implements OnInit {
     },
       frameworkComponents: {
         moreOptions: MoreOptionsComponent,
+        
       },
      
 
@@ -116,6 +118,7 @@ export class PartnerListComponent implements OnInit {
  this.ApiService.partnersubject.subscribe((result:boolean) =>{
   if (result){
     this.getAGgrid()
+    this.gridApi.refreshServerSideStore({ purge: true });
   }
   
  })
@@ -142,7 +145,7 @@ export class PartnerListComponent implements OnInit {
       { headerName: '', field: 'companyImgURL', minWidth: 50,
       cellRenderer: function(params){
         let val = encodeURI(params.value);
-        return `<img width="30px" height"22px" src=${val}>`;
+        return `<img width="30px" height"22px" src=${val} alt="">`;
       }
     },
       { headerName: 'Industry Type', field: 'industryType', minWidth: 200, filter: 'agTextColumnFilter' ,
@@ -180,6 +183,8 @@ export class PartnerListComponent implements OnInit {
       },
      
       cellRenderer: (data: any) => {
+      //  debugger;
+        
           if (data.value == false ) {
             if (data.data.isApproved == false){
               return  '<button mat-button disabled class="pending-button">Pending</button>';
@@ -198,9 +203,9 @@ export class PartnerListComponent implements OnInit {
       cellRenderer: 'moreOptions'
     }
     ];
-    // this.rowModelType = 'serverSide';
-    // this.serverSideStoreType = 'partial';
-    // this.pagination = true;
+    this.rowModelType = 'serverSide';
+    this.serverSideStoreType = 'partial';
+    this.pagination = true;
     this.paginationPageSize = 10;
     this.defaultColDef = {
       // editable: true,
@@ -216,63 +221,68 @@ export class PartnerListComponent implements OnInit {
   
   onGridReady(params: any) {
     this.gridApi = params.api;
-    
+    this.gridColumnApi = params.columnApi;
+
+   
+   
+    var datasource = this.getAGgrid();
+    params.api.setServerSideDatasource(datasource);
   }
-  getAGgrid() {
-    let data = '';
-    this.ApiService.getAGgridPatnerList(data).subscribe((Response: any) => {
-      if (Response.success) {
-        this.partnerlistdata = Response.data;
-      } else {
-        alert('failed');
-      }
-    });
-  }
-//   getAGgrid(){
-//     return {
-//       getRows: (params) => {
-//         let apiData: any = params;
-//         this.partnerListAgGridSubscription = this.ApiService.getAGgridPatnerList(apiData.request).subscribe((data1: any) => {
-//           console.log(data1);
+  // getAGgrid() {
+  //   let data = '';
+  //   this.ApiService.getAGgridPatnerList(data).subscribe((Response: any) => {
+  //     if (Response.success) {
+  //       this.partnerlistdata = Response.data;
+  //     } else {
+  //       alert('failed');
+  //     }
+  //   });
+  // }
+  getAGgrid(){
+    return {
+      getRows: (params) => {
+        let apiData: any = params;
+        this.partnerListAgGridSubscription = this.ApiService.getAGgridPatnerList(apiData.request).subscribe((data1: any) => {
+          console.log(data1);
           
-//           if (data1.success == false) {
-//             params.fail();
-//             params.success({
-//               rowData: [],
-//               rowCount: 0,
-//         });
-//         this.gridApi.showNoRowsOverlay();
-//       }else {
-// this.partnerListAgData = data1 && data1.data ? data1.data : [];
-// if (this.partnerListAgData.length > 0) {
-//   this.pageRowCount = data1 && data1.data.length ? data1.data.length : 0;
-//   this.gridApi.hideOverlay();
-//   params.success({
-//     rowData: this.partnerListAgData,
-//     rowCount: this.pageRowCount
-//   });
-//   this.gridApi.selectAllFiltered()
-//   this.gridApi.selectAll();
-// } else {
-//   params.success({
-//     rowData: this.partnerListAgData,
-//     rowCount: 0
-//   });
-//   this.gridApi.showNoRowsOverlay();
-// }
-// }
-// },(err) => {
-//   params.fail();
-//   params.success({
-//     rowData: [],
-//     rowCount: 0,
-//   });
-// });
-//   this.gridApi.hideOverlay();
-//   this.gridApi.showNoRowsOverlay();
-// }
-//   }
-// }
+          if (data1.success == false) {
+            params.fail();
+            params.success({
+              rowData: [],
+              rowCount: 0,
+        });
+        this.gridApi.showNoRowsOverlay();
+      }else {
+this.partnerListAgData = data1 && data1.data ? data1.data : [];
+if (this.partnerListAgData.length > 0) {
+  this.pageRowCount = data1 && data1.data.length ? data1.data.length : 0;
+  this.gridApi.hideOverlay();
+  params.success({
+    rowData: this.partnerListAgData,
+    rowCount: this.pageRowCount
+  });
+  this.gridApi.selectAllFiltered()
+  this.gridApi.selectAll();
+} else {
+  params.success({
+    rowData: this.partnerListAgData,
+    rowCount: 0
+  });
+  this.gridApi.showNoRowsOverlay();
+}
+}
+},(err) => {
+  params.fail();
+  params.success({
+    rowData: [],
+    rowCount: 0,
+  });
+});
+  this.gridApi.hideOverlay();
+  this.gridApi.showNoRowsOverlay();
+}
+  }
+}
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
