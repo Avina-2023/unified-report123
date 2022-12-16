@@ -7,7 +7,7 @@
       ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco</p>
   </div>
 
-
+''
   <div class="resume_box">
     <div class="resume">
       <img src="assets/images/resume.svg" alt="resume" class="res-image" style="width:100%">
@@ -15,11 +15,13 @@
         <mat-icon (click)="resumeTemplate()" class="misc_icon">remove_red_eye</mat-icon>
       </div>
       <!-- <mat-icon class="res-download">download</mat-icon> -->
-      <span class="icon-file-download res-download"></span>
+      <span class="icon-file-download res-download" (click)="generatePDF()"></span>
     </div>
   </div>
 </section>
-
+<div id="contentToConvert">
+<h1>hlo</h1>
+</div>
 <ng-template #resumeBuild>
   <div class="template_res">
   <div style="text-align:center;">
@@ -35,3 +37,4 @@
    </div>
   </div>
    </ng-template>
+

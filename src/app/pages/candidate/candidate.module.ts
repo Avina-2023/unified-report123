@@ -19,6 +19,7 @@ import { TimeAgoPipe } from 'src/app/pipe/timeago.pipe';
 import { NoDataFoundComponent } from './candidateCommons/no-data-found/no-data-found.component';
 
 
+
 @NgModule({
   imports: [
     SharedModule,
@@ -26,7 +27,7 @@ import { NoDataFoundComponent } from './candidateCommons/no-data-found/no-data-f
     CandidateRoutes,
     MaterialModule,
     NgApexchartsModule,
-    FormsModule
+    FormsModule,
   ],
   declarations: [
     JobDashboardComponent,
@@ -41,7 +42,7 @@ import { NoDataFoundComponent } from './candidateCommons/no-data-found/no-data-f
     CommonPaginatorComponent,
     TimeAgoPipe,
     NoDataFoundComponent
-    
+
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]
 })

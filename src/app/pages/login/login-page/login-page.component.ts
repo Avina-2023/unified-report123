@@ -2,7 +2,7 @@ import { ToastrService } from 'ngx-toastr';
 import { APP_CONSTANTS } from './../../../utils/app-constants.service';
 import { AppConfigService } from './../../../utils/app-config.service';
 import { ApiService } from './../../../services/api.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import * as publicIp from 'public-ip';
@@ -21,7 +21,10 @@ export class LoginPageComponent  {
   disableButton: boolean;
   userIP: any;
   isCandidate:boolean = true;
+  labelname:any;
 
+  @ViewChild('mailsuccess', { static: false }) mailsuccess: TemplateRef<any>;
+  @ViewChild('notactive', { static: false }) notactive: TemplateRef<any>;
 
   constructor(
     public fb: FormBuilder,
@@ -34,6 +37,11 @@ export class LoginPageComponent  {
 
   ) {
 
+    if(this.router.url == '/login?from=freshGrad'){
+      this.labelname = 'Email'
+    }else{
+      this.labelname = 'User ID'
+    }
     this.activatedRoute.queryParams.subscribe(params => {
       if(params.from == 'freshGrad'){
         this.isCandidate = true;
@@ -45,6 +53,15 @@ export class LoginPageComponent  {
 
   ngOnInit(): void {
     this.formInitialize();
+  }
+
+  openMatDialogs(templateref){
+    this.matDialog.open(templateref, {
+      width: '50%',
+      height:'60vh',
+      disableClose: true,
+      hasBackdrop:true
+    });
   }
 
   login() {
@@ -72,7 +89,14 @@ export class LoginPageComponent  {
         this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.CANDIDATEDASH.DASHBOARD);
       }else{
         // this.appConfig.setLocalStorage('c_token', data && data.token ? data.token : 'my token');
-        this.toastr.warning(data.message)
+
+        if(data.message=="Your account is not active!")
+        {
+          this.openMatDialogs(this.notactive)
+        }else{
+          this.toastr.warning(data.message)
+        }
+
       }
       })
     }else{
@@ -108,6 +132,25 @@ export class LoginPageComponent  {
     });
     }
 
+  }
+
+  resendEmail(){
+    this.matDialog.closeAll()
+    let data={
+      email: this.apiService.encryptnew(this.loginForm.value.username.trim(),environment.cryptoEncryptionKey),
+      resendActivationmail:true
+    }
+    this.apiService.forgotPassword(data).subscribe((success: any) => {
+      if(success.success){
+        this.openMatDialogs(this.mailsuccess)
+        // this.appConfig.routeNavigation("/login");
+        this.appConfig.routeNavigationWithQueryParam("login",{from:"freshGrad"});
+        }else{
+          this.toastr.error(success.message);
+        }
+    }, (err) => {
+      this.toastr.warning('Connection failed, Please try again.');
+    });
   }
 
   formInitialize() {
