@@ -22,8 +22,8 @@ export class LandingHomeComponent implements OnInit {
   }
 
   slidehover(slideElem: HTMLElement, e) {
-    let x = e.screenX - slideElem.offsetLeft;
-    let y = e.screenY - slideElem.offsetTop;
+    let x = (e.pageX*-1/50);
+    let y = (e.pageY*-1/50);
     slideElem.getElementsByTagName('img')[0].style.transform =
       'translate3d(' +
       x * 0.05 +
