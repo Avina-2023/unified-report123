@@ -13,6 +13,7 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./resume-builder.component.scss']
 })
 
+
 export class ResumeBuilderComponent implements OnInit {
   @ViewChild('resumeBuild', { static: false }) resumeDialogRef: TemplateRef<any>;
   constructor(public dialog: MatDialog,private router:Router,private appconfig:AppConfigService,private apiservice:ApiService) { }
