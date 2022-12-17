@@ -26,7 +26,8 @@
         cursor: pointer;
     }
 
-    .resume {
+    .resume,
+    .box {
         position: relative;
         width: 200px;
     }
@@ -85,46 +86,56 @@
 
 }
 
-.icon-Close{
+.icon-Close {
     float: right;
     font-weight: bold;
     color: #000;
     font-size: 12px;
+    margin-top: -14%;
 }
-.alert_div{
+
+.alert_div {
     margin-top: 20px;
     text-align: center;
-    p{
-    font-size: 19px;
-    color: #000;
-    font-weight: 400;
+
+    p {
+        font-size: 19px;
+        color: #000;
+        font-weight: 400;
+    }
+
+    span {
+        color: #1B4E9B;
+        text-decoration: underline;
+        font-weight: 400;
+        font-size: 18px;
+    }
 }
-span{
-    color: #1B4E9B;
-    text-decoration: underline;
-    font-weight: 400;
-    font-size: 18px;
-}
-}
-.alert_msg{
+
+.alert_msg {
     text-align: center;
     margin-top: 80px;
-    span{
-     color: #222222;
-     font-size: 13px;
+
+    span {
+        color: #222222;
+        font-size: 13px;
     }
 }
 
 
-.template_res{
+.template_res {
     cursor: pointer;
 }
 
 
-    ::ng-deep .resume_desk_dialog{
-     .mat-dialog-container {
-        border-radius: 0px!important;
-        padding: 20px!important;
-        width: 600px!important;
+::ng-deep .resume_desk_dialog {
+    .mat-dialog-container {
+        border-radius: 0px !important;
+        padding: 20px !important;
+        width: fit-content;
+        height: 300px;
+        align-items: center;
+        display: flex;
+
     }
-  }
+}
