@@ -56,6 +56,9 @@ export class ApiService {
   getDriveBaisedUser(data) {
     return this.http.post(`${this.BASE_URL}/driveCandidateList`, data);
   }
+  getDriveCardData(data){
+    return this.http.post(`${this.BASE_URL}/joblistwithaggrid`,data);
+  }
   getAGgridData(data){
     return this.http.post(`${this.BASE_URL}/joblistwithaggrid`,data);
   }

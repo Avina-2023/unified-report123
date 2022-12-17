@@ -92,6 +92,7 @@ export class PartnerListComponent implements OnInit {
 
   ) 
   {
+    
     var data = {
       filterModel: { createdBy: { filterType: 'nin', values: ['UapAdmin'] } },
     };
@@ -117,8 +118,12 @@ export class PartnerListComponent implements OnInit {
     this.getAGgrid();
  this.ApiService.partnersubject.subscribe((result:boolean) =>{
   if (result){
-    this.getAGgrid()
+    this.getAGgrid();
+    // 
+    this.gridApi.paginationGoToFirstPage();
     this.gridApi.refreshServerSideStore({ purge: true });
+   
+    // this.gridApi.paginationGoToCurrentPage();
   }
   
  })
@@ -140,7 +145,8 @@ export class PartnerListComponent implements OnInit {
     },
       { headerName: 'Employer Name', field: 'company', minWidth: 170,  filter: 'agTextColumnFilter',filterParams: {
         suppressAndOrCondition: true,
-        filterOptions: ['contains']
+        filterOptions: ['contains'],
+        filterModel: { createdBy: { filterType: 'nin', values: ['UapAdmin'] } }
       }, },
       { headerName: '', field: 'companyImgURL', minWidth: 50,
       cellRenderer: function(params){
@@ -171,6 +177,7 @@ export class PartnerListComponent implements OnInit {
     filterParams: {
       suppressAndOrCondition: true,
       filterOptions: ['equals', 'lessThan', 'greaterThan', 'inRange'],
+      filterModel: { createdBy: { filterType: 'nin', values: ['UapAdmin'] } }
     },
     },
       { headerName: 'Status', 
@@ -222,9 +229,6 @@ export class PartnerListComponent implements OnInit {
   onGridReady(params: any) {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
-
-   
-   
     var datasource = this.getAGgrid();
     params.api.setServerSideDatasource(datasource);
   }
@@ -242,6 +246,7 @@ export class PartnerListComponent implements OnInit {
     return {
       getRows: (params) => {
         let apiData: any = params;
+       apiData.request.filterModel["createdBy"]= { filterType: 'nin', values: ['UapAdmin'] };
         this.partnerListAgGridSubscription = this.ApiService.getAGgridPatnerList(apiData.request).subscribe((data1: any) => {
           console.log(data1);
           
