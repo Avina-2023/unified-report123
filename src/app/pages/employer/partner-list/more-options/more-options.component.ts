@@ -39,8 +39,9 @@ export class MoreOptionsComponent implements ICellRendererAngularComp {
   data:any;
   status: string;
   getAGgrid: any;
-  partnerlistdata: any;
+  partnerListAgData: any;
   params:any;
+  gridApi: any;
   constructor(
     private toastr: ToastrService,
     private dialog: MatDialog,
@@ -92,12 +93,17 @@ export class MoreOptionsComponent implements ICellRendererAngularComp {
         } else {
           this.ApiService.partnersubject.next(true)
           this.toastr.success('Status updated Successfully');
+          
         }
+      
       },
       (err) => {
         this.toastr.warning('Connection failed, Please try again.');
       }
+      
     );
+   
+    
   }
   
   updatePartner(email) {
