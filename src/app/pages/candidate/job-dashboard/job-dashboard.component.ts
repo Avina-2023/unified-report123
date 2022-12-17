@@ -180,6 +180,7 @@ export class JobDashboardComponent implements OnInit {
         this.msgData.sendMessage("profileImage",this.Details.profileImage)
         this.appConfig.setLocalStorage('profileImage',this.Details.profileImage + environment.blobToken);
         this.profilepercentage = Math.ceil(this.Details.profilePercentage);
+        this.appConfig.setLocalStorage('profilePercentage', this.profilepercentage);
         this.usercity = this.Details.permanentaddress.permanent_city;
         this.userstate = this.Details.permanentaddress.permanent_state;
         this.usercountry = this.Details.permanentaddress.permanent_country;
