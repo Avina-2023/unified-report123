@@ -11,30 +11,13 @@ import { APP_CONSTANTS } from 'src/app/utils/app-constants.service';
 })
 export class ResumeTemplateComponent implements OnInit {
   candidate: any;
-  visible:any;
-  workVisible: any;
+  // visible:any;
+  // workVisible: any;
   username = localStorage.getItem('name')
   constructor(private router:Router,private appConfig: AppConfigService,) { }
 
   ngOnInit() {
     this.getInfo();
-    this.showDetails();
-  }
-
-
-  showDetails(){
-    if(this.candidate.personal_details.languages_known.length == 0){
-      this.visible = false;
-    }
-    else{
-      this.visible = true;
-    }
-    if(this.candidate.experience_details.employments.length == 0){
-      this.workVisible = false;
-    }
-    else{
-      this.workVisible = true;
-    }
   }
 
   gotoResumePage(){

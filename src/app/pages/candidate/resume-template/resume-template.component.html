@@ -21,7 +21,7 @@
         <p class="user_email">{{candidate.email}}</p>
       </div>
     </div>
-    <div class="user_intro topic">
+    <div class="user_intro topic" *ngIf="this.candidate.education_details?.educations?.length">
       <div class="first-div">
         <p class="res_icon"></p>
         <p class="res_title">Education</p>
@@ -38,7 +38,7 @@
       </div>
     </div>
 
-    <div class="user_intro topic">
+    <div class="user_intro topic" *ngIf="this.candidate.experience_details?.skills?.length">
       <div class="first-div">
         <p class="res_icon"></p>
         <p class="res_title">Skills</p>
@@ -49,8 +49,7 @@
         </div>
       </div>
     </div>
-
-    <div class="user_intro head-training topic">
+    <div class="user_intro topic" *ngIf="this.candidate.experience_details?.intern?.length">
       <div class="first-div">
         <p class="res_icon"></p>
         <p class="res_title">Training Details</p>
@@ -64,21 +63,7 @@
       </div>
     </div>
 
-    <div class="user_intro topic">
-      <div class="first-div">
-        <p class="res_icon"></p>
-        <p class="res_title">Training Details</p>
-      </div>
-      <div class="second-div training cv_spacing">
-        <div *ngFor="let item of candidate.experience_details.intern;let i=index;">
-          <p class="cv_title">{{item.employer_name}}</p>
-          <p class="cv_subtitle">({{item.from_date}} - {{item.to_date}})</p>
-          <p class="cv_subtitle">{{item.work_responsiability}}</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="user_intro topic" *ngIf="workVisible">
+    <div class="user_intro topic" *ngIf="this.candidate.experience_details?.employments?.length">
       <div class="first-div">
         <p class="res_icon"></p>
         <p class="res_title">Work Experience</p>
@@ -125,35 +110,33 @@
       </div>
     </div> -->
 
-    <div class="user_intro topic" *ngIf="visible">
-      <div class="user_intro head-languages topic" *ngIf="visible">
-        <div class="first-div">
-          <p class="res_icon"></p>
-          <p class="res_title">Languages <br> Known</p>
-        </div>
-        <div class="second-div languages cv_spacing">
-          <table>
-            <tr>
-              <th></th>
-              <th class="cv_title">Read</th>
-              <th class="cv_title">Write</th>
-              <th class="cv_title">Speak</th>
-            </tr>
-            <tr *ngFor="let item of candidate.personal_details.languages_known; let i=index;">
-              <td class="cv_title">{{item.language}}</td>
-              <td class="lang"><span
-                  [ngClass]="{ 'icon-check-rounded': item.is_read == 1, 'icon-close-rounded': item.is_read == 0}"></span>
-              </td>
-              <td class="lang"><span
-                  [ngClass]="{ 'icon-check-rounded': item.is_write == 1, 'icon-close-rounded': item.is_write == 0}"></span>
-              </td>
-              <td class="lang"><span
-                  [ngClass]="{ 'icon-check-rounded': item.is_speak == 1, 'icon-close-rounded': item.is_speak == 0}"></span>
-              </td>
+    <div class="user_intro topic" *ngIf="this.candidate.personal_details?.languages_known?.length">
+      <div class="first-div">
+        <p class="res_icon"></p>
+        <p class="res_title">Languages <br> Known</p>
+      </div>
+      <div class="second-div languages cv_spacing">
+        <table>
+          <tr>
+            <th></th>
+            <th class="cv_title">Read</th>
+            <th class="cv_title">Write</th>
+            <th class="cv_title">Speak</th>
+          </tr>
+          <tr *ngFor="let item of candidate.personal_details.languages_known; let i=index;">
+            <td class="cv_title">{{item.language}}</td>
+            <td class="lang"><span
+                [ngClass]="{ 'icon-check-rounded': item.is_read == 1, 'icon-close-rounded': item.is_read == 0}"></span>
+            </td>
+            <td class="lang"><span
+                [ngClass]="{ 'icon-check-rounded': item.is_write == 1, 'icon-close-rounded': item.is_write == 0}"></span>
+            </td>
+            <td class="lang"><span
+                [ngClass]="{ 'icon-check-rounded': item.is_speak == 1, 'icon-close-rounded': item.is_speak == 0}"></span>
+            </td>
 
-            </tr>
-          </table>
-        </div>
+          </tr>
+        </table>
       </div>
 
 
