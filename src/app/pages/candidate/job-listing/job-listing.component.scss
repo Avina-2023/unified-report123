@@ -9,6 +9,7 @@
 }
 
 ::ng-deep {
+
   .mat-option.mat-active,
   .mat-option:hover {
     background: none !important;
@@ -122,6 +123,7 @@
   align-content: stretch;
   //   overflow: scroll;
 }
+
 .norecords {
   display: flex;
   align-items: center;
@@ -129,10 +131,12 @@
   flex-wrap: nowrap;
   position: relative;
   top: 150px;
+
   span {
     font-weight: 600;
   }
 }
+
 .overall_box {
   display: flex;
   flex-wrap: wrap;
@@ -234,6 +238,12 @@
   line-height: 1.2;
 }
 
+.head_designation {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .job_description {
   color: #707070;
   font-size: 13px;
@@ -297,14 +307,19 @@
     margin: 0px 2px;
   }
 }
+
 .paginationdisplay {
   display: flex;
   justify-content: space-around;
   width: 100%;
   bottom: 30px;
 }
+
 .misc_save {
   z-index: 999;
+  position: absolute;
+  top: 0%;
+  right: 0%;
 
   .mat-icon {
     color: #26bbef;
@@ -694,32 +709,32 @@
 }
 
 @media only screen and (min-width: 900px) {
-  ::ng-deep .spec_desk_dialog{
-   .mat-dialog-container {
-    position: absolute !important;
-    width: max-content !important;
-    height: max-content !important;
-    right: 10% !important;
-    top: 20% !important;
-    padding: 0px !important;
-    overflow: inherit !important;
+  ::ng-deep .spec_desk_dialog {
+    .mat-dialog-container {
+      position: absolute !important;
+      width: max-content !important;
+      height: max-content !important;
+      right: 10% !important;
+      top: 20% !important;
+      padding: 0px !important;
+      overflow: inherit !important;
+    }
   }
-}
 
 
 
   .example_card {
-    height: 300px;
+    height: 320px;
+    //height: fit-content;
   }
 
   .sample_class {
+    display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: flex-start;
-    max-height: 175px !important;
-    height: 175px;
-    overflow: scroll !important;
     line-height: 23px;
+    height: fit-content;
   }
 }
 
