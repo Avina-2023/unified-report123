@@ -44,9 +44,13 @@ export class candidateRegister implements OnInit {
   }
 
   register() {
-    this.freshGraduatesForm.value.email = CryptoJS.AES.encrypt(this.freshGraduatesForm.value.email.toLowerCase().trim(), this.secretKey.trim()).toString();
-    console.log(CryptoJS.AES.decrypt(this.freshGraduatesForm.value.email,this.secretKey.trim()))
-    this.ApiService.candidateRegistration(this.freshGraduatesForm.value).subscribe((res: any) => {
+    let enc_email = CryptoJS.AES.encrypt(this.freshGraduatesForm.value.email.toLowerCase().trim(), this.secretKey.trim()).toString();
+    let apidata = {
+      email : enc_email,
+      user_name : this.freshGraduatesForm.value.user_name
+    }
+
+    this.ApiService.candidateRegistration(apidata).subscribe((res: any) => {
       if (res.success) {
         this.newCandidate = true
         this.registerform = false
@@ -92,9 +96,10 @@ export class candidateRegister implements OnInit {
   }
 
   resendEmail(){
+    let enc_email = CryptoJS.AES.encrypt(this.freshGraduatesForm.value.email.toLowerCase().trim(), this.secretKey.trim()).toString();
     this.dialog.closeAll()
     let data={
-      email: this.freshGraduatesForm.value.email,
+      email: enc_email,
       resendActivationmail:true
     }
     this.ApiService.forgotPassword(data).subscribe((success: any) => {
