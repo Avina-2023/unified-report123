@@ -17,14 +17,29 @@ export const APP_CONSTANTS = {
   // Route endpoints
   ENDPOINTS: {
     LOGIN: '/login',
-    // HOME: '/home',
-    HOME: '/static',
+    HOME: '/home',
+    // HOME: '/static',
     AUTH: '/auth',
     LANDING: '/landing',
+    REGISTER:"/register",
+    EMPLOYERS:"/employers",
+    LANDINGPAGE:{
+      LANDINGPAGE:"/",
+      HOME:"/home",
+      ABOUT:"/about",
+      EMPLOYER:"/employer",
+      FRESHGRADUATES:"/FreshGraduates",
+      HIRINGPARTNER:"/hiringpartner",
+      INSTITUTIONALPARTNERS:"/institutionalpartners",
+      CONTACT:"/contact"
+    },
+
     CNDIDATELANDING:'/candidateview',
     CANDIDATEDASH:{
       DASHBOARD:'/candidateview/dashboard',
       JOBLIST:'/candidateview/findjobs',
+      RESUMEBUILDER:'/candidateview/resumebuilder',
+      RESUMETEMPLATE:'/candidateview/resumetemplate',
       JOBSSAVED:'/candidateview/savedjobs',
       JOBSAPPLIED:'/candidateview/appliedjobs',
       PAGINATION :'/candidateview/page',
@@ -61,10 +76,19 @@ export const APP_CONSTANTS = {
       ADDPARTNER:"/auth/partner/addpartner",
       PARTNERENQUIRY: "/auth/partner/partnerenquiry"
     },
+    VIEWDRIVE:{
+      HOME: '/auth/drive',
+      MANAGEDRIVE:'/auth/drive/managedrive',
+      DRIVESETTINGS:'/auth/drive/drivesettings'
+    },
+
     EMPDASHBOARD:{
       HOME:'/auth/dashboard',
       PROFILE:'/auth/dashboard/profile',
       CHANGEPWD:'/auth/dashboard/changePwd'
+    },
+    EMPJOBS:{
+      REQUIRMENT:'auth/jobrequirment'
     }
   },
 
@@ -77,12 +101,26 @@ export const APP_CONSTANTS = {
       SETUP: 'setpwd'
     },
     LANDING: 'landing',
+    REGISTER:"register",
+    EMPLOYERS:"employers",
+    LANDINGPAGE:{
+      LANDINGPAGE:"",
+      HOME:"home",
+      ABOUT:"about",
+      EMPLOYER:"employer",
+      FRESHGRADUATES:"FreshGraduates",
+      HIRINGPARTNER:"hiringpartner",
+      INSTITUTIONALPARTNERS:"institutionalpartners",
+      CONTACT:"contact"
+    },
     HOME: 'home',
     AUTH: 'auth',
     CNDIDATELANDING:'candidateview',
     CANDIDATEDASH:{
       DASHBOARD:'dashboard',
       JOBLIST:'findjobs',
+      RESUMEBUILDER:'resumebuilder',
+      RESUMETEMPLATE:'resumetemplate',
       JOBSSAVED:'savedjobs',
       JOBSAPPLIED:'appliedjobs',
       JOBDESCRIPTION:'jobdescription',
@@ -114,6 +152,12 @@ export const APP_CONSTANTS = {
       ADDPARTNER:"addpartner",
       PARTNERENQUIRY:"partnerenquiry"
     },
+    DRIVE:{
+      HOME: 'drive',
+      MANAGEDRIVE:'managedrive',
+      DRIVESETTINGS:'drivesettings'
+    },
+
     EMPDASHBOARD:{
       HOME:'dashboard',
       COUNTCARD:'count',
@@ -122,7 +166,8 @@ export const APP_CONSTANTS = {
       GRADUATION:'Graduation',
       DEGREE :'Degree',
       PROFILE:'profile',
-      CHANGEPWD:'changePwd'
+      CHANGEPWD:'changePwd',
+      REQUIRMENT:'jobrequirment'
     }
   }
 };

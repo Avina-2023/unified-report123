@@ -1,0 +1,40 @@
+<section class="overall_section">
+  <div class="top_head">Resume Builder</div>
+
+  <div class="template">
+    <p class="template-title">Available Templates</p>
+    <p class="template-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+      ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco</p>
+  </div>
+
+''
+  <div class="resume_box">
+    <div class="resume">
+      <img src="assets/images/resume.svg" alt="resume" class="res-image" style="width:100%">
+      <div class="middle-icon">
+        <mat-icon (click)="resumeTemplate()" class="misc_icon">remove_red_eye</mat-icon>
+      </div>
+      <!-- <mat-icon class="res-download">download</mat-icon> -->
+      <span class="icon-file-download res-download" (click)="generatePDF()"></span>
+    </div>
+  </div>
+</section>
+<div id="contentToConvert">
+<h1>hlo</h1>
+</div>
+<ng-template #resumeBuild>
+  <div class="template_res">
+  <div style="text-align:center;">
+   <img style="width:60px;" src="assets/images/alert-image.png">
+   <span mat-dialog-close class="icon-Close"></span>
+ </div>
+   <div class="alert_div">
+   <p>Please complete your profile to download your resume</p>
+   <span>Go to profile</span>
+   </div>
+   <div class="alert_msg">
+   <span>Click Here if profile has been updated</span>
+   </div>
+  </div>
+   </ng-template>
+

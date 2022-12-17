@@ -1,0 +1,176 @@
+<section class="template_box">
+  <div class="top-section">
+    <div (click)="gotoResumePage()"><mat-icon>arrow_back</mat-icon>Back</div>
+    <div>
+      <button>Download</button>
+    </div>
+  </div>
+  <section id="inner_template" #inner_template>
+    <div class="user_intro">
+      <div class="first-div"><img src="assets/images/candidate-userprofile.png"></div>
+      <div class="second-div">
+        <p class="username_title">{{username}}</p>
+        <div *ngIf="this.candidate.education_details?.educations&&this.candidate.education_details.educations.length">
+          <p class="username_subtitle">{{this.candidate.education_details.educations[0].specification}}
+            ({{this.candidate.education_details.educations[0].discipline}})</p>
+        </div>
+        <p class="user_addres">
+          {{candidate.contact_details.permanent_line1_street_add}}<br>{{candidate.contact_details.permanent_line2_street_add}}
+        </p>
+        <p class="user_phone">{{candidate.personal_details.mobile}}</p>
+        <p class="user_email">{{candidate.email}}</p>
+      </div>
+    </div>
+    <div class="user_intro topic">
+      <div class="first-div">
+        <p class="res_icon"></p>
+        <p class="res_title">Education</p>
+      </div>
+      <div class="second-div education cv_spacing">
+        <div class="flex_spacing" *ngFor="let item of this.candidate.education_details.educations; let i=index;">
+          <div id="year">{{item.year_of_passing | date:'yyyy'}}</div>
+          <div class="dot-line"><span class="dot"></span><span class="line"></span></div>
+          <div class="course">
+            <p class="cv_title">{{item.level}} - <span>{{item.percentage}}%</span></p>
+            <p class="cv_subtitle">{{item.institute}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="user_intro topic">
+      <div class="first-div">
+        <p class="res_icon"></p>
+        <p class="res_title">Skills</p>
+      </div>
+      <div class="second-div skillset cv_spacing">
+        <div *ngFor="let item of candidate.experience_details.skills;let i=index;">
+          <button>{{item}}</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="user_intro head-training topic">
+      <div class="first-div">
+        <p class="res_icon"></p>
+        <p class="res_title">Training Details</p>
+      </div>
+      <div class="second-div training cv_spacing">
+        <div *ngFor="let item of candidate.experience_details.intern;let i=index;">
+          <p class="cv_title">{{item.employer_name}}</p>
+          <p class="cv_subtitle">({{item.from_date}} - {{item.to_date}})</p>
+          <p class="cv_subtitle">{{item.work_responsiability}}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="user_intro topic">
+      <div class="first-div">
+        <p class="res_icon"></p>
+        <p class="res_title">Training Details</p>
+      </div>
+      <div class="second-div training cv_spacing">
+        <div *ngFor="let item of candidate.experience_details.intern;let i=index;">
+          <p class="cv_title">{{item.employer_name}}</p>
+          <p class="cv_subtitle">({{item.from_date}} - {{item.to_date}})</p>
+          <p class="cv_subtitle">{{item.work_responsiability}}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="user_intro topic" *ngIf="workVisible">
+      <div class="first-div">
+        <p class="res_icon"></p>
+        <p class="res_title">Work Experience</p>
+      </div>
+      <div class="second-div work cv_spacing">
+        <div *ngFor="let item of candidate.experience_details.employments;let i=index;">
+          <p class="cv_title">{{item.employment_name_address}}</p>
+          <p class="cv_subtitle">{{item.postion_field}}<br><span class="cv_subtitle">({{item.duration_year}} year
+              {{item.duration_month}} months)</span></p>
+
+          <p class="cv_subtitle">{{item.nature_work}}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- <div class="user_intro topic">
+      <div class="first-div">
+        <p class="res_icon"></p>
+        <p class="res_title">Projects</p>
+      </div>
+      <div class="second-div Project cv_spacing">
+        <p class="cv_title">Name of the Project</p>
+        <p class="cv_subtitle">Project Description Loreum street, Ipsum PlaceLoreum street, Ipsum PlaceLoreum street,
+          Ipsum PlaceLoreum street, Ipsum PlaceLoreum street, Ipsum PlaceLoreum street, Ipsum Place</p>
+      </div>
+    </div>
+
+    <div class="user_intro topic">
+      <div class="first-div">
+        <p class="res_icon"></p>
+        <p class="res_title">Certifications</p>
+      </div>
+      <div class="second-div certification cv_spacing">
+        <div>
+          <p class="cv_title">Name of the Certification</p>
+          <p class="cv_subtitle">Project Description Loreum street, Ipsum PlaceLoreum street, Ipsum PlaceLoreum street,
+            Ipsum PlaceLoreum street, Ipsum PlaceLoreum street, Ipsum PlaceLoreum street, Ipsum Place</p>
+        </div>
+        <div>
+          <p class="cv_title">Name of the Certification</p>
+          <p class="cv_subtitle">Project Description Loreum street, Ipsum PlaceLoreum street, Ipsum PlaceLoreum street,
+            Ipsum PlaceLoreum street, Ipsum PlaceLoreum street, Ipsum PlaceLoreum street, Ipsum Place</p>
+        </div>
+      </div>
+    </div> -->
+
+    <div class="user_intro topic" *ngIf="visible">
+      <div class="user_intro head-languages topic" *ngIf="visible">
+        <div class="first-div">
+          <p class="res_icon"></p>
+          <p class="res_title">Languages <br> Known</p>
+        </div>
+        <div class="second-div languages cv_spacing">
+          <table>
+            <tr>
+              <th></th>
+              <th class="cv_title">Read</th>
+              <th class="cv_title">Write</th>
+              <th class="cv_title">Speak</th>
+            </tr>
+            <tr *ngFor="let item of candidate.personal_details.languages_known; let i=index;">
+              <td class="cv_title">{{item.language}}</td>
+              <td class="lang"><span
+                  [ngClass]="{ 'icon-check-rounded': item.is_read == 1, 'icon-close-rounded': item.is_read == 0}"></span>
+              </td>
+              <td class="lang"><span
+                  [ngClass]="{ 'icon-check-rounded': item.is_write == 1, 'icon-close-rounded': item.is_write == 0}"></span>
+              </td>
+              <td class="lang"><span
+                  [ngClass]="{ 'icon-check-rounded': item.is_speak == 1, 'icon-close-rounded': item.is_speak == 0}"></span>
+              </td>
+
+            </tr>
+          </table>
+        </div>
+      </div>
+
+
+      <!-- <div class="user_intro topic">
+      <div class="first-div">
+        <p class="res_icon"></p>
+        <p class="res_title">Hobbies</p>
+      </div>
+      <div class="second-div hobbies cv_spacing">
+        <div>
+          <p class="hoby"><span class="dot"></span><span class="cv_subtitle">Watching TV</span></p>
+          <p class="hoby"><span class="dot"></span><span class="cv_subtitle">Playing Video Games</span></p>
+          <p class="hoby"><span class="dot"></span><span class="cv_subtitle">Playing Table Tenis</span></p>
+        </div>
+
+      </div>
+    </div> -->
+    </div>
+  </section>
+</section>

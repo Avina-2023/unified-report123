@@ -2,10 +2,11 @@
     .mat-toolbar {
         background: #fff;
     }
-    
+
 }
-.container-fluid.p-0{
-    overflow: inherit!important;
+
+.container-fluid.p-0 {
+    overflow: inherit !important;
     margin-bottom: 100px;
 }
 
@@ -14,7 +15,6 @@
     background-color: #1B4E9B;
     width: 100%;
     height: 240px;
-    // display: flex;
 }
 
 :host ::ng-deep .mat-grid-list {
@@ -36,10 +36,8 @@
     .dashboard-text {
         text-align: left;
         font-size: 18px;
-        letter-spacing: 0px;
         color: #e5e5e5 !important;
         text-transform: capitalize;
-        // opacity: 0.7;
         font-weight: 200;
     }
 
@@ -47,7 +45,7 @@
         font-size: 22px;
         text-align: left;
         letter-spacing: NaNpx;
-        color: #fff!important;
+        color: #fff !important;
         text-transform: capitalize;
         opacity: 0.9;
         position: relative;
@@ -90,7 +88,6 @@
 
 .top-right {
     position: relative;
-    // right: 15%;
     float: right;
     top: 25px;
 
@@ -102,14 +99,11 @@
 }
 
 .card {
-    //     width: 295px;
-    // height: 120px;
-    // background: var(--unnamed-color-ffffff) 0% 0% no-repeat padding-box;
     background: #FFFFFF 0% 0% no-repeat padding-box;
     box-shadow: 0px 3px 6px #2C28281C;
     border-radius: 10px;
     opacity: 1;
-    .card-content{
+    .card-content {
         width: 100%;
     }
 }
@@ -117,7 +111,6 @@
 .card-head {
     text-align: left;
     font-size: 14px;
-    letter-spacing: 0px;
     color: #343434;
     text-transform: capitalize;
     opacity: 1;
@@ -128,17 +121,16 @@
 .card-number {
     color: #1B4E9B;
     text-align: left;
-    letter-spacing: 0px;
     opacity: 1;
     margin-bottom: 20px;
-    margin-top: 5px;
+    margin-top: 2px;
     font-size: 22px;
 }
 
 .card-last-text {
     text-align: left;
     font-size: 12px;
-    letter-spacing: 0px;
+
     color: #262626;
     opacity: 1;
 }
@@ -153,26 +145,28 @@
     background: #56B35A 0% 0% no-repeat padding-box;
     border-radius: 4px;
     opacity: 1;
-    width: 45px;
-    height: 23px;
-    text-align: center;
-    padding: 5px;
-    font-weight: 500;
-    font-size: 11px;
+    font-size: 14px;
     color: #fff;
-    span{
-        display: flex;
-        justify-content: end;
+    display: flex;
+    width: min-content;
+    padding: 3px 3px 0px 3px;
+    white-space: nowrap;
+
+    span:first-child {
+        width: 20%;
+        margin: 0px 4px 0px 0px;
+    }
+
+    span:last-child {
+        width: 80%;
+        margin-top: 2px;
     }
 }
-.misc_icon{
-    width: 35%;
-    margin-top: -3px;
+
+.misc_icon {
     transform: rotate(270deg);
-    position: absolute;
-    left: -7%;
-    top: 66%;
 }
+
 .align-indication {
     align-items: center;
     display: flex;
@@ -204,26 +198,30 @@
     box-shadow: 1px 1px 12px #00000033;
     border-radius: 10px;
     opacity: 1;
-    padding: 20px;
+    padding: 16px;
     height: auto;
     width: auto;
 
-    .chart-title {
-        font-size: 18px;
-        text-align: left;
-        font: normal normal 300 18px/24px Roboto;
-        letter-spacing: 0px;
-        color: #000000;
-        opacity: 1;
-    }
-    .spacing {
-        margin-bottom: 15px;
-    }
+
+
 
     .align {
         position: relative;
         left: 11px;
     }
+}
+
+.spacing {
+    padding-bottom: 20px;
+}
+
+.chart-title {
+    font-size: 18px;
+    text-align: left;
+    font: normal normal 300 18px/24px Roboto;
+    color: #000000;
+    opacity: 0.8;
+    font-weight: 400;
 }
 
 .cardcharts {
@@ -301,7 +299,6 @@
     font-size: 13px;
     text-align: left;
     font: normal normal medium 13px/20px Roboto;
-    letter-spacing: 0px;
     color: rgba(77, 79, 92, 1);
     opacity: 1;
     font-weight: 500;
@@ -313,19 +310,9 @@
     font-weight: 300;
     text-align: right;
     font: normal normal normal 13px/20px Roboto;
-    letter-spacing: 0px;
     color: rgba(77, 79, 92, 1);
     opacity: 1;
 }
-
-
-
-
-
-
-
-
-
 
 .leftchart {
     position: relative;
@@ -453,7 +440,7 @@ div[role="progressbar"]::before {
 
     .insidetext1 {
         font: normal normal 300 17px/19px Roboto;
-        letter-spacing: 0px;
+
         font-size: 17px;
         color: rgba(77, 79, 92, 1);
         opacity: 1;
@@ -463,7 +450,7 @@ div[role="progressbar"]::before {
         font-size: 12px;
         text-align: left;
         font: normal normal 300 12px/19px Roboto;
-        letter-spacing: 0px;
+
         color: rgba(77, 79, 92, 1);
         opacity: 1;
         position: relative;
@@ -474,4 +461,78 @@ div[role="progressbar"]::before {
 .leftchart {
     position: relative;
     right: 71px;
+}
+
+.prof_demo {
+    margin-top: 80px;
+    margin-left: 20px;
+    margin-right: 20px;
+
+    .card_one {
+        width: 30%;
+        padding: 20px;
+        background: #FFFFFF 0% 0% no-repeat padding-box;
+        box-shadow: 0px 3px 6px #0000003b;
+        border-radius: 10px;
+        opacity: 1;
+    }
+
+    .card_two {
+        width: 35%;
+        padding: 0px 15px;
+        margin: 0 1.5%;
+        border-radius: 15px;
+
+        .above_card {
+            padding: 25px;
+            background: #FFFFFF 0% 0% no-repeat padding-box;
+            box-shadow: 0px 3px 6px #0000003b;
+            border-radius: 10px;
+            opacity: 1;
+        }
+
+        .below_card {
+            padding: 25px 15px;
+            margin-top: 16px;
+            background: #FFFFFF 0% 0% no-repeat padding-box;
+            box-shadow: 0px 3px 6px #0000003b;
+            border-radius: 10px;
+            opacity: 1;
+        }
+    }
+
+    .card_three {
+        width: 32%;
+        padding: 20px;
+        background: #FFFFFF 0% 0% no-repeat padding-box;
+        box-shadow: 0px 3px 6px #0000003b;
+        border-radius: 10px;
+        opacity: 1;
+    }
+}
+
+.prof_grad {
+    margin-top: 30px;
+    margin-left: 10px;
+    margin-right: 10px;
+
+    .card_one {
+        width: 30%;
+        padding: 20px;
+        margin: 0 0.5%;
+        background: #FFFFFF 0% 0% no-repeat padding-box;
+        box-shadow: 0px 3px 6px #0000003b;
+        border-radius: 10px;
+        opacity: 1;
+    }
+
+    .card_two {
+        width: 67%;
+        padding: 20px;
+        margin: 0 1%;
+        background: #FFFFFF 0% 0% no-repeat padding-box;
+        box-shadow: 0px 3px 6px #0000003b;
+        border-radius: 10px;
+        opacity: 1;
+    }
 }

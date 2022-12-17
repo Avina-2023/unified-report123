@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { StaticpageComponent } from './staticpage.component';
+import { PopUpCellRendererComponent } from './pop-up-cell-renderer.component';
 
-describe('StaticpageComponent', () => {
-  let component: StaticpageComponent;
-  let fixture: ComponentFixture<StaticpageComponent>;
+describe('PopUpCellRendererComponent', () => {
+  let component: PopUpCellRendererComponent;
+  let fixture: ComponentFixture<PopUpCellRendererComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ StaticpageComponent ]
+      declarations: [ PopUpCellRendererComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(StaticpageComponent);
+    fixture = TestBed.createComponent(PopUpCellRendererComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

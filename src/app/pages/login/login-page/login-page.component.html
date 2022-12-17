@@ -31,7 +31,7 @@
         </div>
         <form class="form" [formGroup]="loginForm" autocomplete="off">
 
-          <mat-label class="label-color">User Name</mat-label>
+          <mat-label class="label-color">{{labelname}}</mat-label>
             <mat-form-field appearance="outline">
                 <input matInput id="username" [placeholder]="'Enter User Name'" formControlName="username" maxlength="64" required>
             </mat-form-field>
@@ -66,3 +66,24 @@
     <!-- Footer area -->
     <div class="footer-section">© 2022 L&T EduTech. All Rights Reserved</div>
     </div>
+
+    <ng-template #mailsuccess>
+      <div style="position: relative;"><mat-icon class="close-icon" mat-dialog-close="true">close</mat-icon></div>
+      <div class="successMessage">
+        <img src="assets/images/check.png">
+        <div class="text">
+          <p>Verification mail has been sent</p>
+          <p class="subpara">to your email</p>
+        </div>
+      </div>
+    </ng-template>
+    <ng-template #notactive>
+      <div style="position: relative;"><mat-icon class="close-icon" mat-dialog-close="true">close</mat-icon></div>
+      <div class="successMessage">
+        <img src="/assets/images/close-circle.svg">
+        <div class="text">
+          <p>Your Account is not Active</p>
+          <div class="sublink" (click)="resendEmail()">Click here to activate your account</div>
+        </div>
+      </div>
+    </ng-template>

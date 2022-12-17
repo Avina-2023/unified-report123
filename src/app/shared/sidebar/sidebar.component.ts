@@ -1,5 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { E, H } from '@angular/cdk/keycodes';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatMenuTrigger } from '@angular/material/menu';
 import { NavigationEnd, Router } from '@angular/router';
+import { LoadingService } from 'src/app/services/loading.service';
 import { AppConfigService } from 'src/app/utils/app-config.service';
 import { APP_CONSTANTS } from 'src/app/utils/app-constants.service';
 
@@ -9,6 +13,7 @@ import { APP_CONSTANTS } from 'src/app/utils/app-constants.service';
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit {
+  @ViewChild('menuTrigger') menuTrigger: MatMenuTrigger;
   isExpanded: boolean;
   name: string;
   text: string;
@@ -16,8 +21,10 @@ export class SidebarComponent implements OnInit {
   orgdetails:any;
   roleCode:any;
   menuIconToggle: boolean;
+  menuIconToggle1:boolean;
+  driveIconToggle: boolean;
   check = "empdashboard";
-  constructor(private appconfig: AppConfigService,public router:Router) {
+  constructor(private appconfig: AppConfigService,public router:Router, public dialog: MatDialog, private loaded: LoadingService) {
     this.router.events.subscribe(event => {
       if(event instanceof NavigationEnd) {
         this.navBarSelector()
@@ -34,6 +41,11 @@ export class SidebarComponent implements OnInit {
       case '/auth/employer/dashboard':
         this.check = 'empdashboard';
         break;
+      case '/auth/employer/drive/managedrive':
+        this.driveIconToggle = true
+        this.check = 'managedrive';
+        break;
+
       case '/auth/partner/addpartner':
         this.menuIconToggle = true
         this.check = 'addpartner';
@@ -52,11 +64,16 @@ export class SidebarComponent implements OnInit {
       default:
         this.check = 'empdashboard';
         break;
+      case '/auth/jobrequirment/work':
+        this.menuIconToggle = true
+        this.check = 'emprequirments';
+        break;
     }
   }
 
   ngOnInit(): void {
     this.sideBar()
+    this.work(H);
   }
   validateClick(value) {
     this.check = value;
@@ -71,6 +88,10 @@ export class SidebarComponent implements OnInit {
     this.check = value;
     this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.PARTNER.ADDPARTNER)
    }
+   drive(value){
+    this.check = value;
+    this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.VIEWDRIVE.MANAGEDRIVE)
+   }
    manage(value){
     this.check = value;
     this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.PARTNER.PARTNERLIST)
@@ -82,8 +103,14 @@ export class SidebarComponent implements OnInit {
    logout(){
     localStorage.clear();
     this.ngOnInit();
-    this.router.navigate(['/static']);
+    this.router.navigate(['/home']);
    }
+   work(value:any){
+    // this.loaded.setLoading();
+    this.check = value;
+    this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.EMPJOBS.REQUIRMENT)
+  }
+
    profile(value){
     this.check = value;
     this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.EMPDASHBOARD.PROFILE)
@@ -100,6 +127,10 @@ export class SidebarComponent implements OnInit {
    changeIcon() {
     this.menuIconToggle = !this.menuIconToggle;
     }
+    changedriveIcon(){
+      this.driveIconToggle = !this.driveIconToggle;
+    }
+
 
 
 

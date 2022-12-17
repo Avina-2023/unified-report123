@@ -1,0 +1,162 @@
+
+<header class="header sticky">
+  <div class="header__container container">
+    <div class="header__top">
+      <a class="header__brand" [routerLink]="routerData.LANDINGPAGE.HOME">
+        <img src="https://assets.lntedutech.com/SKILL_EXCHANGE.png" alt="" />
+      </a>
+      <button class="navbar-toggler" type="button"   (click)="footerTrigger()" data-bs-toggle="collapse" data-bs-target="#navbarContent"
+        aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <!-- <div class="header__button">
+        <div class="dropdown mr-2">
+          <button class="btn button--primary text-white regbtn dropdown-toggle" type="button" ng-click="enabled=true"
+            id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Register
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" ng-disabled="!enabled">
+            <a class="dropdown-item" href="/register">Fresh Graduates</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="/employers">Employers</a>
+          </div>
+        </div>
+        <div class="dropdown">
+          <button class="btn button--primary text-white regbtn dropdown-toggle" type="button"
+            id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Login
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="/login?from=freshGrad">Fresh Graduates</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="/login?from=employer">Employers</a>
+          </div>
+        </div>
+      </div> -->
+
+      <nav class="navbar navbar-expand-xl">
+
+        <div class="collapse navbar-collapse" id="navbarContent">
+          <ul class="navbar-nav list-unstyled">
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="routerData.LANDINGPAGE.ABOUT">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="routerData.LANDINGPAGE.EMPLOYER">Employers</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="routerData.LANDINGPAGE.FRESHGRADUATES">Fresh Graduates</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" >Partners <span class="fa fa-caret-down"></span></a>
+              <ul class="list-unstyled">
+                <li><a [routerLink]="routerData.LANDINGPAGE.HIRINGPARTNER">Hiring Partners</a></li>
+                <li><a [routerLink]="routerData.LANDINGPAGE.INSTITUTIONALPARTNERS">Institutional Partners</a></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="routerData.LANDINGPAGE.CONTACT">Contact</a>
+            </li>
+          </ul>
+        </div>
+
+      </nav>
+
+      <nav class="navbar navbar-expand-xl">
+        <div class="collapse navbar-collapse" id="navbarContent">
+          <ul class="navbar-nav list-unstyled">
+            <li class="dropdown">
+              <a class="a-underline btn button--primary text-white regbtn dropdown-toggle a-undeline">Register <span class="fa fa-caret-down"></span></a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" [routerLink]="endPoints.REGISTER">Fresh Graduates</a></li>
+                <li><a  class="dropdown-item" [routerLink]="endPoints.EMPLOYERS" >Employers</a></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a class=" a-underline btn button--primary text-white regbtn dropdown-toggle a-undeline">Login <span class="fa fa-caret-down"></span></a>
+              <ul class=" dropdown-menu">
+                <li><a class="dropdown-item" [routerLink]="endPoints.LOGIN" [queryParams]="{from:'freshGrad'}">Fresh Graduates</a></li>
+                <li><a class="dropdown-item" [routerLink]="endPoints.LOGIN" [queryParams]="{from:'employer'}">Employers</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+    </div>
+
+  </div>
+</header>
+
+
+<ng-container *ngIf="visible">
+<footer class="footer footerlarge">
+  <div class="footer__container container">
+    <div class="footer__top">
+      <!-- <a class="footer__brand" [routerLink]="endPoints.LANDINGPAGE.HOME">
+        <img src="https://lntedutech.com/wp-content/uploads/2022/06/edutech_logo.png.webp" alt="" />
+      </a> -->
+      <div class="footer__social">
+        <ul class="footer__menu list-unstyled">
+          <li class="footer__menu-item">
+            <a class="footer__menu-link" [routerLink]="endPoints.LANDINGPAGE.ABOUT">About</a>
+          </li>
+          <li class="footer__menu-item">
+            <a class="footer__menu-link" [routerLink]="endPoints.LANDINGPAGE.EMPLOYER">Employers</a>
+          </li>
+          <li class="footer__menu-item">
+            <a class="footer__menu-link" [routerLink]="endPoints.LANDINGPAGE.FRESHGRADUATES">Fresh Graduates</a>
+          </li>
+          <li class="footer__menu-item">
+          <a [routerLink]="endPoints.LANDINGPAGE.HIRINGPARTNER">Hiring Partners</a>
+         </li>
+          <li class="footer__menu-item">
+          <a class="footer__menu-link" [routerLink]="endPoints.LANDINGPAGE.INSTITUTIONALPARTNERS">Institutional Partners</a>
+         </li>
+          <li class="footer__menu-item">
+            <a class="footer__menu-link" class="footer__menu-link" href="https://lntedutech.com/privacy-policy/" target="_blank">Privacy Policy</a>
+          </li>
+          <li class="footer__menu-item">
+            <a class="footer__menu-link" [routerLink]="endPoints.LANDINGPAGE.CONTACT">Contact</a>
+          </li>
+          <li class="footer__menu-item loginbtnsmbl">
+            <div class="dropdown mr-2 ">
+              <button class="btn button--primary text-white regbtn dropdown-toggle" type="button"
+                id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Register
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item"[routerLink]="endPoints.REGISTER">Fresh Graduates</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" [routerLink]="endPoints.EMPLOYERS" >Employers</a>
+              </div>
+            </div>
+            <div class="dropdown">
+              <button class="btn button--primary text-white regbtn dropdown-toggle" type="button"
+                id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Login
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" [routerLink]="endPoints.LOGIN" [queryParams]="{from:'freshGrad'}">Fresh Graduates</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" [routerLink]="endPoints.LOGIN" [queryParams]="{from:'employer'}">Employers</a>
+              </div>
+            </div>
+          </li>
+
+        </ul>
+
+
+
+</div>
+    </div>
+    <!-- <div class="footer__bottom">
+      <ul class="footer__menu list-unstyled">
+        <li class="footer__menu-item">
+          © 2022 <a class="footer__menu-link" href="https://lntedutech.com/" target="_blank">L&T EduTech</a>. All Rights Reserved.
+        </li>
+      </ul>
+    </div> -->
+  </div>
+</footer>
+</ng-container>

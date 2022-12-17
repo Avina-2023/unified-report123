@@ -55,11 +55,7 @@ export class JobDashboardComponent implements OnInit {
   public usercountry: any;
   public usercity: any;
   blobToken = environment.blobToken;
-  public allyears = [
-    { year: new Date().getFullYear() },
-    { year: new Date().getFullYear() - 1 },
-    { year: new Date().getFullYear() - 2 },
-  ];
+  public allyears = [];
   constructor(
     private apiService: ApiService,
     private appConfig: AppConfigService,
@@ -116,12 +112,31 @@ export class JobDashboardComponent implements OnInit {
         colors: ['#26BBEF', '#FF9A78', '#10E596'],
       },
     };
+
+    this.yearOption()
   }
   ngOnInit(): void {
     this.getCandidateDashBoard('');
     this.username = localStorage.getItem('name');
     this.email = localStorage.getItem('email');
     this.CandidateDetails();
+  }
+
+  yearOption(){
+    var date1 = new Date().getFullYear();
+    var date2 = new Date().getFullYear() - 1;
+    var date3 = new Date().getFullYear() - 2;
+    var yearArray = []; 
+    if(date1 >= 2022 ){
+      yearArray.push({year:date1})
+    }
+    if(date2 >= 2022 ){
+      yearArray.push({year:date2})
+    }
+    if(date3 >= 2022){
+      yearArray.push({year:date3})
+    }
+   this.allyears = yearArray;
   }
 
   // candidate Dashboard Barchart
@@ -162,7 +177,7 @@ export class JobDashboardComponent implements OnInit {
     this.apiService.candidateDetails(obj).subscribe((res: any) => {
       if (res.success) {
         this.Details = res.data;
-        this.msgData.sendMessage("profileImage",this.Details.profileImage + environment.blobToken)
+        this.msgData.sendMessage("profileImage",this.Details.profileImage)
         this.appConfig.setLocalStorage('profileImage',this.Details.profileImage + environment.blobToken);
         this.profilepercentage = Math.ceil(this.Details.profilePercentage);
         this.usercity = this.Details.permanentaddress.permanent_city;

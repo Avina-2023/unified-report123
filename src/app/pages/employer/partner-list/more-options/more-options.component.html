@@ -1,0 +1,361 @@
+<button mat-icon-button [matMenuTriggerFor]="menu" class="mat-icon">
+    <mat-icon class="icon"><img src="\assets\images\MoreOptions.png"></mat-icon>
+</button>
+
+<div class="menu-container">
+
+    <mat-menu #menu="matMenu">
+        <button mat-menu-item class="menu-item" (click)="updatePartner(params.data.email)">
+            <span>
+                 Edit </span>
+        </button>
+        <button mat-menu-item class="menu-item" *ngIf="!params.data.isActive" (click)="updateStatus(params.data.isActive,params.data.isApproved,params.data.email,params.data.userID,params.data.firstName)">
+            <span>Activate</span>
+        </button>
+        <button mat-menu-item class="menu-item" *ngIf="params.data.isActive" (click)="updateStatus()" >
+            <span>Deactivate</span>
+        </button>
+        <!-- <button (click)="MatDialog()" mat-menu-item class="menu-item">
+            <span>View More</span>
+        </button> -->
+    </mat-menu>
+
+</div>
+<ng-template #matDialog>
+    <div class="dialog">
+        <div class="dialog-container">
+            <div class="view-header">
+                <div class="view-title-text">Partner's Detailed Information</div>
+                <span class="reject-close-icon">
+                    <button mat-icon-button (click)="instructionClose()">
+                        <mat-icon>close</mat-icon>
+                    </button>
+                </span>
+            </div>
+        </div>
+        <div class="body">
+            <div>
+                <div  style="overflow-y: scroll; height:450px;" class="left-container">
+                    <div class="left-container-body">
+                        <div class="partner-logo">
+                            <div class="logo">
+                                <img src="../../../../../assets/images/LNT C.png">
+                            </div>
+                            <div class="border-line">
+                                <div class="bottom-border"></div>
+                            </div>
+                        </div>
+                        <div class="partner-details">
+                            <div class="partner-details-container">
+                                <div class="partner-name">Larsen & Toubro Ltd</div>
+                                <div class="year">Since 1946</div>
+                                <div class="business">Construction</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="border-line-2">
+                        <div class="bottom-border-2"></div>
+                    </div>
+                    <div class="spoc details">
+                        <div class="spoc-details">
+                            <div class="spoc-text-container">
+                                <div class="spoc-text">
+                                    SPOC Details:
+                                </div>
+                            </div>
+                            <div class="sub-container">
+                                <div>
+                                    <div class="spoc-sub-details">
+                                        <div class="label">
+                                            <div class="label-font-style">Name:</div>
+                                        </div>
+                                        <div class="label-text">
+                                            <span class="label-text-style">Jack Sparrow</span>
+                                        </div>
+                                    </div>
+                                    <div class="spoc-sub-details">
+                                        <div class="label">
+                                            <div class="label-font-style">Designation:</div>
+                                        </div>
+                                        <div class="label-text">
+                                            <span class="label-text-style">Captain </span>
+                                        </div>
+                                    </div>
+                                    <div class="spoc-sub-details">
+                                        <div class="label">
+                                            <div class="label-font-style">Email:</div>
+                                        </div>
+                                        <div class="label-text">
+                                            <span class="label-text-style"> captainjack@pirate.com</span>
+                                        </div>
+                                    </div>
+                                    <div class="spoc-sub-details">
+                                        <div class="label">
+                                            <div class="label-font-style">Mobile:</div>
+                                        </div>
+                                        <div class="label-text">
+                                            <span class="label-text-style">+00 9876543210 </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="border-line-2">
+                        <div class="bottom-border-2"></div>
+                    </div>
+                    <div class="short-description">
+                        <div class="spoc-text-container">
+                            <div class="spoc-text">
+                                Short Description:
+                            </div>
+                        </div>
+                        <div class="description">
+                            <div>
+                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
+                                has been the industry's standard dummy text ever since the 1500s, when an unknown
+                                printer took a galley of type and scrambled it to make a type specimen book.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="download-button">
+                        <button mat-raised-button class="download-button-style">Download EOI Form</button>
+                    </div>
+                </div>
+
+            </div>
+            <div class="right">
+                <div style="overflow-y: scroll; height:450px;" class="right-container">
+                    <div>
+                        <div class="list1">
+                            <div class="l1-left">
+                                <div class="label">
+                                    <div class="label-text">Employee Size</div>
+                                </div>
+                                <div class="label-content">
+                                    <div class="label-content-text"> 2000</div>
+                                </div>
+                            </div>
+                            <div class="l1-right">
+                                <div class="label2">
+                                    <div class="label2-text"> Website Address</div>
+                                </div>
+                                <div class="label2-content">
+                                    <div class="website"> http://www.cocomelon.com</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="border-">
+                            <div class="border--"></div>
+                        </div>
+                        <div class="list2">
+                            <div class="list-title-container">
+                                <div class="list-title">Chairman/CXO Details:</div>
+                            </div>
+                            <div class="list-content">
+                                <div class="l2-left">
+                                    <div class="label">
+                                        <div class="label-text">Chairman/CXO Name</div>
+                                    </div>
+                                    <div class="label-content">
+                                        <div class="label-content-text"> Davy Jones</div>
+                                    </div>
+                                </div>
+                                <div class="l2-middle">
+                                    <div class="label2">
+                                        <div class="label2-text">Chairman/CXO Email</div>
+                                    </div>
+                                    <div class="label2-content">
+                                        <div class="label2-content-text"> dutchman@pirate.com</div>
+                                    </div>
+                                </div>
+                                <div class="l2-right">
+                                    <div class="label3">
+                                        <div class="label3-text">Chairman/CXO Mobile Number</div>
+                                    </div>
+                                    <div class="label3-content">
+                                        <div class="label3-content-text">+00 1234567890</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="border-">
+                            <div class="border--"></div>
+                        </div>
+                        <div class="list2">
+                            <div class="list-title-container">
+                                <div class="list-title">CHRO Details</div>
+                            </div>
+                            <div class="list-content">
+                                <div class="l2-left">
+                                    <div class="label">
+                                        <div class="label-text">CHRO Name</div>
+                                    </div>
+                                    <div class="label-content">
+                                        <div class="label-content-text">Will Turner</div>
+                                    </div>
+                                </div>
+                                <div class="l2-middle">
+                                    <div class="label2">
+                                        <div class="label2-text">CHRO Email</div>
+                                    </div>
+                                    <div class="label2-content">
+                                        <div class="label2-content-text">newdutchman@pirate.com</div>
+                                    </div>
+                                </div>
+                                <div class="l2-right">
+                                    <div class="label3">
+                                        <div class="label3-text">CHRO Mobile Number</div>
+                                    </div>
+                                    <div class="label3-content">
+                                        <div class="label3-content-text">+00 1235813210</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="border-">
+                            <div class="border--"></div>
+                        </div>
+                        <div class="list2">
+                            <div>
+                                <div class="list-title-container">
+                                    <div class="list-title">HR Contact Details:</div>
+                                </div>
+                            </div>
+                            <div class="hr-table">
+                                <table mat-table [dataSource]="dataSource" class="">
+                                    <ng-container matColumnDef="sno">
+                                        <th class="sno-column" mat-header-cell *matHeaderCellDef> S.No</th>
+                                        <td mat-cell *matCellDef="let request ">{{request.sno}}</td>
+                                    </ng-container>
+
+                                    <!-- Name Column -->
+                                    <ng-container matColumnDef="employerName">
+                                        <th class="name-column" mat-header-cell *matHeaderCellDef> Name </th>
+                                        <td mat-cell *matCellDef="let request ">{{request.employerName}}</td>
+                                    </ng-container>
+
+
+                                    <!-- Symbol Column -->
+                                    <ng-container matColumnDef="designation">
+                                        <th class="desig-column" mat-header-cell *matHeaderCellDef> Designation </th>
+                                        <td mat-cell *matCellDef="let request">{{request.designation}} </td>
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="email">
+                                        <th class="email-column" mat-header-cell *matHeaderCellDef> Email </th>
+                                        <td mat-cell *matCellDef="let request">{{request.email}}
+                                        </td>
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="mbNo">
+                                        <th class="mbno" mat-header-cell *matHeaderCellDef> Mobile Number </th>
+                                        <td mat-cell *matCellDef="let request">{{request.mbNo}}</td>
+                                    </ng-container>
+
+                                    <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+                                    <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
+                                    <tr class="mat-row" *matNoDataRow>
+                                        <td class="mat-cell nodata" colspan="8">No Data Found</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="border-">
+                            <div class="border--"></div>
+                        </div>
+                        <div class="Adress-list">
+                            <div class="list2">
+                                <div>
+                                    <div class="list-title-container">
+                                        <div class="list-title">Registered Address</div>
+                                    </div>
+                                </div>
+                                <div class="address">
+                                    <div class="l1-left">
+                                        <div class="label">
+                                            <div class="label-text">Address Line 1</div>
+                                        </div>
+                                        <div class="label-content">
+                                            <div class="label-content-text">lorem ipsum dolor emit</div>
+                                        </div>
+                                    </div>
+                                    <div class="l1-right">
+                                        <div class="label2">
+                                            <div class="label2-text">Address Line 1</div>
+                                        </div>
+                                        <div class="label2-content">
+                                            <div class="website">lorem ipsum dolor emit</div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="address-details-container">
+                                <div class="address-details">
+                                    <div class="district">
+                                        <div class="label">
+                                            <div class="label-text">District</div>
+                                        </div>
+                                        <div class="label-content">
+                                            <div class="label-content-text">Tortuga</div>
+                                        </div>
+                                    </div>
+                                    <div class="pincode">
+                                        <div class="label">
+                                            <div class="label-text">pincode</div>
+                                        </div>
+                                        <div class="label-content">
+                                            <div class="label-content-text">000000</div>
+                                        </div>
+                                    </div>
+                                    <div class="state">
+                                        <div class="label">
+                                            <div class="label-text">State</div>
+                                        </div>
+                                        <div class="label-content">
+                                            <div class="label-content-text">Lorem</div>
+                                        </div>
+                                    </div>
+                                    <div class="country">
+                                        <div class="label">
+                                            <div class="label-text">Country</div>
+                                        </div>
+                                        <div class="label-content">
+                                            <div class="label-content-text">Us</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="border-">
+                            <div class="border--"></div>
+                        </div>
+                        <div class="list2">
+                            <div>
+                                <div class="list-title-container">
+                                    <div class="list-title">Presence in India*</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="state-india">
+                            <div class="state-list">
+                                <div class="state-name">Andhra pradesh</div>
+                            </div>
+                            <div class="state-list">
+                                <div class="state-name">Kerala</div>
+                            </div>
+                            <div class="state-list">
+                                <div class="state-name">Tamil Nadu</div>
+                            </div>
+                            <div class="state-list">
+                                <div class="state-name">Chennai</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>

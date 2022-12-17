@@ -4,6 +4,8 @@ import { CandidateComponent } from './candidate.component';
 import { CandidateRoutes } from './candidate.routing';
 import { MaterialModule } from 'src/app/material/material.module';
 import { JobListingComponent } from './job-listing/job-listing.component';
+import { ResumeBuilderComponent } from './resume-builder/resume-builder.component';
+import { ResumeTemplateComponent } from './resume-template/resume-template.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import {JobListItemComponent} from './job-display-pages/job-list-item/job-list-item.component'
 import { JobAppliedListComponent } from './job-display-pages/job-applied-list/job-applied-list.component';
@@ -16,26 +18,31 @@ import { JobDescriptionComponent } from './job-description/job-description.compo
 import { TimeAgoPipe } from 'src/app/pipe/timeago.pipe';
 import { NoDataFoundComponent } from './candidateCommons/no-data-found/no-data-found.component';
 
+
+
 @NgModule({
   imports: [
-    CommonModule,
     SharedModule,
+    CommonModule,
     CandidateRoutes,
     MaterialModule,
     NgApexchartsModule,
-    FormsModule
+    FormsModule,
   ],
   declarations: [
     JobDashboardComponent,
     CandidateComponent,
     JobListingComponent,
     JobListItemComponent,
+    ResumeBuilderComponent,
+    ResumeTemplateComponent,
     JobAppliedListComponent,
     JobSavedListComponent,
     JobDescriptionComponent,
     CommonPaginatorComponent,
     TimeAgoPipe,
     NoDataFoundComponent
+
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]
 })

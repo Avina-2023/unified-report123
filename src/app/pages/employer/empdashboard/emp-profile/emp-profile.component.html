@@ -1,10 +1,10 @@
 <div class="container-fluid p-0">
-    <div class="topborder">
-    </div>
+    <!-- <div class="topborder">
+    </div> -->
     <div class="top-bg p-4">
         <p class="cardTitle">Employer Profile</p>
         <div class="d-flex mt-4">
-            <div  class="parentleft mb-3">
+            <div class="parentleft mb-3">
                 <div class="card">
                     <div class="card-content">
                         <div class="companyimg">
@@ -60,10 +60,11 @@
                                         <div class="col-md-6 col-sm-12 alignp">
                                             <label>Employee Size<span>*</span></label>
                                             <mat-form-field class="form-filed-width" appearance="outline">
-                                                <input (keypress)="numberOnly($event)" matInput class="heighttext" placeholder="Enter Employee Size"
-                                                    formControlName="empSize">
+                                                <input (keypress)="numberOnly($event)" matInput class="heighttext"
+                                                    placeholder="Enter Employee Size" formControlName="empSize">
                                                 <mat-error *ngIf="profileForm.controls['empSize'].invalid ">
-                                                    <div class="error-msg"*ngIf="profileForm.controls['empSize'].errors?.required">
+                                                    <div class="error-msg"
+                                                        *ngIf="profileForm.controls['empSize'].errors?.required">
                                                         Employee size is Required
                                                     </div>
                                                     <!-- <div *ngIf="profileForm.controls['empSize'].errors?.pattern">
@@ -75,17 +76,18 @@
                                         <div class="col-md-6 col-sm-12 alignp">
                                             <label>Website Address<span>*</span></label>
                                             <mat-form-field class="form-filed-width" appearance="outline">
-                                                <input matInput class="heighttext"
-                                                    placeholder="Enter Website Address"
+                                                <input matInput class="heighttext" placeholder="Enter Website Address"
                                                     formControlName="websiteAddress" pattern="https?://.*">
-                                                    <mat-error *ngIf="profileForm.controls['websiteAddress'].invalid ">
-                                                        <div class="error-msg" *ngIf="profileForm.controls['websiteAddress'].errors?.required">
-                                                            Website Address is Required
-                                                        </div>
-                                                        <div class="error-msg" *ngIf="profileForm.controls['websiteAddress'].errors?.pattern">
-                                                            Please enter a valid URL
-                                                        </div>
-                                                    </mat-error>
+                                                <mat-error *ngIf="profileForm.controls['websiteAddress'].invalid ">
+                                                    <div class="error-msg"
+                                                        *ngIf="profileForm.controls['websiteAddress'].errors?.required">
+                                                        Website Address is Required
+                                                    </div>
+                                                    <div class="error-msg"
+                                                        *ngIf="profileForm.controls['websiteAddress'].errors?.pattern">
+                                                        Please enter a valid URL
+                                                    </div>
+                                                </mat-error>
                                             </mat-form-field>
                                         </div>
                                     </div>
@@ -98,11 +100,12 @@
                                             <mat-form-field class="form-filed-width" appearance="outline">
                                                 <input matInput class="heighttext" placeholder="Enter Name"
                                                     formControlName="chairmanName">
-                                                    <mat-error *ngIf="profileForm.controls['chairmanName'].invalid ">
-                                                        <div class="error-msg" *ngIf="profileForm.controls['chairmanName'].errors?.required">
-                                                            Chairman/CXO Name is Required
-                                                        </div>
-                                                    </mat-error>
+                                                <mat-error *ngIf="profileForm.controls['chairmanName'].invalid ">
+                                                    <div class="error-msg"
+                                                        *ngIf="profileForm.controls['chairmanName'].errors?.required">
+                                                        Chairman/CXO Name is Required
+                                                    </div>
+                                                </mat-error>
                                             </mat-form-field>
                                         </div>
                                         <div class="col-md-4 col-sm-12 alignp">
@@ -110,30 +113,33 @@
                                             <mat-form-field class="form-filed-width" appearance="outline">
                                                 <input matInput class="heighttext" placeholder="Enter Email"
                                                     formControlName="chairmanEmail">
-                                                    <mat-error *ngIf="profileForm.controls['chairmanEmail'].invalid ">
-                                                        <div class="error-msg" *ngIf="profileForm.controls['chairmanEmail'].errors?.required">
-                                                            Chairman/CXO {{EmailRequired}}
-                                                        </div>
-                                                        <div class="error-msg" *ngIf="profileForm.controls['chairmanEmail'].errors?.pattern">
-                                                            Chairman/CXO {{InvalidEmail}}
-                                                        </div>
-                                                    </mat-error>
+                                                <mat-error *ngIf="profileForm.controls['chairmanEmail'].invalid ">
+                                                    <div class="error-msg"
+                                                        *ngIf="profileForm.controls['chairmanEmail'].errors?.required">
+                                                        Chairman/CXO {{EmailRequired}}
+                                                    </div>
+                                                    <div class="error-msg"
+                                                        *ngIf="profileForm.controls['chairmanEmail'].errors?.pattern">
+                                                        Chairman/CXO {{InvalidEmail}}
+                                                    </div>
+                                                </mat-error>
                                             </mat-form-field>
                                         </div>
                                         <div class="col-md-4 col-sm-12 alignp">
                                             <label>Chairman/CXO Mobile Number</label>
                                             <mat-form-field class="form-filed-width" appearance="outline">
                                                 <input type="text" maxlength="10" matInput class="heighttext"
-                                                    placeholder="Enter Mobile Number"
-                                                    formControlName="mobileNumber">
-                                                    <mat-error *ngIf="profileForm.controls['mobileNumber'].invalid ">
-                                                        <div class="error-msg" *ngIf="profileForm.controls['mobileNumber'].errors?.required">
-                                                            Chairman/CXO  {{NumberRequired}}
-                                                        </div>
-                                                        <div class="error-msg" *ngIf="profileForm.controls['mobileNumber'].errors?.pattern">
-                                                            Chairman/CXO {{InvalidNumber}}
-                                                        </div>
-                                                    </mat-error>
+                                                    placeholder="Enter Mobile Number" formControlName="mobileNumber">
+                                                <mat-error *ngIf="profileForm.controls['mobileNumber'].invalid ">
+                                                    <div class="error-msg"
+                                                        *ngIf="profileForm.controls['mobileNumber'].errors?.required">
+                                                        Chairman/CXO {{NumberRequired}}
+                                                    </div>
+                                                    <div class="error-msg"
+                                                        *ngIf="profileForm.controls['mobileNumber'].errors?.pattern">
+                                                        Chairman/CXO {{InvalidNumber}}
+                                                    </div>
+                                                </mat-error>
                                             </mat-form-field>
                                         </div>
                                     </div>
@@ -146,11 +152,12 @@
                                             <mat-form-field class="form-filed-width" appearance="outline">
                                                 <input matInput class="heighttext" placeholder="Enter Name"
                                                     formControlName="chroName">
-                                                    <mat-error *ngIf="profileForm.controls['chroName'].invalid ">
-                                                        <div class="error-msg" *ngIf="profileForm.controls['chroName'].errors?.required">
-                                                            CHRO Name is Required
-                                                        </div>
-                                                    </mat-error>
+                                                <mat-error *ngIf="profileForm.controls['chroName'].invalid ">
+                                                    <div class="error-msg"
+                                                        *ngIf="profileForm.controls['chroName'].errors?.required">
+                                                        CHRO Name is Required
+                                                    </div>
+                                                </mat-error>
                                             </mat-form-field>
                                         </div>
                                         <div class="col-md-4 col-sm-12 alignp">
@@ -158,14 +165,16 @@
                                             <mat-form-field class="form-filed-width" appearance="outline">
                                                 <input matInput class="heighttext" placeholder="Enter Email"
                                                     formControlName="chroEmail">
-                                                    <mat-error *ngIf="profileForm.controls['chroEmail'].invalid ">
-                                                        <div class="error-msg" *ngIf="profileForm.controls['chroEmail'].errors?.required">
-                                                            CHRO {{EmailRequired}}
-                                                        </div>
-                                                        <div class="error-msg" *ngIf="profileForm.controls['chroEmail'].errors?.pattern">
-                                                            CHRO {{InvalidEmail}}
-                                                        </div>
-                                                    </mat-error>
+                                                <mat-error *ngIf="profileForm.controls['chroEmail'].invalid ">
+                                                    <div class="error-msg"
+                                                        *ngIf="profileForm.controls['chroEmail'].errors?.required">
+                                                        CHRO {{EmailRequired}}
+                                                    </div>
+                                                    <div class="error-msg"
+                                                        *ngIf="profileForm.controls['chroEmail'].errors?.pattern">
+                                                        CHRO {{InvalidEmail}}
+                                                    </div>
+                                                </mat-error>
                                             </mat-form-field>
                                         </div>
                                         <div class="col-md-4 col-sm-12 alignp">
@@ -174,66 +183,106 @@
                                                 <input type="text" maxlength="10" matInput class="heighttext"
                                                     placeholder="Enter Mobile Number"
                                                     formControlName="chromobileNumber">
-                                                    <mat-error *ngIf="profileForm.controls['chromobileNumber'].invalid ">
-                                                        <div class="error-msg" *ngIf="profileForm.controls['chromobileNumber'].errors?.required">
-                                                            CHRO {{NumberRequired}}
-                                                        </div>
-                                                        <div class="error-msg" *ngIf="profileForm.controls['chromobileNumber'].errors?.pattern">
-                                                            CHRO {{InvalidNumber}}
-                                                        </div>
-                                                    </mat-error>
+                                                <mat-error *ngIf="profileForm.controls['chromobileNumber'].invalid ">
+                                                    <div class="error-msg"
+                                                        *ngIf="profileForm.controls['chromobileNumber'].errors?.required">
+                                                        CHRO {{NumberRequired}}
+                                                    </div>
+                                                    <div class="error-msg"
+                                                        *ngIf="profileForm.controls['chromobileNumber'].errors?.pattern">
+                                                        CHRO {{InvalidNumber}}
+                                                    </div>
+                                                </mat-error>
                                             </mat-form-field>
                                         </div>
                                     </div>
                                     <div class="alignp1 mt-4">
                                         <fieldset>
                                             <legend>HR Contact Details:</legend>
-                                            <ng-container formArrayName="hrContactDetails" *ngFor="let contact of hrContactDetails.controls; index as i">
-                                              <ng-container [formGroupName]="i" class="d-flex">
-                                                <div class="row hrright" >
-                                                    <div class="hrdetailsinput" >
-                                                        <mat-form-field class="form-filed-width" appearance="outline">
-                                                            <input matInput class="heighttext" placeholder="Enter Name "
-                                                                formControlName="hrName">
-                                                                <!-- <mat-error *ngIf="profileForm.controls['hrName'].invalid ">
+                                            <ng-container formArrayName="hrContactDetails"
+                                                *ngFor="let hrContactDetail of hrContactDetails.controls; index as i">
+                                                    <div class="row hrright" [formGroupName]="i">
+                                                        <div class="hrdetailsinput">
+                                                            <mat-form-field class="form-filed-width"
+                                                                appearance="outline">
+                                                                <input matInput class="heighttext"
+                                                                    placeholder="Enter Name" formControlName="hrName" required
+                                                                    >
+                                                                    <mat-error >
+                                                                        <div class="error-msg"
+                                                                            *ngIf="hrContactDetails.controls[i]?.controls?.hrName.errors">
+                                                                            HR Name is Required
+                                                                        </div>
+                                                                    </mat-error>
+                                                                <!-- <mat-error >
                                                                     <div *ngIf="profileForm.controls['hrName'].errors?.required">
-                                                                        Name is required
+                                                                      HR  {{Name is required}}
                                                                     </div>
                                                                 </mat-error> -->
-                                                        </mat-form-field>
+                                                            </mat-form-field>
 
+                                                        </div>
+                                                        <div class="hrdetailsinput">
+                                                            <mat-form-field class="form-filed-width"
+                                                                appearance="outline">
+                                                                <input matInput class="heighttext"
+                                                                    placeholder="Enter Designation"
+                                                                    formControlName="hrdesignation" required>
+                                                                   
+                                                                    <mat-error >
+                                                                        <div class="error-msg"
+                                                                            *ngIf="hrContactDetails.controls[i].controls.hrdesignation.errors?.required">
+                                                                            Designation is Required
+                                                                        </div>
+                                                                     
+                                                                    </mat-error>
+                                                            </mat-form-field>
+                                                        </div>
+                                                        <div class="hrdetailsinput">
+                                                            <mat-form-field class="form-filed-width"
+                                                                appearance="outline">
+                                                                <input matInput class="heighttext"
+                                                                    placeholder="Enter Email" formControlName="hrEmail"
+                                                                    required>
+                                                                    <mat-error *ngIf="hrContactDetails.controls[i].controls.hrEmail.invalid " >
+                                                                        <div class="error-msg" *ngIf="hrContactDetails.controls[i].controls.hrEmail.errors?.required ">
+                                                                            Email is Required
+                                                                        </div>
+                                                                        <div class="error-msg"  *ngIf="hrContactDetails.controls[i].controls.hrEmail.errors?.email ">
+                                                                            Invalid Email
+                                                                        </div>
+                                                                    </mat-error>
+                                                            </mat-form-field>
+                                                        </div>
+                                                        <div class="hrdetailsinput">
+                                                            <mat-form-field class="form-filed-width"
+                                                                appearance="outline">
+                                                                <input matInput class="heighttext" type="text"
+                                                                    maxlength="10" placeholder="Enter Mobile Number "
+                                                                    formControlName="hrMobilenumber" required>
+                                                                    <mat-error *ngIf="hrContactDetails.controls[i].controls.hrMobilenumber.invalid " >
+                                                                        <div class="error-msg" *ngIf="hrContactDetails.controls[i].controls.hrMobilenumber.errors?.required ">
+                                                                            Mobile Number is Required
+                                                                        </div>
+                                                                        <div class="error-msg"  *ngIf="hrContactDetails.controls[i].controls.hrMobilenumber.errors?.mobileRegex ">
+                                                                            Invalid Mobile Number
+                                                                        </div>
+                                                                    </mat-error>
+                                                            </mat-form-field>
+                                                        </div>
+                                                        <div class="close-icon">
+                                                            <button class="btn-remove" type="button"
+                                                                (click)="removeContactField(i)">x</button>
+                                                        </div>
                                                     </div>
-                                                    <div  class="hrdetailsinput"  >
-                                                        <mat-form-field class="form-filed-width" appearance="outline">
-                                                            <input matInput class="heighttext"
-                                                                placeholder="Enter Designation"
-                                                                formControlName="hrdesignation">
-                                                        </mat-form-field>
-                                                    </div>
-                                                    <div  class="hrdetailsinput" >
-                                                        <mat-form-field class="form-filed-width" appearance="outline">
-                                                            <input matInput class="heighttext" placeholder="Enter Email"
-                                                                formControlName="hrEmail">
-                                                        </mat-form-field>
-                                                    </div>
-                                                    <div  class="hrdetailsinput"  >
-                                                        <mat-form-field class="form-filed-width" appearance="outline">
-                                                            <input matInput class="heighttext" type="text" maxlength="10"
-                                                                placeholder="Enter Mobile Number "
-                                                                formControlName="hrMobilenumber">
-                                                        </mat-form-field>
-                                                    </div>
-                                                    <div class="close-icon">
-                                                        <button class="btn-remove" type="button" (click)="removeContactField(i)">x</button>
-                                                    </div>
-                                                </div>
 
-                                              </ng-container>
+
                                             </ng-container>
 
-                                            <button class="addhrdetils" type="button" (click)="addContactField()"><u>Add More Contacts</u></button>
-                                          </fieldset>
-                                        </div>
+                                            <button class="addhrdetils" type="button" (click)="addContactField()"><u>Add
+                                                    More Contacts</u></button>
+                                        </fieldset>
+                                    </div>
                                     <div class="alignp1 mt-4 mb-2">
                                         <h4><b>Registered Address:</b></h4>
                                         <div class="row d-flex alignp">
@@ -242,11 +291,12 @@
                                                 <mat-form-field class="form-filed-width" appearance="outline">
                                                     <input matInput class="heighttext" placeholder="Enter Address"
                                                         formControlName="addressOne">
-                                                        <mat-error *ngIf="profileForm.controls['addressOne'].invalid ">
-                                                            <div class="error-msg" *ngIf="profileForm.controls['addressOne'].errors?.required">
-                                                                Address Line1 is Required
-                                                            </div>
-                                                        </mat-error>
+                                                    <mat-error *ngIf="profileForm.controls['addressOne'].invalid ">
+                                                        <div class="error-msg"
+                                                            *ngIf="profileForm.controls['addressOne'].errors?.required">
+                                                            Address Line1 is Required
+                                                        </div>
+                                                    </mat-error>
                                                 </mat-form-field>
                                             </div>
                                             <div class="col-md-12 col-sm-12 mt-4 alignp">
@@ -254,76 +304,89 @@
                                                 <mat-form-field class="form-filed-width" appearance="outline">
                                                     <input matInput class="heighttext" placeholder="Enter Address"
                                                         formControlName="addressTwo">
-                                                        <mat-error *ngIf="profileForm.controls['addressTwo'].invalid ">
-                                                            <div class="error-msg" *ngIf="profileForm.controls['addressTwo'].errors?.required">
-                                                                Address Line2 is Required
-                                                            </div>
-                                                        </mat-error>
+                                                    <mat-error *ngIf="profileForm.controls['addressTwo'].invalid ">
+                                                        <div class="error-msg"
+                                                            *ngIf="profileForm.controls['addressTwo'].errors?.required">
+                                                            Address Line2 is Required
+                                                        </div>
+                                                    </mat-error>
                                                 </mat-form-field>
                                             </div>
-                                               <div class="col-md-6 col-sm-12 mt-4 alignp">
+                                            <div class="col-md-6 col-sm-12 mt-4 alignp">
                                                 <label>State<span>*</span></label>
-                                                 <mat-form-field class="form-filed-dropdown" appearance="outline">
-                                                     <mat-select class="selectText" formControlName="state" placeholder="Select State"
-                                                     (selectionChange)="selectState($event)">
+                                                <mat-form-field class="form-filed-dropdown" appearance="outline">
+                                                    <mat-select class="selectText" formControlName="state"
+                                                        placeholder="Select State"
+                                                        (selectionChange)="selectState($event)">
                                                         <mat-option *ngFor="let elem of stateArray" [value]="elem.id">
-                                                         {{elem.name}}
-                                                       </mat-option>
-                                                     </mat-select>
-                                                     <mat-error *ngIf="profileForm.controls['state'].invalid ">
-                                                         <div class="error-msg" *ngIf="profileForm.controls['state'].errors?.required">
+                                                            {{elem.name}}
+                                                        </mat-option>
+                                                    </mat-select>
+                                                    <mat-error *ngIf="profileForm.controls['state'].invalid ">
+                                                        <div class="error-msg"
+                                                            *ngIf="profileForm.controls['state'].errors?.required">
                                                             State is Required
-                                                         </div>
-                                                     </mat-error>
-                                                   </mat-form-field>
-                                             </div>
+                                                        </div>
+                                                    </mat-error>
+                                                </mat-form-field>
+                                            </div>
                                             <div class="col-md-6 col-sm-12 mt-4 alignp">
                                                 <label>District<span>*</span></label>
                                                 <mat-form-field class="form-filed-dropdown" appearance="outline">
-                                                    <mat-select  placeholder="Select District" class="selectText"  formControlName="district" matNativeControl name="district">
-                                                       <mat-option *ngFor="let elem of districtArray" [value]="elem.id">
-                                                        {{elem.name}}
-                                                      </mat-option>
+                                                    <mat-select placeholder="Select District" class="selectText"
+                                                        formControlName="district" matNativeControl name="district">
+                                                        <mat-option *ngFor="let elem of districtArray"
+                                                            [value]="elem.id">
+                                                            {{elem.name}}
+                                                        </mat-option>
                                                     </mat-select>
                                                     <mat-error *ngIf="profileForm.controls['district'].invalid ">
-                                                        <div class="error-msg" *ngIf="profileForm.controls['district'].errors?.required">
+                                                        <div class="error-msg"
+                                                            *ngIf="profileForm.controls['district'].errors?.required">
                                                             District is Required
                                                         </div>
                                                     </mat-error>
-                                                  </mat-form-field>
+                                                </mat-form-field>
                                             </div>
                                             <div class="col-md-6 col-sm-12 mt-4 alignp">
-                                               <label>Country<span>*</span></label>
+                                                <label>Country<span>*</span></label>
                                                 <mat-form-field class="form-filed-dropdown" appearance="outline">
-                                                    <mat-select placeholder="Select Country" class="selectText" formControlName="country" matNativeControl name="country">
-                                                      <mat-option *ngFor="let elem of allCountry" [value]="elem.countryId" [selected]="elem.countryId == '101'">
-                                                        {{elem.name}}
-                                                      </mat-option>
+                                                    <mat-select placeholder="Select Country" class="selectText"
+                                                        formControlName="country" matNativeControl name="country">
+                                                        <mat-option *ngFor="let elem of allCountry"
+                                                            [value]="elem.countryId"
+                                                            [selected]="elem.countryId == '101'">
+                                                            {{elem.name}}
+                                                        </mat-option>
                                                     </mat-select>
                                                     <mat-error *ngIf="profileForm.controls['country'].invalid ">
-                                                        <div class="error-msg" *ngIf="profileForm.controls['country'].errors?.required">
+                                                        <div class="error-msg"
+                                                            *ngIf="profileForm.controls['country'].errors?.required">
                                                             Country is Required
                                                         </div>
                                                     </mat-error>
-                                                  </mat-form-field>
+                                                </mat-form-field>
                                             </div>
                                             <div class="col-md-6 col-sm-12 mt-4 alignp">
-                                              <label>Pincode<span>*</span></label>
-                                              <mat-form-field class="form-filed-width" appearance="outline">
-                                                  <input matInput class="heighttext" placeholder="Enter Pincode"
-                                                      formControlName="pincode" type="text" maxlength="6" >
-                                                      <mat-error *ngIf="profileForm.controls['pincode'].invalid ">
-                                                          <div class="error-msg" *ngIf="profileForm.controls['pincode'].errors?.required">
+                                                <label>Pincode<span>*</span></label>
+                                                <mat-form-field class="form-filed-width" appearance="outline">
+                                                    <input matInput class="heighttext" placeholder="Enter Pincode"
+                                                        formControlName="pincode" type="text" maxlength="6">
+                                                    <mat-error *ngIf="profileForm.controls['pincode'].invalid ">
+                                                        <div class="error-msg"
+                                                            *ngIf="profileForm.controls['pincode'].errors?.required">
                                                             Pincode is Required
-                                                          </div>
-                                                          <div class="error-msg" *ngIf="profileForm.controls['pincode'].errors?.pattern">
-                                                              Pincode should be in numericals only
-                                                          </div>
-                                                          <div class="error-msg" *ngIf="profileForm.controls['pincode'].errors?.maxlength">
-                                                              Invlid Pincode
-                                                          </div>
-                                                      </mat-error>
-                                              </mat-form-field>
+                                                        </div>
+                                                        <div class="error-msg"
+                                                            *ngIf="profileForm.controls['pincode'].errors?.pattern">
+                                                            Pincode should be in numericals only
+                                                        </div>
+                                                        <div class="error-msg"
+                                                            *ngIf="profileForm.controls['pincode'].errors?.maxlength">
+                                                            Invlid Pincode
+                                                        </div>
+                                                    </mat-error>
+                                                </mat-form-field>
                                             </div>
                                         </div>
                                         <div>
@@ -333,34 +396,39 @@
                                         <h4 class="mb-0"><b>Presence In India:</b></h4>
                                         <div class="row d-flex alignp">
                                             <div class="col-md-12 alignp">
-                                                <mat-form-field class="form-filed-width" appearance="outline" *ngIf="stateone.length">
+                                                <mat-form-field class="form-filed-width" appearance="outline"
+                                                    *ngIf="stateone.length">
                                                     <mat-chip-list #chipList class="chiplist">
-                                                      <mat-chip class="matchip heighttext"
-                                                        *ngFor="let removestate of stateone;let i = index"  [value]=""
-                                                        (removed)="remove(removestate)">
-                                                        {{removestate}}
-                                                        <button matChipRemove style="display: contents;">
-                                                          <mat-icon class="ic-clr">cancel</mat-icon>
-                                                        </button>
-                                                      </mat-chip>
+                                                        <mat-chip class="matchip heighttext"
+                                                            *ngFor="let removestate of stateone;let i = index"
+                                                            [value]="" (removed)="remove(removestate)">
+                                                            {{removestate}}
+                                                            <button matChipRemove style="display: contents;">
+                                                                <mat-icon class="ic-clr">cancel</mat-icon>
+                                                            </button>
+                                                        </mat-chip>
                                                     </mat-chip-list>
-                                                  </mat-form-field>
-                                                  <div class="otherDiv">
+                                                </mat-form-field>
+                                                <div class="otherDiv">
                                                     <mat-chip-list #chipList>
-                                                        <mat-chip class="selectChip" *ngFor="let selectstate of states;let i =index " [value]="selectstate"   (click)="selectMe(selectstate,i)">
+                                                        <mat-chip class="selectChip"
+                                                            *ngFor="let selectstate of states;let i =index "
+                                                            [value]="selectstate" (click)="selectMe(selectstate,i)">
                                                             {{selectstate}}
                                                         </mat-chip>
 
                                                     </mat-chip-list>
                                                 </div>
                                             </div>
-                                            </div>
-                                            </div>
-                                            <div class="d-flex formbtns">
-                                         <button *ngIf="!empProfile?.detailedInformation" mat-raised-button class="save" type="submit">save</button>
-                                                <button *ngIf="empProfile.detailedInformation" mat-raised-button class="save" type="submit">Update</button>
-                                                <!-- <button mat-raised-button class="cancel" type="submit">cancel</button> -->
-                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex formbtns">
+                                        <button *ngIf="!empProfile?.detailedInformation" mat-raised-button class="save"
+                                            type="submit">save</button>
+                                        <button *ngIf="empProfile.detailedInformation" mat-raised-button class="save"
+                                            type="submit">Update</button>
+                                        <!-- <button mat-raised-button class="cancel" type="submit">cancel</button> -->
+                                    </div>
                                 </form>
                             </div>
                         </div>

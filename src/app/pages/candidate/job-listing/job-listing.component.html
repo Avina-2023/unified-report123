@@ -35,14 +35,7 @@
               <div class="comp-image">
                 <img [src]="item.companyLogo" class="comp_logo" alt="logo">
               </div>
-              <div class="card_title">
-                <p class="job_designation">
-                  {{item.jobRole}}
-                </p>
-                <p class="comp_name">
-                  {{item.company}}
-                </p>
-              </div>
+
             </div>
             <div class="misc_save" (click)="bookMarkIcon(item)">
               <span>
@@ -51,8 +44,16 @@
               </span>
             </div>
 
-
           </div>
+          <div class="card_title">
+            <p class="job_designation">
+              {{item.jobRole}}
+            </p>
+            <p class="comp_name">
+              {{item.company}}
+            </p>
+          </div>
+
           <div class="sample_class" (click)="gotojob(item)">
             <!-- <div class="job_description" [innerHTML]="sampleContent[i].slice(0, 80).concat('...') ">
             </div> -->
@@ -94,6 +95,10 @@
                     +{{item.specialization.length-2}} more
                   </button>
                 </div>
+            </div>
+            <div class="misc_details">
+              <span class="misc_col">Posted on
+                {{item.createdOn | date : 'MMM d'}}</span>
             </div>
 
 

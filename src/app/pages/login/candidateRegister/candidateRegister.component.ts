@@ -17,6 +17,7 @@ export class candidateRegister implements OnInit {
   campusUrl = environment.CAMPUS_URL;
   freshGraduatesForm: FormGroup;
   @ViewChild('noSkill', { static: false }) matDialogRef: TemplateRef<any>;
+  @ViewChild('notactive', { static: false }) notactive: TemplateRef<any>;
 
   success = true;
   registerform = true;
@@ -50,16 +51,20 @@ export class candidateRegister implements OnInit {
         this.newCandidate = true
         this.registerform = false
         this.msg = res.message
-        this.matDialogOpen()
+        this.openMatDialogs(this.matDialogRef)
       } else {
         this.msg = res.message
         this.registerform = false
         this.existingCandidate = true;
-        this.toastr.error(this.msg);
-        let currentUrl = this.router.url;
-        this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
-        this.router.navigate([currentUrl]);
-        });
+        if(this.msg=="Activation link is already sent to your email!"){
+          this.openMatDialogs(this.notactive)
+        }else{
+          this.toastr.error(this.msg);
+        }
+        // let currentUrl = this.router.url;
+        // this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+        // this.router.navigate([currentUrl]);
+        // });
       }
     })
   }
@@ -76,11 +81,32 @@ export class candidateRegister implements OnInit {
     this.appConfig.routeNavigation("/");
   }
 
-  matDialogOpen() {
-    this.dialogRef = this.dialog.open(this.matDialogRef, {
-      width: '500px',
+
+  openMatDialogs(templateref){
+    this.dialog.open(templateref, {
+      width: '50%',
+      height:'60vh',
       disableClose: true,
       hasBackdrop:true
+    });
+  }
+
+  resendEmail(){
+    this.dialog.closeAll()
+    let data={
+      email: this.freshGraduatesForm.value.email,
+      resendActivationmail:true
+    }
+    this.ApiService.forgotPassword(data).subscribe((success: any) => {
+      if(success.success){
+        this.openMatDialogs(this.matDialogRef)
+        // this.appConfig.routeNavigation("/login");
+        this.appConfig.routeNavigationWithQueryParam("login",{from:"freshGrad"});
+        }else{
+          this.toastr.error(success.message);
+        }
+    }, (err) => {
+      this.toastr.warning('Connection failed, Please try again.');
     });
   }
 }
