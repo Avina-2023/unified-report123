@@ -33,7 +33,7 @@
     font-style: normal;
     font-display: block;
   }
-  
+
   [class^="icon-"], [class*=" icon-"] {
     /* use !important to prevent issues with browser extensions that change fonts */
     font-family: 'icomoon' !important;
@@ -43,7 +43,7 @@
     font-variant: normal;
     text-transform: none;
     line-height: 1;
-    
+
     /* Enable Ligatures ================ */
     letter-spacing: 0;
     -webkit-font-feature-settings: "liga";
@@ -53,12 +53,77 @@
     font-feature-settings: "liga";
     -webkit-font-variant-ligatures: discretionary-ligatures;
     font-variant-ligatures: discretionary-ligatures;
-  
+
     /* Better Font Rendering =========== */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
-  
+  .icon-Font_Awesome_5_solid_universal-access:before {
+    content: "\e9a2";
+  }
+  .icon-Font_Awesome_5_regular_life-ring:before {
+    content: "\e9a1";
+  }
+  .icon-cogs-svgrepo-com:before {
+    content: "\e99d";
+  }
+  .icon-level-up-alt-svgrepo-com:before {
+    content: "\e99e";
+  }
+  .icon-bolt-lightning-solid:before {
+    content: "\e997";
+  }
+  .icon-map-marker-svgrepo-com:before {
+    content: "\e99f";
+  }
+  .icon-compass-orientation-tool-svgrepo-com:before {
+    content: "\e9a0";
+  }
+  .icon-bullseye-svgrepo-com:before {
+    content: "\e99c";
+  }
+  .icon-shield-svgrepo-com:before {
+    content: "\e99b";
+  }
+  .icon-road-perspective-svgrepo-com:before {
+    content: "\e99a";
+  }
+  .icon-graduation-cap-solid:before {
+    content: "\e999";
+  }
+  .icon-hourglass-half-solid:before {
+    content: "\e998";
+  }
+  .icon-graduation-cap-solid:before {
+    content: "\e999";
+  }
+  .icon-binoculars-solid:before {
+    content: "\e996";
+  }
+  .icon-close-rounded:before {
+    content: "\e995";
+  }
+  .icon-check-rounded:before {
+    content: "\e994";
+  }
+  .icon-file-download:before {
+    content: "\e993";
+  }
+  .icon-arrow-round-up:before {
+    content: "\e992";
+    color: #fff;
+  }
+  .icon-graduation-cap:before {
+    content: "\e991";
+    color: #000;
+  }
+  .icon-dashboard_grey:before {
+    content: "\e990";
+    color: #858585;
+  }
+  .icon-ArrowUp:before {
+    content: "\ea32";
+  }
   .icon-TestAnalysis:before {
     content: "\e98f";
   }
@@ -500,24 +565,3 @@
   .icon-Youtube:before {
     content: "\e96b";
   }
-  .icon-ArrowUp:before {
-    content: "\ea32";
-  }
-  .icon-dashboard_grey:before {
-    content: "\e990";
-  }
-  .icon-graduation-cap:before {
-    content: "\e991";
-  }
-  .icon-arrow-round-up:before {
-  content: "\e992";
-}
-.icon-file-download:before {
-  content: "\e993";
-}
-.icon-check-rounded:before {
-  content: "\e994";
-}
-.icon-close-rounded:before {
-  content: "\e995";
-}

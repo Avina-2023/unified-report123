@@ -11,7 +11,7 @@ import { StylePaginatorDirective } from './partner-list/style-paginator.directiv
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PartnerEnquiriesComponent } from './partner-enquiries/partner-enquiries.component';
 import { MoreOptionsComponent } from './partner-list/more-options/more-options.component';
-
+import {EmpRequirmentsComponent} from './emp-requirments/emp-requirments.component'
 
 
 @NgModule({
@@ -20,7 +20,8 @@ import { MoreOptionsComponent } from './partner-list/more-options/more-options.c
     PartnerListComponent,
     StylePaginatorDirective,
     PartnerEnquiriesComponent,
-    MoreOptionsComponent, 
+    MoreOptionsComponent,
+    EmpRequirmentsComponent
   ],
   imports: [
     CommonModule,
