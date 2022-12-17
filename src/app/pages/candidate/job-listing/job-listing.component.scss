@@ -23,6 +23,7 @@
 .job_board {
   width: 75%;
   border-right: 1px solid #e7e7e7;
+  background: #fff;
 }
 
 .find_job {
@@ -62,6 +63,9 @@
       .mat-select-trigger {
         text-align: center;
       }
+    }
+    .mat-select-arrow{
+      margin: 8px 4px 0px 4px;
     }
 
     .mat-select-value {
