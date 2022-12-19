@@ -288,12 +288,14 @@
     padding: 2px 0px;
   }
 
-  .locate {
-    white-space: nowrap;
+  .locate,.graduate {
     width: 80%;
+    margin-bottom: 0px;
+  }
+  .overflow-dot{
+    white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
-    margin-bottom: 0px;
   }
 
   .misc_icon {
