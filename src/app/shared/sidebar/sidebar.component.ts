@@ -64,11 +64,7 @@ export class SidebarComponent implements OnInit {
       default:
         this.check = 'empdashboard';
         break;
-        case '/auth/postrequirment/postJob':
-        this.menuIconToggle = true
-        this.check = 'emppostrequirments';
-        break;
-      case '/auth/jobrequirment/work':
+      case '/auth/partner/jobrequirment/work':
         this.menuIconToggle = true
         this.check = 'emprequirments';
         break;
@@ -77,7 +73,6 @@ export class SidebarComponent implements OnInit {
 
   ngOnInit(): void {
     this.sideBar()
-    this.work(H);
   }
   validateClick(value) {
     this.check = value;
@@ -112,7 +107,7 @@ export class SidebarComponent implements OnInit {
    work(value:any){
     // this.loaded.setLoading();
     this.check = value;
-    this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.EMPJOBS.REQUIRMENT)
+    this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.PARTNER.REQUIRMENT)
   }
 
   postJob(value:any){

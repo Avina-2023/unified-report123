@@ -74,7 +74,8 @@ export const APP_CONSTANTS = {
       HOME:'/auth/partner',
       PARTNERLIST:'/auth/partner/partnerlist',
       ADDPARTNER:"/auth/partner/addpartner",
-      PARTNERENQUIRY: "/auth/partner/partnerenquiry"
+      PARTNERENQUIRY: "/auth/partner/partnerenquiry",
+      REQUIRMENT:'auth/partner/jobrequirment'
     },
     VIEWDRIVE:{
       HOME: '/auth/drive',
@@ -87,10 +88,6 @@ export const APP_CONSTANTS = {
       PROFILE:'/auth/dashboard/profile',
       CHANGEPWD:'/auth/dashboard/changePwd'
     },
-    EMPJOBS:{
-      REQUIRMENT:'auth/jobrequirment',
-      POSTREQUIRMENT:'auth/postrequirment'
-    }
   },
 
   // Routes
@@ -151,7 +148,9 @@ export const APP_CONSTANTS = {
       HOME:'partner',
       PARTNERLIST:'partnerlist',
       ADDPARTNER:"addpartner",
-      PARTNERENQUIRY:"partnerenquiry"
+      PARTNERENQUIRY:"partnerenquiry",
+      REQUIRMENT:'jobrequirment'
+
     },
     DRIVE:{
       HOME: 'drive',
@@ -168,8 +167,7 @@ export const APP_CONSTANTS = {
       DEGREE :'Degree',
       PROFILE:'profile',
       CHANGEPWD:'changePwd',
-      POSTREQUIRMENT:'postrequirment',
-      REQUIRMENT:'jobrequirment'
+      // REQUIRMENT:'jobrequirment'
     }
   }
 };

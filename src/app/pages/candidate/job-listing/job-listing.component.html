@@ -29,79 +29,88 @@
     </div>
     <div class="overall_box">
       <div class="card_flex" *ngFor="let item of joblist;let i=index">
-        <mat-card class="example_card" >
-          <div class="job_card">
-            <div class="inner_card" (click)="gotojob(item)">
-              <div class="comp-image">
-                <img [src]="item.companyLogo" class="comp_logo" alt="logo">
+        <mat-card class="example_card">
+          <div (click)="gotojob(item)">
+            <div class="job_card">
+              <div class="inner_card">
+                <div class="comp-image">
+                  <img [src]="item.companyLogo" class="comp_logo" alt="logo">
+                </div>
+
               </div>
-              <div class="card_title">
-                <p class="job_designation">
-                  {{item.jobRole}}
-                </p>
-                <p class="comp_name">
-                  {{item.company}}
-                </p>
-              </div>
+
             </div>
-            <div class="misc_save" (click)="bookMarkIcon(item)">
-              <span>
-                <mat-icon [ngClass]="item.isSelected ? 'saved_icon':'unsaved_icon'">
-                  {{item.isSelected?'bookmark':'bookmark_border'}} </mat-icon>
-              </span>
+            <div class="card_title">
+              <p class="job_designation head_designation" title="{{item.jobRole}}">
+                {{item.jobRole}}
+              </p>
+              <p class="comp_name">
+                {{item.company}}
+              </p>
             </div>
 
-
-          </div>
-          <div class="sample_class" (click)="gotojob(item)">
-            <!-- <div class="job_description" [innerHTML]="sampleContent[i].slice(0, 80).concat('...') ">
+            <div class="sample_class">
+              <!-- <div class="job_description" [innerHTML]="sampleContent[i].slice(0, 80).concat('...') ">
             </div> -->
 
-            <div class="misc_details">
-              <div class="misc_row"><span>
-                  <mat-icon class="misc_icon"> school</mat-icon>
-                </span>
-                <span *ngFor="let subItem of item.education;let i=index; let isLast=last">
-                  <span class="misc_col">{{subItem}}<span class="misc_col" *ngIf="!isLast && i < item.education.length">&nbsp;</span> </span>
-                </span>
-              </div>
-
-              <div class="misc_row"><span>
-                  <mat-icon class="misc_icon"> location_on</mat-icon>
-                </span>
-                <p class="locate">
-                  <span *ngFor="let subItem of item.jobLocation;let i=index; let isLast=last">
-                    <span class="misc_col">{{subItem}}<span class="misc_col" *ngIf="!isLast && i < item.jobLocation.length">&nbsp;</span></span>
+              <div class="misc_details">
+                <div class="misc_row"><span>
+                    <mat-icon class="misc_icon"> school</mat-icon>
                   </span>
-                </p>
+                  <span *ngFor="let subItem of item.education;let i=index; let isLast=last">
+                    <span class="misc_col">{{subItem}}<span class="misc_col"
+                        *ngIf="!isLast && i < item.education.length">&nbsp;</span> </span>
+                  </span>
+                </div>
+
+                <div class="misc_row"><span>
+                    <mat-icon class="misc_icon"> location_on</mat-icon>
+                  </span>
+                  <p class="locate">
+                    <span *ngFor="let subItem of item.jobLocation;let i=index; let isLast=last">
+                      <span class="misc_col">{{subItem}}<span class="misc_col"
+                          *ngIf="!isLast && i < item.jobLocation.length">&nbsp;</span></span>
+                    </span>
+                  </p>
+                </div>
+
+                <div class="misc_row" *ngIf="item.jobType"><span>
+                    <mat-icon class="misc_icon"> work</mat-icon>
+                  </span>
+                  <span class="misc_col">{{item.jobType}} </span>
+                </div>
               </div>
 
-              <div class="misc_row" *ngIf="item.jobType"><span>
-                  <mat-icon class="misc_icon"> work</mat-icon>
-                </span>
-                <span class="misc_col" >{{item.jobType}} </span>
-              </div>
-            </div>
-
-            <div class="expertise" *ngIf="item.specialization">
+              <div class="expertise" *ngIf="item.specialization">
                 <div class="specialization" *ngFor="let subItem of item.specialization; let ind = index">
-                  <button *ngIf="ind<2">
+                  <button *ngIf="ind<1">
                     {{subItem}}
                   </button>
                 </div>
-                <div class="specialization" *ngIf="item.specialization.length-2>0">
+                <div class="specialization" *ngIf="item.specialization.length-1>0">
                   <button>
-                    +{{item.specialization.length-2}} more
+                    +{{item.specialization.length-1}} more
                   </button>
                 </div>
+              </div>
+              <div class="misc_details">
+                <span class="misc_col">Posted on
+                  {{item.createdOn | date : 'MMM d'}}</span>
+              </div>
+
+
             </div>
-
-
+          </div>
+          <div class="misc_save" (click)="bookMarkIcon(item)">
+            <span>
+              <mat-icon [ngClass]="item.isSelected ? 'saved_icon':'unsaved_icon'">
+                {{item.isSelected?'bookmark':'bookmark_border'}} </mat-icon>
+            </span>
           </div>
         </mat-card>
       </div>
       <div class="paginationdisplay">
-        <app-common-paginator *ngIf="total"  (send)="some($event)" [totalcount]="total"></app-common-paginator>
+        <app-common-paginator *ngIf="total" (send)="some($event)" [totalcount]="total"></app-common-paginator>
       </div>
     </div>
 
@@ -205,5 +214,5 @@
   </div>
 </ng-template>
 <div *ngIf="totallength==0">
-    <app-no-data-found *ngIf="totallength" [from]="'find'"></app-no-data-found>
+  <app-no-data-found *ngIf="totallength" [from]="'find'"></app-no-data-found>
 </div>

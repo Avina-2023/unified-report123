@@ -17,6 +17,7 @@ export class candidateRegister implements OnInit {
   campusUrl = environment.CAMPUS_URL;
   freshGraduatesForm: FormGroup;
   @ViewChild('noSkill', { static: false }) matDialogRef: TemplateRef<any>;
+  @ViewChild('notactive', { static: false }) notactive: TemplateRef<any>;
 
   success = true;
   registerform = true;
@@ -43,23 +44,31 @@ export class candidateRegister implements OnInit {
   }
 
   register() {
-    this.freshGraduatesForm.value.email = CryptoJS.AES.encrypt(this.freshGraduatesForm.value.email.toLowerCase().trim(), this.secretKey.trim()).toString();
-    console.log(CryptoJS.AES.decrypt(this.freshGraduatesForm.value.email,this.secretKey.trim()))
-    this.ApiService.candidateRegistration(this.freshGraduatesForm.value).subscribe((res: any) => {
+    let enc_email = CryptoJS.AES.encrypt(this.freshGraduatesForm.value.email.toLowerCase().trim(), this.secretKey.trim()).toString();
+    let apidata = {
+      email : enc_email,
+      user_name : this.freshGraduatesForm.value.user_name
+    }
+
+    this.ApiService.candidateRegistration(apidata).subscribe((res: any) => {
       if (res.success) {
         this.newCandidate = true
         this.registerform = false
         this.msg = res.message
-        this.matDialogOpen()
+        this.openMatDialogs(this.matDialogRef)
       } else {
         this.msg = res.message
         this.registerform = false
         this.existingCandidate = true;
-        this.toastr.error(this.msg);
-        let currentUrl = this.router.url;
-        this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
-        this.router.navigate([currentUrl]);
-        });
+        if(this.msg=="Activation link is already sent to your email!"){
+          this.openMatDialogs(this.notactive)
+        }else{
+          this.toastr.error(this.msg);
+        }
+        // let currentUrl = this.router.url;
+        // this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+        // this.router.navigate([currentUrl]);
+        // });
       }
     })
   }
@@ -76,11 +85,33 @@ export class candidateRegister implements OnInit {
     this.appConfig.routeNavigation("/");
   }
 
-  matDialogOpen() {
-    this.dialogRef = this.dialog.open(this.matDialogRef, {
-      width: '500px',
+
+  openMatDialogs(templateref){
+    this.dialog.open(templateref, {
+      width: '50%',
+      height:'60vh',
       disableClose: true,
       hasBackdrop:true
+    });
+  }
+
+  resendEmail(){
+    let enc_email = CryptoJS.AES.encrypt(this.freshGraduatesForm.value.email.toLowerCase().trim(), this.secretKey.trim()).toString();
+    this.dialog.closeAll()
+    let data={
+      email: enc_email,
+      resendActivationmail:true
+    }
+    this.ApiService.forgotPassword(data).subscribe((success: any) => {
+      if(success.success){
+        this.openMatDialogs(this.matDialogRef)
+        // this.appConfig.routeNavigation("/login");
+        this.appConfig.routeNavigationWithQueryParam("login",{from:"freshGrad"});
+        }else{
+          this.toastr.error(success.message);
+        }
+    }, (err) => {
+      this.toastr.warning('Connection failed, Please try again.');
     });
   }
 }
