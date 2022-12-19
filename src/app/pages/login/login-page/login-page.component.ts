@@ -14,7 +14,7 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./login-page.component.scss']
 })
 export class LoginPageComponent  {
-
+  checkRouter: string;
   loginForm: FormGroup;
   hide = true;
   show = false;
@@ -111,7 +111,6 @@ export class LoginPageComponent  {
             this.appConfig.setLocalStorage('firstName',response.data && response.data.attributes  ? response.data.attributes.firstName : '');
             this.appConfig.setLocalStorage('profileCompletion',response.data && response.data.attributes && response.data.attributes.profileCompletion  ? response.data.attributes.profileCompletion : '');
             this.disableButton = false;
-            console.log(response.data.attributes.oldAdmin)
             if(response.data.attributes.oldAdmin == true){
           this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.REPORTS.DASHBOARD);
             }

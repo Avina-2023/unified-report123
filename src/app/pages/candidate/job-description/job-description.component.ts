@@ -100,6 +100,7 @@ item: any;
     {
       email:this.appConfig.getLocalStorage('email'),
       jobId:this.jobDetails.jobId,
+      companyId:this.jobDetails.companyId,
       jobDetails:{
         education:this.jobDetails.education,
         specialization:this.jobDetails.specialization,
@@ -116,7 +117,7 @@ item: any;
           // this.toaster.warning(res.message);
           if(res.message == "Please complete your profile to apply for this job")
           {this.openDialog(this.matDialogRef)}
-          if(res.message == "You are not eligible to apply for this job"){
+          if(res.message == "You are not eligible to apply for this job."){
             this.openDialog(this.eligiblitypop)
           }
         }
