@@ -1,0 +1,12 @@
+<section class="template_box">
+  <div class="top-section">
+    <div (click)="gotoResumePage()"><mat-icon>arrow_back</mat-icon>Back</div>
+    <div>
+      <button (click)="generatePDF()">Download</button>
+    </div>
+  </div>
+  <div #viewer>
+    <app-resumeTemplate1 #template1 ></app-resumeTemplate1>
+  </div>
+
+</section>
