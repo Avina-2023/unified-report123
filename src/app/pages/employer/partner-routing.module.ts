@@ -16,6 +16,9 @@ const routes: Routes = [
   {
     path: `${APP_CONSTANTS.ROUTES.PARTNER.PARTNERENQUIRY}`, component: PartnerEnquiriesComponent,
   },
+  {
+    path: `${APP_CONSTANTS.ROUTES.PARTNER.REQUIRMENT}`, component: EmpRequirmentsComponent
+  },
 
   {
     path: '',
