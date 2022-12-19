@@ -37,7 +37,9 @@ export class PartnerListComponent implements OnInit {
   emptyData = new MatTableDataSource([{ empty: 'row' }]);
   totalPartnerCount: number;
   dashboard_cards: any;
-
+  activePartnerCount= 0;
+  inActivePartnerCount=0;
+  pendingCount=0;
   searchData: string = '';
   fromDate: Date;
   toDate: Date;
@@ -55,6 +57,9 @@ export class PartnerListComponent implements OnInit {
   public defaultColDef: ColDef;
   public columnDefsmini;
   selectedRow: any[];
+  public masterDetail;
+  public rowSelection = 'multiple';
+  cacheBlockSize: any = 10;
   // partnerlistdata: any;
   public rowData: any[] | null = [];
   paginationPageSize: number;
@@ -62,6 +67,12 @@ export class PartnerListComponent implements OnInit {
   partnerListAgData:  any = [];
   pageRowCount = 0;
   pagination: boolean;
+  public autoGroupColumnDef: ColDef = {
+    flex: 1,
+    minWidth: 320,
+  };
+  public overlayNoRowsTemplate =
+  ' <span><br><br><img src="assets/images/skillMaster/norecord.svg" alt="" /> <br><br> <h3>No Records Found</h3></span>';
   sideBar = {
 
     toolPanels: [
@@ -81,6 +92,7 @@ export class PartnerListComponent implements OnInit {
     ], defaultToolPanel: ''
 
   };
+  partnerListStatusData: any;
   // defaultColDef: {
   //   // editable: true,
   //   sortable: boolean; resizable: boolean; filter: boolean; flex: number; minWidth: number;
@@ -115,7 +127,8 @@ export class PartnerListComponent implements OnInit {
   ngOnInit(): void {
    
     this.tabledata();
-    this.getAGgrid();
+    // this.getAGgrid();
+
  this.ApiService.partnersubject.subscribe((result:boolean) =>{
   if (result){
     this.getAGgrid();
@@ -133,52 +146,83 @@ export class PartnerListComponent implements OnInit {
   
   arrayofData: any = [];
   // Ag Grid Secction
-
+refresh(){
+  this.gridApi.refreshServerSideStore({ purge: true });
+}
   tabledata() {
-
-    // console.log(this.partnerListAgData);
     this.columnDefs = [
       { headerName: 'S.No', field: '_id', minWidth: 85 , filter: false,
     cellRenderer: function(params){
       return params.rowIndex +1;
     }
     },
-      { headerName: 'Employer Name', field: 'company', minWidth: 170,  filter: 'agTextColumnFilter',filterParams: {
+      { headerName: 'Employer Name', field: 'company', minWidth: 170,  
+      filter: 'agTextColumnFilter',
+      chartDataType: 'category',
+      aggFunc: 'sum',
+      filterParams: {
         suppressAndOrCondition: true,
-        filterOptions: ['contains'],
-        filterModel: { createdBy: { filterType: 'nin', values: ['UapAdmin'] } }
-      }, },
-      { headerName: '', field: 'companyImgURL', minWidth: 50,
+        filterOptions: ['contains']
+      },
+      tooltipField: 'company',
+     },
+    
+      { headerName: '', field: 'companyImgURL', minWidth: 100,
+       suppressColumnsToolPanel: true,
+      filter: false,
       cellRenderer: function(params){
         let val = encodeURI(params.value);
         return `<img width="30px" height"22px" src=${val} alt="">`;
       }
     },
-      { headerName: 'Industry Type', field: 'industryType', minWidth: 200, filter: 'agTextColumnFilter' ,
+      { headerName: 'Industry Type', field: 'industryType', minWidth: 200, 
+      filter: 'agTextColumnFilter',
+      chartDataType: 'category',
+      aggFunc: 'sum',
       filterParams: {
         suppressAndOrCondition: true,
         filterOptions: ['contains']
-      },},
-      { headerName: 'SPOC Name', field: 'firstName', minWidth: 170, filter: 'agTextColumnFilter',
-      filterParams: {
-        suppressAndOrCondition: true,
-        filterOptions: ['contains']
-      }, },
-      { headerName: 'SPOC Email', field: 'email', minWidth: 250, filter: 'agTextColumnFilter',
-      filterParams: {
-        suppressAndOrCondition: true,
-        filterOptions: ['contains' ]
       },
+      tooltipField: 'industryType',
+    },
+      { headerName: 'SPOC Name', field: 'firstName', minWidth: 170,
+      filter: 'agTextColumnFilter',
+      chartDataType: 'category',
+      aggFunc: 'sum',
+      filterParams: {
+        suppressAndOrCondition: true,
+        filterOptions: ['contains']
+      },
+      tooltipField: 'firstName',
+    },
+      { headerName: 'SPOC Email', field: 'email', minWidth: 250, 
+      filter: 'agTextColumnFilter',
+      chartDataType: 'category',
+      aggFunc: 'sum',
+      filterParams: {
+        suppressAndOrCondition: true,
+        filterOptions: ['contains']
+      },
+      tooltipField: 'email',
      },
-      { headerName: 'Created Date', field: 'createdAt', minWidth: 150, filter: 'agDateColumnFilter',
-    cellRenderer: (data)=>{
-      return moment(data.createdAt).format('MMM d, y')
-    },
-    filterParams: {
-      suppressAndOrCondition: true,
-      filterOptions: ['equals', 'lessThan', 'greaterThan', 'inRange'],
-      filterModel: { createdBy: { filterType: 'nin', values: ['UapAdmin'] } }
-    },
+      { headerName: 'Created Date', field: 'createdAt', minWidth: 150,
+      maxWidth: 170,
+      valueFormatter: function (params) {
+          return moment(params.value).format('MMM D,yy');
+      },
+      
+      //   return moment(data.value).format('L');
+      // },    
+    // cellRenderer: (data)=>{
+    //   return moment(data.createdAt).format('MM/DD/YYYY HH:mm')
+    // },
+    filter: 'agDateColumnFilter',
+        chartDataType: 'series',
+        filterParams: {
+          suppressAndOrCondition: true,
+          filterOptions: ['equals', 'lessThan', 'greaterThan', 'inRange'],
+        },
+        tooltipField: 'createdAt',
     },
       { headerName: 'Status', 
       field: 'isActive',
@@ -194,12 +238,12 @@ export class PartnerListComponent implements OnInit {
         
           if (data.value == false ) {
             if (data.data.isApproved == false){
-              return  '<button mat-button disabled class="pending-button">Pending</button>';
+              return  '<div class="status-button"><button mat-button disabled class="pending-button">Pending</button></div>';
             } else {
-              return'<button mat-button disabled class="inactive-button">Inactive</button>';
+              return'<div class="status-button"><button mat-button disabled class="inactive-button">Inactive</button></div>';
             }
           } else if (data.value == true ) {
-            return'<button mat-button disabled class="active-button">Active</button>';
+            return'<div class="status-button"><button mat-button disabled class="active-button">Active</button></div>';
           }
          else {
           return '';}  
@@ -207,7 +251,9 @@ export class PartnerListComponent implements OnInit {
     
     },
       { headerName: '', field: '', minWidth: 75 ,
-      cellRenderer: 'moreOptions'
+      cellRenderer: 'moreOptions',
+      suppressColumnsToolPanel: true,
+      filter: false,
     }
     ];
     this.rowModelType = 'serverSide';
@@ -215,14 +261,12 @@ export class PartnerListComponent implements OnInit {
     this.pagination = true;
     this.paginationPageSize = 10;
     this.defaultColDef = {
-      // editable: true,
       sortable: true,
       resizable: true,
       filter: true,
       flex: 1,
       minWidth: 190,
       // enableFilter: true,
-      
     };
   }
   
@@ -247,8 +291,32 @@ export class PartnerListComponent implements OnInit {
       getRows: (params) => {
         let apiData: any = params;
        apiData.request.filterModel["createdBy"]= { filterType: 'nin', values: ['UapAdmin'] };
+       var isApproved =
+       this.status == 'active' ? true : this.status == 'inActive' ? false : '-';
+     if (this.status == 'pending') {
+      apiData.request.filterModel["isApproved"] ={
+        filterType: 'set',
+        values: [false],
+      }
+      apiData.request.filterModel["isActive"] ={
+        filterType: 'set',
+        values: [false],
+      }
+     } else if (isApproved != '-') {
+      apiData.request.filterModel["isApproved"] ={
+        filterType: 'set',
+        values: [true],
+      }
+      apiData.request.filterModel["isActive"] ={
+        filterType: 'set',
+        values: [isApproved],
+      }
+    }else{
+      delete apiData.request.filterModel["isApproved"] 
+     delete apiData.request.filterModel["isActive"] 
+    }
         this.partnerListAgGridSubscription = this.ApiService.getAGgridPatnerList(apiData.request).subscribe((data1: any) => {
-          console.log(data1);
+          // console.log(data1);
           
           if (data1.success == false) {
             params.fail();
@@ -260,14 +328,15 @@ export class PartnerListComponent implements OnInit {
       }else {
 this.partnerListAgData = data1 && data1.data ? data1.data : [];
 if (this.partnerListAgData.length > 0) {
-  this.pageRowCount = data1 && data1.data.length ? data1.data.length : 0;
+  this.pageRowCount = data1 && data1.totalCount ? data1.totalCount : 0;
   this.gridApi.hideOverlay();
   params.success({
     rowData: this.partnerListAgData,
     rowCount: this.pageRowCount
   });
-  this.gridApi.selectAllFiltered()
-  this.gridApi.selectAll();
+  
+  // this.gridApi.selectAllFiltered()
+  // this.gridApi.selectAll();
 } else {
   params.success({
     rowData: this.partnerListAgData,
@@ -286,6 +355,7 @@ if (this.partnerListAgData.length > 0) {
   this.gridApi.hideOverlay();
   this.gridApi.showNoRowsOverlay();
 }
+
   }
 }
 
@@ -327,7 +397,8 @@ if (this.partnerListAgData.length > 0) {
         },
       };
     }
-    this.fetchData(data);
+   this.fetchData(data);
+   
   }
 
   fetchDashboardData() {
@@ -337,9 +408,9 @@ if (this.partnerListAgData.length > 0) {
           this.toastr.warning('Connection failed, Please try again.');
         } else {
           this.dashboard_cards = partnerListDash.data;
-          // this.activePartnerCount = partnerListDash.data.activeCount;
-          // this.inActivePartnerCount = partnerListDash.data.inActiveCount;
-          // this.pendingCount = partnerListDash.data.pendingCount;
+          this.activePartnerCount = partnerListDash.data.activeCount;
+          this.inActivePartnerCount = partnerListDash.data.inActiveCount;
+          this.pendingCount = partnerListDash.data.pendingCount;
         }
       },
       (err) => {
@@ -354,13 +425,15 @@ if (this.partnerListAgData.length > 0) {
         if (partnerList.success == false) {
           this.toastr.warning('Connection failed, Please try again.');
         } else {
-          partnerList.data.forEach((element, index) => {
-            element.sno = index + 1;
-          });
-          this.dataSource.data = partnerList.data;
-          this.totalPartnerCount = partnerList.totalCount;
-          this.totalPages = Math.ceil(this.totalPartnerCount / 5);
-          this.dataSource.paginator = this.paginator;
+          
+          
+          // partnerList.data.forEach((element, index) => {
+          //   element.sno = index + 1;
+          // });
+          // this.dataSource.data = partnerList.data;
+          // this.totalPartnerCount = partnerList.totalCount;
+          // this.totalPages = Math.ceil(this.totalPartnerCount / 5);
+          // this.dataSource.paginator = this.paginator;
           // this.paginator.firstPage();
         }
       },

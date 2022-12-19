@@ -10,34 +10,54 @@ import { ApiService } from 'src/app/services/api.service';
 import { formatDate } from '@angular/common';
 import * as moment from 'moment';
 import { ToastrService } from 'ngx-toastr';
-
+import { Subscription } from 'rxjs';
+import { AppConfigService } from 'src/app/utils/app-config.service';
 @Component({
   selector: 'app-manage-drive',
   templateUrl: './manage-drive.component.html',
   styleUrls: ['./manage-drive.component.scss'],
 })
 export class ManageDriveComponent implements OnInit {
-  rowData: any;
-  getdataag: any;
-  data:any;
-  public gridColumnApi: any;
+  // getdataag: any;
   columnDefs: any = [];
+  data: any;
   private gridApi!: GridApi;
   public gridOptions: GridOptions;
+  public masterDetail;
+  public rowSelection = 'multiple';
+  public columnDefsmini;
+  public rowModelType;
+  public rowData: any[] | null = [1, 2];
+  public gridColumnApi: any;
+  public serverSideStoreType;
+  public defaultColDef: ColDef;
+  rowData1: any;
+  cacheBlockSize: any = 10;
+  public autoGroupColumnDef: ColDef = {
+    flex: 1,
+    minWidth: 320,
+  };
+  public overlayNoRowsTemplate =
+  ' <span><br><br><img src="assets/images/skillMaster/norecord.svg" alt="" /> <br><br> <h3>No Records Found</h3></span>';
   lastDatetoApply: string;
   selectedRow: any[];
+  manageDriveAgData:any = [];
+  pageRowCount = 0;
   paginationPageSize: number;
+  driveAgGridSubscription: Subscription;
   pagination: boolean;
-  sideBar = {
-    toolPanels: [
-    {id: 'filters',
-    labelDefault: 'Filters',
-    labelKey: 'filters',
-    iconKey: 'filter',
-    toolPanel: 'agFiltersToolPanel',
-    }
-    ], defaultToolPanel: ''
-  };
+  sideBar = {
+    toolPanels: [
+      {
+        id: 'filters',
+        labelDefault: 'Filters',
+        labelKey: 'filters',
+        iconKey: 'filter',
+        toolPanel: 'agFiltersToolPanel',
+      },
+    ],
+    defaultToolPanel: '',
+  };
   drive_cards: any;
   expire_cards: any;
   reject_cards: any;
@@ -45,12 +65,25 @@ export class ManageDriveComponent implements OnInit {
   active_cards: any;
   closed_cards: any;
 
-
   constructor(
     private ApiService: ApiService,
     private toastr: ToastrService,
-    ) {
-      this.getManageDriveDashBoard(this.data);
+    private appconfig: AppConfigService
+  ) {
+    this.serverSideStoreType = 'partial';
+    this.rowModelType = 'serverSide';
+    this.defaultColDef = {
+      flex: 1,
+      enableRowGroup: true,
+      enablePivot: true,
+      sortable: true,
+      resizable: true,
+      filter: true,
+      // enableFilter: true,
+      minWidth: 220,
+      // sideBar: 'filter',
+    };
+    this.getManageDriveDashBoard(this.data);
     this.gridOptions = <GridOptions>{
       frameworkComponents: {
         popUpRender: PopUpCellRendererComponent,
@@ -60,7 +93,7 @@ export class ManageDriveComponent implements OnInit {
 
   ngOnInit(): void {
     this.tabledata();
-    this.getaggridjoblist();
+    this.autoSizeAll(false);
   }
   arrayofData: any = [];
 
@@ -68,63 +101,115 @@ export class ManageDriveComponent implements OnInit {
 
   tabledata() {
     this.columnDefs = [
-      { headerName: 'S.No', field: 'id', minWidth: 85, default:'-', cellStyle: {textAlign: 'center'},
-      
-      cellRenderer : function (params) {
-        return params.rowIndex +1 ;
-      }
-    },
+      {
+        headerName: 'S.No',
+        field: 'id',
+        minWidth: 85,
+        default: '-',
+        cellRenderer: function (params) {
+          return params.rowIndex + 1;
+        },
+      },
       {
         headerName: '',
         field: 'companyLogo',
         width: 55,
         sortable: false,
+        minWidth: 100,
+        suppressColumnsToolPanel: true,
+        filter: false,
         cellRenderer: function (params) {
           let val = encodeURI(params.value);
           return `<img width="30px" height"22px" src=${val}>`;
         },
       },
-      { headerName: 'Company Name', field: 'company', minWidth: 175 },
-      { headerName: 'Drive No.', field: 'jobId', minWidth: 120},
-      { headerName: 'Job Title', field: 'jobTitle', minWidth: 180 },
+      { headerName: 'Company Name', field: 'company', minWidth: 175,
+      filter: 'agTextColumnFilter',
+      chartDataType: 'category',
+      aggFunc: 'sum',
+      filterParams: {
+        suppressAndOrCondition: true,
+        filterOptions: ['contains']
+      },
+      tooltipField: 'company',
+     },
+      { headerName: 'Drive No.', field: 'jobId', minWidth: 120,
+      filter: 'agTextColumnFilter',
+      chartDataType: 'category',
+      aggFunc: 'sum',
+      filterParams: {
+        suppressAndOrCondition: true,
+        filterOptions: ['contains']
+      },
+      tooltipField: 'jobId',
+    },
+      { headerName: 'Job Title', field: 'jobTitle', minWidth: 180,
+      filter: 'agTextColumnFilter',
+      chartDataType: 'category',
+      aggFunc: 'sum',
+      filterParams: {
+        suppressAndOrCondition: true,
+        filterOptions: ['contains']
+      },
+      tooltipField: 'jobTitle',
+    },
       {
         headerName: 'Candidates Applied',
         field: 'candidatesAppliedCount',
         minWidth: 175,
-        cellStyle: {textAlign: 'center'}
+        cellStyle: { textAlign: 'center' },
       },
-      { headerName: 'Offer Released', field: 'offerReleased', minWidth: 150 , cellStyle: {textAlign: 'center'}},
+      {
+        headerName: 'Offer Released',
+        field: 'offerReleased',
+        minWidth: 150,
+        cellStyle: { textAlign: 'center' },
+      },
       {
         headerName: 'Last Date to Apply',
         field: 'lastDatetoApply',
         minWidth: 180,
-        cellRenderer: (data) => {
-          return moment(data.lastDatetoApply).format('MMM d, y')
-      }
-      }, 
+        filter: 'agDateColumnFilter',
+        chartDataType: 'series',
+        filterParams: {
+          suppressAndOrCondition: true,
+          filterOptions: ['equals', 'lessThan', 'greaterThan', 'inRange'],
+        },
+        tooltipField: 'lastDatetoApply',
+        valueFormatter: function (params) {
+          return moment(params.value).format('MMM D,yy');
+      },
+      },
       {
         headerName: 'Status',
         field: 'status',
         minWidth: 120,
-        
-        cellStyle: {textAlign: 'center'},
+        filter: 'agTextColumnFilter',
+        chartDataType: 'category',
+        aggFunc: 'sum',
+        filterParams: {
+          suppressAndOrCondition: true,
+          filterOptions: ['contains']
+        },
+        cellStyle: { textAlign: 'center' },
         cellRenderer: function (params) {
           if (params.value === 'Active') {
-            return '<button mat-button disabled class="status-button">Active</button>';
+            return '<div class="status-button"><button mat-button disabled class="active-button">Active</button></div>';
           }
           if (params.value === 'Pending') {
-            return '<button mat-button disabled class="pending-button">Pending</button>';
+            return '<div class="status-button"><button mat-button disabled class="pending-button">Pending</button></div>';
           }
           if (params.value === 'Expired') {
-            return '<button mat-button disabled class="expired-button">Expired</button>';
+            return '<div class="status-button"><button mat-button disabled class="expired-button">Expired</button></div>';
           }
           if (params.value === 'Closed') {
-            return '<button mat-button disabled class="closed-button">Closed</button>';
+            return '<div class="status-button"><button mat-button disabled class="closed-button">Closed</button></div>';
           }
           if (params.value === 'Rejected') {
-            return '<button mat-button disabled class="rejected-button">Rejected</button>';
+            return '<div class="status-button"><button mat-button disabled class="rejected-button">Rejected</button></div>';
           }
         },
+     
       },
       // {
       //   headerName: '',
@@ -133,42 +218,145 @@ export class ManageDriveComponent implements OnInit {
       //   maxWidth: 80,
       // },
     ];
-    this.pagination = true;
-    this.paginationPageSize = 10;
+   
   }
-  
+
   async onSelectionChanged(event) {
     var rowData = event.api.getSelectedNodes();
     var ids = [];
-    await rowData.forEach(elem => {
+    await rowData.forEach((elem) => {
       ids.push(elem.data._id);
     });
     this.selectedRow = ids;
   }
-  public defaultColDef: ColDef = {
-    flex: 1,
-    minWidth: 100,
-  };
 
   onGridReady(params: any) {
     this.gridApi = params.api;
+    this.gridColumnApi = params.columnApi;
+    var datasource = this.getAggridJoblist();
+    params.api.setServerSideDatasource(datasource);
   }
-  getaggridjoblist() {
-    let data = '';
-    this.ApiService.getAGgridData(data).subscribe((response: any) => {
-      if (response.success) {
-        this.getdataag = response.data;
-      } else {
-        alert('failed');
-      }
-      // console.log(this.getdataag,'aggrid');
-    });
-  }
-  getManageDriveDashBoard(data: any){
 
+  getAggridJoblist(){
+    // debugger;
+    return {
+      getRows: (params) => {
+        let apiData: any = params;
+        this.driveAgGridSubscription = this.ApiService.getAGgridData(
+          apiData.request
+        ).subscribe(
+          (data1: any) => {
+            console.log('iii',data1.data);
+            if (data1.success == false) {
+              params.fail();
+              params.success({
+                rowData: [],
+                rowCount: 0,
+              });
+              this.gridApi.showNoRowsOverlay();
+            } 
+            else {
+              this.manageDriveAgData = data1 && data1.data ? data1.data : [];             
+              if (this.manageDriveAgData.length > 0) {
+                this.pageRowCount =
+                  data1 && data1.totalCount.count ? data1.totalCount.count : 0;
+                this.gridApi.hideOverlay();
+                params.success({
+                  rowData: this.manageDriveAgData,
+                  rowCount: this.pageRowCount,    
+                });
+                // this.gridApi.selectAllFiltered();
+                // this.gridApi.selectAll();
+              } else {
+                params.success({
+                  rowData: this.manageDriveAgData,
+                  rowCount: 0,
+                });
+                this.gridApi.showNoRowsOverlay();
+              }
+            }
+          },
+          (err) => {
+            params.fail();
+            params.success({
+              rowData:  this.manageDriveAgData,
+              rowCount: this.pageRowCount
+            });
+          }
+        );
+        this.gridApi.hideOverlay();
+        this.gridApi.showNoRowsOverlay();
+      },
+    };
+  }
+
+  autoSizeAll(skipHeader: boolean) {
+    const allColumnIds: string[] = [];
+    this.gridColumnApi.getAllColumns()!.forEach((column) => {
+      allColumnIds.push(column.getId());
+    });
+    this.gridColumnApi.autoSizeColumns(allColumnIds, skipHeader);
+  }
+
+  //   let data = '';
+  //   this.ApiService.getAGgridData(data).subscribe((response: any) => {
+  //     if (response.success) {
+  //       this.getdataag = response.data;
+  //     } else {
+  //       alert('failed');
+  //     }
+  //     // console.log(this.getdataag,'aggrid');
+  //   });
+  // }
+  //   getAggridJoblist(){
+  //     return {
+  //       getRows: (params) => {
+  //         let apiData: any = params;
+  //         this.driveAggridDataSubscription = this.ApiService.getAGgridData(apiData.request).subscribe((data1: any) => {
+  //           console.log('',data1);
+
+  //           if (data1.success == false) {
+  //             params.fail();
+  //             params.success({
+  //               rowData: [],
+  //               rowCount: 0,
+  //         });
+  //         this.gridApi.showNoRowsOverlay();
+  //       }else {
+  // this.manageDriveAgData = data1 && data1.data ? data1.data : [];
+  // if (this.manageDriveAgData.length > 0) {
+  //   this.pageRowCount = data1 && data1.data.length ? data1.data.length : 0;
+  //   this.gridApi.hideOverlay();
+  //   params.success({
+  //     rowData: this.manageDriveAgData,
+  //     rowCount: this.pageRowCount
+  //   });
+  //   this.gridApi.selectAllFiltered()
+  //   this.gridApi.selectAll();
+  // } else {
+  //   params.success({
+  //     rowData: this.manageDriveAgData,
+  //     rowCount: 0
+  //   });
+  //   this.gridApi.showNoRowsOverlay();
+  // }
+  // }
+  // },(err) => {
+  //   params.fail();
+  //   params.success({
+  //     rowData: [],
+  //     rowCount: 0,
+  //   });
+  // });
+  //   this.gridApi.hideOverlay();
+  //   this.gridApi.showNoRowsOverlay();
+  // }
+  //   }
+  // }
+  getManageDriveDashBoard(data: any) {
     this.ApiService.getDriveCardData(data).subscribe(
-      (driveCardData:any)=> {
-        if(driveCardData.success == false) {
+      (driveCardData: any) => {
+        if (driveCardData.success == false) {
           this.toastr.warning('Connection failed, Please try again.');
         } else {
           this.drive_cards = driveCardData.totalCount.count;
@@ -178,10 +366,10 @@ export class ManageDriveComponent implements OnInit {
           this.pending_cards = driveCardData.totalCount.pendingCount;
           this.closed_cards = driveCardData.totalCount.closedCount;
         }
-    },
-    (err) => {
-      this.toastr.warning('Connection failed, Please try again.');
-    }
+      },
+      (err) => {
+        this.toastr.warning('Connection failed, Please try again.');
+      }
     );
   }
 }
