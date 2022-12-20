@@ -158,35 +158,37 @@
 .date-picker {
   margin-top: 5px;
 }
-::ng-deep.mat-form-field {
+::ng-deep.openforapp{
+.mat-form-field {
   position: relative;
   text-align: left;
   width: 352px;
 }
-::ng-deep.mat-form-field-infix {
+.mat-form-field-infix {
   height: 40px !important;
   width: 340px !important;
   display: flex !important;
   background-color: #ffffff !important;
 }
-::ng-deep.mat-form-field-flex {
+.mat-form-field-flex {
   padding: 0px !important;
   border: 0.7px solid #b4b4b4 !important;
   border-radius: 3px !important;
   width: 352px !important;
 }
 
-::ng-deep.mat-form-field-underline {
+.mat-form-field-underline {
   border-width: 0px !important;
   height: 0px !important;
 }
-::ng-deep.mat-datepicker-toggle {
+.mat-datepicker-toggle {
   position: relative !important;
   bottom: 20px !important;
 }
-::ng-deep.cdk-text-field-autofill-monitored:not(:-webkit-autofill) {
+.cdk-text-field-autofill-monitored:not(:-webkit-autofill) {
   padding-bottom: 6px !important;
   padding-left: 10px !important;
+}
 }
 .content-text {
   text-align: left;
