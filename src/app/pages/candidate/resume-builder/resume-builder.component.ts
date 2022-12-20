@@ -18,10 +18,12 @@ export class ResumeBuilderComponent implements OnInit {
   @ViewChild('resumeBuild', { static: false }) resumeDialogRef: TemplateRef<any>;
   @ViewChild('preview') preview:ElementRef;
   thumbnailimage: string;
+  FILEURI: string;
   constructor(public dialog: MatDialog,private router:Router,private appconfig:AppConfigService,private apiservice:ApiService) { }
 
   profilePercentage: any;
-
+  options: any;
+  
   ngOnInit() {
     this.profilePercentage = JSON.parse(localStorage.getItem('profilePercentage'));
     console.log(this.profilePercentage);
@@ -61,17 +63,15 @@ export class ResumeBuilderComponent implements OnInit {
     })
   }
   generatePDF(){
-    var data = document.getElementById('pdfconverting');
+    //var data = document.getElementById('pdfconverting');
     this.generateCanvas().then((canvas)=>{
       let fileWidth = 208;
       let fileHeight = (canvas.height * fileWidth) / canvas.width;
-      const FILEURI = canvas.toDataURL('image/png');
+      this.FILEURI = canvas.toDataURL('image/png');
       let PDF = new jsPDF('p', 'mm', 'a4');
       let position = 0;
-      PDF.addImage(FILEURI, 'PNG', 0, position, fileWidth, fileHeight);
+      PDF.addImage(this.FILEURI, 'PNG', 0, position, fileWidth, fileHeight);
       PDF.save('resume.pdf');
     })
   }
-
-
 }
