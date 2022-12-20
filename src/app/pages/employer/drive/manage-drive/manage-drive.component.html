@@ -10,7 +10,7 @@
             <mat-card-title class="text">No of Drives</mat-card-title>
           </div>
           <div>
-            <mat-card-subtitle class="num">100</mat-card-subtitle>
+            <mat-card-subtitle><div class="num">{{drive_cards}}</div></mat-card-subtitle>
           </div>
         </mat-card-header>
         <mat-card-content class="icon">
@@ -25,7 +25,7 @@
             <mat-card-title class="text">Active</mat-card-title>
           </div>
           <div>
-            <mat-card-subtitle class="num">25</mat-card-subtitle>
+            <mat-card-subtitle ><div class="num">{{active_cards}}</div></mat-card-subtitle>
           </div>
         </mat-card-header>
         <mat-card-content class="icon">
@@ -40,7 +40,7 @@
             <mat-card-title class="text">Rejected</mat-card-title>
           </div>
           <div>
-            <mat-card-subtitle class="num">20</mat-card-subtitle>
+            <mat-card-subtitle><div class="num">{{reject_cards}}</div></mat-card-subtitle>
           </div>
         </mat-card-header>
         <mat-card-content class="icon">
@@ -55,7 +55,7 @@
             <mat-card-title class="text">Pending</mat-card-title>
           </div>
           <div>
-            <mat-card-subtitle class="num">15</mat-card-subtitle>
+            <mat-card-subtitle ><div class="num">{{pending_cards}}</div></mat-card-subtitle>
           </div>
         </mat-card-header>
         <mat-card-content class="icon">
@@ -70,7 +70,7 @@
             <mat-card-title class="text">Closed</mat-card-title>
           </div>
           <div>
-            <mat-card-subtitle class="num">100</mat-card-subtitle>
+            <mat-card-subtitle ><div class="num">{{closed_cards}}</div></mat-card-subtitle>
           </div>
         </mat-card-header>
         <mat-card-content class="icon">
@@ -85,7 +85,7 @@
             <mat-card-title class="text">Expired</mat-card-title>
           </div>
           <div>
-            <mat-card-subtitle class="num">8</mat-card-subtitle>
+            <mat-card-subtitle><div class="num">{{expire_cards}}</div></mat-card-subtitle>
           </div>
         </mat-card-header>
         <mat-card-content class="icon">
@@ -100,13 +100,37 @@
     <ag-grid-angular
       style="width: 100%; height: 100%;"
       class="ag-theme-alpine"
-      [columnDefs]="columnDefs"
-      [sideBar]="sideBar"
-      [defaultColDef]="defaultColDef"
-      (gridReady)="onGridReady($event)"
-      [rowData]="getdataag"
-      (selectionChanged)="onSelectionChanged($event)"
-      [gridOptions]= "gridOptions">
+      [gridOptions]= "gridOptions"
+       [columnDefs]="columnDefs" 
+                        [defaultColDef]="defaultColDef"
+                        [masterDetail]="masterDetail"
+                        [overlayNoRowsTemplate]="overlayNoRowsTemplate"
+                         [rowData]="rowData" 
+                         [enableRangeSelection]="true"
+                        [tooltipShowDelay]="0" 
+                        [animateRows]="true"
+                         headerHeight="45" 
+                         rowHeight="45"
+                        [suppressRowClickSelection]="true"
+                         [suppressRowTransform]="true" 
+                         [rowSelection]="rowSelection"
+                        [pivotPanelShow]="'always'" 
+                        [sideBar]="false" 
+                        (gridReady)="onGridReady($event)"
+                        [rowModelType]="rowModelType"
+                         [maintainColumnOrder]="true" 
+                         [cacheBlockSize]="cacheBlockSize"
+                        (selectionChanged)="onSelectionChanged($event)" 
+                        [suppressAggFuncInHeader]="true" 
+                        [suppressColumnVirtualisation]="true"
+                        [autoGroupColumnDef]="autoGroupColumnDef" 
+                        [serverSideStoreType]="serverSideStoreType"
+                        [pagination]="true" 
+                        [paginationPageSize]="10" 
+                        [sideBar]="sideBar" 
+                        allColumns=true
+      >
+      
   </ag-grid-angular>
   
 </div>

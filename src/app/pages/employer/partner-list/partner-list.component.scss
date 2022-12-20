@@ -260,7 +260,8 @@
     color: #262626;
 }
 
-::ng-deep.active-button {
+::ng-deep.status-button{   
+.active-button {
     display: flex;
     height: 24px;
     align-items: center;
@@ -276,7 +277,7 @@
     font: normal normal normal 12px/16px Roboto;
   letter-spacing: 0.3px;
   }
-  ::ng-deep.inactive-button {
+  .inactive-button {
     display: flex;
     height: 24px;
     align-items: center;
@@ -292,7 +293,8 @@
     font: normal normal normal 12px/16px Roboto;
   letter-spacing: 0.3px;
   }
-  ::ng-deep.pending-button {
+
+  .pending-button {
     display: flex;
     height: 24px;
     align-items: center;
@@ -308,6 +310,9 @@
     font: normal normal 300 12px/16px Roboto;
   letter-spacing: 0.3px;
   }
+}
+
+  
 ::ng-deep.customPagination {
     .mat-icon-button,
     .mat-mini-fab {
