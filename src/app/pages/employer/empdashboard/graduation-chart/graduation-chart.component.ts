@@ -61,16 +61,16 @@ export class GraduationChartComponent implements OnInit {
   ngOnInit(): void {
     this.graduationChart()
   }
-  ngAfterViewInit() {
-    setTimeout(() => {
-      this.graduationChart()
-    }, 5000);
-  }
+  // ngAfterViewInit() {
+  //   setTimeout(() => {
+  //     this.graduationChart()
+  //   }, 5000);
+  // }
   ngOnChanges(changes: SimpleChange) {
     if (changes['item']?.currentValue) {
       this.item = changes['item']?.currentValue
     }
-    this.graduationChart()
+      this.graduationChart()
   }
   graduationChart(){
       for (let i = 0; i < this.item?.length; i++) {

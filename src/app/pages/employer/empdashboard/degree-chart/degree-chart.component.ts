@@ -63,11 +63,11 @@ export class DegreeChartComponent implements OnInit {
     this.degreeChart()
   }
 
-  ngAfterViewInit() {
-    setTimeout(() => {
-      this.degreeChart()
-    }, 5000);
-  }
+  // ngAfterViewInit() {
+  //   setTimeout(() => {
+  //     this.degreeChart()
+  //   }, 5000);
+  // }
 
   degreeChart() {
     if (this.item && this.item.length) {
