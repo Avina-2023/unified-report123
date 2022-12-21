@@ -2,11 +2,11 @@
   <div class="top-section">
     <div (click)="gotoResumePage()"><mat-icon>arrow_back</mat-icon>Back</div>
     <div>
-      <button (click)="generatePDF()">Download</button>
+      <button (click)="downloadAsPDF()">Download</button>
+      <!-- <button (click)="myPDF()">Download</button> -->
     </div>
   </div>
   <div #viewer>
     <app-resumeTemplate1 #template1 ></app-resumeTemplate1>
   </div>
-
 </section>

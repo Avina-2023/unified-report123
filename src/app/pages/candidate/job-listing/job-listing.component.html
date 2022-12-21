@@ -57,16 +57,18 @@
                 <div class="misc_row"><span>
                     <mat-icon class="misc_icon"> school</mat-icon>
                   </span>
+                  <p class="graduate overflow-dot">
                   <span *ngFor="let subItem of item.education;let i=index; let isLast=last">
                     <span class="misc_col">{{subItem}}<span class="misc_col"
                         *ngIf="!isLast && i < item.education.length">&nbsp;</span> </span>
                   </span>
+                </p>
                 </div>
 
                 <div class="misc_row"><span>
                     <mat-icon class="misc_icon"> location_on</mat-icon>
                   </span>
-                  <p class="locate">
+                  <p class="locate overflow-dot">
                     <span *ngFor="let subItem of item.jobLocation;let i=index; let isLast=last">
                       <span class="misc_col">{{subItem}}<span class="misc_col"
                           *ngIf="!isLast && i < item.jobLocation.length">&nbsp;</span></span>

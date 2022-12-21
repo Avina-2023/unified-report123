@@ -52,7 +52,7 @@ item: any;
       autoFocus: false,
       closeOnNavigation: true,
       disableClose: false,
-      panelClass: 'popupModalContainerForMessage'
+      // panelClass: 'popupModalContainerForMessage'
     });
   }
 
