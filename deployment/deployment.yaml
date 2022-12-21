@@ -15,9 +15,9 @@ spec:
     spec:
       containers:
         - name: unifiedreport
-          image: microcert.azurecr.io/unifiedreport:$tag
+          image: skillexchangedev.azurecr.io/unifiedreport:$tag
           imagePullPolicy: Always
           ports:
           - containerPort: 80
       imagePullSecrets:
-        - name: mysecret2
+        - name: mysecret
