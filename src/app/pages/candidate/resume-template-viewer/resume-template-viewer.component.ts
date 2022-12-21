@@ -53,12 +53,17 @@ export class ResumeTemplateViewerComponent implements OnInit {
   //   })
   // }
 
-
+  // myPDF(){
+  //   const element = document.querySelector('#inner_template');
+  //   const pdf = new jsPDF('p', 'pt', 'a4');
+  //    //pdf.fromHTML(element, 20, 20);
+  //    pdf.save('myPdf.pdf');
+  // }
  downloadAsPDF() {
     //this.toastr.success('Please wait','PDF is downloading')
     var element = document.getElementById('inner_template');
     var opt = {
-      margin: [20,-20],
+      margin: [0,-20,23,-20],
       filename:  'resume.pdf',
       // image:        { type: 'jpeg', quality: 1 },
       // html2canvas:  {scale: 2},

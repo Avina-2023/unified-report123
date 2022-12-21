@@ -127,6 +127,7 @@
   .specialization {
     margin-top: 20px;
     display: flex;
+    flex-wrap: wrap;
 
     .specialization-box {
       background: #c7c7c70d 0% 0% no-repeat padding-box;
@@ -139,7 +140,7 @@
       font-weight: 600;
       /* border: 1px solid rgba(255, 255, 255, 0.53); */
       color: #707070;
-      margin: 0px 1px;
+      margin: 3px;
       border-radius: 3px;
       padding: 4px;
       font-size: 10px;
