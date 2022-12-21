@@ -110,6 +110,12 @@ export class SidebarComponent implements OnInit {
     this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.PARTNER.REQUIRMENT)
   }
 
+  postJob(value:any){
+    // this.loaded.setLoading();
+    this.check = value;
+    this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.EMPJOBS.POSTREQUIRMENT)
+  }
+
    profile(value){
     this.check = value;
     this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.EMPDASHBOARD.PROFILE)

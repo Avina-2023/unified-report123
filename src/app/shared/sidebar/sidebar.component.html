@@ -1,4 +1,5 @@
-<mat-drawer-container [ngClass]="{'sidebar_wdth': roleCode === 'EMP'}" class="example-container mat-typography" autosize style="height: 100vh;">
+<mat-drawer-container [ngClass]="{'sidebar_wdth': roleCode === 'EMP'}" class="example-container mat-typography" autosize
+  style="height: 100vh;">
   <mat-drawer #drawer mode="side" disableClose="true" opened="true">
     <!-- <mat-nav-list class="mathigh"> -->
     <mat-nav-list [ngClass]="{'mathgt': roleCode != 'EMP', 'mathigh':roleCode === 'EMP' }">
