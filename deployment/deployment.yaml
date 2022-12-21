@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: unifiedreport
-  namespace: unifiedrpt
+  namespace: skillexchange
 spec:
   replicas: 1
   selector:
@@ -15,9 +15,9 @@ spec:
     spec:
       containers:
         - name: unifiedreport
-          image: microcert.azurecr.io/unifiedreport:$tag
+          image: skillexchangedev.azurecr.io/unifiedreport:$tag
           imagePullPolicy: Always
           ports:
           - containerPort: 80
       imagePullSecrets:
-        - name: mysecret2
+        - name: mysecret
