@@ -31,12 +31,7 @@ const routes: Routes = [
   {
     path: `${APP_CONSTANTS.ROUTES.EMPDASHBOARD.GRADUATION}`, component: GraduationChartComponent
   },
-  {
-    path: `${APP_CONSTANTS.ROUTES.EMPDASHBOARD.POSTREQUIRMENT}`, component: EmpPostrequirmentsComponent
-  },
-  {
-    path: `${APP_CONSTANTS.ROUTES.EMPDASHBOARD.REQUIRMENT}`, component: EmpRequirmentsComponent
-  },
+
 
   {
     path:`${APP_CONSTANTS.ROUTES.EMPDASHBOARD.PROFILE}`,component:EmpProfileComponent

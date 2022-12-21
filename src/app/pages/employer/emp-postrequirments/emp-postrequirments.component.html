@@ -1,146 +1,160 @@
-<div class="body">
-  <div>
-    <h3 class="title">Post Job Requirements</h3>
-    <!-- White Border bg -->
-    <div class="bg">
-      <h3 class="jobDetails">Job Details</h3>
-      <div class="">
-        <div class="col-md-12 col-sm-12 alignp">
-          <label>Job Role <span>*</span></label>
-          <mat-form-field class="job-form-width" appearance="outline">
-            <input matInput class="heighttext" placeholder="Software Developer" formControlName="">
-          </mat-form-field>
-        </div>
 
-        <div class="col-md-12 col-sm-12 alignp">
-          <label>Job Title <span>*</span></label>
-          <mat-form-field class="job-form-width" appearance="outline">
-            <input matInput class="heighttext" placeholder="Associate" formControlName="">
-          </mat-form-field>
-        </div>
+<div class="emp-bg">
 
-        <div class=" sameline">
-          <div class="col-md-6 col-sm-12 alignp">
-            <label>Job Location<span>*</span></label>
-            <mat-form-field class="job-form-width" appearance="outline">
-              <input matInput class="heighttext" placeholder=" Chennai, Bangalore" formControlName="">
 
-            </mat-form-field>
-          </div>
-          <div class="col-md-6 col-sm-12 alignp">
-            <label>Job Type<span>*</span></label>
-            <mat-form-field class="job-form-width" appearance="outline">
+  <h3 class="title">Post Job Requirements</h3>
+<div class="emp-post">
+<form class="example-form">
+  <div class="col-md-12">
+    <label>Job Role <span>*</span></label>
+    <mat-form-field class="example-full-width" appearance="outline">
+      <mat-label>Job role</mat-label>
+      <input type="Software Developer" matInput  placeholder="Software Developer" formControlName="jobrole">
+    </mat-form-field>
+  </div>
+  <div class="col-md-12">
+    <label>Job title <span>*</span></label>
+    <mat-form-field class="example-full-width" appearance="outline">
+      <mat-label>Associate</mat-label>
+      <input type="email" matInput  placeholder="Associate" formControlName="jobtitle">
+    </mat-form-field>
+  </div>
+ <div class="d-flex">
+  <div class="col-md-6">
+    <label>Job location <span>*</span></label>
+    <mat-form-field class="example-full-width" appearance="outline">
+      <mat-label>Chennai,Banglore</mat-label>
+      <input type="email" matInput  placeholder="Chennai,Banglore"formControlName="joblocation">
+    </mat-form-field>
+  </div>
+  <div class="col-md-6">
+    <label>Job type <span>*</span></label>
+    <mat-form-field class="example-full-width" appearance="outline">
+      <mat-label>Full Time</mat-label>
+      <mat-select matNativeControl name="Job type">
+      <mat-option *ngFor="let item of selectArray" value="{{item}}">{{item}}</mat-option>
+    </mat-select>
+    </mat-form-field>
+  </div>
+ </div>
+ <div class="d-flex">
+  <fieldset class="educationField" style=" padding: 20px;border: 1px solid #e7e3e3;width:100%;">
+    <legend style="width: fit-content;">Education </legend>
 
-              <mat-select formControlName="droupDown" placeholder="-select-">
-                <mat-option *ngFor="let item of selectArray" [value]="item">
-                  {{ item }}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-          </div>
-        </div>
-      </div>
-      <div class="alignp1 mt-4" style="padding:17px">
-        <fieldset class="educationField" style=" padding: 20px;border: 1px solid #e7e3e3;">
-          <legend style="width: fit-content;">Education </legend>
-          <div class="edu-field">
-            <div class="">
+<div style="display:flex;">
+  <div class="col-md-2">
+    <mat-form-field class="example-full-width" appearance="outline">
+      <mat-label>Any Graduation</mat-label>
+      <input type="email" matInput  placeholder="" formControlName="anygraduation" >
+    </mat-form-field>
+  </div>
+  <div class="col-md-2">
+    <mat-form-field class="example-full-width" appearance="outline">
+      <mat-label>Email</mat-label>
+      <input type="email" matInput  placeholder="Any degree"formControlName="anydegree" >
+    </mat-form-field>
+  </div>
+  <div class="col-md-2">
+    <mat-form-field class="example-full-width" appearance="outline">
+      <mat-label>Email</mat-label>
+      <input type="email" matInput  placeholder="Any course"formControlName="anycourse" >
+    </mat-form-field>
+  </div>
+  <div class="col-md-4">
+    <mat-form-field class="example-full-width" appearance="outline">
+      <mat-label>Email</mat-label>
+      <input type="email" matInput  placeholder="-- Select Specialization (Multiple Select) --"formControlName="selectspecialization" required>
+    </mat-form-field>
+  </div>
+</div>
+</fieldset>
+ </div>
 
-              <mat-form-field class="form-filed-width" appearance="outline">
-                <mat-select formControlName="droupDown" placeholder="Any Graduation" (change)="firstDropDownChanged($event.target.value)">
 
-                  <mat-option *ngFor="let itemList of graduation" [value]="item">
-                    {{ itemList }}
-                  </mat-option>
-                </mat-select>
-              </mat-form-field>
+ <div style="width:100%;display: flex;align-items: center;">
+  <div class="ctc" style="width:50%;display: flex;align-items: baseline;">
+    <mat-label>CTC</mat-label>
+   <div>
 
-            </div>
-            <div class="">
-              <mat-form-field class="form-filed-width" appearance="outline">
-                <mat-select formControlName="droupDown" placeholder="Any Degree">
-                  <mat-option *ngFor="let item of val2" [value]="item">
-                    {{ item }}
-                  </mat-option>
-                </mat-select>
-              </mat-form-field>
-            </div>
-             <div class="">
-               <mat-form-field class="form-filed-width" appearance="outline">
-                <mat-select formControlName="droupDown" placeholder="Any Course">
-                  <mat-option *ngFor="let item of anycourseArray" [value]="item">
-                    {{ item }}
-                  </mat-option>
-                </mat-select>
-              </mat-form-field>
-            </div>
-            <div class="">
-              <mat-form-field class="form-filed-width" appearance="outline">
-                <input matInput class="heighttext" type="text" maxlength=""
-                  placeholder="-- Select Specialization (Multiple Select) --" formControlName="" required>
-              </mat-form-field>
-            </div>
+    <mat-radio-group aria-label="Select an option">
 
-          </div>
-        </fieldset>
-      </div>
-      <!-- key skills -->
-      <div class="col-md-12 col-sm-12 alignp">
-        <label class="keyskills">Key Skills<span>*</span></label>
-        <mat-form-field class="key-skills-width" appearance="outline">
+      <mat-radio-button value="1">Fixed</mat-radio-button>
+      <mat-radio-button value="2">Range</mat-radio-button>
+    </mat-radio-group>
+   </div>
+   <div>
+    <mat-form-field class="example-full-width" appearance="outline">
+      <mat-select formControlName="fixedpackage" matNativeControl name="fixedpackage">
+      <mat-option *ngFor="let item of selectArray" value="{{item}}">{{item}}</mat-option>
+    </mat-select>
+    </mat-form-field>
+   </div>
+  </div>
+  <div class="yearofPass" style="width:50%;">
+    <div>
+      <mat-label>Year of Passing</mat-label>
+      <mat-form-field class="example-full-width" appearance="outline">
+     <mat-select formControlName="yearofpassing" matNativeControl name="yearofpassing">
+        <mat-option *ngFor="let item of yearofpassingArray" value="{{item}}">{{item}}</mat-option>
+      </mat-select>
+      </mat-form-field>
+     </div>
+  </div>
+ </div>
 
-          <mat-select formControlName="droupDown" placeholder="-- Select Skill Set (Multiple Select) --">
-            <mat-option *ngFor="let item of keyskillArray" [value]="item">
-              {{ item }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
-      <!-- job description -->
+ <div class="col-md-12">
+  <label>Key skills <span>*</span></label>
+  <mat-form-field class="example-full-width" appearance="outline">
+    <mat-label></mat-label>
+    <input type="" matInput  placeholder="-- Select Skill Set (Multiple Select) --" formControlName="keyskills">
+  </mat-form-field>
+</div>
+<div class="col-md-12">
+  <label>Job description <span>*</span></label>
+  <mat-form-field class="example-full-width" appearance="outline">
+    <mat-label></mat-label>
+    <input type="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book" matInput  placeholder="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book." formControlName="jobdescription">
+  </mat-form-field>
+</div>
+ <!-- drive date -->
+ <div class="drivesameline">
+  <div class="col-md-6 col-sm-12 alignp">
+     <div>
+      <label>Drive Date<span>*</span></label>
+      <mat-form-field appearance="outline">
+        <input matInput [(ngModel)]="fromDate" for="dp1" placeholder="15-12-2022" formControlName="drivedate" [matDatepicker]="datepicker1"
+          class="">
+        <mat-datepicker-toggle class="toggle-pos" matSuffix [for]="datepicker1" id=""></mat-datepicker-toggle>
+        <mat-datepicker #datepicker1>
+          <mat-datepicker-actions>
+            <button mat-button matDatepickerCancel>Cancel</button>
+            <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+          </mat-datepicker-actions>
+        </mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div>
 
-      <div class="col-md-12 col-sm-12 alignp">
-        <label class="jobDescription"> Job Description<span>*</span></label>
-        <mat-form-field class="job-form-width" appearance="outline">
-          <input matInput class="heighttext"
-            placeholder="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
-            formControlName="">
-        </mat-form-field>
-      </div>
-
-      <!-- drive date -->
-      <div class="drivesameline">
-        <div class="col-md-6 col-sm-12 alignp">
-          <div>
-            <label>Drive Date<span>*</span></label>
-            <mat-form-field appearance="outline">
-              <input matInput [(ngModel)]="fromDate" for="dp1" placeholder="15-12-2022" [matDatepicker]="datepicker1"
-                class="">
-              <mat-datepicker-toggle class="toggle-pos" matSuffix [for]="datepicker1" id=""></mat-datepicker-toggle>
-              <mat-datepicker #datepicker1>
-                <mat-datepicker-actions>
-                  <button mat-button matDatepickerCancel>Cancel</button>
-                  <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
-                </mat-datepicker-actions>
-              </mat-datepicker>
-            </mat-form-field>
-          </div>
-          <div>
-
-          </div>
-        </div>
-        <div class="col-md-6 col-sm-12 alignp">
-          <label>Last Date to Apply<span>*</span></label>
-          <mat-form-field appearance="outline">
-            <input [min]="fromDate" placeholder="15-12-2022" matInput [(ngModel)]="toDate" [matDatepicker]="datepicker">
-            <mat-datepicker-toggle class="toggle-pos" matSuffix [for]="datepicker"></mat-datepicker-toggle>
-            <mat-datepicker #datepicker>
-              <mat-datepicker-actions>
-                <button mat-button matDatepickerCancel>Cancel</button>
-                <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
-              </mat-datepicker-actions>
-            </mat-datepicker>
-          </mat-form-field>
-        </div>
-      </div>
     </div>
   </div>
+  <div class="col-md-6 col-sm-12 alignp">
+    <label>Last Date to Apply<span>*</span></label>
+     <mat-form-field appearance="outline">
+      <input [min]="fromDate" placeholder="15-12-2022" formControlName="lastdatetoapply" matInput [(ngModel)]="toDate" [matDatepicker]="datepicker">
+      <mat-datepicker-toggle class="toggle-pos" matSuffix [for]="datepicker"></mat-datepicker-toggle>
+      <mat-datepicker #datepicker>
+        <mat-datepicker-actions>
+          <button mat-button matDatepickerCancel>Cancel</button>
+          <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+        </mat-datepicker-actions>
+      </mat-datepicker>
+    </mat-form-field>
+  </div>
+</div>
+<div class="btn-submit">
+  <button mat-raised-button color="primary">Save</button>
+  <button mat-stroked-button color="primary">Clear</button>
+</div>
+</form>
+</div>
+</div>

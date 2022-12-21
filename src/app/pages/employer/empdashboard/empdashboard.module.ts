@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { EmployerRoutingModule } from './empdashboard-routing.module';
 import { DisciplineChartComponent } from './discipline-chart/discipline-chart.component';
