@@ -6,11 +6,13 @@ import { BehaviouralLandingPageComponent } from './behavioural-landing-page/beha
 import { MaterialModule } from 'src/app/material/material.module';
 import { ChartsModule } from 'ng2-charts';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { BajajViewReportComponent } from './bajaj-view-report/bajaj-view-report.component';
 
 
 @NgModule({
   declarations: [
     BehaviouralLandingPageComponent,
+    BajajViewReportComponent,
     // BehaviouralReportCanvasComponent,
     // BehaviouralPdfReportDownloadComponent
   ],

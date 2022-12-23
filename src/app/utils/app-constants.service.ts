@@ -58,7 +58,8 @@ export const APP_CONSTANTS = {
       DASHBOARD:'/auth/reports/dashboard',
       BEHAVIOUR_MODULE: {
         BEHAVIOUR_MODULE_PAGE: '/auth/reports/behavioural',
-        BEHAVIOUR_REPORT: '/auth/reports/behavioural/view'
+        BEHAVIOUR_REPORT: '/auth/reports/behavioural/view',
+        BEHAVIOUR_REPORT1: '/auth/reports/behavioural/viewBajajReport',
       }
     },
     CANDIDATE:{
@@ -132,7 +133,8 @@ export const APP_CONSTANTS = {
       DASHBOARD:'dashboard',
       BEHAVIOUR_MODULE: {
         HOME: 'behavioural',
-        BEHAVIOUR_REPORT: 'view'
+        BEHAVIOUR_REPORT: 'view',
+        BEHAVIOUR_REPORT1: 'viewBajajReport'
       }
     },
     CANDIDATE:{

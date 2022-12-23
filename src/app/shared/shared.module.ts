@@ -15,7 +15,8 @@ import { ChartsModule } from 'ng2-charts';
 import { BehaviouralPdfReportDownloadComponent } from './behavioural-pdf-report-download/behavioural-pdf-report-download.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { BehaviouralReportCanvasComponent } from './behavioural-report-canvas/behavioural-report-canvas.component';
-import {SidebarComponent} from './sidebar/sidebar.component'
+import {SidebarComponent} from './sidebar/sidebar.component';
+import { BajajBegaviouralPdfReportDownloadComponent } from './bajaj-begavioural-pdf-report-download/bajaj-begavioural-pdf-report-download.component'
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
 };
@@ -31,7 +32,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     ToolbarComponent,
     BehaviouralReportCanvasComponent,
     SidebarComponent,
-    AlertDialogComponent
+    AlertDialogComponent,
+    BajajBegaviouralPdfReportDownloadComponent
   ],
   imports: [
     CommonModule,
@@ -60,6 +62,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     ToolbarComponent,
     SidebarComponent,
     BehaviouralReportCanvasComponent,
+    BajajBegaviouralPdfReportDownloadComponent
     
 
   ],
