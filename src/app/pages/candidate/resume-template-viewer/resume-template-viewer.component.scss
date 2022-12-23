@@ -2,6 +2,7 @@
     height: 86vh;
     background: #E4E4E4;
     overflow: scroll;
+    margin-top: 6px;
 
     .top-section {
         display: flex;
@@ -16,7 +17,7 @@
 
         div:first-child {
             display: flex;
-            align-items: end;
+            align-items: center;
         }
 
         button {
@@ -31,3 +32,10 @@
     }
 
 }
+
+
+@media only screen and (max-width: 600px) {
+    .overall_viewer {
+         zoom: 30%;
+     }
+ }
