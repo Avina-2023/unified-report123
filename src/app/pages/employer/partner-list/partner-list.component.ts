@@ -93,6 +93,7 @@ export class PartnerListComponent implements OnInit {
 
   };
   partnerListStatusData: any;
+  FormateName: any;
   // defaultColDef: {
   //   // editable: true,
   //   sortable: boolean; resizable: boolean; filter: boolean; flex: number; minWidth: number;
@@ -154,7 +155,8 @@ refresh(){
       { headerName: 'S.No', field: '_id', minWidth: 85 , filter: false,
     cellRenderer: function(params){
       return params.rowIndex +1;
-    }
+    },
+    sortable: false,
     },
       { headerName: 'Employer Name', field: 'company', minWidth: 170,  
       filter: 'agTextColumnFilter',
@@ -165,16 +167,25 @@ refresh(){
         filterOptions: ['contains']
       },
       tooltipField: 'company',
+      cellRenderer: (params) => {
+        if (params.value && params.value != undefined && params.value != null && params.value !="") {
+          this.FormateName = params.value;
+          return this.titleCase(this.FormateName);
+        } else {
+          return "-";
+        }
+      },
+      
      },
     
-      { headerName: '', field: 'companyImgURL', minWidth: 100,
-       suppressColumnsToolPanel: true,
-      filter: false,
-      cellRenderer: function(params){
-        let val = encodeURI(params.value);
-        return `<img width="30px" height"22px" src=${val} alt="">`;
-      }
-    },
+    //   { headerName: '', field: 'companyImgURL', minWidth: 100,
+    //    suppressColumnsToolPanel: true,
+    //   filter: false,
+    //   cellRenderer: function(params){
+    //     let val = encodeURI(params.value);
+    //     return `<img width="30px" height"22px" src=${val} alt="">`;
+    //   }
+    // },
       { headerName: 'Industry Type', field: 'industryType', minWidth: 200, 
       filter: 'agTextColumnFilter',
       chartDataType: 'category',
@@ -182,6 +193,14 @@ refresh(){
       filterParams: {
         suppressAndOrCondition: true,
         filterOptions: ['contains']
+      },
+      cellRenderer: (params) => {
+        if (params.value && params.value != undefined && params.value != null && params.value !="") {
+          this.FormateName = params.value;
+          return this.titleCase(this.FormateName);
+        } else {
+          return "-";
+        }
       },
       tooltipField: 'industryType',
     },
@@ -204,11 +223,20 @@ refresh(){
         filterOptions: ['contains']
       },
       tooltipField: 'email',
+      cellRenderer: (params) => {
+        if (params.value && params.value != undefined && params.value != null && params.value !="") {
+          this.FormateName = params.value;
+          return this.titleCase(this.FormateName);
+        } else {
+          return "-";
+        }
+      },
      },
       { headerName: 'Created Date', field: 'createdAt', minWidth: 150,
       maxWidth: 170,
+      
       valueFormatter: function (params) {
-          return moment(params.value).format('MMM D,yy');
+          return moment(params.value).format('MMM D, yy');
       },
       
       //   return moment(data.value).format('L');
@@ -222,16 +250,12 @@ refresh(){
           suppressAndOrCondition: true,
           filterOptions: ['equals', 'lessThan', 'greaterThan', 'inRange'],
         },
-        tooltipField: 'createdAt',
+        // tooltipField: 'createdAt',
     },
       { headerName: 'Status', 
       field: 'isActive',
       minWidth: 100 ,
-      filter: 'agTextColumnFilter',
-      filterParams: {
-        suppressAndOrCondition: true,
-        filterOptions: ['contains' ]
-      },
+      filter: false,
      
       cellRenderer: (data: any) => {
       //  debugger;
@@ -353,12 +377,19 @@ if (this.partnerListAgData.length > 0) {
   });
 });
   this.gridApi.hideOverlay();
-  this.gridApi.showNoRowsOverlay();
+  // this.gridApi.showNoRowsOverlay();
 }
 
   }
 }
 
+titleCase(str) {
+  var splitStr = str.toLowerCase().split(' ');
+  for (var i = 0; i < splitStr.length; i++) {
+    splitStr[i] = splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1);
+  }
+  return splitStr.join(' ');
+}
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }

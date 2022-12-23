@@ -85,6 +85,10 @@ export class BehaviouralAssessmentInfoComponent implements OnInit, OnChanges {
   viewBehaviouralReport() {
     this.appConfig.routeNavigationWithParam(APP_CONSTANTS.ENDPOINTS.REPORTS.BEHAVIOUR_MODULE.BEHAVIOUR_REPORT, this.ApiService.encrypt(this.emailId));
   }
+  
+  viewBehaviouralReport1(){
+    this.appConfig.routeNavigationWithParam(APP_CONSTANTS.ENDPOINTS.REPORTS.BEHAVIOUR_MODULE.BEHAVIOUR_REPORT1, this.ApiService.encrypt(this.emailId));
+  }
 
   ngOnChanges() {
     this.getAssessmentInfo();
