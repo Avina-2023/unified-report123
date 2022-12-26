@@ -62,6 +62,9 @@ export class ApiService {
   getAGgridData(data){
     return this.http.post(`${this.BASE_URL}/joblistwithaggrid`,data);
   }
+  getCandidateListByDeive(data){
+    return this.http.post(`${this.BASE_URL}/candidatelistbyappliedjob`,data);
+  }
 getAGgridPatnerList(data){
   return this.http.post(`${this.BASE_URL}/partnerList`,data);
 }
