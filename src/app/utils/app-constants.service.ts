@@ -81,7 +81,8 @@ export const APP_CONSTANTS = {
     VIEWDRIVE:{
       HOME: '/auth/drive',
       MANAGEDRIVE:'/auth/drive/managedrive',
-      DRIVESETTINGS:'/auth/drive/drivesettings'
+      DRIVESETTINGS:'/auth/drive/drivesettings',
+      VIEWCANDIDATE:"/auth/drive/candidatelist"
     },
 
     EMPDASHBOARD:{
@@ -157,7 +158,8 @@ export const APP_CONSTANTS = {
     DRIVE:{
       HOME: 'drive',
       MANAGEDRIVE:'managedrive',
-      DRIVESETTINGS:'drivesettings'
+      DRIVESETTINGS:'drivesettings',
+      VIEWCANDIDATE:"candidatelist"
     },
 
     EMPDASHBOARD:{

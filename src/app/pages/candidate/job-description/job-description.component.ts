@@ -6,6 +6,7 @@ import { AppConfigService } from 'src/app/utils/app-config.service';
 import { ActivatedRoute, NavigationStart, Router } from '@angular/router';
 import { filter, map } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-job-description',
@@ -56,12 +57,12 @@ item: any;
     });
   }
 
-  gotopage(navpoint){
-    if(navpoint == 'apply'){
-      // this.appConfig.routeNavigation(CONSTANT.ENDPOINTS.JOB.JOBDESCRIPTION);
-    }else{
-      // this.appConfig.routeNavigation('/profile/candidate/');
-    }
+  gotopage(){
+    let emailval = this.appConfig.getLocalStorage('email')
+    let enc_email = encodeURIComponent(this.skillexService.encryptnew(emailval,environment.cryptoEncryptionKey))
+    // window.open(environment.SKILL_PROFILE_URL+'/externallogin?extId='+enc_email, 'profile_redir');
+    window.location.assign(environment.SKILL_PROFILE_URL+'/externallogin?extId='+enc_email);
+
     this.dialogData.close();
   }
 
