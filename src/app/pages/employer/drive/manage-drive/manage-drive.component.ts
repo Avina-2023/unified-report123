@@ -179,34 +179,45 @@ export class ManageDriveComponent implements OnInit {
         }
       },
       tooltipField: 'jobTitle',
-    },
-      {
+    }, {
         headerName: 'Candidates Applied',
         field: 'candidatesAppliedCount',
         minWidth: 175,
         cellStyle: { textAlign: 'center' },
-        // cellRenderer: (params) => {
-        //   if (params.value && params.value != undefined && params.value != null && params.value !="") {
-        //     this.FormateName = params.value;
-        //     return this.titleCase(this.FormateName);
-        //   } else {
-        //     return "-";
-        //   }
-        // },
+        filter: 'agNumberColumnFilter',
+        chartDataType: 'series',
+        filterParams: {
+          suppressAndOrCondition: true,
+          filterOptions: ['equals', 'lessThan', 'lessThanOrEqual', 'greaterThan', 'greaterThanOrEqual', 'inRange']
+        },
+        cellRenderer: (params) => {
+          if (params.value && params.value != undefined && params.value != null && params.value != "") {
+            return params.value;
+          } else {
+            return 0;
+          }
+        },
+        tooltipField: 'candidatesAppliedCount',
       },
       {
         headerName: 'Offer Released',
         field: 'offerReleased',
         minWidth: 150,
         cellStyle: { textAlign: 'center' },
-        // cellRenderer: (params) => {
-        //   if (params.value && params.value != undefined &&  params.value !="") {
-        //     this.FormateName = params.value;
-        //     return this.titleCase(this.FormateName);
-        //   } else {
-        //     return "-";
-        //   }
-        // },
+        filter: 'agNumberColumnFilter',
+        chartDataType: 'series',
+        filterParams: {
+          suppressAndOrCondition: true,
+          filterOptions: ['equals', 'lessThan', 'lessThanOrEqual', 'greaterThan', 'greaterThanOrEqual', 'inRange']
+        },
+        cellRenderer: (params) => {
+          if (params.value && params.value != undefined && params.value != null && params.value != "") {
+            return params.value;
+          } else {
+            return 0;
+          }
+        },
+        tooltipField: 'offerReleased',
       },
       {
         headerName: 'Last Date to Apply',
@@ -236,7 +247,14 @@ export class ManageDriveComponent implements OnInit {
         headerName: 'Status',
         field: 'status',
         minWidth: 120,
-        filter: false,
+        // filter: false,
+        filter: 'agTextColumnFilter',
+        chartDataType: 'category',
+        aggFunc: 'sum',
+        filterParams: {
+          suppressAndOrCondition: true,
+          filterOptions: ['contains']
+        },
         cellStyle: { textAlign: 'center' },
         cellRenderer: function (params) {
           if (params.value === 'Active') {
