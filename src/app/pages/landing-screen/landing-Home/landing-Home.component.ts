@@ -213,7 +213,7 @@ export class LandingHomeComponent implements OnInit {
 
   sliderdata2 = [
     {
-      title: 'Anna University,<br> Chennai',
+      title: 'Anna University, Chennai',
       img: 'https://assets.lntedutech.com/Skillexchange/inst-partners/Annauniversity-logo.jpg',
     },
     {
@@ -243,7 +243,7 @@ export class LandingHomeComponent implements OnInit {
     },
 
     {
-      title: 'Chitkara University,<br> Punjab',
+      title: 'Chitkara University, Punjab',
       img: 'https://assets.lntedutech.com/Skillexchange/inst-partners/Chitkarauniversity.jpg',
     },
     {
@@ -251,7 +251,7 @@ export class LandingHomeComponent implements OnInit {
       img: 'https://assets.lntedutech.com/Skillexchange/inst-partners/gtu.jpg',
     },
     {
-      title: 'JECRC University,<br>Jaipur',
+      title: 'JECRC University, Jaipur',
       img: 'https://assets.lntedutech.com/Skillexchange/inst-partners/jecrcUniversity.jpg',
     },
     {
