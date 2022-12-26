@@ -3,7 +3,7 @@
 </button>
 <div class="menu-container">
     <mat-menu #menu="matMenu">
-        <button (click)="MatDialog()" mat-menu-item class="menu-item">
+        <!-- <button (click)="MatDialog()" mat-menu-item class="menu-item">
             <span>Open for Applications</span>
         </button>
         <button (click)="MatDialog1()" mat-menu-item class="menu-item">
@@ -15,13 +15,13 @@
         <button mat-menu-item class="menu-item">
             <span>
                 <a routerLink="/auth/drive/drivesettings" style="text-decoration:none"> Settings </a></span>
-        </button>
-        <button mat-menu-item class="menu-item">
+        </button> -->
+        <button  (click)="viewApplication()" mat-menu-item class="menu-item">
             <span>View Applications</span>
         </button>
-        <button (click)="MatDialog3()" mat-menu-item class="menu-item">
+        <!-- <button (click)="MatDialog3()" mat-menu-item class="menu-item">
             <span>Workflow</span>
-        </button>
+        </button> -->
     </mat-menu>
 </div>
 

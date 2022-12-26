@@ -1,4 +1,5 @@
-.menu-item {
+menu-item {
+ 
   text-align: left;
   font: normal normal 300 11px/18px Roboto;
   letter-spacing: 0.4px;
@@ -6,6 +7,9 @@
   height: 30px;
   border-bottom: 0.5px solid #b4b4b4;
   width: 150px;
+}
+::ng-deep.mat-menu-panel{
+  min-height: 0px
 }
 .popup-image {
   width: 400px;

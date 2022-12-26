@@ -257,12 +257,12 @@ export class ManageDriveComponent implements OnInit {
         },
      
       },
-      // {
-      //   headerName: '',
-      //   field: 'action',
-      //   cellRenderer: 'popUpRender',
-      //   maxWidth: 80,
-      // },
+      {
+        headerName: '',
+        field: 'action',
+        cellRenderer: 'popUpRender',
+        maxWidth: 80,
+      },
     ];
    
   }
@@ -345,10 +345,12 @@ export class ManageDriveComponent implements OnInit {
 
   autoSizeAll(skipHeader: boolean) {
     const allColumnIds: string[] = [];
-    this.gridColumnApi.getAllColumns().forEach((column) => {
-      allColumnIds.push(column.getId());
-    });
-    this.gridColumnApi.autoSizeColumns(allColumnIds, skipHeader);
+    if (this.gridColumnApi && this.gridColumnApi.getAllColumns != undefined && this.gridColumnApi.getAllColumns().length) {
+      this.gridColumnApi.getAllColumns().forEach((column) => {
+        allColumnIds.push(column.getId());
+      });
+      this.gridColumnApi.autoSizeColumns(allColumnIds, skipHeader);
+    }
   }
 
   //   let data = '';
