@@ -1,0 +1,129 @@
+
+    <ng-container *ngIf="getAllBehaviourData && getAllBehaviourData.reportSnapShot">
+        <section class="snapshot">
+            <div class="containerWrapper">
+                <div class="innerContainer">
+                   
+                    <ng-container
+                        *ngIf="getAllBehaviourData.reportSnapShot.competency && getAllBehaviourData.reportSnapShot.competency.length > 0"></ng-container>
+                    <ng-container
+                        *ngFor="let competency of getAllBehaviourData.reportSnapShot.competency; let c = index">
+                        <div class="report-snapshot-content">
+                            <div class="report-imageContent">
+                                <figure class="report-image">
+                                    <img [src]="competency.imageurl" alt="" />
+                                </figure>
+                                <div class="report-snapshot-content-right">
+                                    <div class="heading">CONTINUOUSLY RAISE THE BAR</div>
+                                    <div>
+                                        <div class="bar">
+                                            <div class="red-bar">
+                                                <div class="red-box"></div>
+                                                <div class="bar-no">1</div>
+                                                <div class="pointer-container">
+                                                    <div class="pointer-container-2">
+                                                        <div class="box-red arrow-top" *ngIf="continouslyValueTwo">
+                                                            <div class="barNo">2</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="pointer-container-2">
+                                                        <div class="box-red arrow-top" *ngIf="continouslyValueThree">
+                                                            <div class="barNo">3</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="orange-bar">
+                                                <div class="orange-box"></div>
+                                                <div class="bar-no">4</div>
+                                                <div class="pointer-container">
+                                                    <div class="pointer-container-orange">
+                                                        <div class="box-orange arrow-top" *ngIf="continouslyValueFive">
+                                                            <div class="barNo">5</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="pointer-container-orange">
+                                                        <div class="box-orange arrow-top" *ngIf="continouslyValueSix">
+                                                            <div class="barNo">6</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="pointer-container-orange">
+                                                        <div class="box-orange arrow-top" *ngIf="continouslyValueSeven">
+                                                            <div class="barNo">7</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="green-bar">
+                                                <div class="green-box"></div>
+                                                <div class="bar-no">
+                                                    <div>8</div>
+                                                    <div>10</div>
+                                                </div>
+                                                <div class="pointer-container-green">
+                                                    <div class="box-green arrow-top" *ngIf="continouslyValueNine">
+                                                        <div class="barNo">9</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="snapshot-point">
+                                        <div class="snapshot-point-red">
+                                            <ul class="bullet">
+                                                <li>Tend to avoid challenging situations.</li>
+                                                <li>Comes up with an efficient solution. </li>
+                                                <li>Has a fixed mind-set.</li>
+                                            </ul>
+                                        </div>
+                                        <div class="snapshot-point-green">
+                                            <ul>
+                                                <li>Tend to avoid challenging situations.</li>
+                                                <li>Comes up with an efficient solution. </li>
+                                                <li>Has a fixed mind-set.</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-container>
+                </div>
+                <div class="benchmarkInfo">
+                    <figure class="chart">
+                        <img class="chart-img" src="/assets/images/behaviourmeter.svg" alt="">
+                    </figure>
+                    <div class="score">
+                        <div class="heading5">SCORE BENCHMARK INFO</div>
+                        <div class="wrapper">
+                            <ng-container *ngFor="let score of benchMarkScore">
+                                <div class="score-content"
+                                    [ngClass]="{'red':score.color == 'red', 'green': score.color == 'green', 'yellow':score.color == 'yellow' ,'orange':score.color == 'orange'}">
+                                    <div class="scorepoint">{{score.score}}</div>
+                                    <div class="scorelabel">{{score.label}}</div>
+                                </div>
+                            </ng-container>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </ng-container>
+
+<ng-template #noStrength>
+    <div class="noData">
+        No Suggestions on Strength Areas.
+    </div>
+</ng-template>
+
+<ng-template #noImprovements>
+    <div class="noData">
+        No Suggestions on Area of Development.
+    </div>
+</ng-template>
+
+<ng-template #nodata>
+    <div class="errorCard">
+        No Data Available...
+    </div>
+</ng-template>
