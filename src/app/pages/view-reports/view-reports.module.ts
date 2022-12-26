@@ -15,6 +15,7 @@ import { DragScrollModule } from 'ngx-drag-scroll';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 // import { ChartsModule } from 'ng2-charts';
 import { BehaviouralAssessmentInfoComponent } from './sub-pages/behavioural-assessment-info/behavioural-assessment-info.component';
+// import { BajajViewReportComponent } from '../behavioural-report/bajaj-view-report/bajaj-view-report.component';
 import { BehaviouralCompetencyAreasComponent } from './sub-pages/behavioural-competency-areas/behavioural-competency-areas.component';
 import { BehaviouralQualityAreaComponent } from './sub-pages/behavioural-quality-area/behavioural-quality-area.component';
 import 'ag-grid-enterprise';
@@ -41,6 +42,7 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
     CandidateSkillsComponent,
     CandidateProfileComponent,
     DashboardComponent,
+    // BajajViewReportComponent
     
   ],
   imports: [

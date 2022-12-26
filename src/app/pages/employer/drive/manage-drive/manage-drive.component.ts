@@ -64,6 +64,7 @@ export class ManageDriveComponent implements OnInit {
   pending_cards: any;
   active_cards: any;
   closed_cards: any;
+  FormateName: any;
 
   constructor(
     private ApiService: ApiService,
@@ -105,24 +106,26 @@ export class ManageDriveComponent implements OnInit {
         headerName: 'S.No',
         field: 'id',
         minWidth: 85,
-        default: '-',
-        cellRenderer: function (params) {
-          return params.rowIndex + 1;
-        },
-      },
-      {
-        headerName: '',
-        field: 'companyLogo',
-        width: 55,
-        sortable: false,
-        minWidth: 100,
         suppressColumnsToolPanel: true,
         filter: false,
         cellRenderer: function (params) {
-          let val = encodeURI(params.value);
-          return `<img width="30px" height"22px" src=${val}>`;
+          return params.rowIndex + 1;
         },
+        sortable: false,
       },
+      // {
+      //   headerName: '',
+      //   field: 'companyLogo',
+      //   width: 55,
+      //   sortable: false,
+      //   minWidth: 100,
+      //   suppressColumnsToolPanel: true,
+      //   filter: false,
+      //   cellRenderer: function (params) {
+      //     let val = encodeURI(params.value);
+      //     return `<img width="30px" height"22px" src=${val}>`;
+      //   },
+      // },
       { headerName: 'Company Name', field: 'company', minWidth: 175,
       filter: 'agTextColumnFilter',
       chartDataType: 'category',
@@ -130,6 +133,14 @@ export class ManageDriveComponent implements OnInit {
       filterParams: {
         suppressAndOrCondition: true,
         filterOptions: ['contains']
+      },
+      cellRenderer: (params) => {
+        if (params.value && params.value != undefined && params.value != null && params.value !="") {
+          this.FormateName = params.value;
+          return this.titleCase(this.FormateName);
+        } else {
+          return "-";
+        }
       },
       tooltipField: 'company',
      },
@@ -141,6 +152,14 @@ export class ManageDriveComponent implements OnInit {
         suppressAndOrCondition: true,
         filterOptions: ['contains']
       },
+      // cellRenderer: (params) => {
+      //   if (params.value && params.value != undefined && params.value != null && params.value !="") {
+      //     this.FormateName = params.value;
+      //     return this.titleCase(this.FormateName);
+      //   } else {
+      //     return "-";
+      //   }
+      // },
       tooltipField: 'jobId',
     },
       { headerName: 'Job Title', field: 'jobTitle', minWidth: 180,
@@ -151,6 +170,14 @@ export class ManageDriveComponent implements OnInit {
         suppressAndOrCondition: true,
         filterOptions: ['contains']
       },
+      cellRenderer: (params) => {
+        if (params.value && params.value != undefined && params.value != null && params.value !="") {
+          this.FormateName = params.value;
+          return this.titleCase(this.FormateName);
+        } else {
+          return "-";
+        }
+      },
       tooltipField: 'jobTitle',
     },
       {
@@ -158,12 +185,28 @@ export class ManageDriveComponent implements OnInit {
         field: 'candidatesAppliedCount',
         minWidth: 175,
         cellStyle: { textAlign: 'center' },
+        // cellRenderer: (params) => {
+        //   if (params.value && params.value != undefined && params.value != null && params.value !="") {
+        //     this.FormateName = params.value;
+        //     return this.titleCase(this.FormateName);
+        //   } else {
+        //     return "-";
+        //   }
+        // },
       },
       {
         headerName: 'Offer Released',
         field: 'offerReleased',
         minWidth: 150,
         cellStyle: { textAlign: 'center' },
+        // cellRenderer: (params) => {
+        //   if (params.value && params.value != undefined &&  params.value !="") {
+        //     this.FormateName = params.value;
+        //     return this.titleCase(this.FormateName);
+        //   } else {
+        //     return "-";
+        //   }
+        // },
       },
       {
         headerName: 'Last Date to Apply',
@@ -175,22 +218,25 @@ export class ManageDriveComponent implements OnInit {
           suppressAndOrCondition: true,
           filterOptions: ['equals', 'lessThan', 'greaterThan', 'inRange'],
         },
-        tooltipField: 'lastDatetoApply',
         valueFormatter: function (params) {
-          return moment(params.value).format('MMM D,yy');
+          return moment(params.value).format('MMM D, yy');
       },
+        // cellRenderer: (params) => {
+        //   if (params.value && params.value != undefined && params.value != null && params.value !="") {
+        //     this.FormateName = params.value;
+        //     return this.titleCase(this.FormateName);
+        //   } else {
+        //     return "-";
+        //   }
+        // },
+        // tooltipField: 'lastDatetoApply',
+      
       },
       {
         headerName: 'Status',
         field: 'status',
         minWidth: 120,
-        filter: 'agTextColumnFilter',
-        chartDataType: 'category',
-        aggFunc: 'sum',
-        filterParams: {
-          suppressAndOrCondition: true,
-          filterOptions: ['contains']
-        },
+        filter: false,
         cellStyle: { textAlign: 'center' },
         cellRenderer: function (params) {
           if (params.value === 'Active') {
@@ -211,12 +257,12 @@ export class ManageDriveComponent implements OnInit {
         },
      
       },
-      // {
-      //   headerName: '',
-      //   field: 'action',
-      //   cellRenderer: 'popUpRender',
-      //   maxWidth: 80,
-      // },
+      {
+        headerName: '',
+        field: 'action',
+        cellRenderer: 'popUpRender',
+        maxWidth: 80,
+      },
     ];
    
   }
@@ -228,6 +274,13 @@ export class ManageDriveComponent implements OnInit {
       ids.push(elem.data._id);
     });
     this.selectedRow = ids;
+  }
+  titleCase(str) {
+    var splitStr = str.toLowerCase().split(' ');
+    for (var i = 0; i < splitStr.length; i++) {
+      splitStr[i] = splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1);
+    }
+    return splitStr.join(' ');
   }
 
   onGridReady(params: any) {
@@ -246,7 +299,7 @@ export class ManageDriveComponent implements OnInit {
           apiData.request
         ).subscribe(
           (data1: any) => {
-            console.log('iii',data1.data);
+            
             if (data1.success == false) {
               params.fail();
               params.success({
@@ -285,17 +338,19 @@ export class ManageDriveComponent implements OnInit {
           }
         );
         this.gridApi.hideOverlay();
-        this.gridApi.showNoRowsOverlay();
+        // this.gridApi.showNoRowsOverlay();
       },
     };
   }
 
   autoSizeAll(skipHeader: boolean) {
     const allColumnIds: string[] = [];
-    this.gridColumnApi.getAllColumns()!.forEach((column) => {
-      allColumnIds.push(column.getId());
-    });
-    this.gridColumnApi.autoSizeColumns(allColumnIds, skipHeader);
+    if (this.gridColumnApi && this.gridColumnApi.getAllColumns != undefined && this.gridColumnApi.getAllColumns().length) {
+      this.gridColumnApi.getAllColumns().forEach((column) => {
+        allColumnIds.push(column.getId());
+      });
+      this.gridColumnApi.autoSizeColumns(allColumnIds, skipHeader);
+    }
   }
 
   //   let data = '';

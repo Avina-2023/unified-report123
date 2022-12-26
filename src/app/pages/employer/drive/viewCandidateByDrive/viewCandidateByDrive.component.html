@@ -1,0 +1,138 @@
+<div class="body">
+  <div class="title">
+    <div class="title-text">View Applications</div>
+  </div>
+  <!-- <div class="container">
+    <mat-card class="card">
+      <div class="card-body">
+        <mat-card-header class="left">
+          <div class="text-container">
+            <mat-card-title class="text">No of Drives</mat-card-title>
+          </div>
+          <div>
+            <mat-card-subtitle><div class="num">{{drive_cards}}</div></mat-card-subtitle>
+          </div>
+        </mat-card-header>
+        <mat-card-content class="icon">
+          <img src="/assets/images/wordrive.png" class="icon-image">
+        </mat-card-content>
+      </div>
+    </mat-card>
+    <mat-card class="card">
+      <div class="card-body">
+        <mat-card-header class="left">
+          <div class="text-container">
+            <mat-card-title class="text">Active</mat-card-title>
+          </div>
+          <div>
+            <mat-card-subtitle ><div class="num">{{active_cards}}</div></mat-card-subtitle>
+          </div>
+        </mat-card-header>
+        <mat-card-content class="icon">
+          <img src="/assets/images/green-tic.svg" class="icon-image">
+        </mat-card-content>
+      </div>
+    </mat-card>
+    <mat-card class="card">
+      <div class="card-body">
+        <mat-card-header class="left">
+          <div class="text-container">
+            <mat-card-title class="text">Rejected</mat-card-title>
+          </div>
+          <div>
+            <mat-card-subtitle><div class="num">{{reject_cards}}</div></mat-card-subtitle>
+          </div>
+        </mat-card-header>
+        <mat-card-content class="icon">
+          <img src="/assets/images/rejected.png" class="icon-image">
+        </mat-card-content>
+      </div>
+    </mat-card>
+    <mat-card class="card">
+      <div class="card-body">
+        <mat-card-header class="left">
+          <div class="text-container">
+            <mat-card-title class="text">Pending</mat-card-title>
+          </div>
+          <div>
+            <mat-card-subtitle ><div class="num">{{pending_cards}}</div></mat-card-subtitle>
+          </div>
+        </mat-card-header>
+        <mat-card-content class="icon">
+          <img src="/assets/images/Timeout.png" class="icon-image">
+        </mat-card-content>
+      </div>
+    </mat-card>
+    <mat-card class="card">
+      <div class="card-body">
+        <mat-card-header class="left">
+          <div class="text-container">
+            <mat-card-title class="text">Closed</mat-card-title>
+          </div>
+          <div>
+            <mat-card-subtitle ><div class="num">{{closed_cards}}</div></mat-card-subtitle>
+          </div>
+        </mat-card-header>
+        <mat-card-content class="icon">
+          <img src="/assets/images/cancel.png" class="icon-image">
+        </mat-card-content>
+      </div>
+    </mat-card>
+    <mat-card class="card">
+      <div class="card-body">
+        <mat-card-header class="left">
+          <div class="text-container">
+            <mat-card-title class="text">Expired</mat-card-title>
+          </div>
+          <div>
+            <mat-card-subtitle><div class="num">{{expire_cards}}</div></mat-card-subtitle>
+          </div>
+        </mat-card-header>
+        <mat-card-content class="icon">
+          <img src="/assets/images/expired@2x.png" class="icon-image">
+        </mat-card-content>
+      </div>
+    </mat-card>
+
+  </div> -->
+  <div class="border">
+   <div class="ag-grid">
+    <ag-grid-angular
+      style="width: 100%; height: 100%;"
+      class="ag-theme-alpine"
+      [gridOptions]= "gridOptions"
+       [columnDefs]="columnDefs" 
+                        [defaultColDef]="defaultColDef"
+                        [masterDetail]="masterDetail"
+                        [overlayNoRowsTemplate]="overlayNoRowsTemplate"
+                         [rowData]="rowData" 
+                         [enableRangeSelection]="true"
+                        [tooltipShowDelay]="0" 
+                        [animateRows]="true"
+                         headerHeight="45" 
+                         rowHeight="45"
+                        [suppressRowClickSelection]="true"
+                         [suppressRowTransform]="true" 
+                         [rowSelection]="rowSelection"
+                        [pivotPanelShow]="'always'" 
+                        [sideBar]="false" 
+                        (gridReady)="onGridReady($event)"
+                        [rowModelType]="rowModelType"
+                         [maintainColumnOrder]="true" 
+                         [cacheBlockSize]="cacheBlockSize"
+                        (selectionChanged)="onSelectionChanged($event)" 
+                        [suppressAggFuncInHeader]="true" 
+                        [suppressColumnVirtualisation]="true"
+                        [autoGroupColumnDef]="autoGroupColumnDef" 
+                        [serverSideStoreType]="serverSideStoreType"
+                        [pagination]="true" 
+                        [paginationPageSize]="10" 
+                        [sideBar]="sideBar" 
+                        allColumns=true
+      >
+      
+  </ag-grid-angular>
+  
+</div>
+  </div>
+</div>
