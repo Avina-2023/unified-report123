@@ -50,9 +50,11 @@ export class SetPasswordComponent implements OnInit {
 
   verifyPassword() {
     this.activatedRoute.queryParams.subscribe(params => {
-      if (params['userId'] && params['temp-token']) {
-        this.deCryuserId =this.apiService.decryptnew(decodeURIComponent(params['userId']));
-        this.apiService.uservalidationCheck({userId:this.deCryuserId}).subscribe((success: any) => {
+      if ((params['userId']||params['email']) && params['temp-token']) {
+        debugger
+        this.deCryuserId =this.apiService.decryptnew(decodeURIComponent(params['userId']?params['userId']:params['email']));
+        let param  = params['userId']?{userId:this.deCryuserId}:{email:this.deCryuserId}
+        this.apiService.uservalidationCheck(param).subscribe((success: any) => {
           if(success.data || success.success == false){
             this.toastr.error(`Invalid link`);
             this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.LOGIN);
@@ -61,7 +63,7 @@ export class SetPasswordComponent implements OnInit {
             this.prePoulteEmailId = params['userId'];
             this.apiemail = params['userId'];
             this.currentRoute = 'Create';
-            if (this.router.url.includes(APP_CONSTANTS.ENDPOINTS.LOGIN)) {
+            if (this.router.url.includes(APP_CONSTANTS.ENDPOINTS.PASSWORD.RESET)) {
               this.type = 'reset';
               this.currentRoute = 'Reset';
             }

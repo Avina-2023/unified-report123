@@ -130,7 +130,7 @@ export class ViewCandidateByDriveComponent implements OnInit {
         cellRenderer: (params) => {
           if (params.value && params.value != undefined && params.value != null && params.value != "") {
             this.FormateName = params.value;
-            return this.titleCase(this.FormateName);
+            return this.FormateName;
           } else {
             return "-";
           }
@@ -164,6 +164,13 @@ export class ViewCandidateByDriveComponent implements OnInit {
         filterParams: {
           suppressAndOrCondition: true,
           filterOptions: ['contains']
+        },
+        cellRenderer: (params) => {
+          if (params.value && params.value != undefined && params.value != null && params.value != "") {
+            return params.value;
+          } else {
+            return "-";
+          }
         },
         tooltipField: 'degree',
       },
@@ -237,7 +244,7 @@ export class ViewCandidateByDriveComponent implements OnInit {
           if (params.value && params.value != undefined && params.value != null && params.value != "") {
             return params.value;
           } else {
-            return "-";
+            return 0;
           }
         },
         tooltipField: 'percentage',
