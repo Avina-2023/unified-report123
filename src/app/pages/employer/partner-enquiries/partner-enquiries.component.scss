@@ -10,6 +10,7 @@
 
 .title {
     left: 12px;
+    font-size: 20px !important;
     position: relative;
     color: #FFFFFF;
     padding: 15px;
@@ -224,7 +225,7 @@
     align-items: center !important;
 }
 ::ng-deep.customPagination {
-    .mat-icon-button, 
+    .mat-icon-button,
     .mat-mini-fab {
         width: 25px;
         height: 25px;
@@ -235,8 +236,8 @@
             box-shadow: none;
             border: 1px solid rgba(0,0,0,0.25);
         }
-    } 
-    .mat-mini-fab, 
+    }
+    .mat-mini-fab,
     .mat-icon-button {
         font-size: 12px;
     }
@@ -255,7 +256,7 @@
     height: 40px;
     height: 39px;
     padding: 5px;
-    top: 17px;  
+    top: 17px;
     position: absolute;
    }
    ::ng-deep .search-btn{
@@ -267,7 +268,7 @@
     background: #1B4E9B;
    }
 
- 
+
 
 //    mbl responsive
 
@@ -372,4 +373,3 @@
     cursor: pointer;
   }
 
-  
