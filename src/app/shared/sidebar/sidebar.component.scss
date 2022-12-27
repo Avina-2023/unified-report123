@@ -1,13 +1,13 @@
 mat-sidenav:not(.mat-drawer-opened) {
   transform: translate3d(0, 0, 0) !important;
   visibility: visible !important;
-  width: 60px !important;
+ // width: 60px !important;
   overflow: hidden;
 }
 
 .mat-drawer-content {
   height: 100vh !important;
-  width: 105px;
+ // width: 105px;
 }
 
 .example-spacer {
