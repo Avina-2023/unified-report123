@@ -53,25 +53,25 @@ export class ResumeBuilderComponent implements OnInit {
 
   }
 
-  generateCanvas(){
-    var data = this.preview.nativeElement;
-    return  html2canvas(this.preview.nativeElement)
-  }
-  generateImage(){
-    this.generateCanvas().then((canvas)=>{
-      this.thumbnailimage = canvas.toDataURL('image/png');
-    })
-  }
-  generatePDF(){
-    //var data = document.getElementById('pdfconverting');
-    this.generateCanvas().then((canvas)=>{
-      let fileWidth = 208;
-      let fileHeight = (canvas.height * fileWidth) / canvas.width;
-      this.FILEURI = canvas.toDataURL('image/png');
-      let PDF = new jsPDF('p', 'mm', 'a4');
-      let position = 0;
-      PDF.addImage(this.FILEURI, 'PNG', 0, position, fileWidth, fileHeight);
-      PDF.save('resume.pdf');
-    })
-  }
+  // generateCanvas(){
+  //   var data = this.preview.nativeElement;
+  //   return  html2canvas(this.preview.nativeElement)
+  // }
+  // generateImage(){
+  //   this.generateCanvas().then((canvas)=>{
+  //     this.thumbnailimage = canvas.toDataURL('image/png');
+  //   })
+  // }
+  // generatePDF(){
+  //   //var data = document.getElementById('pdfconverting');
+  //   this.generateCanvas().then((canvas)=>{
+  //     let fileWidth = 208;
+  //     let fileHeight = (canvas.height * fileWidth) / canvas.width;
+  //     this.FILEURI = canvas.toDataURL('image/png');
+  //     let PDF = new jsPDF('p', 'mm', 'a4');
+  //     let position = 0;
+  //     PDF.addImage(this.FILEURI, 'PNG', 0, position, fileWidth, fileHeight);
+  //     PDF.save('resume.pdf');
+  //   })
+  // }
 }
