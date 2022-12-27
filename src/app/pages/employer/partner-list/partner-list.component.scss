@@ -14,7 +14,7 @@
     opacity: 0.8;
     margin-bottom: 0px;
     font-size: 20px!important;
-    font-weight: 100!important;
+    font-weight: 400!important;
 }
 
 .partnerCardBody {
@@ -121,7 +121,7 @@
             }
 
             th,
-            td {         
+            td {
                 text-align: start;
                 &.nodata {
                     text-align: center;
@@ -215,7 +215,7 @@
                     font-size: 14px;
                     font-weight: 400;
                     margin-bottom: 0.5em;
-    
+
                     span {
                         color: red;
                     }
@@ -248,7 +248,7 @@
     color: #1b4e9b;
     font-size: 14px;
     border-radius: 5px 0px 0px 5px;
-   
+
     font-weight: 500;
     letter-spacing: 0.33px;
   }
@@ -260,7 +260,7 @@
     color: #262626;
 }
 
-::ng-deep.status-button{   
+::ng-deep.status-button{
 .active-button {
     display: flex;
     height: 24px;
@@ -312,7 +312,7 @@
   }
 }
 
-  
+
 ::ng-deep.customPagination {
     .mat-icon-button,
     .mat-mini-fab {
