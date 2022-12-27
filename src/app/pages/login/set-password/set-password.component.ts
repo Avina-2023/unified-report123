@@ -27,6 +27,7 @@ export class SetPasswordComponent implements OnInit {
   getCurrentYear = this.appConfig.getCurrentYear();
   apiemail: any;
   deCryuserId: any;
+  frompage:any;
 
   constructor(
     private fb: FormBuilder,
@@ -50,18 +51,18 @@ export class SetPasswordComponent implements OnInit {
 
   verifyPassword() {
     this.activatedRoute.queryParams.subscribe(params => {
+      this.frompage = params['from']
       if ((params['userId']||params['email']) && params['temp-token']) {
-        debugger
         this.deCryuserId =this.apiService.decryptnew(decodeURIComponent(params['userId']?params['userId']:params['email']));
         let param  = params['userId']?{userId:this.deCryuserId}:{email:this.deCryuserId}
         this.apiService.uservalidationCheck(param).subscribe((success: any) => {
           if(success.data || success.success == false){
             this.toastr.error(`Invalid link`);
-            this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.LOGIN);
+            this.appConfig.routeNavigationWithQueryParam(APP_CONSTANTS.ENDPOINTS.LOGIN, {from:this.frompage});
            }else{
             this.passwordTempToken = params['temp-token'];
-            this.prePoulteEmailId = params['userId'];
-            this.apiemail = params['userId'];
+            this.prePoulteEmailId = params['userId']?params['userId']:params['email'];
+            this.apiemail = params['userId']?params['userId']:params['email'];
             this.currentRoute = 'Create';
             if (this.router.url.includes(APP_CONSTANTS.ENDPOINTS.PASSWORD.RESET)) {
               this.type = 'reset';
@@ -73,7 +74,7 @@ export class SetPasswordComponent implements OnInit {
       });
       } else {
         this.toastr.error(`Invalid URL found`);
-        this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.LOGIN);
+        this.appConfig.routeNavigationWithQueryParam(APP_CONSTANTS.ENDPOINTS.LOGIN, {from:this.frompage});
       }
     });
   }
@@ -118,17 +119,26 @@ export class SetPasswordComponent implements OnInit {
 
   submit() {
     if (this.createForm.valid) {
-      const apiData = {
-        userId: this.apiemail,
-        userSecretkey: this.passwordTempToken ? this.passwordTempToken : '',
-        password: this.apiService.encryptnew(this.createForm.value.password,environment.cryptoEncryptionKey),
-        type:"employer"
-      };
+      let apiData:any = {}
+      if(this.frompage == "freshGrad"){
+        apiData = {
+          email: this.apiemail,
+          userSecretkey: this.passwordTempToken ? this.passwordTempToken : '',
+          password: this.apiService.encryptnew(this.createForm.value.password,environment.cryptoEncryptionKey),
+        };
+      }else{
+        apiData = {
+          userId: this.apiemail,
+          userSecretkey: this.passwordTempToken ? this.passwordTempToken : '',
+          password: this.apiService.encryptnew(this.createForm.value.password,environment.cryptoEncryptionKey),
+          type:"employer"
+        };
+      }
       this.apiService.passwordReset(apiData).subscribe((success: any) => {
         if(success.success){
           this.toastr.success((this.currentRoute.includes('Reset')) ? `Password has been updated successfully` :
           `Password has been updated Successfully`);
-        this.appConfig.routeNavigationWithQueryParam(APP_CONSTANTS.ENDPOINTS.LOGIN, { mail: apiData.userId });
+        this.appConfig.routeNavigationWithQueryParam(APP_CONSTANTS.ENDPOINTS.LOGIN, {from:this.frompage, mail: this.apiemail });
         }else{
           this.toastr.error(success.message);
         }
@@ -142,7 +152,7 @@ export class SetPasswordComponent implements OnInit {
   }
 
   signIn() {
-    this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.LOGIN);
+    this.appConfig.routeNavigationWithQueryParam(APP_CONSTANTS.ENDPOINTS.LOGIN, {from:this.frompage});
   }
 
 

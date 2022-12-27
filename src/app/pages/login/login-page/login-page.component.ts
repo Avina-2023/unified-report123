@@ -37,16 +37,13 @@ export class LoginPageComponent  {
 
   ) {
 
-    if(this.router.url == '/login?from=freshGrad'){
-      this.labelname = 'Email'
-    }else{
-      this.labelname = 'User ID'
-    }
     this.activatedRoute.queryParams.subscribe(params => {
       if(params.from == 'freshGrad'){
         this.isCandidate = true;
+        this.labelname = 'Email'
       }else{
         this.isCandidate = false;
+        this.labelname = 'User ID'
       }
     })
   }
