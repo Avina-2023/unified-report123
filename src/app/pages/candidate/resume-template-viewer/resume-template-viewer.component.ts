@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { AppConfigService } from 'src/app/utils/app-config.service';
 import { APP_CONSTANTS } from 'src/app/utils/app-constants.service';
@@ -16,6 +16,7 @@ import html2pdf from 'html2pdf.js';
 })
 export class ResumeTemplateViewerComponent implements OnInit {
   @ViewChild('viewer') template1;
+  @ViewChild('printer') templatesample;
   thumbnailimage: string;
   FILEURI: string;
   pdf: jsPDF;
@@ -23,7 +24,18 @@ export class ResumeTemplateViewerComponent implements OnInit {
   images: any;
   imgData: any;
   options: { width: number; elementHandlers: { '#my-html-template': any; }; };
+  fileWidth: number;
   constructor(private router: Router, private appConfig: AppConfigService,) { }
+
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    //this.innerWidth = window.innerWidth;
+
+    this.fileWidth = window.innerWidth;
+    console.log(this.fileWidth);
+  }
+
 
   ngOnInit() {
     // this.getInfo();
@@ -34,7 +46,7 @@ export class ResumeTemplateViewerComponent implements OnInit {
   }
 
   generateCanvas() {
-    var data = this.template1.nativeElement;
+    var data = this.templatesample.nativeElement;
     return html2canvas(data)
   }
 
@@ -60,16 +72,22 @@ export class ResumeTemplateViewerComponent implements OnInit {
         fileHeight = maxFileHeight;
       }
 
-      // Center the file on the page
-      let horizontalOffset = (210 - fileWidth) / 2;
-      let verticalOffset = (297 - fileHeight) / 2;
+     // Center the file on the page
+     let horizontalOffset = (210 - fileWidth) / 2;
+    let verticalOffset = (297 - fileHeight) / 2;
       this.FILEURI = canvas.toDataURL('image/png');
       let PDF = new jsPDF('p', 'mm', [216, 297]);
+      //let PDF = new jsPDF('p', 'mm', 'legal');
+      //let margin = 0;
+      // Set the draw color to white and draw a rectangle that covers the entire page
+     // PDF.setDrawColor(255, 255, 255);
+      //PDF.rect(0, 0, 216, 297, 'F');
       //let position = 0;
       // PDF.addPage();
       //PDF.fromHTML(this.template1.nativeElement)
       // PDF.addImage(this.FILEURI, 'PNG', 0, position, fileWidth, fileHeight);
-      PDF.addImage(this.FILEURI, 'PNG', horizontalOffset, verticalOffset, fileWidth, fileHeight);
+     PDF.addImage(this.FILEURI, 'PNG', horizontalOffset, verticalOffset, fileWidth, fileHeight);
+      //PDF.addImage(this.FILEURI, 'PNG', 0, 0, 210, 297);
       PDF.save('resume.pdf');
     })
 

@@ -2,8 +2,8 @@
 
     #inner_template {
         background: #fff;
-        margin: 20px 80px 20px 80px;
-        padding: 20px;
+       // margin: 20px 80px 20px 80px;
+        //padding: 20px;
         border-radius: 10px;
 
 
@@ -246,9 +246,4 @@
     }
 
 
-    @media only screen and (max-width: 940px) {
-    #inner_template { 
-        margin: 20px 10px 20px 10px!important;
-        padding: 0px!important;
-    }
-}
+    
