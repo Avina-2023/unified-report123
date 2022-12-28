@@ -96,7 +96,7 @@
                                     </div>
                                     <div class="row d-flex alignp1">
                                         <div class="col-md-4 col-sm-12 alignp">
-                                            <label>Chairman/CXO Name <span>*</span></label>
+                                            <label>Chairman/CXO Name<span>*</span></label>
                                             <mat-form-field class="form-filed-width" appearance="outline">
                                                 <input matInput class="heighttext" placeholder="Enter Name"
                                                     formControlName="chairmanName">
@@ -148,7 +148,7 @@
                                     </div>
                                     <div class="row d-flex alignp1">
                                         <div class="col-md-4 col-sm-12 alignp">
-                                            <label>CHRO Name <span>*</span></label>
+                                            <label>CHRO Name<span>*</span></label>
                                             <mat-form-field class="form-filed-width" appearance="outline">
                                                 <input matInput class="heighttext" placeholder="Enter Name"
                                                     formControlName="chroName">
@@ -198,7 +198,7 @@
                                     </div>
                                     <div class="alignp1 mt-4">
                                         <fieldset>
-                                            <legend>HR Contact Details:</legend>
+                                            <legend>HR Contact Details:<span>*</span></legend>
                                             <ng-container formArrayName="hrContactDetails"
                                                 *ngFor="let hrContactDetail of hrContactDetails.controls; index as i">
                                                     <div class="row hrright" [formGroupName]="i">
@@ -287,7 +287,7 @@
                                         <h4><b>Registered Address:</b></h4>
                                         <div class="row d-flex alignp">
                                             <div class="col-md-12 col-sm-12 alignp">
-                                                <label>Address Line1 <span>*</span></label>
+                                                <label>Address Line1<span>*</span></label>
                                                 <mat-form-field class="form-filed-width" appearance="outline">
                                                     <input matInput class="heighttext" placeholder="Enter Address"
                                                         formControlName="addressOne">
