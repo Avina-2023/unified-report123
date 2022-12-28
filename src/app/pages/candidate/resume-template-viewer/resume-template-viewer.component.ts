@@ -23,42 +23,58 @@ export class ResumeTemplateViewerComponent implements OnInit {
   images: any;
   imgData: any;
   options: { width: number; elementHandlers: { '#my-html-template': any; }; };
-  constructor(private router:Router,private appConfig: AppConfigService,) { }
+  constructor(private router: Router, private appConfig: AppConfigService,) { }
 
   ngOnInit() {
     // this.getInfo();
   }
 
-  gotoResumePage(){
+  gotoResumePage() {
     this.router.navigateByUrl(APP_CONSTANTS.ENDPOINTS.CANDIDATEDASH.RESUMEBUILDER);
   }
 
-  generateCanvas(){
+  generateCanvas() {
     var data = this.template1.nativeElement;
-    return  html2canvas(data)
+    return html2canvas(data)
   }
 
-  generateImage(){
-    this.generateCanvas().then((canvas)=>{
+  generateImage() {
+    this.generateCanvas().then((canvas) => {
       this.thumbnailimage = canvas.toDataURL('image/png');
     })
   }
 
-  generatePDF(){
-    this.generateCanvas().then((canvas)=>{
+  generatePDF() {
+    this.generateCanvas().then((canvas) => {
       let fileWidth = 208;
       let fileHeight = (canvas.height * fileWidth) / canvas.width;
+      // Calculate the maximum dimensions the file can have while still fitting within the PDF document
+      let maxFileWidth = 210;
+      let maxFileHeight = 297;
+      if (fileWidth > maxFileWidth) {
+        fileHeight = (fileHeight * maxFileWidth) / fileWidth;
+        fileWidth = maxFileWidth;
+      }
+      if (fileHeight > maxFileHeight) {
+        fileWidth = (fileWidth * maxFileHeight) / fileHeight;
+        fileHeight = maxFileHeight;
+      }
+
+      // Center the file on the page
+      let horizontalOffset = (210 - fileWidth) / 2;
+      let verticalOffset = (297 - fileHeight) / 2;
       this.FILEURI = canvas.toDataURL('image/png');
-      let PDF = new jsPDF('p', 'mm', 'legal');
-      let position = 0;
+      let PDF = new jsPDF('p', 'mm', [216, 297]);
+      //let position = 0;
       // PDF.addPage();
       //PDF.fromHTML(this.template1.nativeElement)
-      PDF.addImage(this.FILEURI, 'PNG', 0, position, fileWidth, fileHeight);
+      // PDF.addImage(this.FILEURI, 'PNG', 0, position, fileWidth, fileHeight);
+      PDF.addImage(this.FILEURI, 'PNG', horizontalOffset, verticalOffset, fileWidth, fileHeight);
       PDF.save('resume.pdf');
     })
-    
 
-   
+
+
   }
 
   // generatePDF(){
@@ -77,44 +93,44 @@ export class ResumeTemplateViewerComponent implements OnInit {
   //   }).from(element).save();
   // }
 
+
+  /* downloadAsPDF() {
+     //this.toastr.success('Please wait','PDF is downloading')
+     var element = document.getElementById('inner_template');
+     var opt = {
+       margin: [0,-20,23,-20],
+       filename:  'resume.pdf',
+       // image:        { type: 'jpeg', quality: 1 },
+       // html2canvas:  {scale: 2},
+       // jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+     };
  
- /* downloadAsPDF() {
-    //this.toastr.success('Please wait','PDF is downloading')
-    var element = document.getElementById('inner_template');
-    var opt = {
-      margin: [0,-20,23,-20],
-      filename:  'resume.pdf',
-      // image:        { type: 'jpeg', quality: 1 },
-      // html2canvas:  {scale: 2},
-      // jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
-    };
-
-    pdf().from(element).set(opt).toPdf().get('pdf').then(function (pdf) {
-
-      var number_of_pages = pdf.internal.getNumberOfPages()
-
-      var pdf_pages = pdf.internal.pages
-
-      for (var i = 1; i < pdf_pages.length; i++) {
-
-          pdf.setPage(i);
-          pdf.setFontSize(8);
-          pdf.setTextColor(150);
-          pdf.text('Page ' + i + ' of ' + number_of_pages, (pdf.internal.pageSize.getWidth()), (pdf.internal.pageSize.getHeight()));
-
-      }
-
-      }, (err) => {
-
-      }).save();
-
-     
-
-  }*/
+     pdf().from(element).set(opt).toPdf().get('pdf').then(function (pdf) {
+ 
+       var number_of_pages = pdf.internal.getNumberOfPages()
+ 
+       var pdf_pages = pdf.internal.pages
+ 
+       for (var i = 1; i < pdf_pages.length; i++) {
+ 
+           pdf.setPage(i);
+           pdf.setFontSize(8);
+           pdf.setTextColor(150);
+           pdf.text('Page ' + i + ' of ' + number_of_pages, (pdf.internal.pageSize.getWidth()), (pdf.internal.pageSize.getHeight()));
+ 
+       }
+ 
+       }, (err) => {
+ 
+       }).save();
+ 
+      
+ 
+   }*/
 
 
 
-  
+
 
 
 
