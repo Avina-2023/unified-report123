@@ -3,6 +3,7 @@
         <div class="content">
             <div class="innerContainer">
                 <h2>Behavioural <br />Personal Profile</h2>
+                <div class="h4">FOR BAJAJ AUTO</div>
             </div>
         </div>
     </section>
@@ -57,8 +58,6 @@
                         <div class="introductionWrapper">
                             <div class="heading2">Introduction</div>
                             <p *ngFor="let introPara of getAllBehaviourData.introduction">{{introPara}}</p>
-                            <div *ngIf="getAllBehaviourData && getAllBehaviourData.introductionNote" class="note">Note:
-                                {{getAllBehaviourData.introductionNote}}</div>
                         </div>
                     </div>
                 </div>
@@ -70,7 +69,7 @@
             <div class="containerWrapper">
                 <div class="heading2">The Three Factors</div>
                 <div *ngIf="getAllBehaviourData && getAllBehaviourData.factors"
-                    class="factors d-flex justify-content-between flex-wrap">
+                    class="factors d-flex justify-content-around flex-wrap">
                     <div class="factor" *ngFor="let factor of getAllBehaviourData.factors">
                         <div class="flipCard">
                             <div class="frontSide">
@@ -107,26 +106,30 @@
                                         <img [src]="competency.imageurl" alt="" />
                                     </figure>
                                     <div class="report-snapshot-content-right">
-                                        <div class="heading">CONTINUOUSLY RAISE THE BAR</div>
-                                        <div>
-                                            <div class="bar" >
+                                        <div class="heading">{{competency?.name}}</div>
+                                        <ng-container >
+                                            <ng-container>  
+                                        <div  >
+                                            <div class="bar">
                                                 <div class="red-bar">
                                                     <div class="red-box"></div>
                                                     <div class="pointer-container">
-                                                        <div class="pointer-container-"*ngFor="let stackbar of BARvalue">
-                                                            <div class="box-red arrow-top" *ngIf="stackbar.Value1">
-                                                                <div class="barNo">{{ stackbar.score }} </div>
+                                                        <div class="pointer-container-" *ngFor="let skillsDetail of competency?.skills"
+                                                        >
+                                                            <div class="box-red arrow-top" *ngIf="competency?.skills">
+                                                                <div class="barNo">{{ skillsDetail?.stenScore }} </div>
                                                             </div>
                                                         </div>
-                                                        <div class="pointer-container-2" *ngFor="let stackbar of BARvalue">
+                                                        <div class="pointer-container-2"
+                                                            *ngFor="let stackbar of BARvalue">
                                                             <div class="box-red arrow-top" *ngIf="stackbar.Value2">
-                                                                <div class="barNo">{{ stackbar.score }}</div>
+                                                                <div class="barNo">{{ skillsDetail?.stenScore }}</div>
                                                             </div>
                                                         </div>
-                                                        <div class="pointer-container-2" *ngFor="let stackbar of BARvalue">
-                                                            <div class="box-red arrow-top"
-                                                                *ngIf="stackbar.Value3">
-                                                                <div class="barNo">{{ stackbar.score }}</div>
+                                                        <div class="pointer-container-2"
+                                                            *ngFor="let stackbar of BARvalue">
+                                                            <div class="box-red arrow-top" *ngIf="stackbar.Value3">
+                                                                <div class="barNo">{{ skillsDetail?.stenScore }}</div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -135,27 +138,27 @@
                                                     <div class="orange-box"></div>
 
                                                     <div class="pointer-container">
-                                                        <div class="pointer-container-orange" *ngFor="let stackbar of BARvalue">
-                                                            <div class="box-orange arrow-top"
-                                                                *ngIf="stackbar.Value4">
+                                                        <div class="pointer-container-orange"
+                                                            *ngFor="let stackbar of BARvalue">
+                                                            <div class="box-orange arrow-top" *ngIf="stackbar.Value4">
                                                                 <div class="barNo">{{ stackbar.score }}</div>
                                                             </div>
                                                         </div>
-                                                        <div class="pointer-container-orange" *ngFor="let stackbar of BARvalue">
-                                                            <div class="box-orange arrow-top"
-                                                                *ngIf="stackbar.Value5">
+                                                        <div class="pointer-container-orange"
+                                                            *ngFor="let stackbar of BARvalue">
+                                                            <div class="box-orange arrow-top" *ngIf="stackbar.Value5">
                                                                 <div class="barNo">{{ stackbar.score }}</div>
                                                             </div>
                                                         </div>
-                                                        <div class="pointer-container-orange" *ngFor="let stackbar of BARvalue">
-                                                            <div class="box-orange arrow-top"
-                                                                *ngIf="stackbar.Value6">
+                                                        <div class="pointer-container-orange"
+                                                            *ngFor="let stackbar of BARvalue">
+                                                            <div class="box-orange arrow-top" *ngIf="stackbar.Value6">
                                                                 <div class="barNo">{{ stackbar.score }}</div>
                                                             </div>
                                                         </div>
-                                                        <div class="pointer-container-orange" *ngFor="let stackbar of BARvalue">
-                                                            <div class="box-orange arrow-top"
-                                                                *ngIf="stackbar.Value7">
+                                                        <div class="pointer-container-orange"
+                                                            *ngFor="let stackbar of BARvalue">
+                                                            <div class="box-orange arrow-top" *ngIf="stackbar.Value7">
                                                                 <div class="barNo">{{ stackbar.score }}</div>
                                                             </div>
                                                         </div>
@@ -164,25 +167,30 @@
                                                 <div class="green-bar">
                                                     <div class="green-box"></div>
                                                     <div class="pointer-container">
-                                                    <div class="pointer-container-green-1" *ngFor="let stackbar of BARvalue">
-                                                        <div class="box-green arrow-top" *ngIf="stackbar.Value8">
-                                                            <div class="barNo">{{ stackbar.score }}</div>
+                                                        <div class="pointer-container-green-1"
+                                                            *ngFor="let stackbar of BARvalue">
+                                                            <div class="box-green arrow-top" *ngIf="stackbar.Value8">
+                                                                <div class="barNo">{{ stackbar.score }}</div>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="pointer-container-green-2" *ngFor="let stackbar of BARvalue">
-                                                        <div class="box-green arrow-top" *ngIf="stackbar.Value9">
-                                                            <div class="barNo">{{ stackbar.score }}</div>
+                                                        <div class="pointer-container-green-2"
+                                                            *ngFor="let stackbar of BARvalue">
+                                                            <div class="box-green arrow-top" *ngIf="stackbar.Value9">
+                                                                <div class="barNo">{{ stackbar.score }}</div>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="pointer-container-green-3"*ngFor="let stackbar of BARvalue">
-                                                        <div class="box-green arrow-top" *ngIf="stackbar.Value10">
-                                                            <div class="barNo">{{ stackbar.score }}</div>
+                                                        <div class="pointer-container-green-3"
+                                                            *ngFor="let stackbar of BARvalue">
+                                                            <div class="box-green arrow-top" *ngIf="stackbar.Value10">
+                                                                <div class="barNo">{{ stackbar.score }}</div>
+                                                            </div>
                                                         </div>
-                                                    </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
+                                            </ng-container>
+                                        </ng-container>
                                         <div class="snapshot-point">
                                             <div class="snapshot-point-red">
                                                 <ul class="bullet">
@@ -269,7 +277,7 @@
                                                             <span class="tab-list-name">{{skillsDetail?.name}}</span>
                                                         </div>
                                                         <div class="right">
-                                                            <app-bajaj-report-canvas [bgColor]="factors?.colourcode"
+                                                            <app-bajaj-report-canvas [bgColor]="skillsDetail?.colourcode"
                                                                 [score]="skillsDetail?.stenScore ? skillsDetail?.stenScore : 0">
                                                             </app-bajaj-report-canvas>
                                                         </div>
@@ -329,178 +337,18 @@
         </section>
 
 
-        <div class="interviewQuestions">
-            <div class="interviewQuestionContent">
-                <div class="skillName">
-                    <div class="skillNameText">DETAIL-ORIENTED</div>
+        <div class="interviewQuestions" *ngIf="getAllBehaviourData && getAllBehaviourData.skillwiseQuestionDetails">
+            <div class="interviewQuestionContent" *ngFor="let skillwiseQuestionDetail of getAllBehaviourData.skillwiseQuestionDetails">
+                <div class="skillName"
+                    >
+                    <div class="skillNameText">{{skillwiseQuestionDetail?.name}}</div>
                 </div>
-                <div class="questions">
-                    <ol>
-                        <li>1. Would you enjoy doing work that involves getting into details and the fine picture?
-                        </li>
-                        <li>2. Tell me about a situation where your accuracy and double-checking saved the day.</li>
-                        <li>3. How would you respond if a team member has not done the work correctly?</li>
-                    </ol>
-                </div>
-                <div class="questionBorder">
-                    <div class="Border"></div>
-                </div>
-            </div>
-            <div class="interviewQuestionContent">
-                <div class="skillName">
-                    <div class="skillNameText">CRITICAL THINKING</div>
-                </div>
-                <div class="questions">
-                    <ol>
-                        <li>1. Would you enjoy doing work that involves getting into details and the fine picture?
-                        </li>
-                        <li>2. Tell me about a situation where your accuracy and double-checking saved the day.</li>
-                        <li>3. How would you respond if a team member has not done the work correctly?</li>
-                    </ol>
-                </div>
-                <div class="questionBorder">
-                    <div class="Border"></div>
-                </div>
-            </div>
-            <div class="interviewQuestionContent">
-                <div class="skillName">
-                    <div class="skillNameText">CREATIVE THINKING</div>
-                </div>
-                <div class="questions">
-                    <ol>
-                        <li>1. Would you enjoy doing work that involves getting into details and the fine picture?
-                        </li>
-                        <li>2. Tell me about a situation where your accuracy and double-checking saved the day.</li>
-                        <li>3. How would you respond if a team member has not done the work correctly?</li>
-                    </ol>
-                </div>
-                <div class="questionBorder">
-                    <div class="Border"></div>
-                </div>
-            </div>
-            <div class="interviewQuestionContent">
-                <div class="skillName">
-                    <div class="skillNameText">GROWTH MIND-SET</div>
-                </div>
-                <div class="questions">
-                    <ol>
-                        <li>1. Would you enjoy doing work that involves getting into details and the fine picture?
-                        </li>
-                        <li>2. Tell me about a situation where your accuracy and double-checking saved the day.</li>
-                        <li>3. How would you respond if a team member has not done the work correctly?</li>
-                    </ol>
-                </div>
-                <div class="questionBorder">
-                    <div class="Border"></div>
-                </div>
-            </div>
-            <div class="interviewQuestionContent">
-                <div class="skillName">
-                    <div class="skillNameText">EMOTIONAL SELF-AWARENESS</div>
-                </div>
-                <div class="questions">
-                    <ol>
-                        <li>1. Would you enjoy doing work that involves getting into details and the fine picture?
-                        </li>
-                        <li>2. Tell me about a situation where your accuracy and double-checking saved the day.</li>
-                        <li>3. How would you respond if a team member has not done the work correctly?</li>
-                    </ol>
-                </div>
-                <div class="questionBorder">
-                    <div class="Border"></div>
-                </div>
-            </div>
-            <div class="interviewQuestionContent">
-                <div class="skillName">
-                    <div class="skillNameText">SELF-RELIANCE</div>
-                </div>
-                <div class="questions">
-                    <ol>
-                        <li>1. Would you enjoy doing work that involves getting into details and the fine picture?
-                        </li>
-                        <li>2. Tell me about a situation where your accuracy and double-checking saved the day.</li>
-                        <li>3. How would you respond if a team member has not done the work correctly?</li>
-                    </ol>
-                </div>
-                <div class="questionBorder">
-                    <div class="Border"></div>
-                </div>
-            </div>
-            <div class="interviewQuestionContent">
-                <div class="skillName">
-                    <div class="skillNameText">TEAMWORK</div>
-                </div>
-                <div class="questions">
-                    <ol>
-                        <li>1. Would you enjoy doing work that involves getting into details and the fine picture?
-                        </li>
-                        <li>2. Tell me about a situation where your accuracy and double-checking saved the day.</li>
-                        <li>3. How would you respond if a team member has not done the work correctly?</li>
-                    </ol>
-                </div>
-                <div class="questionBorder">
-                    <div class="Border"></div>
-                </div>
-            </div>
-            <div class="interviewQuestionContent">
-                <div class="skillName">
-                    <div class="skillNameText">RECEPTIVENESS</div>
-                </div>
-                <div class="questions">
-                    <ol>
-                        <li>1. Would you enjoy doing work that involves getting into details and the fine picture?
-                        </li>
-                        <li>2. Tell me about a situation where your accuracy and double-checking saved the day.</li>
-                        <li>3. How would you respond if a team member has not done the work correctly?</li>
-                    </ol>
-                </div>
-                <div class="questionBorder">
-                    <div class="Border"></div>
-                </div>
-            </div>
-            <div class="interviewQuestionContent">
-                <div class="skillName">
-                    <div class="skillNameText">COMMUNICATION SKILLS</div>
-                </div>
-                <div class="questions">
-                    <ol>
-                        <li>1. Would you enjoy doing work that involves getting into details and the fine picture?
-                        </li>
-                        <li>2. Tell me about a situation where your accuracy and double-checking saved the day.</li>
-                        <li>3. How would you respond if a team member has not done the work correctly?</li>
-                    </ol>
-                </div>
-                <div class="questionBorder">
-                    <div class="Border"></div>
-                </div>
-            </div>
-            <div class="interviewQuestionContent">
-                <div class="skillName">
-                    <div class="skillNameText">EMPATHY</div>
-                </div>
-                <div class="questions">
-                    <ol>
-                        <li>1. Would you enjoy doing work that involves getting into details and the fine picture?
-                        </li>
-                        <li>2. Tell me about a situation where your accuracy and double-checking saved the day.</li>
-                        <li>3. How would you respond if a team member has not done the work correctly?</li>
-                    </ol>
-                </div>
-                <div class="questionBorder">
-                    <div class="Border"></div>
-                </div>
-            </div>
-            <div class="interviewQuestionContent">
-                <div class="skillName">
-                    <div class="skillNameText">POSITIVE ATTITUDE</div>
-                </div>
-                <div class="questions">
-                    <ol>
-                        <li>1. Would you enjoy doing work that involves getting into details and the fine picture?
-                        </li>
-                        <li>2. Tell me about a situation where your accuracy and double-checking saved the day.</li>
-                        <li>3. How would you respond if a team member has not done the work correctly?</li>
-                    </ol>
+                <div class="questions" >
+                    <ng-container *ngIf="skillwiseQuestionDetail && skillwiseQuestionDetail.questions">
+                    <ul>
+                        <li *ngFor="let question of skillwiseQuestionDetail.questions" >{{question?.item}}</li>
+                    </ul>
+                    </ng-container>
                 </div>
                 <div class="questionBorder">
                     <div class="Border"></div>
@@ -508,14 +356,15 @@
             </div>
         </div>
 
-        <!-- Strength Areas -->
-        <!-- <section class="strengthAreas" *ngIf="isaccess">
+
+<!-- Strength Areas -->
+<!-- <section class="strengthAreas" *ngIf="isaccess">
             <div class="containerWrapper">
                 <div class="d-flex justify-content-between strengthAreasWrapper">
                     <figure>
                         <img src="/assets/images/Job_Interview.svg" alt="" />
                     </figure> -->
-        <!-- <div class="right">
+<!-- <div class="right">
                         <div class="heading4">STRENGTH AREAS</div>
                         <ng-container *ngIf="getAllBehaviourAPIDetails && getAllBehaviourAPIDetails?.strengthconclusionPoints && getAllBehaviourAPIDetails?.strengthconclusionPoints.length > 0 else noStrength">
                             <ng-container *ngFor="let conclusion of getAllBehaviourAPIDetails.strengthconclusionPoints">
@@ -528,10 +377,10 @@
                             </ng-container>
                         </ng-container>
                     </div> -->
-        <!-- </div>
+<!-- </div>
             </div>
         </section> -->
-        <!-- <div class="containerWrapper">
+<!-- <div class="containerWrapper">
                 <div class="d-flex justify-content-between developmentScopeWrapper">
                     <div class="left">
                         <div class="heading4">DEVELOPMENT SCOPE</div>
@@ -552,7 +401,7 @@
                 </div>
             </div>
         </section> -->
-    </ng-container>
+</ng-container>
 </div>
 <!-- 
 <ng-template #benchmarkInfo>

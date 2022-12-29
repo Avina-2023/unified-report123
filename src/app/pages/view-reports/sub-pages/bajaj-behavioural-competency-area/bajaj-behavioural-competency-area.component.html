@@ -14,14 +14,14 @@
                                     <img [src]="competency.imageurl" alt="" />
                                 </figure>
                                 <div class="report-snapshot-content-right">
-                                    <div class="heading">CONTINUOUSLY RAISE THE BAR</div>
+                                    <div class="heading">{{competency?.name}}</div>
                                     <div>
                                         <div class="bar">
                                             <div class="red-bar">
                                                 <div class="red-box"></div>
                                                 <div class="pointer-container">
                                                     <div class="pointer-container-">
-                                                        <div class="box-red arrow-top" *ngIf="continouslyValueTwo">
+                                                        <div class="box-red arrow-top" *ngIf="continouslyValueOne">
                                                             <div class="barNo">1</div>
                                                         </div>
                                                     </div>
@@ -44,7 +44,7 @@
                                                 <div class="pointer-container">
                                                     <div class="pointer-container-orange">
                                                         <div class="box-orange arrow-top"
-                                                            *ngIf="continouslyValueFive">
+                                                            *ngIf="continouslyValueFour">
                                                             <div class="barNo">4</div>
                                                         </div>
                                                     </div>
@@ -72,7 +72,7 @@
                                                 <div class="green-box"></div>
                                                 <div class="pointer-container">
                                                 <div class="pointer-container-green-1">
-                                                    <div class="box-green arrow-top" *ngIf="continouslyValueNine">
+                                                    <div class="box-green arrow-top" *ngIf="continouslyValueEight">
                                                         <div class="barNo">8</div>
                                                     </div>
                                                 </div>
@@ -82,7 +82,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="pointer-container-green-3">
-                                                    <div class="box-green arrow-top" *ngIf="continouslyValueNine">
+                                                    <div class="box-green arrow-top" *ngIf="continouslyValueTen">
                                                         <div class="barNo">10</div>
                                                     </div>
                                                 </div>

@@ -53,6 +53,7 @@ export class BajajBehaviouralCompetencyAreaComponent implements OnInit, AfterVie
     this.getRoute();
     this.isaccess = this.appconfig.isComingFromMicroCert();
     this.getBehaviouralReportData(this.getAllReportsData.email ? this.getAllReportsData.email : '')
+    this.continously()
   }
 
   ngAfterViewInit() {

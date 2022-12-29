@@ -130,13 +130,13 @@ getAGgridPatnerList(data){
   }
 
   getBehaviourReport(data) {
-    data.email=
-    'bppdemo9001@abc.com'
     return this.http.post(`${this.BASE_URL}/getBehaviouralReportContent1 `, data);
   }
   getBajajBehaviourReport(data) {
-    data.email=
-    'bppdemo9001@abc.com'
+    // data.email=
+    // 'bppdemo9001@abc.com',
+    
+data.reportId='R2'
     return this.http.post(`${this.BASE_URL}/getBehaviouralReportContent1 `, data);
   }
 
