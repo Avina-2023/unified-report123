@@ -17,7 +17,7 @@ export class BajajBehaviouralCompetencyAreaComponent implements OnInit, AfterVie
   @Input() driveName;
   @Input() emailId;
   getAllBehaviourData: any;
-  getBehaviourReportAPISubscription: Subscription;
+  getBajaBehaviourReportAPISubscription: Subscription;
   getAllBasicData: any;
 
   highestEducation: any;
@@ -89,7 +89,7 @@ export class BajajBehaviouralCompetencyAreaComponent implements OnInit, AfterVie
         email: data
       };
     this.emailId= data;
-     this.getBehaviourReportAPISubscription = this.ApiService.getBehaviourReport(apiData).subscribe((response: any) => {
+     this.getBajaBehaviourReportAPISubscription = this.ApiService.getBajajBehaviourReport(apiData).subscribe((response: any) => {
       if (response && response.success && response.data) {
           this.apiSuccess = true;
           this.getAllBehaviourData = response.data.data ? response.data.data : null;
@@ -123,7 +123,7 @@ export class BajajBehaviouralCompetencyAreaComponent implements OnInit, AfterVie
   }
  
   ngOnDestroy() {
-    this.getBehaviourReportAPISubscription ? this.getBehaviourReportAPISubscription.unsubscribe() : '';
+    this.getBajaBehaviourReportAPISubscription ? this.getBajaBehaviourReportAPISubscription.unsubscribe() : '';
   }
  
     
