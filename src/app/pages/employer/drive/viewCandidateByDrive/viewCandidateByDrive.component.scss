@@ -6,7 +6,8 @@
   
   .title {
     color: #ffffff;
-  
+    display: flex;
+    justify-content: space-between;
     opacity: 0.7;
     padding-bottom: 30px;
   
@@ -17,6 +18,10 @@
   .title-text {
     padding-left: 25px;
     font-size: 20px;
+  }
+  .exportcsv{
+    padding-right: 28px;
+    cursor: pointer;
   }
   .container {
     display: flex;
