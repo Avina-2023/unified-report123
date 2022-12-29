@@ -26,7 +26,7 @@ export class ResumeBuilderComponent implements OnInit {
   
   ngOnInit() {
     this.profilePercentage = JSON.parse(localStorage.getItem('profilePercentage'));
-    console.log(this.profilePercentage);
+    // console.log(this.profilePercentage);
   }
 
   resumeDialog() {

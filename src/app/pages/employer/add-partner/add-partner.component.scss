@@ -70,7 +70,7 @@
     }
 
     ::ng-deep .mat-form-field-appearance-outline .mat-form-field-infix {
-        padding: 0 0 10px 0 !important;
+        padding: 4px 0 10px 0 !important;
     }
 }
 
@@ -169,6 +169,8 @@
             background-color: #1B4E9B !important;
             color: #FFFFFF;
             border-radius: 25px;
+            padding: 2px 27px 0px 27px !important;
+            line-height: 33px;
           }
     }
 
@@ -178,6 +180,8 @@
             background-color: #848484 !important;
             color: #FFFFFF;
             border-radius: 25px;
+            padding: 2px 27px 0px 27px !important;
+            line-height: 33px;
           }
     }
 }
@@ -191,6 +195,8 @@
             background-color: #1B4E9B !important;
             color: #FFFFFF;
             border-radius: 25px;
+            padding: 2px 27px 0px 27px !important;
+            line-height: 33px;
           }
     }
 
@@ -200,6 +206,8 @@
             background-color: #848484 !important;
             color: #FFFFFF;
             border-radius: 25px;
+            padding: 2px 27px 0px 27px !important;
+            line-height: 33px;
           }
     }
 }

@@ -43,7 +43,7 @@ item: any;
     // this.router.getCurrentNavigation().extras &&
     // this.router.getCurrentNavigation().extras.state &&
     // this.router.getCurrentNavigation().extras.state.detail;
-    console.log(this.jobDetails);
+    // console.log(this.jobDetails);
   }
 
   openDialog(dialogval){
@@ -83,7 +83,7 @@ item: any;
     };
     this.skillexService.saveJobsDashboard(jobParams).subscribe((res: any) => {
       if (res.success) {
-        console.log(res)
+        // console.log(res)
         if(res && res.data !=undefined && res.data  ){
           this.toaster.success("Job saved successfully");
         }else{

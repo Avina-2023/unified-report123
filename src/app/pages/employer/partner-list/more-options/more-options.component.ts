@@ -69,8 +69,6 @@ export class MoreOptionsComponent implements ICellRendererAngularComp {
   agInit(params: ICellRendererParams): void {
     this.params = params;
     params.value
-    console.log(params.data);
-    
   }
   afterGuiAttached?(params?: IAfterGuiAttachedParams): void {
     throw new Error('Method not implemented.');
