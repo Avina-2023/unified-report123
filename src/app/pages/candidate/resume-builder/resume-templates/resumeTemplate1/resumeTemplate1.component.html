@@ -1,6 +1,6 @@
 <section id="inner_template" #inner_template>
   <div class="user_intro">
-    <div class="first-div"><img src="assets/images/candidate-userprofile.png"></div>
+    <div class="first-div"><img class="profileimg" [src]='profileImage!=""?profileImage:"assets/images/candidate-userprofile.png"'></div>
     <div class="second-div">
       <div class="inner_spacing">
         <p class="username_title">{{username}}</p>
@@ -41,7 +41,7 @@
     </div>
     <div class="second-div skillset cv_spacing">
       <div *ngFor="let item of candidate.experience_details.skills;let i=index;">
-        <button>{{item}}</button>
+        <button class="skillbutton">{{item}}</button>
       </div>
     </div>
   </div>
