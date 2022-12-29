@@ -2,8 +2,8 @@
 
     #inner_template {
         background: #fff;
-        margin: 20px 80px 20px 80px;
-        padding: 20px;
+       // margin: 20px 80px 20px 80px;
+        //padding: 20px;
         border-radius: 10px;
 
 
@@ -106,7 +106,7 @@
             .education {
                 .flex_spacing {
                     display: flex;
-                    align-items: flex-start;
+                    align-items: baseline;
                     width: 75% !important;
                     position: relative !important;
                     border: none !important;
@@ -198,6 +198,12 @@
                     text-align: left;
                     padding: 15px 40px;
                 }
+                
+                @media only screen and (min-width: 740px) and (max-width: 780px) {
+                    th {
+                        padding: 15px 30px;
+                    }
+                }
 
                 .lang {
                     text-align: center;
@@ -224,4 +230,20 @@
             }
 
         }
+
+
+        @media only screen and (max-width: 600px) {
+            .username_subtitle {
+                margin-top: -5%;
+            }
+            .user_addres, .user_phone {
+                margin-top: -3%;
+            }
+            .user_email {
+                margin-top: -6%;
+            }
+        }
     }
+
+
+    
