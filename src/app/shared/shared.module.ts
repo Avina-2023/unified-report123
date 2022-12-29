@@ -16,7 +16,8 @@ import { BehaviouralPdfReportDownloadComponent } from './behavioural-pdf-report-
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { BehaviouralReportCanvasComponent } from './behavioural-report-canvas/behavioural-report-canvas.component';
 import {SidebarComponent} from './sidebar/sidebar.component';
-import { BajajBegaviouralPdfReportDownloadComponent } from './bajaj-begavioural-pdf-report-download/bajaj-begavioural-pdf-report-download.component'
+import { BajajBegaviouralPdfReportDownloadComponent } from './bajaj-begavioural-pdf-report-download/bajaj-begavioural-pdf-report-download.component';
+import { BajajReportCanvasComponent } from './bajaj-report-canvas/bajaj-report-canvas.component'
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
 };
@@ -33,7 +34,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     BehaviouralReportCanvasComponent,
     SidebarComponent,
     AlertDialogComponent,
-    BajajBegaviouralPdfReportDownloadComponent
+    BajajBegaviouralPdfReportDownloadComponent,
+    BajajReportCanvasComponent
   ],
   imports: [
     CommonModule,
@@ -62,9 +64,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     ToolbarComponent,
     SidebarComponent,
     BehaviouralReportCanvasComponent,
-    BajajBegaviouralPdfReportDownloadComponent
-    
-
+    BajajBegaviouralPdfReportDownloadComponent,
+    BajajReportCanvasComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
   providers: [

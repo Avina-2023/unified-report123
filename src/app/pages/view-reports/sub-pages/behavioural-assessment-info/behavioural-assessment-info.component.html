@@ -116,7 +116,7 @@
 </section>
 
 
-<section class="assessmentArea">
+<section class="bajajAssessmentArea">
     <!-- <div class="assessmentHeaderinfo" *ngIf="assessmentsList && assessmentsList[0].testname.length > 0">
         <div class="heading6">Behavioural Personal Profile
             <span (click)="downloadreport(true)" class="view-report pl-1">Download report</span>
@@ -134,7 +134,7 @@
                             <div class="width-51">
                                 <em class="icon-Assessment"></em>
                                 <span>Test Name 1  
-                                <span class="color-black">{{ assessment.testname ? assessment.testname : '-' }}<a *ngIf="assessment && assessment.testname" (click)="viewBehaviouralReport1()"  class="view-report pl-1">View Report 1</a> </span>
+                                <span class="color-black">{{ assessment.testname ? assessment.testname : '-' }}<a *ngIf="assessment && assessment.testname" (click)="viewBehaviouralReport1()"  class="view-report pl-1">View Report</a> </span>
                                 </span>
                             </div>
                             <!-- <div (click)="viewBehaviouralReport()" class="view-report pl-1">View Report</div> -->
@@ -193,7 +193,7 @@
 
                     <div class="expandContentArea">
                         <div class="">
-                            <app-behavioural-competency-areas [getAllReportsData]="getAllReportsData"></app-behavioural-competency-areas>
+                            <app-bajaj-behavioural-competency-area [getAllReportsData]="getAllReportsData"></app-bajaj-behavioural-competency-area>
                         </div>
                     </div>
 
