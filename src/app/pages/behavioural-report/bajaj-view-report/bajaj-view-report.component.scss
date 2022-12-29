@@ -83,39 +83,79 @@
   .bar-no {
     display: flex;
     justify-content: space-between;
+    text-align: center;
+    position: relative;
   }
 }
+.red-bar{
 .pointer-container {
   display: flex;
-  width: 200px;
+  width: 250px;
   position: relative;
-  bottom: 54px;
+  bottom: 34px;
   // justify-content: space-evenly;
+}
+.pointer-container- {
+  width: 200px;
+  display: flex;
+  position: relative;
+  right: 14px;
 }
 .pointer-container-2 {
   width: 200px;
   display: flex;
-  justify-content: center;
-  padding-left: 50px;
+  position: relative;
+  position: relative;
+    right: 13px;
+}
+}
+.orange-bar{
+  .pointer-container {
+    display: flex;
+    width: 250px;
+    position: relative;
+    top: 6px;
+    // justify-content: space-evenly;
+  }
 }
 .pointer-container-orange {
   width: 78.06px;
   display: flex;
-  justify-content: center;
   position: relative;
-  left: 20px;
+  right: 14px;
 }
-.pointer-container-green {
+.green-bar{
+  .pointer-container {
+    display: flex;
+    width: 250px;
+    position: relative;
+
+  }
+}
+.pointer-container-green-2 {
   display: flex;
   width: 250px;
   position: relative;
-  bottom: 54px;
-  justify-content: space-around;
-  // justify-content: space-evenly;
+  bottom: 34px;
+  left: 26px;
+}
+.pointer-container-green-3 {
+  display: flex;
+  width: 250px;
+  position: relative;
+  bottom: 34px;
+  left: 67px;
+}
+.pointer-container-green-1 {
+  display: flex;
+  width: 250px;
+  position: relative;
+  bottom: 34px;
+  right: 14px;
 }
 .barNo {
   position: relative;
-  left: 11px;
+text-align: center;
   z-index: 1;
 }
 .box-green {
@@ -123,9 +163,7 @@
   height: 20px;
   background-color: #13b100;
   color: #fff;
-  // padding: 20px;
   position: relative;
-
   float: left;
   border-radius: 5px;
 }
@@ -154,7 +192,7 @@
   border-radius: 5px;
 }
 .box-orange.arrow-top {
-  margin-top: 40px;
+  // margin-top: 40px;
 }
 .box-orange.arrow-top:after {
   content: " ";
@@ -1413,6 +1451,7 @@
       padding-left: 15px;
       position: relative;
       top: 15px;
+      font-size: 16px;
       ol {
         font-size: 12pt;
       }
@@ -1672,3 +1711,4 @@
   width: 0;
   z-index: -5;
 }
+//
