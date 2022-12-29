@@ -34,6 +34,14 @@
                 img {
                     width: 200px;
                 }
+                .profileimg{
+                    width: 180px !important;
+                    height: 180px;
+                    margin-left: 30px !important;
+                    margin: 10px;
+                    border-radius: 50%;
+                    -webkit-border-radius: 50%;
+                }
             }
 
             .second-div {
@@ -168,6 +176,9 @@
                     font-family: 'Lato';
                     font-size: 18px;
                     font-weight: 300;
+                }
+                .skillbutton{
+                    cursor: auto;
                 }
             }
 
