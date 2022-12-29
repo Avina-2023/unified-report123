@@ -139,7 +139,7 @@ export class BajajViewReportComponent implements OnInit, AfterViewInit, OnDestro
 
 
   downloadreport(val){
-    console.log(val,'val');
+    // console.log(val,'val');
     
     if(val){
       this.isPdfdownable = val;

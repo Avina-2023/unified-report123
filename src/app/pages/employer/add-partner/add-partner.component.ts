@@ -161,7 +161,7 @@ export class AddPartnerComponent implements OnInit {
             "existsUser":this.existsUser
       }
       this.ApiService.updatePartner(obj).subscribe((data: any) => {
-        console.log(data)
+        // console.log(data)
         if (data.success == false) {
           this.toastr.warning(data.message);
         } else {

@@ -47,8 +47,8 @@ export class BajajBegaviouralPdfReportDownloadComponent implements OnInit {
   ngOnInit(): void {
     this.subscription = this.sendData.getMessage().subscribe((message) => {
       this.InAppReport = message.data;
-      console.log(this.InAppReport,'kajdsbkjasbd')
-      console.log(this.data,'this.data')
+      // console.log(this.InAppReport,'kajdsbkjasbd')
+      // console.log(this.data,'this.data')
       if (this.data && this.InAppReport == true) {
         this.getReportData();
         this.downloadAsPDF();
