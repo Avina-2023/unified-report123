@@ -107,88 +107,101 @@
                                     </figure>
                                     <div class="report-snapshot-content-right">
                                         <div class="heading">{{competency?.name}}</div>
-                                        <ng-container >
-                                            <ng-container>  
-                                        <div  >
-                                            <div class="bar">
-                                                <div class="red-bar">
-                                                    <div class="red-box"></div>
-                                                    <div class="pointer-container">
-                                                        <div class="pointer-container-" *ngFor="let skillsDetail of competency?.skills"
-                                                        >
-                                                            <div class="box-red arrow-top" *ngIf="competency?.skills">
-                                                                <div class="barNo">{{ skillsDetail?.stenScore }} </div>
+                                        <ng-container>
+                                            <ng-container>
+                                                <div>
+                                                    <div class="bar">
+                                                        <div class="red-bar">
+                                                            <div class="red-box"></div>
+                                                            <div class="pointer-container">
+                                                                <div class="pointer-container-"
+                                                                    *ngFor="let skillsDetail of competency?.skills">
+                                                                    <div class="box-red arrow-top"
+                                                                        *ngIf="competency?.skills">
+                                                                        <div class="barNo">{{ skillsDetail?.stenScore }}
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="pointer-container-2"
+                                                                    *ngFor="let stackbar of BARvalue">
+                                                                    <div class="box-red arrow-top"
+                                                                        *ngIf="stackbar.Value2">
+                                                                        <div class="barNo">{{ skillsDetail?.stenScore }}
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="pointer-container-2"
+                                                                    *ngFor="let stackbar of BARvalue">
+                                                                    <div class="box-red arrow-top"
+                                                                        *ngIf="stackbar.Value3">
+                                                                        <div class="barNo">{{ skillsDetail?.stenScore }}
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                        <div class="pointer-container-2"
-                                                            *ngFor="let stackbar of BARvalue">
-                                                            <div class="box-red arrow-top" *ngIf="stackbar.Value2">
-                                                                <div class="barNo">{{ skillsDetail?.stenScore }}</div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="pointer-container-2"
-                                                            *ngFor="let stackbar of BARvalue">
-                                                            <div class="box-red arrow-top" *ngIf="stackbar.Value3">
-                                                                <div class="barNo">{{ skillsDetail?.stenScore }}</div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="orange-bar">
-                                                    <div class="orange-box"></div>
+                                                        <div class="orange-bar">
+                                                            <div class="orange-box"></div>
 
-                                                    <div class="pointer-container">
-                                                        <div class="pointer-container-orange"
-                                                            *ngFor="let stackbar of BARvalue">
-                                                            <div class="box-orange arrow-top" *ngIf="stackbar.Value4">
-                                                                <div class="barNo">{{ stackbar.score }}</div>
+                                                            <div class="pointer-container">
+                                                                <div class="pointer-container-orange"
+                                                                    *ngFor="let stackbar of BARvalue">
+                                                                    <div class="box-orange arrow-top"
+                                                                        *ngIf="stackbar.Value4">
+                                                                        <div class="barNo">{{ stackbar.score }}</div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="pointer-container-orange"
+                                                                    *ngFor="let stackbar of BARvalue">
+                                                                    <div class="box-orange arrow-top"
+                                                                        *ngIf="stackbar.Value5">
+                                                                        <div class="barNo">{{ stackbar.score }}</div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="pointer-container-orange"
+                                                                    *ngFor="let stackbar of BARvalue">
+                                                                    <div class="box-orange arrow-top"
+                                                                        *ngIf="stackbar.Value6">
+                                                                        <div class="barNo">{{ stackbar.score }}</div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="pointer-container-orange"
+                                                                    *ngFor="let stackbar of BARvalue">
+                                                                    <div class="box-orange arrow-top"
+                                                                        *ngIf="stackbar.Value7">
+                                                                        <div class="barNo">{{ stackbar.score }}</div>
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                        <div class="pointer-container-orange"
-                                                            *ngFor="let stackbar of BARvalue">
-                                                            <div class="box-orange arrow-top" *ngIf="stackbar.Value5">
-                                                                <div class="barNo">{{ stackbar.score }}</div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="pointer-container-orange"
-                                                            *ngFor="let stackbar of BARvalue">
-                                                            <div class="box-orange arrow-top" *ngIf="stackbar.Value6">
-                                                                <div class="barNo">{{ stackbar.score }}</div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="pointer-container-orange"
-                                                            *ngFor="let stackbar of BARvalue">
-                                                            <div class="box-orange arrow-top" *ngIf="stackbar.Value7">
-                                                                <div class="barNo">{{ stackbar.score }}</div>
+                                                        <div class="green-bar">
+                                                            <div class="green-box"></div>
+                                                            <div class="pointer-container">
+                                                                <div class="pointer-container-green-1"
+                                                                    *ngFor="let stackbar of BARvalue">
+                                                                    <div class="box-green arrow-top"
+                                                                        *ngIf="stackbar.Value8">
+                                                                        <div class="barNo">{{ stackbar.score }}</div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="pointer-container-green-2"
+                                                                    *ngFor="let stackbar of BARvalue">
+                                                                    <div class="box-green arrow-top"
+                                                                        *ngIf="stackbar.Value9">
+                                                                        <div class="barNo">{{ stackbar.score }}</div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="pointer-container-green-3"
+                                                                    *ngFor="let stackbar of BARvalue">
+                                                                    <div class="box-green arrow-top"
+                                                                        *ngIf="stackbar.Value10">
+                                                                        <div class="barNo">{{ stackbar.score }}</div>
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="green-bar">
-                                                    <div class="green-box"></div>
-                                                    <div class="pointer-container">
-                                                        <div class="pointer-container-green-1"
-                                                            *ngFor="let stackbar of BARvalue">
-                                                            <div class="box-green arrow-top" *ngIf="stackbar.Value8">
-                                                                <div class="barNo">{{ stackbar.score }}</div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="pointer-container-green-2"
-                                                            *ngFor="let stackbar of BARvalue">
-                                                            <div class="box-green arrow-top" *ngIf="stackbar.Value9">
-                                                                <div class="barNo">{{ stackbar.score }}</div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="pointer-container-green-3"
-                                                            *ngFor="let stackbar of BARvalue">
-                                                            <div class="box-green arrow-top" *ngIf="stackbar.Value10">
-                                                                <div class="barNo">{{ stackbar.score }}</div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
                                             </ng-container>
                                         </ng-container>
                                         <div class="snapshot-point">
@@ -277,7 +290,8 @@
                                                             <span class="tab-list-name">{{skillsDetail?.name}}</span>
                                                         </div>
                                                         <div class="right">
-                                                            <app-bajaj-report-canvas [bgColor]="skillsDetail?.colourcode"
+                                                            <app-bajaj-report-canvas
+                                                                [bgColor]="skillsDetail?.colourcode"
                                                                 [score]="skillsDetail?.stenScore ? skillsDetail?.stenScore : 0">
                                                             </app-bajaj-report-canvas>
                                                         </div>
@@ -338,16 +352,16 @@
 
 
         <div class="interviewQuestions" *ngIf="getAllBehaviourData && getAllBehaviourData.skillwiseQuestionDetails">
-            <div class="interviewQuestionContent" *ngFor="let skillwiseQuestionDetail of getAllBehaviourData.skillwiseQuestionDetails">
-                <div class="skillName"
-                    >
+            <div class="interviewQuestionContent"
+                *ngFor="let skillwiseQuestionDetail of getAllBehaviourData.skillwiseQuestionDetails">
+                <div class="skillName">
                     <div class="skillNameText">{{skillwiseQuestionDetail?.name}}</div>
                 </div>
-                <div class="questions" >
+                <div class="questions">
                     <ng-container *ngIf="skillwiseQuestionDetail && skillwiseQuestionDetail.questions">
-                    <ul>
-                        <li *ngFor="let question of skillwiseQuestionDetail.questions" >{{question?.item}}</li>
-                    </ul>
+                        <ul>
+                            <li *ngFor="let question of skillwiseQuestionDetail.questions">{{question?.item}}</li>
+                        </ul>
                     </ng-container>
                 </div>
                 <div class="questionBorder">
@@ -355,16 +369,100 @@
                 </div>
             </div>
         </div>
+        <footer>
+            <div class="footer">
+                <div class="f-heading1">
+                    <div>
+                        <div class="h4">L&T EduTech</div>
+                    </div>
+                    <div class="list">
+                        <div class="Text">
+                            <div class="text">Home</div>
+                        </div>
+                        <div class="Text">
+                            <div class="text">About</div>
+                        </div>
+                        <div class="Text">
+                            <div class="text">Contact</div>
+                        </div>
+                        <div class="Text">
+                            <div class="text">Terms of use</div>
+                        </div>
+                        <div class="Text">
+                            <div class="text">Larsen & Toubro(coporate)</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="f-heading2">
+                    <div>
+                        <div class="h4">Offerings</div>
+                    </div>
+                    <div class="list">
+                        <div class="Text">
+                            <div class="text">CollegeConnect</div>
+                        </div>
+                        <div class="Text">
+                            <div class="text">Vocational Skilling</div>
+                        </div>
+                        <div class="Text">
+                            <div class="text">Professional Certification</div>
+                        </div>
+                        <div class="Text">
+                            <div class="text">Assessments</div>
+                        </div>
 
+                    </div>
+                </div>
+                <div class="f-heading3">
+                    <div>
+                        <div class="h4">Find Us</div>
+                    </div>
+                    <div class="list">
+                        <div class="Text">
+                            <div class="text">We are always pleased to serve you, come share your experiences with us.
+                            </div>
+                        </div>
+                        <div class="Text">
+                            <div class="text">Mt. Poonamallee Road, Manapakkam, Chennai - 600089</div>
+                            <div> +91-44-22526000 / 22528000</div>
+                            <div> info@lntedutech.com</div>
+                        </div>
+                        <div class="findus">
+                            <div class="img"><img src="/assets/images/FindUs.png"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="app">
+                    <div class="appIcon">
+                        <div class="iconImg">
+                            <img src="/assets/images/appIcon.png">
+                        </div>
+                    </div>
+                </div>
+               
+                
+            </div>
+            <div class="footerEnd">
+            <div class="footerBorder"></div>
+            <div class="copyrights">
+                <div class="Text">
+                    <div class="text">© 2021 L&T Edutech. All rights reserved</div>
+                </div>
+                <div class="Text">
+                    <div class="text">Terms of Services | Privacy Notice | Cookies</div>
+                </div>
+            </div>
+        </div>
+        </footer>
 
-<!-- Strength Areas -->
-<!-- <section class="strengthAreas" *ngIf="isaccess">
+        <!-- Strength Areas -->
+        <!-- <section class="strengthAreas" *ngIf="isaccess">
             <div class="containerWrapper">
                 <div class="d-flex justify-content-between strengthAreasWrapper">
                     <figure>
                         <img src="/assets/images/Job_Interview.svg" alt="" />
                     </figure> -->
-<!-- <div class="right">
+        <!-- <div class="right">
                         <div class="heading4">STRENGTH AREAS</div>
                         <ng-container *ngIf="getAllBehaviourAPIDetails && getAllBehaviourAPIDetails?.strengthconclusionPoints && getAllBehaviourAPIDetails?.strengthconclusionPoints.length > 0 else noStrength">
                             <ng-container *ngFor="let conclusion of getAllBehaviourAPIDetails.strengthconclusionPoints">
@@ -377,10 +475,10 @@
                             </ng-container>
                         </ng-container>
                     </div> -->
-<!-- </div>
+        <!-- </div>
             </div>
         </section> -->
-<!-- <div class="containerWrapper">
+        <!-- <div class="containerWrapper">
                 <div class="d-flex justify-content-between developmentScopeWrapper">
                     <div class="left">
                         <div class="heading4">DEVELOPMENT SCOPE</div>
@@ -401,7 +499,7 @@
                 </div>
             </div>
         </section> -->
-</ng-container>
+    </ng-container>
 </div>
 <!-- 
 <ng-template #benchmarkInfo>
