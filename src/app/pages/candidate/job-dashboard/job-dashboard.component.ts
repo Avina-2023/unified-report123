@@ -179,7 +179,7 @@ export class JobDashboardComponent implements OnInit {
         this.Details = res.data;
         this.msgData.sendMessage("profileImage",this.Details.profileImage)
         this.appConfig.setLocalStorage('profileImage',this.Details.profileImage + environment.blobToken);
-        //this.appConfig.setLocalStorage('candidateProfile',JSON.stringify(this.Details));
+        this.appConfig.setLocalStorage('candidateProfile',JSON.stringify(this.Details));
         this.profilepercentage = Math.ceil(this.Details.profilePercentage);
         this.appConfig.setLocalStorage('profilePercentage', this.profilepercentage);
         this.usercity = this.Details.permanentaddress.permanent_city;
