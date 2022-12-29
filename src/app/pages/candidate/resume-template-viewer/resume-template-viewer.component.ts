@@ -33,7 +33,7 @@ export class ResumeTemplateViewerComponent implements OnInit {
     //this.innerWidth = window.innerWidth;
 
     this.fileWidth = window.innerWidth;
-    console.log(this.fileWidth);
+    // console.log(this.fileWidth);
   }
 
 

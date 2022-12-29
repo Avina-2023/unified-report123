@@ -141,18 +141,18 @@ export class PopUpCellRendererComponent implements ICellRendererAngularComp {
   }
   
   onHoursSelected(value:string){
-    console.log("the selected Hours is " + value);
+    // console.log("the selected Hours is " + value);
    this.hours=value
 }
 onMinSelected(value:string){
-  console.log("the selected Min is " + value);
+  // console.log("the selected Min is " + value);
   this.min=value
 }
 onMeridiemSelected(value:string){
-  console.log("the selected M is " + value);
+  // console.log("the selected M is " + value);
   this.meridiem=value
   this.time=this.hours+':'+this.min+':'+this.meridiem
-  console.log(this.time);
+  // console.log(this.time);
 }
 viewApplication(){
   this.appConfig.setLocalStorage("currentJobID",this.params.data.jobId)
