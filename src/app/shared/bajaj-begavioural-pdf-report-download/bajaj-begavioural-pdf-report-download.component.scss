@@ -96,9 +96,6 @@ header {
       width: 740px;
       .reportImage {
         width: 100px;
-        .reportimg{
-          width: 85.25px;
-        }
       }
       .heading {
         font-size: 12px;
@@ -143,98 +140,36 @@ header {
     justify-content: space-between;
 }
 }
-// .pointer-container{
-//     display: flex;
-//     width: 200px;
-//     position: relative;
-//     bottom: 54px;
-//     // justify-content: space-evenly;
-// }
-// .pointer-container-2{
-//     width: 100px;
-//     display: flex;
-//     justify-content: center;
-// }
-// .pointer-container-orange{
-//     width: 60.06px;
-//     display: flex;
-//     justify-content: center;
-//     position: relative;
-//     left: 12px;
-// }
-// .pointer-container-green{
-//     display: flex;
-//     width: 200px;
-//     position: relative;
-//     top: 20px;
-//     justify-content:space-around;
-// }
-.red-bar{
-  .pointer-container {
+.pointer-container{
     display: flex;
     width: 200px;
     position: relative;
-    bottom: 34px;
+    bottom: 54px;
     // justify-content: space-evenly;
-  }
-  .pointer-container- {
+}
+.pointer-container-2{
     width: 100px;
     display: flex;
-    position: relative;
-    right: 14px;
-  }
-  .pointer-container-2 {
-    width: 100px;
+    justify-content: center;
+}
+.pointer-container-orange{
+    width: 60.06px;
     display: flex;
+    justify-content: center;
     position: relative;
-    position: relative;
-      right: 13px;
-  }
-  }
-  .orange-bar{
-    .pointer-container {
-      display: flex;
-      width: 200px;
-      position: relative;
-      top: 6px;
-      // justify-content: space-evenly;
-    }
-  }
-  .pointer-container-orange {
-    width: 78.06px;
-    display: flex;
-    position: relative;
-    right: 14px;
-  }
-  .green-bar{
-    .pointer-container {
-      display: flex;
-      width: 200px;
-      position: relative;
-      top: 5px;
-    }
-  }
-  .pointer-container-green-2 {
+    left: 12px;
+}
+.pointer-container-green{
     display: flex;
     width: 200px;
     position: relative;
-    left: 20px;
-  }
-  .pointer-container-green-3 {
-    display: flex;
-    width: 200px;
-    position: relative;
-    left: 50px;
-  }
-  .pointer-container-green-1 {
-    display: flex;
-    width: 200px;
-    position: relative;
-    right: 14px;
-  }
+    bottom: 54px;
+    justify-content:space-around;
+    // justify-content: space-evenly;
+}
 .barNo{
     position: relative;
-   text-align: center;
+    left: 11px;
     z-index: 1;
 }
 .box-green {
@@ -247,6 +182,9 @@ header {
  
   float: left;
   border-radius: 5px;
+}
+.box-green.arrow-top {
+  margin-top: 40px;
 }
 .box-green.arrow-top:after {
   content: " ";
@@ -269,7 +207,9 @@ header {
   float: left;
   border-radius: 5px;
 }
-
+.box-orange.arrow-top {
+  margin-top: 40px;
+}
 .box-orange.arrow-top:after {
   content: " ";
   position: absolute;
@@ -742,7 +682,7 @@ display: flex;
   background-color: #f3f3f3;
   padding: 20px 46px 20px 0px;
   overflow: hidden;
-  // margin-top: 40px;
+  margin-top: 40px;
   width: 830px;
   margin-left: -18px;
   .bg {
@@ -999,132 +939,6 @@ display: flex;
       font-size: 12px;
       letter-spacing: 0.24px;
 color: #1D1D1B;
-    }
-    .img{   
-    // height: 108px;
-      .palette {
-        --g:6px; /* The gap between shapes*/
-        --s:20px; /* the size*/
-      
-        height: 100px;
-        width: 100px;
-        position:relative;
-        display:inline-block;
-        overflow:hidden;
-      }
-      .palette > * {
-        position:absolute;
-        top:0;
-        left:0;
-        right:0;
-        bottom:0;
-        border:var(--s) solid var(--c,red);
-        border-radius:50%;
-        clip-path:polygon(
-          calc(50% + var(--g)/2) 50%, 
-          calc(50% + var(--g)/2) 0%, 
-          calc(86.327% - var(--g)/2) 0%,
-          50% calc(50% - var(--g)/2)); 
-      }
-      .color1 {
-        transform:rotate(36deg);
-        --c:red;
-      }
-      .color2 {
-        transform:rotate(72deg);
-        --c:red;
-      }
-      .color3 {
-        transform:rotate(108deg);
-        --c:red;
-      }
-      .color4 {
-        transform:rotate(144deg);
-        --c:red;
-      }
-      .color5 {
-        transform:rotate(180deg);
-        --c:red;
-      }
-      .color6 {
-        transform:rotate(-36deg);
-        --c:red;
-      }
-      .color7 {
-        transform:rotate(-72deg);
-        --c:red;
-      }
-      .color8 {
-        transform:rotate(-108deg);
-        --c:red;
-      }
-      .color9 {
-        transform:rotate(-144deg);
-        --c:red;
-      }
-      
-      .palette2 {
-        --g:6px; /* The gap between shapes*/
-        --s:20px; /* the size*/
-      
-        height: 100px;
-        width: 100px;
-        position:relative;
-        bottom: 204px;
-        z-index: -1;
-        /* display:inline-block;
-        overflow:hidden; */
-      }
-      .palette2 > * {
-        position:absolute;
-        top:0;
-        left:0;
-        right:0;
-        bottom:0;
-        border:var(--s) solid var(--c,rgb(212, 201, 201));
-        border-radius:50%;
-        clip-path:polygon(
-          calc(50% + var(--g)/2) 50%, 
-          calc(50% + var(--g)/2) 0%, 
-          calc(86.327% - var(--g)/2) 0%,
-          50% calc(50% - var(--g)/2)); 
-      }
-      .color01 {
-        transform:rotate(36deg);
-        border: solid 1px green;
-      }
-      .color02 {
-        transform:rotate(72deg);
-        border: solid 1px green;
-      }
-      .color03 {
-        transform:rotate(108deg);
-        border: solid 1px green;
-      }
-      .color04 {
-        transform:rotate(144deg);
-        border: solid 1px green;
-      }
-      .color05 {
-        transform:rotate(180deg);
-        border: solid 1px green;
-      }
-      .color06 {
-        transform:rotate(-36deg);
-        border: solid 1px green;
-      }
-      .color07 {
-        transform:rotate(-72deg);
-        border: solid 1px green;
-      }
-      .color08 {
-        transform:rotate(-108deg);
-        border: solid 1px green;
-      }
-      .color09 {
-        transform:rotate(-144deg);
-        border: solid 1px green;
-      }
     }
     }
    

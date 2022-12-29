@@ -14,66 +14,18 @@ import { LoadingService } from 'src/app/services/loading.service';
 })
 export class BajajViewReportComponent implements OnInit, AfterViewInit, OnDestroy {
   getAllBehaviourData: any;
-  getBajaBehaviourReportAPISubscription: Subscription;
+  getBehaviourReportAPISubscription: Subscription;
   getAllBasicData: any;
   emailId: any;
   highestEducation: any;
-  
-  BARvalue = [
-    {
-      score: '1',
-      Value1: true,
-    },
-    {
-      score: '2',
-      Value2: false,
-    },
-    {
-      score: '3',
-      Value4: false,
-    },
-    {
-      score: '4',
-      Value4: false,
-    },
-    {
-      score: '5',
-      Value5: true, 
-    },
-    {
-      score: '6',
-      Value6: false,
-    },
-    {
-      score: '7',
-      Value7: false,
-    },
-    {
-      score: '8',
-      Value8: false,
-    },
-    {
-      score: '9',
-      Value9: true,
-    },
-    {
-      score: '10',
-      Value10: false,
-    },
-
-  ];
+  BARvalue= [2,3,5,6,7,9];
   continouslyValue = 2;
-  continouslyValueTwo :boolean = false;
-  continouslyValueThree :boolean = false;
-  continouslyValueFive :boolean = false;
-  continouslyValueSix :boolean = false;
-  continouslyValueSeven :boolean = false;
-  continouslyValueNine :boolean = false;
-  reportSnaphot = [
-    { heading:"CONTINUOUSLY RAISE THE BAR",score:"2",points:"Tend to avoid challenging situations. Comes up with an efficient solution. Has a fixed mind-set."},
-    { heading:"ENSURE RESULTS WITH SPEED",score:"5",points:"Tend to avoid challenging situations. Comes up with an efficient solution. Has a fixed mind-set."},
-    { heading:"CUSTOMER ORIENTATION",score:"9",points:"Tend to avoid challenging situations. Comes up with an efficient solution. Has a fixed mind-set."},
-  ]
+  continouslyValueTwo :boolean = true;
+  continouslyValueThree :boolean = true;
+  continouslyValueFive :boolean = true;
+  continouslyValueSix :boolean = true;
+  continouslyValueSeven :boolean = true;
+  continouslyValueNine :boolean = true;
   benchMarkScore = [
     {score:"1-2-3",label:"DEVELOPMENT SCOPE",color:"red"},
     {score:"4-5-6-7",label:"LESS INCLINED",color:"orange"},
@@ -98,7 +50,6 @@ export class BajajViewReportComponent implements OnInit, AfterViewInit, OnDestro
   ngOnInit(): void {
     this.getRoute();
     this.isaccess = this.appconfig.isComingFromMicroCert();
-    // this.continously()
   }
   ngAfterViewInit() {
     // Hack: Scrolls to top of Page after page view initialized
@@ -108,15 +59,14 @@ export class BajajViewReportComponent implements OnInit, AfterViewInit, OnDestro
       top = null;
     }
   }
- 
   continously(){
     if(this.continouslyValue==2){
-      this.continouslyValueTwo = ! this.continouslyValueTwo ;
-      this.continouslyValueThree  =  ! this.continouslyValueThree;
-   this.continouslyValueFive  =  ! this.continouslyValueFive;
-   this.continouslyValueSix  =  ! this.continouslyValueSix;
-   this.continouslyValueSeven  =  ! this.continouslyValueSeven;
-   this.continouslyValueNine  =  ! this.continouslyValueNine;
+      this.continouslyValueTwo = true
+      this.continouslyValueThree  = false;
+   this.continouslyValueFive  = false;
+   this.continouslyValueSix  = false;
+   this.continouslyValueSeven  = false;
+   this.continouslyValueNine  = false;
     }
   }
 
@@ -130,7 +80,6 @@ export class BajajViewReportComponent implements OnInit, AfterViewInit, OnDestro
     });
   }
 
-  
   tabChanged(event) {
     this.tabIndex = event.index;
 
@@ -159,7 +108,7 @@ export class BajajViewReportComponent implements OnInit, AfterViewInit, OnDestro
         email: data
       };
     this.emailId= data;
-     this.getBajaBehaviourReportAPISubscription = this.ApiService.getBajajBehaviourReport(apiData).subscribe((response: any) => {
+     this.getBehaviourReportAPISubscription = this.ApiService.getBehaviourReport(apiData).subscribe((response: any) => {
       if (response && response.success && response.data) {
           this.apiSuccess = true;
           this.getAllBehaviourData = response.data.data ? response.data.data : null;
@@ -202,7 +151,7 @@ export class BajajViewReportComponent implements OnInit, AfterViewInit, OnDestro
     });
   }
   ngOnDestroy() {
-    this.getBajaBehaviourReportAPISubscription ? this.getBajaBehaviourReportAPISubscription.unsubscribe() : '';
+    this.getBehaviourReportAPISubscription ? this.getBehaviourReportAPISubscription.unsubscribe() : '';
   }
 
 

@@ -64,8 +64,9 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     ToolbarComponent,
     SidebarComponent,
     BehaviouralReportCanvasComponent,
-    BajajBegaviouralPdfReportDownloadComponent,
-    BajajReportCanvasComponent
+    BajajBegaviouralPdfReportDownloadComponent
+    
+
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
   providers: [

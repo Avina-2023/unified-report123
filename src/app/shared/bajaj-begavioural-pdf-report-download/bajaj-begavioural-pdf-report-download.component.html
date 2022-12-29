@@ -9,7 +9,7 @@
 
     <section class="banner">
         <div class="content">
-            BEHAVIOURAL <br />PROFILING REPORT
+            BEHAVIOURAL <br/>PROFILING REPORT
         </div>
     </section>
 
@@ -32,13 +32,6 @@
                 <!-- <div><span>Education level </span>: <span>{{highestEducation?.institute ? highestEducation?.institute : 'Nil'}}</span></div> -->
             </div>
         </section>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
         <br>
         <br>
         <br>
@@ -82,16 +75,15 @@
                     </figure>
                 </section>
             </section>
-
+            <footer class="d-flex justify-content-between m-t-30">
+                <div class="copyrights">
+                    <p>©2022 L&T EduTech. All Rights Reserved.</p>
+                </div>
+                <figure class="logo">
+                    <img src="/assets/images/pdfDownload/Logo1.png" alt="" />
+                </figure>
+            </footer>
         </section>
-        <footer class="d-flex justify-content-between m-t-30">
-            <div class="copyrights">
-                <p>©2022 L&T EduTech. All Rights Reserved.</p>
-            </div>
-            <figure class="logo">
-                <img src="/assets/images/pdfDownload/Logo1.png" alt="" />
-            </figure>
-        </footer>
         <!-- break to next page -->
         <div class="html2pdf__page-break"></div>
 
@@ -111,7 +103,7 @@
                                 <div class="report-snapshot-content">
                                     <div class="report-imageContent">
                                         <figure class="reportImage">
-                                            <img class="reportimg" [src]="reportImage(competency?.name)" alt="" />
+                                            <img [src]="reportImage(competency?.name)" alt="" />
                                         </figure>
                                         <div class="report-snapshot-content-right">
                                             <div class="heading">CONTINUOUSLY RAISE THE BAR</div>
@@ -119,14 +111,8 @@
                                                 <div class="bar">
                                                     <div class="red-bar">
                                                         <div class="red-box"></div>
-
+                                                        <div class="bar-no">1</div>
                                                         <div class="pointer-container">
-                                                            <div class="pointer-container-2">
-                                                                <div class="box-red arrow-top"
-                                                                    *ngIf="continouslyValueTwo">
-                                                                    <div class="barNo">1</div>
-                                                                </div>
-                                                            </div>
                                                             <div class="pointer-container-2">
                                                                 <div class="box-red arrow-top"
                                                                     *ngIf="continouslyValueTwo">
@@ -143,14 +129,8 @@
                                                     </div>
                                                     <div class="orange-bar">
                                                         <div class="orange-box"></div>
-
+                                                        <div class="bar-no">4</div>
                                                         <div class="pointer-container">
-                                                            <div class="pointer-container-orange">
-                                                                <div class="box-orange arrow-top"
-                                                                    *ngIf="continouslyValueFive">
-                                                                    <div class="barNo">4</div>
-                                                                </div>
-                                                            </div>
                                                             <div class="pointer-container-orange">
                                                                 <div class="box-orange arrow-top"
                                                                     *ngIf="continouslyValueFive">
@@ -173,24 +153,14 @@
                                                     </div>
                                                     <div class="green-bar">
                                                         <div class="green-box"></div>
-                                                        <div class="pointer-container">
-                                                            <div class="pointer-container-green-1">
-                                                                <div class="box-green arrow-top"
-                                                                    *ngIf="continouslyValueNine">
-                                                                    <div class="barNo">8</div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="pointer-container-green-2">
-                                                                <div class="box-green arrow-top"
-                                                                    *ngIf="continouslyValueNine">
-                                                                    <div class="barNo">9</div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="pointer-container-green-3">
-                                                                <div class="box-green arrow-top"
-                                                                    *ngIf="continouslyValueNine">
-                                                                    <div class="barNo">10</div>
-                                                                </div>
+                                                        <div class="bar-no">
+                                                            <div>8</div>
+                                                            <div>10</div>
+                                                        </div>
+                                                        <div class="pointer-container-green">
+                                                            <div class="box-green arrow-top"
+                                                                *ngIf="continouslyValueNine">
+                                                                <div class="barNo">9</div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -241,6 +211,7 @@
                     </div>
                 </div>
             </div>
+
             <footer class="d-flex justify-content-between">
                 <div class="copyrights">
                     <p> ©2022 L&T EduTech. All Rights Reserved.</p>
@@ -250,7 +221,6 @@
                 </figure>
             </footer>
         </section>
-        
         <!-- REPORT SNAPSHOT END -->
 
         <!-- break to next page -->
@@ -261,11 +231,12 @@
 
             <ng-container
                 *ngFor="let factors of getAllBehaviourData.reportSnapShot.competency; let factorIndex = index">
-                <ng-container *ngIf="factors?.skills && factors.skills.length > 0">
-                    <ng-container *ngFor="let skillsDetail of factors.skills; let skillDetailIndex = index">
-                        <section class="heightContainer">
-                            <section class="commonHeight">
-                                <section class="thoughtSection">
+                <section class="heightContainer">
+                    <section class="commonHeight">
+                        <section class="thoughtSection">
+
+                            <ng-container *ngIf="factors?.skills && factors.skills.length > 0">
+                                <ng-container *ngFor="let skillsDetail of factors.skills; let skillDetailIndex = index">
                                     <div class="commonHeader">
                                         <figure class="bg">
                                             <img src="/assets/images/pdfDownload/thoughtBG.svg" alt="" />
@@ -308,33 +279,6 @@
                                                     problem
                                                     situations.</span>
                                                 <span class="img">
-                                                    <!-- <ng-container *ngIf="">
-                                                    <div *ngIf="" class="palette">
-                                                        <div class="color1"></div>
-                                                        <div class="color2"></div>
-                                                        <div class="color3"></div>
-                                                        <div class="color4"></div>
-                                                        <div class="color5"></div>
-                                                        <div class="color6"></div>
-                                                        <div class="color7"></div>
-                                                        <div class="color8"></div>
-                                                        <div class="color9"></div>
-                                                        <div class="color10"></div>
-                                                        </div>
-                                                        <div class="palette2">
-                                                        <div class="color01"></div>
-                                                        <div class="color02"></div>
-                                                        <div class="color03"></div>
-                                                        <div class="color04"></div>
-                                                        <div class="color05"></div>
-                                                        <div class="color06"></div>
-                                                        <div class="color07"></div>
-                                                        <div class="color08"></div>
-                                                        <div class="color09"></div>
-                                                        <div class="color010"></div>
-                                                        </div>
-                                                    </ng-container> -->
-
                                                     <div class="chart paddingLeft">
                                                         <span class="numberCircle"
                                                             [ngStyle]="{'border': '2px solid' + factors?.colourcode,'color':factors?.colourcode}">
@@ -346,7 +290,7 @@
                                         </div>
                                         <div class="snapshot-point">
                                             <div class="content1">
-                                                <div class="snapshot-point-red">
+                                                <div class="snapshot-point-red" >
                                                     <ul class="bullet"
                                                         *ngIf="factors?.skills && factors.skills.length > 0">
                                                         <li
@@ -370,43 +314,41 @@
                                                 </div>
                                             </div>
                                         </div>
+
                                     </div>
-                                </section>
-                                <div class="benchmarkInfo">
-                                    <figure class="chart">
-                                        <img src="/assets/images/behaviourmeter.svg" alt="">
-                                    </figure>
-                                    <div class="score d-flex justify-content-between flex-wrap">
-                                        <div class="heading5">SCORE BENCHMARK INFO</div>
-                                        <div class="wrapper">
-                                            <ng-container *ngFor="let score of benchMarkScore">
-                                                <div class="score-content"
-                                                    [ngClass]="{'red':score.color == 'red', 'green': score.color == 'green', 'yellow':score.color == 'yellow' ,'orange':score.color == 'orange'}">
-                                                    <div class="scorepoint">{{score.score}}</div>
-                                                    <div class="scorelabel">{{score.label}}</div>
-                                                </div>
-                                            </ng-container>
+                                    <div class="benchmarkInfo">
+                                        <figure class="chart">
+                                            <img src="/assets/images/behaviourmeter.svg" alt="">
+                                        </figure>
+                                        <div class="score d-flex justify-content-between flex-wrap">
+                                            <div class="heading5">SCORE BENCHMARK INFO</div>
+                                            <div class="wrapper">
+                                                <ng-container *ngFor="let score of benchMarkScore">
+                                                    <div class="score-content"
+                                                        [ngClass]="{'red':score.color == 'red', 'green': score.color == 'green', 'yellow':score.color == 'yellow' ,'orange':score.color == 'orange'}">
+                                                        <div class="scorepoint">{{score.score}}</div>
+                                                        <div class="scorelabel">{{score.label}}</div>
+                                                    </div>
+                                                </ng-container>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </section>
-                            <footer class="d-flex justify-content-between">
-                                <div class="copyrights">
-                                    <p>©2022 L&T EduTech. All Rights Reserved.</p>
-                                </div>
-                                <figure class="logo">
-                                    <img src="/assets/images/pdfDownload/Logo1.png" alt="" />
-                                </figure>
-                            </footer>
+                                    <footer class="d-flex justify-content-between">
+                                        <div class="copyrights">
+                                            <p>©2022 L&T EduTech. All Rights Reserved.</p>
+                                        </div>
+                                        <figure class="logo">
+                                            <img src="/assets/images/pdfDownload/Logo1.png" alt="" />
+                                        </figure>
+                                    </footer>
+                                    <div class="html2pdf__page-break"></div>
+                                </ng-container>
+                            </ng-container>
                         </section>
-                        <div class="html2pdf__page-break"></div>
-                    </ng-container>
-                </ng-container>
 
-
-
-                <!-- break to next page -->
-
+                    </section>
+                    <!-- break to next page -->
+                </section>
             </ng-container>
         </ng-container>
         <!-- break to next page -->
@@ -429,21 +371,21 @@
                             *ngFor="let factors of getAllBehaviourData.reportSnapShot.competency; let factorIndex = index">
                             <ng-container *ngIf="factors?.skills && factors.skills.length > 0">
                                 <ng-container *ngFor="let skillsDetail of factors.skills; let skillDetailIndex = index">
-                                    <div class="wrapper d-flex justify-content-between">
-                                        <div class="left">
-                                            <span>{{skillsDetail?.name}}: &nbsp;</span>
-                                        </div>
-                                        <div class="right">
-                                            <ng-container *ngIf="factors?.skills && factors.skills.length > 0">
-                                                <ol>
-                                                    <li
-                                                        *ngFor="let skillsDetail of factors.skills; let skillDetailIndex = index">
-                                                        {{skillsDetail?.scorebasedSkillDescription ?
-                                                        skillsDetail?.scorebasedSkillDescription : '-'}}</li>
-                                                </ol>
-                                            </ng-container>
-                                        </div>
-                                    </div>
+                            <div class="wrapper d-flex justify-content-between">
+                                <div class="left">
+                                    <span>{{skillsDetail?.name}}: &nbsp;</span>
+                                </div>
+                                <div class="right">
+                                    <ng-container *ngIf="factors?.skills && factors.skills.length > 0">
+                                        <ol>
+                                            <li
+                                                *ngFor="let skillsDetail of factors.skills; let skillDetailIndex = index">
+                                                {{skillsDetail?.scorebasedSkillDescription ?
+                                                skillsDetail?.scorebasedSkillDescription : '-'}}</li>
+                                        </ol>
+                                    </ng-container>
+                                </div>
+                            </div>
                                 </ng-container>
                             </ng-container>
                             <!-- break page -->

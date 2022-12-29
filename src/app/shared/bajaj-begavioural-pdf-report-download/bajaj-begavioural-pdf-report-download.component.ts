@@ -81,8 +81,8 @@ export class BajajBegaviouralPdfReportDownloadComponent implements OnInit {
   }
   continously(){
     if(this.continouslyValue==2){
-  this.continouslyValueTwo = true
-   this.continouslyValueThree  = false;
+      this.continouslyValueTwo = true
+      this.continouslyValueThree  = false;
    this.continouslyValueFive  = false;
    this.continouslyValueSix  = false;
    this.continouslyValueSeven  = false;
