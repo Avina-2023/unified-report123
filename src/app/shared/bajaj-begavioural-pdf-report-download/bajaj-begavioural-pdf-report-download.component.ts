@@ -26,7 +26,8 @@ export class BajajBegaviouralPdfReportDownloadComponent implements OnInit {
   orgdetails: any;
   orgId: any;
   BARvalue= [2,3,5,6,7,9];
-  continouslyValue = 2;
+  // continouslyValue = 2;
+  continouslyValue: any;
   continouslyValueTwo :boolean = true;
   continouslyValueThree :boolean = true;
   continouslyValueFive :boolean = true;
@@ -40,9 +41,9 @@ export class BajajBegaviouralPdfReportDownloadComponent implements OnInit {
   //   {score:"9-10",label:"STRENGTH",color:"green"}
   // ];
   benchMarkScore = [
-    { score: '1-2-3', label: 'DEVELOPMENT SCOPE', color: 'red' },
-    { score: '4-5-6-7', label: 'LESS INCLINED', color: 'orange' },
-    { score: '8-9-10', label: 'MORE INCLINED', color: 'green' },
+    { score: '1-2-3', label: 'LOW', color: 'red' },
+    { score: '4-5-6-7', label: 'AVERAGE', color: 'orange' },
+    { score: '8-9-10', label: 'HIGH', color: 'green' },
   ];
   removeheading: any;
   roles: any;
@@ -118,11 +119,11 @@ export class BajajBegaviouralPdfReportDownloadComponent implements OnInit {
   }
 
   reportImage(name) {
-    if (name == 'THOUGHT') {
+    if (name == 'CONTINUOUSLY RAISE THE BAR') {
       return this.img = '/assets/images/pdfDownload/CONTINUOUSLYRAISETHEBAR.svg';
-    } else if (name == 'INTERPERSONAL') {
+    } else if (name == 'ENSURE RESULTS WITH SPEED') {
       return this.img = '/assets/images/pdfDownload/ENSURERESULTSWITHSPEED.svg';
-    } else if (name == 'CORE/PERSONAL') {
+    } else if (name == 'CUSTOMER ORIENTATION') {
       return this.img = '/assets/images/pdfDownload/CUSTOMERORIENTATION.svg';
     } else {
       return this.img = '';

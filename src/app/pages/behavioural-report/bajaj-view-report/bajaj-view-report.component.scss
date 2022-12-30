@@ -2,6 +2,9 @@
 .bodyWrapper{
   overflow-x:hidden
 }
+.bodyWrapper::-webkit-scrollbar {
+  display: none;
+  }
 .containerWrapper {
   max-width: 1280px;
   width: 96%;
@@ -57,6 +60,9 @@
   margin-top: 40px;
   .report-image {
     width: 230px;
+    .img{
+      width: 165px;
+    }
   }
 }
 .heading {
@@ -246,6 +252,9 @@
 }
 //dev
 .point {
+  .Name{
+    padding-top: 10px;
+  }
   .snapshot-point {
     display: flex;
     padding-right: 30px;
@@ -264,17 +273,25 @@
       margin: 0px;
       display: flex;
       flex-direction: column;
+      ul{
+        list-style-type: disc !important;
+        list-style-position: inside !important;
+      }
       .bullet {
         text-align: left;
         color: #000000;
         display: flex;
         flex-direction: column;
         width: 100%;
-        list-style-type: disc;
-        list-style-position: inside;
-        display: list-item !important;
+        // list-style-type: disc;
+        // list-style-position: inside;
+        // display: list-item !important;
+        // margin-bottom: 1px !important;
         .li{
           display: list-item !important;
+          margin-right: 0;
+          margin-top: 0;
+          margin-bottom: 0.5px !important;
         }
         
       }
@@ -298,6 +315,7 @@
   color: #000000;
   list-style-type: disc;
   list-style-position: inside;
+  margin-bottom: 1px !important;
 }
 .li {
   font-size: 14px;
@@ -332,6 +350,7 @@
 }
 .wrapper {
   display: flex;
+  width: 835px;
 }
 .benchmarkInfo {
   display: flex;
@@ -380,14 +399,14 @@
   margin-top: -100px;
   .containerWrapper {
     background-color: $whiteColor;
-    padding: 50px 0;
+    padding: 44px 0;
     background-image: url("#{$imagePath}/profile.png");
     background-repeat: no-repeat;
     background-size: cover;
-    background-position: center;
+    // background-position: center;
   }
   .profileWrapper {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    
     padding-bottom: 30px;
   }
   .profImage {
@@ -684,13 +703,13 @@
       &::after {
         content: "";
         position: absolute;
-        right: -90px;
-        bottom: -60px;
+        right: 4px;
+        bottom: -161px;
         background-image: url("#{$imagePath}/bottomCircle.png");
         background-repeat: no-repeat;
         background-size: contain;
         width: 33%;
-        height: 15%;
+        height: 14%;
         z-index: -1;
       }
     }
@@ -1278,6 +1297,7 @@
       padding: 0 10px;
       margin-bottom: 20px;
       position: relative;
+      padding-left: 15px;
       .scorepoint {
         font-size: 15px;
         font-weight: 700;
@@ -1295,8 +1315,8 @@
       position: absolute;
       left: 0;
       top: 0;
-      height: 100%;
-      width: 3px;
+      height: 90%;
+      width: 8px;
     }
     .score-content.green::before {
       background-color: $successColorDark;
@@ -1418,8 +1438,9 @@
     padding-bottom: 15px;
     .skillName {
       .skillNameText {
-        font-size: 20px;
-        color: #00b000;
+        font-size: 18px;
+        color: #00B000;
+        font-weight: 500;
       }
     }
     .questions {
@@ -1703,13 +1724,13 @@
     flex-direction: column;
     padding-left: 120px;
     .h4{
-font-size: 20px;
-font-weight: 600;
+font-size: 16px;
+font-weight: bold;
     }
     .Text{
       padding-bottom: 5px;
     .text{
-      font-size: 15px;
+      font-size: 14px;
       color: #5E5E5E;
     }
   }
@@ -1719,13 +1740,13 @@ font-weight: 600;
   flex-direction: column;
  position: relative;
   .h4{
-font-size: 20px;
-font-weight: 600;
+    font-size: 16px;
+    font-weight: bold;
   }
   .Text{
     padding-bottom: 5px;
   .text{
-    font-size: 15px;
+    font-size: 14px;
     color: #5E5E5E;
   }
 }
@@ -1735,14 +1756,14 @@ font-weight: 600;
   flex-direction: column;
  position: relative;
   .h4{
-font-size: 20px;
-font-weight: 600;
+    font-size: 16px;
+    font-weight: bold;
   }
   .Text{
     width: 350px;
     padding-bottom: 5px;
   .text{
-    font-size: 15px;
+    font-size: 14px;
     color: #5E5E5E;
   }
 }
@@ -1765,4 +1786,17 @@ font-weight: 600;
   position: relative;
     top: 20px;
     padding-bottom: 30px;
+    .Text{
+      width: 350px;
+      padding-bottom: 5px;
+    .text{
+      font-size: 14px;
+      color: #5E5E5E;
+    }
+  }
+  .TextL{
+    width: 350px;
+    padding-bottom: 5px;
+    text-align: end;
+}
 }

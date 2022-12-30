@@ -4,6 +4,9 @@
   margin-top: 40px;
   .report-image {
     width: 230px;
+    .img{
+      width: 165px;
+    }
   }
 }
 .heading {
@@ -20,7 +23,11 @@
   padding-right: 30px;
   justify-content: space-between;
   width: 810px;
+  
+  padding-bottom: 30px;
+
   .red-bar {
+    height: 50px;
     .red-box {
       width: 250px;
       height: 24px;
@@ -44,34 +51,7 @@
     justify-content: space-between;
   }
 }
-// .pointer-container {
-//   display: flex;
-//   width: 200px;
-//   position: relative;
-//   bottom: 54px;
-//   // justify-content: space-evenly;
-// }
-// .pointer-container-2 {
-//   width: 200px;
-//   display: flex;
-//   justify-content: center;
-//   padding-left: 50px;
-// }
-// .pointer-container-orange {
-//   width: 78.06px;
-//   display: flex;
-//   justify-content: center;
-//   position: relative;
-//   left: 20px;
-// }
-// .pointer-container-green {
-//   display: flex;
-//   width: 250px;
-//   position: relative;
-//   bottom: 54px;
-//   justify-content: space-around;
-//   // justify-content: space-evenly;
-// }
+
 .barNo {
   position: relative;
  text-align: center;
@@ -163,6 +143,7 @@
   .bullet{
     list-style-type: disc !important;
     list-style-position: inside;
+    margin-bottom: 1px !important;
   }
   .snapshot-point {
     display: flex;
@@ -191,6 +172,7 @@
   }
 }
 .green-bar{
+  height: 50px;
   .pointer-container {
     display: flex;
     width: 250px;
@@ -219,7 +201,7 @@
   bottom: 34px;
   right: 14px;
 }
-.red-bar{
+ .red-bar{
   .pointer-container {
     display: flex;
     width: 250px;
@@ -242,6 +224,7 @@
   }
   }
   .orange-bar{
+    height: 50px;
     .pointer-container {
       display: flex;
       width: 250px;
@@ -311,6 +294,7 @@
           padding: 0 10px;
           margin-bottom: 20px;
           position: relative;
+          padding-left: 15px;
           .scorepoint {
               font-size: 15px;
               font-weight: 700;
@@ -321,6 +305,7 @@
               font-weight: 400;
               color: $mediumGrey;
               margin-top: 7px;
+              letter-spacing: 0.32px;
           }
       }
       .score-content::before {
@@ -328,8 +313,8 @@
           position: absolute;
           left: 0;
           top: 0;
-          height: 100%;
-          width: 3px;
+          height: 90%;
+          width: 8px;
       }
       .score-content.green::before {
           background-color: $successColorDark;
@@ -347,14 +332,13 @@
 }
 .score {
   // padding: 0 .25px;
-  width: 625px;
+  width: 734px;
   position: relative;
-  right: 212px;
+  right: 146px;
 }
 .chart {
   position: relative;
-  left: 100px;
-  top: 16px;
+  left: 65px;
   .chart-img {
     width: 200px;
     position: relative;

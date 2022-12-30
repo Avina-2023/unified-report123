@@ -69,15 +69,10 @@ export class BajajViewReportComponent implements OnInit, AfterViewInit, OnDestro
   continouslyValueSix :boolean = false;
   continouslyValueSeven :boolean = false;
   continouslyValueNine :boolean = false;
-  reportSnaphot = [
-    { heading:"CONTINUOUSLY RAISE THE BAR",score:"2",points:"Tend to avoid challenging situations. Comes up with an efficient solution. Has a fixed mind-set."},
-    { heading:"ENSURE RESULTS WITH SPEED",score:"5",points:"Tend to avoid challenging situations. Comes up with an efficient solution. Has a fixed mind-set."},
-    { heading:"CUSTOMER ORIENTATION",score:"9",points:"Tend to avoid challenging situations. Comes up with an efficient solution. Has a fixed mind-set."},
-  ]
   benchMarkScore = [
-    {score:"1-2-3",label:"DEVELOPMENT SCOPE",color:"red"},
-    {score:"4-5-6-7",label:"LESS INCLINED",color:"orange"},
-    {score:"8-9-10",label:"MORE INCLINED",color:"green"},
+    {score:"1-2-3",label:"LOW",color:"red"},
+    {score:"4-5-6-7",label:"AVERAGE",color:"orange"},
+    {score:"8-9-10",label:"HIGH",color:"green"},
   ];
   bgColorInput:string = '#85BD44';
   doughnutValue:number = 4;
