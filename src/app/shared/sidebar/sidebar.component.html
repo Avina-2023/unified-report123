@@ -58,8 +58,7 @@
         *ngIf='roleCode === "SADM" || roleCode === "OADM" || roleCode === "ADM" || roleCode === "HR" || roleCode === "ISADM" || roleCode === "IADM"'
         [routerLinkActive]="['is-active']">
         <div class="sidebar-admin" (click)="changedriveIcon()">
-          <em class="icon-graduation-cap"
-            style="transform: rotateY(180deg);font-size: 22px;margin-left: -2px;margin-top: -2px"></em>
+          <em class="icon-graduation-cap-solid" style="transform: rotateY(332deg);font-size: 21px;margin-left: -2px;margin-top: -2px;color:grey;"></em>
           <span class="headerfont" (click)="validateClick('managedrive')" mat-line *ngIf="isExpanded">Drive</span>
           <div class="arrow">
             <span *ngIf="!driveIconToggle" class="position-relative left2 headerfont">
@@ -86,7 +85,7 @@
         *ngIf='roleCode === "SADM" || roleCode === "OADM" || roleCode === "ADM" || roleCode === "HR" || roleCode === "ISADM" || roleCode === "IADM"'
         [routerLinkActive]="['is-active']">
         <div class="sidebar-admin" (click)="changeIcon()">
-          <em class="icon-User"></em>
+          <em class="icon-user-professional" style="font-size: 21px;margin-left: -2px;margin-top: -2px;color:grey;"></em>
           <span class="headerfont" (click)="validateClick('partnerlist')" mat-line *ngIf="isExpanded">Hiring
             Partners</span>
           <div class="arrow">
