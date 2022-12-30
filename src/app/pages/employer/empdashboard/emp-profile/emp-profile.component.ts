@@ -267,11 +267,11 @@ export class EmpProfileComponent implements OnInit {
             country: parseInt(this.empProfile.detailedInformation.country),
             // stateCtrlone:result.data[0].detailedInformation.stateCtrlone,
           })
-          console.log("--------", this.empProfile.detailedInformation.state)
           if (this.empProfile.detailedInformation && this.empProfile.detailedInformation.stateCtrlone.length) {
             this.empProfile.detailedInformation.stateCtrlone.forEach((element, i) => {
               this.profileForm.value.stateCtrlone.push(element ? element : '')
-              this.states.splice(element, i)
+              const index = this.states.indexOf(element);
+              this.states.splice(index, 1)
             });
           }
         }

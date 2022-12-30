@@ -61,6 +61,7 @@ export class AddPartnerComponent implements OnInit {
               description: details?.description,
               email: details?.email
             });
+            this.registerForm.controls['email'].disable();
             this.employerLogoFileName = details?.companyImgURL ? "profile Image" : "";
             this.employerLogoUrl = details?.companyImgURL;
             this.eoiFormUrl = details?.eoiFormUrl;
