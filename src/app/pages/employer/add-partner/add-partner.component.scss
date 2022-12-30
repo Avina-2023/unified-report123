@@ -20,6 +20,12 @@
     }
 }
 
+.partnerCardTitle{
+    margin: 0px -16px!important;
+    p{
+        padding: 6px 40px;
+    }
+}
 .subBody {
     padding-bottom: 75px;
     position: relative;
@@ -52,19 +58,20 @@
 
         .cardTitle {
             display: flex;
-            border-bottom: 1px solid #B4B4B4;
+            border-bottom: 2px solid #0000001F;
             text-align: left;
             font: normal normal normal 16px/21px Roboto;
             letter-spacing: 0.32px;
             color: #1B4E9B;
-            font-size: 14px;
+            font-size: 15px;
             font-weight: 500;
             text-transform: none;
+            opacity: 0.9!important;
         }
 
         .cardValue {
             .descstyle{
-                height: 73px;
+                height: 86px;
             }
         }
     }

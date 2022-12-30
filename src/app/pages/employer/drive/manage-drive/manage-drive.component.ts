@@ -280,6 +280,8 @@ export class ManageDriveComponent implements OnInit {
         field: 'action',
         cellRenderer: 'popUpRender',
         maxWidth: 80,
+        suppressColumnsToolPanel: true,
+        filter: false,
       },
     ];
    
