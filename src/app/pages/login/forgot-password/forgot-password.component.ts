@@ -69,7 +69,7 @@ if(this.isCandidate){
 
     // this.appConfig.consoleLog('Registration Data which is passed to API', data);
     // API
-console.log('candiate',data)
+// console.log('candiate',data)
     this.apiService.forgotPassword(data).subscribe((success: any) => {
       if(success.success){
         this.toastr.success(success.message);
@@ -96,7 +96,7 @@ console.log('candiate',data)
 
     // this.appConfig.consoleLog('Registration Data which is passed to API', data);
     // API
-console.log('emp',data)
+// console.log('emp',data)
     this.apiService.forgotPassword(data).subscribe((success: any) => {
       if(success.success){
         this.toastr.success(success.message);

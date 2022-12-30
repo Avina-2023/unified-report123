@@ -34,7 +34,7 @@ export class ViewCandidateByDriveComponent implements OnInit {
   jobId: String = "";
   subscription: Subscription;
   rowData1: any;
-  cacheBlockSize: any = 10;
+  cacheBlockSize: any = 1000;
   public autoGroupColumnDef: ColDef = {
     flex: 1,
     minWidth: 320,
@@ -138,7 +138,7 @@ export class ViewCandidateByDriveComponent implements OnInit {
         tooltipField: 'email',
       },
       {
-        headerName: 'Student Name', field: 'studentName', minWidth: 175,
+        headerName: 'Student First Name', field: 'studentName', minWidth: 175,
         filter: 'agTextColumnFilter',
         chartDataType: 'category',
         aggFunc: 'sum',
@@ -156,6 +156,81 @@ export class ViewCandidateByDriveComponent implements OnInit {
         },
         tooltipField: 'studentName',
       },
+      {
+      headerName: 'Student Last Name', field: 'studentLastName', minWidth: 175,
+      filter: 'agTextColumnFilter',
+      chartDataType: 'category',
+      aggFunc: 'sum',
+      filterParams: {
+        suppressAndOrCondition: true,
+        filterOptions: ['contains']
+      },
+      cellRenderer: (params) => {
+        if (params.value && params.value != undefined && params.value != null && params.value != "") {
+          this.FormateName = params.value;
+          return this.titleCase(this.FormateName);
+        } else {
+          return "-";
+        }
+      },
+      tooltipField: 'studentLastName',
+    },
+    {
+      headerName: 'Gender', field: 'gender', minWidth: 125,
+      filter: 'agTextColumnFilter',
+      chartDataType: 'category',
+      aggFunc: 'sum',
+      filterParams: {
+        suppressAndOrCondition: true,
+        filterOptions: ['contains']
+      },
+      cellRenderer: (params) => {
+        if (params.value && params.value != undefined && params.value != null && params.value != "") {
+          this.FormateName = params.value;
+          return this.titleCase(this.FormateName);
+        } else {
+          return "-";
+        }
+      },
+      tooltipField: 'gender',
+    },
+    {
+      headerName: 'Institute', field: 'collegeName', minWidth: 180,
+      filter: 'agTextColumnFilter',
+      chartDataType: 'category',
+      aggFunc: 'sum',
+      filterParams: {
+        suppressAndOrCondition: true,
+        filterOptions: ['contains']
+      },
+      cellRenderer: (params) => {
+        if (params.value && params.value != undefined && params.value != null && params.value != "") {
+          this.FormateName = params.value;
+          return this.FormateName;
+        } else {
+          return "-";
+        }
+      },
+      tooltipField: 'collegeName',
+    },{
+      headerName: 'Level', field: 'level', minWidth: 175,
+      filter: 'agTextColumnFilter',
+      chartDataType: 'category',
+      aggFunc: 'sum',
+      filterParams: {
+        suppressAndOrCondition: true,
+        filterOptions: ['contains']
+      },
+      cellRenderer: (params) => {
+        if (params.value && params.value != undefined && params.value != null && params.value != "") {
+          this.FormateName = params.value;
+          return this.FormateName;
+        } else {
+          return "-";
+        }
+      },
+      tooltipField: 'level',
+    },
       {
         headerName: 'Degree', field: 'degree', minWidth: 120,
         filter: 'agTextColumnFilter',
@@ -193,25 +268,6 @@ export class ViewCandidateByDriveComponent implements OnInit {
         },
         tooltipField: 'department',
       }, {
-        headerName: 'Mobile', field: 'mobile', minWidth: 175,
-        filter: 'agTextColumnFilter',
-        chartDataType: 'category',
-        aggFunc: 'sum',
-        filterParams: {
-          suppressAndOrCondition: true,
-          filterOptions: ['contains']
-        },
-        cellRenderer: (params) => {
-          if (params.value && params.value != undefined && params.value != null && params.value != "") {
-            this.FormateName = params.value;
-            return this.titleCase(this.FormateName);
-          } else {
-            return "-";
-          }
-        },
-        tooltipField: 'mobile',
-      },
-      {
         headerName: 'Year Of Passing',
         field: 'yearOfPassing',
         minWidth: 180,
@@ -229,7 +285,6 @@ export class ViewCandidateByDriveComponent implements OnInit {
           }
         },
         tooltipField: 'yearOfPassing',
-
       }, {
         headerName: 'Percentage',
         field: 'percentage',
@@ -248,10 +303,117 @@ export class ViewCandidateByDriveComponent implements OnInit {
           }
         },
         tooltipField: 'percentage',
-
       },
+       {
+        headerName: 'Mobile No', field: 'mobile', minWidth: 175,
+        filter: 'agTextColumnFilter',
+        chartDataType: 'category',
+        aggFunc: 'sum',
+        filterParams: {
+          suppressAndOrCondition: true,
+          filterOptions: ['contains']
+        },
+        cellRenderer: (params) => {
+          if (params.value && params.value != undefined && params.value != null && params.value != "") {
+            this.FormateName = params.value;
+            return this.FormateName;
+          } else {
+            return "-";
+          }
+        },
+        tooltipField: 'mobile',
+      },
+     {
+        headerName: 'Mother Tongue', field: 'motherTongue', minWidth: 175,
+        filter: 'agTextColumnFilter',
+        chartDataType: 'category',
+        aggFunc: 'sum',
+        filterParams: {
+          suppressAndOrCondition: true,
+          filterOptions: ['contains']
+        },
+        cellRenderer: (params) => {
+          if (params.value && params.value != undefined && params.value != null && params.value != "") {
+            this.FormateName = params.value;
+            return this.titleCase(this.FormateName);
+          } else {
+            return "-";
+          }
+        },
+        tooltipField: 'motherTongue',
+      }, {
+        headerName: 'Permanent State', field: 'permanentState', minWidth: 175,
+        chartDataType: 'category',
+        aggFunc: 'sum',
+        hide: true,
+        filter: false,
+        suppressColumnsToolPanel: true,
+        cellRenderer: (params) => {
+          if (params.value && params.value != undefined && params.value != null && params.value != "") {
+            this.FormateName = params.value;
+            return this.titleCase(this.FormateName);
+          } else {
+            return "-";
+          }
+        },
+        tooltipField: 'permanentState',
+      },{
+        headerName: 'Permanent City', field: 'permanentCity', minWidth: 175,
+        chartDataType: 'category',
+        aggFunc: 'sum',
+        hide: true,
+        filter: false,
+        suppressColumnsToolPanel: true,
+        cellRenderer: (params) => {
+          if (params.value && params.value != undefined && params.value != null && params.value != "") {
+            this.FormateName = params.value;
+            return this.titleCase(this.FormateName);
+          } else {
+            return "-";
+          }
+        },
+        tooltipField: 'permanentCity',
+      },{
+        headerName: 'Present State', field: 'presentState', minWidth: 175,
+        chartDataType: 'category',
+        aggFunc: 'sum',
+        hide: true,
+        filter: false,
+        suppressColumnsToolPanel: true,
+        cellRenderer: (params) => {
+          if (params.value && params.value != undefined && params.value != null && params.value != "") {
+            this.FormateName = params.value;
+            return this.titleCase(this.FormateName);
+          } else {
+            return "-";
+          }
+        },
+        tooltipField: 'presentState',
+      },{
+        headerName: 'Present City', field: 'presentCity', minWidth: 175,
+        chartDataType: 'category',
+        aggFunc: 'sum',
+        hide: true,
+        filter: false,
+        suppressColumnsToolPanel: true,
+        cellRenderer: (params) => {
+          if (params.value && params.value != undefined && params.value != null && params.value != "") {
+            this.FormateName = params.value;
+            return this.titleCase(this.FormateName);
+          } else {
+            return "-";
+          }
+        },
+        tooltipField: 'presentCity',
+      }
     ];
 
+  }
+
+  exportCSV() {
+      this.gridApi.exportDataAsCsv({
+        columnKeys: ["email","studentName","studentLastName","gender","collegeName","level","degree","department","yearOfPassing","percentage","mobile","motherTongue","permanentState","permanentCity","presentState","presentCity"],
+      });
   }
 
   async onSelectionChanged(event) {

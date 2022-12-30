@@ -25,11 +25,24 @@ export class BajajBegaviouralPdfReportDownloadComponent implements OnInit {
   InAppReport: any;
   orgdetails: any;
   orgId: any;
+  BARvalue= [2,3,5,6,7,9];
+  continouslyValue = 2;
+  continouslyValueTwo :boolean = true;
+  continouslyValueThree :boolean = true;
+  continouslyValueFive :boolean = true;
+  continouslyValueSix :boolean = true;
+  continouslyValueSeven :boolean = true;
+  continouslyValueNine :boolean = true;
+  // benchMarkScore = [
+  //   {score:"1-2",label:"DEVELOPMENT SCOPE",color:"red"},
+  //   {score:"3-4-5",label:"LESS INCLINED",color:"yellow"},
+  //   {score:"6-7-8",label:"MORE INCLINED",color:"orange"},
+  //   {score:"9-10",label:"STRENGTH",color:"green"}
+  // ];
   benchMarkScore = [
-    { score: '1-2', label: 'DEVELOPMENT SCOPE', color: 'red' },
-    { score: '3-4-5', label: 'LESS INCLINED', color: 'yellow' },
-    { score: '6-7-8', label: 'MORE INCLINED', color: 'orange' },
-    { score: '9-10', label: 'STRENGTH', color: 'green' },
+    { score: '1-2-3', label: 'DEVELOPMENT SCOPE', color: 'red' },
+    { score: '4-5-6-7', label: 'LESS INCLINED', color: 'orange' },
+    { score: '8-9-10', label: 'MORE INCLINED', color: 'green' },
   ];
   removeheading: any;
   roles: any;
@@ -44,11 +57,14 @@ export class BajajBegaviouralPdfReportDownloadComponent implements OnInit {
       : '';
   }
 
+
+
+
   ngOnInit(): void {
     this.subscription = this.sendData.getMessage().subscribe((message) => {
       this.InAppReport = message.data;
-      console.log(this.InAppReport,'kajdsbkjasbd')
-      console.log(this.data,'this.data')
+      // console.log(this.InAppReport,'kajdsbkjasbd')
+      // console.log(this.data,'this.data')
       if (this.data && this.InAppReport == true) {
         this.getReportData();
         this.downloadAsPDF();
@@ -60,6 +76,17 @@ export class BajajBegaviouralPdfReportDownloadComponent implements OnInit {
     if (this.roles != 'undefined' && this.roles != null && this.roles != '') {
       this.orgdetails = JSON.parse(this.roles);
       this.orgId = this.orgdetails[0].orgId;
+    }
+    // this.continously()
+  }
+  continously(){
+    if(this.continouslyValue==2){
+  this.continouslyValueTwo = true
+   this.continouslyValueThree  = false;
+   this.continouslyValueFive  = false;
+   this.continouslyValueSix  = false;
+   this.continouslyValueSeven  = false;
+   this.continouslyValueNine  = false;
     }
   }
 
@@ -92,13 +119,11 @@ export class BajajBegaviouralPdfReportDownloadComponent implements OnInit {
 
   reportImage(name) {
     if (name == 'THOUGHT') {
-      return this.img = '/assets/images/pdfDownload/Thought-1.png';
+      return this.img = '/assets/images/pdfDownload/CONTINUOUSLYRAISETHEBAR.svg';
     } else if (name == 'INTERPERSONAL') {
-      return this.img = '/assets/images/pdfDownload/Interpersonal-1.png';
+      return this.img = '/assets/images/pdfDownload/ENSURERESULTSWITHSPEED.svg';
     } else if (name == 'CORE/PERSONAL') {
-      return this.img = '/assets/images/pdfDownload/Core-1.png';
-    } else if (name == 'EMOTION') {
-      return this.img = '/assets/images/pdfDownload/Emotion-1.png';
+      return this.img = '/assets/images/pdfDownload/CUSTOMERORIENTATION.svg';
     } else {
       return this.img = '';
     }
