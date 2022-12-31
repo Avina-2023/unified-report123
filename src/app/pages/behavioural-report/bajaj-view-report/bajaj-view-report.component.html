@@ -115,17 +115,20 @@
                                                             <div class="red-box"></div>
                                                             <div class="pointer-container">
                                                                 <div class="pointer-container-">
-                                                                    <div class="box-red arrow-top" *ngIf="competency.stenScore==1">
+                                                                    <div class="box-red arrow-top"
+                                                                        *ngIf="competency.stenScore==1">
                                                                         <div class="barNo">1</div>
                                                                     </div>
                                                                 </div>
                                                                 <div class="pointer-container-2">
-                                                                    <div class="box-red arrow-top" *ngIf="competency.stenScore==2">
+                                                                    <div class="box-red arrow-top"
+                                                                        *ngIf="competency.stenScore==2">
                                                                         <div class="barNo">2</div>
                                                                     </div>
                                                                 </div>
                                                                 <div class="pointer-container-2">
-                                                                    <div class="box-red arrow-top" *ngIf="competency.stenScore==3">
+                                                                    <div class="box-red arrow-top"
+                                                                        *ngIf="competency.stenScore==3">
                                                                         <div class="barNo">3</div>
                                                                     </div>
                                                                 </div>
@@ -133,25 +136,29 @@
                                                         </div>
                                                         <div class="orange-bar">
                                                             <div class="orange-box"></div>
-                
+
                                                             <div class="pointer-container">
                                                                 <div class="pointer-container-orange">
-                                                                    <div class="box-orange arrow-top" *ngIf="competency.stenScore==4">
+                                                                    <div class="box-orange arrow-top"
+                                                                        *ngIf="competency.stenScore==4">
                                                                         <div class="barNo">4</div>
                                                                     </div>
                                                                 </div>
                                                                 <div class="pointer-container-orange">
-                                                                    <div class="box-orange arrow-top" *ngIf="competency.stenScore==5">
+                                                                    <div class="box-orange arrow-top"
+                                                                        *ngIf="competency.stenScore==5">
                                                                         <div class="barNo">5</div>
                                                                     </div>
                                                                 </div>
                                                                 <div class="pointer-container-orange">
-                                                                    <div class="box-orange arrow-top" *ngIf="competency.stenScore==6">
+                                                                    <div class="box-orange arrow-top"
+                                                                        *ngIf="competency.stenScore==6">
                                                                         <div class="barNo">6</div>
                                                                     </div>
                                                                 </div>
                                                                 <div class="pointer-container-orange">
-                                                                    <div class="box-orange arrow-top" *ngIf="competency.stenScore==7">
+                                                                    <div class="box-orange arrow-top"
+                                                                        *ngIf="competency.stenScore==7">
                                                                         <div class="barNo">7</div>
                                                                     </div>
                                                                 </div>
@@ -161,17 +168,20 @@
                                                             <div class="green-box"></div>
                                                             <div class="pointer-container">
                                                                 <div class="pointer-container-green-1">
-                                                                    <div class="box-green arrow-top" *ngIf="competency.stenScore==8">
+                                                                    <div class="box-green arrow-top"
+                                                                        *ngIf="competency.stenScore==8">
                                                                         <div class="barNo">8</div>
                                                                     </div>
                                                                 </div>
                                                                 <div class="pointer-container-green-2">
-                                                                    <div class="box-green arrow-top" *ngIf="competency.stenScore==9">
+                                                                    <div class="box-green arrow-top"
+                                                                        *ngIf="competency.stenScore==9">
                                                                         <div class="barNo">9</div>
                                                                     </div>
                                                                 </div>
                                                                 <div class="pointer-container-green-3">
-                                                                    <div class="box-green arrow-top" *ngIf="competency.stenScore==10">
+                                                                    <div class="box-green arrow-top"
+                                                                        *ngIf="competency.stenScore==10">
                                                                         <div class="barNo">10</div>
                                                                     </div>
                                                                 </div>
@@ -182,16 +192,17 @@
                                             </ng-container>
                                         </ng-container>
                                         <div class="snapshot-point">
-                                            <div class="snapshot-point-red" >
-                                                <ul class="bullet" *ngFor="let dContent of competency.developmentContent">
+                                            <div class="snapshot-point-red">
+                                                <ul class="bullet"
+                                                    *ngFor="let dContent of competency.developmentContent">
                                                     <li>{{dContent.item}}</li>
-                                                    
+
                                                 </ul>
                                             </div>
                                             <div class="snapshot-point-green">
-                                                <ul class="bullet"  *ngFor="let sContent of competency.strengthContent">
+                                                <ul class="bullet" *ngFor="let sContent of competency.strengthContent">
                                                     <li>{{sContent.item}}</li>
-                                                  
+
                                                 </ul>
                                             </div>
                                         </div>
@@ -276,20 +287,27 @@
                                                         skillsDetail?.skillDescription : '-'}}</div>
                                                     <div class="point">
                                                         <div class="snapshot-point">
-                                                            <div class="snapshot-point-red" [ngStyle]="{'border-left': '7px solid' + skillsDetail?.colourcode}">
+                                                            <div class="snapshot-point-red"
+                                                                [ngStyle]="{'border-left': '7px solid' + skillsDetail?.colourcode}">
                                                                 <div class="Name">
-                                                                <div class="name">INTERPRETATION</div></div>
-                                                                <ul class="bullet" >
-                                                                    <li>{{skillsDetail?.scorebasedSkillDescription ? skillsDetail?.scorebasedSkillDescription: '-' }}</li>
-                                                                    
+                                                                    <div class="name">INTERPRETATION</div>
+                                                                </div>
+                                                                <ul class="bullet">
+                                                                    <li>{{skillsDetail?.scorebasedSkillDescription ?
+                                                                        skillsDetail?.scorebasedSkillDescription: '-' }}
+                                                                    </li>
+
                                                                 </ul>
                                                             </div>
                                                             <div class="snapshot-point-red">
                                                                 <div class="Name">
-                                                                <div class="name">DEVELOPMENT SCOPE</div></div>
-                                                                <ul class="bullet" *ngFor=" let dev of skillsDetail.developmentScope">
-                                                                    <li>{{dev?.item ? dev?.item: 'No Recommendations' }}</li>
-                                                                    
+                                                                    <div class="name">DEVELOPMENT SCOPE</div>
+                                                                </div>
+                                                                <ul class="bullet"
+                                                                    *ngFor=" let dev of skillsDetail.developmentScope">
+                                                                    <li>{{dev?.item ? dev?.item: 'No Recommendations' }}
+                                                                    </li>
+
                                                                 </ul>
                                                             </div>
                                                         </div>
@@ -344,88 +362,91 @@
                 </div>
             </div>
         </div>
-        <footer>
-            <div class="footer">
-                <div class="f-heading1">
-                    <div>
-                        <div class="h4">L&T EduTech</div>
-                    </div>
-                    <div class="list">
-                        <div class="Text">
-                            <div class="text">Home</div>
+        <footer class="Footer">
+            <div class="container">
+                <div class="footer">
+                    <div class="f-heading1">
+                        <div>
+                            <div class="h4">L&T EduTech</div>
                         </div>
-                        <div class="Text">
-                            <div class="text">About</div>
-                        </div>
-                        <div class="Text">
-                            <div class="text">Contact</div>
-                        </div>
-                        <div class="Text">
-                            <div class="text">Terms of use</div>
-                        </div>
-                        <div class="Text">
-                            <div class="text">Larsen & Toubro(coporate)</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="f-heading2">
-                    <div>
-                        <div class="h4">Offerings</div>
-                    </div>
-                    <div class="list">
-                        <div class="Text">
-                            <div class="text">CollegeConnect</div>
-                        </div>
-                        <div class="Text">
-                            <div class="text">Vocational Skilling</div>
-                        </div>
-                        <div class="Text">
-                            <div class="text">Professional Certification</div>
-                        </div>
-                        <div class="Text">
-                            <div class="text">Assessments</div>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="f-heading3">
-                    <div>
-                        <div class="h4">Find Us</div>
-                    </div>
-                    <div class="list">
-                        <div class="Text">
-                            <div class="text">We are always pleased to serve you, come share your experiences with us.
+                        <div class="list">
+                            <div class="Text">
+                                <div class="text">Home</div>
+                            </div>
+                            <div class="Text">
+                                <div class="text">About</div>
+                            </div>
+                            <div class="Text">
+                                <div class="text">Contact</div>
+                            </div>
+                            <div class="Text">
+                                <div class="text">Terms of use</div>
+                            </div>
+                            <div class="Text">
+                                <div class="text">Larsen & Toubro(coporate)</div>
                             </div>
                         </div>
+                    </div>
+                    <div class="f-heading2">
+                        <div>
+                            <div class="h4">Offerings</div>
+                        </div>
+                        <div class="list">
+                            <div class="Text">
+                                <div class="text">CollegeConnect</div>
+                            </div>
+                            <div class="Text">
+                                <div class="text">Vocational Skilling</div>
+                            </div>
+                            <div class="Text">
+                                <div class="text">Professional Certification</div>
+                            </div>
+                            <div class="Text">
+                                <div class="text">Assessments</div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="f-heading3">
+                        <div>
+                            <div class="h4">Find Us</div>
+                        </div>
+                        <div class="list">
+                            <div class="Text">
+                                <div class="text">We are always pleased to serve you, come share your experiences with
+                                    us.
+                                </div>
+                            </div>
+                            <div class="Text">
+                                <div class="text">Mt. Poonamallee Road, Manapakkam, Chennai - 600089</div>
+                                <div class="text"> +91-44-22526000 / 22528000</div>
+                                <div class="text"> info@lntedutech.com</div>
+                            </div>
+                            <div class="findus">
+                                <div class="img"><img src="/assets/images/FindUs.png"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="app">
+                        <div class="appIcon">
+                            <div class="iconImg">
+                                <img src="/assets/images/appIcon.png">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="footerEnd">
+                    <div class="footerBorder"></div>
+                    <div class="copyrights">
                         <div class="Text">
-                            <div class="text">Mt. Poonamallee Road, Manapakkam, Chennai - 600089</div>
-                            <div class="text"> +91-44-22526000 / 22528000</div>
-                            <div class="text"> info@lntedutech.com</div>
+                            <div class="text">© 2021 L&T Edutech. All rights reserved</div>
                         </div>
-                        <div class="findus">
-                            <div class="img"><img src="/assets/images/FindUs.png"></div>
+                        <div class="TextL">
+                            <div class="text">Terms of Services | Privacy Notice | Cookies</div>
                         </div>
                     </div>
                 </div>
-                <div class="app">
-                    <div class="appIcon">
-                        <div class="iconImg">
-                            <img src="/assets/images/appIcon.png">
-                        </div>
-                    </div>
-                </div>    
             </div>
-            <div class="footerEnd">
-            <div class="footerBorder"></div>
-            <div class="copyrights">
-                <div class="Text">
-                    <div class="text">© 2021 L&T Edutech. All rights reserved</div>
-                </div>
-                <div class="TextL">
-                    <div class="text">Terms of Services | Privacy Notice | Cookies</div>
-                </div>
-            </div>
-        </div>
         </footer>
     </ng-container>
 </div>

@@ -131,15 +131,13 @@ export class BajajBegaviouralPdfReportDownloadComponent implements OnInit {
   }
 
   factorsImage(name){
-    if (name == 'THOUGHT') {
-      return this.img = '/assets/images/pdfDownload/THOUGHT_FACTOR.png';
-    } else if (name == 'INTERPERSONAL') {
-      return this.img = '/assets/images/pdfDownload/INTERPERSONAL_FACTOR.png';
-    } else if (name == 'CORE/PERSONAL') {
-      return this.img = '/assets/images/pdfDownload/COREPERSONAL_FACTOR.png';
-    } else if (name == 'EMOTION') {
-      return this.img = '/assets/images/pdfDownload/EMOTION_FACTOR.png';
-    } else {
+    if (name == 'CONTINUOUSLY RAISE THE BAR') {
+      return this.img = '/assets/images/pdfDownload/CONTINUOUSLYRAISETHEBAR.svg';
+    } else if (name == 'ENSURE RESULTS WITH SPEED') {
+      return this.img = '/assets/images/pdfDownload/ENSURERESULTSWITHSPEED.svg';
+    } else if (name == 'CUSTOMER ORIENTATION') {
+      return this.img = '/assets/images/pdfDownload/CUSTOMERORIENTATION.svg';
+    }  else {
       return this.img = '';
     }
   }

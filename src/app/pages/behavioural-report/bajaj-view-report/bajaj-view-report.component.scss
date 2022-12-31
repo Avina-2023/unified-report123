@@ -287,10 +287,10 @@
         // list-style-position: inside;
         // display: list-item !important;
         // margin-bottom: 1px !important;
-        .li{
+        li{
           display: list-item !important;
           margin-right: 0;
-          margin-top: 0;
+          margin-top: 10px;
           margin-bottom: 0.5px !important;
         }
         
@@ -704,12 +704,12 @@
         content: "";
         position: absolute;
         right: 4px;
-        bottom: -161px;
+        bottom: -199px;
         background-image: url("#{$imagePath}/bottomCircle.png");
         background-repeat: no-repeat;
         background-size: contain;
-        width: 33%;
-        height: 14%;
+        width: 30%;
+        height: 13%;
         z-index: -1;
       }
     }
@@ -1246,6 +1246,8 @@
   overflow: auto;
   height: 100%;
   display: flex;
+  position: relative;
+  top: 60px;
   // flex-direction: column;
   justify-content: space-between;
   .heading5 {
@@ -1427,11 +1429,15 @@
 //Interview
 .interviewQuestions {
   padding: 20px 0px;
-  margin-top: 85px;
+  margin-top: 60px;
   margin-bottom: 85px;
   padding-left: 100px;
-  width: 92%;
-
+  width: 96%;
+  background-color:#ffff;
+  position: relative;
+  left: 25px;
+  padding-top: 50px;
+  padding-right: 100px;
   .interviewQuestionContent {
     display: flex;
     flex-direction: column;
@@ -1511,6 +1517,18 @@
     z-index: 9;
   }
   .interviewWrapper {
+    .heading2{
+      text-align: center;
+    text-transform: uppercase;
+    font-size: 30px;
+    font-weight: 700;
+    color: #09568C;
+    line-height: normal;
+    margin-bottom: 40px;
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    }
     position: relative;
     .subpara {
       width: 73%;
@@ -1712,7 +1730,7 @@
 .footer{
   display: flex;
   justify-content: space-between;
-    padding-right: 100px;
+    padding-right: 70px;
     .list{
       position: relative;
       top: 10px;
@@ -1722,7 +1740,7 @@
   .f-heading1{
     display: flex;
     flex-direction: column;
-    padding-left: 120px;
+    padding-left: 75px;
     .h4{
 font-size: 16px;
 font-weight: bold;
@@ -1799,4 +1817,22 @@ font-weight: bold;
     padding-bottom: 5px;
     text-align: end;
 }
+}
+.Footer{
+  background-color: #FFFFFF;
+  height: 375px;
+  .container{
+    position: relative;
+    top: 85px;
+  }
+}
+.findus{
+  .img{
+    position: relative;
+    right: 22px;
+  }
+}
+.interviewQuestionContent:last-child .Border{
+  display: none;
+ 
 }
