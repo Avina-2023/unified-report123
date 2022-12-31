@@ -181,6 +181,9 @@
 
 .alignp {
     // padding: 0px 10px 0px 10px;
+    ::ng-deep .mat-chip.mat-standard-chip::after {
+        background: none;
+    }
 }
 
 .alignp1 {

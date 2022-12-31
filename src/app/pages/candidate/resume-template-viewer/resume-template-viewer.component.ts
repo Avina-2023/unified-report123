@@ -47,7 +47,7 @@ export class ResumeTemplateViewerComponent implements OnInit {
 
   generateCanvas() {
     var data = this.templatesample.nativeElement;
-    return html2canvas(data)
+    return html2canvas(data,{useCORS: true})
   }
 
   generateImage() {
