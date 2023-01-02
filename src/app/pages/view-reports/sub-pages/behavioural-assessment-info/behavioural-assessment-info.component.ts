@@ -103,6 +103,8 @@ export class BehaviouralAssessmentInfoComponent implements OnInit, OnChanges {
   }
 
   covertToPercentage() {
+    console.log(this.assessmentsList,'hiii');
+    
     this.assessmentsList.forEach(element => {
       if (element.score && element.maxscore) {
         let score = Number(element.score) / Number(element.maxscore) * 100;
@@ -236,7 +238,8 @@ export class BehaviouralAssessmentInfoComponent implements OnInit, OnChanges {
 
   getBehaviouralReportData(data) {
     const apiData = {
-      email: data
+      email: data,
+      reportId: "R1"
     };
   this.emailId= data;
    this.getBehaviourReportAPISubscription = this.ApiService.getBehaviourReport(apiData).subscribe((response: any) => {

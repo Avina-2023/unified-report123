@@ -88,10 +88,11 @@ export class BajajBehaviouralCompetencyAreaComponent
   getBehaviouralReportData(data) {
     const apiData = {
       email: data,
+      reportId : "R2"
     };
     this.emailId = data;
     this.getBajaBehaviourReportAPISubscription =
-      this.ApiService.getBajajBehaviourReport(apiData).subscribe(
+      this.ApiService.getBehaviourReport(apiData).subscribe(
         (response: any) => {
           if (response && response.success && response.data) {
             this.apiSuccess = true;

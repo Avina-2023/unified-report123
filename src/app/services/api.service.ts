@@ -130,15 +130,15 @@ getAGgridPatnerList(data){
   }
 
   getBehaviourReport(data) {
-    return this.http.post(`${this.BASE_URL}/getBehaviouralReportContent1 `, data);
+    return this.http.post(`${this.BASE_URL}/getBehaviouralReportContent `, data);
   }
-  getBajajBehaviourReport(data) {
-    // data.email=
-    // 'bppdemo9001@abc.com',
+//   getBajajBehaviourReport(data) {
+//     // data.email=
+//     // 'bppdemo9001@abc.com',
     
-data.reportId='R2'
-    return this.http.post(`${this.BASE_URL}/getBehaviouralReportContent1 `, data);
-  }
+// data.reportId='R2'
+//     return this.http.post(`${this.BASE_URL}/getBehaviouralReportContent1 `, data);
+//   }
 
   getCandidateSkills(email) {
     return this.http.post(`${this.BASE_URL}/getCandidateRecommendedJobs `, email);

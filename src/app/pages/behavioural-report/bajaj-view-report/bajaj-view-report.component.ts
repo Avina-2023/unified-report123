@@ -18,7 +18,7 @@ export class BajajViewReportComponent implements OnInit, AfterViewInit, OnDestro
   getAllBasicData: any;
   emailId: any;
   highestEducation: any;
-  
+  skillSelected=0;
   BARvalue = [
     {
       score: '1',
@@ -124,7 +124,10 @@ export class BajajViewReportComponent implements OnInit, AfterViewInit, OnDestro
       }
     });
   }
-
+  skillChange(index){
+    this.skillSelected=index;
+    console.log( this.skillSelected)
+  }
   
   tabChanged(event) {
     this.tabIndex = event.index;
@@ -151,10 +154,11 @@ export class BajajViewReportComponent implements OnInit, AfterViewInit, OnDestro
 
   getBehaviouralReportData(data) {
       const apiData = {
-        email: data
+        email: data,
+        reportId : "R2"
       };
     this.emailId= data;
-     this.getBajaBehaviourReportAPISubscription = this.ApiService.getBajajBehaviourReport(apiData).subscribe((response: any) => {
+     this.getBajaBehaviourReportAPISubscription = this.ApiService.getBehaviourReport(apiData).subscribe((response: any) => {
       if (response && response.success && response.data) {
           this.apiSuccess = true;
           this.getAllBehaviourData = response.data.data ? response.data.data : null;

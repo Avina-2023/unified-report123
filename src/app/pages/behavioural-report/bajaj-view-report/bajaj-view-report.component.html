@@ -69,7 +69,12 @@
             <div class="containerWrapper">
                 <div class="heading2">The Three Factors</div>
                 <div *ngIf="getAllBehaviourData && getAllBehaviourData.factors"
-                    class="factors d-flex justify-content-around flex-wrap">
+                    class="factors d-flex justify-content-evenly  flex-wrap">
+                    <div class="threeFcontent">
+                        <div class="p">
+                            This report outlines the 3 Bajaj Auto Behavioural Competencies, each of the competency looks at 3 to 4 behavioural facets which are unique on its own, hence looking at a total of 11 behavioural facets.
+                    </div>
+                </div>
                     <div class="factor" *ngFor="let factor of getAllBehaviourData.factors">
                         <div class="flipCard">
                             <div class="frontSide">
@@ -213,7 +218,7 @@
                     </div>
                     <div class="benchmarkInfo">
                         <figure class="chart">
-                            <img class="chart-img" src="/assets/images/behaviourmeter.svg" alt="">
+                            <img class="chart-img" src="/assets/images/bajajBenchmarkInfo.png" alt="">
                         </figure>
                         <div class="score">
                             <div class="heading5">SCORE BENCHMARK INFO</div>
@@ -246,7 +251,7 @@
             *ngIf="getAllBehaviourData && getAllBehaviourData.reportSnapShot && getAllBehaviourData.reportSnapShot.competency">
             <section class="snapshotTabs">
                 <div class="containerWrapper">
-                    <mat-tab-group mat-align-tabs="center" (selectedTabChange)="tabChanged($event)">
+                    <mat-tab-group  (selectedTabChange)="tabChanged($event)">
                         <ng-container
                             *ngFor="let factors of getAllBehaviourData.reportSnapShot.competency; let factorIndex = index">
                             <mat-tab>
@@ -260,15 +265,18 @@
                                     <div class="snapshotContent">
                                         <!-- <span class="heading5">{{factors.glimpse}}</span> -->
                                         <ul *ngIf="factors?.skills && factors.skills.length > 0">
-                                            <li *ngFor="let skills of factors.skills"><img
+                                            <li *ngFor="let skills of factors.skills; let skillIndex = index"><img
                                                     src="/assets/images/rightArrow.svg" alt="" />
-                                                <span>{{skills.name}}</span>
+                                                <span (click)="skillChange(skillIndex)" [ngClass]="skillIndex==skillSelected?'selcolor':'nooo'" >{{skills.name}}</span>
                                             </li>
                                         </ul>
-                                        <ng-container *ngIf="factors?.skills && factors.skills.length > 0">
+                                        <div class="skillSelectedBorder">
+                                            <div class="border"></div>
+                                        </div>
+                                        <ng-container *ngIf="factors?.skills && factors.skills.length > 0 ">
                                             <ng-container
                                                 *ngFor="let skillsDetail of factors.skills; let skillDetailIndex = index">
-                                                <div class="tab-list">
+                                                <div *ngIf="skillDetailIndex == skillSelected" class="tab-list">
                                                     <div class="tab-list-head">
                                                         <figure class="skillsDetail-img"><img
                                                                 [src]="skillsDetail?.imageurl" alt="" /></figure>
@@ -472,7 +480,7 @@
         <em [mat-dialog-close]="true" class="icon-Close"></em>
         <div class="heading5">SCORE BENCHMARK INFO</div>
         <figure class="chart">
-            <img src="/assets/images/behaviourmeter.svg" alt="">
+            <img src="/assets/images/bajajBenchmarkInfo.png" alt="">
         </figure>
         <div class="score d-flex justify-content-between align-items-center flex-wrap">
             <ng-container *ngFor="let score of benchMarkScore">

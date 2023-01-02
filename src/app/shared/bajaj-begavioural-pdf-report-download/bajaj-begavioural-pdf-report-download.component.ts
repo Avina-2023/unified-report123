@@ -132,11 +132,11 @@ export class BajajBegaviouralPdfReportDownloadComponent implements OnInit {
 
   factorsImage(name){
     if (name == 'CONTINUOUSLY RAISE THE BAR') {
-      return this.img = '/assets/images/pdfDownload/CONTINUOUSLYRAISETHEBAR.svg';
+      return this.img = '/assets/images/pdfDownload/factor1.svg';
     } else if (name == 'ENSURE RESULTS WITH SPEED') {
-      return this.img = '/assets/images/pdfDownload/ENSURERESULTSWITHSPEED.svg';
+      return this.img = '/assets/images/pdfDownload/factor1.svg';
     } else if (name == 'CUSTOMER ORIENTATION') {
-      return this.img = '/assets/images/pdfDownload/CUSTOMERORIENTATION.svg';
+      return this.img = '/assets/images/pdfDownload/factor1.svg';
     }  else {
       return this.img = '';
     }
