@@ -1,4 +1,4 @@
-<mat-toolbar class="appHeader" layout="row" style="position: fixed;">
+<mat-toolbar class="appHeader" layout="row" style="position: fixed;z-index:99;">
   <button mat-icon-button class="menu-icon">
       <mat-icon (click)="isExpanded = !isExpanded;sideNavMode=sideNavMode=='over'?'side':'over'" class="mat-24" aria-label="Menu">menu</mat-icon>
   </button>
@@ -10,7 +10,7 @@
   </div>
 </mat-toolbar>
 <div class="content">
-  <mat-sidenav-container class="example-container" style="margin-top: 64px !important;"  autosize [hasBackdrop]="false">
+  <mat-sidenav-container class="example-container" style="margin-top: 56px !important;"  autosize [hasBackdrop]="false">
     <mat-sidenav #sidenav [mode]="sideNavMode" opened="true" class="sidenav" (mouseenter)="mouseenter()"
     (mouseleave)="mouseleave()">
       <mat-nav-list>
@@ -23,6 +23,11 @@
           <div class="innerLine"></div>
           <mat-icon mat-list-icon>person_filled</mat-icon>
           <span class="full-width" *ngIf="isExpanded || isShowing">My Profile</span>
+        </mat-list-item>
+        <mat-list-item class="navItems" [ngClass]="router.url==routelinks.CANDIDATEDASH.RESUMEBUILDER ? 'active':''" [routerLink]="routelinks.CANDIDATEDASH.RESUMEBUILDER">
+          <div class="innerLine"></div>
+          <mat-icon mat-list-icon>edit_off</mat-icon>
+          <span class="full-width" *ngIf="isExpanded || isShowing">Resume Builder</span>
         </mat-list-item>
         <mat-list-item class="navItems" [ngClass]="router.url==routelinks.CANDIDATEDASH.JOBLIST || router.url==routelinks.CANDIDATEDASH.JOBDESCRIPTION? 'active':''" [routerLink]="routelinks.CANDIDATEDASH.JOBLIST">
           <div class="innerLine"></div>

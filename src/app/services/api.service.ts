@@ -17,7 +17,9 @@ export class ApiService {
   Prourl = environment.NODE_URL;
   EncryptKEY = environment.encryptionKey;
   cryptoEncryptionKey = environment.cryptoEncryptionKey;
+
   filterSubject: Subject<any> = new Subject();
+  partnersubject: Subject<any> = new Subject();
   constructor(
     private http: HttpClient,
     private appConfig: AppConfigService,
@@ -54,7 +56,18 @@ export class ApiService {
   getDriveBaisedUser(data) {
     return this.http.post(`${this.BASE_URL}/driveCandidateList`, data);
   }
-
+  getDriveCardData(data){
+    return this.http.post(`${this.BASE_URL}/joblistwithaggrid`,data);
+  }
+  getAGgridData(data){
+    return this.http.post(`${this.BASE_URL}/joblistwithaggrid`,data);
+  }
+  getCandidateListByDeive(data){
+    return this.http.post(`${this.BASE_URL}/candidatelistbyappliedjob`,data);
+  }
+getAGgridPatnerList(data){
+  return this.http.post(`${this.BASE_URL}/partnerList`,data);
+}
   encrypt(data) {
     try {
       return CryptoJS.AES.encrypt(JSON.stringify(data), this.EncryptKEY).toString();
@@ -119,6 +132,13 @@ export class ApiService {
   getBehaviourReport(data) {
     return this.http.post(`${this.BASE_URL}/getBehaviouralReportContent `, data);
   }
+//   getBajajBehaviourReport(data) {
+//     // data.email=
+//     // 'bppdemo9001@abc.com',
+    
+// data.reportId='R2'
+//     return this.http.post(`${this.BASE_URL}/getBehaviouralReportContent1 `, data);
+//   }
 
   getCandidateSkills(email) {
     return this.http.post(`${this.BASE_URL}/getCandidateRecommendedJobs `, email);
@@ -260,6 +280,10 @@ export class ApiService {
     return this.http.get(`${this.BASE_URL}/partnerListDashboard`)
   }
 
+  viewjobRequirments(data){
+    return this.http.post(`${this.BASE_URL}/joblistwithaggrid`,data)
+  }
+
   // Joblist API
   joblistingDashboard(data) {
     return this.http.post(`${this.BASE_URL}/joblist`, data)
@@ -292,5 +316,8 @@ export class ApiService {
   }
   candidateDetails(data){
     return this.http.post(`${this.BASE_URL}/getcandidatedetail`,data)
+  }
+  getEmployerDetails(data){
+    return this.http.post(`${this.BASE_URL}/getemployerDetails`,data)
   }
 }

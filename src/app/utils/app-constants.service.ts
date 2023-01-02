@@ -17,14 +17,29 @@ export const APP_CONSTANTS = {
   // Route endpoints
   ENDPOINTS: {
     LOGIN: '/login',
-    // HOME: '/home',
-    HOME: '/static',
+    HOME: '/home',
+    // HOME: '/static',
     AUTH: '/auth',
     LANDING: '/landing',
+    REGISTER:"/register",
+    EMPLOYERS:"/employers",
+    LANDINGPAGE:{
+      LANDINGPAGE:"/",
+      HOME:"/home",
+      ABOUT:"/about",
+      EMPLOYER:"/employer",
+      FRESHGRADUATES:"/FreshGraduates",
+      HIRINGPARTNER:"/hiringpartner",
+      INSTITUTIONALPARTNERS:"/institutionalpartners",
+      CONTACT:"/contact"
+    },
+
     CNDIDATELANDING:'/candidateview',
     CANDIDATEDASH:{
       DASHBOARD:'/candidateview/dashboard',
       JOBLIST:'/candidateview/findjobs',
+      RESUMEBUILDER:'/candidateview/resumebuilder',
+      RESUMETEMPLATE:'/candidateview/resumetemplate',
       JOBSSAVED:'/candidateview/savedjobs',
       JOBSAPPLIED:'/candidateview/appliedjobs',
       PAGINATION :'/candidateview/page',
@@ -43,7 +58,8 @@ export const APP_CONSTANTS = {
       DASHBOARD:'/auth/reports/dashboard',
       BEHAVIOUR_MODULE: {
         BEHAVIOUR_MODULE_PAGE: '/auth/reports/behavioural',
-        BEHAVIOUR_REPORT: '/auth/reports/behavioural/view'
+        BEHAVIOUR_REPORT: '/auth/reports/behavioural/view',
+        BEHAVIOUR_REPORT1: '/auth/reports/behavioural/viewBajajReport',
       }
     },
     CANDIDATE:{
@@ -59,13 +75,21 @@ export const APP_CONSTANTS = {
       HOME:'/auth/partner',
       PARTNERLIST:'/auth/partner/partnerlist',
       ADDPARTNER:"/auth/partner/addpartner",
-      PARTNERENQUIRY: "/auth/partner/partnerenquiry"
+      PARTNERENQUIRY: "/auth/partner/partnerenquiry",
+      REQUIRMENT:'auth/partner/jobrequirment'
     },
+    VIEWDRIVE:{
+      HOME: '/auth/drive',
+      MANAGEDRIVE:'/auth/drive/managedrive',
+      DRIVESETTINGS:'/auth/drive/drivesettings',
+      VIEWCANDIDATE:"/auth/drive/candidatelist"
+    },
+
     EMPDASHBOARD:{
       HOME:'/auth/dashboard',
       PROFILE:'/auth/dashboard/profile',
       CHANGEPWD:'/auth/dashboard/changePwd'
-    }
+    },
   },
 
   // Routes
@@ -77,12 +101,26 @@ export const APP_CONSTANTS = {
       SETUP: 'setpwd'
     },
     LANDING: 'landing',
+    REGISTER:"register",
+    EMPLOYERS:"employers",
+    LANDINGPAGE:{
+      LANDINGPAGE:"",
+      HOME:"home",
+      ABOUT:"about",
+      EMPLOYER:"employer",
+      FRESHGRADUATES:"FreshGraduates",
+      HIRINGPARTNER:"hiringpartner",
+      INSTITUTIONALPARTNERS:"institutionalpartners",
+      CONTACT:"contact"
+    },
     HOME: 'home',
     AUTH: 'auth',
     CNDIDATELANDING:'candidateview',
     CANDIDATEDASH:{
       DASHBOARD:'dashboard',
       JOBLIST:'findjobs',
+      RESUMEBUILDER:'resumebuilder',
+      RESUMETEMPLATE:'resumetemplate',
       JOBSSAVED:'savedjobs',
       JOBSAPPLIED:'appliedjobs',
       JOBDESCRIPTION:'jobdescription',
@@ -96,7 +134,8 @@ export const APP_CONSTANTS = {
       DASHBOARD:'dashboard',
       BEHAVIOUR_MODULE: {
         HOME: 'behavioural',
-        BEHAVIOUR_REPORT: 'view'
+        BEHAVIOUR_REPORT: 'view',
+        BEHAVIOUR_REPORT1: 'viewBajajReport'
       }
     },
     CANDIDATE:{
@@ -112,8 +151,17 @@ export const APP_CONSTANTS = {
       HOME:'partner',
       PARTNERLIST:'partnerlist',
       ADDPARTNER:"addpartner",
-      PARTNERENQUIRY:"partnerenquiry"
+      PARTNERENQUIRY:"partnerenquiry",
+      REQUIRMENT:'jobrequirment'
+
     },
+    DRIVE:{
+      HOME: 'drive',
+      MANAGEDRIVE:'managedrive',
+      DRIVESETTINGS:'drivesettings',
+      VIEWCANDIDATE:"candidatelist"
+    },
+
     EMPDASHBOARD:{
       HOME:'dashboard',
       COUNTCARD:'count',
@@ -122,7 +170,8 @@ export const APP_CONSTANTS = {
       GRADUATION:'Graduation',
       DEGREE :'Degree',
       PROFILE:'profile',
-      CHANGEPWD:'changePwd'
+      CHANGEPWD:'changePwd',
+      // REQUIRMENT:'jobrequirment'
     }
   }
 };

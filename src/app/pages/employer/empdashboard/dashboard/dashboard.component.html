@@ -4,18 +4,21 @@
             <div class="col-md-6">
                 <div class="top-left">
                     <div class="dashboard-text mb-0">Dashboard</div>
-                   <div class="d-flex">
-                    <div class="text-white welcome-text mb-0">Welcome back, </div>
-                    <span class="text-white username-text"><b> &nbsp;{{username}}</b></span>
-                   </div>
-                    <button type="submit" class="update-info profilebtn" *ngIf='roleCode === "EMP"' (click)="profile()">Update Profile</button>
+                    <div class="d-flex">
+                        <div class="text-white welcome-text mb-0">Welcome back, </div>
+                        <span class="text-white username-text"><b> &nbsp;{{username}}</b></span>
+                    </div>
+                    <button type="submit" class="update-info profilebtn" *ngIf='roleCode === "EMP"'
+                        (click)="profile()">Update Profile</button>
+                    <div *ngIf='roleCode != "EMP"' style="padding:25px 0px;"></div>
                 </div>
 
             </div>
             <div class="col-md-6">
                 <div class="top-right d-flex" *ngIf='roleCode === "EMP"'>
                     <div class="text-white profile-text mb-0">Profile Completion</div>
-                    <div role="progressbar" aria-valuenow="{{profileCompletion}}" aria-valuemin="0" aria-valuemax="100" style="--value:{{profileCompletion}}"></div>
+                    <div role="progressbar" aria-valuenow="{{profileCompletion}}" aria-valuemin="0" aria-valuemax="100"
+                        style="--value:{{profileCompletion}}"></div>
                 </div>
 
             </div>
@@ -27,7 +30,7 @@
                         <div class="card-body">
                             <div class="media d-flex">
                                 <div class="media-body text-left">
-                                    <span  class="card-head">Total Candidates</span>
+                                    <span class="card-head">Total Candidates</span>
                                     <div class="card-number">{{ dashBoardDetails[0]?.cardDetails.totalCandidate }}</div>
                                 </div>
                                 <div class="align-self-center">
@@ -37,7 +40,11 @@
                             </div>
                             <div class="media d-flex">
                                 <div class="card-inside-percentage-box">
-                                    <span><mat-icon class="misc_icon">arrow_right_alt</mat-icon>{{ dashBoardDetails[0]?.cardDetails.totalCandidateIncrease }} %</span>
+                                    <span class="icon-arrow-round-up"></span>
+                                    <span>
+                                       {{
+                                        dashBoardDetails[0]?.cardDetails.totalCandidateIncrease }} %
+                                    </span>
                                 </div>
                                 <span class="ml-2 card-last-text">Since last month</span>
                             </div>
@@ -51,7 +58,7 @@
                         <div class="card-body">
                             <div class="media d-flex">
                                 <div class="media-body text-left">
-                                    <span class="card-head">Basic Profile Candidates</span>
+                                    <span class="card-head"> Basic Profiled Candidates</span>
                                     <div class="card-number">{{ dashBoardDetails[0]?.cardDetails.basicCandidate }}</div>
                                 </div>
                                 <div class="align-self-center">
@@ -61,7 +68,11 @@
                             </div>
                             <div class="media d-flex">
                                 <div class="card-inside-percentage-box">
-                                    <span><mat-icon class="misc_icon">arrow_right_alt</mat-icon>{{ dashBoardDetails[0]?.cardDetails.basicCandidateIncrease }}%</span>
+                                    <span class="icon-arrow-round-up"></span>
+                                    <span>
+                                        {{
+                                        dashBoardDetails[0]?.cardDetails.basicCandidateIncrease }}%
+                                    </span>
                                 </div>
                                 <span class="ml-2 card-last-text">Since last month</span>
                             </div>
@@ -76,7 +87,8 @@
                             <div class="media d-flex">
                                 <div class="media-body text-left">
                                     <span class="card-head">Detailed Profile Candidates</span>
-                                    <div class="card-number">{{ dashBoardDetails[0]?.cardDetails.detailedCandidate }}</div>
+                                    <div class="card-number">{{ dashBoardDetails[0]?.cardDetails.detailedCandidate }}
+                                    </div>
                                 </div>
                                 <div class="align-self-center">
                                     <img class="font-large-2 float-right"
@@ -85,7 +97,11 @@
                             </div>
                             <div class="media d-flex">
                                 <div class="card-inside-percentage-box">
-                                    <span><mat-icon class="misc_icon">arrow_right_alt</mat-icon>{{ dashBoardDetails[0]?.cardDetails.basicCandidateIncrease }}%</span>
+                                    <span class="icon-arrow-round-up"></span>
+                                    <span>
+                                       {{
+                                        dashBoardDetails[0]?.cardDetails.basicCandidateIncrease }}%
+                                    </span>
                                 </div>
                                 <span class="ml-2 card-last-text">Since last month</span>
                             </div>
@@ -100,7 +116,8 @@
                             <div class="media d-flex">
                                 <div class="media-body text-left">
                                     <span class="card-head"> Assessed Candidates</span>
-                                    <div class="card-number">{{ dashBoardDetails[0]?.cardDetails.assessedCandidates }}</div>
+                                    <div class="card-number">{{ dashBoardDetails[0]?.cardDetails.assessedCandidates }}
+                                    </div>
                                 </div>
                                 <div class="align-self-center">
                                     <img class="font-large-2 float-right"
@@ -109,7 +126,11 @@
                             </div>
                             <div class="media d-flex">
                                 <div class="card-inside-percentage-box">
-                                    <span><mat-icon class="misc_icon">arrow_right_alt</mat-icon>{{ dashBoardDetails[0]?.cardDetails.assessedCandidatesIncrease }}%</span>
+                                    <span class="icon-arrow-round-up"></span>
+                                    <span>
+                                        {{
+                                        dashBoardDetails[0]?.cardDetails.assessedCandidatesIncrease }}%
+                                    </span>
                                 </div>
                                 <span class="ml-2 card-last-text">Since last month</span>
                             </div>
@@ -119,94 +140,86 @@
             </div>
         </div>
     </div>
-    <div class="row cardcharts pl-4 pr-4">
-        <div class="col-md-4">
-            <div class="chartcard">
-                <div class="chart-title">Profile by Demography</div>
-                <app-demography-chart [item]="demography"></app-demography-chart>
-            </div>
+
+    <div class="row prof_demo">
+        <div class="col-xs-2 card_one">
+            <div class="chart-title">Profile by Demography</div>
+            <app-demography-chart [item]="demography"></app-demography-chart>
         </div>
-        <div class="col-md-4 p-0">
-          <div class="chartcard">
-            <div class="chart-title mb-3">Profile by Year of Pass Out</div>
-            <div class="flex">
-              <div class="chart1">
-                <canvas baseChart [data]="doughnutChartData" [options]="options"
-                [colors]="doughnutChartColors" [labels]="doughnutChartLabels"
-             [chartType]="doughnutChartType">
-            </canvas>
+        <div class="col-xs-2 card_two">
+            <div class="row above_card">
+                <div class="chart-title mb-3">Profile by Year of Pass Out</div>
+                <div class="flex">
+                    <div class="chart1">
+                        <canvas baseChart [data]="doughnutChartData" [options]="options" [colors]="doughnutChartColors"
+                            [labels]="doughnutChartLabels" [chartType]="doughnutChartType">
+                        </canvas>
+                    </div>
+                    <div class="rightchart">
+                        <table>
+                            <tbody>
+                                <tr class="flex" *ngFor="let elem of dashBoardDetails[0]?.yearDetails; index as i">
+                                    <td> <label [ngClass]="'circle circle'+i"></label></td>
+                                    <td>
+                                        <div *ngIf="i+1!=4" class="yeard-flex">{{elem.year }}</div>
+                                        <div *ngIf="i+1==4" class="yeard-flex">{{ elem.year }}</div>
+                                    </td>
+                                    <td>
+                                        <div class="chart1total">
+                                            <div class="yeard-flex2">{{ elem.total }}</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
-            <div class="rightchart">
-              <table>
-                  <tbody>
-                      <tr class="flex" *ngFor="let elem of dashBoardDetails[0]?.yearDetails; index as i">
-                          <td> <label [ngClass]="'circle circle'+i"></label></td>
-                          <td>
-                            <div *ngIf="i+1!=4" class="yeard-flex">{{elem.year }}</div>
-                            <div *ngIf="i+1==4" class="yeard-flex">{{ elem.year }}</div>
-                          </td>
-                          <td>
-                              <div class="chart1total">
-                                  <div class="yeard-flex2">{{ elem.total }}</div>
-                              </div>
-                          </td>
-                      </tr>
-                  </tbody>
-              </table>
-          </div>
-            </div>
-        </div>
-            <br>
-            <div class="chartcard">
+            <div class="row below_card">
                 <div class="chart-title">Profile by Gender</div>
                 <div class="flex">
-                  <div class="chart2">
-                    <canvas baseChart [data]="doughnutChartDatatwo" [options]="options2"
-                        [colors]="doughnutChartColorstwo" [labels]="doughnutChartLabelstwo"
-                        [chartType]="doughnutChartTypetwo">
-                    </canvas>
-                </div>
-                <div class="rightchart1">
-                  <table>
-                      <tbody>
-                          <tr *ngFor="let elem of dashBoardDetails[0]?.genderDetails; index as i">
-                              <td> <label [ngClass]="'progress-male mbox'+i"></label></td>
-                              <td>
-                                  <div class="yeard-flex" style="margin-top: -12px;">{{elem.gender }}</div>
-                              </td>
-                              <td>
-                                  <div class="chart2total">
-                                      <div class="yeard-flex2">{{ elem.total }}</div>
-                                  </div>
-                              </td>
-                          </tr>
-                      </tbody>
-                  </table>
-              </div>
+                    <div class="chart2">
+                        <canvas baseChart [data]="doughnutChartDatatwo" [options]="options2"
+                            [colors]="doughnutChartColorstwo" [labels]="doughnutChartLabelstwo"
+                            [chartType]="doughnutChartTypetwo">
+                        </canvas>
+                    </div>
+                    <div class="rightchart1">
+                        <table>
+                            <tbody>
+                                <tr *ngFor="let elem of dashBoardDetails[0]?.genderDetails; index as i">
+                                    <td> <label [ngClass]="'progress-male mbox'+i"></label></td>
+                                    <td>
+                                        <div class="yeard-flex" style="margin-top: -12px;">{{elem.gender }}</div>
+                                    </td>
+                                    <td>
+                                        <div class="chart2total">
+                                            <div class="yeard-flex2">{{ elem.total }}</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
-
         </div>
-        <div class="col-md-4">
-            <div class="chartcard">
-              <div class="chart-title">Profile by Discipline</div>
-                <app-discipline-chart [item]="disciplineData"></app-discipline-chart>
-            </div>
+        <div class="col-xs-7 card_three">
+            <div class="chart-title">Profile by Discipline</div>
+            <app-discipline-chart [item]="disciplineData"></app-discipline-chart>
         </div>
     </div>
-    <div class="row pl-4 pr-4 bottom-chart-align">
-        <div class="col-md-4">
-            <div class="chartcard">
-                <div class="chart-title spacing">Profile by Graduation Level</div>
-                <app-graduation-chart [item]="graduactionData"></app-graduation-chart>
-            </div>
 
+
+    <div class="row prof_grad">
+        <div class="col-xs-3 card_one">
+            <div class="chart-title spacing">Profile by Graduation Level</div>
+            <app-graduation-chart [item]="graduactionData"></app-graduation-chart>
         </div>
-        <div class="col-md-8 pl-0">
-            <div class="chartcard">
-                <div class="chart-title spacing">Profile by Degree</div>
-                <app-degree-chart [item]="degreeData"></app-degree-chart>
-            </div>
+        <div class="col-xs-7 card_two">
+            <div class="chart-title spacing">Profile by Degree</div>
+            <app-degree-chart [item]="degreeData"></app-degree-chart>
         </div>
     </div>
+
 </div>

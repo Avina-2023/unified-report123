@@ -1,0 +1,45 @@
+@import "../../../../assets/scss/landingAnimation.scss";
+@import "../../../../assets/scss/landingScreen.scss";
+@import "../../../../assets/scss/swiper-bundle.min.scss";
+
+.main{
+    height: 100% !important;
+    overflow: auto;
+}
+.font-icon{
+  color: #fff;
+  font-size: 30px;
+}
+@media (min-width: 768px){
+.section-partners__image {
+    padding: 10px;
+    height: 80px !important;
+    background-color: #fff;
+}}
+@media (min-width: 992px){
+h1, .h1 {
+    font-size: 45px !important;
+    line-height: 58px !important;
+    font-weight: 700 !important;
+}
+h2,
+.h2 {
+  font-weight: 700 !important;
+  font-size: 42px !important;
+  line-height: 32px !important;
+  margin-bottom: 12px !important;
+}
+h3, .h3 {
+  font-size: 19px !important;
+  line-height: 32px !important;
+  margin-bottom: 16px !important;
+  font-weight: 700 !important;
+}
+}
+
+.align{
+  display: contents !important;
+}
+.section-team{
+  margin-bottom: 0px !important;
+}

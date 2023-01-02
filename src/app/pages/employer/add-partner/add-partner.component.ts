@@ -22,6 +22,7 @@ export class AddPartnerComponent implements OnInit {
   existsUser = "false";
   errorMsgforLogo = '';
   errorMsgforeoi = '';
+  existsEmail ="";
   constructor(public fb: FormBuilder, private appconfig: AppConfigService, private route: ActivatedRoute, private ApiService: ApiService, private toastr: ToastrService) { }
   industryTypeArray: any = []
   ngOnInit(): void {
@@ -61,6 +62,8 @@ export class AddPartnerComponent implements OnInit {
               description: details?.description,
               email: details?.email
             });
+            this.existsEmail = details?.email;
+            this.registerForm.controls['email'].disable();
             this.employerLogoFileName = details?.companyImgURL ? "profile Image" : "";
             this.employerLogoUrl = details?.companyImgURL;
             this.eoiFormUrl = details?.eoiFormUrl;
@@ -157,11 +160,11 @@ export class AddPartnerComponent implements OnInit {
             "mobile":this.registerForm.value.mobile,
             "description":this.registerForm.value.description,
             "eoiFormUrl":this.eoiFormUrl,
-            "email":this.registerForm.value.email,
+            "email":this.existsEmail==""?this.registerForm.value.email:this.existsEmail,
             "existsUser":this.existsUser
       }
       this.ApiService.updatePartner(obj).subscribe((data: any) => {
-        console.log(data)
+        // console.log(data)
         if (data.success == false) {
           this.toastr.warning(data.message);
         } else {

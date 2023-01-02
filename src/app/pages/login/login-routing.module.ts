@@ -19,6 +19,9 @@ const routes: Routes = [
     path: `${APP_CONSTANTS.ROUTES.PASSWORD.RESET}`, component: SetPasswordComponent
   },
   {
+    path: `${APP_CONSTANTS.ROUTES.PASSWORD.SETUP}`, component: SetPasswordComponent
+  },
+  {
     path: '',
     redirectTo: `${APP_CONSTANTS.ROUTES.LOGIN}`,
     pathMatch: 'full'

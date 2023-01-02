@@ -27,6 +27,7 @@ export class JobListItemComponent implements OnInit ,AfterViewInit {
     obj = {
       jobId: item.jobId,
       email: localStorage.getItem('email'),
+      companyId:item.companyId,
       jobDetails:{
         education:item.education,
         specialization:item.specialization,

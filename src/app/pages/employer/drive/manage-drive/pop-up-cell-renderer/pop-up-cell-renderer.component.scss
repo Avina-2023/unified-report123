@@ -1,0 +1,638 @@
+menu-item {
+ 
+  text-align: left;
+  font: normal normal 300 11px/18px Roboto;
+  letter-spacing: 0.4px;
+  color: #1b4e9b;
+  height: 30px;
+  border-bottom: 0.5px solid #b4b4b4;
+  width: 150px;
+}
+::ng-deep.mat-menu-panel{
+  min-height: 0px
+}
+.popup-image {
+  width: 400px;
+  height: 400px;
+}
+::ng-deep.mat-dialog-container {
+  padding: 0px !important;
+  overflow: hidden !important;
+}
+.mat-icon {
+  height: 24px;
+  /* position: relative; */
+  display: flex;
+  justify-content: center;
+  width: 24px;
+  top: 5px;
+}
+.icon {
+  display: flex;
+
+  box-shadow: #b4b4b4;
+}
+
+::ng-deep.mat-menu-content {
+  padding-bottom: 0px !important;
+  padding-top: 0px !important;
+}
+
+.openforapp-header {
+  padding: 24px;
+}
+.open-for-app-tittle {
+  display: flex;
+  height: 30px;
+  width: 334px;
+
+  .open-for-app-tittle-txt {
+    display: flex;
+    position: relative;
+    top: 5px;
+    height: 30px;
+    font-weight: 500;
+    font-size: large;
+  }
+}
+
+.open-for-app-title-border {
+  border-bottom: 0.5px solid #b4b4b4;
+  bottom: 5px;
+  display: flex;
+
+  position: relative;
+}
+// .open-for-app-content{
+//     display: flex;
+// // padding: 30px;
+// // width: 100%;
+// }
+.open-for-app-subtittle {
+  display: flex;
+  // position: relative;
+  // top: 20px;
+  // left: 30px;
+  .open-for-app-subtittle-text {
+    display: flex;
+    position: relative;
+    font-weight: 500;
+  }
+}
+.open-for-app-content {
+  padding-left: 24px;
+  padding-right: 24px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.time-container {
+  display: flex;
+  position: relative;
+  top: 15px;
+  height: 64px;
+  flex-direction: column;
+  justify-content: space-evenly;
+  .time-tittle {
+    display: flex;
+    .time-text {
+      text-align: left;
+      letter-spacing: 0px;
+      color: #262626;
+      font-weight: 500;
+    }
+  }
+
+  .time-picker {
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    .hours {
+      padding-right: 15px;
+      .time {
+        padding-left: 10px;
+        width: 100px;
+        height: 40px;
+        font: normal normal normal 14px/19px Roboto;
+        letter-spacing: 0.14px;
+        color: #848484;
+        border: 0.7px solid #b4b4b4 !important;
+        border-radius: 3px !important;
+      }
+    }
+    .min {
+      padding-right: 15px;
+      .sec {
+        display: flex;
+        padding-left: 10px;
+        width: 100px;
+        height: 40px;
+        font: normal normal normal 14px/19px Roboto;
+        letter-spacing: 0.14px;
+        color: #848484;
+        border: 0.7px solid #b4b4b4 !important;
+        border-radius: 3px !important;
+      }
+    }
+    .meri {
+      .meridiem {
+        display: flex;
+        padding-left: 10px;
+        width: 100px;
+        height: 40px;
+        font: normal normal normal 14px/19px Roboto;
+        letter-spacing: 0.14px;
+        color: #848484;
+        border: 0.7px solid #b4b4b4 !important;
+        border-radius: 3px !important;
+      }
+    }
+  }
+}
+.date-container {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  padding-top: 30px;
+  .date-text {
+    text-align: left;
+    color: #262626;
+    font-weight: 500;
+  }
+}
+.date-picker {
+  margin-top: 5px;
+}
+::ng-deep.openforapp{
+.mat-form-field {
+  position: relative;
+  text-align: left;
+  width: 352px;
+}
+.mat-form-field-infix {
+  height: 40px !important;
+  width: 340px !important;
+  display: flex !important;
+  background-color: #ffffff !important;
+}
+.mat-form-field-flex {
+  padding: 0px !important;
+  border: 0.7px solid #b4b4b4 !important;
+  border-radius: 3px !important;
+  width: 352px !important;
+}
+
+.mat-form-field-underline {
+  border-width: 0px !important;
+  height: 0px !important;
+}
+.mat-datepicker-toggle {
+  position: relative !important;
+  bottom: 20px !important;
+}
+.cdk-text-field-autofill-monitored:not(:-webkit-autofill) {
+  padding-bottom: 6px !important;
+  padding-left: 10px !important;
+}
+}
+.content-text {
+  text-align: left;
+  font: normal normal 300 12px/20px Roboto;
+  letter-spacing: 0.3px;
+  color: #262626;
+  display: flex;
+  position: relative;
+  top: 10px;
+  flex-wrap: wrap;
+}
+.content-border {
+  border-bottom: 0.5px solid #b4b4b4;
+  display: flex;
+  position: relative;
+  top: 10px;
+}
+.action-button {
+  position: relative;
+  top: 23px;
+  right: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  float: right;
+  width: 170px;
+  justify-content: space-between;
+}
+.open-button {
+  width: 78px !important;
+  height: 30px !important;
+  border: 1px solid #1b4e9b;
+  border-radius: 25px;
+  display: flex;
+  align-items: center;
+  font: normal normal normal 12px/18px Roboto;
+  background: #1b4e9b 0% 0% no-repeat padding-box;
+  color: #ffffff;
+  justify-content: center;
+  font-size: 12px;
+}
+.close-button {
+  width: 78px !important;
+  height: 30px !important;
+  background: #ffffff 0% 0% no-repeat padding-box;
+  border: 1px solid #1b4e9b;
+  border-radius: 25px;
+  display: flex;
+  align-items: center;
+  font: normal normal normal 12px/17px Roboto;
+  color: #08558c;
+  justify-content: center;
+  font-size: 12px;
+}
+//ng-template-2
+.reject-dialog {
+  top: 200px;
+}
+.reject-header {
+  display: flex;
+  justify-content: space-between;
+
+  .reject-title-text {
+    text-align: left;
+    display: flex;
+    align-items: center;
+    position: relative;
+    left: 28px;
+    top: 8px;
+    font-size: 20px;
+    font-weight: 500;
+  }
+}
+
+.reject-tittle-border {
+  border-bottom: 0.5px solid #e6e6e6;
+  display: flex;
+  position: relative;
+  top: 10px;
+}
+
+.reject-close-icon::ng-deep.mat-icon-button {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-around !important;
+  top: 5px !important;
+  right: 5px !important;
+}
+.reject-close-icon {
+  float: right;
+}
+.reject-content {
+  width: 513px;
+  height: 129px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  top: 30px;
+  left: 39px;
+  .reject-content-titlebox {
+    display: flex;
+    flex-wrap: wrap;
+    .reject-content-text {
+      font-size: 16px;
+      font-weight: 500;
+    }
+  }
+  .reason-box {
+    display: flex;
+    position: relative;
+    top: 8px;
+    .reason-txt-box {
+      display: block;
+      text-overflow: ellipsis;
+      word-wrap: break-word;
+      overflow: hidden;
+      width: 513px;
+      height: 100px;
+      border: 1px solid #707070;
+      text-align: left;
+      border-radius: 0.5;
+    }
+  }
+}
+.reject-content-border {
+  border-bottom: 0.5px solid #e6e6e6;
+  display: flex;
+  position: relative;
+  top: 55px;
+}
+// .reject-footer{
+//   display: flex;
+//   position: relative;
+// }
+.reject-action-button {
+  top: 65px;
+  display: flex;
+  justify-content: space-between;
+  right: 40px;
+  position: relative;
+  float: right;
+  width: 170px;
+}
+.reject-save-button {
+  width: 78px !important;
+  height: 30px !important;
+  border: 1px solid #1b4e9b;
+  border-radius: 25px;
+  display: flex;
+  align-items: center;
+  font: normal normal normal 12px/18px Roboto;
+  background: #1b4e9b 0% 0% no-repeat padding-box;
+  color: #ffffff;
+  justify-content: center;
+}
+//confirmation
+.cnfrm-title {
+  display: flex;
+  position: relative;
+  top: 15px;
+  justify-content: space-between;
+  align-items: center;
+
+  .cnfrm-title-text {
+    font-size: 20px;
+    font-weight: 500;
+    padding-left: 29px;
+  }
+}
+.cnfrm-title-border {
+  border-bottom: 0.5px solid #b4b4b4;
+  display: flex;
+  position: relative;
+  top: 20px;
+}
+.cnfrm-content {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  top: 50px;
+  .cnfrm-content1 {
+    color: #000000;
+    padding-left: 39px;
+    font-size: 16px;
+  }
+  .cnfrm-content2 {
+    padding-left: 39px;
+    color: #ff0000;
+    padding-top: 10px;
+    font-size: 14px;
+  }
+}
+.cnfrm-content-border {
+  border-bottom: 0.5px solid #b4b4b4;
+  display: flex;
+  position: relative;
+  top: 85px;
+}
+.cnfrm-action-button {
+  top: 100px;
+  display: flex;
+  justify-content: space-between;
+  right: 40px;
+  position: relative;
+  float: right;
+  width: 170px;
+  font-size: 14px;
+  border-radius: 25px;
+}
+//workflow
+.workflow-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 10px;
+  .workflow-title-text {
+    color: #000000;
+    font-size: 20px;
+    padding-left: 30px;
+    font-weight: 500;
+
+  }
+}
+.workflow-tittle-border {
+  border-bottom: 0.5px solid #b4b4b4;
+  padding-top: 10px;
+}
+.workflow-header {
+  display: flex;
+  flex-wrap: wrap
+}
+.workflow-top-container {
+  width: 360px;
+  height: 40px;
+  display: flex;
+  position: relative;
+  top: 30px;
+  left: 30px;
+
+  border: 0.699999988079071px solid #1b4e9b;
+}
+.workflow-top-right {
+  padding-left: 2px;
+  
+}
+.label-box {
+  width: 143px;
+  height: 39.2px;
+  background-color: #1b4e9b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .label-box-text {
+    font-size: 13px;
+    color: #ffffff;
+  }
+}
+.label-text-box {
+  width: 217px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  font-weight: 100;
+  .label-text {
+    font-size: 13px;
+    color: #262626;
+    display: flex;
+    position: relative;
+    left: 10px;
+    font-weight: 400;
+  }
+}
+.workflow-top-container2 {
+  width: 360px;
+  height: 40px;
+  display: flex;
+  position: relative;
+  top: 32px;
+  left: 30px;
+  border: 0.699999988079071px solid #1b4e9b;
+}
+.workflow-body {
+  // width: 721px;
+  // height: 340px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+ 
+  top: 25px;
+  justify-content: space-evenly;
+}
+.L1 {
+  width: 675px;
+  height: 80px;
+  display: flex;
+  position: relative;
+  top: 20px;
+  left: 30px;
+}
+.DNT-box {
+  background-color: #1b4e9b;
+  width: 162px;
+  height: 30px;
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  top: 20px;
+}
+.DNT-box-text {
+  font-size: 14px;
+  color: #ffffff;
+  font-weight: lighter;
+}
+
+.workflow-card-container {
+  padding-left: 50px;
+}
+.workflow-card {
+  width: 475px;
+  height: 70px;
+  background-color: #ffffff;
+  box-shadow: 0px 0px 6px #00000029;
+  border-right: 0.699999988079071px solid #b4b4b4;
+  border-top: 0.699999988079071px solid #b4b4b4;
+  border-bottom: 0.699999988079071px solid #b4b4b4;
+  border-left: 0.699999988079071px solid #b4b4b4;
+  border-radius: 5px;
+}
+// .workflow-card:before {
+//   content: "";
+//   width: 0px;
+//   height: 0px;
+//   position: absolute;
+//   border-left: 10px solid transparent;
+//   border-right: 10px solid #ffffff;
+//   border-top: 10px solid #ffffff;
+//   border-bottom: 10px solid transparent;
+//   transform: rotate(-135deg);
+//   top: 25px;
+//   left: 213px;
+// }
+.triangle {
+  height: 15px;
+  width: 15px;
+  background-color: #ffffff;
+  transform: rotate(45deg);
+  display: flex;
+  position: relative;
+  bottom: 42px;
+  left: 43px;
+  border-left: 0.699999988079071px solid #b4b4b4;
+  border-bottom: 0.699999988079071px solid #b4b4b4;
+}
+.card-content{
+  padding-left: 22px;
+  padding-top: 15px;
+}
+.card-content1{
+ font-size: 14px;
+  letter-spacing: 0.35px;
+color: #262626;
+font-weight: bold;
+
+}
+.card-content2{
+  font-size:  12px;
+letter-spacing: 0.3px;
+color: #262626;
+padding-top: 2px;
+font-weight: lighter;
+}
+
+.step {
+  width: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+   background-color: cream;
+}
+
+.v-stepper {
+  position: relative;
+  top: 25px;
+  left: 15px;
+/*   visibility: visible; */
+}
+
+/* regular step */
+.step .circle {
+  background-color: white;
+  border: 3px solid gray;
+  border-radius: 100%;
+  width: 20px;    /* +6 for border */
+  height: 20px;
+  display: inline-block;
+}
+
+.step .line {
+    top: 20px;
+  left: 9px;
+/*   height: 120px; */
+  height:72%;
+    
+    position: absolute;
+    border-left: 1px solid gray;
+}
+
+.step.completed .circle {
+  visibility: visible;
+  background-color: #1B4E9B;
+  border-color: #1B4E9B;
+}
+
+.step.completed .line {
+  border-left: 1px solid gray;
+  
+}
+
+.step.active .circle {
+visibility: visible;
+  border-color: rgb(6,150,215);
+}
+
+.step.empty .circle {
+    visibility: hidden;
+}
+
+.step.empty .line {
+/*     visibility: hidden; */
+/*   height: 150%; */
+  top: 0;
+  height: 150%;
+}
+
+
+.workflow-body:last-child .line{
+  border-left: 1px solid gray;
+  display: none;
+}
+a:hover, a:visited, a:link, a:active
+{
+    text-decoration: none;
+}

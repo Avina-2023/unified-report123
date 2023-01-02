@@ -55,6 +55,8 @@ export class JobDashboardComponent implements OnInit {
   public usercountry: any;
   public usercity: any;
   blobToken = environment.blobToken;
+  profileImage = ""
+  productionUrl = environment.SKILL_EDGE_URL == "https://skillexchange.lntedutech.com"?true:false;
   public allyears = [];
   constructor(
     private apiService: ApiService,
@@ -126,7 +128,7 @@ export class JobDashboardComponent implements OnInit {
     var date1 = new Date().getFullYear();
     var date2 = new Date().getFullYear() - 1;
     var date3 = new Date().getFullYear() - 2;
-    var yearArray = []; 
+    var yearArray = [];
     if(date1 >= 2022 ){
       yearArray.push({year:date1})
     }
@@ -177,9 +179,19 @@ export class JobDashboardComponent implements OnInit {
     this.apiService.candidateDetails(obj).subscribe((res: any) => {
       if (res.success) {
         this.Details = res.data;
-        this.msgData.sendMessage("profileImage",this.Details.profileImage)
-        this.appConfig.setLocalStorage('profileImage',this.Details.profileImage + environment.blobToken);
+        this.profileImage = this.Details.personal_details.profileImage;
+        this.msgData.sendMessage("profileImage",this.profileImage)
+        if (this.profileImage && this.productionUrl == true) {
+          this.appConfig.setLocalStorage('profileImage',this.profileImage + environment.blobToken);
+          this.profileImage = this.profileImage + environment.blobToken
+        } else if (this.profileImage && this.productionUrl == false) {
+          this.appConfig.setLocalStorage('profileImage',this.profileImage);
+          this.profileImage = this.profileImage
+
+        }
+        this.appConfig.setLocalStorage('candidateProfile',JSON.stringify(this.Details));
         this.profilepercentage = Math.ceil(this.Details.profilePercentage);
+        this.appConfig.setLocalStorage('profilePercentage', this.profilepercentage);
         this.usercity = this.Details.permanentaddress.permanent_city;
         this.userstate = this.Details.permanentaddress.permanent_state;
         this.usercountry = this.Details.permanentaddress.permanent_country;

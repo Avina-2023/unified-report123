@@ -1,0 +1,234 @@
+<button mat-icon-button [matMenuTriggerFor]="menu" class="mat-icon">
+    <mat-icon class="icon"><img src="\assets\images\MoreOptions.png"></mat-icon>
+</button>
+<div class="menu-container">
+    <mat-menu #menu="matMenu">
+        <!-- <button (click)="MatDialog()" mat-menu-item class="menu-item">
+            <span>Open for Applications</span>
+        </button>
+        <button (click)="MatDialog1()" mat-menu-item class="menu-item">
+            <span>Reject</span>
+        </button>
+        <button (click)="MatDialog2()" mat-menu-item class="menu-item">
+            <span>Close Applications</span>
+        </button>
+        <button mat-menu-item class="menu-item">
+            <span>
+                <a routerLink="/auth/drive/drivesettings" style="text-decoration:none"> Settings </a></span>
+        </button> -->
+        <button  (click)="viewApplication()" mat-menu-item class="menu-item">
+            <span>View Applications</span>
+        </button>
+        <!-- <button (click)="MatDialog3()" mat-menu-item class="menu-item">
+            <span>Workflow</span>
+        </button> -->
+    </mat-menu>
+</div>
+
+<ng-template #matDialog>
+    <div class="openforapp">
+        <div class="openforapp-header">
+            <div class="open-for-app-tittle">
+                <span class="open-for-app-tittle-txt">Open for Application</span>
+            </div>
+        </div>
+        <div class="open-for-app-title-border"></div>
+        <div class="open-for-app-content">
+            <div class="open-for-app-subtittle">
+                <div class="open-for-app-subtittle-text">
+                    Set Application Deadline
+                </div>
+            </div>
+            <div class="time-container">
+                <div class="time-tittle">
+                    <div class="time-text">Time</div>
+                </div>
+                <div class="time-picker" time-picker>
+                    <span class="hours"><select id="time" name="time" class="time" #mySelectTime
+                            (change)='onHoursSelected(mySelectTime.value)'>
+                            <option *ngFor="let seconds of gethours" value="{{seconds|number:'2.0'}}">
+                                {{seconds|number:'2.0'}}</option>
+                        </select></span>
+                    <span class="min"><select id="sec" name="seconds" class="sec" #mySelectMin
+                            (change)='onMinSelected(mySelectMin.value)'>
+                            <option *ngFor="let seconds of getseconds" value="{{seconds|number:'2.0'}}">
+                                {{seconds|number:'2.0'}} </option>
+                        </select></span>
+                    <span class="meri"><select id="meridiem" class="meridiem" #mySelectMeridiem
+                            (change)='onMeridiemSelected(mySelectMeridiem.value)'>
+                            <option value="AM">AM</option>
+                            <option value="PM">PM</option>
+                        </select></span>
+                </div>
+            </div>
+            <div class="date-container">
+                <div class="date-text">Date</div>
+                <div class="date-picker">
+                    <mat-form-field floatLable="never">
+                        <!-- <mat-label>{{dateF|date:'dd/MM/YYYY'}}</mat-label> -->
+                        <input matInput [matDatepicker]="picker" [value]="dateF">
+                        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="content-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                Lorem Ipsum has been the industry's</div>
+        </div>
+        <div class="content-border"></div>
+        <div>
+            <span class="action-button">
+                <button class="open-button" mat-raised-button>Open</button>
+                <button class="close-button" mat-raised-button>Cancel</button>
+            </span>
+        </div>
+
+
+
+    </div>
+</ng-template>
+
+
+<ng-template class="reject-dialog" #matDialog1>
+    <div class="reject-header">
+
+        <div class="reject-title-text">Reason for Rejection</div>
+        <span class="reject-close-icon">
+            <button mat-icon-button (click)="instructionClose()" >
+                <mat-icon>close</mat-icon>
+            </button></span>
+
+    </div>
+    <div class="reject-tittle-border"></div>
+    <div class="reject-content">
+        <div class="reject-content-titlebox">
+            <div class="reject-content-text">Enter your reason *</div>
+        </div>
+        <div class="reason-box">
+            <textarea placeholder="Type your reason here..." class="reason-txt-box" cols="30" rows="10"></textarea>
+        </div>
+    </div>
+    <div class="reject-content-border"></div>
+    <div class="reject-footer">
+        <span class="reject-action-button">
+            <button class="reject-save-button" mat-raised-button>Save</button>
+            <button class="close-button" mat-raised-button>Cancel</button>
+        </span>
+    </div>
+
+</ng-template>
+
+<ng-template #matDialog2>
+    <div>
+        <div class="cnfrm-title">
+            <div class="cnfrm-title-text">Confirmation</div>
+            <span>
+                <button mat-icon-button (click)="instructionClose()">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </span>
+        </div>
+        <div class="cnfrm-title-border"></div>
+        <div class="cnfrm-content">
+            <div class="cnfrm-content1">Are you sure you want to close the Application for Students?</div>
+            <div class="cnfrm-content2">* On closing, the students will not be able to apply for this job.</div>
+        </div>
+        <div class="cnfrm-content-border"></div>
+        <div>
+            <span class="cnfrm-action-button">
+                <button class="open-button" mat-raised-button>Confirm</button>
+                <button class="close-button" mat-raised-button>Cancel</button>
+            </span>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #matDialog3>
+    <div>
+        <div class="workflow-title">
+            <div class="workflow-title-text">Workflow</div>
+            <span>
+                <button mat-icon-button (click)="instructionClose()" >
+                    <mat-icon>close</mat-icon >
+                </button>
+            </span>
+        </div>
+        <div class="workflow-tittle-border"></div>
+        <div class="workflow-header">
+            <div>
+                <div class=" workflow-top-container">
+                    <div class="label-box">
+                        <span class="label-box-text">Employer Name</span>
+                    </div>
+                    <div class="label-text-box">
+                        <span class="label-text"> Employer Name_1 </span>
+                    </div>
+                </div>
+
+                <div class=" workflow-top-container2">
+                    <div class="label-box">
+                        <span class="label-box-text">Job Title</span>
+                    </div>
+                    <div class="label-text-box">
+                        <span class="label-text"> Senior Software Developer </span>
+                    </div>
+                </div>
+            </div>
+            <div class="workflow-top-right">
+
+                <div class=" workflow-top-container">
+                    <div class="label-box">
+                        <span class="label-box-text">Drive Date</span>
+                    </div>
+                    <div class="label-text-box">
+                        <span class="label-text"> Sep 23, 2022 </span>
+                    </div>
+                </div>
+                <div class=" workflow-top-container2">
+                    <div class="label-box">
+                        <span class="label-box-text">Last Date to Apply</span>
+                    </div>
+                    <div class="label-text-box">
+                        <span class="label-text"> Oct 23, 2022 </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="workflow-body " *ngFor="let card of jopDetails">
+
+            <div class="L1" >
+
+                <div class="DNT">
+                    <div class="DNT-box">
+                        <span class="DNT-box-text">{{card.AppliedDate}}</span>
+                    </div>
+                </div>
+
+                <div class="container">
+                    <!-- completed -->
+                    <div class="step completed">
+                        <div class="v-stepper">
+                            <div class="circle"></div>
+                            <div class="line"></div>
+                        </div>
+                        <div class="content">
+                            <div class="wf-card">
+                                <div class="workflow-card-container">
+                                    <div class="workflow-card">
+                                        <div class="card-content">
+                                            <div class="card-content1"> {{card.Title}} </div>
+                                            <div class="card-content2">{{card.Created_by}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="triangle"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</ng-template>

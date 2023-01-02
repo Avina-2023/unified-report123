@@ -28,15 +28,15 @@ export class AuthComponent implements OnInit {
   isaccess: boolean;
   userDetails: any;
   username: any;
-  InAppReport:any;
+  InAppReport: any;
   subscription: Subscription;
   orgdetails: any;
   orgLogo: any;
   orgName: any;
   checkRouter: string;
   roles: any;
-  roleCode:any;
-  userName : any;
+  roleCode: any;
+  userName: any;
 
   constructor(
     private appConfig: AppConfigService,
@@ -47,64 +47,73 @@ export class AuthComponent implements OnInit {
     private router: Router
   ) {
     this.checkRouter = this.router.url;
+    if (this.checkRouter.search("/auth/reports/viewreport") == 0) {
+      this.checkRouter = "/auth/reports/viewreport";
+    } else if (this.checkRouter.search("/auth/reports/behavioural/view") == 0) {
+      this.checkRouter = "/auth/reports/behavioural/view";
+    }
+    else if (this.checkRouter.search("/auth/reports/behavioural/viewBajajReport") == 0) {
+      this.checkRouter = "/auth/reports/behavioural/viewBajajReport";
+    }
+    // console.log(this.checkRouter)
     this.roles = this.appConfig.getLocalStorage('role') ? this.appConfig.getLocalStorage('role') : '';
     this.orgdetails = JSON.parse(this.roles);
     this.roleCode = this.orgdetails && this.orgdetails[0].roles && this.orgdetails[0].roles[0].roleCode;
     this.subscription = this.sendData.getMessage().subscribe(message => {
-      this.checkRouter = this.router.url;
-      if(message){
-        if(this.router.url == '/auth/reports/userlist'){
+      this.checkRouter = this.checkRouter;
+      if (message) {
+        if (this.checkRouter == '/auth/reports/userlist') {
           this.InAppReport = true;
-        }else{
+        } else {
           this.InAppReport = false;
         }
       }
     });
-   }
+  }
 
 
-   ngOnChange(){
+  ngOnChange() {
     this.checkRouter = this.router.url;
-   }
+  }
 
 
 
- // notification list
+  // notification list
 
- notificationlist: any = [
-  {
-    name: 'Head1',
-    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit Nunc lectus risus, accumsan vel orci a, suscipit cursus diam.',
-  },
-  {
-    name: 'Head2',
-    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit Nunc lectus risus, accumsan vel orci a, suscipit cursus diam.',
-  },
-  {
-    name: 'Head3',
-    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit Nunc lectus risus, accumsan vel orci a, suscipit cursus diam.',
-  },
-];
+  notificationlist: any = [
+    {
+      name: 'Head1',
+      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit Nunc lectus risus, accumsan vel orci a, suscipit cursus diam.',
+    },
+    {
+      name: 'Head2',
+      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit Nunc lectus risus, accumsan vel orci a, suscipit cursus diam.',
+    },
+    {
+      name: 'Head3',
+      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit Nunc lectus risus, accumsan vel orci a, suscipit cursus diam.',
+    },
+  ];
 
-notification() {
-}
-changePwd(){
-  this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.EMPDASHBOARD.CHANGEPWD)
-}
-profile(){
-  this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.EMPDASHBOARD.PROFILE)
-}
+  notification() {
+  }
+  changePwd() {
+    this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.EMPDASHBOARD.CHANGEPWD)
+  }
+  profile() {
+    this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.EMPDASHBOARD.PROFILE)
+  }
 
   ngOnInit(): void {
     this.userName = localStorage.getItem('firstName')
-    this.userDetails  =   JSON.parse(sessionStorage.getItem('user'));
-    if(this.userDetails){
+    this.userDetails = JSON.parse(sessionStorage.getItem('user'));
+    if (this.userDetails) {
       this.username = this.userDetails.attributes.firstName;
     }
 
-    if(this.roles != 'undefined' && this.roles != null && this.roles != ''){
+    if (this.roles != 'undefined' && this.roles != null && this.roles != '') {
       this.orgdetails = this.roles ? JSON.parse(this.roles) : '';
-      this.orgLogo =  this.orgdetails[0].skillexchangelogo ? this.orgdetails[0].skillexchangelogo : this.orgdetails[0].logoUrl;
+      this.orgLogo = this.orgdetails[0].skillexchangelogo ? this.orgdetails[0].skillexchangelogo : this.orgdetails[0].logoUrl;
       this.orgName = this.orgdetails[0].orgName;
     }
     this.isaccess = this.appConfig.isComingFromMicroCert();
@@ -122,8 +131,8 @@ profile(){
 
   closeDialog(e) {
 
-      this.dialog.closeAll();
-      this.apiService.logout();
+    this.dialog.closeAll();
+    this.apiService.logout();
 
   }
 
@@ -139,29 +148,29 @@ profile(){
     }
   }
 
-  navToUserlist(){
+  navToUserlist() {
     this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.REPORTS.HOME);
   }
 
 
-  navToDashboard(){
+  navToDashboard() {
     this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.REPORTS.DASHBOARD);
   }
 
 
-       /**
-   * Listen and display the loading spinner.
-   */
+  /**
+* Listen and display the loading spinner.
+*/
 
-// dashboard role id based dropdown
+  // dashboard role id based dropdown
 
 
 
-logout(){
-  localStorage.clear();
-  this.ngOnInit();
-  this.router.navigate(['/static']);
- }
+  logout() {
+    localStorage.clear();
+    this.ngOnInit();
+    this.router.navigate(['/home']);
+  }
 
 
 

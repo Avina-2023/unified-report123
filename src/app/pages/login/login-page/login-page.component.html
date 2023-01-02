@@ -31,7 +31,7 @@
         </div>
         <form class="form" [formGroup]="loginForm" autocomplete="off">
 
-          <mat-label class="label-color">User Name</mat-label>
+          <mat-label class="label-color">{{labelname}}</mat-label>
             <mat-form-field appearance="outline">
                 <input matInput id="username" [placeholder]="'Enter User Name'" formControlName="username" maxlength="64" required>
             </mat-form-field>

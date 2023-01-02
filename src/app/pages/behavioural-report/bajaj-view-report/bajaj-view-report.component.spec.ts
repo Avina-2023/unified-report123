@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { StaticpageComponent } from './staticpage.component';
+import { BajajViewReportComponent } from './bajaj-view-report.component';
 
-describe('StaticpageComponent', () => {
-  let component: StaticpageComponent;
-  let fixture: ComponentFixture<StaticpageComponent>;
+describe('BajajViewReportComponent', () => {
+  let component: BajajViewReportComponent;
+  let fixture: ComponentFixture<BajajViewReportComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ StaticpageComponent ]
+      declarations: [ BajajViewReportComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(StaticpageComponent);
+    fixture = TestBed.createComponent(BajajViewReportComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

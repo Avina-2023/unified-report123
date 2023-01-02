@@ -20,6 +20,12 @@
     }
 }
 
+.partnerCardTitle{
+    margin: 0px -16px!important;
+    p{
+        padding: 6px 40px;
+    }
+}
 .subBody {
     padding-bottom: 75px;
     position: relative;
@@ -27,13 +33,14 @@
 }
 
 .title {
-    color: #FFFFFF;
-    padding: 15px;
-    margin-bottom: 0;
-    opacity: 0.7;
-    padding-bottom: 0;
     left: 12px;
     position: relative;
+    color: #FFFFFF;
+    padding: 15px;
+    opacity: 0.8;
+    margin-bottom: 0px;
+    font-size: 20px !important;
+    font-weight: 100 !important;
 }
 
 .file-input {
@@ -51,25 +58,26 @@
 
         .cardTitle {
             display: flex;
-            border-bottom: 1px solid #B4B4B4;
+            border-bottom: 2px solid #0000001F;
             text-align: left;
             font: normal normal normal 16px/21px Roboto;
             letter-spacing: 0.32px;
             color: #1B4E9B;
-            font-size: 14px;
+            font-size: 15px;
             font-weight: 500;
             text-transform: none;
+            opacity: 0.9!important;
         }
 
         .cardValue {
             .descstyle{
-                height: 73px;
+                height: 86px;
             }
         }
     }
 
     ::ng-deep .mat-form-field-appearance-outline .mat-form-field-infix {
-        padding: 0 0 10px 0 !important;
+        padding: 4px 0 10px 0 !important;
     }
 }
 
@@ -168,6 +176,8 @@
             background-color: #1B4E9B !important;
             color: #FFFFFF;
             border-radius: 25px;
+            padding: 2px 27px 0px 27px !important;
+            line-height: 33px;
           }
     }
 
@@ -177,6 +187,8 @@
             background-color: #848484 !important;
             color: #FFFFFF;
             border-radius: 25px;
+            padding: 2px 27px 0px 27px !important;
+            line-height: 33px;
           }
     }
 }
@@ -190,6 +202,8 @@
             background-color: #1B4E9B !important;
             color: #FFFFFF;
             border-radius: 25px;
+            padding: 2px 27px 0px 27px !important;
+            line-height: 33px;
           }
     }
 
@@ -199,6 +213,8 @@
             background-color: #848484 !important;
             color: #FFFFFF;
             border-radius: 25px;
+            padding: 2px 27px 0px 27px !important;
+            line-height: 33px;
           }
     }
 }

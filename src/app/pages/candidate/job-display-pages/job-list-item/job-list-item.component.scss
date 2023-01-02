@@ -1,189 +1,205 @@
 @import "/src/assets/scss/candidate_dashboard.scss";
 .overflowbox {
-    width: 100%;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-content: flex-start;
-    overflow: auto;
-    border-right: 1px solid #e7e7e7;
-    height: 76vh;
-    justify-content: space-between;
-    overflow-x: hidden !important;
-    align-content: stretch;
+  width: 100%;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  overflow: auto;
+  border-right: 1px solid #e7e7e7;
+  height: 75vh;
+  justify-content: space-between;
+  overflow-x: hidden !important;
+  align-content: stretch;
 }
 ::-webkit-scrollbar {
-    width: 6px;
-    background-color: transparent;
-  }
+  width: 6px;
+  background-color: transparent;
+}
 
-  ::-webkit-scrollbar-thumb {
-    background-color: #FFFFFF;
-  }
+::-webkit-scrollbar-thumb {
+  background-color: #ffffff;
+}
 
-  ::-webkit-scrollbar-track {
-    // -webkit-box-shadow: inset 0 0 1px #FFFFFF(0, 0, 0, 0.1);
-    background-color: transparent;
-  }
+::-webkit-scrollbar-track {
+  // -webkit-box-shadow: inset 0 0 1px #FFFFFF(0, 0, 0, 0.1);
+  background-color: transparent;
+}
 .card_flex {
-    // display: flex;
-    width: 100%;
-    flex-wrap: wrap;
-    position: relative;
-    top: 30px;
-    left: 5px;
+  // display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  position: relative;
+  top: 30px;
+  left: 5px;
 }
 
 .listcard {
-    background: #FFFFFF 0% 0% no-repeat padding-box;
+  background: #ffffff 0% 0% no-repeat padding-box;
+  border: 1px solid #70707033;
+  border-radius: 10px;
+  opacity: 1;
+  margin: 10px;
+  box-shadow: none;
+
+  .card_header {
+    display: flex;
+    position: relative;
+    right: 30px;
+    .comp-image {
+        display: -webkit-inline-box;
+        display: -ms-inline-flexbox;
+        display: inline-flex;
+        height: 37px;
+        width: 80px;
+        justify-content: center;
+        align-items: center;
+        margin: 0px 4px 0 4px;
+        border-radius: 4px;
+        /* border: 1px solid; */
+        border: 1px solid #70707066;
+        overflow: hidden;
+        .img {
+       width: 100%;
+          }
+      }
+
+
+
+    .cardgrid {
+      position: relative;
+      display: grid !important;
+      left: 15px;
+      top: 2px;
+
+      .title {
+        text-align: left;
+        font-size: 14px;
+        font-weight: bold;
+        letter-spacing: 0px;
+        line-height: 1.2;
+        color: #000000;
+        opacity: 1;
+      }
+
+      .subtitle {
+        text-align: left;
+        font: normal normal normal 12px/15px lato;
+        letter-spacing: 0px;
+        color: #70707099;
+        opacity: 1;
+      }
+    }
+  }
+
+  .saved {
+    text-align: center;
+    font-size: 12px;
+    min-width: 70px;
+    height: 35px;
+    font-weight: 400;
+    letter-spacing: 0px;
+    color: #ffffff;
+    opacity: 1;
+    background: #26bbef 0% 0% no-repeat padding-box;
+    border-radius: 5px;
+    opacity: 1;
+    border: 1px solid #26bbef;
+  }
+
+  .isDisabled {
+    opacity: 0.5;
+  }
+
+  .hrline {
+    background: #ffffff 0% 0% no-repeat padding-box;
     border: 1px solid #70707033;
     border-radius: 10px;
     opacity: 1;
-    margin: 10px;
-    box-shadow: none;
-
-    .card_header {
-        display: flex;
-        position: relative;
-        right: 30px;
-
-        .img {
-            height: 48px;
-            width: 48px;
-            padding: 3px;
-            // border: 1px solid #70707033;
-            border-radius: 10px;
-            opacity: 1;
-        }
-
-        .cardgrid {
-            position: relative;
-            display: grid !important;
-            left: 15px;
-            top: 2px;
-
-            .title {
-                text-align: left;
-                font: normal normal bold 14px/19px Roboto;
-                letter-spacing: 0px;
-                line-height: 1.2;
-                color: #000000;
-                opacity: 1;
-            }
-
-            .subtitle {
-                text-align: left;
-                font: normal normal normal 12px/15px Roboto;
-                letter-spacing: 0px;
-                color: #70707099;
-                opacity: 1;
-            }
-        }
-    }
-
-    .saved {
-        text-align: center;
-        font-size: 12px;
-        min-width: 70px;
-        height: 35px;
-        font-weight: 400;
-        letter-spacing: 0px;
-        color: #FFFFFF;
-        opacity: 1;
-        background: #26BBEF 0% 0% no-repeat padding-box;
-        border-radius: 5px;
-        opacity: 1;
-        border: 1px solid #26BBEF;
-    }
-
-    .isDisabled {
-        opacity: 0.5;
-    }
-
-    .hrline {
-        background: #FFFFFF 0% 0% no-repeat padding-box;
-        border: 1px solid #70707033;
-        border-radius: 10px;
-        opacity: 1;
-    }
-
-    .description-p {
-        font: normal normal normal 14px/19px Roboto;
-        letter-spacing: 0px;
-        color: #707070;
-        opacity: 1;
-    }
-
-    .specialization {
-        margin-top: 20px;
-        display: flex;
-
-        .specialization-box {
-            background: rgba(122, 203, 232, 0.22);
-            color: #00b5f5;
-            width: max-content;
-            font-weight: 600;
-            border: 1px solid rgba(255, 255, 255, 0.53);
-            margin: 0px 1px;
-            border-radius: 3px;
-            padding: 4px;
-            font-size: 10px;
-        }
-    }
-
-    .footer_details {
-        display: flex;
-        flex-wrap: wrap;
-        margin-top: 7px;
-
-        span {
-            font-size: 12px;
-            color: #a39d9d;
-            margin: 0px 4px;
-        }
-
-        .cardfooter_row {
-            display: flex;
-            margin: 0px 4px;
-        }
-
-        .icon {
-            font-size: 12px;
-            margin-top: 6px;
-            height: auto;
-            width: auto;
-            color: #8C8C8C;
-        }
-
-        .smalltext {
-            font-size: 11px;
-            color: #707070;
-            margin: 10px 0px;
-        }
-    }
-
-    .misc_save {
-        float: right;
-        margin-top: -30px;
-
-  .mat-icon {
-    color: #26BBEF;
   }
 
-  .unsaved_icon,
-  .saved_icon {
-    font-size: 22px !important;
-    cursor: pointer;
-    margin-top: 4px;
+  .description-p {
+    font: normal normal normal 14px/19px lato;
+    letter-spacing: 0px;
+    color: #707070;
+    opacity: 1;
   }
 
-  .unsaved_icon {
-    color: #ababab;
+  .specialization {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+
+    .specialization-box {
+      background: #c7c7c70d 0% 0% no-repeat padding-box;
+      border: 1px solid #70707080;
+      border-radius: 3px;
+      opacity: 1;
+      /* background: rgba(122, 203, 232, 0.22); */
+      /* color: #00b5f5; */
+      width: max-content;
+      font-weight: 600;
+      /* border: 1px solid rgba(255, 255, 255, 0.53); */
+      color: #707070;
+      margin: 3px;
+      border-radius: 3px;
+      padding: 4px;
+      font-size: 10px;
+    }
   }
+
+  .footer_details {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 7px;
+
+    span {
+      font-size: 12px;
+      color: #a39d9d;
+      margin: 0px 4px;
     }
 
+    .cardfooter_row {
+      display: flex;
+      margin: 0px 4px;
+    }
+
+    .icon {
+      font-size: 12px;
+      margin-top: 6px;
+      height: auto;
+      width: auto;
+      color: #8c8c8c;
+    }
+
+    .smalltext {
+      font-size: 11px;
+      color: #707070;
+      margin: 10px 0px;
+    }
+  }
+
+  .misc_save {
+    float: right;
+    margin-top: -30px;
+
+    .mat-icon {
+      color: #26bbef;
+    }
+
+    .unsaved_icon,
+    .saved_icon {
+      font-size: 22px !important;
+      cursor: pointer;
+      margin-top: 4px;
+    }
+
+    .unsaved_icon {
+      color: #ababab;
+    }
+  }
 }
 
-.pagination{
-    display: flex;
-    justify-content: space-around;
+.pagination {
+  display: flex;
+  justify-content: space-around;
 }

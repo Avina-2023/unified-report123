@@ -14,13 +14,14 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./login-page.component.scss']
 })
 export class LoginPageComponent  {
-
+  checkRouter: string;
   loginForm: FormGroup;
   hide = true;
   show = false;
   disableButton: boolean;
   userIP: any;
   isCandidate:boolean = true;
+  labelname:any;
 
   @ViewChild('mailsuccess', { static: false }) mailsuccess: TemplateRef<any>;
   @ViewChild('notactive', { static: false }) notactive: TemplateRef<any>;
@@ -39,8 +40,10 @@ export class LoginPageComponent  {
     this.activatedRoute.queryParams.subscribe(params => {
       if(params.from == 'freshGrad'){
         this.isCandidate = true;
+        this.labelname = 'Email'
       }else{
         this.isCandidate = false;
+        this.labelname = 'User ID'
       }
     })
   }
@@ -79,6 +82,7 @@ export class LoginPageComponent  {
         this.appConfig.setLocalStorage('email', data && data.data.email ? data.data.email : '');
         this.appConfig.setLocalStorage('name',data && data.data.personal_details?data.data.personal_details.name:'N/A')
         this.appConfig.setLocalStorage('profileImage',data && data.data.personal_details?data.data.personal_details.profileImage:'')
+        this.appConfig.setLocalStorage('candidateProfile',data && data.data?JSON.stringify(data.data):'')
         this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.CANDIDATEDASH.DASHBOARD);
       }else{
         // this.appConfig.setLocalStorage('c_token', data && data.token ? data.token : 'my token');
@@ -104,7 +108,6 @@ export class LoginPageComponent  {
             this.appConfig.setLocalStorage('firstName',response.data && response.data.attributes  ? response.data.attributes.firstName : '');
             this.appConfig.setLocalStorage('profileCompletion',response.data && response.data.attributes && response.data.attributes.profileCompletion  ? response.data.attributes.profileCompletion : '');
             this.disableButton = false;
-            console.log(response.data.attributes.oldAdmin)
             if(response.data.attributes.oldAdmin == true){
           this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.REPORTS.DASHBOARD);
             }

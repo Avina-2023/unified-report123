@@ -16,6 +16,12 @@
 	flex-direction: column;
 	height: 100%;
 
+	.heightDivOld {
+		flex-grow: 1;
+		height: 100%;
+		overflow: auto;
+	}
+
 	.heightDiv {
 		flex-grow: 1;
 		height: 85%;
@@ -67,6 +73,10 @@
 	// cursor: pointer;
 	display: flex;
 	align-items: center;
+}
+.header-toolbar{
+	display: flex !important;
+    justify-content: space-between !important;
 }
 
 .logout1 {
@@ -234,7 +244,7 @@
 					height: 50px;
 					width: 195px;
 					font-size: 14px;
-					font-weight: 200;
+					font-weight: normal;
 					padding: 5px 10px;
 					color: #828282;
 
@@ -266,6 +276,7 @@
 	.select_options li.select_option.dropdownic.ng-star-inserted:first-child label {
 		box-shadow: 0px 0px 6px 0px #bbbbbb;
 		border-radius: 5px 5px 0px 0px;
+		font-weight: normal;
 	}
 }
 
@@ -352,7 +363,7 @@ li {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	color: #000;
-	font-weight: 200;
+	font-weight: normal;
 }
 
 .topborder {

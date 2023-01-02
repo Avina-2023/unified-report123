@@ -21,7 +21,7 @@
                                     <ng-container>
                                     <ng-template *ngFor="let hiringImg of HiringPartners" class="imageWrapper" carouselSlide>
                                         <figure >
-                                            <img [src]="hiringImg" alt="" />
+                                            <img [src]="hiringImg.url" alt="" />
                                         </figure>
                                 </ng-template>
                                 </ng-container>
@@ -39,7 +39,7 @@
                                         <ng-template class="imageWrapper"  *ngFor="let ecosystemPartners of EcosystemPartners" carouselSlide>
                                             <figure class="secondSlide">
                                               
-                                                <img [src]="ecosystemPartners" alt="" />
+                                                <img [src]="ecosystemPartners.url" alt="" />
                                             </figure>
                                         </ng-template>
                                     </ng-container>
@@ -55,7 +55,7 @@
                                     <ng-container>
                                         <ng-template  *ngFor="let institutionalPartners of InstitutionalPartners" class="imageWrapper" carouselSlide>
                                             <figure>
-                                                <img [src]="institutionalPartners" alt="" />
+                                                <img [src]="institutionalPartners.url" alt="" />
                                             </figure>
                                         </ng-template>
                                     </ng-container>
@@ -79,7 +79,7 @@
                                     <ng-container>
                                         <ng-template *ngFor="let hiringImg of HiringPartners" class="imageWrapper" carouselSlide>
                                             <figure >
-                                                <img [src]="hiringImg" alt="" />
+                                                <img [src]="hiringImg.url" alt="" />
                                             </figure>
                                     </ng-template>
                                     </ng-container>
@@ -97,7 +97,7 @@
                                         <ng-template class="imageWrapper"  *ngFor="let ecosystemPartners of EcosystemPartners" carouselSlide>
                                             <figure>
                                               
-                                                <img [src]="ecosystemPartners" alt="" />
+                                                <img [src]="ecosystemPartners.url" alt="" />
                                             </figure>
                                         </ng-template>
                                     </ng-container>
@@ -113,7 +113,7 @@
                                     <ng-container>
                                         <ng-template  *ngFor="let institutionalPartners of InstitutionalPartners" class="imageWrapper" carouselSlide>
                                             <figure>
-                                                <img [src]="institutionalPartners" alt="" />
+                                                <img [src]="institutionalPartners.url" alt="" />
                                             </figure>
                                         </ng-template>
                                     </ng-container>

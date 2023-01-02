@@ -55,6 +55,7 @@ export class candidateRegister implements OnInit {
         this.newCandidate = true
         this.registerform = false
         this.msg = res.message
+        this.freshGraduatesForm.reset();
         this.openMatDialogs(this.matDialogRef)
       } else {
         this.msg = res.message
@@ -63,6 +64,7 @@ export class candidateRegister implements OnInit {
         if(this.msg=="Activation link is already sent to your email!"){
           this.openMatDialogs(this.notactive)
         }else{
+          this.freshGraduatesForm.reset();
           this.toastr.error(this.msg);
         }
         // let currentUrl = this.router.url;

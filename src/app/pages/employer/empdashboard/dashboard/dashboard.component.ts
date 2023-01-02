@@ -5,6 +5,8 @@ import { ToastrService } from 'ngx-toastr';
 import { ApiService } from 'src/app/services/api.service';
 import { APP_CONSTANTS } from 'src/app/utils/app-constants.service';
 import {AppConfigService} from 'src/app/utils/app-config.service'
+import { environment } from 'src/environments/environment';
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -18,7 +20,7 @@ export class DashboardComponent implements OnInit {
   username:any;
   profileCompletion:any;
   labels:any;
-color:any;
+  color:any;
   graduactionData:any
   disciplineData:any
   degreeData:any
@@ -38,9 +40,8 @@ color:any;
     this.roles = this.appConfig.getLocalStorage('role') ? this.appConfig.getLocalStorage('role') : '';
     this.orgdetails = JSON.parse(this.roles);
     this.roleCode = this.orgdetails && this.orgdetails[0].roles && this.orgdetails[0].roles[0].roleCode;
-    this.username = localStorage.getItem('firstName')
-    this.profileCompletion = localStorage.getItem('profileCompletion')
     this.getEmpDashBoard()
+    this.getEmployerDetails()
   }
   profile(){
 
@@ -136,7 +137,7 @@ public options: ChartOptions = {
               if(result.success){
                 this.dashBoardDetails=result.data
                 this.graduactionData=this.dashBoardDetails[0].levelDetails
-                this.disciplineData=this.dashBoardDetails[0].disciplineDetails
+                this.disciplineData=this.dashBoardDetails[0].disciplineDetails.sort((a, b) => b.y - a.y).slice(0,15)
                 this.degreeData=this.dashBoardDetails[0].specializationDetails
                 this.demography = this.dashBoardDetails[0].stateDetails;
 
@@ -154,6 +155,24 @@ public options: ChartOptions = {
                 this.toaster.error(result.message)
               }
         })
+  }
+
+  getEmployerDetails() {
+    var obj = {
+      userId: this.apiService.encryptnew(
+        localStorage.getItem('email'),
+        environment.cryptoEncryptionKey
+      ),
+    };
+    this.apiService.getEmployerDetails(obj).subscribe((result: any) => {
+      if (result.success) {
+        console.log(result)
+        this.username = result.data.firstName;
+        this.profileCompletion = result.data.profileCompletion;
+      } else {
+        console.log("failed to load employer details")
+      }
+    })
   }
 
 

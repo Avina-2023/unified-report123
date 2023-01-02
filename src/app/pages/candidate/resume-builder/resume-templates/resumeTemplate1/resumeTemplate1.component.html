@@ -1,0 +1,162 @@
+<section id="inner_template" #inner_template>
+  <div class="user_intro">
+    <div class="first-div"><img class="profileimg"
+        [src]='profileImage!=""?profileImage:"assets/images/candidate-userprofile.png"'></div>
+    <div class="second-div last">
+      <div class="inner_spacing">
+        <p class="username_title">{{username}}</p>
+        <div *ngIf="this.candidate.education_details?.educations&&this.candidate.education_details.educations.length">
+          <p  *ngIf="this.candidate.education_details?.educations[0]?.specification?.length" class="username_subtitle">{{this.candidate.education_details.educations[0].specification}}
+           <span *ngIf="this.candidate.education_details.educations[0].discipline.length">({{this.candidate.education_details.educations[0].discipline}})</span></p>
+        </div>
+        <p class="user_addres">
+          {{candidate.contact_details.permanent_line1_street_add}}<br>{{candidate.contact_details.permanent_line2_street_add}}
+        </p>
+        <p class="user_phone">{{candidate.personal_details.mobile}}</p>
+        <p class="user_email">{{candidate.email}}</p>
+      </div>
+    </div>
+  </div>
+  <div class="user_intro topic" *ngIf="this.candidate.education_details?.educations?.length">
+    <div class="first-div">
+      <p class="res_icon"></p>
+      <p class="res_title">Education</p>
+    </div>
+    <div class="second-div education cv_spacing last">
+      <div class="flex_spacing" *ngFor="let item of this.candidate.education_details.educations; let i=index;">
+        <div id="year">{{item.year_of_passing | date:'yyyy'}}</div>
+        <div class="dot-line"><span class="dot"></span><span class="line"></span></div>
+        <div class="course">
+          <p class="cv_title">{{item.level}} - <span>{{item.percentage}}%</span></p>
+          <p class="cv_subtitle"
+            *ngIf="(this.candidate.education_details.educations[i].level != 'HSC') && (this.candidate.education_details.educations[i].level != 'SSLC')">
+            <strong>({{item.specification}} , {{item.discipline}})</strong>
+          </p>
+          <p class="cv_subtitle">{{item.institute}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="user_intro topic" *ngIf="this.candidate.experience_details?.skills?.length">
+    <div class="first-div">
+      <p class="res_icon"></p>
+      <p class="res_title">Skills</p>
+    </div>
+    <div class="second-div skillset cv_spacing last">
+      <div *ngFor="let item of candidate.experience_details.skills;let i=index;">
+        <button class="skillbutton">{{item}}</button>
+      </div>
+    </div>
+  </div>
+  <div class="user_intro topic" *ngFor="let item of candidate.experience_details.intern;let i=index; let lindex=last">
+    <div class="first-div" *ngIf="this.candidate.experience_details?.intern?.length && i==0">
+      <p class="res_icon"></p>
+      <p class="res_title">Training Details</p>
+    </div>
+    <div class="first-div" *ngIf="this.candidate.experience_details?.intern?.length && i!=0">
+      <p class=""></p>
+      <p class="res_title"></p>
+    </div>
+    <div class="second-div training" [ngClass]="{ 'last' : lindex }"
+      *ngIf="this.candidate.experience_details?.intern?.length">
+      <div class="inner_spacing">
+        <div class="skills">
+          <p class="cv_title">{{item.employer_name}}</p>
+          <p class="cv_subtitle">({{datediff(item.from_date,item.to_date)}})</p>
+          <p class="cv_subtitle">{{item.work_responsiability}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="user_intro topic"
+    *ngFor="let item of candidate.experience_details.employments;let i=index; let lindex=last">
+    <div class="first-div" *ngIf="this.candidate.experience_details?.employments?.length && i==0">
+      <p class="res_icon"></p>
+      <p class="res_title">Work Experience</p>
+    </div>
+    <div class="first-div" *ngIf="this.candidate.experience_details?.employments?.length && i!=0">
+      <p></p>
+      <p class="res_title"></p>
+    </div>
+    <div class="second-div work" [ngClass]="{ 'last' : lindex }"
+      *ngIf="this.candidate.experience_details?.employments?.length">
+      <div class="inner_spacing">
+        <div>
+          <p class="cv_title">{{item.employment_name_address}}</p>
+          <p class="cv_subtitle">{{item.postion_field}}<br><span class="cv_subtitle">({{item.duration_year}} year
+              {{item.duration_month}} months)</span></p>
+
+          <p class="cv_subtitle">{{item.nature_work}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- <div class="user_intro topic">
+    <div class="first-div">
+      <p class="res_icon"></p>
+      <p class="res_title">Projects</p>
+    </div>
+    <div class="second-div Project cv_spacing">
+      <p class="cv_title">Name of the Project</p>
+      <p class="cv_subtitle">Project Description Loreum street, Ipsum PlaceLoreum street, Ipsum PlaceLoreum street,
+        Ipsum PlaceLoreum street, Ipsum PlaceLoreum street, Ipsum PlaceLoreum street, Ipsum Place</p>
+    </div>
+  </div>
+
+  <div class="user_intro topic">
+    <div class="first-div">
+      <p class="res_icon"></p>
+      <p class="res_title">Certifications</p>
+    </div>
+    <div class="second-div certification cv_spacing">
+      <div>
+        <p class="cv_title">Name of the Certification</p>
+        <p class="cv_subtitle">Project Description Loreum street, Ipsum PlaceLoreum street, Ipsum PlaceLoreum street,
+          Ipsum PlaceLoreum street, Ipsum PlaceLoreum street, Ipsum PlaceLoreum street, Ipsum Place</p>
+      </div>
+      <div>
+        <p class="cv_title">Name of the Certification</p>
+        <p class="cv_subtitle">Project Description Loreum street, Ipsum PlaceLoreum street, Ipsum PlaceLoreum street,
+          Ipsum PlaceLoreum street, Ipsum PlaceLoreum street, Ipsum PlaceLoreum street, Ipsum Place</p>
+      </div>
+    </div>
+  </div> -->
+
+  <div class="user_intro topic" *ngIf="this.candidate.personal_details?.languages_known?.length">
+    <div class="first-div">
+      <p class="res_icon"></p>
+      <p class="res_title">Languages <br> Known</p>
+    </div>
+    <div class="second-div languages cv_spacing last">
+      <table>
+        <tr>
+          <th></th>
+          <th class="cv_title">Read</th>
+          <th class="cv_title">Write</th>
+          <th class="cv_title">Speak</th>
+        </tr>
+        <tr *ngFor="let item of candidate.personal_details.languages_known; let i=index;">
+          <td class="cv_title">{{item.language}}</td>
+          <td class="lang"><span
+              [ngClass]="{ 'icon-check-rounded': item.is_read == 1, 'icon-close-rounded': item.is_read == 0}"></span>
+          </td>
+          <td class="lang"><span
+              [ngClass]="{ 'icon-check-rounded': item.is_write == 1, 'icon-close-rounded': item.is_write == 0}"></span>
+          </td>
+          <td class="lang"><span
+              [ngClass]="{ 'icon-check-rounded': item.is_speak == 1, 'icon-close-rounded': item.is_speak == 0}"></span>
+          </td>
+
+        </tr>
+      </table>
+    </div>
+
+  </div>
+
+  
+</section>

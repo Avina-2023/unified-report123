@@ -11,7 +11,7 @@
          <div class="JT-left">
             <div class='compTitle'><strong>{{jobDetails.jobRole}}</strong></div>
             <div class='genTitle'>{{jobDetails.company}}</div>
-            <div class="genText">
+            <div class="genText1">
                <mat-icon class="misc_icon"> location_on</mat-icon>
                <div class="locate" *ngFor="let item of jobDetails.jobLocation;let i=index; let isLast=last">{{item}}<span class="misc_col" *ngIf="!isLast && i < jobDetails.jobLocation.length">&nbsp;</span> </div>
             </div>
@@ -83,7 +83,7 @@
             </div>
             <div class="job_options">
                <div class="genText" *ngFor="let content of jobDetails.specialization">
-                  <button>{{content}}</button>
+                  <button class="specialization-box">{{content}}</button>
                </div>
             </div>
          </div>
@@ -110,7 +110,7 @@
             </div>
             <div class="job_options">
                <div class="genText" *ngFor="let content of jobDetails.skillSet">
-                  <button>{{content}}</button>
+                  <button class="specialization-box">{{content}}</button>
                </div>
             </div>
          </div>
@@ -134,7 +134,7 @@
       <div class="closer"><mat-icon mat-dialog-close>close</mat-icon></div>
       <div><img width="100px" src="/assets/images/alert-image.png"></div>
       <div class="message">Please complete your profile to apply for Jobs</div>
-      <div class="link" (click)="gotopage('profile')">Go to profile</div>
+      <div class="link" (click)="gotopage()">Go to profile</div>
    </div>
 </ng-template>
 
@@ -143,7 +143,7 @@
      <div class="closer"><mat-icon mat-dialog-close>close</mat-icon></div>
      <div><img width="100px" src="/assets/images/alert-image.png"></div>
      <div class="message">You're not eligible to apply for this job.</div>
-     <div class="">Please check the eligibility criteria</div>
+     <div style="margin-top:10px">Please check the eligibility criteria</div>
   </div>
 </ng-template>
 
