@@ -43,10 +43,12 @@
                     -webkit-border-radius: 50%;
                 }
             }
-
+            .last {
+                border-bottom: 2px solid #d3d3d35c;
+            }
             .second-div {
                 width: 70%;
-                border-bottom: 2px solid #d3d3d35c;
+                // border-bottom: 2px solid #d3d3d35c;
                 padding: 10px 0px;
 
                 .username_title {
@@ -72,6 +74,9 @@
                     font-size: 18px;
                     font-weight: 500;
                 }
+            }
+            .second-div :last-child{
+                
             }
 
         }
@@ -108,7 +113,7 @@
             }
 
             .cv_spacing {
-                padding: 25px 0px !important;
+                padding: 15px 0px !important;
             }
 
             .education {
@@ -193,10 +198,10 @@
             .training,
             .work {
                 div {
-                    padding: 10px 0px;
+                    //padding: 10px 0px;
                 }
             }
-
+            
             .languages {
 
                 table{
@@ -254,6 +259,7 @@
                 margin-top: -6%;
             }
         }
+  
     }
 
 
