@@ -18,7 +18,7 @@ export class BajajViewReportComponent implements OnInit, AfterViewInit, OnDestro
   getAllBasicData: any;
   emailId: any;
   highestEducation: any;
-  
+  skillSelected=0;
   BARvalue = [
     {
       score: '1',
@@ -69,15 +69,10 @@ export class BajajViewReportComponent implements OnInit, AfterViewInit, OnDestro
   continouslyValueSix :boolean = false;
   continouslyValueSeven :boolean = false;
   continouslyValueNine :boolean = false;
-  reportSnaphot = [
-    { heading:"CONTINUOUSLY RAISE THE BAR",score:"2",points:"Tend to avoid challenging situations. Comes up with an efficient solution. Has a fixed mind-set."},
-    { heading:"ENSURE RESULTS WITH SPEED",score:"5",points:"Tend to avoid challenging situations. Comes up with an efficient solution. Has a fixed mind-set."},
-    { heading:"CUSTOMER ORIENTATION",score:"9",points:"Tend to avoid challenging situations. Comes up with an efficient solution. Has a fixed mind-set."},
-  ]
   benchMarkScore = [
-    {score:"1-2-3",label:"DEVELOPMENT SCOPE",color:"red"},
-    {score:"4-5-6-7",label:"LESS INCLINED",color:"orange"},
-    {score:"8-9-10",label:"MORE INCLINED",color:"green"},
+    {score:"1-2-3",label:"LOW",color:"red"},
+    {score:"4-5-6-7",label:"AVERAGE",color:"orange"},
+    {score:"8-9-10",label:"HIGH",color:"green"},
   ];
   bgColorInput:string = '#85BD44';
   doughnutValue:number = 4;
@@ -129,7 +124,10 @@ export class BajajViewReportComponent implements OnInit, AfterViewInit, OnDestro
       }
     });
   }
-
+  skillChange(index){
+    this.skillSelected=index;
+    console.log( this.skillSelected)
+  }
   
   tabChanged(event) {
     this.tabIndex = event.index;
@@ -156,10 +154,11 @@ export class BajajViewReportComponent implements OnInit, AfterViewInit, OnDestro
 
   getBehaviouralReportData(data) {
       const apiData = {
-        email: data
+        email: data,
+        reportId : "R2"
       };
     this.emailId= data;
-     this.getBajaBehaviourReportAPISubscription = this.ApiService.getBajajBehaviourReport(apiData).subscribe((response: any) => {
+     this.getBajaBehaviourReportAPISubscription = this.ApiService.getBehaviourReport(apiData).subscribe((response: any) => {
       if (response && response.success && response.data) {
           this.apiSuccess = true;
           this.getAllBehaviourData = response.data.data ? response.data.data : null;

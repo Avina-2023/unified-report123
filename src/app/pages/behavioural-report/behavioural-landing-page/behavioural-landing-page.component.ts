@@ -94,7 +94,8 @@ export class BehaviouralLandingPageComponent implements OnInit, AfterViewInit, O
 
   getBehaviouralReportData(data) {
       const apiData = {
-        email: data
+        email: data,
+        reportId:"R1"
       };
     this.emailId= data;
      this.getBehaviourReportAPISubscription = this.ApiService.getBehaviourReport(apiData).subscribe((response: any) => {

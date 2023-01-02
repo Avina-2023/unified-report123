@@ -9,7 +9,8 @@
         <!-- first as isFirst -->
         <ng-container *ngIf="assessmentsList && assessmentsList.length > 0">
             <ng-container *ngFor="let assessment of assessmentsList;let i = index;">
-                <mat-expansion-panel [expanded]="true" *ngIf="assessment && assessment.testname">
+                {{assessment.reportId}}hiii
+                <mat-expansion-panel [expanded]="true" *ngIf="assessment && assessment.testname && assessment.reportId!= 'R2' ">
                     <!-- hideToggle -->
                     <mat-expansion-panel-header>
                         <div class="expandheaderArea">
@@ -69,16 +70,12 @@
                             <!-- </div> -->
                         </div>
                     </mat-expansion-panel-header>
-
-
-
-
-                    <div class="expandContentArea">
+                    <div class="expandContentArea" >
                         <div class="">
                             <app-behavioural-competency-areas [getAllReportsData]="getAllReportsData"></app-behavioural-competency-areas>
                         </div>
                     </div>
-
+                   
                     <!-- <div class="expandContentArea">
                         <div class="ContentInfoDetails">
                             <div> -->
@@ -109,25 +106,7 @@
                         </div> -->
                     <!-- </div> -->
                 </mat-expansion-panel>
-            </ng-container>
-        </ng-container>
-    </div>
-    <div class="clearfix"></div>
-</section>
-
-
-<section class="bajajAssessmentArea">
-    <!-- <div class="assessmentHeaderinfo" *ngIf="assessmentsList && assessmentsList[0].testname.length > 0">
-        <div class="heading6">Behavioural Personal Profile
-            <span (click)="downloadreport(true)" class="view-report pl-1">Download report</span>
-        </div>
-    </div> -->
-
-    <div class="assessmentInfoarea">
-        <!-- first as isFirst -->
-        <ng-container *ngIf="assessmentsList && assessmentsList.length > 0">
-            <ng-container *ngFor="let assessment of assessmentsList;let i = index;">
-                <mat-expansion-panel [expanded]="true" *ngIf="assessment && assessment.testname">
+                <mat-expansion-panel [expanded]="true" *ngIf="assessment && assessment.testname && assessment.reportId== 'R2' ">
                     <!-- hideToggle -->
                     <mat-expansion-panel-header>
                         <div class="expandheaderArea">
@@ -148,15 +127,7 @@
                                 </a>
                                 </span>
                                 </span>
-                                <!-- </div> -->
-                                <!-- <em class="icon-Booked"></em>
-                                <span>Test Taken on:
-                                  <span>{{
-                                      assessment.testdate
-                                      ? momentForm(assessment.testdate)
-                                      : "-"
-                                      }}</span>
-                                </span> -->
+                               
                             </div>
                             <div class="width-150">
                                 <div class="primaryInfo">
@@ -167,71 +138,25 @@
                                         <span style="font-size: 1em;display: contents;">{{assessment.completionstatus ? "Complete" : "Not Taken"}}</span></span>
                                     </span>
                                 </div>
-                                <!-- <em class="icon-SpeedoMeter"></em>
-                                <span>Total Score:
-                                  <span class="color-black">{{ assessment.score ? assessment.score : 0
-                                      }}/{{ assessment.maxscore ? assessment.maxscore : 0 }}</span>
-                                </span> -->
+                               
                             </div>
-                            <!-- <div class="width-168"> -->
-                            <!-- <em class="icon-Like"></em> -->
-                            <!-- <span>Rating:
-                                  <span [ngClass]="{
-                    warningColor: assessment.percentageScore < 40,
-                    WarnColor:
-                      assessment.percentageScore >= 40 &&
-                      assessment.percentageScore < 80,
-                    successColor: assessment.percentageScore >= 80
-                  }">{{ getCredibility(assessment.percentageScore) }}</span>
-                                </span> -->
-                            <!-- </div> -->
+                           
                         </div>
                     </mat-expansion-panel-header>
-
-
-
-
                     <div class="expandContentArea">
                         <div class="">
                             <app-bajaj-behavioural-competency-area [getAllReportsData]="getAllReportsData"></app-bajaj-behavioural-competency-area>
                         </div>
                     </div>
-
-                    <!-- <div class="expandContentArea">
-                        <div class="ContentInfoDetails">
-                            <div> -->
-                    <!-- Test Time
-                                <span>{{ assessment.testtime ? assessment.testtime : 0 }}<span>Mins</span></span> -->
-                    <!-- </div>
-                            <div> -->
-                    <!-- Test Taken
-                                <span>{{ getTimetaken(assessment.timetaken)}}</span>
-                                <span>{{TimeTakenMins != undefined ? TimeTakenMins : '0' }}<span>Mins</span> {{timeTakenSec != undefined ? timeTakenSec : '0' }}<span>sec</span></span> -->
-                    <!-- </div> -->
-                    <!-- <div>
-                              Marks Scored
-                              <span>{{ assessment.score
-                }}<span></span></span>
-                          </div> -->
-                    <!-- <div>
-                                Proctoring
-                                <span>{{ assessment.proctored ? "Yes" : "No"
-                                  }}<span *ngIf="assessment.proctored" class="warningColor pointer" (click)="open(assessment)">View Details</span></span>
-                            </div> -->
-                    <!-- <div class="primaryInfo">
-                                Completion
-                                <span [ngClass]="{ warningColor: assessment.completionstatus == false, successColor: assessment.completionstatus == true
-                              }"><em class="icon-{{assessment.completionstatus ? 'checked' : 'uncheck'}}"></em>
-                                  <span>{{assessment.completionstatus ? "Completed" : "Not Completed"}}</span></span>
-                            </div>
-                        </div> -->
-                    <!-- </div> -->
                 </mat-expansion-panel>
             </ng-container>
         </ng-container>
     </div>
     <div class="clearfix"></div>
 </section>
+
+
+
 
 <ng-template #matDialog1>
     <div class="progressText">
