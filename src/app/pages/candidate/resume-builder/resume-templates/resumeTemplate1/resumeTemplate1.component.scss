@@ -1,266 +1,269 @@
+#inner_template {
+    background: #fff;
+    // margin: 20px 80px 20px 80px;
+    //padding: 20px;
+    border-radius: 10px;
 
 
-    #inner_template {
-        background: #fff;
-       // margin: 20px 80px 20px 80px;
-        //padding: 20px;
-        border-radius: 10px;
+    .inner_spacing {
+        left: 3%;
+        position: relative;
+    }
+
+    .user_intro {
+        display: flex;
+        width: 100%;
+        align-items: center;
+        color: #000;
+
+        .dot {
+            height: 10px;
+            width: 10px;
+            background-color: #6c6b6b;
+            border-radius: 50%;
+            display: inline-block;
+        }
 
 
-        .inner_spacing {
-            left: 3%;
+
+        .first-div {
+            width: 30%;
+
+            img {
+                width: 200px;
+            }
+
+            .profileimg {
+                width: 180px !important;
+                height: 180px;
+                margin-left: 30px !important;
+                margin: 10px;
+                border-radius: 50%;
+                -webkit-border-radius: 50%;
+            }
+        }
+
+        .last {
+            border-bottom: 2px solid #d3d3d35c;
+        }
+
+        .second-div {
+            width: 70%;
+            // border-bottom: 2px solid #d3d3d35c;
+            padding: 10px 0px;
+
+            .username_title {
+                font-size: 40px;
+                font-weight: 600;
+            }
+
+            .username_subtitle {
+                font-size: 15px;
+                font-weight: 500;
+            }
+
+            .user_addres {
+                font-weight: 400 !important;
+                font-size: 19px;
+                line-height: 26px;
+                opacity: 1;
+                width: 100%;
+                text-transform: capitalize;
+            }
+
+            .user_phone,
+            .user_email {
+                color: #1B4E9B;
+                font-size: 18px;
+                font-weight: 500;
+            }
+        }
+
+        .second-div :last-child {}
+
+    }
+
+    .topic {
+
+        .first-div {
+            left: 4%;
             position: relative;
         }
 
-        .user_intro {
-            display: flex;
-            width: 100%;
-            align-items: center;
-            color: #000;
-
-            .dot {
-                height: 10px;
-                width: 10px;
-                background-color: #6c6b6b;
-                border-radius: 50%;
-                display: inline-block;
-            }
-
-
-
-            .first-div {
-                width: 30%;
-
-                img {
-                    width: 200px;
-                }
-                .profileimg{
-                    width: 180px !important;
-                    height: 180px;
-                    margin-left: 30px !important;
-                    margin: 10px;
-                    border-radius: 50%;
-                    -webkit-border-radius: 50%;
-                }
-            }
-            .last {
-                border-bottom: 2px solid #d3d3d35c;
-            }
-            .second-div {
-                width: 70%;
-                // border-bottom: 2px solid #d3d3d35c;
-                padding: 10px 0px;
-
-                .username_title {
-                    font-size: 40px;
-                    font-weight: 600;
-                }
-
-                .username_subtitle {
-                    font-size: 15px;
-                    font-weight: 500;
-                }
-
-                .user_addres {
-                    font-weight: 400;
-                    font-size: 19px;
-                    line-height: 26px;
-                    width: 30%;
-                }
-
-                .user_phone,
-                .user_email {
-                    color: #1B4E9B;
-                    font-size: 18px;
-                    font-weight: 500;
-                }
-            }
-            .second-div :last-child{
-                
-            }
-
+        .res_title {
+            font-size: 26px;
+            font-weight: 800;
+            line-height: 30px;
+            max-width: 80%;
         }
 
-        .topic {
+        .res_icon {
+            border: 1px solid #707070;
+            width: 10%;
+            position: relative;
+        }
 
-            .first-div {
-                left: 4%;
-                position: relative;
-            }
+        .cv_title {
+            font-size: 20px;
+            font-weight: 600;
+            line-height: 28px;
+        }
 
-            .res_title {
-                font-size: 26px;
-                font-weight: 800;
-                line-height: 30px;
-                max-width: 80%;
-            }
+        .cv_subtitle {
+            font-size: 17px;
+            line-height: 25px;
+        }
 
-            .res_icon {
-                border: 1px solid #707070;
-                width: 10%;
-                position: relative;
-            }
+        .cv_spacing {
+            padding: 15px 0px !important;
+        }
 
-            .cv_title {
-                font-size: 20px;
-                font-weight: 600;
-                line-height: 28px;
-            }
-
-            .cv_subtitle {
-                font-size: 17px;
-                line-height: 25px;
-            }
-
-            .cv_spacing {
-                padding: 15px 0px !important;
-            }
-
-            .education {
-                .flex_spacing {
-                    display: flex;
-                    align-items: baseline;
-                    width: 75% !important;
-                    position: relative !important;
-                    border: none !important;
-                    padding-bottom: 10px;
-
-                    div {
-                        border: none !important;
-                        padding: 0px 20px;
-                    }
-
-                    div:nth-child(1) {
-                        font-size: 18px;
-                        font-weight: bold;
-                    }
-
-                    .dot-line {
-                        span {
-                            display: block !important;
-                        }
-
-                        .dot {
-                            width: 14px;
-                            height: 14px;
-                        }
-
-                        .line {
-                            height: 100%;
-                            position: absolute;
-                            border-left: 2px solid gray;
-                            margin-left: 6px;
-                        }
-                    }
-
-                }
-
-                .flex_spacing:last-child {
-                    .line {
-                        border: none !important;
-                    }
-                }
-            }
-
-            .skillset {
+        .education {
+            .flex_spacing {
                 display: flex;
-                flex-wrap: wrap;
+                align-items: baseline;
+                width: 75% !important;
+                position: relative !important;
+                border: none !important;
+                padding-bottom: 10px;
 
                 div {
-                    margin: 5px 2px;
+                    border: none !important;
+                    padding: 0px 20px;
                 }
 
-                button {
-                    color: #fff;
-                    border: 6px solid #5c5c5c;
-                    background: #5c5c5c;
-                    padding: 0px 23px 2px 23px;
-                    margin: 0px 10px;
-                    border-radius: 26px;
-                    font: -webkit-control;
-                    font-family: 'Lato';
+                div:nth-child(1) {
                     font-size: 18px;
-                    font-weight: 300;
+                    font-weight: bold;
                 }
-                .skillbutton{
-                    cursor: auto;
+
+                .dot-line {
+                    span {
+                        display: block !important;
+                    }
+
+                    .dot {
+                        width: 14px;
+                        height: 14px;
+                    }
+
+                    .line {
+                        height: 100%;
+                        position: absolute;
+                        border-left: 2px solid gray;
+                        margin-left: 6px;
+                    }
                 }
+
             }
 
-            .project {
-                div {
-                    width: 75% !important;
-                    left: 0%;
+            .flex_spacing:last-child {
+                .line {
+                    border: none !important;
                 }
             }
+        }
 
-            .certification,
-            .training,
-            .work {
-                div {
-                    //padding: 10px 0px;
-                }
+        .skillset {
+            display: flex;
+            flex-wrap: wrap;
+
+            div {
+                margin: 5px 2px;
             }
-            
-            .languages {
 
-                table{
-                    position: relative;
-                    right: 1.5%;
-                }
+            button {
+                color: #fff;
+                border: 6px solid #5c5c5c;
+                background: #5c5c5c;
+                padding: 0px 23px 2px 23px;
+                margin: 0px 10px;
+                border-radius: 26px;
+                font: -webkit-control;
+                font-family: 'Lato';
+                font-size: 18px;
+                font-weight: 300;
+            }
 
-                td,
+            .skillbutton {
+                cursor: auto;
+            }
+        }
+
+        .project {
+            div {
+                width: 75% !important;
+                left: 0%;
+            }
+        }
+
+        .certification,
+        .training,
+        .work {
+            div {
+                //padding: 10px 0px;
+            }
+        }
+
+        .languages {
+
+            table {
+                position: relative;
+                right: 1.5%;
+            }
+
+            td,
+            th {
+                text-align: left;
+                padding: 15px 40px;
+            }
+
+            @media only screen and (min-width: 740px) and (max-width: 780px) {
                 th {
-                    text-align: left;
-                    padding: 15px 40px;
-                }
-                
-                @media only screen and (min-width: 740px) and (max-width: 780px) {
-                    th {
-                        padding: 15px 30px;
-                    }
-                }
-
-                .lang {
-                    text-align: center;
-
-                    span {
-                        color: grey;
-                        border: 1px solid grey;
-                        border-radius: 99px;
-                        padding: 1px;
-                        font-size: 22px;
-                    }
+                    padding: 15px 30px;
                 }
             }
 
-            .hobbies {
-                .hoby {
-                    display: flex;
-                    align-items: center;
+            .lang {
+                text-align: center;
 
-                    span {
-                        margin: 0px 5px;
-                    }
+                span {
+                    color: grey;
+                    //border: 1px solid grey;
+                    border-radius: 99px;
+                    padding: 1px;
+                    font-size: 22px;
                 }
             }
-
         }
 
+        .hobbies {
+            .hoby {
+                display: flex;
+                align-items: center;
 
-        @media only screen and (max-width: 600px) {
-            .username_subtitle {
-                margin-top: -5%;
-            }
-            .user_addres, .user_phone {
-                margin-top: -3%;
-            }
-            .user_email {
-                margin-top: -6%;
+                span {
+                    margin: 0px 5px;
+                }
             }
         }
-  
+
     }
 
 
-    
+    @media only screen and (max-width: 600px) {
+       /* .username_subtitle {
+            margin-top: -5%;
+        }
+
+        .user_addres,
+        .user_phone {
+            margin-top: -3%;
+        }
+
+        .user_email {
+            margin-top: -6%;
+        }*/
+    }
+
+}

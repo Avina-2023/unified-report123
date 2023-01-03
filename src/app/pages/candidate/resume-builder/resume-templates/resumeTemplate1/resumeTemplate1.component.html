@@ -10,7 +10,13 @@
            <span *ngIf="this.candidate.education_details.educations[0].discipline.length">({{this.candidate.education_details.educations[0].discipline}})</span></p>
         </div>
         <p class="user_addres">
-          {{candidate.contact_details.permanent_line1_street_add}}<br>{{candidate.contact_details.permanent_line2_street_add}}
+          <span *ngIf="candidate.contact_details?.permanent_line1_street_add">{{candidate.contact_details.permanent_line1_street_add}}<br></span>
+          <span *ngIf="candidate.contact_details?.permanent_line2_street_add">{{candidate.contact_details.permanent_line2_street_add}}<br></span>
+          <span *ngIf="candidate.contact_details?.permanent_address_line_3">{{candidate.contact_details.permanent_address_line_3}}<br></span>
+          <span *ngIf="candidate.contact_details?.permanent_city">{{candidate.contact_details.permanent_city}}</span>
+          <span *ngIf="candidate.contact_details?.permanent_state"> , {{candidate.contact_details.permanent_state}}</span> 
+          <span *ngIf="candidate.contact_details?.permanent_zip"> - {{candidate.contact_details.permanent_zip}}</span>
+
         </p>
         <p class="user_phone">{{candidate.personal_details.mobile}}</p>
         <p class="user_email">{{candidate.email}}</p>
