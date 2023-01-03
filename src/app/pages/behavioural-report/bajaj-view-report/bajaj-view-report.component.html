@@ -1,523 +1,521 @@
 <div class="bodyWrapper">
-    <section id="top" class="bannerSection">
-        <div class="content">
-            <div class="innerContainer">
-                <h2>Behavioural <br />Personal Profile</h2>
-                <div class="h4">FOR BAJAJ AUTO</div>
+  <section id="top" class="bannerSection">
+    <div class="content">
+      <div class="innerContainer">
+        <h2>Behavioural <br />Personal Profile</h2>
+        <div class="h4">FOR BAJAJ AUTO</div>
+      </div>
+    </div>
+  </section>
+  <!-- <button class="download" (click)="downloadreport(true)"><img src="/assets/images/download.svg" alt="Download" /> Download Report</button> -->
+  <ng-container *ngIf="apiSuccess else nodata">
+    <!-- Profile -->
+    <section class="profile">
+      <div class="containerWrapper">
+        <div class="innerContainer">
+          <div class="profileWrapper d-flex justify-content-between">
+            <div class="profImage d-flex">
+              <figure class="positionProfile">
+                <img
+                  [src]="getAllBasicData && getAllBasicData.profileImage ? getAllBasicData.profileImage : '/assets/images/Avatar.svg'"
+                  alt="" />
+              </figure>
+              <div class="emptyClass"></div>
+              <div class="profContent">
+                <div class="heading3">{{getAllBasicData?.firstname ? getAllBasicData?.firstname : ''}}
+                </div>
+                <div>
+                  <span class="prof"><img src="/assets/images/email.svg" alt="Email" /> {{emailId ?
+                    emailId : 'Nil'}}</span>
+                </div>
+                <div>
+                  <span class="prof"><img src="/assets/images/maleFemale.svg" alt="Gender" />
+                    {{getAllBasicData?.gender ? getAllBasicData?.gender : 'Nil'}}</span>
+                </div>
+                <div>
+                  <span class="prof"><img src="/assets/images/university.svg" alt="University" />
+                    {{highestEducation?.institute ? highestEducation?.institute : 'Nil'}}</span>
+                </div>
+              </div>
             </div>
+            <div class="profDetails">
+              <span>Test Completion Date: {{getAllBasicData && getAllBasicData.testDate ?
+                momentForm(getAllBasicData?.testDate) : 'Nil'}}</span>
+
+              <button [disabled]="true" class="download" (click)="downloadreport(true)"> <em class="icon-Download"></em> Download Report </button>
+            </div>
+          </div>
+
         </div>
+      </div>
     </section>
-    <!-- <button class="download" (click)="downloadreport(true)"><img src="/assets/images/download.svg" alt="Download" /> Download Report</button> -->
-    <ng-container *ngIf="apiSuccess else nodata">
-        <!-- Profile -->
-        <section class="profile">
-            <div class="containerWrapper">
-                <div class="innerContainer">
-                    <div class="profileWrapper d-flex justify-content-between">
-                        <div class="profImage d-flex">
-                            <figure class="positionProfile">
-                                <img [src]="getAllBasicData && getAllBasicData.profileImage ? getAllBasicData.profileImage : '/assets/images/Avatar.svg'"
-                                    alt="" />
-                            </figure>
-                            <div class="emptyClass"></div>
-                            <div class="profContent">
-                                <div class="heading3">{{getAllBasicData?.firstname ? getAllBasicData?.firstname : ''}}
-                                </div>
-                                <div>
-                                    <span class="prof"><img src="/assets/images/email.svg" alt="Email" /> {{emailId ?
-                                        emailId : 'Nil'}}</span>
-                                </div>
-                                <div>
-                                    <span class="prof"><img src="/assets/images/maleFemale.svg" alt="Gender" />
-                                        {{getAllBasicData?.gender ? getAllBasicData?.gender : 'Nil'}}</span>
-                                </div>
-                                <div>
-                                    <span class="prof"><img src="/assets/images/university.svg" alt="University" />
-                                        {{highestEducation?.institute ? highestEducation?.institute : 'Nil'}}</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="profDetails">
-                            <span>Test Completion Date: {{getAllBasicData && getAllBasicData.testDate ?
-                                momentForm(getAllBasicData?.testDate) : 'Nil'}}</span>
 
-                            <button class="download" (click)="downloadreport(true)"><img
-                                    src="/assets/images/download.svg" alt="Download" /> Download Report</button>
-                        </div>
-                    </div>
-
-                </div>
+    <!-- Introduction -->
+    <section class="introduction">
+      <ng-container *ngIf="getAllBehaviourData && getAllBehaviourData.introduction">
+        <div class="containerWrapper">
+          <div class="innerContainer">
+            <div class="introductionWrapper">
+              <div class="heading2">Introduction</div>
+              <p *ngFor="let introPara of getAllBehaviourData.introduction">{{introPara}}</p>
             </div>
-        </section>
-
-        <!-- Introduction -->
-        <section class="introduction">
-            <ng-container *ngIf="getAllBehaviourData && getAllBehaviourData.introduction">
-                <div class="containerWrapper">
-                    <div class="innerContainer">
-                        <div class="introductionWrapper">
-                            <div class="heading2">Introduction</div>
-                            <p *ngFor="let introPara of getAllBehaviourData.introduction">{{introPara}}</p>
-                        </div>
-                    </div>
-                </div>
-            </ng-container>
-        </section>
-
-        <!-- Four Factors -->
-        <section class="fourFactors">
-            <div class="containerWrapper">
-                <div class="heading2">The Three Factors</div>
-                <div *ngIf="getAllBehaviourData && getAllBehaviourData.factors"
-                    class="factors d-flex justify-content-evenly  flex-wrap">
-                    <div class="threeFcontent">
-                        <div class="p">
-                            This report outlines the 3 Bajaj Auto Behavioural Competencies, each of the competency looks at 3 to 4 behavioural facets which are unique on its own, hence looking at a total of 11 behavioural facets.
-                    </div>
-                </div>
-                    <div class="factor" *ngFor="let factor of getAllBehaviourData.factors">
-                        <div class="flipCard">
-                            <div class="frontSide">
-                                <figure>
-                                    <img [src]="factor?.imageurl" alt="" />
-                                </figure>
-                                <div class="heading4">{{factor?.name}}</div>
-                                <p>{{factor?.description}}</p>
-                                <span class="readMore">Read More...</span>
-                            </div>
-                            <div class="backSide">
-                                <div class="heading4">{{factor?.name}}</div>
-                                <p>{{factor?.description}}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Report Snapshot -->
-        <ng-container *ngIf="getAllBehaviourData && getAllBehaviourData.reportSnapShot">
-            <section class="snapshot">
-                <div class="containerWrapper">
-                    <div class="innerContainer">
-                        <div class="heading2">Report Snapshot</div>
-                        <ng-container
-                            *ngIf="getAllBehaviourData.reportSnapShot.competency && getAllBehaviourData.reportSnapShot.competency.length > 0"></ng-container>
-                        <ng-container
-                            *ngFor="let competency of getAllBehaviourData.reportSnapShot.competency; let c = index">
-                            <div class="report-snapshot-content">
-                                <div class="report-imageContent">
-                                    <figure class="report-image">
-                                        <img class="img" [src]="competency.colourimageurl" alt="" />
-                                    </figure>
-                                    <div class="report-snapshot-content-right">
-                                        <div class="heading">{{competency?.name}}</div>
-                                        <ng-container>
-                                            <ng-container>
-                                                <div>
-                                                    <div class="bar">
-                                                        <div class="red-bar">
-                                                            <div class="red-box"></div>
-                                                            <div class="pointer-container">
-                                                                <div class="pointer-container-">
-                                                                    <div class="box-red arrow-top"
-                                                                        *ngIf="competency.stenScore==1">
-                                                                        <div class="barNo">1</div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="pointer-container-2">
-                                                                    <div class="box-red arrow-top"
-                                                                        *ngIf="competency.stenScore==2">
-                                                                        <div class="barNo">2</div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="pointer-container-2">
-                                                                    <div class="box-red arrow-top"
-                                                                        *ngIf="competency.stenScore==3">
-                                                                        <div class="barNo">3</div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="orange-bar">
-                                                            <div class="orange-box"></div>
-
-                                                            <div class="pointer-container">
-                                                                <div class="pointer-container-orange">
-                                                                    <div class="box-orange arrow-top"
-                                                                        *ngIf="competency.stenScore==4">
-                                                                        <div class="barNo">4</div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="pointer-container-orange">
-                                                                    <div class="box-orange arrow-top"
-                                                                        *ngIf="competency.stenScore==5">
-                                                                        <div class="barNo">5</div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="pointer-container-orange">
-                                                                    <div class="box-orange arrow-top"
-                                                                        *ngIf="competency.stenScore==6">
-                                                                        <div class="barNo">6</div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="pointer-container-orange">
-                                                                    <div class="box-orange arrow-top"
-                                                                        *ngIf="competency.stenScore==7">
-                                                                        <div class="barNo">7</div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="green-bar">
-                                                            <div class="green-box"></div>
-                                                            <div class="pointer-container">
-                                                                <div class="pointer-container-green-1">
-                                                                    <div class="box-green arrow-top"
-                                                                        *ngIf="competency.stenScore==8">
-                                                                        <div class="barNo">8</div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="pointer-container-green-2">
-                                                                    <div class="box-green arrow-top"
-                                                                        *ngIf="competency.stenScore==9">
-                                                                        <div class="barNo">9</div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="pointer-container-green-3">
-                                                                    <div class="box-green arrow-top"
-                                                                        *ngIf="competency.stenScore==10">
-                                                                        <div class="barNo">10</div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </ng-container>
-                                        </ng-container>
-                                        <div class="snapshot-point">
-                                            <div class="snapshot-point-red">
-                                                <ul class="bullet"
-                                                    *ngFor="let dContent of competency.developmentContent">
-                                                    <li>{{dContent.item}}</li>
-
-                                                </ul>
-                                            </div>
-                                            <div class="snapshot-point-green">
-                                                <ul class="bullet" *ngFor="let sContent of competency.strengthContent">
-                                                    <li>{{sContent.item}}</li>
-
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </ng-container>
-                    </div>
-                    <div class="benchmarkInfo">
-                        <figure class="chart">
-                            <img class="chart-img" src="/assets/images/bajajBenchmarkInfo.png" alt="">
-                        </figure>
-                        <div class="score">
-                            <div class="heading5">SCORE BENCHMARK INFO</div>
-                            <div class="wrapper">
-                                <ng-container *ngFor="let score of benchMarkScore">
-                                    <div class="score-content"
-                                        [ngClass]="{'red':score.color == 'red', 'green': score.color == 'green', 'yellow':score.color == 'yellow' ,'orange':score.color == 'orange'}">
-                                        <div class="scorepoint">{{score.score}}</div>
-                                        <div class="scorelabel">{{score.label}}</div>
-                                    </div>
-                                </ng-container>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- <div class="bencmark-info">
-                        <button (click)="openBenchmarkInfo(benchmarkInfo)">
-                            <img src="/assets/images/path.svg" alt="Score Benchmark Info">
-                            <span>Score Benchmark Info</span>
-                        </button>
-                    </div> -->
-                </div>
-            </section>
-        </ng-container>
-        <!--benchmark-->
-
-        <!-- Snapshot tabs -->
-
-
-        <ng-container
-            *ngIf="getAllBehaviourData && getAllBehaviourData.reportSnapShot && getAllBehaviourData.reportSnapShot.competency">
-            <section class="snapshotTabs">
-                <div class="containerWrapper">
-                    <mat-tab-group  (selectedTabChange)="tabChanged($event)">
-                        <ng-container
-                            *ngFor="let factors of getAllBehaviourData.reportSnapShot.competency; let factorIndex = index">
-                            <mat-tab>
-                                <ng-template mat-tab-label>
-                                    <div class="factorimgcontainer">
-                                        <img [src]="factors?.colourimageurl" alt="THOUGHT">
-                                        <span>{{factors?.name}}</span>
-                                    </div>
-                                </ng-template>
-                                <ng-container *ngIf="tabIndex == 0 || true">
-                                    <div class="snapshotContent">
-                                        <!-- <span class="heading5">{{factors.glimpse}}</span> -->
-                                        <ul *ngIf="factors?.skills && factors.skills.length > 0">
-                                            <li *ngFor="let skills of factors.skills; let skillIndex = index"><img
-                                                    src="/assets/images/rightArrow.svg" alt="" />
-                                                <span (click)="skillChange(skillIndex)" [ngClass]="skillIndex==skillSelected?'selcolor':'nooo'" >{{skills.name}}</span>
-                                            </li>
-                                        </ul>
-                                        <div class="skillSelectedBorder">
-                                            <div class="border"></div>
-                                        </div>
-                                        <ng-container *ngIf="factors?.skills && factors.skills.length > 0 ">
-                                            <ng-container
-                                                *ngFor="let skillsDetail of factors.skills; let skillDetailIndex = index">
-                                                <div *ngIf="skillDetailIndex == skillSelected" class="tab-list">
-                                                    <div class="tab-list-head">
-                                                        <figure class="skillsDetail-img"><img
-                                                                [src]="skillsDetail?.imageurl" alt="" /></figure>
-                                                        <div class=" tab-list-name-container">
-                                                            <span class="tab-list-name">{{skillsDetail?.name}}</span>
-                                                        </div>
-                                                        <div class="right">
-                                                            <app-bajaj-report-canvas
-                                                                [bgColor]="skillsDetail?.colourcode"
-                                                                [score]="skillsDetail?.stenScore ? skillsDetail?.stenScore : 0">
-                                                            </app-bajaj-report-canvas>
-                                                        </div>
-                                                    </div>
-                                                    <div class="scorebasedSkillDescription">
-                                                        {{skillsDetail?.skillDescription ?
-                                                        skillsDetail?.skillDescription : '-'}}</div>
-                                                    <div class="point">
-                                                        <div class="snapshot-point">
-                                                            <div class="snapshot-point-red"
-                                                                [ngStyle]="{'border-left': '7px solid' + skillsDetail?.colourcode}">
-                                                                <div class="Name">
-                                                                    <div class="name">INTERPRETATION</div>
-                                                                </div>
-                                                                <ul class="bullet">
-                                                                    <li>{{skillsDetail?.scorebasedSkillDescription ?
-                                                                        skillsDetail?.scorebasedSkillDescription: '-' }}
-                                                                    </li>
-
-                                                                </ul>
-                                                            </div>
-                                                            <div class="snapshot-point-red">
-                                                                <div class="Name">
-                                                                    <div class="name">DEVELOPMENT SCOPE</div>
-                                                                </div>
-                                                                <ul class="bullet"
-                                                                    *ngFor=" let dev of skillsDetail.developmentScope">
-                                                                    <li>{{dev?.item ? dev?.item: 'No Recommendations' }}
-                                                                    </li>
-
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <!-- <div class="right">
-                                                        <app-behavioural-report-canvas [bgColor]="factors?.colourcode" [score]="skillsDetail?.stenScore ? skillsDetail?.stenScore : 0"></app-behavioural-report-canvas>
-                                                    </div> -->
-                                                </div>
-                                            </ng-container>
-                                        </ng-container>
-                                    </div>
-                                </ng-container>
-                            </mat-tab>
-                        </ng-container>
-                    </mat-tab-group>
-
-                </div>
-            </section>
-        </ng-container>
-
-        <!-- Interview -->
-        <section class="interview" *ngIf="isaccess">
-            <div class="overlay"></div>
-            <div class="containerWrapper">
-                <div class="innerContainer">
-                    <div class="interviewWrapper">
-                        <div *ngIf="getAllBehaviourData?.conclusion" class="heading2">
-                            {{getAllBehaviourData?.conclusion?.topicName}}</div>
-                        <p class="subpara" *ngIf="getAllBehaviourData?.conclusion">
-                            {{getAllBehaviourData?.conclusion?.description}}</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-
-        <div class="interviewQuestions" *ngIf="getAllBehaviourData && getAllBehaviourData.skillwiseQuestionDetails">
-            <div class="interviewQuestionContent"
-                *ngFor="let skillwiseQuestionDetail of getAllBehaviourData.skillwiseQuestionDetails">
-                <div class="skillName">
-                    <div class="skillNameText">{{skillwiseQuestionDetail?.name}}</div>
-                </div>
-                <div class="questions">
-                    <ng-container *ngIf="skillwiseQuestionDetail && skillwiseQuestionDetail.questions">
-                        <ul>
-                            <li *ngFor="let question of skillwiseQuestionDetail.questions">{{question?.item}}</li>
-                        </ul>
-                    </ng-container>
-                </div>
-                <div class="questionBorder">
-                    <div class="Border"></div>
-                </div>
-            </div>
+          </div>
         </div>
-        <footer class="Footer">
-            <div class="container">
-                <div class="footer">
-                    <div class="f-heading1">
-                        <div>
-                            <div class="h4">L&T EduTech</div>
-                        </div>
-                        <div class="list">
-                            <div class="Text">
-                                <div class="text">Home</div>
-                            </div>
-                            <div class="Text">
-                                <div class="text">About</div>
-                            </div>
-                            <div class="Text">
-                                <div class="text">Contact</div>
-                            </div>
-                            <div class="Text">
-                                <div class="text">Terms of use</div>
-                            </div>
-                            <div class="Text">
-                                <div class="text">Larsen & Toubro(coporate)</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="f-heading2">
-                        <div>
-                            <div class="h4">Offerings</div>
-                        </div>
-                        <div class="list">
-                            <div class="Text">
-                                <div class="text">CollegeConnect</div>
-                            </div>
-                            <div class="Text">
-                                <div class="text">Vocational Skilling</div>
-                            </div>
-                            <div class="Text">
-                                <div class="text">Professional Certification</div>
-                            </div>
-                            <div class="Text">
-                                <div class="text">Assessments</div>
-                            </div>
+      </ng-container>
+    </section>
 
-                        </div>
-                    </div>
-                    <div class="f-heading3">
-                        <div>
-                            <div class="h4">Find Us</div>
-                        </div>
-                        <div class="list">
-                            <div class="Text">
-                                <div class="text">We are always pleased to serve you, come share your experiences with
-                                    us.
-                                </div>
-                            </div>
-                            <div class="Text">
-                                <div class="text">Mt. Poonamallee Road, Manapakkam, Chennai - 600089</div>
-                                <div class="text"> +91-44-22526000 / 22528000</div>
-                                <div class="text"> info@lntedutech.com</div>
-                            </div>
-                            <div class="findus">
-                                <div class="img"><img src="/assets/images/FindUs.png"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="app">
-                        <div class="appIcon">
-                            <div class="iconImg">
-                                <img src="/assets/images/appIcon.png">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="footerEnd">
-                    <div class="footerBorder"></div>
-                    <div class="copyrights">
-                        <div class="Text">
-                            <div class="text">© 2021 L&T Edutech. All rights reserved</div>
-                        </div>
-                        <div class="TextL">
-                            <div class="text">Terms of Services | Privacy Notice | Cookies</div>
-                        </div>
-                    </div>
-                </div>
+    <!-- Four Factors -->
+    <section class="fourFactors">
+      <div class="containerWrapper">
+        <div class="heading2">The Three Factors</div>
+        <div *ngIf="getAllBehaviourData && getAllBehaviourData.factors"
+          class="factors d-flex justify-content-evenly  flex-wrap">
+          <div class="threeFcontent">
+            <div class="p"> {{getAllBehaviourData.overalldescription}} </div>
+          </div>
+          <div class="factor" *ngFor="let factor of getAllBehaviourData.factors">
+            <div class="flipCard">
+              <div class="frontSide">
+                <figure>
+                  <img [src]="factor?.imageurl" alt="" />
+                </figure>
+                <div class="heading4">{{factor?.name}}</div>
+                <p>{{factor?.description}}</p>
+                <span class="readMore">Read More...</span>
+              </div>
+              <div class="backSide">
+                <div class="heading4">{{factor?.name}}</div>
+                <p>{{factor?.description}}</p>
+              </div>
             </div>
-        </footer>
-    </ng-container>
-</div>
-<ng-template #noStrength>
-    <div class="noData">
-        No Suggestions on Strength Areas.
-    </div>
-</ng-template>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<ng-template #noImprovements>
-    <div class="noData">
-        No Suggestions on Area of Development.
-    </div>
-</ng-template>
+    <!-- Report Snapshot -->
+    <ng-container *ngIf="getAllBehaviourData && getAllBehaviourData.reportSnapShot">
+      <section class="snapshot">
+        <div class="containerWrapper">
+          <div class="innerContainer">
+            <div class="heading2">Report Snapshot</div>
+            <ng-container
+              *ngIf="getAllBehaviourData.reportSnapShot.competency && getAllBehaviourData.reportSnapShot.competency.length > 0"></ng-container>
+            <ng-container *ngFor="let competency of getAllBehaviourData.reportSnapShot.competency; let c = index">
+              <div class="report-snapshot-content">
+                <div class="report-imageContent">
+                  <figure class="report-image">
+                    <img class="img" [src]="competency.colourimageurl" alt="" />
+                  </figure>
+                  <div class="report-snapshot-content-right">
+                    <div class="heading">{{competency?.name}}</div>
+                    <ng-container>
+                      <ng-container>
+                        <div>
+                          <div class="bar">
+                            <div class="red-bar">
+                              <div class="red-box"></div>
+                              <div class="boxC">
+                                <span class="N4">1</span>
+                                <div class="pointer-container">
+                                  <div class="pointer-container-">
+                                    <div class="box-red arrow-top" *ngIf="competency.stenScore==1">
+                                      <div class="barNo">1</div>
+                                    </div>
+                                  </div>
+                                  <div class="pointer-container-2">
+                                    <div class="box-red arrow-top" *ngIf="competency.stenScore==2" >
+                                      <div class="barNo">2</div>
+                                    </div>
+                                  </div>
+                                  <div class="pointer-container-2">
+                                    <div class="box-red arrow-top" *ngIf="competency.stenScore==3">
+                                      <div class="barNo">3</div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="orange-bar">
 
-<ng-template #nodata>
-    <div class="errorCard">
-        No Data Available...
-    </div>
-</ng-template>
-<ng-template #benchmarkInfo>
-    <div class="benchmarkInfo">
-        <em [mat-dialog-close]="true" class="icon-Close"></em>
-        <div class="heading5">SCORE BENCHMARK INFO</div>
-        <figure class="chart">
-            <img src="/assets/images/bajajBenchmarkInfo.png" alt="">
-        </figure>
-        <div class="score d-flex justify-content-between align-items-center flex-wrap">
-            <ng-container *ngFor="let score of benchMarkScore">
-                <div class="score-content"
+                              <div class="orange-box"></div>
+                              <div class="boxC">
+                                <span class="N4">4</span>
+                                <div class="pointer-container">
+                                  <div class="pointer-container-orange">
+                                    <div class="box-orange arrow-top" *ngIf="competency.stenScore==4">
+                                      <div class="barNo">4</div>
+                                    </div>
+                                  </div>
+                                  <div class="pointer-container-orange">
+                                    <div class="box-orange arrow-top" *ngIf="competency.stenScore==5">
+                                      <div class="barNo">5</div>
+                                    </div>
+                                  </div>
+                                  <div class="pointer-container-orange">
+                                    <div class="box-orange arrow-top" *ngIf="competency.stenScore==6">
+                                      <div class="barNo">6</div>
+                                    </div>
+                                  </div>
+
+                                </div>
+                              </div>
+                            </div>
+                            <div class="green-bar">
+                              <div class="green-box"></div>
+                              <div class="n-last">
+                                <span class="N4">7</span>
+                                <span class="N10">10</span>
+                              </div>
+
+                              <div class="pointer-container">
+                                <div class="pointer-container-green">
+                                  <div class="box-green arrow-top" *ngIf="competency.stenScore==7">
+                                    <div class="barNo">7</div>
+                                  </div>
+                                </div>
+                                <div class="pointer-container-green-1" *ngIf="competency.stenScore==8">
+                                  <div class="box-green arrow-top" >
+                                    <div class="barNo">8</div>
+                                  </div>
+                                </div>
+                                <div class="pointer-container-green-2" *ngIf="competency.stenScore==9">
+                                  <div class="box-green arrow-top" >
+                                    <div class="barNo">9</div>
+                                  </div>
+                                </div>
+
+                                <div class="pointer-container-green-3">
+                                  <div class="box-green arrow-top" *ngIf="competency.stenScore==10">
+                                    <div class="barNo">10</div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </ng-container>
+                    </ng-container>
+                    <div class="snapshot-point">
+                      <div class="snapshot-point-red">
+                        <ul class="bullet" *ngFor="let dContent of competency.developmentContent">
+                          <li>{{dContent.item}}</li>
+
+                        </ul>
+                      </div>
+                      <div class="snapshot-point-green">
+                        <ul class="bullet" *ngFor="let sContent of competency.strengthContent">
+                          <li>{{sContent.item}}</li>
+
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+          </div>
+          <div class="benchmarkInfo">
+            <figure class="chart">
+              <img class="chart-img" src="/assets/images/scoreInfo.svg" alt="">
+            </figure>
+            <div class="score">
+              <div class="heading5">SCORE BENCHMARK INFO</div>
+              <div class="wrapper">
+                <ng-container *ngFor="let score of benchMarkScore">
+                  <div class="score-content"
                     [ngClass]="{'red':score.color == 'red', 'green': score.color == 'green', 'yellow':score.color == 'yellow' ,'orange':score.color == 'orange'}">
                     <div class="scorepoint">{{score.score}}</div>
                     <div class="scorelabel">{{score.label}}</div>
-                </div>
-            </ng-container>
+                  </div>
+                </ng-container>
+              </div>
+            </div>
+          </div>
         </div>
-        <figure class="growth">
-            <img src="/assets/images/growth.svg" alt="">
-        </figure>
+      </section>
+    </ng-container>
+    <!--benchmark-->
+
+    <!-- Snapshot tabs -->
+
+
+    <ng-container
+      *ngIf="getAllBehaviourData && getAllBehaviourData.reportSnapShot && getAllBehaviourData.reportSnapShot.competency">
+      <section class="snapshotTabs">
+        <div class="containerWrapper">
+          <mat-tab-group (selectedTabChange)="tabChanged($event)">
+            <ng-container
+              *ngFor="let factors of getAllBehaviourData.reportSnapShot.competency; let factorIndex = index">
+              <mat-tab>
+                <ng-template mat-tab-label>
+                  <div class="factorimgcontainer">
+                    <img [src]="factors?.colourimageurl" alt="THOUGHT">
+                    <span>{{factors?.name}}</span>
+                  </div>
+                </ng-template>
+                <ng-container *ngIf="tabIndex == 0 || true">
+                  <div class="snapshotContent">
+                    <!-- <span class="heading5">{{factors.glimpse}}</span> -->
+                    <ul *ngIf="factors?.skills && factors.skills.length > 0">
+                      <li *ngFor="let skills of factors.skills; let skillIndex = index">
+
+                        <span (click)="skillChange(skillIndex)" [ngClass]="skillIndex==skillSelected?'selcolor':'nooo'">
+                          <span>
+                            <img
+                              [src]='skillIndex==skillSelected?"/assets/images/blueArrow.svg":"/assets/images/rightArrow.svg"'
+                              alt="" />
+                          </span>{{skills.name}}</span>
+                      </li>
+                    </ul>
+                    <div class="skillSelectedBorder">
+                      <div class="border"></div>
+                    </div>
+                    <ng-container *ngIf="factors?.skills && factors.skills.length > 0 ">
+                      <ng-container *ngFor="let skillsDetail of factors.skills; let skillDetailIndex = index">
+                        <div *ngIf="skillDetailIndex == skillSelected" class="tab-list">
+                          <div class="tab-list-head">
+                            <figure class="skillsDetail-img"><img [src]="skillsDetail?.imageurl" alt="" /></figure>
+                            <div class=" tab-list-name-container">
+                              <span class="tab-list-name">{{skillsDetail?.name}}</span>
+                            </div>
+                            <div class="right">
+                              <app-bajaj-report-canvas [bgColor]="skillsDetail?.colourcode"
+                                [score]="skillsDetail?.stenScore ? skillsDetail?.stenScore : 0">
+                              </app-bajaj-report-canvas>
+                            </div>
+                          </div>
+                          <div class="scorebasedSkillDescription">
+                            {{skillsDetail?.skillDescription ?
+                            skillsDetail?.skillDescription : '-'}}</div>
+                          <div class="point">
+                            <div class="snapshot-point">
+                              <div class="snapshot-point-red"
+                                [ngStyle]="{'border-left': '7px solid' + skillsDetail?.colourcode}">
+                                <div class="Name">
+                                  <div class="name">INTERPRETATION</div>
+                                </div>
+                                <ul class="bullet">
+                                  <li>{{skillsDetail?.scorebasedSkillDescription ?
+                                    skillsDetail?.scorebasedSkillDescription: '-' }}
+                                  </li>
+
+                                </ul>
+                              </div>
+                              <div class="snapshot-point-red">
+                                <div class="Name">
+                                  <div class="name">DEVELOPMENT SCOPE</div>
+                                </div>
+                                <div class="bullet" *ngIf="skillsDetail.developmentScope.length">
+                                  <ul *ngFor=" let dev of skillsDetail.developmentScope">
+                                    <li>{{ dev?.item }}
+                                    </li>
+                                  </ul>
+                                </div>
+                                <ul class="bullet" *ngIf="!skillsDetail.developmentScope.length">
+                                  <li> No Recommendations</li>
+                                </ul>
+                              </div>
+                            </div>
+                          </div>
+                          <!-- <div class="right">
+                                                        <app-behavioural-report-canvas [bgColor]="factors?.colourcode" [score]="skillsDetail?.stenScore ? skillsDetail?.stenScore : 0"></app-behavioural-report-canvas>
+                                                    </div> -->
+                        </div>
+                      </ng-container>
+                    </ng-container>
+                  </div>
+                </ng-container>
+              </mat-tab>
+            </ng-container>
+          </mat-tab-group>
+
+        </div>
+      </section>
+    </ng-container>
+
+    <!-- Interview -->
+    <section class="interview" *ngIf="isaccess">
+      <div class="overlay"></div>
+      <div class="containerWrapper">
+        <div class="innerContainer">
+          <div class="interviewWrapper">
+            <div *ngIf="getAllBehaviourData?.conclusion" class="heading2">
+              {{getAllBehaviourData?.conclusion?.topicName}}</div>
+            <p class="subpara" *ngIf="getAllBehaviourData?.conclusion">
+              {{getAllBehaviourData?.conclusion?.description}}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <div class="interviewQuestions" *ngIf="getAllBehaviourData && getAllBehaviourData.skillwiseQuestionDetails">
+      <div class="interviewQuestionContent"
+        *ngFor="let skillwiseQuestionDetail of getAllBehaviourData.skillwiseQuestionDetails">
+        <div class="skillName">
+          <div class="skillNameText">{{skillwiseQuestionDetail?.name}}</div>
+        </div>
+        <div class="questions">
+          <ng-container *ngIf="skillwiseQuestionDetail && skillwiseQuestionDetail.questions">
+            <ul>
+              <li *ngFor="let question of skillwiseQuestionDetail.questions">{{question?.item}}</li>
+            </ul>
+          </ng-container>
+        </div>
+        <div class="questionBorder">
+          <div class="Border"></div>
+        </div>
+      </div>
     </div>
+    <footer class="Footer">
+      <div class="container">
+        <div class="footer">
+          <div class="f-heading1">
+            <div>
+              <div class="h4">L&T EduTech</div>
+            </div>
+            <div class="list">
+              <div class="Text">
+                <div class="text">Home</div>
+              </div>
+              <div class="Text">
+                <div class="text">About</div>
+              </div>
+              <div class="Text">
+                <div class="text">Contact</div>
+              </div>
+              <div class="Text">
+                <div class="text">Terms of use</div>
+              </div>
+              <div class="Text">
+                <div class="text">Larsen & Toubro(coporate)</div>
+              </div>
+            </div>
+          </div>
+          <div class="f-heading2">
+            <div>
+              <div class="h4">Offerings</div>
+            </div>
+            <div class="list">
+              <div class="Text">
+                <div class="text">CollegeConnect</div>
+              </div>
+              <div class="Text">
+                <div class="text">Vocational Skilling</div>
+              </div>
+              <div class="Text">
+                <div class="text">Professional Certification</div>
+              </div>
+              <div class="Text">
+                <div class="text">Assessments</div>
+              </div>
+
+            </div>
+          </div>
+          <div class="f-heading3">
+            <div>
+              <div class="h4">Find Us</div>
+            </div>
+            <div class="list">
+              <div class="Text">
+                <div class="text">We are always pleased to serve you, come share your experiences with
+                  us.
+                </div>
+              </div>
+              <div class="Text">
+                <div class="text">Mt. Poonamallee Road, Manapakkam, Chennai - 600089</div>
+                <div class="text"> +91-44-22526000 / 22528000</div>
+                <div class="text"> info@lntedutech.com</div>
+              </div>
+              <div class="findus">
+                <div class="img"><img src="/assets/images/FindUs.png"></div>
+              </div>
+            </div>
+          </div>
+          <div class="app">
+            <div class="appIcon">
+              <div class="iconImg">
+                <img src="/assets/images/appIcon.png">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="footerEnd">
+          <div class="footerBorder"></div>
+          <div class="copyrights">
+            <div class="Text">
+              <div class="text">© 2021 L&T Edutech. All rights reserved</div>
+            </div>
+            <div class="TextL">
+              <div class="text">Terms of Services | Privacy Notice | Cookies</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </ng-container>
+</div>
+<ng-template #noStrength>
+  <div class="noData">
+    No Suggestions on Strength Areas.
+  </div>
+</ng-template>
+
+<ng-template #noImprovements>
+  <div class="noData">
+    No Suggestions on Area of Development.
+  </div>
+</ng-template>
+
+<ng-template #nodata>
+  <div class="errorCard">
+    No Data Available...
+  </div>
+</ng-template>
+<ng-template #benchmarkInfo>
+  <div class="benchmarkInfo">
+    <em [mat-dialog-close]="true" class="icon-Close"></em>
+    <div class="heading5">SCORE BENCHMARK INFO</div>
+    <figure class="chart">
+      <img src="/assets/images/bajajBenchmarkInfo.png" alt="">
+    </figure>
+    <div class="score d-flex justify-content-between align-items-center flex-wrap">
+      <ng-container *ngFor="let score of benchMarkScore">
+        <div class="score-content"
+          [ngClass]="{'red':score.color == 'red', 'green': score.color == 'green', 'yellow':score.color == 'yellow' ,'orange':score.color == 'orange'}">
+          <div class="scorepoint">{{score.score}}</div>
+          <div class="scorelabel">{{score.label}}</div>
+        </div>
+      </ng-container>
+    </div>
+    <figure class="growth">
+      <img src="/assets/images/growth.svg" alt="">
+    </figure>
+  </div>
 </ng-template>
 
 
 <ng-template #noStrength>
-    <div class="noData">
-        No Suggestions on Strength Areas.
-    </div>
+  <div class="noData">
+    No Suggestions on Strength Areas.
+  </div>
 </ng-template>
 
 <ng-template #noImprovements>
-    <div class="noData">
-        No Suggestions on Area of Development.
-    </div>
+  <div class="noData">
+    No Suggestions on Area of Development.
+  </div>
 </ng-template>
 
 <ng-template #nodata>
-    <div class="errorCard">
-        No Data Available...
-    </div>
+  <div class="errorCard">
+    No Data Available...
+  </div>
 </ng-template>
 
 <div class="printing" *ngIf="getAllBehaviourData && emailId">
-    <!--  -->
-    <app-bajaj-begavioural-pdf-report-download [email]="emailId"
-        [data]="getAllBehaviourAPIDetails"></app-bajaj-begavioural-pdf-report-download>
+  <!--  -->
+  <app-bajaj-begavioural-pdf-report-download [email]="emailId"
+    [data]="getAllBehaviourAPIDetails"></app-bajaj-begavioural-pdf-report-download>
 </div>

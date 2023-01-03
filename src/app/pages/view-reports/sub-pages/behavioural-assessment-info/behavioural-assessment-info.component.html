@@ -9,14 +9,14 @@
         <!-- first as isFirst -->
         <ng-container *ngIf="assessmentsList && assessmentsList.length > 0">
             <ng-container *ngFor="let assessment of assessmentsList;let i = index;">
-                {{assessment.reportId}}hiii
+
                 <mat-expansion-panel [expanded]="true" *ngIf="assessment && assessment.testname && assessment.reportId!= 'R2' ">
                     <!-- hideToggle -->
                     <mat-expansion-panel-header>
                         <div class="expandheaderArea">
                             <div class="width-51">
                                 <em class="icon-Assessment"></em>
-                                <span>Test Name  
+                                <span>Test Name
                                 <span class="color-black">{{ assessment.testname ? assessment.testname : '-' }}<a *ngIf="assessment && assessment.testname" (click)="viewBehaviouralReport()"  class="view-report pl-1">View Report</a> </span>
                                 </span>
                             </div>
@@ -75,7 +75,7 @@
                             <app-behavioural-competency-areas [getAllReportsData]="getAllReportsData"></app-behavioural-competency-areas>
                         </div>
                     </div>
-                   
+
                     <!-- <div class="expandContentArea">
                         <div class="ContentInfoDetails">
                             <div> -->
@@ -112,7 +112,7 @@
                         <div class="expandheaderArea">
                             <div class="width-51">
                                 <em class="icon-Assessment"></em>
-                                <span>Test Name 1  
+                                <span>Test Name 1
                                 <span class="color-black">{{ assessment.testname ? assessment.testname : '-' }}<a *ngIf="assessment && assessment.testname" (click)="viewBehaviouralReport1()"  class="view-report pl-1">View Report</a> </span>
                                 </span>
                             </div>
@@ -127,7 +127,7 @@
                                 </a>
                                 </span>
                                 </span>
-                               
+
                             </div>
                             <div class="width-150">
                                 <div class="primaryInfo">
@@ -138,9 +138,9 @@
                                         <span style="font-size: 1em;display: contents;">{{assessment.completionstatus ? "Complete" : "Not Taken"}}</span></span>
                                     </span>
                                 </div>
-                               
+
                             </div>
-                           
+
                         </div>
                     </mat-expansion-panel-header>
                     <div class="expandContentArea">
