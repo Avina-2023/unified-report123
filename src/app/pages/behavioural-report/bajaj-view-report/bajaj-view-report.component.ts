@@ -19,49 +19,7 @@ export class BajajViewReportComponent implements OnInit, AfterViewInit, OnDestro
   emailId: any;
   highestEducation: any;
   skillSelected=0;
-  BARvalue = [
-    {
-      score: '1',
-      Value1: true,
-    },
-    {
-      score: '2',
-      Value2: false,
-    },
-    {
-      score: '3',
-      Value4: false,
-    },
-    {
-      score: '4',
-      Value4: false,
-    },
-    {
-      score: '5',
-      Value5: true, 
-    },
-    {
-      score: '6',
-      Value6: false,
-    },
-    {
-      score: '7',
-      Value7: false,
-    },
-    {
-      score: '8',
-      Value8: false,
-    },
-    {
-      score: '9',
-      Value9: true,
-    },
-    {
-      score: '10',
-      Value10: false,
-    },
-
-  ];
+  competencyvalue=true;
   continouslyValue = 2;
   continouslyValueTwo :boolean = false;
   continouslyValueThree :boolean = false;
@@ -70,9 +28,9 @@ export class BajajViewReportComponent implements OnInit, AfterViewInit, OnDestro
   continouslyValueSeven :boolean = false;
   continouslyValueNine :boolean = false;
   benchMarkScore = [
-    {score:"1-2-3",label:"LOW",color:"red"},
-    {score:"4-5-6-7",label:"AVERAGE",color:"orange"},
-    {score:"8-9-10",label:"HIGH",color:"green"},
+    {score:"1-3",label:"LOW",color:"red"},
+    {score:"4-6",label:"AVERAGE",color:"orange"},
+    {score:"7-10",label:"HIGH",color:"green"},
   ];
   bgColorInput:string = '#85BD44';
   doughnutValue:number = 4;
@@ -103,7 +61,7 @@ export class BajajViewReportComponent implements OnInit, AfterViewInit, OnDestro
       top = null;
     }
   }
- 
+
   continously(){
     if(this.continouslyValue==2){
       this.continouslyValueTwo = ! this.continouslyValueTwo ;
@@ -117,7 +75,7 @@ export class BajajViewReportComponent implements OnInit, AfterViewInit, OnDestro
 
   getRoute() {
     this.route.paramMap.subscribe((param: any) => {
-      
+
       if (param && param.params && param.params.id) {
         let email = param.params.id ? this.ApiService.decrypt(param.params.id) : param.params.id;
         this.getBehaviouralReportData(email);
@@ -128,10 +86,10 @@ export class BajajViewReportComponent implements OnInit, AfterViewInit, OnDestro
     this.skillSelected=index;
     console.log( this.skillSelected)
   }
-  
+
   tabChanged(event) {
     this.tabIndex = event.index;
-
+    this.skillSelected=0;
     switch(this.tabIndex) {
       case 0:
         this.bgColorInput = '#85BD44';
@@ -207,7 +165,7 @@ export class BajajViewReportComponent implements OnInit, AfterViewInit, OnDestro
 
   downloadreport(val){
     // console.log(val,'val');
-    
+
     if(val){
       this.isPdfdownable = val;
       this.sendData.sendMessage(true,'');
@@ -215,7 +173,7 @@ export class BajajViewReportComponent implements OnInit, AfterViewInit, OnDestro
       this.isPdfdownable = false;
       this.sendData.sendMessage(false,'');
     }
- 
-    
+
+
   }
 }
