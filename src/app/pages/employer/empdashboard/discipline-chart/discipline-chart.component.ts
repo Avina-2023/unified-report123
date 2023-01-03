@@ -76,7 +76,7 @@ export class DisciplineChartComponent implements OnInit {
   }
 
   ngOnChanges(changes: SimpleChange) {
-    console.log(changes)
+    // console.log(changes)
     if (changes['item']?.currentValue) {
         this.heatdata = changes['item']?.currentValue
         this.disciplineeChart()
@@ -97,7 +97,7 @@ export class DisciplineChartComponent implements OnInit {
     //   if( element.name && element.name != null)
     //   // this.chartOptions.series[0].data.push(element)
     // });
-    console.log(this.item)
+    // console.log(this.item)
     this.decip.updateSeries(this.chartOptions.series)
     // this.decip.plotOptions.treemap.colorScale.ranges[0].to = maxval;
   }

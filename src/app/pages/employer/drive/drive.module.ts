@@ -10,12 +10,13 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { PopUpCellRendererComponent } from './manage-drive/pop-up-cell-renderer/pop-up-cell-renderer.component';
 import { DriveSettingsComponent } from './drive-settings/drive-settings.component';
+import { ViewCandidateByDriveComponent } from './viewCandidateByDrive/viewCandidateByDrive.component';
 @NgModule({
   declarations: [
     ManageDriveComponent,
     PopUpCellRendererComponent,
-    
-    DriveSettingsComponent 
+    DriveSettingsComponent,
+    ViewCandidateByDriveComponent
    
   ],
   imports: [

@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { APP_CONSTANTS } from 'src/app/utils/app-constants.service';
-import { EmpPostrequirmentsComponent } from '../emp-postrequirments/emp-postrequirments.component';
-import { EmpRequirmentsComponent } from '../emp-requirments/emp-requirments.component';
 import { ChangePasswordComponent } from './changePassword/changePassword.component';
 import { CountdisplayCardComponent } from './countdisplay-card/countdisplay-card.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -31,13 +29,9 @@ const routes: Routes = [
   {
     path: `${APP_CONSTANTS.ROUTES.EMPDASHBOARD.GRADUATION}`, component: GraduationChartComponent
   },
-
-
   {
     path:`${APP_CONSTANTS.ROUTES.EMPDASHBOARD.PROFILE}`,component:EmpProfileComponent
   },
-
-
   {
     path:`${APP_CONSTANTS.ROUTES.EMPDASHBOARD.CHANGEPWD}`,component:ChangePasswordComponent
   },

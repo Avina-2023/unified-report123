@@ -85,6 +85,10 @@ export class BehaviouralAssessmentInfoComponent implements OnInit, OnChanges {
   viewBehaviouralReport() {
     this.appConfig.routeNavigationWithParam(APP_CONSTANTS.ENDPOINTS.REPORTS.BEHAVIOUR_MODULE.BEHAVIOUR_REPORT, this.ApiService.encrypt(this.emailId));
   }
+  
+  viewBehaviouralReport1(){
+    this.appConfig.routeNavigationWithParam(APP_CONSTANTS.ENDPOINTS.REPORTS.BEHAVIOUR_MODULE.BEHAVIOUR_REPORT1, this.ApiService.encrypt(this.emailId));
+  }
 
   ngOnChanges() {
     this.getAssessmentInfo();
@@ -99,6 +103,8 @@ export class BehaviouralAssessmentInfoComponent implements OnInit, OnChanges {
   }
 
   covertToPercentage() {
+    console.log(this.assessmentsList,'hiii');
+    
     this.assessmentsList.forEach(element => {
       if (element.score && element.maxscore) {
         let score = Number(element.score) / Number(element.maxscore) * 100;
@@ -232,7 +238,8 @@ export class BehaviouralAssessmentInfoComponent implements OnInit, OnChanges {
 
   getBehaviouralReportData(data) {
     const apiData = {
-      email: data
+      email: data,
+      reportId: "R1"
     };
   this.emailId= data;
    this.getBehaviourReportAPISubscription = this.ApiService.getBehaviourReport(apiData).subscribe((response: any) => {

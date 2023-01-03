@@ -9,12 +9,14 @@
 }
 
 .title {
+    left: 12px;
+    position: relative;
     color: #FFFFFF;
     padding: 15px;
     opacity: 0.8;
     margin-bottom: 0px;
-    font-size: 20px!important;
-    font-weight: 100!important;
+    font-size: 20px !important;
+    font-weight: 100 !important;
 }
 
 .partnerCardBody {
@@ -121,7 +123,7 @@
             }
 
             th,
-            td {         
+            td {
                 text-align: start;
                 &.nodata {
                     text-align: center;
@@ -215,7 +217,7 @@
                     font-size: 14px;
                     font-weight: 400;
                     margin-bottom: 0.5em;
-    
+
                     span {
                         color: red;
                     }
@@ -248,7 +250,7 @@
     color: #1b4e9b;
     font-size: 14px;
     border-radius: 5px 0px 0px 5px;
-   
+
     font-weight: 500;
     letter-spacing: 0.33px;
   }
@@ -260,7 +262,8 @@
     color: #262626;
 }
 
-::ng-deep.active-button {
+::ng-deep.status-button{
+.active-button {
     display: flex;
     height: 24px;
     align-items: center;
@@ -276,7 +279,7 @@
     font: normal normal normal 12px/16px Roboto;
   letter-spacing: 0.3px;
   }
-  ::ng-deep.inactive-button {
+  .inactive-button {
     display: flex;
     height: 24px;
     align-items: center;
@@ -292,7 +295,8 @@
     font: normal normal normal 12px/16px Roboto;
   letter-spacing: 0.3px;
   }
-  ::ng-deep.pending-button {
+
+  .pending-button {
     display: flex;
     height: 24px;
     align-items: center;
@@ -308,6 +312,9 @@
     font: normal normal 300 12px/16px Roboto;
   letter-spacing: 0.3px;
   }
+}
+
+
 ::ng-deep.customPagination {
     .mat-icon-button,
     .mat-mini-fab {

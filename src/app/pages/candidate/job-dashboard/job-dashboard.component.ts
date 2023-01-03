@@ -55,6 +55,8 @@ export class JobDashboardComponent implements OnInit {
   public usercountry: any;
   public usercity: any;
   blobToken = environment.blobToken;
+  profileImage = ""
+  productionUrl = environment.SKILL_EDGE_URL == "https://skillexchange.lntedutech.com"?true:false;
   public allyears = [];
   constructor(
     private apiService: ApiService,
@@ -177,8 +179,17 @@ export class JobDashboardComponent implements OnInit {
     this.apiService.candidateDetails(obj).subscribe((res: any) => {
       if (res.success) {
         this.Details = res.data;
-        this.msgData.sendMessage("profileImage",this.Details.profileImage)
-        this.appConfig.setLocalStorage('profileImage',this.Details.profileImage + environment.blobToken);
+        this.profileImage = this.Details.personal_details.profileImage;
+        this.msgData.sendMessage("profileImage",this.profileImage)
+        if (this.profileImage && this.productionUrl == true) {
+          this.appConfig.setLocalStorage('profileImage',this.profileImage + environment.blobToken);
+          this.profileImage = this.profileImage + environment.blobToken
+        } else if (this.profileImage && this.productionUrl == false) {
+          this.appConfig.setLocalStorage('profileImage',this.profileImage);
+          this.profileImage = this.profileImage
+
+        }
+        this.appConfig.setLocalStorage('candidateProfile',JSON.stringify(this.Details));
         this.profilepercentage = Math.ceil(this.Details.profilePercentage);
         this.appConfig.setLocalStorage('profilePercentage', this.profilepercentage);
         this.usercity = this.Details.permanentaddress.permanent_city;

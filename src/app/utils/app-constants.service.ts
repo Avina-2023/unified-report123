@@ -58,7 +58,8 @@ export const APP_CONSTANTS = {
       DASHBOARD:'/auth/reports/dashboard',
       BEHAVIOUR_MODULE: {
         BEHAVIOUR_MODULE_PAGE: '/auth/reports/behavioural',
-        BEHAVIOUR_REPORT: '/auth/reports/behavioural/view'
+        BEHAVIOUR_REPORT: '/auth/reports/behavioural/view',
+        BEHAVIOUR_REPORT1: '/auth/reports/behavioural/viewBajajReport',
       }
     },
     CANDIDATE:{
@@ -80,7 +81,8 @@ export const APP_CONSTANTS = {
     VIEWDRIVE:{
       HOME: '/auth/drive',
       MANAGEDRIVE:'/auth/drive/managedrive',
-      DRIVESETTINGS:'/auth/drive/drivesettings'
+      DRIVESETTINGS:'/auth/drive/drivesettings',
+      VIEWCANDIDATE:"/auth/drive/candidatelist"
     },
 
     EMPDASHBOARD:{
@@ -136,7 +138,8 @@ export const APP_CONSTANTS = {
       DASHBOARD:'dashboard',
       BEHAVIOUR_MODULE: {
         HOME: 'behavioural',
-        BEHAVIOUR_REPORT: 'view'
+        BEHAVIOUR_REPORT: 'view',
+        BEHAVIOUR_REPORT1: 'viewBajajReport'
       }
     },
     CANDIDATE:{
@@ -159,7 +162,8 @@ export const APP_CONSTANTS = {
     DRIVE:{
       HOME: 'drive',
       MANAGEDRIVE:'managedrive',
-      DRIVESETTINGS:'drivesettings'
+      DRIVESETTINGS:'drivesettings',
+      VIEWCANDIDATE:"candidatelist"
     },
 
     EMPDASHBOARD:{

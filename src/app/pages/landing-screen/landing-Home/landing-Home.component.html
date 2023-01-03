@@ -23,9 +23,9 @@
     <div class="section-partners__container container">
       <div >
         <owl-carousel-o [options]="customOptions" >
-          <ng-container *ngFor="let img of sliderdata1" >
+          <ng-container *ngFor="let partner of HiringPartners" >
             <ng-template carouselSlide >
-              <img class="section-team__item-image" [src]="img.img1">
+              <img class="section-team__item-image" [src]="partner.url">
             </ng-template>
           </ng-container>
         </owl-carousel-o>
@@ -48,7 +48,7 @@
             <p class="section-blocks__item-text" style="margin-bottom: 10px;">Reach out to talent pool
               of pre-assessed and certified fresh graduates with skills from the latest niche &
               emerging technologies across domains pan India. Skill Exchange helps employers enable
-              just in time hiring and fulfil sudden surge in demands.</p>
+              just in time hiring and fulfill sudden surge in demands.</p>
             <a class="link-demo link-demo--visited" [routerLink]="endPoints.LANDINGPAGE.EMPLOYER">Join as Hiring Partner >></a>
           </div>
         </div>
@@ -120,11 +120,11 @@
       <h2 class="section-team__title">Institutional Partners</h2>
       <div >
         <owl-carousel-o [options]="customOptions" class="slideup" >
-          <ng-container *ngFor="let slide of sliderdata2" >
+          <ng-container *ngFor="let slide of InstitutionalPartners" >
             <ng-template carouselSlide >
               <mat-card class="slidercard">
-                <img [src]="slide.img" [title]="slide.title">
-                <div class="section-team__item-name">{{slide.title}}</div>
+                <img [src]="slide.url" [title]="slide.name">
+                <div class="section-team__item-name">{{slide.name}}</div>
               </mat-card>
             </ng-template>
           </ng-container>

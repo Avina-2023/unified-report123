@@ -6,6 +6,10 @@ import {MatMenuTrigger} from '@angular/material/menu';
 import { MatCalendar } from '@angular/material/datepicker';
 import { DateAdapter,MAT_DATE_FORMATS, MatDateFormats } from '@angular/material/core';
 import { FormControl } from '@angular/forms';
+import { AppConfigService } from 'src/app/utils/app-config.service';
+import { APP_CONSTANTS } from 'src/app/utils/app-constants.service';
+import { SentDataToOtherComp } from 'src/app/services/sendDataToOtherComp.service';
+
 @Component({
   selector: 'app-pop-up-cell-renderer',
   templateUrl: './pop-up-cell-renderer.component.html',
@@ -25,9 +29,9 @@ export class PopUpCellRendererComponent implements ICellRendererAngularComp {
   min: string;
   meridiem: string;
   time: string;
- Workflow:any=[];
+  Workflow:any=[];
   jopDetails: { AppliedDate: string; Title: string; Created_by: string; }[];
-  
+  params:any;
   // matDialog: any;
  
   constructor(
@@ -35,6 +39,9 @@ export class PopUpCellRendererComponent implements ICellRendererAngularComp {
     private dialog1: MatDialog,
     private dialog2: MatDialog,
     private dialog3: MatDialog,
+    private appConfig: AppConfigService,
+    private msgData : SentDataToOtherComp
+
     
     ) {}
     @ViewChild('matDialog', { static: false }) matDialog: TemplateRef<any>;
@@ -86,12 +93,19 @@ export class PopUpCellRendererComponent implements ICellRendererAngularComp {
        this.dialog.closeAll();
     }
     value:any;
+
   refresh(params: ICellRendererParams): boolean {
     throw new Error('Method not implemented.');
   }
   agInit(params: ICellRendererParams): void {
-   params.value
+    this.params = params;
+    params.value
+    // console.log(params.data);    
   }
+  afterGuiAttached?(params?: IAfterGuiAttachedParams): void {
+    throw new Error('Method not implemented.');
+  }
+
   ngOnInit(): void {
     for( var i= 0 ; i<=60; i++){
       this.getseconds.push(i) 
@@ -127,18 +141,22 @@ export class PopUpCellRendererComponent implements ICellRendererAngularComp {
   }
   
   onHoursSelected(value:string){
-    console.log("the selected Hours is " + value);
+    // console.log("the selected Hours is " + value);
    this.hours=value
 }
 onMinSelected(value:string){
-  console.log("the selected Min is " + value);
+  // console.log("the selected Min is " + value);
   this.min=value
 }
 onMeridiemSelected(value:string){
-  console.log("the selected M is " + value);
+  // console.log("the selected M is " + value);
   this.meridiem=value
   this.time=this.hours+':'+this.min+':'+this.meridiem
-  console.log(this.time);
+  // console.log(this.time);
+}
+viewApplication(){
+  this.appConfig.setLocalStorage("currentJobID",this.params.data.jobId)
+  this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.VIEWDRIVE.VIEWCANDIDATE);
 }
 
 }

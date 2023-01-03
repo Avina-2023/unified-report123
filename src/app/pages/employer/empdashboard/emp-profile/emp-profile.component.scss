@@ -181,6 +181,9 @@
 
 .alignp {
     // padding: 0px 10px 0px 10px;
+    ::ng-deep .mat-chip.mat-standard-chip::after {
+        background: none;
+    }
 }
 
 .alignp1 {
@@ -463,7 +466,7 @@ fieldset {
         display: inline-flex;
         padding: 7px 12px;
         border-radius: 12px;
-        font-weight: 100;
+        font-weight: 300;
         align-items: center;
         cursor: default;
         min-height: 26px;

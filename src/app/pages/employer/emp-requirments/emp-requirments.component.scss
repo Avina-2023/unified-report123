@@ -182,14 +182,7 @@ opacity: 1;
   .mat-form-field-prefix, .mat-form-field-suffix {
       top: 0px!important;
   }
-}
-  .inputContainer{
-  .mat-form-field-appearance-outline .mat-select-arrow-wrapper {
-    transform: none!important;
   }
-}
-
-
   }
 
  .clearData{
@@ -422,6 +415,7 @@ span{
   }
 }
 
+
 .lastLine{
   display: flex;
   justify-content: space-between;
@@ -466,6 +460,7 @@ opacity: 1;
 }
 }
 
+
 .accountbalance{
   padding-left: 0px;
 }
@@ -491,6 +486,7 @@ letter-spacing: 0.26px;
 color: #707070;
 opacity: 1;
 }
+
 
 .bookmark{
   padding-right: 0px;
@@ -534,7 +530,11 @@ opacity: 1;
 }
 }
 
-
+::ng-deep{
+  .mat-form-field-appearance-outline .mat-select-arrow-wrapper {
+  transform: none!important;
+}
+}
 
 
 

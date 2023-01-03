@@ -17,6 +17,7 @@ export class CandidateComponent implements OnInit {
   isShowing: boolean = false;
   routelinks = APP_CONSTANTS.ENDPOINTS
   candidateName = localStorage.getItem('name')
+  productionUrl = environment.SKILL_EDGE_URL == "https://skillexchange.lntedutech.com"?true:false;
   profileimge: any ="";
   constructor(public router:Router, private apiservice:ApiService, private appconfig:AppConfigService, private msgData : SentDataToOtherComp) {
     this.router.events.subscribe(event => {
@@ -26,11 +27,15 @@ export class CandidateComponent implements OnInit {
     })
   }
 
-  ngOnInit() {
+  ngOnInit() { 
 
     this.msgData.getMessage().subscribe((data)=>{
       if(data.data=='profileImage'&& data.value !="" && data.value != undefined){
-        this.profileimge=data.value + environment.blobToken
+        if (data.value && this.productionUrl == true) {
+          this.profileimge=data.value + environment.blobToken
+        } else if (data.value && this.productionUrl == false) {
+          this.profileimge=data.value
+        }
       }
     })
     

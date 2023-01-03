@@ -1,7 +1,17 @@
+.overall_viewer{
+     margin: 20px 80px 20px 80px;
+     padding: 20px;
+}
+.printing{
+   position: fixed;
+    z-index: -5;
+  }
+
 .template_box {
     height: 86vh;
     background: #E4E4E4;
     overflow: scroll;
+    margin-top: 6px;
 
     .top-section {
         display: flex;
@@ -16,7 +26,7 @@
 
         div:first-child {
             display: flex;
-            align-items: end;
+            align-items: center;
         }
 
         button {
@@ -31,3 +41,11 @@
     }
 
 }
+
+
+
+@media only screen and (max-width: 940px) {
+    .overall_viewer, .printing {
+         zoom: 30%;
+     }
+ }

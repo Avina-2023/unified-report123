@@ -6,6 +6,7 @@ import { AppConfigService } from 'src/app/utils/app-config.service';
 import { ActivatedRoute, NavigationStart, Router } from '@angular/router';
 import { filter, map } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-job-description',
@@ -42,7 +43,7 @@ item: any;
     // this.router.getCurrentNavigation().extras &&
     // this.router.getCurrentNavigation().extras.state &&
     // this.router.getCurrentNavigation().extras.state.detail;
-    console.log(this.jobDetails);
+    // console.log(this.jobDetails);
   }
 
   openDialog(dialogval){
@@ -52,16 +53,16 @@ item: any;
       autoFocus: false,
       closeOnNavigation: true,
       disableClose: false,
-      panelClass: 'popupModalContainerForMessage'
+      // panelClass: 'popupModalContainerForMessage'
     });
   }
 
-  gotopage(navpoint){
-    if(navpoint == 'apply'){
-      // this.appConfig.routeNavigation(CONSTANT.ENDPOINTS.JOB.JOBDESCRIPTION);
-    }else{
-      // this.appConfig.routeNavigation('/profile/candidate/');
-    }
+  gotopage(){
+    let emailval = this.appConfig.getLocalStorage('email')
+    let enc_email = encodeURIComponent(this.skillexService.encryptnew(emailval,environment.cryptoEncryptionKey))
+    // window.open(environment.SKILL_PROFILE_URL+'/externallogin?extId='+enc_email, 'profile_redir');
+    window.location.assign(environment.SKILL_PROFILE_URL+'/externallogin?extId='+enc_email);
+
     this.dialogData.close();
   }
 
@@ -82,7 +83,7 @@ item: any;
     };
     this.skillexService.saveJobsDashboard(jobParams).subscribe((res: any) => {
       if (res.success) {
-        console.log(res)
+        // console.log(res)
         if(res && res.data !=undefined && res.data  ){
           this.toaster.success("Job saved successfully");
         }else{

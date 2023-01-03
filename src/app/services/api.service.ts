@@ -56,8 +56,14 @@ export class ApiService {
   getDriveBaisedUser(data) {
     return this.http.post(`${this.BASE_URL}/driveCandidateList`, data);
   }
+  getDriveCardData(data){
+    return this.http.post(`${this.BASE_URL}/joblistwithaggrid`,data);
+  }
   getAGgridData(data){
     return this.http.post(`${this.BASE_URL}/joblistwithaggrid`,data);
+  }
+  getCandidateListByDeive(data){
+    return this.http.post(`${this.BASE_URL}/candidatelistbyappliedjob`,data);
   }
 getAGgridPatnerList(data){
   return this.http.post(`${this.BASE_URL}/partnerList`,data);
@@ -126,6 +132,13 @@ getAGgridPatnerList(data){
   getBehaviourReport(data) {
     return this.http.post(`${this.BASE_URL}/getBehaviouralReportContent `, data);
   }
+//   getBajajBehaviourReport(data) {
+//     // data.email=
+//     // 'bppdemo9001@abc.com',
+    
+// data.reportId='R2'
+//     return this.http.post(`${this.BASE_URL}/getBehaviouralReportContent1 `, data);
+//   }
 
   getCandidateSkills(email) {
     return this.http.post(`${this.BASE_URL}/getCandidateRecommendedJobs `, email);
@@ -303,5 +316,8 @@ getAGgridPatnerList(data){
   }
   candidateDetails(data){
     return this.http.post(`${this.BASE_URL}/getcandidatedetail`,data)
+  }
+  getEmployerDetails(data){
+    return this.http.post(`${this.BASE_URL}/getemployerDetails`,data)
   }
 }

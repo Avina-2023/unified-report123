@@ -60,13 +60,17 @@ export class SidebarComponent implements OnInit {
         break;
       case '/auth/dashboard/profile':
         this.check = 'empprofile';
-        break;
-      default:
-        this.check = 'empdashboard';
-        break;
+        break; 
       case '/auth/partner/jobrequirment/work':
         this.menuIconToggle = true
         this.check = 'emprequirments';
+        break;
+      case '/auth/drive/managedrive':
+        this.check = 'managedrive';
+        this.driveIconToggle = true;
+        break; 
+      default:
+        this.check = 'empdashboard';
         break;
     }
   }
@@ -108,12 +112,6 @@ export class SidebarComponent implements OnInit {
     // this.loaded.setLoading();
     this.check = value;
     this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.PARTNER.REQUIRMENT)
-  }
-
-  postJob(value:any){
-    // this.loaded.setLoading();
-    this.check = value;
-    this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.EMPJOBS.POSTREQUIRMENT)
   }
 
    profile(value){

@@ -1,8 +1,9 @@
 
+
     #inner_template {
         background: #fff;
-        margin: 20px 80px 20px 80px;
-        padding: 20px;
+       // margin: 20px 80px 20px 80px;
+        //padding: 20px;
         border-radius: 10px;
 
 
@@ -33,11 +34,21 @@
                 img {
                     width: 200px;
                 }
+                .profileimg{
+                    width: 180px !important;
+                    height: 180px;
+                    margin-left: 30px !important;
+                    margin: 10px;
+                    border-radius: 50%;
+                    -webkit-border-radius: 50%;
+                }
             }
-
+            .last {
+                border-bottom: 2px solid #d3d3d35c;
+            }
             .second-div {
                 width: 70%;
-                border-bottom: 2px solid #d3d3d35c;
+                // border-bottom: 2px solid #d3d3d35c;
                 padding: 10px 0px;
 
                 .username_title {
@@ -63,6 +74,9 @@
                     font-size: 18px;
                     font-weight: 500;
                 }
+            }
+            .second-div :last-child{
+                
             }
 
         }
@@ -99,13 +113,13 @@
             }
 
             .cv_spacing {
-                padding: 25px 0px !important;
+                padding: 15px 0px !important;
             }
 
             .education {
                 .flex_spacing {
                     display: flex;
-                    align-items: flex-start;
+                    align-items: baseline;
                     width: 75% !important;
                     position: relative !important;
                     border: none !important;
@@ -132,7 +146,7 @@
                         }
 
                         .line {
-                            height: 89%;
+                            height: 100%;
                             position: absolute;
                             border-left: 2px solid gray;
                             margin-left: 6px;
@@ -160,11 +174,16 @@
                     color: #fff;
                     border: 6px solid #5c5c5c;
                     background: #5c5c5c;
-                    padding: 5px 23px;
+                    padding: 0px 23px 2px 23px;
                     margin: 0px 10px;
                     border-radius: 26px;
+                    font: -webkit-control;
+                    font-family: 'Lato';
                     font-size: 18px;
                     font-weight: 300;
+                }
+                .skillbutton{
+                    cursor: auto;
                 }
             }
 
@@ -179,10 +198,10 @@
             .training,
             .work {
                 div {
-                    padding: 10px 0px;
+                    //padding: 10px 0px;
                 }
             }
-
+            
             .languages {
 
                 table{
@@ -194,6 +213,12 @@
                 th {
                     text-align: left;
                     padding: 15px 40px;
+                }
+                
+                @media only screen and (min-width: 740px) and (max-width: 780px) {
+                    th {
+                        padding: 15px 30px;
+                    }
                 }
 
                 .lang {
@@ -221,4 +246,21 @@
             }
 
         }
+
+
+        @media only screen and (max-width: 600px) {
+            .username_subtitle {
+                margin-top: -5%;
+            }
+            .user_addres, .user_phone {
+                margin-top: -3%;
+            }
+            .user_email {
+                margin-top: -6%;
+            }
+        }
+  
     }
+
+
+    
