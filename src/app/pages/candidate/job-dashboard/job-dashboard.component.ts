@@ -142,17 +142,16 @@ export class JobDashboardComponent implements OnInit {
   }
 
   // candidate Dashboard Barchart
-  getCandidateDashBoard(e) {
-    let year;
+  getCandidateDashBoard(e) {    
     if (e.value) {
-      year = e.value;
+      this.year = e.value;
     } else {
-      year = this.appConfig.getCurrentYear();
+      this.year = this.appConfig.getCurrentYear();
     }
     this.email = localStorage.getItem('email');
     this.objDetails = {};
     if (Object.keys(this.objDetails).length === 0) {
-      Object.assign(this.objDetails, { year: year, email: this.email });
+      Object.assign(this.objDetails, { year: this.year, email: this.email });
     }
     this.apiService
       .candidateDashboard(this.objDetails)

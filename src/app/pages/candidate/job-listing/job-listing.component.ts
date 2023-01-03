@@ -205,6 +205,10 @@ export class JobListingComponent implements OnInit {
 		this.apiservice.jobfilterDashboard(filterparams).subscribe((res: any) => {
 			if (res.success) {
 				this.filter_info = res;
+				// if (this.filter_info.data){
+				// 	console.log('contains filter data')
+				// }
+				
 			}
 		});
 	}
