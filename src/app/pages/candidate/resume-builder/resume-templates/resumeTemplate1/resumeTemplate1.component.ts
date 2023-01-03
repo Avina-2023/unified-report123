@@ -10,7 +10,7 @@ import { environment } from 'src/environments/environment';
 export class ResumeTemplate1Component implements OnInit {
   candidate: any;
   username = localStorage.getItem('name')
-  productionUrl = environment.SKILL_EDGE_URL == "https://skillexchange.lntedutech.com"?true:false;
+  productionUrl = environment.SKILL_EDGE_URL == "https://skilledge.lntedutech.com"?true:false;
   profileImage = "";
   constructor() { }
 
