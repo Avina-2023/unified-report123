@@ -2,7 +2,7 @@
 .snapshot {
   .containerWrapper {
     background-color: $whiteColor;
-    padding: 60px 0;
+    padding-top: 4%;
     position: relative;
     .bencmark-info {
       position: absolute;
@@ -35,13 +35,13 @@
       &::after {
         content: "";
         position: absolute;
-       left:862px;
-        bottom: -195px;
+       left:67%;
+        bottom: -24%;
         background-image: url("#{$imagePath}/bottomCircle.png");
         background-repeat: no-repeat;
         background-size: contain;
-        width: 41%;
-        height: 16%;
+        width: 46%;
+        height: 21%;
         z-index: -1;
       }
     }
@@ -353,13 +353,13 @@
 }
 .report-imageContent {
   display: flex;
-  margin-top: 40px;
+  margin-bottom: 5%;
   .report-image {
-    width: 230px;
+    width: 13%;
     position: relative;
-    left: 25px;
+    left: 2%;
     .img{
-      width: 165px;
+      width: 107%;
     }
   }
 }
@@ -372,33 +372,60 @@
 }
 .bar {
   display: flex;
-  padding-left: 25px;
-  padding-top: 25px;
-  padding-right: 30px;
+  padding-left: 3%;
+  padding-top: 3%;
   justify-content: space-between;
-  width: 810px;
-  
-  padding-bottom: 30px;
+  width: 95%;
+
+  padding-bottom: 4%;
 
   .red-bar {
     height: 50px;
+    width: 33.25%;
     .red-box {
-      width: 250px;
+
       height: 24px;
       background-color: #f31f1d;
-      .bar-no {
+      &::before {
+        content: "|";
+        position: relative;
+        top: 56.6%;
+        color: #000000;
+        font-size: 42%;
+        font-weight: bold;
       }
     }
   }
   .orange-box {
-    width: 250px;
+
     height: 24px;
     background-color: #ef6d07;
+    &::before {
+      content: "|";
+      position: relative;
+      top: 56.6%;
+      color: #000000;
+      font-size: 42%;
+      font-weight: bold;
+      left: -0.5px;
+    }
   }
   .green-box {
-    width: 250px;
+
     height: 24px;
     background-color: #00b300;
+    &::before, &::after  {
+      content: "|";
+      position: relative;
+      top: 56.6%;
+      color: #000000;
+      font-size: 42%;
+      font-weight: bold;
+      right: 0.3%;
+    }
+    &::after {
+      left: 99%;
+    }
   }
   .bar-no {
     display: flex;
@@ -486,29 +513,39 @@
   }
 }
 .report-snapshot-content {
-  display: flex;
   margin-top: 20px;
-  margin-left: 30px;
+
 }
 .report-snapshot-content-right {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 78%;
   position: relative;
-    left: 50px;
+    left: 5%;
   .bullet{
-    list-style-type: disc !important;
-    list-style-position: inside;
+
     margin-bottom: 1px !important;
+  }
+  ul li::before {
+    content: "\2022";
+    color: #B1B1B1;
+padding-right: 10px;
+    font-size: 30px;
+    position: relative;
+    top: 6px;
+  }
+  ul{
+    list-style: none;
+    margin-bottom: 0px;
   }
   .snapshot-point {
     display: flex;
     padding-left: 25px;
     padding-right: 30px;
     justify-content: space-between;
-    width: 810px;
+    width: 98.5%;
     .snapshot-point-red {
-      width: 345px;
+      width: 48%;
       border-left: 7px solid #de001c;
       border-bottom: 0.5px solid #b1b1b1;
       border-top: 0.5px solid #b1b1b1;
@@ -518,7 +555,7 @@
     }
     .snapshot-point-green {
       border-left: 7px solid #00b000;
-      width: 345px;
+      width: 48%;
       border-bottom: 0.5px solid #b1b1b1;
       border-top: 0.5px solid #b1b1b1;
       border-right: 0.5px solid #b1b1b1;
@@ -529,86 +566,100 @@
 }
 .green-bar{
   height: 50px;
+  width: 33.2%;
   .pointer-container {
     display: flex;
-    width: 250px;
+    width: 133%;
     position: relative;
-
+    left: -5.5%;
+    bottom: 41%;
   }
 }
 .pointer-container-green-2 {
   display: flex;
-  width: 250px;
+  // width: 250px;
   position: relative;
   bottom: 34px;
-  left: 26px;
+width: 25%;
 }
 .pointer-container-green-3 {
   display: flex;
-  width: 250px;
+  // width: 250px;
   position: relative;
   bottom: 34px;
-  left: 67px;
+  width: 25%;
 }
 .pointer-container-green-1 {
   display: flex;
-  width: 250px;
+  // width: 250px;
   position: relative;
   bottom: 34px;
-  right: 14px;
+  width: 25%;
+}
+.pointer-container-green{
+  display: flex;
+  // width: 250px;
+  position: relative;
+  bottom: 34px;
+  width: 25%;
 }
  .red-bar{
   .pointer-container {
     display: flex;
-    width: 250px;
+    width: 100%;
+    left: -10px;
     position: relative;
     bottom: 34px;
     // justify-content: space-evenly;
   }
   .pointer-container- {
-    width: 200px;
+    // width: 200px;
     display: flex;
     position: relative;
     right: 14px;
+    width: 50%;
   }
   .pointer-container-2 {
-    width: 200px;
+    // width: 200px;
     display: flex;
     position: relative;
     position: relative;
       right: 13px;
+      width: 50%;
   }
   }
   .orange-bar{
     height: 50px;
+    width: 33.2%;
     .pointer-container {
       display: flex;
-      width: 250px;
+width: 100%;
+left: -11px;
       position: relative;
       top: 6px;
       // justify-content: space-evenly;
     }
   }
   .pointer-container-orange {
-    width: 78.06px;
+
     display: flex;
     position: relative;
     right: 14px;
+    width: 34%;
   }
 .benchmarkInfo {
   overflow: auto;
-  height: 135px;
+
   display: flex;
-  height: 135px;
   position: relative;
-  top: 70px;
+
   padding-left: 25px;
   // flex-direction: column;
   justify-content: space-between;
   .heading5 {
       font-size: 15px;
-      font-weight: 500;
-      color: $darkGrey;
+      font-weight: 400;
+      color: #868686;
       line-height: normal;
       text-align: center;
       padding: 25px 0;
@@ -621,7 +672,7 @@
           transform: translateY(-50%);
           background-color: rgba(0, 0, 0, 0.2);
           height: 1px;
-          width: 28%;
+          width: 37%;
       }
       &::before {
           left: 0;
@@ -693,10 +744,9 @@
   }
 }
 .score {
-  // padding: 0 .25px;
-  width: 734px;
+  width: 65%;
   position: relative;
-  right: 105px;
+  right: 9%;
 }
 .chart {
   position: relative;
@@ -709,5 +759,24 @@
 }
 .wrapper {
   display: flex;
-  width: 838px;
+  width: 113%;
+}
+.N4{
+  position: relative;
+  right: 5px;
+  top: 5px;
+  font-size: 18px;
+}
+.N10{
+  position: relative;
+  left: 3%;
+  top: 5px;
+  font-size: 18px;
+}
+.n-last{
+  display: flex;
+    justify-content: space-between;
+}
+.boxC{
+  display: flex;
 }

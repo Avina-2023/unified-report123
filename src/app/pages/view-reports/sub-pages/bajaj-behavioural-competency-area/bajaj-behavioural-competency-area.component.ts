@@ -30,9 +30,9 @@ export class BajajBehaviouralCompetencyAreaComponent
   getAllBasicData: any;
   highestEducation: any;
   benchMarkScore = [
-    { score: '1-2-3', label: 'LOW', color: 'red' },
-    { score: '4-5-6-7', label: 'AVERAGE', color: 'orange' },
-    { score: '8-9-10', label: 'HIGH', color: 'green' },
+    { score: '1-3', label: 'LOW', color: 'red' },
+    { score: '4-6', label: 'AVERAGE', color: 'orange' },
+    { score: '7-10', label: 'HIGH', color: 'green' },
   ];
   bgColorInput: string = '#85BD44';
   doughnutValue: number = 4;
@@ -109,7 +109,7 @@ export class BajajBehaviouralCompetencyAreaComponent
               this.getAllBasicData && this.getAllBasicData.education
                 ? this.getAllBasicData.education
                 : [];
-           
+
             if (this.highestEducation.length > 0) {
               let i = this.highestEducation.length - 1;
               this.highestEducation = this.highestEducation[i];
