@@ -17,7 +17,7 @@ export class CandidateComponent implements OnInit {
   isShowing: boolean = false;
   routelinks = APP_CONSTANTS.ENDPOINTS
   candidateName = localStorage.getItem('name')
-  productionUrl = environment.SKILL_EDGE_URL == "https://skillexchange.lntedutech.com"?true:false;
+  productionUrl = environment.SKILL_EDGE_URL == "https://skilledge.lntedutech.com"?true:false;
   profileimge: any ="";
   constructor(public router:Router, private apiservice:ApiService, private appconfig:AppConfigService, private msgData : SentDataToOtherComp) {
     this.router.events.subscribe(event => {
