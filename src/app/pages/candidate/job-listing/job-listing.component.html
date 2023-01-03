@@ -3,7 +3,7 @@
     <div class="find_job">
       Find Jobs
     </div>
-    <div class="mob_fil">
+    <div class="mob_fil" *ngIf ="this.filter_info.data.length">
       <div class="fil_results">
 
         <div class="fil_output">
@@ -27,7 +27,7 @@
         </mat-select>
       </div>
     </div>
-    <div class="overall_box">
+    <div class="overall_box" *ngIf="totallength!=0">
       <div class="card_flex" *ngFor="let item of joblist;let i=index">
         <mat-card class="example_card">
           <div (click)="gotojob(item)">
@@ -115,13 +115,15 @@
         <app-common-paginator *ngIf="total" (send)="some($event)" [totalcount]="total"></app-common-paginator>
       </div>
     </div>
-
+<div *ngIf="totallength==0">
+  <app-no-data-found [from]="'find'"></app-no-data-found>
+</div>
 
   </div>
 
 
 
-  <div class="filter">
+  <div class="filter" *ngIf ="this.filter_info.data.length">
     <div class="fil_head">
       <p>
         <mat-icon class="misc_icon">filter_list</mat-icon><span class="job_designation">All Filters
@@ -215,6 +217,3 @@
     </div>
   </div>
 </ng-template>
-<div *ngIf="totallength==0">
-  <app-no-data-found *ngIf="totallength" [from]="'find'"></app-no-data-found>
-</div>
