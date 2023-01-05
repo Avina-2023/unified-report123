@@ -56,7 +56,7 @@ export class JobDashboardComponent implements OnInit {
   public usercity: any;
   blobToken = environment.blobToken;
   profileImage = ""
-  productionUrl = environment.SKILL_EDGE_URL == "https://skillexchange.lntedutech.com"?true:false;
+  productionUrl = environment.SKILL_EDGE_URL == "https://skilledge.lntedutech.com"?true:false;
   public allyears = [];
   constructor(
     private apiService: ApiService,
