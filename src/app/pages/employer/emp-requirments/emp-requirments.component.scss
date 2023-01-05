@@ -243,26 +243,35 @@ margin-right: 100px !important;
 display: flex;
 justify-content: flex-start;
 height: 38px;
+width: 50%;
 }
 .locations{
   display: flex;
   padding: 5px;
   color: grey;
+  margin: 0px 0px 0px -8px;
 }
 .avatar{
 display: flex;
-width: 48px;
+width: 80px;
 height: 38px;
 opacity: 1;
 }
+.companylogo{
+  width: 20%;
+}
 .designation{
-height: 19px;
+  width: 80%;
 padding-right: 2px;
 text-align: left;
 font: normal normal bold 14px/19px Roboto;
 letter-spacing: 0px;
 color: #000000;
 opacity: 1;
+}
+
+.locate{
+ margin: 5px 0px 0px 6px;
 }
 .locationOn{
 padding: 0px !important;
@@ -277,8 +286,8 @@ color: #707070;
 .icon-location1{
   font-size: 11px;
     position: relative;
-    margin-top: 3%;
-    right: 3%;
+    margin-top: 1%;
+    right: 1%;
 }
 .location{
 top: 288px;
@@ -571,8 +580,53 @@ cursor: pointer;
 }
 }
 
+.pagenator{
+  display: flex;
+  justify-content: right;
+  width: 100%;
+  bottom: 30px;
+}
 
 
+    .partnerCard {
+        // max-width: 280px;
+        // width: 280px;
+        max-height: 125px;
+        height: 125px;
+        border-radius: 9px;
+
+        .cardTitle {
+            font-size: 14px;
+            color: #4D4F5C;
+            margin-bottom: 2px;
+        }
+
+        .cardValue {
+            font-size: 24px;
+            color: #1B4E9B;
+            display: flex;
+            justify-content: space-between;
+            padding-right: 20px;
+        }
+
+        .cardFooter {
+            font-size: 13px;
+            color: #262626;
+            padding-left: 15px;
+
+            .cardFootervalue {
+                font: normal normal 300 12px/20px Roboto;
+                border-radius: 15% !important;
+                padding: 3px 4px 2px 3px;
+                background-color: #56B35A;
+                text-align:center;
+                color:white;
+                span:first-child{
+                    padding-right:2px;
+                }
+            }
+        }
+    }
 
 
 

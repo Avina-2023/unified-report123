@@ -2,6 +2,8 @@ import { ThisReceiver } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { dateInputsHaveChanged } from '@angular/material/datepicker/datepicker-input-base';
+import { ToastrService } from 'ngx-toastr';
+import { Subscriber } from 'rxjs';
 import { ApiService } from 'src/app/services/api.service';
 import{ APP_CONSTANTS} from 'SRC/app/utils/app-constants.service'
 
@@ -31,7 +33,7 @@ export class EmpRequirmentsComponent implements OnInit {
   getViewlist : any;
   today = new Date();
   companyId = localStorage.getItem('companyId');
-  filterModel = { startRow:0,endRow:5,
+  filterModel = { "startRow":this.startRow,"endRow":this.endRow,
     "filterModel":{
     "companyId": {
       "filterType":"text",
@@ -49,6 +51,7 @@ export class EmpRequirmentsComponent implements OnInit {
 
   constructor(
     private http: ApiService,
+    private toastr: ToastrService
   ) {}
   sortbystatusArray: any = [
     'Pending',
@@ -62,7 +65,7 @@ export class EmpRequirmentsComponent implements OnInit {
   sortByStatus = [];
   ngOnInit() {
 
-    this.getReqData();
+    this.fetchData();
   }
 
   //  jobReqData = [
@@ -427,24 +430,77 @@ export class EmpRequirmentsComponent implements OnInit {
   //   },
   // ];
 
+applyFilter(filtervalue:string){
+  this.jobReqData.filter=filtervalue.trim().toLowerCase()
+  console.log (filtervalue);
+}
 
 viewjobpagenator(){}
+
+
+
 
 some(pages){
   this.startRow= (( pages.value-1)*this.defaultRowPerPage)
   this.endRow = ( (pages.value)*this.defaultRowPerPage)
-  this.getReqData()
+  // this.fetchData(data)
 }
 
   getReqData() {
-    var obj={}
-    obj={
-      "startRow":this.startRow,"endRow":this.endRow
-    }
-      this.http.viewjobRequirments(obj).subscribe((response:any)=> {
+      this.http.viewjobRequirments(this.filterModel).subscribe((response:any)=> {
        this.jobReqData = response.data;
        this.total = response.totalCount.count / this.defaultRowPerPage
 
-  })
+   })
+ }
+
+searchList() {
+  console.log(this.searchData)
+  if (this.searchData != "") {
+    var val = this.searchData.toLowerCase()
+    var data = {
+      "filterModel": {
+          "jobRole": {
+              "filterType": "text",
+              "type": "contains",
+              "filter": val
+          }
+      }
+  }
+
+    this.http.viewjobRequirments(data).subscribe((response: any) => {
+      if (response.success == false) {
+        this.toastr.warning('Connection failed, Please try again.');
+      } else {
+        this.jobReqData = response.data;
+      }
+    }, (err) => {
+      console.log(err)
+      this.toastr.warning('Connection failed, Please try again.');
+    });
+  }
+   else {
+    this.toastr.warning('No data found');
+  }
+}
+
+clearSearch(){
+  this.searchData  ='';
+  var data = {"filterModel":{"createdBy":{"filterType":"set","values":["UapAdmin"]}}}
+  this.fetchData();
+}
+
+
+fetchData(){
+  this.http.viewjobRequirments(this.filterModel).subscribe((response: any) => {
+    if (response.success == false) {
+      this.toastr.warning('Connection failed, Please try again.');
+    } else {
+      this.jobReqData = response.data;
+      this.total = response.totalCount.count / this.defaultRowPerPage
+    }
+  }, (err) => {
+    this.toastr.warning('Connection failed, Please try again.');
+  });
 }
 }
