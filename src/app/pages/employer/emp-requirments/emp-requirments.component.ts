@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { dateInputsHaveChanged } from '@angular/material/datepicker/datepicker-input-base';
 import { ApiService } from 'src/app/services/api.service';
-
+import{ APP_CONSTANTS} from 'SRC/app/utils/app-constants.service'
 
 @Component({
   selector: 'app-emp-requirments',
@@ -18,11 +18,27 @@ export class EmpRequirmentsComponent implements OnInit {
   //   fromDate : Date;
   //   toDate :Date;
   // });
+  public total:any;
+  public startRow:any = 0;
+  public endRow:any = 5;
+  public defaultRowPerPage = 5;
+  public itemperpage:any=3;
+  range :FormGroup;
+  routerlink=APP_CONSTANTS.ENDPOINTS
   dateVal  = new Date();
   searchData: string = '';
   close: string = '';
   getViewlist : any;
   today = new Date();
+  companyId = localStorage.getItem('companyId');
+  filterModel = { startRow:0,endRow:5,
+    "filterModel":{
+    "companyId": {
+      "filterType":"text",
+      "type": "contains",
+      "filter":this.companyId
+    }
+  }};
   month = this.today.getMonth();
   year = this.today.getFullYear();
   dateRange = new FormGroup({
@@ -45,6 +61,7 @@ export class EmpRequirmentsComponent implements OnInit {
   ];
   sortByStatus = [];
   ngOnInit() {
+
     this.getReqData();
   }
 
@@ -410,12 +427,23 @@ export class EmpRequirmentsComponent implements OnInit {
   //   },
   // ];
 
-  getReqData() {
-    let data= '';
-      this.http.viewjobRequirments(data).subscribe((response:any)=> {
-       this.jobReqData = response.data;
-       console.log(this.jobReqData);
 
+viewjobpagenator(){}
+
+some(pages){
+  this.startRow= (( pages.value-1)*this.defaultRowPerPage)
+  this.endRow = ( (pages.value)*this.defaultRowPerPage)
+  this.getReqData()
+}
+
+  getReqData() {
+    var obj={}
+    obj={
+      "startRow":this.startRow,"endRow":this.endRow
+    }
+      this.http.viewjobRequirments(obj).subscribe((response:any)=> {
+       this.jobReqData = response.data;
+       this.total = response.totalCount.count / this.defaultRowPerPage
 
   })
 }
