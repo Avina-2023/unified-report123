@@ -41,9 +41,9 @@ export class BajajBegaviouralPdfReportDownloadComponent implements OnInit {
   //   {score:"9-10",label:"STRENGTH",color:"green"}
   // ];
   benchMarkScore = [
-    { score: '1-2-3', label: 'LOW', color: 'red' },
-    { score: '4-5-6-7', label: 'AVERAGE', color: 'orange' },
-    { score: '8-9-10', label: 'HIGH', color: 'green' },
+    { score: '1-3', label: 'LOW', color: 'red' },
+    { score: '4-6', label: 'AVERAGE', color: 'orange' },
+    { score: '7-10', label: 'HIGH', color: 'green' },
   ];
   removeheading: any;
   roles: any;
@@ -132,9 +132,9 @@ export class BajajBegaviouralPdfReportDownloadComponent implements OnInit {
 
   factorsImage(name){
     if (name == 'CONTINUOUSLY RAISE THE BAR') {
-      return this.img = '/assets/images/pdfDownload/factor1.svg';
+      return this.img = '/assets/images/pdfDownload/factor3.svg';
     } else if (name == 'ENSURE RESULTS WITH SPEED') {
-      return this.img = '/assets/images/pdfDownload/factor1.svg';
+      return this.img = '/assets/images/pdfDownload/factor2.svg';
     } else if (name == 'CUSTOMER ORIENTATION') {
       return this.img = '/assets/images/pdfDownload/factor1.svg';
     }  else {
@@ -174,7 +174,7 @@ export class BajajBegaviouralPdfReportDownloadComponent implements OnInit {
       return this.img = '';
     }
   }
-  
+
   downloadAsPDF() {
     this.toastr.success('Please wait','PDF is downloading')
     var element = document.getElementById('element-to-print');
@@ -183,7 +183,8 @@ export class BajajBegaviouralPdfReportDownloadComponent implements OnInit {
       filename:  (this.getAllBasicData?.firstname ? this.getAllBasicData?.firstname : '')+'('+this.email+')'+'.pdf',
       image:        { type: 'jpeg', quality: 1 },
       html2canvas:  {scale: 2},
-      jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+      jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' },
+
     };
     pdf().from(element).set(opt).toPdf().get('pdf').then(function (pdf) {
       var number_of_pages = pdf.internal.getNumberOfPages()
@@ -192,14 +193,14 @@ export class BajajBegaviouralPdfReportDownloadComponent implements OnInit {
           pdf.setPage(i)
           pdf.setFontSize(9);
           pdf.setTextColor(150);
-          // for right align 
-          // pdf.text('Page ' + i + ' of ' + number_of_pages, (pdf.internal.pageSize.getWidth() - 0.90 ), (pdf.internal.pageSize.getHeight()-0.35));
-          pdf.text('Page ' + i + ' of ' + number_of_pages, (pdf.internal.pageSize.getWidth() - 4.30 ), (pdf.internal.pageSize.getHeight()-0.25));
+          // for right align
+          pdf.text('Page ' + i + ' of ' + number_of_pages, (pdf.internal.pageSize.getWidth() - 1.15 ), (pdf.internal.pageSize.getHeight()-0.35));
+          // pdf.text('Page ' + i + ' of ' + number_of_pages, (pdf.internal.pageSize.getWidth() - 4.30 ), (pdf.internal.pageSize.getHeight()-0.25));
       }
-    
+
       }, (err) => {
       }).save();
-     
+
   }
 
   splitHeading(glimpse){
@@ -216,13 +217,13 @@ export class BajajBegaviouralPdfReportDownloadComponent implements OnInit {
         let heading = "CORE/PERSONAL FACTOR";
         this.removeheading = glimpse.replace("CORE/PERSONAL FACTOR", "  ");
         return heading;
-        
+
       }else{
         let heading = "EMOTION FACTOR";
         this.removeheading = glimpse.replace("EMOTION FACTOR", "  ");
         return heading;
       }
-    
+
   }
 }
 

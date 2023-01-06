@@ -37,6 +37,7 @@ const routes: Routes = [
       {
         path:'',redirectTo:`${APP_CONSTANTS.ROUTES.CANDIDATEDASH.DASHBOARD}`,pathMatch:'full'
       }
+
     ]
    },
 

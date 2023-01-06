@@ -1,9 +1,12 @@
 import { ThisReceiver } from '@angular/compiler';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { dateInputsHaveChanged } from '@angular/material/datepicker/datepicker-input-base';
+import { ToastrService } from 'ngx-toastr';
+import { Subscriber } from 'rxjs';
 import { ApiService } from 'src/app/services/api.service';
-
+import{ APP_CONSTANTS} from 'src/app/utils/app-constants.service';
+import { MatSort,Sort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-emp-requirments',
@@ -11,6 +14,8 @@ import { ApiService } from 'src/app/services/api.service';
   styleUrls: ['./emp-requirments.component.scss'],
 })
 export class EmpRequirmentsComponent implements OnInit {
+
+  @ViewChild(MatSort) sort: MatSort;
   // range = new ({
   //   start: new FormControl,
   //   end: new FormControl,
@@ -18,11 +23,31 @@ export class EmpRequirmentsComponent implements OnInit {
   //   fromDate : Date;
   //   toDate :Date;
   // });
+  public total:any;
+
+  public defaultRowPerPage = 5;
+  public startRow:any = 0;
+  public endRow:any = this.defaultRowPerPage;
+  public itemperpage:any=3;
+  range :FormGroup;
+  routerlink=APP_CONSTANTS.ENDPOINTS
   dateVal  = new Date();
   searchData: string = '';
   close: string = '';
   getViewlist : any;
   today = new Date();
+  sortData= 'active';
+  companyId = localStorage.getItem('companyId');
+  filterModel = { "startRow":this.startRow,"endRow":this.endRow,
+    "filterModel":{
+    "companyId": {
+      "filterType":"text",
+      "type": "contains",
+      "sort": this.sortData,
+      "filter":this.companyId
+    }
+ }
+};
   month = this.today.getMonth();
   year = this.today.getFullYear();
   dateRange = new FormGroup({
@@ -30,11 +55,13 @@ export class EmpRequirmentsComponent implements OnInit {
     end: new FormControl(new Date(this.year, this.month, 16)),
   });
   jobReqData: any;
-
+  dataSource: any;
   constructor(
     private http: ApiService,
+    private toastr: ToastrService
   ) {}
   sortbystatusArray: any = [
+    'Active',
     'Pending',
     'Approved',
     'Open',
@@ -45,7 +72,10 @@ export class EmpRequirmentsComponent implements OnInit {
   ];
   sortByStatus = [];
   ngOnInit() {
-    this.getReqData();
+
+    this.fetchData();
+
+
   }
 
   //  jobReqData = [
@@ -410,13 +440,66 @@ export class EmpRequirmentsComponent implements OnInit {
   //   },
   // ];
 
+applyFilter(filtervalue:string){
+  this.jobReqData.filter=filtervalue.trim().toLowerCase()
+  console.log (filtervalue);
+}
+
+viewjobpagenator(){}
+
+
+
+
+some(pages){
+  this.filterModel.startRow= (( pages.value-1)*this.defaultRowPerPage)
+  this.filterModel.endRow = ( (pages.value)*this.defaultRowPerPage)
+  this.getReqData()
+}
+
   getReqData() {
-    let data= '';
-      this.http.viewjobRequirments(data).subscribe((response:any)=> {
+      this.http.viewjobRequirments(this.filterModel).subscribe((response:any)=> {
        this.jobReqData = response.data;
-       console.log(this.jobReqData);
+       this.total = response.totalCount.count / this.defaultRowPerPage
+
+   })
+ }
+
+searchList() {
+  this.filterModel.filterModel["jobRole"] = {
+    "filterType": "text",
+    "type": "contains",
+    "filter": this.searchData
+};
+  this.getReqData()
+}
+
+clearSearch(){
+  this.searchData  ='';
+  delete this.filterModel.filterModel["jobRole"]
+  this.getReqData()
+}
 
 
-  })
+// this.applyFilter(event.value);
+//   // const sortState: Sort = {active:this.sortbystatusArray,direction:'asc' };
+//   // this.sort.active = sortState.active;
+//   // this.sort.direction = sortState.direction;
+//   // this.sort.sortChange.emit(sortState);
+//   // this.getReqData()
+
+// }
+
+fetchData(){
+
+  this.http.viewjobRequirments(this.filterModel).subscribe((response: any) => {
+    if (response.success == false) {
+      this.toastr.warning('Connection failed, Please try again.');
+    } else {
+      this.jobReqData = response.data;
+      this.total = response.totalCount.count / this.defaultRowPerPage
+    }
+  }, (err) => {
+    this.toastr.warning('Connection failed, Please try again.');
+  });
 }
 }
