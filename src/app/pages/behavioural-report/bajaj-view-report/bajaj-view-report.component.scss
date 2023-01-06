@@ -1979,7 +1979,14 @@ padding-right: 10px;
   justify-content: space-between;
   position: relative;
   top: 20px;
-  padding-bottom: 30px;
+padding-left: 10%;
+padding-right: 10%;
+
+a {
+  color: #1D1D1B !important;
+  background-color: transparent;
+  text-decoration: none;
+}
   .Text {
     width: 350px;
     padding-bottom: 5px;
@@ -2000,7 +2007,7 @@ padding-right: 10px;
 }
 .Footer {
   background-color: #ffffff;
-  height: 375px;
+  height: 120px;
   .container {
     position: relative;
     top: 85px;
