@@ -5,7 +5,7 @@ import { dateInputsHaveChanged } from '@angular/material/datepicker/datepicker-i
 import { ToastrService } from 'ngx-toastr';
 import { Subscriber } from 'rxjs';
 import { ApiService } from 'src/app/services/api.service';
-import{ APP_CONSTANTS} from 'SRC/app/utils/app-constants.service';
+import{ APP_CONSTANTS} from 'src/app/utils/app-constants.service';
 import { MatSort,Sort } from '@angular/material/sort';
 
 @Component({
@@ -479,20 +479,15 @@ clearSearch(){
   this.getReqData()
 }
 
-sortChange(event){
-  this.filterModel.filterModel["status"] = {
-    "filterType": "text",
-    "type": "contains",
-    "filter": "active"
-};
-this.applyFilter(event.value);
-  // const sortState: Sort = {active:this.sortbystatusArray,direction:'asc' };
-  // this.sort.active = sortState.active;
-  // this.sort.direction = sortState.direction;
-  // this.sort.sortChange.emit(sortState);
-  // this.getReqData()
 
-}
+// this.applyFilter(event.value);
+//   // const sortState: Sort = {active:this.sortbystatusArray,direction:'asc' };
+//   // this.sort.active = sortState.active;
+//   // this.sort.direction = sortState.direction;
+//   // this.sort.sortChange.emit(sortState);
+//   // this.getReqData()
+
+// }
 
 fetchData(){
 
