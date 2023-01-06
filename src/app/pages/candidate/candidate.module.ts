@@ -43,7 +43,7 @@ import { ResumeTemplate1Component } from './resume-builder/resume-templates/resu
     JobDescriptionComponent,
     CommonPaginatorComponent,
     TimeAgoPipe,
-    NoDataFoundComponent
+    NoDataFoundComponent,
 
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]

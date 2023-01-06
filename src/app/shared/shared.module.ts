@@ -18,6 +18,8 @@ import { BehaviouralReportCanvasComponent } from './behavioural-report-canvas/be
 import {SidebarComponent} from './sidebar/sidebar.component';
 import { BajajBegaviouralPdfReportDownloadComponent } from './bajaj-begavioural-pdf-report-download/bajaj-begavioural-pdf-report-download.component';
 import { BajajReportCanvasComponent } from './bajaj-report-canvas/bajaj-report-canvas.component'
+import { CommonPaginatorComponent } from './common-paginator/common-paginator.component';
+
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
 };
@@ -35,7 +37,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     SidebarComponent,
     AlertDialogComponent,
     BajajBegaviouralPdfReportDownloadComponent,
-    BajajReportCanvasComponent
+    BajajReportCanvasComponent,
+    CommonPaginatorComponent
   ],
   imports: [
     CommonModule,
@@ -46,7 +49,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     PerfectScrollbarModule,
     NgxChartsModule,
     ChartsModule,
-    
+
   ],
   exports: [
     CommonModule,
@@ -65,7 +68,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     SidebarComponent,
     BehaviouralReportCanvasComponent,
     BajajBegaviouralPdfReportDownloadComponent,
-    BajajReportCanvasComponent
+    BajajReportCanvasComponent,
+    CommonPaginatorComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
   providers: [

@@ -19,7 +19,7 @@
           <div *ngIf="!isExpanded" class="sidebar-text headerfont sidestyle">Profile</div>
         </div>
       </mat-list-item>
-      <mat-list-item class="display" *ngIf='roleCode === "EMP"' [matMenuTriggerFor]="menu" >
+      <mat-list-item  *ngIf='roleCode === "EMP"' [matMenuTriggerFor]="menu" >
         <div class="sidemenu ">
          <div> <img class="sidebar-icon1" src="../../../../assets/images/emp-dashboard-icons/notification.png"></div>
          <div *ngIf="!isExpanded" class="sidebar-text headerfont sidestyle">Job
