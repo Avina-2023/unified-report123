@@ -5,11 +5,10 @@
     <div class="bg">
       <div class="data">
         <div class="col-md-2 inputContainer">
-          <mat-form-field appearance="outline">
-            <mat-select formControlName="droupDown" placeholder="Sort By">
-              <mat-option *ngFor="let item of sortbystatusArray" [value]="item">
-                {{ item }}
-              </mat-option>
+          <mat-form-field appearance="outline" >
+            <mat-select [(ngModel)]="sortData" (selectionChange)="getReqData()" placeholder="Sort By">
+              <mat-option value="active">Active</mat-option>
+              <mat-option value="rejected">Rejected</mat-option>
             </mat-select>
           </mat-form-field>
 

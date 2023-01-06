@@ -1,11 +1,12 @@
 import { ThisReceiver } from '@angular/compiler';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { dateInputsHaveChanged } from '@angular/material/datepicker/datepicker-input-base';
 import { ToastrService } from 'ngx-toastr';
 import { Subscriber } from 'rxjs';
 import { ApiService } from 'src/app/services/api.service';
-import{ APP_CONSTANTS} from 'SRC/app/utils/app-constants.service'
+import{ APP_CONSTANTS} from 'SRC/app/utils/app-constants.service';
+import { MatSort,Sort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-emp-requirments',
@@ -13,6 +14,8 @@ import{ APP_CONSTANTS} from 'SRC/app/utils/app-constants.service'
   styleUrls: ['./emp-requirments.component.scss'],
 })
 export class EmpRequirmentsComponent implements OnInit {
+
+  @ViewChild(MatSort) sort: MatSort;
   // range = new ({
   //   start: new FormControl,
   //   end: new FormControl,
@@ -21,9 +24,10 @@ export class EmpRequirmentsComponent implements OnInit {
   //   toDate :Date;
   // });
   public total:any;
-  public startRow:any = 0;
-  public endRow:any = 5;
+
   public defaultRowPerPage = 5;
+  public startRow:any = 0;
+  public endRow:any = this.defaultRowPerPage;
   public itemperpage:any=3;
   range :FormGroup;
   routerlink=APP_CONSTANTS.ENDPOINTS
@@ -32,15 +36,18 @@ export class EmpRequirmentsComponent implements OnInit {
   close: string = '';
   getViewlist : any;
   today = new Date();
+  sortData= 'active';
   companyId = localStorage.getItem('companyId');
   filterModel = { "startRow":this.startRow,"endRow":this.endRow,
     "filterModel":{
     "companyId": {
       "filterType":"text",
       "type": "contains",
+      "sort": this.sortData,
       "filter":this.companyId
     }
-  }};
+ }
+};
   month = this.today.getMonth();
   year = this.today.getFullYear();
   dateRange = new FormGroup({
@@ -48,12 +55,13 @@ export class EmpRequirmentsComponent implements OnInit {
     end: new FormControl(new Date(this.year, this.month, 16)),
   });
   jobReqData: any;
-
+  dataSource: any;
   constructor(
     private http: ApiService,
     private toastr: ToastrService
   ) {}
   sortbystatusArray: any = [
+    'Active',
     'Pending',
     'Approved',
     'Open',
@@ -66,6 +74,8 @@ export class EmpRequirmentsComponent implements OnInit {
   ngOnInit() {
 
     this.fetchData();
+
+
   }
 
   //  jobReqData = [
@@ -441,9 +451,9 @@ viewjobpagenator(){}
 
 
 some(pages){
-  this.startRow= (( pages.value-1)*this.defaultRowPerPage)
-  this.endRow = ( (pages.value)*this.defaultRowPerPage)
-  // this.fetchData(data)
+  this.filterModel.startRow= (( pages.value-1)*this.defaultRowPerPage)
+  this.filterModel.endRow = ( (pages.value)*this.defaultRowPerPage)
+  this.getReqData()
 }
 
   getReqData() {
@@ -455,43 +465,37 @@ some(pages){
  }
 
 searchList() {
-  console.log(this.searchData)
-  if (this.searchData != "") {
-    var val = this.searchData.toLowerCase()
-    var data = {
-      "filterModel": {
-          "jobRole": {
-              "filterType": "text",
-              "type": "contains",
-              "filter": val
-          }
-      }
-  }
-
-    this.http.viewjobRequirments(data).subscribe((response: any) => {
-      if (response.success == false) {
-        this.toastr.warning('Connection failed, Please try again.');
-      } else {
-        this.jobReqData = response.data;
-      }
-    }, (err) => {
-      console.log(err)
-      this.toastr.warning('Connection failed, Please try again.');
-    });
-  }
-   else {
-    this.toastr.warning('No data found');
-  }
+  this.filterModel.filterModel["jobRole"] = {
+    "filterType": "text",
+    "type": "contains",
+    "filter": this.searchData
+};
+  this.getReqData()
 }
 
 clearSearch(){
   this.searchData  ='';
-  var data = {"filterModel":{"createdBy":{"filterType":"set","values":["UapAdmin"]}}}
-  this.fetchData();
+  delete this.filterModel.filterModel["jobRole"]
+  this.getReqData()
 }
 
+sortChange(event){
+  this.filterModel.filterModel["status"] = {
+    "filterType": "text",
+    "type": "contains",
+    "filter": "active"
+};
+this.applyFilter(event.value);
+  // const sortState: Sort = {active:this.sortbystatusArray,direction:'asc' };
+  // this.sort.active = sortState.active;
+  // this.sort.direction = sortState.direction;
+  // this.sort.sortChange.emit(sortState);
+  // this.getReqData()
+
+}
 
 fetchData(){
+
   this.http.viewjobRequirments(this.filterModel).subscribe((response: any) => {
     if (response.success == false) {
       this.toastr.warning('Connection failed, Please try again.');
