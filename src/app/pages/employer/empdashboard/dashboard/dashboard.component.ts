@@ -169,6 +169,7 @@ public options: ChartOptions = {
         console.log(result)
         this.username = result.data.firstName;
         this.profileCompletion = result.data.profileCompletion;
+        localStorage.setItem('companyId', result.data.companyId);
       } else {
         console.log("failed to load employer details")
       }
