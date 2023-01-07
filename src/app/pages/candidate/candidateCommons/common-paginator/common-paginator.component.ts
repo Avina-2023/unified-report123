@@ -18,7 +18,8 @@ export class CommonPaginatorComponent implements OnInit {
   // public visibleRangeLength = 5;
   public visiblePages: number[];
   @Output() send = new EventEmitter;
-  @Input() totalcount:any;
+  @Input() totalcount:any ;
+  @Input() from:any;
   constructor() { }
   ngOnInit(): void {
 
