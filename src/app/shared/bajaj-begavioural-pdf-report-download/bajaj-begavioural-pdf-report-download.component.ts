@@ -150,7 +150,7 @@ export class BajajBegaviouralPdfReportDownloadComponent implements OnInit {
     } else if (name == 'Creative Thinking') {
       return this.img = '/assets/images/pdfDownload/creativeThinking.svg';
     } else if (name == 'Communication Skills') {
-      return this.img = '/assets/images/pdfDownload/communicationSkills.svg';
+      return this.img = '/assets/images/pdfDownload/communicationSkillBajaj.jpg';
     } else if (name == 'Teamwork') {
       return this.img = '/assets/images/pdfDownload/team-Work.svg';
     } else if (name == 'Positive Attitude') {
