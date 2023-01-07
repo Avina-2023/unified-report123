@@ -23,6 +23,9 @@ export class EmpRequirmentsComponent implements OnInit {
   //   fromDate : Date;
   //   toDate :Date;
   // });
+  rangeFilter(date: Date): boolean {
+    return date.getDate() > 0;
+  }
   public total:any;
 
   public defaultRowPerPage = 5;
@@ -36,7 +39,17 @@ export class EmpRequirmentsComponent implements OnInit {
   close: string = '';
   getViewlist : any;
   today = new Date();
-  sortData= 'active';
+  sortData: any = [
+    'Active',
+    'Pending',
+    'Approved',
+    'Open',
+    'Yet to Open',
+    'Closed',
+    'Rejected',
+    'Expired',
+  ];
+
   companyId = localStorage.getItem('companyId');
   filterModel = { "startRow":this.startRow,"endRow":this.endRow,
     "filterModel":{
@@ -56,6 +69,11 @@ export class EmpRequirmentsComponent implements OnInit {
   });
   jobReqData: any;
   dataSource: any;
+  sortDate: any;
+  isshowdaterange: boolean;
+  isshowclose: boolean;
+  startDate: any;
+  endDate: any;
   constructor(
     private http: ApiService,
     private toastr: ToastrService
@@ -447,15 +465,11 @@ applyFilter(filtervalue:string){
 
 viewjobpagenator(){}
 
-
-
-
 some(pages){
   this.filterModel.startRow= (( pages.value-1)*this.defaultRowPerPage)
   this.filterModel.endRow = ( (pages.value)*this.defaultRowPerPage)
   this.getReqData()
 }
-
   getReqData() {
       this.http.viewjobRequirments(this.filterModel).subscribe((response:any)=> {
        this.jobReqData = response.data;
@@ -479,7 +493,47 @@ clearSearch(){
   this.getReqData()
 }
 
+dateChange(){
+  this.filterModel.filterModel["lastDatetoApply"] = {
+    "dateFrom": this.startDate,
+    "dateTo": this.endDate,
+    "filterType": "date",
+    "type": "inRange",
+    "filter": this.sortDate
+  };
+  console.log(this.sortDate,'hii');
 
+this.getReqData()
+}
+clearDate(){
+  this.sortDate ='';
+  this.startDate ='';
+  this.endDate ='';
+  delete this.filterModel.filterModel["lastDatetoApply"]
+  this.getReqData()
+}
+// onStartChange(event: any) {
+
+//   this.isshowdaterange = true;
+
+//   this.isshowclose = true;
+
+//   this.dateSendingToServer = {}
+
+//   this.dateSendingToServer.start = this.datepipe.transform(this.startDate, 'yyyy-MM-dd')
+
+//   this.dateSendingToServer.end = this.datepipe.transform(this.endDate, 'yyyy-MM-dd')
+
+//   this.dispatchGetScheduledAssessment(this.searchString, this.selectedFilterValue, this.orginfo, this.dateSendingToServer.start, this.dateSendingToServer.end);
+
+// }
+sortChange(){
+  this.filterModel.filterModel["status"] = {
+    "filterType": "text",
+    "type": "contains",
+    "filter": this.sortData
+};
+this.getReqData()
 // this.applyFilter(event.value);
 //   // const sortState: Sort = {active:this.sortbystatusArray,direction:'asc' };
 //   // this.sort.active = sortState.active;
@@ -488,7 +542,7 @@ clearSearch(){
 //   // this.getReqData()
 
 // }
-
+}
 fetchData(){
 
   this.http.viewjobRequirments(this.filterModel).subscribe((response: any) => {
