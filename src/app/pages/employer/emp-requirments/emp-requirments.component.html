@@ -34,7 +34,7 @@
 
         <div class="col-md-7 search">
           <mat-form-field appearance="outline" style="width:102.5%">
-            <input matInput [(ngModel)]="searchData" placeholder="Search by Job Role" (keyup)="applyFilter($event.target.value)"
+            <input matInput [(ngModel)]="searchData" placeholder="Search by Job Role" (keyup)="applyFilter($event.target.value)" #something
               class="searchBycompany" />
             <button mat-button matPrefix mat-icon-button>
               <mat-icon class="searchIcon"(click)="searchList()" type="submit" >search</mat-icon>
@@ -47,7 +47,7 @@
       </div>
 
 
-      <div class="card_scroller">
+      <div class="card_scroller" *ngIf="jobReqData?.length; else nodata" >
         <div class="card1Border" *ngFor="let one of jobReqData">
           <div>
             <div class="main-wrapper">
@@ -146,9 +146,14 @@
       </div>
       <!-- page nation -->
       <div class="pagenator">
-        <app-common-paginator (send)="some($event)" [totalcount]="total"></app-common-paginator>
+        <app-common-paginator *ngIf="total" (send)="some($event)" [totalcount]="total" [from]="'partner'"></app-common-paginator>
       </div>
 
     </div>
   </div>
 </div>
+<ng-template #nodata>
+  <div class="errorCard">
+    No Data Available...
+  </div>
+</ng-template>

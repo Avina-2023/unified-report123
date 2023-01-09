@@ -7,7 +7,11 @@ import { Subscriber } from 'rxjs';
 import { ApiService } from 'src/app/services/api.service';
 import{ APP_CONSTANTS} from 'src/app/utils/app-constants.service';
 import { MatSort,Sort } from '@angular/material/sort';
-
+import { Timer } from 'ag-grid-community';
+export interface PaginatedResponse<T> {
+  items: T[];
+  total: number;
+}
 @Component({
   selector: 'app-emp-requirments',
   templateUrl: './emp-requirments.component.html',
@@ -16,6 +20,8 @@ import { MatSort,Sort } from '@angular/material/sort';
 export class EmpRequirmentsComponent implements OnInit {
 
   @ViewChild(MatSort) sort: MatSort;
+  sampleContent = [];
+  timerval: NodeJS.Timeout;
   // range = new ({
   //   start: new FormControl,
   //   end: new FormControl,
@@ -31,7 +37,9 @@ export class EmpRequirmentsComponent implements OnInit {
   public defaultRowPerPage = 5;
   public startRow:any = 0;
   public endRow:any = this.defaultRowPerPage;
-  public itemperpage:any=3;
+  public pageNumber: any = 1;
+  public itemsPerPage: any = 1;
+  public totallength:any
   range :FormGroup;
   routerlink=APP_CONSTANTS.ENDPOINTS
   dateVal  = new Date();
@@ -39,6 +47,7 @@ export class EmpRequirmentsComponent implements OnInit {
   close: string = '';
   getViewlist : any;
   today = new Date();
+
   sortData: any = [
     'Active',
     'Pending',
@@ -56,10 +65,10 @@ export class EmpRequirmentsComponent implements OnInit {
     "companyId": {
       "filterType":"text",
       "type": "contains",
-      "sort": this.sortData,
-      "filter":this.companyId
+      "filter":this.companyId,
     }
- }
+ },
+
 };
   month = this.today.getMonth();
   year = this.today.getFullYear();
@@ -459,8 +468,14 @@ export class EmpRequirmentsComponent implements OnInit {
   // ];
 
 applyFilter(filtervalue:string){
-  this.jobReqData.filter=filtervalue.trim().toLowerCase()
-  console.log (filtervalue);
+
+  clearTimeout(this.timerval)
+  this.timerval = setTimeout(() => {
+    this.jobReqData.filter=filtervalue.trim().toLowerCase()
+    console.log (filtervalue);
+    this.searchList()
+  }, 500);
+
 }
 
 viewjobpagenator(){}
@@ -468,17 +483,28 @@ viewjobpagenator(){}
 some(pages){
   this.filterModel.startRow= (( pages.value-1)*this.defaultRowPerPage)
   this.filterModel.endRow = ( (pages.value)*this.defaultRowPerPage)
+  // let {pageindex,length} = pages
+  // this.pageNumber=pages.value;
   this.getReqData()
 }
   getReqData() {
       this.http.viewjobRequirments(this.filterModel).subscribe((response:any)=> {
-       this.jobReqData = response.data;
-       this.total = response.totalCount.count / this.defaultRowPerPage
-
+        if (response.success) {
+          this.jobReqData = response.data;
+       this.totallength = response.totalCount.count;
+       this.total = Math.ceil(response.totalCount.count/this.defaultRowPerPage);
+       this.jobReqData.forEach(element => {
+        this.sampleContent.push(element.overview);
+      });
+        } else {
+          this.toastr.warning('Connection failed, Please try again.');
+    }
+      //  this.total = response.totalCount.count / this.defaultRowPerPage
    })
  }
 
 searchList() {
+
   this.filterModel.filterModel["jobRole"] = {
     "filterType": "text",
     "type": "contains",
@@ -540,7 +566,6 @@ this.getReqData()
 //   // this.sort.direction = sortState.direction;
 //   // this.sort.sortChange.emit(sortState);
 //   // this.getReqData()
-
 // }
 }
 fetchData(){
@@ -550,10 +575,21 @@ fetchData(){
       this.toastr.warning('Connection failed, Please try again.');
     } else {
       this.jobReqData = response.data;
-      this.total = response.totalCount.count / this.defaultRowPerPage
+      this.totallength = this.jobReqData.length
+      this.total = Math.ceil(response.totalCount.count/this.defaultRowPerPage);
+      // this.total = response.totalCount.count / this.itemsPerPage
     }
   }, (err) => {
     this.toastr.warning('Connection failed, Please try again.');
   });
 }
+
+timeout(callback, ms) {
+  var timer ;
+  return function(...args) {
+    clearTimeout(timer);
+    timer = setTimeout(callback.bind(this, ...args), ms || 0)
+  };
+}
+
 }
