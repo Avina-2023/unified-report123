@@ -1,79 +1,46 @@
 <div class="body">
     <div class="subBody">
       <h3 class="title">Partner Enquiries</h3>
-      <div class="partnerCardTableBody">
-        <mat-card class="partnerCard">
-          <mat-card-title class="cardTitle">
-            <div class="d-flex inputCom">
-                <mat-form-field appearance="outline">
-                  <input [(ngModel)]="searchData" matInput placeholder="Search by Company name, Designation" class="">
-                </mat-form-field>
-            </div>
-            <button color="primary" [disabled]="(this.searchData == '')?true:false" (click)="searchList()" type="submit" [ngClass]="(this.searchData != '')?'search-btn-one':'notAllow'" >Search</button>
-            <a class="clearData" *ngIf="(this.searchData == '')?false:true" (click)="clearSearch()">Clear all</a>
-        </mat-card-title>
-          <mat-card-content class="cardValue">
-            <div>
-              <table mat-table [dataSource]="dataSource" class="">
-                <ng-container matColumnDef="sno">
-                  <th mat-header-cell *matHeaderCellDef> S.No </th>
-                  <td mat-cell *matCellDef="let element">{{element.sno}}</td>
-                </ng-container>
-                <!-- Name Column -->
-                <ng-container matColumnDef="name">
-                  <th mat-header-cell *matHeaderCellDef> Name </th>
-                  <td mat-cell *matCellDef="let element"> {{element.firstName?element.firstName+" "+element.lastName:"-"}}  </td>
-                </ng-container>
+        <div class="border">
+          <div class="ag-grid">
+           <ag-grid-angular
+             style="width: 100%; height: 100%;"
+             class="ag-theme-alpine"
+             [gridOptions]= "gridOptions"
+              [columnDefs]="columnDefs"
+                               [defaultColDef]="defaultColDef"
 
-                 <!-- Name Column -->
-                 <ng-container matColumnDef="designation">
-                  <th mat-header-cell *matHeaderCellDef> Designation </th>
-                  <td mat-cell *matCellDef="let element"> {{element.designation?element.designation:"-"}}  </td>
-                </ng-container>
-  
-                <!-- Weight Column -->
-                <ng-container matColumnDef="company">
-                  <th mat-header-cell *matHeaderCellDef> Company </th>
-                  <td mat-cell *matCellDef="let element"> {{element.company?element.company:"-"}} </td>
-                </ng-container>
-  
-                <!-- Symbol Column -->
-                <ng-container matColumnDef="email">
-                  <th mat-header-cell *matHeaderCellDef> Email </th>
-                  <td mat-cell *matCellDef="let element"> {{element.email?element.email:"-"}} </td>
-                </ng-container>
-  
-                <ng-container matColumnDef="mobile">
-                  <th mat-header-cell *matHeaderCellDef> Mobile </th>
-                  <td mat-cell *matCellDef="let element"> {{element.mobile?element.mobile:"-"}}
-                  </td>
-                </ng-container>
-  
-                <ng-container matColumnDef="registeredDate">
-                  <th mat-header-cell *matHeaderCellDef> Registered Date </th>
-                  <td mat-cell *matCellDef="let element">{{element.createdAt|date:'MMM d, y'}}</td>
-                </ng-container>  
-                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-                <tr class="mat-row" *matNoDataRow>
-                  <td class="mat-cell nodata" colspan="8">No Data Found</td>
-                </tr>
-              </table>
-              <div class="customPagination">
-                <!-- <mat-paginator style-paginator [showTotalPages]="10" [length]="totalPartnerCount||10" [pageSize]="10"
-                  [pageSizeOptions]="[10]"
- >
-                </mat-paginator> -->
-                  <mat-paginator  [length]="totalPartnerCount"
-                  [pageSize]="10"
-                  [pageSizeOptions]="[3,5,10]"
-                  aria-label="Select page">
-                    >
-                  </mat-paginator>
-              </div>
-            </div>
-          </mat-card-content>
-        </mat-card>
-      </div>
+                               [masterDetail]="masterDetail"
+                                [rowData]="rowData"
+                                [enableRangeSelection]="true"
+                               [tooltipShowDelay]="0"
+                               [animateRows]="true"
+                                headerHeight="45"
+                                rowHeight="45"
+                               [suppressRowClickSelection]="true"
+                                [suppressRowTransform]="true"
+                                [rowSelection]="rowSelection"
+                               [pivotPanelShow]="'always'"
+                               [sideBar]="false"
+                               (gridReady)="onGridReady($event)"
+                               [rowModelType]="rowModelType"
+                                [maintainColumnOrder]="true"
+                                [cacheBlockSize]="cacheBlockSize"
+                               (selectionChanged)="onSelectionChanged($event)"
+                               [suppressAggFuncInHeader]="true"
+                               [suppressColumnVirtualisation]="true"
+                               [autoGroupColumnDef]="autoGroupColumnDef"
+                               [serverSideStoreType]="serverSideStoreType"
+                               [pagination]="true"
+                               [paginationPageSize]="1000"
+                               [sideBar]="sideBar"
+                               allColumns=true
+             >
+
+         </ag-grid-angular>
+
+       </div>
+         </div>
+
     </div>
   </div>
