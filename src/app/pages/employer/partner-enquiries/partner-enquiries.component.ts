@@ -1,18 +1,52 @@
 import { Component, ContentChild, OnInit, ViewChild } from '@angular/core';
 import { ApiService } from '../../../services/api.service';
 import { ToastrService } from 'ngx-toastr';
+import { ColDef, GridApi } from 'ag-grid-community';
 import { MatNoDataRow, MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { AppConfigService } from 'src/app/utils/app-config.service';
 import { APP_CONSTANTS } from '../../../utils/app-constants.service';
-
+import { GridOptions } from '@ag-grid-enterprise/all-modules';
+import { Subscription } from 'rxjs';
+import { SentDataToOtherComp } from 'src/app/services/sendDataToOtherComp.service';
 @Component({
   selector: 'app-partner-enquiries',
   templateUrl: './partner-enquiries.component.html',
   styleUrls: ['./partner-enquiries.component.scss']
 })
 export class PartnerEnquiriesComponent implements OnInit {
-
+  private gridApi!: GridApi;
+  public gridColumnApi: any;
+  columnDefs: any = [];
+  FormateName: any;
+  selectedRow: any[];
+  pageRowCount = 0;
+  partnerList: any = [];
+  public masterDetail;
+  public gridOptions: GridOptions;
+  public rowData: any[] | null = [1, 2];
+  public rowSelection = 'multiple';
+  public serverSideStoreType;
+  public rowModelType;
+  public defaultColDef: ColDef;
+  cacheBlockSize: any = 1000;
+  public autoGroupColumnDef: ColDef = {
+    flex: 1,
+    minWidth: 320,
+  };
+  partnerEnquirieAgGridSubscription: Subscription;
+  sideBar = {
+    toolPanels: [
+      {
+        id: 'filters',
+        labelDefault: 'Filters',
+        labelKey: 'filters',
+        iconKey: 'filter',
+        toolPanel: 'agFiltersToolPanel',
+      },
+    ],
+    defaultToolPanel: '',
+  };
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ContentChild(MatNoDataRow) noDataRow: MatNoDataRow;
 
@@ -22,17 +56,36 @@ export class PartnerEnquiriesComponent implements OnInit {
 
   totalPartnerCount :number;
   searchData :string ='';
-  constructor(private ApiService: ApiService, private appconfig: AppConfigService, private toastr: ToastrService) {
+  constructor(  private ApiService: ApiService,
+
+    private toastr: ToastrService,
+    private appconfig: AppConfigService,
+    private sendData: SentDataToOtherComp) {
+      this.rowModelType = 'serverSide';
+      this.serverSideStoreType = 'partial';
+      this.defaultColDef = {
+        flex: 1,
+        enableRowGroup: true,
+        enablePivot: true,
+        sortable: true,
+        resizable: true,
+        filter: true,
+        // enableFilter: true,
+        minWidth: 220,
+        // sideBar: 'filter',
+      };
   }
 
   ngOnInit(): void {
-    var data = {"filterModel":{"createdBy":{"filterType":"set","values":["UapAdmin"]}}}
-    this.fetchData(data);
+    this.tabledata();
+    // this.autoSizeAll(false);
+    // var data = {"filterModel":{"createdBy":{"filterType":"set","values":["UapAdmin"]}}}
+    // this.fetchData(data);
   }
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }
- 
+
   searchList() {
     if (this.searchData != "") {
       var val = this.searchData.toLowerCase()
@@ -55,7 +108,229 @@ export class PartnerEnquiriesComponent implements OnInit {
     this.fetchData(data);
   }
 
+  tabledata() {
+    this.columnDefs = [
+      {
+        headerName: 'S.No',
+        field: 'id',
+        minWidth: 85,
+        suppressColumnsToolPanel: true,
+        filter: false,
+        cellRenderer: function (params) {
+          return params.rowIndex + 1;
+        },
+        sortable: false,
+      },
+      {
+        headerName: 'Name', field: 'firstName', minWidth: 175,
+        filter: 'agTextColumnFilter',
+        chartDataType: 'category',
+        aggFunc: 'sum',
+        filterParams: {
+          suppressAndOrCondition: true,
+          filterOptions: ['contains']
+        },
+        cellRenderer: (params) => {
+          if (params.value && params.value != undefined && params.value != null && params.value != "") {
+            this.FormateName = params.value;
+            return this.FormateName;
+          } else {
+            return "-";
+          }
+        },
+        tooltipField: 'email',
+      },
+      {
+        headerName: 'Designation', field: 'designation', minWidth: 175,
+        filter: 'agTextColumnFilter',
+        chartDataType: 'category',
+        aggFunc: 'sum',
+        filterParams: {
+          suppressAndOrCondition: true,
+          filterOptions: ['contains']
+        },
+        cellRenderer: (params) => {
+          if (params.value && params.value != undefined && params.value != null && params.value != "") {
+            this.FormateName = params.value;
+            return this.titleCase(this.FormateName);
+          } else {
+            return "-";
+          }
+        },
+        tooltipField: 'studentName',
+      },
+      {
+      headerName: 'Company', field: 'company', minWidth: 175,
+      filter: 'agTextColumnFilter',
+      chartDataType: 'category',
+      aggFunc: 'sum',
+      filterParams: {
+        suppressAndOrCondition: true,
+        filterOptions: ['contains']
+      },
+      cellRenderer: (params) => {
+        if (params.value && params.value != undefined && params.value != null && params.value != "") {
+          this.FormateName = params.value;
+          return this.titleCase(this.FormateName);
+        } else {
+          return "-";
+        }
+      },
+      tooltipField: 'studentLastName',
+    },
+    {
+      headerName: 'Gender', field: 'gender', minWidth: 125,
+      filter: 'agTextColumnFilter',
+      chartDataType: 'category',
+      aggFunc: 'sum',
+      filterParams: {
+        suppressAndOrCondition: true,
+        filterOptions: ['contains']
+      },
+      cellRenderer: (params) => {
+        if (params.value && params.value != undefined && params.value != null && params.value != "") {
+          this.FormateName = params.value;
+          return this.titleCase(this.FormateName);
+        } else {
+          return "-";
+        }
+      },
+      tooltipField: 'gender',
+    },
+    {
+      headerName: 'Email', field: 'email', minWidth: 180,
+      filter: 'agTextColumnFilter',
+      chartDataType: 'category',
+      aggFunc: 'sum',
+      filterParams: {
+        suppressAndOrCondition: true,
+        filterOptions: ['contains']
+      },
+      cellRenderer: (params) => {
+        if (params.value && params.value != undefined && params.value != null && params.value != "") {
+          this.FormateName = params.value;
+          return this.FormateName;
+        } else {
+          return "-";
+        }
+      },
+      tooltipField: 'collegeName',
+    },
+    {
+      headerName: 'Mobile', field: 'mobile', minWidth: 175,
+      filter: 'agTextColumnFilter',
+      chartDataType: 'category',
+      aggFunc: 'sum',
+      filterParams: {
+        suppressAndOrCondition: true,
+        filterOptions: ['contains']
+      },
+      cellRenderer: (params) => {
+        if (params.value && params.value != undefined && params.value != null && params.value != "") {
+          this.FormateName = params.value;
+          return this.FormateName;
+        } else {
+          return "-";
+        }
+      },
+      tooltipField: 'mobile',
+    },
+      {
+        headerName: 'Registered Date', field: 'createdAt', minWidth: 120,
+        filter: 'agTextColumnFilter',
+        chartDataType: 'category',
+        aggFunc: 'sum',
+        filterParams: {
+          suppressAndOrCondition: true,
+          filterOptions: ['contains']
+        },
+        cellRenderer: (params) => {
+          if (params.value && params.value != undefined && params.value != null && params.value != "") {
+            return params.value;
+          } else {
+            return "-";
+          }
+        },
+        tooltipField: 'degree',
+      },
 
+    ];
+
+  }
+
+  async onSelectionChanged(event) {
+    var rowData = event.api.getSelectedNodes();
+    var ids = [];
+    await rowData.forEach((elem) => {
+      ids.push(elem.data._id);
+    });
+    this.selectedRow = ids;
+  }
+  titleCase(str) {
+    var splitStr = str.toLowerCase().split(' ');
+    for (var i = 0; i < splitStr.length; i++) {
+      splitStr[i] = splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1);
+    }
+    return splitStr.join(' ');
+  }
+  onGridReady(params: any) {
+    this.gridApi = params.api;
+    this.gridColumnApi = params.columnApi;
+    var datasource = this.getAggridJoblist();
+    params.api.setServerSideDatasource(datasource);
+  }
+
+  getAggridJoblist() {
+    // debugger;
+    return {
+      getRows: (params) => {
+        console.log(params,'hii');
+
+        let apiData: any = params;
+                this.partnerEnquirieAgGridSubscription = this.ApiService.partnerList(
+          apiData.request
+).subscribe(
+          (data1: any) => {
+
+            if (data1.success == false) {
+              params.fail();
+              params.success({
+                rowData: [],
+                rowCount: 0,
+              });
+              this.gridApi.showNoRowsOverlay();
+            }
+            else {
+              this.partnerList = data1 && data1.data ? data1.data : [];
+              if (this.partnerList.length > 0) {
+                this.pageRowCount =
+                  data1 && data1.totalCount ? data1.totalCount : 0;
+                this.gridApi.hideOverlay();
+                params.success({
+                  rowData: this.partnerList,
+                  rowCount: this.pageRowCount,
+                });
+              } else {
+                params.success({
+                  rowData: this.partnerList,
+                  rowCount: 0,
+                });
+                this.gridApi.showNoRowsOverlay();
+              }
+            }
+          },
+          (err) => {
+            params.fail();
+            params.success({
+              rowData: this.partnerList,
+              rowCount: this.pageRowCount
+            });
+          }
+        );
+        this.gridApi.hideOverlay();
+      },
+    };
+  }
   fetchData(data:any){
     data.type="partnerEnquiries"
     this.ApiService.partnerList(data).subscribe((partnerList: any) => {
