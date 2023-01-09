@@ -17,7 +17,7 @@ import { SentDataToOtherComp } from 'src/app/services/sendDataToOtherComp.servic
 })
 
 export class PopUpCellRendererComponent implements ICellRendererAngularComp {
- 
+
   getseconds:any=[];
   gettime:any[];
   seconds: any;
@@ -33,7 +33,7 @@ export class PopUpCellRendererComponent implements ICellRendererAngularComp {
   jopDetails: { AppliedDate: string; Title: string; Created_by: string; }[];
   params:any;
   // matDialog: any;
- 
+
   constructor(
     private dialog: MatDialog,
     private dialog1: MatDialog,
@@ -42,7 +42,7 @@ export class PopUpCellRendererComponent implements ICellRendererAngularComp {
     private appConfig: AppConfigService,
     private msgData : SentDataToOtherComp
 
-    
+
     ) {}
     @ViewChild('matDialog', { static: false }) matDialog: TemplateRef<any>;
     @ViewChild('matDialog1', { static: false }) matDialog1: TemplateRef<any>;
@@ -86,7 +86,7 @@ export class PopUpCellRendererComponent implements ICellRendererAngularComp {
         autoFocus: false,
         closeOnNavigation: true,
         disableClose: true,
-        
+
       });
     }
     instructionClose() {
@@ -100,7 +100,7 @@ export class PopUpCellRendererComponent implements ICellRendererAngularComp {
   agInit(params: ICellRendererParams): void {
     this.params = params;
     params.value
-    // console.log(params.data);    
+    // console.log(params.data);
   }
   afterGuiAttached?(params?: IAfterGuiAttachedParams): void {
     throw new Error('Method not implemented.');
@@ -108,14 +108,14 @@ export class PopUpCellRendererComponent implements ICellRendererAngularComp {
 
   ngOnInit(): void {
     for( var i= 0 ; i<=60; i++){
-      this.getseconds.push(i) 
+      this.getseconds.push(i)
    };
     this.gethours = this.getseconds.filter((val,i)=> i < 13)
     this.gethours = this.gethours.slice(1,13)
- 
+
     this.jopDetails=[{
 
-      
+
           "AppliedDate":"Sep 23, 2022 12:30 pm",
           "Title":"Job Requirement Posted1",
           "Created_by":"L&T"
@@ -136,10 +136,10 @@ export class PopUpCellRendererComponent implements ICellRendererAngularComp {
           "Created_by":"Admin"
       }
   ]
-  
-      
+
+
   }
-  
+
   onHoursSelected(value:string){
     // console.log("the selected Hours is " + value);
    this.hours=value
