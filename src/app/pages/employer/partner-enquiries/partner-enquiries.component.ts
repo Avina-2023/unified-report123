@@ -9,6 +9,8 @@ import { APP_CONSTANTS } from '../../../utils/app-constants.service';
 import { GridOptions } from '@ag-grid-enterprise/all-modules';
 import { Subscription } from 'rxjs';
 import { SentDataToOtherComp } from 'src/app/services/sendDataToOtherComp.service';
+import * as moment from 'moment';
+
 @Component({
   selector: 'app-partner-enquiries',
   templateUrl: './partner-enquiries.component.html',
@@ -131,14 +133,19 @@ export class PartnerEnquiriesComponent implements OnInit {
           filterOptions: ['contains']
         },
         cellRenderer: (params) => {
-          if (params.value && params.value != undefined && params.value != null && params.value != "") {
+          if (params.value && params.value != undefined && params.value != null && params.value != "" && params.data.lastName != undefined && params.data.lastName !=  "") {
+            this.FormateName = params.value + params.data.lastName   ;
+            return this.FormateName;
+          } else
+          if(params.value && params.value != undefined && params.value != null && params.value != "" && params.data.lastName == undefined || params.data.lastName == "" ){
             this.FormateName = params.value;
             return this.FormateName;
-          } else {
+          }
+          {
             return "-";
           }
         },
-        tooltipField: 'email',
+        tooltipField: 'firstName',
       },
       {
         headerName: 'Designation', field: 'designation', minWidth: 175,
@@ -157,7 +164,7 @@ export class PartnerEnquiriesComponent implements OnInit {
             return "-";
           }
         },
-        tooltipField: 'studentName',
+        tooltipField: 'designation',
       },
       {
       headerName: 'Company', field: 'company', minWidth: 175,
@@ -176,29 +183,10 @@ export class PartnerEnquiriesComponent implements OnInit {
           return "-";
         }
       },
-      tooltipField: 'studentLastName',
+      tooltipField: 'company',
     },
     {
-      headerName: 'Gender', field: 'gender', minWidth: 125,
-      filter: 'agTextColumnFilter',
-      chartDataType: 'category',
-      aggFunc: 'sum',
-      filterParams: {
-        suppressAndOrCondition: true,
-        filterOptions: ['contains']
-      },
-      cellRenderer: (params) => {
-        if (params.value && params.value != undefined && params.value != null && params.value != "") {
-          this.FormateName = params.value;
-          return this.titleCase(this.FormateName);
-        } else {
-          return "-";
-        }
-      },
-      tooltipField: 'gender',
-    },
-    {
-      headerName: 'Email', field: 'email', minWidth: 180,
+      headerName: 'Email', field: 'email', minWidth: 175,
       filter: 'agTextColumnFilter',
       chartDataType: 'category',
       aggFunc: 'sum',
@@ -214,7 +202,7 @@ export class PartnerEnquiriesComponent implements OnInit {
           return "-";
         }
       },
-      tooltipField: 'collegeName',
+      tooltipField: 'email',
     },
     {
       headerName: 'Mobile', field: 'mobile', minWidth: 175,
@@ -235,24 +223,21 @@ export class PartnerEnquiriesComponent implements OnInit {
       },
       tooltipField: 'mobile',
     },
-      {
-        headerName: 'Registered Date', field: 'createdAt', minWidth: 120,
-        filter: 'agTextColumnFilter',
-        chartDataType: 'category',
-        aggFunc: 'sum',
-        filterParams: {
-          suppressAndOrCondition: true,
-          filterOptions: ['contains']
-        },
-        cellRenderer: (params) => {
-          if (params.value && params.value != undefined && params.value != null && params.value != "") {
-            return params.value;
-          } else {
-            return "-";
-          }
-        },
-        tooltipField: 'degree',
+    {
+      headerName: 'Registered Date',
+      field: 'createdAt',
+      minWidth: 180,
+      filter: 'agDateColumnFilter',
+      chartDataType: 'series',
+      filterParams: {
+        suppressAndOrCondition: true,
+        filterOptions: ['equals', 'lessThan', 'greaterThan', 'inRange'],
       },
+      valueFormatter: function (params) {
+        return moment(params.value).format('MMM D, yy');
+    },
+    },
+
 
     ];
 
