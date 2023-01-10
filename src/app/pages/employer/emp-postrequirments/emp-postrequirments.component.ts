@@ -41,6 +41,15 @@ export class EmpPostrequirmentsComponent implements OnInit {
 
   selected_specializations: any[];
 
+  yearofpassingArray =function getLast30Years(): number[] {
+    // Get the current year
+    const currentYear = new Date().getFullYear();
+
+    // Use the Array.from method to create an array of numbers from 0 to 29
+    return Array.from({ length: 30 }, (_, i) => currentYear - i);
+  }
+
+
   graduations = [
     { value: 'sslc', label: 'SSLC' },
 
@@ -131,6 +140,19 @@ export class EmpPostrequirmentsComponent implements OnInit {
 
   AnyGraduationStatus = [];
 
+  //getSkillMasterList(data) {
+    //return this.http.post(`${this.BASE_URL}/getSkillList`, data,
+     // { reportProgress: true });
+ // }
+
+ onToppingRemoved(topping: string) {
+  const toppings = this.keyskillArrayControl.value as string[];
+  this.keyskillArrayControl.setValue(toppings); // To trigger change detection
+}
+
+
+
+ keyskillArrayControl = new FormControl([]);
   keyskillArray = [
     'Nautical science',
     'Maritime science',
@@ -141,7 +163,9 @@ export class EmpPostrequirmentsComponent implements OnInit {
   fromDate: Date;
   toDate: Date;
 
-  yearofpassingArray: any = ['2019', '2020', '2021', '2022'];
+
+  yearofPassingControl = new FormControl([]);
+  toppingList: any [] = ['2019', '2020', '2021', '2022', '2023', '2024'];
 
   ctcArray: any = ['12lacs', '13lacs', '14lacs', '15lacs'];
 
@@ -236,6 +260,9 @@ export class EmpPostrequirmentsComponent implements OnInit {
     }
 
   }
+
+  removeyearofPasing(){}
+
 
   removeEducationalField(index: number): void {
     if (this.educationalDetails.length > 1)
