@@ -6,8 +6,10 @@ import { ToastrService } from 'ngx-toastr';
 import { Subscriber } from 'rxjs';
 import { ApiService } from 'src/app/services/api.service';
 import{ APP_CONSTANTS} from 'src/app/utils/app-constants.service';
+import { AppConfigService } from 'src/app/utils/app-config.service';
 import { MatSort,Sort } from '@angular/material/sort';
 import { Timer } from 'ag-grid-community';
+import { SentDataToOtherComp } from 'src/app/services/sendDataToOtherComp.service';
 export interface PaginatedResponse<T> {
   items: T[];
   total: number;
@@ -22,13 +24,6 @@ export class EmpRequirmentsComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   sampleContent = [];
   timerval: NodeJS.Timeout;
-  // range = new ({
-  //   start: new FormControl,
-  //   end: new FormControl,
-  //   searchData :string ='';
-  //   fromDate : Date;
-  //   toDate :Date;
-  // });
   rangeFilter(date: Date): boolean {
     return date.getDate() > 0;
   }
@@ -47,7 +42,7 @@ export class EmpRequirmentsComponent implements OnInit {
   close: string = '';
   getViewlist : any;
   today = new Date();
-
+  params:any;
   sortData: any = [
     'Active',
     'Pending',
@@ -60,13 +55,14 @@ export class EmpRequirmentsComponent implements OnInit {
   ];
 
   companyId = localStorage.getItem('companyId');
+  currentJobID = localStorage.getItem('currentJobID');
   filterModel = { "startRow":this.startRow,"endRow":this.endRow,
     "filterModel":{
-    "companyId": {
-      "filterType":"text",
-      "type": "contains",
-      "filter":this.companyId,
-    }
+    // "companyId": {
+    //   "filterType":"text",
+    //   "type": "contains",
+    //   "filter":this.companyId,
+    // }
  },
 
 };
@@ -79,14 +75,16 @@ export class EmpRequirmentsComponent implements OnInit {
   jobReqData: any;
   dataSource: any;
   sortDate: any;
-  isshowdaterange: boolean;
-  isshowclose: boolean;
   startDate: any;
   endDate: any;
   constructor(
     private http: ApiService,
-    private toastr: ToastrService
-  ) {}
+    private toastr: ToastrService,
+    private appConfig: AppConfigService,
+    private msgData : SentDataToOtherComp
+  ) {
+
+  }
   sortbystatusArray: any = [
     'Active',
     'Pending',
@@ -102,8 +100,8 @@ export class EmpRequirmentsComponent implements OnInit {
 
     this.fetchData();
 
-
   }
+
 
   //  jobReqData = [
   //   {
@@ -468,18 +466,20 @@ export class EmpRequirmentsComponent implements OnInit {
   // ];
 
 applyFilter(filtervalue:string){
-
   clearTimeout(this.timerval)
   this.timerval = setTimeout(() => {
     this.jobReqData.filter=filtervalue.trim().toLowerCase()
     console.log (filtervalue);
     this.searchList()
   }, 500);
-
 }
 
 viewjobpagenator(){}
 
+viewApplication(jobId){
+  this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.VIEWDRIVE.VIEWCANDIDATE);
+  this.appConfig.setLocalStorage("currentJobID",jobId)
+}
 some(pages){
   this.filterModel.startRow= (( pages.value-1)*this.defaultRowPerPage)
   this.filterModel.endRow = ( (pages.value)*this.defaultRowPerPage)
@@ -490,6 +490,7 @@ some(pages){
   getReqData() {
       this.http.viewjobRequirments(this.filterModel).subscribe((response:any)=> {
         if (response.success) {
+
           this.jobReqData = response.data;
        this.totallength = response.totalCount.count;
        this.total = Math.ceil(response.totalCount.count/this.defaultRowPerPage);
@@ -503,8 +504,7 @@ some(pages){
    })
  }
 
-searchList() {
-
+searchList(){
   this.filterModel.filterModel["jobRole"] = {
     "filterType": "text",
     "type": "contains",
@@ -528,7 +528,6 @@ dateChange(){
     "filter": this.sortDate
   };
   console.log(this.sortDate,'hii');
-
 this.getReqData()
 }
 clearDate(){
@@ -538,21 +537,7 @@ clearDate(){
   delete this.filterModel.filterModel["lastDatetoApply"]
   this.getReqData()
 }
-// onStartChange(event: any) {
 
-//   this.isshowdaterange = true;
-
-//   this.isshowclose = true;
-
-//   this.dateSendingToServer = {}
-
-//   this.dateSendingToServer.start = this.datepipe.transform(this.startDate, 'yyyy-MM-dd')
-
-//   this.dateSendingToServer.end = this.datepipe.transform(this.endDate, 'yyyy-MM-dd')
-
-//   this.dispatchGetScheduledAssessment(this.searchString, this.selectedFilterValue, this.orginfo, this.dateSendingToServer.start, this.dateSendingToServer.end);
-
-// }
 sortChange(){
   this.filterModel.filterModel["status"] = {
     "filterType": "text",

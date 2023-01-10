@@ -12,7 +12,9 @@
   position: absolute;
   right: 0px;
 }
-
+.fulltime{
+  padding-left: 5px;
+}
 .title {
   display: flex;
   padding-left: 25px;
@@ -82,6 +84,7 @@
   .mat-form-field-appearance-outline .mat-form-field-wrapper {
     margin: 0;
     padding-bottom: 0px !important;
+    width: 99%;
   }
 
   .mat-form-field-appearance-outline .mat-form-field-label {
@@ -322,7 +325,64 @@
     width: 400px;
   }
 }
-
+.Status{
+  font-size: 12px;
+  font-weight: 400;
+}
+.openBg {
+  opacity: 1;
+  margin-right: 25px;
+  margin-top: 8px;
+  height: 26px;
+  display: flex;
+  flex-wrap: wrap;
+  border-radius: 3px;
+  opacity: 1;
+  border: 0;
+  background-color: #79A58E opacity($color: 40%);
+  color: #79A58E;
+  width: 74px;
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+}
+.yettoopenBg {
+  opacity: 1;
+  margin-right: 25px;
+  margin-top: 8px;
+  height: 26px;
+  display: flex;
+  flex-wrap: wrap;
+  border-radius: 3px;
+  opacity: 1;
+  border: 0;
+  background-color:  #66B1B4 opacity($color: 40%);
+  color: #66B1B4;
+  width: 74px;
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+}
+.rejectedBg {
+  opacity: 1;
+  margin-right: 25px;
+  margin-top: 8px;
+  height: 26px;
+  display: flex;
+  flex-wrap: wrap;
+  border-radius: 3px;
+  opacity: 1;
+  border: 0;
+  background-color: #ef2917 opacity($color: 40%);
+  color: #ef2917;
+  width: 74px;
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+}
 .activeBg {
   opacity: 1;
   margin-right: 25px;
@@ -335,7 +395,6 @@
   border: 0;
   background-color: #49ae3166;
   color: #306325;
-
   width: 74px;
   display: flex;
   position: relative;
@@ -353,7 +412,7 @@
   opacity: 1;
   background-color: #26c1f666;
   color: #045874;
-
+  border: 0;
   width: 74px;
   display: flex;
   position: relative;
@@ -371,7 +430,7 @@
   opacity: 1;
   background-color: #84848466;
   color: #686868;
-
+  border: 0;
   width: 74px;
   display: flex;
   position: relative;
@@ -389,7 +448,7 @@
   opacity: 1;
   background-color: #ffc30066;
   color: #a5892b;
-
+  border: 0;
   width: 74px;
   display: flex;
   position: relative;

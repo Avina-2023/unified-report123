@@ -34,8 +34,7 @@
 
         <div class="col-md-7 search">
           <mat-form-field appearance="outline" style="width:102.5%">
-            <input matInput [(ngModel)]="searchData" placeholder="Search by Job Role" (keyup)="applyFilter($event.target.value)" #something
-              class="searchBycompany" />
+            <input matInput [(ngModel)]="searchData" placeholder="Search by Job Role" (keyup)="applyFilter($event.target.value)"class="searchBycompany" />
             <button mat-button matPrefix mat-icon-button>
               <mat-icon class="searchIcon"(click)="searchList()" type="submit" >search</mat-icon>
             </button>
@@ -66,7 +65,7 @@
               <div class="commonDiv">
                 <div class="headCenter">
                   <span class="application">
-                    <p>Application closes on</p>
+                    <p>Application closes on:</p>
                   </span>
                   <div>
                     <p class="date">{{ dateVal | date: 'medium' }}</p>
@@ -74,8 +73,8 @@
                 </div>
 
                 <div>
-                  <button class="activeBg">
-                    <span>{{one.status}}</span>
+                  <button disabled [ngClass]="{'activeBg':one.status=='Active', 'pendingBg':one.status=='Pending', 'closedBg':one.status=='Closed', 'expiredBg':one.status=='Expired',  'openBg':one.status=='Open', 'yettoopenBg':one.status=='yetToOpen', 'rejectedBg':one.status=='Rejected'}" >
+                    <span class="Status">{{one.status}}</span>
                   </button>
                 </div>
               </div>
@@ -128,17 +127,17 @@
               </div>
               <div class="lastRightline">
 
-                <span class="applied" [routerLink]="routerlink.VIEWDRIVE.VIEWCANDIDATE">
+                <span class="applied" (click)="viewApplication(one.jobId)">
                   <mat-icon class="schedule">schedule</mat-icon>
                   Applied
                   <u>{{ one.candidatesAppliedCount }}</u>
                 </span>
 
-                <span class="settings" [routerLink]="routerlink.VIEWDRIVE.DRIVESETTINGS">
+                <!-- <span class="settings" [routerLink]="routerlink.VIEWDRIVE.DRIVESETTINGS">
                   <mat-icon class="setting">settings</mat-icon>
                   settings
                   <u>{{ one.settingsMenu}}</u>
-                </span>
+                </span> -->
               </div>
             </div>
           </div>

@@ -443,6 +443,8 @@ export class ViewCandidateByDriveComponent implements OnInit {
     // debugger;
     return {
       getRows: (params) => {
+        console.log(params,'hii');
+
         let apiData: any = params;
         apiData.request.jobId = this.jobId;
         this.driveAgGridSubscription = this.ApiService.getCandidateListByDeive(
