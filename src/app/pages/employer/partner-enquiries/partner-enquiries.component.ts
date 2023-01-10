@@ -21,6 +21,7 @@ export class PartnerEnquiriesComponent implements OnInit {
   public gridColumnApi: any;
   columnDefs: any = [];
   FormateName: any;
+  FormateLastName: any;
   selectedRow: any[];
   pageRowCount = 0;
   partnerList: any = [];
@@ -132,17 +133,35 @@ export class PartnerEnquiriesComponent implements OnInit {
           suppressAndOrCondition: true,
           filterOptions: ['contains']
         },
+        // cellRenderer: (params) => {
+        //   if (params.value && params.value != undefined && params.value != null && params.value != "" && params.data.lastName != undefined && params.data.lastName !=  "") {
+        //     this.FormateName = params.value + params.data.lastName   ;
+        //     return this.FormateName;
+        //   } else
+        //   if(params.value && params.value != undefined && params.value != null && params.value != "" && params.data.lastName == undefined || params.data.lastName == "" ){
+        //     this.FormateName = params.value;
+        //     return this.FormateName;
+        //   }
+        //   {
+        //     return "-";
+        //   }
+        // },
         cellRenderer: (params) => {
-          if (params.value && params.value != undefined && params.value != null && params.value != "" && params.data.lastName != undefined && params.data.lastName !=  "") {
-            this.FormateName = params.value + params.data.lastName   ;
-            return this.FormateName;
-          } else
-          if(params.value && params.value != undefined && params.value != null && params.value != "" && params.data.lastName == undefined || params.data.lastName == "" ){
-            this.FormateName = params.value;
-            return this.FormateName;
+          if (params.value && params.value != undefined && params.value != null && params.value != "" ) {
+            this.FormateName = params.value ;
+            if (params.data.lastName != undefined && params.data.lastName !=  ""){
+            this.FormateLastName = params.data.lastName;
+            return this.FormateName + this.FormateLastName;
+            }
+            else
+            {
+              return this.FormateName;
+            }
           }
+           else
           {
             return "-";
+
           }
         },
         tooltipField: 'firstName',
