@@ -260,7 +260,7 @@
 
               <mat-form-field class="example-full-width" appearance="outline" matInput placeholder="">
                 <mat-label>"-- Select year of passing (Multiple select) --"</mat-label>
-                <mat-select [formControl]="yearofPassingControl " multiple>
+                <mat-select  formControlName="yearofpassing" [formControl]="yearofPassingControl " multiple matNativeControl name="yearofpassing">
 
                   <mat-select-trigger>
                     <mat-chip-list>
@@ -276,6 +276,9 @@
 
                 </mat-select>
 
+                <div class="close-icon">
+                  <button class="button-remove-years" type="button" (click)="removeyearofPasing">x</button>
+                </div>
               </mat-form-field>
 
             </div>
@@ -300,7 +303,7 @@
 
         <mat-form-field class="example-full-width" appearance="outline" matInput
                 placeholder="">
-                <mat-label>"--Select Skill Set (Multiple Select) --"</mat-label>
+                <!-- <mat-label>"--Select Skill Set (Multiple Select) --"</mat-label> -->
                 <mat-select [formControl]="keyskillArrayControl" multiple>
 
                   <mat-select-trigger>

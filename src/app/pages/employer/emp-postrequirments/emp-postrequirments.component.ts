@@ -9,7 +9,7 @@ import {
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { GlobalValidatorService } from 'src/app/globalvalidators/global-validator.service';
-
+import { ApiService } from 'src/app/services/api.service';
 import { NgModule } from '@angular/core';
 
 ({
@@ -25,10 +25,14 @@ export class EmpPostrequirmentsComponent implements OnInit {
   postForm: FormGroup;
   selectedStatus: any;
   selectedOption: any;
+  getSkill: any;
+
   constructor(
     private fb: FormBuilder,
     private globalValidation: GlobalValidatorService,
-    private toaster: ToastrService
+    private toaster: ToastrService,
+    private apiservice:ApiService,
+
   ) {}
   selectArray: any = ['Full Time', 'Part Time'];
   //  code FOR  DEPENDED DROUPDOWN
@@ -140,16 +144,22 @@ export class EmpPostrequirmentsComponent implements OnInit {
 
   AnyGraduationStatus = [];
 
-  //getSkillMasterList(data) {
-    //return this.http.post(`${this.BASE_URL}/getSkillList`, data,
-     // { reportProgress: true });
- // }
+
 
  onToppingRemoved(topping: string) {
   const toppings = this.keyskillArrayControl.value as string[];
   this.keyskillArrayControl.setValue(toppings); // To trigger change detection
 }
 
+skilllist(){
+  let data: any = {};
+  this.apiservice.getSkill(data).subscribe((res: any) => {
+    if (res.success) {
+     console.log(data);
+
+    }
+  });
+}
 
 
  keyskillArrayControl = new FormControl([]);
@@ -261,7 +271,8 @@ export class EmpPostrequirmentsComponent implements OnInit {
 
   }
 
-  removeyearofPasing(){}
+  removeyearofPasing(index: any): void {}
+
 
 
   removeEducationalField(index: number): void {
@@ -280,6 +291,7 @@ export class EmpPostrequirmentsComponent implements OnInit {
 
   // save button
   onSubmit() {
+    console.log(this.keyskillArrayControl.value)
     // if (this.postForm.valid) {
     var obj = {
       email: localStorage.getItem('email'),
