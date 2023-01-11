@@ -173,6 +173,23 @@ opacity: 1;
     margin: 8px 0px 0px 0px;
 }
 
+.button-remove-years{
+  border: none;
+    color: red;
+    background-color: #fff;
+    font-size: 23px;
+    font-family: cursive;
+    transform: rotate(357deg);
+    margin: 8px 0px 0px 0px;
+
+    float: right;
+    position: relative;
+    margin-top: -28px;
+    margin-right: 25px;
+
+
+}
+
 
 .ctc{
   ::ng-deep .mat-radio-button{
