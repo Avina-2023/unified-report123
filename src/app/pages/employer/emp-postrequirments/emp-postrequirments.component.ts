@@ -26,6 +26,7 @@ export class EmpPostrequirmentsComponent implements OnInit {
   selectedStatus: any;
   selectedOption: any;
   getSkill: any;
+  newSkill:any;
 
   constructor(
     private fb: FormBuilder,
@@ -151,24 +152,42 @@ export class EmpPostrequirmentsComponent implements OnInit {
   this.keyskillArrayControl.setValue(toppings); // To trigger change detection
 }
 
-skilllist(){
-  let data: any = {};
-  this.apiservice.getSkill(data).subscribe((res: any) => {
-    if (res.success) {
-     console.log(data);
+// skilllist=function(){
+//   let data: any = {};
+//   this.apiservice.getSkill(data).subscribe((res: any) => {
+//     if (res.success) {
+//      console.log(data);
 
-    }
-  });
+//     }
+//   });
+// }
+
+skilllist(){
+  let data: any = {
+
+  };
+  this.apiservice.getSkill(data).subscribe((res:any)=>{
+    this.newSkill
+   console.log(res,'resss');
+
+     if (res.success){
+      this.newSkill=res.data;
+     }
+    console.log(this.newSkill);
+  //   this.newSkill = res.name;
+  // this.keyskillArrayControl.setValue(res.name)
+  // console.log(this.newSkill)
+
+  })
 }
 
-
  keyskillArrayControl = new FormControl([]);
-  keyskillArray = [
-    'Nautical science',
-    'Maritime science',
-    'Physics',
-    'Mantine Engineer',
-  ];
+  // keyskillArray = [
+  //   'Nautical science',
+  //   'Maritime science',
+  //   'Physics',
+  //   'Mantine Engineer',
+  // ];
 
   fromDate: Date;
   toDate: Date;
@@ -185,6 +204,7 @@ skilllist(){
 
   ngOnInit() {
     this.createPost();
+    this.skilllist();
   }
   radio() {}
 
@@ -272,6 +292,8 @@ skilllist(){
   }
 
   removeyearofPasing(index: any): void {}
+
+
 
 
 

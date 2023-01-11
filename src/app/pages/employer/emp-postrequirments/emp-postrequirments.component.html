@@ -272,7 +272,7 @@
                     </mat-chip-list>
                   </mat-select-trigger>
 
-                  <mat-option *ngFor="let item of yearofpassingArray()" value="{{item}}">{{item}}</mat-option>
+                  <mat-option *ngFor="let item of yearofpassingArray()" [value]="item">{{item}}</mat-option>
 
                 </mat-select>
 
@@ -316,13 +316,14 @@
                     </mat-chip-list>
                   </mat-select-trigger>
 
-                  <mat-option *ngFor="let item of keyskillArray" value="{{item}}">{{item}}</mat-option>
+                  <mat-option *ngFor="let item of newSkill" [value]="item.skillName">{{item.skillName}}</mat-option>
+
 
                 </mat-select>
 
               </mat-form-field>
       </div>
-      <div class="col-md-12">
+       <div class="col-md-12">
         <label>Job description <span>*</span></label>
         <mat-form-field class="example-full-width" appearance="outline">
           <mat-label></mat-label>
