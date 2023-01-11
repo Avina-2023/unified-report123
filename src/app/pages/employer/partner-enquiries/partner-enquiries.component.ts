@@ -25,7 +25,7 @@ export class PartnerEnquiriesComponent implements OnInit {
   public gridColumnApi;
   public serverSideStoreType;
   public defaultColDef: ColDef;
-  public columnDefsmini;
+  // public columnDefsmini;
   selectedRow: any[];
   public masterDetail;
   public rowSelection = 'multiple';
@@ -369,7 +369,7 @@ export class PartnerEnquiriesComponent implements OnInit {
               this.partnerListAgData = data1 && data1.data ? data1.data : [];
               if (this.partnerListAgData.length > 0) {
                 this.pageRowCount =
-                  data1 && data1.length ? data1.length : [];
+                  data1 && data1.totalCount ? data1.totalCount : 0;
                 this.gridApi.hideOverlay();
                 params.success({
                   rowData: this.partnerListAgData,
