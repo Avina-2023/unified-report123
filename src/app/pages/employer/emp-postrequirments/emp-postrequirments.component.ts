@@ -9,7 +9,7 @@ import {
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { GlobalValidatorService } from 'src/app/globalvalidators/global-validator.service';
-
+import { ApiService } from 'src/app/services/api.service';
 import { NgModule } from '@angular/core';
 
 ({
@@ -25,10 +25,15 @@ export class EmpPostrequirmentsComponent implements OnInit {
   postForm: FormGroup;
   selectedStatus: any;
   selectedOption: any;
+  getSkill: any;
+  newSkill:any;
+
   constructor(
     private fb: FormBuilder,
     private globalValidation: GlobalValidatorService,
-    private toaster: ToastrService
+    private toaster: ToastrService,
+    private apiservice:ApiService,
+
   ) {}
   selectArray: any = ['Full Time', 'Part Time'];
   //  code FOR  DEPENDED DROUPDOWN
@@ -40,6 +45,15 @@ export class EmpPostrequirmentsComponent implements OnInit {
   selected_courses: any[];
 
   selected_specializations: any[];
+
+  yearofpassingArray =function getLast30Years(): number[] {
+    // Get the current year
+    const currentYear = new Date().getFullYear();
+
+    // Use the Array.from method to create an array of numbers from 0 to 29
+    return Array.from({ length: 30 }, (_, i) => currentYear - i);
+  }
+
 
   graduations = [
     { value: 'sslc', label: 'SSLC' },
@@ -131,17 +145,56 @@ export class EmpPostrequirmentsComponent implements OnInit {
 
   AnyGraduationStatus = [];
 
-  keyskillArray = [
-    'Nautical science',
-    'Maritime science',
-    'Physics',
-    'Mantine Engineer',
-  ];
+
+
+ onToppingRemoved(topping: string) {
+  const toppings = this.keyskillArrayControl.value as string[];
+  this.keyskillArrayControl.setValue(toppings); // To trigger change detection
+}
+
+// skilllist=function(){
+//   let data: any = {};
+//   this.apiservice.getSkill(data).subscribe((res: any) => {
+//     if (res.success) {
+//      console.log(data);
+
+//     }
+//   });
+// }
+
+skilllist(){
+  let data: any = {
+
+  };
+  this.apiservice.getSkill(data).subscribe((res:any)=>{
+    this.newSkill
+   console.log(res,'resss');
+
+     if (res.success){
+      this.newSkill=res.data;
+     }
+    console.log(this.newSkill);
+  //   this.newSkill = res.name;
+  // this.keyskillArrayControl.setValue(res.name)
+  // console.log(this.newSkill)
+
+  })
+}
+
+ keyskillArrayControl = new FormControl([]);
+  // keyskillArray = [
+  //   'Nautical science',
+  //   'Maritime science',
+  //   'Physics',
+  //   'Mantine Engineer',
+  // ];
 
   fromDate: Date;
   toDate: Date;
 
-  yearofpassingArray: any = ['2019', '2020', '2021', '2022'];
+
+  yearofPassingControl = new FormControl([]);
+  toppingList: any [] = ['2019', '2020', '2021', '2022', '2023', '2024'];
 
   ctcArray: any = ['12lacs', '13lacs', '14lacs', '15lacs'];
 
@@ -151,6 +204,7 @@ export class EmpPostrequirmentsComponent implements OnInit {
 
   ngOnInit() {
     this.createPost();
+    this.skilllist();
   }
   radio() {}
 
@@ -237,6 +291,12 @@ export class EmpPostrequirmentsComponent implements OnInit {
 
   }
 
+  removeyearofPasing(index: any): void {}
+
+
+
+
+
   removeEducationalField(index: number): void {
     if (this.educationalDetails.length > 1)
       this.educationalDetails.removeAt(index);
@@ -253,6 +313,7 @@ export class EmpPostrequirmentsComponent implements OnInit {
 
   // save button
   onSubmit() {
+    console.log(this.keyskillArrayControl.value)
     // if (this.postForm.valid) {
     var obj = {
       email: localStorage.getItem('email'),
