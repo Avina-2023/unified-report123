@@ -47,7 +47,7 @@ export class PartnerListComponent implements OnInit {
   //aggrid
   data:any;
   // rowData: any;
-  
+
   columnDefs: any = [];
   private gridApi!: GridApi;
   public gridOptions: GridOptions;
@@ -103,13 +103,13 @@ export class PartnerListComponent implements OnInit {
     private appconfig: AppConfigService,
     private toastr: ToastrService,
 
-  ) 
+  )
   {
-    
+
     var data = {
       filterModel: { createdBy: { filterType: 'nin', values: ['UapAdmin'] } },
     };
-   
+
     this.fetchData(data);
     this.fetchDashboardData();
     this.gridOptions = <GridOptions>{
@@ -118,33 +118,33 @@ export class PartnerListComponent implements OnInit {
     },
       frameworkComponents: {
         moreOptions: MoreOptionsComponent,
-        
+
       },
-     
+
 
     };
   }
 
   ngOnInit(): void {
-   
+
     this.tabledata();
     // this.getAGgrid();
 
  this.ApiService.partnersubject.subscribe((result:boolean) =>{
   if (result){
     this.getAGgrid();
-    // 
+    //
     this.gridApi.paginationGoToFirstPage();
     this.gridApi.refreshServerSideStore({ purge: true });
-   
+
     // this.gridApi.paginationGoToCurrentPage();
   }
-  
+
  })
-    
+
   }
-  
-  
+
+
   arrayofData: any = [];
   // Ag Grid Secction
 refresh(){
@@ -158,7 +158,7 @@ refresh(){
     },
     sortable: false,
     },
-      { headerName: 'Employer Name', field: 'company', minWidth: 170,  
+      { headerName: 'Employer Name', field: 'company', minWidth: 170,
       filter: 'agTextColumnFilter',
       chartDataType: 'category',
       aggFunc: 'sum',
@@ -175,9 +175,9 @@ refresh(){
           return "-";
         }
       },
-      
+
      },
-    
+
     //   { headerName: '', field: 'companyImgURL', minWidth: 100,
     //    suppressColumnsToolPanel: true,
     //   filter: false,
@@ -186,7 +186,7 @@ refresh(){
     //     return `<img width="30px" height"22px" src=${val} alt="">`;
     //   }
     // },
-      { headerName: 'Industry Type', field: 'industryType', minWidth: 200, 
+      { headerName: 'Industry Type', field: 'industryType', minWidth: 200,
       filter: 'agTextColumnFilter',
       chartDataType: 'category',
       aggFunc: 'sum',
@@ -214,7 +214,7 @@ refresh(){
       },
       tooltipField: 'firstName',
     },
-      { headerName: 'SPOC Email', field: 'email', minWidth: 250, 
+      { headerName: 'SPOC Email', field: 'email', minWidth: 250,
       filter: 'agTextColumnFilter',
       chartDataType: 'category',
       aggFunc: 'sum',
@@ -234,13 +234,13 @@ refresh(){
      },
       { headerName: 'Created Date', field: 'createdAt', minWidth: 150,
       maxWidth: 170,
-      
+
       valueFormatter: function (params) {
           return moment(params.value).format('MMM D, yy');
       },
-      
+
       //   return moment(data.value).format('L');
-      // },    
+      // },
     // cellRenderer: (data)=>{
     //   return moment(data.createdAt).format('MM/DD/YYYY HH:mm')
     // },
@@ -252,14 +252,14 @@ refresh(){
         },
         // tooltipField: 'createdAt',
     },
-      { headerName: 'Status', 
+      { headerName: 'Status',
       field: 'isActive',
       minWidth: 100 ,
       filter: false,
-     
+
       cellRenderer: (data: any) => {
       //  debugger;
-        
+
           if (data.value == false ) {
             if (data.data.isApproved == false){
               return  '<div class="status-button"><button mat-button disabled class="pending-button">Pending</button></div>';
@@ -270,9 +270,9 @@ refresh(){
             return'<div class="status-button"><button mat-button disabled class="active-button">Active</button></div>';
           }
          else {
-          return '';}  
+          return '';}
     }
-    
+
     },
       { headerName: '', field: '', minWidth: 75 ,
       cellRenderer: 'moreOptions',
@@ -293,7 +293,7 @@ refresh(){
       // enableFilter: true,
     };
   }
-  
+
   onGridReady(params: any) {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
@@ -336,12 +336,12 @@ refresh(){
         values: [isApproved],
       }
     }else{
-      delete apiData.request.filterModel["isApproved"] 
-     delete apiData.request.filterModel["isActive"] 
+      delete apiData.request.filterModel["isApproved"]
+     delete apiData.request.filterModel["isActive"]
     }
         this.partnerListAgGridSubscription = this.ApiService.getAGgridPatnerList(apiData.request).subscribe((data1: any) => {
           // console.log(data1);
-          
+
           if (data1.success == false) {
             params.fail();
             params.success({
@@ -358,7 +358,7 @@ if (this.partnerListAgData.length > 0) {
     rowData: this.partnerListAgData,
     rowCount: this.pageRowCount
   });
-  
+
   // this.gridApi.selectAllFiltered()
   // this.gridApi.selectAll();
 } else {
@@ -429,7 +429,7 @@ titleCase(str) {
       };
     }
    this.fetchData(data);
-   
+
   }
 
   fetchDashboardData() {
@@ -456,8 +456,8 @@ titleCase(str) {
         if (partnerList.success == false) {
           this.toastr.warning('Connection failed, Please try again.');
         } else {
-          
-          
+
+
           // partnerList.data.forEach((element, index) => {
           //   element.sno = index + 1;
           // });
@@ -595,5 +595,5 @@ titleCase(str) {
     }
     this.fetchData(data);
   }
- 
+
 }

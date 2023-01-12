@@ -34,12 +34,8 @@ export class BajajBegaviouralPdfReportDownloadComponent implements OnInit {
   continouslyValueSix :boolean = true;
   continouslyValueSeven :boolean = true;
   continouslyValueNine :boolean = true;
-  // benchMarkScore = [
-  //   {score:"1-2",label:"DEVELOPMENT SCOPE",color:"red"},
-  //   {score:"3-4-5",label:"LESS INCLINED",color:"yellow"},
-  //   {score:"6-7-8",label:"MORE INCLINED",color:"orange"},
-  //   {score:"9-10",label:"STRENGTH",color:"green"}
-  // ];
+
+
   benchMarkScore = [
     { score: '1-3', label: 'LOW', color: 'red' },
     { score: '4-6', label: 'AVERAGE', color: 'orange' },
@@ -111,6 +107,12 @@ export class BajajBegaviouralPdfReportDownloadComponent implements OnInit {
     }
   }
 
+  ageFromDateOfBirthday(dateOfBirth: any) {
+    if (dateOfBirth) {
+      const split = moment().diff(dateOfBirth, 'years');
+      return split;
+    }
+  }
   momentForm(date) {
     if (date) {
       const split = moment(date).format('DD/MM/YYYY');
@@ -202,6 +204,8 @@ export class BajajBegaviouralPdfReportDownloadComponent implements OnInit {
       }).save();
 
   }
+
+
 
   splitHeading(glimpse){
       if(glimpse.includes("THOUGHT FACTOR")){

@@ -58,11 +58,11 @@ export class EmpRequirmentsComponent implements OnInit {
   currentJobID = localStorage.getItem('currentJobID');
   filterModel = { "startRow":this.startRow,"endRow":this.endRow,
     "filterModel":{
-    // "companyId": {
-    //   "filterType":"text",
-    //   "type": "contains",
-    //   "filter":this.companyId,
-    // }
+    "companyId": {
+      "filterType":"text",
+      "type": "contains",
+      "filter":this.companyId,
+    }
  },
 
 };
