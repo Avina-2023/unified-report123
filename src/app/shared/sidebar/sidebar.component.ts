@@ -108,6 +108,9 @@ export class SidebarComponent implements OnInit {
     this.ngOnInit();
     this.router.navigate(['/home']);
    }
+   uploadpostrequirement(){
+    this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.PARTNER.UPLOADREQUIRMENT)
+  }
    work(value:any){
     // this.loaded.setLoading();
     this.check = value;

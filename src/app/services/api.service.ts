@@ -324,4 +324,7 @@ getAGgridPatnerList(data){
   getEmployerDetails(data){
     return this.http.post(`${this.BASE_URL}/getemployerDetails`,data)
   }
+  uploadExcelFile(data){
+    return this.http.post(`${this.BASE_URL}/jobupload`,data)
+  }
 }
