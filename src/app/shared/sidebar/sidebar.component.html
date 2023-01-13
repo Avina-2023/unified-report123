@@ -19,15 +19,17 @@
           <div *ngIf="!isExpanded" class="sidebar-text headerfont sidestyle">Profile</div>
         </div>
       </mat-list-item>
-      <mat-list-item  *ngIf='roleCode === "EMP"' [matMenuTriggerFor]="menu" >
-        <div class="sidemenu ">
-         <div> <img class="sidebar-icon1" src="../../../../assets/images/emp-dashboard-icons/notification.png"></div>
+      <mat-list-item *ngIf='roleCode === "EMP"' [matMenuTriggerFor]="menu" >
+        <div class="sidemenu workmenu">
+          <div>
+         <div class="workicon">  <mat-icon>card_travel</mat-icon></div>
          <div *ngIf="!isExpanded" class="sidebar-text headerfont sidestyle">Job
-          <span><mat-icon style="color: #1B4E9B;">play_arrow</mat-icon></span>
-         </div>
+         </div></div>
+        <div class="arrow_icon"> <span><mat-icon  class= "playArrowicon"style="color: #1B4E9B;">play_arrow</mat-icon></span></div>
+
        </div>
        <mat-menu #menu="matMenu">
-         <button mat-menu-item>Post Requirements</button>
+         <button mat-menu-item (click)="uploadpostrequirement()" routerLinkActive="router-link-active"  >Post Requirements</button>
          <button mat-menu-item (click)="work('empprofile')"
            [ngClass]="[check === 'empprofile' ? 'selected' : 'notSelected']" *ngIf='roleCode === "EMP"'>View
            Requirements</button>
@@ -58,7 +60,8 @@
         *ngIf='roleCode === "SADM" || roleCode === "OADM" || roleCode === "ADM" || roleCode === "HR" || roleCode === "ISADM" || roleCode === "IADM"'
         [routerLinkActive]="['is-active']">
         <div class="sidebar-admin" (click)="changedriveIcon()">
-          <em class="icon-graduation-cap-solid" style="transform: rotateY(332deg);font-size: 21px;margin-left: -2px;margin-top: -2px;color:grey;"></em>
+          <em class="icon-graduation-cap"
+            style="transform: rotateY(180deg);font-size: 22px;margin-left: -2px;margin-top: -2px"></em>
           <span class="headerfont" (click)="validateClick('managedrive')" mat-line *ngIf="isExpanded">Drive</span>
           <div class="arrow">
             <span *ngIf="!driveIconToggle" class="position-relative left2 headerfont">
@@ -85,7 +88,7 @@
         *ngIf='roleCode === "SADM" || roleCode === "OADM" || roleCode === "ADM" || roleCode === "HR" || roleCode === "ISADM" || roleCode === "IADM"'
         [routerLinkActive]="['is-active']">
         <div class="sidebar-admin" (click)="changeIcon()">
-          <em class="icon-user-professional" style="font-size: 21px;margin-left: -2px;margin-top: -2px;color:grey;"></em>
+          <em class="icon-User"></em>
           <span class="headerfont" (click)="validateClick('partnerlist')" mat-line *ngIf="isExpanded">Hiring
             Partners</span>
           <div class="arrow">

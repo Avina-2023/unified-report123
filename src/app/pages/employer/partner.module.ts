@@ -4,7 +4,6 @@ import { EmployerRoutingModule } from './partner-routing.module';
 import { AddPartnerComponent } from './add-partner/add-partner.component';
 import { AgGridModule } from 'ag-grid-angular';
 import { MatTabsModule } from '@angular/material/tabs';
-import { MaterialModule } from 'src/app/material/material.module';
 import { SharedModule } from '../../shared/shared.module';
 import { PartnerListComponent } from './partner-list/partner-list.component';
 import { StylePaginatorDirective } from './partner-list/style-paginator.directive';
@@ -13,7 +12,8 @@ import { PartnerEnquiriesComponent } from './partner-enquiries/partner-enquiries
 import { MoreOptionsComponent } from './partner-list/more-options/more-options.component';
 import {EmpRequirmentsComponent} from './emp-requirments/emp-requirments.component'
 import {EmpPostrequirmentsComponent} from './emp-postrequirments/emp-postrequirments.component';
-
+import { MaterialModule } from 'src/app/material/material.module';
+import {EmpUploadPostrequirmentComponent} from './emp-upload-postrequirment/emp-upload-postrequirment.component'
 
 @NgModule({
   declarations: [
@@ -24,6 +24,7 @@ import {EmpPostrequirmentsComponent} from './emp-postrequirments/emp-postrequirm
     MoreOptionsComponent,
     EmpPostrequirmentsComponent,
     EmpRequirmentsComponent,
+    EmpUploadPostrequirmentComponent
 
   ],
   imports: [
