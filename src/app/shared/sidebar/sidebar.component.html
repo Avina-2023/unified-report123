@@ -19,14 +19,16 @@
           <div *ngIf="!isExpanded" class="sidebar-text headerfont sidestyle">Profile</div>
         </div>
       </mat-list-item>
-      <mat-list-item  *ngIf='roleCode === "EMP"' [matMenuTriggerFor]="menu" >
-        <div class="sidemenu ">
-         <div> <img class="sidebar-icon1" src="../../../../assets/images/emp-dashboard-icons/notification.png"></div>
+      <mat-list-item *ngIf='roleCode === "EMP"' [matMenuTriggerFor]="menu" >
+        <div class="sidemenu workmenu">
+          <div>
+         <div class="workicon">  <mat-icon>card_travel</mat-icon></div>
          <div *ngIf="!isExpanded" class="sidebar-text headerfont sidestyle">Job
-          <span><mat-icon style="color: #1B4E9B;">play_arrow</mat-icon></span>
-         </div>
+         </div></div>
+        <div class="arrow_icon"> <span><mat-icon  class= "playArrowicon"style="color: #1B4E9B;">play_arrow</mat-icon></span></div>
+
        </div>
-       <mat-menu #menu="matMenu">
+       <mat-menu  #menu="matMenu">
          <button mat-menu-item>Post Requirements</button>
          <button mat-menu-item (click)="work('empprofile')"
            [ngClass]="[check === 'empprofile' ? 'selected' : 'notSelected']" *ngIf='roleCode === "EMP"'>View

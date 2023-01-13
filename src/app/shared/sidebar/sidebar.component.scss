@@ -110,6 +110,29 @@ mat-sidenav:not(.mat-drawer-opened) {
   margin-top: 5px;
 }
 
+.workicon{
+  color: #858585;
+  bottom: 3px;
+}
+
+.playArrowicon{
+}
+
+//  //.sidedisplay{
+   ::ng-deep{
+
+  .mat-menu-panel {
+     background: #fff!important;
+     position: absolute!important;
+     left: 7%!important;
+     bottom: 88%!important;
+
+ }}
+
+// //}
+
+
+
 .sidemenu {
   width: 100%;
   text-align: center;
@@ -163,4 +186,14 @@ mat-sidenav:not(.mat-drawer-opened) {
 
 }
 
+.workmenu{
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
+
+.arrow_icon{
+  right: 15%;
+  position: relative;
+}
 
