@@ -252,16 +252,6 @@ skilllist(){
     return this.postForm.get('anygraduation') as FormArray;
   }
 
-  degreeData(data):any{
-    console.log(data)
-    if(data)
-    {
-      return this.degrees.filter((degree) => degree.graduation === data);
-  }else{
-    return [];
-  }
-  }
-
   updateDegree(data) {
     // console.log(data.value);
     const selectedGraduation = data.value;
@@ -289,7 +279,7 @@ skilllist(){
     return this.educationalDetails.at(index);
   }
   addMoreField() {
-    if (this.educationalDetails.valid) {
+    if (this.educationalDetails) {
       return this.educationalDetails.push(this.educationalDetailsInitArr());
     }
      else {
