@@ -76,7 +76,8 @@ export const APP_CONSTANTS = {
       PARTNERLIST:'/auth/partner/partnerlist',
       ADDPARTNER:"/auth/partner/addpartner",
       PARTNERENQUIRY: "/auth/partner/partnerenquiry",
-      REQUIRMENT:'auth/partner/jobrequirment'
+      REQUIRMENT:'auth/partner/jobrequirment',
+      UPLOADREQUIRMENT:'auth/partner/uploadpostrequirment'
     },
     VIEWDRIVE:{
       HOME: '/auth/drive',
@@ -156,7 +157,9 @@ export const APP_CONSTANTS = {
       PARTNERLIST:'partnerlist',
       ADDPARTNER:"addpartner",
       PARTNERENQUIRY:"partnerenquiry",
-      REQUIRMENT:'jobrequirment'
+      REQUIRMENT:'jobrequirment',
+      UPLOADREQUIRMENT:'uploadpostrequirment'
+
 
     },
     DRIVE:{

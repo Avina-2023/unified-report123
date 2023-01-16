@@ -60,7 +60,7 @@ export class SidebarComponent implements OnInit {
         break;
       case '/auth/dashboard/profile':
         this.check = 'empprofile';
-        break; 
+        break;
       case '/auth/partner/jobrequirment/work':
         this.menuIconToggle = true
         this.check = 'emprequirments';
@@ -68,7 +68,7 @@ export class SidebarComponent implements OnInit {
       case '/auth/drive/managedrive':
         this.check = 'managedrive';
         this.driveIconToggle = true;
-        break; 
+        break;
       default:
         this.check = 'empdashboard';
         break;
@@ -108,6 +108,9 @@ export class SidebarComponent implements OnInit {
     this.ngOnInit();
     this.router.navigate(['/home']);
    }
+   uploadpostrequirement(){
+    this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.PARTNER.UPLOADREQUIRMENT)
+  }
    work(value:any){
     // this.loaded.setLoading();
     this.check = value;
