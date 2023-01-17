@@ -71,7 +71,7 @@
                 <mat-form-field class="example-full-width" appearance="outline">
                   <mat-label>Any Graduation</mat-label>
 
-                  <mat-select formControlName="anygraduation" (selectionChange)="updateDegree($event)">
+                  <mat-select formControlName="anygraduation" (selectionChange)="updateDegree($event,i)">
                     <mat-option *ngFor="let graduation of graduations;"
                       [value]="graduation.value">{{graduation.label}}</mat-option>
                   </mat-select>
@@ -104,6 +104,7 @@
                     [disabled]="getformarrayvalue(i).value.anygraduation === 'phd'">
                     <mat-option *ngFor="let degree of degreeData(getformarrayvalue(i).value.anygraduation)"
                       [value]="degree.value">{{degree.label}}</mat-option>
+
                   </mat-select>
                   <mat-error *ngIf="educationalDetails.controls[i]?.controls?.anydegree.errors">
 
