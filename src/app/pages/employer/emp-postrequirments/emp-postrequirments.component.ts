@@ -239,7 +239,7 @@ skilllist(){
     return this.fb.group({
       anygraduation: [null, [Validators.required]],
       anydegree: [null, [Validators.required]],
-      anycourse: [null, [Validators.required]],
+      // anycourse: [null, [Validators.required]],
       selectspecialization: [null, [Validators.required]],
     });
   }
@@ -252,34 +252,59 @@ skilllist(){
     return this.postForm.get('anygraduation') as FormArray;
   }
 
-  updateDegree(data) {
-    // console.log(data.value);
+  degreeData(data):any{
+    // console.log(data)
+    if(data)
+    {
+      return this.degrees.filter((degree) => degree.graduation === data);
+  }else{
+    return [];
+  }
+  }
+
+  updateDegree(data, i) {
+    console.log(this.educationalDetails, 'kkkk');
     const selectedGraduation = data.value;
-    //console.log(selectedGraduation);
-    //console.log('nill', this.postForm);
+
+    if(this.educationalDetails.controls[i].get('anygraduation').value !=='sslc' && this.educationalDetails.controls[i].get('anygraduation').value !=='hsc'){
+      this.educationalDetails.controls[i].get('anydegree').setValidators(Validators.required);
+      this.educationalDetails.controls[i].get('anydegree').updateValueAndValidity();
+      this.educationalDetails.controls[i].get('selectspecialization').setValidators(Validators.required);
+      this.educationalDetails.controls[i].get('selectspecialization').updateValueAndValidity();
+      if(this.educationalDetails.controls[i].get('anygraduation').value !=='diploma' && this.educationalDetails.controls[i].get('anygraduation').value !=='phd'){
+        this.educationalDetails.controls[i].get('anydegree').setValidators(Validators.required);
+        this.educationalDetails.controls[i].get('anydegree').updateValueAndValidity();
+
+    }else {
+      this.educationalDetails.controls[i].get('anydegree').clearValidators();
+      this.educationalDetails.controls[i].get('anydegree').updateValueAndValidity();
+    }
+  } else {
+    this.educationalDetails.controls[i].get('anydegree').clearValidators();
+    this.educationalDetails.controls[i].get('anydegree').updateValueAndValidity();
+    this.educationalDetails.controls[i].get('selectspecialization').clearValidators();
+      this.educationalDetails.controls[i].get('selectspecialization').updateValueAndValidity();
+  }
 
     this.selected_degrees = this.degrees.filter(
       (degree) => degree.graduation === selectedGraduation
     );
-     console.log(this.selected_degrees);
-    //console.log(this.selected_degrees[0].label, 'Result')
-
+    //  console.log(this.selected_degrees,'hehe');
     this.selected_courses = this.courses.filter(
       (course) => course.graduation === selectedGraduation
     );
-    console.log(this.selected_courses);
-
+    // console.log(this.selected_courses);
     this.selected_specializations = this.specializations.filter(
       (specialization) => specialization.graduation === selectedGraduation
     );
-    console.log(this.selected_specializations);
+    // console.log(this.selected_specializations);
   }
 
   getformarrayvalue(index) {
     return this.educationalDetails.at(index);
   }
   addMoreField() {
-    if (this.educationalDetails) {
+    if (this.educationalDetails.valid) {
       return this.educationalDetails.push(this.educationalDetailsInitArr());
     }
      else {
@@ -313,16 +338,17 @@ skilllist(){
 
   // save button
   onSubmit() {
-    console.log(this.keyskillArrayControl.value)
+    // console.log(this.keyskillArrayControl.value)
     // if (this.postForm.valid) {
     var obj = {
       email: localStorage.getItem('email'),
       detailedInformation: this.postForm.value,
+      detailedInformationType: true,
     };
-    console.log(obj, this.postForm.value.ctcOptions);
+    // console.log(obj, this.postForm.value.ctcOptions,'subbbbbb');
     // }
   }
   clearall() {
-    console.log(this.getformarrayvalue(0));
+    // console.log(this.getformarrayvalue(0));
   }
 }

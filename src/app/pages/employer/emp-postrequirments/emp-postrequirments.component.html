@@ -102,8 +102,9 @@
                     [disabled]="getformarrayvalue(i).value.anygraduation === 'hsc'"
                     [disabled]="getformarrayvalue(i).value.anygraduation === 'diploma'"
                     [disabled]="getformarrayvalue(i).value.anygraduation === 'phd'">
-                    <mat-option *ngFor="let degree of selected_degrees"
+                    <mat-option *ngFor="let degree of degreeData(getformarrayvalue(i).value.anygraduation)"
                       [value]="degree.value">{{degree.label}}</mat-option>
+
                   </mat-select>
                   <mat-error *ngIf="educationalDetails.controls[i]?.controls?.anydegree.errors">
 
@@ -115,7 +116,7 @@
               </div>
 
               <!-- any course -->
-              <div class="col-md-2">
+              <!-- <div class="col-md-2">
                 <mat-form-field class="example-full-width" appearance="outline">
                   <mat-label>
                     {{getformarrayvalue(i).value.anygraduation === 'sslc'?'Any Course':''}}
@@ -138,7 +139,7 @@
                     </div>
                   </mat-error>
                 </mat-form-field>
-              </div>
+              </div> -->
 
               <!-- specialization -->
               <div class="col-md-4">

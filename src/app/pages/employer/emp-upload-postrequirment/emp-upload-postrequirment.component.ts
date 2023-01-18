@@ -64,9 +64,22 @@ export class EmpUploadPostrequirmentComponent implements OnInit {
       fd.append('jobList', UserjobList);
       this.apiService.uploadExcelFile(fd).subscribe((data: any) => {
         this.toastr.success('File uploaded successfully');
+        this.cancleUpload()
       });
     } else {
       this.toastr.warning('Please upload the correct CSV file');
     }
+  }
+  trimFilename(fileName) {
+    if (fileName) {
+      let replaceFilename = '';
+      replaceFilename = fileName.length > 25 ? fileName.slice(0, 25) + '...' : fileName;
+      return replaceFilename;
+    }
+    return '';
+  }
+  cancleUpload() {
+    this.fileName = "";
+    this.file = "";
   }
 }
