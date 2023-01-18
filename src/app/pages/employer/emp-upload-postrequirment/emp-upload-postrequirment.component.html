@@ -1,9 +1,9 @@
 <div class="top-bg">
-  <p class="cardTitle">Post Job Requirments</p>
+  <p class="cardTitle">Post Job Requirements</p>
   <div class="card">
     <div class="card-content">
       <div class="btn-aligment">
-        <button (click)="downloadTemplate()"><span class="icon-microsoft-excel"></span>Download Template</button>
+        <button (click)="downloadTemplate()"><span class="icon-microsoft-excel"></span><img src="../../../../assets/images/excel.svg">Download Template</button>
       </div>
       <form>
      <div class="uploadbox">
@@ -12,7 +12,9 @@
       </div>
       <div class="alignment">
         <span class="uploadbutton">
-          <label for="upload" class="upload p-1"><i class="bi bi-cloud-arrow-up"></i> Browse </label>
+          <label for="upload" style="    cursor: pointer;
+          position: relative;
+          top: -2px;" class="upload p-1"><i class="bi bi-cloud-arrow-up"></i> Browse </label>
           <input class="file-input" type="file" id="upload" name="image"accept="text/csv, application/octet-stream, ms-excel"  (change)="onFileSelected($event)" (click)="$event.target.value=null" type="file" alt="upload"/></span>
       </div>
       <div class="note2">Upload only .xls format</div>
