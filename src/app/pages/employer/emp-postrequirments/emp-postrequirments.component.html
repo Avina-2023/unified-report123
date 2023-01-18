@@ -1,6 +1,4 @@
 <div class="emp-bg">
-
-
   <h3 class="title">Post Job Requirements</h3>
   <div class="emp-post">
     <h2 class="formTitle">Job Details</h2>
@@ -64,13 +62,10 @@
           <legend style="width: fit-content;">Education </legend>
           <ng-container formArrayName="educationalDetails"
             *ngFor="let educationalDetails of educationalDetails.controls; index as i">
-
-
             <div class="" [formGroupName]="i" style="display:flex;">
               <div class="col-md-2">
                 <mat-form-field class="example-full-width" appearance="outline">
                   <mat-label>Any Graduation</mat-label>
-
                   <mat-select formControlName="anygraduation" (selectionChange)="updateDegree($event,i)">
                     <mat-option *ngFor="let graduation of graduations;"
                       [value]="graduation.value">{{graduation.label}}</mat-option>
@@ -82,7 +77,6 @@
                   </mat-error>
                 </mat-form-field>
               </div>
-
               <!-- any degree -->
               <div class="col-md-2">
                 <!-- {{getformarrayvalue(i).value.anygraduation}} -->
@@ -94,9 +88,7 @@
                     {{getformarrayvalue(i).value.anygraduation === 'phd'?'Any Degree / Graduation':''}}
                     {{getformarrayvalue(i).value.anygraduation === 'ug'?'Any Degree / Graduation':''}}
                     {{getformarrayvalue(i).value.anygraduation === 'pg'?'Any Degree / Graduation':''}}
-
                   </mat-label>
-
                   <mat-select formControlName="anydegree"
                     [disabled]="getformarrayvalue(i).value.anygraduation === 'sslc'"
                     [disabled]="getformarrayvalue(i).value.anygraduation === 'hsc'"
@@ -104,17 +96,14 @@
                     [disabled]="getformarrayvalue(i).value.anygraduation === 'phd'">
                     <mat-option *ngFor="let degree of degreeData(getformarrayvalue(i).value.anygraduation)"
                       [value]="degree.value">{{degree.label}}</mat-option>
-
                   </mat-select>
                   <mat-error *ngIf="educationalDetails.controls[i]?.controls?.anydegree.errors">
-
                     <div class="error-notify">
                       Fill the Degree dropdown
                     </div>
                   </mat-error>
                 </mat-form-field>
               </div>
-
               <!-- any course -->
               <!-- <div class="col-md-2">
                 <mat-form-field class="example-full-width" appearance="outline">
@@ -126,7 +115,6 @@
                     {{getformarrayvalue(i).value.anygraduation === 'ug'?'Any Course':''}}
                     {{getformarrayvalue(i).value.anygraduation === 'pg'?'Any Course':''}}
                   </mat-label>
-
                   <mat-select formControlName="anycourse" matNativeControl name="anycourse"
                     [disabled]="getformarrayvalue(i).value.anygraduation === 'sslc'"
                     [disabled]="getformarrayvalue(i).value.anygraduation === 'hsc'">
@@ -140,24 +128,27 @@
                   </mat-error>
                 </mat-form-field>
               </div> -->
-
               <!-- specialization -->
               <div class="col-md-4">
                 <mat-form-field class="example-full-width" appearance="outline">
                   <mat-label>
-                    {{getformarrayvalue(i).value.anygraduation === 'sslc'?'-- Select Specialization(MultipleSelect)--':''}}
+                    {{getformarrayvalue(i).value.anygraduation === 'sslc'?'-- Select
+                    Specialization(MultipleSelect)--':''}}
 
-                    {{getformarrayvalue(i).value.anygraduation === 'hsc'?'-- Select Specialization (MultipleSelect)--':''}}
+                    {{getformarrayvalue(i).value.anygraduation === 'hsc'?'-- Select Specialization
+                    (MultipleSelect)--':''}}
 
-                    {{getformarrayvalue(i).value.anygraduation === 'diploma'?'-- Select Specialization (MultipleSelect)--':''}}
+                    {{getformarrayvalue(i).value.anygraduation === 'diploma'?'-- Select Specialization
+                    (MultipleSelect)--':''}}
 
-                    {{getformarrayvalue(i).value.anygraduation === 'phd'?'-- Select Specialization (MultipleSelect)--':''}}
+                    {{getformarrayvalue(i).value.anygraduation === 'phd'?'-- Select Specialization
+                    (MultipleSelect)--':''}}
 
-                    {{getformarrayvalue(i).value.anygraduation === 'ug'?'-- Select Specialization (MultipleSelect)--':''}}
+                    {{getformarrayvalue(i).value.anygraduation === 'ug'?'-- Select Specialization
+                    (MultipleSelect)--':''}}
 
-                    {{getformarrayvalue(i).value.anygraduation === 'pg'?'-- Select Specialization (MultipleSelect)--':''}}
-
-
+                    {{getformarrayvalue(i).value.anygraduation === 'pg'?'-- Select Specialization
+                    (MultipleSelect)--':''}}
                   </mat-label>
                   <mat-select formControlName="selectspecialization" matNativeControl name="selectspecialization"
                     [disabled]="getformarrayvalue(i).value.anygraduation === 'sslc'"
@@ -181,7 +172,6 @@
               More</u></button>
         </fieldset>
       </div>
-
       <!-- ctc -->
       <div style="width:100%;display: flex;align-items: center;">
         <div style="width:50%;padding:0px 18px;">
@@ -197,7 +187,6 @@
             </div>
             <!-- fixed input -->
             <div style="width:70%;" *ngIf="this.postForm.value.ctcOptions ==1">
-
               <mat-form-field class="example-full-width" appearance="outline">
                 <mat-select formControlName="fixedpackage" matNativeControl name="fixedpackage">
                   <mat-option *ngFor="let item of ctcArray" value="{{item}}">{{item}}</mat-option>
@@ -209,7 +198,6 @@
                 </mat-error>
               </mat-form-field>
             </div>
-
             <!-- range matoption -->
             <div class="input_div" *ngIf="this.postForm.value.ctcOptions ==2">
               <div>
@@ -224,7 +212,6 @@
                   </mat-error>
                 </mat-form-field>
               </div>
-
               <div>
                 <mat-form-field class="example-full-width" appearance="outline">
                   <mat-select formControlName="rangepackageto" matNativeControl name="rangepackageto">
@@ -239,8 +226,6 @@
               </div>
             </div>
           </div>
-
-
         </div>
         <div style="width:50%;padding:20px;">
           <mat-label style="padding: 0px;">Year of Passing</mat-label>
@@ -258,11 +243,10 @@
                   </div>
                 </mat-error>
               </mat-form-field>-->
-
               <mat-form-field class="example-full-width" appearance="outline" matInput placeholder="">
                 <mat-label>"-- Select year of passing (Multiple select) --"</mat-label>
-                <mat-select  formControlName="yearofpassing" [formControl]="yearofPassingControl " multiple matNativeControl name="yearofpassing">
-
+                <mat-select formControlName="yearofpassing" [formControl]="yearofPassingControl " multiple
+                  matNativeControl name="yearofpassing">
                   <mat-select-trigger>
                     <mat-chip-list>
                       <mat-chip *ngFor="let topping of yearofPassingControl.value" [removable]="true"
@@ -272,23 +256,16 @@
                       </mat-chip>
                     </mat-chip-list>
                   </mat-select-trigger>
-
                   <mat-option *ngFor="let item of yearofpassingArray()" [value]="item">{{item}}</mat-option>
-
                 </mat-select>
-
                 <div class="close-icon">
                   <button class="button-remove-years" type="button" (click)="removeyearofPasing">x</button>
                 </div>
               </mat-form-field>
-
             </div>
           </div>
-
-
         </div>
       </div>
-
       <div class="col-md-12">
         <label>Key skills <span>*</span></label>
         <!-- <mat-form-field class="example-full-width" appearance="outline">
@@ -301,30 +278,23 @@
             </div>
           </mat-error>
         </mat-form-field>-->
-
-        <mat-form-field class="example-full-width" appearance="outline" matInput
-                placeholder="">
-                <!-- <mat-label>"--Select Skill Set (Multiple Select) --"</mat-label> -->
-                <mat-select [formControl]="keyskillArrayControl" multiple>
-
-                  <mat-select-trigger>
-                    <mat-chip-list>
-                      <mat-chip *ngFor="let topping of keyskillArrayControl.value" [removable]="true"
-                        (removed)="onToppingRemoved(topping)">
-                        {{ topping }}
-                        <mat-icon matChipRemove>cancel</mat-icon>
-                      </mat-chip>
-                    </mat-chip-list>
-                  </mat-select-trigger>
-
-                  <mat-option *ngFor="let item of newSkill" [value]="item.skillName">{{item.skillName}}</mat-option>
-
-
-                </mat-select>
-
-              </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="outline" matInput placeholder="">
+          <!-- <mat-label>"--Select Skill Set (Multiple Select) --"</mat-label> -->
+          <mat-select [formControl]="keyskillArrayControl" multiple>
+            <mat-select-trigger>
+              <mat-chip-list>
+                <mat-chip *ngFor="let topping of keyskillArrayControl.value" [removable]="true"
+                  (removed)="onToppingRemoved(topping)">
+                  {{ topping }}
+                  <mat-icon matChipRemove>cancel</mat-icon>
+                </mat-chip>
+              </mat-chip-list>
+            </mat-select-trigger>
+            <mat-option *ngFor="let item of newSkill" [value]="item.skillName">{{item.skillName}}</mat-option>
+          </mat-select>
+        </mat-form-field>
       </div>
-       <div class="col-md-12">
+      <div class="col-md-12">
         <label>Job description <span>*</span></label>
         <mat-form-field class="example-full-width" appearance="outline">
           <mat-label></mat-label>
@@ -361,7 +331,6 @@
             </mat-form-field>
           </div>
           <div>
-
           </div>
         </div>
         <div class="col-md-6 col-sm-12">

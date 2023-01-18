@@ -63,8 +63,12 @@ export class EmpUploadPostrequirmentComponent implements OnInit {
       fd.append('companyEmail', UsercompanyEmail);
       fd.append('jobList', UserjobList);
       this.apiService.uploadExcelFile(fd).subscribe((data: any) => {
+        if(data.success == false){
+          this.toastr.warning('Please upload valid file.');
+        }else{
         this.toastr.success('File uploaded successfully');
         this.cancleUpload()
+      }
       });
     } else {
       this.toastr.warning('Please upload the correct CSV file');
