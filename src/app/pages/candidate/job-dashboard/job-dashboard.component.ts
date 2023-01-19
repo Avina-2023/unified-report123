@@ -128,7 +128,7 @@ export class JobDashboardComponent implements OnInit {
     var date1 = new Date().getFullYear();
     var date2 = new Date().getFullYear() - 1;
     var date3 = new Date().getFullYear() - 2;
-    var yearArray = []; 
+    var yearArray = [];
     if(date1 >= 2022 ){
       yearArray.push({year:date1})
     }
@@ -142,7 +142,7 @@ export class JobDashboardComponent implements OnInit {
   }
 
   // candidate Dashboard Barchart
-  getCandidateDashBoard(e) {    
+  getCandidateDashBoard(e) {
     if (e.value) {
       this.year = e.value;
     } else {
@@ -191,9 +191,9 @@ export class JobDashboardComponent implements OnInit {
         this.appConfig.setLocalStorage('candidateProfile',JSON.stringify(this.Details));
         this.profilepercentage = Math.ceil(this.Details.profilePercentage);
         this.appConfig.setLocalStorage('profilePercentage', this.profilepercentage);
-        this.usercity = this.Details.permanentaddress.permanent_city;
-        this.userstate = this.Details.permanentaddress.permanent_state;
-        this.usercountry = this.Details.permanentaddress.permanent_country;
+        this.usercity = this.Details.permanentaddress?.permanent_city;
+        this.userstate = this.Details.permanentaddress?.permanent_state;
+        this.usercountry = this.Details.permanentaddress?.permanent_country;
       }
     });
   }
