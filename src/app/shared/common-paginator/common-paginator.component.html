@@ -1,5 +1,6 @@
 
-  <div class="pagination">
+  <div [ngClass]="from=='partner'?'partnerPagination':'pagination'">
+ <!-- class="pagination" -->
     <div class="left-arrow">
     <button [disabled]="value === 1" (click)="selectPage(value - 1)"><mat-icon class="icon">chevron_left</mat-icon></button></div>
     <button

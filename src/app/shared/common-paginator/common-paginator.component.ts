@@ -19,6 +19,9 @@ export class CommonPaginatorComponent implements OnInit {
   public visiblePages: number[];
   @Output() send = new EventEmitter;
   @Input() totalcount:any;
+  @Input() from:any;
+  partner:any;
+  emp:any;
   constructor() { }
   ngOnInit(): void {
 
@@ -35,6 +38,7 @@ export class CommonPaginatorComponent implements OnInit {
       // "length":this.visibleRangeLength
     }
     this.send.emit(pages)
+    console.log(pages)
     this.updateVisiblePages();
   }
 //  active and inactive paginator

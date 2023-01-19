@@ -3,8 +3,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { APP_CONSTANTS } from 'src/app/utils/app-constants.service';
 import { AddPartnerComponent } from './add-partner/add-partner.component';
 import { EmpRequirmentsComponent } from './emp-requirments/emp-requirments.component';
+import { EmpUploadPostrequirmentComponent } from './emp-upload-postrequirment/emp-upload-postrequirment.component';
 import { PartnerEnquiriesComponent } from './partner-enquiries/partner-enquiries.component';
 import {  PartnerListComponent} from './partner-list/partner-list.component';
+
 // import { ViewDriveComponent } from './view-drive/view-drive.component';
 const routes: Routes = [
   {
@@ -18,6 +20,9 @@ const routes: Routes = [
   },
   {
     path: `${APP_CONSTANTS.ROUTES.PARTNER.REQUIRMENT}`, component: EmpRequirmentsComponent
+  },
+  {
+    path:`${APP_CONSTANTS.ROUTES.PARTNER.UPLOADREQUIRMENT}`,component:EmpUploadPostrequirmentComponent
   },
 
   {

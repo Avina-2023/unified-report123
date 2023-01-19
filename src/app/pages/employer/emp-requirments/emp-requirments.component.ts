@@ -1,28 +1,71 @@
 import { ThisReceiver } from '@angular/compiler';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { dateInputsHaveChanged } from '@angular/material/datepicker/datepicker-input-base';
+import { ToastrService } from 'ngx-toastr';
+import { Subscriber } from 'rxjs';
 import { ApiService } from 'src/app/services/api.service';
-
-
+import{ APP_CONSTANTS} from 'src/app/utils/app-constants.service';
+import { AppConfigService } from 'src/app/utils/app-config.service';
+import { MatSort,Sort } from '@angular/material/sort';
+import { Timer } from 'ag-grid-community';
+import { SentDataToOtherComp } from 'src/app/services/sendDataToOtherComp.service';
+export interface PaginatedResponse<T> {
+  items: T[];
+  total: number;
+}
 @Component({
   selector: 'app-emp-requirments',
   templateUrl: './emp-requirments.component.html',
   styleUrls: ['./emp-requirments.component.scss'],
 })
 export class EmpRequirmentsComponent implements OnInit {
-  // range = new ({
-  //   start: new FormControl,
-  //   end: new FormControl,
-  //   searchData :string ='';
-  //   fromDate : Date;
-  //   toDate :Date;
-  // });
+
+  @ViewChild(MatSort) sort: MatSort;
+  sampleContent = [];
+  timerval: NodeJS.Timeout;
+  rangeFilter(date: Date): boolean {
+    return date.getDate() > 0;
+  }
+  public total:any;
+
+  public defaultRowPerPage = 5;
+  public startRow:any = 0;
+  public endRow:any = this.defaultRowPerPage;
+  public pageNumber: any = 1;
+  public itemsPerPage: any = 1;
+  public totallength:any
+  range :FormGroup;
+  routerlink=APP_CONSTANTS.ENDPOINTS
   dateVal  = new Date();
   searchData: string = '';
   close: string = '';
   getViewlist : any;
   today = new Date();
+  params:any;
+  sortData: any = [
+    'Active',
+    'Pending',
+    'Approved',
+    'Open',
+    'Yet to Open',
+    'Closed',
+    'Rejected',
+    'Expired',
+  ];
+
+  companyId = localStorage.getItem('companyId');
+  currentJobID = localStorage.getItem('currentJobID');
+  filterModel = { "startRow":this.startRow,"endRow":this.endRow,
+    "filterModel":{
+    // "companyId": {
+    //   "filterType":"text",
+    //   "type": "contains",
+    //   "filter":this.companyId,
+    // }
+ },
+
+};
   month = this.today.getMonth();
   year = this.today.getFullYear();
   dateRange = new FormGroup({
@@ -30,11 +73,20 @@ export class EmpRequirmentsComponent implements OnInit {
     end: new FormControl(new Date(this.year, this.month, 16)),
   });
   jobReqData: any;
-
+  dataSource: any;
+  sortDate: any;
+  startDate: any;
+  endDate: any;
   constructor(
     private http: ApiService,
-  ) {}
+    private toastr: ToastrService,
+    private appConfig: AppConfigService,
+    private msgData : SentDataToOtherComp
+  ) {
+
+  }
   sortbystatusArray: any = [
+    'Active',
     'Pending',
     'Approved',
     'Open',
@@ -45,8 +97,11 @@ export class EmpRequirmentsComponent implements OnInit {
   ];
   sortByStatus = [];
   ngOnInit() {
-    this.getReqData();
+
+    this.fetchData();
+
   }
+
 
   //  jobReqData = [
   //   {
@@ -410,13 +465,116 @@ export class EmpRequirmentsComponent implements OnInit {
   //   },
   // ];
 
-  getReqData() {
-    let data= '';
-      this.http.viewjobRequirments(data).subscribe((response:any)=> {
-       this.jobReqData = response.data;
-       console.log(this.jobReqData);
-
-
-  })
+applyFilter(filtervalue:string){
+  clearTimeout(this.timerval)
+  this.timerval = setTimeout(() => {
+    this.jobReqData.filter=filtervalue.trim().toLowerCase()
+    console.log (filtervalue);
+    this.searchList()
+  }, 500);
 }
+
+viewjobpagenator(){}
+
+viewApplication(jobId){
+  this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.VIEWDRIVE.VIEWCANDIDATE);
+  this.appConfig.setLocalStorage("currentJobID",jobId)
+}
+some(pages){
+  this.filterModel.startRow= (( pages.value-1)*this.defaultRowPerPage)
+  this.filterModel.endRow = ( (pages.value)*this.defaultRowPerPage)
+  // let {pageindex,length} = pages
+  // this.pageNumber=pages.value;
+  this.getReqData()
+}
+  getReqData() {
+      this.http.viewjobRequirments(this.filterModel).subscribe((response:any)=> {
+        if (response.success) {
+
+          this.jobReqData = response.data;
+       this.totallength = response.totalCount.count;
+       this.total = Math.ceil(response.totalCount.count/this.defaultRowPerPage);
+       this.jobReqData.forEach(element => {
+        this.sampleContent.push(element.overview);
+      });
+        } else {
+          this.toastr.warning('Connection failed, Please try again.');
+    }
+      //  this.total = response.totalCount.count / this.defaultRowPerPage
+   })
+ }
+
+searchList(){
+  this.filterModel.filterModel["jobRole"] = {
+    "filterType": "text",
+    "type": "contains",
+    "filter": this.searchData
+};
+  this.getReqData()
+}
+
+clearSearch(){
+  this.searchData  ='';
+  delete this.filterModel.filterModel["jobRole"]
+  this.getReqData()
+}
+
+dateChange(){
+  this.filterModel.filterModel["lastDatetoApply"] = {
+    "dateFrom": this.startDate,
+    "dateTo": this.endDate,
+    "filterType": "date",
+    "type": "inRange",
+    "filter": this.sortDate
+  };
+  console.log(this.sortDate,'hii');
+this.getReqData()
+}
+clearDate(){
+  this.sortDate ='';
+  this.startDate ='';
+  this.endDate ='';
+  delete this.filterModel.filterModel["lastDatetoApply"]
+  this.getReqData()
+}
+
+sortChange(){
+  this.filterModel.filterModel["status"] = {
+    "filterType": "text",
+    "type": "contains",
+    "filter": this.sortData
+};
+this.getReqData()
+// this.applyFilter(event.value);
+//   // const sortState: Sort = {active:this.sortbystatusArray,direction:'asc' };
+//   // this.sort.active = sortState.active;
+//   // this.sort.direction = sortState.direction;
+//   // this.sort.sortChange.emit(sortState);
+//   // this.getReqData()
+// }
+}
+fetchData(){
+
+  this.http.viewjobRequirments(this.filterModel).subscribe((response: any) => {
+    if (response.success == false) {
+      this.toastr.warning('Connection failed, Please try again.');
+    } else {
+      this.jobReqData = response.data;
+      this.totallength = this.jobReqData.length
+      this.total = Math.ceil(response.totalCount.count/this.defaultRowPerPage);
+      // this.total = response.totalCount.count / this.itemsPerPage
+    }
+  }, (err) => {
+    this.toastr.warning('Connection failed, Please try again.');
+  });
+}
+
+timeout(callback, ms) {
+  var timer ;
+  return function(...args) {
+    clearTimeout(timer);
+    timer = setTimeout(callback.bind(this, ...args), ms || 0)
+  };
+}
+
 }

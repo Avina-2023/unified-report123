@@ -1,0 +1,362 @@
+<div class="emp-bg">
+  <h3 class="title">Post Job Requirements</h3>
+  <div class="emp-post">
+    <h2 class="formTitle">Job Details</h2>
+    <form class="example-form" [formGroup]="postForm" (ngSubmit)="onSubmit()">
+      <div class="col-md-12">
+        <label>Job Role <span>*</span></label>
+        <mat-form-field class="example-full-width" appearance="outline">
+          <mat-label>Job role</mat-label>
+          <input type="" matInput placeholder="Software Developer" formControlName="jobrole">
+          <mat-error *ngIf="postForm.controls['jobrole'].invalid ">
+            <div class="error-notify" *ngIf="postForm.controls['jobrole'].errors?.required">
+              job role should be enter
+            </div>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-md-12">
+        <label>Job title <span>*</span></label>
+        <mat-form-field class="example-full-width" appearance="outline">
+          <mat-label>Associate</mat-label>
+          <input type="email" matInput placeholder="Associate" formControlName="jobtitle">
+          <mat-error *ngIf="postForm.controls['jobtitle'].invalid ">
+            <div class="error-notify" *ngIf="postForm.controls['jobtitle'].errors?.required">
+              job title should be enter
+            </div>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <!-- sameline of job location-type -->
+      <div class="d-flex">
+        <div class="col-md-6">
+          <label>Job location <span>*</span></label>
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Chennai,Banglore</mat-label>
+            <input type="email" matInput placeholder="Chennai,Banglore" formControlName="joblocation">
+            <mat-error *ngIf="postForm.controls['joblocation'].invalid ">
+              <div class="error-notify" *ngIf="postForm.controls['joblocation'].errors?.required">
+                job location should be enter
+              </div>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-md-6">
+          <label>Job type <span>*</span></label>
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Full Time</mat-label>
+            <mat-select formControlName="jobtype" matNativeControl name="Job type">
+              <mat-option *ngFor="let item of selectArray" value="{{item}}">{{item}}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="postForm.controls['jobtype'].invalid ">
+              <div class="error-notify" *ngIf="postForm.controls['jobtype'].errors?.required">
+                job type should be select
+              </div>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <!-- education cascading droupdown -->
+      <div class="d-flex">
+        <fieldset class="educationField" style=" padding: 20px;border: 1px solid #e7e3e3;width:100%;margin: 0% 1.5%;">
+          <legend style="width: fit-content;">Education </legend>
+          <ng-container formArrayName="educationalDetails"
+            *ngFor="let educationalDetails of educationalDetails.controls; index as i">
+            <div class="" [formGroupName]="i" style="display:flex;">
+              <div class="col-md-2">
+                <mat-form-field class="example-full-width" appearance="outline">
+                  <mat-label>Any Graduation</mat-label>
+                  <mat-select formControlName="anygraduation" (selectionChange)="updateDegree($event,i)">
+                    <mat-option *ngFor="let graduation of graduations;"
+                      [value]="graduation.value">{{graduation.label}}</mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="educationalDetails.controls[i]?.controls?.anygraduation.errors">
+                    <div class="error-notify">
+                      <!-- Fill the Graduation dropdown -->
+                    </div>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <!-- any degree -->
+              <div class="col-md-2">
+                <!-- {{getformarrayvalue(i).value.anygraduation}} -->
+                <!-- {{this.educationalDetails.value.anydegree}} -->
+                <mat-form-field class="example-full-width" appearance="outline">
+                  <mat-label>{{getformarrayvalue(i).value.anygraduation === 'sslc'?'X std':''}}
+                    {{getformarrayvalue(i).value.anygraduation === 'hsc'?'XII std':''}}
+                    {{getformarrayvalue(i).value.anygraduation === 'diploma'?'Any Degree / Graduation':''}}
+                    {{getformarrayvalue(i).value.anygraduation === 'phd'?'Any Degree / Graduation':''}}
+                    {{getformarrayvalue(i).value.anygraduation === 'ug'?'Any Degree / Graduation':''}}
+                    {{getformarrayvalue(i).value.anygraduation === 'pg'?'Any Degree / Graduation':''}}
+                  </mat-label>
+                  <mat-select formControlName="anydegree"
+                    [disabled]="getformarrayvalue(i).value.anygraduation === 'sslc'"
+                    [disabled]="getformarrayvalue(i).value.anygraduation === 'hsc'"
+                    [disabled]="getformarrayvalue(i).value.anygraduation === 'diploma'"
+                    [disabled]="getformarrayvalue(i).value.anygraduation === 'phd'">
+                    <mat-option *ngFor="let degree of degreeData(getformarrayvalue(i).value.anygraduation)"
+                      [value]="degree.value">{{degree.label}}</mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="educationalDetails.controls[i]?.controls?.anydegree.errors">
+                    <div class="error-notify">
+                      Fill the Degree dropdown
+                    </div>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <!-- any course -->
+              <!-- <div class="col-md-2">
+                <mat-form-field class="example-full-width" appearance="outline">
+                  <mat-label>
+                    {{getformarrayvalue(i).value.anygraduation === 'sslc'?'Any Course':''}}
+                    {{getformarrayvalue(i).value.anygraduation === 'hsc'?'Any Course':''}}
+                    {{getformarrayvalue(i).value.anygraduation === 'diploma'?'Any Course':''}}
+                    {{getformarrayvalue(i).value.anygraduation === 'phd'?'Any Course':''}}
+                    {{getformarrayvalue(i).value.anygraduation === 'ug'?'Any Course':''}}
+                    {{getformarrayvalue(i).value.anygraduation === 'pg'?'Any Course':''}}
+                  </mat-label>
+                  <mat-select formControlName="anycourse" matNativeControl name="anycourse"
+                    [disabled]="getformarrayvalue(i).value.anygraduation === 'sslc'"
+                    [disabled]="getformarrayvalue(i).value.anygraduation === 'hsc'">
+                    <mat-option *ngFor="let course of selected_courses"
+                      [value]="course.value">{{course.label}}</mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="educationalDetails.controls[i]?.controls?.anycourse.errors">
+                    <div class="error-notify">
+                      Fill the Course dropdown
+                    </div>
+                  </mat-error>
+                </mat-form-field>
+              </div> -->
+              <!-- specialization -->
+              <div class="col-md-4">
+                <mat-form-field class="example-full-width" appearance="outline">
+                  <mat-label>
+                    {{getformarrayvalue(i).value.anygraduation === 'sslc'?'-- Select
+                    Specialization(MultipleSelect)--':''}}
+
+                    {{getformarrayvalue(i).value.anygraduation === 'hsc'?'-- Select Specialization
+                    (MultipleSelect)--':''}}
+
+                    {{getformarrayvalue(i).value.anygraduation === 'diploma'?'-- Select Specialization
+                    (MultipleSelect)--':''}}
+
+                    {{getformarrayvalue(i).value.anygraduation === 'phd'?'-- Select Specialization
+                    (MultipleSelect)--':''}}
+
+                    {{getformarrayvalue(i).value.anygraduation === 'ug'?'-- Select Specialization
+                    (MultipleSelect)--':''}}
+
+                    {{getformarrayvalue(i).value.anygraduation === 'pg'?'-- Select Specialization
+                    (MultipleSelect)--':''}}
+                  </mat-label>
+                  <mat-select formControlName="selectspecialization" matNativeControl name="selectspecialization"
+                    [disabled]="getformarrayvalue(i).value.anygraduation === 'sslc'"
+                    [disabled]="getformarrayvalue(i).value.anygraduation === 'hsc'">
+                    <mat-option *ngFor="let specialization of selected_specializations"
+                      [value]="specialization.value">{{specialization.label}}</mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="educationalDetails.controls[i]?.controls?.selectspecialization.errors">
+                    <div class="error-notify">
+                      select specialization
+                    </div>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div class="close-icon">
+                <button class="button-remove" type="button" (click)="removeEducationalField(i)">x</button>
+              </div>
+            </div>
+          </ng-container>
+          <button class="addmoreEducation" type="button" (click)="addMoreField()"><u>Add
+              More</u></button>
+        </fieldset>
+      </div>
+      <!-- ctc -->
+      <div style="width:100%;display: flex;align-items: center;">
+        <div style="width:50%;padding:0px 18px;">
+          <mat-label>CTC</mat-label>
+          <div class="ctc"
+            style="display: flex;align-items: baseline;margin: 0px 10px 0px 0px;right: 2%;position: relative;">
+
+            <div style="width:30%;">
+              <mat-radio-group formControlName="ctcOptions" aria-label="Select an option">
+                <mat-radio-button value="1">Fixed</mat-radio-button>
+                <mat-radio-button value="2">Range</mat-radio-button>
+              </mat-radio-group>
+            </div>
+            <!-- fixed input -->
+            <div style="width:70%;" *ngIf="this.postForm.value.ctcOptions ==1">
+              <mat-form-field class="example-full-width" appearance="outline">
+                <mat-select formControlName="fixedpackage" matNativeControl name="fixedpackage">
+                  <mat-option *ngFor="let item of ctcArray" value="{{item}}">{{item}}</mat-option>
+                </mat-select>
+                <mat-error *ngIf="postForm.controls['fixedpackage'].invalid ">
+                  <div class="error-notify" *ngIf="postForm.controls['fixedpackage'].errors?.required">
+                    select fixedpackage
+                  </div>
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <!-- range matoption -->
+            <div class="input_div" *ngIf="this.postForm.value.ctcOptions ==2">
+              <div>
+                <mat-form-field class="example-full-width" appearance="outline">
+                  <mat-select formControlName="rangepackagefrom" matNativeControl name="rangepackagefrom">
+                    <mat-option *ngFor="let item of rangefromArray" value="{{item}}">{{item}}</mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="postForm.controls['rangepackagefrom'].invalid ">
+                    <div class="error-notify" *ngIf="postForm.controls['rangepackagefrom'].errors?.required">
+                      select range package from
+                    </div>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div>
+                <mat-form-field class="example-full-width" appearance="outline">
+                  <mat-select formControlName="rangepackageto" matNativeControl name="rangepackageto">
+                    <mat-option *ngFor="let item of rangetoArray" value="{{item}}">{{item}}</mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="postForm.controls['rangepackageto'].invalid ">
+                    <div class="error-notify" *ngIf="postForm.controls['rangepackageto'].errors?.required">
+                      select range package to
+                    </div>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="width:50%;padding:20px;">
+          <mat-label style="padding: 0px;">Year of Passing</mat-label>
+          <div class="yearofPass">
+            <div>
+              <!-- year of passing -->
+              <!--<mat-form-field class="example-full-width" appearance="outline" matInput
+                placeholder="-- Select year of passing (Multiple select) --">
+                <mat-select formControlName="yearofpassing" matNativeControl name="yearofpassing">
+                  <mat-option *ngFor="let item of yearofpassingArray" value="{{item}}">{{item}}</mat-option>
+                </mat-select>
+                <mat-error *ngIf="postForm.controls['yearofpassing'].invalid ">
+                  <div class="error-notify" *ngIf="postForm.controls['yearofpassing'].errors?.required">
+                    select the year of passing
+                  </div>
+                </mat-error>
+              </mat-form-field>-->
+              <mat-form-field class="example-full-width" appearance="outline" matInput placeholder="">
+                <mat-label>"-- Select year of passing (Multiple select) --"</mat-label>
+                <mat-select formControlName="yearofpassing" [formControl]="yearofPassingControl " multiple
+                  matNativeControl name="yearofpassing">
+                  <mat-select-trigger>
+                    <mat-chip-list>
+                      <mat-chip *ngFor="let topping of yearofPassingControl.value" [removable]="true"
+                        (removed)="onToppingRemoved(topping)">
+                        {{ topping }}
+                        <!-- <mat-icon matChipRemove>cancel</mat-icon> -->
+                      </mat-chip>
+                    </mat-chip-list>
+                  </mat-select-trigger>
+                  <mat-option *ngFor="let item of yearofpassingArray()" [value]="item">{{item}}</mat-option>
+                </mat-select>
+                <div class="close-icon">
+                  <button class="button-remove-years" type="button" (click)="removeyearofPasing">x</button>
+                </div>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <label>Key skills <span>*</span></label>
+        <!-- <mat-form-field class="example-full-width" appearance="outline">
+          <mat-select formControlName="keyskills" matNativeControl name="keyskills">
+            <mat-option *ngFor="let item of  keyskillArray" value="{{item}}">{{item}}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="postForm.controls['keyskills'].invalid ">
+            <div class="error-notify" *ngIf="postForm.controls['keyskills'].errors?.required">
+              select the key skills
+            </div>
+          </mat-error>
+        </mat-form-field>-->
+        <mat-form-field class="example-full-width" appearance="outline" matInput placeholder="">
+          <!-- <mat-label>"--Select Skill Set (Multiple Select) --"</mat-label> -->
+          <mat-select [formControl]="keyskillArrayControl" multiple>
+            <mat-select-trigger>
+              <mat-chip-list>
+                <mat-chip *ngFor="let topping of keyskillArrayControl.value" [removable]="true"
+                  (removed)="onToppingRemoved(topping)">
+                  {{ topping }}
+                  <mat-icon matChipRemove>cancel</mat-icon>
+                </mat-chip>
+              </mat-chip-list>
+            </mat-select-trigger>
+            <mat-option *ngFor="let item of newSkill" [value]="item.skillName">{{item.skillName}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-md-12">
+        <label>Job description <span>*</span></label>
+        <mat-form-field class="example-full-width" appearance="outline">
+          <mat-label></mat-label>
+          <input type="" matInput
+            placeholder="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+            formControlName="jobdescription">
+          <mat-error *ngIf="postForm.controls['jobdescription'].invalid ">
+            <div class="error-notify" *ngIf="postForm.controls['jobdescription'].errors?.required">
+              Fill the jobdescription
+            </div>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <!-- drive date -->
+      <div class="drivesameline">
+        <div class="col-md-6 col-sm-12">
+          <div>
+            <label>Drive Date<span>*</span></label>
+            <mat-form-field appearance="outline">
+              <input matInput [(ngModel)]="fromDate" for="dp1" placeholder="15-12-2022" formControlName="drivedate"
+                [matDatepicker]="datepicker1" class="">
+              <mat-datepicker-toggle class="toggle-pos" matSuffix [for]="datepicker1" id=""></mat-datepicker-toggle>
+              <mat-datepicker #datepicker1>
+                <mat-datepicker-actions>
+                  <button mat-button matDatepickerCancel>Cancel</button>
+                  <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+                </mat-datepicker-actions>
+              </mat-datepicker>
+              <mat-error *ngIf="postForm.controls['drivedate'].invalid ">
+                <div class="error-notify" *ngIf="postForm.controls['drivedate'].errors?.required">
+                  Select from Date
+                </div>
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div>
+          </div>
+        </div>
+        <div class="col-md-6 col-sm-12">
+          <label>Last Date to Apply<span>*</span></label>
+          <mat-form-field appearance="outline">
+            <input [min]="fromDate" placeholder="15-12-2022" formControlName="lastdatetoapply" matInput
+              [(ngModel)]="toDate" [matDatepicker]="datepicker">
+            <mat-datepicker-toggle class="toggle-pos" matSuffix [for]="datepicker"></mat-datepicker-toggle>
+            <mat-datepicker #datepicker>
+              <mat-datepicker-actions>
+                <button mat-button matDatepickerCancel>Cancel</button>
+                <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+              </mat-datepicker-actions>
+            </mat-datepicker>
+            <mat-error *ngIf="postForm.controls['lastdatetoapply'].invalid ">
+              <div class="error-notify" *ngIf="postForm.controls['lastdatetoapply'].errors?.required">
+                Select to Date
+              </div>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="btn-submit">
+        <button type="submit" color="primary">Save</button>
+        <button mat-stroked-button color="primary" (click)="clearall()">Clear</button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -135,7 +135,7 @@ getAGgridPatnerList(data){
 //   getBajajBehaviourReport(data) {
 //     // data.email=
 //     // 'bppdemo9001@abc.com',
-    
+
 // data.reportId='R2'
 //     return this.http.post(`${this.BASE_URL}/getBehaviouralReportContent1 `, data);
 //   }
@@ -208,6 +208,10 @@ getAGgridPatnerList(data){
       { reportProgress: true });
   }
 
+  getSkill(data) {
+    return this.http.post(`${this.BASE_URL}/getSkill`, data,
+      { reportProgress: true });
+  }
   skillMasterValidate(data) {
     return this.http.post(`${this.BASE_URL}/skillValidate`, data);
   }
@@ -319,5 +323,8 @@ getAGgridPatnerList(data){
   }
   getEmployerDetails(data){
     return this.http.post(`${this.BASE_URL}/getemployerDetails`,data)
+  }
+  uploadExcelFile(data){
+    return this.http.post(`${this.BASE_URL}/jobupload`,data)
   }
 }

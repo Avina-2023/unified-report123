@@ -142,7 +142,7 @@ export class JobDashboardComponent implements OnInit {
   }
 
   // candidate Dashboard Barchart
-  getCandidateDashBoard(e) {    
+  getCandidateDashBoard(e) {
     if (e.value) {
       this.year = e.value;
     } else {
@@ -191,9 +191,9 @@ export class JobDashboardComponent implements OnInit {
         this.appConfig.setLocalStorage('candidateProfile',JSON.stringify(this.Details));
         this.profilepercentage = Math.ceil(this.Details.profilePercentage);
         this.appConfig.setLocalStorage('profilePercentage', this.profilepercentage);
-        this.usercity = this.Details.permanentaddress.permanent_city;
-        this.userstate = this.Details.permanentaddress.permanent_state;
-        this.usercountry = this.Details.permanentaddress.permanent_country;
+        this.usercity = this.Details.permanentaddress?.permanent_city;
+        this.userstate = this.Details.permanentaddress?.permanent_state;
+        this.usercountry = this.Details.permanentaddress?.permanent_country;
       }
     });
   }

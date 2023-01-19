@@ -1,141 +1,153 @@
 <ng-container *ngIf="getAllBehaviourData && getAllBehaviourData.reportSnapShot">
-    <section class="snapshot">
-        <div class="containerWrapper">
-            <div class="innerContainer">
+  <section class="snapshot">
+    <div class="containerWrapper">
+      <div class="innerContainer">
 
-                <ng-container
-                    *ngIf="getAllBehaviourData.reportSnapShot.competency && getAllBehaviourData.reportSnapShot.competency.length > 0"></ng-container>
-                <ng-container *ngFor="let competency of getAllBehaviourData.reportSnapShot.competency; let c = index">
-                    <div class="report-snapshot-content">
-                        <div class="report-imageContent">
-                            <figure class="report-image">
-                                <img class="img" [src]="competency.colourimageurl" alt="" />
-                            </figure>
-                            <div class="report-snapshot-content-right">
-                                <div class="heading">{{competency?.name}}</div>
-                                <div>
-                                    <div class="bar">
-                                        <div class="red-bar">
-                                            <div class="red-box"></div>
-                                            <div class="pointer-container">
-                                                <div class="pointer-container-">
-                                                    <div class="box-red arrow-top" *ngIf="competency.stenScore==1">
-                                                        <div class="barNo">1</div>
-                                                    </div>
-                                                </div>
-                                                <div class="pointer-container-2">
-                                                    <div class="box-red arrow-top" *ngIf="competency.stenScore==2">
-                                                        <div class="barNo">2</div>
-                                                    </div>
-                                                </div>
-                                                <div class="pointer-container-2">
-                                                    <div class="box-red arrow-top" *ngIf="competency.stenScore==3">
-                                                        <div class="barNo">3</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="orange-bar">
-                                            <div class="orange-box"></div>
-
-                                            <div class="pointer-container">
-                                                <div class="pointer-container-orange">
-                                                    <div class="box-orange arrow-top" *ngIf="competency.stenScore==4">
-                                                        <div class="barNo">4</div>
-                                                    </div>
-                                                </div>
-                                                <div class="pointer-container-orange">
-                                                    <div class="box-orange arrow-top" *ngIf="competency.stenScore==5">
-                                                        <div class="barNo">5</div>
-                                                    </div>
-                                                </div>
-                                                <div class="pointer-container-orange">
-                                                    <div class="box-orange arrow-top" *ngIf="competency.stenScore==6">
-                                                        <div class="barNo">6</div>
-                                                    </div>
-                                                </div>
-                                                <div class="pointer-container-orange">
-                                                    <div class="box-orange arrow-top" *ngIf="competency.stenScore==7">
-                                                        <div class="barNo">7</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="green-bar">
-                                            <div class="green-box"></div>
-                                            <div class="pointer-container">
-                                                <div class="pointer-container-green-1">
-                                                    <div class="box-green arrow-top" *ngIf="competency.stenScore==8">
-                                                        <div class="barNo">8</div>
-                                                    </div>
-                                                </div>
-                                                <div class="pointer-container-green-2">
-                                                    <div class="box-green arrow-top" *ngIf="competency.stenScore==9">
-                                                        <div class="barNo">9</div>
-                                                    </div>
-                                                </div>
-                                                <div class="pointer-container-green-3">
-                                                    <div class="box-green arrow-top" *ngIf="competency.stenScore==10">
-                                                        <div class="barNo">10</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="snapshot-point">
-                                    <div class="snapshot-point-red">
-                                        <ul class="bullet" *ngFor="let dContent of competency.developmentContent">
-                                            <li>{{dContent.item}}</li>
-
-                                        </ul>
-                                    </div>
-                                    <div class="snapshot-point-green">
-                                        <ul class="bullet" *ngFor="let sContent of competency.strengthContent">
-                                            <li>{{sContent.item}}</li>
-                                        </ul>
-                                    </div>
-                                </div>
+        <ng-container
+          *ngIf="getAllBehaviourData.reportSnapShot.competency && getAllBehaviourData.reportSnapShot.competency.length > 0"></ng-container>
+        <ng-container *ngFor="let competency of getAllBehaviourData.reportSnapShot.competency; let c = index">
+          <div class="report-snapshot-content">
+            <div class="report-imageContent">
+              <figure class="report-image">
+                <img class="img" [src]="competency.colourimageurl" alt="" />
+              </figure>
+              <div class="report-snapshot-content-right">
+                <div class="heading">{{competency?.name}}</div>
+                <div>
+                  <div class="bar">
+                    <div class="red-bar">
+                      <div class="red-box"></div>
+                      <div class="boxC">
+                        <span class="N4">1</span>
+                        <div class="pointer-container">
+                          <div class="pointer-container-">
+                            <div class="box-red arrow-top"  *ngIf="competency.stenScore==1">
+                              <div class="barNo">1</div>
                             </div>
+                          </div>
+                          <div class="pointer-container-2">
+                            <div class="box-red arrow-top" *ngIf="competency.stenScore==2">
+                              <div class="barNo">2</div>
+                            </div>
+                          </div>
+                          <div class="pointer-container-2">
+                            <div class="box-red arrow-top"  *ngIf="competency.stenScore==3">
+                              <div class="barNo">3</div>
+                            </div>
+                          </div>
                         </div>
+                      </div>
                     </div>
-                </ng-container>
-            </div>
-            <div class="benchmarkInfo">
-                <figure class="chart">
-                    <img class="chart-img" src="/assets/images/bajajBenchmarkInfo.png" alt="">
-                </figure>
-                <div class="score">
-                    <div class="heading5">SCORE BENCHMARK INFO</div>
-                    <div class="wrapper">
-                        <ng-container *ngFor="let score of benchMarkScore">
-                            <div class="score-content"
-                                [ngClass]="{'red':score.color == 'red', 'green': score.color == 'green', 'yellow':score.color == 'yellow' ,'orange':score.color == 'orange'}">
-                                <div class="scorepoint">{{score.score}}</div>
-                                <div class="scorelabel">{{score.label}}</div>
+                    <div class="orange-bar">
+                      <div class="orange-box"></div>
+                      <div class="boxC">
+                        <span class="N4">4</span>
+                        <div class="pointer-container">
+                          <div class="pointer-container-orange">
+                            <div class="box-orange arrow-top"  *ngIf="competency.stenScore==4">
+                              <div class="barNo">4</div>
                             </div>
-                        </ng-container>
+                          </div>
+                          <div class="pointer-container-orange">
+                            <div class="box-orange arrow-top"  *ngIf="competency.stenScore==5">
+                              <div class="barNo">5</div>
+                            </div>
+                          </div>
+                          <div class="pointer-container-orange">
+                            <div class="box-orange arrow-top"  *ngIf="competency.stenScore==6">
+                              <div class="barNo">6</div>
+                            </div>
+                          </div>
+
+
+                        </div>
+                      </div>
                     </div>
+                    <div class="green-bar">
+                      <div class="green-box"></div>
+                      <div class="n-last">
+                        <span class="N4">7</span>
+                        <span class="N10">10</span>
+                      </div>
+
+                      <div class="pointer-container">
+                        <div class="pointer-container-green">
+                          <div class="box-green arrow-top"  *ngIf="competency.stenScore==7">
+                            <div class="barNo">7</div>
+                          </div>
+                        </div>
+                        <div class="pointer-container-green-1">
+                          <div class="box-green arrow-top"  *ngIf="competency.stenScore==8">
+                            <div class="barNo">8</div>
+                          </div>
+                        </div>
+                        <div class="pointer-container-green-2">
+                          <div class="box-green arrow-top"  *ngIf="competency.stenScore==9">
+                            <div class="barNo">9</div>
+                          </div>
+                        </div>
+                        <div class="pointer-container-green-3">
+                          <div class="box-green arrow-top"  *ngIf="competency.stenScore==10">
+                            <div class="barNo">10</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
+                <div class="snapshot-point">
+                  <div class="snapshot-point-red">
+                    <ul class="bullet" *ngFor="let dContent of competency.developmentContent">
+                      <li>{{dContent.item}}</li>
+
+                    </ul>
+                  </div>
+                  <div class="snapshot-point-green">
+                    <ul class="bullet" *ngFor="let sContent of competency.strengthContent">
+                      <li>{{sContent.item}}</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
             </div>
+          </div>
+        </ng-container>
+      </div>
+      <div class="benchmarkInfo">
+        <figure class="chart">
+          <img class="chart-img" src="/assets/images/scoreInfo.svg" alt="">
+        </figure>
+        <div class="score">
+          <div class="heading5">SCORE BENCHMARK INFO</div>
+          <div class="wrapper">
+            <ng-container *ngFor="let score of benchMarkScore">
+              <div class="score-content"
+                [ngClass]="{'red':score.color == 'red', 'green': score.color == 'green', 'yellow':score.color == 'yellow' ,'orange':score.color == 'orange'}">
+                <div class="scorepoint">{{score.score}}</div>
+                <div class="scorelabel">{{score.label}}</div>
+              </div>
+            </ng-container>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 </ng-container>
 
 <ng-template #noStrength>
-    <div class="noData">
-        No Suggestions on Strength Areas.
-    </div>
+  <div class="noData">
+    No Suggestions on Strength Areas.
+  </div>
 </ng-template>
 
 <ng-template #noImprovements>
-    <div class="noData">
-        No Suggestions on Area of Development.
-    </div>
+  <div class="noData">
+    No Suggestions on Area of Development.
+  </div>
 </ng-template>
 
 <ng-template #nodata>
-    <div class="errorCard">
-        No Data Available...
-    </div>
+  <div class="errorCard">
+    No Data Available...
+  </div>
 </ng-template>

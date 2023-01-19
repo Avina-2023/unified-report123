@@ -4,15 +4,16 @@ import { EmployerRoutingModule } from './partner-routing.module';
 import { AddPartnerComponent } from './add-partner/add-partner.component';
 import { AgGridModule } from 'ag-grid-angular';
 import { MatTabsModule } from '@angular/material/tabs';
-import { MaterialModule } from 'src/app/material/material.module';
-import { SharedModule } from 'src/app/shared/shared.module';
+import { SharedModule } from '../../shared/shared.module';
 import { PartnerListComponent } from './partner-list/partner-list.component';
 import { StylePaginatorDirective } from './partner-list/style-paginator.directive';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PartnerEnquiriesComponent } from './partner-enquiries/partner-enquiries.component';
 import { MoreOptionsComponent } from './partner-list/more-options/more-options.component';
 import {EmpRequirmentsComponent} from './emp-requirments/emp-requirments.component'
-
+import {EmpPostrequirmentsComponent} from './emp-postrequirments/emp-postrequirments.component';
+import { MaterialModule } from 'src/app/material/material.module';
+import {EmpUploadPostrequirmentComponent} from './emp-upload-postrequirment/emp-upload-postrequirment.component'
 
 @NgModule({
   declarations: [
@@ -21,7 +22,10 @@ import {EmpRequirmentsComponent} from './emp-requirments/emp-requirments.compone
     StylePaginatorDirective,
     PartnerEnquiriesComponent,
     MoreOptionsComponent,
-    EmpRequirmentsComponent
+    EmpPostrequirmentsComponent,
+    EmpRequirmentsComponent,
+    EmpUploadPostrequirmentComponent
+
   ],
   imports: [
     CommonModule,
@@ -30,7 +34,7 @@ import {EmpRequirmentsComponent} from './emp-requirments/emp-requirments.compone
     SharedModule,
     FormsModule,
     AgGridModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
 })
 export class Adminmodule { }
