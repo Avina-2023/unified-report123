@@ -144,3 +144,27 @@
 .hrlogout{
   border-top: 1px solid #eee;
 }
+::ng-deep.logout{
+  width: 300px;
+  bottom: 5px;
+  position: relative;
+  mat-icon{
+    position: absolute;
+    top: -15px;
+    right: -20px;
+  }
+}
+.yes{
+  background-color: #26bbef ;
+  color:white;
+}
+.no{
+  background-color: #f1efef;
+  color: black;
+}
+.box{
+  display: flex;
+  justify-content: space-between;
+
+}
+

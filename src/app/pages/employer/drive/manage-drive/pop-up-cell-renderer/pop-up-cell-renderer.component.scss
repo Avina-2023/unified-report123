@@ -1,5 +1,5 @@
 menu-item {
- 
+
   text-align: left;
   font: normal normal 300 11px/18px Roboto;
   letter-spacing: 0.4px;
@@ -435,7 +435,7 @@ menu-item {
 }
 .workflow-top-right {
   padding-left: 2px;
-  
+
 }
 .label-box {
   width: 143px;
@@ -479,7 +479,7 @@ menu-item {
   display: flex;
   flex-direction: column;
   position: relative;
- 
+
   top: 25px;
   justify-content: space-evenly;
 }
@@ -595,7 +595,7 @@ font-weight: lighter;
   left: 9px;
 /*   height: 120px; */
   height:72%;
-    
+
     position: absolute;
     border-left: 1px solid gray;
 }
@@ -608,7 +608,7 @@ font-weight: lighter;
 
 .step.completed .line {
   border-left: 1px solid gray;
-  
+
 }
 
 .step.active .circle {

@@ -35,7 +35,7 @@ export class JobListingComponent implements OnInit {
 	sortData = 'relevance';
 	jobId: any = '';
 
-	
+
 	constructor(public dialog: MatDialog, private apiservice: ApiService, private appconfig: AppConfigService, public router:Router) { }
 
 	ngOnInit() {
@@ -208,7 +208,7 @@ export class JobListingComponent implements OnInit {
 				// if (this.filter_info.data){
 				// 	console.log('contains filter data')
 				// }
-				
+
 			}
 		});
 	}
