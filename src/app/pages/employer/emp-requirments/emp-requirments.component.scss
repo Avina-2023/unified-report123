@@ -1383,3 +1383,13 @@ display: none;
     padding: 3em;
   }
 }
+
+
+ //#emp-requirments {
+  
+  ::ng-deep .mat-datepicker-popup {
+    left: 24.5% !important;
+    top: 32%!important;
+}
+  
+  
