@@ -51,6 +51,12 @@ display: none;
   width: 100%;
   flex-direction: row;
   align-items: flex-start;
+
+ .cdk-overlay-connected-position-bounding-box {
+  top: 47% !important;
+  left: 25% !important;
+}
+
   .mat-select-trigger {
     // display: inline-table;
     // cursor: pointer;
@@ -1377,3 +1383,7 @@ display: none;
     padding: 3em;
   }
 }
+
+
+
+

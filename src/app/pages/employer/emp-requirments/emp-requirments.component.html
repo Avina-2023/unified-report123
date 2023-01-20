@@ -12,6 +12,8 @@
             </mat-select>
           </mat-form-field>
         </div>
+
+
         <div class="col-md-3 p-0 dateRange">
           <mat-form-field appearance="outline">
             <mat-label>Enter a date range</mat-label>
@@ -61,15 +63,15 @@
   </div>
   <div class="dateSort">
 
-    <div class="col-md-2 p-0 dateRange">
+    <div class="col-md-3 p-0 dateRange">
       <mat-form-field appearance="outline">
         <mat-label>Enter a date range</mat-label>
-        <mat-date-range-input [rangePicker]="picker" [dateFilter]="rangeFilter">
+        <mat-date-range-input [rangePicker]="picker2" [dateFilter]="rangeFilter">
           <input matStartDate [(ngModel)]="startDate" placeholder="Start">
           <input matEndDate [(ngModel)]="endDate" placeholder="End">
         </mat-date-range-input>
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-date-range-picker #picker>
+        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-date-range-picker #picker2>
           <mat-date-range-picker-actions>
             <button mat-button matDateRangePickerCancel (click)="clearDate()">Cancel</button>
             <button mat-raised-button color="primary" matDateRangePickerApply [(ngModel)]="sortDate"
@@ -82,7 +84,6 @@
       <mat-form-field appearance="outline">
         <mat-select [(ngModel)]="sortData" (selectionChange)="sortChange()" placeholder="Sort By">
           <mat-option *ngFor="let status of sortbystatusArray" [value]="status">{{status}}</mat-option>
-          <!-- <mat-option value="rejected">Rejected</mat-option> -->
         </mat-select>
       </mat-form-field>
     </div>

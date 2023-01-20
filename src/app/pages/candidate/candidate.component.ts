@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild  } from '@angular/core';
 import { MatDrawerMode } from '@angular/material/sidenav';
+import { MatDialog } from '@angular/material/dialog';
 import { NavigationEnd, Router, RouterEvent } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
 import { SentDataToOtherComp } from 'src/app/services/sendDataToOtherComp.service';
@@ -12,6 +13,7 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./candidate.component.scss']
 })
 export class CandidateComponent implements OnInit {
+  @ViewChild('confirmDialog', { static: false }) matDialogRef: TemplateRef<any>;
   isExpanded = false
   sideNavMode: MatDrawerMode = 'over'
   isShowing: boolean = false;
@@ -19,7 +21,7 @@ export class CandidateComponent implements OnInit {
   candidateName = localStorage.getItem('name')
   productionUrl = environment.SKILL_EDGE_URL == "https://skilledge.lntedutech.com"?true:false;
   profileimge: any ="";
-  constructor(public router:Router, private apiservice:ApiService, private appconfig:AppConfigService, private msgData : SentDataToOtherComp) {
+  constructor(public router:Router, private apiservice:ApiService, private appconfig:AppConfigService, private msgData : SentDataToOtherComp, public dialog: MatDialog, ) {
     this.router.events.subscribe(event => {
       if(event instanceof NavigationEnd) {
 
@@ -27,7 +29,7 @@ export class CandidateComponent implements OnInit {
     })
   }
 
-  ngOnInit() { 
+  ngOnInit() {
 
     this.msgData.getMessage().subscribe((data)=>{
       if(data.data=='profileImage'&& data.value !="" && data.value != undefined){
@@ -38,7 +40,7 @@ export class CandidateComponent implements OnInit {
         }
       }
     })
-    
+
 
   }
   // ngOnChanges(){
@@ -59,8 +61,20 @@ export class CandidateComponent implements OnInit {
     }
   }
   logout(){
-    this.apiservice.logout();
+    this.dialog.open(this.matDialogRef, {
+      disableClose: true
+			// panelClass: 'spec_desk_dialog'
+		});
   }
+  confirm(value){
+    if(value){
+    this.dialog.closeAll()
+    this.apiservice.logout();
+    }else{
+    this.dialog.closeAll()
+    }
+  }
+
   gotoProfile(){
     let emailval = this.appconfig.getLocalStorage('email')
     let enc_email = encodeURIComponent(this.apiservice.encryptnew(emailval,environment.cryptoEncryptionKey))
