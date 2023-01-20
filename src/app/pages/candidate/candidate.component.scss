@@ -153,6 +153,11 @@
     top: -15px;
     right: -20px;
   }
+
+
+}
+.actions{
+  justify-content: center !important;
 }
 .yes{
   background-color: #26bbef ;
@@ -164,7 +169,7 @@
 }
 .box{
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 
 }
 
