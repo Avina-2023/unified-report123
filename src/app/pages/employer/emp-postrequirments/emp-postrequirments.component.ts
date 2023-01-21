@@ -11,6 +11,7 @@ import { ToastrService } from 'ngx-toastr';
 import { GlobalValidatorService } from 'src/app/globalvalidators/global-validator.service';
 import { ApiService } from 'src/app/services/api.service';
 import { NgModule } from '@angular/core';
+import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 
 ({
   imports: [ReactiveFormsModule],

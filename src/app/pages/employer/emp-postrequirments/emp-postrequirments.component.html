@@ -104,51 +104,23 @@
                   </mat-error>
                 </mat-form-field>
               </div>
-              <!-- any course -->
-              <!-- <div class="col-md-2">
-                <mat-form-field class="example-full-width" appearance="outline">
-                  <mat-label>
-                    {{getformarrayvalue(i).value.anygraduation === 'sslc'?'Any Course':''}}
-                    {{getformarrayvalue(i).value.anygraduation === 'hsc'?'Any Course':''}}
-                    {{getformarrayvalue(i).value.anygraduation === 'diploma'?'Any Course':''}}
-                    {{getformarrayvalue(i).value.anygraduation === 'phd'?'Any Course':''}}
-                    {{getformarrayvalue(i).value.anygraduation === 'ug'?'Any Course':''}}
-                    {{getformarrayvalue(i).value.anygraduation === 'pg'?'Any Course':''}}
-                  </mat-label>
-                  <mat-select formControlName="anycourse" matNativeControl name="anycourse"
-                    [disabled]="getformarrayvalue(i).value.anygraduation === 'sslc'"
-                    [disabled]="getformarrayvalue(i).value.anygraduation === 'hsc'">
-                    <mat-option *ngFor="let course of selected_courses"
-                      [value]="course.value">{{course.label}}</mat-option>
-                  </mat-select>
-                  <mat-error *ngIf="educationalDetails.controls[i]?.controls?.anycourse.errors">
-                    <div class="error-notify">
-                      Fill the Course dropdown
-                    </div>
-                  </mat-error>
-                </mat-form-field>
-              </div> -->
+
               <!-- specialization -->
               <div class="col-md-4">
                 <mat-form-field class="example-full-width" appearance="outline">
                   <mat-label>
-                    {{getformarrayvalue(i).value.anygraduation === 'sslc'?'-- Select
-                    Specialization(MultipleSelect)--':''}}
+                    {{getformarrayvalue(i).value.anygraduation === 'sslc'?'-- Select Specialization(MultipleSelect)--':''}}
 
-                    {{getformarrayvalue(i).value.anygraduation === 'hsc'?'-- Select Specialization
-                    (MultipleSelect)--':''}}
+                    {{getformarrayvalue(i).value.anygraduation === 'hsc'?'-- Select Specialization(MultipleSelect)--':''}}
 
-                    {{getformarrayvalue(i).value.anygraduation === 'diploma'?'-- Select Specialization
-                    (MultipleSelect)--':''}}
+                    {{getformarrayvalue(i).value.anygraduation === 'diploma'?'-- Select Specialization(MultipleSelect)--':''}}
 
-                    {{getformarrayvalue(i).value.anygraduation === 'phd'?'-- Select Specialization
-                    (MultipleSelect)--':''}}
+                    {{getformarrayvalue(i).value.anygraduation === 'phd'?'-- Select Specialization(MultipleSelect)--':''}}
 
-                    {{getformarrayvalue(i).value.anygraduation === 'ug'?'-- Select Specialization
-                    (MultipleSelect)--':''}}
+                    {{getformarrayvalue(i).value.anygraduation === 'ug'?'-- Select Specialization(MultipleSelect)--':''}}
 
-                    {{getformarrayvalue(i).value.anygraduation === 'pg'?'-- Select Specialization
-                    (MultipleSelect)--':''}}
+                    {{getformarrayvalue(i).value.anygraduation === 'pg'?'-- Select Specialization(MultipleSelect)--':''}}
+
                   </mat-label>
                   <mat-select formControlName="selectspecialization" matNativeControl name="selectspecialization"
                     [disabled]="getformarrayvalue(i).value.anygraduation === 'sslc'"
@@ -266,9 +238,9 @@
           </div>
         </div>
       </div>
-      <div class="col-md-12">
+        <!-- <div class="col-md-12">
         <label>Key skills <span>*</span></label>
-        <!-- <mat-form-field class="example-full-width" appearance="outline">
+         <mat-form-field class="example-full-width" appearance="outline">
           <mat-select formControlName="keyskills" matNativeControl name="keyskills">
             <mat-option *ngFor="let item of  keyskillArray" value="{{item}}">{{item}}</mat-option>
           </mat-select>
@@ -277,9 +249,9 @@
               select the key skills
             </div>
           </mat-error>
-        </mat-form-field>-->
+        </mat-form-field>
         <mat-form-field class="example-full-width" appearance="outline" matInput placeholder="">
-          <!-- <mat-label>"--Select Skill Set (Multiple Select) --"</mat-label> -->
+           <mat-label>"--Select Skill Set (Multiple Select) --"</mat-label>
           <mat-select [formControl]="keyskillArrayControl" multiple>
             <mat-select-trigger>
               <mat-chip-list>
@@ -293,8 +265,12 @@
             <mat-option *ngFor="let item of newSkill" [value]="item.skillName">{{item.skillName}}</mat-option>
           </mat-select>
         </mat-form-field>
-      </div>
-      <div class="col-md-12">
+        </div>-->
+        <div>
+
+        </div>
+
+        <div class="col-md-12">
         <label>Job description <span>*</span></label>
         <mat-form-field class="example-full-width" appearance="outline">
           <mat-label></mat-label>
