@@ -28,6 +28,10 @@ export class EmpPostrequirmentsComponent implements OnInit {
   getSkill: any;
   newSkill: any;
 
+  // ng zorro//
+  listOfOption: string[] = [];
+  listOfSelectedValue = ['a10', 'c12'];
+
   constructor(
     private fb: FormBuilder,
     private globalValidation: GlobalValidatorService,
@@ -171,6 +175,14 @@ export class EmpPostrequirmentsComponent implements OnInit {
   ngOnInit() {
     this.createPost();
     this.skilllist();
+
+    // ng zorro//
+      const children: string[] = [];
+      for (let i = 10; i < 36; i++) {
+        children.push(`${i.toString(36)}${i}`);
+      }
+      this.listOfOption = children;
+
   }
   radio() {}
 
