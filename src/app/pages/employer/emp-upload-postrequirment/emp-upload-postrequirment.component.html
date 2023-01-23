@@ -3,32 +3,41 @@
   <div class="card">
     <div class="card-content">
       <div class="btn-aligment">
-        <button (click)="downloadTemplate()"><span class="icon-microsoft-excel"></span><img src="../../../../assets/images/excel.svg">Download Template</button>
+        <button (click)="downloadTemplate()"><span class="icon-microsoft-excel"></span><img
+            src="../../../../assets/images/excel.svg">Download Template</button>
       </div>
+
       <form>
-     <div class="uploadbox">
-      <div class="uploadimgs">
-        <img src="../../../../assets/images/uploadic.svg">
-      </div>
-      <div class="alignment">
-        <span class="uploadbutton">
-          <label for="upload" style="    cursor: pointer;
+        <div class="postJobtitle">
+          <h3>Post Job <span>*</span></h3>
+        </div>
+        <div class="uploadbox">
+          <div class="uploadimgs">
+            <img src="../../../../assets/images/uploadic.svg">
+          </div>
+          <div class="alignment">
+            <span class="uploadbutton">
+              <label for="upload" style="    cursor: pointer;
           position: relative;
           top: -2px;" class="upload p-1"><i class="bi bi-cloud-arrow-up"></i> Browse </label>
-          <input class="file-input" type="file" id="upload" name="image" accept="text/csv, application/octet-stream, ms-excel" (change)="onFileSelected($event)" (click)="$event.target.value=null" type="file" alt="upload"/></span>
+              <input class="file-input" type="file" id="upload" name="image"
+                accept="text/csv, application/octet-stream, ms-excel" (change)="onFileSelected($event)"
+                (click)="$event.target.value=null" type="file" alt="upload" /></span>
 
-          <div class="note2"> <span [matTooltip]="fileName" class="blackLable subInstruction">{{  trimFilename(fileName) || "Upload only .xls format"}}</span></div>
-          <div *ngIf="fileName" class="close" (click)="cancleUpload()">
-            <span class="pointer-close" ><mat-icon class="close-icon">close</mat-icon></span>
-        </div>
-        </div>
+            <div class="note2"> <span [matTooltip]="fileName" class="blackLable subInstruction">{{
+                trimFilename(fileName) || " Upload only .csv format"}}</span></div>
+            <div *ngIf="fileName" class="close" (click)="cancleUpload()">
+              <span class="pointer-close"><mat-icon class="close-icon">close</mat-icon></span>
+            </div>
+          </div>
 
-    </div>
-     <div class="submitbtn">
-      <button type="submit" (click)="saveUploadModel()">Submit</button>
-     </div>
-    </form>
-     <div class="note">Note: Upload your job requirements in the required template. The template can be downloaded by clicking the download template link at the top.</div>
+        </div>
+        <div class="submitbtn">
+          <button type="submit"[disabled]="IsToFeildEnable" (click)="saveUploadModel()">Submit</button>
+        </div>
+      </form>
+      <div class="note">Note: Upload your job requirements in the required template. The template can be downloaded by
+        clicking the download template link at the top.</div>
     </div>
 
 
