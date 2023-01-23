@@ -6,11 +6,11 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
+import { CommonModule, registerLocaleData } from '@angular/common';
 import { NgxChartsModule} from '@swimlane/ngx-charts';
 import { SharedModule } from './shared/shared.module';
 import { PerfectScrollbarConfigInterface, PerfectScrollbarModule, PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { InterceptorService } from './interceptor/interceptor.service';
 import { DragScrollModule } from 'ngx-drag-scroll';
 import { AgGridModule } from 'ag-grid-angular';
@@ -32,6 +32,13 @@ import { SkillMasterListComponent } from './pages/skill-Master/skill-master-list
 import { SetPasswordComponent } from './pages/login/set-password/set-password.component';
 import { ForgotPasswordComponent } from './pages/login/forgot-password/forgot-password.component';
 import { CandidateModule } from './pages/candidate/candidate.module';
+import { NZ_I18N } from 'ng-zorro-antd/i18n';
+import { en_US } from 'ng-zorro-antd/i18n';
+import en from '@angular/common/locales/en';
+import { NzSelectModule } from 'ng-zorro-antd/select';
+import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
+
+registerLocaleData(en);
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
 };
@@ -66,6 +73,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     PerfectScrollbarModule,
     AgGridModule,
     CarouselModule,
+    NzSelectModule,
+    NzDropDownModule,
 
     // PopupCellRenderer,
     ToastrModule.forRoot(
@@ -79,6 +88,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
         closeButton:true
       }
     ),
+
+    HttpClientModule,
   ],
   providers: [
     {
@@ -88,7 +99,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
       provide: PERFECT_SCROLLBAR_CONFIG,
       useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
     },
-    IsloggedInGuard, IsAccessGuard
+    IsloggedInGuard, IsAccessGuard, { provide: NZ_I18N, useValue: en_US }
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]
