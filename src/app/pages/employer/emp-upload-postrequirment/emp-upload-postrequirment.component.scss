@@ -38,7 +38,11 @@
     right: 4px;
         }
       }
-    }
+
+
+
+
+            }
     .uploadbox{
       width: auto;
       height: 225px;
@@ -101,6 +105,12 @@
       display: flex;
       justify-content: space-evenly;
       margin: 60px 0px 60px 0px;
+      button:disabled {
+        cursor:not-allowed;
+        color: #fff;
+        background-color: #70707099;
+        border: 1px solid #70707099;
+     }
       button{
         background-color: #1B4E9B;
         color: #fff;
@@ -111,6 +121,7 @@
         font-weight: 300;
         padding: 10px;
         width: 90px;
+
       }
 
     }
@@ -123,4 +134,11 @@
     }
   }
 }
+}
+.postJobtitle{
+  left: 130px;
+  text-align: left;
+  opacity: 1;
+  margin: 0px 0px -10px 13px;
+
 }
