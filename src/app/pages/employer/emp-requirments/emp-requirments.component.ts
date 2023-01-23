@@ -38,7 +38,7 @@ export class EmpRequirmentsComponent implements OnInit {
   public totallength:any
   range :FormGroup;
   routerlink=APP_CONSTANTS.ENDPOINTS
-  dateVal  = new Date();
+  //dateVal  = lastDatetoApply();
   searchData: string = '';
   close: string = '';
   getViewlist : any;

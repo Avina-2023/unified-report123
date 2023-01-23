@@ -26,7 +26,6 @@ import { ResumeTemplate1Component } from './resume-builder/resume-templates/resu
     CommonModule,
     CandidateRoutes,
     MaterialModule,
-    NgApexchartsModule,
     FormsModule,
   ],
   declarations: [
