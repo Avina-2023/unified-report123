@@ -14,6 +14,8 @@ import {EmpRequirmentsComponent} from './emp-requirments/emp-requirments.compone
 import {EmpPostrequirmentsComponent} from './emp-postrequirments/emp-postrequirments.component';
 import { MaterialModule } from 'src/app/material/material.module';
 import {EmpUploadPostrequirmentComponent} from './emp-upload-postrequirment/emp-upload-postrequirment.component'
+import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
+import { NzSelectModule } from 'ng-zorro-antd/select';
 
 @NgModule({
   declarations: [
@@ -35,6 +37,8 @@ import {EmpUploadPostrequirmentComponent} from './emp-upload-postrequirment/emp-
     FormsModule,
     AgGridModule,
     ReactiveFormsModule,
+    NzDropDownModule,
+    NzSelectModule,
   ],
 })
 export class Adminmodule { }

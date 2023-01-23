@@ -39,6 +39,7 @@ export class BajajViewReportComponent implements OnInit, AfterViewInit, OnDestro
   apiSuccess = true;
   isaccess: any;
   isPdfdownable = false;
+  year = new Date().getFullYear();
   constructor(
     private sendData: SentDataToOtherComp,
     private ApiService: ApiService,
