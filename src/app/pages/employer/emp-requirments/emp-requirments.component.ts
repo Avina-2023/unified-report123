@@ -10,6 +10,7 @@ import { AppConfigService } from 'src/app/utils/app-config.service';
 import { MatSort,Sort } from '@angular/material/sort';
 import { Timer } from 'ag-grid-community';
 import { SentDataToOtherComp } from 'src/app/services/sendDataToOtherComp.service';
+
 export interface PaginatedResponse<T> {
   items: T[];
   total: number;
@@ -520,6 +521,12 @@ clearSearch(){
 }
 
 dateChange(){
+//     var Timeoffset = (new Date()).getTimezoneOffset() * 60000;
+// var startDate = (new Date(new Date(new Date(this.startDate)).getTime() - Timeoffset).toISOString().slice(0, -1));
+// var endDate = (new Date(new Date(new Date(this.endDate)).getTime() - Timeoffset).toISOString().slice(0, -1));
+//    
+
+
   this.filterModel.filterModel["lastDatetoApply"] = {
     "dateFrom": this.startDate,
     "dateTo": this.endDate,
