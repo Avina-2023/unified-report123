@@ -66,9 +66,9 @@ export class EmpUploadPostrequirmentComponent implements OnInit {
       fd.append('jobList', UserjobList);
       this.apiService.uploadExcelFile(fd).subscribe((data: any) => {
         if(data.success == false){
-          this.toastr.warning('Please upload valid file.');
+          this.toastr.warning(data.message);
         }else{
-        this.toastr.success('File uploaded successfully');
+        this.toastr.success(data.message);
         this.cancleUpload()
       }
       });
