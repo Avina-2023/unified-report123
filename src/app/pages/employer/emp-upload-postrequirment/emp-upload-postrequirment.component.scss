@@ -94,6 +94,8 @@
       display: flex;
       justify-content: space-evenly;
       margin: 60px 0px 60px 0px;
+      position: relative;
+      left: 2px;
       button:disabled {
         cursor:not-allowed;
         color: #fff;
