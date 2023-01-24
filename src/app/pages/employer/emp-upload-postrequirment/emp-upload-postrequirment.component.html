@@ -26,7 +26,7 @@
 
           </div>
           <div class="fName">
-            <div class="note2"> <span [matTooltip]="fileName" class="blackLable subInstruction">{{trimFilename(fileName) || "Upload only .xls format"}}</span></div>
+            <div class="note2"> <span [matTooltip]="fileName" class="blackLable subInstruction">{{trimFilename(fileName) || "Upload only .csv format"}}</span></div>
             <div *ngIf="fileName" class="close" (click)="cancleUpload()">
               <span class="pointer-close"><mat-icon class="close-icon">close</mat-icon></span>
             </div>
