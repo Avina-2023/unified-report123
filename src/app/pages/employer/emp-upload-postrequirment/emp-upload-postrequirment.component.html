@@ -24,22 +24,31 @@
                 accept="text/csv, application/octet-stream, ms-excel" (change)="onFileSelected($event)"
                 (click)="$event.target.value=null" type="file" alt="upload" /></span>
 
-            <div class="note2"> <span [matTooltip]="fileName" class="blackLable subInstruction">{{
-                trimFilename(fileName) || " Upload only .csv format"}}</span></div>
+          </div>
+          <div class="fName">
+            <div class="note2"> <span [matTooltip]="fileName" class="blackLable subInstruction">{{trimFilename(fileName) || "Upload only .xls format"}}</span></div>
             <div *ngIf="fileName" class="close" (click)="cancleUpload()">
               <span class="pointer-close"><mat-icon class="close-icon">close</mat-icon></span>
             </div>
           </div>
+          <input class="file-input" type="file" id="upload" name="image"
+            accept="text/csv, application/octet-stream, ms-excel" (change)="onFileSelected($event)"
+            (click)="$event.target.value=null" type="file" alt="upload" />
 
+          <!-- <div class="note2"> <span [matTooltip]="fileName" class="blackLable subInstruction">{{
+              trimFilename(fileName) || " Upload only .csv format"}}</span></div>
+          <div *ngIf="fileName" class="close" (click)="cancleUpload()">
+            <span class="pointer-close"><mat-icon class="close-icon">close</mat-icon></span>
+          </div> -->
         </div>
-        <div class="submitbtn">
-          <button type="submit"[disabled]="IsToFeildEnable" (click)="saveUploadModel()">Submit</button>
-        </div>
-      </form>
-      <div class="note">Note: Upload your job requirements in the required template. The template can be downloaded by
-        clicking the download template link at the top.</div>
+    <div class="submitbtn">
+      <button type="submit" [disabled]="IsToFeildEnable" (click)="saveUploadModel()">Submit</button>
     </div>
-
-
+    </form>
+    <div class="note">Note: Upload your job requirements in the required template. The template can be downloaded by
+      clicking the download template link at the top.</div>
   </div>
+
+
+</div>
 </div>
