@@ -100,9 +100,9 @@
           </div>
           <div class="designation">
             <div>{{ one.jobRole}}</div>
-            <div class="locations">
+            <div class="locations" *ngFor="let location of one.jobLocation">
               <div class="icon-location1 locate"></div>
-              <div class="location">{{ one.jobLocation}}</div>
+              <div class="location">{{ location.trim()}}</div>
             </div>
           </div>
 
@@ -208,7 +208,7 @@
               <p>Application closes on:</p>
             </span>
             <div>
-              <p class="date">{{one.lastDatetoApply | date: 'MMM d, y h:mm a' }}</p>
+              <p class="date">{{one.lastDatetoApply | date: 'MMM d, y, h:mm a' }}</p>
             </div>
           </div>
 
