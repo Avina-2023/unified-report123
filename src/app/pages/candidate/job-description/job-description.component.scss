@@ -124,7 +124,7 @@ li {
   flex-wrap: wrap;
 
   .spacing {
-    padding-right: 4px;
+    // padding-right: 4px;
   }
 
   .genText {
@@ -169,7 +169,10 @@ li {
   color: #707070;
   padding-top: 4px;
 }
-
+.genTextpassout{
+  font-size: 14px;
+  color: #707070bf;
+}
 .genText {
   font-size: 14px;
   color: #707070bf;
