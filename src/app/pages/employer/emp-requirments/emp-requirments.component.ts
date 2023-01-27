@@ -73,6 +73,7 @@ export class EmpRequirmentsComponent implements OnInit {
     start: new FormControl(new Date(this.year, this.month, 13)),
     end: new FormControl(new Date(this.year, this.month, 16)),
   });
+  // lastDatetoApply:any;
   jobReqData: any;
   dataSource: any;
   sortDate: any;
@@ -491,12 +492,13 @@ some(pages){
   getReqData() {
       this.http.viewjobRequirments(this.filterModel).subscribe((response:any)=> {
         if (response.success) {
-
           this.jobReqData = response.data;
+
        this.totallength = response.totalCount.count;
        this.total = Math.ceil(response.totalCount.count/this.defaultRowPerPage);
        this.jobReqData.forEach(element => {
         this.sampleContent.push(element.overview);
+
       });
         } else {
           this.toastr.warning('Connection failed, Please try again.');
@@ -566,9 +568,17 @@ fetchData(){
     if (response.success == false) {
       this.toastr.warning('Connection failed, Please try again.');
     } else {
+        var Timeoffset = (new Date()).getTimezoneOffset() * 60000;
+      response.data.forEach(element => {
+        // element.lastDatetoApply = new Date(element.lastDatetoApply).toLocaleString();
+        element.lastDatetoApply = (new Date(new Date(new Date(element.lastDatetoApply)).getTime() + Timeoffset).toISOString().slice(0, -1));    
+        console.log( element.lastDatetoApply,'kkk');
+
+      });
       this.jobReqData = response.data;
       this.totallength = this.jobReqData.length
       this.total = Math.ceil(response.totalCount.count/this.defaultRowPerPage);
+
       // this.total = response.totalCount.count / this.itemsPerPage
     }
   }, (err) => {
