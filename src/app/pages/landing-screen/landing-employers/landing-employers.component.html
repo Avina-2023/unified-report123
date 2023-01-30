@@ -191,9 +191,9 @@
 <h2 class="section-team__title">Hiring Partners</h2>
 
    <owl-carousel-o [options]="customOptions" >
-        <ng-container *ngFor="let img of sliderdata1" >
+        <ng-container *ngFor="let img of HiringPartners" >
           <ng-template carouselSlide >
-            <img class="section-team__item-image" style="height: 100px;width: 150px;" [src]="img.img1">
+            <img class="section-team__item-image" style="height: 100px;width: 150px;" [src]="img.url">
           </ng-template>
         </ng-container>
       </owl-carousel-o>
