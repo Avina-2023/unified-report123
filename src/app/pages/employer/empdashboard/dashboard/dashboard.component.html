@@ -24,7 +24,7 @@
             </div>
         </div>
         <div class="row mt-5">
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <div class="card">
                     <div class="card-content">
                         <div class="card-body">
@@ -34,7 +34,7 @@
                                     <div class="card-number">{{ dashBoardDetails[0]?.cardDetails.totalCandidate }}</div>
                                 </div>
                                 <div class="align-self-center">
-                                    <img class="font-large-2 float-right"
+                                    <img class="font-large-2 float-right ic-img"
                                         src="../../../assets/images/emp-dashboard-icons/small-ic-1.png">
                                 </div>
                             </div>
@@ -52,7 +52,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
+            <!-- <div class="col-md-3">
                 <div class="card">
                     <div class="card-content">
                         <div class="card-body">
@@ -79,8 +79,8 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-3">
+            </div> -->
+            <!-- <div class="col-md-3">
                 <div class="card">
                     <div class="card-content">
                         <div class="card-body">
@@ -108,8 +108,8 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-3">
+            </div> -->
+            <div class="col-md-4">
                 <div class="card">
                     <div class="card-content">
                         <div class="card-body">
@@ -120,7 +120,7 @@
                                     </div>
                                 </div>
                                 <div class="align-self-center">
-                                    <img class="font-large-2 float-right"
+                                    <img class="font-large-2 float-right ic-img"
                                         src="../../../assets/images/emp-dashboard-icons/small-ic-3.png">
                                 </div>
                             </div>
@@ -130,6 +130,35 @@
                                     <span>
                                         {{
                                         dashBoardDetails[0]?.cardDetails.assessedCandidatesIncrease }}%
+                                    </span>
+                                </div>
+                                <span class="ml-2 card-last-text">Since last month</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="card-body">
+                            <div class="media d-flex">
+                                <div class="media-body text-left">
+                                    <span class="card-head">Trained Candidates</span>
+                                    <div class="card-number">{{ dashBoardDetails[0]?.cardDetails.trainedCandidate }}
+                                    </div>
+                                </div>
+                                <div class="align-self-center">
+                                    <img class="font-large-2 float-right ic-img"
+                                        src="../../../assets/images/emp-dashboard-icons/small-ic-4.png ">
+                                </div>
+                            </div>
+                            <div class="media d-flex">
+                                <div class="card-inside-percentage-box">
+                                    <span class="icon-arrow-round-up"></span>
+                                    <span>
+                                       {{
+                                        dashBoardDetails[0]?.cardDetails.trainedCandidateIncrease }}%
                                     </span>
                                 </div>
                                 <span class="ml-2 card-last-text">Since last month</span>

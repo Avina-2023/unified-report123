@@ -1,4 +1,4 @@
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild, Pipe, PipeTransform } from '@angular/core';
 import { MatDialog,  } from '@angular/material/dialog';
 import { APP_CONSTANTS } from 'src/app/utils/app-constants.service';
 import { ApiService } from 'src/app/services/api.service';
@@ -14,10 +14,17 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./job-description.component.scss']
 })
 export class JobDescriptionComponent implements OnInit {
+  transform(value: string): any {
+    return value.trim()
+  }
   jobDescription: any;
   @ViewChild('incompleteProfile',{static: false}) matDialogRef: TemplateRef<any>;
   @ViewChild('eligiblity',{static: false}) eligiblitypop: TemplateRef<any>;
   @ViewChild('successApply',{static: false}) applySuccess: TemplateRef<any>;
+  @Pipe({
+    name: 'trim',
+    pure: false
+ })
 
   dialogData: any;
   descriptionData: any;

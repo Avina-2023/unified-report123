@@ -13,6 +13,7 @@ export class EmpUploadPostrequirmentComponent implements OnInit {
   file: any;
   fileName: '';
   userdetails: any;
+  IsToFeildEnable = true;
 
   constructor(private apiService: ApiService, private toastr: ToastrService) {}
 
@@ -42,10 +43,11 @@ export class EmpUploadPostrequirmentComponent implements OnInit {
   }
 
   onFileSelected(event) {
-    console.log(event);
+
     this.file = event.target.files[0];
     if (this.file) {
       this.fileName = this.file.name;
+      this.IsToFeildEnable = false;
     }
   }
 
@@ -64,9 +66,9 @@ export class EmpUploadPostrequirmentComponent implements OnInit {
       fd.append('jobList', UserjobList);
       this.apiService.uploadExcelFile(fd).subscribe((data: any) => {
         if(data.success == false){
-          this.toastr.warning('Please upload valid file.');
+          this.toastr.warning(data.message);
         }else{
-        this.toastr.success('File uploaded successfully');
+        this.toastr.success(data.message);
         this.cancleUpload()
       }
       });
@@ -83,6 +85,7 @@ export class EmpUploadPostrequirmentComponent implements OnInit {
     return '';
   }
   cancleUpload() {
+    this.IsToFeildEnable = true;
     this.fileName = "";
     this.file = "";
   }

@@ -38,7 +38,11 @@
     right: 4px;
         }
       }
-    }
+
+
+
+
+            }
     .uploadbox{
       width: auto;
       height: 225px;
@@ -61,8 +65,10 @@
         justify-content: center;
         position: relative;
         top: 50px;
-        left: 20px;
-        .uploadbutton{
+        // left: 20px;
+
+        }
+        .upload{
           background-color: #1B4E9B;
           color: #fff;
           border-radius: 25px;
@@ -75,24 +81,11 @@
           padding: 10px;
           width: 100px;
           text-align: center;
+          display: flex;
+          justify-content: center;
+          align-items: center;
         }
-        .note2{
-          font-size: 14px;
-          color: #848484;
-          text-align: center;
-          position: relative;
-          top: 13px;
-          right: 14px;
-        }
-        .close{
-          position: relative;
-         left: 124px;
-         .pointer-close{
-          position: relative;
-          top: -11px;
-          color: red;
-          cursor: pointer;
-         }
+
         }
       }
 
@@ -101,6 +94,14 @@
       display: flex;
       justify-content: space-evenly;
       margin: 60px 0px 60px 0px;
+      position: relative;
+      left: 2px;
+      button:disabled {
+        cursor:not-allowed;
+        color: #fff;
+        background-color: #70707099;
+        border: 1px solid #70707099;
+     }
       button{
         background-color: #1B4E9B;
         color: #fff;
@@ -111,6 +112,7 @@
         font-weight: 300;
         padding: 10px;
         width: 90px;
+
       }
 
     }
@@ -122,5 +124,43 @@
       margin-bottom: 60px;
     }
   }
+.postJobtitle{
+  left: 130px;
+  text-align: left;
+  opacity: 1;
+  margin: 0px 0px -10px 13px;
+  span{
+    color: red;
 }
+
 }
+.fName{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: relative;
+  top: 50px;
+
+  .note2{
+    font-size: 14px;
+    color: #848484;
+    text-align: center;
+    position: relative;
+    // top: 13px;
+    // right: 14px;
+  }
+  .close{
+    position: relative;
+  //  left: 124px;
+   .pointer-close{
+    position: relative;
+
+    color: red;
+    cursor: pointer;
+    padding-left: 10px !important;
+    top: -1px !important;
+   }
+  }
+}
+

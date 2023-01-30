@@ -72,14 +72,13 @@
                Education:
             </div>
             <div class="job_options">
-               <div class="genText" *ngFor="let content of jobDetails.education;let i=index; let isLast=last">
-                  <div class="spacing">{{content}}<span class="misc_col" *ngIf="!isLast && i < jobDetails.education.length">&nbsp;</span> </div>
-               </div>
+               <div class="genText" *ngFor="let content of jobDetails.education;let i=index; let isLast=last; let first = first">
+                  <div class="spacing"><ng-container *ngIf="!first">, </ng-container>{{content.trim()}}</div></div>
             </div>
          </div>
          <div class="listspace">
             <div class="desTitle">
-               Specialization
+               Specialization:
             </div>
             <div class="job_options">
                <div class="genText" *ngFor="let content of jobDetails.specialization">
@@ -88,19 +87,26 @@
             </div>
          </div>
          <div class="listspace">
+          <div class="desTitle">
+            CTC:
+          </div>
+          <div class="genText">
+             {{jobDetails.ctc}}
+          </div>
+       </div>
+         <div class="listspace">
             <div class="desTitle">
                Year of Passing:
             </div>
-            <div class="genText">
-               {{jobDetails.yearofPassout}}
-            </div>
+            <span class="genTextpassout" *ngFor="let content of jobDetails.yearofPassout ; let first = first">
+              <ng-container *ngIf="!first">, </ng-container>{{content.trim()}}</span>
          </div>
          <div class="listspace">
             <div class="desTitle">
                Industries:
             </div>
             <div class="genText">
-               {{jobDetails.division}}
+               {{jobDetails.jobFamily}}
             </div>
          </div>
 
@@ -152,6 +158,6 @@
       <div class="closer"><mat-icon mat-dialog-close>close</mat-icon></div>
       <div><img width="100px" class="ticsize" src="/assets/images/check.png"></div>
       <div class="message">Thank you for applying for the Job</div>
-      <div class="msgsub">You will be soon contacted by the recruiter</div>
+      <div class="msgsub" style="margin-top:10px">You will be soon contacted by the recruiter</div>
    </div>
 </ng-template>

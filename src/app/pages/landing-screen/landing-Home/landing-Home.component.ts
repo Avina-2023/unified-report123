@@ -1,7 +1,8 @@
-import { Component, ElementRef, OnInit } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit } from '@angular/core';
 import { APP_CONSTANTS } from 'src/app/utils/app-constants.service';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { ApiService } from 'src/app/services/api.service';
+import { SentDataToOtherComp } from 'src/app/services/sendDataToOtherComp.service';
 
 
 @Component({
@@ -15,10 +16,30 @@ export class LandingHomeComponent implements OnInit {
   endPoints = APP_CONSTANTS.ENDPOINTS;
   HiringPartners: any;
   InstitutionalPartners: any;
-  constructor(public elementRef: ElementRef,private ApiService: ApiService) {
+  lastScrollPosition: number;
+
+  @HostListener('window:scroll', ['$event'])
+  onWindowScroll(event) {
+    console.log(event)
+    const currentScrollPosition = window.pageYOffset;
+
+
+    if (currentScrollPosition > this.lastScrollPosition) {
+      this.msgData.sendMessage('hide',true)
+    } else {
+      this.msgData.sendMessage('hide',false)
+
+      // this.renderer.removeClass(this.navbar, 'hide');
+    }
+
+    this.lastScrollPosition = currentScrollPosition;
+  }
+
+  constructor(public elementRef: ElementRef,private ApiService: ApiService, private msgData:SentDataToOtherComp) {
     // this.sliderLoad()
     this.getFooterLogo();
   }
+
 
   ngOnInit() {
 
