@@ -117,7 +117,7 @@
       </div>
       <div class="headCenter">
         <div class="application">
-          <div class="text">Application closes on:  </div><div class="date">{{ one.lastDatetoApply | date: 'MMM d, y, h:mm a' }}</div>
+          <div class="text">Application closes on:  </div><div class="date">{{ one.lastDatetoApply | date: 'MMM d, y h:mm a' }}</div>
         </div>
       </div>
       <hr class="line">
@@ -143,7 +143,7 @@
             <!-- <mat-icon class="drotation"> 3d_rotation </mat-icon> -->
             <span class="icon-recognization icon-size"></span>
             <span class="passedout" *ngFor="let item of one.yearofPassout; let isLast=last">
-              {{item}}{{isLast ? '' : ', '}}</span>
+              {{item}}{{isLast ? '' : ', '}} Passed Out</span>
           </div>
           <div class="packAge">
             <!-- <mat-icon class="accountbalance">account_balance</mat-icon> -->
@@ -208,7 +208,7 @@
               <p>Application closes on:</p>
             </span>
             <div>
-              <p class="date">{{one.lastDatetoApply | date: 'MMM d, y, h:mm a' }}</p>
+              <p class="date">{{one.lastDatetoApply | date: 'MMM d, y h:mm a' }}</p>
             </div>
           </div>
 
@@ -244,7 +244,7 @@
             <!-- <mat-icon class="drotation"> 3d_rotation </mat-icon> -->
             <span class="icon-recognization icon-size"></span>
             <span class="passedout" *ngFor="let item of one.yearofPassout; let isLast=last">
-              {{item}}{{isLast ? '' : ', '}}</span>
+              {{item}}{{isLast ? '' : ', '}} Passed Out</span>
           </div>
           <div class="packAge">
             <!-- <mat-icon class="accountbalance">account_balance</mat-icon> -->
