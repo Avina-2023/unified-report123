@@ -571,8 +571,8 @@ fetchData(){
         var Timeoffset = (new Date()).getTimezoneOffset() * 60000;
       response.data.forEach(element => {
         // element.lastDatetoApply = new Date(element.lastDatetoApply).toLocaleString();
-        element.lastDatetoApply = (new Date(new Date(new Date(element.lastDatetoApply)).getTime() - Timeoffset).toISOString().slice(0, -1));    
-        // console.log( element.lastDatetoApply,'kkk');
+        // element.lastDatetoApply = (new Date(new Date(element.lastDatetoApply).getTime() - Timeoffset).toISOString().slice(0, -1));    
+        console.log( element.lastDatetoApply,'kkk');
 
       });
       this.jobReqData = response.data;
