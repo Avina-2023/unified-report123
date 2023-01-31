@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { AppConfigService } from 'src/app/utils/app-config.service';
 import { APP_CONSTANTS } from '../../../utils/app-constants.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-add-partner',
@@ -23,6 +24,8 @@ export class AddPartnerComponent implements OnInit {
   errorMsgforLogo = '';
   errorMsgforeoi = '';
   existsEmail ="";
+  productionUrl = environment.SKILL_EDGE_URL == "https://skilledge.lntedutech.com"?true:false;
+
   constructor(public fb: FormBuilder, private appconfig: AppConfigService, private route: ActivatedRoute, private ApiService: ApiService, private toastr: ToastrService) { }
   industryTypeArray: any = []
   ngOnInit(): void {
@@ -65,7 +68,11 @@ export class AddPartnerComponent implements OnInit {
             this.existsEmail = details?.email;
             this.registerForm.controls['email'].disable();
             this.employerLogoFileName = details?.companyImgURL ? "profile Image" : "";
-            this.employerLogoUrl = details?.companyImgURL;
+            if (details?.companyImgURL && this.productionUrl == true) {
+              this.employerLogoUrl = details?.companyImgURL + environment.blobToken
+            } else if (details?.companyImgURL && this.productionUrl == false) {
+              this.employerLogoUrl = details?.companyImgURL
+            }
             this.eoiFormUrl = details?.eoiFormUrl;
             this.eoiFileName = "EOIForm";
           }
@@ -114,7 +121,12 @@ export class AddPartnerComponent implements OnInit {
         this.toastr.warning(imageData.message);
       } else {
         this.employerLogoFileName = event.target.files[0].name;
-        this.employerLogoUrl = imageData.data
+        // if (imageData.data && this.productionUrl == true) {
+        //   this.employerLogoUrl = imageData.data + environment.blobToken
+        // } else if (imageData.data && this.productionUrl == false) {
+        //   this.employerLogoUrl = imageData.data
+        // }
+        this.employerLogoUrl = imageData.data;
       }
     }, (err) => {
       this.toastr.warning('Connection failed, Please try again.');
