@@ -24,6 +24,7 @@ export class AddPartnerComponent implements OnInit {
   errorMsgforLogo = '';
   errorMsgforeoi = '';
   existsEmail ="";
+  displayImageUrl = "";
   productionUrl = environment.SKILL_EDGE_URL == "https://skilledge.lntedutech.com"?true:false;
 
   constructor(public fb: FormBuilder, private appconfig: AppConfigService, private route: ActivatedRoute, private ApiService: ApiService, private toastr: ToastrService) { }
@@ -69,10 +70,11 @@ export class AddPartnerComponent implements OnInit {
             this.registerForm.controls['email'].disable();
             this.employerLogoFileName = details?.companyImgURL ? "profile Image" : "";
             if (details?.companyImgURL && this.productionUrl == true) {
-              this.employerLogoUrl = details?.companyImgURL + environment.blobToken
+              this.displayImageUrl = details?.companyImgURL + environment.blobToken
             } else if (details?.companyImgURL && this.productionUrl == false) {
-              this.employerLogoUrl = details?.companyImgURL
+              this.displayImageUrl = details?.companyImgURL
             }
+            this.employerLogoUrl = details?.companyImgURL;
             this.eoiFormUrl = details?.eoiFormUrl;
             this.eoiFileName = "EOIForm";
           }
@@ -122,11 +124,11 @@ export class AddPartnerComponent implements OnInit {
       } else {
         this.employerLogoFileName = event.target.files[0].name;
         if (imageData.data && this.productionUrl == true) {
-          this.employerLogoUrl = imageData.data + environment.blobToken
+          this.displayImageUrl = imageData.data + environment.blobToken
         } else if (imageData.data && this.productionUrl == false) {
-          this.employerLogoUrl = imageData.data
+          this.displayImageUrl = imageData.data
         }
-        // this.employerLogoUrl = imageData.data;
+        this.employerLogoUrl = imageData.data;
       }
     }, (err) => {
       this.toastr.warning('Connection failed, Please try again.');
