@@ -121,11 +121,12 @@ export class AddPartnerComponent implements OnInit {
         this.toastr.warning(imageData.message);
       } else {
         this.employerLogoFileName = event.target.files[0].name;
-        if (imageData.data && this.productionUrl == true) {
-          this.employerLogoUrl = imageData.data + environment.blobToken
-        } else if (imageData.data && this.productionUrl == false) {
-          this.employerLogoUrl = imageData.data
-        }
+        // if (imageData.data && this.productionUrl == true) {
+        //   this.employerLogoUrl = imageData.data + environment.blobToken
+        // } else if (imageData.data && this.productionUrl == false) {
+        //   this.employerLogoUrl = imageData.data
+        // }
+        this.employerLogoUrl = imageData.data;
       }
     }, (err) => {
       this.toastr.warning('Connection failed, Please try again.');
