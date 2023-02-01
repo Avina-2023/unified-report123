@@ -34,7 +34,7 @@
             <div class="job_card">
               <div class="inner_card">
                 <div class="comp-image">
-                  <img [src]="item.companyLogo" class="comp_logo" alt="logo">
+                  <img [src]="productionUrl?item.companyLogo+blobToken:item.companyLogo" class="comp_logo" alt="logo">
                 </div>
 
               </div>

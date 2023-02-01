@@ -2,6 +2,8 @@ import { Component, Input, OnInit, AfterViewInit } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
+
 @Component({
   selector: 'app-job-list-item',
   templateUrl: './job-list-item.component.html',
@@ -14,6 +16,9 @@ export class JobListItemComponent implements OnInit ,AfterViewInit {
   @Input() data: any;
   @Input() savedButton = false;
   @Input() showApplied = false;
+  blobToken = environment.blobToken
+	productionUrl = environment.SKILL_EDGE_URL == "https://skilledge.lntedutech.com"?true:false;
+ 
   constructor(
     private apiService: ApiService,
     private toastr: ToastrService,

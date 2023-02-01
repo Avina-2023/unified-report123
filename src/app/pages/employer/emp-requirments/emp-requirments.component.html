@@ -96,7 +96,7 @@
       <div class="main-wrapper">
         <div class="logoHeadleft">
           <div class="companylogo">
-            <img class="avatar" [src]="one.companyLogo" />
+            <img class="avatar" [src]="productionUrl?one.companyLogo+blobToken:one.companyLogo" />
           </div>
           <div class="designation">
             <div>{{ one.jobRole}}</div>
@@ -192,7 +192,7 @@
       <div class="main-wrapper">
         <div class="logoHeadleft">
           <div class="companylogo">
-            <img class="avatar" [src]="one.companyLogo" />
+            <img class="avatar" [src]="productionUrl?one.companyLogo+blobToken:one.companyLogo" />
           </div>
           <div class="designation">
             <div>{{ one.jobRole}}</div>
