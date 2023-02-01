@@ -1,4 +1,4 @@
-<div #headwrap class="navwrap">
+<div #headwrap [ngClass]="[scrollCheck == true ? 'hide' : '' ]">
   <app-landing-header></app-landing-header>
 </div>
 

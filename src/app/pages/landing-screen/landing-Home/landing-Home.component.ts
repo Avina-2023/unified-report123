@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostListener, OnInit } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { APP_CONSTANTS } from 'src/app/utils/app-constants.service';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { ApiService } from 'src/app/services/api.service';
@@ -11,6 +11,8 @@ import { SentDataToOtherComp } from 'src/app/services/sendDataToOtherComp.servic
   styleUrls: ['./landing-Home.component.scss'],
 })
 export class LandingHomeComponent implements OnInit {
+  @ViewChild('trackScroll', { static: false }) divScroll: ElementRef;
+
   sliderhtml1: any;
   sliderhtml2: any;
   endPoints = APP_CONSTANTS.ENDPOINTS;
@@ -18,33 +20,38 @@ export class LandingHomeComponent implements OnInit {
   InstitutionalPartners: any;
   lastScrollPosition: number;
 
-  @HostListener('window:scroll', ['$event'])
-  onWindowScroll(event) {
-    console.log(event)
-    const currentScrollPosition = window.pageYOffset;
+  percent: number = 0;
 
 
-    if (currentScrollPosition > this.lastScrollPosition) {
-      this.msgData.sendMessage('hide',true)
-    } else {
-      this.msgData.sendMessage('hide',false)
-
-      // this.renderer.removeClass(this.navbar, 'hide');
-    }
-
-    this.lastScrollPosition = currentScrollPosition;
-  }
 
   constructor(public elementRef: ElementRef,private ApiService: ApiService, private msgData:SentDataToOtherComp) {
     // this.sliderLoad()
     this.getFooterLogo();
   }
+  @HostListener('window:scroll', ['$event']) onScrollEvent($event) {
+    console.log(window.pageYOffset,'px')
+    console.log($event,'px')
 
+    const currentScrollPosition = this.divScroll.nativeElement.scrollTop
+    console.log(currentScrollPosition,'scroll');
+    if (this.lastScrollPosition < currentScrollPosition ) {
+      this.msgData.sendMessage('hide',true)
+    } else {
+      this.msgData.sendMessage('hide',false)
+    }
+    this.lastScrollPosition = currentScrollPosition;
+  }
 
   ngOnInit() {
 
   }
 
+
+  track(value: number): void {
+    this.percent = value;
+    console.log(value,'ddd');
+
+}
   slidehover(slideElem: HTMLElement, e) {
     let x = (e.pageX*-1/50);
     let y = (e.pageY*-1/50);

@@ -1,4 +1,4 @@
-<header class="header sticky">
+<header #headwrap class="header sticky" >
   <div class="header__container container">
     <div class="header__top">
       <a class="header__brand" [routerLink]="routerData.LANDINGPAGE.HOME">
@@ -161,7 +161,7 @@
                 <button mat-menu-item [routerLink]="endPoints.LOGIN" [queryParams]="{from:'freshGrad'}">Fresh Graduates</button>
                 <button mat-menu-item [routerLink]="endPoints.LOGIN" [queryParams]="{from:'employer'}">Employers</button>
               </mat-menu>
-              
+
             </li>
 
           </ul>
