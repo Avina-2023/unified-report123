@@ -5,7 +5,7 @@
                [src]="jobDescription?.bannerImage?jobDescription.bannerImage:'/assets/images/job_description_background.png'" />
          </div>
          <div class='companyLogo'><img class="comp_logo" (error)="'/assets/images/compPlaceholder.png'"
-               [src]="jobDetails.companyLogo" /></div>
+            [src]="productionUrl?jobDetails.companyLogo+blobToken:jobDetails.companyLogo" /></div>
       </div>
       <div class="jobtopcontainer">
          <div class="JT-left">
