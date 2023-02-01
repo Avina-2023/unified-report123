@@ -6,6 +6,8 @@ import { map, retry, startWith } from 'rxjs/operators';
 import { ApiService } from 'src/app/services/api.service';
 import { ToastrService } from 'ngx-toastr';
 import { GlobalValidatorService } from 'src/app/globalvalidators/global-validator.service';
+import { environment } from 'src/environments/environment';
+
 @Component({
   selector: 'app-emp-profile',
   templateUrl: './emp-profile.component.html',
@@ -19,6 +21,8 @@ export class EmpProfileComponent implements OnInit {
   empProfile: any;
   empProfile1: any;
   editCompany: any;
+  productionUrl = environment.SKILL_EDGE_URL == "https://skilledge.lntedutech.com"?true:false;
+
   //-----------------------phone number validation messages----------------------//
   InvalidNumber = 'Mobile Number is Invalid'
   NumberRequired = 'Mobile Number is Required'
@@ -246,9 +250,14 @@ export class EmpProfileComponent implements OnInit {
     this.apiService.empProfileDetails(apiData).subscribe((result: any) => {
       if (result.success) {
         this.empProfile = result.data[0]
+        if (this.empProfile?.companyImgURL && this.productionUrl == true) {
+          this.empProfile.companyImgURL = this.empProfile?.companyImgURL + environment.blobToken
+        } else if (this.empProfile?.companyImgURL && this.productionUrl == false) {
+          this.empProfile.companyImgURL = this.empProfile?.companyImgURL
+        }
         if (this.empProfile.detailedInformation) {
           var obj = { value: this.empProfile.detailedInformation.state }
-          this.selectState(obj)
+          this.selectState(obj) 
           this.profileForm.patchValue({
             empSize: this.empProfile.detailedInformation.empSize,
             websiteAddress: this.empProfile.detailedInformation.websiteAddress,

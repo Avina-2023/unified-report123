@@ -29,7 +29,9 @@ export class JobDescriptionComponent implements OnInit {
   dialogData: any;
   descriptionData: any;
   jobDetails:any;
-item: any;
+  item: any;
+  blobToken = environment.blobToken
+	productionUrl = environment.SKILL_EDGE_URL == "https://skilledge.lntedutech.com"?true:false;
 
   constructor(
     private skillexService:ApiService,

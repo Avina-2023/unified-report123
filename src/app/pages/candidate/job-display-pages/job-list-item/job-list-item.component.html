@@ -4,7 +4,7 @@
       <mat-card-header>
         <div class="card_header">
           <div class="comp-image">
-          <img class="img" src="{{item.companyLogo}}">
+          <img class="img" [src]="productionUrl?item.companyLogo+blobToken:item.companyLogo">
         </div>
           <div class="cardgrid">
             <div class="title">{{item.jobRole}}</div>
