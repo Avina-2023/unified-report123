@@ -5,6 +5,7 @@ import { I } from '@angular/cdk/keycodes';
 import { AppConfigService } from 'src/app/utils/app-config.service';
 import { APP_CONSTANTS } from 'src/app/utils/app-constants.service';
 import { NavigationExtras, Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Component({
 	selector: 'app-job-listing',
@@ -34,7 +35,8 @@ export class JobListingComponent implements OnInit {
 	filterObj = {};
 	sortData = 'relevance';
 	jobId: any = '';
-
+	blobToken = environment.blobToken
+	productionUrl = environment.SKILL_EDGE_URL == "https://skilledge.lntedutech.com"?true:false;
 
 	constructor(public dialog: MatDialog, private apiservice: ApiService, private appconfig: AppConfigService, public router:Router) { }
 
