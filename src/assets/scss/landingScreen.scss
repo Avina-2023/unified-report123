@@ -82,7 +82,7 @@ body {
   }
   @media (min-width: 768px) {
     .container {
-      max-width: 720px;
+      //max-width: 720px;
       padding-left: 0;
       padding-right: 0;
     }
@@ -558,6 +558,7 @@ body {
     justify-content: space-between;
     align-items: center;
     padding-top: 13px;
+    margin: 0px 10px 0px 10px;
     padding-bottom: 11px;
     border-bottom: 1px solid #d1d1d1;
   }
@@ -763,7 +764,7 @@ body {
   }
 
   .navbar {
-    background-color: #e5e5e5;
+    //background-color: #e5e5e5;
     padding-top: 0;
     padding-bottom: 0;
     z-index: 2;
@@ -813,7 +814,7 @@ body {
   .navbar-toggler[aria-expanded=false] .navbar-toggler-icon {
     background-image: url(https://assets.lntedutech.com/Skillexchange/menu-open.svg);
   }
-  @media (min-width: 1366px) {
+  @media (min-width: 930px) {
     .navbar-toggler {
       display: none;
     }
@@ -828,7 +829,7 @@ body {
     position: relative;
     transition: all 200ms ease-in-out;
   }
-  @media (max-width: 1366px) {
+  @media (max-width: 930px) {
     .navbar-collapse {
       display: flex;
       flex-direction: column;
@@ -874,7 +875,7 @@ body {
       display:block;
   }
 
-  @media (max-width: 992px) {
+  @media (max-width: 929px) {
     .navbar .navbar-nav {
       padding-top: 50;
     }
@@ -883,7 +884,7 @@ body {
     padding-left: 0;
     margin-bottom: 0;
   }
-  @media (max-width: 1366px) {
+  @media (max-width: 930px) {
     .navbar .navbar-nav .nav-item:not(:last-child) {
       margin-bottom: 0px;
     }
@@ -897,7 +898,7 @@ body {
     padding: 0;
     white-space: nowrap;
   }
-  @media (min-width: 1366px) {
+  @media (min-width: 930px) {
     .navbar .navbar-nav .nav-link {
       font-size: 18px;
       line-height: 24px;
@@ -906,7 +907,7 @@ body {
       margin-right: 30px;
     }
   }
-  @media (min-width: 992px) {
+  @media (min-width: 929px) {
     .navbar .navbar-nav .nav-link {
       font-size: 16px;
       line-height: 24px;
@@ -938,7 +939,7 @@ body {
       display: block;
     }
   }
-  @media (min-width: 992px) {
+  @media (min-width: 929px) {
     .sidebar {
       padding-top: 100px;
       width: 305px;
