@@ -2,6 +2,34 @@
 @import "../../../../assets/scss/landingScreen.scss";
 @import "../../../../assets/scss/swiper-bundle.min.scss";
 
+
+.section-image-numbers__title{
+  font-size: 42px !important;
+  line-height: 46px !important;
+  font-weight: bold!important;
+}
+
+.section-begin__text{
+  font-size: 18px;
+  line-height: 24px;
+}
+.section-icon-cards__item-text{
+  font-size: 18px;
+  line-height: 24px;
+}
+
+.section-icon-cards__item-title {
+  font-size: 24px!important;
+  line-height: 32px!important;
+  margin-bottom: 16px!important;
+  font-weight: bold!important;
+}
+
+.link-demo{
+  font-size: 20px!important;
+  color: #6040e2 !important;
+}
+
 .main{
     height: 100% !important;
     overflow: auto;

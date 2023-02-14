@@ -43,3 +43,44 @@ h3, .h3 {
 .section-team{
   margin-bottom: 0px !important;
 }
+
+.section-roadmap__text {
+  font-size: 18px;
+  line-height: 24px;
+
+}
+.section-icon-list__item-title{
+  font-size: 18px !important;
+    line-height: 24px !important;
+    margin-bottom: 16px !important;
+    font-weight: 700 !important;
+}
+.section-testimonials__title{
+  margin-bottom: 50px !important;
+}
+.section-cards__title{
+  // font-weight: 500 !important;
+  font-size: 23px !important;
+  line-height: 28px !important;
+}
+.status_list{
+  font-size: 18px!important;
+  line-height: 24px;
+}
+.section-team__title{
+  margin-bottom: 40px !important;
+  text-align: center !important;
+}
+.section-roadmap__title{
+  animation: 2s slide-right;
+}
+@keyframes slide-right {
+  0% {
+    transform: translate3d(-100%, 0,0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+
