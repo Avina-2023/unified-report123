@@ -7,9 +7,9 @@
     overflow: auto;
 }
 .section-image-numbers__title{
-  animation: fadeIn 2s ease-in both;
+  animation: fadeInDown 1s ease-in both;
 
-  @keyframes fadeIn {
+  @keyframes fadeInDown{
     from {
       opacity: 0;
       transform: translate3d(0, -20%, 0);
@@ -18,5 +18,16 @@
       opacity: 1;
       transform: translate3d(0, 0, 0);
     }
+  }
+}
+.section-banner{
+  animation: 3s bounceIn;
+}
+@keyframes bounceIn {
+  0% {
+    transform: translate3d(-100%, 0,0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
   }
 }

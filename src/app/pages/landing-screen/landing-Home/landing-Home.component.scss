@@ -589,10 +589,24 @@ animation: 2s slideIn;
     // transform: translate3d(0, 0, 0);
   }
 }
+
+
 .section-roadmap__text{
   font-size: 18px;
     line-height: 24px;
 }
+.section-roadmap__text{
+  animation: 3s fadeIn;
+}
+@keyframes fadeIn {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
 .section-blocks__item-text{
   font-size: 18px;
   line-height: 24px;

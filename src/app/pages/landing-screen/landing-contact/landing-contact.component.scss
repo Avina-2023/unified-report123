@@ -101,12 +101,12 @@ h3,
   }
 }
 .section-roadmap__title{
-  animation: fadeIn 3s ease-in both;
+  animation: fadeInDown 1s ;
 
-  @keyframes fadeIn {
+  @keyframes fadeInDown {
     from {
       opacity: 0;
-      transform: translate3d(0, -20%, 0);
+      transform: translate3d(0, 0, 0);
     }
     to {
       opacity: 1;
