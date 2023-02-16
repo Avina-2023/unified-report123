@@ -39,7 +39,7 @@ export class EmpRequirmentsComponent implements OnInit {
   public totallength:any
   range :FormGroup;
   routerlink=APP_CONSTANTS.ENDPOINTS
-  //dateVal  = lastDatetoApply();
+  // dateVal  = lastDatetoApply();
   searchData: string = '';
   close: string = '';
   getViewlist : any;
@@ -101,7 +101,7 @@ export class EmpRequirmentsComponent implements OnInit {
     'Expired',
   ];
   sortByStatus = [];
-  ngOnInit() { 
+  ngOnInit() {
   this.fetchData();
   }
 
@@ -126,6 +126,11 @@ some(pages){
   // let {pageindex,length} = pages
   // this.pageNumber=pages.value;
   this.getReqData()
+}
+
+getDate(date: string) {
+  //date = '2018-01-30T00:02:14.637Z';
+  return new Date(date);
 }
   getReqData() {
       this.http.viewjobRequirments(this.filterModel).subscribe((response:any)=> {

@@ -17,7 +17,7 @@ export class LandingHiringPartnerComponent implements OnInit {
 
   ngOnInit() {
   }
- 
+
   getFooterLogo(){
     this.ApiService.partnerfooterlist({"type" : "HiringPartners"}).subscribe((response: any) => {
         if(response.success){
