@@ -1,4 +1,4 @@
-<main #trackScroll  class="main main--top" (scroll)="onScrollEvent($event);"  >
+<main #trackScroll class="main main--top"(scroll)="onScrollEvent($event);">
   <owl-carousel-o [options]="bannerOptions" >
     <ng-container *ngFor="let banner of bannerslider;let i=index" >
       <ng-template carouselSlide >

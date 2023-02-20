@@ -1,5 +1,23 @@
 
+// @import url('https://fonts.cdnfonts.com/css/pt-sans-2');
+
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans&display=swap');
+
+//  @font-face {
+  // font-family: 'PT Sans', sans-serif;
+//   font-family: '"PT Sans", sans-serif';
+//     src: url("src/assets/fonts/ptsans/PTSans-Regular.ttf") format("truetype");
+//     font-weight:300;
+//   }
+
 body {
+  // @font-face {
+  //    font-family: '"PT Sans", sans-serif';
+  //      src: url("src/assets/fonts/ptsans/PTSans-Regular.ttf") format("truetype");
+  //      font-weight:300;
+  //    }
+
+
     margin: 0;
     padding: 0;
     min-height: 100vh;
@@ -130,8 +148,10 @@ body {
   }
 
   a {
-    color: #221857;
+    color: #111111;
     text-decoration: none;
+    font-family: "PT Sans", sans-serif;
+    font-size: 18px;
   }
   a:hover, a:focus {
     text-decoration: underline;
@@ -658,6 +678,7 @@ body {
     }
     .header__button1 {
       font-size: 14px;
+      font-family: '"PT Sans", sans-serif';
       line-height: 17px;
       width: auto;
       min-height: 35px;
@@ -679,6 +700,7 @@ body {
     }
     .header__button1 {
       font-size: 14px;
+      font-family: '"PT Sans", sans-serif';
       line-height: 17px;
       width: auto;
       min-height: 35px;
@@ -699,6 +721,7 @@ body {
   @media (min-width: 576px) {
     .footer {
       padding-top: 22px;
+      padding-left: 10px;
       padding-bottom: 30px;
     }
     .section-hero__image1 {
@@ -718,7 +741,18 @@ body {
       justify-content: space-between;
       padding-bottom: 22px;
     }
+}
+
+@media (min-width: 768px) {
+  .footer__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 22px;
+    margin: 0px 5px 0px -10px;
   }
+}
+
   .footer__bottom {
     padding-top: 35px;
   }
@@ -740,13 +774,49 @@ body {
     }
   }
   .footer__menu {
-    margin-bottom: 0;
+    margin:30px 0px 0px 0px;
   }
   @media (min-width: 576px) {
     .footer__menu {
       display: flex;
+      margin: 17px 10px 0px 0px;
+
     }
   }
+
+    @media only screen and (max-width: 768px) {
+      .footer__menu {
+        display: flex;
+        flex-direction: row;
+        margin: 30px 30px 0px 10px;
+        // background-color: red;
+      }
+    }
+
+    @media only screen and (max-width: 320px) {
+      .footer__menu {
+display: flex;
+flex-direction: column;
+flex-wrap: wrap;
+      }
+    }
+
+    @media only screen and (max-width: 375px) {
+      .footer__menu {
+display: flex;
+flex-direction: column;
+flex-wrap: wrap;
+      }
+    }
+
+    @media only screen and (max-width: 430px) {
+      .footer__menu {
+display: flex;
+flex-direction: column !important;
+      }
+    }
+
+
   .footer__menu-item:not(:last-child) {
     margin-bottom: 25px;
   }
@@ -758,6 +828,9 @@ body {
   }
   .footer__menu-link {
     color: #111111;
+    font-family: "PT Sans", sans-serif;
+    font-size: 18px;
+
   }
   .footer__menu-link:hover, .footer__menu-link:focus {
     text-decoration: none;
@@ -2182,6 +2255,7 @@ body {
     color: #fcfcfc;
     margin-bottom: 35px;
     font-size: 18px;
+    font-family: "PT Sans", sans-serif;
     line-height: 24px;
   }
   .section-hero__back {
@@ -2372,12 +2446,14 @@ body {
   }
   .section-team__item-name {
     font-size: 14px;
-    line-height: 18px;
+    font-family: "PT Sans", sans-serif;
+        line-height: 18px;
     text-align: center;
     margin-bottom: 3px;
   }
   .section-team__item-position {
     font-size: 14px;
+    font-family: "PT Sans", sans-serif;
     line-height: 18px;
     text-align: center;
     color: #7d8782;
@@ -2426,11 +2502,13 @@ body {
     .section-banner__title {
       text-align: left;
       font-size: 41px!important;
+      font-family: "PT Sans", sans-serif!important;
       line-height: 45px!important;
     }
   }
   .section-banner__text {
     font-size: 24px;
+    font-family: "PT Sans", sans-serif;
     line-height: 32px;
     font-size: 17px;
     line-height: 23px;
@@ -2440,6 +2518,7 @@ body {
   @media (min-width: 768px) {
     .section-banner__text {
       font-size: 24px;
+      font-family: "PT Sans", sans-serif;
       line-height: 32px;
       text-align: left;
     }
@@ -2615,12 +2694,14 @@ body {
   }
   .section-image-numbers__title {
     font-size: 42px!important;
+    font-family: "PT Sans", sans-serif!important;
     line-height: 46px !important;
     margin-bottom: 25px;
   }
   @media (min-width: 768px) {
     .section-image-numbers__title {
       font-size: 42px!important;
+      font-family: "PT Sans", sans-serif!important;
       line-height: 46px !important;
       margin-bottom: 50px;
     }

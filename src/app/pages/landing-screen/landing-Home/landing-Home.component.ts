@@ -28,22 +28,42 @@ export class LandingHomeComponent implements OnInit {
     // this.sliderLoad()
     this.getFooterLogo();
   }
+
+
+
   @HostListener('window:scroll', ['$event']) onScrollEvent($event) {
     console.log(window.pageYOffset,'px')
     console.log($event,'px')
 
     const currentScrollPosition = this.divScroll.nativeElement.scrollTop
+    if (currentScrollPosition > '0'){
+      let myElement = document.querySelector('.header') as HTMLDivElement;
+      myElement.style.background = 'white';
+      //alert('test');
+    }
+    if (currentScrollPosition == '0'){
+      let myElement = document.querySelector('.header') as HTMLDivElement;
+      myElement.style.background = 'transparent';
+      //alert('test');
+    }
     console.log(currentScrollPosition,'scroll');
     if (this.lastScrollPosition < currentScrollPosition ) {
       this.msgData.sendMessage('hide',true)
-    } else {
+    }
+
+    else {
       this.msgData.sendMessage('hide',false)
     }
     this.lastScrollPosition = currentScrollPosition;
+
   }
 
   ngOnInit() {
-
+    {
+      let myElement = document.querySelector('.header') as HTMLDivElement;
+      myElement.style.background = 'transparent';
+      //alert('test');
+    }
   }
 
 
