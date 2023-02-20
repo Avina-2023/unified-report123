@@ -1,6 +1,9 @@
 @import "../../../../assets/scss/landingAnimation.scss";
 @import "../../../../assets/scss/landingScreen.scss";
 @import "../../../../assets/scss/swiper-bundle.min.scss";
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans&display=swap');
+
+
 
 .main{
     height: 100% !important;
@@ -9,6 +12,7 @@
 @media (min-width: 992px){
 h2, .h2 {
     font-size: 40px !important;
+    font-family: "PT Sans", sans-serif!important;
     line-height: 46px !important;
     margin-bottom: 25px !important;
 }
@@ -16,6 +20,7 @@ h2, .h2 {
 @media (min-width: 992px){
 h3, .h3 {
     font-size: 19px !important;
+    font-family: "PT Sans", sans-serif!important;
     line-height: 32px !important;
     margin-bottom: 16px !important;
     font-weight: 700 !important;
@@ -62,6 +67,7 @@ h3, .h3 {
 }
 .section-perks__text{
    font-size: large;
+   font-family: "PT Sans", sans-serif;
    line-height: 25px;
 }
 .section-testimonials__title{
@@ -74,6 +80,7 @@ h3, .h3 {
 }
 .section-perks__item-title{
   font-size: 24px !important;
+  font-family: "PT Sans", sans-serif!important;
   line-height: 32px !important;
   //  margin-bottom: 16px !important;
   font-weight: 700 !important;
@@ -81,6 +88,7 @@ h3, .h3 {
 .section-cards__title{
   color: #fff;
     font-size: 23px !important;
+    font-family: "PT Sans", sans-serif!important;
     line-height: 28px !important;
 }
 .section-banner{

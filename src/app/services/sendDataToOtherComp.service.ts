@@ -20,7 +20,7 @@ export class SentDataToOtherComp {
       this.subject.next();
   }
 
-  getMessage(): Observable<any> {
+  getMessage (): Observable<any> {
       return this.subject.asObservable();
   }
 }

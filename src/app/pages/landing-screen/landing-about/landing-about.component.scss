@@ -1,10 +1,13 @@
 @import "../../../../assets/scss/landingAnimation.scss";
 @import "../../../../assets/scss/landingScreen.scss";
 @import "../../../../assets/scss/swiper-bundle.min.scss";
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans&display=swap');
+
 
 
 .section-image-numbers__title{
   font-size: 42px !important;
+  font-family: "PT Sans", sans-serif !important;
   line-height: 46px !important;
   font-weight: bold!important;
 
@@ -15,7 +18,7 @@
 }
 @keyframes fadeInDown{
   0% {
-    transform: translate3d(-100%, 0,0);
+    transform: translate3d(0, 0,0);
   }
   100% {
     transform: translate3d(0, 0, 0);
@@ -24,15 +27,18 @@
 
 .section-begin__text{
   font-size: 18px;
+  font-family: "PT Sans", sans-serif;
   line-height: 24px;
 }
 .section-icon-cards__item-text{
   font-size: 18px;
+  font-family: "PT Sans", sans-serif;
   line-height: 24px;
 }
 
 .section-icon-cards__item-title {
   font-size: 24px!important;
+  font-family: "PT Sans", sans-serif !important;
   line-height: 32px!important;
   margin-bottom: 16px!important;
   font-weight: bold!important;
@@ -40,6 +46,7 @@
 
 .link-demo{
   font-size: 20px!important;
+  font-family: "PT Sans", sans-serif !important;
   color: #6040e2 !important;
 }
 

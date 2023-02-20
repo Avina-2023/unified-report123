@@ -8,14 +8,16 @@ import { APP_CONSTANTS } from 'src/app/utils/app-constants.service';
   styleUrls: ['./landing-header.component.scss']
 })
 export class LandingHeaderComponent implements OnInit {
-
+  myNav:any
   routerData = APP_CONSTANTS.ROUTES;
   endPoints = APP_CONSTANTS.ENDPOINTS;
   visible:boolean = false
   constructor(public router:Router) { }
 
 
+
   ngOnInit() {
+
   }
   footerTrigger(){
     this.visible = !this.visible
