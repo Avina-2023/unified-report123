@@ -13,7 +13,9 @@ import { LandingFooterComponent } from './commons/landing-footer/landing-footer.
 import { LandingHomeComponent } from './landing-Home/landing-Home.component';
 import {CarouselModule} from 'ngx-owl-carousel-o';
 import { MaterialModule } from 'src/app/material/material.module';
-import {AnimateOnScrollModule} from 'ng2-animate-on-scroll'
+import {AnimateOnScrollModule} from 'ng2-animate-on-scroll';
+import { ScrollTrackDirective } from 'src/app/directives/scroll-track.directive';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -32,7 +34,8 @@ import {AnimateOnScrollModule} from 'ng2-animate-on-scroll'
      LandingContactComponent,
      LandingScreenComponent,
      LandingHeaderComponent,
-     LandingFooterComponent
+     LandingFooterComponent,
+     ScrollTrackDirective,
 
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]

@@ -1,6 +1,9 @@
 @import "../../../../assets/scss/landingAnimation.scss";
 @import "../../../../assets/scss/landingScreen.scss";
 @import "../../../../assets/scss/swiper-bundle.min.scss";
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans&display=swap');
+
+
 
 .main{
     height: 100% !important;
@@ -8,7 +11,8 @@
 }
 @media (min-width: 992px){
 h2, .h2 {
-    font-size: 42px !important;
+    font-size: 40px !important;
+    font-family: "PT Sans", sans-serif!important;
     line-height: 46px !important;
     margin-bottom: 25px !important;
 }
@@ -16,6 +20,7 @@ h2, .h2 {
 @media (min-width: 992px){
 h3, .h3 {
     font-size: 19px !important;
+    font-family: "PT Sans", sans-serif!important;
     line-height: 32px !important;
     margin-bottom: 16px !important;
     font-weight: 700 !important;
@@ -57,6 +62,43 @@ h3, .h3 {
   }
   100% {
     opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+.section-perks__text{
+   font-size: large;
+   font-family: "PT Sans", sans-serif;
+   line-height: 25px;
+}
+.section-testimonials__title{
+  margin-bottom: 50px !important;
+}
+@media (min-width: 768px){
+.section-testimonials__title{
+  margin-bottom: 50px !important;
+}
+}
+.section-perks__item-title{
+  font-size: 24px !important;
+  font-family: "PT Sans", sans-serif!important;
+  line-height: 32px !important;
+  //  margin-bottom: 16px !important;
+  font-weight: 700 !important;
+}
+.section-cards__title{
+  color: #fff;
+    font-size: 23px !important;
+    font-family: "PT Sans", sans-serif!important;
+    line-height: 28px !important;
+}
+.section-banner{
+  animation: 3s bounceIn;
+}
+@keyframes bounceIn {
+  0% {
+    transform: translate3d(-100%, 0,0);
+  }
+  100% {
     transform: translate3d(0, 0, 0);
   }
 }

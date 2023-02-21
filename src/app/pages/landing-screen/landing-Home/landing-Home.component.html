@@ -1,4 +1,4 @@
-<main class="main main--top">
+<main #trackScroll class="main main--top"(scroll)="onScrollEvent($event);">
   <owl-carousel-o [options]="bannerOptions" >
     <ng-container *ngFor="let banner of bannerslider;let i=index" >
       <ng-template carouselSlide >
@@ -38,7 +38,7 @@
     <div class="section-blocks__container container">
       <h2 class="section-roadmap__title" animateOnScroll animationName="animated slideDown" offset="20">Connecting skilled talent
         with Industry</h2>
-      <p class="section-roadmap__text" >L&T
+      <p class="section-roadmap__text">L&T
         EduTech’s Skill Exchange is a platform for students and recent graduates
         to meet India’s premiere employers and vice versa.</p>
       <div class="row">

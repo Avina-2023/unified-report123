@@ -7,6 +7,7 @@ import { SentDataToOtherComp } from 'src/app/services/sendDataToOtherComp.servic
 })
 export class LandingScreenComponent implements OnInit {
   private lastScrollPosition = 0;
+  scrollCheck: any;
   constructor(private renderer: Renderer2, private el: ElementRef, private msgData:SentDataToOtherComp) {
 
     this.msgData.getMessage().subscribe((arg) => {
@@ -17,19 +18,22 @@ export class LandingScreenComponent implements OnInit {
   }
   @ViewChild('headwrap', {static: false}) navbar: ElementRef;
 
- 
+
   ngOnInit() {
 
 this.msgData.getMessage().subscribe((data)=>{
   if(data.data=='hide'){
-    if(data.value){
-      this.renderer.addClass(this.navbar, 'hide');
-    }else{
-      this.renderer.removeClass(this.navbar, 'hide');
-    }
-    
+    console.log(data.value,'jjjj');
+this.scrollCheck = data.value
+    // if(data.value){
+    //   this.renderer.addClass(this.navbar, 'hide');
+    // }else{
+    //   this.renderer.removeClass(this.navbar, 'hide');
+    // }
+
   }
 })
   }
+
 
 }
