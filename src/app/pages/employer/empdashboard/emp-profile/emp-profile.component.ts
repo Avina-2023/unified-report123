@@ -47,7 +47,7 @@ export class EmpProfileComponent implements OnInit {
   profileForm: FormGroup;
   hrDetails: any = [];
   formBuilder: any;
- 
+
   addcontact: any;
   constructor( private globalValidation : GlobalValidatorService,private fb: FormBuilder, private apiService: ApiService, private toaster: ToastrService) {
     this.states = this.allStates
@@ -56,10 +56,10 @@ export class EmpProfileComponent implements OnInit {
   ngOnInit(): void {
     this.createProfile()
     this.empDetails()
-    
+
     this.HRspocPatch()
     this.getState()
-    
+
   }
 
   getState() {
@@ -140,7 +140,7 @@ export class EmpProfileComponent implements OnInit {
         Validators.maxLength(6),
         Validators.pattern('[1-9]{1}[0-9]{5}'),
       ]),],
-     
+
       district: ['', Validators.required],
       state: ['', Validators.required],
       country: ['', Validators.required],
@@ -183,11 +183,11 @@ export class EmpProfileComponent implements OnInit {
   get empSize() {
     return this.profileForm.get('empSize');
   }
-  
+
   removeContactField(index: number): void {
     if (this.hrContactDetails.length > 1) this.hrContactDetails.removeAt(index);
     else this.hrContactDetails.patchValue([{ hrName: null, hrdesignation: null, hrEmail: null, hrMobilenumber: null }]);
-  
+
   }
   //submit profile
   profile() {
@@ -195,12 +195,12 @@ export class EmpProfileComponent implements OnInit {
       email: localStorage.getItem('email'),
       detailedInformation: this.profileForm.value,
       detailedInformationType: true,
-    
+
     }
     // debugger;
     // console.log(this.profileForm.valid);
     if (this.profileForm.valid) {
-    
+
       this.apiService.updatePartner(obj).subscribe((data: any) => {
         if (data.success == false) {
           this.toaster.warning(data.message);
@@ -257,7 +257,7 @@ export class EmpProfileComponent implements OnInit {
         }
         if (this.empProfile.detailedInformation) {
           var obj = { value: this.empProfile.detailedInformation.state }
-          this.selectState(obj) 
+          this.selectState(obj)
           this.profileForm.patchValue({
             empSize: this.empProfile.detailedInformation.empSize,
             websiteAddress: this.empProfile.detailedInformation.websiteAddress,
@@ -267,7 +267,7 @@ export class EmpProfileComponent implements OnInit {
             chroName: this.empProfile.detailedInformation.chroName,
             chroEmail: this.empProfile.detailedInformation.chroEmail,
             chromobileNumber: this.empProfile.detailedInformation.chromobileNumber,
-            
+
             addressOne: this.empProfile.detailedInformation.addressOne,
             addressTwo: this.empProfile.detailedInformation.addressTwo,
             pincode: this.empProfile.detailedInformation.pincode,
