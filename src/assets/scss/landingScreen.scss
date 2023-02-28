@@ -211,7 +211,7 @@ body {
   @media (min-width: 992px) {
     h2,
   .h2 {
-      font-size: 42px;
+      font-size: 40px;
       line-height: 46px;
       margin-bottom: 25px;
     }
@@ -2438,6 +2438,12 @@ flex-direction: column !important;
     height: 100px;
     margin-bottom: 5px;
     border-bottom: 1px #eee solid;
+    // height: 100px;
+    // width: 150px;
+    // height: 124px;
+    // margin-bottom: 5px;
+    // padding: 25px;
+    // width: 180px!important;
   }
   .section-team__item-image img {
     width: 100%;

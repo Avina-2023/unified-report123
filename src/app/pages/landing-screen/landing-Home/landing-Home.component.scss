@@ -491,9 +491,11 @@ h3,
   border-radius: 20px;
 }
 .section-team__item-image {
-  height: 124px;
+  height: 100px;
   margin-bottom: 5px;
-  padding: 25px;
+  // padding: 25px;
+  width: 200px !important; ;
+
 }
 .section-team__item-name{
   font-size: 14px;
@@ -504,7 +506,7 @@ h3,
 .slidercard{
   margin: 5px;
   border-radius: 15px;
-  height: 180px;
+  height: 165px;
 }
 
 .section-hero__image1 {
