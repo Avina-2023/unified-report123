@@ -54,6 +54,7 @@ export class LandingEmployersComponent implements OnInit {
     }
   }
   customOptions: OwlOptions = {
+    center: true,
     loop: true,
     mouseDrag: true,
     touchDrag: true,
@@ -67,15 +68,13 @@ export class LandingEmployersComponent implements OnInit {
       0: {
         items: 1,
       },
-      400: {
+      300: {
         items: 2,
       },
-      740: {
+      600: {
         items: 3,
       },
-      940: {
-        items: 5,
-      },
+
     },
     nav: false,
   };

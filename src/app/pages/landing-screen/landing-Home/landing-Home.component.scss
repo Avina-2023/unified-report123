@@ -492,9 +492,10 @@ h3,
 }
 .section-team__item-image {
   height: 100px;
-  margin-bottom: 5px;
+  // margin-bottom: 5px;
   // padding: 25px;
-  width: 200px !important; ;
+  width: 200px !important;
+  margin: 0px 0px 0px 55px;
 
 }
 .section-team__item-name{
@@ -502,11 +503,15 @@ h3,
   font-family: "PT Sans", sans-serif;
   line-height: 18px;
   text-align: center;
+  margin: 8px 0px 0px 0px;
+  border-top: 1px solid #eee;
+  padding-top: 10px;
 }
 .slidercard{
   margin: 5px;
   border-radius: 15px;
-  height: 165px;
+  height: 183px;
+  // padding-bottom: 10px;
 }
 
 .section-hero__image1 {
@@ -531,6 +536,19 @@ h3,
 
   }
 }
+
+.owl-carousel .owl-stage {
+  // display: flex;
+  align-items: center;
+}
+
+.owl-carousel .caption {
+  text-align: center;
+}
+
+// ::ng-deep .owl-item.ng-tns-c117-1.ng-trigger.ng-trigger-autoHeight.ng-star-inserted.cloned{
+//   width: 352px!important;
+// }
 
 
 
