@@ -2493,15 +2493,8 @@ flex-direction: column !important;
     }
   }
 
-    @media (min-width: 992px) {
-      .section-banner__wrapper {
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        padding: 40px 100px;
-        margin: 60px 0px 0px 0px;
-      }
-  }
+    
+  
   .section-banner__content {
     margin-bottom: 20px;
   }

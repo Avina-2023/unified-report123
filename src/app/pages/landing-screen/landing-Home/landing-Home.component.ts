@@ -21,6 +21,7 @@ export class LandingHomeComponent implements OnInit {
   lastScrollPosition: number;
 
   percent: number = 0;
+  disconnect: any;
 
 
 
@@ -59,6 +60,8 @@ export class LandingHomeComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    document.querySelectorAll<HTMLDivElement>('.section-numbers__item').forEach((div, index) => new IntersectionObserver(([entry]) => entry.isIntersecting && div.animate([{ opacity: 0 }, { opacity: 1 }], { duration: (index * 0.5 + 1) * 1000, fill: 'forwards' }) && this.disconnect()).observe(div));
     {
       let myElement = document.querySelector('.header') as HTMLDivElement;
       myElement.style.background = 'transparent';
