@@ -1,23 +1,7 @@
-
 // @import url('https://fonts.cdnfonts.com/css/pt-sans-2');
-
 @import url('https://fonts.googleapis.com/css2?family=PT+Sans&display=swap');
 
-//  @font-face {
-  // font-family: 'PT Sans', sans-serif;
-//   font-family: '"PT Sans", sans-serif';
-//     src: url("src/assets/fonts/ptsans/PTSans-Regular.ttf") format("truetype");
-//     font-weight:300;
-//   }
-
 body {
-  // @font-face {
-  //    font-family: '"PT Sans", sans-serif';
-  //      src: url("src/assets/fonts/ptsans/PTSans-Regular.ttf") format("truetype");
-  //      font-weight:300;
-  //    }
-
-
     margin: 0;
     padding: 0;
     min-height: 100vh;
@@ -75,11 +59,11 @@ body {
       padding-top: 0px;
     }
   }
-  // .main--top {
-  //   // padding-top: 0;
-  //   // margin-top: -82px;
-  //   // z-index: 1;
-  // }
+  .main--top {
+    padding-top: 0;
+    margin-top: -82px;
+    z-index: 1;
+  }
 
   @media (min-width: 768px) {
     .page-with-sidebar {
@@ -100,7 +84,7 @@ body {
   }
   @media (min-width: 768px) {
     .container {
-      //max-width: 720px;
+      max-width: 720px;
       padding-left: 0;
       padding-right: 0;
     }
@@ -148,10 +132,8 @@ body {
   }
 
   a {
-    color: #111111;
+    color: #221857;
     text-decoration: none;
-    font-family: "PT Sans", sans-serif;
-    font-size: 18px;
   }
   a:hover, a:focus {
     text-decoration: underline;
@@ -203,7 +185,7 @@ body {
 
   h2,
   .h2 {
-    font-weight: 700 !important;
+    font-weight: 700;
     font-size: 26px;
     line-height: 32px;
     margin-bottom: 12px;
@@ -211,7 +193,7 @@ body {
   @media (min-width: 992px) {
     h2,
   .h2 {
-      font-size: 40px;
+      font-size: 42px;
       line-height: 46px;
       margin-bottom: 25px;
     }
@@ -386,7 +368,7 @@ body {
     height: 25px;
     flex-shrink: 0;
     margin-right: 13px;
-    background-image: url(https://assets.lntedutech.com/Skillexchange/blockquote.svg);
+    /* background-image: url(../img/blockquote.svg); */
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
@@ -551,10 +533,10 @@ body {
     margin-right: 20px;
   }
   .social__item--twitter {
-    background-image: url(https://assets.lntedutech.com/Skillexchange/twitter.svg);
+    /* background-image: url(../img/twitter.svg); */
   }
   .social__item--discord {
-    background-image: url(https://assets.lntedutech.com/Skillexchange/discord.svg);
+    /* background-image: url(../img/discord.svg); */
   }
   .social__item:hover, .social__item:focus {
     background-color: #504875;
@@ -574,22 +556,23 @@ body {
   .header__top {
     position: relative;
     display: flex;
-    z-index: 2;
     justify-content: space-between;
     align-items: center;
     padding-top: 13px;
-    margin: 0px 10px 0px 10px;
     padding-bottom: 11px;
     border-bottom: 1px solid #d1d1d1;
   }
+  @media (min-width: 992px) {
+    /* .header__top {
 
+    } */
+  }
   .header__brand {
     max-width: 180px;
   }
   @media (min-width: 992px) {
     .header__brand {
       max-width: 200px;
-      z-index: 12;
     }
   }
   .header__brand img {
@@ -648,7 +631,7 @@ body {
 
   }
   .header__button {
-    display: flex;
+    display: none;
     margin-bottom: 30px;
     padding: 9px 18px;
     min-height: 45px;
@@ -657,12 +640,6 @@ body {
     line-height: 22px;
     width: 100%;
   }
-
-  ul > li:last-child ul{
-    right: 1px;
-    left: auto;
-}
-
   .header__button.moved {
     display: flex;
   }
@@ -678,7 +655,6 @@ body {
     }
     .header__button1 {
       font-size: 14px;
-      font-family: '"PT Sans", sans-serif';
       line-height: 17px;
       width: auto;
       min-height: 35px;
@@ -700,7 +676,6 @@ body {
     }
     .header__button1 {
       font-size: 14px;
-      font-family: '"PT Sans", sans-serif';
       line-height: 17px;
       width: auto;
       min-height: 35px;
@@ -714,14 +689,12 @@ body {
     margin-top: auto;
     padding-top: 38px;
     padding-bottom: 35px;
-    margin-bottom: 20px;
     background: #ffffff;
     border-radius: 20px 20px 0px 0px;
   }
   @media (min-width: 576px) {
     .footer {
       padding-top: 22px;
-      padding-left: 10px;
       padding-bottom: 30px;
     }
     .section-hero__image1 {
@@ -741,18 +714,7 @@ body {
       justify-content: space-between;
       padding-bottom: 22px;
     }
-}
-
-@media (min-width: 768px) {
-  .footer__top {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-bottom: 22px;
-    margin: 0px 5px 0px -10px;
   }
-}
-
   .footer__bottom {
     padding-top: 35px;
   }
@@ -774,49 +736,13 @@ body {
     }
   }
   .footer__menu {
-    margin:30px 0px 0px 0px;
+    margin-bottom: 0;
   }
   @media (min-width: 576px) {
     .footer__menu {
       display: flex;
-      margin: 17px 10px 0px -10px;
-
     }
   }
-
-    @media only screen and (max-width: 768px) {
-      .footer__menu {
-        display: flex;
-        flex-direction: row;
-        margin: 30px 30px 0px 10px;
-        // background-color: red;
-      }
-    }
-
-    @media only screen and (max-width: 320px) {
-      .footer__menu {
-display: flex;
-flex-direction: column;
-flex-wrap: wrap;
-      }
-    }
-
-    @media only screen and (max-width: 375px) {
-      .footer__menu {
-display: flex;
-flex-direction: column;
-flex-wrap: wrap;
-      }
-    }
-
-    @media only screen and (max-width: 430px) {
-      .footer__menu {
-display: flex;
-flex-direction: column !important;
-      }
-    }
-
-
   .footer__menu-item:not(:last-child) {
     margin-bottom: 25px;
   }
@@ -828,16 +754,13 @@ flex-direction: column !important;
   }
   .footer__menu-link {
     color: #111111;
-    font-family: "PT Sans", sans-serif;
-    font-size: 18px;
-
   }
   .footer__menu-link:hover, .footer__menu-link:focus {
     text-decoration: none;
   }
 
   .navbar {
-    //background-color: #e5e5e5;
+    background-color: #e5e5e5;
     padding-top: 0;
     padding-bottom: 0;
     z-index: 2;
@@ -882,27 +805,27 @@ flex-direction: column !important;
     background-color: #504875;
   }
   .navbar-toggler[aria-expanded=true] .navbar-toggler-icon {
-    background-image: url(https://assets.lntedutech.com/Skillexchange/menu-close.svg);
+    /* background-image: url(../img/menu-close.svg); */
   }
   .navbar-toggler[aria-expanded=false] .navbar-toggler-icon {
-    background-image: url(https://assets.lntedutech.com/Skillexchange/menu-open.svg);
+    /* background-image: url(../img/menu-open.svg); */
   }
-  @media (min-width: 930px) {
+  @media (min-width: 1366px) {
     .navbar-toggler {
       display: none;
     }
   }
 
   @media (min-width: 992px) {
-    // .navbar-toggler {
-    //   display: none;
-    // }
+    .navbar-toggler {
+      display: none;
+    }
   }
   .navbar-collapse {
     position: relative;
     transition: all 200ms ease-in-out;
   }
-  @media (max-width: 930px) {
+  @media (max-width: 1366px) {
     .navbar-collapse {
       display: flex;
       flex-direction: column;
@@ -948,7 +871,7 @@ flex-direction: column !important;
       display:block;
   }
 
-  @media (max-width: 929px) {
+  @media (max-width: 992px) {
     .navbar .navbar-nav {
       padding-top: 50;
     }
@@ -957,7 +880,7 @@ flex-direction: column !important;
     padding-left: 0;
     margin-bottom: 0;
   }
-  @media (max-width: 930px) {
+  @media (max-width: 1366px) {
     .navbar .navbar-nav .nav-item:not(:last-child) {
       margin-bottom: 0px;
     }
@@ -971,7 +894,7 @@ flex-direction: column !important;
     padding: 0;
     white-space: nowrap;
   }
-  @media (min-width: 930px) {
+  @media (min-width: 1366px) {
     .navbar .navbar-nav .nav-link {
       font-size: 18px;
       line-height: 24px;
@@ -980,7 +903,7 @@ flex-direction: column !important;
       margin-right: 30px;
     }
   }
-  @media (min-width: 929px) {
+  @media (min-width: 992px) {
     .navbar .navbar-nav .nav-link {
       font-size: 16px;
       line-height: 24px;
@@ -992,7 +915,6 @@ flex-direction: column !important;
   .navbar .navbar-nav .nav-link:hover, .navbar .navbar-nav .nav-link:focus {
     color: #221857;
     text-decoration: none;
-    cursor: pointer;
   }
 
   .sidebar {
@@ -1012,7 +934,7 @@ flex-direction: column !important;
       display: block;
     }
   }
-  @media (min-width: 929px) {
+  @media (min-width: 992px) {
     .sidebar {
       padding-top: 100px;
       width: 305px;
@@ -1127,7 +1049,7 @@ flex-direction: column !important;
     width: 60px;
     height: 60px;
     opacity: 0.8;
-    background-image: url(https://assets.lntedutech.com/Skillexchange/scroll.svg);
+    /* background-image: url(../img/scroll.svg); */
     border: 1px solid #221857;
     border-radius: 50%;
     background-repeat: no-repeat;
@@ -1148,7 +1070,11 @@ flex-direction: column !important;
   .section-hero {
     margin-bottom: 0px;
   }
+  @media (min-width: 768px) {
+    /* .section-hero {
 
+    } */
+  }
   .section-hero__slide {
     padding-top: 136px;
     height: 698px;
@@ -1157,7 +1083,7 @@ flex-direction: column !important;
   .section-hero__slide::before {
     content: "";
     width: 100%;
-    height: 200px;
+    height: 273px;
     display: block;
     position: absolute;
     bottom: 0;
@@ -1169,7 +1095,7 @@ flex-direction: column !important;
   }
   .section-hero__slide--1 {
     background: #ffffff;
-    background-image: url(https://assets.lntedutech.com/Skillexchange/banner-bg1.jpg);
+    /* background-image: url(../img/banner-bg1.jpg); */
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -1179,7 +1105,7 @@ flex-direction: column !important;
   }
   .section-hero__slide--2 {
     background-color: #ffffff;
-    background-image: url(https://assets.lntedutech.com/Skillexchange/slider-bg2.jpg);
+    /* background-image: url(../img/slider-bg2.jpg); */
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -1228,9 +1154,12 @@ flex-direction: column !important;
     }
     .section-hero__content {
       flex-shrink: 0;
-      max-width: 450px;
+      max-width: 500px;
     }
-
+    .section-hero__container {
+      flex-direction: row;
+      justify-content: space-between;
+  }
   }
   .section-hero__container {
     position: relative;
@@ -1275,7 +1204,6 @@ flex-direction: column !important;
     z-index: 2;
   }
   @media (min-width: 1366px) {
-
     .section-hero__text {
       margin-top: 0px;
       margin-bottom: 20px;
@@ -1298,19 +1226,8 @@ flex-direction: column !important;
   }
   }
   @media (min-width: 992px) {
-
-    .section-hero__container {
-      flex-direction: row;
-      justify-content: space-between;
-  }
     .section-hero__text {
-      width: 353px;
-      margin-bottom: 20px;
-    }
-  }
-  @media (min-width: 1366px) {
-    .section-hero__text {
-      width: 400px;
+      width: 453px;
       margin-bottom: 20px;
     }
   }
@@ -1327,12 +1244,6 @@ flex-direction: column !important;
     }
   }
   @media (min-width: 992px) {
-    .section-hero__title {
-      width: 410px;
-      margin-bottom: 20px; margin-top: 20px;
-    }
-  }
-  @media (min-width: 1366px) {
     .section-hero__title {
       width: 583px;
       margin-bottom: 40px; margin-top: 100px;
@@ -1398,7 +1309,7 @@ flex-direction: column !important;
   .section-numbers__wrapper::before {
     left: 0;
     width: 63px;
-    background-image: url(https://assets.lntedutech.com/Skillexchange/section-numbers-image-1.svg);
+    /* background-image: url(../img/section-numbers-image-1.svg); */
     background-position: top left;
   }
   @media (min-width: 768px) {
@@ -1409,7 +1320,7 @@ flex-direction: column !important;
   .section-numbers__wrapper::after {
     right: 0;
     width: 34px;
-    background-image: url(https://assets.lntedutech.com/Skillexchange/section-numbers-image-2.svg);
+    /* background-image: url(../img/section-numbers-image-2.svg); */
     background-position: bottom right;
   }
   @media (min-width: 768px) {
@@ -1668,7 +1579,11 @@ flex-direction: column !important;
   .section-perks__item-text {
     margin-bottom: 0;
   }
+  .section-icon-list__item-icon1 {
 
+    /* margin-bottom: 38px; */
+
+  }
   .section-icon-list__item-icon1 {
     width: 45px;
     height: 45px;
@@ -1847,7 +1762,9 @@ flex-direction: column !important;
     position: relative;
   }
   @media (min-width: 768px) {
+    .section-partners__container {
 
+    }
   }
   .section-partners__swiper {
     padding-top: 0px;
@@ -1924,7 +1841,7 @@ flex-direction: column !important;
   .section-action__container::before {
     bottom: 10px;
     left: 10px;
-    background-image: url(https://assets.lntedutech.com/Skillexchange/action-image.svg);
+    /* background-image: url(../img/action-image.svg); */
   }
   @media (min-width: 768px) {
     .section-action__container::before {
@@ -1942,7 +1859,7 @@ flex-direction: column !important;
     transform: rotate(180deg);
     top: 10px;
     right: 10px;
-    background-image: url(https://assets.lntedutech.com/Skillexchange/action-image.svg);
+    /* background-image: url(../img/action-image.svg); */
   }
   @media (min-width: 768px) {
     .section-action__container::after {
@@ -2212,7 +2129,7 @@ flex-direction: column !important;
     position: absolute;
     bottom: 0;
     left: 0;
-    background-image: url(https://assets.lntedutech.com/Skillexchange/section-begin-back.svg);
+    /* background-image: url(../img/section-begin-back.svg); */
     background-repeat: no-repeat;
     background-size: cover;
     background-position: bottom right;
@@ -2254,9 +2171,6 @@ flex-direction: column !important;
   .section-begin__text {
     color: #fcfcfc;
     margin-bottom: 35px;
-    font-size: 18px;
-    font-family: "PT Sans", sans-serif;
-    line-height: 24px;
   }
   .section-hero__back {
     width: 594px;
@@ -2375,7 +2289,7 @@ flex-direction: column !important;
     position: absolute;
     left: -60px;
     top: -40px;
-    background-image: url(https://assets.lntedutech.com/Skillexchange/employer.png);
+    /* background-image: url(../img/employer.png); */
     background-repeat: no-repeat;
     background-size: contain;
     background-position: top center;
@@ -2388,7 +2302,7 @@ flex-direction: column !important;
     position: absolute;
     right: 45px;
     bottom: 0;
-    background-image: url(https://assets.lntedutech.com/Skillexchange/students.png);
+    /* background-image: url(../img/students.png); */
     background-repeat: no-repeat;
     background-size: contain;
     background-position: top center;
@@ -2401,7 +2315,7 @@ flex-direction: column !important;
     position: absolute;
     right: 10px;
     bottom: -32px;
-    background-image: url(https://assets.lntedutech.com/Skillexchange/institutions.png);
+    /* background-image: url(../img/institutions.png); */
     background-repeat: no-repeat;
     background-size: contain;
     background-position: top center;
@@ -2438,12 +2352,6 @@ flex-direction: column !important;
     height: 100px;
     margin-bottom: 5px;
     border-bottom: 1px #eee solid;
-    // height: 100px;
-    // width: 150px;
-    // height: 124px;
-    // margin-bottom: 5px;
-    // padding: 25px;
-    // width: 180px!important;
   }
   .section-team__item-image img {
     width: 100%;
@@ -2452,14 +2360,12 @@ flex-direction: column !important;
   }
   .section-team__item-name {
     font-size: 14px;
-    font-family: "PT Sans", sans-serif;
-        line-height: 18px;
+    line-height: 18px;
     text-align: center;
     margin-bottom: 3px;
   }
   .section-team__item-position {
     font-size: 14px;
-    font-family: "PT Sans", sans-serif;
     line-height: 18px;
     text-align: center;
     color: #7d8782;
@@ -2489,12 +2395,8 @@ flex-direction: column !important;
       justify-content: space-between;
       align-items: center;
       padding: 40px 100px;
-      margin: 60px 0px 0px 0px;
     }
   }
-
-    
-  
   .section-banner__content {
     margin-bottom: 20px;
   }
@@ -2511,14 +2413,10 @@ flex-direction: column !important;
   @media (min-width: 768px) {
     .section-banner__title {
       text-align: left;
-      font-size: 41px!important;
-      font-family: "PT Sans", sans-serif!important;
-      line-height: 45px!important;
     }
   }
   .section-banner__text {
     font-size: 24px;
-    font-family: "PT Sans", sans-serif;
     line-height: 32px;
     font-size: 17px;
     line-height: 23px;
@@ -2528,14 +2426,12 @@ flex-direction: column !important;
   @media (min-width: 768px) {
     .section-banner__text {
       font-size: 24px;
-      font-family: "PT Sans", sans-serif;
       line-height: 32px;
       text-align: left;
     }
   }
   .section-banner__link {
     padding: 13px 56px;
-    margin: 0px -10px 0px 0px;
   }
 
   .section-about {
@@ -2622,7 +2518,9 @@ flex-direction: column !important;
     border-radius: 20px;
   }
   @media (min-width: 768px) {
+    .section-image-numbers__image--1 {
 
+    }
   }
   .section-image-numbers__image--1 img {
     width: 120px;
@@ -2667,7 +2565,7 @@ flex-direction: column !important;
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url(https://assets.lntedutech.com/Skillexchange/about-image-lines.svg);
+    /* background-image: url(../img/about-image-lines.svg); */
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -2678,7 +2576,9 @@ flex-direction: column !important;
     object-position: bottom center;
   }
   @media (min-width: 768px) {
+    .section-image-numbers__image--2 img {
 
+    }
     .c-logo-1 {
       border-right: 1px solid #edeff0;
       border-bottom: 1px solid #edeff0;
@@ -2703,16 +2603,10 @@ flex-direction: column !important;
     padding-top: 22px;
   }
   .section-image-numbers__title {
-    font-size: 42px!important;
-    font-family: "PT Sans", sans-serif!important;
-    line-height: 46px !important;
     margin-bottom: 25px;
   }
   @media (min-width: 768px) {
     .section-image-numbers__title {
-      font-size: 42px!important;
-      font-family: "PT Sans", sans-serif!important;
-      line-height: 46px !important;
       margin-bottom: 50px;
     }
   }
@@ -3068,7 +2962,7 @@ flex-direction: column !important;
     position: relative;
     background-color: #221857;
     border-radius: 20px;
-    background-image: url(https://assets.lntedutech.com/Skillexchange/about-image-lines.svg);
+    /* background-image: url(../img/about-image-lines.svg); */
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -3086,7 +2980,7 @@ flex-direction: column !important;
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url(https://assets.lntedutech.com/Skillexchange/about-image-lines.svg);
+    /* background-image: url(../img/about-image-lines.svg); */
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -3167,7 +3061,7 @@ flex-direction: column !important;
     position: absolute;
     width: 457px;
     height: 280px;
-    background-image: url(https://assets.lntedutech.com/Skillexchange/404.svg);
+    /* background-image: url(../img/404.svg); */
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
@@ -3320,24 +3214,3 @@ flex-direction: column !important;
 
   }
 
-  .regbtn{
-    padding: 9px;
-    width: 110px;
-    font-size: 14px;
-    margin-left: 10px;
-  }
-
-  .border-0{
-    border: none;
-  }
-
-
-  /* login buttons mbl responsive */
-  .loginbtnsmbl{
-    display: none;
-  }
-  @media only screen and (max-width: 700px) {
-    .loginbtnsmbl{
-  display: flex;
-  }
-  }

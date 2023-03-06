@@ -1,4 +1,4 @@
-<main class="main main--top">
+<main #trackScroll class="main main--top"(scroll)="onScrollEvent($event);">
 
 
 
@@ -74,7 +74,7 @@
       <div class="section-icon-list__item-icon">
         <i class="icon-level-up-alt-svgrepo-com"></i>
       </div>
-      <h3 class="section-icon-list__item-title">Fullfilll sudden surge in<br> demand
+      <h3 class="section-icon-list__item-title">Fullfill sudden surge in<br> demand
       </h3>
 
     </div>
@@ -148,7 +148,7 @@
       </div>
       </div>
       <div class="status">
-      <h5> Corporate Sign Up</h5>
+      <h5 class="status_list"> Corporate Sign Up</h5>
       </div>
     </li>
     <li class="li complete">
@@ -158,7 +158,7 @@
       </div>
       </div>
       <div class="status">
-      <h5> Access to Talent Pool </h5>
+      <h5 class="status_list"> Access to Talent Pool </h5>
       </div>
     </li>
     <li class="li complete">
@@ -168,7 +168,7 @@
       </div>
       </div>
       <div class="status">
-      <h5> Shortlisting Fresh Graduates </h5>
+      <h5 class="status_list"> Shortlisting Fresh Graduates </h5>
       </div>
     </li>
     <li class="li complete">
@@ -178,7 +178,7 @@
       </div>
       </div>
       <div class="status">
-      <h5> Interview & Onboarding </h5>
+      <h5 class="status_list"> Interview & Onboarding </h5>
       </div>
     </li>
      </ul>
@@ -193,7 +193,7 @@
    <owl-carousel-o [options]="customOptions" >
         <ng-container *ngFor="let img of HiringPartners" >
           <ng-template carouselSlide >
-            <img class="section-team__item-image" style="height: 100px;width: 150px;" [src]="img.url">
+            <img class="section-team__item-image" style="height: 100px;width: 200px;margin: 0px 0px 0px 55px;" [src]="img.url">
           </ng-template>
         </ng-container>
       </owl-carousel-o>
