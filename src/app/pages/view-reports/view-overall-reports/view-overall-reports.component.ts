@@ -52,9 +52,7 @@ export class ViewOverallReportsComponent implements OnInit {
     this.route.paramMap.subscribe((param: any) => {
       // console.log(param.params.id,'param.params.id')
       if (param && param.params && param.params.id) {
-        let email = param.params.id
-          ? this.ApiService.decrypt(param.params.id)
-          : param.params.id;
+        let email = param.params.id ? this.ApiService.decrypt(param.params.id) : param.params.id;
         this.getReports(email);
         // if(this.isaccess){
           this.getCandidateData(email);

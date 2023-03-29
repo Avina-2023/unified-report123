@@ -10,9 +10,9 @@ const routes: Routes = [
   {
     path: '', component: AuthComponent,
     children: [
-      {
-        path: `${APP_CONSTANTS.ROUTES.REPORTS.HOME}`, loadChildren: () => import('../pages/view-reports/view-reports.module').then(m => m.ViewReportsModule),canActivate:[IsAccessGuard],data:{key:'user'}
-      },
+      // {
+      //   path: `${APP_CONSTANTS.ROUTES.REPORTS.HOME}`, loadChildren: () => import('../pages/view-reports/view-reports.module').then(m => m.ViewReportsModule),canActivate:[IsAccessGuard],data:{key:'user'}
+      // },
 
       {
         path: `${APP_CONSTANTS.ROUTES.CANDIDATE.HOME}`, loadChildren: () => import('../pages/candidate-assessment-report/candidate-assessment-report.module').then(m => m.CandidateAssesmentReportModule)
