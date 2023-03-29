@@ -159,6 +159,35 @@
       </div>
     </div>
   </section>
+<hr class="hr_testimonial">
+<!-- videos -->
+<!-- Testimonials -->
+  <section class="section-team slideup">
+    <div class="section-team__container container">
+      <h2 class="section-team__title">Testimonial</h2>
+      <div>
+        <owl-carousel-o [options]="customOptions" class="slideup">
+          <ng-container *ngFor="let picture of pictures">
+            <ng-template carouselSlide>
+              <mat-card class="slidercard_testimonial">
+                <video poster="https://lntedutech.com/wp-content/uploads/2022/04/image-4.png" controlsList="nodownload" style="width: 250px;height: 150px;" [src]="picture.url" [title]="picture" controls></video>
+
+                <div class="section-team__item-name">{{picture.title}}</div>
+
+              </mat-card>
+            </ng-template>
+          </ng-container>
+        </owl-carousel-o>
+      </div>
+      <!-- <div class="text-center" style="padding:20px 0px;">
+        <a class="link-demo link-demo" [routerLink]="endPoints.LANDINGPAGE.INSTITUTIONALPARTNERS">View All</a>
+
+      </div> -->
+    </div>
+  </section>
+
+  <!-- videos -->
+
   <section class="section-action">
     <div class="section-action__container container">
       <h2 class="section-action__title slideDown">Looking to hire Pre-Assessed
