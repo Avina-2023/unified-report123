@@ -82,31 +82,38 @@ export class LandingHomeComponent implements OnInit {
     this.pictures = [
       {
         url:'https://assets.lntedutech.com/Skillexchange/TestimonialVideos/Aishwarya_Joshi.mp4',
-        title:'Aishwarya Joshi Business Strategist - Praaditya Procurement Services Pvt. Ltd.'
+        titlename:'Aishwarya Joshi',
+        titledesc:'Business Strategist - Praaditya Procurement Services Pvt. Ltd.'
       },
       {
         url:'https://assets.lntedutech.com/Skillexchange/TestimonialVideos/Blaer_Testimonial.mp4',
-      title:'Abinesh Ekambaram Co-Founder & Managing Director - BLAER MOTORS PRIVATE LIMITED'
+        titlename:'Abinesh Ekambaram',
+        titledesc: 'Co-Founder & Managing Director - BLAER MOTORS PRIVATE LIMITED'
       },
       {
       url:'https://assets.lntedutech.com/Skillexchange/TestimonialVideos/Charles_Godwin.mp4',
-      title:'Charles Godwin P HR Leader - Zoho Corporation'
+      titlename:'Charles Godwin P',
+      titledesc: 'HR Leader - Zoho Corporation'
       },
       {
         url:'https://assets.lntedutech.com/Skillexchange/TestimonialVideos/Daniel_Jacob.mp4',
-        title:'Daniel Jacob Vice President - HR - EC Group International'
+        titlename:'Daniel Jacob',
+        titledesc:'Vice President - HR - EC Group International'
       },
       {
       url:'https://assets.lntedutech.com/Skillexchange/TestimonialVideos/Jaimon_Antony.mp4',
-      title:'Jaimon Antony Head HR - ESAB Corporation'
+      titlename:'Jaimon Antony',
+      titledesc:'Head HR - ESAB Corporation'
       },
       {
       url: 'https://assets.lntedutech.com/Skillexchange/TestimonialVideos/Rajendran.mp4',
-      title:'Rajendran Dandapani President - Zoho Schools of Learning'
+      titlename:'Rajendran Dandapani',
+      titledesc:'President - Zoho Schools of Learning'
       },
       {
       url:'https://assets.lntedutech.com/Skillexchange/TestimonialVideos/Vikas_K.mp4',
-      title:'Vikas K Director - Prime Villas Pvt Ltd'
+      titlename:'Vikas K ',
+      titledesc: 'Director - Prime Villas Pvt Ltd'
       }
   ]
       // console.log(this.pictures);
