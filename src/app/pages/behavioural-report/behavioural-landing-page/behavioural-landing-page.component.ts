@@ -60,11 +60,11 @@ export class BehaviouralLandingPageComponent implements OnInit, AfterViewInit, O
 
   getRoute() {
     this.route.paramMap.subscribe((param: any) => {
+      // this.ApiService.decrypt(param.params.id)
       if (param && param.params && param.params.id) {
-        let email = param.params.id
-          ? this.ApiService.decrypt(param.params.id)
-          : param.params.id;
-        this.getBehaviouralReportData(email);
+        let email = param.params.id ? param.params.id : '';
+        let passingEmail = window.atob(email)
+        this.getBehaviouralReportData(passingEmail);
       }
     });
   }
