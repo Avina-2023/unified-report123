@@ -12,7 +12,7 @@ import { SentDataToOtherComp } from 'src/app/services/sendDataToOtherComp.servic
 })
 export class LandingHomeComponent implements OnInit {
   @ViewChild('trackScroll', { static: false }) divScroll: ElementRef;
-
+  @ViewChild('videoPlayer') videoPlayer: ElementRef;
   sliderhtml1: any;
   sliderhtml2: any;
   endPoints = APP_CONSTANTS.ENDPOINTS;
@@ -83,40 +83,55 @@ export class LandingHomeComponent implements OnInit {
       {
         url:'https://assets.lntedutech.com/Skillexchange/TestimonialVideos/Aishwarya_Joshi.mp4',
         titlename:'Aishwarya Joshi',
-        titledesc:'Business Strategist - Praaditya Procurement Services Pvt. Ltd.'
+        titledesc:'Business Strategist',
+        titlecompany:'Praaditya Procurement Services Pvt. Ltd.'
       },
       {
         url:'https://assets.lntedutech.com/Skillexchange/TestimonialVideos/Blaer_Testimonial.mp4',
         titlename:'Abinesh Ekambaram',
-        titledesc: 'Co-Founder & Managing Director - BLAER MOTORS PRIVATE LIMITED'
+        titledesc: 'Co-Founder & Managing Director',
+        titlecompany:'Blaer Motors Private Limited'
       },
       {
       url:'https://assets.lntedutech.com/Skillexchange/TestimonialVideos/Charles_Godwin.mp4',
       titlename:'Charles Godwin P',
-      titledesc: 'HR Leader - Zoho Corporation'
+      titledesc: 'HR Leader',
+      titlecompany:'Zoho Corporation'
       },
       {
         url:'https://assets.lntedutech.com/Skillexchange/TestimonialVideos/Daniel_Jacob.mp4',
         titlename:'Daniel Jacob',
-        titledesc:'Vice President - HR - EC Group International'
+        titledesc:'Vice President - HR',
+        titlecompany:'EC Group International'
       },
       {
       url:'https://assets.lntedutech.com/Skillexchange/TestimonialVideos/Jaimon_Antony.mp4',
       titlename:'Jaimon Antony',
-      titledesc:'Head HR - ESAB Corporation'
+      titledesc:'Head HR',
+      titlecompany:'ESAB Corporation'
       },
       {
       url: 'https://assets.lntedutech.com/Skillexchange/TestimonialVideos/Rajendran.mp4',
       titlename:'Rajendran Dandapani',
-      titledesc:'President - Zoho Schools of Learning'
+      titledesc:'President',
+      titlecompany:'Zoho Schools of Learning'
       },
       {
       url:'https://assets.lntedutech.com/Skillexchange/TestimonialVideos/Vikas_K.mp4',
       titlename:'Vikas K ',
-      titledesc: 'Director - Prime Villas Pvt Ltd'
+      titledesc: 'Director',
+      titlecompany:' Prime Villas Pvt Ltd'
       }
   ]
       // console.log(this.pictures);
+  }
+
+  playVideo() {
+    this.videoPlayer.nativeElement.play();
+  }
+
+  pauseVideo() {
+    this.videoPlayer.nativeElement.pause();
   }
 
 
