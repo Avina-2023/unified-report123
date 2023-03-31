@@ -176,17 +176,18 @@
 
 <!-- videos -->
 <!-- Testimonials -->
-<section class="section-team slideup">
-  <div class="section-team__container container">
+<section class="section-team-testimonial slideup">
+  <div class="section-team__container_testimonial container">
     <h2 class="section-team__title">Experts Speak</h2>
     <div>
-      <owl-carousel-o [options]="customOptions" class="slideup">
+      <owl-carousel-o [options]="customOptions" class="slideup_testimonial">
         <ng-container *ngFor="let picture of pictures">
           <ng-template carouselSlide>
-            <mat-card class="slidercard_testimonial">
-              <video poster="https://lntedutech.com/wp-content/uploads/2022/04/image-4.png" controlsList="nodownload" style="width: 250px;height: 150px;" [src]="picture.url" [title]="picture" controls></video>
+            <mat-card class="slidercard_testimonial" (mouseenter)="playVideo()"
+            (mouseleave)="pauseVideo()" >
+              <video poster="https://lntedutech.com/wp-content/uploads/2022/04/image-4.png" controlsList="nodownload" style="width: 250px;height: 150px;" [src]="picture.url"  controls></video>
 
-              <div class="section-team__item-name">{{picture.titlename}}<br>{{picture.titledesc}}</div>
+              <div class="section-team__item-name"> <span class="title_name">{{picture.titlename}}</span><br>{{picture.titledesc}}<br>{{picture.titlecompany}}</div>
 
             </mat-card>
           </ng-template>
