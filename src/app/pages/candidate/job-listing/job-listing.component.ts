@@ -13,11 +13,10 @@ import { environment } from 'src/environments/environment';
 	styleUrls: ['./job-listing.component.scss']
 })
 
-
-
 export class JobListingComponent implements OnInit {
+  message: string;
   public pageNumber: any = 1;
-  public itemsPerPage: any = 9;
+  public itemsPerPage: any = 6;
   public totallength:any
   public total:any;
 	@ViewChild('moreItems', { static: false }) matDialogRef: TemplateRef<any>;
@@ -37,13 +36,35 @@ export class JobListingComponent implements OnInit {
 	jobId: any = '';
 	blobToken = environment.blobToken
 	productionUrl = environment.SKILL_EDGE_URL == "https://skilledge.lntedutech.com"?true:false;
+	candidateDetails:any
+	useryop: any;
+	yopdate: any;
+	yopyear: any;
+	yeararray: any;
 
 	constructor(public dialog: MatDialog, private apiservice: ApiService, private appconfig: AppConfigService, public router:Router) { }
 
 	ngOnInit() {
 		this.getJobList();
 		this.getJobFilter();
+	this.candidateData();
 	}
+
+	customalert(){
+		alert('hello world');
+	}
+
+	candidateData(){
+		this.candidateDetails = localStorage.getItem('candidateProfile')
+		let educationyear = JSON.parse(this.candidateDetails);
+		this.useryop = educationyear?.education_details?.educations[0]?.year_of_passing;
+		 //console.log(educationyear?.education_details?.educations[0]?.year_of_passing , 'YOP')
+		// console.log(educationyear,'details2')
+		this.yopdate = new Date(this.useryop);
+        this.yopyear = this.yopdate.getFullYear();
+	}
+
+
 
 
 	openDialog(displayValue) {
@@ -191,9 +212,15 @@ export class JobListingComponent implements OnInit {
 		this.apiservice.joblistingDashboard(params).subscribe((response: any) => {
 			if (response.success) {
 				this.joblist = response.data;
+				this.yeararray = this.joblist;
+				console.log(this.yeararray ,'job data');
+				console.log(this.yopyear, 'useryop');
+
+			
+
         this.totallength = response.totalCount;
         this.total = Math.ceil(response.totalCount/this.itemsPerPage);
-        console.log(this.total)
+        // console.log(this.total)
 				this.joblist.forEach(element => {
 					this.sampleContent.push(element.overview);
 				});
@@ -216,12 +243,24 @@ export class JobListingComponent implements OnInit {
 	}
 
 	gotojob(item) {
-    let extras:NavigationExtras = {state:{itemData:item}}
-    this.appconfig.setLocalStorage('jobDesc',JSON.stringify(item))
-		this.router.navigateByUrl(APP_CONSTANTS.ENDPOINTS.CANDIDATEDASH.JOBDESCRIPTION, extras);
+		
+	// item.stopPropagation();
+    let extras:NavigationExtras = {state:{itemData:item}};
+    this.appconfig.setLocalStorage('jobDesc',JSON.stringify(item));
+    this.router.navigateByUrl(APP_CONSTANTS.ENDPOINTS.CANDIDATEDASH.JOBDESCRIPTION, extras);
+		}
+	
+
+
+    dashboard(){
+		this.router.navigate(['/candidateview/dashboard'])
 	}
 
 
+	
+	
 }
+
+
 
 

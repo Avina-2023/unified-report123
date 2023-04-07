@@ -23,7 +23,6 @@ import { LandingPageComponent } from './pages/landing-page/landing-page.componen
 import { PartnersListComponent } from './pages/landing-page/partners-list/partners-list.component';
 import { LandingHeaderComponent } from './pages/landing-page/landing-header/landing-header.component';
 import { LandingFooterComponent } from './pages/landing-page/landing-footer/landing-footer.component';
-import { CarouselModule } from 'ngx-owl-carousel-o';
 import { LoginPageComponent } from './pages/login/login-page/login-page.component';
 import { RegisterPageComponent } from './pages/login/register-page/register-page.component';
 // import { JobSeekersComponent } from './pages/login/candidateRegister/candidateRegister.component';
@@ -37,6 +36,7 @@ import { en_US } from 'ng-zorro-antd/i18n';
 import en from '@angular/common/locales/en';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
+import { CarouselModule } from 'ngx-owl-carousel-o';
 
 registerLocaleData(en);
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -56,9 +56,11 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     ForgotPasswordComponent,
     SetPasswordComponent,
     RegisterPageComponent,
+ 
     // JobSeekersComponent,
     candidateRegister,
     SkillMasterListComponent,
+    
 ],
   imports: [
     BrowserModule,
@@ -72,10 +74,9 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     DragScrollModule,
     PerfectScrollbarModule,
     AgGridModule,
-    CarouselModule,
     NzSelectModule,
     NzDropDownModule,
-
+    CarouselModule,
     // PopupCellRenderer,
     ToastrModule.forRoot(
       {
@@ -88,8 +89,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
         closeButton:true
       }
     ),
-
     HttpClientModule,
+
   ],
   providers: [
     {

@@ -34,6 +34,7 @@ import {MatChipsModule} from '@angular/material/chips';
 // ---------------------------------------------------------------
  import { MatPaginatorModule } from '@angular/material/paginator';
  import {MatButtonToggleModule} from '@angular/material/button-toggle';
+ import {MatGridListModule} from '@angular/material/grid-list';
 
 @NgModule({
   declarations: [],
@@ -45,6 +46,7 @@ import {MatChipsModule} from '@angular/material/chips';
     MatFormFieldModule,
     MatButtonModule,
     MatCardModule,
+    MatGridListModule,
     MatCheckboxModule,
     MatChipsModule,
     MatProgressBarModule,
@@ -75,6 +77,7 @@ import {MatChipsModule} from '@angular/material/chips';
     MatFormFieldModule,
     MatButtonModule,
     MatCardModule,
+    MatGridListModule,
     MatCheckboxModule,
     MatChipsModule,
     MatProgressBarModule,

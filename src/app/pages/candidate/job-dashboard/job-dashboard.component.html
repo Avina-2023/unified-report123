@@ -1,157 +1,329 @@
-<div class="overflowbox" >
-    <div class="leftside">
-        <div class="user">
-            <div class="user-name">
-                <div class="username-N">
-                    Welcome,&nbsp;
-                </div>
-                <div class="username-B">
-                    {{username}}
-                </div>
-            </div>
-        </div>
-        <div class="displaygrid">
-            <div class="dashboardcards">
-                <div class="box">
-                    <mat-card class="singlecard singlecardbg0">
-                        <div class="both">
-                            <div class="bigleft singlecardborder0">
-                                <div class="left">
-                                    <div class="smalltext">
-                                        Jobs Available
-                                    </div>
-                                    <div class="bigtext">
-                                        {{ jobsAvailable }}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </mat-card>
-                </div>
-                <div class="box">
-                    <mat-card class="singlecard singlecardbg1">
-                        <div class="both">
-                            <div class="bigleft singlecardborder1">
-                                <div class="left">
-                                    <div class="smalltext">
-                                        Jobs Applied
-                                    </div>
-                                    <div class="bigtext">
-                                        {{ jobApplied }}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </mat-card>
-                </div>
-                <div class="box">
-                    <mat-card class="singlecard singlecardbg2">
-                        <div class="both">
-                            <div class="bigleft singlecardborder2">
-                                <div class="left">
-                                    <div class="smalltext">
-                                        Profile Viewed
-                                    </div>
-                                    <div class="bigtext">
-                                        {{ profileView }}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </mat-card>
-                </div>
-                <div class="box">
-                    <mat-card class="singlecard singlecardbg3">
-                        <div class="both">
-                            <div class="bigleft singlecardborder3">
-                                <div class="left">
-                                    <div class="smalltext">
-                                        Shortlisted
-                                    </div>
-                                    <div class="bigtext">
-                                        {{ shortlisted }}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </mat-card>
-                </div>
-            </div>
-            <div class="barchart">
-                <div class="baralignment">
-                    <div class="left">Performance</div>
-                    <div class="right">
-                        <mat-form-field class="form-filed-dropdown" appearance="outline">
-                            <mat-select class="selectText" (selectionChange)="getCandidateDashBoard($event)" [(ngModel)]="year" placeholder="2022">
-                                <mat-option class="text-center" *ngFor="let val of allyears" [value]="val.year">{{val.year}}</mat-option>
-                            </mat-select>
-                        </mat-form-field>
-
-                    </div>
-                </div>
-                <apx-chart [series]="ChartData" [chart]="chartOptions.chart" [dataLabels]="chartOptions.dataLabels"
-                    [plotOptions]="chartOptions.plotOptions" [legend]="chartOptions.legend"
-                    [fill]="chartOptions.fill" [stroke]="chartOptions.stroke" [tooltip]="chartOptions.tooltip"
-                    [xaxis]="chartOptions.xaxis">
-                </apx-chart>
-                <div class="legends">
-                  <div class="alignment">
-                    <div class="round1"></div>
-                    <div class="text">Jobs Available</div>
-                  </div>
-
-                  <div class="alignment">
-                    <div class="round2"></div>
-                    <div class="text">Jobs Applied</div>
-                  </div>
-                  <div class="alignment">
-                    <div class="round3"></div>
-                    <div class="text">Profile Viewed</div>
-                  </div>
-                  <div class="alignment">
-                    <div class="round4"></div>
-                    <div class="text">Shortlisted</div>
-                  </div>
-                </div>
-            </div>
-        </div>
+<div class="banner_header">
+  <div class="user">
+    <div class="user-name">
+      <div class="username-N">Welcome,&nbsp;</div>
+      <div class="username-B">
+        {{ username }}
+      </div>
     </div>
-    <div class="card-right">
-        <div class="d-flex visibleuser">
-            <div class="user-name">
-                <div class="username-N">
-                    Welcome,&nbsp;
-                </div>
-                <div class="username-B">
-                    {{username}}
-                </div>
-            </div>
-        </div>
-        <div class="candidatebg">
-            <div class="userprofile">
-                <img  class="avatar" [src]="profileImage?profileImage:'../../../../assets/images/candidate-userprofile.png'">
-                <div class="bg-white">
-                    <div class="profilename">
-                        {{username}}
-                    </div>
-                    <!-- <div class="big" >-</div> -->
-
-                    <div class="small" *ngIf="usercity">{{usercity}}, {{userstate}}, {{usercountry}}</div>
-                    <hr class="hrline">
-                    <div class="profile-progress">
-                        <span>Profile Completion</span>
-                        <div role="progressbar" aria-valuenow="{{profilepercentage}}" aria-valuemin="0" aria-valuemax="100"
-                            style="--value:{{profilepercentage}}"></div>
-                    </div>
-                    <hr>
-                    <div class="profile-buttons">
-                        <button class="buttons view-profile" (click)="gotoProfile()">View Profile</button>
-                        <button class="buttons edit-profile" (click)="gotoProfile()">Edit Profile</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="quote">
+      <div>Kick Start Your </div>
+      <div>
+        <div class="grad-text"> CAREER </div>
+      </div>
     </div>
+  </div>
 </div>
 
 
+
+
+<!-- 
+<mat-grid-list cols="12" rowHeight="1:1" gutterSize="6px">
+  <mat-grid-tile colspan="8" rowspan="4">
+
+      <owl-carousel-o [options]="XlSlider" class="full-space">
+        <ng-template class="item" carouselSlide>
+          <img class="image-fit" src="assets/images/landingScreen/about.png" alt="Test 1"/>
+        </ng-template>
+        <ng-template class="item" carouselSlide>
+          <img class="image-fit" src="assets/images/landingScreen/about.png" alt="Test 2"/>
+        </ng-template>
+        <ng-template class="item" carouselSlide>
+          <img class="image-fit" src="assets/images/landingScreen/about.png" alt="Test 3"/>
+        </ng-template>
+        <ng-template class="item" carouselSlide>
+          <img class="image-fit" src="assets/images/landingScreen/about.png" alt="Test 4"/>
+        </ng-template>
+        <ng-template class="item" carouselSlide>
+          <img class="image-fit" src="assets/images/landingScreen/about.png" alt="Test 5"/>
+        </ng-template>
+     
+      </owl-carousel-o>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="2" rowspan="2">
+    <mat-card class="slider-card">
+
+      <mat-card-content class="zero-o">
+        <img class="image-fit" src="assets/images/landingScreen/about.png" alt="Test 4"/>
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="2" rowspan="2">
+    <mat-card class="slider-card">
+
+      <mat-card-content class="zero-o">
+        <img class="image-fit" src="assets/images/landingScreen/about.png" alt="Test 4"/>
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+
+  <mat-grid-tile colspan="2" rowspan="2">
+    <mat-card class="slider-card">
+      <mat-card-content class="zero-o">
+        <img class="image-fit" src="assets/images/landingScreen/about.png" alt="Test 4"/>
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+
+  <mat-grid-tile colspan="2" rowspan="2">
+    <mat-card class="slider-card">
+      <mat-card-content class="zero-o">
+        <img class="image-fit" src="" alt="Test 4"/>
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>
+
+ -->
+
+
+
+
+<div class="overflowbox">
+
+  <div class="leftside">
+    <div class="displaygrid">
+      <div class="dashboardcards">
+        <mat-card class="main-card">
+          <div class="left-icon">
+            <div><img src="../../../../assets/images/jobs-available.png"></div>
+          </div>
+          <div class="right-data">
+            <div class="num">
+              {{ jobsAvailable }}
+            </div>
+            <div class="text">Jobs Available</div>
+          </div>
+        </mat-card>
+        <mat-card class="main-card">
+          <div class="left-icon">
+            <div><img src="../../../../assets/images/Jobs_applied.png"></div>
+          </div>
+          <div class="right-data">
+            <div class="num2">
+              {{ jobApplied }}
+            </div>
+            <div class="text">Jobs Applied</div>
+          </div>
+        </mat-card>
+        <mat-card class="main-card">
+          <div class="left-icon">
+            <div><img src="../../../../assets/images/profile_viewed.png"></div>
+          </div>
+          <div class="right-data">
+            <div class="num3">
+              {{ profileView }}
+            </div>
+            <div class="text">Profile Viewed</div>
+          </div>
+        </mat-card>
+        <mat-card class="main-card">
+          <div class="left-icon">
+            <div><img src="../../../../assets/images/shortlisted.png"></div>
+          </div>
+          <div class="right-data">
+            <div class="num4">
+              {{ shortlisted }}
+            </div>
+            <div class="text">Shortlisted</div>
+          </div>
+        </mat-card>
+      </div>
+    </div>
+
+
+    <div class="row2">
+      <div class="row-left">
+        <div>
+          <p class="secondheading">Recently Posted Jobs</p>
+        </div>
+        <div class="navigation-btn">
+          <button class="prev-btn" (click)="owlCar.prev()"><em class='icon-LeftArrow'></em></button>
+          <button class="next-btn" (click)="owlCar.next()"><em class='icon-RightArrow'></em></button>
+        </div>
+      </div>
+      <div class="row-right">
+        <h5 class="view" (click)="ViewAll()">View All </h5>
+      </div>
+    </div>
+    <owl-carousel-o [options]="customOptions" #owlCar>
+      <ng-container>
+        <ng-template *ngFor="let slider of joblist" class="imageWrapper" carouselSlide>
+          <div class="main2">
+            <mat-card class="main-card2">
+              <div class="minicard-header">
+                <div class="minicard-heading">
+                  <span class="head1">{{slider.jobRole}}</span> <br>
+                  <span class="head2">{{slider.company}}</span>
+                </div>
+                <div class="company-image">
+                  <img [src]="slider.companyLogo" alt="" />
+                </div>
+              </div>
+              <div class="details">
+                <div class="sub-details">
+                  <div><span class="icon-full_time"></span></div>
+                  <div>{{ slider.jobType }}</div>
+                </div>
+                <div class="sub-details">
+                  <div><span class="icon-degree"></span></div>
+                  <div> {{ slider.education }}</div>
+                </div>
+                <div class="sub-details">
+                  <!-- <div><span class="icon-Location"></span></div> -->
+                  <div class="loc"><mat-icon> location_on</mat-icon></div>
+                  <div>{{slider.jobLocation}}</div>
+                </div>
+                <div class="date">
+                  <div><span class="icon-calendar"></span></div>
+                  <div>Posted on {{slider.createdOn | date : 'd MMM'}}</div>
+                </div>
+              </div>
+            </mat-card>
+          </div>
+        </ng-template>
+      </ng-container>
+    </owl-carousel-o>
+
+
+
+
+
+    <div>
+      <div class="row2">
+        <div>
+          <div>
+            <p class="thirdheading">Top Companies </p>
+          </div>
+        </div>
+        <div class="row-right">
+          <h5 class="view2" (click)="ViewAll()">View All </h5>
+        </div>
+      </div>
+      <h4 class="fourthheading">Fresh oppurtunities based on profiles</h4>
+    </div>
+
+
+
+    <div class="main3">
+      <div>
+        <mat-card class="main-card3">
+          <div class="company-image3">
+            <img src="../../../../assets/images/amadis-logo.png">
+          </div>
+          <div class="comp">Amadis Technologies</div>
+          <div class="dept">IT/Computers</div>
+          <div class="miniview" (click)="ViewAll()">View Jobs</div>
+        </mat-card>
+      </div>
+      <div>
+        <mat-card class="main-card3">
+          <div class="company-image3">
+            <img src="../../../../assets/images/LNT C.png">
+          </div>
+          <div class="comp">L&T Construction  </div>
+          <div class="dept">Construction</div>
+          <div class="miniview" (click)="ViewAll()">View Jobs</div>
+        </mat-card>
+      </div>
+
+      <div>
+        <mat-card class="main-card3">
+          <div class="company-image3">
+            <img src="../../../../assets/images/omega-HC.png">
+          </div>
+          <div class="comp">Omega Healthcare</div>
+          <div class="dept">Medical</div>
+          <div class="miniview" (click)="ViewAll()">View Jobs</div>
+        </mat-card>
+      </div>
+
+      <div>
+        <mat-card class="main-card3">
+          <div class="company-image3">
+            <img src="../../../../assets/images/LTI-MT.png">
+          </div>
+          <div class="comp">LTI Mindtree</div>
+          <div class="dept">IT</div>
+          <div class="miniview" (click)="ViewAll()">View Jobs</div>
+        </mat-card>
+      </div>
+
+      <div>
+        <mat-card class="main-card3">
+          <div class="company-image3">
+            <img src="../../../../assets/images/bank-zone2.png">
+          </div>
+          <div class="comp">Bankzone</div>
+          <div class="dept">Banking</div>
+          <div class="miniview" (click)="ViewAll()">View Jobs</div>
+        </mat-card>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="card-right">
+    <div class="d-flex visibleuser">
+      <div class="user-name">
+        <div class="username-N">Welcome,&nbsp;</div>
+        <div class="username-B">
+          {{ username }}
+        </div>
+      </div>
+    </div>
+    <div class="candidatebg">
+      <div class="userprofile">
+        <img class="avatar" [src]="
+              profileImage
+                ? profileImage
+                : '../../../../assets/images/candidate-userprofile.png'
+            " />
+        <div class="bg-white">
+          <div class="profilename">
+            {{ username }}
+          </div>
+
+          <div class="usermail">
+            {{useremail}}
+          </div>
+
+          <!-- <div class="big" >-</div> -->
+
+          <div class="small" *ngIf="usercity">
+            {{ usercity }}, {{ userstate }}, {{ usercountry }}
+            <div style=" color: #ffff; width: max-content; background-color: #5D7E8E; border-radius: 2%; position: relative;
+              left: 45%;">
+            </div>
+          </div>
+          <div class="gender_bg">
+            Male
+          </div>
+
+          <div class="member-join" *ngIf="memberjoindate">
+            Member Since {{formattedDate}}
+          </div>
+
+          <hr class="hrline" />
+          <div class="profile-progress">
+            <span>Profile Completion</span>
+            <div role="progressbar" aria-valuenow="{{ profilepercentage }}" aria-valuemin="0" aria-valuemax="100"
+              style="--value:{{ profilepercentage }}"></div>
+          </div>
+          <hr />
+          <!-- <div class="profile-buttons">
+              <button class="buttons view-profile" (click)="gotoProfile()">
+                View Profile
+              </button>
+              <button class="buttons edit-profile" (click)="gotoProfile()">
+                Edit Profile
+              </button>
+            </div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
