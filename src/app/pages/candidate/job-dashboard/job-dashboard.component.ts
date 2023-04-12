@@ -493,11 +493,21 @@ public conetnt:any;
     autoHeight: false,
     autoWidth: false,
     responsive: {
+
       0: {
-        items: 3
+        items: 1,
+        margin: 10
+      },
+      600: {
+        items: 2,
+        margin: 20
+      },
+      900: {
+        items: 3,
+        margin: 30
       }
+     
     },
-    
   }
 
 
