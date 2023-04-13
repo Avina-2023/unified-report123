@@ -21,14 +21,14 @@ export class BehaviouralLandingPageComponent implements OnInit, AfterViewInit, O
   emailId: any;
   highestEducation: any;
   benchMarkScore = [
-    {score:"1-2",label:"DEVELOPMENT SCOPE",color:"red"},
-    {score:"3-4-5",label:"LESS INCLINED",color:"yellow"},
-    {score:"6-7-8",label:"MORE INCLINED",color:"orange"},
-    {score:"9-10",label:"STRENGTH",color:"green"}
+    { score: "1-2", label: "DEVELOPMENT SCOPE", color: "red" },
+    { score: "3-4-5", label: "LESS INCLINED", color: "yellow" },
+    { score: "6-7-8", label: "MORE INCLINED", color: "orange" },
+    { score: "9-10", label: "STRENGTH", color: "green" }
   ];
-  bgColorInput:string = '#85BD44';
-  doughnutValue:number = 4;
-  tabIndex:number = 0;
+  bgColorInput: string = '#85BD44';
+  doughnutValue: number = 4;
+  tabIndex: number = 0;
   getAllBehaviourAPIDetails: any;
   apiSuccess = true;
   isaccess: any;
@@ -61,10 +61,13 @@ export class BehaviouralLandingPageComponent implements OnInit, AfterViewInit, O
   getRoute() {
     this.route.paramMap.subscribe((param: any) => {
       if (param && param.params && param.params.id) {
-        let email = param.params.id
-          ? this.ApiService.decrypt(param.params.id)
-          : param.params.id;
-        this.getBehaviouralReportData(email);
+        // let email = param.params.id
+        //   ? this.ApiService.decrypt(param.params.id)
+        //   : param.params.id;
+        let email = param.params.id ? param.params.id : '';
+        let passingEmail = window.atob(email)
+        this.getBehaviouralReportData(passingEmail);
+
       }
     });
   }
@@ -72,7 +75,7 @@ export class BehaviouralLandingPageComponent implements OnInit, AfterViewInit, O
   tabChanged(event) {
     this.tabIndex = event.index;
 
-    switch(this.tabIndex) {
+    switch (this.tabIndex) {
       case 0:
         this.bgColorInput = '#85BD44';
         break;
@@ -93,35 +96,35 @@ export class BehaviouralLandingPageComponent implements OnInit, AfterViewInit, O
   }
 
   getBehaviouralReportData(data) {
-      const apiData = {
-        email: data,
-        reportId:"R1"
-      };
-    this.emailId= data;
-     this.getBehaviourReportAPISubscription = this.ApiService.getBehaviourReport(apiData).subscribe((response: any) => {
+    const apiData = {
+      email: data,
+      reportId: "R1"
+    };
+    this.emailId = data;
+    this.getBehaviourReportAPISubscription = this.ApiService.getBehaviourReport(apiData).subscribe((response: any) => {
       if (response && response.success && response.data) {
-          this.apiSuccess = true;
-          this.getAllBehaviourData = response.data.data ? response.data.data : null;
-          this.getAllBehaviourAPIDetails = response.data ? response.data : null;
-          this.getAllBasicData = response.data.basicDetails ? response.data.basicDetails : null;
-          this.highestEducation = this.getAllBasicData && this.getAllBasicData.education ? this.getAllBasicData.education : [];
-          if (this.highestEducation.length > 0) {
-            let i = this.highestEducation.length - 1;
-            this.highestEducation = this.highestEducation[i];
-          }
-        } else {
-          this.apiSuccess = false;
-          // this.toastr.error('No Reports Available');
-          this.getAllBasicData = null;
-          this.getAllBehaviourData = null;
-          this.getAllBehaviourAPIDetails = null;
+        this.apiSuccess = true;
+        this.getAllBehaviourData = response.data.data ? response.data.data : null;
+        this.getAllBehaviourAPIDetails = response.data ? response.data : null;
+        this.getAllBasicData = response.data.basicDetails ? response.data.basicDetails : null;
+        this.highestEducation = this.getAllBasicData && this.getAllBasicData.education ? this.getAllBasicData.education : [];
+        if (this.highestEducation.length > 0) {
+          let i = this.highestEducation.length - 1;
+          this.highestEducation = this.highestEducation[i];
         }
-      }, (err)=> {
+      } else {
         this.apiSuccess = false;
+        // this.toastr.error('No Reports Available');
         this.getAllBasicData = null;
         this.getAllBehaviourData = null;
         this.getAllBehaviourAPIDetails = null;
-  });
+      }
+    }, (err) => {
+      this.apiSuccess = false;
+      this.getAllBasicData = null;
+      this.getAllBehaviourData = null;
+      this.getAllBehaviourAPIDetails = null;
+    });
   }
 
   momentForm(date) {
@@ -130,11 +133,11 @@ export class BehaviouralLandingPageComponent implements OnInit, AfterViewInit, O
       return split;
     }
   }
-  openBenchmarkInfo(templateRef: TemplateRef<any>){
+  openBenchmarkInfo(templateRef: TemplateRef<any>) {
     this.dialog.open(templateRef, {
       width: "450px",
       height: "80%",
-      position: { right: "0px", bottom: "0px"},
+      position: { right: "0px", bottom: "0px" },
       panelClass: "filterModalbox",
       closeOnNavigation: true,
       disableClose: true,
@@ -145,15 +148,15 @@ export class BehaviouralLandingPageComponent implements OnInit, AfterViewInit, O
   }
 
 
-  downloadreport(val){
-    if(val){
+  downloadreport(val) {
+    if (val) {
       this.isPdfdownable = val;
-      this.sendData.sendMessage(true,'');
-    }else{
+      this.sendData.sendMessage(true, '');
+    } else {
       this.isPdfdownable = false;
-      this.sendData.sendMessage(false,'');
+      this.sendData.sendMessage(false, '');
     }
- 
-    
+
+
   }
 }
