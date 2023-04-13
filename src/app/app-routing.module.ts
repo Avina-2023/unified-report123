@@ -42,6 +42,9 @@ const routes: Routes = [
     path: `certificate`, component: CertificateViewComponent
   },
   {
+    path: `${APP_CONSTANTS.ROUTES.REPORTS.HOME}`, loadChildren: () => import('./pages/view-reports/view-reports.module').then(m => m.ViewReportsModule), data: { key: 'user' }
+  },
+  {
     path: `error`,
     pathMatch: 'full',
     component: PagenotfoundComponent
