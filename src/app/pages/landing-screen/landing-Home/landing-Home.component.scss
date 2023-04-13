@@ -492,10 +492,10 @@ h3,
   border-radius: 20px;
 }
 .section-team__item-image {
-  height: 100px;
+  height: 90px;
   // margin-bottom: 5px;
   // padding: 25px;
-  width: 200px !important;
+  width: 175px !important;
   margin: 0px 0px 0px 55px;
 
 }
@@ -514,6 +514,19 @@ h3,
   height: 183px;
   // padding-bottom: 10px;
 }
+
+.slidercard_testimonial{
+  margin: 5px;
+  border-radius: 15px;
+  height: 265px;
+  margin: 0px 10px 3px 12px;
+  // padding-bottom: 10px;
+}
+.hr_testimonial{
+  margin: 0px 0px -18px 0px;
+  margin-top: -18px;
+}
+
 
 .section-hero__image1 {
   transform:
@@ -656,7 +669,6 @@ animation: 2s slideIn;
   }
 }
 
-
 .animated_section{
 .section-numbers__item:nth-child(1){
 animation: fadeIn 1s;
@@ -730,28 +742,6 @@ animation: fadeIn 1s;
   text-align: center;
 
 
-  @media (max-width: 768px){
-    .section-numbers__wrapper {
-      //  padding: 30px 100px;
-    }
-    }
-
-  @media (min-width: 562px){
-    .section-numbers__wrapper {
-      // padding: 30px 60px;
-    }
-    }
-
-    @media (max-width: 300px){
-      .section-numbers__wrapper {
-        padding: 30px 60px;
-        // display: flex;
-        // justify-content: center;
-        // max-width: auto;
-        //  padding: 10px 0px;
-      }
-      }
-
 }
 
 .section-numbers__wrapper::before {
@@ -780,16 +770,6 @@ animation: fadeIn 1s;
   margin-left: 30PX;
   z-index: 2;
 
-  @media (max-width: 320px){
-    .section-numbers__list {
-       display: none!important;
-      // padding: 300px 60px;
-      // display: flex;
-      // justify-content: center;
-      // max-width: auto;
-      //  padding: 10px 0px;
-    }
-    }
 
 }
 
@@ -816,6 +796,7 @@ animation: fadeIn 1s;
    font-weight: 900 !important;
    font-size: 45px;
     line-height: 46px;
+
 
 }
 
@@ -849,6 +830,16 @@ animation: fadeIn 1s;
   padding: 10px 0px 0px 0px;
 }
 
+
+.section-numbers__item{
+
+  @media (max-width: 320px){
+    .section-numbers__item{
+      padding: 30px 100px!important;
+    }
+    }
+
+}
 
 
 
