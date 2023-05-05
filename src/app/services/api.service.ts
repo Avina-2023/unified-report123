@@ -327,4 +327,13 @@ getAGgridPatnerList(data){
   uploadExcelFile(data){
     return this.http.post(`${this.BASE_URL}/jobupload`,data)
   }
+  emailOtpregister(data){
+    return this.http.post(`${this.BASE_URL}/generateEmailOtp`,data)
+  }
+  validateEmailOtp(data){
+    return this.http.post(`${this.BASE_URL}/validateEmailOtp`,data)
+  }
+
+
+
 }
