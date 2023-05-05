@@ -82,7 +82,7 @@
     <div class="col-md-6">
       <mat-label class="label_heading_tit">Industry Type </mat-label>
       <mat-form-field class="indu_type" appearance="none">
-        <mat-select formControlName="jobtype" [placeholder]="'select one'" matNativeControl name="jobtype" style="padding-left: 11px;">
+        <mat-select formControlName="jobtype" [placeholder]="'— Select one —'" matNativeControl name="jobtype" style="padding-left: 11px;">
           <mat-option *ngFor="let item of industrytype" [value]="item.type">{{item.type}}</mat-option>
         </mat-select>
          <!-- <input matInput id="jobtype" [placeholder]="'Enter Here'" formControlName="jobtype" maxlength="64"> -->
@@ -154,7 +154,7 @@
 
       <ng-container *ngIf="mobile.invalid && mobile.touched">
         <mat-error class="error" *ngIf="mobile?.errors?.required">{{'Mobile Number is Required'}}</mat-error>
-        <mat-error class="error" *ngIf="mobile.errors?.mobileRegex">{{'Please Enter a Valid Mobile Number'}}</mat-error>
+        <mat-error class="error" *ngIf="mobile.errors?.mobileRegex">{{'Please Enter a Valid 10 digits Mobile Number'}}</mat-error>
 
       </ng-container>
     </div>
@@ -199,7 +199,7 @@
   <hr>
   <div class="example-button-row">
     <button mat-raised-button class="agreebtn" type="submit" (click)="agreeTerms()">Agree</button>
-    <button mat-button mat-dialog-close class="disagreebtn">Disagree</button>
+    <!-- <button mat-button mat-dialog-close class="disagreebtn">Disagree</button> -->
   </div>
 </div>
 </ng-template>
@@ -238,7 +238,7 @@
   <div style="background:linear-gradient(to right, #27BBEE, #49AE31);height:3px;width:100%;"></div>
       <div class="thank_you_page">
         <img src="../../../../assets/images/green_tick_image.png">
-          <p class="thank_text">Thank you for Registering..</p>
+          <p class="thank_text">Thank you for Registering.</p>
           <p class="review_text">Your Application is under review. Our team will get in touch with you shortly.</p>
           <div><button class="back_to_login_btn" type="submit" [routerLink]="['/login']" routerLinkActive="router-link-active" (click)="closeThankYou()">Back to Login</button></div>
 
