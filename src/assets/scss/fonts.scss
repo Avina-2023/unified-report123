@@ -58,6 +58,16 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
+
+  .icon-tick_mark_green:before {
+    content: "\ea14";
+    color: #49ae31;
+  }
+  .icon-tick_mark_grey:before {
+    content: "\ea15";
+    color: #848484;
+  }
+
   .icon-Font_Awesome_5_solid_universal-access:before {
     content: "\e9a2";
   }
