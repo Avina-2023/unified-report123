@@ -287,6 +287,18 @@ background: #E0E1E2 !important;
 margin-top: 20px;
 }
 
+::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background,
+::ng-deep .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+    background-color: #5BB8E9;
+    border-color: #5BB8E9;
+}
+
+::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-inner-container .mat-checkbox-checkmark {
+    border-color: white;
+}
+
+
+
 
 .sectionWrapper{
   display: flex;
@@ -474,8 +486,14 @@ body{
   border: 0.699999988079071px solid #B4B4B4;
   border-radius: 3px;
   width: -webkit-fill-available;
-    padding: 3px 0px;
     margin-top: 4px;
+    padding: 8px 0px;
+
+    ::ng-deep .mat-form-field-infix {
+      padding: 0px!important;
+      border-top:none!important;
+  }
+
 }
 
 .label_box{
@@ -483,8 +501,14 @@ body{
 border: 0.699999988079071px solid #B4B4B4;
 border-radius: 3px;
 width:-webkit-fill-available;
-// padding: 5px 0px;
+ padding: 5px 0px;
 margin-top: 4px;
+
+::ng-deep .mat-form-field-infix {
+  padding: 0px!important;
+  border-top: none!important;
+}
+
 }
 
 .tick_btn{
