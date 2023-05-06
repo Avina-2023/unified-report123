@@ -4,7 +4,6 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { SetPasswordComponent } from './set-password/set-password.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
-
 const routes: Routes = [
   {
     path: ``, redirectTo: `${APP_CONSTANTS.ROUTES.LOGIN}`
