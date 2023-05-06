@@ -59,11 +59,11 @@
         <div class="col-md-6">
       <mat-label class="label_heading_tit">Name of the Company</mat-label><br>
       <mat-form-field class="label_box" appearance="none">
-        <input matInput id="name" [placeholder]="'Enter Here'" formControlName="company" maxlength="64" required>
+        <input matInput id="company" [placeholder]="'Enter Here'" formControlName="company" maxlength="64" required>
       </mat-form-field>
 
-      <ng-container *ngIf="name.invalid && name.touched">
-        <mat-error class="error" *ngIf="name?.errors?.required">{{'Name is Required'}}</mat-error>
+      <ng-container *ngIf="company.invalid && company.touched">
+        <mat-error class="error" *ngIf="name?.errors?.required">{{' Company name is Required'}}</mat-error>
       </ng-container>
     </div>
 
@@ -97,6 +97,10 @@
       </ng-container> -->
     </div>
     </div>
+
+
+    <!--  -->
+
 
     <div class="spoc_details">SPOC Details:</div>
 
