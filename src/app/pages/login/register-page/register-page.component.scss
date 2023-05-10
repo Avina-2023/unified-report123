@@ -34,12 +34,21 @@ width: 50%;
 }
 
 mat-card{
-  width: 575px;
-  right: 60px;
-  // margin:0 auto;
+  // width: 575px;
+  // right: 60px;
+   margin:0px 50px 0px 0px;
   padding-top: 40px;
   padding-bottom: 40px;
-  margin: 0px 0px 0px -20px;
+  // margin: 0px 0px 0px -20px;
+
+  .name_droupdown{
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .label_box_alignment{
+    padding: 10px 10px 0px 0px;
+  }
 
   .cmpny_details_heading{
 
@@ -161,7 +170,7 @@ input.mat-input-element {
   display: none;
 }
 // mobile
-@media (max-width: 425px) and (max-width: 320px) {
+ @media (max-width: 425px) and (max-width: 320px) {
   .talentxt{
     display: none
   }
@@ -172,11 +181,30 @@ input.mat-input-element {
     display: flex;
     flex-direction: column;
   }
+
+  .label_heading_tit{
+    line-height: 2!important;
+  }
+
+  .name_droupdown{
+
+  }
+
   .mat-card {
-    width: 85%;
-    margin: 0 auto;
-    padding-top: 40px;
-    padding-bottom: 40px;
+    // width: auto;
+    // margin: 0 auto;
+    // padding-top: 40px;
+    // padding-bottom: 40px;
+    // top: 153px;
+// left: 20px;
+// width: 331px;
+width: -webkit-fill-available;
+margin: 20px;
+// height: 917px;
+
+.label_box_alignment{
+  padding: 10px 0px 0px 0px;
+}
   }
 
   .ltext {
@@ -187,6 +215,10 @@ input.mat-input-element {
     /* margin-left: 100px; */
     line-height: 1.5;
   }
+  }
+
+  .col-sm-12 {
+    width: 100%;
   }
 
 
@@ -227,38 +259,77 @@ display: block;
   }
 
   .mat-card{
-      width: 75%;
+       width:-webkit-fill-available;
+       margin: 20px;
+      // top: 153px;
+// left: 20px;
+// width: 331px;
+// height: 917px;
+
+.label_box_alignment{
+  padding: 10px 0px 0px 0px;
+}
+
+  }
+
+  .col-md-6 {
+    width: 100%;
   }
   }
 
-  @media only screen and (max-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
-    .talentxt{
-      display: none
-    }
-    .mblview{
-display: block;
-      text-align: center;
-    }
-    .right {
-      width: 100%;
-      position: relative;
-      top: 0px;
-  }
-  .left{
-    width: 0%;
-  }
-  .ltext{
-    .talentxt {
-     margin-top: 0px;
-    font-size: 40px;
-    color: white;
-    width: 80%;
-  }
-  }
+   @media only screen and (max-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+//     // .talentxt{
+//     //   display: none
+//     // }
+// //     .mblview{
+// // display: block;
+// //       text-align: center;
+// //     }
+//     .right {
+//       width: 100%;
+//       position: relative;
+//       top: 0px;
+//   }
+//   .left{
+//     width: 0%;
+//   }
+//   .ltext{
+//     .talentxt{
+//       margin-top: 100px;
+//       font-size: 40px;
+//       color: white;
+//       width: 80%;
+//       .slim{
+//         font-weight: lighter;
+//       }
+//       .decocolor{
+//         background: rgb(38,193,246);
+//         background: linear-gradient(90deg, rgba(38,193,246,1) 0%, rgba(92,182,70,1) 100%);
+//         border-radius: 5px;
+//         height: 3px;
+//         width: 64px;
+//         margin-top:10px;
+//       }
+//       p{
+//         margin-top:30px;
+//         font-style: Roboto;
+//         font-weight: lighter;
+//         font-size: 16px;
+//       }
+//     }
+//   }
   .mat-card{
-      width: 75%;
-  }
-  }
+    width: -webkit-fill-available;
+    margin: 20px;
+//       top: 153px;
+// left: 20px;
+// width: 331px;
+// height: 917px;
+}
+}
+
+
+
 // ==button
 .btn {
   font-size: 16px;
