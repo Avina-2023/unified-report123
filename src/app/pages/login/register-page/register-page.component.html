@@ -55,8 +55,8 @@
     <mat-label class="mt-1">Sign Up to your account</mat-label>
     <div class="cmpny_details_heading">Company Details:</div>
     <form class="form" [formGroup]="registerForm" autocomplete="off">
-      <div class="d-flex">
-        <div class="col-md-6">
+      <div class="name_droupdown">
+        <div class="col-md-6 col-sm-12 label_box_alignment" >
       <mat-label class="label_heading_tit">Name of the Company</mat-label><br>
       <mat-form-field class="label_box" appearance="none">
         <input matInput id="company" [placeholder]="'Enter Here'" formControlName="company" maxlength="64" required>
@@ -79,7 +79,7 @@
 </div> -->
 
 
-    <div class="col-md-6">
+    <div class="col-md-6 col-sm-12 label_box_alignment">
       <mat-label class="label_heading_tit">Industry Type </mat-label>
       <mat-form-field class="indu_type" appearance="none">
         <mat-select formControlName="jobtype" [placeholder]="'— Select one —'" matNativeControl name="jobtype" style="padding-left: 11px;">
@@ -104,8 +104,8 @@
 
     <div class="spoc_details">SPOC Details:</div>
 
-<div class="d-flex">
-  <div class="col-md-6">
+<div class="name_droupdown">
+  <div class="col-md-6 col-sm-12 label_box_alignment">
     <mat-label class="label_heading_tit">Name</mat-label><br>
     <mat-form-field  class="label_box" appearance="none">
       <input matInput id="name" [placeholder]="'Enter Here'" formControlName="name" maxlength="64" required>
@@ -115,7 +115,7 @@
       <mat-error class="error" *ngIf="name?.errors?.required">{{'Name is Required'}}</mat-error>
     </ng-container>
   </div>
-  <div class="col-md-6">
+  <div class="col-md-6 col-sm-12 label_box_alignment" >
     <mat-label class="label_heading_tit">Designation</mat-label>
       <mat-form-field class="label_box" appearance="none">
         <input matInput id="designation" [placeholder]="'Enter Designation'" formControlName="designation" required>
@@ -135,9 +135,8 @@
       <ng-container *ngIf="company.invalid && company.touched">
         <mat-error class="error" *ngIf="company?.errors?.required">{{'Company Name is Required'}}</mat-error>
       </ng-container> -->
-<div class="d-flex">
-  <div class="col-md-6">
-    <br>
+<div class="name_droupdown">
+  <div class="col-md-6 col-sm-12 label_box_alignment">
       <mat-label class="label_heading_tit">Email Id (Official Only)</mat-label><br>
       <mat-form-field class="label_box" appearance="none">
         <input matInput id="email" [placeholder]="'Enter Email'" formControlName="email" required>
@@ -149,8 +148,7 @@
       </ng-container>
     </div>
 
-    <div class="col-md-6">
-      <br>
+    <div class="col-md-6 col-sm-12 mat_box label_box_alignment">
       <mat-label class="label_heading_tit">Mobile Number</mat-label><br>
       <mat-form-field class="label_box" appearance="none">
         <input matInput id="mobile" [placeholder]="'Enter Mobile'" formControlName="mobile" maxlength="10" required>
