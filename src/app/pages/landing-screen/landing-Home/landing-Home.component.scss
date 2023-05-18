@@ -807,8 +807,18 @@ animation: fadeIn 1s;
 }
 }
 
-
-
+@media (max-width: 475px) {
+  .section-numbers__list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  .section-numbers__item {
+    margin-bottom: 20px;
+  }
+}
 
 
 .section-numbers__wrapper {
@@ -816,7 +826,7 @@ animation: fadeIn 1s;
   padding: 30px 10px 23px 10px;
   border-radius: 20px;
   position: relative;
-  display: list-item;
+  // display: list-item;
   justify-content: space-evenly;
   text-align: center;
 
