@@ -126,12 +126,23 @@ export class LandingHomeComponent implements OnInit {
       // console.log(this.pictures);
   }
 
-  playVideo() {
-    this.videoPlayer.nativeElement.play();
-  }
+  // playVideo() {
+  //   this.videoPlayer.nativeElement.play();
+  // }
 
-  pauseVideo() {
-    this.videoPlayer.nativeElement.pause();
+  // pauseVideo() {
+  //   this.videoPlayer.nativeElement.pause();
+  // }
+
+  playVideo(video: HTMLVideoElement) {
+    if (video.paused) {
+      video.play();
+      this.customOptions.autoplay = false; // stop auto-scrolling
+      this.customOptions.mouseDrag = false; // disable mouse dragging
+      this.customOptions.touchDrag = false; // disable touch dragging
+    } else {
+      video.pause();
+    }
   }
 
 

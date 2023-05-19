@@ -32,6 +32,9 @@ export class RegisterPageComponent implements OnInit {
   http: any;
   userEmail: any;
   userName: any;
+  // userOtp:any;
+  otp: number;
+
 
   constructor(
     public fb: FormBuilder,
@@ -106,6 +109,9 @@ export class RegisterPageComponent implements OnInit {
   }
 
   register() {
+
+
+
     if (this.registerForm.valid) {
       let data = {
         mobile: this.registerForm.value.mobile.toString(),
@@ -114,7 +120,7 @@ export class RegisterPageComponent implements OnInit {
         jobtype: this.registerForm.value.jobtype,
         designation: this.registerForm.value.designation,
         company: this.registerForm.value.company,
-        //  otpForm:this.otpForm.value.otpForm,
+        // otpForm:this.otpForm.value.otpForm,
         //  terms:this.registerForm.value.term,
       };
       console.log(data,'data ');
@@ -133,7 +139,7 @@ export class RegisterPageComponent implements OnInit {
             hasBackdrop: true,
           });
         } else {
-          // this.success = true;
+          this.success = true;
           this.toastr.warning(response.message);
         }
       });
@@ -141,20 +147,46 @@ export class RegisterPageComponent implements OnInit {
   }
 
   agreeTerms() {
-  //   const otp = Math.floor(100000 + Math.random() * 900000);
 
-  // const data = {
-  //   email: this.userEmail,
-  //   user_name:this.userName,
-  //   // otp: otp
-  // };
-  // console.log(data,'data');
 
-  //   this.apiService.emailOtpregister(data).subscribe((response:any) => {
-  //     console.log(response,'response');
+    const otp = Math.floor(100000 + Math.random() * 900000);
 
-  //     if(response.success){
-  //       this.registerForm.reset();
+  const data = {
+    email: this.userEmail,
+    user_name:this.userName,
+    otp: this.otp
+  };
+  console.log(data,'data');
+
+    this.apiService.emailOtpregister(data).subscribe((response:any) => {
+      console.log(response,'response');
+
+      if(response.success){
+        this.registerForm.reset();
+    const popup = this.dialog.open(this.otpfirstpage, {
+      width: '800px',
+      height: '500px',
+      disableClose: true,
+      hasBackdrop: true,
+    });
+  }
+    })
+  }
+
+  submit_btn() {
+    // let data={
+    //   email : this.userEmail,
+    //   otp: enteredOtp,
+    // }
+    const enteredOtp = `${this.otpForm.value.digit1}${this.otpForm.value.digit2}${this.otpForm.value.digit3}${this.otpForm.value.digit4}${this.otpForm.value.digit5}${this.otpForm.value.digit6}`;
+    // console.log(otp);
+    let data={
+      email : this.userEmail,
+      emailOtp: enteredOtp,
+    }
+    this.apiService.validateEmailOtp(data).subscribe((response:any) => {
+      if(response.success){
+        this.registerForm.reset();
     const popup = this.dialog.open(this.thankyoupage, {
       width: '800px',
       height: '500px',
@@ -162,24 +194,11 @@ export class RegisterPageComponent implements OnInit {
       hasBackdrop: true,
     });
   }
-  //   })
-  // }
-
-  // submit_btn() {
-  //   const otp = `${this.otpForm.value.digit1}${this.otpForm.value.digit2}${this.otpForm.value.digit3}${this.otpForm.value.digit4}${this.otpForm.value.digit5}${this.otpForm.value.digit6}`;
-  //   console.log(otp);
-    // this.apiService.validateEmailOtp('').subscribe((response:any) => {
-    //   if(response.success){
-    //     this.registerForm.reset();
-  //   const popup = this.dialog.open(this.thankyoupage, {
-  //     width: '800px',
-  //     height: '500px',
-  //     disableClose: true,
-  //     hasBackdrop: true,
-  //   });
-  // }
-// })
-// }
+  else{
+    this.toastr.error(response.message)
+  }
+})
+}
 
   closeThankYou() {
     this.dialog.closeAll();
@@ -224,7 +243,26 @@ export class RegisterPageComponent implements OnInit {
   get jobtype() {
     return this.registerForm.get('jobtype');
   }
+  // get otp() {
+  //   return this.otpForm.get('otp');
+  // }
   onKeyUp(event: any, index: number) {
+
+
+    // const input = event.target as HTMLInputElement;
+    // const inputValue = input.value;
+
+    // // Remove any non-numeric characters
+    // const numericValue = inputValue.replace(/\D/g, '');
+
+    // // Update the input value with the numeric value
+    // input.value = numericValue;
+
+    // // Store the numeric value in your form control or handle it as needed
+    // // For example, you can update the form control value like this:
+    // this.otpForm.get(`digit${index + 1}`).setValue(numericValue);
+
+
     let nextIndex = index + 1;
     if (event.code == 'Backspace') {
       nextIndex = index - 1;

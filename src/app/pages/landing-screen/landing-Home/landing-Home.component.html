@@ -183,13 +183,33 @@
       <owl-carousel-o [options]="customOptions" class="slideup_testimonial">
         <ng-container *ngFor="let picture of pictures">
           <ng-template carouselSlide>
-            <mat-card class="slidercard_testimonial" (mouseenter)="playVideo()"
+            <!-- <mat-card class="slidercard_testimonial" (mouseenter)="playVideo()"
             (mouseleave)="pauseVideo()" >
               <video poster="https://lntedutech.com/wp-content/uploads/2022/04/image-4.png" controlsList="nodownload" style="width: 250px;height: 150px;" [src]="picture.url"  controls></video>
 
               <div class="section-team__item-name"> <span class="title_name">{{picture.titlename}}</span><br>{{picture.titledesc}}<br>{{picture.titlecompany}}</div>
 
+            </mat-card> -->
+
+            <mat-card class="slidercard_testimonial" (mouseenter)="video.play()" (mouseleave)="video.pause()">
+              <video poster="https://lntedutech.com/wp-content/uploads/2022/04/image-4.png" style="width: 250px;height: 150px;" #video controls (click)="playVideo(video)">
+                <source [src]="picture.url" type="video/mp4">
+              </video>
+              <div class="section-team__item-name">
+                <span class="title_name">{{picture.titlename}}</span><br>{{picture.titledesc}}<br>{{picture.titlecompany}}
+              </div>
             </mat-card>
+<!--  -->
+<!-- <mat-card class="slidercard_testimonial" (mouseenter)="video.play()" (mouseleave)="video.pause()"> -->
+  <!-- <video poster="https://lntedutech.com/wp-content/uploads/2022/04/image-4.png" style="width: 250px;height: 150px;" #video controls>
+    <source [src]="picture.url" type="video/mp4">
+  </video>
+  <div class="section-team__item-name">
+    <span class="title_name">{{picture.titlename}}</span><br>{{picture.titledesc}}<br>{{picture.titlecompany}}
+  </div>
+</mat-card> -->
+<!--  -->
+
           </ng-template>
         </ng-container>
       </owl-carousel-o>
