@@ -164,7 +164,9 @@
 
     <div class="overall-input-wrapper mt-2  width-100 agree_checkbox">
       <mat-checkbox formControlName="term"
-          class="checkqualify mr-2 "></mat-checkbox><span class="agree_chech_title">I agree with Terms and Conditions</span>
+          class="checkqualify mr-2 "></mat-checkbox><span class="agree_chech_title">I have read and agree to the
+            <a href="https://lntedutech.com/privacy-policy/">privacy statement</a>
+          </span>
     </div>
       <!-- <section class="example-section">
               <mat-checkbox formControlName="term" class="example-margin" required><a href="">Terms & Conditions</a></mat-checkbox>
@@ -200,13 +202,13 @@
 <div>
   <hr>
   <div class="example-button-row">
-    <button mat-raised-button class="agreebtn" type="submit" (click)="agreeTerms()">Agree</button>
+    <button mat-raised-button class="agreebtn" type="submit" (click)="agreeTerms()"> I Agree</button>
     <!-- <button mat-button mat-dialog-close class="disagreebtn">Disagree</button> -->
   </div>
 </div>
 </ng-template>
 
-<!-- <ng-template #spoc>
+<ng-template #spoc>
   <img src="../../../../assets/images/SKILL EXCHANGE_logo_img.png">
   <div style="background:linear-gradient(to right, #27BBEE, #49AE31);height:3px;width:100%;"></div>
   <p class="otppara">Please enter the verification code that has sent to your SPOC’s email id to continue the Registration process.</p>
@@ -233,7 +235,7 @@
      </form>
  </div>
 
-</ng-template> -->
+</ng-template>
 
 <ng-template #thankyou>
   <img src="../../../../assets/images/SKILL EXCHANGE_logo_img.png">
