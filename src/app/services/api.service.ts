@@ -132,6 +132,8 @@ getAGgridPatnerList(data){
   getBehaviourReport(data) {
     return this.http.post(`${this.BASE_URL}/getBehaviouralReportContent `, data);
   }
+
+  
 //   getBajajBehaviourReport(data) {
 //     // data.email=
 //     // 'bppdemo9001@abc.com',
@@ -333,7 +335,14 @@ getAGgridPatnerList(data){
   validateEmailOtp(data){
     return this.http.post(`${this.BASE_URL}/validateEmailOtp`,data)
   }
-
+  behaviouralDashboard(data) {
+    
+    return this.http.post(`https://reportedgeqa.lntedutech.com/behaviouralDashboard`, data);
+  }
+  behaviourResultAks(data)
+  {
+     return this.http.post(`https://reportedgeqa.lntedutech.com/behaviourResultAks`, data);
+  }
 
 
 }
