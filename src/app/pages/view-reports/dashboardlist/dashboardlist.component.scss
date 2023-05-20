@@ -1,0 +1,100 @@
+.header-wrapper {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  position: relative;
+  top: 13px;
+}
+.side-header {
+  width: 50%;
+}
+.outer-div {
+  height: 89%;
+  display: flex;
+  position: relative;
+  top: 81px;
+  flex-direction: column;
+}
+.grid-wrapper {
+  flex: 1 1 auto;
+}
+
+.input {
+  position: relative;
+  text-align: start;
+  bottom: 2px;
+  left: 10px;
+}
+
+.result {
+  position: relative;
+  top: 10px;
+  left: 15px;
+}
+
+.mat-form-field {
+  position: absolute !important;
+  box-sizing: border-box !important;
+  border: 1px solid gray !important;
+  max-height: 44px !important;
+  text-align: end !important;
+  top: 18px !important;
+  background-color: #fff !important;
+  width: 180px;
+  right: 16% !important;
+}
+
+.div_button {
+  position: absolute;
+  text-align: end;
+  top: 22px;
+  right: 35px;
+}
+.button {
+  position: relative;
+  border-radius: 1px;
+  color: black;
+  display: inline-block;
+  width: 15px;
+  height: 13px;
+  font-size: 15px;
+  margin-right: 1px;
+  background-size: cover;
+  height: 44px;
+  width: 141px;
+  bottom: 5px;
+}
+
+.button:hover {
+  background-color: #009aff;
+  transition: 0.7s;
+  color: #fff;
+  font-size: 15px;
+  border: none;
+}
+
+.img {
+  position: relative;
+  right: 10px;
+}
+.fa-light {
+  color: #fff;
+}
+::ng-deep .mat-focused .mat-form-field-label {
+  color: white !important;
+}
+
+::ng-deep.mat-form-field-underline {
+  display: none;
+  background-color: white !important;
+}
+
+::ng-deep.mat-form-field-ripple {
+  background-color: white !important;
+}
+
+mat-datepicker-toggle {
+  position: relative !important;
+  font-size: 22px !important;
+  margin: 15px !important;
+}
