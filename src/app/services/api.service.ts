@@ -13,6 +13,7 @@ import { Observable, Subject } from 'rxjs';
 export class ApiService {
   BASE_URL = environment.API_BASE_URL;
   EDGE_URL = environment.NODE_EDGE_URL;
+  BASE_URL_RE = environment.API_BASE_URL_RE;
   SKILL_EDGE_URL = environment.SKILL_EDGE_URL;
   Prourl = environment.NODE_URL;
   EncryptKEY = environment.encryptionKey;
@@ -337,11 +338,11 @@ getAGgridPatnerList(data){
   }
   behaviouralDashboard(data) {
     
-    return this.http.post(`https://reportedgeqa.lntedutech.com/behaviouralDashboard`, data);
+    return this.http.post(`${this.BASE_URL_RE}/behaviouralDashboard`, data);
   }
   behaviourResultAks(data)
   {
-     return this.http.post(`https://reportedgeqa.lntedutech.com/behaviourResultAks`, data);
+     return this.http.post(`${this.BASE_URL_RE}/behaviourResultAks`, data);
   }
 
 
