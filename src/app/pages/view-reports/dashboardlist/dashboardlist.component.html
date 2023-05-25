@@ -1,17 +1,23 @@
-<div class="header-wrapper">
+<div class="head-wrapper">
   <div class="side-header">
     <h2 class="result"> Behavioural Dashboard </h2>
   </div>
-  <div class="side-header">
-    <mat-form-field>
-      <input class="input" matInput [matDatepicker]="picker" (dateChange)="dateChange($event)" placeholder="Choose a date" >
-      <mat-datepicker-toggle matSuffix [for]="picker" class="mat_date"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>
-    <div class="div_button">
-      <button mat-raised-button class="button" (click)="behaviourResultAks($event)"> Generate Report </button>
-    </div>
-  </div>
+  <div class="mat-header">
+    <div class="side_flex">
+       <mat-form-field appearance="fill">
+           <input class="input" matInput placeholder="Select Date"[matDatepicker]="picker" (dateChange)="dateChange($event)" required="" type="" onfocus="(this.type='')">
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+            </div>
+            <div class="side_flex">
+              <button mat-raised-button class="button" (click)="behaviourResultAks($event)"> Generate Report </button>
+           </div>
+          </div>
+    <!-- <div class="Date">
+    <input class="textbox-n" onfocus="(this.type='date')" placeholder="Select Date" (change)="dateChange($event)">
+  </div> -->
+      
 </div>
 
 <div class="outer-div">
