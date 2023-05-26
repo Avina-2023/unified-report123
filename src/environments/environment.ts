@@ -13,6 +13,7 @@ export const environment = {
   blobKey : "",
 
   API_BASE_URL: 'https://skilledgeqa.lntedutech.com',
+  API_BASE_URL_RE: 'https://reportedgeqa.lntedutech.com',
   NODE_EDGE_URL: 'https://skilledgeqa.lntedutech.com',
   NODE_URL: 'https://uapcoreserviceqa.lntedutech.com',
   // API_BASE_URL: 'https://uapedgeservicedev.lntedutech.com',
