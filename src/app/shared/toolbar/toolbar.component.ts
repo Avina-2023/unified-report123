@@ -11,6 +11,7 @@ import { APP_CONSTANTS } from '../../utils/app-constants.service';
 export class ToolbarComponent implements OnInit {
   showFiller = false;
   check = "userlist";
+  checks = "behaviouraldashboard";
   roles:any;
   orgdetails:any;
   roleCode:any;
@@ -31,6 +32,9 @@ export class ToolbarComponent implements OnInit {
     this.roleCode = this.orgdetails && this.orgdetails[0].roles && this.orgdetails[0].roles[0].roleCode;
     if(this.router.url == '/auth/reports/userlist'){
       this.check='userlist';
+    }
+    else if(this.router.url == '/auth/reports/behaviouraldashboard'){
+      this.checks='behaviouraldashboard';
     }else{
       this.check='skillmaster';
     }
@@ -53,7 +57,13 @@ export class ToolbarComponent implements OnInit {
       this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.REPORTS.USERLIST);
     } else if (value == "skillmaster") {
       this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.SKILLMASTER.SKILLMASTERLIST);
+    }else if (value == "behaviouraldashboard") {
+      this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.REPORTS.BEHAVIOURALDASHBOARD);
     }
+  }
+
+  newlink(value){
+    this.check = value;
   }
 
   changeIcon() {
