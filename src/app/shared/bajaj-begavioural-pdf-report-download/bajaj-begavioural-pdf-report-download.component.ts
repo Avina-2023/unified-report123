@@ -25,6 +25,7 @@ export class BajajBegaviouralPdfReportDownloadComponent implements OnInit {
   InAppReport: any;
   orgdetails: any;
   orgId: any;
+  count = 5;
   BARvalue= [2,3,5,6,7,9];
   // continouslyValue = 2;
   continouslyValue: any;
@@ -36,11 +37,45 @@ export class BajajBegaviouralPdfReportDownloadComponent implements OnInit {
   continouslyValueNine :boolean = true;
   year = new Date().getFullYear();
 
+
+  candidatescoremean:any;
+  questionsandprobes:any;
+
+
+
+
   benchMarkScore = [
     { score: '1-3', label: 'LOW', color: 'red' },
     { score: '4-6', label: 'AVERAGE', color: 'orange' },
     { score: '7-10', label: 'HIGH', color: 'green' },
   ];
+
+   biasprofiledata :any = [
+    {
+      name:"Blind Responses",
+      minidescription:"Responding in the same pattern, regardless of the statement being positive or negative",
+      biasvalue:43
+    },
+    {
+      name:"Extreme Responses",
+      minidescription:"Responding using mainly extreme options in the scale",
+      biasvalue:65
+    },{
+      name:"Identical Responses",
+      minidescription:"Responding to all items in the most desirable pattern",
+      biasvalue:23
+    },
+    {
+      name:"Desirability Index",
+      minidescription:"Responding to all items in the most desirable pattern",
+      biasvalue:89
+    }
+  ]
+
+
+
+
+
   removeheading: any;
   roles: any;
 
@@ -75,6 +110,8 @@ export class BajajBegaviouralPdfReportDownloadComponent implements OnInit {
       this.orgId = this.orgdetails[0].orgId;
     }
     // this.continously()
+this.getProgressBarColor()
+
   }
   continously(){
     if(this.continouslyValue==2){
@@ -87,12 +124,40 @@ export class BajajBegaviouralPdfReportDownloadComponent implements OnInit {
     }
   }
 
+
+  getProgressBarColor(){
+
+   this.biasprofiledata.forEach((value)=>{
+      if (value.biasvalue < 30) {
+        return 'red-progress';
+      } else if (value.biasvalue < 70) {
+        return 'yellow-progress';
+      } else {
+        return 'green-progress';
+      }
+    })
+  }
+
   ngOnDestroy(){
     this.subscription ? this.subscription.unsubscribe() : '';
   }
 
   getReportData() {
     this.getAllBehaviourData = this.data.data ? this.data.data : null;
+    let competencydata = this.getAllBehaviourData.reportSnapShot.competency;
+    for(let scorecontenteddata of competencydata ){
+      for(let scoreinnerdata of scorecontenteddata.scoreContents){
+        console.log(scoreinnerdata,'kkk')
+        this.candidatescoremean = scoreinnerdata.beiQuestions;
+      }
+    }
+
+
+
+
+    this.getAllBehaviourData.reportSnapShot.competency.forEach(element => {
+
+    });
     this.getAllBehaviourAPIDetails = this.data ? this.data : null;
     this.getAllBasicData = this.data.basicDetails
       ? this.data.basicDetails
@@ -120,6 +185,7 @@ export class BajajBegaviouralPdfReportDownloadComponent implements OnInit {
     }
   }
 
+
   reportImage(name) {
     if (name == 'CONTINUOUSLY RAISE THE BAR') {
       return this.img = '/assets/images/pdfDownload/CONTINUOUSLYRAISETHEBAR.svg';
@@ -144,38 +210,41 @@ export class BajajBegaviouralPdfReportDownloadComponent implements OnInit {
     }
   }
 
-  factorsSkillsImage(name){
-    if (name == 'Detail-Oriented') {
-      return this.img = '/assets/images/pdfDownload/detailOriented.svg';
-    } else if (name == 'Critical Thinking') {
-      return this.img = '/assets/images/pdfDownload/criticalThinking.svg';
-    } else if (name == 'Creative Thinking') {
-      return this.img = '/assets/images/pdfDownload/creativeThinking.svg';
-    } else if (name == 'Communication Skills') {
-      return this.img = '/assets/images/pdfDownload/communicationSkillBajaj.jpg';
-    } else if (name == 'Teamwork') {
-      return this.img = '/assets/images/pdfDownload/team-Work.svg';
-    } else if (name == 'Positive Attitude') {
-      return this.img = '/assets/images/pdfDownload/positiveAttitude.svg';
-    } else if (name == 'Self-Reliance') {
-      return this.img = '/assets/images/pdfDownload/selfReliant.svg';
-    }else if (name == 'Receptiveness') {
-      return this.img = '/assets/images/pdfDownload/receptiveness.svg';
-    } else if (name == 'Growth Mind-Set') {
-      return this.img = '/assets/images/pdfDownload/growthMindset.svg';
-    } else if (name == 'Adaptability') {
-      return this.img = '/assets/images/pdfDownload/adaptablity.svg';
-    } else if (name == 'Emotional Self-Awareness') {
-      return this.img = '/assets/images/pdfDownload/emotionalAwarness.svg';
-    }
-    else if (name == 'Anxiety Management') {
-      return this.img = '/assets/images/pdfDownload/anxietyMgmnt.svg';
-    } else if (name == 'Empathy') {
-      return this.img = '/assets/images/pdfDownload/empathy.svg';
-    }else {
-      return this.img = '';
-    }
-  }
+  // factorsSkillsImage(name){
+  //   if (name == 'Detail-Oriented') {
+  //     return this.img = '/assets/images/pdfDownload/detailOriented.svg';
+  //   } else if (name == 'Critical Thinking') {
+  //     return this.img = '/assets/images/pdfDownload/criticalThinking.svg';
+  //   } else if (name == 'Creative Thinking') {
+  //     return this.img = '/assets/images/pdfDownload/creativeThinking.svg';
+  //   } else if (name == 'Communication Skills') {
+  //     return this.img = '/assets/images/pdfDownload/communicationSkillBajaj.jpg';
+  //   } else if (name == 'Teamwork') {
+  //     return this.img = '/assets/images/pdfDownload/team-Work.svg';
+  //   } else if (name == 'Positive Attitude') {
+  //     return this.img = '/assets/images/pdfDownload/positiveAttitude.svg';
+  //   } else if (name == 'Self-Reliance') {
+  //     return this.img = '/assets/images/pdfDownload/selfReliant.svg';
+  //   }else if (name == 'Receptiveness') {
+  //     return this.img = '/assets/images/pdfDownload/receptiveness.svg';
+  //   } else if (name == 'Growth Mind-Set') {
+  //     return this.img = '/assets/images/pdfDownload/growthMindset.svg';
+  //   } else if (name == 'Adaptability') {
+  //     return this.img = '/assets/images/pdfDownload/adaptablity.svg';
+
+  //   }
+  //   else if (name == 'Emotional Self-Awareness') {
+  //     return this.img = '/assets/images/pdfDownload/emotionalAwarness.svg';
+  //   }
+  //   else if (name == 'Anxiety Management') {
+  //     return this.img = '/assets/images/pdfDownload/anxietyMgmnt.svg';
+  //   } else if (name == 'Empathy') {
+  //     return this.img = '/assets/images/pdfDownload/empathy.svg';
+  //   }
+  //   else {
+  //     return this.img = '';
+  //   }
+  // }
 
   downloadAsPDF() {
     this.toastr.success('Please wait','PDF is downloading')
@@ -212,28 +281,28 @@ export class BajajBegaviouralPdfReportDownloadComponent implements OnInit {
 
 
 
-  splitHeading(glimpse){
-      if(glimpse.includes("THOUGHT FACTOR")){
-        let heading = "THOUGHT FACTOR";
-        this.removeheading = glimpse.replace("THOUGHT FACTOR", "  ");
-        return heading;
-      }else if (glimpse.includes("INTERPERSONAL FACTOR")){
-        let heading = "INTERPERSONAL FACTOR";
-        this.removeheading = glimpse.replace("INTERPERSONAL FACTOR", "  ");
-        return heading;
+  // splitHeading(glimpse){
+  //     if(glimpse.includes("THOUGHT FACTOR")){
+  //       let heading = "THOUGHT FACTOR";
+  //       this.removeheading = glimpse.replace("THOUGHT FACTOR", "  ");
+  //       return heading;
+  //     }else if (glimpse.includes("INTERPERSONAL FACTOR")){
+  //       let heading = "INTERPERSONAL FACTOR";
+  //       this.removeheading = glimpse.replace("INTERPERSONAL FACTOR", "  ");
+  //       return heading;
 
-      }else if (glimpse.includes("CORE/PERSONAL FACTOR")){
-        let heading = "CORE/PERSONAL FACTOR";
-        this.removeheading = glimpse.replace("CORE/PERSONAL FACTOR", "  ");
-        return heading;
+  //     }else if (glimpse.includes("CORE/PERSONAL FACTOR")){
+  //       let heading = "CORE/PERSONAL FACTOR";
+  //       this.removeheading = glimpse.replace("CORE/PERSONAL FACTOR", "  ");
+  //       return heading;
 
-      }else{
-        let heading = "EMOTION FACTOR";
-        this.removeheading = glimpse.replace("EMOTION FACTOR", "  ");
-        return heading;
-      }
+  //     }else{
+  //       let heading = "EMOTION FACTOR";
+  //       this.removeheading = glimpse.replace("EMOTION FACTOR", "  ");
+  //       return heading;
+  //     }
 
-  }
+  // }
 }
 
 

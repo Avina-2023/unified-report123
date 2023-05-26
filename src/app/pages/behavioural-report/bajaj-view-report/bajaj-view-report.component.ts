@@ -14,6 +14,8 @@ import { LoadingService } from 'src/app/services/loading.service';
 })
 export class BajajViewReportComponent implements OnInit, AfterViewInit, OnDestroy {
   getAllBehaviourData: any;
+  getAllBehaviourcompetencydata:any;
+  getAllBehaviourscorecontentdata:any;
   getBajaBehaviourReportAPISubscription: Subscription;
   getAllBasicData: any;
   emailId: any;
@@ -28,9 +30,9 @@ export class BajajViewReportComponent implements OnInit, AfterViewInit, OnDestro
   continouslyValueSeven :boolean = false;
   continouslyValueNine :boolean = false;
   benchMarkScore = [
-    {score:"1-3",label:"LOW",color:"red"},
-    {score:"4-6",label:"AVERAGE",color:"orange"},
-    {score:"7-10",label:"HIGH",color:"green"},
+    {score:"1-3",label:"LOW",color:"red",bias:"Strong Bias",biascore:"80-100%",biaslabel:"Strong"},
+    {score:"4-6",label:"AVERAGE",color:"orange",bias:"Mild Bias",biascore:"40-70%",biaslabel:"Mild"},
+    {score:"7-10",label:"HIGH",color:"green",bias:"Low Bias",biascore:"> 40%",biaslabel:"Low"},
   ];
   bgColorInput:string = '#85BD44';
   doughnutValue:number = 4;
@@ -85,12 +87,12 @@ export class BajajViewReportComponent implements OnInit, AfterViewInit, OnDestro
   }
   skillChange(index){
     this.skillSelected=index;
-    console.log( this.skillSelected)
+
   }
 
   tabChanged(event) {
     this.tabIndex = event.index;
-    this.skillSelected=0;
+    this.skillSelected= event.index;
     switch(this.tabIndex) {
       case 0:
         this.bgColorInput = '#85BD44';
@@ -111,6 +113,8 @@ export class BajajViewReportComponent implements OnInit, AfterViewInit, OnDestro
 
   }
 
+
+
   getBehaviouralReportData(data) {
       const apiData = {
         email: data,
@@ -121,6 +125,7 @@ export class BajajViewReportComponent implements OnInit, AfterViewInit, OnDestro
       if (response && response.success && response.data) {
           this.apiSuccess = true;
           this.getAllBehaviourData = response.data.data ? response.data.data : null;
+          this.getAllBehaviourcompetencydata = response.data.data ? response.data.data.reportSnapShot : null;
           this.getAllBehaviourAPIDetails = response.data ? response.data : null;
           this.getAllBasicData = response.data.basicDetails ? response.data.basicDetails : null;
           this.highestEducation = this.getAllBasicData && this.getAllBasicData.education ? this.getAllBasicData.education : [];
