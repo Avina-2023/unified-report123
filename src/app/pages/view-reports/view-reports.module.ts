@@ -26,7 +26,8 @@ import { CandidateSkillsComponent } from './sub-pages/candidate-skills/candidate
 import { CandidateProfileComponent } from './sub-pages/candidate-profile/candidate-profile.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NgCircleProgressModule } from 'ng-circle-progress';
-import {BajajBehaviouralCompetencyAreaComponent} from './sub-pages/bajaj-behavioural-competency-area/bajaj-behavioural-competency-area.component';
+import { BajajBehaviouralCompetencyAreaComponent } from './sub-pages/bajaj-behavioural-competency-area/bajaj-behavioural-competency-area.component';
+import { DashboardlistComponent } from './dashboardlist/dashboardlist.component';
 @NgModule({
   declarations: [
     ProfileInfoComponent,
@@ -43,7 +44,8 @@ import {BajajBehaviouralCompetencyAreaComponent} from './sub-pages/bajaj-behavio
     CandidateSkillsComponent,
     CandidateProfileComponent,
     DashboardComponent,
-    BajajBehaviouralCompetencyAreaComponent
+    BajajBehaviouralCompetencyAreaComponent,
+    DashboardlistComponent,
     // BajajViewReportComponent
     
   ],
