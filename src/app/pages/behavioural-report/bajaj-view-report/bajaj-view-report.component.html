@@ -365,10 +365,10 @@
       <section class="snapshot">
         <div class="containerWrapper">
           <div class="innerContainerbias">
-            <div class="heading2">{{getAllBehaviourData.responseBiasProfileDescription.topicName}}</div>
-            <p>{{getAllBehaviourData.responseBiasProfileDescription.description}}</p>
+            <div class="heading2">{{getAllBehaviourData?.responseBiasProfileDescription?.topicName}}</div>
+            <p>{{getAllBehaviourData?.responseBiasProfileDescription?.description}}</p>
 
-            <ng-container *ngFor="let biasprofiledata of getAllBehaviourData.responseBiasProfileContent">
+            <ng-container *ngFor="let biasprofiledata of getAllBehaviourData?.responseBiasProfileContent">
               <div class="progressbias">
               <div class="biastitle">{{biasprofiledata.name}}</div>
               <div class="biasdescription">{{biasprofiledata.description}}</div>
@@ -386,15 +386,15 @@
             </ng-container>
 
             <div class="point" style="top:0px">
-              <div class="biastitle">{{getAllBehaviourData.responseBiasProfileContent[3].name}}</div>
+              <div class="biastitle">{{getAllBehaviourData?.responseBiasProfileContent[3]?.name}}</div>
               <div class="snapshot-point2">
                 <div class="snapshot-point">
-                  <div class="bullet" *ngIf="getAllBehaviourData.responseBiasProfileContent[3].scorewiseDescription.length">
-                      <ul class="bullet" *ngFor="let disablitydata of getAllBehaviourData.responseBiasProfileContent[3].scorewiseDescription">
+                  <div class="bullet" *ngIf="getAllBehaviourData?.responseBiasProfileContent[3]?.scorewiseDescription?.length">
+                      <ul class="bullet" *ngFor="let disablitydata of getAllBehaviourData?.responseBiasProfileContent[3]?.scorewiseDescription">
                         <li>{{disablitydata?.description ? disablitydata?.description: '-' }}</li>
                       </ul>
                   </div>
-                  <ul class="bullet" *ngIf="!getAllBehaviourData.responseBiasProfileContent[3].scorewiseDescription.length">
+                  <ul class="bullet" *ngIf="!getAllBehaviourData?.responseBiasProfileContent[3]?.scorewiseDescription?.length">
                     <li> No Recommendations</li>
                   </ul>
                 </div>
@@ -402,7 +402,7 @@
             </div>
             <br>
             <br>
-            <div class="biastitle">{{getAllBehaviourData.responseBiasProfileContent[3].name}}</div>
+            <div class="biastitle">{{getAllBehaviourData?.responseBiasProfileContent[3]?.name}}</div>
              <div class="benchmarkInfo">
 
               <div class="score" style=" width: 84%;position: relative;left: 12%;margin-top: 4%;overflow-x: hidden;">
