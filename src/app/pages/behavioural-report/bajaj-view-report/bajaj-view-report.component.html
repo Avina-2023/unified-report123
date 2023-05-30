@@ -384,7 +384,6 @@
               </div>
               </div>
             </ng-container>
-
             <div class="point" style="top:0px">
               <div class="biastitle">{{getAllBehaviourData?.responseBiasProfileContent[3]?.name}}</div>
               <div class="snapshot-point2">
@@ -403,35 +402,34 @@
             <br>
             <br>
             <div class="biastitle">{{getAllBehaviourData?.responseBiasProfileContent[3]?.name}}</div>
-             <div class="benchmarkInfo">
-
-              <div class="score" style=" width: 84%;position: relative;left: 12%;margin-top: 4%;overflow-x: hidden;">
-                <div class="wrapper">
-                  <ng-container *ngFor="let score of benchMarkScore">
-                    <div class="score-content"
-                      [ngClass]="{'red':score.color == 'red', 'green': score.color == 'green', 'yellow':score.color == 'yellow' ,'orange':score.color == 'orange'}">
-                      <div class="scorepoint">{{score.biascore}}</div>
-                      <div class="scorelabel">{{score.biaslabel}}</div>
-                    </div>
-                  </ng-container>
-                </div>
+            <div class="benchmarkInfotwo">
+              <div class="scorebenchmarkInfotwo">
+                <ng-container *ngFor="let score of benchMarkScore">
+                  <div class="score-content">
+                    <div class="line" [ngStyle]="{'background-color': score.colorcode}"></div>
+                    <div class="scorepoint" style="position: relative;top: 14px;left: 10px;">{{score.bias}}</div>
+                  </div>
+                </ng-container>
               </div>
             </div>
-            <!-- <div class="benchmarkInfo">
-              <div class="score scorebg"  style=" width: 83%;position: relative;left: 15%;margin-top: 1%;">
-                <div class="wrapper">
-                  <ng-container *ngFor="let score of benchMarkScore">
-                    <div class="score-content"
-                      [ngClass]="{'red':score.color == 'red', 'green': score.color == 'green', 'yellow':score.color == 'yellow' ,'orange':score.color == 'orange'}">
-                      <div class="scorepoint" style="    position: relative;top: 14px;">{{score.bias}}</div>
-                    </div>
-                  </ng-container>
-                </div>
-              </div>
-            </div> -->
-
+            <br>
+            <br>
+            <div class="biastitle">{{getAllBehaviourData?.responseBiasProfileContent[3]?.name}}</div>
+            <div class="table">
+              <table style="width:100%">
+                <tr>
+                  <th style="width: 13%;">Desirability Level</th>
+                  <th style="width: 8%;">Range</th>
+                  <th>Description</th>
+                </tr>
+                <tr *ngFor="let desirability of getAllBehaviourData.desirabilityIndex">
+                  <td >{{desirability.desirabilityLevel}}</td>
+                  <td > {{desirability.range}}</td>
+                  <td >{{desirability.description}}</td>
+                </tr>
+              </table>
+            </div>
             <div>
-
             </div>
           </div>
         </div>
@@ -545,7 +543,7 @@
   </div>
 </ng-template>
 <!--  -->
-<div class="printing" *ngIf="getAllBehaviourData && emailId">
+<div class="printing" *ngIf="getAllBehaviourData && emailId" style="position: fixed;">
   <!--  -->
   <app-bajaj-begavioural-pdf-report-download [email]="emailId"
     [data]="getAllBehaviourAPIDetails"></app-bajaj-begavioural-pdf-report-download>
