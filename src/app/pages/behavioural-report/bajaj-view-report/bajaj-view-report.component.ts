@@ -30,9 +30,9 @@ export class BajajViewReportComponent implements OnInit, AfterViewInit, OnDestro
   continouslyValueSeven :boolean = false;
   continouslyValueNine :boolean = false;
   benchMarkScore = [
-    {score:"1-3",label:"LOW",color:"red",bias:"Strong Bias",biascore:"80-100%",biaslabel:"Strong"},
-    {score:"4-6",label:"AVERAGE",color:"orange",bias:"Mild Bias",biascore:"40-70%",biaslabel:"Mild"},
-    {score:"7-10",label:"HIGH",color:"green",bias:"Low Bias",biascore:"> 40%",biaslabel:"Low"},
+    {score:"1-3",label:"LOW",color:"red",bias:"Strong Bias",biascore:"80-100%",biaslabel:"Strong",colorcode:"#DE001C"},
+    {score:"4-6",label:"AVERAGE",color:"orange",bias:"Mild Bias",biascore:"40-70%",biaslabel:"Mild",colorcode:"#F7A500"},
+    {score:"7-10",label:"HIGH",color:"green",bias:"Low Bias",biascore:"> 40%",biaslabel:"Low",colorcode:"#0DB200"},
   ];
   bgColorInput:string = '#85BD44';
   doughnutValue:number = 4;
