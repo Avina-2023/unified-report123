@@ -1,7 +1,9 @@
 @import "variables";
 .bodyWrapper {
-  overflow-x: hidden;
+  // overflow-x: hidden;
   background-color: #f7fafe !important;
+  overflow: auto;
+  height: 100vh;
 }
 .bodyWrapper::-webkit-scrollbar {
   display: none;
