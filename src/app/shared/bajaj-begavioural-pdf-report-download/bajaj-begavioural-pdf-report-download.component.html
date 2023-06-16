@@ -47,14 +47,14 @@
     <br>
     <br>
     <br>
-    <footer01 class="d-flex justify-content-between m-t-30">
+    <footer class="d-flex justify-content-between m-t-30">
       <div class="copyrights">
         <p> ©{{year}} L&T EduTech. All Rights Reserved.</p>
       </div>
       <figure class="logo">
         <img src="/assets/images/pdfDownload/Logo1.png" alt="" />
       </figure>
-    </footer01>
+    </footer>
     <!-- footer end -->
 
 
@@ -500,7 +500,7 @@
                     </div>
                   </div>
                 </section>
-                <div class="benchmarkInfo1">
+                <!-- <div class="benchmarkInfo1">
                   <div class="benchmarkInfo">
                     <figure class="chart">
                       <img src="/assets/images/scoreInfo.svg" alt="">
@@ -518,7 +518,7 @@
                       </div>
                     </div>
                   </div>
-                </div>
+                </div> -->
               </section>
               <br>
               <br>
@@ -620,7 +620,7 @@
 
       <img class="leftsidewatermarkimg" src="../../../assets/images/pdfDownload/bg-left.png">
       <section class="reportSnapshot">
-        <div class="heading3">REPORT SNAPSHOT</div>
+        <div class="heading3">RESPONSE BIAS PROFILE</div>
 
       </section>
       <img class="rightsidewatermarkimg" src="../../../assets/images/pdfDownload/bg-right.png">
@@ -635,7 +635,7 @@
       <div class="biasdescription">{{biasprofiledata.description}}</div>
       <div class="progressbar">
         <div class="summary">
-          <mat-progress-bar [ngClass]="red-progress" [value]="45" ></mat-progress-bar>
+          <mat-progress-bar class={{biasprofiledata.className}}  [value]="biasprofiledata.className == 'red-progress'? 33: biasprofiledata.className == 'yellow-progress'? 66:biasprofiledata.className == 'green-progress'? 100:0 "></mat-progress-bar>
           <div class="biasalignment">
             <span>STRONG BIAS</span>
             <span>MILD BIAS</span>
@@ -645,8 +645,39 @@
       </div>
       </div>
     </ng-container>
+    <div class="point" style="top:0px">
+      <div class="responsebiasprofile">
+        <div class="biasprofiledescription">
+          <div class="content2">
+            <div class="snapshot-point-green" style="margin-left: -30px;">
+
+              <div *ngIf="getAllBehaviourData?.responseBiasProfileContent?.length" >
+                <ul class="bullet" *ngFor="let disablitydata of getAllBehaviourData?.responseBiasProfileContent">
+                  <li >{{disablitydata?.scoreDescription ? disablitydata?.scoreDescription: '-' }}
+                  </li>
+                </ul>
+              </div>
+              <ul class="bullet" *ngIf="!getAllBehaviourData?.responseBiasProfileContent?.length">
+                <li> No Recommendations</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
       </div>
-    <div class="benchmarkInfo2">
+    </div>
+    </div>
+    <div class="benchmarkInfotwo">
+      <div class="scorebenchmarkInfotwo">
+        <ng-container *ngFor="let score of benchMarkScore">
+          <div class="score-content">
+            <div class="line" [ngStyle]="{'background-color': score.colorcode}"></div>
+            <div class="scorepoint" style="position: relative;top: 14px;left: 10px;">{{score.bias}}</div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+    <!-- <div class="benchmarkInfo2">
       <div class="benchmarkInfo">
         <figure class="chart">
           <img src="/assets/images/scoreInfo.svg" alt="">
@@ -655,21 +686,20 @@
           <div class="heading5">SCORE BENCHMARK INFO</div>
           <div class="wrapper">
             <ng-container *ngFor="let score of benchMarkScore">
-              <div class="score-content"
-                [ngClass]="{'red':score.color == 'red', 'green': score.color == 'green','orange':score.color == 'orange'}">
-                <div class="scorepoint">{{score.score}}</div>
-                <div class="scorelabel">{{score.label}}</div>
+              <div class="score-content">
+                <div class="line" [ngStyle]="{'background-color': score.colorcode}"></div>
+                <div class="scorepoint" style="position: relative;top: 14px;left: 10px;">{{score.bias}}</div>
               </div>
             </ng-container>
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
   </section>
   <br>
+  <!-- <br>
   <br>
-  <br>
-  <br>
+  <br> -->
   <br>
   <footer class="d-flex justify-content-between">
     <div class="copyrights">
@@ -680,10 +710,9 @@
     </figure>
   </footer>
 </section>
-<div class="html2pdf__page-break"></div>
+<!-- <div class="html2pdf__page-break"></div>
 <section class="heightContainer">
   <section class="commonHeight-1">
-
       <img class="leftsidewatermarkimg" src="../../../assets/images/pdfDownload/bg-left.png">
       <section class="reportSnapshot">
         <div class="heading3">RESPONSE BIAS PROFILE</div>
@@ -723,7 +752,7 @@
       <img src="/assets/images/pdfDownload/Logo1.png" alt="" />
     </figure>
   </footer>
-</section>
+</section> -->
   </div>
 </div>
 <div class="html2pdf__page-break"></div>
