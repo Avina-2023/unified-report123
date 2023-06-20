@@ -76,7 +76,7 @@
           </div>
           <div class="instructions">
             <div class="disclaimer" *ngFor="let topic of instructionDisclaimer">
-              <span style="font-weight: bold;">{{topic.topic}}</span>
+              <span>{{topic.topic}}</span>
               <ol>
                 <li *ngFor="let content of topic.content">{{content}}</li>
               </ol>
@@ -147,24 +147,23 @@
                                   <div class="barNo">6</div>
                                 </div>
                               </div>
-    
-    
+                              <div class="pointer-container-orange">
+                                <div class="box-orange arrow-top"  *ngIf="competency.stenScore==7">
+                                  <div class="barNo">7</div>
+                                </div>
+                              </div>
+
                             </div>
                           </div>
                         </div>
                         <div class="green-bar">
                           <div class="green-box"></div>
                           <div class="n-last">
-                            <span class="N4">7</span>
+                            <span class="N4">8</span>
                             <span class="N10">10</span>
                           </div>
-    
+
                           <div class="pointer-container">
-                            <div class="pointer-container-green">
-                              <div class="box-green arrow-top"  *ngIf="competency.stenScore==7">
-                                <div class="barNo">7</div>
-                              </div>
-                            </div>
                             <div class="pointer-container-green-1">
                               <div class="box-green arrow-top"  *ngIf="competency.stenScore==8">
                                 <div class="barNo">8</div>
@@ -188,7 +187,6 @@
                       <div class="snapshot-point-red">
                         <ul class="bullet" *ngFor="let dContent of competency.developmentContent">
                           <li>{{dContent.item}}</li>
-
                         </ul>
                       </div>
                       <div class="snapshot-point-green">
@@ -340,7 +338,7 @@
                               <img class="chart-img" src="/assets/images/scoreInfo.svg" alt="">
                             </figure>
                             <div class="score">
-                              <div class="heading6">SCORE BENCHMARK INFO</div>
+                              <div class="heading5">SCORE BENCHMARK INFO</div>
                               <div class="wrapper">
                                 <ng-container *ngFor="let score of benchMarkScore">
                                   <div class="score-content"
@@ -366,7 +364,7 @@
     </ng-container>
 
 
-      <section class="snapshot">
+      <section class="snapshotresponse">
         <div class="containerWrapper">
           <div class="innerContainerbias">
             <div class="heading2">{{getAllBehaviourData?.responseBiasProfileDescription?.topicName}}</div>
@@ -378,7 +376,11 @@
               <div class="biasdescription">{{biasprofiledata.description}}</div>
               <div class="progressbar">
                 <div class="summary">
-                  <mat-progress-bar class={{biasprofiledata.className}}  [value]="biasprofiledata.className == 'red-progress'? 33: biasprofiledata.className == 'yellow-progress'? 66:biasprofiledata.className == 'green-progress'? 100:0 "></mat-progress-bar>
+                    <!-- <mat-progress-bar class={{biasprofiledata.className}}  [value]="biasprofiledata.className == 'red-progress'? 33: biasprofiledata.className == 'yellow-progress'? 66:biasprofiledata.className == 'green-progress'? 100:0 "></mat-progress-bar> -->
+         <div class="progress2">
+          <div class="progress-barback" [ngClass]="{'progress-barbackone': biasprofiledata.className == 'red-progress','progress-barbacktwo': biasprofiledata.className == 'yellow-progress','progress-barbackthree': biasprofiledata.className == 'green-progress' }"></div>
+         </div>
+          <div class="biasointerclr" [ngClass]="{'biasointerfirststep': biasprofiledata.className == 'red-progress','biasointertwostep': biasprofiledata.className == 'yellow-progress','biasointerthreestep': biasprofiledata.className == 'green-progress' }"></div>
                   <div class="biasalignment">
                     <span>STRONG BIAS</span>
                     <span>MILD BIAS</span>
@@ -420,8 +422,8 @@
             <div class="table">
               <table style="width:100%">
                 <tr>
-                  <th style="width: 13%;">Desirability Level</th>
-                  <th style="width: 8%;">Range</th>
+                  <th style="width: 20%;">Desirability Level</th>
+                  <th style="width: 20%;">Range</th>
                   <th>Description</th>
                 </tr>
                 <tr *ngFor="let desirability of getAllBehaviourData.desirabilityIndex">
@@ -545,8 +547,8 @@
   </div>
 </ng-template>
 <!--  -->
-<div class="printing" *ngIf="getAllBehaviourData && emailId" style="position: fixed;">
+<!-- <div class="printing" *ngIf="getAllBehaviourData && emailId" style="position: fixed;"> -->
   <!--  -->
   <app-bajaj-begavioural-pdf-report-download [email]="emailId"
     [data]="getAllBehaviourAPIDetails"></app-bajaj-begavioural-pdf-report-download>
-</div>
+<!-- </div> -->

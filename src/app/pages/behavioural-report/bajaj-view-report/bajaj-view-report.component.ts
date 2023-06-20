@@ -31,8 +31,8 @@ export class BajajViewReportComponent implements OnInit, AfterViewInit, OnDestro
   continouslyValueNine :boolean = false;
   benchMarkScore = [
     {score:"1-3",label:"LOW",color:"red",bias:"Strong Bias",biascore:"81-100%",biaslabel:"Strong",colorcode:"#DE001C"},
-    {score:"4-6",label:"AVERAGE",color:"orange",bias:"Mild Bias",biascore:"71-80%",biaslabel:"Mild",colorcode:"#F7A500"},
-    {score:"7-10",label:"HIGH",color:"green",bias:"Low Bias",biascore:"> 70%",biaslabel:"Low",colorcode:"#0DB200"},
+    {score:"4-7",label:"AVERAGE",color:"orange",bias:"Mild Bias",biascore:"71-80%",biaslabel:"Mild",colorcode:"#F7A500"},
+    {score:"8-10",label:"HIGH",color:"green",bias:"Low Bias",biascore:"> 70%",biaslabel:"Low",colorcode:"#0DB200"},
   ];
   instructionDisclaimer = [
     {
@@ -199,6 +199,6 @@ export class BajajViewReportComponent implements OnInit, AfterViewInit, OnDestro
   }
 
   progressbarcircle() {
- 
+
   }
 }
