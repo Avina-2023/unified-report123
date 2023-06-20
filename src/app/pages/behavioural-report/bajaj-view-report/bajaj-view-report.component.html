@@ -244,7 +244,7 @@
                   <div class="snapshotContent">
 
                     <div class="skillSelectedBorder">
-                      <div class="border"></div>
+                      <!-- <div class="border"></div> -->
                     </div>
                     <!-- <ng-container *ngIf="factors?.skills && factors.skills.length > 0 "> -->
                       <ng-container *ngFor="let skillsDetail of getAllBehaviourcompetencydata.competency; let skillDetailIndex = index">
@@ -477,13 +477,13 @@
         </div>
       </div>
     </div> -->
-    <footer class="Footer">
+    <footer class="Footerbottom">
           <div class="copyrights">
             <div class="Text">
-              <div class="text">©{{year}} L&T EduTech. All Rights Reserved</div>
+              ©{{year}} L&T EduTech. All Rights Reserved
             </div>
-            <div class="TextL">
-              <div class="text"><a href="https://lntedutech.com/privacy-policy/">Privacy Policy</a></div>
+            <div class="TextL"><a href="https://lntedutech.com/privacy-policy/">Privacy Policy</a>
+
             </div>
           </div>
     </footer>
@@ -547,8 +547,7 @@
   </div>
 </ng-template>
 <!--  -->
-<!-- <div class="printing" *ngIf="getAllBehaviourData && emailId" style="position: fixed;"> -->
-  <!--  -->
+<div class="printing" *ngIf="getAllBehaviourData && emailId" style="position: fixed;">
   <app-bajaj-begavioural-pdf-report-download [email]="emailId"
     [data]="getAllBehaviourAPIDetails"></app-bajaj-begavioural-pdf-report-download>
-<!-- </div> -->
+</div>
