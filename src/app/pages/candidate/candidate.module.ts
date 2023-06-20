@@ -18,6 +18,7 @@ import { TimeAgoPipe } from 'src/app/pipe/timeago.pipe';
 import { NoDataFoundComponent } from './candidateCommons/no-data-found/no-data-found.component';
 import { ResumeTemplate1Component } from './resume-builder/resume-templates/resumeTemplate1/resumeTemplate1.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
+import { DragScrollModule } from 'ngx-drag-scroll';
 
 
 
@@ -29,7 +30,8 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     MaterialModule,
     NgApexchartsModule,
     FormsModule,
-    CarouselModule
+    CarouselModule,
+    DragScrollModule,
   ],
   declarations: [
     JobDashboardComponent,

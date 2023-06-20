@@ -6,6 +6,8 @@ import { AppConfigService } from 'src/app/utils/app-config.service';
 import { APP_CONSTANTS } from 'src/app/utils/app-constants.service';
 import { NavigationExtras, Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
+import { ToastrService } from 'ngx-toastr';
+import { element } from 'protractor';
 
 @Component({
 	selector: 'app-job-listing',
@@ -39,30 +41,133 @@ export class JobListingComponent implements OnInit {
 	candidateDetails:any
 	useryop: any;
 	yopdate: any;
-	yopyear: any;
+	useryopyear: any;
+	jobyopyear: any;
 	yeararray: any;
+	yop: any;
+	jobDisable: boolean = false;
+	jobyearofpassout:any;
+	common = [];
+	removeduplicate:any;
+	removeduplicate1 :any;
+	removeduplicate2: any;
 
-	constructor(public dialog: MatDialog, private apiservice: ApiService, private appconfig: AppConfigService, public router:Router) { }
+	constructor(public dialog: MatDialog, private apiservice: ApiService, private appconfig: AppConfigService, public router:Router,private toaster: ToastrService) { }
 
 	ngOnInit() {
 		this.getJobList();
 		this.getJobFilter();
 	this.candidateData();
+	this.enabledisable();
 	}
 
 	customalert(){
-		alert('hello world');
+		this.toaster.error('Job Requirment does not match your profile',null,{
+			positionClass: 'toast-top-center'
+		})
 	}
 
 	candidateData(){
 		this.candidateDetails = localStorage.getItem('candidateProfile')
+
 		let educationyear = JSON.parse(this.candidateDetails);
-		this.useryop = educationyear?.education_details?.educations[0]?.year_of_passing;
-		 //console.log(educationyear?.education_details?.educations[0]?.year_of_passing , 'YOP')
+		// this.useryop = educationyear?.education_details?.educations[0]?.year_of_passing;
+		this.useryop = educationyear?.education_details?.educations[educationyear.education_details.educations.length - 1]?.year_of_passing;
+	    // console.log( educationyear?.education_details?.educations[educationyear.education_details.educations.length - 1]?.year_of_passing , 'YOP')
 		// console.log(educationyear,'details2')
 		this.yopdate = new Date(this.useryop);
-        this.yopyear = this.yopdate.getFullYear();
+        this.useryopyear = this.yopdate.getFullYear();
+		this.removeduplicate2 = this.useryopyear.toString()
+		console.log(this.useryopyear, 'useryop1');
+		return this.useryopyear;
 	}
+
+
+
+	
+	getJobList() {
+		let params: any =
+		{
+		  "pageNumber": this.pageNumber,
+        "itemsPerPage": this.itemsPerPage,
+			"filter": this.filterObj,
+			"sort": this.sortData,
+			"specialization": "Computer Science Engineering",
+			"email": this.appconfig.getLocalStorage("email")
+			// "isApplied":false,
+			// "isSelected":false
+		}
+		this.apiservice.joblistingDashboard(params).subscribe((response: any) => {
+			if (response.success) {
+				this.joblist = response.data;
+
+					console.log(this.joblist,'jobdata')
+
+
+					// this.joblist?.forEach((element)=>{
+					// 	element?.yearofPassout?.forEach((element)=>{
+					// 		if(element == this.useryopyear){
+					// 			this.common.push(element);
+					// 		}
+					// 	})
+					// 	return this.common;
+					// })
+					
+					//  this.removeduplicate = this.common.filter((item,index)=>{
+					// 	return this.common.indexOf(item) === index
+						
+					// })
+					// this.removeduplicate1 = this.removeduplicate.toString()
+					// console.log("unique",this.removeduplicate1);
+					
+					// console.log(this.common,'common')
+
+
+
+        this.totallength = response.totalCount;
+        this.total = Math.ceil(response.totalCount/this.itemsPerPage);
+        // console.log(this.total)
+				this.joblist.forEach(element => {
+					this.sampleContent.push(element.overview);
+				});
+			}
+		});
+	}
+
+
+
+
+	enabledisable(){
+		console.log(this.useryopyear)
+		
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+	jobyop(){
+		// this.yop?.forEach((element,i) => {
+		// 	console.log(element,'element');
+		// 	if(element == this.useryopyear){
+		// 	this.jobDisable = true
+		// 	console.log(this.jobDisable,'jobDisable1');
+		// 	}
+		// 	else {
+		// 		this.jobDisable = false
+		// 		console.log(this.jobDisable,'jobDisable1');
+		// 	}
+		// })
+	}
+
 
 
 
@@ -197,36 +302,6 @@ export class JobListingComponent implements OnInit {
     }
 
 
-	getJobList() {
-		let params: any =
-		{
-		  "pageNumber": this.pageNumber,
-        "itemsPerPage": this.itemsPerPage,
-			"filter": this.filterObj,
-			"sort": this.sortData,
-			"specialization": "Computer Science Engineering",
-			"email": this.appconfig.getLocalStorage("email")
-			// "isApplied":false,
-			// "isSelected":false
-		}
-		this.apiservice.joblistingDashboard(params).subscribe((response: any) => {
-			if (response.success) {
-				this.joblist = response.data;
-				this.yeararray = this.joblist;
-				console.log(this.yeararray ,'job data');
-				console.log(this.yopyear, 'useryop');
-
-			
-
-        this.totallength = response.totalCount;
-        this.total = Math.ceil(response.totalCount/this.itemsPerPage);
-        // console.log(this.total)
-				this.joblist.forEach(element => {
-					this.sampleContent.push(element.overview);
-				});
-			}
-		});
-	}
 
 
 	getJobFilter() {

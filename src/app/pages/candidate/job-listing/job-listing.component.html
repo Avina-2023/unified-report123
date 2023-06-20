@@ -42,11 +42,17 @@
 
     <div class="main2">
       <div class="card-sty">
-        <mat-card class="main-card2" *ngFor="let item of joblist;let i=index">
+        <mat-card class="main-card2" *ngFor="let item of joblist;let i as index">
           <div>
-            <!-- <div  *ngIf="item.yearofPassout == yopyear" (click)="gotojob(item)"> -->
-            <div [disabled]="item.yearofPassout != yopyear" (click)="item.yearofPassout == yopyear ? gotojob(item) : customalert()" [ngClass]="{'blurcard': item.yearofPassout != yopyear}">
-              <div class="minicard-header">
+            <!-- {{this.jobDisable}} -->
+            <!-- {{item.yearofPassout}}
+            {{useryopyear}} -->
+            <!-- org -->
+            <!-- <div [disabled]="item.yearofPassout != useryopyear" (click)="item.yearofPassout == useryopyear ? gotojob(item) : customalert()" [ngClass]="{'blurcard': item.yearofPassout != useryopyear}"> -->
+
+              <div [disabled]="!item.yearofPassout.includes(removeduplicate2)" (click)="item.yearofPassout.includes(removeduplicate2) ? gotojob(item) : customalert()" [ngClass]="{'blurcard': !item.yearofPassout.includes(removeduplicate2)}">
+
+                <div class="minicard-header">
                 <div class="minicard-heading">
                   <span class="head1">{{item.jobRole}}</span> <br>
                   <span class="head2">{{item.company}}</span>
@@ -90,14 +96,17 @@
                   </div>
                 </div>
               </div>
+              
             </div>
             <div class="date">
               <!-- <div (click)="gotojob(item)"><span class="icon-calendar"></span></div> -->
-              <div [disabled]="item.yearofPassout != yopyear" (click)="item.yearofPassout == yopyear && gotojob(item)" [ngClass]="{'blurcard': item.yearofPassout != yopyear}"><span class="icon-calendar"></span></div>
-              <div [disabled]="item.yearofPassout != yopyear" (click)="item.yearofPassout == yopyear && gotojob(item)" [ngClass]="{'blurcard': item.yearofPassout != yopyear}">Posted on
+              <div [disabled]="!item.yearofPassout.includes(removeduplicate2)" (click)="item.yearofPassout.includes(removeduplicate2) ? gotojob(item) : customalert()" [ngClass]="{'blurcard': !item.yearofPassout.includes(removeduplicate2)}"><span class="icon-calendar"></span></div>
+              <!-- <div [disabled]="item.yearofPassout != useryopyear" (click)="item.yearofPassout == useryopyear && gotojob(item)" [ngClass]="{'blurcard': item.yearofPassout != useryopyear}">Posted on -->
+                <div [disabled]="!item.yearofPassout.includes(removeduplicate2)" (click)="item.yearofPassout.includes(removeduplicate2) ? gotojob(item) : customalert()" [ngClass]="{'blurcard': !item.yearofPassout.includes(removeduplicate2)}">Posted on
                 {{item.createdOn | date : 'd MMM'}}
               </div>
-              <div class="misc_save" [disabled]="item.yearofPassout != yopyear" (click)="item.yearofPassout == yopyear && bookMarkIcon(item)" [ngClass]="{'blurcard': item.yearofPassout != yopyear}">
+              <!-- <div class="misc_save" [disabled]="item.yearofPassout != useryopyear" (click)="item.yearofPassout == useryopyear && bookMarkIcon(item)" [ngClass]="{'blurcard': item.yearofPassout != useryopyear}"> -->
+                <div class="misc_save" [disabled]="!item.yearofPassout.includes(removeduplicate2)" (click)="item.yearofPassout.includes(removeduplicate2) && bookMarkIcon(item)" [ngClass]="{'blurcard': !item.yearofPassout.includes(removeduplicate2)}">
                 <div class="save">
                   <mat-icon [ngClass]="item.isSelected ? 'saved_icon':'unsaved_icon'">
                     {{item.isSelected?'bookmark':'bookmark_border'}} </mat-icon>

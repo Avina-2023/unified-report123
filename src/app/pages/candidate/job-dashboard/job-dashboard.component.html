@@ -7,16 +7,13 @@
       </div>
     </div>
     <div class="quote">
-      <div>Kick Start Your </div>
+      <div>Kick Start Your</div>
       <div>
-        <div class="grad-text"> CAREER </div>
+        <div class="grad-text">CAREER</div>
       </div>
     </div>
   </div>
 </div>
-
-
-
 
 <!-- 
 <mat-grid-list cols="12" rowHeight="1:1" gutterSize="6px">
@@ -77,17 +74,15 @@
 
  -->
 
-
-
-
 <div class="overflowbox">
-
   <div class="leftside">
     <div class="displaygrid">
       <div class="dashboardcards">
         <mat-card class="main-card">
           <div class="left-icon">
-            <div><img src="../../../../assets/images/jobs-available.png"></div>
+            <div>
+              <img src="../../../../assets/images/jobs-available.png" />
+            </div>
           </div>
           <div class="right-data">
             <div class="num">
@@ -98,7 +93,7 @@
         </mat-card>
         <mat-card class="main-card">
           <div class="left-icon">
-            <div><img src="../../../../assets/images/Jobs_applied.png"></div>
+            <div><img src="../../../../assets/images/Jobs_applied.png" /></div>
           </div>
           <div class="right-data">
             <div class="num2">
@@ -109,7 +104,9 @@
         </mat-card>
         <mat-card class="main-card">
           <div class="left-icon">
-            <div><img src="../../../../assets/images/profile_viewed.png"></div>
+            <div>
+              <img src="../../../../assets/images/profile_viewed.png" />
+            </div>
           </div>
           <div class="right-data">
             <div class="num3">
@@ -120,18 +117,84 @@
         </mat-card>
         <mat-card class="main-card">
           <div class="left-icon">
-            <div><img src="../../../../assets/images/shortlisted.png"></div>
+            <div><img src="../../../../assets/images/shortlisted.png" /></div>
           </div>
           <div class="right-data">
             <div class="num4">
               {{ shortlisted }}
             </div>
-            <div class="text">Shortlisted </div>
+            <div class="text">Shortlisted</div>
           </div>
         </mat-card>
       </div>
     </div>
 
+
+<!-- 
+    <div class="row2">
+      <div class="row-left">
+        <div>
+          <p class="secondheading">Recently Posted Jobs</p>
+        </div>
+
+        <div class="navigation-btn">
+          <button class="prev-btn"  [disabled]="leftNavDisabled" [ngClass]="leftNavDisabled ? 'disableArrow' : 'showArrow'" (click)="moveLeft()" ><em class='icon-LeftArrow'></em></button>
+          <button class="next-btn" [disabled]="rightNavDisabled"  (click)="moveRight()" [ngClass]="rightNavDisabled ? 'disableArrow' : 'showArrow'" ><em class='icon-RightArrow'></em></button>
+        </div>
+      </div>
+      <div class="row-right">
+        <h5 class="view" (click)="ViewAll()">View All</h5>
+      </div>
+    </div>
+
+    <drag-scroll #publishedContent snap-duration="200" (reachesLeftBound)="leftBoundStat($event)"
+      (reachesRightBound)="rightBoundStat($event)" [scrollbar-hidden]="true" [drag-scroll-y-disabled]="true">  
+      <div class="courseWrapper">
+        <div class="courseContainer" drag-scroll-item *ngFor="let slider of joblist">    
+          <div class="items">   
+            <div class="main2">
+              <mat-card class="main-card2">
+                <div class="minicard-header">
+                  <div class="minicard-heading">
+                    <span class="head1">{{slider.jobRole}}</span> <br>
+                    <span class="head2">{{slider.company}}</span>
+                  </div>
+                  <div class="company-image">
+                    <img [src]="slider.companyLogo" alt="" />
+                  </div>
+                </div>
+                <div class="details">
+                  <div class="sub-details">
+                    <div><span class="icon-full_time"></span></div>
+                    <div>{{ slider.jobType }}</div>
+                  </div>
+                  <div class="sub-details">
+                    <div><span class="icon-degree"></span></div>
+                    <div> {{ slider.education }}</div>
+                  </div>
+                  <div class="sub-details">
+                    <div class="loc"><mat-icon> location_on</mat-icon></div>
+                    <div>{{slider.jobLocation}}</div>
+                  </div>
+                  <div class="date">
+                    <div><span class="icon-calendar"></span></div>
+                    <div>Posted on {{slider.createdOn | date : 'd MMM'}}</div>
+                  </div>
+                </div>
+              </mat-card>
+            </div> 
+          </div>  
+        </div> 
+      </div>
+    </drag-scroll> -->
+
+    <!-- <owl-carousel-o [options]="customOptions" #owlCar>
+      <ng-container>
+        <ng-template *ngFor="let slider of joblist" class="imageWrapper" carouselSlide>
+
+        </ng-template>
+      </ng-container>
+    </owl-carousel-o> -->
 
     <div class="row2">
       <div class="row-left">
@@ -150,7 +213,7 @@
     <owl-carousel-o [options]="customOptions" #owlCar>
       <ng-container>
         <ng-template *ngFor="let slider of joblist" class="imageWrapper" carouselSlide>
-          <div class="main2">
+          <div class="main2" (click)="ViewAll()">
             <mat-card class="main-card2">
               <div class="minicard-header">
                 <div class="minicard-heading">
@@ -175,10 +238,11 @@
                   <div class="loc"><mat-icon> location_on</mat-icon></div>
                   <div>{{slider.jobLocation}}</div>
                 </div>
-                <div class="date">
-                  <div><span class="icon-calendar"></span></div>
-                  <div>Posted on {{slider.createdOn | date : 'd MMM'}}</div>
-                </div>
+                
+              </div>
+              <div class="date">
+                <div><span class="icon-calendar"></span></div>
+                <div>Posted on {{slider.createdOn | date : 'd MMM'}}</div>
               </div>
             </mat-card>
           </div>
@@ -187,42 +251,50 @@
     </owl-carousel-o>
 
 
-
-
-
     <div>
       <div class="row3">
         <div>
           <div>
-            <p class="thirdheading">Top Companies </p>
+            <p class="thirdheading">Top Companies</p>
           </div>
         </div>
         <div class="row-right">
-          <h5 class="view3" (click)="ViewAll()">View All </h5>
+          <h5 class="view3" (click)="ViewAll()">View All</h5>
         </div>
       </div>
       <div class="fourthheading">Fresh oppurtunities based on profiles</div>
     </div>
 
+   
+
+      <owl-carousel-o [options]="customOptions2" #owlCar>
+        <ng-container>
+          <ng-template *ngFor="let sliders of recentjobs" class="imageWrapper" carouselSlide>
+            <div class="main3">
+              <div>
+                <mat-card class="main-card3">
+                  <div class="company-image3">
+                    <img [src]="sliders.imgurl" alt="" />
+                  </div>
+                  <div class="comp">{{sliders.title}}</div>
+                  <div class="dept">{{sliders.specialization}}</div>
+                  <div class="miniview" (click)="ViewAll()">View Jobs</div>
+                </mat-card>
+              </div>
+            </div>
+          </ng-template>
+        </ng-container>
+      </owl-carousel-o>
+
+      
 
 
-    <div class="main3">
-      <div>
+      <!-- <div>
         <mat-card class="main-card3">
           <div class="company-image3">
-            <img src="../../../../assets/images/amadis-logo.png">
+            <img src="../../../../assets/images/LNT C.png" />
           </div>
-          <div class="comp">Amadis Technologies</div>
-          <div class="dept">IT/Computers</div>
-          <div class="miniview" (click)="ViewAll()">View Jobs</div>
-        </mat-card>
-      </div>
-      <div>
-        <mat-card class="main-card3">
-          <div class="company-image3">
-            <img src="../../../../assets/images/LNT C.png">
-          </div>
-          <div class="comp">L&T Construction  </div>
+          <div class="comp">L&T Construction</div>
           <div class="dept">Construction</div>
           <div class="miniview" (click)="ViewAll()">View Jobs</div>
         </mat-card>
@@ -231,7 +303,7 @@
       <div>
         <mat-card class="main-card3">
           <div class="company-image3">
-            <img src="../../../../assets/images/omega-HC.png">
+            <img src="../../../../assets/images/omega-HC.png" />
           </div>
           <div class="comp">Omega Healthcare</div>
           <div class="dept">Medical</div>
@@ -242,13 +314,13 @@
       <div>
         <mat-card class="main-card3">
           <div class="company-image3">
-            <img src="../../../../assets/images/LTI-MT.png">
+            <img src="../../../../assets/images/LTI-MT.png" />
           </div>
           <div class="comp">LTI Mindtree</div>
           <div class="dept">IT</div>
           <div class="miniview" (click)="ViewAll()">View Jobs</div>
         </mat-card>
-      </div>
+      </div> -->
 
       <!-- <div>
         <mat-card class="main-card3">
@@ -260,11 +332,8 @@
           <div class="miniview" (click)="ViewAll()">View Jobs</div>
         </mat-card>
       </div> -->
-
-    </div>
-
+    
   </div>
-
 
   <div class="card-right">
     <!-- <div class="d-flex visibleuser">
@@ -277,41 +346,54 @@
     </div> -->
     <div class="candidatebg">
       <div class="userprofile">
-        <img class="avatar" [src]="
-              profileImage
-                ? profileImage
-                : '../../../../assets/images/candidate-userprofile.png'
-            " />
+        <img
+          class="avatar"
+          [src]="
+            profileImage
+              ? profileImage
+              : '../../../../assets/images/candidate-userprofile.png'
+          "
+        />
         <div class="bg-white">
           <div class="profilename">
             {{ username }}
           </div>
 
           <div class="usermail">
-            {{useremail}}
+            {{ useremail }}
           </div>
 
           <!-- <div class="big" >-</div> -->
 
           <div class="small" *ngIf="usercity">
             {{ usercity }}, {{ userstate }}, {{ usercountry }}
-            <div style=" color: #ffff; width: max-content; background-color: #5D7E8E; border-radius: 2%; position: relative;
-              left: 45%;">
-            </div>
+            <div
+              style="
+                color: #ffff;
+                width: max-content;
+                background-color: #5d7e8e;
+                border-radius: 2%;
+                position: relative;
+                left: 45%;
+              "
+            ></div>
           </div>
-          <div class="gender_bg">
-            Male
-          </div>
+          <div class="gender_bg">{{gender}}</div>
 
           <div class="member-join" *ngIf="memberjoindate">
-            Member Since {{formattedDate}}
+            Member Since {{ formattedDate }}
           </div>
 
           <hr class="hrline" />
           <div class="profile-progress">
             <span>Profile Completion</span>
-            <div role="progressbar" aria-valuenow="{{ profilepercentage }}" aria-valuemin="0" aria-valuemax="100"
-              style="--value:{{ profilepercentage }}"></div>
+            <div
+              role="progressbar"
+              aria-valuenow="{{ profilepercentage }}"
+              aria-valuemin="0"
+              aria-valuemax="100"
+              style="--value:{{ profilepercentage }}"
+            ></div>
           </div>
           <hr />
           <!-- <div class="profile-buttons">
