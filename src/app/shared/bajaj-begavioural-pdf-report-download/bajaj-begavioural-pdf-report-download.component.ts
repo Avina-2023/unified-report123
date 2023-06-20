@@ -44,10 +44,10 @@ export class BajajBegaviouralPdfReportDownloadComponent implements OnInit {
 
 
 
-  benchMarkScore = [
-    { score: '1-3', label: 'LOW', color: 'red' },
-    { score: '4-6', label: 'AVERAGE', color: 'orange' },
-    { score: '7-10', label: 'HIGH', color: 'green' },
+  benchMarkScore =  [
+    {score:"1-3",label:"LOW",color:"red",bias:"Strong Bias",biascore:"81-100%",biaslabel:"Strong",colorcode:"#DE001C"},
+    {score:"4-7",label:"AVERAGE",color:"orange",bias:"Mild Bias",biascore:"71-80%",biaslabel:"Mild",colorcode:"#F7A500"},
+    {score:"8-10",label:"HIGH",color:"green",bias:"Low Bias",biascore:"> 70%",biaslabel:"Low",colorcode:"#0DB200"},
   ];
 
    biasprofiledata :any = [
@@ -147,7 +147,6 @@ this.getProgressBarColor()
     let competencydata = this.getAllBehaviourData.reportSnapShot.competency;
     for(let scorecontenteddata of competencydata ){
       for(let scoreinnerdata of scorecontenteddata.scoreContents){
-        console.log(scoreinnerdata,'kkk')
         this.candidatescoremean = scoreinnerdata.beiQuestions;
       }
     }
@@ -159,9 +158,7 @@ this.getProgressBarColor()
 
     });
     this.getAllBehaviourAPIDetails = this.data ? this.data : null;
-    this.getAllBasicData = this.data.basicDetails
-      ? this.data.basicDetails
-      : null;
+    this.getAllBasicData = this.data.basicDetails? this.data.basicDetails: null;
     this.highestEducation =
       this.getAllBasicData && this.getAllBasicData.education
         ? this.getAllBasicData.education
@@ -265,11 +262,12 @@ this.getProgressBarColor()
           pdf.setFontSize(9);
           pdf.setTextColor(150);
           // for right align
-          if(i == 1){
-            var textdata= " "
-          }else{
-            var textdata = 'Page ' +( i - 1) + ' of ' + (number_of_pages -1);
-          }
+          var textdata = 'Page ' +( i+1 - 1) + ' of ' + (number_of_pages);
+          // if(i == 1){
+          //   var textdata= " "
+          // }else{
+          //   var textdata = 'Page ' +( i - 1) + ' of ' + (number_of_pages -1);
+          // }
           pdf.text(textdata, (pdf.internal.pageSize.getWidth() - 1.15 ), (pdf.internal.pageSize.getHeight()-0.35));
           // pdf.text('Page ' + i + ' of ' + number_of_pages, (pdf.internal.pageSize.getWidth() - 4.30 ), (pdf.internal.pageSize.getHeight()-0.25));
 
