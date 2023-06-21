@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { SentDataToOtherComp } from 'src/app/services/sendDataToOtherComp.service';
 import { ApiService } from './../../../services/api.service';
 import { ToastrService } from 'ngx-toastr';
@@ -13,7 +13,6 @@ import {
   selector: 'app-dashboardlist',
   templateUrl: './dashboardlist.component.html',
   styleUrls: ['./dashboardlist.component.scss'],
-  encapsulation: ViewEncapsulation.None,
 })
 export class DashboardlistComponent implements OnInit {
   private _locale: string;
@@ -182,7 +181,7 @@ export class DashboardlistComponent implements OnInit {
       date: event ? moment(event.target.value).format('YYYY-MM-DD') : '',
     };
     this.ApiService.behaviouralDashboard(data).subscribe((res: any) => {
-      if (res.success) {
+      if (res.status) {
         this.rowData = res.data;
       } else {
         this.toastr.error(res.message);
@@ -195,7 +194,7 @@ export class DashboardlistComponent implements OnInit {
       deliveryid: this.deliveryId,
     };
     this.ApiService.behaviourResultAks(data).subscribe((res: any) => {
-      if (res.success) {
+      if (res.status) {
         this.toastr.success(res.message);
       } else {
         this.toastr.error(res.message);
