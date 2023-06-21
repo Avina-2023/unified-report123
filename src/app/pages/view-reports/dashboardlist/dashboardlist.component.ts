@@ -181,7 +181,7 @@ export class DashboardlistComponent implements OnInit {
       date: event ? moment(event.target.value).format('YYYY-MM-DD') : '',
     };
     this.ApiService.behaviouralDashboard(data).subscribe((res: any) => {
-      if (res.status) {
+      if (res.success) {
         this.rowData = res.data;
       } else {
         this.toastr.error(res.message);
@@ -194,7 +194,7 @@ export class DashboardlistComponent implements OnInit {
       deliveryid: this.deliveryId,
     };
     this.ApiService.behaviourResultAks(data).subscribe((res: any) => {
-      if (res.status) {
+      if (res.success) {
         this.toastr.success(res.message);
       } else {
         this.toastr.error(res.message);

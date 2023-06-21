@@ -8,7 +8,7 @@
   background-color: $whiteColor;
 
   .pdfLogo {
-    width: 130px;
+    width: 150px;
   }
 }
 
@@ -28,7 +28,7 @@ td {
 
 header {
   background-color: $whiteColor;
-  padding: 20px;
+  padding: 35px;
 
   figure {
     width: 150px;
@@ -74,9 +74,9 @@ header {
 
   .content {
     position: absolute;
-    bottom: 29px;
+    bottom: 45px;
     left: 40px;
-    font-size: 36px;
+    font-size: 50px;
     font-weight: 700;
     color: #1d1d1b;
     text-transform: uppercase;
@@ -88,7 +88,7 @@ header {
     position: absolute;
     bottom: 0px;
     left: 40px;
-    font-size: 26px;
+    font-size: 36px;
     font-weight: 700;
     color: #1d1d1b;
     text-transform: uppercase;
@@ -373,6 +373,7 @@ header {
 
 .box-red.arrow-top {
   margin-top: 40px;
+  left: 4px;
 }
 
 .box-red.arrow-top:after {
@@ -516,7 +517,7 @@ li {
     span {
       color: #3c3c3b;
       font-size: 14px;
-      font-weight: 400;
+      // font-weight: 400;
       line-height: 21px;
       display: inline-block;
       position: relative;
@@ -540,6 +541,7 @@ li {
         &:first-child {
           color: #6f6f6e;
           width: 125px;
+          font-weight: bold;
         }
       }
     }
@@ -1060,14 +1062,14 @@ li {
       top: -34px;
 
       .heading {
-        font-size: 14px;
+        font-size: 22px;
         font-weight: bold;
         line-height: normal;
         color: #575756;
 
         span {
           color: #000000;
-          font-weight: 500;
+          // font-weight: 500;
           text-transform: uppercase;
         }
 
@@ -1308,7 +1310,7 @@ li {
 
     .name {
       font-size: 16px;
-      font-weight: 500;
+      font-weight: 700;
     }
   }
 
@@ -2017,6 +2019,7 @@ footer {
       left: 0;
       bottom: 0;
       top: 40px;
+      // margin-top: -7px;
     }
   }
 
@@ -2174,7 +2177,7 @@ footer3 {
 
   .rightsidewatermarkimg {
     position: absolute;
-    bottom: -19px;
+    bottom: 43px;
     right: -34px;
   }
 
@@ -2270,7 +2273,7 @@ footer3 {
             height: 14px;
             width: 100%;
             border-radius: 30px;
-            background-color: #E6E6E6;
+            background-color: #E6E6E6 !important;
             box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.25), 0 1px rgba(255, 255, 255, 0.08);
           }
 
@@ -2350,6 +2353,7 @@ footer3 {
       margin-top: 0px !important;
       display: flex;
       margin-bottom: 5px;
+      z-index: 0;
     }
 
   }
