@@ -268,7 +268,7 @@ this.getProgressBarColor()
           // }else{
           //   var textdata = 'Page ' +( i - 1) + ' of ' + (number_of_pages -1);
           // }
-          pdf.text(textdata, (pdf.internal.pageSize.getWidth() - 1.15 ), (pdf.internal.pageSize.getHeight()-0.35));
+          pdf.text(textdata, (pdf.internal.pageSize.getWidth() - 1.15 ), (pdf.internal.pageSize.getHeight()-0.30));
           // pdf.text('Page ' + i + ' of ' + number_of_pages, (pdf.internal.pageSize.getWidth() - 4.30 ), (pdf.internal.pageSize.getHeight()-0.25));
 
     }
