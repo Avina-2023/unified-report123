@@ -26,15 +26,18 @@
       <div class="right">
         <div><span>Name </span>: <span>{{getAllBasicData?.firstname ? getAllBasicData?.firstname : 'Nil'}}</span></div>
         <div><span>Email </span>: <span>{{email ? email : 'Nil'}}</span></div>
-        <div><span>Gender</span>: <span>{{getAllBasicData?.gender ? getAllBasicData?.gender : 'Nil'}}</span>
+        <div *ngIf="getAllBasicData?.gender"><span>Gender</span>: <span>{{getAllBasicData?.gender}}</span>
         </div>
+        <div *ngIf="!getAllBasicData?.gender" style="margin-bottom:20px"></div>
         <!-- <div><span>Age </span>: <span>Nil</span></div> -->
         <!-- <div><span>Education Level </span>: <span>{{getAllBasicData?.education ? getAllBasicData?.education :
             'Nil'}}</span></div> -->
-        <div><span>Work Experience </span>: <span>Nil</span></div>
+        <!-- <div><span>Work Experience </span>: <span>Nil</span></div> -->
         <!-- <div><span>Education level </span>: <span>{{highestEducation?.institute ? highestEducation?.institute : 'Nil'}}</span></div> -->
       </div>
     </section>
+    <br>
+    <br>
     <br>
     <br>
     <br>
@@ -655,20 +658,19 @@
         <div class="biasprofiledescription">
           <div class="content2">
             <div class="snapshot-point-green" style="margin-left: -30px;">
-
               <div *ngIf="getAllBehaviourData?.responseBiasProfileContent?.length" >
                 <ul class="bullet" *ngFor="let disablitydata of getAllBehaviourData?.responseBiasProfileContent">
                   <li >{{disablitydata?.scoreDescription ? disablitydata?.scoreDescription: '-' }}
                   </li>
                 </ul>
               </div>
+              <div *ngIf="this.scoredesriptionlengthvalue==3" style="margin-bottom: 35px;"></div>
               <ul class="bullet" *ngIf="!getAllBehaviourData?.responseBiasProfileContent?.length">
                 <li> No Recommendations</li>
               </ul>
             </div>
           </div>
         </div>
-
       </div>
     </div>
     </div>
