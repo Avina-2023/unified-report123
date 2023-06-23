@@ -74,8 +74,8 @@ export class AssessmentInfoComponent implements OnInit, OnChanges {
 
   getPersonalInfo() {
     this.emitdriveNametoParent();
-    this.driveListMain =  this.getAllReportsData?.driveDetails ? this.getUniqueListBy(this.getAllReportsData?.driveDetails,'main_drivename')  : ''                
-    this.driveList = this.getAllReportsData?.driveDetails ? this.getUniqueListBy(this.getAllReportsData?.driveDetails,'drivename')  : '' 
+    this.driveListMain =  this.getAllReportsData?.driveDetails ? this.getUniqueListBy(this.getAllReportsData?.driveDetails,'main_drivename')  : ''
+    this.driveList = this.getAllReportsData?.driveDetails ? this.getUniqueListBy(this.getAllReportsData?.driveDetails,'drivename')  : ''
     this.driveselectedValue = this.driveList && this.driveList[0] ? this.driveList[0].drivename : '';
     this.selectDriveName = this.driveList &&  this.driveList[0] ? this.driveList[0].main_drivename :  this.getAllReportsData && this.getAllReportsData?.BehavioralAssessment ?   this.getAllReportsData?.BehavioralAssessment[0]?.main_drivename : '';
     this.scheduleType = this.getAllReportsData && this.getAllReportsData?.BehavioralAssessment ?  this.getAllReportsData?.BehavioralAssessment[0]?.testtype : '' ;
@@ -111,7 +111,7 @@ export class AssessmentInfoComponent implements OnInit, OnChanges {
     if (this.getAllReportsData && this.getAllReportsData.driveDetails && this.getAllReportsData.driveDetails.length > 0 && this.getAllReportsData.selectedDriveName) {
       const assessmentDrive = this.getAllReportsData.driveDetails.find((x => x.drivename == this.getAllReportsData.selectedDriveName))
       this.assessmentsList = assessmentDrive ? assessmentDrive.assessments : '' ;
-     
+
       this.assessmentsList && this.assessmentsList.length > 0 ? this.covertToPercentage() : '';
     }
   }
