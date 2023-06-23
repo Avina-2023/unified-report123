@@ -31,8 +31,8 @@ export class BajajBehaviouralCompetencyAreaComponent
   highestEducation: any;
   benchMarkScore = [
     { score: '1-3', label: 'LOW', color: 'red' },
-    { score: '4-6', label: 'AVERAGE', color: 'orange' },
-    { score: '7-10', label: 'HIGH', color: 'green' },
+    { score: '4-7', label: 'AVERAGE', color: 'orange' },
+    { score: '8-10', label: 'HIGH', color: 'green' },
   ];
   bgColorInput: string = '#85BD44';
   doughnutValue: number = 4;
