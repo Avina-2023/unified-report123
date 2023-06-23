@@ -28,14 +28,14 @@
                   <span class="prof"><img src="/assets/images/email.svg" alt="Email" /> {{emailId ?
                     emailId : 'Nil'}}</span>
                 </div>
-                <div>
+                <div *ngIf="getAllBasicData?.gender">
                   <span class="prof"><img src="/assets/images/maleFemale.svg" alt="Gender" />
-                    {{getAllBasicData?.gender ? getAllBasicData?.gender : 'Nil'}}</span>
+                    {{getAllBasicData?.gender}}</span>
                 </div>
-                <div>
+                <!-- <div>
                   <span class="prof"><img src="/assets/images/university.svg" alt="University" />
                     {{highestEducation?.institute ? highestEducation?.institute : 'Nil'}}</span>
-                </div>
+                </div> -->
               </div>
             </div>
             <div class="profDetails">
