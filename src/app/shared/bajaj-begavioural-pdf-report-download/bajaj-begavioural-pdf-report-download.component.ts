@@ -42,6 +42,11 @@ export class BajajBegaviouralPdfReportDownloadComponent implements OnInit {
   questionsandprobes:any;
 
 
+  scoredesription:any;
+  // checkobjkeyvalue:any;
+  scoredesriptionlengthvalue:any;
+
+
 
 
   benchMarkScore =  [
@@ -144,18 +149,17 @@ this.getProgressBarColor()
 
   getReportData() {
     this.getAllBehaviourData = this.data.data ? this.data.data : null;
+
+    this.scoredesription = this.getAllBehaviourData?.responseBiasProfileContent;
+    let checkobjkeyvalue  = 'scoreDescription';
+     this.scoredesriptionlengthvalue = this.scoredesription.filter(value=>checkobjkeyvalue in value && value[checkobjkeyvalue] != 0 ).length;
     let competencydata = this.getAllBehaviourData.reportSnapShot.competency;
     for(let scorecontenteddata of competencydata ){
       for(let scoreinnerdata of scorecontenteddata.scoreContents){
         this.candidatescoremean = scoreinnerdata.beiQuestions;
       }
     }
-
-
-
-
     this.getAllBehaviourData.reportSnapShot.competency.forEach(element => {
-
     });
     this.getAllBehaviourAPIDetails = this.data ? this.data : null;
     this.getAllBasicData = this.data.basicDetails? this.data.basicDetails: null;

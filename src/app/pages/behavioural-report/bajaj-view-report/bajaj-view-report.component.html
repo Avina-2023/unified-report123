@@ -202,7 +202,12 @@
           </div>
           <div class="benchmarkInfo">
             <figure class="chart">
-              <img class="chart-img" src="/assets/images/bajajBenchmarkInfo2.png" alt="">
+              <img class="chart-img" style="    width: 242px;
+              position: relative;
+              /* right: 40px; */
+              height: 141px;
+              top: -20px;
+              right: 100px;" src="../../../../assets/images/scoreInfo2.svg" alt="">
             </figure>
             <div class="score">
               <div class="heading5">SCORE BENCHMARK INFO</div>
@@ -334,10 +339,10 @@
                             </div>
                           </div>
                           <div class="benchmarkInfo" style="background-color: #fff;margin-top: 4%;">
-                            <figure class="chart">
+                            <figure class="chart" style="    left: 45px; top: 1px;">
                               <img class="chart-img" src="/assets/images/scoreInfo2.svg" alt="">
                             </figure>
-                            <div class="score">
+                            <div class="score" style="    right: 12%;">
                               <div class="heading5">SCORE BENCHMARK INFO</div>
                               <div class="wrapper">
                                 <ng-container *ngFor="let score of benchMarkScore">
@@ -547,7 +552,7 @@
   </div>
 </ng-template>
 <!--  -->
-<div class="printing" *ngIf="getAllBehaviourData && emailId" style="position: fixed;">
+<!-- <div class="printing" *ngIf="getAllBehaviourData && emailId" style="position: fixed;"> -->
   <app-bajaj-begavioural-pdf-report-download [email]="emailId"
     [data]="getAllBehaviourAPIDetails"></app-bajaj-begavioural-pdf-report-download>
-</div>
+<!-- </div> -->
