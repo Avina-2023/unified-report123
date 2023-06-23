@@ -28,6 +28,7 @@
         <div><span>Email </span>: <span>{{email ? email : 'Nil'}}</span></div>
         <div *ngIf="getAllBasicData?.gender"><span>Gender</span>: <span>{{getAllBasicData?.gender}}</span>
         </div>
+        <div *ngIf="!getAllBasicData?.gender" style="margin-bottom:20px"></div>
         <!-- <div><span>Age </span>: <span>Nil</span></div> -->
         <!-- <div><span>Education Level </span>: <span>{{getAllBasicData?.education ? getAllBasicData?.education :
             'Nil'}}</span></div> -->
@@ -35,6 +36,8 @@
         <!-- <div><span>Education level </span>: <span>{{highestEducation?.institute ? highestEducation?.institute : 'Nil'}}</span></div> -->
       </div>
     </section>
+    <br>
+    <br>
     <br>
     <br>
     <br>
