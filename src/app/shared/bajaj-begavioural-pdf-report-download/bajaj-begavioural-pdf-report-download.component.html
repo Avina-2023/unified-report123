@@ -654,7 +654,7 @@
       </div>
     </ng-container>
     <div class="point" style="top:0px">
-      <div class="responsebiasprofile">
+      <div class="responsebiasprofile" style="width: 100%;height:250px;border:1px solid #fff">
         <div class="biasprofiledescription">
           <div class="content2">
             <div class="snapshot-point-green" style="margin-left: -30px;">
@@ -664,7 +664,8 @@
                   </li>
                 </ul>
               </div>
-              <div *ngIf="this.scoredesriptionlengthvalue==3" style="margin-bottom: 30px;"></div>
+              <!-- <div *ngIf="this.scoredesriptionlengthvalue==4" style="margin-bottom: 55px;"></div>
+              <div *ngIf="this.scoredesriptionlengthvalue==3" style="margin-bottom: 0px;"></div> -->
               <ul class="bullet" *ngIf="!getAllBehaviourData?.responseBiasProfileContent?.length">
                 <li> No Recommendations</li>
               </ul>
@@ -674,9 +675,9 @@
       </div>
     </div>
     </div>
-    <!-- <br> -->
+    <br>
 
-    <div class="benchmarkInfotwo">
+    <div class="benchmarkInfotwo" style="width: 820px;">
       <div class="scorebenchmarkInfotwo">
         <ng-container *ngFor="let score of benchMarkScore">
           <div class="score-content">
@@ -705,7 +706,7 @@
       </div>
     </div> -->
   </section>
-  <br>
+
   <!-- <br>
   <br>
   <br> -->
