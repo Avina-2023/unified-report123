@@ -56,6 +56,7 @@ export const APP_CONSTANTS = {
       VIEWREPORTS: '/auth/reports/viewreport',
       HIRINGREPORT: '/auth/reports/hiring',
       DASHBOARD: '/auth/reports/dashboard',
+      BEHAVIOURALDASHBOARD: '/auth/reports/behaviouraldashboard',
       BEHAVIOUR_MODULE: {
         BEHAVIOUR_MODULE_PAGE: '/auth/reports/behavioural',
         BEHAVIOUR_REPORT: '/auth/reports/behavioural/view',
@@ -138,6 +139,7 @@ export const APP_CONSTANTS = {
       VIEWREPORTS: 'viewreport',
       HIRINGREPORT: 'hiring',
       DASHBOARD: 'dashboard',
+      BEHAVIOURALDASHBOARD: 'behaviouraldashboard',
       BEHAVIOUR_MODULE: {
         HOME: 'behavioural',
         BEHAVIOUR_REPORT: 'view',

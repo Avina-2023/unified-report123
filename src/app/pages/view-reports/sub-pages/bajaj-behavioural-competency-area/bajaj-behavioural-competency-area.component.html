@@ -58,7 +58,11 @@
                               <div class="barNo">6</div>
                             </div>
                           </div>
-
+                          <div class="pointer-container-orange">
+                            <div class="box-orange arrow-top"  *ngIf="competency.stenScore==7">
+                              <div class="barNo">7</div>
+                            </div>
+                          </div>
 
                         </div>
                       </div>
@@ -66,16 +70,11 @@
                     <div class="green-bar">
                       <div class="green-box"></div>
                       <div class="n-last">
-                        <span class="N4">7</span>
+                        <span class="N4">8</span>
                         <span class="N10">10</span>
                       </div>
 
                       <div class="pointer-container">
-                        <div class="pointer-container-green">
-                          <div class="box-green arrow-top"  *ngIf="competency.stenScore==7">
-                            <div class="barNo">7</div>
-                          </div>
-                        </div>
                         <div class="pointer-container-green-1">
                           <div class="box-green arrow-top"  *ngIf="competency.stenScore==8">
                             <div class="barNo">8</div>
@@ -115,7 +114,11 @@
       </div>
       <div class="benchmarkInfo">
         <figure class="chart">
-          <img class="chart-img" src="/assets/images/scoreInfo.svg" alt="">
+          <img class="chart-img" style="width: 268px;
+    position: relative;
+    right: 40px;
+    height: 141px;
+    top: 0px;" src="/assets/images/scoreInfo2.svg" alt="">
         </figure>
         <div class="score">
           <div class="heading5">SCORE BENCHMARK INFO</div>
