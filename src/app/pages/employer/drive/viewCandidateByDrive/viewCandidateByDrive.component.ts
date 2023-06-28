@@ -12,14 +12,13 @@ import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
 import { AppConfigService } from 'src/app/utils/app-config.service';
 import { SentDataToOtherComp } from 'src/app/services/sendDataToOtherComp.service';
-import { APP_CONSTANTS } from '../../../../utils/app-constants.service';
 @Component({
   selector: 'app-viewCandidateByDrive',
   templateUrl: './viewCandidateByDrive.component.html',
-  styleUrls: ['./viewCandidateByDrive.component.scss'],
+  styleUrls: ['./viewCandidateByDrive.component.scss']
 })
 export class ViewCandidateByDriveComponent implements OnInit {
-  routerlink = APP_CONSTANTS.ENDPOINTS;
+
   columnDefs: any = [];
   data: any;
   private gridApi!: GridApi;
@@ -32,7 +31,7 @@ export class ViewCandidateByDriveComponent implements OnInit {
   public gridColumnApi: any;
   public serverSideStoreType;
   public defaultColDef: ColDef;
-  jobId: String = '';
+  jobId: String = "";
   subscription: Subscription;
   rowData1: any;
   cacheBlockSize: any = 1000;
@@ -74,8 +73,9 @@ export class ViewCandidateByDriveComponent implements OnInit {
     private toastr: ToastrService,
     private appconfig: AppConfigService,
     private sendData: SentDataToOtherComp
+
   ) {
-    this.jobId = this.appconfig.getLocalStorage('currentJobID');
+    this.jobId = this.appconfig.getLocalStorage('currentJobID')
     this.serverSideStoreType = 'partial';
     this.rowModelType = 'serverSide';
     this.defaultColDef = {
@@ -89,6 +89,7 @@ export class ViewCandidateByDriveComponent implements OnInit {
       minWidth: 220,
       // sideBar: 'filter',
     };
+
   }
 
   ngOnInit(): void {
@@ -96,8 +97,9 @@ export class ViewCandidateByDriveComponent implements OnInit {
     this.autoSizeAll(false);
   }
 
+
   ngOnDestroy() {
-    this.appconfig.clearLocalStorageOne('currentJobID');
+    this.appconfig.clearLocalStorageOne('currentJobID')
   }
   arrayofData: any = [];
 
@@ -117,213 +119,155 @@ export class ViewCandidateByDriveComponent implements OnInit {
         sortable: false,
       },
       {
-        headerName: 'Email',
-        field: 'email',
-        minWidth: 175,
+        headerName: 'Email', field: 'email', minWidth: 175,
         filter: 'agTextColumnFilter',
         chartDataType: 'category',
         aggFunc: 'sum',
         filterParams: {
           suppressAndOrCondition: true,
-          filterOptions: ['contains'],
+          filterOptions: ['contains']
         },
         cellRenderer: (params) => {
-          if (
-            params.value &&
-            params.value != undefined &&
-            params.value != null &&
-            params.value != ''
-          ) {
+          if (params.value && params.value != undefined && params.value != null && params.value != "") {
             this.FormateName = params.value;
             return this.FormateName;
           } else {
-            return '-';
+            return "-";
           }
         },
         tooltipField: 'email',
       },
       {
-        headerName: 'Student First Name',
-        field: 'studentName',
-        minWidth: 175,
+        headerName: 'Student First Name', field: 'studentName', minWidth: 175,
         filter: 'agTextColumnFilter',
         chartDataType: 'category',
         aggFunc: 'sum',
         filterParams: {
           suppressAndOrCondition: true,
-          filterOptions: ['contains'],
+          filterOptions: ['contains']
         },
         cellRenderer: (params) => {
-          if (
-            params.value &&
-            params.value != undefined &&
-            params.value != null &&
-            params.value != ''
-          ) {
+          if (params.value && params.value != undefined && params.value != null && params.value != "") {
             this.FormateName = params.value;
             return this.titleCase(this.FormateName);
           } else {
-            return '-';
+            return "-";
           }
         },
         tooltipField: 'studentName',
       },
       {
-        headerName: 'Student Last Name',
-        field: 'studentLastName',
-        minWidth: 175,
-        filter: 'agTextColumnFilter',
-        chartDataType: 'category',
-        aggFunc: 'sum',
-        filterParams: {
-          suppressAndOrCondition: true,
-          filterOptions: ['contains'],
-        },
-        cellRenderer: (params) => {
-          if (
-            params.value &&
-            params.value != undefined &&
-            params.value != null &&
-            params.value != ''
-          ) {
-            this.FormateName = params.value;
-            return this.titleCase(this.FormateName);
-          } else {
-            return '-';
-          }
-        },
-        tooltipField: 'studentLastName',
+      headerName: 'Student Last Name', field: 'studentLastName', minWidth: 175,
+      filter: 'agTextColumnFilter',
+      chartDataType: 'category',
+      aggFunc: 'sum',
+      filterParams: {
+        suppressAndOrCondition: true,
+        filterOptions: ['contains']
       },
-      {
-        headerName: 'Gender',
-        field: 'gender',
-        minWidth: 125,
-        filter: 'agTextColumnFilter',
-        chartDataType: 'category',
-        aggFunc: 'sum',
-        filterParams: {
-          suppressAndOrCondition: true,
-          filterOptions: ['contains'],
-        },
-        cellRenderer: (params) => {
-          if (
-            params.value &&
-            params.value != undefined &&
-            params.value != null &&
-            params.value != ''
-          ) {
-            this.FormateName = params.value;
-            return this.titleCase(this.FormateName);
-          } else {
-            return '-';
-          }
-        },
-        tooltipField: 'gender',
+      cellRenderer: (params) => {
+        if (params.value && params.value != undefined && params.value != null && params.value != "") {
+          this.FormateName = params.value;
+          return this.titleCase(this.FormateName);
+        } else {
+          return "-";
+        }
       },
-      {
-        headerName: 'Institute',
-        field: 'collegeName',
-        minWidth: 180,
-        filter: 'agTextColumnFilter',
-        chartDataType: 'category',
-        aggFunc: 'sum',
-        filterParams: {
-          suppressAndOrCondition: true,
-          filterOptions: ['contains'],
-        },
-        cellRenderer: (params) => {
-          if (
-            params.value &&
-            params.value != undefined &&
-            params.value != null &&
-            params.value != ''
-          ) {
-            this.FormateName = params.value;
-            return this.FormateName;
-          } else {
-            return '-';
-          }
-        },
-        tooltipField: 'collegeName',
+      tooltipField: 'studentLastName',
+    },
+    {
+      headerName: 'Gender', field: 'gender', minWidth: 125,
+      filter: 'agTextColumnFilter',
+      chartDataType: 'category',
+      aggFunc: 'sum',
+      filterParams: {
+        suppressAndOrCondition: true,
+        filterOptions: ['contains']
       },
-      {
-        headerName: 'Level',
-        field: 'level',
-        minWidth: 175,
-        filter: 'agTextColumnFilter',
-        chartDataType: 'category',
-        aggFunc: 'sum',
-        filterParams: {
-          suppressAndOrCondition: true,
-          filterOptions: ['contains'],
-        },
-        cellRenderer: (params) => {
-          if (
-            params.value &&
-            params.value != undefined &&
-            params.value != null &&
-            params.value != ''
-          ) {
-            this.FormateName = params.value;
-            return this.FormateName;
-          } else {
-            return '-';
-          }
-        },
-        tooltipField: 'level',
+      cellRenderer: (params) => {
+        if (params.value && params.value != undefined && params.value != null && params.value != "") {
+          this.FormateName = params.value;
+          return this.titleCase(this.FormateName);
+        } else {
+          return "-";
+        }
       },
+      tooltipField: 'gender',
+    },
+    {
+      headerName: 'Institute', field: 'collegeName', minWidth: 180,
+      filter: 'agTextColumnFilter',
+      chartDataType: 'category',
+      aggFunc: 'sum',
+      filterParams: {
+        suppressAndOrCondition: true,
+        filterOptions: ['contains']
+      },
+      cellRenderer: (params) => {
+        if (params.value && params.value != undefined && params.value != null && params.value != "") {
+          this.FormateName = params.value;
+          return this.FormateName;
+        } else {
+          return "-";
+        }
+      },
+      tooltipField: 'collegeName',
+    },{
+      headerName: 'Level', field: 'level', minWidth: 175,
+      filter: 'agTextColumnFilter',
+      chartDataType: 'category',
+      aggFunc: 'sum',
+      filterParams: {
+        suppressAndOrCondition: true,
+        filterOptions: ['contains']
+      },
+      cellRenderer: (params) => {
+        if (params.value && params.value != undefined && params.value != null && params.value != "") {
+          this.FormateName = params.value;
+          return this.FormateName;
+        } else {
+          return "-";
+        }
+      },
+      tooltipField: 'level',
+    },
       {
-        headerName: 'Degree',
-        field: 'degree',
-        minWidth: 120,
+        headerName: 'Degree', field: 'degree', minWidth: 120,
         filter: 'agTextColumnFilter',
         chartDataType: 'category',
         aggFunc: 'sum',
         filterParams: {
           suppressAndOrCondition: true,
-          filterOptions: ['contains'],
+          filterOptions: ['contains']
         },
         cellRenderer: (params) => {
-          if (
-            params.value &&
-            params.value != undefined &&
-            params.value != null &&
-            params.value != ''
-          ) {
+          if (params.value && params.value != undefined && params.value != null && params.value != "") {
             return params.value;
           } else {
-            return '-';
+            return "-";
           }
         },
         tooltipField: 'degree',
       },
       {
-        headerName: 'Department',
-        field: 'department',
-        minWidth: 180,
+        headerName: 'Department', field: 'department', minWidth: 180,
         filter: 'agTextColumnFilter',
         chartDataType: 'category',
         aggFunc: 'sum',
         filterParams: {
           suppressAndOrCondition: true,
-          filterOptions: ['contains'],
+          filterOptions: ['contains']
         },
         cellRenderer: (params) => {
-          if (
-            params.value &&
-            params.value != undefined &&
-            params.value != null &&
-            params.value != ''
-          ) {
+          if (params.value && params.value != undefined && params.value != null && params.value != "") {
             this.FormateName = params.value;
             return this.titleCase(this.FormateName);
           } else {
-            return '-';
+            return "-";
           }
         },
         tooltipField: 'department',
-      },
-      {
+      }, {
         headerName: 'Year Of Passing',
         field: 'yearOfPassing',
         minWidth: 180,
@@ -331,30 +275,17 @@ export class ViewCandidateByDriveComponent implements OnInit {
         chartDataType: 'series',
         filterParams: {
           suppressAndOrCondition: true,
-          filterOptions: [
-            'equals',
-            'lessThan',
-            'lessThanOrEqual',
-            'greaterThan',
-            'greaterThanOrEqual',
-            'inRange',
-          ],
+          filterOptions: ['equals', 'lessThan', 'lessThanOrEqual', 'greaterThan', 'greaterThanOrEqual', 'inRange']
         },
         cellRenderer: (params) => {
-          if (
-            params.value &&
-            params.value != undefined &&
-            params.value != null &&
-            params.value != ''
-          ) {
+          if (params.value && params.value != undefined && params.value != null && params.value != "") {
             return params.value;
           } else {
-            return '-';
+            return "-";
           }
         },
         tooltipField: 'yearOfPassing',
-      },
-      {
+      }, {
         headerName: 'Percentage',
         field: 'percentage',
         minWidth: 180,
@@ -362,22 +293,10 @@ export class ViewCandidateByDriveComponent implements OnInit {
         chartDataType: 'series',
         filterParams: {
           suppressAndOrCondition: true,
-          filterOptions: [
-            'equals',
-            'lessThan',
-            'lessThanOrEqual',
-            'greaterThan',
-            'greaterThanOrEqual',
-            'inRange',
-          ],
+          filterOptions: ['equals', 'lessThan', 'lessThanOrEqual', 'greaterThan', 'greaterThanOrEqual', 'inRange']
         },
         cellRenderer: (params) => {
-          if (
-            params.value &&
-            params.value != undefined &&
-            params.value != null &&
-            params.value != ''
-          ) {
+          if (params.value && params.value != undefined && params.value != null && params.value != "") {
             return params.value;
           } else {
             return 0;
@@ -385,178 +304,116 @@ export class ViewCandidateByDriveComponent implements OnInit {
         },
         tooltipField: 'percentage',
       },
-      {
-        headerName: 'Mobile No',
-        field: 'mobile',
-        minWidth: 175,
+       {
+        headerName: 'Mobile No', field: 'mobile', minWidth: 175,
         filter: 'agTextColumnFilter',
         chartDataType: 'category',
         aggFunc: 'sum',
         filterParams: {
           suppressAndOrCondition: true,
-          filterOptions: ['contains'],
+          filterOptions: ['contains']
         },
         cellRenderer: (params) => {
-          if (
-            params.value &&
-            params.value != undefined &&
-            params.value != null &&
-            params.value != ''
-          ) {
+          if (params.value && params.value != undefined && params.value != null && params.value != "") {
             this.FormateName = params.value;
             return this.FormateName;
           } else {
-            return '-';
+            return "-";
           }
         },
         tooltipField: 'mobile',
       },
-      {
-        headerName: 'Mother Tongue',
-        field: 'motherTongue',
-        minWidth: 175,
+     {
+        headerName: 'Mother Tongue', field: 'motherTongue', minWidth: 175,
         filter: 'agTextColumnFilter',
         chartDataType: 'category',
         aggFunc: 'sum',
         filterParams: {
           suppressAndOrCondition: true,
-          filterOptions: ['contains'],
+          filterOptions: ['contains']
         },
         cellRenderer: (params) => {
-          if (
-            params.value &&
-            params.value != undefined &&
-            params.value != null &&
-            params.value != ''
-          ) {
+          if (params.value && params.value != undefined && params.value != null && params.value != "") {
             this.FormateName = params.value;
             return this.titleCase(this.FormateName);
           } else {
-            return '-';
+            return "-";
           }
         },
         tooltipField: 'motherTongue',
-      },
-      {
-        headerName: 'Permanent State',
-        field: 'permanentState',
-        minWidth: 175,
+      }, {
+        headerName: 'Permanent State', field: 'permanentState', minWidth: 175,
         chartDataType: 'category',
         aggFunc: 'sum',
         hide: true,
         filter: false,
         suppressColumnsToolPanel: true,
         cellRenderer: (params) => {
-          if (
-            params.value &&
-            params.value != undefined &&
-            params.value != null &&
-            params.value != ''
-          ) {
+          if (params.value && params.value != undefined && params.value != null && params.value != "") {
             this.FormateName = params.value;
             return this.titleCase(this.FormateName);
           } else {
-            return '-';
+            return "-";
           }
         },
         tooltipField: 'permanentState',
-      },
-      {
-        headerName: 'Permanent City',
-        field: 'permanentCity',
-        minWidth: 175,
+      },{
+        headerName: 'Permanent City', field: 'permanentCity', minWidth: 175,
         chartDataType: 'category',
         aggFunc: 'sum',
         hide: true,
         filter: false,
         suppressColumnsToolPanel: true,
         cellRenderer: (params) => {
-          if (
-            params.value &&
-            params.value != undefined &&
-            params.value != null &&
-            params.value != ''
-          ) {
+          if (params.value && params.value != undefined && params.value != null && params.value != "") {
             this.FormateName = params.value;
             return this.titleCase(this.FormateName);
           } else {
-            return '-';
+            return "-";
           }
         },
         tooltipField: 'permanentCity',
-      },
-      {
-        headerName: 'Present State',
-        field: 'presentState',
-        minWidth: 175,
+      },{
+        headerName: 'Present State', field: 'presentState', minWidth: 175,
         chartDataType: 'category',
         aggFunc: 'sum',
         hide: true,
         filter: false,
         suppressColumnsToolPanel: true,
         cellRenderer: (params) => {
-          if (
-            params.value &&
-            params.value != undefined &&
-            params.value != null &&
-            params.value != ''
-          ) {
+          if (params.value && params.value != undefined && params.value != null && params.value != "") {
             this.FormateName = params.value;
             return this.titleCase(this.FormateName);
           } else {
-            return '-';
+            return "-";
           }
         },
         tooltipField: 'presentState',
-      },
-      {
-        headerName: 'Present City',
-        field: 'presentCity',
-        minWidth: 175,
+      },{
+        headerName: 'Present City', field: 'presentCity', minWidth: 175,
         chartDataType: 'category',
         aggFunc: 'sum',
         hide: true,
         filter: false,
         suppressColumnsToolPanel: true,
         cellRenderer: (params) => {
-          if (
-            params.value &&
-            params.value != undefined &&
-            params.value != null &&
-            params.value != ''
-          ) {
+          if (params.value && params.value != undefined && params.value != null && params.value != "") {
             this.FormateName = params.value;
             return this.titleCase(this.FormateName);
           } else {
-            return '-';
+            return "-";
           }
         },
         tooltipField: 'presentCity',
-      },
+      }
     ];
+
   }
 
   exportCSV() {
-    this.gridApi.exportDataAsCsv({
-      columnKeys: [
-        'email',
-        'studentName',
-        'studentLastName',
-        'gender',
-        'collegeName',
-        'level',
-        'degree',
-        'department',
-        'yearOfPassing',
-        'percentage',
-        'mobile',
-        'motherTongue',
-        'permanentState',
-        'permanentCity',
-        'presentState',
-        'presentCity',
-      ],
-    });
+      this.gridApi.exportDataAsCsv({
+        columnKeys: ["email","studentName","studentLastName","gender","collegeName","level","degree","department","yearOfPassing","percentage","mobile","motherTongue","permanentState","permanentCity","presentState","presentCity"],
+      });
   }
 
   async onSelectionChanged(event) {
@@ -570,8 +427,7 @@ export class ViewCandidateByDriveComponent implements OnInit {
   titleCase(str) {
     var splitStr = str.toLowerCase().split(' ');
     for (var i = 0; i < splitStr.length; i++) {
-      splitStr[i] =
-        splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1);
+      splitStr[i] = splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1);
     }
     return splitStr.join(' ');
   }
@@ -593,6 +449,7 @@ export class ViewCandidateByDriveComponent implements OnInit {
           apiData.request
         ).subscribe(
           (data1: any) => {
+
             if (data1.success == false) {
               params.fail();
               params.success({
@@ -600,7 +457,8 @@ export class ViewCandidateByDriveComponent implements OnInit {
                 rowCount: 0,
               });
               this.gridApi.showNoRowsOverlay();
-            } else {
+            }
+            else {
               this.candidateList = data1 && data1.data ? data1.data : [];
               if (this.candidateList.length > 0) {
                 this.pageRowCount =
@@ -623,7 +481,7 @@ export class ViewCandidateByDriveComponent implements OnInit {
             params.fail();
             params.success({
               rowData: this.candidateList,
-              rowCount: this.pageRowCount,
+              rowCount: this.pageRowCount
             });
           }
         );
@@ -634,15 +492,14 @@ export class ViewCandidateByDriveComponent implements OnInit {
 
   autoSizeAll(skipHeader: boolean) {
     const allColumnIds: string[] = [];
-    if (
-      this.gridColumnApi &&
-      this.gridColumnApi.getAllColumns != undefined &&
-      this.gridColumnApi.getAllColumns().length
-    ) {
+    if (this.gridColumnApi && this.gridColumnApi.getAllColumns != undefined && this.gridColumnApi.getAllColumns().length) {
+
       this.gridColumnApi.getAllColumns().forEach((column) => {
         allColumnIds.push(column.getId());
       });
       this.gridColumnApi.autoSizeColumns(allColumnIds, skipHeader);
     }
   }
+
+
 }
