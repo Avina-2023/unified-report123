@@ -37,6 +37,8 @@ import en from '@angular/common/locales/en';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { CarouselModule } from 'ngx-owl-carousel-o';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+// import { DashboardtableComponent } from './dashboardtable/dashboardtable.component';
 
 registerLocaleData(en);
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -60,7 +62,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     // JobSeekersComponent,
     candidateRegister,
     SkillMasterListComponent,
-    
+    // DashboardtableComponent,
+
 ],
   imports: [
     BrowserModule,
@@ -71,6 +74,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     NgxChartsModule,
     MaterialModule,
     SharedModule,
+    MatDatepickerModule,
     DragScrollModule,
     PerfectScrollbarModule,
     AgGridModule,

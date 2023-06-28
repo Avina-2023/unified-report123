@@ -3,6 +3,26 @@
 <div class="mb-20"></div>
 <div class="sectionWrapper">
 <div class="left">
+  <!--  -->
+  <!-- <div class="otp-input-fields">
+    <form [formGroup]="otpForm" (ngSubmit)="onSubmit()">
+     <div style="display: flex;align-items: center;">
+      <div style="display: flex;">
+       <input id="0" type="number" formControlName="digit1" class="otp_box" type="text" minlength="1"  maxlength="1" (keyup)="onKeyUp($event,0)">
+       <input id="1" type="number"  formControlName="digit2" class="otp_box" type="text" minlength="1"  maxlength="1" (keyup)="onKeyUp($event,1)">
+       <input id="2" type="number"  formControlName="digit3" class="otp_box" type="text" minlength="1"  maxlength="1" (keyup)="onKeyUp($event,2)">
+       <input id="3" type="number"  formControlName="digit4" class="otp_box" type="text" minlength="1" maxlength="1" (keyup)="onKeyUp($event,3)">
+       <input id="4" type="number"  formControlName="digit5" class="otp_box" type="text" minlength="1" maxlength="1" (keyup)="onKeyUp($event,4)">
+       <input id="5" type="number" formControlName="digit6" class="otp_box" type="text" minlength="1"  maxlength="1" (keyup)="onKeyUp($event,5)">
+      </div>
+       <div>
+       <span class="tick_btn" [ngClass]="{'icon-tick_mark_grey': !iconGreen, 'icon-tick_mark_green': iconGreen}" ></span>
+      </div>
+     </div>
+      <button class="submit_btn" type="submit" [disabled]="!otpForm.valid" mat-raised-button (click)="submit_btn()">Submit</button>
+     </form>
+ </div> -->
+  <!--  -->
   <div class="ltext">
     <img
       src="assets/images/SE_White.png"
@@ -33,36 +53,92 @@
       <div class="animated animatedFadeInUp fadeInUp signIn"> Registration</div>
     </div>
     <mat-label class="mt-1">Sign Up to your account</mat-label>
+    <div class="cmpny_details_heading">Company Details:</div>
     <form class="form" [formGroup]="registerForm" autocomplete="off">
-      <mat-label>Name</mat-label>
-      <mat-form-field appearance="outline">
-        <input matInput id="name" [placeholder]="'Enter Name'" formControlName="name" maxlength="64" required>
+      <div class="name_droupdown">
+        <div class="col-md-6 col-sm-12 label_box_alignment" >
+      <mat-label class="label_heading_tit">Name of the Company</mat-label><br>
+      <mat-form-field class="label_box" appearance="none">
+        <input matInput id="company" [placeholder]="'Enter Here'" formControlName="company" maxlength="64" required>
       </mat-form-field>
 
-      <ng-container *ngIf="name.invalid && name.touched">
-        <mat-error class="error" *ngIf="name?.errors?.required">{{'Name is Required'}}</mat-error>
+      <ng-container *ngIf="company.invalid && company.touched">
+        <mat-error class="error" *ngIf="name?.errors?.required">{{' Company name is Required'}}</mat-error>
       </ng-container>
+    </div>
 
-      <mat-label>Designation</mat-label>
-      <mat-form-field appearance="outline">
+
+<!-- <div class="col-md-6">
+  <mat-form-field class="indu_type" appearance="outline">
+    <mat-label>— Select one —</mat-label>
+    <mat-select (selectionChange)="dpevent($event)">
+      <mat-option *ngFor="let item of industrytype" [value]="item.type">{{item.type}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+</div> -->
+
+
+    <div class="col-md-6 col-sm-12 label_box_alignment">
+      <mat-label class="label_heading_tit">Industry Type </mat-label>
+      <mat-form-field class="indu_type" appearance="none">
+        <mat-select formControlName="jobtype" [placeholder]="'— Select one —'" matNativeControl name="jobtype" style="padding-left: 11px;">
+          <mat-option *ngFor="let item of industrytype" [value]="item.type">{{item.type}}</mat-option>
+        </mat-select>
+         <!-- <input matInput id="jobtype" [placeholder]="'Enter Here'" formControlName="jobtype" maxlength="64"> -->
+        <!-- <mat-error>
+          <div class="error-notify">
+            job type should be select
+          </div>
+        </mat-error> -->
+      </mat-form-field>
+      <!-- <ng-container *ngIf="company.invalid && company.touched">
+        <mat-error class="error" *ngIf="company?.errors?.required">{{'Industry type is required'}}</mat-error>
+      </ng-container> -->
+    </div>
+    </div>
+
+
+    <!--  -->
+
+
+    <div class="spoc_details">SPOC Details:</div>
+
+<div class="name_droupdown">
+  <div class="col-md-6 col-sm-12 label_box_alignment">
+    <mat-label class="label_heading_tit">Name</mat-label><br>
+    <mat-form-field  class="label_box" appearance="none">
+      <input matInput id="name" [placeholder]="'Enter Here'" formControlName="name" maxlength="64" required>
+    </mat-form-field>
+
+    <ng-container *ngIf="name.invalid && name.touched">
+      <mat-error class="error" *ngIf="name?.errors?.required">{{'Name is Required'}}</mat-error>
+    </ng-container>
+  </div>
+  <div class="col-md-6 col-sm-12 label_box_alignment" >
+    <mat-label class="label_heading_tit">Designation</mat-label>
+      <mat-form-field class="label_box" appearance="none">
         <input matInput id="designation" [placeholder]="'Enter Designation'" formControlName="designation" required>
       </mat-form-field>
 
       <ng-container *ngIf="designation.invalid && designation.touched">
         <mat-error class="error" *ngIf="designation?.errors?.required">{{'Designation is Required'}}</mat-error>
       </ng-container>
+  </div>
+    </div>
 
-      <mat-label>Company</mat-label>
+      <!-- <mat-label>Company</mat-label>
       <mat-form-field appearance="outline">
         <input matInput id="company" [placeholder]="'Enter Company'" formControlName="company" maxlength="64" required>
       </mat-form-field>
 
       <ng-container *ngIf="company.invalid && company.touched">
         <mat-error class="error" *ngIf="company?.errors?.required">{{'Company Name is Required'}}</mat-error>
-      </ng-container>
-
-      <mat-label>Email</mat-label>
-      <mat-form-field appearance="outline">
+      </ng-container> -->
+<div class="name_droupdown">
+  <div class="col-md-6 col-sm-12 label_box_alignment">
+      <mat-label class="label_heading_tit">Email Id (Official Only)</mat-label><br>
+      <mat-form-field class="label_box" appearance="none">
         <input matInput id="email" [placeholder]="'Enter Email'" formControlName="email" required>
       </mat-form-field>
 
@@ -70,21 +146,33 @@
         <mat-error class="error" *ngIf="email?.errors?.required">{{'Email Id is Required'}}</mat-error>
         <mat-error class="error" *ngIf="email.errors?.pattern">{{'Please Enter a Valid Email Id'}}</mat-error>
       </ng-container>
+    </div>
 
-      <mat-label>Mobile</mat-label>
-      <mat-form-field appearance="outline">
+    <div class="col-md-6 col-sm-12 mat_box label_box_alignment">
+      <mat-label class="label_heading_tit">Mobile Number</mat-label><br>
+      <mat-form-field class="label_box" appearance="none">
         <input matInput id="mobile" [placeholder]="'Enter Mobile'" formControlName="mobile" maxlength="10" required>
       </mat-form-field>
 
       <ng-container *ngIf="mobile.invalid && mobile.touched">
         <mat-error class="error" *ngIf="mobile?.errors?.required">{{'Mobile Number is Required'}}</mat-error>
-        <mat-error class="error" *ngIf="mobile.errors?.mobileRegex">{{'Please Enter a Valid Mobile Number'}}</mat-error>
+        <mat-error class="error" *ngIf="mobile.errors?.mobileRegex">{{'Please Enter a Valid 10 digits Mobile Number'}}</mat-error>
 
       </ng-container>
+    </div>
+    </div>
+
+    <div class="overall-input-wrapper mt-2  width-100 agree_checkbox">
+      <mat-checkbox formControlName="term"
+          class="checkqualify mr-2 "></mat-checkbox><span class="agree_chech_title">I have read and agree to the
+            <a href="https://lntedutech.com/privacy-policy/">privacy statement</a>
+          </span>
+    </div>
       <!-- <section class="example-section">
               <mat-checkbox formControlName="term" class="example-margin" required><a href="">Terms & Conditions</a></mat-checkbox>
           </section> -->
-      <button class="btn" [disabled]="!registerForm.valid" id="register" mat-button (click)="register()">{{"I'm Interested"}}</button>
+      <!-- <button class="btn" [disabled]="!registerForm.valid" id="register" mat-button (click)="somevent($event.target, 'some value')">{{"Register"}}</button> -->
+      <button class="btn" [disabled]="!registerForm.valid" id="register" mat-button (click)="register()">{{"Register"}}</button>
       <div class="mt-20 signupTxt">Already have an account? <a class="forgot" href="/login?from=employer">Sign In</a></div>
     </form>
   </div>
@@ -98,15 +186,65 @@
 <div class="footer-section">© 2022 L&T EduTech. All Rights Reserved</div>
 </div>
 
-<ng-template #noSkill>
-    <mat-icon class="close-icon" (click)="closepops()">close</mat-icon>
-  <div class="successMessage">
-      <img src="assets/images/check.png">
-      <div class="text">
-          <p>Your registration is successful.</p>
-          <p class="subpara">Our business team will contact</p>
-          <p class="subpara">you shortly</p>
 
+
+
+
+<ng-template #conditions>
+<h1 class="term_con">Terms & Conditions</h1>
+<hr>
+
+<p class="term_para"><li>Our company shall use the features of skill exchange platform for fresh graduate hiring requirements whenever necessary.</li></p>
+<p class="term_para"><li>Our company hereby permits L&T EduTech to place the logo of our company in the skill Exchange website.</li></p>
+<p class="term_para"><li>Our company expressly agrees that such use shall not infringe the intellectual property rights of the company in its brand name or logo.</li></p>
+<p class="term_para"><li>Our company also agrees to feature the partnership with L&T EduTech at significant and appropriate locations in the company website.</li></p>
+<p class="term_para"><li>Our company hereby agrees to share with L&T EduTech quotes/ testimonials about the partnership that can be used by L&T EduTech in their website and other marketing materials.</li></p>
+<div>
+  <hr>
+  <div class="example-button-row">
+    <button mat-raised-button class="agreebtn" type="submit" (click)="agreeTerms()"> I Agree</button>
+    <!-- <button mat-button mat-dialog-close class="disagreebtn">Disagree</button> -->
+  </div>
 </div>
+</ng-template>
+
+<ng-template #spoc>
+  <img src="../../../../assets/images/SKILL EXCHANGE_logo_img.png">
+  <div style="background:linear-gradient(to right, #27BBEE, #49AE31);height:3px;width:100%;"></div>
+  <p class="otppara">Please enter the verification code that has sent to your SPOC’s email id to continue the Registration process.</p>
+
+  <div class="title">
+
+  </div>
+  <div class="otp-input-fields">
+    <form [formGroup]="otpForm" (ngSubmit)="onSubmit()">
+     <div style="display: flex;align-items: center;">
+      <div style="display: flex;">
+       <input id="0" type="number" formControlName="digit1" class="otp_box" type="text" minlength="1"  maxlength="1" (keyup)="onKeyUp($event,0)">
+       <input id="1" type="number"  formControlName="digit2" class="otp_box" type="text" minlength="1"  maxlength="1" (keyup)="onKeyUp($event,1)">
+       <input id="2" type="number"  formControlName="digit3" class="otp_box" type="text" minlength="1"  maxlength="1" (keyup)="onKeyUp($event,2)">
+       <input id="3" type="number"  formControlName="digit4" class="otp_box" type="text" minlength="1" maxlength="1" (keyup)="onKeyUp($event,3)">
+       <input id="4" type="number"  formControlName="digit5" class="otp_box" type="text" minlength="1" maxlength="1" (keyup)="onKeyUp($event,4)">
+       <input id="5" type="number" formControlName="digit6" class="otp_box" type="text" minlength="1"  maxlength="1" (keyup)="onKeyUp($event,5)">
+      </div>
+       <div>
+       <span class="tick_btn" [ngClass]="{'icon-tick_mark_grey': !iconGreen, 'icon-tick_mark_green': iconGreen}" ></span>
+      </div>
+     </div>
+      <button class="submit_btn" type="submit" [disabled]="!otpForm.valid" mat-raised-button (click)="submit_btn()">Submit</button>
+     </form>
+ </div>
+
+</ng-template>
+
+<ng-template #thankyou>
+  <img src="../../../../assets/images/SKILL EXCHANGE_logo_img.png">
+  <div style="background:linear-gradient(to right, #27BBEE, #49AE31);height:3px;width:100%;"></div>
+      <div class="thank_you_page">
+        <img src="../../../../assets/images/green_tick_image.png">
+          <p class="thank_text">Thank you for Registering.</p>
+          <p class="review_text">Your Application is under review. Our team will get in touch with you shortly.</p>
+          <div><button class="back_to_login_btn" type="submit" [routerLink]="['/login']" routerLinkActive="router-link-active" (click)="closeThankYou()">Back to Login</button></div>
+
 </div>
 </ng-template>

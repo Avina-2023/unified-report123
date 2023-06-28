@@ -64,10 +64,18 @@ export class AuthComponent implements OnInit {
       if (message) {
         if (this.checkRouter == '/auth/reports/userlist') {
           this.InAppReport = true;
-        } else {
+        }
+        else {
           this.InAppReport = false;
         }
       }
+      // if (message) {
+      //   if (this.checkRouter == '/auth/reports/behaviouraldashboard') {
+      //     this.InAppReport = true;
+      //   } else {
+      //     this.InAppReport = false;
+      //   }
+      // }
     });
   }
 

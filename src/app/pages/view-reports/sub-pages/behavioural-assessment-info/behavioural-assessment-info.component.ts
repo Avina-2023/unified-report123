@@ -28,8 +28,8 @@ export class BehaviouralAssessmentInfoComponent implements OnInit, OnChanges {
   @Input() getAllReportsData;
   @Input() driveName;
   @Input() emailId;
-  @ViewChild('sourceVideo',{static: false}) video: TemplateRef<any>;
-  @ViewChild('matDialog1', {static: false}) matDialogRef1: TemplateRef<any>;
+  @ViewChild('sourceVideo', { static: false }) video: TemplateRef<any>;
+  @ViewChild('matDialog1', { static: false }) matDialogRef1: TemplateRef<any>;
   assessmentsList: any;
   colorCode = 'Good';
   iconBase = 'like';
@@ -40,13 +40,13 @@ export class BehaviouralAssessmentInfoComponent implements OnInit, OnChanges {
   timeTakenSec: any;
   correct = true;
   currentIndex = 0;
-  currentItem:any = [];
-  playlist:any = [];
+  currentItem: any = [];
+  playlist: any = [];
   listOfSections: any;
   userInfo: { assessmentName: any; assessmentDate: any; candidateName: any; };
   playVideoList = []
   secValChart: any;
-  isaccess:any;
+  isaccess: any;
   getAllBehaviourData: any;
   getBehaviourReportAPISubscription: Subscription;
   getAllBasicData: any;
@@ -54,21 +54,21 @@ export class BehaviouralAssessmentInfoComponent implements OnInit, OnChanges {
   apiSuccess = true;
   isPdfdownable = false;
   highestEducation: any;
-  constructor(private route: ActivatedRoute,private sendData: SentDataToOtherComp,private appConfig: AppConfigService,public matDialog: MatDialog,private toastr: ToastrService, private ApiService: ApiService, ) {
+  constructor(private route: ActivatedRoute, private sendData: SentDataToOtherComp, private appConfig: AppConfigService, public matDialog: MatDialog, private toastr: ToastrService, private ApiService: ApiService,) {
 
   }
 
   ngOnInit(): void {
     this.getAssessmentInfo();
     this.isaccess = this.appConfig.isComingFromMicroCert();
-      // this.getBehaviouralReportData(this.emailId ? this.emailId : '');
-      this.route.paramMap.subscribe((param: any) => {
-        if (param && param.params && param.params.id) {
-          let email = param.params.id ? param.params.id : this.emailId
-          this.getBehaviouralReportData(email);
-        }
-      });
-   
+    // this.getBehaviouralReportData(this.emailId ? this.emailId : '');
+    this.route.paramMap.subscribe((param: any) => {
+      if (param && param.params && param.params.id) {
+        let email = param.params.id ? param.params.id : this.emailId
+        this.getBehaviouralReportData(email);
+      }
+    });
+
     // const container = document.getElementById("visualization");
     // const items = new DataSet([
     //   { id: 1, content: "item 1", start: "2014-04-20" },
@@ -83,10 +83,10 @@ export class BehaviouralAssessmentInfoComponent implements OnInit, OnChanges {
   }
 
   viewBehaviouralReport() {
-    this.appConfig.routeNavigationWithParam(APP_CONSTANTS.ENDPOINTS.REPORTS.BEHAVIOUR_MODULE.BEHAVIOUR_REPORT, this.ApiService.encrypt(this.emailId));
+    this.appConfig.routeNavigationWithParam(APP_CONSTANTS.ENDPOINTS.REPORTS.BEHAVIOUR_MODULE.BEHAVIOUR_REPORT, window.btoa(this.emailId));
   }
-  
-  viewBehaviouralReport1(){
+
+  viewBehaviouralReport1() {
     this.appConfig.routeNavigationWithParam(APP_CONSTANTS.ENDPOINTS.REPORTS.BEHAVIOUR_MODULE.BEHAVIOUR_REPORT1, this.ApiService.encrypt(this.emailId));
   }
 
@@ -103,8 +103,8 @@ export class BehaviouralAssessmentInfoComponent implements OnInit, OnChanges {
   }
 
   covertToPercentage() {
-    console.log(this.assessmentsList,'hiii');
-    
+    console.log(this.assessmentsList, 'hiii');
+
     this.assessmentsList.forEach(element => {
       if (element.score && element.maxscore) {
         let score = Number(element.score) / Number(element.maxscore) * 100;
@@ -120,13 +120,13 @@ export class BehaviouralAssessmentInfoComponent implements OnInit, OnChanges {
     if (score < 40) {
       return 'Weak';
     }
-    if (score >=40 && score < 80) {
+    if (score >= 40 && score < 80) {
       return 'Average';
     }
-    if (score >=80 && score < 90) {
+    if (score >= 80 && score < 90) {
       return 'Good';
     }
-    if (score >=90) {
+    if (score >= 90) {
       return 'Excellent';
     }
     return null;
@@ -139,8 +139,8 @@ export class BehaviouralAssessmentInfoComponent implements OnInit, OnChanges {
     }
   }
 
-  getTimetaker(time){
-    if(time){
+  getTimetaker(time) {
+    if (time) {
       let convertTime = time.toString();
       let SplitTime = convertTime.split(/([.])/);
       this.TimeTakerMins = parseInt(SplitTime[0]);
@@ -150,8 +150,8 @@ export class BehaviouralAssessmentInfoComponent implements OnInit, OnChanges {
     }
   }
 
-  getTimetaken(takenTime){
-    if(takenTime){
+  getTimetaken(takenTime) {
+    if (takenTime) {
       let convertTime1 = takenTime.toString();
       let SplitTime1 = convertTime1.split(/([.])/);
       this.TimeTakenMins = parseInt(SplitTime1[0]);
@@ -161,7 +161,7 @@ export class BehaviouralAssessmentInfoComponent implements OnInit, OnChanges {
     }
   }
 
-  open(assessment){
+  open(assessment) {
     const dialogRef = this.matDialog.open(this.matDialogRef1, {
       width: '200vh',
       height: '600px',
@@ -171,49 +171,49 @@ export class BehaviouralAssessmentInfoComponent implements OnInit, OnChanges {
     this.userInfo = {
       assessmentName: assessment.testname,
       assessmentDate: assessment.testdate,
-      candidateName : this.getAllReportsData.firstname
+      candidateName: this.getAllReportsData.firstname
     }
     this.getVideoFiles(assessment.roomId);
   }
 
-  getVideoFiles(roomId){
+  getVideoFiles(roomId) {
     let data = {
-      limit: 20,
-      count: 1,
-      filterType:"event",
-      roomId: roomId
-      }
-      let filter = [];
-      this.ApiService.getProctorVideo(data).subscribe((response: any)=> {
-            response.data.forEach((data) => {
-                var i = 0;
-                filter = [];
-                data.attach.forEach((iterator) => {
-                  if(iterator.mimetype.includes('video')){
-                    this.playVideoList.push({
-                      id:iterator.id,
-                      filename:iterator.filename,
-                      poster:iterator.id,
-                      src: this.proctor_url+iterator.id+'?token='+response.token,
-                    })
-                  this.playlist.push({
-                    id:iterator.id,
-                    filename:iterator.filename,
-                    poster:iterator.id,
-                    src: this.proctor_url+iterator.id+'?token='+response.token,
-                  })
-                  i++
-                }
-              });
-              for (const key in data.metadata.metrics) {
-                if (Object.prototype.hasOwnProperty.call(data.metadata.metrics, key)) {
-                }
-                filter.push({key: key,value:data.metadata.metrics[key]})
-              }
-              this.playVideoList.push({chart:filter})
-            });
-           this.currentItem =  this.playlist[this.currentIndex]
-      })
+      limit: 20,
+      count: 1,
+      filterType: "event",
+      roomId: roomId
+    }
+    let filter = [];
+    this.ApiService.getProctorVideo(data).subscribe((response: any) => {
+      response.data.forEach((data) => {
+        var i = 0;
+        filter = [];
+        data.attach.forEach((iterator) => {
+          if (iterator.mimetype.includes('video')) {
+            this.playVideoList.push({
+              id: iterator.id,
+              filename: iterator.filename,
+              poster: iterator.id,
+              src: this.proctor_url + iterator.id + '?token=' + response.token,
+            })
+            this.playlist.push({
+              id: iterator.id,
+              filename: iterator.filename,
+              poster: iterator.id,
+              src: this.proctor_url + iterator.id + '?token=' + response.token,
+            })
+            i++
+          }
+        });
+        for (const key in data.metadata.metrics) {
+          if (Object.prototype.hasOwnProperty.call(data.metadata.metrics, key)) {
+          }
+          filter.push({ key: key, value: data.metadata.metrics[key] })
+        }
+        this.playVideoList.push({ chart: filter })
+      });
+      this.currentItem = this.playlist[this.currentIndex]
+    })
   }
 
 
@@ -227,7 +227,7 @@ export class BehaviouralAssessmentInfoComponent implements OnInit, OnChanges {
   }
 
   playVideo() {
-    var vid = <HTMLVideoElement> document.getElementById("myVideo");
+    var vid = <HTMLVideoElement>document.getElementById("myVideo");
     vid.load();
     vid.play();
   }
@@ -241,9 +241,9 @@ export class BehaviouralAssessmentInfoComponent implements OnInit, OnChanges {
       email: data,
       reportId: "R1"
     };
-  this.emailId= data;
-   this.getBehaviourReportAPISubscription = this.ApiService.getBehaviourReport(apiData).subscribe((response: any) => {
-    if (response && response.success && response.data) {
+    this.emailId = data;
+    this.getBehaviourReportAPISubscription = this.ApiService.getBehaviourReport(apiData).subscribe((response: any) => {
+      if (response && response.success && response.data) {
         this.apiSuccess = true;
         this.getAllBehaviourData = response.data.data ? response.data.data : null;
         this.getAllBehaviourAPIDetails = response.data ? response.data : null;
@@ -260,28 +260,28 @@ export class BehaviouralAssessmentInfoComponent implements OnInit, OnChanges {
         this.getAllBehaviourData = null;
         this.getAllBehaviourAPIDetails = null;
       }
-    }, (err)=> {
+    }, (err) => {
       this.apiSuccess = false;
       this.getAllBasicData = null;
       this.getAllBehaviourData = null;
       this.getAllBehaviourAPIDetails = null;
-});
-}
-ngOnDestroy() {
-  this.getBehaviourReportAPISubscription ? this.getBehaviourReportAPISubscription.unsubscribe() : '';
-}
-
-downloadreport(val){
-  if(val){
-    this.isPdfdownable = val;
-    this.sendData.sendMessage(true,'');
-  }else{
-    this.isPdfdownable = false;
-    this.sendData.sendMessage(false,'');
+    });
+  }
+  ngOnDestroy() {
+    this.getBehaviourReportAPISubscription ? this.getBehaviourReportAPISubscription.unsubscribe() : '';
   }
 
-  
-}
+  downloadreport(val) {
+    if (val) {
+      this.isPdfdownable = val;
+      this.sendData.sendMessage(true, '');
+    } else {
+      this.isPdfdownable = false;
+      this.sendData.sendMessage(false, '');
+    }
+
+
+  }
 }
 
                 // filter.push({

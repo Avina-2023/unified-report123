@@ -58,38 +58,16 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
-  .icon-logout:before {
-    content: "\ea1a";
-  }
-  .icon-calendar:before {
+
+  .icon-tick_mark_green:before {
     content: "\ea14";
-    color: #707070;
+    color: #49ae31;
   }
-  .icon-location2 .path1:before {
+  .icon-tick_mark_grey:before {
     content: "\ea15";
-    color: rgb(112, 112, 112);
-    opacity: 0.8;
+    color: #848484;
   }
-  .icon-location2 .path2:before {
-    content: "\ea16";
-    margin-left: -0.6708984375em;
-    color: rgb(112, 112, 112);
-    opacity: 0.8;
-  }
-  .icon-location2 .path3:before {
-    content: "\ea17";
-    margin-left: -0.6708984375em;
-    color: rgb(255, 255, 255);
-    opacity: 0.8;
-  }
-  .icon-degree:before {
-    content: "\ea18";
-    color: #8c8c8c;
-  }
-  .icon-full_time:before {
-    content: "\ea19";
-    color: #707070;
-  }
+
   .icon-Font_Awesome_5_solid_universal-access:before {
     content: "\e9a2";
   }

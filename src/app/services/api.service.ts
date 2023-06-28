@@ -13,6 +13,7 @@ import { Observable, Subject } from 'rxjs';
 export class ApiService {
   BASE_URL = environment.API_BASE_URL;
   EDGE_URL = environment.NODE_EDGE_URL;
+  BASE_URL_RE = environment.API_BASE_URL_RE;
   SKILL_EDGE_URL = environment.SKILL_EDGE_URL;
   Prourl = environment.NODE_URL;
   EncryptKEY = environment.encryptionKey;
@@ -132,6 +133,8 @@ getAGgridPatnerList(data){
   getBehaviourReport(data) {
     return this.http.post(`${this.BASE_URL}/getBehaviouralReportContent `, data);
   }
+
+  
 //   getBajajBehaviourReport(data) {
 //     // data.email=
 //     // 'bppdemo9001@abc.com',
@@ -327,4 +330,20 @@ getAGgridPatnerList(data){
   uploadExcelFile(data){
     return this.http.post(`${this.BASE_URL}/jobupload`,data)
   }
+  emailOtpregister(data){
+    return this.http.post(`${this.BASE_URL}/generateEmailOtp`,data)
+  }
+  validateEmailOtp(data){
+    return this.http.post(`${this.BASE_URL}/validateEmailOtp`,data)
+  }
+  behaviouralDashboard(data) {
+    
+    return this.http.post(`${this.BASE_URL_RE}/behaviouralDashboard`, data);
+  }
+  behaviourResultAks(data)
+  {
+     return this.http.post(`${this.BASE_URL_RE}/behaviourResultAks`, data);
+  }
+
+
 }

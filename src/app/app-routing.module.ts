@@ -14,7 +14,7 @@ const routes: Routes = [
   {
     path: `${APP_CONSTANTS.ROUTES.LANDINGPAGE.LANDINGPAGE}`, loadChildren: () => import('./pages/landing-screen/landing-screen.module').then(m => m.LandingScreenModule)
   },
- {
+  {
     path: `landingold`, component: LandingPageComponent
   },
   {
@@ -36,10 +36,13 @@ const routes: Routes = [
     path: `${APP_CONSTANTS.ROUTES.AUTH}`, loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
   },
   {
-    path: `${APP_CONSTANTS.ROUTES.CNDIDATELANDING}`, loadChildren: () => import('./pages/candidate/candidate.module').then(m => m.CandidateModule),canActivate:[IsAccessGuard]
+    path: `${APP_CONSTANTS.ROUTES.CNDIDATELANDING}`, loadChildren: () => import('./pages/candidate/candidate.module').then(m => m.CandidateModule), canActivate: [IsAccessGuard]
   },
   {
     path: `certificate`, component: CertificateViewComponent
+  },
+  {
+    path: `${APP_CONSTANTS.ROUTES.REPORTS.HOME}`, loadChildren: () => import('./pages/view-reports/view-reports.module').then(m => m.ViewReportsModule), data: { key: 'user' }
   },
   {
     path: `error`,
