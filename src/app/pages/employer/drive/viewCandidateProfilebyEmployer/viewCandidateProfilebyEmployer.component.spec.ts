@@ -1,9 +1,8 @@
+import { ViewCandidateProfilebyEmployerComponent } from './viewCandidateProfilebyEmployer.component';
 /* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
-
-import { ViewCandidateProfilebyEmployerComponent } from './viewCandidateProfilebyEmployer.component';
 
 describe('ViewCandidateProfilebyEmployerComponent', () => {
   let component: ViewCandidateProfilebyEmployerComponent;
