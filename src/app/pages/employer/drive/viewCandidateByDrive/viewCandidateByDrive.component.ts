@@ -13,6 +13,7 @@ import { Subscription } from 'rxjs';
 import { AppConfigService } from 'src/app/utils/app-config.service';
 import { SentDataToOtherComp } from 'src/app/services/sendDataToOtherComp.service';
 import { APP_CONSTANTS } from '../../../../utils/app-constants.service';
+import { NavigationExtras, Router } from '@angular/router';
 @Component({
   selector: 'app-viewCandidateByDrive',
   templateUrl: './viewCandidateByDrive.component.html',
@@ -73,7 +74,8 @@ export class ViewCandidateByDriveComponent implements OnInit {
     private ApiService: ApiService,
     private toastr: ToastrService,
     private appconfig: AppConfigService,
-    private sendData: SentDataToOtherComp
+    private sendData: SentDataToOtherComp,
+    public router:Router
   ) {
     this.jobId = this.appconfig.getLocalStorage('currentJobID');
     this.serverSideStoreType = 'partial';
@@ -645,4 +647,10 @@ export class ViewCandidateByDriveComponent implements OnInit {
       this.gridColumnApi.autoSizeColumns(allColumnIds, skipHeader);
     }
   }
+
+  dashboard(){
+    this.router.navigate(['/auth/partner/jobrequirment'])
 }
+}
+
+
