@@ -13,6 +13,8 @@ import { Subscription } from 'rxjs';
 import { AppConfigService } from 'src/app/utils/app-config.service';
 import { SentDataToOtherComp } from 'src/app/services/sendDataToOtherComp.service';
 import { APP_CONSTANTS } from '../../../../utils/app-constants.service';
+import { Router } from '@angular/router';
+import { MatTabChangeEvent } from '@angular/material/tabs/tab-group';
 @Component({
   selector: 'app-viewCandidateByDrive',
   templateUrl: './viewCandidateByDrive.component.html',
@@ -68,12 +70,16 @@ export class ViewCandidateByDriveComponent implements OnInit {
   active_cards: any;
   closed_cards: any;
   FormateName: any;
+  selectedTab: any;
+  filteredColumnDefs: any;
+  filteredRowData: any[];
 
   constructor(
     private ApiService: ApiService,
     private toastr: ToastrService,
     private appconfig: AppConfigService,
-    private sendData: SentDataToOtherComp
+    private sendData: SentDataToOtherComp,
+    private router: Router
   ) {
     this.jobId = this.appconfig.getLocalStorage('currentJobID');
     this.serverSideStoreType = 'partial';
@@ -94,6 +100,7 @@ export class ViewCandidateByDriveComponent implements OnInit {
   ngOnInit(): void {
     this.tabledata();
     this.autoSizeAll(false);
+    this.filterData();
   }
 
   ngOnDestroy() {
@@ -103,7 +110,9 @@ export class ViewCandidateByDriveComponent implements OnInit {
 
   // Ag Grid Section
 
+
   tabledata() {
+
     this.columnDefs = [
       {
         headerName: 'S.No',
@@ -534,6 +543,228 @@ export class ViewCandidateByDriveComponent implements OnInit {
         tooltipField: 'presentCity',
       },
     ];
+
+  //  this.columnDefs = [
+  //   {
+  //     headerName: 'S.No',
+  //     field: 'id',
+  //     minWidth: 85,
+  //     suppressColumnsToolPanel: true,
+  //     filter: false,
+  //     cellRenderer: function (params) {
+  //       return params.rowIndex + 1;
+  //     },
+  //     sortable: false,
+  //   },
+  //   {
+  //     headerName: 'Name',
+  //     field: 'email',
+  //     minWidth: 140,
+  //     filter: 'agTextColumnFilter',
+  //     chartDataType: 'category',
+  //     aggFunc: 'sum',
+  //     filterParams: {
+  //       suppressAndOrCondition: true,
+  //       filterOptions: ['contains'],
+  //     },
+  //     cellRenderer: (params) => {
+  //       if (
+  //         params.value &&
+  //         params.value != undefined &&
+  //         params.value != null &&
+  //         params.value != ''
+  //       ) {
+  //         this.FormateName = params.value;
+  //         return this.FormateName;
+  //       } else {
+  //         return '-';
+  //       }
+  //     },
+  //     tooltipField: 'email',
+  //   },
+  //   {
+  //     headerName: 'Status',
+  //     field: 'studentName',
+  //     minWidth: 145,
+  //     filter: 'agTextColumnFilter',
+  //     chartDataType: 'category',
+  //     aggFunc: 'sum',
+  //     filterParams: {
+  //       suppressAndOrCondition: true,
+  //       filterOptions: ['contains'],
+  //     },
+  //     cellRenderer: (params) => {
+  //       if (
+  //         params.value &&
+  //         params.value != undefined &&
+  //         params.value != null &&
+  //         params.value != ''
+  //       ) {
+  //         this.FormateName = params.value;
+  //         return this.titleCase(this.FormateName);
+  //       } else {
+  //         return '-';
+  //       }
+  //     },
+  //     tooltipField: 'studentName',
+  //   },
+  //   {
+  //     headerName: 'Qualification',
+  //     field: 'studentLastName',
+  //     minWidth: 175,
+  //     filter: 'agTextColumnFilter',
+  //     chartDataType: 'category',
+  //     aggFunc: 'sum',
+  //     filterParams: {
+  //       suppressAndOrCondition: true,
+  //       filterOptions: ['contains'],
+  //     },
+  //     cellRenderer: (params) => {
+  //       if (
+  //         params.value &&
+  //         params.value != undefined &&
+  //         params.value != null &&
+  //         params.value != ''
+  //       ) {
+  //         this.FormateName = params.value;
+  //         return this.titleCase(this.FormateName);
+  //       } else {
+  //         return '-';
+  //       }
+  //     },
+  //     tooltipField: 'studentLastName',
+  //   },
+  //   {
+  //     headerName: 'Year Of Passout',
+  //     field: 'gender',
+  //     minWidth: 195,
+  //     filter: 'agTextColumnFilter',
+  //     chartDataType: 'category',
+  //     aggFunc: 'sum',
+  //     filterParams: {
+  //       suppressAndOrCondition: true,
+  //       filterOptions: ['contains'],
+  //     },
+  //     cellRenderer: (params) => {
+  //       if (
+  //         params.value &&
+  //         params.value != undefined &&
+  //         params.value != null &&
+  //         params.value != ''
+  //       ) {
+  //         this.FormateName = params.value;
+  //         return this.titleCase(this.FormateName);
+  //       } else {
+  //         return '-';
+  //       }
+  //     },
+  //     tooltipField: 'gender',
+  //   },
+  //   {
+  //     headerName: 'Trained by L&T Edutech',
+  //     field: 'collegeName',
+  //     minWidth: 210,
+  //     filter: 'agTextColumnFilter',
+  //     chartDataType: 'category',
+  //     aggFunc: 'sum',
+  //     filterParams: {
+  //       suppressAndOrCondition: true,
+  //       filterOptions: ['contains'],
+  //     },
+  //     cellRenderer: (params) => {
+  //       if (
+  //         params.value &&
+  //         params.value != undefined &&
+  //         params.value != null &&
+  //         params.value != ''
+  //       ) {
+  //         this.FormateName = params.value;
+  //         return this.FormateName;
+  //       } else {
+  //         return '-';
+  //       }
+  //     },
+  //     tooltipField: 'collegeName',
+  //   },
+  //   {
+  //     headerName: 'Assessed by L&T Edutech',
+  //     field: 'level',
+  //     minWidth: 215,
+  //     filter: 'agTextColumnFilter',
+  //     chartDataType: 'category',
+  //     aggFunc: 'sum',
+  //     filterParams: {
+  //       suppressAndOrCondition: true,
+  //       filterOptions: ['contains'],
+  //     },
+  //     cellRenderer: (params) => {
+  //       if (
+  //         params.value &&
+  //         params.value != undefined &&
+  //         params.value != null &&
+  //         params.value != ''
+  //       ) {
+  //         this.FormateName = params.value;
+  //         return this.FormateName;
+  //       } else {
+  //         return '-';
+  //       }
+  //     },
+  //     tooltipField: 'level',
+  //   },
+  //   {
+  //     headerName: 'Applied Date',
+  //     field: 'degree',
+  //     minWidth: 160,
+  //     filter: 'agTextColumnFilter',
+  //     chartDataType: 'category',
+  //     aggFunc: 'sum',
+  //     filterParams: {
+  //       suppressAndOrCondition: true,
+  //       filterOptions: ['contains'],
+  //     },
+  //     cellRenderer: (params) => {
+  //       if (
+  //         params.value &&
+  //         params.value != undefined &&
+  //         params.value != null &&
+  //         params.value != ''
+  //       ) {
+  //         return params.value;
+  //       } else {
+  //         return '-';
+  //       }
+  //     },
+  //     tooltipField: 'degree',
+  //   },
+  //   {
+  //     headerName: 'Actions',
+  //     field: 'department',
+  //     minWidth: 170,
+  //     filter: 'agTextColumnFilter',
+  //     chartDataType: 'category',
+  //     aggFunc: 'sum',
+  //     filterParams: {
+  //       suppressAndOrCondition: true,
+  //       filterOptions: ['contains'],
+  //     },
+  //     cellRenderer: (params) => {
+  //       if (
+  //         params.value &&
+  //         params.value != undefined &&
+  //         params.value != null &&
+  //         params.value != ''
+  //       ) {
+  //         this.FormateName = params.value;
+  //         return this.titleCase(this.FormateName);
+  //       } else {
+  //         return '-';
+  //       }
+  //     },
+  //     tooltipField: 'department',
+  //   },
+  //  ];
+   
   }
 
   exportCSV() {
@@ -602,6 +833,8 @@ export class ViewCandidateByDriveComponent implements OnInit {
               this.gridApi.showNoRowsOverlay();
             } else {
               this.candidateList = data1 && data1.data ? data1.data : [];
+              console.log(this.candidateList,'candidateList');
+              
               if (this.candidateList.length > 0) {
                 this.pageRowCount =
                   data1 && data1.totalCount ? data1.totalCount : 0;
@@ -645,4 +878,24 @@ export class ViewCandidateByDriveComponent implements OnInit {
       this.gridColumnApi.autoSizeColumns(allColumnIds, skipHeader);
     }
   }
+
+  dashboard(){
+    this.router.navigate(['/auth/partner/jobrequirment'])
+  }
+
+onTabChange(event: MatTabChangeEvent) {
+  this.selectedTab = event.tab.textLabel; 
+  this.filterData();
+}
+
+filterData() {
+  if (this.selectedTab === 'All') {
+    this.filteredColumnDefs = this.columnDefs;
+    this.filteredRowData = this.rowData;
+  } else {
+    this.filteredColumnDefs = this.columnDefs;
+    this.filteredRowData = this.rowData.filter(item => item.status === this.selectedTab);
+  }
+}
+
 }
