@@ -13,7 +13,6 @@ import { Subscription } from 'rxjs';
 import { AppConfigService } from 'src/app/utils/app-config.service';
 import { SentDataToOtherComp } from 'src/app/services/sendDataToOtherComp.service';
 import { APP_CONSTANTS } from '../../../../utils/app-constants.service';
-import { Router } from '@angular/router';
 import { MatTabChangeEvent } from '@angular/material/tabs/tab-group';
 import { NavigationExtras, Router } from '@angular/router';
 @Component({
@@ -900,6 +899,6 @@ filterData() {
 }
 
 }
-}
+
 
 
