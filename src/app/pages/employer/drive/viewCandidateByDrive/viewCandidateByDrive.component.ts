@@ -15,6 +15,7 @@ import { SentDataToOtherComp } from 'src/app/services/sendDataToOtherComp.servic
 import { APP_CONSTANTS } from '../../../../utils/app-constants.service';
 import { Router } from '@angular/router';
 import { MatTabChangeEvent } from '@angular/material/tabs/tab-group';
+import { NavigationExtras, Router } from '@angular/router';
 @Component({
   selector: 'app-viewCandidateByDrive',
   templateUrl: './viewCandidateByDrive.component.html',
@@ -79,7 +80,7 @@ export class ViewCandidateByDriveComponent implements OnInit {
     private toastr: ToastrService,
     private appconfig: AppConfigService,
     private sendData: SentDataToOtherComp,
-    private router: Router
+    public router:Router
   ) {
     this.jobId = this.appconfig.getLocalStorage('currentJobID');
     this.serverSideStoreType = 'partial';
@@ -899,3 +900,6 @@ filterData() {
 }
 
 }
+}
+
+

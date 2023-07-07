@@ -1,4 +1,293 @@
-<h4>View Job Requirements > View Applications > Candidate Profile</h4>
+<div class="candidate_profile_detail">
+  <div class="view_breadcrump flx_div flx_center">
+    <div class="active-link">View Job Requirements</div>
+    <div class="active-link"> View Applications</div>
+    <div>Candidate Profile</div>
+  </div>
+  <h1 class="profile_header">Candidate Profile</h1>
+  <div class="candidate_card flx_div flx_between">
+
+    <div class="card_one">
+      <div class="inner_content pd-20 card_sticky">
+        <div><img
+            src="https://img.freepik.com/free-photo/young-bearded-man-with-striped-shirt_273609-5677.jpg?t=st=1687945440~exp=1687946040~hmac=5105f6a5dd9b45de4844973ac50333585a9892bec33b5124aed226ba509fe2f2">
+        </div>
+        <div class="title txt-center  hidden_div">
+          <div class="content_wrap">Candidate Name</div>
+        </div>
+        <div class="description txt-center  hidden_div">
+          <div class="content_wrap">samplemail@dispostable.com</div>
+          <div class="content_wrap">Chennai, Tamil Nadu </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <div class="card_two">
+      <div class="details_header flx_div flx_center card_sticky" #headerRef>
+        <!-- <div (click)="toggleDetails($event)" *ngFor="let detail of details">{{ detail }}</div> -->
+        <div *ngFor="let detail of details">{{ detail }}</div>
+      </div>
+      <div class="content" *ngFor="let candidate of candidateData">
+      <div class="inner_content">
+        <div class="profile_details pd-20">
+          <h2 class="head_title"> Personal Details </h2>
+          <div class="flx_div flx_center hidden_div title">
+            <div class="key">Name</div>
+            <div class="value content_wrap">{{candidate.personal_details.name}}</div>
+          </div>
+          <div class="flx_div flx_center hidden_div title">
+            <div class="key">Email</div>
+            <div class="value content_wrap">test@dispostable.com</div>
+          </div>
+          <div class="flx_div flx_center hidden_div title">
+            <div class="key">Mobile No.</div>
+            <div class="value content_wrap">+91 9876543210</div>
+          </div>
+          <div class="flx_div flx_center hidden_div title">
+            <div class="key">Gender</div>
+            <div class="value content_wrap">Male</div>
+          </div>
+          <div class="flx_div flx_center hidden_div title">
+            <div class="key">Date of Birth (as per X Std Certificate)</div>
+            <div class="value content_wrap">04-08-1999</div>
+          </div>
+          <div class="flx_div flx_center hidden_div title">
+            <div class="key">Marital Status</div>
+            <div class="value content_wrap">Single</div>
+          </div>
+          <div class="flx_div flx_center hidden_div title">
+            <div class="key">Domicile State</div>
+            <div class="value content_wrap">Andhra Pradesh</div>
+          </div>
+          <div class="flx_div flx_center hidden_div title">
+            <div class="key">Mobile</div>
+            <div class="value content_wrap">+91 9876543210</div>
+          </div>
+        </div>
+        <div class="profile_details pd-20">
+          <h2 class="head_title"> Languages Known </h2>
+          <div class="flx_div flx_center title">
+            <div class="key">Tamil</div>
+            <div class="value flx_div flx_center flx_between">
+              <div>Read</div>
+              <div>Write</div>
+              <div>Speak</div>
+            </div>
+          </div>
+          <div class="flx_div flx_center title">
+            <div class="key">English</div>
+            <div class="value flx_div flx_center flx_between">
+              <div>Read</div>
+              <div>Write</div>
+              <div>Speak</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="profile_details pd-20">
+          <h2 class="head_title">Hobbies/Interests </h2>
+          <div class="flx_div hobbies">
+            <div>Playing Video Games</div>
+            <div>Watching tv</div>
+          </div>
+        </div>
+
+
+
+      </div>
+
+
+
+
+
+
+      <div class="inner_content">
+        <div class="profile_details pd-20">
+          <h2 class="head_title"> Contact Details </h2>
+          <div class="brdr_btm_line pb-10">
+            <h2 class="sub_heading ">Present Address</h2>
+            <div class="flx_div flx_baseline title">
+              <div class="key">Present Address</div>
+              <div class="value">No.12/B, 14th Cross Street, Manapakkam, Chennai, Tamilnadu - 600089</div>
+            </div>
+          </div>
+          <div>
+            <h2 class="sub_heading  pt-10">Permanent Address</h2>
+            <div class="flx_div flx_baseline title">
+              <div class="key">Permanent Address</div>
+              <div class="value">No.12/B, 14th Cross Street, Manapakkam, Chennai, Tamilnadu - 600089</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+      <div class="inner_content">
+        <div class="profile_details pd-20">
+          <h2 class="head_title"> Education Details </h2>
+          <div class="brdr_btm_line pb-10">
+            <h2 class="sub_heading">Qualification 1</h2>
+            <div class="flx_div flx_baseline title">
+              <div class="key">Qualification</div>
+              <div class="value">
+                <div>SSLC/Class X - (CBSE), Bharat School of Education,</div>
+                <div class="yop-title"><em>June 2015 - April 2016</em></div>
+              </div>
+            </div>
+            <div class="flx_div flx_baseline title">
+              <div class="key">Year of Passing</div>
+              <div class="value">
+                April 2016
+              </div>
+            </div>
+            <div class="flx_div flx_baseline title">
+              <div class="key">Percentage (%)</div>
+              <div class="value">
+                75
+              </div>
+            </div>
+            <div class="flx_div flx_baseline title">
+              <div class="key">Do you have any gap during the education?</div>
+              <div class="value">
+                No
+              </div>
+            </div>
+          </div>
+          <div>
+            <h2 class="sub_heading pt-10">Qualification 2</h2>
+            <div class="flx_div flx_baseline title">
+              <div class="key">Qualification</div>
+              <div class="value">
+                <div>SSLC/Class X - (CBSE), Bharat School of Education,</div>
+                <div class="yop-title"><em>June 2015 - April 2016</em></div>
+              </div>
+            </div>
+
+            <div class="flx_div flx_baseline title">
+              <div class="key">Year of Passing</div>
+              <div class="value">
+                April 2016
+              </div>
+            </div>
+            <div class="flx_div flx_baseline title">
+              <div class="key">Percentage (%)</div>
+              <div class="value">
+                75
+              </div>
+            </div>
+            <div class="flx_div flx_baseline title">
+              <div class="key">Do you have any gap during the education?</div>
+              <div class="value">
+                No
+              </div>
+            </div>
+
+            <div class="flx_div flx_baseline title">
+              <div class="key">History of Backlogs?</div>
+              <div class="value">
+                1
+              </div>
+            </div>
+
+            <div class="flx_div flx_baseline title">
+              <div class="key">No of Backlogs?</div>
+              <div class="value">
+                1
+              </div>
+            </div>
+
+            <div class="flx_div flx_baseline title">
+              <div class="key">Reason for Backlogs?</div>
+              <div class="value">
+                Dummy Reason
+              </div>
+            </div>
+
+            <div class="flx_div flx_baseline title">
+              <div class="key">Highest Level of Education/Currently Pursuing</div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+
+
+      <div class="inner_content">
+        <div class="profile_details pd-20">
+          <h2 class="head_title"> Work Experience Details </h2>
+          
+          <div class="flx_div flx_baseline title">
+            <div class="key">Total Experience</div>
+            <div class="value">
+              <div>SSLC/Class X - (CBSE), Bharat School of Education,</div>
+              <div class="yop-title"><em>June 2015 - April 2016</em></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+
+    </div>
+    </div>
+
+
+
+
+    <div class="card_three">
+      <div class="job_details_card pd-20 card_sticky">
+        <div class="job_header">Job Details</div>
+        <div class="job_card hidden_div">
+          <div class="job_title content_wrap">Applied for</div>
+          <div class="job_description content_wrap">Software Developer</div>
+        </div>
+        <div class="job_card hidden_div">
+          <div class="job_title content_wrap">Job Type</div>
+          <div class="job_description content_wrap">Full Time</div>
+        </div>
+        <div class="job_card hidden_div">
+          <div class="job_title content_wrap">Location</div>
+          <div class="job_description content_wrap">Chennai</div>
+        </div>
+        <div class="job_card hidden_div">
+          <div class="job_title content_wrap">Candidate Status</div>
+          <div class="job_description content_wrap">Awaiting Review</div>
+        </div>
+        <div class="shortlist_btn">Shortlist</div>
+        <div class="reject_btn">Reject</div>
+      </div>
+    </div>
+
+
+
+  </div>
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <h4>View Job Requirements > View Applications > Candidate Profile</h4>
 
 <h1>Candidate Profile</h1>
 
@@ -50,4 +339,4 @@
   <ng-template #noPersonal>
     <div class="nodata">No Personal Details Available</div>
   </ng-template>
-</div>
+</div> -->
