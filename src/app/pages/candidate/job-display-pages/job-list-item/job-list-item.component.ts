@@ -37,7 +37,7 @@ export class JobListItemComponent implements OnInit ,AfterViewInit {
         education:item.education,
         specialization:item.specialization,
         yearofPassout:item.yearofPassout,
-        eligiblityCriteria:item.eligiblityCriteria
+        eligibilityCriteria:item.eligibilityCriteria
       }
     };
     this.apiService.savedJobs(obj).subscribe((res: any) => {
