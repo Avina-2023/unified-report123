@@ -11,7 +11,8 @@ import { AppConfigService } from 'src/app/utils/app-config.service';
   styleUrls: ['./viewCandidateProfilebyEmployer.component.scss'],
 })
 export class ViewCandidateProfilebyEmployerComponent implements OnInit {
-  @ViewChild('headerRef', { static: true }) headerRef!: ElementRef<HTMLDivElement>;
+  @ViewChild('headerRef', { static: true })
+  headerRef!: ElementRef<HTMLDivElement>;
   routerlink = APP_CONSTANTS.ENDPOINTS;
   personalDetailsMap: any;
   details: string[] = [
@@ -21,14 +22,16 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
     'Work Experience Details',
     'Project Details',
     'Accomplishment Details',
-    'Disciplinary Details'
+    'Disciplinary Details',
   ];
   candidateData: any[] = [];
   email: any;
-  constructor(private apiService: ApiService, private appConfig: AppConfigService) { }
+  constructor(
+    private apiService: ApiService,
+    private appConfig: AppConfigService
+  ) {}
 
   ngOnInit() {
-
     this.CandidateDetails();
   }
 
@@ -41,7 +44,8 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
   // }
 
   scrollTo(direction: 'left' | 'right') {
-    const container = this.headerRef.nativeElement.querySelector('.scroll-container');
+    const container =
+      this.headerRef.nativeElement.querySelector('.scroll-container');
     const scrollAmount = 200; // Adjust as needed
     if (direction === 'left') {
       container.scrollLeft -= scrollAmount;
@@ -49,7 +53,6 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
       container.scrollLeft += scrollAmount;
     }
   }
-
 
   CandidateDetails() {
     var obj = {};
@@ -68,17 +71,26 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
     this.apiService.candidateDetails(obj).subscribe((res: any) => {
       if (res.success) {
         if (Array.isArray(res.data)) {
-        this.candidateData = res.data;
-        console.log(this.candidateData, 'candidate data')
+          this.candidateData = res.data;
+          console.log(this.candidateData, 'candidate data');
+        } else {
+          this.candidateData = [res.data];
+          console.log(this.candidateData, 'candidate data');
+        }
       }
-      else {
-        this.candidateData = [res.data];
-        console.log(this.candidateData, 'candidate data');
-      }
-    }
-      this.appConfig.setLocalStorage('candidateProfile', JSON.stringify(this.candidateData));
+      this.appConfig.setLocalStorage(
+        'candidateProfile',
+        JSON.stringify(this.candidateData)
+      );
     });
   }
 
-
+  scrollToSection(section: string) {
+    const element = document.getElementById(
+      section.toLowerCase().replace(/ /g, '-')
+    );
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
 }

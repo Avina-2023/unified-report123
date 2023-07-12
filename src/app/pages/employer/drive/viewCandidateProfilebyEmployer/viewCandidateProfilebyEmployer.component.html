@@ -16,8 +16,9 @@
           <div class="content_wrap">Candidate Name</div>
         </div>
         <div class="description txt-center  hidden_div">
-          <div class="content_wrap">samplemail@dispostable.com</div>
-          <div class="content_wrap">Chennai, Tamil Nadu </div>
+          <div class="content_wrap"></div>
+          <div class="content_wrap"></div>
+
         </div>
       </div>
     </div>
@@ -27,212 +28,291 @@
     <div class="card_two">
       <div class="details_header flx_div flx_center card_sticky" #headerRef>
         <!-- <div (click)="toggleDetails($event)" *ngFor="let detail of details">{{ detail }}</div> -->
-        <div *ngFor="let detail of details">{{ detail }}</div>
+        <div class="overall-detail" *ngFor="let detail of details" (click)="scrollToSection(detail)">{{ detail }}</div>
       </div>
       <div class="content" *ngFor="let candidate of candidateData">
-      <div class="inner_content">
-        <div class="profile_details pd-20">
-          <h2 class="head_title"> Personal Details </h2>
-          <div class="flx_div flx_center hidden_div title">
-            <div class="key">Name</div>
-            <div class="value content_wrap">{{candidate.personal_details.name}}</div>
+        <div class="inner_content">
+          <div class="profile_details pd-20">
+            <h2 class="head_title"> Personal Details </h2>
+            <div class="flx_div flx_center hidden_div title">
+              <div class="key">Name</div>
+              <div class="value content_wrap">{{candidate.personal_details.name}}</div>
+            </div>
+            <div class="flx_div flx_center hidden_div title">
+              <div class="key">Email</div>
+              <div class="value content_wrap">{{candidate.email}}</div>
+            </div>
+            <div class="flx_div flx_center hidden_div title">
+              <div class="key">Mobile No.</div>
+              <div class="value content_wrap">{{candidate.personal_details.mobile}}</div>
+            </div>
+            <div class="flx_div flx_center hidden_div title">
+              <div class="key">Gender</div>
+              <div class="value content_wrap">{{candidate.personal_details.gender}}</div>
+            </div>
+            <div class="flx_div flx_center hidden_div title">
+              <div class="key">Date of Birth (as per X Std Certificate)</div>
+              <div class="value content_wrap">{{candidate.personal_details.dob| date : 'dd/MM/yyyy'}}</div>
+            </div>
+            <div class="flx_div flx_center hidden_div title">
+              <div class="key">Marital Status</div>
+              <div class="value content_wrap">{{candidate.personal_details.marital_status}}</div>
+            </div>
+            <div class="flx_div flx_center hidden_div title">
+              <div class="key">Mother Tongue</div>
+              <div class="value content_wrap">{{candidate.personal_details.mother_tongue}}</div>
+            </div>
+            <div class="flx_div flx_center hidden_div title">
+              <div class="key">Domicile State</div>
+              <div class="value content_wrap">{{candidate.personal_details.domicile_state}}</div>
+            </div>
+
           </div>
-          <div class="flx_div flx_center hidden_div title">
-            <div class="key">Email</div>
-            <div class="value content_wrap">test@dispostable.com</div>
-          </div>
-          <div class="flx_div flx_center hidden_div title">
-            <div class="key">Mobile No.</div>
-            <div class="value content_wrap">+91 9876543210</div>
-          </div>
-          <div class="flx_div flx_center hidden_div title">
-            <div class="key">Gender</div>
-            <div class="value content_wrap">Male</div>
-          </div>
-          <div class="flx_div flx_center hidden_div title">
-            <div class="key">Date of Birth (as per X Std Certificate)</div>
-            <div class="value content_wrap">04-08-1999</div>
-          </div>
-          <div class="flx_div flx_center hidden_div title">
-            <div class="key">Marital Status</div>
-            <div class="value content_wrap">Single</div>
-          </div>
-          <div class="flx_div flx_center hidden_div title">
-            <div class="key">Domicile State</div>
-            <div class="value content_wrap">Andhra Pradesh</div>
-          </div>
-          <div class="flx_div flx_center hidden_div title">
-            <div class="key">Mobile</div>
-            <div class="value content_wrap">+91 9876543210</div>
-          </div>
-        </div>
-        <div class="profile_details pd-20">
-          <h2 class="head_title"> Languages Known </h2>
-          <div class="flx_div flx_center title">
-            <div class="key">Tamil</div>
-            <div class="value flx_div flx_center flx_between">
-              <div>Read</div>
-              <div>Write</div>
-              <div>Speak</div>
+          <div class="profile_details pd-20">
+            <h2 class="head_title"> Languages Known </h2>
+            <div class="flx_div flx_center title">
+              <div class="key">Tamil</div>
+              <div class="value flx_div flx_center flx_between">
+                <div>Read</div>
+                <div>Write</div>
+                <div>Speak</div>
+              </div>
+            </div>
+            <div class="flx_div flx_center title">
+              <div class="key">English</div>
+              <div class="value flx_div flx_center flx_between">
+                <div>Read</div>
+                <div>Write</div>
+                <div>Speak</div>
+              </div>
             </div>
           </div>
-          <div class="flx_div flx_center title">
-            <div class="key">English</div>
-            <div class="value flx_div flx_center flx_between">
-              <div>Read</div>
-              <div>Write</div>
-              <div>Speak</div>
+
+          <div class="profile_details pd-20">
+            <h2 class="head_title">Hobbies/Interests </h2>
+            <div class="flx_div hobbies">
+              {{candidate.personal_details.hobbies_intrest}}
             </div>
           </div>
         </div>
 
-        <div class="profile_details pd-20">
-          <h2 class="head_title">Hobbies/Interests </h2>
-          <div class="flx_div hobbies">
-            <div>Playing Video Games</div>
-            <div>Watching tv</div>
+
+
+
+
+        <div>
+          <div id="contact-details" class="inner_content">
+            <div class="profile_details pd-20">
+              <h2 class="head_title"> Contact Details </h2>
+              <div class="brdr_btm_line pb-10">
+                <h2 class="sub_heading ">Present Address</h2>
+                <div class="flx_div flx_baseline title">
+                  <div class="key">Present Address</div>
+                  <div class="value">
+                    {{candidate.contact_details.present_line_street_addres}},
+                    {{candidate.contact_details.present_line2_street_addre}},
+                    {{candidate.contact_details.present_address_line_3}},
+                    {{candidate.contact_details.preset_city}},
+                    {{candidate.contact_details.present_state}},
+                    {{candidate.contact_details.present_zip}}
+                  </div>
+                </div>
+              </div>
+              <div>
+                <h2 class="sub_heading  pt-10">Permanent Address</h2>
+                <div class="flx_div flx_baseline title">
+                  <div class="key">Permanent Address</div>
+                  <div class="value">{{candidate.contact_details.permanent_line1_street_add}},
+                    {{candidate.contact_details.permanent_line2_street_add}},
+                    {{candidate.contact_details.permanent_address_line_3}},
+                    {{candidate.contact_details.permanent_city}},
+                    {{candidate.contact_details.permanent_state}},
+                    {{candidate.contact_details.permanent_zip}}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="inner_content">
+          <div class="profile_details pd-20">
+            <h2 class="head_title"> Education Details </h2>
+            <div class="brdr_btm_line pb-10"
+              *ngFor="let candy of candidate.education_details.educations; let i = index">
+              <h2 class="sub_heading">Qualification {{i+1}}</h2>
+              <div class="flx_div flx_baseline title">
+                <div class="key">Qualification</div>
+                <div class="value">{{candy.level}}
+                  <!-- <div>SSLC/Class X - (CBSE), Bharat School of Education,</div>
+                  <div class="yop-title"><em>June 2015 - April 2016</em></div> -->
+                </div>
+              </div>
+              <div class="flx_div flx_baseline title">
+                <div class="key">Year of Passing</div>
+                <div class="value">{{candy.year_of_passing| date : 'MMM y'}}
+
+                </div>
+              </div>
+              <div class="flx_div flx_baseline title">
+                <div class="key">Percentage (%)</div>
+                <div class="value">
+                  {{candy.percentage}}
+                </div>
+              </div>
+              <div class="flx_div flx_baseline title">
+                <div class="key">Do you have any gap during the education?</div>
+                <div class="value">
+                  {{candy.gap}}
+                </div>
+              </div>
+              <div class="flx_div flx_baseline title">
+                <div class="key">History of Backlogs?</div>
+                <div class="value">
+                  1
+                </div>
+              </div>
+
+              <div class="flx_div flx_baseline title">
+                <div class="key">No of Backlogs?</div>
+                <div class="value">
+                  1
+                </div>
+              </div>
+
+              <div class="flx_div flx_baseline title">
+                <div class="key">Reason for Backlogs?</div>
+                <div class="value">
+                  Dummy Reason
+                </div>
+              </div>
+
+              <div class="flx_div flx_baseline title">
+                <div class="key">Highest Level of Education/Currently Pursuing</div>
+              </div>
+            </div>
+
           </div>
         </div>
 
 
 
-      </div>
+        <div class="inner_content">
+          <div class="profile_details pd-20">
+            <h2 class="head_title"> Work Experience Details </h2>
 
-
-
-
-
-
-      <div class="inner_content">
-        <div class="profile_details pd-20">
-          <h2 class="head_title"> Contact Details </h2>
-          <div class="brdr_btm_line pb-10">
-            <h2 class="sub_heading ">Present Address</h2>
             <div class="flx_div flx_baseline title">
-              <div class="key">Present Address</div>
-              <div class="value">No.12/B, 14th Cross Street, Manapakkam, Chennai, Tamilnadu - 600089</div>
-            </div>
-          </div>
-          <div>
-            <h2 class="sub_heading  pt-10">Permanent Address</h2>
-            <div class="flx_div flx_baseline title">
-              <div class="key">Permanent Address</div>
-              <div class="value">No.12/B, 14th Cross Street, Manapakkam, Chennai, Tamilnadu - 600089</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-
-
-      <div class="inner_content">
-        <div class="profile_details pd-20">
-          <h2 class="head_title"> Education Details </h2>
-          <div class="brdr_btm_line pb-10">
-            <h2 class="sub_heading">Qualification 1</h2>
-            <div class="flx_div flx_baseline title">
-              <div class="key">Qualification</div>
+              <div class="key">Total Experience</div>
               <div class="value">
                 <div>SSLC/Class X - (CBSE), Bharat School of Education,</div>
                 <div class="yop-title"><em>June 2015 - April 2016</em></div>
               </div>
             </div>
-            <div class="flx_div flx_baseline title">
-              <div class="key">Year of Passing</div>
-              <div class="value">
-                April 2016
+
+          </div>
+        </div>
+
+        <div class="inner_content">
+          <div class="profile_details pd-20">
+            <h2 class="head_title"> Project Details </h2>
+            <div class="brdr_btm_line pb-10" *ngFor="let prjct of candidate.project_details.projects; let i = index">
+              <h2 class="sub_heading">Project {{i+1}}</h2>
+              <div class="flx_div flx_center hidden_div title">
+                <div class="key">Project Type</div>
+                <div class="value content_wrap">{{prjct.typeList}}</div>
               </div>
-            </div>
-            <div class="flx_div flx_baseline title">
-              <div class="key">Percentage (%)</div>
-              <div class="value">
-                75
+              <div class="flx_div flx_center hidden_div title">
+                <div class="key">Team Size</div>
+                <div class="value content_wrap">{{prjct.teamSize}}</div>
               </div>
-            </div>
-            <div class="flx_div flx_baseline title">
-              <div class="key">Do you have any gap during the education?</div>
-              <div class="value">
-                No
+              <div class="flx_div flx_center hidden_div title">
+                <div class="key">Title of the Project</div>
+                <div class="value content_wrap">{{prjct.projectTitle}}</div>
+              </div>
+              <div class="flx_div flx_center hidden_div title">
+                <div class="key">Organization</div>
+                <div class="value content_wrap">{{prjct.projectOrganization}}</div>
+              </div>
+              <div class="flx_div flx_center hidden_div title">
+                <div class="key">Period From</div>
+                <div class="value content_wrap">{{prjct.periodFrom| date : 'MMM y'}}</div>
+              </div>
+              <div class="flx_div flx_center hidden_div title">
+                <div class="key">Period To</div>
+                <div class="value content_wrap">{{prjct.periodTo| date : 'MMM y'}}</div>
+              </div>
+              <div class="flx_div flx_center hidden_div title">
+                <div class="key">Description</div>
+                <div class="value content_wrap">{{prjct.projectDescription}}</div>
               </div>
             </div>
           </div>
-          <div>
-            <h2 class="sub_heading pt-10">Qualification 2</h2>
-            <div class="flx_div flx_baseline title">
-              <div class="key">Qualification</div>
-              <div class="value">
-                <div>SSLC/Class X - (CBSE), Bharat School of Education,</div>
-                <div class="yop-title"><em>June 2015 - April 2016</em></div>
-              </div>
-            </div>
+        </div>
 
-            <div class="flx_div flx_baseline title">
-              <div class="key">Year of Passing</div>
-              <div class="value">
-                April 2016
+        <div class="inner_content">
+          <div class="profile_details pd-20">
+            <h2 class="head_title"> Accomplishments </h2>
+            <div class="brdr_btm_line pb-10"
+              *ngFor="let crtfcte of candidate.accomplishment_details.certifications; let i = index">
+              <h2 class="sub_heading">Certification{{i+1}}</h2>
+              <div class="flx_div flx_baseline title">
+                <div class="key">Certification Name</div>
+                <div class="value content_wrap">{{crtfcte.certificationName}}</div>
+              </div>
+              <div class="flx_div flx_baseline title">
+                <div class="key">Issued From</div>
+                <div class="value content_wrap">{{crtfcte.certificationIssuedFrom}}</div>
+              </div>
+              <div class="flx_div flx_baseline title">
+                <div class="key">Description</div>
+                <div class="value content_wrap">{{crtfcte.certificationDescription}}</div>
+              </div>
+              <div class="flx_div flx_baseline title">
+                <div class="key">Certification Validity from</div>
+                <div class="value content_wrap">{{crtfcte.certificationValidityFrom| date : 'MMM y'}}</div>
+              </div>
+              <div class="flx_div flx_baseline title">
+                <div class="key">Certification Validity to</div>
+                <div class="value content_wrap">{{crtfcte.certificationValidityUpto| date : 'MMM y'}}</div>
               </div>
             </div>
-            <div class="flx_div flx_baseline title">
-              <div class="key">Percentage (%)</div>
-              <div class="value">
-                75
+            <div class="brdr_btm_line pb-10"
+              *ngFor="let awrds of candidate.accomplishment_details.awards; let i = index">
+              <h2 class="sub_heading">Awards{{i+1}}</h2>
+              <div class="flx_div flx_baseline title">
+                <div class="key">Award Title</div>
+                <div class="value content_wrap">{{awrds.awardTitle}}</div>
+              </div>
+              <div class="flx_div flx_baseline title">
+                <div class="key">Awarded Date</div>
+                <div class="value content_wrap">{{awrds.awardDate| date : 'MMM y'}}</div>
               </div>
             </div>
-            <div class="flx_div flx_baseline title">
-              <div class="key">Do you have any gap during the education?</div>
-              <div class="value">
-                No
+            <div class="brdr_btm_line pb-10"
+              *ngFor="let jrnl_enty of candidate.accomplishment_details.journals; let i = index">
+              <h2 class="sub_heading">Research Publication/Journal Entry{{i+1}}</h2>
+              <div class="flx_div flx_baseline title">
+                <div class="key">Title</div>
+                <div class="value content_wrap">{{jrnl_enty.journalEntityTitle}}</div>
               </div>
-            </div>
-
-            <div class="flx_div flx_baseline title">
-              <div class="key">History of Backlogs?</div>
-              <div class="value">
-                1
+              <div class="flx_div flx_baseline title">
+                <div class="key">URL</div>
+                <div class="value content_wrap">{{jrnl_enty.journalEntityUrl}}</div>
               </div>
-            </div>
-
-            <div class="flx_div flx_baseline title">
-              <div class="key">No of Backlogs?</div>
-              <div class="value">
-                1
+              <div class="flx_div flx_baseline title">
+                <div class="key">Published On</div>
+                <div class="value content_wrap">{{jrnl_enty.journalEntityPublishedOn| date : 'MMM y'}}</div>
               </div>
-            </div>
-
-            <div class="flx_div flx_baseline title">
-              <div class="key">Reason for Backlogs?</div>
-              <div class="value">
-                Dummy Reason
+              <div class="flx_div flx_baseline title">
+                <div class="key">Description</div>
+                <div class="value content_wrap">{{jrnl_enty.journalEntityDescription}}</div>
               </div>
-            </div>
-
-            <div class="flx_div flx_baseline title">
-              <div class="key">Highest Level of Education/Currently Pursuing</div>
             </div>
 
           </div>
         </div>
       </div>
 
-
-
-      <div class="inner_content">
-        <div class="profile_details pd-20">
-          <h2 class="head_title"> Work Experience Details </h2>
-          
-          <div class="flx_div flx_baseline title">
-            <div class="key">Total Experience</div>
-            <div class="value">
-              <div>SSLC/Class X - (CBSE), Bharat School of Education,</div>
-              <div class="yop-title"><em>June 2015 - April 2016</em></div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-
-    </div>
     </div>
 
 
