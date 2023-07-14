@@ -15,22 +15,23 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
   headerRef!: ElementRef<HTMLDivElement>;
   routerlink = APP_CONSTANTS.ENDPOINTS;
   personalDetailsMap: any;
-  details: string[] = [
-    'Personal Details',
-    'Contact Details',
-    'Education Details',
-    'Work Experience Details',
-    'Project Details',
-    'Accomplishment Details',
-    'Disciplinary Details',
+  details: { label: string; sectionId: string }[] = [
+    { label: 'Personal Details', sectionId: 'personal' },
+    { label: 'Contact Details', sectionId: 'contact' },
+    { label: 'Education Details', sectionId: 'education' },
+    { label: 'Work Experience Details', sectionId: 'work-experience' },
+    { label: 'Project Details', sectionId: 'project' },
+    { label: 'Accomplishment Details', sectionId: 'accomplishment' },
+    { label: 'Disciplinary Details', sectionId: 'disciplinary' },
   ];
   candidateData: any[] = [];
   email: any;
+  //  elementRef: any;
   constructor(
     private apiService: ApiService,
-    private appConfig: AppConfigService
+    private appConfig: AppConfigService,
+    private elementRef: ElementRef
   ) {}
-
   ngOnInit() {
     this.CandidateDetails();
   }
@@ -85,12 +86,21 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
     });
   }
 
-  scrollToSection(section: string) {
-    const element = document.getElementById(
-      section.toLowerCase().replace(/ /g, '-')
+  scrollToSection(sectionId: string) {
+    const section = this.elementRef.nativeElement.querySelector(
+      '#' + sectionId
     );
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' });
     }
   }
 }
+
+// scrollToSection(section: string) {
+//   const element = document.getElementById(
+//     section.toLowerCase().replace(/ /g, '-')
+//   );
+//   if (element) {
+//     element.scrollIntoView({ behavior: 'smooth' });
+//   }
+// }

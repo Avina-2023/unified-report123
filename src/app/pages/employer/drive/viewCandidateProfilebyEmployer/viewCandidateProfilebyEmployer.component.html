@@ -7,31 +7,30 @@
   <h1 class="profile_header">Candidate Profile</h1>
   <div class="candidate_card flx_div flx_between">
 
-    <div class="card_one">
+    <div class="card_one" *ngFor="let candidate of candidateData">
       <div class="inner_content pd-20 card_sticky">
         <div><img
             src="https://img.freepik.com/free-photo/young-bearded-man-with-striped-shirt_273609-5677.jpg?t=st=1687945440~exp=1687946040~hmac=5105f6a5dd9b45de4844973ac50333585a9892bec33b5124aed226ba509fe2f2">
         </div>
         <div class="title txt-center  hidden_div">
-          <div class="content_wrap">Candidate Name</div>
+          <div class="content_wrap">{{candidate.personal_details.name}}</div>
         </div>
         <div class="description txt-center  hidden_div">
-          <div class="content_wrap"></div>
-          <div class="content_wrap"></div>
+          <div class="content_wrap">{{candidate.email}}</div>
+          <div class="content_wrap">
+            {{candidate.contact_details.permanent_city}},{{candidate.contact_details.permanent_state}}</div>
 
         </div>
       </div>
     </div>
-
-
-
     <div class="card_two">
       <div class="details_header flx_div flx_center card_sticky" #headerRef>
-        <!-- <div (click)="toggleDetails($event)" *ngFor="let detail of details">{{ detail }}</div> -->
-        <div class="overall-detail" *ngFor="let detail of details" (click)="scrollToSection(detail)">{{ detail }}</div>
+        <div class="overall-detail" *ngFor="let detail of details" (click)="scrollToSection(detail.sectionId)">{{
+          detail.label
+          }}</div>
       </div>
       <div class="content" *ngFor="let candidate of candidateData">
-        <div class="inner_content">
+        <div id="personal" #personalSection class="inner_content">
           <div class="profile_details pd-20">
             <h2 class="head_title"> Personal Details </h2>
             <div class="flx_div flx_center hidden_div title">
@@ -91,17 +90,14 @@
           <div class="profile_details pd-20">
             <h2 class="head_title">Hobbies/Interests </h2>
             <div class="flx_div hobbies">
-              {{candidate.personal_details.hobbies_intrest}}
+              <div *ngFor="let hobby of candidate.personal_details.hobbies_intrest">{{ hobby.hobbiesAndInterests }}
+              </div>
             </div>
           </div>
         </div>
 
-
-
-
-
         <div>
-          <div id="contact-details" class="inner_content">
+          <div id="contact" #contactSection class="inner_content">
             <div class="profile_details pd-20">
               <h2 class="head_title"> Contact Details </h2>
               <div class="brdr_btm_line pb-10">
@@ -127,7 +123,7 @@
                     {{candidate.contact_details.permanent_address_line_3}},
                     {{candidate.contact_details.permanent_city}},
                     {{candidate.contact_details.permanent_state}},
-                    {{candidate.contact_details.permanent_zip}}</div>
+                    {{candidate.contact_details.permanent_zip}} </div>
                 </div>
               </div>
             </div>
@@ -135,60 +131,63 @@
         </div>
 
 
-        <div class="inner_content">
+        <div id="education" #educationSection class="inner_content">
           <div class="profile_details pd-20">
             <h2 class="head_title"> Education Details </h2>
             <div class="brdr_btm_line pb-10"
-              *ngFor="let candy of candidate.education_details.educations; let i = index">
+              *ngFor="let candidates of candidate.education_details.educations; let i = index">
               <h2 class="sub_heading">Qualification {{i+1}}</h2>
               <div class="flx_div flx_baseline title">
                 <div class="key">Qualification</div>
-                <div class="value">{{candy.level}}
+                <div class="value">{{candidates.level}}
                   <!-- <div>SSLC/Class X - (CBSE), Bharat School of Education,</div>
                   <div class="yop-title"><em>June 2015 - April 2016</em></div> -->
                 </div>
               </div>
               <div class="flx_div flx_baseline title">
                 <div class="key">Year of Passing</div>
-                <div class="value">{{candy.year_of_passing| date : 'MMM y'}}
+                <div class="value">{{candidates.year_of_passing| date : 'MMM y'}}
 
                 </div>
               </div>
               <div class="flx_div flx_baseline title">
                 <div class="key">Percentage (%)</div>
                 <div class="value">
-                  {{candy.percentage}}
+                  {{candidates.percentage}}
                 </div>
               </div>
               <div class="flx_div flx_baseline title">
                 <div class="key">Do you have any gap during the education?</div>
                 <div class="value">
-                  {{candy.gap}}
+                  {{candidates.gap}}
                 </div>
               </div>
               <div class="flx_div flx_baseline title">
                 <div class="key">History of Backlogs?</div>
                 <div class="value">
-                  1
+                  {{candidates.historyOfbacklog}}
                 </div>
               </div>
 
               <div class="flx_div flx_baseline title">
                 <div class="key">No of Backlogs?</div>
                 <div class="value">
-                  1
+                  {{candidates.noActivebacklog}}
                 </div>
               </div>
 
               <div class="flx_div flx_baseline title">
                 <div class="key">Reason for Backlogs?</div>
                 <div class="value">
-                  Dummy Reason
+                  {{candidates.reasonForbacklog}}
                 </div>
               </div>
 
               <div class="flx_div flx_baseline title">
                 <div class="key">Highest Level of Education/Currently Pursuing</div>
+                <div class="value">
+                  {{candidates.is_highLevelEdu}}
+                </div>
               </div>
             </div>
 
@@ -197,127 +196,185 @@
 
 
 
-        <div class="inner_content">
+        <div id="work-experience" #workExperienceSection class="inner_content">
           <div class="profile_details pd-20">
             <h2 class="head_title"> Work Experience Details </h2>
-
-            <div class="flx_div flx_baseline title">
-              <div class="key">Total Experience</div>
-              <div class="value">
-                <div>SSLC/Class X - (CBSE), Bharat School of Education,</div>
-                <div class="yop-title"><em>June 2015 - April 2016</em></div>
+            <div class="profile_details pd-20 ">
+              <h2 class="sub_heading">Total Experience </h2>
+              <div class="flx_div experience">
+                {{ candidate.experience_details.work_details.total_exp_years }}Years
+                {{ candidate.experience_details.work_details.total_exp_months }}Months
+              </div>
+            </div>
+            <div class="profile_details pd-20">
+              <h2 class="head_title">Skills </h2>
+              <div class="flx_div skills">
+                <div *ngFor="let skill of candidate.experience_details.skills">{{ skill.skill }}</div>
+              </div>
+            </div>
+            <h2 class="head_title"> Professional Experience </h2>
+            <div class="brdr_btm_line pb-10"
+              *ngFor="let employment of candidate.experience_details.employments; let i = index">
+              <h2 class="sub_heading">Employment{{i+1}}</h2>
+              <div class="flx_div flx_center hidden_div title">
+                <div class="key">Employer Name</div>
+                <div class="value content_wrap">{{employment.employment_name_address}}</div>
+              </div>
+              <div class="flx_div flx_center hidden_div title">
+                <div class="key">Position Held</div>
+                <div class="value content_wrap">{{employment.postion_field}}</div>
+              </div>
+              <div class="flx_div flx_center hidden_div title">
+                <div class="key">Achievements/Responsibility/Tasks</div>
+                <div class="value content_wrap">{{employment.achievement}}</div>
+              </div>
+              <div class="flx_div flx_center hidden_div title">
+                <div class="key">Duration From</div>
+                <div class="value content_wrap">{{employment.duration_from| date : 'MMM y'}}</div>
+              </div>
+              <div class="flx_div flx_center hidden_div title">
+                <div class="key">Duration To</div>
+                <div class="value content_wrap">{{employment.duration_to| date : 'MMM y'}}</div>
+              </div>
+              <div class="flx_div flx_baseline title">
+                <div class="key">I am Currently working here</div>
+                <div class="value">
+                  {{employment.is_working_here}}
+                </div>
               </div>
             </div>
 
-          </div>
-        </div>
-
-        <div class="inner_content">
-          <div class="profile_details pd-20">
-            <h2 class="head_title"> Project Details </h2>
-            <div class="brdr_btm_line pb-10" *ngFor="let prjct of candidate.project_details.projects; let i = index">
-              <h2 class="sub_heading">Project {{i+1}}</h2>
+            <h2 class="head_title"> Articleship/Training Details</h2>
+            <div class="brdr_btm_line pb-10"
+              *ngFor="let employment of candidate.experience_details.intern; let i = index">
+              <h2 class="sub_heading">Articleship/Training{{i+1}}</h2>
               <div class="flx_div flx_center hidden_div title">
-                <div class="key">Project Type</div>
-                <div class="value content_wrap">{{prjct.typeList}}</div>
-              </div>
-              <div class="flx_div flx_center hidden_div title">
-                <div class="key">Team Size</div>
-                <div class="value content_wrap">{{prjct.teamSize}}</div>
-              </div>
-              <div class="flx_div flx_center hidden_div title">
-                <div class="key">Title of the Project</div>
-                <div class="value content_wrap">{{prjct.projectTitle}}</div>
-              </div>
-              <div class="flx_div flx_center hidden_div title">
-                <div class="key">Organization</div>
-                <div class="value content_wrap">{{prjct.projectOrganization}}</div>
+                <div class="key">Employer Name</div>
+                <div class="value content_wrap">{{employment.employer_name}}</div>
               </div>
               <div class="flx_div flx_center hidden_div title">
                 <div class="key">Period From</div>
-                <div class="value content_wrap">{{prjct.periodFrom| date : 'MMM y'}}</div>
+                <div class="value content_wrap">{{employment.from_date| date : 'MMM y'}}</div>
               </div>
               <div class="flx_div flx_center hidden_div title">
                 <div class="key">Period To</div>
-                <div class="value content_wrap">{{prjct.periodTo| date : 'MMM y'}}</div>
+                <div class="value content_wrap">{{employment.to_date| date : 'MMM y'}}</div>
+              </div>
+              <div class="flx_div flx_center hidden_div title">
+                <div class="key">Achievements/Responsibility/Tasks</div>
+                <div class="value content_wrap">{{employment.work_responsiability}}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="project" #projectSection class="inner_content">
+          <div class="profile_details pd-20">
+            <h2 class="head_title"> Project Details </h2>
+            <div class="brdr_btm_line pb-10" *ngFor="let project of candidate.project_details.projects; let i = index">
+              <h2 class="sub_heading">Project {{i+1}}</h2>
+              <div class="flx_div flx_center hidden_div title">
+                <div class="key">Project Type</div>
+                <div class="value content_wrap">{{project.typeList}}</div>
+              </div>
+              <div class="flx_div flx_center hidden_div title">
+                <div class="key">Team Size</div>
+                <div class="value content_wrap">{{project.teamSize}}</div>
+              </div>
+              <div class="flx_div flx_center hidden_div title">
+                <div class="key">Title of the Project</div>
+                <div class="value content_wrap">{{project.projectTitle}}</div>
+              </div>
+              <div class="flx_div flx_center hidden_div title">
+                <div class="key">Organization</div>
+                <div class="value content_wrap">{{project.projectOrganization}}</div>
+              </div>
+              <div class="flx_div flx_center hidden_div title">
+                <div class="key">Period From</div>
+                <div class="value content_wrap">{{project.periodFrom| date : 'MMM y'}}</div>
+              </div>
+              <div class="flx_div flx_center hidden_div title">
+                <div class="key">Period To</div>
+                <div class="value content_wrap">{{project.periodTo| date : 'MMM y'}}</div>
               </div>
               <div class="flx_div flx_center hidden_div title">
                 <div class="key">Description</div>
-                <div class="value content_wrap">{{prjct.projectDescription}}</div>
+                <div class="value content_wrap">{{project.projectDescription}}</div>
               </div>
             </div>
           </div>
         </div>
 
-        <div class="inner_content">
+        <div id="accomplishment" #accomplishmentSection class="inner_content">
           <div class="profile_details pd-20">
             <h2 class="head_title"> Accomplishments </h2>
             <div class="brdr_btm_line pb-10"
-              *ngFor="let crtfcte of candidate.accomplishment_details.certifications; let i = index">
+              *ngFor="let certification of candidate.accomplishment_details.certifications; let i = index">
               <h2 class="sub_heading">Certification{{i+1}}</h2>
               <div class="flx_div flx_baseline title">
                 <div class="key">Certification Name</div>
-                <div class="value content_wrap">{{crtfcte.certificationName}}</div>
+                <div class="value content_wrap">{{certification.certificationName}}</div>
               </div>
               <div class="flx_div flx_baseline title">
                 <div class="key">Issued From</div>
-                <div class="value content_wrap">{{crtfcte.certificationIssuedFrom}}</div>
+                <div class="value content_wrap">{{certification.certificationIssuedFrom}}</div>
               </div>
               <div class="flx_div flx_baseline title">
                 <div class="key">Description</div>
-                <div class="value content_wrap">{{crtfcte.certificationDescription}}</div>
+                <div class="value content_wrap">{{certification.certificationDescription}}</div>
               </div>
               <div class="flx_div flx_baseline title">
                 <div class="key">Certification Validity from</div>
-                <div class="value content_wrap">{{crtfcte.certificationValidityFrom| date : 'MMM y'}}</div>
+                <div class="value content_wrap">{{certification.certificationValidityFrom| date : 'MMM y'}}</div>
               </div>
               <div class="flx_div flx_baseline title">
                 <div class="key">Certification Validity to</div>
-                <div class="value content_wrap">{{crtfcte.certificationValidityUpto| date : 'MMM y'}}</div>
+                <div class="value content_wrap">{{certification.certificationValidityUpto| date : 'MMM y'}}</div>
+              </div>
+
+              <div class="flx_div flx_baseline title">
+                <div class="key">This Certification does not expire</div>
+                <div class="value">
+                  {{certification.isexpire}}
+                </div>
               </div>
             </div>
             <div class="brdr_btm_line pb-10"
-              *ngFor="let awrds of candidate.accomplishment_details.awards; let i = index">
+              *ngFor="let awards of candidate.accomplishment_details.awards; let i = index">
               <h2 class="sub_heading">Awards{{i+1}}</h2>
               <div class="flx_div flx_baseline title">
                 <div class="key">Award Title</div>
-                <div class="value content_wrap">{{awrds.awardTitle}}</div>
+                <div class="value content_wrap">{{awards.awardTitle}}</div>
               </div>
               <div class="flx_div flx_baseline title">
                 <div class="key">Awarded Date</div>
-                <div class="value content_wrap">{{awrds.awardDate| date : 'MMM y'}}</div>
+                <div class="value content_wrap">{{awards.awardDate| date : 'MMM y'}}</div>
               </div>
             </div>
             <div class="brdr_btm_line pb-10"
-              *ngFor="let jrnl_enty of candidate.accomplishment_details.journals; let i = index">
+              *ngFor="let journalentry of candidate.accomplishment_details.journals; let i = index">
               <h2 class="sub_heading">Research Publication/Journal Entry{{i+1}}</h2>
               <div class="flx_div flx_baseline title">
                 <div class="key">Title</div>
-                <div class="value content_wrap">{{jrnl_enty.journalEntityTitle}}</div>
+                <div class="value content_wrap">{{journalentry.journalEntityTitle}}</div>
               </div>
               <div class="flx_div flx_baseline title">
                 <div class="key">URL</div>
-                <div class="value content_wrap">{{jrnl_enty.journalEntityUrl}}</div>
+                <div class="value content_wrap">{{journalentry.journalEntityUrl}}</div>
               </div>
               <div class="flx_div flx_baseline title">
                 <div class="key">Published On</div>
-                <div class="value content_wrap">{{jrnl_enty.journalEntityPublishedOn| date : 'MMM y'}}</div>
+                <div class="value content_wrap">{{journalentry.journalEntityPublishedOn| date : 'MMM y'}}</div>
               </div>
               <div class="flx_div flx_baseline title">
                 <div class="key">Description</div>
-                <div class="value content_wrap">{{jrnl_enty.journalEntityDescription}}</div>
+                <div class="value content_wrap">{{journalentry.journalEntityDescription}}</div>
               </div>
             </div>
-
           </div>
         </div>
       </div>
-
     </div>
-
-
-
-
     <div class="card_three">
       <div class="job_details_card pd-20 card_sticky">
         <div class="job_header">Job Details</div>
@@ -341,82 +398,5 @@
         <div class="reject_btn">Reject</div>
       </div>
     </div>
-
-
-
   </div>
-
-
-
-
-
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- <h4>View Job Requirements > View Applications > Candidate Profile</h4>
-
-<h1>Candidate Profile</h1>
-
-<div class="total_div">
-  <div class="name_imgsection"></div>
-  <div>
-    <div class="toppage_sidescroll">
-      <button class="topscroll_btn">Personal Details</button>
-      <button class="topscroll_btn">Contact Details</button>
-      <button class="topscroll_btn">Education Details</button>
-      <button class="topscroll_btn">Work Experience Details</button>
-      <button class="topscroll_btn">Project Details</button>
-      <button class="topscroll_btn">Accomplishments</button>
-    </div>
-    <div class="profileDetails">
-      <section>
-
-      </section>
-      <section>
-        <h1>Contact Details</h1>
-        <h1>Present Address</h1>
-        <h1>Permanent Address</h1>
-      </section>
-      <section>
-        <h1>Education Details</h1>
-        <h1>Qualification 1</h1>
-      </section>
-      <section>
-        <h1>Work Experience Details</h1>
-        <h1>Skills</h1>
-        <h1>Professional Experience</h1>
-        <h1>Employment 1</h1>
-        <h1>Articleship/Training Details</h1>
-        <h1>Articleship/Training 1</h1>
-      </section>
-      <section>
-        <h1>Project Details</h1>
-        <h1>Project 1</h1>
-      </section>
-      <section>
-        <h1>Accomplishments</h1>
-        <h1>Certifications</h1>
-        <h1>Awards</h1>
-        <h1>Research Publication/Journal Entry</h1>
-      </section>
-    </div>
-  </div>
-  <div class="job_details"></div>
-  <ng-template #noPersonal>
-    <div class="nodata">No Personal Details Available</div>
-  </ng-template>
-</div> -->
