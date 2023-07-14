@@ -7,8 +7,14 @@
   <span class="toolbar-spacer"></span>
   <div class="toolbar-pic">
     <span class="username">{{candidateName}}</span>
+    <button mat-button [matMenuTriggerFor]="menu">
     <img class="profileimg"
       [src]="profileimge && profileimge !=''?profileimge:'../../../../assets/images/emp-dashboard-icons/user.png'">
+    </button>
+    <mat-menu #menu="matMenu">   
+       <button style="color:#1B4E9B;" mat-menu-item (click)="logout()"> <mat-icon style="color:#1B4E9B;">output</mat-icon>Log Out</button>
+       <!-- <span class="icon-logout"></span> -->
+    </mat-menu>
   </div>
 </mat-toolbar>
 <div class="content">
@@ -53,10 +59,10 @@
           <span class="full-width" *ngIf="isExpanded || isShowing">Saved Jobs</span>
         </mat-list-item>
 
-        <mat-list-item class=" lastitem hrlogout" (click)="logout()">
+        <!-- <mat-list-item class=" lastitem hrlogout" (click)="logout()">
           <mat-icon mat-list-icon class="material-symbols-outlined">logout_outline</mat-icon>
           <span class="full-width" *ngIf="isExpanded || isShowing">Logout</span>
-        </mat-list-item>
+        </mat-list-item> -->
       </mat-nav-list>
       <mat-nav-list>
       </mat-nav-list>

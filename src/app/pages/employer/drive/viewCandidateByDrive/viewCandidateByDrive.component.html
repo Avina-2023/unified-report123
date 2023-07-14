@@ -49,26 +49,28 @@
     
      
     
-      <!-- <div class="tableheader">
+    <!-- <div class="tableheader">
     <mat-tab-group class="mattab">
-    <mat-tab label="All">Home Content</mat-tab>
-    <mat-tab label="Awaiting Review">Awaiting Review List</mat-tab>
-    <mat-tab label="In Progress">Progress List</mat-tab>
-    <mat-tab label="Rejected">Rejected List</mat-tab>
-    <mat-tab label="Shortlisted">Shortlisted List</mat-tab>
+    <mat-tab label="All"></mat-tab>
+    <mat-tab label="Awaiting Review"></mat-tab>
+    <mat-tab label="In Progress"></mat-tab>
+    <mat-tab label="Rejected"></mat-tab>
+    <mat-tab label="Shortlisted"></mat-tab>
     </mat-tab-group>
     </div> -->
+
+    <div class="tableheader">
+      <mat-tab-group class="mattab" (selectedTabChange)="onTabChange($event)">
+        <mat-tab label="All"></mat-tab>
+        <mat-tab label="Awaiting Review"></mat-tab>
+        <mat-tab label="In Progress"></mat-tab>
+        <mat-tab label="Rejected"></mat-tab>
+        <mat-tab label="Shortlisted"></mat-tab>
+      </mat-tab-group>
+    </div>
     
-    <div class="flx_div flx_center flx_between">
-      <div>All</div>
-      <div>Awaiting Review</div>
-      <div>In Progress</div>
-      <div>Rejected</div>
-      <div>Shortlisted</div>
-      </div>
 
-
-  <div class="border">
+  <!-- <div class="border">
     <div class="ag-grid">
       <ag-grid-angular style="width: 100%; height: 100%;" class="ag-theme-alpine" [gridOptions]="gridOptions"
         [columnDefs]="columnDefs" [defaultColDef]="defaultColDef" [masterDetail]="masterDetail"
@@ -80,9 +82,23 @@
         [suppressAggFuncInHeader]="true" [suppressColumnVirtualisation]="true" [autoGroupColumnDef]="autoGroupColumnDef"
         [serverSideStoreType]="serverSideStoreType" [pagination]="true" [paginationPageSize]="1000" [sideBar]="sideBar"
         allColumns=true>
-
       </ag-grid-angular>
-
+    </div>
+  </div> -->
+  <div class="border">
+    <div class="ag-grid">
+      <ag-grid-angular style="width: 100%; height: 100%;" class="ag-theme-alpine" [gridOptions]="gridOptions"
+        [columnDefs]="filteredColumnDefs" [defaultColDef]="defaultColDef" [masterDetail]="masterDetail"
+        [overlayNoRowsTemplate]="overlayNoRowsTemplate" [rowData]="filteredRowData" [enableRangeSelection]="true"
+        [tooltipShowDelay]="0" [animateRows]="true" headerHeight="45" rowHeight="45"
+        [suppressRowClickSelection]="true" [suppressRowTransform]="true" [rowSelection]="rowSelection"
+        [pivotPanelShow]="'always'" [sideBar]="false" (gridReady)="onGridReady($event)"
+        [rowModelType]="rowModelType" [maintainColumnOrder]="true" [cacheBlockSize]="cacheBlockSize"
+        (selectionChanged)="onSelectionChanged($event)" [suppressAggFuncInHeader]="true"
+        [suppressColumnVirtualisation]="true" [autoGroupColumnDef]="autoGroupColumnDef"
+        [serverSideStoreType]="serverSideStoreType" [pagination]="true" [paginationPageSize]="1000"
+        [sideBar]="sideBar" allColumns="true">
+      </ag-grid-angular>
     </div>
   </div>
 </div>
