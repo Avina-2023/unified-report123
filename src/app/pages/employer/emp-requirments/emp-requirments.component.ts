@@ -211,6 +211,7 @@ fetchData(){
       this.toastr.warning('Connection failed, Please try again.');
     } else {
       this.jobReqData = response.data;
+      console.log(this.jobReqData,'jobdata');
       this.totallength = this.jobReqData.length
       this.total = Math.ceil(response.totalCount.count/this.defaultRowPerPage);
       // this.total = response.totalCount.count / this.itemsPerPage

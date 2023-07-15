@@ -345,5 +345,8 @@ getAGgridPatnerList(data){
      return this.http.post(`${this.BASE_URL_RE}/behaviourResultAks`, data);
   }
 
+  getStatusupdated(data){
+    return this.http.post(`${this.BASE_URL}/updateJobApplicationStatus`, data);
+   }
 
 }
