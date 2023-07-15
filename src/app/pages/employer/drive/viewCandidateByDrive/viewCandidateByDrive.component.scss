@@ -479,3 +479,18 @@ justify-content: space-between;
 //   background-color: #ffffff
 //   }
 // }
+
+
+::ng-deep .green-cell span {
+  background: orange !important;
+  color: #ffff;
+  border-radius: 5px;
+  padding: 6px 10px;
+}
+
+::ng-deep .red-cell span {
+  background: red !important;
+  color: #ffff;
+  border-radius: 5px;
+  padding: 3px 10px;
+}

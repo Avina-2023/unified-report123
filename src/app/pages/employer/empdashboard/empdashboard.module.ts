@@ -17,6 +17,7 @@ import {MatChipsModule} from '@angular/material/chips';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { ChangePasswordComponent } from './changePassword/changePassword.component';
 import { DetailsCardComponent } from './dashboard/details-card/details-card.component';
+import { ActionButtonsComponent } from '../drive/viewCandidateByDrive/actionButtons/actionButtons.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { DetailsCardComponent } from './dashboard/details-card/details-card.comp
     GraduationChartComponent,
     EmpProfileComponent,
     ChangePasswordComponent,
-    DetailsCardComponent
+    DetailsCardComponent,
+    ActionButtonsComponent
   ],
   imports: [
     CommonModule,
