@@ -840,9 +840,10 @@ tabledata() {
            filterOptions: ['contains'],
          },
          cellClassRules: {
-          'green-cell': (params) => params.value === 'awaitingReview',
-          // 'yellow-cell': (params) => params.value === 'Shortlisted',
-           'red-cell': (params) => params.value === 'rejected'
+          'yellow-cell': (params) => params.value === 'awaitingReview',
+           'green-cell': (params) => params.value === 'Shortlisted',
+           'red-cell': (params) => params.value === 'rejected',
+           'blue-cell': (params) => params.value === '"inProgress"',
         },
          cellRenderer: (params) => {
            if (
