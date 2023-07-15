@@ -60,34 +60,4 @@ export class ActionButtonsComponent implements ICellRendererAngularComp {
     })
   }
   
-  // getUserProfileSummary(){
-  //   let data = {
-  //     "email":  this.email,
-  //     "jobId": this.jobId,
-  
-  //   }
-  //     this.ApiService.getStatusupdated(data).subscribe((res:any)=>{
-  //       if(res.success){
-  //           this.statusdata = res ? res.data[0] : '';
-  //       }else{
-  //         this.toast.warning(res.message);
-  //       }
-  //     })
-  // }
-
-
-  // getSectionWiseComplexityAnalysis(){
-  //   let data = {
-  //     "driveId": this.driveId,
-  //     "email":  this.email,
-  //     "testName": this.testName,
-  //   }
-  //   this.ApiService.getSectionWiseComplexityAnalysis(data).subscribe((res:any)=>{
-  //     if(res.success){
-  //         this.data = res.data;
-  //     }else{
-  //       this.toast.warning(res.message)
-  //     }
-  //   })
-  // }
 }
