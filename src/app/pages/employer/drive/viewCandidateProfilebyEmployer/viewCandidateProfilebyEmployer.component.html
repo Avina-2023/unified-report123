@@ -19,12 +19,14 @@
           <div class="content_wrap">{{candidateData.email}}</div>
           <div class="content_wrap">
             {{candidateData.contact_details.permanent_city}},{{candidateData.contact_details.permanent_state}},<span
-              class="countryimg">, &nbsp;&nbsp;<img src="../../../../../assets/images/india_flag.svg"></span>
+              class="countryimg">, &nbsp;&nbsp;<img src="assets/images/india_flag.svg"></span>
           </div>
         </div>
         <br>
-        <div class="value"> <span></span>Trained by L&T EduTech</div>
-        <div class="value"><span></span>Assessed by L&T EduTech</div>
+        <div class="value"> <span class="flag_lnt"><img src="assets/images/india_flag.svg"></span>Trained by L&T EduTech
+        </div>
+        <div class="value"><span class="flag_lnt"><img src="assets/images/india_flag.svg"></span>Assessed by L&T EduTech
+        </div>
       </div>
     </div>
     <div class="card_two">
@@ -75,10 +77,11 @@
           </div>
           <div class="profile_details pd-20">
             <h2 class="head_title"> Languages Known </h2>
-            <div class="flx_div flx_center title">
+            <div class="flx_center title">
               <div class="key"></div>
-              <div class="value flx_div flx_center flx_between">
-                {{candidateData.personal_details.languages_known}}
+              <div class="value flx_div flx_center flx_between"
+                *ngFor="let language of candidateData.personal_details.languages_known">
+                {{language.language}}
               </div>
             </div>
           </div>
@@ -151,12 +154,24 @@
                   {{candidates.percentage}}
                 </div>
               </div>
-              <div class="flx_div flx_baseline title">
+              <!-- <div class="flx_div flx_baseline title">
                 <div class="key">Do you have any gap during the education?</div>
                 <div class="value">
                   {{candidates.gap}}
                 </div>
+              </div> -->
+              <div class="flx_div flx_baseline title">
+                <div class="key">Do you have any gap during the education?</div>
+                <div class="value">
+                  {{candidates.gap === 'false' ? 'No' : 'Yes'}}
+                </div>
               </div>
+              <!-- <div class="flx_div flx_baseline title">
+                <div class="key">Do you have any gap during the education?</div>
+                <div class="value">
+                  {{candidates.gap ? 'No' : 'Yes'}}
+                </div>
+              </div> -->
               <div class="flx_div flx_baseline title">
                 <div class="key">History of Backlogs?</div>
                 <div class="value">
@@ -174,14 +189,20 @@
               <div class="flx_div flx_baseline title">
                 <div class="key">Reason for Backlogs?</div>
                 <div class="value">
-                  {{candidates.reasonForbacklog}}
+                  {{candidates.reasonForbacklog ? candidates.reasonForbacklog : 'Nill'}}
+                  <!-- {{candidates.reasonForbacklog}} -->
                 </div>
               </div>
 
+
               <div class="flx_div flx_baseline title">
-                <div class="key">Highest Level of Education/Currently Pursuing</div>
-                <div class="value">
-                  {{candidates.is_highLevelEdu}}
+                <div class="key_edu">
+                  <div class="value" *ngIf="candidates.is_highLevelEdu">
+                    <label>
+                      <input type="checkbox" [checked]="candidates.is_highLevelEdu" disabled />
+                      This is my highest level of education
+                    </label>
+                  </div>
                 </div>
               </div>
             </div>
@@ -225,18 +246,25 @@
                 <div class="key">Duration From</div>
                 <div class="value content_wrap">{{employment.duration_from| date : 'MMM y'}}</div>
               </div>
-              <div class="flx_div flx_center hidden_div title">
+              <div class="flx_div flx_center hidden_div title" *ngIf="!employment.is_working_here">
                 <div class="key">Duration To</div>
                 <div class="value content_wrap">{{employment.duration_to| date : 'MMM y'}}</div>
               </div>
-              <!-- <div *ngIf="work[form_isWorkingHere] == true" class="overall-input-wrapper mt-3  width-100">
-                <div class="checkk"> <mat-checkbox [checked]="work[form_isWorkingHere]" [disabled]="true"
-                    class="checkqualify mr-2 "></mat-checkbox><span>I am currently working here</span></div>
-              </div> -->
-              <div class="flx_div flx_baseline title">
+
+              <!-- <div class="flx_div flx_baseline title">
                 <div class="key">I am Currently working here</div>
                 <div class="value">
                   {{employment.is_working_here}}
+                </div>
+              </div> -->
+              <div class="flx_div flx_baseline title">
+                <div class="key_edu">
+                  <div class="value">
+                    <label *ngIf="employment.is_working_here">
+                      <input type="checkbox" [checked]="employment.is_working_here" disabled />
+                      I am Currently working here
+                    </label>
+                  </div>
                 </div>
               </div>
             </div>
@@ -336,15 +364,25 @@
                 <div class="key">Certification Validity from</div>
                 <div class="value content_wrap">{{certification.certificationValidityFrom| date : 'MMM y'}}</div>
               </div>
-              <div class="flx_div flx_baseline title">
+              <div class="flx_div flx_baseline title" *ngIf="!certification.isexpire">
                 <div class="key">Certification Validity to</div>
                 <div class="value content_wrap">{{certification.certificationValidityUpto| date : 'MMM y'}}</div>
               </div>
 
-              <div class="flx_div flx_baseline title">
+              <!-- <div class="flx_div flx_baseline title">
                 <div class="key">This Certification does not expire</div>
                 <div class="value">
                   {{certification.isexpire}}
+                </div>
+              </div> -->
+              <div class="flx_div flx_baseline title">
+                <div class="key_edu">
+                  <div class="value">
+                    <label *ngIf="certification.isexpire">
+                      <input type="checkbox" [checked]="certification.isexpire" disabled />
+                      This certificate does not expire
+                    </label>
+                  </div>
                 </div>
               </div>
             </div>
