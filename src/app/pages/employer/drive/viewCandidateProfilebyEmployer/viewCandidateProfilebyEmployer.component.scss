@@ -353,6 +353,51 @@ position: static;
 
 }
 
+.warning-icon{
+
+  display: flex;
+
+justify-content: space-around;
+
+//     width: 92px;
+
+// height: 74px;
+
+.iconfont{
+
+  width: 100px;
+
+}
+
+.icon-Tick{
+
+  font-size: 50px;
+
+  padding-top: 20px;
+
+    padding-bottom: 20px;
+
+}
+
+.icon-Tick::before{
+
+  background-color: #49AE31;
+
+  border-radius: 50%;
+
+  color: #FFFFFF;
+
+  font-size: 25px;
+
+  padding: 15px;
+
+}
+
+
+
+
+}
+
 ::ng-deep .popupModalContainerForForms {
   .main-wrapper {
     padding: 1em;
