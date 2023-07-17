@@ -79,6 +79,10 @@ export class ViewCandidateByDriveComponent implements OnInit {
   email: any;
   jobStatus: any;
   jobData: any;
+  // jobRole: any;
+  jobDetailsdata: any;
+  jobdatata: any;
+  valueone: any;
 
   constructor(
     private ApiService: ApiService,
@@ -121,6 +125,7 @@ export class ViewCandidateByDriveComponent implements OnInit {
     this.filterData();
     this.jobData = this.appconfig.jobData
     this.tabledata();
+    this.getJobDetails();
 
   }
 
@@ -847,8 +852,8 @@ tabledata() {
          cellClassRules: {
           'yellow-cell': (params) => params.value === 'awaitingReview',
            'green-cell': (params) => params.value === 'Shortlisted',
-           'red-cell': (params) => params.value === 'rejected',
-           'blue-cell': (params) => params.value === '"inProgress"',
+           'red-cell': (params) => params.value === 'Rejected',
+           'blue-cell': (params) => params.value === 'InProgress',
         },
          cellRenderer: (params) => {
            if (
@@ -991,36 +996,56 @@ tabledata() {
          },
          tooltipField: 'assessedStatus',
        },
-       {
-         headerName: 'Applied Date',
-         field: 'appliedDate',
-         minWidth: 180,
-         filter: 'agNumberColumnFilter',
-         chartDataType: 'series',
-         filterParams: {
-           suppressAndOrCondition: true,
-           filterOptions: [
-             'equals',
-             'lessThan',
-             'lessThanOrEqual',
-             'greaterThan',
-             'greaterThanOrEqual',
-             'inRange',
-           ],
-         },
-         cellRenderer: (params) => {
-           if (
-             params.value &&
-             params.value != undefined &&
-             params.value != null &&
-             params.value != ''
-           ) {
-             return params.value;
-           } else {
-             return 0;
-           }
-         },
-         tooltipField: 'appliedDate',
+      //  {
+      //    headerName: 'Applied Date',
+      //    field: 'appliedDate',
+      //    minWidth: 180,
+      //    valueFormatter: function (params) {
+      //    return moment(params.value).format('D-MM-yy');
+      //   },
+      //    filter: 'agNumberColumnFilter',
+      //    chartDataType: 'series',
+      //    filterParams: {
+      //      suppressAndOrCondition: true,
+      //      filterOptions: [
+      //        'equals',
+      //        'lessThan',
+      //        'lessThanOrEqual',
+      //        'greaterThan',
+      //        'greaterThanOrEqual',
+      //        'inRange',
+      //      ],
+      //    },
+      //    cellRenderer: (params) => {
+      //      if (
+      //        params.value &&
+      //        params.value != undefined &&
+      //        params.value != null &&
+      //        params.value != ''
+      //      ) {
+      //        return params.value;
+      //      } else {
+      //        return 0;
+      //      }
+      //    },
+      //    tooltipField: 'appliedDate',
+      //  },
+
+      { 
+        headerName: 'Applied Date', 
+        field: 'appliedDate', 
+        minWidth: 175,
+        // maxWidth: 170,
+      valueFormatter: function (params) {
+          return moment(params.value).format('D-MM-yy');
+      },
+    filter: 'agDateColumnFilter',
+        chartDataType: 'series',
+        filterParams: {
+          suppressAndOrCondition: true,
+          filterOptions: ['equals', 'lessThan', 'greaterThan', 'inRange'],
+        },
+        // tooltipField: 'createdAt',
        },
        { 
         headerName: 'Actions',
@@ -1174,6 +1199,11 @@ refresh(){
   this.gridApi.refreshServerSideStore({ purge: true });
 }
 
+getJobDetails(){
+  this.jobDetailsdata = this.appconfig.getLocalStorage('jobdataa');
+   this.valueone =JSON.parse(this.jobDetailsdata)
+  console.log(this.valueone,'jobDetails');
+}
 }
 
 
