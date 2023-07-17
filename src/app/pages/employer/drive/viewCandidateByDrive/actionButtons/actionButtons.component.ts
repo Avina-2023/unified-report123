@@ -50,7 +50,7 @@ export class ActionButtonsComponent implements ICellRendererAngularComp {
   }
 
   candidateprofile(){
-    this.appconfig.setLocalStorage("C_Candidate_status", this.params.data)
+    this.appconfig.setLocalStorage("C_Candidate_status", JSON.stringify(this.params.data))
     this.router.navigate(['/auth/drive/viewCandidateProfilebyEmployer'])
   }
 

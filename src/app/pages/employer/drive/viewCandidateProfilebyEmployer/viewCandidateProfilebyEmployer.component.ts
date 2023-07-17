@@ -39,6 +39,7 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
   form_training_employer_name: any;
   allPresentCityList: any;
   jobDetailsdata: any;
+  candidateStatus: any;
   //  elementRef: any;
   constructor(
     private apiService: ApiService,
@@ -49,6 +50,7 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
   ngOnInit() {
     this.CandidateDetails();
     this.jobDetailsdata = JSON.parse(this.appConfig.getLocalStorage('currentJobData'));
+    this.candidateStatus = JSON.parse(this.appConfig.getLocalStorage('C_Candidate_status'));
   }
 
   scrollTo(direction: 'left' | 'right') {

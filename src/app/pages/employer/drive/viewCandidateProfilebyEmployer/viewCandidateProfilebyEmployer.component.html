@@ -23,9 +23,9 @@
           </div>
         </div>
         <br>
-        <div class="value"> <i class="flag_lnt icon-bookmark col1"> </i>Trained by L&T EduTech
+        <div class="value" *ngIf="candidateStatus.trainedStatus=='Yes'"> <i class="flag_lnt icon-bookmark col1"> </i>Trained by L&T EduTech
         </div>
-        <div class="value"><i class="flag_lnt icon-bookmark col2"> </i>Assessed by L&T EduTech
+        <div class="value" *ngIf="candidateStatus.assessedStatus=='Yes'"><i class="flag_lnt icon-bookmark col2"> </i>Assessed by L&T EduTech
         </div>
       </div>
     </div>
@@ -439,7 +439,7 @@
         </div>
         <div class="job_card hidden_div">
           <div class="job_title content_wrap">Candidate Status</div>
-          <div class="job_description content_wrap">selected</div>
+          <div class="job_description content_wrap">{{candidateStatus.jobStatus}}</div>
         </div>
         <div class="shortlist_btn">Shortlist</div>
         <div class="reject_btn">Reject</div>
