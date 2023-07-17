@@ -4,16 +4,16 @@
     <span class="link" (click)="dashboard()">View Job Requirements&nbsp;</span> &nbsp;>&nbsp; <span>&nbsp;View Application</span>
     </div> -->
 
-    <div class="view_breadcrump flx_div flx_center">
-      <div class="active-link" (click)="dashboard()">View Job Requirements</div>
-      <div> View Applications</div>
-    </div>
+  <div class="view_breadcrump flx_div flx_center">
+    <div class="active-link" (click)="dashboard()">View Job Requirements</div>
+    <div> View Applications</div>
+  </div>
 
 
   <div class="title">
     <div class="title-text">View Applications</div>
     <div class="exportcsv">
-      <span [routerLink]="routerlink.VIEWDRIVE.VIEWCANDIDATEPROFILEBYEMPLOYER">click my profile</span>
+      <!-- <span [routerLink]="routerlink.VIEWDRIVE.VIEWCANDIDATEPROFILEBYEMPLOYER">click my profile</span> -->
       <div><a (click)="exportCSV()">
           <span class=""></span>
           <span><img src="assets/images/skillMaster/exportinviewcandidate.svg"> Export CSV</span>
@@ -23,32 +23,32 @@
 
   <div class="matcard">
     <mat-card class="main">
-    <div class="job-details">
-    <div class="heading">Job Title</div>
-    <div class="val">{{valueone.jobRole}}</div>
-    </div>
-    <div class="job-details">
-    <div class="heading">Location</div>
-    <div class="val">{{valueone.jobLocation}}</div>
-    </div>
-    <div class="job-details">
-    <div class="heading">Job-Type</div>
-    <div class="val">{{valueone.jobType}}</div>
-    </div>
-    <div class="job-details">
-    <div class="heading">Application Closes On</div>
-    <div class="val">{{valueone.lastDatetoApply| date : 'dd-MM-y' }}</div>
-    </div>
-    <div class="job-details">
-    <div class="heading">Job Status</div>
-    <div class="val">{{valueone.status}}</div>
-    </div>
+      <div class="job-details">
+        <div class="heading">Job Title</div>
+        <div class="val">{{valueone.jobRole}}</div>
+      </div>
+      <div class="job-details">
+        <div class="heading">Location</div>
+        <div class="val">{{valueone.jobLocation}}</div>
+      </div>
+      <div class="job-details">
+        <div class="heading">Job-Type</div>
+        <div class="val">{{valueone.jobType}}</div>
+      </div>
+      <div class="job-details">
+        <div class="heading">Application Closes On</div>
+        <div class="val">{{valueone.lastDatetoApply| date : 'dd-MM-y' }}</div>
+      </div>
+      <div class="job-details">
+        <div class="heading">Job Status</div>
+        <div class="val">{{valueone.status}}</div>
+      </div>
     </mat-card>
-    </div>
-    
-     
-    
-    <!-- <div class="tableheader">
+  </div>
+
+
+
+  <!-- <div class="tableheader">
     <mat-tab-group class="mattab">
     <mat-tab label="All"></mat-tab>
     <mat-tab label="Awaiting Review"></mat-tab>
@@ -58,16 +58,16 @@
     </mat-tab-group>
     </div> -->
 
-    <div class="tableheader">
-      <mat-tab-group class="mattab" (selectedTabChange)="onTabChange($event)">
-        <mat-tab label="All"></mat-tab>
-        <mat-tab label="Awaiting Review"></mat-tab>
-        <mat-tab label="In Progress"></mat-tab>
-        <mat-tab label="Rejected"></mat-tab>
-        <mat-tab label="Shortlisted"></mat-tab>
-      </mat-tab-group>
-    </div>
-    
+  <div class="tableheader">
+    <mat-tab-group class="mattab" (selectedTabChange)="onTabChange($event)">
+      <mat-tab label="All"></mat-tab>
+      <mat-tab label="Awaiting Review"></mat-tab>
+      <mat-tab label="In Progress"></mat-tab>
+      <mat-tab label="Rejected"></mat-tab>
+      <mat-tab label="Shortlisted"></mat-tab>
+    </mat-tab-group>
+  </div>
+
 
   <!-- <div class="border">
     <div class="ag-grid">
@@ -86,17 +86,16 @@
   </div> -->
   <div class="border">
     <div class="ag-grid">
-      <ag-grid-angular style="width: 100%; height: 100%;" class="ag-theme-alpine"  [gridOptions]="gridOptions"
+      <ag-grid-angular style="width: 100%; height: 100%;" class="ag-theme-alpine" [gridOptions]="gridOptions"
         [columnDefs]="columnDefs" [defaultColDef]="defaultColDef" [masterDetail]="masterDetail"
         [overlayNoRowsTemplate]="overlayNoRowsTemplate" [rowData]="filteredRowData" [enableRangeSelection]="true"
-        [tooltipShowDelay]="0" [animateRows]="true" headerHeight="45" rowHeight="45"
-        [suppressRowClickSelection]="true" [suppressRowTransform]="true" [rowSelection]="rowSelection"
-        [pivotPanelShow]="'always'" [sideBar]="false" (gridReady)="onGridReady($event)"
-        [rowModelType]="rowModelType" [maintainColumnOrder]="true" [cacheBlockSize]="cacheBlockSize"
-        (selectionChanged)="onSelectionChanged($event)" [suppressAggFuncInHeader]="true"
-        [suppressColumnVirtualisation]="true" [autoGroupColumnDef]="autoGroupColumnDef"
-        [serverSideStoreType]="serverSideStoreType" [pagination]="true" [paginationPageSize]="1000"
-        [sideBar]="sideBar" allColumns="true">
+        [tooltipShowDelay]="0" [animateRows]="true" headerHeight="45" rowHeight="45" [suppressRowClickSelection]="true"
+        [suppressRowTransform]="true" [rowSelection]="rowSelection" [pivotPanelShow]="'always'" [sideBar]="false"
+        (gridReady)="onGridReady($event)" [rowModelType]="rowModelType" [maintainColumnOrder]="true"
+        [cacheBlockSize]="cacheBlockSize" (selectionChanged)="onSelectionChanged($event)"
+        [suppressAggFuncInHeader]="true" [suppressColumnVirtualisation]="true" [autoGroupColumnDef]="autoGroupColumnDef"
+        [serverSideStoreType]="serverSideStoreType" [pagination]="true" [paginationPageSize]="1000" [sideBar]="sideBar"
+        allColumns="true">
       </ag-grid-angular>
     </div>
   </div>
