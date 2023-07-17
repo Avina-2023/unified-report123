@@ -60,9 +60,13 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
     public router: Router
   ) {}
   ngOnInit() {
+    this.jobDetailsdata = JSON.parse(
+      this.appConfig.getLocalStorage('currentJobData')
+    );
+    this.candidateStatus = JSON.parse(
+      this.appConfig.getLocalStorage('C_Candidate_status')
+    );
     this.CandidateDetails();
-    this.jobDetailsdata = JSON.parse(this.appConfig.getLocalStorage('currentJobData'));
-    this.candidateStatus = JSON.parse(this.appConfig.getLocalStorage('C_Candidate_status'));
   }
 
   scrollTo(direction: 'left' | 'right') {
@@ -79,18 +83,18 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
 
   CandidateDetails() {
     var obj = {};
-    // obj = {
-    //   email: this.apiService.encryptnew(
-    //     this.email,
-    //     environment.cryptoEncryptionKey
-    //   ),
-    // };
     obj = {
       email: this.apiService.encryptnew(
-        'gokul47@dispostable.com',
+        this.candidateStatus.email,
         environment.cryptoEncryptionKey
       ),
     };
+    // obj = {
+    //   email: this.apiService.encryptnew(
+    //     'gokul47@dispostable.com',
+    //     environment.cryptoEncryptionKey
+    //   ),
+    // };
     this.apiService.candidateDetails(obj).subscribe((res: any) => {
       if (res.success) {
         // if (Array.isArray(res.data)) {
@@ -180,7 +184,9 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
     // Close the dialog
     dialogRef.close();
   }
-  openDialog() {}
+  closeDialog() {
+    this.dialog.closeAll();
+  }
   matDialogOpen() {
     const dialogRef = this.dialog.open(this.matDialogRef, {
       width: '400px',
