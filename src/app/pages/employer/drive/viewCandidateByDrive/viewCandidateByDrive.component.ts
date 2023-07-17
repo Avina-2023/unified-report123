@@ -79,6 +79,10 @@ export class ViewCandidateByDriveComponent implements OnInit {
   email: any;
   jobStatus: any;
   jobData: any;
+  // jobRole: any;
+  jobDetailsdata: any;
+  jobdatata: any;
+  valueone: any;
 
   constructor(
     private ApiService: ApiService,
@@ -121,6 +125,7 @@ export class ViewCandidateByDriveComponent implements OnInit {
     this.filterData();
     this.jobData = this.appconfig.jobData
     this.tabledata();
+    this.getJobDetails();
 
   }
 
@@ -847,8 +852,8 @@ tabledata() {
          cellClassRules: {
           'yellow-cell': (params) => params.value === 'awaitingReview',
            'green-cell': (params) => params.value === 'Shortlisted',
-           'red-cell': (params) => params.value === 'rejected',
-           'blue-cell': (params) => params.value === '"inProgress"',
+           'red-cell': (params) => params.value === 'Rejected',
+           'blue-cell': (params) => params.value === 'InProgress',
         },
          cellRenderer: (params) => {
            if (
@@ -1174,6 +1179,11 @@ refresh(){
   this.gridApi.refreshServerSideStore({ purge: true });
 }
 
+getJobDetails(){
+  this.jobDetailsdata = this.appconfig.getLocalStorage('jobdataa');
+   this.valueone =JSON.parse(this.jobDetailsdata)
+  console.log(this.valueone,'jobDetails');
+}
 }
 
 
