@@ -59,20 +59,29 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
-  .icon-tick_mark_green:before {
-    content: "\ea14";
-    color: #49ae31;
+  .icon-bookmark:before {
+    content: "\ea16";
   }
-  .icon-tick_mark_grey:before {
-    content: "\ea15";
-    color: #848484;
-  }
-
-  .icon-Font_Awesome_5_solid_universal-access:before {
-    content: "\e9a2";
+  .icon-location1:before {
+    content: "\ea13";
   }
   .icon-Font_Awesome_5_regular_life-ring:before {
     content: "\e9a1";
+  }
+  .icon-Font_Awesome_5_solid_universal-access:before {
+    content: "\e9a2";
+  }
+  .icon-compass-orientation-tool-svgrepo-com:before {
+    content: "\e9a0";
+  }
+  .icon-road-perspective-svgrepo-com:before {
+    content: "\e99a";
+  }
+  .icon-shield-svgrepo-com:before {
+    content: "\e99b";
+  }
+  .icon-bullseye-svgrepo-com:before {
+    content: "\e99c";
   }
   .icon-cogs-svgrepo-com:before {
     content: "\e99d";
@@ -80,26 +89,11 @@
   .icon-level-up-alt-svgrepo-com:before {
     content: "\e99e";
   }
-  .icon-bolt-lightning-solid:before {
-    content: "\e997";
-  }
   .icon-map-marker-svgrepo-com:before {
     content: "\e99f";
   }
-  .icon-compass-orientation-tool-svgrepo-com:before {
-    content: "\e9a0";
-  }
-  .icon-bullseye-svgrepo-com:before {
-    content: "\e99c";
-  }
-  .icon-shield-svgrepo-com:before {
-    content: "\e99b";
-  }
-  .icon-road-perspective-svgrepo-com:before {
-    content: "\e99a";
-  }
-  .icon-graduation-cap-solid:before {
-    content: "\e999";
+  .icon-bolt-lightning-solid:before {
+    content: "\e997";
   }
   .icon-hourglass-half-solid:before {
     content: "\e998";
@@ -123,9 +117,643 @@
     content: "\e992";
     color: #fff;
   }
-  .icon-graduation-cap:before {
+  .icon-graduation-cap .path1:before {
     content: "\e991";
-    color: #000;
+    color: rgb(0, 0, 0);
+    opacity: 0.3922;
+  }
+  .icon-graduation-cap .path2:before {
+    content: "\e9a3";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.9725;
+  }
+  .icon-graduation-cap .path3:before {
+    content: "\e9a4";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+  }
+  .icon-graduation-cap .path4:before {
+    content: "\e9a5";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+  }
+  .icon-graduation-cap .path5:before {
+    content: "\e9a6";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+  }
+  .icon-graduation-cap .path6:before {
+    content: "\e9a7";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.9098;
+  }
+  .icon-graduation-cap .path7:before {
+    content: "\e9a8";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.9098;
+  }
+  .icon-graduation-cap .path8:before {
+    content: "\e9a9";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.9098;
+  }
+  .icon-graduation-cap .path9:before {
+    content: "\e9aa";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.9098;
+  }
+  .icon-graduation-cap .path10:before {
+    content: "\e9ab";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.9098;
+  }
+  .icon-graduation-cap .path11:before {
+    content: "\e9ac";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.9098;
+  }
+  .icon-graduation-cap .path12:before {
+    content: "\e9ad";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.9098;
+  }
+  .icon-graduation-cap .path13:before {
+    content: "\e9ae";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.9098;
+  }
+  .icon-graduation-cap .path14:before {
+    content: "\e9af";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.9098;
+  }
+  .icon-graduation-cap .path15:before {
+    content: "\e9b0";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.9098;
+  }
+  .icon-graduation-cap .path16:before {
+    content: "\e9b1";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.9098;
+  }
+  .icon-graduation-cap .path17:before {
+    content: "\e9b2";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.5412;
+  }
+  .icon-graduation-cap .path18:before {
+    content: "\e9b3";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.5412;
+  }
+  .icon-graduation-cap .path19:before {
+    content: "\e9b4";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.5412;
+  }
+  .icon-graduation-cap .path20:before {
+    content: "\e9b5";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.5412;
+  }
+  .icon-graduation-cap .path21:before {
+    content: "\e9b6";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.5412;
+  }
+  .icon-graduation-cap .path22:before {
+    content: "\e9b7";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.5412;
+  }
+  .icon-graduation-cap .path23:before {
+    content: "\e9b8";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.5412;
+  }
+  .icon-graduation-cap .path24:before {
+    content: "\e9b9";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.5412;
+  }
+  .icon-graduation-cap .path25:before {
+    content: "\e9ba";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.5412;
+  }
+  .icon-graduation-cap .path26:before {
+    content: "\e9bb";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.5412;
+  }
+  .icon-graduation-cap .path27:before {
+    content: "\e9bc";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.5412;
+  }
+  .icon-graduation-cap .path28:before {
+    content: "\e9bd";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.0431;
+  }
+  .icon-graduation-cap .path29:before {
+    content: "\e9be";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.0431;
+  }
+  .icon-graduation-cap .path30:before {
+    content: "\e9bf";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.0431;
+  }
+  .icon-graduation-cap .path31:before {
+    content: "\e9c0";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.0431;
+  }
+  .icon-graduation-cap .path32:before {
+    content: "\e9c1";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.0431;
+  }
+  .icon-graduation-cap .path33:before {
+    content: "\e9c2";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.0431;
+  }
+  .icon-graduation-cap .path34:before {
+    content: "\e9c3";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.0431;
+  }
+  .icon-graduation-cap .path35:before {
+    content: "\e9c4";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.0431;
+  }
+  .icon-graduation-cap .path36:before {
+    content: "\e9c5";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.0431;
+  }
+  .icon-graduation-cap .path37:before {
+    content: "\e9c6";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.0431;
+  }
+  .icon-graduation-cap .path38:before {
+    content: "\e9c7";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.0431;
+  }
+  .icon-graduation-cap .path39:before {
+    content: "\e9c8";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.0431;
+  }
+  .icon-graduation-cap .path40:before {
+    content: "\e9c9";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.0431;
+  }
+  .icon-graduation-cap .path41:before {
+    content: "\e9ca";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.0431;
+  }
+  .icon-graduation-cap .path42:before {
+    content: "\e9cb";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.0431;
+  }
+  .icon-graduation-cap .path43:before {
+    content: "\e9cc";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.0431;
+  }
+  .icon-graduation-cap .path44:before {
+    content: "\e9cd";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.0431;
+  }
+  .icon-graduation-cap .path45:before {
+    content: "\e9ce";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.0431;
+  }
+  .icon-graduation-cap .path46:before {
+    content: "\e9cf";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.0431;
+  }
+  .icon-graduation-cap .path47:before {
+    content: "\e9d0";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.0431;
+  }
+  .icon-graduation-cap .path48:before {
+    content: "\e9d1";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.0431;
+  }
+  .icon-graduation-cap .path49:before {
+    content: "\e9d2";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.0431;
+  }
+  .icon-graduation-cap .path50:before {
+    content: "\e9d3";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.0431;
+  }
+  .icon-graduation-cap .path51:before {
+    content: "\e9d4";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.0431;
+  }
+  .icon-graduation-cap .path52:before {
+    content: "\e9d5";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.0431;
+  }
+  .icon-graduation-cap .path53:before {
+    content: "\e9d6";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.0431;
+  }
+  .icon-graduation-cap .path54:before {
+    content: "\e9d7";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.0431;
+  }
+  .icon-graduation-cap .path55:before {
+    content: "\e9d8";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.6353;
+  }
+  .icon-graduation-cap .path56:before {
+    content: "\e9d9";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.6353;
+  }
+  .icon-graduation-cap .path57:before {
+    content: "\e9da";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.6353;
+  }
+  .icon-graduation-cap .path58:before {
+    content: "\e9db";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.6353;
+  }
+  .icon-graduation-cap .path59:before {
+    content: "\e9dc";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.6353;
+  }
+  .icon-graduation-cap .path60:before {
+    content: "\e9dd";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.6353;
+  }
+  .icon-graduation-cap .path61:before {
+    content: "\e9de";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.6353;
+  }
+  .icon-graduation-cap .path62:before {
+    content: "\e9df";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.6353;
+  }
+  .icon-graduation-cap .path63:before {
+    content: "\e9e0";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.6353;
+  }
+  .icon-graduation-cap .path64:before {
+    content: "\e9e1";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.6353;
+  }
+  .icon-graduation-cap .path65:before {
+    content: "\e9e2";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.6353;
+  }
+  .icon-graduation-cap .path66:before {
+    content: "\e9e3";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.6353;
+  }
+  .icon-graduation-cap .path67:before {
+    content: "\e9e4";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.6353;
+  }
+  .icon-graduation-cap .path68:before {
+    content: "\e9e5";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.1098;
+  }
+  .icon-graduation-cap .path69:before {
+    content: "\e9e6";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.1098;
+  }
+  .icon-graduation-cap .path70:before {
+    content: "\e9e7";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.1098;
+  }
+  .icon-graduation-cap .path71:before {
+    content: "\e9e8";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.1098;
+  }
+  .icon-graduation-cap .path72:before {
+    content: "\e9e9";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.1098;
+  }
+  .icon-graduation-cap .path73:before {
+    content: "\e9ea";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.1098;
+  }
+  .icon-graduation-cap .path74:before {
+    content: "\e9eb";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.1098;
+  }
+  .icon-graduation-cap .path75:before {
+    content: "\e9ec";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.1098;
+  }
+  .icon-graduation-cap .path76:before {
+    content: "\e9ed";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.1098;
+  }
+  .icon-graduation-cap .path77:before {
+    content: "\e9ee";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.1098;
+  }
+  .icon-graduation-cap .path78:before {
+    content: "\e9ef";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.1098;
+  }
+  .icon-graduation-cap .path79:before {
+    content: "\e9f0";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.1098;
+  }
+  .icon-graduation-cap .path80:before {
+    content: "\e9f1";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.0784;
+  }
+  .icon-graduation-cap .path81:before {
+    content: "\e9f2";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.0784;
+  }
+  .icon-graduation-cap .path82:before {
+    content: "\e9f3";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.0784;
+  }
+  .icon-graduation-cap .path83:before {
+    content: "\e9f4";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.0784;
+  }
+  .icon-graduation-cap .path84:before {
+    content: "\e9f5";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.0784;
+  }
+  .icon-graduation-cap .path85:before {
+    content: "\e9f6";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.0784;
+  }
+  .icon-graduation-cap .path86:before {
+    content: "\e9f7";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.0784;
+  }
+  .icon-graduation-cap .path87:before {
+    content: "\e9f8";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.0784;
+  }
+  .icon-graduation-cap .path88:before {
+    content: "\e9f9";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.0784;
+  }
+  .icon-graduation-cap .path89:before {
+    content: "\e9fa";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.0784;
+  }
+  .icon-graduation-cap .path90:before {
+    content: "\e9fb";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.0784;
+  }
+  .icon-graduation-cap .path91:before {
+    content: "\e9fc";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.0784;
+  }
+  .icon-graduation-cap .path92:before {
+    content: "\e9fd";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.0784;
+  }
+  .icon-graduation-cap .path93:before {
+    content: "\e9fe";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.0784;
+  }
+  .icon-graduation-cap .path94:before {
+    content: "\e9ff";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.2157;
+  }
+  .icon-graduation-cap .path95:before {
+    content: "\ea00";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.2157;
+  }
+  .icon-graduation-cap .path96:before {
+    content: "\ea01";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.2157;
+  }
+  .icon-graduation-cap .path97:before {
+    content: "\ea02";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.2157;
+  }
+  .icon-graduation-cap .path98:before {
+    content: "\ea03";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.2157;
+  }
+  .icon-graduation-cap .path99:before {
+    content: "\ea04";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.2157;
+  }
+  .icon-graduation-cap .path100:before {
+    content: "\ea05";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.2157;
+  }
+  .icon-graduation-cap .path101:before {
+    content: "\ea06";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.2157;
+  }
+  .icon-graduation-cap .path102:before {
+    content: "\ea07";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.2157;
+  }
+  .icon-graduation-cap .path103:before {
+    content: "\ea08";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.2157;
+  }
+  .icon-graduation-cap .path104:before {
+    content: "\ea09";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.2157;
+  }
+  .icon-graduation-cap .path105:before {
+    content: "\ea0a";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.2157;
+  }
+  .icon-graduation-cap .path106:before {
+    content: "\ea0b";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.2157;
+  }
+  .icon-graduation-cap .path107:before {
+    content: "\ea0c";
+    margin-left: -1em;
+    color: rgb(0, 0, 0);
+    opacity: 0.2157;
   }
   .icon-dashboard_grey:before {
     content: "\e990";
@@ -133,6 +761,33 @@
   }
   .icon-ArrowUp:before {
     content: "\ea32";
+  }
+  .icon-location:before {
+    content: "\ea12";
+  }
+  .icon-tick_mark_green:before {
+    content: "\ea14";
+    color: #49ae31;
+  }
+  .icon-tick_mark_grey:before {
+    content: "\ea15";
+    color: #848484;
+  }
+  .icon-calendar-icon:before {
+    content: "\ea0f";
+  }
+  .icon-rupee-icon:before {
+    content: "\ea10";
+  }
+  .icon-recognization:before {
+    content: "\ea11";
+    color: #09244b;
+  }
+  .icon-work-suitcase:before {
+    content: "\ea0e";
+  }
+  .icon-user-professional:before {
+    content: "\ea0d";
   }
   .icon-TestAnalysis:before {
     content: "\e98f";
@@ -293,9 +948,6 @@
   .icon-Calendar:before {
     content: "\e90f";
   }
-  .icon-calendar-icon:before {
-    content: "\ea0f";
-  }
   .icon-Cart:before {
     content: "\e910";
   }
@@ -434,9 +1086,6 @@
   .icon-Location:before {
     content: "\e93e";
   }
-  .icon-location1:before {
-    content: "\ea13";
-  }
   .icon-MailSend:before {
     content: "\e93f";
   }
@@ -464,10 +1113,6 @@
   .icon-Portfolio:before {
     content: "\e947";
   }
-
-  .icon-recognization:before {
-    content: "\ea11";
-  }
   .icon-Refresh:before {
     content: "\e948";
   }
@@ -488,10 +1133,6 @@
   }
   .icon-Rupee:before {
     content: "\e94e";
-  }
-
-  .icon-rupee-icon:before {
-    content: "\ea10";
   }
   .icon-Score:before {
     content: "\e94f";
@@ -574,9 +1215,6 @@
   .icon-User:before {
     content: "\e966";
   }
-  .icon-user-professional:before {
-  content: "\ea0d";
-}
   .icon-View:before {
     content: "\e967";
   }
@@ -589,9 +1227,7 @@
   .icon-WebDevelopment:before {
     content: "\e96a";
   }
-  .icon-work-suitcase:before {
-    content: "\ea0e";
-  }
   .icon-Youtube:before {
     content: "\e96b";
   }
+  

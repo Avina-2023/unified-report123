@@ -25,7 +25,7 @@ export class ActionButtonsComponent implements ICellRendererAngularComp {
     public router:Router,
     private ApiService: ApiService,
     private appconfig: AppConfigService,
-    
+    private messenger: SentDataToOtherComp
 
   ) { }
   refresh(params: ICellRendererParams): boolean {
@@ -45,10 +45,12 @@ export class ActionButtonsComponent implements ICellRendererAngularComp {
   }
 
   ngOnInit() {
-   this.jobdata =  this.appconfig.jobData
+    let localjobData = JSON.parse(this.appconfig.getLocalStorage('currentJobData'))
+   this.jobdata =  this.appconfig.jobData?this.appconfig.jobData:localjobData
   }
 
   candidateprofile(){
+    this.appconfig.setLocalStorage("C_Candidate_status", this.params.data)
     this.router.navigate(['/auth/drive/viewCandidateProfilebyEmployer'])
   }
 
@@ -63,8 +65,7 @@ export class ActionButtonsComponent implements ICellRendererAngularComp {
     this.ApiService.getStatusupdated(data).subscribe((response:any) => {
       if (response.success){
         this.statusdata = response.data;
-        console.log(this.statusdata,'statusdata');
-        
+        this.messenger.sendMessage("grid-refresh",true)        
       }
     })
   }
