@@ -996,36 +996,56 @@ tabledata() {
          },
          tooltipField: 'assessedStatus',
        },
-       {
-         headerName: 'Applied Date',
-         field: 'appliedDate',
-         minWidth: 180,
-         filter: 'agNumberColumnFilter',
-         chartDataType: 'series',
-         filterParams: {
-           suppressAndOrCondition: true,
-           filterOptions: [
-             'equals',
-             'lessThan',
-             'lessThanOrEqual',
-             'greaterThan',
-             'greaterThanOrEqual',
-             'inRange',
-           ],
-         },
-         cellRenderer: (params) => {
-           if (
-             params.value &&
-             params.value != undefined &&
-             params.value != null &&
-             params.value != ''
-           ) {
-             return params.value;
-           } else {
-             return 0;
-           }
-         },
-         tooltipField: 'appliedDate',
+      //  {
+      //    headerName: 'Applied Date',
+      //    field: 'appliedDate',
+      //    minWidth: 180,
+      //    valueFormatter: function (params) {
+      //    return moment(params.value).format('D-MM-yy');
+      //   },
+      //    filter: 'agNumberColumnFilter',
+      //    chartDataType: 'series',
+      //    filterParams: {
+      //      suppressAndOrCondition: true,
+      //      filterOptions: [
+      //        'equals',
+      //        'lessThan',
+      //        'lessThanOrEqual',
+      //        'greaterThan',
+      //        'greaterThanOrEqual',
+      //        'inRange',
+      //      ],
+      //    },
+      //    cellRenderer: (params) => {
+      //      if (
+      //        params.value &&
+      //        params.value != undefined &&
+      //        params.value != null &&
+      //        params.value != ''
+      //      ) {
+      //        return params.value;
+      //      } else {
+      //        return 0;
+      //      }
+      //    },
+      //    tooltipField: 'appliedDate',
+      //  },
+
+      { 
+        headerName: 'Applied Date', 
+        field: 'appliedDate', 
+        minWidth: 175,
+        // maxWidth: 170,
+      valueFormatter: function (params) {
+          return moment(params.value).format('D-MM-yy');
+      },
+    filter: 'agDateColumnFilter',
+        chartDataType: 'series',
+        filterParams: {
+          suppressAndOrCondition: true,
+          filterOptions: ['equals', 'lessThan', 'greaterThan', 'inRange'],
+        },
+        // tooltipField: 'createdAt',
        },
        { 
         headerName: 'Actions',
