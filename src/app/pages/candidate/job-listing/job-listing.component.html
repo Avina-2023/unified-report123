@@ -1,11 +1,15 @@
 <div class="flex-layout">
   <div class="job_board">
     <div class="find_job">
-      Find Jobs
+      <span> Find & Apply Jobs</span>
+      <div class="dash">
+        <h5 class="view" (click)="dashboard()">Dashboard </h5>
+        <h5 class="findtext"> &nbsp; > &nbsp;Find Jobs</h5>
+      </div>
     </div>
-    <div class="mob_fil" *ngIf ="this.filter_info.data.length">
-      <div class="fil_results">
 
+    <div class="mob_fil" *ngIf="this.filter_info.data.length">
+      <div class="fil_results">
         <div class="fil_output">
           <div class="checkedVal" *ngFor="let chkbox of selectedValues;let i = index">
             {{chkbox.name}} <mat-icon class="close_icon" (click)="closeSelectedValues(chkbox,i)">close</mat-icon>
@@ -16,8 +20,10 @@
         <mat-icon class="misc_icon">filter_list</mat-icon><span>Filters ({{this.selectedValues.length}})</span>
       </div>
     </div>
+
+
     <div class="results_dash">
-      <div>Total Results ({{this.totallength}})</div>
+      <div> Results Showing ({{this.totallength}})</div>
       <div class="sort">
         <p>Sort by: </p>
         <mat-select class="panelPosition" appearance="outline" [(ngModel)]="sortData" (selectionChange)="getJobList()"
@@ -27,103 +33,201 @@
         </mat-select>
       </div>
     </div>
-    <div class="overall_box" *ngIf="totallength!=0">
-      <div class="card_flex" *ngFor="let item of joblist;let i=index">
-        <mat-card class="example_card">
-          <div (click)="gotojob(item)">
-            <div class="job_card">
-              <div class="inner_card">
-                <div class="comp-image">
-                  <img [src]="productionUrl?item.companyLogo+blobToken:item.companyLogo" class="comp_logo" alt="logo">
+
+    <!-- <div [ngClass]="{'disabled': this.eduvalue != this.yop}" (click)="this.eduvalue == this.yop && gotojob(item)">
+      <div class="minicard-header">
+      </div>
+    </div> -->
+
+
+    <div class="main2">
+      <div class="card-sty">
+        <mat-card class="main-card2" *ngFor="let item of joblist;let i as index">
+          <div>
+            <!-- {{this.jobDisable}} -->
+            <!-- {{item.yearofPassout}}
+            {{useryopyear}} -->
+            <!-- org -->
+            <!-- <div [disabled]="item.yearofPassout != useryopyear" (click)="item.yearofPassout == useryopyear ? gotojob(item) : customalert()" [ngClass]="{'blurcard': item.yearofPassout != useryopyear}"> -->
+
+              <div [disabled]="!item.yearofPassout.includes(removeduplicate2)" (click)="item.yearofPassout.includes(removeduplicate2) ? gotojob(item) : customalert()" [ngClass]="{'blurcard': !item.yearofPassout.includes(removeduplicate2)}">
+
+                <div class="minicard-header">
+                <div class="minicard-heading">
+                  <span class="head1">{{item.jobRole}}</span> <br>
+                  <span class="head2">{{item.company}}</span>
                 </div>
-
+                <div class="company-image">
+                  <img [src]="item.companyLogo
+              " alt="" />
+                </div>
               </div>
+              <div class="main-sub">
+                <div class="sub-details-1">
+                  <div class="type"><span class="icon-full_time"></span> {{item.jobType}} </div>
+                  <div class="degree"><span class="icon-degree"></span>
+                    {{item.education}}
+                  </div>
+                </div>
+                <div class="details">
+                  <div class="sub-details">
+                    <!-- <div><span class="icon-Location"></span></div> -->
+                    <div> <mat-icon class="locicon"> location_on</mat-icon></div>
+                    <div>{{item.jobLocation}}</div>
+                  </div>
 
+
+                  <!-- <div class="sub-details">
+                <div><span class="icon-Location"></span></div>
+                <div>{{item.specialization}}</div>
+              </div> -->
+
+                  <div class="sub-details" *ngIf="item.specialization">
+                    <div class="specialization" *ngFor="let subItem of item.specialization; let ind = index">
+                      <button *ngIf="ind<2">
+                        {{subItem}}
+                      </button>
+                    </div>
+                    <div class="specialization" *ngIf="item.specialization.length-1>0">
+                      <button>
+                        +{{item.specialization.length-1}} more
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
             </div>
-            <div class="card_title">
-              <p class="job_designation head_designation" title="{{item.jobRole}}">
-                {{item.jobRole}}
-              </p>
-              <p class="comp_name">
-                {{item.company}}
-              </p>
+            <div class="date">
+              <!-- <div (click)="gotojob(item)"><span class="icon-calendar"></span></div> -->
+              <div [disabled]="!item.yearofPassout.includes(removeduplicate2)" (click)="item.yearofPassout.includes(removeduplicate2) ? gotojob(item) : customalert()" [ngClass]="{'blurcard': !item.yearofPassout.includes(removeduplicate2)}"><span class="icon-calendar"></span></div>
+              <!-- <div [disabled]="item.yearofPassout != useryopyear" (click)="item.yearofPassout == useryopyear && gotojob(item)" [ngClass]="{'blurcard': item.yearofPassout != useryopyear}">Posted on -->
+                <div [disabled]="!item.yearofPassout.includes(removeduplicate2)" (click)="item.yearofPassout.includes(removeduplicate2) ? gotojob(item) : customalert()" [ngClass]="{'blurcard': !item.yearofPassout.includes(removeduplicate2)}">Posted on
+                {{item.createdOn | date : 'd MMM'}}
+              </div>
+              <!-- <div class="misc_save" [disabled]="item.yearofPassout != useryopyear" (click)="item.yearofPassout == useryopyear && bookMarkIcon(item)" [ngClass]="{'blurcard': item.yearofPassout != useryopyear}"> -->
+                <div class="misc_save" [disabled]="!item.yearofPassout.includes(removeduplicate2)" (click)="item.yearofPassout.includes(removeduplicate2) && bookMarkIcon(item)" [ngClass]="{'blurcard': !item.yearofPassout.includes(removeduplicate2)}">
+                <div class="save">
+                  <mat-icon [ngClass]="item.isSelected ? 'saved_icon':'unsaved_icon'">
+                    {{item.isSelected?'bookmark':'bookmark_border'}} </mat-icon>
+                  <div>Save</div>
+                </div>
+              </div>
             </div>
+          </div>
+        </mat-card>
 
-            <div class="sample_class">
-              <!-- <div class="job_description" [innerHTML]="sampleContent[i].slice(0, 80).concat('...') ">
-            </div> -->
 
-              <div class="misc_details">
-                <div class="misc_row"><span>
-                    <mat-icon class="misc_icon"> school</mat-icon>
-                  </span>
-                  <p class="graduate overflow-dot">
+        <div class="paginationdisplay">
+          <app-common-paginator *ngIf="total" (send)="some($event)" [totalcount]="total"></app-common-paginator>
+        </div>
+      </div>
+    </div>
+
+  
+
+
+    <!-- <div class="overall_box" *ngIf="totallength!=0">
+
+     <div class="card_flex" *ngFor="let item of joblist;let i=index"> 
+      <mat-card class="example_card">
+        <div (click)="gotojob(item)">
+          <div class="job_card">
+            <div class="inner_card">
+              <div class="comp-image">
+                <img [src]="productionUrl?item.companyLogo+blobToken:item.companyLogo" class="comp_logo" alt="logo">
+              </div>
+            </div>
+          </div>
+          <div class="card_title">
+            <p class="job_designation head_designation" title="{{item.jobRole}}">
+              {{item.jobRole}}
+            </p>
+            <p class="comp_name">
+              {{item.company}}
+            </p>
+          </div>
+  
+          <div class="sample_class">
+  
+            //comment below two lines 
+  
+             <div class="job_description" [innerHTML]="sampleContent[i].slice(0, 80).concat('...') ">
+              </div>
+  
+            <div class="misc_details">
+              <div class="misc_row"><span>
+                  <mat-icon class="misc_icon"> school</mat-icon>
+                </span>
+                <p class="graduate overflow-dot">
                   <span *ngFor="let subItem of item.education;let i=index; let isLast=last">
                     <span class="misc_col">{{subItem}}<span class="misc_col"
                         *ngIf="!isLast && i < item.education.length">&nbsp;</span> </span>
                   </span>
                 </p>
-                </div>
-
-                <div class="misc_row"><span>
-                    <mat-icon class="misc_icon"> location_on</mat-icon>
+              </div>
+  
+              <div class="misc_row"><span>
+                  <mat-icon class="misc_icon"> location_on</mat-icon>
+                </span>
+                <p class="locate overflow-dot">
+                  <span *ngFor="let subItem of item.jobLocation;let i=index; let isLast=last">
+                    <span class="misc_col">{{subItem}}<span class="misc_col"
+                        *ngIf="!isLast && i < item.jobLocation.length">&nbsp;</span></span>
                   </span>
-                  <p class="locate overflow-dot">
-                    <span *ngFor="let subItem of item.jobLocation;let i=index; let isLast=last">
-                      <span class="misc_col">{{subItem}}<span class="misc_col"
-                          *ngIf="!isLast && i < item.jobLocation.length">&nbsp;</span></span>
-                    </span>
-                  </p>
-                </div>
-
-                <div class="misc_row" *ngIf="item.jobType"><span>
-                    <mat-icon class="misc_icon"> work</mat-icon>
-                  </span>
-                  <span class="misc_col">{{item.jobType}} </span>
-                </div>
+                </p>
               </div>
-
-              <div class="expertise" *ngIf="item.specialization">
-                <div class="specialization" *ngFor="let subItem of item.specialization; let ind = index">
-                  <button *ngIf="ind<1">
-                    {{subItem}}
-                  </button>
-                </div>
-                <div class="specialization" *ngIf="item.specialization.length-1>0">
-                  <button>
-                    +{{item.specialization.length-1}} more
-                  </button>
-                </div>
+  
+              <div class="misc_row" *ngIf="item.jobType"><span>
+                  <mat-icon class="misc_icon"> work</mat-icon>
+                </span>
+                <span class="misc_col">{{item.jobType}} </span>
               </div>
-              <div class="misc_details">
-                <span class="misc_col">Posted on
-                  {{item.createdOn | date : 'MMM d'}}</span>
-              </div>
-
-
             </div>
+  
+            <div class="expertise" *ngIf="item.specialization">
+              <div class="specialization" *ngFor="let subItem of item.specialization; let ind = index">
+                <button *ngIf="ind<1">
+                  {{subItem}}
+                </button>
+              </div>
+              <div class="specialization" *ngIf="item.specialization.length-1>0">
+                <button>
+                  +{{item.specialization.length-1}} more
+                </button>
+              </div>
+            </div>
+            <div class="misc_details">
+              <span class="misc_col">Posted on
+                {{item.createdOn | date : 'MMM d'}}</span>
+            </div>
+  
+  
           </div>
-          <div class="misc_save" (click)="bookMarkIcon(item)">
-            <span>
-              <mat-icon [ngClass]="item.isSelected ? 'saved_icon':'unsaved_icon'">
-                {{item.isSelected?'bookmark':'bookmark_border'}} </mat-icon>
-            </span>
-          </div>
-        </mat-card>
-      </div>
-      <div class="paginationdisplay">
-        <app-common-paginator *ngIf="total" (send)="some($event)" [totalcount]="total"></app-common-paginator>
-      </div>
+        </div>
+        <div class="misc_save" (click)="bookMarkIcon(item)">
+          <span>
+            <mat-icon [ngClass]="item.isSelected ? 'saved_icon':'unsaved_icon'">
+              {{item.isSelected?'bookmark':'bookmark_border'}} </mat-icon>
+          </span>
+        </div>
+      </mat-card>
+    </div> 
+
+    
+  </div>  -->
+
+
+    <div *ngIf="totallength==0">
+      <app-no-data-found [from]="'find'"></app-no-data-found>
     </div>
-<div *ngIf="totallength==0">
-  <app-no-data-found [from]="'find'"></app-no-data-found>
-</div>
+
 
   </div>
 
 
 
-  <div class="filter" *ngIf ="this.filter_info.data.length">
+  <div class="filter" *ngIf="this.filter_info.data.length">
     <div class="fil_head">
       <p>
         <mat-icon class="misc_icon">filter_list</mat-icon><span class="job_designation">All Filters
@@ -160,7 +264,10 @@
       </div>
     </div>
   </div>
+
+
 </div>
+
 
 
 <ng-template #moreItems>
@@ -185,6 +292,7 @@
   </div>
 
 </ng-template>
+
 
 <ng-template #mobFilter>
 
