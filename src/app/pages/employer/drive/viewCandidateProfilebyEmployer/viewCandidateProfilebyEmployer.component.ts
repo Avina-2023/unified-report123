@@ -50,10 +50,21 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
     this.CandidateDetails();
   }
 
+  // scrollTo(direction: 'left' | 'right') {
+  //   const container =
+  //     this.headerRef.nativeElement.querySelector('.scroll-container');
+  //   const scrollAmount = 200; // Adjust as needed
+  //   if (direction === 'left') {
+  //     container.scrollLeft -= scrollAmount;
+  //   } else if (direction === 'right') {
+  //     container.scrollLeft += scrollAmount;
+  //   }
+  // }
   scrollTo(direction: 'left' | 'right') {
-    const container =
-      this.headerRef.nativeElement.querySelector('.scroll-container');
-    const scrollAmount = 200; // Adjust as needed
+    const container = this.headerRef.nativeElement;
+    const containerWidth = container.offsetWidth;
+    const scrollAmount = containerWidth; // Scroll one container width
+
     if (direction === 'left') {
       container.scrollLeft -= scrollAmount;
     } else if (direction === 'right') {

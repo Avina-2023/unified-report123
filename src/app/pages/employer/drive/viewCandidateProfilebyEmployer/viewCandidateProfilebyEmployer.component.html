@@ -18,8 +18,8 @@
         <div class="description txt-center  hidden_div">
           <div class="content_wrap">{{candidateData.email}}</div>
           <div class="content_wrap">
-            {{candidateData.contact_details.permanent_city}},{{candidateData.contact_details.permanent_state}},<span
-              class="countryimg">, &nbsp;&nbsp;<img src="assets/images/india_flag.svg"></span>
+            {{candidateData.contact_details.permanent_city}},&nbsp;{{candidateData.contact_details.permanent_state}},&nbsp;<span
+              class="countryimg"> &nbsp;&nbsp;&nbsp;&nbsp;<img src="assets/images/india_flag.svg"></span>
           </div>
         </div>
         <br>
@@ -30,11 +30,31 @@
       </div>
     </div>
     <div class="card_two">
+      <!-- <button class="scroll-button static" (click)="scrollTo('left')">Left</button>
+      <button class="scroll-button static" (click)="scrollTo('right')">Right</button>
       <div class="details_header flx_div flx_center card_sticky" #headerRef>
-        <div class="overall-detail " *ngFor="let detail of details" (click)="scrollToSection(detail.sectionId)">{{
-          detail.label
-          }}</div>
+
+        <div class="overall-detail" *ngFor="let detail of details" [class.active]="activeSection === detail.sectionId"
+          (click)="scrollToSection(detail.sectionId)">
+          {{ detail.label }}
+        </div>
+
+
+      </div> -->
+      <img class="icons_left_right" src="../../../../../assets/images/arrow_back_ios_FILL0_wght400_GRAD0_opsz48.svg"
+        (click)="scrollTo('left')">
+
+      <img class="icons_left_right" src="../../../../../assets/images/arrow_forward_ios_FILL0_wght400_GRAD0_opsz48.svg"
+        (click)="scrollTo('right')">
+      <div class="details_header flx_div flx_center card_sticky" #headerRef>
+
+        <div class="overall-detail" *ngFor="let detail of details" [class.active]="activeSection === detail.sectionId"
+          (click)="scrollToSection(detail.sectionId)">
+          {{ detail.label }}
+        </div>
+
       </div>
+
       <div class="content">
         <div id="personal" #personalSection class="inner_content">
           <div class="profile_details pd-20">
@@ -75,13 +95,37 @@
             </div>
 
           </div>
-          <div class="profile_details pd-20">
+          <!-- <div class="profile_details pd-20">
             <h2 class="head_title"> Languages Known </h2>
             <div class="flx_center title">
               <div class="key"></div>
               <div class="value flx_div flx_center flx_between"
                 *ngFor="let language of candidateData.personal_details.languages_known">
                 {{language.language}}
+              </div>
+            </div>
+          </div> -->
+          <div class="profile_details pd-20">
+            <h2 class="head_title">Languages Known</h2>
+            <div class="flx_center title">
+              <div class="key"></div>
+              <div class="flx_div flx_center flx_between"
+                *ngFor="let language of candidateData.personal_details.languages_known">
+
+                <span class="key">{{ language.language }}</span>
+
+                <label class="value">
+                  <input type="checkbox" [checked]="language.is_read" disabled />
+                  Read
+                </label>
+                <label class="value">
+                  <input type="checkbox" [checked]="language.is_write" disabled />
+                  Write
+                </label>
+                <label class="value">
+                  <input type="checkbox" [checked]="language.is_speak" disabled />
+                  Speak
+                </label>
               </div>
             </div>
           </div>
@@ -125,6 +169,9 @@
                     {{candidateData.contact_details.permanent_zip}} </div>
                 </div>
               </div>
+              <!-- <div *ngIf="candidateData.contact_details.is_sameas_presentaddr">
+                <h2 class="sub_heading pt-10"></h2>
+              </div> -->
             </div>
           </div>
         </div>
@@ -138,10 +185,13 @@
               <h2 class="sub_heading">Qualification {{i+1}}</h2>
               <div class="flx_div flx_baseline title">
                 <div class="key">Qualification</div>
-                <div class="value">{{candidateData.level}}
+                <div class="value">{{candidates.level}}
                   <!-- <div>SSLC/Class X - (CBSE), Bharat School of Education,</div>
                   <div class="yop-title"><em>June 2015 - April 2016</em></div> -->
                 </div>
+              </div>
+              <div class="edu_start_end">{{candidates.start_date| date : 'MMM y'}}-{{candidates.end_date| date : 'MMM
+                y'}}
               </div>
               <div class="flx_div flx_baseline title">
                 <div class="key">Year of Passing</div>
@@ -213,11 +263,22 @@
         <div id="work-experience" #workExperienceSection class="inner_content">
           <div class="profile_details pd-20">
             <h2 class="head_title"> Work Experience Details </h2>
-            <div class="profile_details pd-20 ">
+            <!-- <div class="profile_details pd-20 ">
               <h2 class="sub_heading">Total Experience </h2>
               <div class="flx_div experience">
                 {{ candidateData.experience_details.work_details.total_exp_years }}Years
                 {{ candidateData.experience_details.work_details.total_exp_months }}Months
+              </div>
+            </div> -->
+            <div class="profile_details_exp pd-20">
+              <div class="key">Total Experience</div>
+              <div class=" experience">
+                <div class="experience-box">
+                  {{ candidateData.experience_details.work_details.total_exp_years }}</div> <span
+                  class="value_2">Years</span>
+                <div class="experience-box">
+                  {{ candidateData.experience_details.work_details.total_exp_months }}</div> <span
+                  class="value_2">Months</span>
               </div>
             </div>
             <div class="profile_details pd-20">
