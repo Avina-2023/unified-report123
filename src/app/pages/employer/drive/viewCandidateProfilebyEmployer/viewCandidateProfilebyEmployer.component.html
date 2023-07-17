@@ -30,22 +30,11 @@
       </div>
     </div>
     <div class="card_two">
-      <!-- <button class="scroll-button static" (click)="scrollTo('left')">Left</button>
-      <button class="scroll-button static" (click)="scrollTo('right')">Right</button>
-      <div class="details_header flx_div flx_center card_sticky" #headerRef>
-
-        <div class="overall-detail" *ngFor="let detail of details" [class.active]="activeSection === detail.sectionId"
-          (click)="scrollToSection(detail.sectionId)">
-          {{ detail.label }}
-        </div>
-
-
-      </div> -->
-      <img class="icons_left_right" src="../../../../../assets/images/arrow_back_ios_FILL0_wght400_GRAD0_opsz48.svg"
+      <!-- <img class="icons_left_right" src="../../../../../assets/images/arrow_back_ios_FILL0_wght400_GRAD0_opsz48.svg"
         (click)="scrollTo('left')">
 
       <img class="icons_left_right" src="../../../../../assets/images/arrow_forward_ios_FILL0_wght400_GRAD0_opsz48.svg"
-        (click)="scrollTo('right')">
+        (click)="scrollTo('right')"> -->
       <div class="details_header flx_div flx_center card_sticky" #headerRef>
 
         <div class="overall-detail" *ngFor="let detail of details" [class.active]="activeSection === detail.sectionId"
@@ -186,8 +175,7 @@
               <div class="flx_div flx_baseline title">
                 <div class="key">Qualification</div>
                 <div class="value">{{candidates.level}}
-                  <!-- <div>SSLC/Class X - (CBSE), Bharat School of Education,</div>
-                  <div class="yop-title"><em>June 2015 - April 2016</em></div> -->
+
                 </div>
               </div>
               <div class="edu_start_end">{{candidates.start_date| date : 'MMM y'}}-{{candidates.end_date| date : 'MMM
@@ -502,9 +490,28 @@
           <div class="job_title content_wrap">Candidate Status</div>
           <div class="job_description content_wrap">selected</div>
         </div>
-        <div class="shortlist_btn">Shortlist</div>
-        <div class="reject_btn">Reject</div>
+        <div>
+          <div class="shortlist_btn" (click)="matDialogOpen()"> Shortlist</div>
+          <div class="reject_btn" (click)="matDialogOpen()">Reject</div>
+        </div>
       </div>
     </div>
   </div>
-</div>
+
+  <ng-template #matDialog>
+    <div class="main-wrapper">
+      <!-- <div class="closeIcon"><mat-icon mat-dialog-close>close</mat-icon></div> -->
+      <div class="warning-icon">
+      </div>
+      <div class="text">
+        Are you sure you want to shortlist the candidate? </div>
+      <div class="button-wrapper-form-pop-up">
+        <button class="b1" (click)="closeDialog('save')" type="button" mat-raised-button>
+          confirm
+        </button>
+        <button class="b3" (click)="closeDialog('cancel')" type="button" mat-raised-button>
+          cancel
+        </button>
+      </div>
+    </div>
+  </ng-template>
