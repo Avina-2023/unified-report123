@@ -274,7 +274,7 @@ refresh(){
     }
 
     },
-      { headerName: 'aa', field: '', minWidth: 75 ,
+      { headerName: '', field: '', minWidth: 75 ,
       cellRenderer: 'moreOptions',
       suppressColumnsToolPanel: true,
       filter: false,

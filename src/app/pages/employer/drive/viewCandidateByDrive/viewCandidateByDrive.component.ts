@@ -14,7 +14,7 @@ import { AppConfigService } from 'src/app/utils/app-config.service';
 import { SentDataToOtherComp } from 'src/app/services/sendDataToOtherComp.service';
 import { APP_CONSTANTS } from '../../../../utils/app-constants.service';
 import { MatTabChangeEvent } from '@angular/material/tabs/tab-group';
-import { NavigationExtras, Router } from '@angular/router';
+import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { ActionButtonsComponent } from './actionButtons/actionButtons.component';
 import { param } from 'jquery';
 @Component({
@@ -78,13 +78,15 @@ export class ViewCandidateByDriveComponent implements OnInit {
   statusdata: any;
   email: any;
   jobStatus: any;
+  jobData: any;
 
   constructor(
     private ApiService: ApiService,
     private toastr: ToastrService,
     private appconfig: AppConfigService,
     private sendData: SentDataToOtherComp,
-    public router:Router
+    public router:Router,
+    private activeroute:ActivatedRoute
   ) {
     this.jobId = this.appconfig.getLocalStorage('currentJobID');
     this.serverSideStoreType = 'partial';
@@ -114,9 +116,12 @@ export class ViewCandidateByDriveComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.tabledata();
+    
     this.autoSizeAll(false);
     this.filterData();
+    this.jobData = this.appconfig.jobData
+    this.tabledata();
+
   }
 
   ngOnDestroy() {
@@ -840,9 +845,10 @@ tabledata() {
            filterOptions: ['contains'],
          },
          cellClassRules: {
-          'green-cell': (params) => params.value === 'awaitingReview',
-          // 'yellow-cell': (params) => params.value === 'Shortlisted',
-           'red-cell': (params) => params.value === 'rejected'
+          'yellow-cell': (params) => params.value === 'awaitingReview',
+           'green-cell': (params) => params.value === 'Shortlisted',
+           'red-cell': (params) => params.value === 'rejected',
+           'blue-cell': (params) => params.value === '"inProgress"',
         },
          cellRenderer: (params) => {
            if (
@@ -1021,6 +1027,7 @@ tabledata() {
         field: '',
        minWidth: 225 ,
        cellRenderer: 'moreOptions',
+      //  onCellClicked: this.sendJobData(),
        suppressColumnsToolPanel: true,
        filter: false,
      }
@@ -1028,7 +1035,10 @@ tabledata() {
      ];
     
    }
-
+// sendJobData(){
+// this.sendData.sendMessage("jobData",this.jobData)
+// console.log(this.jobData)
+// }
   exportCSV() {
     this.gridApi.exportDataAsCsv({
       columnKeys: [
@@ -1160,31 +1170,9 @@ filterData() {
   }
 }
 
-// getStatusChange(){
-//   let params: any = {};
-//   this.ApiService.getStatusupdated(params).subscribe((response:any) => {
-//     if (response.success){
-//       this.statusdata = response.data;
-//       console.log(this.statusdata,'statusdata');
-      
-//     }
-//   })
-// }
-
-// getUserProfileSummary(){
-//   let data = {
-//     "email":  this.email,
-//     "jobId": this.jobId,
-
-//   }
-//     this.ApiService.getStatusupdated(data).subscribe((res:any)=>{
-//       if(res.success){
-//           this.statusdata = res ? res.data[0] : '';
-//       }else{
-//         this.toast.warning(res.message);
-//       }
-//     })
-// }
+refresh(){
+  this.gridApi.refreshServerSideStore({ purge: true });
+}
 
 }
 

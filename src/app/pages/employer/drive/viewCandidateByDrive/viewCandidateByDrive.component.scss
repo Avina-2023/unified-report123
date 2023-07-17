@@ -481,16 +481,30 @@ justify-content: space-between;
 // }
 
 
-::ng-deep .green-cell span {
-  background: orange !important;
+::ng-deep .yellow-cell span {
+  background: #FFB74D !important;
   color: #ffff;
   border-radius: 5px;
   padding: 6px 10px;
 }
 
-::ng-deep .red-cell span {
-  background: red !important;
+::ng-deep .green-cell span {
+  background: #49AE31 !important;
   color: #ffff;
+  border-radius: 5px;
+  padding: 3px 10px;
+}
+
+::ng-deep .red-cell span {
+  background: #EF2917 !important;
+  color: #ffff;
+  border-radius: 5px;
+  padding: 3px 10px;
+}
+
+::ng-deep .blue-cell span {
+  background: #49AE31 !important;
+  color: #27BBEE;
   border-radius: 5px;
   padding: 3px 10px;
 }
