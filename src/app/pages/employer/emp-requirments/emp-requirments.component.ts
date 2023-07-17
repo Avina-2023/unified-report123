@@ -86,7 +86,7 @@ export class EmpRequirmentsComponent implements OnInit {
     private http: ApiService,
     private toastr: ToastrService,
     private appConfig: AppConfigService,
-    private msgData : SentDataToOtherComp
+    private sendData : SentDataToOtherComp
   ) {
 
   }
@@ -116,9 +116,11 @@ applyFilter(filtervalue:string){
 
 viewjobpagenator(){}
 
-viewApplication(jobId){
+viewApplication(jobdata){
+  console.log(jobdata)
   this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.VIEWDRIVE.VIEWCANDIDATE);
-  this.appConfig.setLocalStorage("currentJobID",jobId)
+  this.sendData.sendMessage("jobData",jobdata)
+  this.appConfig.setLocalStorage("currentJobID",jobdata.jobId)
 }
 some(pages){
   this.filterModel.startRow= (( pages.value-1)*this.defaultRowPerPage)

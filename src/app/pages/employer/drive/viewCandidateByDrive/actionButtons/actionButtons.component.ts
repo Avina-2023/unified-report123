@@ -6,6 +6,8 @@ import { ICellRendererParams, IAfterGuiAttachedParams } from 'ag-grid-community'
 // import { MatNoDataRow, MatTableDataSource } from '@angular/material/table';
 import { NavigationExtras, Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
+import { SentDataToOtherComp } from 'src/app/services/sendDataToOtherComp.service';
+import { AppConfigService } from 'src/app/utils/app-config.service';
 @Component({
   selector: 'app-actionButtons',
   templateUrl: './actionButtons.component.html',
@@ -17,10 +19,14 @@ export class ActionButtonsComponent implements ICellRendererAngularComp {
   email: any;
   jobId: any;
   jobStatus: any;
+  jobdata: any;
 
   constructor(
     public router:Router,
     private ApiService: ApiService,
+    private appconfig: AppConfigService,
+    
+
   ) { }
   refresh(params: ICellRendererParams): boolean {
     throw new Error('Method not implemented.');
@@ -39,6 +45,7 @@ export class ActionButtonsComponent implements ICellRendererAngularComp {
   }
 
   ngOnInit() {
+   this.jobdata =  this.appconfig.jobData
   }
 
   candidateprofile(){
@@ -46,11 +53,13 @@ export class ActionButtonsComponent implements ICellRendererAngularComp {
   }
 
   getStatusChange(status){
+    console.log(this.jobdata)
     let data = {
-      // "email": this.email,
-      "jobId": this.jobId,
+      "email": this.params.data.email,
+      "jobId": this.jobdata.jobId,
       "jobStatus": status
     }
+    console.log(this.params)
     this.ApiService.getStatusupdated(data).subscribe((response:any) => {
       if (response.success){
         this.statusdata = response.data;
