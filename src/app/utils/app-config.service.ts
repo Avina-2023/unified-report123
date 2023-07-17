@@ -17,7 +17,7 @@ export class AppConfigService {
    }
 
    getjobdata(){
-    this.sendData.getMessage().subscribe((data:any)=>{
+    this.sendData.getMessage_Dyn(this.sendData.jobData_Subject).subscribe((data:any)=>{
       this.jobData = data.value
       console.log(this.jobData,'jobdata')
     })

@@ -1,6 +1,5 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { APP_CONSTANTS } from '../../../../utils/app-constants.service';
-import { log } from 'console';
 import { ApiService } from 'src/app/services/api.service';
 import { environment } from 'src/environments/environment';
 import { AppConfigService } from 'src/app/utils/app-config.service';
@@ -39,6 +38,7 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
   form_employment_name_address: any;
   form_training_employer_name: any;
   allPresentCityList: any;
+  jobDetailsdata: any;
   //  elementRef: any;
   constructor(
     private apiService: ApiService,
@@ -48,6 +48,7 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
   ) {}
   ngOnInit() {
     this.CandidateDetails();
+    this.jobDetailsdata = JSON.parse(this.appConfig.getLocalStorage('currentJobData'));
   }
 
   scrollTo(direction: 'left' | 'right') {
