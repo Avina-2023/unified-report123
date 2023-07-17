@@ -4,7 +4,7 @@ import { log } from 'console';
 import { ApiService } from 'src/app/services/api.service';
 import { environment } from 'src/environments/environment';
 import { AppConfigService } from 'src/app/utils/app-config.service';
-
+import { NavigationExtras, Router } from '@angular/router';
 @Component({
   selector: 'app-viewCandidateProfilebyEmployer',
   templateUrl: './viewCandidateProfilebyEmployer.component.html',
@@ -24,25 +24,31 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
     { label: 'Accomplishment Details', sectionId: 'accomplishment' },
     { label: 'Disciplinary Details', sectionId: 'disciplinary' },
   ];
-  candidateData: any[] = [];
+  candidateData: any;
   email: any;
+  getAllStates: any;
+  personal_details: any;
+  form_present_state: any;
+  personalDetails: any;
+  form_domicile_state: any;
+  contactDetails: any;
+  contactDetailsMap: any;
+  form_present_city: any;
+  updatedCitySubscription: any;
+  workDetails: any;
+  form_employment_name_address: any;
+  form_training_employer_name: any;
+  allPresentCityList: any;
   //  elementRef: any;
   constructor(
     private apiService: ApiService,
     private appConfig: AppConfigService,
-    private elementRef: ElementRef
+    private elementRef: ElementRef,
+    public router: Router
   ) {}
   ngOnInit() {
     this.CandidateDetails();
   }
-
-  // toggleDetails(event: MouseEvent) {
-  //   const target = event.target as HTMLDivElement;
-  //   const index = Array.from(this.headerRef.nativeElement.children).indexOf(target);
-  //   target.classList.toggle('active');
-  //   const contentElements = document.querySelectorAll('.details-content');
-  //   contentElements[index].classList.toggle('active');
-  // }
 
   scrollTo(direction: 'left' | 'right') {
     const container =
@@ -71,13 +77,15 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
     };
     this.apiService.candidateDetails(obj).subscribe((res: any) => {
       if (res.success) {
-        if (Array.isArray(res.data)) {
-          this.candidateData = res.data;
-          console.log(this.candidateData, 'candidate data');
-        } else {
-          this.candidateData = [res.data];
-          console.log(this.candidateData, 'candidate data');
-        }
+        // if (Array.isArray(res.data)) {
+        this.candidateData = res.data;
+        console.log(this.candidateData, 'candidate data');
+        this.getStateAPI();
+        // this.getAllPresentCities;
+        // } else {
+        //   this.candidateData = [res.data];
+        //   console.log(this.candidateData, 'candidate data');
+        // }
       }
       this.appConfig.setLocalStorage(
         'candidateProfile',
@@ -91,16 +99,87 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
       '#' + sectionId
     );
     if (section) {
-      section.scrollIntoView({ behavior: 'smooth' });
+      section.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   }
-}
 
-// scrollToSection(section: string) {
-//   const element = document.getElementById(
-//     section.toLowerCase().replace(/ /g, '-')
-//   );
-//   if (element) {
-//     element.scrollIntoView({ behavior: 'smooth' });
-//   }
-// }
+  tocandidtedrive() {
+    this.router.navigate(['/auth/drive/candidatelist']);
+  }
+
+  todashboard() {
+    this.router.navigate(['/auth/partner/jobrequirment']);
+  }
+
+  getStateAPI() {
+    const datas = {
+      country_id: '101',
+    };
+    this.apiService.getallStates().subscribe(
+      (data: any) => {
+        this.getAllStates = data[0];
+        this.getAllStates.forEach((element) => {
+          if (
+            element.id == this.candidateData.personal_details.domicile_state
+          ) {
+            this.form_domicile_state = element.name;
+          }
+          if (element.id == this.candidateData.contact_details.present_state) {
+            this.form_present_state = element.name;
+          }
+        });
+      },
+      (err) => {}
+    );
+  }
+
+  getAllPresentCities(id, cityId, callback) {
+    const ApiData = {
+      state_id: id,
+    };
+    let city;
+    this.updatedCitySubscription = this.apiService
+      .districtList(ApiData)
+      .subscribe(
+        (datas: any) => {
+          console.log(datas, 'citydata');
+
+          this.allPresentCityList = datas.data;
+          this.allPresentCityList.forEach((element) => {
+            if (element.id == this.candidateData.contact_details.preset_city) {
+              this.form_present_city = element.name;
+            }
+          });
+          callback(city);
+        },
+        (err) => {
+          callback(null);
+        }
+      );
+  }
+
+  // getAllPermanentCities(id, cityId, callback) {
+  //   const ApiData = {
+  //     state_id: id,
+  //   };
+  //   let city;
+  //   this.updatedCitySubscription1 = this.skillexService
+  //     .districtList(ApiData)
+  //     .subscribe(
+  //       (datas: any) => {
+  //         // this.hideCityDropDown = false;
+
+  //         this.allPermanentCityList = datas.data;
+  //         this.allPermanentCityList.forEach((element) => {
+  //           if (element.id == cityId) {
+  //             city = element.name;
+  //           }
+  //         });
+  //         callback(city);
+  //       },
+  //       (err) => {
+  //         callback(null);
+  //       }
+  //     );
+  // }
+}

@@ -1,88 +1,84 @@
 <div class="candidate_profile_detail">
   <div class="view_breadcrump flx_div flx_center">
-    <div class="active-link">View Job Requirements</div>
-    <div class="active-link"> View Applications</div>
+    <div class="active-link" (click)="todashboard()">View Job Requirements</div>
+    <div class="active-link" (click)="tocandidtedrive()"> View Applications</div>
     <div>Candidate Profile</div>
   </div>
   <h1 class="profile_header">Candidate Profile</h1>
   <div class="candidate_card flx_div flx_between">
 
-    <div class="card_one" *ngFor="let candidate of candidateData">
+    <div class="card_one">
       <div class="inner_content pd-20 card_sticky">
-        <div><img
-            src="https://img.freepik.com/free-photo/young-bearded-man-with-striped-shirt_273609-5677.jpg?t=st=1687945440~exp=1687946040~hmac=5105f6a5dd9b45de4844973ac50333585a9892bec33b5124aed226ba509fe2f2">
+        <div>
+          <img src={{candidateData.personal_details.profileImage}} />
         </div>
         <div class="title txt-center  hidden_div">
-          <div class="content_wrap">{{candidate.personal_details.name}}</div>
+          <div class="content_wrap">{{candidateData.personal_details.name}}</div>
         </div>
         <div class="description txt-center  hidden_div">
-          <div class="content_wrap">{{candidate.email}}</div>
+          <div class="content_wrap">{{candidateData.email}}</div>
           <div class="content_wrap">
-            {{candidate.contact_details.permanent_city}},{{candidate.contact_details.permanent_state}}</div>
-
+            {{candidateData.contact_details.permanent_city}},{{candidateData.contact_details.permanent_state}},<span
+              class="countryimg">, &nbsp;&nbsp;<img src="../../../../../assets/images/india_flag.svg"></span>
+          </div>
         </div>
+        <br>
+        <div class="value"> <span></span>Trained by L&T EduTech</div>
+        <div class="value"><span></span>Assessed by L&T EduTech</div>
       </div>
     </div>
     <div class="card_two">
       <div class="details_header flx_div flx_center card_sticky" #headerRef>
-        <div class="overall-detail" *ngFor="let detail of details" (click)="scrollToSection(detail.sectionId)">{{
+        <div class="overall-detail " *ngFor="let detail of details" (click)="scrollToSection(detail.sectionId)">{{
           detail.label
           }}</div>
       </div>
-      <div class="content" *ngFor="let candidate of candidateData">
+      <div class="content">
         <div id="personal" #personalSection class="inner_content">
           <div class="profile_details pd-20">
             <h2 class="head_title"> Personal Details </h2>
             <div class="flx_div flx_center hidden_div title">
               <div class="key">Name</div>
-              <div class="value content_wrap">{{candidate.personal_details.name}}</div>
+              <div class="value content_wrap">{{candidateData.personal_details.name}}</div>
             </div>
             <div class="flx_div flx_center hidden_div title">
               <div class="key">Email</div>
-              <div class="value content_wrap">{{candidate.email}}</div>
+              <div class="value content_wrap">{{candidateData.email}}</div>
             </div>
             <div class="flx_div flx_center hidden_div title">
               <div class="key">Mobile No.</div>
-              <div class="value content_wrap">{{candidate.personal_details.mobile}}</div>
+              <div class="value content_wrap">{{candidateData.personal_details.mobile}}</div>
             </div>
             <div class="flx_div flx_center hidden_div title">
               <div class="key">Gender</div>
-              <div class="value content_wrap">{{candidate.personal_details.gender}}</div>
+              <div class="value content_wrap">{{candidateData.personal_details.gender}}</div>
             </div>
             <div class="flx_div flx_center hidden_div title">
               <div class="key">Date of Birth (as per X Std Certificate)</div>
-              <div class="value content_wrap">{{candidate.personal_details.dob| date : 'dd/MM/yyyy'}}</div>
+              <div class="value content_wrap">{{candidateData.personal_details.dob| date : 'dd/MM/yyyy'}}</div>
             </div>
             <div class="flx_div flx_center hidden_div title">
               <div class="key">Marital Status</div>
-              <div class="value content_wrap">{{candidate.personal_details.marital_status}}</div>
+              <div class="value content_wrap">{{candidateData.personal_details.marital_status}}</div>
             </div>
             <div class="flx_div flx_center hidden_div title">
               <div class="key">Mother Tongue</div>
-              <div class="value content_wrap">{{candidate.personal_details.mother_tongue}}</div>
+              <div class="value content_wrap">{{candidateData.personal_details.mother_tongue}}</div>
             </div>
             <div class="flx_div flx_center hidden_div title">
               <div class="key">Domicile State</div>
-              <div class="value content_wrap">{{candidate.personal_details.domicile_state}}</div>
+              <div class="value content_wrap" id="stateName">
+                {{ form_domicile_state?form_domicile_state:'NA' }}
+              </div>
             </div>
 
           </div>
           <div class="profile_details pd-20">
             <h2 class="head_title"> Languages Known </h2>
             <div class="flx_div flx_center title">
-              <div class="key">Tamil</div>
+              <div class="key"></div>
               <div class="value flx_div flx_center flx_between">
-                <div>Read</div>
-                <div>Write</div>
-                <div>Speak</div>
-              </div>
-            </div>
-            <div class="flx_div flx_center title">
-              <div class="key">English</div>
-              <div class="value flx_div flx_center flx_between">
-                <div>Read</div>
-                <div>Write</div>
-                <div>Speak</div>
+                {{candidateData.personal_details.languages_known}}
               </div>
             </div>
           </div>
@@ -90,7 +86,7 @@
           <div class="profile_details pd-20">
             <h2 class="head_title">Hobbies/Interests </h2>
             <div class="flx_div hobbies">
-              <div *ngFor="let hobby of candidate.personal_details.hobbies_intrest">{{ hobby.hobbiesAndInterests }}
+              <div *ngFor="let hobby of candidateData.personal_details.hobbies_intrest">{{ hobby.hobbiesAndInterests }}
               </div>
             </div>
           </div>
@@ -105,12 +101,12 @@
                 <div class="flx_div flx_baseline title">
                   <div class="key">Present Address</div>
                   <div class="value">
-                    {{candidate.contact_details.present_line_street_addres}},
-                    {{candidate.contact_details.present_line2_street_addre}},
-                    {{candidate.contact_details.present_address_line_3}},
-                    {{candidate.contact_details.preset_city}},
-                    {{candidate.contact_details.present_state}},
-                    {{candidate.contact_details.present_zip}}
+                    {{candidateData.contact_details.present_line_street_addres}},
+                    {{candidateData.contact_details.present_line2_street_addre}},
+                    {{candidateData.contact_details.present_address_line_3}},
+                    {{ form_present_city?form_present_city:'NA' }}
+                    {{ form_present_state?form_present_state:'NA' }}
+                    {{candidateData.contact_details.present_zip}}
                   </div>
                 </div>
               </div>
@@ -118,12 +114,12 @@
                 <h2 class="sub_heading  pt-10">Permanent Address</h2>
                 <div class="flx_div flx_baseline title">
                   <div class="key">Permanent Address</div>
-                  <div class="value">{{candidate.contact_details.permanent_line1_street_add}},
-                    {{candidate.contact_details.permanent_line2_street_add}},
-                    {{candidate.contact_details.permanent_address_line_3}},
-                    {{candidate.contact_details.permanent_city}},
-                    {{candidate.contact_details.permanent_state}},
-                    {{candidate.contact_details.permanent_zip}} </div>
+                  <div class="value">{{candidateData.contact_details.permanent_line1_street_add}},
+                    {{candidateData.contact_details.permanent_line2_street_add}},
+                    {{candidateData.contact_details.permanent_address_line_3}},
+                    {{candidateData.contact_details.permanent_city}},
+                    {{candidateData.contact_details.permanent_state}},
+                    {{candidateData.contact_details.permanent_zip}} </div>
                 </div>
               </div>
             </div>
@@ -135,11 +131,11 @@
           <div class="profile_details pd-20">
             <h2 class="head_title"> Education Details </h2>
             <div class="brdr_btm_line pb-10"
-              *ngFor="let candidates of candidate.education_details.educations; let i = index">
+              *ngFor="let candidates of candidateData.education_details.educations; let i = index">
               <h2 class="sub_heading">Qualification {{i+1}}</h2>
               <div class="flx_div flx_baseline title">
                 <div class="key">Qualification</div>
-                <div class="value">{{candidates.level}}
+                <div class="value">{{candidateData.level}}
                   <!-- <div>SSLC/Class X - (CBSE), Bharat School of Education,</div>
                   <div class="yop-title"><em>June 2015 - April 2016</em></div> -->
                 </div>
@@ -147,7 +143,6 @@
               <div class="flx_div flx_baseline title">
                 <div class="key">Year of Passing</div>
                 <div class="value">{{candidates.year_of_passing| date : 'MMM y'}}
-
                 </div>
               </div>
               <div class="flx_div flx_baseline title">
@@ -194,27 +189,25 @@
           </div>
         </div>
 
-
-
         <div id="work-experience" #workExperienceSection class="inner_content">
           <div class="profile_details pd-20">
             <h2 class="head_title"> Work Experience Details </h2>
             <div class="profile_details pd-20 ">
               <h2 class="sub_heading">Total Experience </h2>
               <div class="flx_div experience">
-                {{ candidate.experience_details.work_details.total_exp_years }}Years
-                {{ candidate.experience_details.work_details.total_exp_months }}Months
+                {{ candidateData.experience_details.work_details.total_exp_years }}Years
+                {{ candidateData.experience_details.work_details.total_exp_months }}Months
               </div>
             </div>
             <div class="profile_details pd-20">
               <h2 class="head_title">Skills </h2>
               <div class="flx_div skills">
-                <div *ngFor="let skill of candidate.experience_details.skills">{{ skill.skill }}</div>
+                <div *ngFor="let skill of candidateData.experience_details.skills">{{ skill.skill }}</div>
               </div>
             </div>
             <h2 class="head_title"> Professional Experience </h2>
             <div class="brdr_btm_line pb-10"
-              *ngFor="let employment of candidate.experience_details.employments; let i = index">
+              *ngFor="let employment of candidateData.experience_details.employments; let i = index">
               <h2 class="sub_heading">Employment{{i+1}}</h2>
               <div class="flx_div flx_center hidden_div title">
                 <div class="key">Employer Name</div>
@@ -236,6 +229,10 @@
                 <div class="key">Duration To</div>
                 <div class="value content_wrap">{{employment.duration_to| date : 'MMM y'}}</div>
               </div>
+              <!-- <div *ngIf="work[form_isWorkingHere] == true" class="overall-input-wrapper mt-3  width-100">
+                <div class="checkk"> <mat-checkbox [checked]="work[form_isWorkingHere]" [disabled]="true"
+                    class="checkqualify mr-2 "></mat-checkbox><span>I am currently working here</span></div>
+              </div> -->
               <div class="flx_div flx_baseline title">
                 <div class="key">I am Currently working here</div>
                 <div class="value">
@@ -246,24 +243,35 @@
 
             <h2 class="head_title"> Articleship/Training Details</h2>
             <div class="brdr_btm_line pb-10"
-              *ngFor="let employment of candidate.experience_details.intern; let i = index">
+              *ngFor="let employment of candidateData.experience_details.intern; let i = index">
               <h2 class="sub_heading">Articleship/Training{{i+1}}</h2>
-              <div class="flx_div flx_center hidden_div title">
-                <div class="key">Employer Name</div>
-                <div class="value content_wrap">{{employment.employer_name}}</div>
+
+              <div *ngIf="candidateData.experience_details.is_intern_status == true">
+                <div class="flx_div flx_center hidden_div title">
+                  <div class="key">Employer Name</div>
+                  <div class="value content_wrap">
+                    <!-- {{employment.employer_name ? employment.employer_name : 'Nill'}} -->
+                    {{employment.employer_name}}
+                  </div>
+                </div>
+                <div class="flx_div flx_center hidden_div title">
+                  <div class="key">Period From</div>
+                  <div class="value content_wrap">{{employment.from_date| date : 'MMM y'}}</div>
+                </div>
+                <div class="flx_div flx_center hidden_div title">
+                  <div class="key">Period To</div>
+                  <div class="value content_wrap">{{employment.to_date| date : 'MMM y'}}</div>
+                </div>
+                <div class="flx_div flx_center hidden_div title">
+                  <div class="key">Achievements/Responsibility/Tasks</div>
+                  <div class="value content_wrap">{{employment.work_responsiability}}</div>
+                </div>
               </div>
-              <div class="flx_div flx_center hidden_div title">
-                <div class="key">Period From</div>
-                <div class="value content_wrap">{{employment.from_date| date : 'MMM y'}}</div>
+
+              <div *ngIf="candidateData.experience_details.is_intern_status != true">
+                <div class="value_ar">No Articleship/Training Details Available</div>
               </div>
-              <div class="flx_div flx_center hidden_div title">
-                <div class="key">Period To</div>
-                <div class="value content_wrap">{{employment.to_date| date : 'MMM y'}}</div>
-              </div>
-              <div class="flx_div flx_center hidden_div title">
-                <div class="key">Achievements/Responsibility/Tasks</div>
-                <div class="value content_wrap">{{employment.work_responsiability}}</div>
-              </div>
+
             </div>
           </div>
         </div>
@@ -271,7 +279,8 @@
         <div id="project" #projectSection class="inner_content">
           <div class="profile_details pd-20">
             <h2 class="head_title"> Project Details </h2>
-            <div class="brdr_btm_line pb-10" *ngFor="let project of candidate.project_details.projects; let i = index">
+            <div class="brdr_btm_line pb-10"
+              *ngFor="let project of candidateData.project_details.projects; let i = index">
               <h2 class="sub_heading">Project {{i+1}}</h2>
               <div class="flx_div flx_center hidden_div title">
                 <div class="key">Project Type</div>
@@ -309,7 +318,7 @@
           <div class="profile_details pd-20">
             <h2 class="head_title"> Accomplishments </h2>
             <div class="brdr_btm_line pb-10"
-              *ngFor="let certification of candidate.accomplishment_details.certifications; let i = index">
+              *ngFor="let certification of candidateData.accomplishment_details.certifications; let i = index">
               <h2 class="sub_heading">Certification{{i+1}}</h2>
               <div class="flx_div flx_baseline title">
                 <div class="key">Certification Name</div>
@@ -340,7 +349,7 @@
               </div>
             </div>
             <div class="brdr_btm_line pb-10"
-              *ngFor="let awards of candidate.accomplishment_details.awards; let i = index">
+              *ngFor="let awards of candidateData.accomplishment_details.awards; let i = index">
               <h2 class="sub_heading">Awards{{i+1}}</h2>
               <div class="flx_div flx_baseline title">
                 <div class="key">Award Title</div>
@@ -352,7 +361,7 @@
               </div>
             </div>
             <div class="brdr_btm_line pb-10"
-              *ngFor="let journalentry of candidate.accomplishment_details.journals; let i = index">
+              *ngFor="let journalentry of candidateData.accomplishment_details.journals; let i = index">
               <h2 class="sub_heading">Research Publication/Journal Entry{{i+1}}</h2>
               <div class="flx_div flx_baseline title">
                 <div class="key">Title</div>
