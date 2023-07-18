@@ -23,9 +23,11 @@
           </div>
         </div>
         <br>
-        <div class="value" *ngIf="candidateStatus.trainedStatus=='Yes'"> <i class="flag_lnt icon-bookmark col1"> </i>Trained by L&T EduTech
+        <div class="value" *ngIf="candidateStatus.trainedStatus=='Yes'"> <i class="flag_lnt icon-bookmark col1">
+          </i>Trained by L&T EduTech
         </div>
-        <div class="value" *ngIf="candidateStatus.assessedStatus=='Yes'"><i class="flag_lnt icon-bookmark col2"> </i>Assessed by L&T EduTech
+        <div class="value" *ngIf="candidateStatus.assessedStatus=='Yes'"><i class="flag_lnt icon-bookmark col2">
+          </i>Assessed by L&T EduTech
         </div>
       </div>
     </div>
@@ -140,7 +142,7 @@
                     {{candidateData.contact_details.present_line_street_addres}},
                     {{candidateData.contact_details.present_line2_street_addre}},
                     {{candidateData.contact_details.present_address_line_3}},
-                    {{ form_present_city?form_present_city:'NA' }}
+                    {{ form_present_city?form_present_city:'' }}
                     {{ form_present_state?form_present_state:'NA' }}
                     {{candidateData.contact_details.present_zip}}
                   </div>
@@ -491,8 +493,9 @@
           <div class="job_description content_wrap">{{candidateStatus.jobStatus}}</div>
         </div>
         <div>
-          <div class="shortlist_btn" (click)="matDialogOpen()"> Shortlist</div>
-          <div class="reject_btn" (click)="matDialogOpen()">Reject</div>
+          <div class="shortlist_btn" (click)="matDialogOpen()"> Shortlist
+          </div>
+          <div class="reject_btn" (click)="matDialogreject()">Reject</div>
         </div>
       </div>
     </div>
@@ -502,16 +505,73 @@
     <div class="main-wrapper">
       <!-- <div class="closeIcon"><mat-icon mat-dialog-close>close</mat-icon></div> -->
       <div class="icon-warning">
+        <div class="">
+          <img class="warning_icon" src="../../../../../assets/images/alert image filled.svg">
+        </div>
+        <div class="text">
+          Are you sure you want to shortlist the candidate? </div>
+        <div class="button-wrapper-form-pop-up">
+          <button class="b1" (click)="confirmDialog('Shortlisted')" type="button" mat-raised-button>
+            confirm
+          </button>
+          <button class="b3" (click)="closeDialog('cancel')" type="button" mat-raised-button>
+            cancel
+          </button>
+        </div>
+      </div>
+  </ng-template>
+
+  <ng-template #confirmmatDialog>
+    <div class="main-wrapper">
+      <div>
+        <img class="green_tick" src="../../../../../assets/images/green_tick_image.png">
       </div>
       <div class="text">
-        Are you sure you want to shortlist the candidate? </div>
+        <span class="boldcandidate">CandidateName</span> has been
+        <span> Shortlisted successfully</span>
+      </div>
       <div class="button-wrapper-form-pop-up">
-        <button class="b1" (click)="closeDialog('save')" type="button" mat-raised-button>
+        <button class="o_K" (click)="okclose()" type="button" mat-raised-button>
+          ok
+        </button>
+      </div>
+
+    </div>
+  </ng-template>
+
+  <ng-template #rejectDialog>
+    <div class="main-wrapper">
+      <div>
+        <img class="warning_icon" src="../../../../../assets/images/alert image filled.svg">
+
+      </div>
+      <div class="text">
+        Are you sure you want to reject the candidate? </div>
+      <div class="button-wrapper-form-pop-up">
+        <button class="b1" (click)="confirmrejectDialog('save')" type="button" mat-raised-button>
           confirm
         </button>
         <button class="b3" (click)="closeDialog('cancel')" type="button" mat-raised-button>
           cancel
         </button>
       </div>
+    </div>
+  </ng-template>
+
+  <ng-template #confirmrejectmatDialog>
+    <div class="main-wrapper">
+      <div>
+        <img class="rejected_icon" src="../../../../../assets/images/rejected red filled.svg">
+
+      </div>
+      <div class="text">
+        CandidateName has been Rejected successfully </div>
+      <div class="button-wrapper-form-pop-up">
+
+        <button class="o_K" (click)="okclose('close')" type="button" mat-raised-button>
+          ok
+        </button>
+      </div>
+
     </div>
   </ng-template>

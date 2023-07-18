@@ -10,7 +10,7 @@ import { ApiService } from 'src/app/services/api.service';
 import { environment } from 'src/environments/environment';
 import { AppConfigService } from 'src/app/utils/app-config.service';
 import { NavigationExtras, Router } from '@angular/router';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 @Component({
   selector: 'app-viewCandidateProfilebyEmployer',
   templateUrl: './viewCandidateProfilebyEmployer.component.html',
@@ -50,7 +50,13 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
   jobDetailsdata: any;
   candidateStatus: any;
   isPopupOpen: boolean;
+  shortlistDisabled: boolean = false;
   @ViewChild('matDialog', { static: false }) matDialogRef: TemplateRef<any>;
+  @ViewChild('confirmmatDialog') confirmmatDialogRef!: TemplateRef<any>;
+  @ViewChild('rejectDialog') rejectDialogRef!: TemplateRef<any>;
+  @ViewChild('confirmrejectmatDialog')
+  confirmrejectmatDialogRef!: TemplateRef<any>;
+
   //  elementRef: any;
   constructor(
     private apiService: ApiService,
@@ -187,8 +193,45 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
   closeDialog() {
     this.dialog.closeAll();
   }
+  okclose() {
+    this.dialog.closeAll();
+    this.shortlistDisabled = true;
+  }
+
   matDialogOpen() {
     const dialogRef = this.dialog.open(this.matDialogRef, {
+      width: '400px',
+      height: 'auto',
+      autoFocus: false,
+      closeOnNavigation: true,
+      disableClose: false,
+      panelClass: 'popupModalContainerForForms',
+    });
+  }
+
+  matDialogreject() {
+    const dialogRef = this.dialog.open(this.rejectDialogRef, {
+      width: '400px',
+      height: 'auto',
+      autoFocus: false,
+      closeOnNavigation: true,
+      disableClose: false,
+      panelClass: 'popupModalContainerForForms',
+    });
+  }
+  confirmDialog(status) {
+    const dialogRef = this.dialog.open(this.confirmmatDialogRef, {
+      width: '400px',
+      height: 'auto',
+      autoFocus: false,
+      closeOnNavigation: true,
+      disableClose: false,
+      panelClass: 'popupModalContainerForForms',
+    });
+    console.log('confirm');
+  }
+  confirmrejectDialog() {
+    const dialogRef = this.dialog.open(this.confirmrejectmatDialogRef, {
       width: '400px',
       height: 'auto',
       autoFocus: false,
