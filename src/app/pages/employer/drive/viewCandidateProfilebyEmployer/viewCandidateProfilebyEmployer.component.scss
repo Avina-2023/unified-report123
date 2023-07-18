@@ -1,3 +1,4 @@
+// @import "../../themes/themes.scss";
 .candidate_profile_detail {
   padding: 20px;
   font-family: 'inter' !important;
@@ -136,12 +137,11 @@
         color: #848484;
       }
     }
+
     .details_header::-webkit-scrollbar {
      // display: none; /* Hide the scrollbar */
       height:2px;
     }
-
-
 
     .profile_details {
 
@@ -179,6 +179,17 @@
           font-weight: 100;
         }
       }
+
+            .value_2 {
+              color: #000000;
+              font-weight: 600;
+              line-height: 20px;
+
+              .yop-title {
+                color: #848484;
+                font-weight: 100;
+              }
+            }
     }
 
     .hobbies {
@@ -274,10 +285,13 @@
     }
 
   }
-.overall-detail.active {
-  color: blue;
 
-}
+    .edu_start_end{
+color: #848484;
+font-family: "Inter", sans-serif;
+  font-style: italic;
+  padding: 0% 0% 0% 50%;
+    }
 .checkqualify {
   background-color: #888888 !important;
 }
@@ -296,8 +310,155 @@ align-items: center;
 }
 .flag_lnt{
   margin: 10px;
+
 }
+ .col1 {
+   color: #92CD84
+ }
+
+ .col2 {
+   color: #84B6C7
+ }
+.experience-box {
+  background-color: #E6E6E6;
+  display: inline-block;
+  padding: 5px 30px;
+  color: #000000;
+  border: 0.5px solid #848484;
+
 }
+.profile_details_exp{
+  display: flex;
+    align-items: center;
+}
+ .sub_heading_exp {
+   margin-right: 10px;
+ }
+ .experience {
+   display: flex;
+   align-items: center;
+   gap: 10px;
+ }
+
+.scroll_left_button{
+position: static;
+}
+.icons_left_right{
+  width: 2%;
+    height: auto;
+}
+
+
+
+
+}
+
+.warning-icon{
+
+  display: flex;
+
+justify-content: space-around;
+
+//     width: 92px;
+
+// height: 74px;
+
+.iconfont{
+
+  width: 100px;
+
+}
+
+.icon-Tick{
+
+  font-size: 50px;
+
+  padding-top: 20px;
+
+    padding-bottom: 20px;
+
+}
+
+.icon-Tick::before{
+
+  background-color: #49AE31;
+
+  border-radius: 50%;
+
+  color: #FFFFFF;
+
+  font-size: 25px;
+
+  padding: 15px;
+
+}
+
+
+
+
+}
+
+::ng-deep .popupModalContainerForForms {
+  .main-wrapper {
+    padding: 1em;
+    background-color: white;
+    display: block;
+    width: 100%;
+
+    .text {
+      margin-top: .5em;
+      font-size: 15px;
+      text-align: center;
+    }
+
+    .button-wrapper-form-pop-up {
+      display: grid;
+      margin: 1em 0 0.5em 0;
+      grid-template-columns: 110px 110px;
+      justify-content: center;
+      width: 100%;
+      justify-items: center;
+
+      .b1,
+      .b2,
+      .b3 {
+        border: 1px solid blue;
+        background-color: white;
+        color: #666666;
+        line-height: 2;
+        border-radius: 4px;
+        font-size: 14px;
+        /* "to left" / "to right" - affects initial color */
+        background: linear-gradient(to left, white 50%, blue 50%) right;
+        background-size: 200%;
+        transition: .5s ease-out;
+        width: 90px;
+      }
+
+      .b1:hover,
+      .b2:hover,
+      .b3:hover {
+        background-position: left;
+        color: white;
+      }
+
+      .animation {
+        -webkit-transform: translateZ(0);
+        -moz-transform: translateZ(0);
+        -ms-transform: translateZ(0);
+        -o-transform: translateZ(0);
+        transform: translateZ(0);
+      }
+
+      .animation-zoom:hover {
+        transform: perspective(1px) scale(1.02);
+        // font-size: 15px;
+        transition: transform .5s ease;
+      }
+    }
+  }
+}
+
 
 
 

@@ -127,6 +127,13 @@ export class ViewCandidateByDriveComponent implements OnInit {
     this.tabledata();
     this.getJobDetails();
 
+    this.sendData.getMessage().subscribe((data:{data:string,value:any})=>{
+      if(data.data=='grid-refresh'){
+        console.log("inside")
+        this.refresh();
+      }
+    })
+
   }
 
   ngOnDestroy() {
@@ -1103,10 +1110,12 @@ tabledata() {
   onGridReady(params: any) {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
-    var datasource = this.getAggridJoblist();
-    params.api.setServerSideDatasource(datasource);
+    this.setDatasource()
   }
-
+  setDatasource(){
+    var datasource = this.getAggridJoblist();
+    this.gridApi.setServerSideDatasource(datasource);
+  }
   getAggridJoblist() {
     // debugger;
     return {
@@ -1196,9 +1205,8 @@ refresh(){
 }
 
 getJobDetails(){
-  this.jobDetailsdata = this.appconfig.getLocalStorage('jobdataa');
+  this.jobDetailsdata = this.appconfig.getLocalStorage('currentJobData');
    this.valueone =JSON.parse(this.jobDetailsdata)
-  console.log(this.valueone,'jobDetails');
 }
 }
 

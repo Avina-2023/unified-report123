@@ -1,16 +1,24 @@
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ElementRef,
+  ViewChild,
+  TemplateRef,
+} from '@angular/core';
 import { APP_CONSTANTS } from '../../../../utils/app-constants.service';
-import { log } from 'console';
 import { ApiService } from 'src/app/services/api.service';
 import { environment } from 'src/environments/environment';
 import { AppConfigService } from 'src/app/utils/app-config.service';
 import { NavigationExtras, Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
 @Component({
   selector: 'app-viewCandidateProfilebyEmployer',
   templateUrl: './viewCandidateProfilebyEmployer.component.html',
   styleUrls: ['./viewCandidateProfilebyEmployer.component.scss'],
 })
 export class ViewCandidateProfilebyEmployerComponent implements OnInit {
+  @ViewChild('conditions', { static: false }) termsconditions: TemplateRef<any>;
+
   @ViewChild('headerRef', { static: true })
   headerRef!: ElementRef<HTMLDivElement>;
   routerlink = APP_CONSTANTS.ENDPOINTS;
@@ -22,7 +30,7 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
     { label: 'Work Experience Details', sectionId: 'work-experience' },
     { label: 'Project Details', sectionId: 'project' },
     { label: 'Accomplishment Details', sectionId: 'accomplishment' },
-    { label: 'Disciplinary Details', sectionId: 'disciplinary' },
+    // { label: 'Disciplinary Details', sectionId: 'disciplinary' },
   ];
   candidateData: any;
   email: any;
@@ -39,21 +47,33 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
   form_employment_name_address: any;
   form_training_employer_name: any;
   allPresentCityList: any;
+  jobDetailsdata: any;
+  candidateStatus: any;
+  isPopupOpen: boolean;
+  @ViewChild('matDialog', { static: false }) matDialogRef: TemplateRef<any>;
   //  elementRef: any;
   constructor(
     private apiService: ApiService,
     private appConfig: AppConfigService,
     private elementRef: ElementRef,
+    private dialog: MatDialog,
     public router: Router
   ) {}
   ngOnInit() {
+    this.jobDetailsdata = JSON.parse(
+      this.appConfig.getLocalStorage('currentJobData')
+    );
+    this.candidateStatus = JSON.parse(
+      this.appConfig.getLocalStorage('C_Candidate_status')
+    );
     this.CandidateDetails();
   }
 
   scrollTo(direction: 'left' | 'right') {
-    const container =
-      this.headerRef.nativeElement.querySelector('.scroll-container');
-    const scrollAmount = 200; // Adjust as needed
+    const container = this.headerRef.nativeElement;
+    const containerWidth = container.offsetWidth;
+    const scrollAmount = containerWidth;
+
     if (direction === 'left') {
       container.scrollLeft -= scrollAmount;
     } else if (direction === 'right') {
@@ -63,18 +83,18 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
 
   CandidateDetails() {
     var obj = {};
-    // obj = {
-    //   email: this.apiService.encryptnew(
-    //     this.email,
-    //     environment.cryptoEncryptionKey
-    //   ),
-    // };
     obj = {
       email: this.apiService.encryptnew(
-        'gokul47@dispostable.com',
+        this.candidateStatus.email,
         environment.cryptoEncryptionKey
       ),
     };
+    // obj = {
+    //   email: this.apiService.encryptnew(
+    //     'gokul47@dispostable.com',
+    //     environment.cryptoEncryptionKey
+    //   ),
+    // };
     this.apiService.candidateDetails(obj).subscribe((res: any) => {
       if (res.success) {
         // if (Array.isArray(res.data)) {
@@ -158,6 +178,25 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
       );
   }
 
+  confirmShortlist(dialogRef: any) {
+    // Add your shortlist logic here
+
+    // Close the dialog
+    dialogRef.close();
+  }
+  closeDialog() {
+    this.dialog.closeAll();
+  }
+  matDialogOpen() {
+    const dialogRef = this.dialog.open(this.matDialogRef, {
+      width: '400px',
+      height: 'auto',
+      autoFocus: false,
+      closeOnNavigation: true,
+      disableClose: false,
+      panelClass: 'popupModalContainerForForms',
+    });
+  }
   // getAllPermanentCities(id, cityId, callback) {
   //   const ApiData = {
   //     state_id: id,
