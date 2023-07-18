@@ -493,9 +493,11 @@
           <div class="job_description content_wrap">{{candidateStatus.jobStatus}}</div>
         </div>
         <div>
-          <div class="shortlist_btn" (click)="matDialogOpen()"> Shortlist
-          </div>
-          <div class="reject_btn" (click)="matDialogreject()">Reject</div>
+
+          <div class="shortlist_btn" (click)="matDialogOpen()"
+            [ngClass]="{'disable': candidateStatus.jobStatus === 'Shortlisted'}">Shortlist</div>
+          <div class="reject_btn" (click)="matDialogreject()"
+            [ngClass]="{'disable': candidateStatus.jobStatus === 'Rejected'}">Reject</div>
         </div>
       </div>
     </div>
@@ -503,8 +505,7 @@
 
   <ng-template #matDialog>
     <div class="main-wrapper">
-      <!-- <div class="closeIcon"><mat-icon mat-dialog-close>close</mat-icon></div> -->
-      <div class="icon-warning">
+      <div>
         <div class="">
           <img class="warning_icon" src="../../../../../assets/images/alert image filled.svg">
         </div>
@@ -514,11 +515,14 @@
           <button class="b1" (click)="confirmDialog('Shortlisted')" type="button" mat-raised-button>
             confirm
           </button>
+
+
           <button class="b3" (click)="closeDialog('cancel')" type="button" mat-raised-button>
             cancel
           </button>
         </div>
       </div>
+    </div>
   </ng-template>
 
   <ng-template #confirmmatDialog>

@@ -485,10 +485,7 @@ display: block;
         color: #FCFCFC;
         background-color: #1B4E9B;
         }
-                                .disabled {
-                                  pointer-events: none;
-                                  opacity: 0.5;
-                                }
+
                 .boldcandidate{
                   width: 126px;
                     height: auto;
@@ -497,7 +494,10 @@ display: block;
 
                 }
   }
-
+.disable {
+  pointer-events: none;
+  opacity: 0.5;
+}
 
 
 
