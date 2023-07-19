@@ -18,7 +18,6 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 })
 export class ViewCandidateProfilebyEmployerComponent implements OnInit {
   @ViewChild('conditions', { static: false }) termsconditions: TemplateRef<any>;
-
   @ViewChild('headerRef', { static: true })
   headerRef!: ElementRef<HTMLDivElement>;
   routerlink = APP_CONSTANTS.ENDPOINTS;
