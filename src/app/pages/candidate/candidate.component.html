@@ -28,6 +28,11 @@
           <mat-icon mat-list-icon>home_outline</mat-icon>
           <span class="full-width" *ngIf="isExpanded || isShowing">Dashboard</span>
         </mat-list-item>
+        <mat-list-item class="navItems" (click)="gotoDashboard()">
+          <div class="innerLine"></div>
+          <mat-icon mat-list-icon>home</mat-icon>
+          <span class="full-width" *ngIf="isExpanded || isShowing">Dashboard</span>
+        </mat-list-item>
         <mat-list-item class="navItems" (click)="gotoProfile()">
           <div class="innerLine"></div>
           <mat-icon mat-list-icon>person_filled</mat-icon>

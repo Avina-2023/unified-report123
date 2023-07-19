@@ -112,10 +112,7 @@ export class ViewCandidateByDriveComponent implements OnInit {
     },
       frameworkComponents: {
         moreOptions: ActionButtonsComponent,
-
       },
-
-
     };
   }
 
