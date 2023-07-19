@@ -18,6 +18,7 @@ import { NgApexchartsModule } from 'ng-apexcharts';
 import { ChangePasswordComponent } from './changePassword/changePassword.component';
 import { DetailsCardComponent } from './dashboard/details-card/details-card.component';
 import { ActionButtonsComponent } from '../drive/viewCandidateByDrive/actionButtons/actionButtons.component';
+import { CandidateDetailsCardComponent } from './dashboard/candidate-details-card/candidate-details-card.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { ActionButtonsComponent } from '../drive/viewCandidateByDrive/actionButt
     EmpProfileComponent,
     ChangePasswordComponent,
     DetailsCardComponent,
-    ActionButtonsComponent
+    ActionButtonsComponent,
+    CandidateDetailsCardComponent
   ],
   imports: [
     CommonModule,
