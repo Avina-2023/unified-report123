@@ -51,11 +51,17 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
   candidateStatus: any;
   isPopupOpen: boolean;
   shortlistDisabled: boolean = false;
+
   @ViewChild('matDialog', { static: false }) matDialogRef: TemplateRef<any>;
   @ViewChild('confirmmatDialog') confirmmatDialogRef!: TemplateRef<any>;
   @ViewChild('rejectDialog') rejectDialogRef!: TemplateRef<any>;
   @ViewChild('confirmrejectmatDialog')
   confirmrejectmatDialogRef!: TemplateRef<any>;
+  params: any;
+  statusdata: any;
+  jobId: any;
+  jobStatus: any;
+  jobdata: any;
 
   //  elementRef: any;
   constructor(
@@ -73,6 +79,9 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
       this.appConfig.getLocalStorage('C_Candidate_status')
     );
     this.CandidateDetails();
+    // let localjobData = JSON.parse(
+    //   this.appConfig.getLocalStorage('currentJobData')
+    // );
   }
 
   scrollTo(direction: 'left' | 'right') {
@@ -220,6 +229,19 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
     });
   }
   confirmDialog(status) {
+    const data = {
+      email: this.candidateStatus.email,
+      jobId: this.jobDetailsdata.jobId,
+      jobStatus: status,
+    };
+
+    this.apiService.getStatusupdated(data).subscribe((response: any) => {
+      if (response.success) {
+        this.statusdata = response.data;
+        this.candidateStatus.jobStatus = status;
+        //  this.messenger.sendMessage('grid-refresh', true);
+      }
+    });
     const dialogRef = this.dialog.open(this.confirmmatDialogRef, {
       width: '400px',
       height: 'auto',
@@ -230,7 +252,21 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
     });
     console.log('confirm');
   }
-  confirmrejectDialog() {
+  confirmrejectDialog(status) {
+    const data = {
+      email: this.candidateStatus.email,
+      jobId: this.jobDetailsdata.jobId,
+      jobStatus: status,
+    };
+
+    this.apiService.getStatusupdated(data).subscribe((response: any) => {
+      if (response.success) {
+        this.statusdata = response.data;
+        this.candidateStatus.jobStatus = status;
+        //  this.messenger.sendMessage('grid-refresh', true);
+      }
+    });
+
     const dialogRef = this.dialog.open(this.confirmrejectmatDialogRef, {
       width: '400px',
       height: 'auto',

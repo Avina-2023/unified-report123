@@ -490,7 +490,21 @@
         </div>
         <div class="job_card hidden_div">
           <div class="job_title content_wrap">Candidate Status</div>
-          <div class="job_description content_wrap">{{candidateStatus.jobStatus}}</div>
+          <div class="job_description content_wrap">
+            <ng-container *ngIf="candidateStatus.jobStatus === 'Shortlisted'">
+              <img src="../../../../../assets/images/green_tick_image.png" alt="Shortlisted" class="status_icon">
+            </ng-container>
+            <ng-container *ngIf="candidateStatus.jobStatus === 'Rejected'">
+              <img src="../../../../../assets/images/rejected red filled.svg" alt="Rejected" class="status_icon">
+            </ng-container>
+            <ng-container *ngIf="candidateStatus.jobStatus === 'InProgress'">
+              <img src="" alt="InProgress" class="status_icon">
+            </ng-container>
+            <ng-container *ngIf="candidateStatus.jobStatus === ''">
+              <img src="" alt="" class="status_icon">
+            </ng-container>
+            {{candidateStatus.jobStatus}}
+          </div>
         </div>
         <div>
 
@@ -552,7 +566,7 @@
       <div class="text">
         Are you sure you want to reject the candidate? </div>
       <div class="button-wrapper-form-pop-up">
-        <button class="b1" (click)="confirmrejectDialog('save')" type="button" mat-raised-button>
+        <button class="b1" (click)="confirmrejectDialog('Rejected')" type="button" mat-raised-button>
           confirm
         </button>
         <button class="b3" (click)="closeDialog('cancel')" type="button" mat-raised-button>
