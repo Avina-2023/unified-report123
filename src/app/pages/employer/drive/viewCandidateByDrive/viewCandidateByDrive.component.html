@@ -1,73 +1,64 @@
 <div class="body">
 
-  <!-- <div class="nav">
-    <span class="link" (click)="dashboard()">View Job Requirements&nbsp;</span> &nbsp;>&nbsp; <span>&nbsp;View Application</span>
-    </div> -->
+    <div class="view_breadcrump flx_div flx_center">
+      <div class="active-link" (click)="dashboard()">View Job Requirements</div>
+      <div> View Applications</div>
+    </div>
 
-  <div class="view_breadcrump flx_div flx_center">
-    <div class="active-link" (click)="dashboard()">View Job Requirements</div>
-    <div> View Applications</div>
-  </div>
-
-
-  <div class="title">
+  <!-- <div class="title">
     <div class="title-text">View Applications</div>
     <div class="exportcsv">
-      <!-- <span [routerLink]="routerlink.VIEWDRIVE.VIEWCANDIDATEPROFILEBYEMPLOYER">click my profile</span> -->
-      <div><a (click)="exportCSV()">
+      <span [routerLink]="routerlink.VIEWDRIVE.VIEWCANDIDATEPROFILEBYEMPLOYER">click my profile</span> -->
+     <!--  <div><a (click)="exportCSV()">
           <span class=""></span>
           <span><img src="assets/images/skillMaster/exportinviewcandidate.svg"> Export CSV</span>
         </a></div>
     </div>
+  </div> -->
+
+  <div class="pageheader">
+    <span>View Applications</span>
   </div>
 
   <div class="matcard">
     <mat-card class="main">
-      <div class="job-details">
-        <div class="heading">Job Title</div>
-        <div class="val">{{valueone.jobRole}}</div>
-      </div>
-      <div class="job-details">
-        <div class="heading">Location</div>
-        <div class="val">{{valueone.jobLocation}}</div>
-      </div>
-      <div class="job-details">
-        <div class="heading">Job-Type</div>
-        <div class="val">{{valueone.jobType}}</div>
-      </div>
-      <div class="job-details">
-        <div class="heading">Application Closes On</div>
-        <div class="val">{{valueone.lastDatetoApply| date : 'dd-MM-y' }}</div>
-      </div>
-      <div class="job-details">
-        <div class="heading">Job Status</div>
-        <div class="val">{{valueone.status}}</div>
-      </div>
+    <div class="job-details">
+    <div class="heading">Job Title</div>
+    <div class="val">{{valueone.jobRole}}</div>
+    </div>
+    <div class="job-details">
+    <div class="heading">Location</div>
+    <div class="val">{{valueone.jobLocation}}</div>
+    </div>
+    <div class="job-details">
+    <div class="heading">Job-Type</div>
+    <div class="val">{{valueone.jobType}}</div>
+    </div>
+    <div class="job-details">
+    <div class="heading">Application Closes On</div>
+    <div class="val">{{valueone.lastDatetoApply| date : 'dd-MM-y' }}</div>
+    </div>
+    <div class="job-details">
+    <div class="heading">Job Status</div>
+
+   <div class="act">
+    <div><span class="icon-tick_mark_green"></span></div>
+    <div class="val">{{valueone.status}}</div>
+   </div>
+    </div>
     </mat-card>
-  </div>
+    </div>
 
-
-
-  <!-- <div class="tableheader">
-    <mat-tab-group class="mattab">
-    <mat-tab label="All"></mat-tab>
-    <mat-tab label="Awaiting Review"></mat-tab>
-    <mat-tab label="In Progress"></mat-tab>
-    <mat-tab label="Rejected"></mat-tab>
-    <mat-tab label="Shortlisted"></mat-tab>
-    </mat-tab-group>
-    </div> -->
-
-  <div class="tableheader">
-    <mat-tab-group class="mattab" (selectedTabChange)="onTabChange($event)">
-      <mat-tab label="All"></mat-tab>
-      <mat-tab label="Awaiting Review"></mat-tab>
-      <mat-tab label="In Progress"></mat-tab>
-      <mat-tab label="Rejected"></mat-tab>
-      <mat-tab label="Shortlisted"></mat-tab>
-    </mat-tab-group>
-  </div>
-
+    <div class="tableheader">
+      <mat-tab-group class="mattab">
+        <mat-tab label="All"></mat-tab>
+        <mat-tab label="Awaiting Review"></mat-tab>
+        <mat-tab label="In Progress"></mat-tab>
+        <mat-tab label="Rejected"></mat-tab>
+        <mat-tab label="Shortlisted"></mat-tab>
+      </mat-tab-group>
+    </div>
+    
 
   <!-- <div class="border">
     <div class="ag-grid">
