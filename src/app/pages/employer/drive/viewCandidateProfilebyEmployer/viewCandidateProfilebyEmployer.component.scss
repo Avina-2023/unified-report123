@@ -422,6 +422,7 @@ justify-content: space-around;
       .b1,
       .b2,
       .b3 {
+
         border: 1px solid blue;
         background-color: white;
         color: #666666;
@@ -457,8 +458,50 @@ justify-content: space-around;
       }
     }
   }
-}
 
+  .warning_icon{
+display: block;
+  margin: 0 auto;
+  text-align: center;
+  width: 70px;
+    height: auto;
+  }
+  .green_tick{
+    display: block;
+      margin: 0 auto;
+      text-align: center;
+      width: 60px;
+        height: auto;
+  }
+  .rejected_icon{
+    display: block;
+      margin: 0 auto;
+      text-align: center;
+      width: 60px;
+        height: auto;
+  }
+  .o_K{
+        margin: 0px 0px 0px 100%;
+        color: #FCFCFC;
+        background-color: #1B4E9B;
+        }
+
+                .boldcandidate{
+                  width: 126px;
+                    height: auto;
+                    color: #000000;
+                    font: normal normal bold 16px/24px Inter;
+
+                }
+  }
+.disable {
+  pointer-events: none;
+  opacity: 0.5;
+}
+.status_icon{
+  width: 16px;
+  height: auto;
+}
 
 
 
