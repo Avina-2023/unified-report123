@@ -20,6 +20,7 @@
     padding: 20px 0px 0px 20px;
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     align-items: center !important;
     .icn{
         padding: 1px;
@@ -30,6 +31,7 @@
         align-items: center;
         width: 237px;
         padding: 5px 0px 0px 0px;
+        margin: 10px 10px 10px 10px;
         .details{
             display: flex;
             flex-direction: column;
@@ -50,7 +52,6 @@
                 color: #000000;
                 align-items: center;
                 font-weight: 700;
-                // padding: 10px 0px 10px 0px;
                 margin: 10px 0px 10px 0px ;
           }
           .candidate-edu{
@@ -74,7 +75,10 @@
                 border-right: 1px solid #E6E6E6;
                 width: 100%;
             }
-            .buton:hover {
+            .buton2{
+              width: 100%;
+          }
+            .buton:hover, .buton2:hover{
                 background-color: #1B4E9B;
                 color: #ffffff;
               }

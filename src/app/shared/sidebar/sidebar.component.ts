@@ -73,6 +73,9 @@ export class SidebarComponent implements OnInit {
         this.check = 'managedrive';
         this.driveIconToggle = true;
         break;
+        case '/auth/dashboard/candidatesearch':
+          this.check = 'empprofile';
+          break;
       default:
         this.check = 'empdashboard';
         break;
@@ -128,6 +131,11 @@ export class SidebarComponent implements OnInit {
    profile(value){
     this.check = value;
     this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.EMPDASHBOARD.PROFILE)
+   }
+
+   candidatesearch(value){
+    this.check = value;
+    this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.EMPDASHBOARD.CANDIDATESEARCH)
    }
 
    sideBar(){
