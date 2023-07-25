@@ -70,6 +70,7 @@ mat-sidenav:not(.mat-drawer-opened) {
 
 .sidebar-icon1 {
   position: relative;
+  padding-top: 10px;
 }
 
 .left1 {
@@ -101,7 +102,8 @@ mat-sidenav:not(.mat-drawer-opened) {
   letter-spacing: 0.55px;
   opacity: 1;
   font-weight: 400;
-  padding: 0px 14px;
+  // padding: 0px 14px;
+  padding: 0px 14px 10px 14px;
   color: #858585;
 
 }
@@ -150,7 +152,7 @@ mat-sidenav:not(.mat-drawer-opened) {
 }
 .mathigh{
   mat-list-item {
-    height: 60px !important;
+    height: 70px !important;
   }
 }
 ::ng-deep{
