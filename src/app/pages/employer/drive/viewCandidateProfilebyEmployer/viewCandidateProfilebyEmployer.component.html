@@ -28,7 +28,6 @@
               <span class="countryimg"> &nbsp;&nbsp;&nbsp;&nbsp;<img src="assets/images/india_flag.svg"></span>
             </span>
           </div>
-
         </div>
         <br>
         <div class="value" *ngIf="candidateStatus.trainedStatus=='Yes'"> <i class="flag_lnt icon-bookmark col1">
@@ -506,10 +505,11 @@
               <img src="../../../../../assets/images/rejected red filled.svg" alt="Rejected" class="status_icon">
             </ng-container>
             <ng-container *ngIf="candidateStatus.jobStatus === 'InProgress'">
-              <img src="" alt="InProgress" class="status_icon">
+              <img src="../../../../../assets/images/blue tick rounded.svg" alt="InProgress" class="status_icon">
             </ng-container>
-            <ng-container *ngIf="candidateStatus.jobStatus === ''">
-              <img src="" alt="" class="status_icon">
+            <ng-container *ngIf="candidateStatus.jobStatus === 'awaitingReview'">
+              <img src="../../../../../assets/images/orange awating review.svg" alt="awaitingReview"
+                class="status_icon">
             </ng-container>
             {{candidateStatus.jobStatus}}
           </div>
