@@ -22,6 +22,8 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
   headerRef!: ElementRef<HTMLDivElement>;
   routerlink = APP_CONSTANTS.ENDPOINTS;
   personalDetailsMap: any;
+  journalentry = { journalEntityUrl: '' };
+  shouldTruncate: boolean = false;
   details: { label: string; sectionId: string }[] = [
     { label: 'Personal Details', sectionId: 'personal' },
     { label: 'Contact Details', sectionId: 'contact' },
@@ -299,4 +301,16 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
   //       }
   //     );
   // }
+  getPermanentAddressTooltip(): string {
+    const city = this.candidateData.contact_details.permanent_city;
+    const state = this.candidateData.contact_details.permanent_state;
+    const country = 'India'; // Assuming the country is always India for this example
+
+    // Check if the state length is too long and construct the tooltip content accordingly
+    if (state.length > 15) {
+      return `${city}, ${state}, ${country}`;
+    } else {
+      return `${city}, ${state}, ${country}`;
+    }
+  }
 }
