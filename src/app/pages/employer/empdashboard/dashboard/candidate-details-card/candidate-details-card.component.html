@@ -1,29 +1,129 @@
-<div class="dash">
-  <h5 class="view" (click)="dashboard()">Dashboard </h5>
-  <h5 class="findtext"> &nbsp; > &nbsp;Candidate Search</h5>
-</div>
+  <div class="main1">
+    <div>
+      <div class="dash">
+        <h5 class="findtext">Candidate Search</h5>
+      </div>
+      <div class="count-filter">
+        <div class="count"><span>Results Showing(35)</span></div>
+        <div class="sorting">
+          <mat-form-field >
+            <mat-label>Select an option</mat-label>
+            <mat-select>
+              <mat-option>None</mat-option>
+              <mat-option value="option1">Option 1</mat-option>
+              <mat-option value="option2">Option 2</mat-option>
+              <mat-option value="option3">Option 3</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
 
-<div class="candidate-card">
-<mat-card  class="card-1" *ngFor="let item of candidatelist;">
-    <div style="padding: 0px 0px 0px 200px"><span class="icon-bookmark"></span></div>
-  <div class="details">
-    <div class="candidate-image">
-      <img src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Profile Picture" class="round-profile-pic">
-    </div>
-    <div class="candidate-name">
-     {{item.email}}
-    </div>
-    <div class="candidate-edu">
-      <div>B.Sc Physics -</div>
-      <div>june 2022</div>
-    </div>
-    <div class="candidate-loc"> Chennai, TamilNadu</div>
-  </div>
-  <div class="action-button">
-    <button mat-button class="buton">View Profile</button>
-    <button mat-button class="buton2">Save</button>
-  </div>
-</mat-card>
-</div>
+      <div class="candidate-card">
+        <mat-card  class="card-1" *ngFor="let item of candidatelist;">
+        <span class="icon-bookmark"></span>
+        <div class="details">
+          <div class="candidate-image">
+            <img src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Profile Picture" class="round-profile-pic">
+          </div>
+          <div class="candidate-name">
+           {{item.email}}
+          </div>
+          <div class="candidate-edu">
+            <div>B.Sc Physics -</div>
+            <div>june 2022</div>
+          </div>
+          <div class="candidate-loc"> 
+            <div> <mat-icon class="loc-icon"> location_on</mat-icon></div>
+            <div class="loc-name">Chennai, TamilNadu</div>
+          </div>
+        </div>
+        <div class="action-button">
+          <div class="view-prof">
+            <div><mat-icon class="view-icon">visibility</mat-icon></div>
+            <div><button mat-button class="buton">View Profile</button></div>  
+          </div>
+          <span style="border: 1px solid #E6E6E6;"></span>
+          <div class="view-prof">
+           <div><mat-icon class="view-icon">save</mat-icon></div>
+          <div><button mat-button class="buton2">Save</button></div>
+          </div>
+        </div>
 
-<!-- candidatelist -->
+        <!-- <div class="act-button">
+          <div class="view-profile">
+            <div class="view-icn"><mat-icon>visibility</mat-icon></div>
+            <div class="view-btn"><button mat-button>View Profile</button></div>
+          </div>
+          <div class="view-saved">
+            <div class="sav-icn"><mat-icon>save</mat-icon></div>
+            <div class="save-btn"><button mat-button>Save</button></div>
+          </div>
+        </div> -->
+      </mat-card>
+      <div class="pagination">
+        <app-common-paginator *ngIf="total"  (send)="some($event)" [totalcount]="total"></app-common-paginator>
+      </div>
+      <div class="pagination"><app-common-paginator></app-common-paginator></div>
+    </div>  
+
+    </div>   
+  
+ <div class="filter-candidate">
+  <div class="filter" *ngIf="this.filter_info.data.length">
+    <div class="fil_head">
+      <p>
+        <mat-icon class="misc_icon">filter_list</mat-icon><span class="job_designation">All Filters
+          {{this.selectedValues.length ? '(' + this.selectedValues.length + ')' : ''}}</span>
+        <span (click)="clearFilters(filter_info.data)" *ngIf="selectedValues.length" class="clear_filter">Clear
+          All</span>
+      </p>
+      <div class="fil_output">
+        <div class="checkedVal" *ngFor="let chkbox of selectedValues;let i = index">
+          {{chkbox.name}} <mat-icon class="close_icon" (click)="closeSelectedValues(chkbox,i)">close</mat-icon>
+        </div>
+      </div>
+    </div>
+    <div class="filt_list">
+      <div class="filter_col" *ngFor="let fillist of filter_info.data">
+        <p class="filter_head" (click)="fillist.isShow=!fillist.isShow">
+          <mat-icon class="misc_icon">{{fillist.iconName}}</mat-icon><span
+            class="job_designation">{{fillist.fieldName}}</span>
+          <mat-icon class="expand_icon" class="clickBtn misc_icon">expand_more</mat-icon>
+        </p>
+        <div *ngFor="let course of fillist.subContent; let i = index">
+          <span *ngIf="i<4">
+            <mat-checkbox (change)="checkboxChecked($event,course,fillist.key,'direct')" [checked]="course.is_checked"
+              class="fldName" color="primary" *ngIf="!fillist.isShow">{{course.name}} ({{course.totalCount}})
+            </mat-checkbox>
+          </span>
+        </div>
+        <button *ngIf="(fillist.subContent.length)>4" mat-button
+          (click)="openDialog(fillist)">+{{fillist.subContent.length-4}} more</button>
+      </div>
+    </div>
+  </div>
+  
+  <ng-template #moreItems>
+    <div class="dlog_template">
+      <h1 class="job_designation" mat-dialog-title>{{filterItems.fieldName}}</h1>
+      <div class="close_div" mat-dialog-actions>
+        <button mat-button class="close-icon" [mat-dialog-close]="true">
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
+    </div>
+    <br>
+    <div mat-dialog-content>
+      <div class="filter_col mat_dlg_cnt">
+        <div *ngFor="let course of filterItems.subContent">
+          <mat-checkbox class="mat_courses" (change)="checkboxChecked($event,course,filterItems.key )"
+            [checked]="course.is_checked" color="primary">{{course.name}} ({{course.totalCount}})</mat-checkbox>
+        </div>
+      </div>
+      <button [mat-dialog-close] class="aply_btn" (click)="applyfilter()" mat-raised-button color="primary">Apply</button>
+    </div>
+  </ng-template>
+ </div>
+
+  </div>
+
