@@ -737,14 +737,14 @@
               <div class="table">
                 <table style="width:100%;">
                   <tr>
-                    <th style="width: 20%;">Desirability Level</th>
+                    <th style="width: 20%;">Desirability Level </th>
                     <th style="width: 15%;">Range</th>
                     <th>Description</th>
                   </tr>
                   <tr *ngFor="let desirability of getAllBehaviourData.desirabilityIndex">
                     <td >{{desirability.desirabilityLevel}}</td>
                     <td > {{desirability.range}}</td>
-                    <td >{{desirability.description}}</td>
+                    <td ><div [innerHTML]="desirability.description"></div></td>
                   </tr>
                 </table>
               </div>
