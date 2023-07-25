@@ -434,7 +434,7 @@
                 <tr *ngFor="let desirability of getAllBehaviourData.desirabilityIndex">
                   <td >{{desirability.desirabilityLevel}}</td>
                   <td > {{desirability.range}}</td>
-                  <td >{{desirability.description}}</td>
+                  <td [innerHTML]="desirability.description"></td>
                 </tr>
               </table>
             </div>
