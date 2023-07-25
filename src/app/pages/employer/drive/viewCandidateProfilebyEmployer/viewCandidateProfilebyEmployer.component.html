@@ -23,9 +23,11 @@
           </div>
         </div>
         <br>
-        <div class="value" *ngIf="candidateStatus.trainedStatus=='Yes'"> <i class="flag_lnt icon-bookmark col1"> </i>Trained by L&T EduTech
+        <div class="value" *ngIf="candidateStatus.trainedStatus=='Yes'"> <i class="flag_lnt icon-bookmark col1">
+          </i>Trained by L&T EduTech
         </div>
-        <div class="value" *ngIf="candidateStatus.assessedStatus=='Yes'"><i class="flag_lnt icon-bookmark col2"> </i>Assessed by L&T EduTech
+        <div class="value" *ngIf="candidateStatus.assessedStatus=='Yes'"><i class="flag_lnt icon-bookmark col2">
+          </i>Assessed by L&T EduTech
         </div>
       </div>
     </div>
@@ -103,15 +105,15 @@
 
                 <span class="key">{{ language.language }}</span>
 
-                <label class="value">
+                <label class="value_check">
                   <input type="checkbox" [checked]="language.is_read" disabled />
                   Read
                 </label>
-                <label class="value">
+                <label class="value_check">
                   <input type="checkbox" [checked]="language.is_write" disabled />
                   Write
                 </label>
-                <label class="value">
+                <label class="value_check">
                   <input type="checkbox" [checked]="language.is_speak" disabled />
                   Speak
                 </label>
@@ -140,7 +142,7 @@
                     {{candidateData.contact_details.present_line_street_addres}},
                     {{candidateData.contact_details.present_line2_street_addre}},
                     {{candidateData.contact_details.present_address_line_3}},
-                    {{ form_present_city?form_present_city:'NA' }}
+                    {{ form_present_city?form_present_city:'' }}
                     {{ form_present_state?form_present_state:'NA' }}
                     {{candidateData.contact_details.present_zip}}
                   </div>
@@ -232,19 +234,16 @@
                 </div>
               </div>
 
-
               <div class="flx_div flx_baseline title">
                 <div class="key_edu">
-                  <div class="value" *ngIf="candidates.is_highLevelEdu">
+                  <div class="value_withcheckbox" *ngIf="candidates.is_highLevelEdu">
                     <label>
                       <input type="checkbox" [checked]="candidates.is_highLevelEdu" disabled />
-                      This is my highest level of education
-                    </label>
+                      Highest Level of Education/Currently Pursuing </label>
                   </div>
                 </div>
               </div>
             </div>
-
           </div>
         </div>
 
@@ -259,7 +258,7 @@
               </div>
             </div> -->
             <div class="profile_details_exp pd-20">
-              <div class="key">Total Experience</div>
+              <div class="key_totalexp">Total Experience</div>
               <div class=" experience">
                 <div class="experience-box">
                   {{ candidateData.experience_details.work_details.total_exp_years }}</div> <span
@@ -270,7 +269,7 @@
               </div>
             </div>
             <div class="profile_details pd-20">
-              <h2 class="head_title">Skills </h2>
+              <h2 class="head_title_skills">Skills </h2>
               <div class="flx_div skills">
                 <div *ngFor="let skill of candidateData.experience_details.skills">{{ skill.skill }}</div>
               </div>
@@ -308,7 +307,7 @@
               </div> -->
               <div class="flx_div flx_baseline title">
                 <div class="key_edu">
-                  <div class="value">
+                  <div class="value_withcheckbox">
                     <label *ngIf="employment.is_working_here">
                       <input type="checkbox" [checked]="employment.is_working_here" disabled />
                       I am Currently working here
@@ -348,7 +347,6 @@
               <div *ngIf="candidateData.experience_details.is_intern_status != true">
                 <div class="value_ar">No Articleship/Training Details Available</div>
               </div>
-
             </div>
           </div>
         </div>
@@ -426,11 +424,10 @@
               </div> -->
               <div class="flx_div flx_baseline title">
                 <div class="key_edu">
-                  <div class="value">
+                  <div class="value_withcheckbox">
                     <label *ngIf="certification.isexpire">
                       <input type="checkbox" [checked]="certification.isexpire" disabled />
-                      This certificate does not expire
-                    </label>
+                      This Certification does not expire </label>
                   </div>
                 </div>
               </div>
@@ -488,11 +485,27 @@
         </div>
         <div class="job_card hidden_div">
           <div class="job_title content_wrap">Candidate Status</div>
-          <div class="job_description content_wrap">{{candidateStatus.jobStatus}}</div>
+          <div class="job_description content_wrap">
+            <ng-container *ngIf="candidateStatus.jobStatus === 'Shortlisted'">
+              <img src="../../../../../assets/images/green_tick_image.png" alt="Shortlisted" class="status_icon">
+            </ng-container>
+            <ng-container *ngIf="candidateStatus.jobStatus === 'Rejected'">
+              <img src="../../../../../assets/images/rejected red filled.svg" alt="Rejected" class="status_icon">
+            </ng-container>
+            <ng-container *ngIf="candidateStatus.jobStatus === 'InProgress'">
+              <img src="" alt="InProgress" class="status_icon">
+            </ng-container>
+            <ng-container *ngIf="candidateStatus.jobStatus === ''">
+              <img src="" alt="" class="status_icon">
+            </ng-container>
+            {{candidateStatus.jobStatus}}
+          </div>
         </div>
         <div>
-          <div class="shortlist_btn" (click)="matDialogOpen()"> Shortlist</div>
-          <div class="reject_btn" (click)="matDialogOpen()">Reject</div>
+          <div class="shortlist_btn" (click)="matDialogOpen()"
+            [ngClass]="{'disable': candidateStatus.jobStatus === 'Shortlisted'}">Shortlist</div>
+          <div class="reject_btn" (click)="matDialogreject()"
+            [ngClass]="{'disable': candidateStatus.jobStatus === 'Rejected'}">Reject</div>
         </div>
       </div>
     </div>
@@ -500,13 +513,51 @@
 
   <ng-template #matDialog>
     <div class="main-wrapper">
-      <!-- <div class="closeIcon"><mat-icon mat-dialog-close>close</mat-icon></div> -->
-      <div class="icon-warning">
+      <div>
+        <div class="">
+          <img class="warning_icon" src="../../../../../assets/images/alert image filled.svg">
+        </div>
+        <div class="text">
+          Are you sure you want to shortlist the candidate? </div>
+        <div class="button-wrapper-form-pop-up">
+          <button class="b1" (click)="confirmDialog('Shortlisted')" type="button" mat-raised-button>
+            confirm
+          </button>
+          <button class="b3" (click)="closeDialog('cancel')" type="button" mat-raised-button>
+            cancel
+          </button>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+
+  <ng-template #confirmmatDialog>
+    <div class="main-wrapper">
+      <div>
+        <img class="green_tick" src="../../../../../assets/images/green_tick_image.png">
       </div>
       <div class="text">
-        Are you sure you want to shortlist the candidate? </div>
+        <span class="boldcandidate">CandidateName</span> has been
+        <span> Shortlisted successfully</span>
+      </div>
       <div class="button-wrapper-form-pop-up">
-        <button class="b1" (click)="closeDialog('save')" type="button" mat-raised-button>
+        <button class="o_K" (click)="okclose()" type="button" mat-raised-button>
+          ok
+        </button>
+      </div>
+    </div>
+  </ng-template>
+
+  <ng-template #rejectDialog>
+    <div class="main-wrapper">
+      <div>
+        <img class="warning_icon" src="../../../../../assets/images/alert image filled.svg">
+
+      </div>
+      <div class="text">
+        Are you sure you want to reject the candidate? </div>
+      <div class="button-wrapper-form-pop-up">
+        <button class="b1" (click)="confirmrejectDialog('Rejected')" type="button" mat-raised-button>
           confirm
         </button>
         <button class="b3" (click)="closeDialog('cancel')" type="button" mat-raised-button>
@@ -515,3 +566,21 @@
       </div>
     </div>
   </ng-template>
+
+  <ng-template #confirmrejectmatDialog>
+    <div class="main-wrapper">
+      <div>
+        <img class="rejected_icon" src="../../../../../assets/images/rejected red filled.svg">
+      </div>
+      <div class="text">
+        <span class="boldcandidate">CandidateName</span> has been
+        <span> Rejected successfully</span>
+      </div>
+      <div class="button-wrapper-form-pop-up">
+        <button class="o_K" (click)="okclose('close')" type="button" mat-raised-button>
+          ok
+        </button>
+      </div>
+    </div>
+  </ng-template>
+</div>

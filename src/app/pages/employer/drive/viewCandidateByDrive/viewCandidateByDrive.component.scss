@@ -266,6 +266,13 @@ justify-content: space-between;
       font-weight: 600;
       font-size: 14px;
     }
+    .act{
+      display: flex;
+      flex-direction: row;
+      .icon-tick_mark_green{
+        padding: 2px 4px 1px 1px
+      }
+    }
   }
 }
 }
@@ -473,13 +480,6 @@ justify-content: space-between;
 }
 }
 
-// .tableheader{
-//   padding: 10px 25px 0px 25px;
-//   .mattab{
-//   background-color: #ffffff
-//   }
-// }
-
 
 ::ng-deep .yellow-cell span {
   background: #FFB74D !important;
@@ -508,3 +508,29 @@ justify-content: space-between;
   border-radius: 5px;
   padding: 3px 10px;
 }
+
+.pageheader{
+  padding: 20px 20px 15px 25px;
+  span{
+      color: #000000;
+      font-size: 20px;
+  }
+}
+
+::ng-deep .mat-tab-list .mat-tab-labels .mat-tab-label-active {
+  color:green;
+  // background-color: green;
+  }
+  
+  ::ng-deep .mat-tab-list .mat-tab-labels {
+  color:blue;
+  // background-color: yellow;
+  }
+
+// ::ng-deep .mat-tab-label{
+//     color: #848484;
+// }
+
+// ::ng-deep .mat-tab-label.mat-tab-label-active {
+//     color: red;
+// }

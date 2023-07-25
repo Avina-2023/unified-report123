@@ -14,7 +14,7 @@
   }
 
   .flx_center {
-    align-items: center;
+    // align-items: center;
   }
 
   .flx_baseline {
@@ -146,11 +146,16 @@
     .profile_details {
 
       h2.head_title {
-        font-size: 19px !important;
+        font-size: 17px !important;
         font-weight: 700 !important;
         margin-bottom: 5px !important;
       }
-
+.head_title_skills {
+  font-size: 17px !important;
+  font-weight: 700 !important;
+  margin-bottom: 5px !important;
+  margin: 0px 0px 0px -20px;
+}
       .title {
         padding: 8px 0px;
         font-size: 13px;
@@ -160,8 +165,16 @@
         width: 50%;
         color: #848484;
         line-height: 20px;
+                font-size: 14px;
 
       }
+            .key_totalexp{
+              width: 50%;
+                color: #848484;
+                line-height: 20px;
+                font-size: 14px;
+                margin-left: -3%;
+            }
             .key_edu {
               width: 100%;
               color: #848484;
@@ -172,10 +185,39 @@
       .value {
         width: 50%;
         color: #000000;
-        font-weight: 600;
+        // font-weight: 600;
         line-height: 20px;
+        font-size: 14px;
+        font-weight: bold;
         .yop-title{
           color:#848484;
+          font-weight: 100;
+        }
+      }
+
+      .value_check{
+        width: 50%;
+          color: #000000;
+          // font-weight: 600;
+          line-height: 20px;
+          font-size: 14px;
+          // font-weight: bold;
+
+          // .yop-title {
+          //   color: #000000;
+          //   font-weight: 100;
+          // }
+      }
+      .value_withcheckbox {
+        // width: 50%;
+        color: #505358E6;
+        // font-weight: 600;
+        line-height: 20px;
+        font-size: 14px;
+        font-weight: bold;
+
+        .yop-title {
+          color: #848484;
           font-weight: 100;
         }
       }
@@ -193,6 +235,7 @@
     }
 
     .hobbies {
+      margin-left: -2%;
       div {
         background: #E6E6E6;
         padding: 5px 10px;
@@ -204,11 +247,13 @@
         .skills {
           width: 100%;
           flex-wrap: wrap;
+          margin-left: -6%;
           div {
             background: #E6E6E6;
             padding: 5px 15px;
             margin: 2%;
             border-radius: 10px;
+            // margin: 0px 0px 0px -20px;
           }
         }
 
@@ -422,6 +467,7 @@ justify-content: space-around;
       .b1,
       .b2,
       .b3 {
+
         border: 1px solid blue;
         background-color: white;
         color: #666666;
@@ -457,13 +503,70 @@ justify-content: space-around;
       }
     }
   }
+
+  .warning_icon{
+display: block;
+  margin: 0 auto;
+  text-align: center;
+  width: 70px;
+    height: auto;
+  }
+  .green_tick{
+    display: block;
+      margin: 0 auto;
+      text-align: center;
+      width: 60px;
+        height: auto;
+  }
+  .rejected_icon{
+    display: block;
+      margin: 0 auto;
+      text-align: center;
+      width: 60px;
+        height: auto;
+  }
+  .o_K{
+        margin: 0px 0px 0px 100%;
+        color: #FCFCFC;
+        background-color: #1B4E9B;
+        }
+
+                .boldcandidate{
+                  width: 126px;
+                    height: auto;
+                    color: #000000;
+                    font: normal normal bold 16px/24px Inter;
+
+                }
+  }
+.disable {
+  pointer-events: none;
+  opacity: 0.5;
+}
+.status_icon{
+  width: 16px;
+  height: auto;
 }
 
+.checkbox-style {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  background-color: black;
+  /* Change this to the desired color */
+  border-radius: 3px;
+}
+input[type="checkbox"] {
+  // display: none;
+    background-color: black!important;
+}
 
-
-
-
-
+input[type="checkbox"]:checked+.checkbox-style {
+  background-color: #2ecc71!important;
+  /* Change this to the desired color when checked */
+}
 
 
 

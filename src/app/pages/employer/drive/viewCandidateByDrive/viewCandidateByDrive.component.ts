@@ -112,17 +112,14 @@ export class ViewCandidateByDriveComponent implements OnInit {
     },
       frameworkComponents: {
         moreOptions: ActionButtonsComponent,
-
       },
-
-
     };
   }
 
   ngOnInit(): void {
     
     this.autoSizeAll(false);
-    this.filterData();
+    // this.filterData();
     this.jobData = this.appconfig.jobData
     this.tabledata();
     this.getJobDetails();
@@ -842,9 +839,6 @@ tabledata() {
          },
          tooltipField: 'studentName',
        },
-      
-       //orginal
-
        {
          headerName: 'Status',
          field: 'jobStatus',
@@ -1037,22 +1031,21 @@ tabledata() {
       //    },
       //    tooltipField: 'appliedDate',
       //  },
-
-      { 
-        headerName: 'Applied Date', 
-        field: 'appliedDate', 
-        minWidth: 175,
-        // maxWidth: 170,
-      valueFormatter: function (params) {
-          return moment(params.value).format('D-MM-yy');
-      },
-    filter: 'agDateColumnFilter',
-        chartDataType: 'series',
-        filterParams: {
-          suppressAndOrCondition: true,
-          filterOptions: ['equals', 'lessThan', 'greaterThan', 'inRange'],
-        },
-        // tooltipField: 'createdAt',
+       {
+         headerName: 'Applied Date',
+         field: 'appliedDate',
+         minWidth: 175,
+         // maxWidth: 170,
+         valueFormatter: function (params) {
+           return moment(params.value).format('DD-MM-yy');
+         },
+         filter: 'agDateColumnFilter',
+         chartDataType: 'series',
+         filterParams: {
+           suppressAndOrCondition: true,
+           filterOptions: ['equals', 'lessThan', 'greaterThan', 'inRange'],
+         },
+          tooltipField: 'appliedDate',
        },
        { 
         headerName: 'Actions',
@@ -1189,20 +1182,20 @@ tabledata() {
     this.router.navigate(['/auth/partner/jobrequirment'])
   }
 
-onTabChange(event: MatTabChangeEvent) {
-  this.selectedTab = event.tab.textLabel; 
-  this.filterData();
-}
+// onTabChange(event: MatTabChangeEvent) {
+//   this.selectedTab = event.tab.textLabel; 
+//   this.filterData();
+// }
 
-filterData() {
-  if (this.selectedTab === 'All') {
-    // this.filteredColumnDefs = this.columnDefs;
-    this.filteredRowData = this.rowData;
-  } else {
-    // this.filteredColumnDefs = this.columnDefs;
-    this.filteredRowData = this.rowData.filter(item => item.status === this.selectedTab);
-  }
-}
+// filterData() {
+//   if (this.selectedTab === 'All') {
+//     // this.filteredColumnDefs = this.columnDefs;
+//     this.filteredRowData = this.rowData;
+//   } else {
+//     // this.filteredColumnDefs = this.columnDefs;
+//     this.filteredRowData = this.rowData.filter(item => item.status === this.selectedTab);
+//   }
+// }
 
 refresh(){
   this.gridApi.refreshServerSideStore({ purge: true });
