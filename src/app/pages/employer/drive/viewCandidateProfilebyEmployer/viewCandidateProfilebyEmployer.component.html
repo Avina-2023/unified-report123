@@ -17,10 +17,18 @@
         </div>
         <div class="description txt-center  hidden_div">
           <div class="content_wrap">{{candidateData.email}}</div>
-          <div class="content_wrap">
+          <!-- <div class="content_wrap">
             {{candidateData.contact_details.permanent_city}},&nbsp;{{candidateData.contact_details.permanent_state}},&nbsp;<span
               class="countryimg"> &nbsp;&nbsp;&nbsp;&nbsp;<img src="assets/images/india_flag.svg"></span>
+          </div> -->
+          <div class="content_wrap">
+            <span [matTooltip]="getPermanentAddressTooltip()" matTooltipPosition="above">
+              {{ candidateData.contact_details.permanent_city }},&nbsp;
+              {{ candidateData.contact_details.permanent_state }},&nbsp;
+              <span class="countryimg"> &nbsp;&nbsp;&nbsp;&nbsp;<img src="assets/images/india_flag.svg"></span>
+            </span>
           </div>
+
         </div>
         <br>
         <div class="value" *ngIf="candidateStatus.trainedStatus=='Yes'"> <i class="flag_lnt icon-bookmark col1">
@@ -176,8 +184,7 @@
               <h2 class="sub_heading">Qualification {{i+1}}</h2>
               <div class="flx_div flx_baseline title">
                 <div class="key">Qualification</div>
-                <div class="value">{{candidates.level}}
-
+                <div class="value">{{candidates.level}}/{{candidates.board_university}},<br>{{candidates.institute}}
                 </div>
               </div>
               <div class="edu_start_end">{{candidates.start_date| date : 'MMM y'}}-{{candidates.end_date| date : 'MMM
@@ -227,9 +234,9 @@
               </div>
 
               <div class="flx_div flx_baseline title">
-                <div class="key">Reason for Backlogs?</div>
+                <div class="key">Reason for Gap?</div>
                 <div class="value">
-                  {{candidates.reasonForbacklog ? candidates.reasonForbacklog : 'Nill'}}
+                  {{candidates.reasonForbacklog ? candidates.reasonForbacklog : 'Nil'}}
                   <!-- {{candidates.reasonForbacklog}} -->
                 </div>
               </div>
@@ -453,7 +460,13 @@
               </div>
               <div class="flx_div flx_baseline title">
                 <div class="key">URL</div>
-                <div class="value content_wrap">{{journalentry.journalEntityUrl}}</div>
+                <!-- <div class="value content_wrap">{{journalentry.journalEntityUrl}}</div> -->
+                <!-- <div class="value content_wrap" [matTooltip]="journalentry.journalEntityUrl">
+                  {{ journalentry.journalEntityUrl }}
+                </div> -->
+                <div class="value content_wrap" [title]="journalentry.journalEntityUrl">
+                  {{ journalentry.journalEntityUrl }}
+                </div>
               </div>
               <div class="flx_div flx_baseline title">
                 <div class="key">Published On</div>
@@ -537,12 +550,12 @@
         <img class="green_tick" src="../../../../../assets/images/green_tick_image.png">
       </div>
       <div class="text">
-        <span class="boldcandidate">CandidateName</span> has been
+        <span class="boldcandidate">{{candidateData.personal_details.name}}</span> has been
         <span> Shortlisted successfully</span>
       </div>
       <div class="button-wrapper-form-pop-up">
         <button class="o_K" (click)="okclose()" type="button" mat-raised-button>
-          ok
+          OK
         </button>
       </div>
     </div>
@@ -573,12 +586,12 @@
         <img class="rejected_icon" src="../../../../../assets/images/rejected red filled.svg">
       </div>
       <div class="text">
-        <span class="boldcandidate">CandidateName</span> has been
+        <span class="boldcandidate">{{candidateData.personal_details.name}}</span> has been
         <span> Rejected successfully</span>
       </div>
       <div class="button-wrapper-form-pop-up">
         <button class="o_K" (click)="okclose('close')" type="button" mat-raised-button>
-          ok
+          OK
         </button>
       </div>
     </div>
