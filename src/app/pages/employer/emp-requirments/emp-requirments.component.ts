@@ -86,7 +86,7 @@ export class EmpRequirmentsComponent implements OnInit {
     private http: ApiService,
     private toastr: ToastrService,
     private appConfig: AppConfigService,
-    private msgData : SentDataToOtherComp
+    private sendData : SentDataToOtherComp
   ) {
 
   }
@@ -116,9 +116,12 @@ applyFilter(filtervalue:string){
 
 viewjobpagenator(){}
 
-viewApplication(jobId){
+viewApplication(jobdata){
+  console.log(jobdata)
   this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.VIEWDRIVE.VIEWCANDIDATE);
-  this.appConfig.setLocalStorage("currentJobID",jobId)
+  this.appConfig.setLocalStorage("currentJobID",jobdata.jobId)
+  this.appConfig.setLocalStorage('currentJobData',JSON.stringify(jobdata));
+  this.sendData.sendMessage_Dyn("jobData",jobdata,this.sendData.jobData_Subject);
 }
 some(pages){
   this.filterModel.startRow= (( pages.value-1)*this.defaultRowPerPage)
@@ -211,6 +214,7 @@ fetchData(){
       this.toastr.warning('Connection failed, Please try again.');
     } else {
       this.jobReqData = response.data;
+      console.log(this.jobReqData,'jobdata');
       this.totallength = this.jobReqData.length
       this.total = Math.ceil(response.totalCount.count/this.defaultRowPerPage);
       // this.total = response.totalCount.count / this.itemsPerPage

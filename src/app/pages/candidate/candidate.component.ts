@@ -7,6 +7,7 @@ import { SentDataToOtherComp } from 'src/app/services/sendDataToOtherComp.servic
 import { AppConfigService } from 'src/app/utils/app-config.service';
 import { APP_CONSTANTS } from 'src/app/utils/app-constants.service';
 import { environment } from 'src/environments/environment';
+
 @Component({
   selector: 'app-candidatedash',
   templateUrl: './candidate.component.html',
@@ -82,4 +83,8 @@ export class CandidateComponent implements OnInit {
     window.location.assign(environment.SKILL_PROFILE_URL+'/externallogin?extId='+enc_email);
 
   }
-}
+    gotoDashboard(){
+      this.router.navigate(['/candidateview/dashboard'])
+    }
+  }
+

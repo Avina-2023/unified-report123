@@ -5,19 +5,21 @@ import { DriveRoutingModule } from './drive-routing.module';
 import { ManageDriveComponent } from './manage-drive/manage-drive.component';
 import { MaterialModule } from 'src/app/material/material.module';
 import { AgGridAngular, AgGridModule } from 'ag-grid-angular';
-import {MatMenuModule} from '@angular/material/menu';
-import {MatIconModule} from '@angular/material/icon';
-import {MatCheckboxModule} from '@angular/material/checkbox';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { PopUpCellRendererComponent } from './manage-drive/pop-up-cell-renderer/pop-up-cell-renderer.component';
 import { DriveSettingsComponent } from './drive-settings/drive-settings.component';
 import { ViewCandidateByDriveComponent } from './viewCandidateByDrive/viewCandidateByDrive.component';
+import { ViewCandidateProfilebyEmployerComponent } from './viewCandidateProfilebyEmployer/viewCandidateProfilebyEmployer.component';
+
 @NgModule({
   declarations: [
     ManageDriveComponent,
     PopUpCellRendererComponent,
     DriveSettingsComponent,
-    ViewCandidateByDriveComponent
-   
+    ViewCandidateByDriveComponent,
+    ViewCandidateProfilebyEmployerComponent,
   ],
   imports: [
     CommonModule,
@@ -26,9 +28,7 @@ import { ViewCandidateByDriveComponent } from './viewCandidateByDrive/viewCandid
     DriveRoutingModule,
     MatMenuModule,
     MatIconModule,
-    MatCheckboxModule
-  ]
-
+    MatCheckboxModule,
+  ],
 })
-export class DriveModule { }
-
+export class DriveModule {}

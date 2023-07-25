@@ -1,0 +1,43 @@
+.dashboard{
+    padding: 20px 0px 0px 20px;
+    font-size: 20px;
+    font-weight: 600;
+
+}
+.main-card{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 15px 20px 10px 20px;
+    .dash-card{
+         display: flex;
+         flex-direction: row;
+         justify-content: space-between;
+         height: 90px;
+         width: 279px;
+         border-radius: 10px;
+         box-shadow: 0px 0px 0px 0px;
+         border-width: 0px 2px 0px 2px;
+         border-style: solid;
+         border-color: blue;
+         .count{
+           display: flex;
+           flex-direction: column;
+           justify-content: space-between;
+           .num{
+            font-weight: 700;
+            font-size: 30px;
+           }
+        }
+        .imic{
+            img{
+                margin: 5px 0px 5px 7px;
+                height: 32px;
+                width: 30px;
+            }
+        }
+    }
+}
+
+
+  

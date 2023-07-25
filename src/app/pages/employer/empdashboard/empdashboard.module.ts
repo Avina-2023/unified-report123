@@ -16,6 +16,10 @@ import {FormsModule} from '@angular/forms';
 import {MatChipsModule} from '@angular/material/chips';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { ChangePasswordComponent } from './changePassword/changePassword.component';
+import { DetailsCardComponent } from './dashboard/details-card/details-card.component';
+import { ActionButtonsComponent } from '../drive/viewCandidateByDrive/actionButtons/actionButtons.component';
+import { CandidateDetailsCardComponent } from './dashboard/candidate-details-card/candidate-details-card.component';
+
 @NgModule({
   declarations: [
     DashboardComponent,
@@ -25,7 +29,10 @@ import { ChangePasswordComponent } from './changePassword/changePassword.compone
     DegreeChartComponent,
     GraduationChartComponent,
     EmpProfileComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    DetailsCardComponent,
+    ActionButtonsComponent,
+    CandidateDetailsCardComponent
   ],
   imports: [
     CommonModule,

@@ -519,7 +519,6 @@ div[role="progressbar"]::before {
     margin-top: 30px;
     margin-left: 10px;
     margin-right: 10px;
-
     .card_one {
         width: 30%;
         padding: 20px;
@@ -529,7 +528,6 @@ div[role="progressbar"]::before {
         border-radius: 10px;
         opacity: 1;
     }
-
     .card_two {
         width: 67%;
         padding: 20px;
@@ -539,4 +537,8 @@ div[role="progressbar"]::before {
         border-radius: 10px;
         opacity: 1;
     }
+}
+
+.old-dash{
+    padding-top: 10px;
 }
