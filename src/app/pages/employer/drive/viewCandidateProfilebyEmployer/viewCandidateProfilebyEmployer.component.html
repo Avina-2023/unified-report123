@@ -183,7 +183,23 @@
               <h2 class="sub_heading">Qualification {{i+1}}</h2>
               <div class="flx_div flx_baseline title">
                 <div class="key">Qualification</div>
-                <div class="value">{{candidates.level}}/{{candidates.board_university}},<br>{{candidates.institute}}
+                <!-- <div class="value">
+                  {{candidates.level}}/{{candidates.specification}}.{{candidates.discipline}}/{{candidates.board_university}},<br>{{candidates.institute}}
+                </div> -->
+                <div class="value">
+                  <ng-container *ngIf="candidates.level !== 'UG'">
+                    {{ candidates.level }} /
+                  </ng-container>
+                  <ng-container *ngIf="candidates.level !== 'HSC' && candidates.level !== 'SSLC'; else otherLevels">
+
+                  </ng-container>
+                  <ng-template #otherLevels>
+                    {{ candidates.level === 'SSLC' ? 'Class X' : (candidates.level === 'HSC' ? 'Class XII' :
+                    candidates.specification)
+                    }}
+                  </ng-template>
+                  {{ candidates.specification }} {{ candidates.discipline }} ({{ candidates.board_university }}),<br>
+                  {{ candidates.institute }}
                 </div>
               </div>
               <div class="edu_start_end">{{candidates.start_date| date : 'MMM y'}}-{{candidates.end_date| date : 'MMM
