@@ -555,20 +555,8 @@ display: block;
   width: 20px;
   height: 20px;
   background-color: black;
-  /* Change this to the desired color */
   border-radius: 3px;
 }
-input[type="checkbox"] {
-  // display: none;
-    background-color: black!important;
-}
-
-input[type="checkbox"]:checked+.checkbox-style {
-  background-color: #2ecc71!important;
-  /* Change this to the desired color when checked */
-}
-
-
 
 
 

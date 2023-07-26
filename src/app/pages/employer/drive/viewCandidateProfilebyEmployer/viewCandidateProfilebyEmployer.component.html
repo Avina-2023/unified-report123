@@ -53,6 +53,7 @@
 
       </div>
 
+
       <div class="content">
         <div id="personal" #personalSection class="inner_content">
           <div class="profile_details pd-20">
@@ -289,6 +290,7 @@
                   {{ candidateData.experience_details.work_details.total_exp_months }}</div> <span
                   class="value_2">Months</span>
               </div>
+
             </div>
             <div class="profile_details pd-20">
               <h2 class="head_title_skills">Skills </h2>
@@ -297,52 +299,56 @@
               </div>
             </div>
             <h2 class="head_title"> Professional Experience </h2>
-            <div class="brdr_btm_line pb-10"
+            <div class="brdr_btm_line pb-20"
               *ngFor="let employment of candidateData.experience_details.employments; let i = index">
-              <h2 class="sub_heading">Employment{{i+1}}</h2>
-              <div class="flx_div flx_center hidden_div title">
-                <div class="key">Employer Name</div>
-                <div class="value content_wrap">{{employment.employment_name_address}}</div>
-              </div>
-              <div class="flx_div flx_center hidden_div title">
-                <div class="key">Position Held</div>
-                <div class="value content_wrap">{{employment.postion_field}}</div>
-              </div>
-              <div class="flx_div flx_center hidden_div title">
-                <div class="key">Achievements/Responsibility/Tasks</div>
-                <div class="value content_wrap">{{employment.achievement}}</div>
-              </div>
-              <div class="flx_div flx_center hidden_div title">
-                <div class="key">Duration From</div>
-                <div class="value content_wrap">{{employment.duration_from| date : 'MMM y'}}</div>
-              </div>
-              <div class="flx_div flx_center hidden_div title" *ngIf="!employment.is_working_here">
-                <div class="key">Duration To</div>
-                <div class="value content_wrap">{{employment.duration_to| date : 'MMM y'}}</div>
-              </div>
+              <h2 class="sub_heading">Employment {{i+1}}</h2>
+              <div>
+                <div class="flx_div flx_center hidden_div title">
+                  <div class="key">Employer Name</div>
+                  <div class="value content_wrap">{{employment.employment_name_address}}</div>
+                </div>
+                <div class="flx_div flx_center hidden_div title">
+                  <div class="key">Position Held</div>
+                  <div class="value content_wrap">{{employment.postion_field}}</div>
+                </div>
+                <div class="flx_div flx_center hidden_div title">
+                  <div class="key">Achievements/Responsibility/Tasks</div>
+                  <div class="value content_wrap">{{employment.achievement}}</div>
+                </div>
+                <div class="flx_div flx_center hidden_div title">
+                  <div class="key">Duration From</div>
+                  <div class="value content_wrap">{{employment.duration_from| date : 'MMM y'}}</div>
+                </div>
+                <div class="flx_div flx_center hidden_div title" *ngIf="!employment.is_working_here">
+                  <div class="key">Duration To</div>
+                  <div class="value content_wrap">{{employment.duration_to| date : 'MMM y'}}</div>
+                </div>
 
-              <!-- <div class="flx_div flx_baseline title">
+                <!-- <div class="flx_div flx_baseline title">
                 <div class="key">I am Currently working here</div>
                 <div class="value">
                   {{employment.is_working_here}}
                 </div>
               </div> -->
-              <div class="flx_div flx_baseline title">
-                <div class="key_edu">
-                  <div class="value_withcheckbox">
-                    <label *ngIf="employment.is_working_here">
-                      <input type="checkbox" [checked]="employment.is_working_here" disabled />
-                      I am Currently working here
-                    </label>
+                <div class="flx_div flx_baseline title">
+                  <div class="key_edu">
+                    <div class="value_withcheckbox">
+                      <label *ngIf="employment.is_working_here">
+                        <input type="checkbox" [checked]="employment.is_working_here" disabled />
+                        I am Currently working here
+                      </label>
+                    </div>
                   </div>
                 </div>
+                <!-- <div *ngIf="candidateData.experience_details.employments!= true">
+                  <div class="value_ar">No experience details available</div>
+                </div> -->
               </div>
             </div>
-
             <h2 class="head_title"> Articleship/Training Details</h2>
             <div class="brdr_btm_line pb-10"
               *ngFor="let employment of candidateData.experience_details.intern; let i = index">
-              <h2 class="sub_heading">Articleship/Training{{i+1}}</h2>
+              <h2 class="sub_heading">Articleship/Training {{i+1}}</h2>
 
               <div *ngIf="candidateData.experience_details.is_intern_status == true">
                 <div class="flx_div flx_center hidden_div title">
@@ -408,7 +414,11 @@
                 <div class="value content_wrap">{{project.projectDescription}}</div>
               </div>
             </div>
+            <div *ngIf="candidateData.project_details.projects != true">
+              <div class="value_ar">No projet details available</div>
+            </div>
           </div>
+
         </div>
 
         <div id="accomplishment" #accomplishmentSection class="inner_content">
@@ -456,7 +466,7 @@
             </div>
             <div class="brdr_btm_line pb-10"
               *ngFor="let awards of candidateData.accomplishment_details.awards; let i = index">
-              <h2 class="sub_heading">Awards{{i+1}}</h2>
+              <h2 class="sub_heading">Awards {{i+1}}</h2>
               <div class="flx_div flx_baseline title">
                 <div class="key">Award Title</div>
                 <div class="value content_wrap">{{awards.awardTitle}}</div>
@@ -491,6 +501,9 @@
                 <div class="key">Description</div>
                 <div class="value content_wrap">{{journalentry.journalEntityDescription}}</div>
               </div>
+            </div>
+            <div *ngIf="candidateData.accomplishment_details.certifications != true">
+              <div class="value_ar">No accomplishment details available</div>
             </div>
           </div>
         </div>
