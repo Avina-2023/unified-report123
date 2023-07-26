@@ -31,10 +31,10 @@
         </div>
         <br>
         <div class="value" *ngIf="candidateStatus.trainedStatus=='Yes'"> <i class="flag_lnt icon-bookmark col1">
-          </i>Trained by L&T EduTech
+          </i><span class="boldcandidate">Trained by L&T EduTech</span>
         </div>
         <div class="value" *ngIf="candidateStatus.assessedStatus=='Yes'"><i class="flag_lnt icon-bookmark col2">
-          </i>Assessed by L&T EduTech
+          </i><span class="boldcandidate">Assessed by L&T EduTech</span>
         </div>
       </div>
     </div>
@@ -89,7 +89,7 @@
             </div>
             <div class="flx_div flx_center hidden_div title">
               <div class="key">Date of Birth (as per X Std Certificate)</div>
-              <div class="value content_wrap">{{candidateData.personal_details.dob| date : 'dd/MM/yyyy'}}</div>
+              <div class="value content_wrap">{{candidateData.personal_details.dob| date : 'dd-MM-yyyy'}}</div>
             </div>
             <div class="flx_div flx_center hidden_div title">
               <div class="key">Marital Status</div>
@@ -236,12 +236,7 @@
                   {{candidates.gap}}
                 </div>
               </div> -->
-              <div class="flx_div flx_baseline title">
-                <div class="key">Do you have any gap during the education?</div>
-                <div class="value">
-                  {{candidates.gap === 'false' ? 'No' : 'Yes'}}
-                </div>
-              </div>
+
               <!-- <div class="flx_div flx_baseline title">
                 <div class="key">Do you have any gap during the education?</div>
                 <div class="value">
@@ -256,16 +251,21 @@
               </div>
 
               <div class="flx_div flx_baseline title">
-                <div class="key">No of Backlogs?</div>
+                <div class="key">No. of Active Backlogs (if any)</div>
                 <div class="value">
                   {{candidates.noActivebacklog}}
                 </div>
               </div>
-
               <div class="flx_div flx_baseline title">
-                <div class="key">Reason for Gap?</div>
+                <div class="key">Do you have any gap during the education?</div>
                 <div class="value">
-                  {{candidates.reasonForbacklog ? candidates.reasonForbacklog : 'Nil'}}
+                  {{candidates.gap === 'false' ? 'No' : 'Yes'}}
+                </div>
+              </div>
+              <div class="flx_div flx_baseline title">
+                <div class="key">Reason for the Gap</div>
+                <div class="value">
+                  {{candidates.reasonForbacklog ? candidates.reasonForbacklog : 'NIL'}}
                   <!-- {{candidates.reasonForbacklog}} -->
                 </div>
               </div>
@@ -326,8 +326,12 @@
                 </div>
                 <div class="flx_div flx_center hidden_div title">
                   <div class="key">Achievements/Responsibility/Tasks</div>
-                  <div class="value content_wrap">{{employment.achievement}}</div>
+                  <!-- <div class="value content_wrap">{{employment.achievement}}</div> -->
+                  <div class="value content_wrap" [title]="employment.achievement">
+                    {{ employment.achievement }}
+                  </div>
                 </div>
+
                 <div class="flx_div flx_center hidden_div title">
                   <div class="key">Duration From</div>
                   <div class="value content_wrap">{{employment.duration_from| date : 'MMM y'}}</div>
@@ -367,7 +371,7 @@
                 <div class="flx_div flx_center hidden_div title">
                   <div class="key">Employer Name</div>
                   <div class="value content_wrap">
-                    <!-- {{employment.employer_name ? employment.employer_name : 'Nill'}} -->
+                    <!-- {{employment.employer_name ? employment.employer_name : 'NIL'}} -->
                     {{employment.employer_name}}
                   </div>
                 </div>
@@ -381,7 +385,10 @@
                 </div>
                 <div class="flx_div flx_center hidden_div title">
                   <div class="key">Achievements/Responsibility/Tasks</div>
-                  <div class="value content_wrap">{{employment.work_responsiability}}</div>
+                  <!-- <div class="value content_wrap">{{employment.work_responsiability}}</div> -->
+                  <div class="value content_wrap" [title]="employment.work_responsiability">
+                    {{ employment.work_responsiability }}
+                  </div>
                 </div>
               </div>
 
@@ -424,12 +431,15 @@
               </div>
               <div class="flx_div flx_center hidden_div title">
                 <div class="key">Description</div>
-                <div class="value content_wrap">{{project.projectDescription}}</div>
+                <!-- <div class="value content_wrap">{{project.projectDescription}}</div> -->
+                <div class="value content_wrap" [title]="project.projectDescription">
+                  {{ project.projectDescription }}
+                </div>
               </div>
             </div>
-            <div *ngIf="candidateData.project_details.projects != true">
+            <!-- <div *ngIf="candidateData.project_details.projects != true">
               <div class="value_ar">No projet details available</div>
-            </div>
+            </div> -->
           </div>
 
         </div>
@@ -448,9 +458,12 @@
                 <div class="key">Issued From</div>
                 <div class="value content_wrap">{{certification.certificationIssuedFrom}}</div>
               </div>
+
               <div class="flx_div flx_baseline title">
                 <div class="key">Description</div>
-                <div class="value content_wrap">{{certification.certificationDescription}}</div>
+                <div class="value content_wrap" [title]="certification.certificationDescription">
+                  {{ certification.certificationDescription ? certification.certificationDescription : 'NIL' }}
+                </div>
               </div>
               <div class="flx_div flx_baseline title">
                 <div class="key">Certification Validity from</div>
@@ -512,12 +525,15 @@
               </div>
               <div class="flx_div flx_baseline title">
                 <div class="key">Description</div>
-                <div class="value content_wrap">{{journalentry.journalEntityDescription}}</div>
+                <div class="value content_wrap" [title]="journalentry.journalEntityDescription">
+                  {{ journalentry.journalEntityDescription ? journalentry.journalEntityDescription : 'NIL' }}
+                </div>
               </div>
+
             </div>
-            <div *ngIf="candidateData.accomplishment_details.certifications != true">
+            <!-- <div *ngIf="candidateData.accomplishment_details.certifications != true">
               <div class="value_ar">No accomplishment details available</div>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
@@ -573,13 +589,13 @@
           <img class="warning_icon" src="../../../../../assets/images/alert image filled.svg">
         </div>
         <div class="text">
-          Are you sure you want to shortlist the candidate? </div>
+          Are you sure you want to<span class="boldcandidate"> shortlist</span> the candidate? </div>
         <div class="button-wrapper-form-pop-up">
           <button class="b1" (click)="confirmDialog('Shortlisted')" type="button" mat-raised-button>
-            confirm
+            Confirm
           </button>
           <button class="b3" (click)="closeDialog('cancel')" type="button" mat-raised-button>
-            cancel
+            Cancel
           </button>
         </div>
       </div>
@@ -610,13 +626,13 @@
 
       </div>
       <div class="text">
-        Are you sure you want to reject the candidate? </div>
+        Are you sure you want to <span class="boldcandidate">reject</span> the candidate? </div>
       <div class="button-wrapper-form-pop-up">
         <button class="b1" (click)="confirmrejectDialog('Rejected')" type="button" mat-raised-button>
-          confirm
+          Confirm
         </button>
         <button class="b3" (click)="closeDialog('cancel')" type="button" mat-raised-button>
-          cancel
+          Cancel
         </button>
       </div>
     </div>
