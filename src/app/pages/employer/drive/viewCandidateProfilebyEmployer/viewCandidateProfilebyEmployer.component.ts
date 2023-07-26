@@ -33,6 +33,7 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
     { label: 'Accomplishment Details', sectionId: 'accomplishment' },
     // { label: 'Disciplinary Details', sectionId: 'disciplinary' },
   ];
+  activeSection: string = 'personal';
   candidateData: any;
   email: any;
   getAllStates: any;
@@ -131,6 +132,7 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
   }
 
   scrollToSection(sectionId: string) {
+    this.activeSection = sectionId;
     const section = this.elementRef.nativeElement.querySelector(
       '#' + sectionId
     );

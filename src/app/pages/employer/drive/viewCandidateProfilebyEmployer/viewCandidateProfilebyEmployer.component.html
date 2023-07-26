@@ -44,13 +44,26 @@
 
       <img class="icons_left_right" src="../../../../../assets/images/arrow_forward_ios_FILL0_wght400_GRAD0_opsz48.svg"
         (click)="scrollTo('right')"> -->
-      <div class="details_header flx_div flx_center card_sticky" #headerRef>
+      <!-- <div class="details_header flx_div flx_center card_sticky" #headerRef>
 
         <div class="overall-detail" *ngFor="let detail of details" [class.active]="activeSection === detail.sectionId"
           (click)="scrollToSection(detail.sectionId)">
           {{ detail.label }}
         </div>
 
+      </div> -->
+
+      <!-- <div class="details_header flx_div flx_center card_sticky" #headerRef>
+        <div class="overall-detail" *ngFor="let detail of details" [class.active]="activeSection === detail.sectionId"
+          (click)="scrollToSection(detail.sectionId)">
+          <span [ngClass]="{ 'blue-text': detail.label === 'Personal Details' }">{{ detail.label }}</span>
+        </div>
+      </div> -->
+      <div class="details_header flx_div flx_center card_sticky" #headerRef>
+        <div class="overall-detail" *ngFor="let detail of details" [class.active]="activeSection === detail.sectionId"
+          (click)="scrollToSection(detail.sectionId)">
+          <span [ngClass]="{ 'blue-text': activeSection === detail.sectionId }">{{ detail.label }}</span>
+        </div>
       </div>
 
 

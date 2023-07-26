@@ -129,8 +129,9 @@
       cursor: pointer;
       border-bottom: 2px solid #E6E6E6;
       padding: 10px 10px 0px 10px;
-      font-size: 13px;
-      background: #fff;
+     // font-size: 18px;
+    font: normal normal medium 12px/24px;
+     background: #fff;
 
       div {
         padding: 7px;
@@ -558,7 +559,9 @@ display: block;
   border-radius: 3px;
 }
 
-
+.blue-text {
+  color: #294D96;
+}
 
 
 
