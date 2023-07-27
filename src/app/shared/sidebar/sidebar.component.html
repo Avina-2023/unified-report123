@@ -38,10 +38,10 @@
 
      <mat-list-item (click)="candidatesearch('empprofile')" [ngClass]="[check === 'empprofile' ? 'selected' : 'notSelected']"
      *ngIf='roleCode === "EMP"'>
-     <span class="headerfont" mat-line *ngIf="isExpanded">Candidate</span>
+     <span class="headerfont" mat-line *ngIf="isExpanded">Candidate Search</span>
      <div class="sidemenu">
        <div> <img class="sidebar-icon1" src="../../../../assets/images/emp-dashboard-icons/emp-user.png"></div>
-       <div *ngIf="!isExpanded" class="sidebar-text headerfont sidestyle">Candidate</div>
+       <div *ngIf="!isExpanded" class="sidebar-text headerfont sidestyle">Candidate Search</div>
      </div>
    </mat-list-item>
 

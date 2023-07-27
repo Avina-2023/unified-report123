@@ -83,6 +83,7 @@ export class ViewCandidateByDriveComponent implements OnInit {
   jobDetailsdata: any;
   jobdatata: any;
   valueone: any;
+  dynclass: string;
 
   constructor(
     private ApiService: ApiService,
@@ -1205,6 +1206,13 @@ getJobDetails(){
   this.jobDetailsdata = this.appconfig.getLocalStorage('currentJobData');
    this.valueone =JSON.parse(this.jobDetailsdata)
 }
+
+onTabChange(index: number) {
+  var pall = ["navyblue","yellow","lightblue","red","green"]
+  console.log('Selected tab index:'  + index);
+  this.dynclass = pall[index]
+}
+
 }
 
 

@@ -40,7 +40,6 @@
     </div>
     <div class="job-details">
     <div class="heading">Job Status</div>
-
    <div class="act">
     <div><span class="icon-tick_mark_green"></span></div>
     <div class="val">{{valueone.status}}</div>
@@ -48,9 +47,9 @@
     </div>
     </mat-card>
     </div>
-
-    <div class="tableheader">
-      <mat-tab-group class="mattab">
+    
+    <div class="tableheader" [ngClass]="dynclass">
+      <mat-tab-group class="mattab" (selectedIndexChange)="onTabChange($event)">
         <mat-tab label="All"></mat-tab>
         <mat-tab label="Awaiting Review"></mat-tab>
         <mat-tab label="In Progress"></mat-tab>
