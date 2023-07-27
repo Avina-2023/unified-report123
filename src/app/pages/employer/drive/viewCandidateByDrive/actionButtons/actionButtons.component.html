@@ -1,8 +1,157 @@
-<div class="icon-list">
+<!-- <div class="icon-list">
   <div class="accept-icon icn" (click)="getStatusChange('Shortlisted')"><mat-icon>done</mat-icon></div>
   <div class="reject-icon icn" (click)="getStatusChange('Rejected')"><mat-icon>clear</mat-icon></div>
   <div class="view-icon icn" (click)="candidateprofile()"><mat-icon>remove_red_eye</mat-icon></div>
   <div class="prog-icon icn" (click)="getStatusChange('InProgress')"><mat-icon>replay</mat-icon></div>
+</div> -->
+
+
+<!-- <div class="icon-list">
+  <div class="accept-icon icn" (click)="matDialogOpen()"><mat-icon>done</mat-icon></div>
+  <div class="reject-icon icn" (click)="getStatusChange('Rejected')"><mat-icon>clear</mat-icon></div>
+  <div class="view-icon icn" (click)="candidateprofile()"><mat-icon>remove_red_eye</mat-icon></div>
+  <div class="prog-icon icn" (click)="getStatusChange('InProgress')"><mat-icon>replay</mat-icon></div>
 </div>
+
+<ng-template #matDialog>
+  <div class="main-wrapper">
+    <div>
+      <div class="warn-img">
+        <img class="warning_icon" src="../../../../../assets/images/alert image filled.svg">
+      </div>
+      <div class="text">
+        Are you sure you want to <span class="status-text">shortlist</span> the candidate? 
+      </div>
+      <div class="button-wrapper-form-pop-up">
+        <button class="b1" (click)="getStatusChange('Shortlisted')" type="button" mat-raised-button>
+          confirm
+        </button>
+        <button class="b3" (click)="closeDialog('cancel')" type="button" mat-raised-button>
+          cancel
+        </button>
+      </div>
+    </div>
+  </div>
+</ng-template>
+          
+<ng-template #confirmmatDialog>
+  <div class="main-wrapper">
+    <div class="gren-tick">
+      <img class="green_tick" src="../../../../../assets/images/green_tick_image.png">
+    </div>
+    <div class="text1">
+      <span class="boldcandidate">{{statusdata.personal_details.name}}</span> has been
+      <span> Shortlisted successfully</span>
+    </div>
+    <div class="button-wrapper-form-pop-up">
+      <button class="b4" (click)="okclose()" type="button" mat-raised-button>
+        OK
+      </button>
+    </div>
+  </div>
+</ng-template> -->
+
+<div class="icon-list">
+  <div class="accept-icon icn" (click)="openStatusDialog('Shortlisted')"><mat-icon>done</mat-icon></div>
+  <div class="reject-icon icn" (click)="openStatusDialog('Rejected')"><mat-icon>clear</mat-icon></div>
+  <div class="view-icon icn" (click)="candidateprofile()"><mat-icon>remove_red_eye</mat-icon></div>
+  <div class="prog-icon icn" (click)="openStatusDialog('InProgress')"><mat-icon>replay</mat-icon></div>
+</div>
+
+
+<ng-template #matDialog let-data>
+  <div class="main-wrapper">
+    <div>
+      <div class="warn-img">
+        <img class="warning_icon" src="../../../../../assets/images/alert image filled.svg">
+      </div>
+      <div class="text">
+        <ng-container *ngIf="data.status === 'Shortlisted'; else otherText">
+          <!-- Are you sure you want to <span class="status-text">{{data.status}}</span> the candidate?  -->
+          Are you sure you want to <span class="status-text">Shortlist</span> the candidate? 
+        </ng-container>
+        <ng-template #otherText>
+          <ng-container *ngIf="data.status === 'Rejected'; else inProgressText">
+            Are you sure you want to <span class="status-text">Reject</span> the candidate?
+          </ng-container>
+          <ng-template #inProgressText>
+            Are you sure you want to move the candidate to <span class="status-text">In Progress</span>?
+          </ng-template>
+        </ng-template>
+      </div>
+      <div class="button-wrapper-form-pop-up">
+        <ng-container *ngIf="data.status === 'Shortlisted'; else otherButtons">
+          <button class="b1" (click)="getStatusChange(data.status)" type="button" mat-raised-button>
+            Confirm
+          </button>
+        </ng-container>
+        <ng-template #otherButtons>
+          <button class="b1" (click)="getStatusChange(data.status)" type="button" mat-raised-button>
+            Confirm
+          </button>
+        </ng-template>
+        <button class="b3" (click)="closeDialog('cancel')" type="button" mat-raised-button>
+          Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<!-- working -->
+
+<!-- <ng-template #confirmmatDialog let-data>
+  <div class="main-wrapper">
+    <div class="gren-tick">
+      <img class="green_tick" src="../../../../../assets/images/green_tick_image.png">
+    </div>
+    <div class="text1">
+      <ng-container *ngIf="data.status === 'Shortlisted'; else otherText">
+        <span>Candidate has been Shortlisted successfully</span>
+      </ng-container>
+      <ng-template #otherText>
+        <ng-container *ngIf="data.status === 'Rejected'; else inProgressText">
+          <span class="boldcandidate">{{statusdata.personal_details.name}}</span>Candidate has been Rejected successfully.
+        </ng-container>
+        <ng-template #inProgressText>
+          <span class="boldcandidate">{{statusdata.personal_details.name}}</span>Candidate has been moved to In Progress successfully.
+        </ng-template>
+      </ng-template>
+    </div>
+    <div class="button-wrapper-form-pop-up">
+      <button class="b4" (click)="okclose()" type="button" mat-raised-button>
+        OK
+      </button>
+    </div>
+  </div>
+</ng-template> -->
+
+<ng-template #confirmmatDialog let-data>
+  <div class="main-wrapper">
+    <div class="gren-tick">
+      <img *ngIf="data.status === 'Shortlisted'" class="status-icon" src="../../../../../assets/images/green_tick_image.png">
+      <img *ngIf="data.status === 'Rejected'" class="status-icon" src="../../../../../assets/images/green_tick_image.png">
+      <img *ngIf="data.status === 'InProgress'" class="status-icon" src="../../../../../assets/images/green_tick_image.png">
+    </div>
+    <div class="text1">
+      <ng-container *ngIf="data.status === 'Shortlisted'; else otherText">
+        <span>Candidate has been Shortlisted successfully</span>
+      </ng-container>
+      <ng-template #otherText>
+        <ng-container *ngIf="data.status === 'Rejected'; else inProgressText">
+          <span class="boldcandidate">{{statusdata.personal_details.name}}</span>Candidate has been Rejected successfully.
+        </ng-container>
+        <ng-template #inProgressText>
+          <span class="boldcandidate">{{statusdata.personal_details.name}}</span>Candidate has been moved to In Progress successfully.
+        </ng-template>
+      </ng-template>
+    </div>
+    <div class="button-wrapper-form-pop-up">
+      <button class="b4" (click)="okclose()" type="button" mat-raised-button>
+        OK
+      </button>
+    </div>
+  </div>
+</ng-template>
 
 

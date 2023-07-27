@@ -871,14 +871,6 @@ tabledata() {
            }
          },
          tooltipField: 'jobStatus',
-
-        //   cellStyle: params => {
-        //     if (params.value === 'awaitingReview') {
-        //         return {borderRadius: '5px', color: '#fff', backgroundColor: 'green'};
-        //     }
-        //     return null;
-        // },
-
        }, 
        {
          headerName: 'Qualification',
@@ -1211,6 +1203,11 @@ onTabChange(index: number) {
   var pall = ["navyblue","yellow","lightblue","red","green"]
   console.log('Selected tab index:'  + index);
   this.dynclass = pall[index]
+}
+onCellClicked(event: any): void {
+  if (event.colDef.field === 'studentName') {
+    this.router.navigate(['/auth/drive/viewCandidateProfilebyEmployer']);
+  }
 }
 
 }
