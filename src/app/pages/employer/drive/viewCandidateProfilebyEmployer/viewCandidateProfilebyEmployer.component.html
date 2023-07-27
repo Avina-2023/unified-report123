@@ -39,26 +39,7 @@
       </div>
     </div>
     <div class="card_two">
-      <!-- <img class="icons_left_right" src="../../../../../assets/images/arrow_back_ios_FILL0_wght400_GRAD0_opsz48.svg"
-        (click)="scrollTo('left')">
 
-      <img class="icons_left_right" src="../../../../../assets/images/arrow_forward_ios_FILL0_wght400_GRAD0_opsz48.svg"
-        (click)="scrollTo('right')"> -->
-      <!-- <div class="details_header flx_div flx_center card_sticky" #headerRef>
-
-        <div class="overall-detail" *ngFor="let detail of details" [class.active]="activeSection === detail.sectionId"
-          (click)="scrollToSection(detail.sectionId)">
-          {{ detail.label }}
-        </div>
-
-      </div> -->
-
-      <!-- <div class="details_header flx_div flx_center card_sticky" #headerRef>
-        <div class="overall-detail" *ngFor="let detail of details" [class.active]="activeSection === detail.sectionId"
-          (click)="scrollToSection(detail.sectionId)">
-          <span [ngClass]="{ 'blue-text': detail.label === 'Personal Details' }">{{ detail.label }}</span>
-        </div>
-      </div> -->
       <div class="details_header flx_div flx_center card_sticky" #headerRef>
         <div class="overall-detail" *ngFor="let detail of details" [class.active]="activeSection === detail.sectionId"
           (click)="scrollToSection(detail.sectionId)">
@@ -157,7 +138,7 @@
               <h2 class="head_title"> Contact Details </h2>
               <div class="brdr_btm_line pb-10">
                 <h2 class="sub_heading ">Present Address</h2>
-                <div class="flx_div flx_baseline title">
+                <!-- <div class="flx_div flx_baseline title">
                   <div class="key">Present Address</div>
                   <div class="value">
                     {{candidateData.contact_details.present_line_street_addres}},
@@ -167,11 +148,25 @@
                     {{ form_present_state?form_present_state:'NA' }}
                     {{candidateData.contact_details.present_zip}}
                   </div>
+                </div> -->
+                <div class="flx_div flx_baseline title">
+                  <div class="key">Present Address</div>
+                  <div class="value" id="presentAddress">
+                    {{candidateData.contact_details.present_line_street_addres}}
+                    {{candidateData.contact_details.present_line2_street_addre ? ', ' +
+                    candidateData.contact_details.present_line2_street_addre : ''}}
+                    {{candidateData.contact_details.present_address_line_3 ? ', ' +
+                    candidateData.contact_details.present_address_line_3
+                    : ''}},
+                    {{form_present_city ? ', ' + form_present_city : 'NA'}}
+                    {{form_present_state ? ', ' + form_present_state : 'NA'}},
+                    {{candidateData.contact_details.present_zip}}
+                  </div>
                 </div>
               </div>
               <div>
                 <h2 class="sub_heading  pt-10">Permanent Address</h2>
-                <div class="flx_div flx_baseline title">
+                <!-- <div class="flx_div flx_baseline title">
                   <div class="key">Permanent Address</div>
                   <div class="value">{{candidateData.contact_details.permanent_line1_street_add}},
                     {{candidateData.contact_details.permanent_line2_street_add}},
@@ -179,6 +174,22 @@
                     {{candidateData.contact_details.permanent_city}},
                     {{candidateData.contact_details.permanent_state}},
                     {{candidateData.contact_details.permanent_zip}} </div>
+                </div> -->
+                <div class="flx_div flx_baseline title">
+                  <div class="key">Permanent Address</div>
+                  <div class="value" id="permanentAddress">
+                    {{candidateData.contact_details.permanent_line1_street_add}}
+                    {{candidateData.contact_details.permanent_line2_street_add ? ', ' +
+                    candidateData.contact_details.permanent_line2_street_add : ''}}
+                    {{candidateData.contact_details.permanent_address_line_3 ? ', ' +
+                    candidateData.contact_details.permanent_address_line_3 : ''}}
+                    {{candidateData.contact_details.permanent_city ? ', ' + candidateData.contact_details.permanent_city
+                    : ''}}
+                    {{candidateData.contact_details.permanent_state ? ', ' +
+                    candidateData.contact_details.permanent_state : ''}}
+                    {{candidateData.contact_details.permanent_zip ? ', ' + candidateData.contact_details.permanent_zip :
+                    ''}}
+                  </div>
                 </div>
               </div>
               <!-- <div *ngIf="candidateData.contact_details.is_sameas_presentaddr">
@@ -205,15 +216,26 @@
                     {{ candidates.level }} /
                   </ng-container>
                   <ng-container *ngIf="candidates.level !== 'HSC' && candidates.level !== 'SSLC'; else otherLevels">
-
                   </ng-container>
                   <ng-template #otherLevels>
                     {{ candidates.level === 'SSLC' ? 'Class X' : (candidates.level === 'HSC' ? 'Class XII' :
                     candidates.specification)
                     }}
                   </ng-template>
-                  {{ candidates.specification }} {{ candidates.discipline }} ({{ candidates.board_university }}),<br>
-                  {{ candidates.institute }}
+                  <!-- {{ candidates.specification }} {{ candidates.discipline }} - {{ candidates.board_university ? '(' +
+                  candidates.board_university + ')' + ',' : '' }}<br>
+                  {{ candidates.institute }}, -->
+                  {{ candidates.specification }} {{ candidates.discipline }} -({{ candidates.board_university }})
+
+                  <ng-container *ngIf="candidates.institute === 'Others'">
+                    <br>
+                    {{ candidates.other_collegename }},
+                  </ng-container>
+
+                  <ng-container *ngIf="candidates.institute !== 'Others'">
+                    <br>
+                    {{ candidates.institute }}
+                  </ng-container>
                 </div>
               </div>
               <div class="edu_start_end">{{candidates.start_date| date : 'MMM y'}}-{{candidates.end_date| date : 'MMM
@@ -286,13 +308,7 @@
         <div id="work-experience" #workExperienceSection class="inner_content">
           <div class="profile_details pd-20">
             <h2 class="head_title"> Work Experience Details </h2>
-            <!-- <div class="profile_details pd-20 ">
-              <h2 class="sub_heading">Total Experience </h2>
-              <div class="flx_div experience">
-                {{ candidateData.experience_details.work_details.total_exp_years }}Years
-                {{ candidateData.experience_details.work_details.total_exp_months }}Months
-              </div>
-            </div> -->
+
             <div class="profile_details_exp pd-20">
               <div class="key_totalexp">Total Experience</div>
               <div class=" experience">
@@ -312,7 +328,7 @@
               </div>
             </div>
             <h2 class="head_title"> Professional Experience </h2>
-            <div class="brdr_btm_line pb-20"
+            <div class="brdr_btm_line pb-10"
               *ngFor="let employment of candidateData.experience_details.employments; let i = index">
               <h2 class="sub_heading">Employment {{i+1}}</h2>
               <div>
@@ -341,12 +357,7 @@
                   <div class="value content_wrap">{{employment.duration_to| date : 'MMM y'}}</div>
                 </div>
 
-                <!-- <div class="flx_div flx_baseline title">
-                <div class="key">I am Currently working here</div>
-                <div class="value">
-                  {{employment.is_working_here}}
-                </div>
-              </div> -->
+
                 <div class="flx_div flx_baseline title">
                   <div class="key_edu">
                     <div class="value_withcheckbox">
@@ -357,11 +368,12 @@
                     </div>
                   </div>
                 </div>
-                <!-- <div *ngIf="candidateData.experience_details.employments!= true">
-                  <div class="value_ar">No experience details available</div>
-                </div> -->
+              </div>
+              <div *ngIf="candidateData.experience_details.employments.length === 0">
+                <div class="value_ar">No experience details available</div>
               </div>
             </div>
+
             <h2 class="head_title"> Articleship/Training Details</h2>
             <div class="brdr_btm_line pb-10"
               *ngFor="let employment of candidateData.experience_details.intern; let i = index">
@@ -436,10 +448,11 @@
                   {{ project.projectDescription }}
                 </div>
               </div>
+
             </div>
-            <!-- <div *ngIf="candidateData.project_details.projects != true">
-              <div class="value_ar">No projet details available</div>
-            </div> -->
+            <div *ngIf="candidateData.project_details.projects.length === 0">
+              <div class="value_ar">No project details available</div>
+            </div>
           </div>
 
         </div>
@@ -531,9 +544,12 @@
               </div>
 
             </div>
-            <!-- <div *ngIf="candidateData.accomplishment_details.certifications != true">
+            <div *ngIf="candidateData.accomplishment_details.certifications.length === 0
+                        && candidateData.accomplishment_details.awards.length === 0
+                        && candidateData.accomplishment_details.journals.length === 0">
               <div class="value_ar">No accomplishment details available</div>
-            </div> -->
+            </div>
+
           </div>
         </div>
       </div>

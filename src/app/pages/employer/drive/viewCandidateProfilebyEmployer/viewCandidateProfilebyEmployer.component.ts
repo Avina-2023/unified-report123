@@ -197,9 +197,6 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
   }
 
   confirmShortlist(dialogRef: any) {
-    // Add your shortlist logic here
-
-    // Close the dialog
     dialogRef.close();
   }
   closeDialog() {
@@ -279,7 +276,7 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
       panelClass: 'popupModalContainerForForms',
     });
   }
-  // getAllPermanentCities(id, cityId, callback) {
+  // (id, cityId, callback) {
   //   const ApiData = {
   //     state_id: id,
   //   };
