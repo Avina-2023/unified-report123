@@ -33,6 +33,7 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
     { label: 'Accomplishment Details', sectionId: 'accomplishment' },
     // { label: 'Disciplinary Details', sectionId: 'disciplinary' },
   ];
+  activeSection: string = 'personal';
   candidateData: any;
   email: any;
   getAllStates: any;
@@ -131,6 +132,7 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
   }
 
   scrollToSection(sectionId: string) {
+    this.activeSection = sectionId;
     const section = this.elementRef.nativeElement.querySelector(
       '#' + sectionId
     );
@@ -195,9 +197,6 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
   }
 
   confirmShortlist(dialogRef: any) {
-    // Add your shortlist logic here
-
-    // Close the dialog
     dialogRef.close();
   }
   closeDialog() {
@@ -277,7 +276,7 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
       panelClass: 'popupModalContainerForForms',
     });
   }
-  // getAllPermanentCities(id, cityId, callback) {
+  // (id, cityId, callback) {
   //   const ApiData = {
   //     state_id: id,
   //   };

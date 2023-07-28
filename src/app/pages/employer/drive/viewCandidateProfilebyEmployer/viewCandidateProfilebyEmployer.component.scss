@@ -129,8 +129,9 @@
       cursor: pointer;
       border-bottom: 2px solid #E6E6E6;
       padding: 10px 10px 0px 10px;
-      font-size: 13px;
-      background: #fff;
+     // font-size: 18px;
+    font: normal normal medium 12px/24px;
+     background: #fff;
 
       div {
         padding: 7px;
@@ -555,22 +556,14 @@ display: block;
   width: 20px;
   height: 20px;
   background-color: black;
-  /* Change this to the desired color */
   border-radius: 3px;
 }
-input[type="checkbox"] {
-  // display: none;
-    background-color: black!important;
+
+.blue-text {
+  color: #294D96;
+  border-bottom: 3.5px solid #294D96;
+  padding-bottom: 6px;
 }
-
-input[type="checkbox"]:checked+.checkbox-style {
-  background-color: #2ecc71!important;
-  /* Change this to the desired color when checked */
-}
-
-
-
-
 
 
 
