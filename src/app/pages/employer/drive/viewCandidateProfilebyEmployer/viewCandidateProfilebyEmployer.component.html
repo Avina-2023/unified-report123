@@ -311,16 +311,21 @@
 
             <div class="profile_details_exp pd-20">
               <div class="key_totalexp">Total Experience</div>
-              <div class=" experience">
-                <div class="experience-box">
-                  {{ candidateData.experience_details.work_details.total_exp_years }}</div> <span
-                  class="value_2">Years</span>
-                <div class="experience-box">
-                  {{ candidateData.experience_details.work_details.total_exp_months }}</div> <span
-                  class="value_2">Months</span>
+              <div class="experience">
+                <div class="experience-box"
+                  *ngIf="candidateData.experience_details.work_details.total_exp_years || candidateData.experience_details.work_details.total_exp_months">
+                  {{ candidateData.experience_details.work_details.total_exp_years }}</div>
+                <span class="value_2" *ngIf="candidateData.experience_details.work_details.total_exp_years">Years</span>
+                <div class="experience-box" *ngIf="candidateData.experience_details.work_details.total_exp_months">
+                  {{ candidateData.experience_details.work_details.total_exp_months }}</div>
+                <span class="value_2"
+                  *ngIf="candidateData.experience_details.work_details.total_exp_months">Months</span>
+                <span class="no-experience"
+                  *ngIf="!candidateData.experience_details.work_details.total_exp_years && !candidateData.experience_details.work_details.total_exp_months">No
+                  Experience</span>
               </div>
-
             </div>
+
             <div class="profile_details pd-20">
               <h2 class="head_title_skills">Skills </h2>
               <div class="flx_div skills">
@@ -334,28 +339,37 @@
               <div>
                 <div class="flx_div flx_center hidden_div title">
                   <div class="key">Employer Name</div>
-                  <div class="value content_wrap">{{employment.employment_name_address}}</div>
-                </div>
-                <div class="flx_div flx_center hidden_div title">
-                  <div class="key">Position Held</div>
-                  <div class="value content_wrap">{{employment.postion_field}}</div>
-                </div>
-                <div class="flx_div flx_center hidden_div title">
-                  <div class="key">Achievements/Responsibility/Tasks</div>
-                  <!-- <div class="value content_wrap">{{employment.achievement}}</div> -->
-                  <div class="value content_wrap" [title]="employment.achievement">
-                    {{ employment.achievement }}
+                  <div class="value content_wrap">
+                    {{ employment.employment_name_address || 'NIL' }}
                   </div>
                 </div>
 
                 <div class="flx_div flx_center hidden_div title">
+                  <div class="key">Position Held</div>
+                  <div class="value content_wrap">{{ employment.postion_field ? employment.postion_field : 'NIL' }}
+                  </div>
+                </div>
+                <div class="flx_div flx_center hidden_div title">
+                  <div class="key">Achievements/Responsibility/Tasks</div>
+
+                  <div class="value content_wrap" [title]="employment.achievement">
+                    {{ employment.achievement ? employment.achievement : 'NIL' }}
+                  </div>
+
+                </div>
+
+                <div class="flx_div flx_center hidden_div title">
                   <div class="key">Duration From</div>
-                  <div class="value content_wrap">{{employment.duration_from| date : 'MMM y'}}</div>
+                  <div class="value content_wrap">{{ employment.duration_from ? (employment.duration_from | date : 'MMM
+                    y') : 'NIL' }}
+                  </div>
                 </div>
                 <div class="flx_div flx_center hidden_div title" *ngIf="!employment.is_working_here">
                   <div class="key">Duration To</div>
-                  <div class="value content_wrap">{{employment.duration_to| date : 'MMM y'}}</div>
+                  <div class="value content_wrap">{{ employment.duration_to ? (employment.duration_to | date : 'MMM y')
+                    : 'NIL' }}</div>
                 </div>
+
 
 
                 <div class="flx_div flx_baseline title">
@@ -369,10 +383,8 @@
                   </div>
                 </div>
               </div>
-              <div *ngIf="candidateData.experience_details.employments.length === 0">
-                <div class="value_ar">No experience details available</div>
-              </div>
             </div>
+
 
             <h2 class="head_title"> Articleship/Training Details</h2>
             <div class="brdr_btm_line pb-10"
