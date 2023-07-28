@@ -225,7 +225,8 @@
                   <!-- {{ candidates.specification }} {{ candidates.discipline }} - {{ candidates.board_university ? '(' +
                   candidates.board_university + ')' + ',' : '' }}<br>
                   {{ candidates.institute }}, -->
-                  {{ candidates.specification }} {{ candidates.discipline }} -({{ candidates.board_university }})
+                  {{ candidates.specification }} {{ candidates.discipline }} -{{ candidates.board_university ? '(' +
+                  candidates.board_university + ')' + ',' : '' }}
 
                   <ng-container *ngIf="candidates.institute === 'Others'">
                     <br>
