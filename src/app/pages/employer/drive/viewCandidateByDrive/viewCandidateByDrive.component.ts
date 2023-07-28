@@ -146,7 +146,6 @@ export class ViewCandidateByDriveComponent implements OnInit {
   // console.log(this.jobData)
   // }
   tabledata() {
-
     this.columnDefs = [
       {
         headerName: 'S.No',
@@ -197,11 +196,11 @@ export class ViewCandidateByDriveComponent implements OnInit {
           filterOptions: ['contains'],
         },
         cellClassRules: {
-         'yellow-cell': (params) => params.value === 'awaitingReview',
+          'yellow-cell': (params) => params.value === 'awaitingReview',
           'green-cell': (params) => params.value === 'Shortlisted',
           'red-cell': (params) => params.value === 'Rejected',
           'blue-cell': (params) => params.value === 'InProgress',
-       },
+        },
         cellRenderer: (params) => {
           if (
             params.value &&
@@ -217,14 +216,13 @@ export class ViewCandidateByDriveComponent implements OnInit {
         },
         tooltipField: 'jobStatus',
 
-       //   cellStyle: params => {
-       //     if (params.value === 'awaitingReview') {
-       //         return {borderRadius: '5px', color: '#fff', backgroundColor: 'green'};
-       //     }
-       //     return null;
-       // },
-
-      }, 
+        //   cellStyle: params => {
+        //     if (params.value === 'awaitingReview') {
+        //         return {borderRadius: '5px', color: '#fff', backgroundColor: 'green'};
+        //     }
+        //     return null;
+        // },
+      },
       {
         headerName: 'Qualification',
         field: 'degree',
@@ -251,66 +249,66 @@ export class ViewCandidateByDriveComponent implements OnInit {
         tooltipField: 'degree',
       },
       {
-         headerName: 'Year Of Passing',
-         field: 'yearOfPassing',
-         minWidth: 180,
-         filter: 'agNumberColumnFilter',
-         chartDataType: 'series',
-         filterParams: {
-           suppressAndOrCondition: true,
-           filterOptions: [
-             'equals',
-             'lessThan',
-             'lessThanOrEqual',
-             'greaterThan',
-             'greaterThanOrEqual',
-             'inRange',
-           ],
-         },
-         cellRenderer: (params) => {
-           if (
-             params.value &&
-             params.value != undefined &&
-             params.value != null &&
-             params.value != ''
-           ) {
-             return params.value;
-           } else {
-             return '-';
-           }
-         },
-         tooltipField: 'yearOfPassing',
+        headerName: 'Year Of Passing',
+        field: 'yearOfPassing',
+        minWidth: 180,
+        filter: 'agNumberColumnFilter',
+        chartDataType: 'series',
+        filterParams: {
+          suppressAndOrCondition: true,
+          filterOptions: [
+            'equals',
+            'lessThan',
+            'lessThanOrEqual',
+            'greaterThan',
+            'greaterThanOrEqual',
+            'inRange',
+          ],
+        },
+        cellRenderer: (params) => {
+          if (
+            params.value &&
+            params.value != undefined &&
+            params.value != null &&
+            params.value != ''
+          ) {
+            return params.value;
+          } else {
+            return '-';
+          }
+        },
+        tooltipField: 'yearOfPassing',
       },
       {
-       headerName: 'Trained by L&T EduTech',
-       field: 'trainedStatus',
-       minWidth: 200,
-       filter: 'agNumberColumnFilter',
-       chartDataType: 'series',
-       filterParams: {
-         suppressAndOrCondition: true,
-         filterOptions: [
-           'equals',
-           'lessThan',
-           'lessThanOrEqual',
-           'greaterThan',
-           'greaterThanOrEqual',
-           'inRange',
-         ],
-       },
-       cellRenderer: (params) => {
-         if (
-           params.value &&
-           params.value != undefined &&
-           params.value != null &&
-           params.value != ''
-         ) {
-           return params.value;
-         } else {
-           return '-';
-         }
-       },
-       tooltipField: 'trainedStatus',
+        headerName: 'Trained by L&T EduTech',
+        field: 'trainedStatus',
+        minWidth: 200,
+        filter: 'agNumberColumnFilter',
+        chartDataType: 'series',
+        filterParams: {
+          suppressAndOrCondition: true,
+          filterOptions: [
+            'equals',
+            'lessThan',
+            'lessThanOrEqual',
+            'greaterThan',
+            'greaterThanOrEqual',
+            'inRange',
+          ],
+        },
+        cellRenderer: (params) => {
+          if (
+            params.value &&
+            params.value != undefined &&
+            params.value != null &&
+            params.value != ''
+          ) {
+            return params.value;
+          } else {
+            return '-';
+          }
+        },
+        tooltipField: 'trainedStatus',
       },
       {
         headerName: 'Assessed by L&T EduTech',
@@ -343,40 +341,40 @@ export class ViewCandidateByDriveComponent implements OnInit {
         },
         tooltipField: 'assessedStatus',
       },
-     //  {
-     //    headerName: 'Applied Date',
-     //    field: 'appliedDate',
-     //    minWidth: 180,
-     //    valueFormatter: function (params) {
-     //    return moment(params.value).format('D-MM-yy');
-     //   },
-     //    filter: 'agNumberColumnFilter',
-     //    chartDataType: 'series',
-     //    filterParams: {
-     //      suppressAndOrCondition: true,
-     //      filterOptions: [
-     //        'equals',
-     //        'lessThan',
-     //        'lessThanOrEqual',
-     //        'greaterThan',
-     //        'greaterThanOrEqual',
-     //        'inRange',
-     //      ],
-     //    },
-     //    cellRenderer: (params) => {
-     //      if (
-     //        params.value &&
-     //        params.value != undefined &&
-     //        params.value != null &&
-     //        params.value != ''
-     //      ) {
-     //        return params.value;
-     //      } else {
-     //        return 0;
-     //      }
-     //    },
-     //    tooltipField: 'appliedDate',
-     //  },
+      //  {
+      //    headerName: 'Applied Date',
+      //    field: 'appliedDate',
+      //    minWidth: 180,
+      //    valueFormatter: function (params) {
+      //    return moment(params.value).format('D-MM-yy');
+      //   },
+      //    filter: 'agNumberColumnFilter',
+      //    chartDataType: 'series',
+      //    filterParams: {
+      //      suppressAndOrCondition: true,
+      //      filterOptions: [
+      //        'equals',
+      //        'lessThan',
+      //        'lessThanOrEqual',
+      //        'greaterThan',
+      //        'greaterThanOrEqual',
+      //        'inRange',
+      //      ],
+      //    },
+      //    cellRenderer: (params) => {
+      //      if (
+      //        params.value &&
+      //        params.value != undefined &&
+      //        params.value != null &&
+      //        params.value != ''
+      //      ) {
+      //        return params.value;
+      //      } else {
+      //        return 0;
+      //      }
+      //    },
+      //    tooltipField: 'appliedDate',
+      //  },
       {
         headerName: 'Applied Date',
         field: 'appliedDate',
@@ -391,20 +389,18 @@ export class ViewCandidateByDriveComponent implements OnInit {
           suppressAndOrCondition: true,
           filterOptions: ['equals', 'lessThan', 'greaterThan', 'inRange'],
         },
-         tooltipField: 'appliedDate',
+        //  tooltipField: 'appliedDate ',
       },
-      { 
-       headerName: 'Actions',
-       field: '',
-      minWidth: 225 ,
-      cellRenderer: 'moreOptions',
-     //  onCellClicked: this.sendJobData(),
-      suppressColumnsToolPanel: true,
-      filter: false,
-    }
-   
+      {
+        headerName: 'Actions',
+        field: '',
+        minWidth: 225,
+        cellRenderer: 'moreOptions',
+        //  onCellClicked: this.sendJobData(),
+        suppressColumnsToolPanel: true,
+        filter: false,
+      },
     ];
-   
   }
   exportCSV() {
     this.gridApi.exportDataAsCsv({
@@ -548,9 +544,9 @@ export class ViewCandidateByDriveComponent implements OnInit {
     this.valueone = JSON.parse(this.jobDetailsdata);
   }
   onTabChange(index: number) {
-    var pall = ["navyblue","yellow","lightblue","red","green"]
-    console.log('Selected tab index:'  + index);
-    this.dynclass = pall[index]
+    var pall = ['navyblue', 'yellow', 'lightblue', 'red', 'green'];
+    console.log('Selected tab index:' + index);
+    this.dynclass = pall[index];
   }
   onCellClicked(event: any): void {
     if (event.colDef.field === 'studentName') {
@@ -558,12 +554,3 @@ export class ViewCandidateByDriveComponent implements OnInit {
     }
   }
 }
-
-
-
-
-
-
-
-
-
