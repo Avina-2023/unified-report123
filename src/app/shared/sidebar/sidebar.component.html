@@ -1,4 +1,5 @@
-<mat-drawer-container [ngClass]="{'sidebar_wdth': roleCode === 'EMP'}" class="example-container mat-typography" autosize style="height: 100vh;">
+<mat-drawer-container [ngClass]="{'sidebar_wdth': roleCode === 'EMP'}" class="example-container mat-typography" autosize
+  style="height: 100vh;">
   <mat-drawer #drawer mode="side" disableClose="true" opened="true">
     <!-- <mat-nav-list class="mathigh"> -->
     <mat-nav-list [ngClass]="{'mathgt': roleCode != 'EMP', 'mathigh':roleCode === 'EMP' }">
@@ -19,31 +20,37 @@
           <div *ngIf="!isExpanded" class="sidebar-text headerfont sidestyle">Profile</div>
         </div>
       </mat-list-item>
-      <mat-list-item [ngClass]="[check === 'empView'||check === 'empPost' ? 'selected' : 'notSelected' ]" *ngIf='roleCode === "EMP"' [matMenuTriggerFor]="menu" >
+      <mat-list-item
+        [ngClass]="[check === 'empView' || check === 'empPost' || check === 'Viewcandidatelist' ? 'selected' : 'notSelected']"
+        *ngIf='roleCode === "EMP"' [matMenuTriggerFor]="menu">
         <div class="sidemenu workmenu">
           <div>
-         <div class="workicon">  <mat-icon>card_travel</mat-icon></div>
-         <div  *ngIf="!isExpanded" class="sidebar-text headerfont sidestyle" >Job
-         </div></div>
-        <div class="arrow_icon"> <span><mat-icon  class= "playArrowicon"style="color: #1B4E9B;">play_arrow</mat-icon></span></div>
+            <div class="workicon"> <mat-icon>card_travel</mat-icon></div>
+            <div *ngIf="!isExpanded" class="sidebar-text headerfont sidestyle">Job
+            </div>
+          </div>
+          <div class="arrow_icon"> <span><mat-icon class="playArrowicon"
+                style="color: #1B4E9B;">play_arrow</mat-icon></span></div>
 
-       </div>
-       <mat-menu #menu="matMenu">
-         <button mat-menu-item (click)="uploadpostrequirement('empPost')" [ngClass]="[check === 'empPost' ? 'selected' : 'notSelected']"  routerLinkActive="router-link-active"  >Post Requirements</button>
-         <button mat-menu-item (click)="work('empView')" [ngClass]="[check === 'empView' ? 'selected' : 'notSelected']"
+        </div>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="uploadpostrequirement('empPost')"
+            [ngClass]="[check === 'empPost' ? 'selected' : 'notSelected']" routerLinkActive="router-link-active">Post
+            Requirements</button>
+          <button mat-menu-item (click)="work('empView')" [ngClass]="[check === 'empView' ? 'selected' : 'notSelected']"
             *ngIf='roleCode === "EMP"'>View
-           Requirements</button>
-       </mat-menu>
-     </mat-list-item>
+            Requirements</button>
+        </mat-menu>
+      </mat-list-item>
 
-     <mat-list-item (click)="candidatesearch('empprofile')" [ngClass]="[check === 'empprofile' ? 'selected' : 'notSelected']"
-     *ngIf='roleCode === "EMP"'>
-     <span class="headerfont" mat-line *ngIf="isExpanded">Candidate Search</span>
-     <div class="sidemenu">
-       <div> <img class="sidebar-icon1" src="../../../../assets/images/emp-dashboard-icons/emp-user.png"></div>
-       <div *ngIf="!isExpanded" class="sidebar-text headerfont sidestyle">Candidate Search</div>
-     </div>
-   </mat-list-item>
+      <mat-list-item (click)="candidatesearch('empcandidatesearch')"
+        [ngClass]="[check === 'empcandidatesearch' ? 'selected' : 'notSelected']" *ngIf='roleCode === "EMP"'>
+        <span class="headerfont" mat-line *ngIf="isExpanded">Candidate Search</span>
+        <div class="sidemenu">
+          <div> <img class="sidebar-icon1" src="../../../../assets/images/emp-dashboard-icons/emp-user.png"></div>
+          <div *ngIf="!isExpanded" class="sidebar-text headerfont sidestyle">Candidate Search</div>
+        </div>
+      </mat-list-item>
 
       <mat-list-item (click)="logout()" *ngIf='roleCode === "EMP"'>
         <span class="headerfont" mat-line *ngIf="isExpanded">LogOut</span>
@@ -141,5 +148,3 @@
   </mat-drawer>
 
 </mat-drawer-container>
-
-
