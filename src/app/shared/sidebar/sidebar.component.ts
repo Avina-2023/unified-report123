@@ -88,7 +88,7 @@ export class SidebarComponent implements OnInit {
         this.driveIconToggle = true;
         break;
       case '/auth/dashboard/candidatesearch':
-        this.check = 'empprofile';
+        this.check = 'empcandidatesearch';
         break;
       default:
         this.check = 'empdashboard';
