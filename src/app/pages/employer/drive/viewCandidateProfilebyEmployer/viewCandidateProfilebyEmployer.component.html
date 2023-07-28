@@ -225,7 +225,8 @@
                   <!-- {{ candidates.specification }} {{ candidates.discipline }} - {{ candidates.board_university ? '(' +
                   candidates.board_university + ')' + ',' : '' }}<br>
                   {{ candidates.institute }}, -->
-                  {{ candidates.specification }} {{ candidates.discipline }} -({{ candidates.board_university }})
+                  {{ candidates.specification }} {{ candidates.discipline }} -{{ candidates.board_university ? '(' +
+                  candidates.board_university + ')' + ',' : '' }}
 
                   <ng-container *ngIf="candidates.institute === 'Others'">
                     <br>
@@ -311,16 +312,21 @@
 
             <div class="profile_details_exp pd-20">
               <div class="key_totalexp">Total Experience</div>
-              <div class=" experience">
-                <div class="experience-box">
-                  {{ candidateData.experience_details.work_details.total_exp_years }}</div> <span
-                  class="value_2">Years</span>
-                <div class="experience-box">
-                  {{ candidateData.experience_details.work_details.total_exp_months }}</div> <span
-                  class="value_2">Months</span>
+              <div class="experience">
+                <div class="experience-box"
+                  *ngIf="candidateData.experience_details.work_details.total_exp_years || candidateData.experience_details.work_details.total_exp_months">
+                  {{ candidateData.experience_details.work_details.total_exp_years }}</div>
+                <span class="value_2" *ngIf="candidateData.experience_details.work_details.total_exp_years">Years</span>
+                <div class="experience-box" *ngIf="candidateData.experience_details.work_details.total_exp_months">
+                  {{ candidateData.experience_details.work_details.total_exp_months }}</div>
+                <span class="value_2"
+                  *ngIf="candidateData.experience_details.work_details.total_exp_months">Months</span>
+                <span class="no-experience"
+                  *ngIf="!candidateData.experience_details.work_details.total_exp_years && !candidateData.experience_details.work_details.total_exp_months">No
+                  Experience</span>
               </div>
-
             </div>
+
             <div class="profile_details pd-20">
               <h2 class="head_title_skills">Skills </h2>
               <div class="flx_div skills">
@@ -334,30 +340,36 @@
               <div>
                 <div class="flx_div flx_center hidden_div title">
                   <div class="key">Employer Name</div>
-                  <div class="value content_wrap">{{employment.employment_name_address}}</div>
-                </div>
-                <div class="flx_div flx_center hidden_div title">
-                  <div class="key">Position Held</div>
-                  <div class="value content_wrap">{{employment.postion_field}}</div>
-                </div>
-                <div class="flx_div flx_center hidden_div title">
-                  <div class="key">Achievements/Responsibility/Tasks</div>
-                  <!-- <div class="value content_wrap">{{employment.achievement}}</div> -->
-                  <div class="value content_wrap" [title]="employment.achievement">
-                    {{ employment.achievement }}
+                  <div class="value content_wrap">
+                    {{ employment.employment_name_address || 'NIL' }}
                   </div>
                 </div>
 
                 <div class="flx_div flx_center hidden_div title">
+                  <div class="key">Position Held</div>
+                  <div class="value content_wrap">{{ employment.postion_field ? employment.postion_field : 'NIL' }}
+                  </div>
+                </div>
+                <div class="flx_div flx_center hidden_div title">
+                  <div class="key">Achievements/Responsibility/Tasks</div>
+
+                  <div class="value content_wrap" [title]="employment.achievement">
+                    {{ employment.achievement ? employment.achievement : 'NIL' }}
+                  </div>
+
+                </div>
+
+                <div class="flx_div flx_center hidden_div title">
                   <div class="key">Duration From</div>
-                  <div class="value content_wrap">{{employment.duration_from| date : 'MMM y'}}</div>
+                  <div class="value content_wrap">{{ employment.duration_from ? (employment.duration_from | date : 'MMM
+                    y') : 'NIL' }}
+                  </div>
                 </div>
                 <div class="flx_div flx_center hidden_div title" *ngIf="!employment.is_working_here">
                   <div class="key">Duration To</div>
-                  <div class="value content_wrap">{{employment.duration_to| date : 'MMM y'}}</div>
+                  <div class="value content_wrap">{{ employment.duration_to ? (employment.duration_to | date : 'MMM y')
+                    : 'NIL' }}</div>
                 </div>
-
-
                 <div class="flx_div flx_baseline title">
                   <div class="key_edu">
                     <div class="value_withcheckbox">
@@ -369,16 +381,11 @@
                   </div>
                 </div>
               </div>
-              <div *ngIf="candidateData.experience_details.employments.length === 0">
-                <div class="value_ar">No experience details available</div>
-              </div>
             </div>
-
             <h2 class="head_title"> Articleship/Training Details</h2>
             <div class="brdr_btm_line pb-10"
               *ngFor="let employment of candidateData.experience_details.intern; let i = index">
               <h2 class="sub_heading">Articleship/Training {{i+1}}</h2>
-
               <div *ngIf="candidateData.experience_details.is_intern_status == true">
                 <div class="flx_div flx_center hidden_div title">
                   <div class="key">Employer Name</div>
@@ -397,13 +404,11 @@
                 </div>
                 <div class="flx_div flx_center hidden_div title">
                   <div class="key">Achievements/Responsibility/Tasks</div>
-                  <!-- <div class="value content_wrap">{{employment.work_responsiability}}</div> -->
                   <div class="value content_wrap" [title]="employment.work_responsiability">
                     {{ employment.work_responsiability }}
                   </div>
                 </div>
               </div>
-
               <div *ngIf="candidateData.experience_details.is_intern_status != true">
                 <div class="value_ar">No Articleship/Training Details Available</div>
               </div>
@@ -454,7 +459,6 @@
               <div class="value_ar">No project details available</div>
             </div>
           </div>
-
         </div>
 
         <div id="accomplishment" #accomplishmentSection class="inner_content">
@@ -486,13 +490,6 @@
                 <div class="key">Certification Validity to</div>
                 <div class="value content_wrap">{{certification.certificationValidityUpto| date : 'MMM y'}}</div>
               </div>
-
-              <!-- <div class="flx_div flx_baseline title">
-                <div class="key">This Certification does not expire</div>
-                <div class="value">
-                  {{certification.isexpire}}
-                </div>
-              </div> -->
               <div class="flx_div flx_baseline title">
                 <div class="key_edu">
                   <div class="value_withcheckbox">
@@ -524,10 +521,6 @@
               </div>
               <div class="flx_div flx_baseline title">
                 <div class="key">URL</div>
-                <!-- <div class="value content_wrap">{{journalentry.journalEntityUrl}}</div> -->
-                <!-- <div class="value content_wrap" [matTooltip]="journalentry.journalEntityUrl">
-                  {{ journalentry.journalEntityUrl }}
-                </div> -->
                 <div class="value content_wrap" [title]="journalentry.journalEntityUrl">
                   {{ journalentry.journalEntityUrl }}
                 </div>
@@ -549,7 +542,6 @@
                         && candidateData.accomplishment_details.journals.length === 0">
               <div class="value_ar">No accomplishment details available</div>
             </div>
-
           </div>
         </div>
       </div>
