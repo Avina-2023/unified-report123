@@ -19,7 +19,7 @@ import { ChangePasswordComponent } from './changePassword/changePassword.compone
 import { DetailsCardComponent } from './dashboard/details-card/details-card.component';
 import { ActionButtonsComponent } from '../drive/viewCandidateByDrive/actionButtons/actionButtons.component';
 import { CandidateDetailsCardComponent } from './dashboard/candidate-details-card/candidate-details-card.component';
-
+import { CandidateSearchComponent } from './candidate-search/candidate-search.component';
 @NgModule({
   declarations: [
     DashboardComponent,
@@ -32,7 +32,8 @@ import { CandidateDetailsCardComponent } from './dashboard/candidate-details-car
     ChangePasswordComponent,
     DetailsCardComponent,
     ActionButtonsComponent,
-    CandidateDetailsCardComponent
+    CandidateDetailsCardComponent,
+    CandidateSearchComponent
   ],
   imports: [
     CommonModule,

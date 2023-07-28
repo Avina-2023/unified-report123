@@ -124,9 +124,6 @@
       </div>
     </div>
 
-  
-
-
     <!-- <div class="overall_box" *ngIf="totallength!=0">
 
      <div class="card_flex" *ngFor="let item of joblist;let i=index"> 
@@ -217,26 +214,19 @@
     
   </div>  -->
 
-
     <div *ngIf="totallength==0">
       <app-no-data-found [from]="'find'"></app-no-data-found>
     </div>
 
-
   </div>
-
-
 
   <div class="filter" *ngIf="this.filter_info.data.length">
     <div class="fil_head">
       <p>
         <mat-icon class="misc_icon">filter_list</mat-icon><span class="job_designation">All Filters
           {{this.selectedValues.length ? '(' + this.selectedValues.length + ')' : ''}}</span>
-
         <span (click)="clearFilters(filter_info.data)" *ngIf="selectedValues.length" class="clear_filter">Clear
           All</span>
-
-
       </p>
       <div class="fil_output">
         <div class="checkedVal" *ngFor="let chkbox of selectedValues;let i = index">

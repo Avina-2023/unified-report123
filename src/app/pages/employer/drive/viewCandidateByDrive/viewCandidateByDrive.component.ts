@@ -83,6 +83,7 @@ export class ViewCandidateByDriveComponent implements OnInit {
   jobDetailsdata: any;
   jobdatata: any;
   valueone: any;
+  dynclass: string;
 
   constructor(
     private ApiService: ApiService,
@@ -140,664 +141,12 @@ export class ViewCandidateByDriveComponent implements OnInit {
 
   // Ag Grid Section
 
-  //   tabledata() {
-  //  console.log(this.tabledata,'tabledata');
-
-  //     this.columnDefs = [
-  //       {
-  //         headerName: 'S.No',
-  //         field: 'id',
-  //         minWidth: 85,
-  //         suppressColumnsToolPanel: true,
-  //         filter: false,
-  //         cellRenderer: function (params) {
-  //           return params.rowIndex + 1;
-  //         },
-  //         sortable: false,
-  //       },
-  //       {
-  //         headerName: 'Email',
-  //         field: 'email',
-  //         minWidth: 175,
-  //         filter: 'agTextColumnFilter',
-  //         chartDataType: 'category',
-  //         aggFunc: 'sum',
-  //         filterParams: {
-  //           suppressAndOrCondition: true,
-  //           filterOptions: ['contains'],
-  //         },
-  //         cellRenderer: (params) => {
-  //           if (
-  //             params.value &&
-  //             params.value != undefined &&
-  //             params.value != null &&
-  //             params.value != ''
-  //           ) {
-  //             this.FormateName = params.value;
-  //             return this.FormateName;
-  //           } else {
-  //             return '-';
-  //           }
-  //         },
-  //         tooltipField: 'email',
-  //       },
-  //       {
-  //         headerName: 'Student First Name',
-  //         field: 'studentName',
-  //         minWidth: 175,
-  //         filter: 'agTextColumnFilter',
-  //         chartDataType: 'category',
-  //         aggFunc: 'sum',
-  //         filterParams: {
-  //           suppressAndOrCondition: true,
-  //           filterOptions: ['contains'],
-  //         },
-  //         cellRenderer: (params) => {
-  //           if (
-  //             params.value &&
-  //             params.value != undefined &&
-  //             params.value != null &&
-  //             params.value != ''
-  //           ) {
-  //             this.FormateName = params.value;
-  //             return this.titleCase(this.FormateName);
-  //           } else {
-  //             return '-';
-  //           }
-  //         },
-  //         tooltipField: 'studentName',
-  //       },
-  //       {
-  //         headerName: 'Student Last Name',
-  //         field: 'studentLastName',
-  //         minWidth: 175,
-  //         filter: 'agTextColumnFilter',
-  //         chartDataType: 'category',
-  //         aggFunc: 'sum',
-  //         filterParams: {
-  //           suppressAndOrCondition: true,
-  //           filterOptions: ['contains'],
-  //         },
-  //         cellRenderer: (params) => {
-  //           if (
-  //             params.value &&
-  //             params.value != undefined &&
-  //             params.value != null &&
-  //             params.value != ''
-  //           ) {
-  //             this.FormateName = params.value;
-  //             return this.titleCase(this.FormateName);
-  //           } else {
-  //             return '-';
-  //           }
-  //         },
-  //         tooltipField: 'studentLastName',
-  //       },
-  //       {
-  //         headerName: 'Gender',
-  //         field: 'gender',
-  //         minWidth: 125,
-  //         filter: 'agTextColumnFilter',
-  //         chartDataType: 'category',
-  //         aggFunc: 'sum',
-  //         filterParams: {
-  //           suppressAndOrCondition: true,
-  //           filterOptions: ['contains'],
-  //         },
-  //         cellRenderer: (params) => {
-  //           if (
-  //             params.value &&
-  //             params.value != undefined &&
-  //             params.value != null &&
-  //             params.value != ''
-  //           ) {
-  //             this.FormateName = params.value;
-  //             return this.titleCase(this.FormateName);
-  //           } else {
-  //             return '-';
-  //           }
-  //         },
-  //         tooltipField: 'gender',
-  //       },
-  //       {
-  //         headerName: 'Institute',
-  //         field: 'collegeName',
-  //         minWidth: 180,
-  //         filter: 'agTextColumnFilter',
-  //         chartDataType: 'category',
-  //         aggFunc: 'sum',
-  //         filterParams: {
-  //           suppressAndOrCondition: true,
-  //           filterOptions: ['contains'],
-  //         },
-  //         cellRenderer: (params) => {
-  //           if (
-  //             params.value &&
-  //             params.value != undefined &&
-  //             params.value != null &&
-  //             params.value != ''
-  //           ) {
-  //             this.FormateName = params.value;
-  //             return this.FormateName;
-  //           } else {
-  //             return '-';
-  //           }
-  //         },
-  //         tooltipField: 'collegeName',
-  //       },
-  //       {
-  //         headerName: 'Level',
-  //         field: 'level',
-  //         minWidth: 175,
-  //         filter: 'agTextColumnFilter',
-  //         chartDataType: 'category',
-  //         aggFunc: 'sum',
-  //         filterParams: {
-  //           suppressAndOrCondition: true,
-  //           filterOptions: ['contains'],
-  //         },
-  //         cellRenderer: (params) => {
-  //           if (
-  //             params.value &&
-  //             params.value != undefined &&
-  //             params.value != null &&
-  //             params.value != ''
-  //           ) {
-  //             this.FormateName = params.value;
-  //             return this.FormateName;
-  //           } else {
-  //             return '-';
-  //           }
-  //         },
-  //         tooltipField: 'level',
-  //       },
-  //       {
-  //         headerName: 'Degree',
-  //         field: 'degree',
-  //         minWidth: 120,
-  //         filter: 'agTextColumnFilter',
-  //         chartDataType: 'category',
-  //         aggFunc: 'sum',
-  //         filterParams: {
-  //           suppressAndOrCondition: true,
-  //           filterOptions: ['contains'],
-  //         },
-  //         cellRenderer: (params) => {
-  //           if (
-  //             params.value &&
-  //             params.value != undefined &&
-  //             params.value != null &&
-  //             params.value != ''
-  //           ) {
-  //             return params.value;
-  //           } else {
-  //             return '-';
-  //           }
-  //         },
-  //         tooltipField: 'degree',
-  //       },
-  //       {
-  //         headerName: 'Department',
-  //         field: 'department',
-  //         minWidth: 180,
-  //         filter: 'agTextColumnFilter',
-  //         chartDataType: 'category',
-  //         aggFunc: 'sum',
-  //         filterParams: {
-  //           suppressAndOrCondition: true,
-  //           filterOptions: ['contains'],
-  //         },
-  //         cellRenderer: (params) => {
-  //           if (
-  //             params.value &&
-  //             params.value != undefined &&
-  //             params.value != null &&
-  //             params.value != ''
-  //           ) {
-  //             this.FormateName = params.value;
-  //             return this.titleCase(this.FormateName);
-  //           } else {
-  //             return '-';
-  //           }
-  //         },
-  //         tooltipField: 'department',
-  //       },
-  //       {
-  //         headerName: 'Year Of Passing',
-  //         field: 'yearOfPassing',
-  //         minWidth: 180,
-  //         filter: 'agNumberColumnFilter',
-  //         chartDataType: 'series',
-  //         filterParams: {
-  //           suppressAndOrCondition: true,
-  //           filterOptions: [
-  //             'equals',
-  //             'lessThan',
-  //             'lessThanOrEqual',
-  //             'greaterThan',
-  //             'greaterThanOrEqual',
-  //             'inRange',
-  //           ],
-  //         },
-  //         cellRenderer: (params) => {
-  //           if (
-  //             params.value &&
-  //             params.value != undefined &&
-  //             params.value != null &&
-  //             params.value != ''
-  //           ) {
-  //             return params.value;
-  //           } else {
-  //             return '-';
-  //           }
-  //         },
-  //         tooltipField: 'yearOfPassing',
-  //       },
-  //       {
-  //         headerName: 'Percentage',
-  //         field: 'percentage',
-  //         minWidth: 180,
-  //         filter: 'agNumberColumnFilter',
-  //         chartDataType: 'series',
-  //         filterParams: {
-  //           suppressAndOrCondition: true,
-  //           filterOptions: [
-  //             'equals',
-  //             'lessThan',
-  //             'lessThanOrEqual',
-  //             'greaterThan',
-  //             'greaterThanOrEqual',
-  //             'inRange',
-  //           ],
-  //         },
-  //         cellRenderer: (params) => {
-  //           if (
-  //             params.value &&
-  //             params.value != undefined &&
-  //             params.value != null &&
-  //             params.value != ''
-  //           ) {
-  //             return params.value;
-  //           } else {
-  //             return 0;
-  //           }
-  //         },
-  //         tooltipField: 'percentage',
-  //       },
-  //       {
-  //         headerName: 'Mobile No',
-  //         field: 'mobile',
-  //         minWidth: 175,
-  //         filter: 'agTextColumnFilter',
-  //         chartDataType: 'category',
-  //         aggFunc: 'sum',
-  //         filterParams: {
-  //           suppressAndOrCondition: true,
-  //           filterOptions: ['contains'],
-  //         },
-  //         cellRenderer: (params) => {
-  //           if (
-  //             params.value &&
-  //             params.value != undefined &&
-  //             params.value != null &&
-  //             params.value != ''
-  //           ) {
-  //             this.FormateName = params.value;
-  //             return this.FormateName;
-  //           } else {
-  //             return '-';
-  //           }
-  //         },
-  //         tooltipField: 'mobile',
-  //       },
-  //       {
-  //         headerName: 'Mother Tongue',
-  //         field: 'motherTongue',
-  //         minWidth: 175,
-  //         filter: 'agTextColumnFilter',
-  //         chartDataType: 'category',
-  //         aggFunc: 'sum',
-  //         filterParams: {
-  //           suppressAndOrCondition: true,
-  //           filterOptions: ['contains'],
-  //         },
-  //         cellRenderer: (params) => {
-  //           if (
-  //             params.value &&
-  //             params.value != undefined &&
-  //             params.value != null &&
-  //             params.value != ''
-  //           ) {
-  //             this.FormateName = params.value;
-  //             return this.titleCase(this.FormateName);
-  //           } else {
-  //             return '-';
-  //           }
-  //         },
-  //         tooltipField: 'motherTongue',
-  //       },
-  //       {
-  //         headerName: 'Permanent State',
-  //         field: 'permanentState',
-  //         minWidth: 175,
-  //         chartDataType: 'category',
-  //         aggFunc: 'sum',
-  //         hide: true,
-  //         filter: false,
-  //         suppressColumnsToolPanel: true,
-  //         cellRenderer: (params) => {
-  //           if (
-  //             params.value &&
-  //             params.value != undefined &&
-  //             params.value != null &&
-  //             params.value != ''
-  //           ) {
-  //             this.FormateName = params.value;
-  //             return this.titleCase(this.FormateName);
-  //           } else {
-  //             return '-';
-  //           }
-  //         },
-  //         tooltipField: 'permanentState',
-  //       },
-  //       {
-  //         headerName: 'Permanent City',
-  //         field: 'permanentCity',
-  //         minWidth: 175,
-  //         chartDataType: 'category',
-  //         aggFunc: 'sum',
-  //         hide: true,
-  //         filter: false,
-  //         suppressColumnsToolPanel: true,
-  //         cellRenderer: (params) => {
-  //           if (
-  //             params.value &&
-  //             params.value != undefined &&
-  //             params.value != null &&
-  //             params.value != ''
-  //           ) {
-  //             this.FormateName = params.value;
-  //             return this.titleCase(this.FormateName);
-  //           } else {
-  //             return '-';
-  //           }
-  //         },
-  //         tooltipField: 'permanentCity',
-  //       },
-  //       {
-  //         headerName: 'Present State',
-  //         field: 'presentState',
-  //         minWidth: 175,
-  //         chartDataType: 'category',
-  //         aggFunc: 'sum',
-  //         hide: true,
-  //         filter: false,
-  //         suppressColumnsToolPanel: true,
-  //         cellRenderer: (params) => {
-  //           if (
-  //             params.value &&
-  //             params.value != undefined &&
-  //             params.value != null &&
-  //             params.value != ''
-  //           ) {
-  //             this.FormateName = params.value;
-  //             return this.titleCase(this.FormateName);
-  //           } else {
-  //             return '-';
-  //           }
-  //         },
-  //         tooltipField: 'presentState',
-  //       },
-  //       {
-  //         headerName: 'Present City',
-  //         field: 'presentCity',
-  //         minWidth: 175,
-  //         chartDataType: 'category',
-  //         aggFunc: 'sum',
-  //         hide: true,
-  //         filter: false,
-  //         suppressColumnsToolPanel: true,
-  //         cellRenderer: (params) => {
-  //           if (
-  //             params.value &&
-  //             params.value != undefined &&
-  //             params.value != null &&
-  //             params.value != ''
-  //           ) {
-  //             this.FormateName = params.value;
-  //             return this.titleCase(this.FormateName);
-  //           } else {
-  //             return '-';
-  //           }
-  //         },
-  //         tooltipField: 'presentCity',
-  //       },
-  //     ];
-
-  //   //  this.columnDefs = [
-  //   //   {
-  //   //     headerName: 'S.No',
-  //   //     field: 'id',
-  //   //     minWidth: 85,
-  //   //     suppressColumnsToolPanel: true,
-  //   //     filter: false,
-  //   //     cellRenderer: function (params) {
-  //   //       return params.rowIndex + 1;
-  //   //     },
-  //   //     sortable: false,
-  //   //   },
-  //   //   {
-  //   //     headerName: 'Name',
-  //   //     field: 'email',
-  //   //     minWidth: 140,
-  //   //     filter: 'agTextColumnFilter',
-  //   //     chartDataType: 'category',
-  //   //     aggFunc: 'sum',
-  //   //     filterParams: {
-  //   //       suppressAndOrCondition: true,
-  //   //       filterOptions: ['contains'],
-  //   //     },
-  //   //     cellRenderer: (params) => {
-  //   //       if (
-  //   //         params.value &&
-  //   //         params.value != undefined &&
-  //   //         params.value != null &&
-  //   //         params.value != ''
-  //   //       ) {
-  //   //         this.FormateName = params.value;
-  //   //         return this.FormateName;
-  //   //       } else {
-  //   //         return '-';
-  //   //       }
-  //   //     },
-  //   //     tooltipField: 'email',
-  //   //   },
-  //   //   {
-  //   //     headerName: 'Status',
-  //   //     field: 'studentName',
-  //   //     minWidth: 145,
-  //   //     filter: 'agTextColumnFilter',
-  //   //     chartDataType: 'category',
-  //   //     aggFunc: 'sum',
-  //   //     filterParams: {
-  //   //       suppressAndOrCondition: true,
-  //   //       filterOptions: ['contains'],
-  //   //     },
-  //   //     cellRenderer: (params) => {
-  //   //       if (
-  //   //         params.value &&
-  //   //         params.value != undefined &&
-  //   //         params.value != null &&
-  //   //         params.value != ''
-  //   //       ) {
-  //   //         this.FormateName = params.value;
-  //   //         return this.titleCase(this.FormateName);
-  //   //       } else {
-  //   //         return '-';
-  //   //       }
-  //   //     },
-  //   //     tooltipField: 'studentName',
-  //   //   },
-  //   //   {
-  //   //     headerName: 'Qualification',
-  //   //     field: 'studentLastName',
-  //   //     minWidth: 175,
-  //   //     filter: 'agTextColumnFilter',
-  //   //     chartDataType: 'category',
-  //   //     aggFunc: 'sum',
-  //   //     filterParams: {
-  //   //       suppressAndOrCondition: true,
-  //   //       filterOptions: ['contains'],
-  //   //     },
-  //   //     cellRenderer: (params) => {
-  //   //       if (
-  //   //         params.value &&
-  //   //         params.value != undefined &&
-  //   //         params.value != null &&
-  //   //         params.value != ''
-  //   //       ) {
-  //   //         this.FormateName = params.value;
-  //   //         return this.titleCase(this.FormateName);
-  //   //       } else {
-  //   //         return '-';
-  //   //       }
-  //   //     },
-  //   //     tooltipField: 'studentLastName',
-  //   //   },
-  //   //   {
-  //   //     headerName: 'Year Of Passout',
-  //   //     field: 'gender',
-  //   //     minWidth: 195,
-  //   //     filter: 'agTextColumnFilter',
-  //   //     chartDataType: 'category',
-  //   //     aggFunc: 'sum',
-  //   //     filterParams: {
-  //   //       suppressAndOrCondition: true,
-  //   //       filterOptions: ['contains'],
-  //   //     },
-  //   //     cellRenderer: (params) => {
-  //   //       if (
-  //   //         params.value &&
-  //   //         params.value != undefined &&
-  //   //         params.value != null &&
-  //   //         params.value != ''
-  //   //       ) {
-  //   //         this.FormateName = params.value;
-  //   //         return this.titleCase(this.FormateName);
-  //   //       } else {
-  //   //         return '-';
-  //   //       }
-  //   //     },
-  //   //     tooltipField: 'gender',
-  //   //   },
-  //   //   {
-  //   //     headerName: 'Trained by L&T Edutech',
-  //   //     field: 'collegeName',
-  //   //     minWidth: 210,
-  //   //     filter: 'agTextColumnFilter',
-  //   //     chartDataType: 'category',
-  //   //     aggFunc: 'sum',
-  //   //     filterParams: {
-  //   //       suppressAndOrCondition: true,
-  //   //       filterOptions: ['contains'],
-  //   //     },
-  //   //     cellRenderer: (params) => {
-  //   //       if (
-  //   //         params.value &&
-  //   //         params.value != undefined &&
-  //   //         params.value != null &&
-  //   //         params.value != ''
-  //   //       ) {
-  //   //         this.FormateName = params.value;
-  //   //         return this.FormateName;
-  //   //       } else {
-  //   //         return '-';
-  //   //       }
-  //   //     },
-  //   //     tooltipField: 'collegeName',
-  //   //   },
-  //   //   {
-  //   //     headerName: 'Assessed by L&T Edutech',
-  //   //     field: 'level',
-  //   //     minWidth: 215,
-  //   //     filter: 'agTextColumnFilter',
-  //   //     chartDataType: 'category',
-  //   //     aggFunc: 'sum',
-  //   //     filterParams: {
-  //   //       suppressAndOrCondition: true,
-  //   //       filterOptions: ['contains'],
-  //   //     },
-  //   //     cellRenderer: (params) => {
-  //   //       if (
-  //   //         params.value &&
-  //   //         params.value != undefined &&
-  //   //         params.value != null &&
-  //   //         params.value != ''
-  //   //       ) {
-  //   //         this.FormateName = params.value;
-  //   //         return this.FormateName;
-  //   //       } else {
-  //   //         return '-';
-  //   //       }
-  //   //     },
-  //   //     tooltipField: 'level',
-  //   //   },
-  //   //   {
-  //   //     headerName: 'Applied Date',
-  //   //     field: 'degree',
-  //   //     minWidth: 160,
-  //   //     filter: 'agTextColumnFilter',
-  //   //     chartDataType: 'category',
-  //   //     aggFunc: 'sum',
-  //   //     filterParams: {
-  //   //       suppressAndOrCondition: true,
-  //   //       filterOptions: ['contains'],
-  //   //     },
-  //   //     cellRenderer: (params) => {
-  //   //       if (
-  //   //         params.value &&
-  //   //         params.value != undefined &&
-  //   //         params.value != null &&
-  //   //         params.value != ''
-  //   //       ) {
-  //   //         return params.value;
-  //   //       } else {
-  //   //         return '-';
-  //   //       }
-  //   //     },
-  //   //     tooltipField: 'degree',
-  //   //   },
-  //   //   {
-  //   //     headerName: 'Actions',
-  //   //     field: 'department',
-  //   //     minWidth: 170,
-  //   //     filter: 'agTextColumnFilter',
-  //   //     chartDataType: 'category',
-  //   //     aggFunc: 'sum',
-  //   //     filterParams: {
-  //   //       suppressAndOrCondition: true,
-  //   //       filterOptions: ['contains'],
-  //   //     },
-  //   //     cellRenderer: (params) => {
-  //   //       if (
-  //   //         params.value &&
-  //   //         params.value != undefined &&
-  //   //         params.value != null &&
-  //   //         params.value != ''
-  //   //       ) {
-  //   //         this.FormateName = params.value;
-  //   //         return this.titleCase(this.FormateName);
-  //   //       } else {
-  //   //         return '-';
-  //   //       }
-  //   //     },
-  //   //     tooltipField: 'department',
-  //   //   },
-  //   //  ];
-
-  //   }
-
+  // sendJobData(){
+  // this.sendData.sendMessage("jobData",this.jobData)
+  // console.log(this.jobData)
+  // }
   tabledata() {
+
     this.columnDefs = [
       {
         headerName: 'S.No',
@@ -848,11 +197,11 @@ export class ViewCandidateByDriveComponent implements OnInit {
           filterOptions: ['contains'],
         },
         cellClassRules: {
-          'yellow-cell': (params) => params.value === 'awaiting Review',
+         'yellow-cell': (params) => params.value === 'awaitingReview',
           'green-cell': (params) => params.value === 'Shortlisted',
           'red-cell': (params) => params.value === 'Rejected',
-          'blue-cell': (params) => params.value === 'In Progress',
-        },
+          'blue-cell': (params) => params.value === 'InProgress',
+       },
         cellRenderer: (params) => {
           if (
             params.value &&
@@ -868,13 +217,14 @@ export class ViewCandidateByDriveComponent implements OnInit {
         },
         tooltipField: 'jobStatus',
 
-        //   cellStyle: params => {
-        //     if (params.value === 'awaitingReview') {
-        //         return {borderRadius: '5px', color: '#fff', backgroundColor: 'green'};
-        //     }
-        //     return null;
-        // },
-      },
+       //   cellStyle: params => {
+       //     if (params.value === 'awaitingReview') {
+       //         return {borderRadius: '5px', color: '#fff', backgroundColor: 'green'};
+       //     }
+       //     return null;
+       // },
+
+      }, 
       {
         headerName: 'Qualification',
         field: 'degree',
@@ -901,66 +251,66 @@ export class ViewCandidateByDriveComponent implements OnInit {
         tooltipField: 'degree',
       },
       {
-        headerName: 'Year Of Passing',
-        field: 'yearOfPassing',
-        minWidth: 180,
-        filter: 'agNumberColumnFilter',
-        chartDataType: 'series',
-        filterParams: {
-          suppressAndOrCondition: true,
-          filterOptions: [
-            'equals',
-            'lessThan',
-            'lessThanOrEqual',
-            'greaterThan',
-            'greaterThanOrEqual',
-            'inRange',
-          ],
-        },
-        cellRenderer: (params) => {
-          if (
-            params.value &&
-            params.value != undefined &&
-            params.value != null &&
-            params.value != ''
-          ) {
-            return params.value;
-          } else {
-            return '-';
-          }
-        },
-        tooltipField: 'yearOfPassing',
+         headerName: 'Year Of Passing',
+         field: 'yearOfPassing',
+         minWidth: 180,
+         filter: 'agNumberColumnFilter',
+         chartDataType: 'series',
+         filterParams: {
+           suppressAndOrCondition: true,
+           filterOptions: [
+             'equals',
+             'lessThan',
+             'lessThanOrEqual',
+             'greaterThan',
+             'greaterThanOrEqual',
+             'inRange',
+           ],
+         },
+         cellRenderer: (params) => {
+           if (
+             params.value &&
+             params.value != undefined &&
+             params.value != null &&
+             params.value != ''
+           ) {
+             return params.value;
+           } else {
+             return '-';
+           }
+         },
+         tooltipField: 'yearOfPassing',
       },
       {
-        headerName: 'Trained by L&T EduTech',
-        field: 'trainedStatus',
-        minWidth: 200,
-        filter: 'agNumberColumnFilter',
-        chartDataType: 'series',
-        filterParams: {
-          suppressAndOrCondition: true,
-          filterOptions: [
-            'equals',
-            'lessThan',
-            'lessThanOrEqual',
-            'greaterThan',
-            'greaterThanOrEqual',
-            'inRange',
-          ],
-        },
-        cellRenderer: (params) => {
-          if (
-            params.value &&
-            params.value != undefined &&
-            params.value != null &&
-            params.value != ''
-          ) {
-            return params.value;
-          } else {
-            return '-';
-          }
-        },
-        tooltipField: 'trainedStatus',
+       headerName: 'Trained by L&T EduTech',
+       field: 'trainedStatus',
+       minWidth: 200,
+       filter: 'agNumberColumnFilter',
+       chartDataType: 'series',
+       filterParams: {
+         suppressAndOrCondition: true,
+         filterOptions: [
+           'equals',
+           'lessThan',
+           'lessThanOrEqual',
+           'greaterThan',
+           'greaterThanOrEqual',
+           'inRange',
+         ],
+       },
+       cellRenderer: (params) => {
+         if (
+           params.value &&
+           params.value != undefined &&
+           params.value != null &&
+           params.value != ''
+         ) {
+           return params.value;
+         } else {
+           return '-';
+         }
+       },
+       tooltipField: 'trainedStatus',
       },
       {
         headerName: 'Assessed by L&T EduTech',
@@ -993,40 +343,40 @@ export class ViewCandidateByDriveComponent implements OnInit {
         },
         tooltipField: 'assessedStatus',
       },
-      //  {
-      //    headerName: 'Applied Date',
-      //    field: 'appliedDate',
-      //    minWidth: 180,
-      //    valueFormatter: function (params) {
-      //    return moment(params.value).format('D-MM-yy');
-      //   },
-      //    filter: 'agNumberColumnFilter',
-      //    chartDataType: 'series',
-      //    filterParams: {
-      //      suppressAndOrCondition: true,
-      //      filterOptions: [
-      //        'equals',
-      //        'lessThan',
-      //        'lessThanOrEqual',
-      //        'greaterThan',
-      //        'greaterThanOrEqual',
-      //        'inRange',
-      //      ],
-      //    },
-      //    cellRenderer: (params) => {
-      //      if (
-      //        params.value &&
-      //        params.value != undefined &&
-      //        params.value != null &&
-      //        params.value != ''
-      //      ) {
-      //        return params.value;
-      //      } else {
-      //        return 0;
-      //      }
-      //    },
-      //    tooltipField: 'appliedDate',
-      //  },
+     //  {
+     //    headerName: 'Applied Date',
+     //    field: 'appliedDate',
+     //    minWidth: 180,
+     //    valueFormatter: function (params) {
+     //    return moment(params.value).format('D-MM-yy');
+     //   },
+     //    filter: 'agNumberColumnFilter',
+     //    chartDataType: 'series',
+     //    filterParams: {
+     //      suppressAndOrCondition: true,
+     //      filterOptions: [
+     //        'equals',
+     //        'lessThan',
+     //        'lessThanOrEqual',
+     //        'greaterThan',
+     //        'greaterThanOrEqual',
+     //        'inRange',
+     //      ],
+     //    },
+     //    cellRenderer: (params) => {
+     //      if (
+     //        params.value &&
+     //        params.value != undefined &&
+     //        params.value != null &&
+     //        params.value != ''
+     //      ) {
+     //        return params.value;
+     //      } else {
+     //        return 0;
+     //      }
+     //    },
+     //    tooltipField: 'appliedDate',
+     //  },
       {
         headerName: 'Applied Date',
         field: 'appliedDate',
@@ -1041,23 +391,21 @@ export class ViewCandidateByDriveComponent implements OnInit {
           suppressAndOrCondition: true,
           filterOptions: ['equals', 'lessThan', 'greaterThan', 'inRange'],
         },
-        tooltipField: 'appliedDate',
+         tooltipField: 'appliedDate',
       },
-      {
-        headerName: 'Actions',
-        field: '',
-        minWidth: 225,
-        cellRenderer: 'moreOptions',
-        //  onCellClicked: this.sendJobData(),
-        suppressColumnsToolPanel: true,
-        filter: false,
-      },
+      { 
+       headerName: 'Actions',
+       field: '',
+      minWidth: 225 ,
+      cellRenderer: 'moreOptions',
+     //  onCellClicked: this.sendJobData(),
+      suppressColumnsToolPanel: true,
+      filter: false,
+    }
+   
     ];
+   
   }
-  // sendJobData(){
-  // this.sendData.sendMessage("jobData",this.jobData)
-  // console.log(this.jobData)
-  // }
   exportCSV() {
     this.gridApi.exportDataAsCsv({
       columnKeys: [
@@ -1199,4 +547,23 @@ export class ViewCandidateByDriveComponent implements OnInit {
     this.jobDetailsdata = this.appconfig.getLocalStorage('currentJobData');
     this.valueone = JSON.parse(this.jobDetailsdata);
   }
+  onTabChange(index: number) {
+    var pall = ["navyblue","yellow","lightblue","red","green"]
+    console.log('Selected tab index:'  + index);
+    this.dynclass = pall[index]
+  }
+  onCellClicked(event: any): void {
+    if (event.colDef.field === 'studentName') {
+      this.router.navigate(['/auth/drive/viewCandidateProfilebyEmployer']);
+    }
+  }
 }
+
+
+
+
+
+
+
+
+

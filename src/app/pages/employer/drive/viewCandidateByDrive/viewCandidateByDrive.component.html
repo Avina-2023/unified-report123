@@ -40,7 +40,6 @@
     </div>
     <div class="job-details">
     <div class="heading">Job Status</div>
-
    <div class="act">
     <div><span class="icon-tick_mark_green"></span></div>
     <div class="val">{{valueone.status}}</div>
@@ -48,9 +47,9 @@
     </div>
     </mat-card>
     </div>
-
-    <div class="tableheader">
-      <mat-tab-group class="mattab">
+    
+    <div class="tableheader" [ngClass]="dynclass">
+      <mat-tab-group class="mattab" (selectedIndexChange)="onTabChange($event)">
         <mat-tab label="All"></mat-tab>
         <mat-tab label="Awaiting Review"></mat-tab>
         <mat-tab label="In Progress"></mat-tab>
@@ -78,8 +77,8 @@
   <div class="border">
     <div class="ag-grid">
       <ag-grid-angular style="width: 100%; height: 100%;" class="ag-theme-alpine" [gridOptions]="gridOptions"
-        [columnDefs]="columnDefs" [defaultColDef]="defaultColDef" [masterDetail]="masterDetail"
-        [overlayNoRowsTemplate]="overlayNoRowsTemplate" [rowData]="filteredRowData" [enableRangeSelection]="true"
+        [columnDefs]="columnDefs" [defaultColDef]="defaultColDef" (cellClicked)="onCellClicked($event)"
+        [masterDetail]="masterDetail" [overlayNoRowsTemplate]="overlayNoRowsTemplate" [rowData]="filteredRowData" [enableRangeSelection]="true"
         [tooltipShowDelay]="0" [animateRows]="true" headerHeight="45" rowHeight="45" [suppressRowClickSelection]="true"
         [suppressRowTransform]="true" [rowSelection]="rowSelection" [pivotPanelShow]="'always'" [sideBar]="false"
         (gridReady)="onGridReady($event)" [rowModelType]="rowModelType" [maintainColumnOrder]="true"
