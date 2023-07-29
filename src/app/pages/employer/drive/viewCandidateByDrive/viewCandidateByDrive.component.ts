@@ -17,12 +17,25 @@ import { MatTabChangeEvent } from '@angular/material/tabs/tab-group';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { ActionButtonsComponent } from './actionButtons/actionButtons.component';
 import { param } from 'jquery';
+interface Tab {
+  title: string;
+  items: string[]
+}
 @Component({
   selector: 'app-viewCandidateByDrive',
   templateUrl: './viewCandidateByDrive.component.html',
   styleUrls: ['./viewCandidateByDrive.component.scss'],
 })
 export class ViewCandidateByDriveComponent implements OnInit {
+
+  tabs: Tab[] = [
+    { title: 'All', items: ['Item 1', 'Item 2', 'Item 3'] },
+    {  title: 'Awaiting Review', items: ['Item 4', 'Item 5'] },
+    {  title: 'In Progress', items: ['Item 6', 'Item 7', 'Item 8', 'Item 9'] },
+    { title: 'Rejected', items: ['Item 6', 'Item 7', 'Item 8', 'Item 9'] },
+    { title: 'Shortlisted', items: ['Item 6', 'Item 7', 'Item 8', 'Item 9'] },
+  ];
+
   routerlink = APP_CONSTANTS.ENDPOINTS;
   columnDefs: any = [];
   data: any;
@@ -83,8 +96,9 @@ export class ViewCandidateByDriveComponent implements OnInit {
   jobDetailsdata: any;
   jobdatata: any;
   valueone: any;
-  dynclass: string;
-
+  dynclass: string = 'navyblue';
+  active: number = 0;
+icncolor:string ='#1B4E9B';
   constructor(
     private ApiService: ApiService,
     private toastr: ToastrService,
@@ -146,6 +160,7 @@ export class ViewCandidateByDriveComponent implements OnInit {
   // console.log(this.jobData)
   // }
   tabledata() {
+
     this.columnDefs = [
       {
         headerName: 'S.No',
@@ -157,7 +172,7 @@ export class ViewCandidateByDriveComponent implements OnInit {
           return params.rowIndex + 1;
         },
         sortable: false,
-      },
+      }, 
       {
         headerName: 'Name',
         field: 'studentName',
@@ -170,20 +185,31 @@ export class ViewCandidateByDriveComponent implements OnInit {
           filterOptions: ['contains'],
         },
         cellRenderer: (params) => {
-          if (
-            params.value &&
-            params.value != undefined &&
-            params.value != null &&
-            params.value != ''
-          ) {
+          if (params.value && params.value !== undefined 
+            && params.value !== null && params.value !== '') {
             this.FormateName = params.value;
             return this.titleCase(this.FormateName);
           } else {
             return '-';
           }
         },
-        tooltipField: 'studentName',
-      },
+        tooltipValueGetter: (params) => {
+          if (params.value && params.value !== undefined 
+            && params.value !== null && params.value !== '') {
+            this.FormateName = params.value;
+            return this.titleCase(this.FormateName);
+          } else {
+            return '-';
+          }
+        },
+        cellStyle: (params) => {
+          return {
+            'text-decoration': 'underline',
+            'color': 'blue', 
+            'cursor':'pointer',
+          };
+        },
+      },        
       {
         headerName: 'Status',
         field: 'jobStatus',
@@ -196,11 +222,11 @@ export class ViewCandidateByDriveComponent implements OnInit {
           filterOptions: ['contains'],
         },
         cellClassRules: {
-          'yellow-cell': (params) => params.value === 'awaitingReview',
+         'yellow-cell': (params) => params.value === 'awaitingReview',
           'green-cell': (params) => params.value === 'Shortlisted',
           'red-cell': (params) => params.value === 'Rejected',
-          'blue-cell': (params) => params.value === 'InProgress',
-        },
+          'blue-cell': (params) => params.value === 'In Progress',
+       },
         cellRenderer: (params) => {
           if (
             params.value &&
@@ -216,13 +242,14 @@ export class ViewCandidateByDriveComponent implements OnInit {
         },
         tooltipField: 'jobStatus',
 
-        //   cellStyle: params => {
-        //     if (params.value === 'awaitingReview') {
-        //         return {borderRadius: '5px', color: '#fff', backgroundColor: 'green'};
-        //     }
-        //     return null;
-        // },
-      },
+       //   cellStyle: params => {
+       //     if (params.value === 'awaitingReview') {
+       //         return {borderRadius: '5px', color: '#fff', backgroundColor: 'green'};
+       //     }
+       //     return null;
+       // },
+
+      }, 
       {
         headerName: 'Qualification',
         field: 'degree',
@@ -249,83 +276,71 @@ export class ViewCandidateByDriveComponent implements OnInit {
         tooltipField: 'degree',
       },
       {
-        headerName: 'Year Of Passing',
-        field: 'yearOfPassing',
-        minWidth: 180,
-        filter: 'agNumberColumnFilter',
-        chartDataType: 'series',
-        filterParams: {
-          suppressAndOrCondition: true,
-          filterOptions: [
-            'equals',
-            'lessThan',
-            'lessThanOrEqual',
-            'greaterThan',
-            'greaterThanOrEqual',
-            'inRange',
-          ],
-        },
-        cellRenderer: (params) => {
-          if (
-            params.value &&
-            params.value != undefined &&
-            params.value != null &&
-            params.value != ''
-          ) {
-            return params.value;
-          } else {
-            return '-';
-          }
-        },
-        tooltipField: 'yearOfPassing',
+         headerName: 'Year of Passout',
+         field: 'yearOfPassing',
+         minWidth: 180,
+         filter: 'agNumberColumnFilter',
+         chartDataType: 'series',
+         filterParams: {
+           suppressAndOrCondition: true,
+           filterOptions: [
+             'equals',
+             'lessThan',
+             'lessThanOrEqual',
+             'greaterThan',
+             'greaterThanOrEqual',
+             'inRange',
+           ],
+         },
+         cellRenderer: (params) => {
+           if (
+             params.value &&
+             params.value != undefined &&
+             params.value != null &&
+             params.value != ''
+           ) {
+             return params.value;
+           } else {
+             return '-';
+           }
+         },
+         tooltipField: 'yearOfPassing',
       },
       {
-        headerName: 'Trained by L&T EduTech',
-        field: 'trainedStatus',
-        minWidth: 200,
-        filter: 'agNumberColumnFilter',
-        chartDataType: 'series',
-        filterParams: {
-          suppressAndOrCondition: true,
-          filterOptions: [
-            'equals',
-            'lessThan',
-            'lessThanOrEqual',
-            'greaterThan',
-            'greaterThanOrEqual',
-            'inRange',
-          ],
-        },
-        cellRenderer: (params) => {
-          if (
-            params.value &&
-            params.value != undefined &&
-            params.value != null &&
-            params.value != ''
-          ) {
-            return params.value;
-          } else {
-            return '-';
-          }
-        },
-        tooltipField: 'trainedStatus',
+       headerName: 'Trained by L&T EduTech',
+       field: 'trainedStatus',
+       minWidth: 200,
+       filter: 'agTextColumnFilter',
+       chartDataType: 'category',
+       aggFunc: 'sum',
+       filterParams: {
+         suppressAndOrCondition: true,
+         filterOptions: ['contains'],
+       },
+       cellRenderer: (params) => {
+         if (
+           params.value &&
+           params.value != undefined &&
+           params.value != null &&
+           params.value != ''
+         ) {
+           return params.value;
+         } else {
+           return '-';
+         }
+       },
+       tooltipField: 'trainedStatus',
       },
       {
         headerName: 'Assessed by L&T EduTech',
         field: 'assessedStatus',
         minWidth: 210,
-        filter: 'agNumberColumnFilter',
-        chartDataType: 'series',
+        filter: 'agTextColumnFilter',
+        chartDataType: 'category',
+        aggFunc: 'sum',
         filterParams: {
           suppressAndOrCondition: true,
-          filterOptions: [
-            'equals',
-            'lessThan',
-            'lessThanOrEqual',
-            'greaterThan',
-            'greaterThanOrEqual',
-            'inRange',
-          ],
+          filterOptions: ['contains' ],
         },
         cellRenderer: (params) => {
           if (
@@ -341,47 +356,15 @@ export class ViewCandidateByDriveComponent implements OnInit {
         },
         tooltipField: 'assessedStatus',
       },
-      //  {
-      //    headerName: 'Applied Date',
-      //    field: 'appliedDate',
-      //    minWidth: 180,
-      //    valueFormatter: function (params) {
-      //    return moment(params.value).format('D-MM-yy');
-      //   },
-      //    filter: 'agNumberColumnFilter',
-      //    chartDataType: 'series',
-      //    filterParams: {
-      //      suppressAndOrCondition: true,
-      //      filterOptions: [
-      //        'equals',
-      //        'lessThan',
-      //        'lessThanOrEqual',
-      //        'greaterThan',
-      //        'greaterThanOrEqual',
-      //        'inRange',
-      //      ],
-      //    },
-      //    cellRenderer: (params) => {
-      //      if (
-      //        params.value &&
-      //        params.value != undefined &&
-      //        params.value != null &&
-      //        params.value != ''
-      //      ) {
-      //        return params.value;
-      //      } else {
-      //        return 0;
-      //      }
-      //    },
-      //    tooltipField: 'appliedDate',
-      //  },
       {
         headerName: 'Applied Date',
         field: 'appliedDate',
         minWidth: 175,
-        // maxWidth: 170,
         valueFormatter: function (params) {
           return moment(params.value).format('DD-MM-yy');
+        },
+        tooltipValueGetter: function (params) {
+          return moment(params.value).format('DD-MM-yy').toString();
         },
         filter: 'agDateColumnFilter',
         chartDataType: 'series',
@@ -389,18 +372,21 @@ export class ViewCandidateByDriveComponent implements OnInit {
           suppressAndOrCondition: true,
           filterOptions: ['equals', 'lessThan', 'greaterThan', 'inRange'],
         },
-        //  tooltipField: 'appliedDate ',
+        // tooltipField: 'appliedDate',
       },
-      {
-        headerName: 'Actions',
-        field: '',
-        minWidth: 225,
-        cellRenderer: 'moreOptions',
-        //  onCellClicked: this.sendJobData(),
-        suppressColumnsToolPanel: true,
-        filter: false,
-      },
+      
+      { 
+       headerName: 'Actions',
+       field: '',
+      minWidth: 225 ,
+      cellRenderer: 'moreOptions',
+     //  onCellClicked: this.sendJobData(),
+      suppressColumnsToolPanel: true,
+      filter: false,
+    }
+   
     ];
+   
   }
   exportCSV() {
     this.gridApi.exportDataAsCsv({
@@ -544,9 +530,13 @@ export class ViewCandidateByDriveComponent implements OnInit {
     this.valueone = JSON.parse(this.jobDetailsdata);
   }
   onTabChange(index: number) {
-    var pall = ['navyblue', 'yellow', 'lightblue', 'red', 'green'];
+    const pall = ['navyblue', 'yellow', 'lightblue', 'red', 'green'];
+    const icn = ['#1B4E9B', '#FFB74D', '#27BBEE', '#EF2917', ' #49AE31'];
     console.log('Selected tab index:' + index);
     this.dynclass = pall[index];
+    this.icncolor = icn[index];
+    this.active = index;
+    
   }
   onCellClicked(event: any): void {
     if (event.colDef.field === 'studentName') {

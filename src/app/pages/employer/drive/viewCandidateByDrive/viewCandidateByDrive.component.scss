@@ -280,7 +280,17 @@ justify-content: space-between;
 .tableheader{
   padding: 10px 30px 0px 23px;
   .mattab{
-  background-color: #ffffff
+  background-color: #ffffff;
+  }
+  .tab-name{
+    padding-right: 4px;
+  }
+  .tab-count{
+    padding: 1px 12px 1px 12px;
+    margin: 3px;
+    border-radius: 7px;
+    color: #ffffff;
+    background-color: #848484;
   }
   .num {
     display: flex;
