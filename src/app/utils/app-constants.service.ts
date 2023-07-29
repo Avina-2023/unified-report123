@@ -92,6 +92,7 @@ export const APP_CONSTANTS = {
       HOME: '/auth/dashboard',
       PROFILE: '/auth/dashboard/profile',
       CHANGEPWD: '/auth/dashboard/changePwd',
+      CANDIDATESEARCH: '/auth/dashboard/candidatesearch'
     },
     EMPJOBS: {
       REQUIRMENT: 'auth/jobrequirment',
@@ -184,6 +185,7 @@ export const APP_CONSTANTS = {
       POSTREQUIRMENT: 'postrequirment',
       REQUIRMENT: 'jobrequirment',
       // REQUIRMENT:'jobrequirment'
+      CANDIDATESEARCH: 'candidatesearch'
     },
   },
 };

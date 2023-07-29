@@ -55,8 +55,8 @@ export class JobListingComponent implements OnInit {
 	constructor(public dialog: MatDialog, private apiservice: ApiService, private appconfig: AppConfigService, public router:Router,private toaster: ToastrService) { }
 
 	ngOnInit() {
-		this.getJobList();
-		this.getJobFilter();
+	this.getJobList();
+	this.getJobFilter();
 	this.candidateData();
 	this.enabledisable();
 	}
@@ -187,45 +187,34 @@ export class JobListingComponent implements OnInit {
 
 
 	filterRemoval(data, filterKey) {
-
 		if ((this.filterObj.hasOwnProperty(filterKey)) && (this.filterObj[filterKey].includes(data.name))) {
 			if (this.filterObj[filterKey].length > 1) {
 				this.filterObj[filterKey] = this.filterObj[filterKey].filter(item => item != data.name);
-
 			}
 			else {
 				delete this.filterObj[filterKey];
-
-
 			}
 		}
 	}
 
 	checkboxChecked(event, data, filterKey, from?: any) {
-
 		if (event?.checked) {
 			data.is_checked = true
 			data.key = filterKey;
 			this.selectedValues.push(data);
 			//console.log(this.selectedValues);
 			// this.getJobList();
-
 			if (this.filterObj.hasOwnProperty(filterKey)) {
 				this.filterObj[filterKey].push(data.name);
 				//console.log(this.filterObj[filterKey]);
 				// console.log('if');
 				// console.log(this.filterObj);
-
-
 			}
 			else {
 				this.filterObj[filterKey] = [data.name];
 				// console.log('else');
 				// console.log(this.filterObj);
-
-
 			}
-
 		}
 		else {
 			data.is_checked = false;

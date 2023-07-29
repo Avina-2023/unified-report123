@@ -31,27 +31,22 @@
         </div>
         <br>
         <div class="value" *ngIf="candidateStatus.trainedStatus=='Yes'"> <i class="flag_lnt icon-bookmark col1">
-          </i>Trained by L&T EduTech
+          </i><span class="boldcandidate">Trained by L&T EduTech</span>
         </div>
         <div class="value" *ngIf="candidateStatus.assessedStatus=='Yes'"><i class="flag_lnt icon-bookmark col2">
-          </i>Assessed by L&T EduTech
+          </i><span class="boldcandidate">Assessed by L&T EduTech</span>
         </div>
       </div>
     </div>
     <div class="card_two">
-      <!-- <img class="icons_left_right" src="../../../../../assets/images/arrow_back_ios_FILL0_wght400_GRAD0_opsz48.svg"
-        (click)="scrollTo('left')">
 
-      <img class="icons_left_right" src="../../../../../assets/images/arrow_forward_ios_FILL0_wght400_GRAD0_opsz48.svg"
-        (click)="scrollTo('right')"> -->
       <div class="details_header flx_div flx_center card_sticky" #headerRef>
-
         <div class="overall-detail" *ngFor="let detail of details" [class.active]="activeSection === detail.sectionId"
           (click)="scrollToSection(detail.sectionId)">
-          {{ detail.label }}
+          <span [ngClass]="{ 'blue-text': activeSection === detail.sectionId }">{{ detail.label }}</span>
         </div>
-
       </div>
+
 
       <div class="content">
         <div id="personal" #personalSection class="inner_content">
@@ -75,7 +70,7 @@
             </div>
             <div class="flx_div flx_center hidden_div title">
               <div class="key">Date of Birth (as per X Std Certificate)</div>
-              <div class="value content_wrap">{{candidateData.personal_details.dob| date : 'dd/MM/yyyy'}}</div>
+              <div class="value content_wrap">{{candidateData.personal_details.dob| date : 'dd-MM-yyyy'}}</div>
             </div>
             <div class="flx_div flx_center hidden_div title">
               <div class="key">Marital Status</div>
@@ -143,7 +138,7 @@
               <h2 class="head_title"> Contact Details </h2>
               <div class="brdr_btm_line pb-10">
                 <h2 class="sub_heading ">Present Address</h2>
-                <div class="flx_div flx_baseline title">
+                <!-- <div class="flx_div flx_baseline title">
                   <div class="key">Present Address</div>
                   <div class="value">
                     {{candidateData.contact_details.present_line_street_addres}},
@@ -153,11 +148,25 @@
                     {{ form_present_state?form_present_state:'NA' }}
                     {{candidateData.contact_details.present_zip}}
                   </div>
+                </div> -->
+                <div class="flx_div flx_baseline title">
+                  <div class="key">Present Address</div>
+                  <div class="value" id="presentAddress">
+                    {{candidateData.contact_details.present_line_street_addres}}
+                    {{candidateData.contact_details.present_line2_street_addre ? ', ' +
+                    candidateData.contact_details.present_line2_street_addre : ''}}
+                    {{candidateData.contact_details.present_address_line_3 ? ', ' +
+                    candidateData.contact_details.present_address_line_3
+                    : ''}},
+                    {{form_present_city ? ', ' + form_present_city : 'NA'}}
+                    {{form_present_state ? ', ' + form_present_state : 'NA'}},
+                    {{candidateData.contact_details.present_zip}}
+                  </div>
                 </div>
               </div>
               <div>
                 <h2 class="sub_heading  pt-10">Permanent Address</h2>
-                <div class="flx_div flx_baseline title">
+                <!-- <div class="flx_div flx_baseline title">
                   <div class="key">Permanent Address</div>
                   <div class="value">{{candidateData.contact_details.permanent_line1_street_add}},
                     {{candidateData.contact_details.permanent_line2_street_add}},
@@ -165,6 +174,22 @@
                     {{candidateData.contact_details.permanent_city}},
                     {{candidateData.contact_details.permanent_state}},
                     {{candidateData.contact_details.permanent_zip}} </div>
+                </div> -->
+                <div class="flx_div flx_baseline title">
+                  <div class="key">Permanent Address</div>
+                  <div class="value" id="permanentAddress">
+                    {{candidateData.contact_details.permanent_line1_street_add}}
+                    {{candidateData.contact_details.permanent_line2_street_add ? ', ' +
+                    candidateData.contact_details.permanent_line2_street_add : ''}}
+                    {{candidateData.contact_details.permanent_address_line_3 ? ', ' +
+                    candidateData.contact_details.permanent_address_line_3 : ''}}
+                    {{candidateData.contact_details.permanent_city ? ', ' + candidateData.contact_details.permanent_city
+                    : ''}}
+                    {{candidateData.contact_details.permanent_state ? ', ' +
+                    candidateData.contact_details.permanent_state : ''}}
+                    {{candidateData.contact_details.permanent_zip ? ', ' + candidateData.contact_details.permanent_zip :
+                    ''}}
+                  </div>
                 </div>
               </div>
               <!-- <div *ngIf="candidateData.contact_details.is_sameas_presentaddr">
@@ -191,15 +216,27 @@
                     {{ candidates.level }} /
                   </ng-container>
                   <ng-container *ngIf="candidates.level !== 'HSC' && candidates.level !== 'SSLC'; else otherLevels">
-
                   </ng-container>
                   <ng-template #otherLevels>
                     {{ candidates.level === 'SSLC' ? 'Class X' : (candidates.level === 'HSC' ? 'Class XII' :
                     candidates.specification)
                     }}
                   </ng-template>
-                  {{ candidates.specification }} {{ candidates.discipline }} ({{ candidates.board_university }}),<br>
-                  {{ candidates.institute }}
+                  <!-- {{ candidates.specification }} {{ candidates.discipline }} - {{ candidates.board_university ? '(' +
+                  candidates.board_university + ')' + ',' : '' }}<br>
+                  {{ candidates.institute }}, -->
+                  {{ candidates.specification }} {{ candidates.discipline }} -{{ candidates.board_university ? '(' +
+                  candidates.board_university + ')' + ',' : '' }}
+
+                  <ng-container *ngIf="candidates.institute === 'Others'">
+                    <br>
+                    {{ candidates.other_collegename }},
+                  </ng-container>
+
+                  <ng-container *ngIf="candidates.institute !== 'Others'">
+                    <br>
+                    {{ candidates.institute }}
+                  </ng-container>
                 </div>
               </div>
               <div class="edu_start_end">{{candidates.start_date| date : 'MMM y'}}-{{candidates.end_date| date : 'MMM
@@ -222,12 +259,7 @@
                   {{candidates.gap}}
                 </div>
               </div> -->
-              <div class="flx_div flx_baseline title">
-                <div class="key">Do you have any gap during the education?</div>
-                <div class="value">
-                  {{candidates.gap === 'false' ? 'No' : 'Yes'}}
-                </div>
-              </div>
+
               <!-- <div class="flx_div flx_baseline title">
                 <div class="key">Do you have any gap during the education?</div>
                 <div class="value">
@@ -242,16 +274,21 @@
               </div>
 
               <div class="flx_div flx_baseline title">
-                <div class="key">No of Backlogs?</div>
+                <div class="key">No. of Active Backlogs (if any)</div>
                 <div class="value">
                   {{candidates.noActivebacklog}}
                 </div>
               </div>
-
               <div class="flx_div flx_baseline title">
-                <div class="key">Reason for Gap?</div>
+                <div class="key">Do you have any gap during the education?</div>
                 <div class="value">
-                  {{candidates.reasonForbacklog ? candidates.reasonForbacklog : 'Nil'}}
+                  {{candidates.gap === 'false' ? 'No' : 'Yes'}}
+                </div>
+              </div>
+              <div class="flx_div flx_baseline title">
+                <div class="key">Reason for the Gap</div>
+                <div class="value">
+                  {{candidates.reasonForbacklog ? candidates.reasonForbacklog : 'NIL'}}
                   <!-- {{candidates.reasonForbacklog}} -->
                 </div>
               </div>
@@ -272,24 +309,24 @@
         <div id="work-experience" #workExperienceSection class="inner_content">
           <div class="profile_details pd-20">
             <h2 class="head_title"> Work Experience Details </h2>
-            <!-- <div class="profile_details pd-20 ">
-              <h2 class="sub_heading">Total Experience </h2>
-              <div class="flx_div experience">
-                {{ candidateData.experience_details.work_details.total_exp_years }}Years
-                {{ candidateData.experience_details.work_details.total_exp_months }}Months
-              </div>
-            </div> -->
+
             <div class="profile_details_exp pd-20">
               <div class="key_totalexp">Total Experience</div>
-              <div class=" experience">
-                <div class="experience-box">
-                  {{ candidateData.experience_details.work_details.total_exp_years }}</div> <span
-                  class="value_2">Years</span>
-                <div class="experience-box">
-                  {{ candidateData.experience_details.work_details.total_exp_months }}</div> <span
-                  class="value_2">Months</span>
+              <div class="experience">
+                <div class="experience-box"
+                  *ngIf="candidateData.experience_details.work_details.total_exp_years || candidateData.experience_details.work_details.total_exp_months">
+                  {{ candidateData.experience_details.work_details.total_exp_years }}</div>
+                <span class="value_2" *ngIf="candidateData.experience_details.work_details.total_exp_years">Years</span>
+                <div class="experience-box" *ngIf="candidateData.experience_details.work_details.total_exp_months">
+                  {{ candidateData.experience_details.work_details.total_exp_months }}</div>
+                <span class="value_2"
+                  *ngIf="candidateData.experience_details.work_details.total_exp_months">Months</span>
+                <span class="no-experience"
+                  *ngIf="!candidateData.experience_details.work_details.total_exp_years && !candidateData.experience_details.work_details.total_exp_months">No
+                  Experience</span>
               </div>
             </div>
+
             <div class="profile_details pd-20">
               <h2 class="head_title_skills">Skills </h2>
               <div class="flx_div skills">
@@ -299,56 +336,61 @@
             <h2 class="head_title"> Professional Experience </h2>
             <div class="brdr_btm_line pb-10"
               *ngFor="let employment of candidateData.experience_details.employments; let i = index">
-              <h2 class="sub_heading">Employment{{i+1}}</h2>
-              <div class="flx_div flx_center hidden_div title">
-                <div class="key">Employer Name</div>
-                <div class="value content_wrap">{{employment.employment_name_address}}</div>
-              </div>
-              <div class="flx_div flx_center hidden_div title">
-                <div class="key">Position Held</div>
-                <div class="value content_wrap">{{employment.postion_field}}</div>
-              </div>
-              <div class="flx_div flx_center hidden_div title">
-                <div class="key">Achievements/Responsibility/Tasks</div>
-                <div class="value content_wrap">{{employment.achievement}}</div>
-              </div>
-              <div class="flx_div flx_center hidden_div title">
-                <div class="key">Duration From</div>
-                <div class="value content_wrap">{{employment.duration_from| date : 'MMM y'}}</div>
-              </div>
-              <div class="flx_div flx_center hidden_div title" *ngIf="!employment.is_working_here">
-                <div class="key">Duration To</div>
-                <div class="value content_wrap">{{employment.duration_to| date : 'MMM y'}}</div>
-              </div>
-
-              <!-- <div class="flx_div flx_baseline title">
-                <div class="key">I am Currently working here</div>
-                <div class="value">
-                  {{employment.is_working_here}}
+              <h2 class="sub_heading">Employment {{i+1}}</h2>
+              <div>
+                <div class="flx_div flx_center hidden_div title">
+                  <div class="key">Employer Name</div>
+                  <div class="value content_wrap">
+                    {{ employment.employment_name_address || 'NIL' }}
+                  </div>
                 </div>
-              </div> -->
-              <div class="flx_div flx_baseline title">
-                <div class="key_edu">
-                  <div class="value_withcheckbox">
-                    <label *ngIf="employment.is_working_here">
-                      <input type="checkbox" [checked]="employment.is_working_here" disabled />
-                      I am Currently working here
-                    </label>
+
+                <div class="flx_div flx_center hidden_div title">
+                  <div class="key">Position Held</div>
+                  <div class="value content_wrap">{{ employment.postion_field ? employment.postion_field : 'NIL' }}
+                  </div>
+                </div>
+                <div class="flx_div flx_center hidden_div title">
+                  <div class="key">Achievements/Responsibility/Tasks</div>
+
+                  <div class="value content_wrap" [title]="employment.achievement">
+                    {{ employment.achievement ? employment.achievement : 'NIL' }}
+                  </div>
+
+                </div>
+
+                <div class="flx_div flx_center hidden_div title">
+                  <div class="key">Duration From</div>
+                  <div class="value content_wrap">{{ employment.duration_from ? (employment.duration_from | date : 'MMM
+                    y') : 'NIL' }}
+                  </div>
+                </div>
+                <div class="flx_div flx_center hidden_div title" *ngIf="!employment.is_working_here">
+                  <div class="key">Duration To</div>
+                  <div class="value content_wrap">{{ employment.duration_to ? (employment.duration_to | date : 'MMM y')
+                    : 'NIL' }}</div>
+                </div>
+                <div class="flx_div flx_baseline title">
+                  <div class="key_edu">
+                    <div class="value_withcheckbox">
+                      <label *ngIf="employment.is_working_here">
+                        <input type="checkbox" [checked]="employment.is_working_here" disabled />
+                        I am Currently working here
+                      </label>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-
             <h2 class="head_title"> Articleship/Training Details</h2>
             <div class="brdr_btm_line pb-10"
               *ngFor="let employment of candidateData.experience_details.intern; let i = index">
-              <h2 class="sub_heading">Articleship/Training{{i+1}}</h2>
-
+              <h2 class="sub_heading">Articleship/Training {{i+1}}</h2>
               <div *ngIf="candidateData.experience_details.is_intern_status == true">
                 <div class="flx_div flx_center hidden_div title">
                   <div class="key">Employer Name</div>
                   <div class="value content_wrap">
-                    <!-- {{employment.employer_name ? employment.employer_name : 'Nill'}} -->
+                    <!-- {{employment.employer_name ? employment.employer_name : 'NIL'}} -->
                     {{employment.employer_name}}
                   </div>
                 </div>
@@ -362,10 +404,11 @@
                 </div>
                 <div class="flx_div flx_center hidden_div title">
                   <div class="key">Achievements/Responsibility/Tasks</div>
-                  <div class="value content_wrap">{{employment.work_responsiability}}</div>
+                  <div class="value content_wrap" [title]="employment.work_responsiability">
+                    {{ employment.work_responsiability }}
+                  </div>
                 </div>
               </div>
-
               <div *ngIf="candidateData.experience_details.is_intern_status != true">
                 <div class="value_ar">No Articleship/Training Details Available</div>
               </div>
@@ -405,8 +448,15 @@
               </div>
               <div class="flx_div flx_center hidden_div title">
                 <div class="key">Description</div>
-                <div class="value content_wrap">{{project.projectDescription}}</div>
+                <!-- <div class="value content_wrap">{{project.projectDescription}}</div> -->
+                <div class="value content_wrap" [title]="project.projectDescription">
+                  {{ project.projectDescription }}
+                </div>
               </div>
+
+            </div>
+            <div *ngIf="candidateData.project_details.projects.length === 0">
+              <div class="value_ar">No project details available</div>
             </div>
           </div>
         </div>
@@ -425,9 +475,12 @@
                 <div class="key">Issued From</div>
                 <div class="value content_wrap">{{certification.certificationIssuedFrom}}</div>
               </div>
+
               <div class="flx_div flx_baseline title">
                 <div class="key">Description</div>
-                <div class="value content_wrap">{{certification.certificationDescription}}</div>
+                <div class="value content_wrap" [title]="certification.certificationDescription">
+                  {{ certification.certificationDescription ? certification.certificationDescription : 'NIL' }}
+                </div>
               </div>
               <div class="flx_div flx_baseline title">
                 <div class="key">Certification Validity from</div>
@@ -437,13 +490,6 @@
                 <div class="key">Certification Validity to</div>
                 <div class="value content_wrap">{{certification.certificationValidityUpto| date : 'MMM y'}}</div>
               </div>
-
-              <!-- <div class="flx_div flx_baseline title">
-                <div class="key">This Certification does not expire</div>
-                <div class="value">
-                  {{certification.isexpire}}
-                </div>
-              </div> -->
               <div class="flx_div flx_baseline title">
                 <div class="key_edu">
                   <div class="value_withcheckbox">
@@ -456,7 +502,7 @@
             </div>
             <div class="brdr_btm_line pb-10"
               *ngFor="let awards of candidateData.accomplishment_details.awards; let i = index">
-              <h2 class="sub_heading">Awards{{i+1}}</h2>
+              <h2 class="sub_heading">Awards {{i+1}}</h2>
               <div class="flx_div flx_baseline title">
                 <div class="key">Award Title</div>
                 <div class="value content_wrap">{{awards.awardTitle}}</div>
@@ -475,10 +521,6 @@
               </div>
               <div class="flx_div flx_baseline title">
                 <div class="key">URL</div>
-                <!-- <div class="value content_wrap">{{journalentry.journalEntityUrl}}</div> -->
-                <!-- <div class="value content_wrap" [matTooltip]="journalentry.journalEntityUrl">
-                  {{ journalentry.journalEntityUrl }}
-                </div> -->
                 <div class="value content_wrap" [title]="journalentry.journalEntityUrl">
                   {{ journalentry.journalEntityUrl }}
                 </div>
@@ -489,8 +531,16 @@
               </div>
               <div class="flx_div flx_baseline title">
                 <div class="key">Description</div>
-                <div class="value content_wrap">{{journalentry.journalEntityDescription}}</div>
+                <div class="value content_wrap" [title]="journalentry.journalEntityDescription">
+                  {{ journalentry.journalEntityDescription ? journalentry.journalEntityDescription : 'NIL' }}
+                </div>
               </div>
+
+            </div>
+            <div *ngIf="candidateData.accomplishment_details.certifications.length === 0
+                        && candidateData.accomplishment_details.awards.length === 0
+                        && candidateData.accomplishment_details.journals.length === 0">
+              <div class="value_ar">No accomplishment details available</div>
             </div>
           </div>
         </div>
@@ -520,11 +570,11 @@
             <ng-container *ngIf="candidateStatus.jobStatus === 'Rejected'">
               <img src="../../../../../assets/images/rejected red filled.svg" alt="Rejected" class="status_icon">
             </ng-container>
-            <ng-container *ngIf="candidateStatus.jobStatus === 'InProgress'">
-              <img src="../../../../../assets/images/blue tick rounded.svg" alt="InProgress" class="status_icon">
+            <ng-container *ngIf="candidateStatus.jobStatus === 'In Progress'">
+              <img src="../../../../../assets/images/blue tick rounded.svg" alt="In Progress" class="status_icon">
             </ng-container>
-            <ng-container *ngIf="candidateStatus.jobStatus === 'awaitingReview'">
-              <img src="../../../../../assets/images/orange awating review.svg" alt="awaitingReview"
+            <ng-container *ngIf="candidateStatus.jobStatus === 'awaiting Review'">
+              <img src="../../../../../assets/images/orange awating review.svg" alt="awaiting Review"
                 class="status_icon">
             </ng-container>
             {{candidateStatus.jobStatus}}
@@ -547,13 +597,13 @@
           <img class="warning_icon" src="../../../../../assets/images/alert image filled.svg">
         </div>
         <div class="text">
-          Are you sure you want to shortlist the candidate? </div>
+          Are you sure you want to<span class="boldcandidate"> shortlist</span> the candidate? </div>
         <div class="button-wrapper-form-pop-up">
           <button class="b1" (click)="confirmDialog('Shortlisted')" type="button" mat-raised-button>
-            confirm
+            Confirm
           </button>
           <button class="b3" (click)="closeDialog('cancel')" type="button" mat-raised-button>
-            cancel
+            Cancel
           </button>
         </div>
       </div>
@@ -584,13 +634,13 @@
 
       </div>
       <div class="text">
-        Are you sure you want to reject the candidate? </div>
+        Are you sure you want to <span class="boldcandidate">reject</span> the candidate? </div>
       <div class="button-wrapper-form-pop-up">
         <button class="b1" (click)="confirmrejectDialog('Rejected')" type="button" mat-raised-button>
-          confirm
+          Confirm
         </button>
         <button class="b3" (click)="closeDialog('cancel')" type="button" mat-raised-button>
-          cancel
+          Cancel
         </button>
       </div>
     </div>

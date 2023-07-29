@@ -377,4 +377,7 @@ export class ApiService {
     // return this.http.post(`${this.BASE_URL}/api/state_api`, Id, { headers: this.withoutTokens(), withCredentials: true });
     return this.http.get(`../assets/json/state.json`);
   }
+  getallCandidateDetails(data) {
+    return this.http.post(`${this.BASE_URL}/getallcandidatedetails`, data);
+  }
 }

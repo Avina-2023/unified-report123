@@ -10,30 +10,40 @@ import { APP_CONSTANTS } from 'src/app/utils/app-constants.service';
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.scss']
+  styleUrls: ['./sidebar.component.scss'],
 })
 export class SidebarComponent implements OnInit {
   @ViewChild('menuTrigger') menuTrigger: MatMenuTrigger;
   isExpanded: boolean;
   name: string;
   text: string;
-  roles:any;
-  orgdetails:any;
-  roleCode:any;
+  roles: any;
+  orgdetails: any;
+  roleCode: any;
   menuIconToggle: boolean;
-  menuIconToggle1:boolean;
+  menuIconToggle1: boolean;
   driveIconToggle: boolean;
-  check = "empdashboard";
-  constructor(private appconfig: AppConfigService,public router:Router, public dialog: MatDialog, private loaded: LoadingService) {
-    this.router.events.subscribe(event => {
-      if(event instanceof NavigationEnd) {
-        this.navBarSelector()
+  check = 'empdashboard';
+  constructor(
+    private appconfig: AppConfigService,
+    public router: Router,
+    public dialog: MatDialog,
+    private loaded: LoadingService
+  ) {
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.navBarSelector();
       }
-    })
-    this.roles = this.appconfig.getLocalStorage('role') ? this.appconfig.getLocalStorage('role') : '';
+    });
+    this.roles = this.appconfig.getLocalStorage('role')
+      ? this.appconfig.getLocalStorage('role')
+      : '';
     this.orgdetails = JSON.parse(this.roles);
-    this.roleCode = this.orgdetails && this.orgdetails[0].roles && this.orgdetails[0].roles[0].roleCode;
-    this.navBarSelector()
+    this.roleCode =
+      this.orgdetails &&
+      this.orgdetails[0].roles &&
+      this.orgdetails[0].roles[0].roleCode;
+    this.navBarSelector();
   }
 
   navBarSelector() {
@@ -42,36 +52,43 @@ export class SidebarComponent implements OnInit {
         this.check = 'empdashboard';
         break;
       case '/auth/employer/drive/managedrive':
-        this.driveIconToggle = true
+        this.driveIconToggle = true;
         this.check = 'managedrive';
         break;
 
       case '/auth/partner/addpartner':
-        this.menuIconToggle = true
+        this.menuIconToggle = true;
         this.check = 'addpartner';
         break;
       case '/auth/partner/partnerlist':
-        this.menuIconToggle = true
+        this.menuIconToggle = true;
         this.check = 'partnerlist';
         break;
       case '/auth/partner/partnerenquiry':
-        this.menuIconToggle = true
+        this.menuIconToggle = true;
         this.check = 'partnerenquiries';
         break;
       case '/auth/dashboard/profile':
         this.check = 'empprofile';
         break;
       case '/auth/partner/uploadpostrequirment':
-        this.menuIconToggle = true
+        this.menuIconToggle = true;
         this.check = 'empPost';
         break;
-        case '/auth/partner/jobrequirment':
-        this.menuIconToggle = true
+      case '/auth/partner/jobrequirment':
+        this.menuIconToggle = true;
         this.check = 'empView';
+        break;
+      case '/auth/drive/candidatelist':
+        this.menuIconToggle = true;
+        this.check = 'Viewcandidatelist';
         break;
       case '/auth/drive/managedrive':
         this.check = 'managedrive';
         this.driveIconToggle = true;
+        break;
+      case '/auth/dashboard/candidatesearch':
+        this.check = 'empcandidatesearch';
         break;
       default:
         this.check = 'empdashboard';
@@ -80,72 +97,81 @@ export class SidebarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.sideBar()
+    this.sideBar();
   }
   validateClick(value) {
     this.check = value;
-    if (value == "empdashboard") {
+    if (value == 'empdashboard') {
       this.menuIconToggle = false;
       this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.EMPDASHBOARD.HOME);
-    } else if (value == "partnerlist") {
+    } else if (value == 'partnerlist') {
       this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.PARTNER.HOME);
     }
-   }
-   hiring(value){
+  }
+  hiring(value) {
     this.check = value;
-    this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.PARTNER.ADDPARTNER)
-   }
-   drive(value){
+    this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.PARTNER.ADDPARTNER);
+  }
+  drive(value) {
     this.check = value;
-    this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.VIEWDRIVE.MANAGEDRIVE)
-   }
-   manage(value){
+    this.appconfig.routeNavigation(
+      APP_CONSTANTS.ENDPOINTS.VIEWDRIVE.MANAGEDRIVE
+    );
+  }
+  manage(value) {
     this.check = value;
-    this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.PARTNER.PARTNERLIST)
-   }
-   partners(value){
+    this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.PARTNER.PARTNERLIST);
+  }
+  partners(value) {
     this.check = value;
-    this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.PARTNER.PARTNERENQUIRY)
-   }
-   logout(){
+    this.appconfig.routeNavigation(
+      APP_CONSTANTS.ENDPOINTS.PARTNER.PARTNERENQUIRY
+    );
+  }
+  logout() {
     localStorage.clear();
     this.ngOnInit();
     this.router.navigate(['/home']);
-   }
-   uploadpostrequirement(value){
+  }
+  uploadpostrequirement(value) {
     this.check = value;
-    this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.PARTNER.UPLOADREQUIRMENT)
+    this.appconfig.routeNavigation(
+      APP_CONSTANTS.ENDPOINTS.PARTNER.UPLOADREQUIRMENT
+    );
     console.log(this.check);
   }
-   work(value){
+  work(value) {
     // this.loaded.setLoading();
     this.check = value;
-    this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.PARTNER.REQUIRMENT)
+    this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.PARTNER.REQUIRMENT);
     console.log(this.check);
-
   }
 
-   profile(value){
+  profile(value) {
     this.check = value;
-    this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.EMPDASHBOARD.PROFILE)
-   }
+    this.appconfig.routeNavigation(
+      APP_CONSTANTS.ENDPOINTS.EMPDASHBOARD.PROFILE
+    );
+  }
 
-   sideBar(){
-    if((this.roleCode =='SADM' && 'ISADM')){
-      this.isExpanded = true
+  candidatesearch(value) {
+    this.check = value;
+    this.appconfig.routeNavigation(
+      APP_CONSTANTS.ENDPOINTS.EMPDASHBOARD.CANDIDATESEARCH
+    );
+  }
+
+  sideBar() {
+    if (this.roleCode == 'SADM' && 'ISADM') {
+      this.isExpanded = true;
+    } else {
+      this.isExpanded = false;
     }
-    else{
-      this.isExpanded = false
-    }
-   }
-   changeIcon() {
+  }
+  changeIcon() {
     this.menuIconToggle = !this.menuIconToggle;
-    }
-    changedriveIcon(){
-      this.driveIconToggle = !this.driveIconToggle;
-    }
-
-
-
-
+  }
+  changedriveIcon() {
+    this.driveIconToggle = !this.driveIconToggle;
+  }
 }
