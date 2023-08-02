@@ -9,6 +9,8 @@ import { ApiService } from 'src/app/services/api.service';
 import { SentDataToOtherComp } from 'src/app/services/sendDataToOtherComp.service';
 import { AppConfigService } from 'src/app/utils/app-config.service';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatTooltipModule } from '@angular/material/tooltip';
+
 @Component({
   selector: 'app-actionButtons',
   templateUrl: './actionButtons.component.html',
@@ -89,15 +91,6 @@ export class ActionButtonsComponent implements ICellRendererAngularComp {
         this.messenger.sendMessage("grid-refresh",true)        
       }
     })
-    // const dialogRef = this.dialog.open(this.confirmmatDialogRef, {
-    //   width: '400px',
-    //   height: 'auto',
-    //   autoFocus: false,
-    //   closeOnNavigation: true,
-    //   disableClose: false,
-    //   panelClass: 'popupModalContainerForForms',
-    // });
-
     const dialogRef = this.dialog.open(this.confirmmatDialogRef, {
       width: '400px',
       height: 'auto',
