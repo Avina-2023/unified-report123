@@ -51,6 +51,7 @@ export class JobListingComponent implements OnInit {
 	removeduplicate:any;
 	removeduplicate1 :any;
 	removeduplicate2: any;
+  url="Find Jobs"
 
 	constructor(public dialog: MatDialog, private apiservice: ApiService, private appconfig: AppConfigService, public router:Router,private toaster: ToastrService) { }
 
@@ -84,7 +85,7 @@ export class JobListingComponent implements OnInit {
 
 
 
-	
+
 	getJobList() {
 		let params: any =
 		{
@@ -112,14 +113,14 @@ export class JobListingComponent implements OnInit {
 					// 	})
 					// 	return this.common;
 					// })
-					
+
 					//  this.removeduplicate = this.common.filter((item,index)=>{
 					// 	return this.common.indexOf(item) === index
-						
+
 					// })
 					// this.removeduplicate1 = this.removeduplicate.toString()
 					// console.log("unique",this.removeduplicate1);
-					
+
 					// console.log(this.common,'common')
 
 
@@ -139,7 +140,7 @@ export class JobListingComponent implements OnInit {
 
 	enabledisable(){
 		console.log(this.useryopyear)
-		
+
 	}
 
 
@@ -307,13 +308,13 @@ export class JobListingComponent implements OnInit {
 	}
 
 	gotojob(item) {
-		
+
 	// item.stopPropagation();
     let extras:NavigationExtras = {state:{itemData:item}};
     this.appconfig.setLocalStorage('jobDesc',JSON.stringify(item));
     this.router.navigateByUrl(APP_CONSTANTS.ENDPOINTS.CANDIDATEDASH.JOBDESCRIPTION, extras);
 		}
-	
+
 
 
     dashboard(){
@@ -321,8 +322,8 @@ export class JobListingComponent implements OnInit {
 	}
 
 
-	
-	
+
+
 }
 
 

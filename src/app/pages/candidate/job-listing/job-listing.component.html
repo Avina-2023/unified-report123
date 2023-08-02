@@ -1,12 +1,13 @@
+<app-common-banner [name]="url"></app-common-banner>
 <div class="flex-layout">
   <div class="job_board">
-    <div class="find_job">
+    <!-- <div class="find_job">
       <span> Find & Apply Jobs</span>
       <div class="dash">
         <h5 class="view" (click)="dashboard()">Dashboard </h5>
         <h5 class="findtext"> &nbsp; > &nbsp;Find Jobs</h5>
       </div>
-    </div>
+    </div> -->
 
     <div class="mob_fil" *ngIf="this.filter_info.data.length">
       <div class="fil_results">
@@ -96,7 +97,7 @@
                   </div>
                 </div>
               </div>
-              
+
             </div>
             <div class="date">
               <!-- <div (click)="gotojob(item)"><span class="icon-calendar"></span></div> -->
@@ -126,7 +127,7 @@
 
     <!-- <div class="overall_box" *ngIf="totallength!=0">
 
-     <div class="card_flex" *ngFor="let item of joblist;let i=index"> 
+     <div class="card_flex" *ngFor="let item of joblist;let i=index">
       <mat-card class="example_card">
         <div (click)="gotojob(item)">
           <div class="job_card">
@@ -144,14 +145,14 @@
               {{item.company}}
             </p>
           </div>
-  
+
           <div class="sample_class">
-  
-            //comment below two lines 
-  
+
+            //comment below two lines
+
              <div class="job_description" [innerHTML]="sampleContent[i].slice(0, 80).concat('...') ">
               </div>
-  
+
             <div class="misc_details">
               <div class="misc_row"><span>
                   <mat-icon class="misc_icon"> school</mat-icon>
@@ -163,7 +164,7 @@
                   </span>
                 </p>
               </div>
-  
+
               <div class="misc_row"><span>
                   <mat-icon class="misc_icon"> location_on</mat-icon>
                 </span>
@@ -174,14 +175,14 @@
                   </span>
                 </p>
               </div>
-  
+
               <div class="misc_row" *ngIf="item.jobType"><span>
                   <mat-icon class="misc_icon"> work</mat-icon>
                 </span>
                 <span class="misc_col">{{item.jobType}} </span>
               </div>
             </div>
-  
+
             <div class="expertise" *ngIf="item.specialization">
               <div class="specialization" *ngFor="let subItem of item.specialization; let ind = index">
                 <button *ngIf="ind<1">
@@ -198,8 +199,8 @@
               <span class="misc_col">Posted on
                 {{item.createdOn | date : 'MMM d'}}</span>
             </div>
-  
-  
+
+
           </div>
         </div>
         <div class="misc_save" (click)="bookMarkIcon(item)">
@@ -209,9 +210,9 @@
           </span>
         </div>
       </mat-card>
-    </div> 
+    </div>
 
-    
+
   </div>  -->
 
     <div *ngIf="totallength==0">
