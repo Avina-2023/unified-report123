@@ -1569,8 +1569,9 @@
   color: #fff;
   padding: 50px;
   position: relative;
-  margin: 20px 20px 20px 20px;
-  border-radius: 10px;
+  // margin: 20px 20px 20px 20px;
+  margin: 7px 0px 20px 9px;
+  // border-radius: 10px;
   background-size: cover !important;
   background-repeat: no-repeat;
   background-position: left !important;
@@ -1721,6 +1722,7 @@
     // align-content: flex-end;
     justify-content: space-around;
     padding: 0px 0px 30px 5px;
+    margin: 20px 0px 0px 0px;
 
     // .box {
     //   width: 219px;
@@ -1934,7 +1936,7 @@
   width: 25%;
   background-color: #fff;
   height: 418px;
-  margin: 0px 15px 0px 0px;
+  margin: 20px 15px 0px 0px;
   padding: 0px 0px 0px 0px;
 
   // .visibleuser {
@@ -2307,7 +2309,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: inherit;
+  // justify-content: inherit;
   height: 100px;
   // width: 200px;
   // width: 100%;
@@ -2315,12 +2317,14 @@
   cursor: pointer;
   border: 1px solid #d0d0d0;
   border-radius: 10px;
-  margin: 0px 10px 10px 5px;
+  margin: 0px 10px 10px 10px;
   box-shadow: none;
 }
 
 .left-icon {
   font-size: 25px;
+  // padding: 0px 27px 0px 0px;
+  margin: 0px 21px 0px 0px;
   img {
     width: 45px;
   }
@@ -2328,9 +2332,9 @@
 
 .text {
   font-size: 16px;
-  color: #212e33;
+  color: #848484;
   font-weight: 400;
-  padding-top: 2px;
+  padding-top: 3px;
   font-family: Lato !important;
 }
 
@@ -2594,7 +2598,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  margin: 30px 30px 0px 21px;
+  margin: 30px 30px 0px 27px;
 }
 .thirdheading {
   // padding-top: 10px;
@@ -2614,7 +2618,7 @@
 .fourthheading {
   //padding: 0px 0px 10px 20px;
   color: #707070;
-  margin: 0px 0px 20px 25px;
+  margin: 0px 0px 20px 27px;
 }
 
 .main3 {

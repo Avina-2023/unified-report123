@@ -59,7 +59,18 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
-  
+  .icon-posted-before:before {
+    content: "\ea1a";
+    color: #848484;
+  }
+  .icon-jobtype:before {
+    content: "\ea18";
+    color: #707070;
+  }
+  .icon-graduation-gap:before {
+    content: "\ea19";
+    color: #8c8c8c;
+  }
 .icon-warning:before {
   content: "\ea17";
 }
