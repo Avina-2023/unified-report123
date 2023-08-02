@@ -12,6 +12,7 @@ export class JobSavedListComponent implements OnInit {
   public savedjobs:any;
   public totallength:any
   public total:any;
+  url="Saved Jobs"
   constructor(private apiService: ApiService, private toastr: ToastrService) { }
   ngOnInit() {
     this.savedJobList()
