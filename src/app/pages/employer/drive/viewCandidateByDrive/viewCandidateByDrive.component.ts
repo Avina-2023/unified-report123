@@ -27,15 +27,15 @@ interface Tab {
   styleUrls: ['./viewCandidateByDrive.component.scss'],
 })
 export class ViewCandidateByDriveComponent implements OnInit {
-
-  tabs: Tab[] = [
+  tabs: any = [
     { title: 'All', items: ['Item 1', 'Item 2', 'Item 3'] },
-    {  title: 'Awaiting Review', items: ['Item 4', 'Item 5'] },
-    {  title: 'In Progress', items: ['Item 6', 'Item 7', 'Item 8', 'Item 9'] },
+    { title: 'Awaiting Review', items: ['Item 4', 'Item 5'] },
+    { title: 'In Progress', items: ['Item 6', 'Item 7', 'Item 8', 'Item 9'] },
     { title: 'Rejected', items: ['Item 6', 'Item 7', 'Item 8', 'Item 9'] },
-    { title: 'Shortlisted', items: ['Item 6', 'Item 7', 'Item 8', 'Item 9'] },
-  ];
 
+    { title: 'Shortlisted', items: ['Item 6', 'Item 7', 'Item 8', 'Item 9'] },
+
+  ];
   routerlink = APP_CONSTANTS.ENDPOINTS;
   columnDefs: any = [];
   data: any;
@@ -537,6 +537,23 @@ icncolor:string ='#1B4E9B';
     this.icncolor = icn[index];
     this.active = index;
     
+    const statusmodel = {
+      jobStatus: {
+        filterType: 'text',
+        type: 'contains',
+        filter: '',
+      },
+    };
+    if (index == 1) {
+      statusmodel.jobStatus.filter = 'rejected';
+    }else if(index == 2){
+      statusmodel.jobStatus.filter = 'awaitingReview'
+    }else if(index == 3){
+      statusmodel.jobStatus.filter = 'In Progress'
+    }else if(index == 4){
+      statusmodel.jobStatus.filter = 'Shortlisted'
+    }
+    console.log(this.gridApi.setFilterModel(statusmodel));
   }
   onCellClicked(event: any): void {
     if (event.colDef.field === 'studentName') {

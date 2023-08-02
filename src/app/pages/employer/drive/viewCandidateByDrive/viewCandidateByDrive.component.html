@@ -47,7 +47,6 @@
     </div>
     </mat-card>
     </div>
-    
     <!-- <div class="tableheader" [ngClass]="dynclass">
       <mat-tab-group class="mattab" (selectedIndexChange)="onTabChange($event)">
         <mat-tab label="All"><mat-chip>700</mat-chip></mat-tab>
@@ -71,7 +70,7 @@
 
     <div class="tableheader" [ngClass]="dynclass">
       <mat-tab-group class="mattab" (selectedIndexChange)="onTabChange($event)">
-        <mat-tab *ngFor="let tab of tabs;let i = index">
+        <mat-tab *ngFor="let tab of tabs;  let i = index">
           <ng-template mat-tab-label>
             <span class="tab-name">{{ tab.title }}</span>
             <div>
@@ -81,8 +80,8 @@
           </ng-template>
         </mat-tab>
       </mat-tab-group>
-    </div>    
-    
+    </div>
+
 
   <!-- <div class="border">
     <div class="ag-grid">
