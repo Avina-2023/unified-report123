@@ -1,21 +1,5 @@
-<!-- <div>
-  <div class="find_job banner_header">
-    <span>Jobs/Internships</span>
-  </div>
-</div> -->
-<div class="banner_header">
-  <span class="job_title">Jobs/Internships</span>
-  <div>
+<app-common-banner [name]="url"></app-common-banner>
 
-
-    <div class="quote">
-      <div>Kick Start Your</div>
-      <div>
-        <div class="grad-text">CAREER</div>
-      </div>
-    </div>
-  </div>
-</div>
 <div class="flex-layout">
   <div class="job_board">
     <!-- <div class="find_job banner_header"> -->
@@ -42,16 +26,11 @@
     </div>
     <br>
     <div class="search-bar">
-      <div style="width: 10%;"><mat-icon class="search_icon_" type="submit">search</mat-icon></div>
-      <div style="width: 90%;">
+      <div><mat-icon class="search_icon_" type="submit">search</mat-icon></div>
+      <div>
         <input class="border_Placeholder" type="text" placeholder="Enter designation / companies / location">
       </div>
     </div>
-
-
-
-
-
 
     <div class="mob_fil" *ngIf="this.filter_info.data.length">
       <div class="fil_results">
@@ -69,21 +48,22 @@
 
     <div class="results_dash">
       <div> Results Showing ({{this.totallength}})</div>
-      <div class="sort">
-        <p>Sort by: </p>
-        <mat-select class="panelPosition" appearance="outline" [(ngModel)]="sortData" (selectionChange)="getJobList()"
-          placeholder="Relevance">
-          <mat-option value="relevance">Relevance</mat-option>
-          <mat-option value="recently posted">Recently Posted</mat-option>
-        </mat-select>
-      </div>
-      <div class="icon-container">
-        <i class="icon">
-          <!-- Your icon content here -->
-        </i>
-        <div class="grid-container">
-          <button class="button-default" onclick="toggleButtonWidth()">Button 1</button>
-          <button class="button-wide" onclick="toggleButtonWidth()">Button 2</button>
+      <div class="arrow_grid">
+        <div class="sort">
+          <p class="sortby_text">Sort by: </p>
+          <mat-select class="panelPosition" appearance="outline" [(ngModel)]="sortData" (selectionChange)="getJobList()"
+            placeholder="Relevance">
+            <mat-option value="relevance">Relevance</mat-option>
+            <mat-option value="recently posted">Recently Posted</mat-option>
+          </mat-select>
+        </div>
+        <div class="icon-container">
+          <!-- <i class="icon">
+        </i> -->
+          <div class="grid-container" [ngClass]="{'grid_2-selected': grid2Selected}" (click)="toggleGrid2()">
+            <span class="icon-dotted-grid grid_1"></span>
+            <span class="icon-grid_length grid_2"></span>
+          </div>
         </div>
       </div>
     </div>
@@ -96,7 +76,7 @@
 
     <div class="main2">
       <div class="card-sty">
-        <mat-card class="main-card2" *ngFor="let item of joblist;let i as index">
+        <mat-card class="main-card2" [class.custom-class]="grid2Selected" *ngFor="let item of joblist;let i as index">
           <div>
             <!-- {{this.jobDisable}} -->
             <!-- {{item.yearofPassout}}
@@ -145,7 +125,7 @@
 
                 <div class="degree">
                   <span class=icon-graduation-cap-solid></span>
-                  <span class="icon-degree"></span> {{item.education}}
+                  {{item.education}}
                 </div>
                 <div class="details">
                   <div class="sub-details">
@@ -185,8 +165,13 @@
               <!-- <div [disabled]="item.yearofPassout != useryopyear" (click)="item.yearofPassout == useryopyear && gotojob(item)" [ngClass]="{'blurcard': item.yearofPassout != useryopyear}">Posted on -->
               <div [disabled]="!item.yearofPassout.includes(removeduplicate2)"
                 (click)="item.yearofPassout.includes(removeduplicate2) ? gotojob(item) : customalert()"
-                [ngClass]="{'blurcard': !item.yearofPassout.includes(removeduplicate2)}">Posted on
+                [ngClass]="{'blurcard': !item.yearofPassout.includes(removeduplicate2)}">
+                <span class="icon-clock_postdate"></span>
+                Posted on
                 {{item.createdOn | date : 'd MMM'}}
+              </div>
+              <div>
+                <span class="icon-clock_withcancel"></span>
               </div>
               <!-- <div class="misc_save" [disabled]="item.yearofPassout != useryopyear" (click)="item.yearofPassout == useryopyear && bookMarkIcon(item)" [ngClass]="{'blurcard': item.yearofPassout != useryopyear}"> -->
               <div class="misc_save" [disabled]="!item.yearofPassout.includes(removeduplicate2)"

@@ -58,8 +58,40 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
+.icon-suitcase_outline:before {
+  content: "\e991";
+  color: #1b4e9b;
+}
 
-  
+.icon-clock_withcancel .path1:before {
+  content: "\e992";
+  color: rgb(132, 132, 132);
+}
+
+.icon-clock_withcancel .path2:before {
+  content: "\e9a3";
+  margin-left: -1em;
+  color: rgb(246, 246, 246);
+}
+
+.icon-clock_withcancel .path3:before {
+  content: "\e9a4";
+  margin-left: -1em;
+  color: rgb(132, 132, 132);
+}
+
+.icon-clock_postdate:before {
+  content: "\e9a5";
+  color: #848484;
+}
+    .icon-dotted-grid:before {
+      content: "\ea18";
+
+    }
+
+    .icon-grid_length:before {
+      content: "\ea19";
+    }
 .icon-warning:before {
   content: "\ea17";
 }

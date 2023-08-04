@@ -1,5 +1,12 @@
 import { ApiService } from 'src/app/services/api.service';
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  TemplateRef,
+  ViewChild,
+  ElementRef,
+  Renderer2,
+} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { I } from '@angular/cdk/keycodes';
 import { AppConfigService } from 'src/app/utils/app-config.service';
@@ -54,14 +61,18 @@ export class JobListingComponent implements OnInit {
   removeduplicate1: any;
   removeduplicate2: any;
   activeButton: string = 'all';
+  grid2Selected = false;
+
   constructor(
     public dialog: MatDialog,
     private apiservice: ApiService,
     private appconfig: AppConfigService,
     public router: Router,
-    private toaster: ToastrService
+    private toaster: ToastrService,
+    private renderer: Renderer2,
+    private el: ElementRef
   ) {}
-
+  url = 'jobs/internship';
   ngOnInit() {
     this.getJobList();
     this.getJobFilter();
@@ -76,6 +87,10 @@ export class JobListingComponent implements OnInit {
   }
   setActiveButton(buttonId: string) {
     this.activeButton = buttonId;
+  }
+
+  toggleGrid2() {
+    this.grid2Selected = !this.grid2Selected;
   }
   candidateData() {
     this.candidateDetails = localStorage.getItem('candidateProfile');
