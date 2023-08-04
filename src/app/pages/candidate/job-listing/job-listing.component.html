@@ -27,7 +27,7 @@
     <br>
     <div class="search-bar">
       <div><mat-icon class="search_icon_" type="submit">search</mat-icon></div>
-      <div>
+      <div style="width: 100%;">
         <input class="border_Placeholder" type="text" placeholder="Enter designation / companies / location">
       </div>
     </div>
@@ -172,7 +172,10 @@
               </div>
               <div>
                 <span class="icon-clock_withcancel"></span>
+                {{item.lastDatetoApply }}
               </div>
+
+
               <!-- <div class="misc_save" [disabled]="item.yearofPassout != useryopyear" (click)="item.yearofPassout == useryopyear && bookMarkIcon(item)" [ngClass]="{'blurcard': item.yearofPassout != useryopyear}"> -->
               <div class="misc_save" [disabled]="!item.yearofPassout.includes(removeduplicate2)"
                 (click)="item.yearofPassout.includes(removeduplicate2) && bookMarkIcon(item)"
