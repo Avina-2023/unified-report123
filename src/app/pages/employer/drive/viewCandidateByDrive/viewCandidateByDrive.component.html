@@ -68,7 +68,7 @@
       </mat-tab-group>
     </div> -->
 
-    <div class="tableheader" [ngClass]="dynclass">
+    <!-- <div class="tableheader" [ngClass]="dynclass">
       <mat-tab-group class="mattab" (selectedIndexChange)="onTabChange($event)">
         <mat-tab *ngFor="let tab of tabs;  let i = index">
           <ng-template mat-tab-label>
@@ -80,8 +80,60 @@
           </ng-template>
         </mat-tab>
       </mat-tab-group>
-    </div>
+    </div> -->
 
+
+
+    <!-- <div class="tableheader" [ngClass]="dynclass">
+      <mat-tab-group class="mattab" (selectedIndexChange)="onTabChange($event)">
+        <mat-tab *ngFor="let tab of tabs;  let i = index">
+          <ng-template mat-tab-label>
+            <span class="tab-name">{{ tab.title }}</span>
+            <div>
+              <span class="tab-count" [style.background-color]="active === i ? icncolor :  null">
+                <span *ngIf="tab.title == 'totalCount'"> 
+                  {{ alldata?.awaitingReview }}
+                </span>
+                <span *ngIf="tab.title == 'Awaiting Review'">
+                  <label *ngIf="alldata?.awaitingReview > 0  ">{{ alldata?.awaitingReview }}</label>
+                  <label *ngIf="alldata?.awaitingReview == 0">0</label>
+                </span>
+                <span *ngIf="tab.title == 'Rejected'">
+                  <label *ngIf="alldata?.Rejected > 0  ">{{ alldata?.Rejected }}</label>
+                  <label *ngIf="alldata?.Rejected==0">0</label>
+                </span>
+                <span *ngIf="tab.title == 'Shortlisted'">
+                  <label *ngIf="alldata?.Shortlisted > 0">{{ alldata?.Shortlisted }}</label>
+                  <label *ngIf="alldata?.Shortlisted == 0">0</label>
+                </span>
+              </span>
+            </div>
+          </ng-template>
+        </mat-tab>
+      </mat-tab-group>
+    </div> -->
+
+    
+
+
+    <div class="tableheader" [ngClass]="dynclass">
+      <mat-tab-group class="mattab" (selectedIndexChange)="onTabChange($event)">
+        <mat-tab *ngFor="let tab of tabs;  let i = index">
+          <ng-template mat-tab-label>
+            <span class="tab-name">{{ tab.title }}</span>
+            <div>
+              <span class="tab-count" [style.background-color]="active == i ? icncolor :  null">
+                <span *ngIf="tab.title == 'All'">{{allcountvalue}}</span>
+                <span *ngIf="tab.title == 'Awaiting Review'">{{awaitingcountvalue}}</span> 
+                <span *ngIf="tab.title == 'In Progress'"> {{ inprogresscountvalue }}</span>
+                <span *ngIf="tab.title == 'Rejected'"> {{ rejectedcountvalue }}</span>
+               <span *ngIf="tab.title == 'Shortlisted'"> {{ shortlitcountvalue }}</span>
+              </span>
+            </div>
+          </ng-template>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
 
   <!-- <div class="border">
     <div class="ag-grid">
