@@ -83,9 +83,13 @@
             {{useryopyear}} -->
             <!-- org -->
             <!-- <div [disabled]="item.yearofPassout != useryopyear" (click)="item.yearofPassout == useryopyear ? gotojob(item) : customalert()" [ngClass]="{'blurcard': item.yearofPassout != useryopyear}"> -->
-            <div class="name skill-exchange">
+            <!-- <div class="name skill-exchange">
               <div class="text-overlay">Skill Exchange Partner</div>
+            </div> -->
+            <div *ngIf="partnerLabel && partnerLabel === 'Skill Exchange Partner'" class="name skill-exchange">
+              <div class="text-overlay">{{item.partnerLabel }}</div>
             </div>
+
             <div [disabled]="!item.yearofPassout.includes(removeduplicate2)"
               (click)="item.yearofPassout.includes(removeduplicate2) ? gotojob(item) : customalert()"
               [ngClass]="{'blurcard': !item.yearofPassout.includes(removeduplicate2)}">
