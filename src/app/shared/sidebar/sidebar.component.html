@@ -21,7 +21,7 @@
         </div>
       </mat-list-item>
       <mat-list-item
-        [ngClass]="[check === 'empView' || check === 'empPost' || check === 'Viewcandidatelist' ? 'selected' : 'notSelected']"
+        [ngClass]="[check === 'empView' || check === 'empPost' || check === 'Viewcandidatelist' || check === 'viewProfilebyEmployer' ? 'selected' : 'notSelected']"
         *ngIf='roleCode === "EMP"' [matMenuTriggerFor]="menu">
         <div class="sidemenu workmenu">
           <div>

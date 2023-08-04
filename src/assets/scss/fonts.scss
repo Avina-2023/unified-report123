@@ -58,11 +58,41 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
+.icon-clock_withcancel .path1:before {
+  content: "\ea1b";
+  color: rgb(132, 132, 132);
+}
 
-  .icon-posted-before:before {
-    content: "\ea1a";
-    color: #848484;
-  }
+.icon-clock_withcancel .path2:before {
+  content: "\ea1c";
+  margin-left: -1em;
+  color: rgb(246, 246, 246);
+}
+
+.icon-clock_withcancel .path3:before {
+  content: "\ea1d";
+  margin-left: -1em;
+  color: rgb(132, 132, 132);
+}
+
+.icon-clock_postdate:before {
+  content: "\ea1e";
+  color: #848484;
+}
+
+.icon-dotted-grid:before {
+  content: "\ea1f";
+}
+
+.icon-list_view:before {
+  content: "\ea20";
+}
+
+.icon-suitcase_blueborder:before {
+  content: "\ea21";
+}
+
+
   .icon-jobtype:before {
     content: "\ea18";
     color: #707070;
