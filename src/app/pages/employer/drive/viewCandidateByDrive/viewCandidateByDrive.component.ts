@@ -33,7 +33,6 @@ export class ViewCandidateByDriveComponent implements OnInit {
     { title: 'In Progress', items: ['Item 6', 'Item 7', 'Item 8'] },
     { title: 'Rejected', items: ['Item 6', 'Item 7', 'Item 8', 'Item 9'] },
     { title: 'Shortlisted', items: ['Item 6', 'Item 7', 'Item 8', 'Item 9'] },
-
   ];
   routerlink = APP_CONSTANTS.ENDPOINTS;
   columnDefs: any = [];
@@ -98,6 +97,13 @@ export class ViewCandidateByDriveComponent implements OnInit {
   dynclass: string = 'navyblue';
   active: number = 0;
 icncolor:string ='#1B4E9B';
+  alldata: any;
+  displayData: string;
+  awaitingcountvalue:any;
+  shortlitcountvalue:any;
+  inprogresscountvalue:any;
+  rejectedcountvalue:any;
+  allcountvalue: any;
   constructor(
     private ApiService: ApiService,
     private toastr: ToastrService,
@@ -136,6 +142,7 @@ icncolor:string ='#1B4E9B';
     this.jobData = this.appconfig.jobData;
     this.tabledata();
     this.getJobDetails();
+    this.getAggridJoblist();
 
     this.sendData
       .getMessage()
@@ -427,15 +434,18 @@ icncolor:string ='#1B4E9B';
     return splitStr.join(' ');
   }
 
+
   onGridReady(params: any) {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
     this.setDatasource();
   }
+
   setDatasource() {
     var datasource = this.getAggridJoblist();
     this.gridApi.setServerSideDatasource(datasource);
   }
+
   getAggridJoblist() {
     // debugger;
     return {
@@ -456,7 +466,30 @@ icncolor:string ='#1B4E9B';
             } else {
               this.candidateList = data1 && data1.data ? data1.data : [];
               console.log(this.candidateList, 'candidateList');
+              this.alldata = data1;
+              // this.alldata = data1;
 
+              // working
+
+              // this.shortlitcountvalue = this.alldata.Shortlisted ? this.alldata.Shortlisted ?? 0 : this.shortlitcountvalue;
+              // this.awaitingcountvalue = this.alldata.awaitingReview ? this.alldata.awaitingReview ?? 0 : this.awaitingcountvalue;
+              // this.rejectedcountvalue = this.alldata.Rejected ? this.alldata.Rejected : this.rejectedcountvalue;
+              // this.allcountvalue = this.alldata.totalCount ? this.alldata.totalCount : this.allcountvalue
+              // this.inprogresscountvalue = this.alldata['In Progress'] ? this.alldata['In Progress'] : this.inprogresscountvalue
+             
+             
+              this.shortlitcountvalue = this.alldata.Shortlisted ? this.alldata.Shortlisted : this.shortlitcountvalue ?? 0;
+              this.awaitingcountvalue = this.alldata.awaitingReview ? this.alldata.awaitingReview : this.awaitingcountvalue ?? 0;
+              this.rejectedcountvalue = this.alldata.Rejected ? this.alldata.Rejected : this.rejectedcountvalue ?? 0;
+              this.allcountvalue = this.alldata.totalCount ? this.alldata.totalCount : this.allcountvalue ?? 0;
+              this.inprogresscountvalue = this.alldata['In Progress'] ? this.alldata['In Progress'] : this.inprogresscountvalue ?? 0;
+
+
+             
+
+              console.log(this.alldata,'dataaaaa');
+                //this.displayData = JSON.stringify(this.alldata);
+          
               if (this.candidateList.length > 0) {
                 this.pageRowCount =
                   data1 && data1.totalCount ? data1.totalCount : 0;
@@ -485,6 +518,10 @@ icncolor:string ='#1B4E9B';
         this.gridApi.hideOverlay();
       },
     };
+  }
+
+  formatData(obj: any): string {
+    return JSON.stringify(obj, null, 2);
   }
 
   autoSizeAll(skipHeader: boolean) {
@@ -535,25 +572,29 @@ icncolor:string ='#1B4E9B';
     this.dynclass = pall[index];
     this.icncolor = icn[index];
     this.active = index;
-    
-    const statusmodel = {
+    console.log(index,"MYINDEX VALUE")
+    let statusmodel = {
       jobStatus: {
         filterType: 'text',
         type: 'contains',
         filter: '',
       },
-    };
-    if (index == 1) {
-      statusmodel.jobStatus.filter = 'awaitingReview';   
+    }; 
+    if (index == 0) {
+      statusmodel.jobStatus.filter = 'All';
+    }else if(index == 1) {
+      statusmodel.jobStatus.filter = 'awaitingReview';
     }else if(index == 2){
-      statusmodel.jobStatus.filter = 'In Progress'
+      statusmodel.jobStatus.filter = 'In Progress';
     }else if(index == 3){
-      statusmodel.jobStatus.filter = 'rejected'   
+      statusmodel.jobStatus.filter = 'rejected';
     }else if(index == 4){
-      statusmodel.jobStatus.filter = 'Shortlisted'
+      statusmodel.jobStatus.filter = 'Shortlisted';
+     
     }
-    console.log(this.gridApi.setFilterModel(statusmodel));
+    this.gridApi.setFilterModel(statusmodel);
   }
+  
   onCellClicked(event: any): void {
     if (event.colDef.field === 'studentName') {
       this.router.navigate(['/auth/drive/viewCandidateProfilebyEmployer']);
