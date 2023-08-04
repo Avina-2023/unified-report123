@@ -29,10 +29,9 @@ interface Tab {
 export class ViewCandidateByDriveComponent implements OnInit {
   tabs: any = [
     { title: 'All', items: ['Item 1', 'Item 2', 'Item 3'] },
-    { title: 'Awaiting Review', items: ['Item 4', 'Item 5'] },
-    { title: 'In Progress', items: ['Item 6', 'Item 7', 'Item 8', 'Item 9'] },
+    { title: 'Awaiting Review', items: ['Item 4', 'Item 5', 'Item 9'] },
+    { title: 'In Progress', items: ['Item 6', 'Item 7', 'Item 8'] },
     { title: 'Rejected', items: ['Item 6', 'Item 7', 'Item 8', 'Item 9'] },
-
     { title: 'Shortlisted', items: ['Item 6', 'Item 7', 'Item 8', 'Item 9'] },
 
   ];
@@ -545,11 +544,11 @@ icncolor:string ='#1B4E9B';
       },
     };
     if (index == 1) {
-      statusmodel.jobStatus.filter = 'rejected';
+      statusmodel.jobStatus.filter = 'awaitingReview';   
     }else if(index == 2){
-      statusmodel.jobStatus.filter = 'awaitingReview'
-    }else if(index == 3){
       statusmodel.jobStatus.filter = 'In Progress'
+    }else if(index == 3){
+      statusmodel.jobStatus.filter = 'rejected'   
     }else if(index == 4){
       statusmodel.jobStatus.filter = 'Shortlisted'
     }

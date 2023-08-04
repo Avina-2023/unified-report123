@@ -1,8 +1,8 @@
-<app-common-banner></app-common-banner>
+<app-common-banner [name]="'Dashboard'"></app-common-banner>
 
 
-<!--
-<mat-grid-list cols="12" rowHeight="1:1" gutterSize="6px">
+
+<!--<mat-grid-list cols="12" rowHeight="1:1" gutterSize="6px">
   <mat-grid-tile colspan="8" rowspan="4">
 
       <owl-carousel-o [options]="XlSlider" class="full-space">
@@ -115,6 +115,46 @@
       </div>
     </div>
 
+    <!-- <div class="displaygrid">
+      <div class="dashboardcards">
+        <mat-card class="main-card">
+          <div class="left-icon">
+            <div><img src="../../../../assets/images/medalnotick.png" /></div>
+          </div>
+          <div class="right-data">
+            <div class="num2">
+              {{ jobApplied }}
+            </div>
+            <div class="text">Internships Available</div>
+          </div>
+        </mat-card>
+        <mat-card class="main-card">
+          <div class="left-icon">
+            <div>
+              <img src="../../../../assets/images/medal.png" />
+            </div>
+          </div>
+          <div class="right-data">
+            <div class="num3">
+              {{ profileView }}
+            </div>
+            <div class="text">Internships Applied</div>
+          </div>
+        </mat-card>
+        <mat-card class="main-card">
+          <div class="left-icon">
+            <div><img src="../../../../assets/images/shortlisted.png" /></div>
+          </div>
+          <div class="right-data">
+            <div class="num4">
+              {{ shortlisted }}
+            </div>
+            <div class="text">Shortlisted</div>
+          </div>
+        </mat-card>
+      </div>
+    </div> -->
+
 
 <!--
     <div class="row2">
@@ -212,11 +252,12 @@
               </div>
               <div class="details">
                 <div class="sub-details">
-                  <div><span class="icon-full_time"></span></div>
+                  <!-- <div><span class="icon-full_time"></span></div> -->
+                  <div><span class="icon-jobtype"></span></div>
                   <div>{{ slider.jobType }}</div>
                 </div>
                 <div class="sub-details">
-                  <div><span class="icon-degree"></span></div>
+                  <div><span class="icon-graduation-gap"></span></div>
                   <div> {{ slider.education }}</div>
                 </div>
                 <div class="sub-details">
