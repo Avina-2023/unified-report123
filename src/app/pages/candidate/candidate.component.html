@@ -51,13 +51,13 @@
           <div class="innerLine"></div>
           <mat-icon mat-list-icon>work_suitcase</mat-icon>
           <!-- <span class="icon-suitcase_outline"></span> -->
-          <span class="full-width" *ngIf="isExpanded || isShowing">Jobs/Internships</span>
+          <span class="full-width" *ngIf="isExpanded || isShowing">Jobs</span>
         </mat-list-item>
         <mat-list-item class="navItems" [ngClass]="router.url==routelinks.CANDIDATEDASH.JOBSAPPLIED? 'active':''"
           [routerLink]="routelinks.CANDIDATEDASH.JOBSAPPLIED">
           <div class="innerLine"></div>
           <mat-icon mat-list-icon>check_circle_outline</mat-icon>
-          <span class="full-width" *ngIf="isExpanded || isShowing">Applied Jobs/Internships</span>
+          <span class="full-width" *ngIf="isExpanded || isShowing">Applied Jobs</span>
         </mat-list-item>
         <mat-list-item class="navItems" [ngClass]="router.url==routelinks.CANDIDATEDASH.JOBSSAVED? 'active':''"
           [routerLink]="routelinks.CANDIDATEDASH.JOBSSAVED">
