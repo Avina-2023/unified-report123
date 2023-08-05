@@ -62,7 +62,7 @@ export class JobListingComponent implements OnInit {
   removeduplicate2: any;
   activeButton: string = 'all';
   grid2Selected = false;
-
+  partnerLabel: string | undefined;
   constructor(
     public dialog: MatDialog,
     private apiservice: ApiService,
@@ -78,6 +78,7 @@ export class JobListingComponent implements OnInit {
     this.getJobFilter();
     this.candidateData();
     this.enabledisable();
+    this.partnerLabel = 'Skill Exchange Partner';
   }
 
   customalert() {

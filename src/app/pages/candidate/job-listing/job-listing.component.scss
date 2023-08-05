@@ -153,6 +153,21 @@
   padding: 8px;
   margin: 0px 20px 0px 26px;
 }
+
+.search-bar input {
+  background-color: transparent;
+  border: 0px solid;
+  height: 20px;
+  width: 160px;
+  color: #1B4E9B;
+  outline: none;
+  width: 100%;
+}
+
+.search-bar input:focus {
+  border: 0px solid;
+  width: 100%;
+}
 .editable-text {
   padding: 5px;
   border-radius: 5px;
@@ -165,7 +180,7 @@
 //   /* Replace #333 with the desired color */
 // }
 // .border_Placeholder{
-//   border: none;
+//   width: 100%;
 // }
 .search_icon_{
   color: #848484;
