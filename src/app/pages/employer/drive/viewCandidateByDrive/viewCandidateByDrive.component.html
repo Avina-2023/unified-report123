@@ -196,17 +196,59 @@
         <option value="20">20</option>
       </select>
     </div>
+    
     <div class="goto-sear">
-      <div class="goto">
+      <!-- <div class="goto">
         GoToPage: 
       </div>
-      <div class="goto-search">
-         5
-      </div>
-      <div class="go">
-        Go
-     </div>
+
+      <div>
+        <div class="goto-search">
+          5
+       </div>
+      <button class="go" (click)="onBtPageFive()">Go</button>
+      </div> -->
+
+      <!-- <div>
+        <input type="number" [(ngModel)]="pageNumberInput" />
+        <button class="go" (click)="onBtPageGo(pageNumberInput)">Go</button>
+      </div> -->
+      
+      <!-- <div>
+        <input type="number" [(ngModel)]="pageNumber" min="1" />
+        <button class="go" (click)="onGoClick()">Go</button>
+      </div> -->
+      
+      <!-- <div>
+        <div class="goto-search">
+          <input type="number" [(ngModel)]="pageNumber" min="1" />
+        </div>
+        <button class="go" (click)="onGoClick()">Go</button>
+      </div> -->
+      
+
+       <!-- <div class="goto-sear">
+            <div class="goto">
+              GoToPage: 
+            </div>
+            <div class="goto-search">
+               5
+            </div>
+           <button (click)="onBtPageFive()">To Page 3</button>
+          </div> -->
+
+          <!-- <div class="goto-sear">
+            <div class="goto">
+              GoToPage:
+            </div>
+            <div class="goto-search">
+              5
+            </div>
+            <button (click)="onBtGoToPage(3)">Go to Page 3</button>
+          </div> -->
+
     </div>
+
    </div>
   </div>
   

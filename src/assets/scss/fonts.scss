@@ -58,6 +58,11 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
+  .icon-green-tick-curves:before {
+    content: "\ea22";
+    color: #4fa13a;
+  }
+  
 .icon-clock_withcancel .path1:before {
   content: "\ea1b";
   color: rgb(132, 132, 132);

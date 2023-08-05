@@ -11,8 +11,11 @@
             <div class='companyLogo1'><img class="comp_logo" (error)="'/assets/images/compPlaceholder.png'"
                [src]="productionUrl?jobDetails.companyLogo+blobToken:jobDetails.companyLogo" /></div>
             <div class="JT-left">
-               <div class='compTitle'><strong>{{jobDetails.jobRole}}</strong></div>
-               <div class='genTitle'>{{jobDetails.company}}</div>
+               <div class="se-patner">
+                  <div class='compTitle'><strong>{{jobDetails.jobRole}}</strong></div>
+                  <div *ngIf="jobDetails.partnerLabel === 'Skill Exchange Partner'"><span class="icon-green-tick-curves"></span></div>
+               </div>
+                <div class='genTitle'>{{jobDetails.company}}</div>
             </div>
          </div>
          <div class="JT-right">

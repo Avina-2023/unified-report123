@@ -168,7 +168,16 @@ li {
       .genTitle {
         font-size: 14px;
         color: #707070;
-        padding-top: 9px;
+        // padding-top: 9px;
+    }
+    .se-patner{
+      display: flex;
+      flex-direction: row;
+      align-items: baseline;
+    }
+    .icon-green-tick-curves{
+      padding: 2px;
+      margin: 0px 0px 0px 5px;
     }
   }
   }
@@ -223,7 +232,7 @@ li {
 .genTitle {
   font-size: 14px;
   color: #707070;
-  padding-top: 4px;
+  // padding-top: 4px;
 }
 .genTextpassout{
   font-size: 14px;
@@ -281,10 +290,11 @@ li {
   justify-content: flex-end;
 }
 .eventnote {
-  color: red;
-  font-weight: 500;
+  color: #CB0000;
+  font-weight: 600;
   margin-top: 5px;
   margin-bottom: 0px;
+  font-size: 16px;
   .application-end{
     color: #000000;
   font-weight: 600;
