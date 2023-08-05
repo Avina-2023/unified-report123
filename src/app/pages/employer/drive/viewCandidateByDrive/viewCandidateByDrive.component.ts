@@ -17,6 +17,7 @@ import { MatTabChangeEvent } from '@angular/material/tabs/tab-group';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { ActionButtonsComponent } from './actionButtons/actionButtons.component';
 import { param } from 'jquery';
+import { MatPaginator } from '@angular/material/paginator';
 interface Tab {
   title: string;
   items: string[]
@@ -580,9 +581,10 @@ icncolor:string ='#1B4E9B';
         filter: '',
       },
     }; 
-    if (index == 0) {
-      statusmodel.jobStatus.filter = 'All';
-    }else if(index == 1) {
+    // if (index == 0) {
+    //   statusmodel.jobStatus.filter = 'All';
+    // }else 
+    if(index == 1) {
       statusmodel.jobStatus.filter = 'awaitingReview';
     }else if(index == 2){
       statusmodel.jobStatus.filter = 'In Progress';
@@ -600,4 +602,11 @@ icncolor:string ='#1B4E9B';
       this.router.navigate(['/auth/drive/viewCandidateProfilebyEmployer']);
     }
   }
+
+  onPageSizeChanged() {
+    var value = (document.getElementById('page-size') as HTMLInputElement)
+      .value;
+    this.gridApi.paginationSetPageSize(Number(value));
+  }
+  
 }
