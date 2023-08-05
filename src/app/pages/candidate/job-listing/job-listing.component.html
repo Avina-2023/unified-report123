@@ -86,7 +86,10 @@
             <!-- <div class="name skill-exchange">
               <div class="text-overlay">Skill Exchange Partner</div>
             </div> -->
-            <div *ngIf="partnerLabel && partnerLabel === 'Skill Exchange Partner'" class="name skill-exchange">
+            <div [disabled]="!item.yearofPassout.includes(removeduplicate2)"
+              (click)="item.yearofPassout.includes(removeduplicate2) ? gotojob(item) : customalert()"
+              [ngClass]="{'blurcard': !item.yearofPassout.includes(removeduplicate2)}"
+              *ngIf="partnerLabel && partnerLabel === 'Skill Exchange Partner'" class="name skill-exchange">
               <div class="text-overlay">{{item.partnerLabel }}</div>
             </div>
 
@@ -174,10 +177,15 @@
                 Posted on
                 {{item.createdOn | date : 'd MMM'}}
               </div>
-              <div>
-                <span class="icon-clock_withcancel"></span>
-                {{item.lastDatetoApply }}
+              <div [disabled]="!item.yearofPassout.includes(removeduplicate2)"
+                (click)="item.yearofPassout.includes(removeduplicate2) ? gotojob(item) : customalert()"
+                [ngClass]="{'blurcard': !item.yearofPassout.includes(removeduplicate2)}">
+                &nbsp;
+                <span class="icon-clock_postdate"></span>
+                <!-- <span class="icon-clock_withcancel"></span> -->
+                {{item.lastDatetoApply | timeDiff}}
               </div>
+
 
 
               <!-- <div class="misc_save" [disabled]="item.yearofPassout != useryopyear" (click)="item.yearofPassout == useryopyear && bookMarkIcon(item)" [ngClass]="{'blurcard': item.yearofPassout != useryopyear}"> -->
