@@ -105,6 +105,7 @@ export class JobDescriptionComponent implements OnInit {
     });
   }
 
+
   applyJob(){
     let obj =
     {
@@ -137,4 +138,11 @@ export class JobDescriptionComponent implements OnInit {
     }
 
 
+    handleButtonClick() {
+      if (this.jobDetails.partnerLabel === 'Skill Exchange Partner') {
+        this.applyJob();
+      } else {
+        window.location.href = 'https://lntedutech.com/'; 
+      }
+    }
 }
