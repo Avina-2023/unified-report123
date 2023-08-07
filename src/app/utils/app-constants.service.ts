@@ -17,6 +17,7 @@ export const APP_CONSTANTS = {
   // Route endpoints
   ENDPOINTS: {
     LOGIN: '/login',
+    EXTLOGIN: '/externallogin',
     HOME: '/home',
     // HOME: '/static',
     AUTH: '/auth',
@@ -103,6 +104,7 @@ export const APP_CONSTANTS = {
   // Routes
   ROUTES: {
     LOGIN: 'login',
+    EXTLOGIN: 'externallogin',
     PASSWORD: {
       FORGOT: 'forgot-password',
       RESET: 'resetpwd',
