@@ -103,10 +103,10 @@ margin-bottom: 10px;
 .ag-theme-alpine {
   --ag-header-height: 20px;
 
-  --ag-header-foreground-color: #1b4e9b 25%;
+  // --ag-header-foreground-color: #1b4e9b 25%;
 
-  --ag-header-background-color: hsl(216, 25%, 75%);
-  --ag-odd-row-background-color: rgba(237, 237, 237, 0.6);
+  // --ag-header-background-color: hsl(216, 25%, 75%);
+  // --ag-odd-row-background-color: rgba(237, 237, 237, 0.6);
   color: #1b4e9b;
   font-size: 13px;
   font: normal normal normal 13px/18px Roboto;
@@ -573,6 +573,38 @@ justify-content: space-between;
   background-color: #49AE31;
 }
 
+
+.pagnation{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  .example-header{
+    padding: 2px;
+  }
+  .goto-sear{
+    display: flex; 
+    flex-direction: row; 
+    align-items: center;
+    padding: 5px;
+    .goto{
+      padding: 1px;
+      color: #848484;
+    }
+    .goto-search{
+      border: 1px solid #CECECE;
+      padding: 1px 8px 1px 8px;
+      border-radius: 7px;
+      margin: 3px;
+
+    }
+    .go{
+      color: #1B4E9B;
+      cursor: pointer;
+      font-weight: 700;
+    }
+  }
+}
 
 
 

@@ -11,18 +11,47 @@
             <div class='companyLogo1'><img class="comp_logo" (error)="'/assets/images/compPlaceholder.png'"
                [src]="productionUrl?jobDetails.companyLogo+blobToken:jobDetails.companyLogo" /></div>
             <div class="JT-left">
-               <div class='compTitle'><strong>{{jobDetails.jobRole}}</strong></div>
-               <div class='genTitle'>{{jobDetails.company}}</div>
+               <div class="se-patner">
+                  <div class='compTitle'><strong>{{jobDetails.jobRole}}</strong></div>
+                  <div *ngIf="jobDetails.partnerLabel === 'Skill Exchange Partner'"><span class="icon-green-tick-curves"></span></div>
+               </div>
+                <div class='genTitle'>{{jobDetails.company}}</div>
             </div>
          </div>
-         <div class="JT-right">
+         <!-- <div class="JT-right">
                <div class="eventnote"><span class="application-end">Application ends:</span> {{jobDetails.lastDatetoApply|date}}</div>
-           <div class="flx_butn"> <button class="save btn" *ngIf="jobDetails.isSelected == false" (click)="saved()" >Save</button>
+           <div class="flx_butn"> 
+            <button class="save btn" *ngIf="jobDetails.isSelected == false" (click)="saved()" >Save</button>
             <button class="save btn"   *ngIf="jobDetails.isSelected == true" (click)="saved()" >Saved</button>
             <button class="btn"  *ngIf="jobDetails.isApplied == false" (click)="applyJob()">Apply now</button>
             <button class="btn" [disabled]="true" *ngIf="jobDetails.isApplied == true">Applied</button>
           </div>
-         </div>
+         </div> -->
+
+         <!-- <div class="JT-right">
+            <div class="eventnote"><span class="application-end">Application ends:</span> {{jobDetails.lastDatetoApply | date}}</div>
+            <div class="flx_butn">
+              <button class="save btn" *ngIf="jobDetails.isSelected == false" (click)="saved()">Save</button>
+              <button class="save btn" *ngIf="jobDetails.isSelected == true" (click)="saved()">Saved</button>
+              <button class="btn" *ngIf="jobDetails.isApplied == false" (click)="handleButtonClick()">Apply now</button>
+              <button class="btn" [disabled]="true" *ngIf="jobDetails.isApplied == true">Applied</button>
+            </div>
+          </div> -->
+          
+
+          <div class="JT-right">
+            <div class="eventnote"><span class="application-end">Application ends:</span> {{jobDetails.lastDatetoApply | date}}</div>
+            <div class="flx_butn">
+              <button class="save btn" *ngIf="jobDetails.isSelected == false" (click)="saved()">Save</button>
+              <button class="save btn" *ngIf="jobDetails.isSelected == true" (click)="saved()">Saved</button>
+              <button class="btn" *ngIf="jobDetails.isApplied == false" (click)="handleButtonClick()">
+               <mat-icon *ngIf="jobDetails.partnerLabel !== 'Skill Exchange Partner'">offline_bolt</mat-icon>Apply now 
+              </button>
+              <button class="btn" [disabled]="true" *ngIf="jobDetails.isApplied == true">Applied</button>
+            </div>
+          </div>
+
+
       </div>
       <div class="job-details1">
          <div class="job-intern"><span class="job-intern1">#Jobs</span></div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgModule } from '@angular/core';
 import { NONE_TYPE } from '@angular/compiler';
 import { MAT_RIPPLE_GLOBAL_OPTIONS } from '@angular/material/core';
 import { ColDef, GridApi } from 'ag-grid-community';
@@ -17,6 +17,7 @@ import { MatTabChangeEvent } from '@angular/material/tabs/tab-group';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { ActionButtonsComponent } from './actionButtons/actionButtons.component';
 import { param } from 'jquery';
+import { MatPaginator } from '@angular/material/paginator';
 interface Tab {
   title: string;
   items: string[]
@@ -90,7 +91,6 @@ export class ViewCandidateByDriveComponent implements OnInit {
   email: any;
   jobStatus: any;
   jobData: any;
-  // jobRole: any;
   jobDetailsdata: any;
   jobdatata: any;
   valueone: any;
@@ -104,6 +104,9 @@ icncolor:string ='#1B4E9B';
   inprogresscountvalue:any;
   rejectedcountvalue:any;
   allcountvalue: any;
+  pageNumberInput: any;
+  pageNumber: number = 1;
+  currentPage: number;
   constructor(
     private ApiService: ApiService,
     private toastr: ToastrService,
@@ -580,9 +583,10 @@ icncolor:string ='#1B4E9B';
         filter: '',
       },
     }; 
-    if (index == 0) {
-      statusmodel.jobStatus.filter = 'All';
-    }else if(index == 1) {
+    // if (index == 0) {
+    //   statusmodel.jobStatus.filter = 'All';
+    // }else 
+    if(index == 1) {
       statusmodel.jobStatus.filter = 'awaitingReview';
     }else if(index == 2){
       statusmodel.jobStatus.filter = 'In Progress';
@@ -600,4 +604,45 @@ icncolor:string ='#1B4E9B';
       this.router.navigate(['/auth/drive/viewCandidateProfilebyEmployer']);
     }
   }
+
+  onPageSizeChanged() {
+    var value = (document.getElementById('page-size') as HTMLInputElement)
+      .value;
+    this.gridApi.paginationSetPageSize(Number(value));
+  }
+  
+  onBtPageFive() {
+    this.gridApi.paginationGoToPage(3);
+  }
+
+
+  onBtPageGo(pageNumber: number) {
+    if (pageNumber >= 1 && pageNumber <= this.gridApi.paginationGetTotalPages()) {
+      this.gridApi.paginationGoToPage(pageNumber - 1);
+    } else {
+      console.log('Invalid page number');
+    }
+  }
+
+  // onGoClick() {
+  //   if (this.pageNumber <= 0) {
+  //     alert('Page number must be a positive integer');
+  //     return;
+  //   }
+  //   this.gridApi.paginationGoToPage(this.pageNumber - 1);
+  // }
+
+  onGoClick() {
+    if (this.pageNumber <= 0) {
+      alert('Page number must be a positive integer');
+      return;
+    }
+    this.gridApi.paginationGoToPage(this.pageNumber - 1);
+  }
+    
+  onBtGoToPage(pageNumber: number) {
+    this.gridApi.paginationGoToPage(pageNumber);
+    this.currentPage = pageNumber;
+  }
+
 }
