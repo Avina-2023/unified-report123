@@ -9,7 +9,7 @@
 <ng-template #matDialog let-data>
   <div class="main-wrapper">
     <div>
-      <div class="warn-img">
+      <div class="warning-imag">
         <img class="warning_icon" src="../../../../../assets/images/alert image filled.svg">
       </div>
       <div class="text">
@@ -28,16 +28,16 @@
       </div>
       <div class="button-wrapper-form-pop-up">
         <ng-container *ngIf="data.status === 'Shortlisted'; else otherButtons">
-          <button class="b1" (click)="getStatusChange(data.status)" type="button" mat-raised-button>
+          <button class="button1" (click)="getStatusChange(data.status)" type="button" mat-raised-button>
             Confirm
           </button>
         </ng-container>
         <ng-template #otherButtons>
-          <button class="b1" (click)="getStatusChange(data.status)" type="button" mat-raised-button>
+          <button class="button2" (click)="getStatusChange(data.status)" type="button" mat-raised-button>
             Confirm
           </button>
         </ng-template>
-        <button class="b3" (click)="closeDialog('cancel')" type="button" mat-raised-button>
+        <button class="button3" (click)="closeDialog('cancel')" type="button" mat-raised-button>
           Cancel
         </button>
       </div>
