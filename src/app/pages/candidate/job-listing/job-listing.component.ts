@@ -14,7 +14,11 @@ import { APP_CONSTANTS } from 'src/app/utils/app-constants.service';
 import { NavigationExtras, Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { ToastrService } from 'ngx-toastr';
+import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 import { element } from 'protractor';
+import { Subject } from 'rxjs/internal/Subject';
+import { debounceTime } from 'rxjs/internal/operators/debounceTime';
 
 @Component({
   selector: 'app-job-listing',
@@ -32,6 +36,7 @@ export class JobListingComponent implements OnInit {
   sampleContent = [];
   title = 'edutech';
   education = ['B.Tech', 'B.Sc', 'B.Com', 'BE'];
+  searchInput: string = '';
   joblist = [];
   // filter_info = any[];
 
@@ -39,7 +44,7 @@ export class JobListingComponent implements OnInit {
   filterItems: any;
   selectedValues: any[] = [];
   data: any;
-  filterObj = {};
+  filterObj: any = {};
   sortData = 'relevance';
   jobId: any = '';
   blobToken = environment.blobToken;
@@ -63,6 +68,7 @@ export class JobListingComponent implements OnInit {
   activeButton: string = 'all';
   grid2Selected = false;
   partnerLabel: string | undefined;
+  private buttonClicked = new Subject<string>();
   constructor(
     public dialog: MatDialog,
     private apiservice: ApiService,
@@ -79,6 +85,17 @@ export class JobListingComponent implements OnInit {
     this.candidateData();
     this.enabledisable();
     this.partnerLabel = 'Skill Exchange Partner';
+    this.debouncefn();
+  }
+
+  debouncefn() {
+    const buttonClickedDebounced = this.buttonClicked.pipe(debounceTime(200));
+    buttonClickedDebounced.subscribe((itemId: string) =>
+      //The actual action that should be performed on click
+      {
+        this.getJobList();
+      }
+    );
   }
 
   customalert() {
@@ -111,44 +128,76 @@ export class JobListingComponent implements OnInit {
     return this.useryopyear;
   }
 
+  // getJobList() {
+  //   // this.filter.textSearch = searchInput;
+  //   let params: any = {
+  //     pageNumber: this.pageNumber,
+  //     itemsPerPage: this.itemsPerPage,
+  //     filter: this.filterObj,
+  //     sort: this.sortData,
+  //     specialization: 'Computer Science Engineering',
+  //     email: this.appconfig.getLocalStorage('email'),
+  //     // "isApplied":false,
+  //     // "isSelected":false
+  //   };
+
+  //   this.apiservice.joblistingDashboard(params).subscribe((response: any) => {
+  //     if (response.success) {
+  //       this.joblist = response.data;
+
+  //       console.log(this.joblist, 'jobdata');
+
+  //       // this.joblist?.forEach((element)=>{
+  //       // 	element?.yearofPassout?.forEach((element)=>{
+  //       // 		if(element == this.useryopyear){
+  //       // 			this.common.push(element);
+  //       // 		}
+  //       // 	})
+  //       // 	return this.common;
+  //       // })
+
+  //       //  this.removeduplicate = this.common.filter((item,index)=>{
+  //       // 	return this.common.indexOf(item) === index
+
+  //       // })
+  //       // this.removeduplicate1 = this.removeduplicate.toString()
+  //       // console.log("unique",this.removeduplicate1);
+
+  //       // console.log(this.common,'common')
+
+  //       this.totallength = response.totalCount;
+  //       this.total = Math.ceil(response.totalCount / this.itemsPerPage);
+  //       // console.log(this.total)
+  //       this.joblist.forEach((element) => {
+  //         this.sampleContent.push(element.overview);
+  //       });
+  //     }
+  //   });
+  // }
+
   getJobList() {
+    if (this.searchInput) {
+      this.filterObj.textSearch = this.searchInput;
+    } else {
+      delete this.filterObj.textSearch;
+    }
     let params: any = {
       pageNumber: this.pageNumber,
       itemsPerPage: this.itemsPerPage,
+      // filter: {
+      //   textSearch: this.searchInput,
+      // },
       filter: this.filterObj,
       sort: this.sortData,
       specialization: 'Computer Science Engineering',
       email: this.appconfig.getLocalStorage('email'),
-      // "isApplied":false,
-      // "isSelected":false
     };
+
     this.apiservice.joblistingDashboard(params).subscribe((response: any) => {
       if (response.success) {
         this.joblist = response.data;
-
-        console.log(this.joblist, 'jobdata');
-
-        // this.joblist?.forEach((element)=>{
-        // 	element?.yearofPassout?.forEach((element)=>{
-        // 		if(element == this.useryopyear){
-        // 			this.common.push(element);
-        // 		}
-        // 	})
-        // 	return this.common;
-        // })
-
-        //  this.removeduplicate = this.common.filter((item,index)=>{
-        // 	return this.common.indexOf(item) === index
-
-        // })
-        // this.removeduplicate1 = this.removeduplicate.toString()
-        // console.log("unique",this.removeduplicate1);
-
-        // console.log(this.common,'common')
-
         this.totallength = response.totalCount;
         this.total = Math.ceil(response.totalCount / this.itemsPerPage);
-        // console.log(this.total)
         this.joblist.forEach((element) => {
           this.sampleContent.push(element.overview);
         });
@@ -235,6 +284,11 @@ export class JobListingComponent implements OnInit {
       this.getJobList();
     }
   }
+
+  textsearch() {
+    this.buttonClicked.next();
+  }
+
   applyfilter() {
     this.getJobList();
   }
