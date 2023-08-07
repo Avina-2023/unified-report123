@@ -1,5 +1,6 @@
+<app-common-banner [name]="url"></app-common-banner>
 <div class="savedjobs">
- <div class="text">Saved Jobs</div>
+ <!-- <div class="text">Saved Jobs</div> -->
 </div>
 <!-- <div class="norecords">
   <mat-card >
@@ -8,7 +9,7 @@
 <div *ngIf="totallength == 0">
 <app-no-data-found [from]="'saved'"></app-no-data-found>
 </div>
-  <app-job-list-item  *ngIf="totallength" [data]="savedjobs" [savedButton]="true"></app-job-list-item>
+  <app-job-list-item  *ngIf="totallength" [data]="savedjobs" [savedButton]="true" [showApplied]="true"></app-job-list-item>
 
   <div class="pagination">
     <app-common-paginator *ngIf="total"  (send)="some($event)" [totalcount]="total"></app-common-paginator>

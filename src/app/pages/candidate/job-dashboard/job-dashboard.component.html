@@ -1,22 +1,8 @@
-<div class="banner_header">
-  <div class="user">
-    <div class="user-name">
-      <div class="username-N">Welcome,&nbsp;</div>
-      <div class="username-B">
-        {{ username }}
-      </div>
-    </div>
-    <div class="quote">
-      <div>Kick Start Your</div>
-      <div>
-        <div class="grad-text">CAREER</div>
-      </div>
-    </div>
-  </div>
-</div>
+<app-common-banner [name]="'Dashboard'"></app-common-banner>
 
-<!-- 
-<mat-grid-list cols="12" rowHeight="1:1" gutterSize="6px">
+
+
+<!--<mat-grid-list cols="12" rowHeight="1:1" gutterSize="6px">
   <mat-grid-tile colspan="8" rowspan="4">
 
       <owl-carousel-o [options]="XlSlider" class="full-space">
@@ -35,7 +21,7 @@
         <ng-template class="item" carouselSlide>
           <img class="image-fit" src="assets/images/landingScreen/about.png" alt="Test 5"/>
         </ng-template>
-     
+
       </owl-carousel-o>
   </mat-grid-tile>
   <mat-grid-tile colspan="2" rowspan="2">
@@ -129,8 +115,48 @@
       </div>
     </div>
 
+    <!-- <div class="displaygrid">
+      <div class="dashboardcards">
+        <mat-card class="main-card">
+          <div class="left-icon">
+            <div><img src="../../../../assets/images/medalnotick.png" /></div>
+          </div>
+          <div class="right-data">
+            <div class="num2">
+              {{ jobApplied }}
+            </div>
+            <div class="text">Internships Available</div>
+          </div>
+        </mat-card>
+        <mat-card class="main-card">
+          <div class="left-icon">
+            <div>
+              <img src="../../../../assets/images/medal.png" />
+            </div>
+          </div>
+          <div class="right-data">
+            <div class="num3">
+              {{ profileView }}
+            </div>
+            <div class="text">Internships Applied</div>
+          </div>
+        </mat-card>
+        <mat-card class="main-card">
+          <div class="left-icon">
+            <div><img src="../../../../assets/images/shortlisted.png" /></div>
+          </div>
+          <div class="right-data">
+            <div class="num4">
+              {{ shortlisted }}
+            </div>
+            <div class="text">Shortlisted</div>
+          </div>
+        </mat-card>
+      </div>
+    </div> -->
 
-<!-- 
+
+<!--
     <div class="row2">
       <div class="row-left">
         <div>
@@ -148,10 +174,10 @@
     </div>
 
     <drag-scroll #publishedContent snap-duration="200" (reachesLeftBound)="leftBoundStat($event)"
-      (reachesRightBound)="rightBoundStat($event)" [scrollbar-hidden]="true" [drag-scroll-y-disabled]="true">  
+      (reachesRightBound)="rightBoundStat($event)" [scrollbar-hidden]="true" [drag-scroll-y-disabled]="true">
       <div class="courseWrapper">
-        <div class="courseContainer" drag-scroll-item *ngFor="let slider of joblist">    
-          <div class="items">   
+        <div class="courseContainer" drag-scroll-item *ngFor="let slider of joblist">
+          <div class="items">
             <div class="main2">
               <mat-card class="main-card2">
                 <div class="minicard-header">
@@ -182,9 +208,9 @@
                   </div>
                 </div>
               </mat-card>
-            </div> 
-          </div>  
-        </div> 
+            </div>
+          </div>
+        </div>
       </div>
     </drag-scroll> -->
 
@@ -226,11 +252,12 @@
               </div>
               <div class="details">
                 <div class="sub-details">
-                  <div><span class="icon-full_time"></span></div>
+                  <!-- <div><span class="icon-full_time"></span></div> -->
+                  <div><span class="icon-jobtype"></span></div>
                   <div>{{ slider.jobType }}</div>
                 </div>
                 <div class="sub-details">
-                  <div><span class="icon-degree"></span></div>
+                  <div><span class="icon-graduation-gap"></span></div>
                   <div> {{ slider.education }}</div>
                 </div>
                 <div class="sub-details">
@@ -238,7 +265,7 @@
                   <div class="loc"><mat-icon> location_on</mat-icon></div>
                   <div>{{slider.jobLocation}}</div>
                 </div>
-                
+
               </div>
               <div class="date">
                 <div><span class="icon-calendar"></span></div>
@@ -265,7 +292,7 @@
       <div class="fourthheading">Fresh oppurtunities based on profiles</div>
     </div>
 
-   
+
 
       <owl-carousel-o [options]="customOptions2" #owlCar>
         <ng-container>
@@ -286,7 +313,7 @@
         </ng-container>
       </owl-carousel-o>
 
-      
+
 
 
       <!-- <div>
@@ -332,7 +359,7 @@
           <div class="miniview" (click)="ViewAll()">View Jobs</div>
         </mat-card>
       </div> -->
-    
+
   </div>
 
   <div class="card-right">

@@ -18,6 +18,8 @@ export class JobAppliedListComponent implements OnInit {
   public totallength:any;
   public appliedjobs: any;
   public appliedlenghth:any;
+  public url='Applied Jobs';
+  public suburl="Dashboard";
   constructor(private apiService: ApiService, private toastr: ToastrService) { }
 
   ngOnInit() {

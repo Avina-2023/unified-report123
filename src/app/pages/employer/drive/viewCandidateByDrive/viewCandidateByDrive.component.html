@@ -47,46 +47,150 @@
     </div>
     </mat-card>
     </div>
-    
-    <div class="tableheader" [ngClass]="dynclass">
+    <!-- <div class="tableheader" [ngClass]="dynclass">
       <mat-tab-group class="mattab" (selectedIndexChange)="onTabChange($event)">
-        <mat-tab label="All"></mat-tab>
-        <mat-tab label="Awaiting Review"></mat-tab>
+        <mat-tab label="All"><mat-chip>700</mat-chip></mat-tab>
+        <mat-tab label="Awaiting Review"><div>900</div></mat-tab>
         <mat-tab label="In Progress"></mat-tab>
         <mat-tab label="Rejected"></mat-tab>
         <mat-tab label="Shortlisted"></mat-tab>
       </mat-tab-group>
     </div>
-    
 
-  <!-- <div class="border">
-    <div class="ag-grid">
-      <ag-grid-angular style="width: 100%; height: 100%;" class="ag-theme-alpine" [gridOptions]="gridOptions"
-        [columnDefs]="columnDefs" [defaultColDef]="defaultColDef" [masterDetail]="masterDetail"
-        [overlayNoRowsTemplate]="overlayNoRowsTemplate" [rowData]="rowData" [enableRangeSelection]="true"
-        [tooltipShowDelay]="0" [animateRows]="true" headerHeight="45" rowHeight="45" [suppressRowClickSelection]="true"
-        [suppressRowTransform]="true" [rowSelection]="rowSelection" [pivotPanelShow]="'always'" [sideBar]="false"
-        (gridReady)="onGridReady($event)" [rowModelType]="rowModelType" [maintainColumnOrder]="true"
-        [cacheBlockSize]="cacheBlockSize" (selectionChanged)="onSelectionChanged($event)"
-        [suppressAggFuncInHeader]="true" [suppressColumnVirtualisation]="true" [autoGroupColumnDef]="autoGroupColumnDef"
-        [serverSideStoreType]="serverSideStoreType" [pagination]="true" [paginationPageSize]="1000" [sideBar]="sideBar"
-        allColumns=true>
-      </ag-grid-angular>
+    <div class="tableheader" [ngClass]="dynclass">
+      <mat-tab-group class="mattab" (selectedIndexChange)="onTabChange($event)">
+        <mat-tab *ngFor="let tab of tabs">
+          <ng-template mat-tab-label>
+            <span class="tab-name">{{ tab.title }}</span>
+            <div><span class="tab-count">{{ tab.items.length }}</span></div>
+          </ng-template>
+        </mat-tab>
+      </mat-tab-group>
+    </div> -->
+
+    <!-- <div class="tableheader" [ngClass]="dynclass">
+      <mat-tab-group class="mattab" (selectedIndexChange)="onTabChange($event)">
+        <mat-tab *ngFor="let tab of tabs;  let i = index">
+          <ng-template mat-tab-label>
+            <span class="tab-name">{{ tab.title }}</span>
+            <div>
+              <span class="tab-count" [style.background-color]="active === i ? icncolor :  null">
+                {{ tab.items.length }}</span>
+            </div>
+          </ng-template>
+        </mat-tab>
+      </mat-tab-group>
+    </div> -->
+
+
+
+    <!-- <div class="tableheader" [ngClass]="dynclass">
+      <mat-tab-group class="mattab" (selectedIndexChange)="onTabChange($event)">
+        <mat-tab *ngFor="let tab of tabs;  let i = index">
+          <ng-template mat-tab-label>
+            <span class="tab-name">{{ tab.title }}</span>
+            <div>
+              <span class="tab-count" [style.background-color]="active === i ? icncolor :  null">
+                <span *ngIf="tab.title == 'totalCount'"> 
+                  {{ alldata?.awaitingReview }}
+                </span>
+                <span *ngIf="tab.title == 'Awaiting Review'">
+                  <label *ngIf="alldata?.awaitingReview > 0  ">{{ alldata?.awaitingReview }}</label>
+                  <label *ngIf="alldata?.awaitingReview == 0">0</label>
+                </span>
+                <span *ngIf="tab.title == 'Rejected'">
+                  <label *ngIf="alldata?.Rejected > 0  ">{{ alldata?.Rejected }}</label>
+                  <label *ngIf="alldata?.Rejected==0">0</label>
+                </span>
+                <span *ngIf="tab.title == 'Shortlisted'">
+                  <label *ngIf="alldata?.Shortlisted > 0">{{ alldata?.Shortlisted }}</label>
+                  <label *ngIf="alldata?.Shortlisted == 0">0</label>
+                </span>
+              </span>
+            </div>
+          </ng-template>
+        </mat-tab>
+      </mat-tab-group>
+    </div> -->
+
+
+    <div class="tableheader" [ngClass]="dynclass">
+      <mat-tab-group class="mattab" (selectedIndexChange)="onTabChange($event)">
+        <mat-tab *ngFor="let tab of tabs;  let i = index">
+          <ng-template mat-tab-label>
+            <span class="tab-name">{{ tab.title }}</span>
+            <div>
+              <span class="tab-count" [style.background-color]="active == i ? icncolor :  null">
+                <span *ngIf="tab.title == 'All'">{{allcountvalue}}</span>
+                <span *ngIf="tab.title == 'Awaiting Review'">{{awaitingcountvalue}}</span> 
+                <span *ngIf="tab.title == 'In Progress'"> {{ inprogresscountvalue }}</span>
+                <span *ngIf="tab.title == 'Rejected'"> {{ rejectedcountvalue }}</span>
+               <span *ngIf="tab.title == 'Shortlisted'"> {{ shortlitcountvalue }}</span>
+              </span>
+            </div>
+          </ng-template>
+        </mat-tab>
+      </mat-tab-group>
     </div>
-  </div> -->
+
   <div class="border">
     <div class="ag-grid">
-      <ag-grid-angular style="width: 100%; height: 100%;" class="ag-theme-alpine" [gridOptions]="gridOptions"
-        [columnDefs]="columnDefs" [defaultColDef]="defaultColDef" (cellClicked)="onCellClicked($event)"
-        [masterDetail]="masterDetail" [overlayNoRowsTemplate]="overlayNoRowsTemplate" [rowData]="filteredRowData" [enableRangeSelection]="true"
-        [tooltipShowDelay]="0" [animateRows]="true" headerHeight="45" rowHeight="45" [suppressRowClickSelection]="true"
-        [suppressRowTransform]="true" [rowSelection]="rowSelection" [pivotPanelShow]="'always'" [sideBar]="false"
-        (gridReady)="onGridReady($event)" [rowModelType]="rowModelType" [maintainColumnOrder]="true"
-        [cacheBlockSize]="cacheBlockSize" (selectionChanged)="onSelectionChanged($event)"
-        [suppressAggFuncInHeader]="true" [suppressColumnVirtualisation]="true" [autoGroupColumnDef]="autoGroupColumnDef"
-        [serverSideStoreType]="serverSideStoreType" [pagination]="true" [paginationPageSize]="1000" [sideBar]="sideBar"
+      <ag-grid-angular 
+      style="width: 100%; height: 100%;"
+       class="ag-theme-alpine" 
+       [gridOptions]="gridOptions"
+        [columnDefs]="columnDefs" 
+        [defaultColDef]="defaultColDef" 
+        (cellClicked)="onCellClicked($event)"
+        [masterDetail]="masterDetail" 
+        [overlayNoRowsTemplate]="overlayNoRowsTemplate" 
+        [rowData]="filteredRowData" [enableRangeSelection]="true"
+        [tooltipShowDelay]="0" 
+        [animateRows]="true" 
+        headerHeight="45" 
+        rowHeight="45" 
+        [suppressRowClickSelection]="true"
+        [suppressRowTransform]="true" 
+        [rowSelection]="rowSelection" 
+        [pivotPanelShow]="'always'" 
+        [sideBar]="false"
+        (gridReady)="onGridReady($event)" 
+        [rowModelType]="rowModelType" 
+        [maintainColumnOrder]="true"
+        [cacheBlockSize]="cacheBlockSize" 
+        (selectionChanged)="onSelectionChanged($event)"
+        [suppressAggFuncInHeader]="true" 
+        [suppressColumnVirtualisation]="true" 
+        [autoGroupColumnDef]="autoGroupColumnDef"
+        [serverSideStoreType]="serverSideStoreType" 
+        [pagination]="true" 
+        [paginationPageSize]="10" 
+        [sideBar]="sideBar"
         allColumns="true">
       </ag-grid-angular>
     </div>
+
+    
+  <div class="pagnation">
+    <div class="example-header">
+      Rows:
+      <select (change)="onPageSizeChanged()" id="page-size">
+        <option value="10">10</option>
+        <option value="3">3</option>
+        <option value="5">5</option>
+        <option value="7">7</option>
+        <option value="20">20</option>
+      </select>
+    </div>
+    <div class="goto-sear">
+      <div class="goto"> GoToPage: </div>
+      <div>
+        <input type="string" class="goto-search" [(ngModel)]="pageNumberInput" />
+        <button class="go" (click)="onBtPageGo(pageNumberInput)">Go</button>
+      </div>
+    </div>
   </div>
+
+  </div> 
 </div>
+

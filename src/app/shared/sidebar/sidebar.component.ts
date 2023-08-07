@@ -83,6 +83,10 @@ export class SidebarComponent implements OnInit {
         this.menuIconToggle = true;
         this.check = 'Viewcandidatelist';
         break;
+      case '/auth/drive/viewCandidateProfilebyEmployer':
+        this.menuIconToggle = true;
+        this.check = 'viewProfilebyEmployer';
+        break;
       case '/auth/drive/managedrive':
         this.check = 'managedrive';
         this.driveIconToggle = true;

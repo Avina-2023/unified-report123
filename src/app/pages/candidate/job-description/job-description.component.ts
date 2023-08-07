@@ -52,7 +52,7 @@ export class JobDescriptionComponent implements OnInit {
     // this.router.getCurrentNavigation().extras &&
     // this.router.getCurrentNavigation().extras.state &&
     // this.router.getCurrentNavigation().extras.state.detail;
-    // console.log(this.jobDetails);
+     console.log(this.jobDetails);
   }
 
   openDialog(dialogval){
@@ -105,6 +105,7 @@ export class JobDescriptionComponent implements OnInit {
     });
   }
 
+
   applyJob(){
     let obj =
     {
@@ -137,4 +138,11 @@ export class JobDescriptionComponent implements OnInit {
     }
 
 
+    handleButtonClick() {
+      if (this.jobDetails.partnerLabel === 'Skill Exchange Partner') {
+        this.applyJob();
+      } else {
+        window.location.href = 'https://lntedutech.com/'; 
+      }
+    }
 }

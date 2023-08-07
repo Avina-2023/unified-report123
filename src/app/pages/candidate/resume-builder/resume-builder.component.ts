@@ -23,6 +23,7 @@ export class ResumeBuilderComponent implements OnInit {
 
   profilePercentage: any;
   options: any;
+  url="Resume Builder"
 
   ngOnInit() {
     this.profilePercentage = JSON.parse(localStorage.getItem('profilePercentage'));
