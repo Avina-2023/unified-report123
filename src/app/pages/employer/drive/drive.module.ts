@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { FormsModule } from '@angular/forms';
 import { DriveRoutingModule } from './drive-routing.module';
 import { ManageDriveComponent } from './manage-drive/manage-drive.component';
 import { MaterialModule } from 'src/app/material/material.module';
@@ -29,6 +29,7 @@ import { ViewCandidateProfilebyEmployerComponent } from './viewCandidateProfileb
     MatMenuModule,
     MatIconModule,
     MatCheckboxModule,
+    FormsModule
   ],
 })
 export class DriveModule {}
