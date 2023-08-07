@@ -18,6 +18,7 @@ import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { ActionButtonsComponent } from './actionButtons/actionButtons.component';
 import { param } from 'jquery';
 import { MatPaginator } from '@angular/material/paginator';
+import { GlobalValidatorService } from 'src/app/globalvalidators/global-validator.service';
 interface Tab {
   title: string;
   items: string[]
@@ -113,7 +114,8 @@ icncolor:string ='#1B4E9B';
     private appconfig: AppConfigService,
     private sendData: SentDataToOtherComp,
     public router: Router,
-    private activeroute: ActivatedRoute
+    private activeroute: ActivatedRoute,
+    private global_validators: GlobalValidatorService,
   ) {
     this.jobId = this.appconfig.getLocalStorage('currentJobID');
     this.serverSideStoreType = 'partial';
@@ -545,7 +547,7 @@ icncolor:string ='#1B4E9B';
     this.router.navigate(['/auth/partner/jobrequirment']);
   }
 
-  // onTabChange(event: MatTabChangeEvent) {
+  // onTabChange(event: MatTabChange) {
   //   this.selectedTab = event.tab.textLabel;
   //   this.filterData();
   // }
@@ -610,10 +612,6 @@ icncolor:string ='#1B4E9B';
       .value;
     this.gridApi.paginationSetPageSize(Number(value));
   }
-  
-  onBtPageFive() {
-    this.gridApi.paginationGoToPage(3);
-  }
 
 
   onBtPageGo(pageNumber: number) {
@@ -623,26 +621,23 @@ icncolor:string ='#1B4E9B';
       console.log('Invalid page number');
     }
   }
-
-  // onGoClick() {
-  //   if (this.pageNumber <= 0) {
-  //     alert('Page number must be a positive integer');
+  
+  // onBtPageGo(pageNumber: string) {
+  //   const isValidNumber = this.global_validators.numberOnly();
+    
+  //   if (!isValidNumber) {
+  //     console.log('Invalid input. Please enter a valid number.');
   //     return;
   //   }
-  //   this.gridApi.paginationGoToPage(this.pageNumber - 1);
-  // }
-
-  onGoClick() {
-    if (this.pageNumber <= 0) {
-      alert('Page number must be a positive integer');
-      return;
-    }
-    this.gridApi.paginationGoToPage(this.pageNumber - 1);
-  }
     
-  onBtGoToPage(pageNumber: number) {
-    this.gridApi.paginationGoToPage(pageNumber);
-    this.currentPage = pageNumber;
-  }
+  //   const parsedNumber = parseInt(pageNumber, 10);
+    
+  //   if (parsedNumber >= 1 && parsedNumber <= this.gridApi.paginationGetTotalPages()) {
+  //     this.gridApi.paginationGoToPage(parsedNumber - 1);
+  //   } else {
+  //     console.log('Invalid page number');
+  //   }
+  // }
+  
 
 }

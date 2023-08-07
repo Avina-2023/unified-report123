@@ -592,16 +592,16 @@ justify-content: space-between;
       color: #848484;
     }
     .goto-search{
+      width: 27px;
+      border-radius: 5px;
       border: 1px solid #CECECE;
-      padding: 1px 8px 1px 8px;
-      border-radius: 7px;
-      margin: 3px;
-
+      margin: 0px 3px 0px 3px;
     }
     .go{
       color: #1B4E9B;
       cursor: pointer;
       font-weight: 700;
+      border: none;
     }
   }
 }
