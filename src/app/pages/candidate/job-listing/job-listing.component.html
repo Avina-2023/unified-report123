@@ -173,7 +173,7 @@
               <div [disabled]="!item.yearofPassout.includes(removeduplicate2)"
                 (click)="item.yearofPassout.includes(removeduplicate2) ? gotojob(item) : customalert()"
                 [ngClass]="{'blurcard': !item.yearofPassout.includes(removeduplicate2)}">
-                <span class="icon-clock_postdate"></span>
+                <span class="icon-clock_postdate dayleftclr"></span>
                 Posted on
                 {{item.createdOn | date : 'd MMM'}}
               </div>
@@ -181,8 +181,8 @@
                 (click)="item.yearofPassout.includes(removeduplicate2) ? gotojob(item) : customalert()"
                 [ngClass]="{'blurcard': !item.yearofPassout.includes(removeduplicate2)}">
                 &nbsp;
-                <span class="icon-clock_postdate"></span>
-                <!-- <span class="icon-clock_withcancel"></span> -->
+
+                <span class="icon-daysleft_clock dayleftclr"></span>
                 {{item.lastDatetoApply | timeDiff}}
               </div>
 
@@ -195,7 +195,7 @@
                 <div class="save">
                   <mat-icon [ngClass]="item.isSelected ? 'saved_icon':'unsaved_icon'">
                     {{item.isSelected?'bookmark':'bookmark_border'}} </mat-icon>
-                  <div>Save</div>
+                  <!-- <div>Save</div> -->
                 </div>
               </div>
             </div>
