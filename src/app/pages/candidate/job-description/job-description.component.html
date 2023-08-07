@@ -63,7 +63,7 @@
             <div class="locate" *ngFor="let item of jobDetails.jobLocation;let i=index; let isLast=last">{{item}}<span class="misc_col" *ngIf="!isLast && i < jobDetails.jobLocation.length">&nbsp;</span> </div>
          </div>
          <div class="genText1">
-            <div><span class="icon-posted-before"></span></div>
+            <div><span class="icon-clock_postdate"></span></div>
             <!-- <div class="locate" *ngFor="let item of jobDetails.jobLocation;let i=index; let isLast=last">{{item}}<span class="misc_col" *ngIf="!isLast && i < jobDetails.jobLocation.length">&nbsp;</span> </div> -->
             <div class="locate">Posted On {{jobDetails.createdOn| date : 'd MMM'}}</div>
          </div>
