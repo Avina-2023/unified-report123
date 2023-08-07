@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { SetPasswordComponent } from './set-password/set-password.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { ExternalLinkComponent } from './external-link/external-link.component';
 const routes: Routes = [
   {
     path: ``, redirectTo: `${APP_CONSTANTS.ROUTES.LOGIN}`
@@ -19,6 +20,9 @@ const routes: Routes = [
   },
   {
     path: `${APP_CONSTANTS.ROUTES.PASSWORD.SETUP}`, component: SetPasswordComponent
+  },
+  {
+    path: `${APP_CONSTANTS.ROUTES.EXTLOGIN}`, component: ExternalLinkComponent
   },
   {
     path: '',
