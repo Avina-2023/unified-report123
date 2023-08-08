@@ -160,6 +160,7 @@
                     : ''}},
                     {{form_present_city ? ', ' + form_present_city : 'NA'}}
                     {{form_present_state ? ', ' + form_present_state : 'NA'}},
+                    <!-- {{form_present_country ? ', ' + form_present_country : 'NA'}}, -->
                     {{candidateData.contact_details.present_zip}}
                   </div>
                 </div>
@@ -187,7 +188,9 @@
                     : ''}}
                     {{candidateData.contact_details.permanent_state ? ', ' +
                     candidateData.contact_details.permanent_state : ''}}
-                    {{candidateData.contact_details.permanent_zip ? ', ' + candidateData.contact_details.permanent_zip :
+                    {{candidateData.contact_details.permanent_country ? ', ' +
+                    candidateData.contact_details.permanent_country : ''}}
+                    {{candidateData.contact_details.permanent_zip ? '-' + candidateData.contact_details.permanent_zip :
                     ''}}
                   </div>
                 </div>
@@ -198,7 +201,6 @@
             </div>
           </div>
         </div>
-
 
         <div id="education" #educationSection class="inner_content">
           <div class="profile_details pd-20">
@@ -274,7 +276,7 @@
               </div>
 
               <div class="flx_div flx_baseline title">
-                <div class="key">No. of Active Backlogs (if any)</div>
+                <div class="key">No. of Active Backlogs ? (if any)</div>
                 <div class="value">
                   {{candidates.noActivebacklog}}
                 </div>
@@ -286,7 +288,7 @@
                 </div>
               </div>
               <div class="flx_div flx_baseline title">
-                <div class="key">Reason for the Gap</div>
+                <div class="key">Reason for the Gap ?</div>
                 <div class="value">
                   {{candidates.reasonForbacklog ? candidates.reasonForbacklog : 'NIL'}}
                   <!-- {{candidates.reasonForbacklog}} -->
