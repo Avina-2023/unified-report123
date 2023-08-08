@@ -839,6 +839,16 @@
   color: #ffffff;
   border-radius: 5px;
   cursor: pointer;
+  .custom-tooltip {
+      max-width: 200px;
+      /* Set the desired max width */
+      margin: 10px 0px 0px 0px;
+      height: auto;
+      /* Set the desired height or let it be auto */
+      font-size: 14px;
+      /* Set the desired font size */
+      /* Add any other styles you want */
+    }
 }
 
 .grid_1 {
