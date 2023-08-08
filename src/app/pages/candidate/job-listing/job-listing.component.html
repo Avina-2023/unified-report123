@@ -25,12 +25,20 @@
         (click)="setActiveButton('internships')">Internships</button>
     </div> -->
     <br>
+    <!-- <div class="search-bar">
+      <div><mat-icon class="search_icon_" type="submit">search</mat-icon></div>
+      <div style="width: 100%;">
+        <input class="border_Placeholder" #searchInput type="text" placeholder="Enter designation / companies / location">
+      </div>
+    </div> -->
     <div class="search-bar">
       <div><mat-icon class="search_icon_" type="submit">search</mat-icon></div>
       <div style="width: 100%;">
-        <input class="border_Placeholder" type="text" placeholder="Enter designation / companies / location">
+        <input class="border_Placeholder" [(ngModel)]="searchInput" (ngModelChange)="textsearch()" #searchInputRef
+          type="text" placeholder="Enter designation / companies / location">
       </div>
     </div>
+
 
     <div class="mob_fil" *ngIf="this.filter_info.data.length">
       <div class="fil_results">
