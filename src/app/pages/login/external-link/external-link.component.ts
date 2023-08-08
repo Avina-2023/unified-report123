@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from 'src/app/services/api.service';
 import { AppConfigService } from 'src/app/utils/app-config.service';
+import { APP_CONSTANTS } from 'src/app/utils/app-constants.service';
 
 
 @Component({
@@ -341,12 +342,44 @@ export class ExternalLinkComponent implements OnInit {
       let view = param.view;
       let jobid = param.jobid;
       if (extId && extId != undefined && extId != "") {
-        
-        this.apiService.login({ key: decodeURIComponent(extId) }).subscribe((data: any) => {
-          data = this.apiresponse//mocking
+       console.log(this.apiService.decrypt(decodeURIComponent(extId)),'eeee');
+        this.apiService.student_login({ key: decodeURIComponent(extId) }).subscribe((data: any) => {
+          // data = this.apiresponse//mocking
           if (data.success) {
             
-            this.loginRedirection(data);
+            this.appConfig.setLocalStorage('c_token', data && data.token ? data.token : '');
+            this.appConfig.setLocalStorage('email', data && data.data.email ? data.data.email : '');
+            this.appConfig.setLocalStorage('name',data && data.data.personal_details?data.data.personal_details.name:'N/A')
+            this.appConfig.setLocalStorage('profileImage',data && data.data.personal_details?data.data.personal_details.profileImage:'')
+            this.appConfig.setLocalStorage('candidateProfile',data && data.data?JSON.stringify(data.data):'')
+
+            if(!view && !jobid)
+            {this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.CANDIDATEDASH.DASHBOARD);}
+
+            if(view == "appliedjobs" ){
+              this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.CANDIDATEDASH.JOBSAPPLIED);
+            }else{
+              this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.CANDIDATEDASH.DASHBOARD);
+            }
+
+            if(jobid){
+              let dataval = {
+                "jobId": jobid,
+                "email": data.data.email
+            }
+              this.apiService.getJobDetail(dataval).subscribe((data:any)=>{
+                console.log(data);
+                if (data.success) {
+                  this.appConfig.setLocalStorage('jobDesc',JSON.stringify(data.data))
+                  this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.CANDIDATEDASH.JOBDESCRIPTION);
+                }else{
+                  this.toast.warning(data.message)
+                  this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.CANDIDATEDASH.DASHBOARD);
+                }
+              })
+              
+            }
+            // this.loginRedirection(data.data,);
           } else {
             this.toast.warning(data.message)
             //this.appConfig.warning(data.message)
