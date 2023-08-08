@@ -338,7 +338,8 @@ export class ExternalLinkComponent implements OnInit {
     this.route.queryParams.subscribe((param: any) => {
       // https://skillexchange-dev.lntedutech.com/externallogin?extId=U2FsdGVkX1%2Fq5aiOn6Qd1lBnI2bWggDKiWsOIN62K4k%3D&jobId=dslfjsdf&view=appliedjobs
       let extId = param.extId;
-      let view = param.view
+      let view = param.view;
+      let jobid = param.jobid;
       if (extId && extId != undefined && extId != "") {
         
         this.apiService.login({ key: decodeURIComponent(extId) }).subscribe((data: any) => {
