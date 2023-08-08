@@ -53,9 +53,18 @@
 
     </div>
       <div class="footer_right">
+        <div class="box-job-flex">
+          <div class="job-flex-left">
+          <div class="job">
+            <div class="job-text">#Jobs</div>
+          </div>
+        </div>
+        <div class="job-flex-right">
         <div class="box-job">
             <span class="full_time"></span> {{item.jobType}}
         </div>
+      </div>
+      </div>
         <div class="misc_save" *ngIf="savedButton">
           <button class="saved" *ngIf="item?.isApplied == false && currentdate<item?.lastDatetoApply"
             (click)="apply(item)">Apply Now
