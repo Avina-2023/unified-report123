@@ -98,6 +98,30 @@
               </div>
             </div>
           </div> -->
+          <!-- <div class="profile_details pd-20">
+            <h2 class="head_title">Languages Known</h2>
+            <div class="flx_center title">
+              <div class="key"></div>
+              <div class="flx_div flx_center flx_between"
+                *ngFor="let language of candidateData.personal_details.languages_known">
+
+                <span class="key">{{ language.language }}</span>
+
+                <label class="value_check">
+                  <input type="checkbox" [checked]="language.is_read" disabled />
+                  Read
+                </label>
+                <label class="value_check">
+                  <input type="checkbox" [checked]="language.is_write" disabled />
+                  Write
+                </label>
+                <label class="value_check">
+                  <input type="checkbox" [checked]="language.is_speak" disabled />
+                  Speak
+                </label>
+              </div>
+            </div>
+          </div> -->
           <div class="profile_details pd-20">
             <h2 class="head_title">Languages Known</h2>
             <div class="flx_center title">
@@ -121,15 +145,31 @@
                 </label>
               </div>
             </div>
+
+            <div
+              *ngIf="!candidateData.personal_details.languages_known || candidateData.personal_details.languages_known.length === 0"
+              class="value_ar lan_mar">
+              No languages details available
+            </div>
           </div>
+
 
           <div class="profile_details pd-20">
             <h2 class="head_title">Hobbies/Interests </h2>
-            <div class="flx_div hobbies">
-              <div *ngFor="let hobby of candidateData.personal_details.hobbies_intrest">{{ hobby.hobbiesAndInterests }}
+            <div class="flx_div ">
+              <div class="hobbies">
+                <div *ngFor="let hobby of candidateData.personal_details.hobbies_intrest">{{ hobby.hobbiesAndInterests
+                  }}
+                </div>
+              </div>
+              <div
+                *ngIf="!candidateData.personal_details.hobbies_intrest || candidateData.personal_details.hobbies_intrest.length === 0"
+                class="value_ar hob_mar">
+                No Hobbies/Interests details available
               </div>
             </div>
           </div>
+
         </div>
 
         <div>
