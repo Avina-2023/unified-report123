@@ -356,8 +356,8 @@ export class ExternalLinkComponent implements OnInit {
             if(!view && !jobid)
             {this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.CANDIDATEDASH.DASHBOARD);}
 
-            if(view == "appliedjobs" ){
-              this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.CANDIDATEDASH.JOBSAPPLIED);
+            if(view){
+              this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.CNDIDATELANDING+'/'+view);
             }else{
               this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.CANDIDATEDASH.DASHBOARD);
             }

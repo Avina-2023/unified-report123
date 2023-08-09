@@ -176,14 +176,13 @@
       Rows:
       <select (change)="onPageSizeChanged()" id="page-size">
         <option value="10">10</option>
-        <option value="3">3</option>
         <option value="5">5</option>
-        <option value="7">7</option>
+        <option value="15">15</option>
         <option value="20">20</option>
       </select>
     </div>
     <div class="goto-sear">
-      <div class="goto"> GoToPage: </div>
+      <div class="goto"> Go To Page: </div>
       <div>
         <input type="string" class="goto-search" [(ngModel)]="pageNumberInput" />
         <button class="go" (click)="onBtPageGo(pageNumberInput)">Go</button>
