@@ -163,7 +163,7 @@
             <!-- <mat-icon class="android">android</mat-icon> -->
             <span class="icon-calendar-icon icon-calsize"></span>
             <span> Posted on
-              {{ one.postedDate | date : 'd MMM , y' }}
+              {{ one.postedDate | date : 'd MMM, y' }}
             </span>
           </div>
         </div>
@@ -264,8 +264,8 @@
           <div class="daysLeft">
             <!-- <mat-icon class="android">android</mat-icon> -->
             <span class="icon-calendar-icon icon-calsize"></span>
-             <span> Posted on
-              {{ one.postedDate | date : 'd MMM , y'}}
+             <span> Posted On
+              {{ one.postedDate | date : 'd MMM, y'}}
             </span>
           </div>
         </div>
@@ -274,7 +274,7 @@
           <span class="applied" (click)="viewApplication(one)">
             <mat-icon class="schedule">schedule</mat-icon>
             Applied
-            <u>{{ one.candidatesAppliedCount }}</u>
+           ( <u>{{ one.candidatesAppliedCount }}</u>)
           </span>
 
           <!-- <span class="settings" [routerLink]="routerlink.VIEWDRIVE.DRIVESETTINGS">
