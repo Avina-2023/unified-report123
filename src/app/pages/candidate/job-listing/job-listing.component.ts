@@ -78,7 +78,7 @@ export class JobListingComponent implements OnInit {
     private renderer: Renderer2,
     private el: ElementRef
   ) {}
-  url = 'jobs/internship';
+  url = 'jobs';
   ngOnInit() {
     this.getJobList();
     this.getJobFilter();
