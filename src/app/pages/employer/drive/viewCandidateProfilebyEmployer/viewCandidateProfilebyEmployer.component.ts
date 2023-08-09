@@ -244,7 +244,7 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
     });
     const dialogRef = this.dialog.open(this.confirmmatDialogRef, {
       width: '400px',
-      height: 'auto',
+      height: '240px',
       autoFocus: false,
       closeOnNavigation: true,
       disableClose: false,

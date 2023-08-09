@@ -28,6 +28,7 @@ export class ActionButtonsComponent implements ICellRendererAngularComp {
   jobId: any;
   jobStatus: any;
   jobdata: any;
+  lastAction: string | null = null;
 
   constructor(
     public router:Router,
@@ -45,7 +46,9 @@ export class ActionButtonsComponent implements ICellRendererAngularComp {
   // }
   agInit(params: ICellRendererParams): void {
     this.params = params;
-    console.log(this.params,'params');
+    // console.log(this.params,'params');
+    console.log(this.params.data,'candidatedata');
+    // console.log(this.params.data.jobStatus,'job statuses');
     params.value
   }
   afterGuiAttached?(params?: IAfterGuiAttachedParams): void {
@@ -87,8 +90,12 @@ export class ActionButtonsComponent implements ICellRendererAngularComp {
     }
     this.ApiService.getStatusupdated(data).subscribe((response:any) => {
       if (response.success){
-        this.statusdata = response.data;
+        // this.statusdata = response?.success;
+        this.statusdata = response?.data;
+        console.log(this.statusdata)
         this.messenger.sendMessage("grid-refresh",true)        
+      }else{
+           
       }
     })
     const dialogRef = this.dialog.open(this.confirmmatDialogRef, {
