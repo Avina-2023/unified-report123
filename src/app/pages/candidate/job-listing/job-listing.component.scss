@@ -215,7 +215,7 @@
 }
 .name.skill-exchange {
   width: 156px;
-  height: 24px;
+  height: 22px;
   position: absolute;
   right: 0%;
   display: inline-block;
@@ -249,8 +249,11 @@
     }
     .mat-select-arrow {
       margin: 8px 4px 0px 4px;
+          // padding: 0px 5px 4px 0px;
     }
-
+.mat-select-arrow-wrapper{
+            padding: 0px 5px 4px 0px;
+}
     .mat-select-value {
       text-align: start;
     }
@@ -837,8 +840,9 @@
   align-items: center;
   border: 1px solid #1b4e9b;
   color: #ffffff;
-  border-radius: 5px;
+  // border-radius: 5px;
   cursor: pointer;
+  margin: -5px 0px 0px 0px;
   .custom-tooltip {
       max-width: 200px;
       /* Set the desired max width */
