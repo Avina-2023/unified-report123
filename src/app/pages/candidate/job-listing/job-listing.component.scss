@@ -428,23 +428,22 @@
   color: #000 !important;
   line-height: 1.2;
 }
-
+.all_filter{
+    margin: 0px 0px 0px -20px;
+}
 .head_designation {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
-
 .job_description {
   color: #707070;
   font-size: 13px;
   text-align: left;
   margin-top: 10px;
 }
-
 .specialization {
   //  margin-top: 20px;
-
   button {
     background: #c7c7c70d 0% 0% no-repeat padding-box;
     border: 1px solid #70707080;

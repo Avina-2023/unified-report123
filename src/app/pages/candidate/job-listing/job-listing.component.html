@@ -78,7 +78,6 @@
       </div>
     </div> -->
 
-
     <div class="main2">
       <div class="card-sty">
         <mat-card class="main-card2" [class.custom-class]="grid2Selected" *ngFor="let item of joblist;let i as index">
@@ -99,7 +98,6 @@
                 <div class="text-overlay">{{item.partnerLabel }}</div>
               </div>
             </div>
-
 
             <!-- <div [disabled]="!item.yearofPassout.includes(removeduplicate2)"
               (click)="item.yearofPassout.includes(removeduplicate2) ? gotojob(item) : customalert()"
@@ -124,14 +122,12 @@
                     <div>{{item.jobLocation}}</div>
                   </div>
                 </div>
-
               </div>
               <div class="main-sub">
                 <div class="sub-details-1">
                   <div>
                     <span class="head1 rolebold">{{item.jobRole}}</span>
                   </div>
-
                 </div>
                 <!-- <div style="display: flex;">
                   <div class="type">
@@ -195,8 +191,6 @@
                 {{item.lastDatetoApply | timeDiff}}
               </div>
 
-
-
               <!-- <div class="misc_save" [disabled]="item.yearofPassout != useryopyear" (click)="item.yearofPassout == useryopyear && bookMarkIcon(item)" [ngClass]="{'blurcard': item.yearofPassout != useryopyear}"> -->
               <div class="misc_save" [disabled]="!item.yearofPassout.includes(removeduplicate2)"
                 (click)="item.yearofPassout.includes(removeduplicate2) && bookMarkIcon(item)"
@@ -210,7 +204,6 @@
             </div>
           </div>
         </mat-card>
-
 
         <div class="paginationdisplay">
           <app-common-paginator *ngIf="total" (send)="some($event)" [totalcount]="total"></app-common-paginator>
@@ -316,7 +309,7 @@
   <div class="filter" *ngIf="this.filter_info.data.length">
     <div class="fil_head">
       <p>
-        <mat-icon class="misc_icon"></mat-icon><span class="job_designation">All Filters
+        <mat-icon class="misc_icon"></mat-icon><span class="job_designation all_filter">All Filters
           {{this.selectedValues.length ? '(' + this.selectedValues.length + ')' : ''}}</span>
         <span (click)="clearFilters(filter_info.data)" *ngIf="selectedValues.length" class="clear_filter">Clear
           All</span>
