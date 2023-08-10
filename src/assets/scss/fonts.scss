@@ -58,6 +58,10 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
+    .icon-apply_now:before {
+      content: "\ea1d";
+      color: #fff;
+    }
     .icon-daysleft_clock:before {
       content: "\ea1b";
     }
