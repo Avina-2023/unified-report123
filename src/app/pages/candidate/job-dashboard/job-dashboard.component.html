@@ -72,18 +72,20 @@
           </div>
           <div class="right-data">
             <div class="num">
-              {{ jobsAvailable }}
+              <!-- {{ jobsAvailable }} -->
+              {{ jobsAvailable === 0 ? '0' : jobsAvailable < 10 ? '0' + jobsAvailable : jobsAvailable }}
             </div>
             <div class="text">Jobs Available</div>
           </div>
         </mat-card>
         <mat-card class="main-card">
           <div class="left-icon">
-            <div><img src="../../../../assets/images/Jobs_applied.png" /></div>
+            <div><img src="../../../../assets/images/job-applied.png" /></div>
           </div>
           <div class="right-data">
             <div class="num2">
-              {{ jobApplied }}
+              <!-- {{ jobApplied }} -->
+              {{ jobApplied === 0 ? '0' : jobApplied < 10 ? '0' + jobApplied : jobApplied }}
             </div>
             <div class="text">Jobs Applied</div>
           </div>
@@ -96,7 +98,8 @@
           </div>
           <div class="right-data">
             <div class="num3">
-              {{ profileView }}
+              <!-- {{ profileView }} -->
+              {{ profileView === 0 ? '0' : profileView < 10 ? '0' + profileView : profileView }}
             </div>
             <div class="text">Profile Viewed</div>
           </div>
@@ -107,7 +110,8 @@
           </div>
           <div class="right-data">
             <div class="num4">
-              {{ shortlisted }}
+              <!-- {{ shortlisted }} -->
+              {{ shortlisted === 0 ? '0' : shortlisted < 10 ? '0' + shortlisted : shortlisted }}
             </div>
             <div class="text">Shortlisted</div>
           </div>
@@ -156,8 +160,7 @@
     </div> -->
 
 
-<!--
-    <div class="row2">
+<!-- <div class="row2">
       <div class="row-left">
         <div>
           <p class="secondheading">Recently Posted Jobs</p>
@@ -252,7 +255,6 @@
               </div>
               <div class="details">
                 <div class="sub-details">
-                  <!-- <div><span class="icon-full_time"></span></div> -->
                   <div><span class="icon-jobtype"></span></div>
                   <div>{{ slider.jobType }}</div>
                 </div>
@@ -261,14 +263,13 @@
                   <div> {{ slider.education }}</div>
                 </div>
                 <div class="sub-details">
-                  <!-- <div><span class="icon-Location"></span></div> -->
                   <div class="loc"><mat-icon> location_on</mat-icon></div>
                   <div>{{slider.jobLocation}}</div>
                 </div>
 
               </div>
               <div class="date">
-                <div><span class="icon-calendar"></span></div>
+                <div><span class="icon-Calendar"></span></div>
                 <div>Posted on {{slider.createdOn | date : 'd MMM'}}</div>
               </div>
             </mat-card>
@@ -279,39 +280,39 @@
 
 
     <div>
-      <div class="row3">
-        <div>
+      <div>
+        <div class="row3">
           <div>
-            <p class="thirdheading">Top Companies</p>
+            <div>
+              <p class="thirdheading">Top Companies</p>
+            </div>
+          </div>
+          <div class="row-right">
+            <h5 class="view3" (click)="ViewAll()">View All</h5>
           </div>
         </div>
-        <div class="row-right">
-          <h5 class="view3" (click)="ViewAll()">View All</h5>
-        </div>
+        <div class="fourthheading">Fresh oppurtunities based on profiles</div>
       </div>
-      <div class="fourthheading">Fresh oppurtunities based on profiles</div>
-    </div>
-
-
-
-      <owl-carousel-o [options]="customOptions2" #owlCar>
-        <ng-container>
-          <ng-template *ngFor="let sliders of recentjobs" class="imageWrapper" carouselSlide>
-            <div class="main3">
-              <div>
-                <mat-card class="main-card3">
-                  <div class="company-image3">
-                    <img [src]="sliders.imgurl" alt="" />
-                  </div>
-                  <div class="comp">{{sliders.title}}</div>
-                  <div class="dept">{{sliders.specialization}}</div>
-                  <div class="miniview" (click)="ViewAll()">View Jobs</div>
-                </mat-card>
+  
+        <owl-carousel-o [options]="customOptions2" #owlCar>
+          <ng-container>
+            <ng-template *ngFor="let sliders of recentjobs" class="imageWrapper" carouselSlide>
+              <div class="main3">
+                <div>
+                  <mat-card class="main-card3">
+                    <div class="company-image3">
+                      <img [src]="sliders.imgurl" alt="" />
+                    </div>
+                    <div class="comp">{{sliders.title}}</div>
+                    <div class="dept">{{sliders.specialization}}</div>
+                    <div class="miniview" (click)="ViewAll()">View Jobs</div>
+                  </mat-card>
+                </div>
               </div>
-            </div>
-          </ng-template>
-        </ng-container>
-      </owl-carousel-o>
+            </ng-template>
+          </ng-container>
+        </owl-carousel-o>
+    </div>
 
 
 
@@ -393,7 +394,7 @@
           <!-- <div class="big" >-</div> -->
 
           <div class="small" *ngIf="usercity">
-            {{ usercity }}, {{ userstate }}, {{ usercountry }}
+            {{ usercity }}, {{ userstate }}, {{ usercountry }} <span><img src="../../../../assets/images/India-flag.png" /></span>
             <div
               style="
                 color: #ffff;
