@@ -134,7 +134,7 @@
                     <span class="icon-full_time"></span> {{item.jobType}}
                   </div>
                 </div> -->
-                <div class="box">
+                <div class="box"> 
                   <div class="type_fulltime">
                     <span class="icon-full_time"></span> {{item.jobType}}
                   </div>
@@ -196,8 +196,9 @@
                 (click)="item.yearofPassout.includes(removeduplicate2) && bookMarkIcon(item)"
                 [ngClass]="{'blurcard': !item.yearofPassout.includes(removeduplicate2)}">
                 <div class="save">
+                  <!-- <img class="book" src="../../../assets/images/Group 25159.svg"> -->
                   <mat-icon [ngClass]="item.isSelected ? 'saved_icon':'unsaved_icon'">
-                    {{item.isSelected?'bookmark':'bookmark_border'}} </mat-icon>
+                    {{item.isSelected?'bookmark':'bookmark_border'}}</mat-icon><span class="book-icon"></span>
                   <!-- <div>Save</div> -->
                 </div>
               </div>

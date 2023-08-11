@@ -24,6 +24,7 @@ import { NoDataFoundComponent } from './candidateCommons/no-data-found/no-data-f
 import { ResumeTemplate1Component } from './resume-builder/resume-templates/resumeTemplate1/resumeTemplate1.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { DragScrollModule } from 'ngx-drag-scroll';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   imports: [
