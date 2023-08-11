@@ -13,8 +13,11 @@
         <div class="JT-left">
           <div class="se-patner">
             <div class='compTitle'><strong>{{jobDetails.jobRole}}</strong></div>
-            <div *ngIf="jobDetails.partnerLabel === 'Skill Exchange Partner'"><span
-                class="icon-green_tick_flower_circuled"></span></div>
+            <!-- <div *ngIf="jobDetails.partnerLabel === 'Skill Exchange Partner'"><span
+                class="icon-green_tick_flower_circuled"></span></div> -->
+            <div *ngIf="jobDetails.partnerLabel === 'Skill Exchange Partner'" matTooltip="Skill Exchange Partner">
+              <span class="icon-green_tick_flower_circuled"></span>
+            </div>
           </div>
           <div class='genTitle'>{{jobDetails.company}}</div>
         </div>
@@ -53,10 +56,9 @@
         </div>
       </div>
 
-
     </div>
     <div class="job-details1">
-      <div class="job-intern"><span class="job-intern1">#Jobs</span></div>
+      <!-- <div class="job-intern"><span class="job-intern1">#Jobs</span></div> -->
       <div class="job-intern"><span class="job-intern2">{{jobDetails.jobType}}</span></div>
     </div>
     <div class="job-details">
@@ -79,7 +81,6 @@
   </div>
 
   <div class="descriptionArea">
-
     <div class="custom-card1 cardpad LAlign">
       <div class="desTitle" *ngIf="jobDetails.overview">
         Job Overview<br>
@@ -175,12 +176,10 @@
         </div>
       </div>
     </div>
-
   </div>
 
   <!-- <div class="descriptionArea">
       <div class="custom-card cardpad about">
-
          <div class="desTitle">
            About Company:<br>
             <p>{{jobDetails.about}}</p>
