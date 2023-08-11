@@ -169,22 +169,45 @@
     right: -20px;
   }
 }
-
+.logout{
+  width: 300px;
+}
 .actions{
   justify-content: center !important;
 }
 .yes{
-  background-color: #26bbef ;
-  color:white;
+  background-color: #1A4E9B ;
+  color:#FFFFFF;
 }
 .no{
-  background-color: #f1efef;
-  color: black;
+  background-color: #1A4E9B;
+  color: #FFFFFF;
+}
+.yes:hover {
+  transition: ease-out 0.3s;
+   border: 1px solid #1A4E9B !important;
+  background: #ffffff !important;
+  color: #1A4E9B;
+}
+.no:hover {
+  transition: ease-out 0.3s;
+   border: 1px solid #1A4E9B !important;
+  background: #ffffff !important;
+  color: #1A4E9B;
+}
+.clos-icn{
+  text-align: right;
+}
+.logot-img{
+  display: grid;
+  justify-content: center;
+  img{
+    height: 60px;
+  }
 }
 .box{
   display: flex;
   justify-content: space-around;
-
 }
 
 ::ng-deep .mat-menu-panel{
