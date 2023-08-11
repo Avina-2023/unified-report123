@@ -1,4 +1,6 @@
 <div class="overflowbox">
+  <div class="position">
+  <span class="result-show"> Results Showing ({{resultShow}}) </span>
   <div class="card_flex" *ngFor="let item of data">
     <mat-card class="listcard">
       <mat-card-header>
@@ -35,6 +37,7 @@
         <div class="foo-flex">
           <div class="footer_details">
             <div class="title">{{item.jobRole}}</div>
+            
             <div class="cardfooter_row"><span>
                 <mat-icon class="icon" [class.active]="isActive"> school</mat-icon>
               </span>
@@ -128,4 +131,5 @@
       </mat-card-content>
     </mat-card>
   </div>
+</div>
 </div>
