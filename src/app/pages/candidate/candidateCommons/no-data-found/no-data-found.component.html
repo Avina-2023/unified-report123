@@ -1,12 +1,15 @@
 <div class="overflowbox">
   <div class="inside">
     <img src="../../../../.././assets/images/candidate-nofound.png" />
-      <div class="nomessage">{{from=='saved'?'No Saved Jobs found': from=='applied'?'No Applied Jobs found':from =='find'?'No Jobs found':'No Data Found'}}</div>
-      <div class="nomsgnrmltext">
-        {{from=='saved'?'Tap on bookmark icon against a job to save it. Click on Search Jobs to find Jobs': from=='applied'?'Tap on bookmark icon against a job to apply it. Click on Search Jobs to find Jobs':from =='find'?'No Jobs found':'No Data Found'}}
-      </div>
-      <div class="text-centar">
-        <button class="serchbtn" (click)="findjobs()">Search Jobs</button>
-      </div>
+    <div class="nomessage">{{from=='saved'?'No Saved Jobs found': from=='applied'?'No Applied Jobs found':from
+      =='find'?'No Jobs found':'No Data Found'}}</div>
+    <div class="nomsgnrmltext">
+      {{from=='saved'?'Tap on bookmark icon against a job to save it. Click on Search Jobs to find Jobs':
+      from=='applied'?'Tap on bookmark icon against a job to apply it. Click on Search Jobs to find Jobs':from
+      =='find'?'':'No Data Found'}}
+    </div>
+    <div class="text-centar">
+      <button class="serchbtn" (click)="findjobs()">Search Jobs</button>
+    </div>
   </div>
 </div>

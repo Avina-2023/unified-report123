@@ -42,7 +42,7 @@
   .dash {
     display: flex;
     align-items: baseline;
-    //  align-items: center;
+    // align-items: center;
     // padding-top: 15px;
     padding: 15px 0px 0px 18px;
     .view {
@@ -69,8 +69,9 @@
   background-size: cover !important;
   background-repeat: no-repeat;
   background-position: left !important;
-  background: linear-gradient(#000000a3, #000000a3),
-    url(../../../../assets/images/dash-bg-img.png);
+  // background: linear-gradient(#000000a3, #000000a3),
+  // url(../../../../assets/images/dash-bg-img.png);
+  // background-image: url(../../../../assets/images/dash-bg-img.png);
   //  url(../../../../assets/images/banner.svg);
 
   // .user {
@@ -215,7 +216,7 @@
 }
 .name.skill-exchange {
   width: 156px;
-  height: 24px;
+  height: 22px;
   position: absolute;
   right: 0%;
   display: inline-block;
@@ -249,8 +250,11 @@
     }
     .mat-select-arrow {
       margin: 8px 4px 0px 4px;
+          // padding: 0px 5px 4px 0px;
     }
-
+.mat-select-arrow-wrapper{
+            padding: 0px 5px 4px 0px;
+}
     .mat-select-value {
       text-align: start;
     }
@@ -425,23 +429,22 @@
   color: #000 !important;
   line-height: 1.2;
 }
-
+.all_filter{
+    margin: 0px 0px 0px -20px;
+}
 .head_designation {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
-
 .job_description {
   color: #707070;
   font-size: 13px;
   text-align: left;
   margin-top: 10px;
 }
-
 .specialization {
   //  margin-top: 20px;
-
   button {
     background: #c7c7c70d 0% 0% no-repeat padding-box;
     border: 1px solid #70707080;
@@ -514,12 +517,21 @@
 
   .unsaved_icon,
   .saved_icon {
-    font-size: 22px !important;
-    margin-top: 3px;
+    font-size: 24px !important;
+    // margin-top: 3px;
   }
-
+  .book-icon {
+    border: 1px solid #1b4e9b;
+    height: 6px;
+    width: 2px;
+    transform: rotate(90deg);
+    position: relative;
+    right: 3.5mm;
+    margin-left: 0.5px;
+    top: 9px;
+  }
   .unsaved_icon {
-    color: #1B4E9B;
+    color: #1b4e9b;
   }
 }
 
@@ -713,6 +725,34 @@
   }
   .custom-class {
     width: 98% !important;
+    .box {
+      // display: none !important;
+      display: flex;
+      position: absolute !important;
+      right: 18px !important;
+      background: #1b4e9b14 0% 0% no-repeat padding-box;
+      border-radius: 17px;
+      width: 89px;
+      opacity: 1;
+      color: #1b4e9b;
+      padding: 0px 0px 0px 20px;
+      margin: 15px 0px 0px 0px;
+    }
+    .degree {
+      // padding-left: 20px;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      color: #848484;
+      // width: 110px;
+      margin: 10px 0px 0px 0px;
+      padding: 16px 6px !important;
+      .icon-degree:before {
+        content: "";
+        color: #848484;
+        padding-right: 3px;
+      }
+    }
   }
   .main-card2 {
     // height: 250px;
@@ -743,7 +783,7 @@
       align-items: center;
       // justify-content: space-between;
       border-bottom: 1px solid #d0d0d0;
-      padding: 10px 15px 25px 15px;
+      padding: 12px 15px 25px 15px;
 
       .minicard-heading {
         // size: 12px;
@@ -837,8 +877,20 @@
   align-items: center;
   border: 1px solid #1b4e9b;
   color: #ffffff;
-  border-radius: 5px;
+  // border-radius: 5px;
   cursor: pointer;
+  margin: -5px 0px 0px 0px;
+  .custom-tooltip {
+    max-width: 200px;
+    /* Set the desired max width */
+    margin: 10px 0px 0px 0px;
+    height: auto;
+    /* Set the desired height or let it be auto */
+    font-size: 14px;
+    /* Set the desired font size */
+    /* Add any other styles you want */
+  }
+
 }
 
 .grid_1 {
@@ -866,11 +918,11 @@
   color: #ffffff;
 }
 
-  .sub-details{
-    display: flex;
-    // padding-left: 5px;
-    padding: 5px 0px 0px 5px;
-    color: #707070;
+.sub-details {
+  display: flex;
+  // padding-left: 5px;
+  padding: 5px 0px 0px 5px;
+  color: #707070;
 
   // div{
   //   // padding: 5px 3px 5px 0px;
@@ -894,70 +946,66 @@
     color: #707070;
     height: 2px;
   }
-    .specialization{
-      padding: 5px 0px 5px 0px;
-      line-height: 24px;
-      color: #707070;
-    }
-
-  }
-    .box {
-      display: flex;
-      background: #1B4E9B14 0% 0% no-repeat padding-box;
-      border-radius: 17px;
-      width: 89px;
-      opacity: 1;
-      color: #1B4E9B;
-                  padding: 0px 0px 0px 20px;
-                  margin: 10px 0px 0px 0px;
-
-
-    }
-
-    .type_fulltime {
-    }
-  .date{
-    display: flex;
-      background: #F6F6F6 0% 0% no-repeat padding-box;
-      padding: 13px 6px;
-      position: absolute;
-      width: 100%;
-      bottom: 0px;
-      padding: 6px 0px;
-
-    div{
-      margin: 0px 0px 0px 4px;
-      padding: 4px 3px 4px 5px;
-      line-height: 24px;
-      color: #707070;
-      background: #F6F6F6 0% 0% no-repeat padding-box;
-    }
-    .dayleftclr{
-      color: #848484;
-    }
-  }
-
-  .company-image{
-    border: 1px solid #80808045;
-      padding: 4px;
-      border-radius: 5px;
-      background: #FFFFFF 0% 0% no-repeat padding-box;
-    img{
-      width: 60px;
-    }
-  }
-
-  .thirdheading{
-    padding-top: 10px;
-    size: 22px;
-    padding-left: 30px;
-    color: #294D96;
-  }
-  .fourthheading{
-    padding-left: 30px;
+  .specialization {
+    padding: 5px 0px 5px 0px;
+    line-height: 24px;
     color: #707070;
   }
+}
+.box {
+  display: flex;
+  background: #1b4e9b14 0% 0% no-repeat padding-box;
+  border-radius: 17px;
+  width: 89px;
+  opacity: 1;
+  color: #1b4e9b;
+  padding: 0px 0px 0px 20px;
+  margin: 10px 0px 0px 0px;
+}
 
+.type_fulltime {
+}
+.date {
+  display: flex;
+  background: #f6f6f6 0% 0% no-repeat padding-box;
+  padding: 13px 6px;
+  position: absolute;
+  width: 100%;
+  bottom: 0px;
+  padding: 6px 0px;
+
+  div {
+    margin: 0px 0px 0px 4px;
+    padding: 4px 3px 4px 5px;
+    line-height: 24px;
+    color: #707070;
+    background: #f6f6f6 0% 0% no-repeat padding-box;
+  }
+  .dayleftclr {
+    color: #848484;
+  }
+}
+
+.company-image {
+  border: 1px solid #80808045;
+  padding: 4px;
+  border-radius: 5px;
+  background: #ffffff 0% 0% no-repeat padding-box;
+  img {
+    width: 60px;
+  }
+}
+
+.thirdheading {
+  padding-top: 10px;
+  size: 22px;
+  padding-left: 30px;
+  color: #294d96;
+}
+.fourthheading {
+  padding-left: 30px;
+  color: #707070;
+}
 
 .date {
   display: flex;
@@ -1003,6 +1051,13 @@
 .toast-top-center {
   bottom: 30px;
 }
+// .toast {
+//   left: 50%;
+//   position: fixed;
+//   transform: translate(-50%, 0px);
+//   z-index: 9999;
+// }
+
 
 // @media only screen and (min-width: 300px) and (max-width: 400px) {
 //   .overall_box {

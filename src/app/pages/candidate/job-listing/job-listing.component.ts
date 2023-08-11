@@ -69,6 +69,7 @@ export class JobListingComponent implements OnInit {
   grid2Selected = false;
   partnerLabel: string | undefined;
   private buttonClicked = new Subject<string>();
+  // isSelected:any;
   constructor(
     public dialog: MatDialog,
     private apiservice: ApiService,
@@ -78,7 +79,7 @@ export class JobListingComponent implements OnInit {
     private renderer: Renderer2,
     private el: ElementRef
   ) {}
-  url = 'jobs/internship';
+  url = 'jobs';
   ngOnInit() {
     this.getJobList();
     this.getJobFilter();
@@ -317,16 +318,20 @@ export class JobListingComponent implements OnInit {
   }
 
   bookMarkIcon(item) {
-    item.isSelected = !item.isSelected;
 
+    item.isSelected = !item.isSelected;
+    // positionClass: 'toast-top-center';
     let jobParams: any = {
       email: this.appconfig.getLocalStorage('email'),
       jobId: item.jobId,
+      // positionClass: 'toast-top-center',
     };
     this.apiservice.saveJobsDashboard(jobParams).subscribe((res: any) => {
-      if (res.success) {
-        // console.log('jobs', res)
-      }
+      if (res.success && item.isSelected) { 
+      this.toaster.success("Job Saved Successfully!")
+    }else {
+      this.toaster.success("Job UnSaved Successfully!");
+      } 
     });
   }
 

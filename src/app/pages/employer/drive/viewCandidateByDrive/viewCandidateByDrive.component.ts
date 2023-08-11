@@ -108,6 +108,9 @@ icncolor:string ='#1B4E9B';
   pageNumberInput: any;
   pageNumber: number = 1;
   currentPage: number;
+  selectedPageSize: number;
+  isFirstPage: boolean = true;
+  isLastPage: boolean = false;
   constructor(
     private ApiService: ApiService,
     private toastr: ToastrService,
@@ -252,14 +255,6 @@ icncolor:string ='#1B4E9B';
           }
         },
         tooltipField: 'jobStatus',
-
-       //   cellStyle: params => {
-       //     if (params.value === 'awaitingReview') {
-       //         return {borderRadius: '5px', color: '#fff', backgroundColor: 'green'};
-       //     }
-       //     return null;
-       // },
-
       }, 
       {
         headerName: 'Qualification',
@@ -603,16 +598,24 @@ icncolor:string ='#1B4E9B';
   
   onCellClicked(event: any): void {
     if (event.colDef.field === 'studentName') {
-      this.router.navigate(['/auth/drive/viewCandidateProfilebyEmployer']);
+      this.candidateprofile(event.data);
     }
   }
 
-  onPageSizeChanged() {
-    var value = (document.getElementById('page-size') as HTMLInputElement)
-      .value;
-    this.gridApi.paginationSetPageSize(Number(value));
+  candidateprofile(data: any): void {
+    this.appconfig.setLocalStorage("C_Candidate_status", JSON.stringify(data));
+    this.router.navigate(['/auth/drive/viewCandidateProfilebyEmployer']);
   }
 
+  // onPageSizeChanged() {
+  //   var value = (document.getElementById('page-size') as HTMLInputElement)
+  //     .value;
+  //   this.gridApi.paginationSetPageSize(Number(value));
+  // }
+
+  onPageSizeChanged() {
+    this.gridApi.paginationSetPageSize(this.selectedPageSize);
+  }
 
   onBtPageGo(pageNumber: number) {
     if (pageNumber >= 1 && pageNumber <= this.gridApi.paginationGetTotalPages()) {
@@ -622,6 +625,33 @@ icncolor:string ='#1B4E9B';
     }
   }
   
+  // onBtPrevPage(){
+  //   this.gridApi.paginationGoToPreviousPage()
+  // }
+  onBtPrevPage() {
+    this.gridApi.paginationGoToPreviousPage();
+    // this.updatePaginationButtons(this.gridApi.paginationGetCurrentPage(), this.gridApi.paginationGetTotalPages());
+  }
+  onBtPageOne() {
+    this.gridApi.paginationGoToPage(0);
+  }
+  onBtPageTwo() {
+    this.gridApi.paginationGoToPage(1);
+  }
+  onBtPageThree() {
+    this.gridApi.paginationGoToPage(2);
+  }
+  // onBtNextPage(){
+  //   this.gridApi.paginationGoToNextPage()
+  // }
+  onBtNextPage() {
+    this.gridApi.paginationGoToNextPage();
+    // this.updatePaginationButtons(this.gridApi.paginationGetCurrentPage(), this.gridApi.paginationGetTotalPages());
+  }
+  // updatePaginationButtons(currentPage: number, totalPages: number) {
+  //   this.isFirstPage = currentPage === 0;
+  //   this.isLastPage = currentPage === totalPages - 1;
+  // }
   // onBtPageGo(pageNumber: string) {
   //   const isValidNumber = this.global_validators.numberOnly();
     

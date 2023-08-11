@@ -58,11 +58,18 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
+    .icon-apply_now:before {
+      content: "\ea1d";
+      color: #fff;
+    }
     .icon-daysleft_clock:before {
       content: "\ea1b";
     }
 
-
+.icon-green_tick_flower_circuled:before {
+  content: "\ea1c";
+  color: #4fa13a;
+}
 .icon-clock_postdate:before {
   content: "\ea1e";
   color: #848484;

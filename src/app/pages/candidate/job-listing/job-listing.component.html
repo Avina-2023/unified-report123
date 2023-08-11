@@ -38,8 +38,6 @@
           type="text" placeholder="Enter designation / companies / location">
       </div>
     </div>
-
-
     <div class="mob_fil" *ngIf="this.filter_info.data.length">
       <div class="fil_results">
         <div class="fil_output">
@@ -53,14 +51,13 @@
       </div>
     </div>
 
-
     <div class="results_dash">
       <div> Results Showing ({{this.totallength}})</div>
       <div class="arrow_grid">
         <div class="sort">
           <p class="sortby_text">Sort by: </p>
-          <mat-select class="panelPosition" appearance="outline" [(ngModel)]="sortData" (selectionChange)="getJobList()"
-            placeholder="Relevance">
+          <mat-select class="panelPosition mat-select-arrow-wrapper " appearance="outline" [(ngModel)]="sortData"
+            (selectionChange)="getJobList()" placeholder="Relevance">
             <mat-option value="relevance">Relevance</mat-option>
             <mat-option value="recently posted">Recently Posted</mat-option>
           </mat-select>
@@ -69,8 +66,8 @@
           <!-- <i class="icon">
         </i> -->
           <div class="grid-container" [ngClass]="{'grid_2-selected': grid2Selected}" (click)="toggleGrid2()">
-            <span class="icon-dotted-grid grid_1"></span>
-            <span class="icon-list_view grid_2"></span>
+            <span class="icon-dotted-grid grid_1" matTooltip="Grid View" matTooltipClass="custom-tooltip"></span>
+            <span class="icon-list_view grid_2" matTooltip="Lisd View" matTooltipClass="custom-tooltip"></span>
           </div>
         </div>
       </div>
@@ -80,7 +77,6 @@
       <div class="minicard-header">
       </div>
     </div> -->
-
 
     <div class="main2">
       <div class="card-sty">
@@ -94,12 +90,21 @@
             <!-- <div class="name skill-exchange">
               <div class="text-overlay">Skill Exchange Partner</div>
             </div> -->
-            <div [disabled]="!item.yearofPassout.includes(removeduplicate2)"
+
+            <div *ngIf="partnerLabel && partnerLabel === 'Skill Exchange Partner'">
+              <div [disabled]="!item.yearofPassout.includes(removeduplicate2)"
+                (click)="item.yearofPassout.includes(removeduplicate2) ? gotojob(item) : customalert()"
+                [ngClass]="{'blurcard': !item.yearofPassout.includes(removeduplicate2)}" class="name skill-exchange">
+                <div class="text-overlay">{{item.partnerLabel }}</div>
+              </div>
+            </div>
+
+            <!-- <div [disabled]="!item.yearofPassout.includes(removeduplicate2)"
               (click)="item.yearofPassout.includes(removeduplicate2) ? gotojob(item) : customalert()"
               [ngClass]="{'blurcard': !item.yearofPassout.includes(removeduplicate2)}"
               *ngIf="partnerLabel && partnerLabel === 'Skill Exchange Partner'" class="name skill-exchange">
               <div class="text-overlay">{{item.partnerLabel }}</div>
-            </div>
+            </div> -->
 
             <div [disabled]="!item.yearofPassout.includes(removeduplicate2)"
               (click)="item.yearofPassout.includes(removeduplicate2) ? gotojob(item) : customalert()"
@@ -117,14 +122,12 @@
                     <div>{{item.jobLocation}}</div>
                   </div>
                 </div>
-
               </div>
               <div class="main-sub">
                 <div class="sub-details-1">
                   <div>
                     <span class="head1 rolebold">{{item.jobRole}}</span>
                   </div>
-
                 </div>
                 <!-- <div style="display: flex;">
                   <div class="type">
@@ -136,26 +139,15 @@
                     <span class="icon-full_time"></span> {{item.jobType}}
                   </div>
                 </div>
-
-
                 <div class="degree">
                   <span class=icon-graduation-cap-solid></span>
                   {{item.education}}
                 </div>
-                <div class="details">
-                  <div class="sub-details">
-                    <!-- <div><span class="icon-Location"></span></div>
-                    <div> <mat-icon class="locicon"> location_on</mat-icon></div>
-                    <div>{{item.jobLocation}}</div> -->
-                  </div>
-
-
-                  <!-- <div class="sub-details">
+                <!-- <div class="sub-details">
                 <div><span class="icon-Location"></span></div>
                 <div>{{item.specialization}}</div>
               </div> -->
-
-                  <!-- <div class="sub-details" *ngIf="item.specialization">
+                <!-- <div class="sub-details" *ngIf="item.specialization">
                     <div class="specialization" *ngFor="let subItem of item.specialization; let ind = index">
                       <button *ngIf="ind<2">
                         {{subItem}}
@@ -167,9 +159,7 @@
                       </button>
                     </div>
                   </div> -->
-                </div>
               </div>
-
             </div>
             <div class="date">
               <!-- <div (click)="gotojob(item)"><span class="icon-calendar"></span></div> -->
@@ -194,22 +184,20 @@
                 {{item.lastDatetoApply | timeDiff}}
               </div>
 
-
-
               <!-- <div class="misc_save" [disabled]="item.yearofPassout != useryopyear" (click)="item.yearofPassout == useryopyear && bookMarkIcon(item)" [ngClass]="{'blurcard': item.yearofPassout != useryopyear}"> -->
               <div class="misc_save" [disabled]="!item.yearofPassout.includes(removeduplicate2)"
                 (click)="item.yearofPassout.includes(removeduplicate2) && bookMarkIcon(item)"
                 [ngClass]="{'blurcard': !item.yearofPassout.includes(removeduplicate2)}">
                 <div class="save">
+                  <!-- <img class="book" src="../../../assets/images/Group 25159.svg"> -->
                   <mat-icon [ngClass]="item.isSelected ? 'saved_icon':'unsaved_icon'">
-                    {{item.isSelected?'bookmark':'bookmark_border'}} </mat-icon>
+                    {{item.isSelected?'bookmark':'bookmark_border'}}</mat-icon><span class="book-icon"></span>
                   <!-- <div>Save</div> -->
                 </div>
               </div>
             </div>
           </div>
         </mat-card>
-
 
         <div class="paginationdisplay">
           <app-common-paginator *ngIf="total" (send)="some($event)" [totalcount]="total"></app-common-paginator>
@@ -303,20 +291,17 @@
         </div>
       </mat-card>
     </div>
-
-
   </div>  -->
 
     <div *ngIf="totallength==0">
       <app-no-data-found [from]="'find'"></app-no-data-found>
     </div>
-
   </div>
 
   <div class="filter" *ngIf="this.filter_info.data.length">
     <div class="fil_head">
       <p>
-        <mat-icon class="misc_icon">filter_list</mat-icon><span class="job_designation">All Filters
+        <mat-icon class="misc_icon"></mat-icon><span class="job_designation all_filter">All Filters
           {{this.selectedValues.length ? '(' + this.selectedValues.length + ')' : ''}}</span>
         <span (click)="clearFilters(filter_info.data)" *ngIf="selectedValues.length" class="clear_filter">Clear
           All</span>
@@ -340,21 +325,14 @@
               class="fldName" color="primary" *ngIf="!fillist.isShow">{{course.name}} ({{course.totalCount}})
             </mat-checkbox>
           </span>
-
         </div>
         <button *ngIf="(fillist.subContent.length)>4" mat-button
           (click)="openDialog(fillist)">+{{fillist.subContent.length-4}} more</button>
       </div>
     </div>
   </div>
-
-
 </div>
-
-
-
 <ng-template #moreItems>
-
   <div class="dlog_template">
     <h1 class="job_designation" mat-dialog-title>{{filterItems.fieldName}}</h1>
     <div class="close_div" mat-dialog-actions>
@@ -373,18 +351,14 @@
     </div>
     <button [mat-dialog-close] class="aply_btn" (click)="applyfilter()" mat-raised-button color="primary">Apply</button>
   </div>
-
 </ng-template>
 
-
 <ng-template #mobFilter>
-
   <div class="filt_mob_top">
     <mat-icon [mat-dialog-close]>west</mat-icon>
     <p class="fil_text">All Filters {{this.selectedValues.length ? '('+this.selectedValues.length +')' : ''}}
       <span (click)="clearFilters(filter_info.data)" *ngIf="selectedValues.length" class="clear_filter">Clear All</span>
     </p>
-
     <p class="apply_top_menu">
       <button (click)="applyfilter()" [mat-dialog-close]>Apply</button>
     </p>

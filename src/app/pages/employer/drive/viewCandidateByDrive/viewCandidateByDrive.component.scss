@@ -512,21 +512,21 @@ justify-content: space-between;
   background: #49AE31 !important;
   color: #ffff;
   border-radius: 5px;
-  padding: 3px 10px;
+  padding: 6px 25px;
 }
 
 ::ng-deep .red-cell span {
   background: #EF2917 !important;
   color: #ffff;
   border-radius: 5px;
-  padding: 3px 10px;
+  padding: 6px 31px;
 }
 
 ::ng-deep .blue-cell span {
   background: #27BBEE !important;
   color: #ffff;
   border-radius: 5px;
-  padding: 3px 10px;
+  padding: 6px 24px;
 }
 .pageheader{
   padding: 20px 20px 15px 25px;
@@ -574,7 +574,7 @@ justify-content: space-between;
 }
 
 
-.pagnation{
+.row-pagnation{
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -582,6 +582,40 @@ justify-content: space-between;
   border: 2px solid #E2E2E3;
   .example-header{
     padding: 2px;
+  }
+  .pagintion{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 0pc 5px 0pc 5px;
+  }
+  .one{
+    margin: 0px 3px 0px 3px;
+    padding: 4px 7px 4px 7px;
+    background: #1B4E9B;
+    cursor: pointer;
+    color: #ffffff;
+    border-radius: 7px;
+    border: none;
+  }
+  .prev {
+    padding: 4px 7px 4px 7px;
+    cursor: pointer;
+    border-radius: 7px;
+    border: 1px solid #84848441;
+    margin: 0px 5px 0px 0px;
+}
+  .next{
+    padding: 4px 7px 4px 7px;
+    cursor: pointer;
+    border-radius: 7px;
+    border: 1px solid #84848441;
+    margin: 0px 15px 0px 5px;
+  }
+  button.prev[disabled], button.next[disabled] {
+    opacity: 0.5;
+    background-color: #E6E6E6; 
+    cursor: not-allowed;
   }
   .goto-sear{
     display: flex; 

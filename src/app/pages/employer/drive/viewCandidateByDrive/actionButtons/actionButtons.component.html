@@ -1,8 +1,8 @@
 <div class="icon-list">
-  <div class="accept-icon icn" (click)="openStatusDialog('Shortlisted')" matTooltip="Select"><mat-icon>done</mat-icon></div>
-  <div class="reject-icon icn" (click)="openStatusDialog('Rejected')" matTooltip="Reject"><mat-icon>clear</mat-icon></div>
-  <div class="view-icon icn" (click)="candidateprofile()" matTooltip="View Profile"><mat-icon>remove_red_eye</mat-icon></div>
-  <div class="prog-icon icn" (click)="openStatusDialog('In Progress')" matTooltip="Move to In Progress"><mat-icon>replay</mat-icon></div>
+  <button class="accept-icon icn" [ngClass]="{'disable': params.data.jobStatus === 'Shortlisted'}" (click)="openStatusDialog('Shortlisted')" matTooltip="Select"><mat-icon>done</mat-icon></button>
+  <button class="reject-icon icn" [ngClass]="{'disable': params.data.jobStatus === 'Rejected'}" (click)="openStatusDialog('Rejected')" matTooltip="Reject"><mat-icon>clear</mat-icon></button>
+  <button class="view-icon icn" (click)="candidateprofile()" matTooltip="View Profile"><mat-icon>remove_red_eye</mat-icon></button>
+  <button class="prog-icon icn" [ngClass]="{'disable': params.data.jobStatus === 'In Progress'}" (click)="openStatusDialog('In Progress')" matTooltip="Move to In Progress"><mat-icon>replay</mat-icon></button>
 </div>
 
 
@@ -46,6 +46,7 @@
 </ng-template>
 
 
+
 <ng-template #confirmmatDialog let-data>
   <div class="main-wrapper">
     <div class="gren-tick">
@@ -55,14 +56,16 @@
     </div>
     <div class="text1">
       <ng-container *ngIf="data.status === 'Shortlisted'; else otherText">
-        <span>Candidate has been Shortlisted successfully</span>
+        <div class="text">
+       <span class="candidatename">{{params.data.studentName}} </span> <span> has been Shortlisted successfully</span>
+      </div>
       </ng-container>
       <ng-template #otherText>
         <ng-container *ngIf="data.status === 'Rejected'; else inProgressText">
-          <span class="boldcandidate">{{statusdata.personal_details.name}}</span>Candidate has been Rejected successfully.
+          <span class="candidatename">{{params.data.studentName}} </span> <span> has been Rejected successfully</span>
         </ng-container>
         <ng-template #inProgressText>
-          <span class="boldcandidate">{{statusdata.personal_details.name}}</span>Candidate has been moved to In Progress successfully.
+          <span class="candidatename">{{params.data.studentName}} </span> <span> has been moved to In Progress successfully</span>
         </ng-template>
       </ng-template>
     </div>

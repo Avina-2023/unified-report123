@@ -49,8 +49,7 @@
           [ngClass]="router.url==routelinks.CANDIDATEDASH.JOBLIST || router.url==routelinks.CANDIDATEDASH.JOBDESCRIPTION? 'active':''"
           [routerLink]="routelinks.CANDIDATEDASH.JOBLIST">
           <div class="innerLine"></div>
-          <mat-icon mat-list-icon>work_suitcase</mat-icon>
-          <!-- <span class="icon-suitcase_outline"></span> -->
+          <mat-icon mat-list-icon>work_outline</mat-icon>
           <span class="full-width" *ngIf="isExpanded || isShowing">Jobs</span>
         </mat-list-item>
         <mat-list-item class="navItems" [ngClass]="router.url==routelinks.CANDIDATEDASH.JOBSAPPLIED? 'active':''"
@@ -62,8 +61,9 @@
         <mat-list-item class="navItems" [ngClass]="router.url==routelinks.CANDIDATEDASH.JOBSSAVED? 'active':''"
           [routerLink]="routelinks.CANDIDATEDASH.JOBSSAVED">
           <div class="innerLine"></div>
-          <mat-icon mat-list-icon class="material-symbols-outlined">bookmark_outline</mat-icon>
-          <span class="full-width" *ngIf="isExpanded || isShowing">Saved Jobs</span>
+          <img class="book" src="../../../assets/images/Group 23057.svg">
+          <!-- <mat-icon mat-list-icon class="material-symbols-outlined">bookmark_outline</mat-icon> -->
+          <span class="full-width-save" *ngIf="isExpanded || isShowing">Saved Jobs</span>
         </mat-list-item>
 
         <!-- <mat-list-item class=" lastitem hrlogout" (click)="logout()">
@@ -87,7 +87,10 @@
 <div>
   <ng-template #confirmDialog>
     <div class="logout">
-      <mat-icon mat-dialog-close>close</mat-icon>
+     <div class="clos-icn"><mat-icon mat-dialog-close>close</mat-icon></div>
+      <div class="logot-img">
+        <img src="../../../assets/images/alert-image.png" />
+      </div>
       <div class="box">
         <p>Are you sure you want to logout?</p>
       </div>
