@@ -1623,7 +1623,8 @@
   flex-direction: row;
   display: flex;
   border-right: 1px solid #e7e7e7;
-  height: 86vh;
+  // height: 86vh;
+  height: 130vh;
   // overflow: auto;
   /* align-items: flex-start; */
   justify-content: space-between;
@@ -1633,6 +1634,7 @@
   //overflow-x: hidden !important;
   align-content: stretch;
   //   overflow: scroll;
+  background-color: #FFFFFF;
 }
 ::-webkit-scrollbar {
   width: 6px;
@@ -1938,6 +1940,8 @@
   height: 418px;
   margin: 20px 15px 0px 0px;
   padding: 0px 0px 0px 0px;
+  border-radius: 12px;
+  border: 1px solid #D0D0D0;
 
   // .visibleuser {
   //   visibility: hidden;
@@ -2314,7 +2318,7 @@
   // width: 200px;
   // width: 100%;
   width: 98% !important;
-  cursor: pointer;
+  // cursor: pointer;
   border: 1px solid #d0d0d0;
   border-radius: 10px;
   margin: 0px 10px 10px 10px;
@@ -2340,25 +2344,25 @@
 
 .num {
   font-size: 26px;
-  color: #ef2917;
+  color: #1B4E9B;
   font-weight: 900;
   font-family: Lato !important;
 }
 .num2 {
   font-size: 26px;
-  color: #5d7e8e;
+  color: #1B4E9B;
   font-weight: 900;
   font-family: Lato !important;
 }
 .num3 {
   font-size: 26px;
-  color: #905283;
+  color: #1B4E9B;
   font-weight: 900;
   font-family: Lato !important;
 }
 .num4 {
   font-size: 26px;
-  color: #004684;
+  color: #1B4E9B;
   font-weight: 900;
   font-family: Lato !important;
 }
@@ -2450,13 +2454,13 @@
   // }
   .secondheading {
     padding: 0px 0px 0px 27px;
-    color: #294d96;
+    color: #294D96;
     font-size: 19px;
-    font-weight: 500;
+    font-weight: 600;
   }
   .view {
     size: 14px;
-    color: #1b4e9b;
+    color: #294D96;
     padding-right: 35px;
     cursor: pointer;
     text-decoration: underline;
@@ -2488,7 +2492,7 @@
     margin: 2px 9px 2px 20px;
     padding: 0px;
     overflow: hidden;
-    cursor: pointer;
+    // cursor: pointer;
     box-shadow: none;
     // padding-left: 30px;
     .minicard-header {
@@ -2563,7 +2567,7 @@
   bottom: 0px;
   padding: 6px 0px;
 
-  .icon-calendar{
+  .icon-Calendar{
     margin: 0px 8px 0px 16px;
     //padding: 5px 7px;
     line-height: 24px;
@@ -2604,9 +2608,9 @@
   // padding-top: 10px;
   //size: 22px;
   // padding-left: 23px;
-  color: #294d96;
+  color: #294D96;
   font-size: 19px;
-  font-weight: 500;
+  font-weight: 600;
 }
 .view3 {
   size: 14px;
@@ -2676,8 +2680,8 @@
 }
 
 .gender_bg {
-  background: #5d7e8e;
-  color: #fff;
+  background: #1B4E9B;
+  color: #FFFFFF;
   padding: 4px 10px;
   border-radius: 3px;
   width: fit-content;

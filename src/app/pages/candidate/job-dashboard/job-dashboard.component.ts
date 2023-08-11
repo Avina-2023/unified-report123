@@ -952,6 +952,7 @@ public conetnt:any;
       .subscribe((res: any) => {
         if (res.success) {
           this.candidateDahboard = res.data;
+          console.log(this.candidateDahboard, 'dashboard-count');
           this.jobsAvailable = this.candidateDahboard.jobAvailableCount;
           this.jobApplied = this.candidateDahboard.jobAppliedCount;
           this.profileView = this.candidateDahboard.profileViewedCount;
