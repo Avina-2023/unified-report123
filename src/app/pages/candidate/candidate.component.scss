@@ -144,6 +144,18 @@
     color :#1B4E9B
   }
 }
+.book {
+  margin-right: 17px;
+  // margin-top: 4px;
+  color: #707070;
+  font-size: 10px;
+  position: relative;
+  left: 6.5px;
+  // color: #1B4E9B;
+  .book:hover {
+    color: #1B4E9B !important;
+  } 
+}
 
 .mat-list-base{
   padding-top: 0px;
@@ -198,15 +210,4 @@
 ::ng-deep .mat-menu-item .mat-icon{
   margin-right: 0px!important;
 }
-.book {
-  margin-right: 17px;
-  // margin-top: 4px;
-  color: #707070;
-  font-size: 10px;
-  position: relative;
-  left: 5.3px;
-  // color: #1B4E9B;
-}
-.book:hover {
-  color: #1B4E9B !important;
-}  
+ 
