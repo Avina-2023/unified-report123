@@ -630,7 +630,7 @@ icncolor:string ='#1B4E9B';
   // }
   onBtPrevPage() {
     this.gridApi.paginationGoToPreviousPage();
-    this.updatePaginationButtons(this.gridApi.paginationGetCurrentPage(), this.gridApi.paginationGetTotalPages());
+    // this.updatePaginationButtons(this.gridApi.paginationGetCurrentPage(), this.gridApi.paginationGetTotalPages());
   }
   onBtPageOne() {
     this.gridApi.paginationGoToPage(0);
@@ -646,12 +646,12 @@ icncolor:string ='#1B4E9B';
   // }
   onBtNextPage() {
     this.gridApi.paginationGoToNextPage();
-    this.updatePaginationButtons(this.gridApi.paginationGetCurrentPage(), this.gridApi.paginationGetTotalPages());
+    // this.updatePaginationButtons(this.gridApi.paginationGetCurrentPage(), this.gridApi.paginationGetTotalPages());
   }
-  updatePaginationButtons(currentPage: number, totalPages: number) {
-    this.isFirstPage = currentPage === 0;
-    this.isLastPage = currentPage === totalPages - 1;
-  }
+  // updatePaginationButtons(currentPage: number, totalPages: number) {
+  //   this.isFirstPage = currentPage === 0;
+  //   this.isLastPage = currentPage === totalPages - 1;
+  // }
   // onBtPageGo(pageNumber: string) {
   //   const isValidNumber = this.global_validators.numberOnly();
     

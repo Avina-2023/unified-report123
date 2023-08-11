@@ -50,8 +50,8 @@
           <button class="save btn" *ngIf="jobDetails.isSelected == false" (click)="saved()">Save</button>
           <button class="save btn" *ngIf="jobDetails.isSelected == true" (click)="saved()">Saved</button>
           <button class="btn" *ngIf="jobDetails.isApplied == false" (click)="handleButtonClick()">
-            <mat-icon *ngIf="jobDetails.partnerLabel !== 'Skill Exchange Partner'">screen_share</mat-icon>Apply now
-            <!-- <span class="icon-jobtype" *ngIf="jobDetails.partnerLabel !== 'Skill Exchange Partner'"></span>Apply now -->
+            <!-- <mat-icon *ngIf="jobDetails.partnerLabel !== 'Skill Exchange Partner'">screen_share</mat-icon>Apply now -->
+            <span class="icon-apply_now" *ngIf="jobDetails.partnerLabel !== 'Skill Exchange Partner'"></span>Apply now
           </button>
           <button class="btn" [disabled]="true" *ngIf="jobDetails.isApplied == true">Applied</button>
         </div>
