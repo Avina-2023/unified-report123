@@ -56,29 +56,28 @@
   // background: #000000;
   // url(../../../../assets/images/dash-bg-img.png);
 }
-// .dash {
-//   display: flex;
-//   position: relative;
-//   bottom: 21px;
-//   .view {
-//     padding-top: 15px;
-//     //color: #27BBEE;
-//     color: #fff;
-//     font-size: 13px !important;
-//     cursor: pointer;
-//     text-decoration: underline;
-//   }
-//   .findtext {
-//     font-size: 13px !important;
-//     margin-bottom: 0;
-//     color: #fff;
-//     position: relative;
-//     top: 15px;
-//   }
-// }
+.dash {
+  // position: absolute;
+  margin-top:10px;
+  .view {
+    margin-top: 15px;
+    //color: #27BBEE;
+    color: #fff;
+    font-size: 13px !important;
+    
+  }
+  .findtext {
+    font-size: 13px !important;
+    margin-bottom: 0;
+    color: #fff;
+    position: relative;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+}
 .user {
   display: flex;
-  align-items: baseline;
+  align-items: flex-end;
   justify-content: space-between;
   // flex-direction: row;
   padding: 5px 55px;
@@ -195,6 +194,10 @@
   // display: flex;
   // margin-left: 14px;
   // margin-top: 15px;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
 
   .username-N {
     text-align: left;
@@ -208,7 +211,7 @@
 
   .username-B {
     text-align: left;
-    font: normal normal normal 24px/170px Lato;
+    font: normal normal normal 24px Lato;
     letter-spacing: 0px;
     color: #ffffff;
     opacity: 1;
