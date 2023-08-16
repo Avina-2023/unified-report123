@@ -1,12 +1,13 @@
 
   <div class="banner_header">
-    <!-- <div class="dash" *ngIf="subname">
-      <h5 class="view" (click)="goBack()">{{this.subname}}</h5>
-      <h5 class="findtext"> &nbsp; > &nbsp;{{this.name}}</h5>
-    </div> -->
+    
     <div class="user">
       <div class="user-name">
-        <!-- <div class="username-N">Welcome,&nbsp;</div> -->
+        <div class="dash" *ngIf="getCurrentUrl=='jobdescription'">
+          <div  ><span class="findtext" (click)="goBack()">{{this.subname}}</span><span class="view"> &nbsp; > &nbsp;{{this.name}}</span></div>
+          
+        </div>
+        <div *ngIf="getCurrentUrl=='dashboard'" class="username-N">Welcome,&nbsp; <b>{{username}}</b></div>
         <div class="username-B">
           {{this.name}}
         </div>

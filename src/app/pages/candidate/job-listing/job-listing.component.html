@@ -67,7 +67,7 @@
         </i> -->
           <div class="grid-container" [ngClass]="{'grid_2-selected': grid2Selected}" (click)="toggleGrid2()">
             <span class="icon-dotted-grid grid_1" matTooltip="Grid View" matTooltipClass="custom-tooltip"></span>
-            <span class="icon-list_view grid_2" matTooltip="Lisd View" matTooltipClass="custom-tooltip"></span>
+            <span class="icon-list_view grid_2" matTooltip="List View" matTooltipClass="custom-tooltip"></span>
           </div>
         </div>
       </div>
@@ -91,14 +91,22 @@
               <div class="text-overlay">Skill Exchange Partner</div>
             </div> -->
 
-            <div *ngIf="partnerLabel && partnerLabel === 'Skill Exchange Partner'">
+            <!-- <div *ngIf="partnerLabel && partnerLabel === 'Skill Exchange Partner'">
               <div [disabled]="!item.yearofPassout.includes(removeduplicate2)"
                 (click)="item.yearofPassout.includes(removeduplicate2) ? gotojob(item) : customalert()"
                 [ngClass]="{'blurcard': !item.yearofPassout.includes(removeduplicate2)}" class="name skill-exchange">
                 <div class="text-overlay">{{item.partnerLabel }}</div>
               </div>
-            </div>
+            </div> -->
 
+            <div *ngIf="partnerLabel && partnerLabel === 'Skill Exchange Partner'">
+              <div [disabled]="!item.yearofPassout.includes(removeduplicate2)"
+                (click)="item.yearofPassout.includes(removeduplicate2) ? gotojob(item) : customalert()"
+                [ngClass]="{'blurcard': !item.yearofPassout.includes(removeduplicate2)}" class="name skill-exchange"
+                *ngIf="item.partnerLabel">
+                <div class="text-overlay">{{item.partnerLabel}}</div>
+              </div>
+            </div>
             <!-- <div [disabled]="!item.yearofPassout.includes(removeduplicate2)"
               (click)="item.yearofPassout.includes(removeduplicate2) ? gotojob(item) : customalert()"
               [ngClass]="{'blurcard': !item.yearofPassout.includes(removeduplicate2)}"
@@ -119,7 +127,7 @@
                   <span class="head2">{{item.company}}</span>
                   <div class="sub-details">
                     <div> <mat-icon class="locicon"> location_on</mat-icon></div>
-                    <div>{{item.jobLocation}}</div>
+                    <div class="loation_sty">{{item.jobLocation}}</div>
                   </div>
                 </div>
               </div>
@@ -140,8 +148,10 @@
                   </div>
                 </div>
                 <div class="degree">
-                  <span class=icon-graduation-cap-solid></span>
-                  {{item.education}}
+                  <span class="icon-graduation-cap-solid"></span>
+                  <ng-container *ngFor="let degree of item.education; let last = last">
+                    {{ degree }}{{ !last ? ', ' : '' }}
+                  </ng-container>
                 </div>
                 <!-- <div class="sub-details">
                 <div><span class="icon-Location"></span></div>
@@ -179,7 +189,6 @@
                 (click)="item.yearofPassout.includes(removeduplicate2) ? gotojob(item) : customalert()"
                 [ngClass]="{'blurcard': !item.yearofPassout.includes(removeduplicate2)}">
                 &nbsp;
-
                 <span class="icon-daysleft_clock dayleftclr"></span>
                 {{item.lastDatetoApply | timeDiff}}
               </div>
@@ -206,7 +215,6 @@
     </div>
 
     <!-- <div class="overall_box" *ngIf="totallength!=0">
-
      <div class="card_flex" *ngFor="let item of joblist;let i=index">
       <mat-card class="example_card">
         <div (click)="gotojob(item)">
@@ -279,8 +287,6 @@
               <span class="misc_col">Posted on
                 {{item.createdOn | date : 'MMM d'}}</span>
             </div>
-
-
           </div>
         </div>
         <div class="misc_save" (click)="bookMarkIcon(item)">
@@ -292,12 +298,10 @@
       </mat-card>
     </div>
   </div>  -->
-
     <div *ngIf="totallength==0">
       <app-no-data-found [from]="'find'"></app-no-data-found>
     </div>
   </div>
-
   <div class="filter" *ngIf="this.filter_info.data.length">
     <div class="fil_head">
       <p>

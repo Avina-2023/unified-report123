@@ -8,7 +8,7 @@
       from=='applied'?'Tap on bookmark icon against a job to apply it. Click on Search Jobs to find Jobs':from
       =='find'?'':'No Data Found'}}
     </div>
-    <div class="text-centar">
+    <div class="text-centar" *ngIf="from === 'saved' || from === 'applied'">
       <button class="serchbtn" (click)="findjobs()">Search Jobs</button>
     </div>
   </div>
