@@ -17,8 +17,10 @@ li {
   float: right;
   font-family: Lato !important;
   .icon-apply_now{
+
     margin: 0px 5px 0px 0px;
   }
+
 }
 
 .btn:hover {
@@ -26,6 +28,7 @@ li {
    border: 1px solid #1A4E9B !important;
   background: #ffffff !important;
   color: #1A4E9B;
+
 }
 
 .pageWrapper {
@@ -185,7 +188,21 @@ li {
   }
   }
 }
+.icon-apply_now {
+  /* Define the default icon styles */
+  // color: black;
+}
 
+.icon-apply_now-blue {
+  /* Define the icon styles when partnerLabel is not 'Skill Exchange Partner' */
+  color: #FFFFFF;
+}
+
+.btn:hover .icon-apply_now-blue {
+  /* Change the icon color on button hover */
+  color: #1B4E9B ;
+  /* You can adjust this color */
+}
 .job_options {
   display: flex;
   flex-wrap: wrap;

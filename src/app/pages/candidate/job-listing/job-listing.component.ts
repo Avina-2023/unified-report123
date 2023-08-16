@@ -100,7 +100,7 @@ export class JobListingComponent implements OnInit {
   }
 
   customalert() {
-    this.toaster.error('Job Requirment does not match your profile', null, {
+    this.toaster.error('Job Requirement does not match your profile', null, {
       positionClass: 'toast-top-center',
     });
   }
