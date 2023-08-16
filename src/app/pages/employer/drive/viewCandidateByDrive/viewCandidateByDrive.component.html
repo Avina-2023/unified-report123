@@ -40,10 +40,23 @@
     </div>
     <div class="job-details">
     <div class="heading">Job Status</div>
-   <div class="act">
+   <!-- <div class="act">
     <div><span class="icon-tick_mark_green"></span></div>
     <div class="val">{{valueone.status}}</div>
-   </div>
+   </div> -->
+
+   <!-- <div class="act">
+    <div><span class="icon-tick_mark_green" *ngIf="valueone.status === 'Active'"></span></div>
+    <div class="val">{{ valueone.status }}</div>
+  </div> -->
+
+  <div class="act">
+    <div>
+      <span class="icon-tick_mark_green" *ngIf="valueone.status === 'Active'"></span>
+      <mat-icon *ngIf="valueone.status === 'Expired'">warning_amber</mat-icon>
+    </div>
+    <div class="val">{{ valueone.status }}</div>
+  </div>
     </div>
     </mat-card>
     </div>
@@ -171,23 +184,61 @@
     </div>
 
     
-  <div class="pagnation">
-    <div class="example-header">
+  <div class="row-pagnation">
+    <!-- <div class="example-header">
       Rows:
       <select (change)="onPageSizeChanged()" id="page-size">
         <option value="10">10</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="5">5</option>
         <option value="5">5</option>
         <option value="15">15</option>
         <option value="20">20</option>
       </select>
+    </div> -->
+
+    <div class="example-header">
+      Rows:
+      <select (change)="onPageSizeChanged()" [(ngModel)]="selectedPageSize" name="pageSize">
+        <option value="5">5</option>
+        <option value="10">10</option>
+        <option value="15">15</option>
+        <option value="20">20</option>
+      </select>
     </div>
+    
+   
     <div class="goto-sear">
+      <div class="pagintion">
+        <button class="prev" (click)=" onBtPrevPage()">Prev</button>
+       <button class="one" (click)=" onBtPageOne()">1</button>
+       <button class="one" (click)="  onBtPageTwo()">2</button>
+        <button class="one" (click)=" onBtPageThree()">3</button>
+        <button class="next" (click)=" onBtNextPage()">Next</button>
+      </div>
       <div class="goto"> Go To Page: </div>
       <div>
         <input type="string" class="goto-search" [(ngModel)]="pageNumberInput" />
         <button class="go" (click)="onBtPageGo(pageNumberInput)">Go</button>
       </div>
     </div>
+
+    <!-- <div class="goto-sear">
+      <div class="pagintion">
+        <button class="prev" (click)="onBtPrevPage()" [disabled]="isFirstPage">Prev</button>
+        <button class="one" (click)="onBtPageOne()">1</button>
+        <button class="one" (click)="onBtPageTwo()">2</button>
+        <button class="one" (click)="onBtPageThree()">3</button>
+        <button class="next" (click)="onBtNextPage()" [disabled]="isLastPage">Next</button>
+      </div>
+      <div class="goto"> Go To Page: </div>
+      <div>
+        <input type="string" class="goto-search" [(ngModel)]="pageNumberInput" />
+        <button class="go" (click)="onBtPageGo(pageNumberInput)">Go</button>
+      </div>
+    </div> -->
+    
   </div>
 
   </div> 

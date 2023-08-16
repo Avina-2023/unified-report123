@@ -56,26 +56,26 @@
   // background: #000000;
   // url(../../../../assets/images/dash-bg-img.png);
 }
-.dash {
-  display: flex;
-  position: relative;
-  bottom: 21px;
-  .view {
-    padding-top: 15px;
-    //color: #27BBEE;
-    color: #fff;
-    font-size: 13px !important;
-    cursor: pointer;
-    text-decoration: underline;
-  }
-  .findtext {
-    font-size: 13px !important;
-    margin-bottom: 0;
-    color: #fff;
-    position: relative;
-    top: 15px;
-  }
-}
+// .dash {
+//   display: flex;
+//   position: relative;
+//   bottom: 21px;
+//   .view {
+//     padding-top: 15px;
+//     //color: #27BBEE;
+//     color: #fff;
+//     font-size: 13px !important;
+//     cursor: pointer;
+//     text-decoration: underline;
+//   }
+//   .findtext {
+//     font-size: 13px !important;
+//     margin-bottom: 0;
+//     color: #fff;
+//     position: relative;
+//     top: 15px;
+//   }
+// }
 .user {
   display: flex;
   align-items: baseline;
@@ -126,26 +126,6 @@
   }
 }
 
-// .common-image {
-//   // background: transparent url('img/Rectangle 7719.png') 0% 0% no-repeat padding-box;
-//   // opacity: 1;
-
-//   background: black;
-//   height: 170px;
-//   width: 100%;
-//   overflow: hidden;
-//   top: 0;
-//   left: 0;
-//   position: absolute;
-//   .handimage {
-//     position: relative;
-//     object-fit: cover;
-//     opacity: 0.4;
-//     height: 320px;
-//     width: 100%;
-//     top: -150px;
-//   }
-// }
 .overflowbox {
   width: 100%;
   flex-direction: row;

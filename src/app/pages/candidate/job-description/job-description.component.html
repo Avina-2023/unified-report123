@@ -13,8 +13,11 @@
         <div class="JT-left">
           <div class="se-patner">
             <div class='compTitle'><strong>{{jobDetails.jobRole}}</strong></div>
-            <div *ngIf="jobDetails.partnerLabel === 'Skill Exchange Partner'"><span
-                class="icon-green_tick_flower_circuled"></span></div>
+            <!-- <div *ngIf="jobDetails.partnerLabel === 'Skill Exchange Partner'"><span
+                class="icon-green_tick_flower_circuled"></span></div> -->
+            <div *ngIf="jobDetails.partnerLabel === 'Skill Exchange Partner'" matTooltip="Skill Exchange Partner">
+              <span class="icon-green_tick_flower_circuled"></span>
+            </div>
           </div>
           <div class='genTitle'>{{jobDetails.company}}</div>
         </div>
@@ -47,16 +50,16 @@
           <button class="save btn" *ngIf="jobDetails.isSelected == false" (click)="saved()">Save</button>
           <button class="save btn" *ngIf="jobDetails.isSelected == true" (click)="saved()">Saved</button>
           <button class="btn" *ngIf="jobDetails.isApplied == false" (click)="handleButtonClick()">
-            <mat-icon *ngIf="jobDetails.partnerLabel !== 'Skill Exchange Partner'">offline_bolt</mat-icon>Apply now
+            <!-- <mat-icon *ngIf="jobDetails.partnerLabel !== 'Skill Exchange Partner'">screen_share</mat-icon>Apply now -->
+            <span class="icon-apply_now" *ngIf="jobDetails.partnerLabel !== 'Skill Exchange Partner'"></span>Apply now
           </button>
           <button class="btn" [disabled]="true" *ngIf="jobDetails.isApplied == true">Applied</button>
         </div>
       </div>
 
-
     </div>
     <div class="job-details1">
-      <div class="job-intern"><span class="job-intern1">#Jobs</span></div>
+      <!-- <div class="job-intern"><span class="job-intern1">#Jobs</span></div> -->
       <div class="job-intern"><span class="job-intern2">{{jobDetails.jobType}}</span></div>
     </div>
     <div class="job-details">
@@ -79,7 +82,6 @@
   </div>
 
   <div class="descriptionArea">
-
     <div class="custom-card1 cardpad LAlign">
       <div class="desTitle" *ngIf="jobDetails.overview">
         Job Overview<br>
@@ -175,12 +177,10 @@
         </div>
       </div>
     </div>
-
   </div>
 
   <!-- <div class="descriptionArea">
       <div class="custom-card cardpad about">
-
          <div class="desTitle">
            About Company:<br>
             <p>{{jobDetails.about}}</p>

@@ -383,4 +383,7 @@ export class ApiService {
   getJobDetail(data) {
     return this.http.post(`${this.BASE_URL}/getJobDetail`, data);
   }
+  getCandidateByFilter(data){
+    return this.http.post(`${this.BASE_URL}/candidateFilter`, data);
+  }
 }

@@ -1,6 +1,5 @@
 @import "/src/assets/scss/candidate_dashboard.scss";
 
-
 // ::ng-deep .mat-dialog-container#mat-dialog-0 {
 //   top: 50%;
 //   width: 100%;
@@ -145,6 +144,18 @@
     color :#1B4E9B
   }
 }
+.book {
+  margin-right: 17px;
+  // margin-top: 4px;
+  color: #707070;
+  font-size: 10px;
+  position: relative;
+  left: 6.5px;
+  // color: #1B4E9B;
+  .book:hover {
+    color: #1B4E9B !important;
+  } 
+}
 
 .mat-list-base{
   padding-top: 0px;
@@ -152,7 +163,9 @@
 .full-width{
   margin-right:25px;
   margin-top: 4px;
-
+}
+.full-width-save{
+ 
 }
 .hrlogout{
   border-top: 1px solid #eee;
@@ -168,22 +181,45 @@
     right: -20px;
   }
 }
-
+.logout{
+  width: 300px;
+}
 .actions{
   justify-content: center !important;
 }
 .yes{
-  background-color: #26bbef ;
-  color:white;
+  background-color: #1A4E9B ;
+  color:#FFFFFF;
 }
 .no{
-  background-color: #f1efef;
-  color: black;
+  background-color: #1A4E9B;
+  color: #FFFFFF;
+}
+.yes:hover {
+  transition: ease-out 0.3s;
+   border: 1px solid #1A4E9B !important;
+  background: #ffffff !important;
+  color: #1A4E9B;
+}
+.no:hover {
+  transition: ease-out 0.3s;
+   border: 1px solid #1A4E9B !important;
+  background: #ffffff !important;
+  color: #1A4E9B;
+}
+.clos-icn{
+  text-align: right;
+}
+.logot-img{
+  display: grid;
+  justify-content: center;
+  img{
+    height: 60px;
+  }
 }
 .box{
   display: flex;
   justify-content: space-around;
-
 }
 
 ::ng-deep .mat-menu-panel{
@@ -197,3 +233,4 @@
 ::ng-deep .mat-menu-item .mat-icon{
   margin-right: 0px!important;
 }
+ 
