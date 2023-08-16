@@ -329,9 +329,12 @@ export class ExternalLinkComponent implements OnInit {
   
   }
   constructor(private route: ActivatedRoute, public toast: ToastrService,public appConfig: AppConfigService, public apiService:ApiService,
-  ) { }
+  ) { 
+    this.appConfig.clearLocalStorage();
+  }
 
   ngOnInit(): void {
+    
     this.getRoute();
   }
 
