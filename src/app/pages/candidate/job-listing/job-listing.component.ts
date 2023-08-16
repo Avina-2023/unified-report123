@@ -79,7 +79,7 @@ export class JobListingComponent implements OnInit {
     private renderer: Renderer2,
     private el: ElementRef
   ) {}
-  url = 'jobs';
+  url = 'Jobs';
   ngOnInit() {
     this.getJobList();
     this.getJobFilter();
@@ -100,7 +100,7 @@ export class JobListingComponent implements OnInit {
   }
 
   customalert() {
-    this.toaster.error('Job Requirment does not match your profile', null, {
+    this.toaster.error('Job Requirement does not match your profile', null, {
       positionClass: 'toast-top-center',
     });
   }
@@ -318,7 +318,6 @@ export class JobListingComponent implements OnInit {
   }
 
   bookMarkIcon(item) {
-
     item.isSelected = !item.isSelected;
     // positionClass: 'toast-top-center';
     let jobParams: any = {
@@ -327,11 +326,11 @@ export class JobListingComponent implements OnInit {
       // positionClass: 'toast-top-center',
     };
     this.apiservice.saveJobsDashboard(jobParams).subscribe((res: any) => {
-      if (res.success && item.isSelected) { 
-      this.toaster.success("Job Saved Successfully!")
-    }else {
-      this.toaster.success("Job UnSaved Successfully!");
-      } 
+      if (res.success && item.isSelected) {
+        this.toaster.success('Job Saved Successfully!');
+      } else {
+        this.toaster.success('Job UnSaved Successfully!');
+      }
     });
   }
 
