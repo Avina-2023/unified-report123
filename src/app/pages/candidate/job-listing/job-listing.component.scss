@@ -890,34 +890,27 @@
     /* Set the desired font size */
     /* Add any other styles you want */
   }
-
 }
-
 .grid_1 {
   padding: 5px;
   background: #1b4e9b;
 }
-
 .grid_2 {
   padding: 5px;
   color: #1b4e9b;
 }
-
 .grid_2-selected {
   background-color: #1b4e9b;
   color: #ffffff;
 }
-
 .grid_2-selected .grid_1 {
   background-color: #ffffff;
   color: #1b4e9b;
 }
-
 .grid_2-selected .grid_2 {
   background-color: #1b4e9b;
   color: #ffffff;
 }
-
 .sub-details {
   display: flex;
   // padding-left: 5px;
