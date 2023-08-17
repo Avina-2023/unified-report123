@@ -129,10 +129,21 @@
                 </div>
                 <div class="minicard-heading">
                   <span class="head2">{{item.company}}</span>
-                  <div class="sub-details">
+                  <!-- <div class="sub-details">
                     <div> <mat-icon class="locicon"> location_on</mat-icon></div>
                     <div class="loation_sty">{{item.jobLocation}}</div>
+                  </div> -->
+                  <div class="sub-details">
+                    <div>
+                      <mat-icon class="locicon">location_on</mat-icon>
+                    </div>
+                    <div class="loation_sty">
+                      <ng-container *ngFor="let location of item.jobLocation; let last = last">
+                        {{ location }}{{ !last ? ', ' : '' }}
+                      </ng-container>
+                    </div>
                   </div>
+
                 </div>
               </div>
               <div class="main-sub">
