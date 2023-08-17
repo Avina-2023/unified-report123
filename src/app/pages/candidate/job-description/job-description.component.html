@@ -1,7 +1,7 @@
 <div class="pageWrapper">
   <div class="custom-card">
     <div class="coverImage">
-      <app-common-banner [subname]="'jobs'" [name]="'Apply Job'"></app-common-banner>
+      <app-common-banner [subname]="'Jobs'" [name]="'Apply Job'"></app-common-banner>
       <!-- <div><img (error)="'/assets/images/compCover.png'"
                [src]="jobDescription?.bannerImage?jobDescription.bannerImage:'/assets/images/job_description_background.png'" />
          </div> -->
@@ -56,10 +56,9 @@
           <!-- <span class="icon-apply_now" *ngIf="jobDetails.partnerLabel !== 'Skill Exchange Partner'"></span>Apply Now -->
           <!-- </button> -->
           <button class="btn" *ngIf="jobDetails.isApplied == false" (click)="handleButtonClick()">
-            <mat-icon
-              [ngClass]="{'icon-apply_now-blue': jobDetails.partnerLabel !== 'Skill Exchange Partner'}">screen_share</mat-icon>
-            Apply Now
+          <span class="icon-apply_now" *ngIf="jobDetails.partnerLabel !== 'Skill Exchange Partner'"></span>Apply Now
           </button>
+          
           <button class="btn" [disabled]="true" *ngIf="jobDetails.isApplied == true">Applied</button>
         </div>
       </div>

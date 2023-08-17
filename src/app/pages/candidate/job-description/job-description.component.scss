@@ -17,7 +17,8 @@ li {
   float: right;
   font-family: Lato !important;
   .icon-apply_now{
-    margin: 0px 5px 0px 0px;
+    margin: 2px 7px 0px 0px;
+
   }
 }
 
@@ -186,21 +187,7 @@ li {
   }
   }
 }
-.icon-apply_now {
-  /* Define the default icon styles */
-  // color: black;
-}
 
-.icon-apply_now-blue {
-  /* Define the icon styles when partnerLabel is not 'Skill Exchange Partner' */
-  color: #FFFFFF;
-}
-
-.btn:hover .icon-apply_now-blue {
-  /* Change the icon color on button hover */
-  color: #1B4E9B ;
-  /* You can adjust this color */
-}
 .job_options {
   display: flex;
   flex-wrap: wrap;
@@ -214,7 +201,7 @@ li {
       border: 0px solid #70707080;
       border-radius: 3px;
       opacity: 1;
-      width: max-content;
+      // width: max-content;
       font-weight: 500;
       color: #1B4E9B;
       margin: 0px 3px;
@@ -223,6 +210,7 @@ li {
       font-size: 12px;
       line-height: normal;
       cursor: default;
+      width: fit-content;
     }
   }
 }
