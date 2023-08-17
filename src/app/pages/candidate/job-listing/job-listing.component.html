@@ -129,10 +129,21 @@
                 </div>
                 <div class="minicard-heading">
                   <span class="head2">{{item.company}}</span>
-                  <div class="sub-details">
+                  <!-- <div class="sub-details">
                     <div> <mat-icon class="locicon"> location_on</mat-icon></div>
                     <div class="loation_sty">{{item.jobLocation}}</div>
+                  </div> -->
+                  <div class="sub-details">
+                    <div>
+                      <mat-icon class="locicon">location_on</mat-icon>
+                    </div>
+                    <div class="loation_sty">
+                      <ng-container *ngFor="let location of item.jobLocation; let last = last">
+                        {{ location }}{{ !last ? ', ' : '' }}
+                      </ng-container>
+                    </div>
                   </div>
+
                 </div>
               </div>
               <div class="main-sub">
@@ -331,8 +342,9 @@
         </p>
         <div *ngFor="let course of fillist.subContent; let i = index">
           <span *ngIf="i<4">
-            <mat-checkbox (change)="checkboxChecked($event,course,fillist.key,'direct')" [checked]="course.is_checked"
-              class="fldName" color="primary" *ngIf="!fillist.isShow">{{course.name}} ({{course.totalCount}})
+            <mat-checkbox (change)="checkboxChecked($event,course,fillist.key,fillist.isMaster,'direct')"
+              [checked]="course.is_checked" class="fldName" color="primary" *ngIf="!fillist.isShow">{{course.name}}
+              ({{course.totalCount}})
             </mat-checkbox>
           </span>
         </div>
@@ -355,7 +367,7 @@
   <div mat-dialog-content>
     <div class="filter_col mat_dlg_cnt">
       <div *ngFor="let course of filterItems.subContent">
-        <mat-checkbox class="mat_courses" (change)="checkboxChecked($event,course,filterItems.key)"
+        <mat-checkbox class="mat_courses" (change)="checkboxChecked($event,course,filterItems.key,filterItems.isMaster)"
           [checked]="course.is_checked" color="primary">{{course.name}} ({{course.totalCount}})</mat-checkbox>
       </div>
     </div>
@@ -384,8 +396,8 @@
     </div>
     <div class="mob_card_crse">
       <span *ngIf="filterItems">
-        <mat-checkbox color="primary" (change)="checkboxChecked($event,item,item.key)" [checked]="item.is_checked"
-          class="mob_filter_res" *ngFor="let item of filterItems">{{item.name}}
+        <mat-checkbox color="primary" (change)="checkboxChecked($event,item,item.key,item.isMaster)"
+          [checked]="item.is_checked" class="mob_filter_res" *ngFor="let item of filterItems">{{item.name}}
           ({{item.totalCount}})
         </mat-checkbox>
       </span>
