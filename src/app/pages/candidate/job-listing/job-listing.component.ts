@@ -260,6 +260,7 @@ export class JobListingComponent implements OnInit {
     if (event?.checked) {
       data.is_checked = true;
       data.key = filterKey;
+      console.log(data)
       this.selectedValues.push(data);
       //console.log(this.selectedValues);
       // this.getJobList();
