@@ -264,6 +264,7 @@ export class JobListingComponent implements OnInit {
   checkboxChecked(event, data, filterKey, isMaster, from?: any) {
     if (event?.checked) {
       data.is_checked = true;
+      data.isMaster = isMaster;
       data.key = filterKey;
       console.log(data);
 
@@ -310,8 +311,7 @@ export class JobListingComponent implements OnInit {
   closeSelectedValues(data, index) {
     data.is_checked = false;
     this.selectedValues.splice(index, 1);
-    this.filterRemoval(data, data.key);
-    //console.log(this.filterObj);
+    this.filterRemoval(data, data.key, data.isMaster);
     this.getJobList();
   }
 
