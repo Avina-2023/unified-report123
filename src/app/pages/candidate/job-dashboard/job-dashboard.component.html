@@ -406,7 +406,10 @@
               "
             ></div>
           </div>
-          <div class="gender_bg">{{gender}}</div>
+          <!-- <div class="gender_bg">{{gender}}</div> -->
+          <div *ngIf="gender" class="gender_bg">{{gender}}</div>
+          <div *ngIf="!gender">{{gender}}</div>
+
 
           <div class="member-join" *ngIf="memberjoindate">
             Member Since {{ formattedDate }}
@@ -437,3 +440,4 @@
     </div>
   </div>
 </div>
+

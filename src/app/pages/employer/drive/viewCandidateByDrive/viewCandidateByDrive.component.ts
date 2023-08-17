@@ -108,9 +108,10 @@ icncolor:string ='#1B4E9B';
   pageNumberInput: any;
   pageNumber: number = 1;
   currentPage: number;
-  selectedPageSize: number;
+  // selectedPageSize: number;
   isFirstPage: boolean = true;
   isLastPage: boolean = false;
+  selectedPageSize: number = 10;
   constructor(
     private ApiService: ApiService,
     private toastr: ToastrService,
