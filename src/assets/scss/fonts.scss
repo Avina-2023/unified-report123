@@ -58,6 +58,9 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
+    .icon-bookmark_icon:before {
+      content: "\ea22";
+    }
     .icon-apply_now:before {
       content: "\ea1d";
       color: #fff;
