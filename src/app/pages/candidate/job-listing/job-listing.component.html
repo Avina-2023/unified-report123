@@ -35,7 +35,7 @@
       <div><mat-icon class="search_icon_" type="submit">search</mat-icon></div>
       <div style="width: 100%;">
         <input class="border_Placeholder" [(ngModel)]="searchInput" (ngModelChange)="textsearch()" #searchInputRef
-          type="text" placeholder="Enter designation / companies / location">
+          type="text" placeholder="job title / companies / location">
       </div>
     </div>
     <div class="mob_fil" *ngIf="this.filter_info.data.length">
@@ -120,8 +120,12 @@
 
               <div class="minicard-header">
                 <div class="company-image">
-                  <img [src]="item.companyLogo
+                  <!-- <img [src]="item.companyLogo
                               " alt="" />
+                  <img src="../../../../assets/images/bottomCircle.png"> -->
+                  <img [src]="item.companyLogo ? item.companyLogo : '../../../../assets/images/bottomCircle.png'"
+                    alt="" />
+
                 </div>
                 <div class="minicard-heading">
                   <span class="head2">{{item.company}}</span>
@@ -134,7 +138,9 @@
               <div class="main-sub">
                 <div class="sub-details-1">
                   <div>
-                    <span class="head1 rolebold">{{item.jobRole}}</span>
+                    <!-- <div class='compTitle'><strong>{{ jobDetails.jobRole ? jobDetails.jobRole : jobDetails.jobTitle }}</strong> -->
+
+                    <span class="head1 rolebold">{{item.jobRole ? item.jobRole : item.jobTitle}}</span>
                   </div>
                 </div>
                 <!-- <div style="display: flex;">
@@ -349,7 +355,7 @@
   <div mat-dialog-content>
     <div class="filter_col mat_dlg_cnt">
       <div *ngFor="let course of filterItems.subContent">
-        <mat-checkbox class="mat_courses" (change)="checkboxChecked($event,course,filterItems.key )"
+        <mat-checkbox class="mat_courses" (change)="checkboxChecked($event,course,filterItems.key)"
           [checked]="course.is_checked" color="primary">{{course.name}} ({{course.totalCount}})</mat-checkbox>
       </div>
     </div>
