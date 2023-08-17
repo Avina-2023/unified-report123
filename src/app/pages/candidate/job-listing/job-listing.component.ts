@@ -42,6 +42,7 @@ export class JobListingComponent implements OnInit {
 
   filter_info = { data: [] };
   filterItems: any;
+  isMaster: any;
   selectedValues: any[] = [];
   data: any;
   filterObj: any = {};
@@ -241,44 +242,55 @@ export class JobListingComponent implements OnInit {
     );
   }
 
-  filterRemoval(data, filterKey) {
+  filterRemoval(data, filterKey, isMaster?) {
     if (
       this.filterObj.hasOwnProperty(filterKey) &&
-      this.filterObj[filterKey].includes(data.name)
+      this.filterObj[filterKey].includes(isMaster ? data._id : data.name)
     ) {
       if (this.filterObj[filterKey].length > 1) {
-        this.filterObj[filterKey] = this.filterObj[filterKey].filter(
-          (item) => item != data.name
-        );
+        this.filterObj[filterKey] = this.filterObj[filterKey].filter((item) => {
+          if (isMaster) {
+            return item !== data._id;
+          } else {
+            return item !== data.name;
+          }
+        });
       } else {
         delete this.filterObj[filterKey];
       }
     }
   }
 
-  checkboxChecked(event, data, filterKey, from?: any) {
+  checkboxChecked(event, data, filterKey, isMaster, from?: any) {
     if (event?.checked) {
       data.is_checked = true;
+      data.isMaster = isMaster;
       data.key = filterKey;
       this.selectedValues.push(data);
-      //console.log(this.selectedValues);
-      // this.getJobList();
+
       if (this.filterObj.hasOwnProperty(filterKey)) {
-        this.filterObj[filterKey].push(data.name);
-        //console.log(this.filterObj[filterKey]);
-        // console.log('if');
-        // console.log(this.filterObj);
+        if (isMaster) {
+          this.filterObj[filterKey].push(data._id);
+        } else {
+          this.filterObj[filterKey].push(data.name);
+        }
       } else {
-        this.filterObj[filterKey] = [data.name];
-        // console.log('else');
-        // console.log(this.filterObj);
+        if (isMaster) {
+          this.filterObj[filterKey] = [data._id];
+        } else {
+          this.filterObj[filterKey] = [data.name];
+        }
       }
     } else {
       data.is_checked = false;
-      this.selectedValues = this.selectedValues.filter(
-        (item) => item.name !== data.name
-      );
-      this.filterRemoval(data, filterKey);
+      this.selectedValues = this.selectedValues.filter((item) => {
+        if (isMaster) {
+          return item._id !== data._id;
+        } else {
+          return item.name !== data.name;
+        }
+      });
+      this.filterRemoval(data, filterKey, isMaster);
       // console.log(this.filterObj);
     }
     if (from == 'direct') {
@@ -297,8 +309,7 @@ export class JobListingComponent implements OnInit {
   closeSelectedValues(data, index) {
     data.is_checked = false;
     this.selectedValues.splice(index, 1);
-    this.filterRemoval(data, data.key);
-    //console.log(this.filterObj);
+    this.filterRemoval(data, data.key, data.isMaster);
     this.getJobList();
   }
 

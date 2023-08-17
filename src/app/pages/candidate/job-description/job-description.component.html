@@ -1,7 +1,7 @@
 <div class="pageWrapper">
   <div class="custom-card">
     <div class="coverImage">
-      <app-common-banner [subname]="'jobs'" [name]="'Apply Job'"></app-common-banner>
+      <app-common-banner [subname]="'Jobs'" [name]="'Apply Job'"></app-common-banner>
       <!-- <div><img (error)="'/assets/images/compCover.png'"
                [src]="jobDescription?.bannerImage?jobDescription.bannerImage:'/assets/images/job_description_background.png'" />
          </div> -->
@@ -12,7 +12,9 @@
             [src]="productionUrl?jobDetails.companyLogo+blobToken:jobDetails.companyLogo" /></div>
         <div class="JT-left">
           <div class="se-patner">
-            <div class='compTitle'><strong>{{jobDetails.jobRole}}</strong></div>
+            <div class='compTitle'><strong>{{ jobDetails.jobRole ? jobDetails.jobRole : jobDetails.jobTitle }}</strong>
+            </div>
+            <!-- <div class='compTitle'><strong>{{jobDetails.jobRole}}</strong></div> -->
             <!-- <div *ngIf="jobDetails.partnerLabel === 'Skill Exchange Partner'"><span
                 class="icon-green_tick_flower_circuled"></span></div> -->
             <div *ngIf="jobDetails.partnerLabel === 'Skill Exchange Partner'" matTooltip="Skill Exchange Partner">
@@ -51,13 +53,12 @@
           <button class="save btn" *ngIf="jobDetails.isSelected == true" (click)="saved()">Saved</button>
           <!-- <button class="btn" *ngIf="jobDetails.isApplied == false" (click)="handleButtonClick()"> -->
           <!-- <mat-icon *ngIf="jobDetails.partnerLabel !== 'Skill Exchange Partner'">screen_share</mat-icon>Apply now -->
-          <!-- <span class="icon-apply_now" *ngIf="jobDetails.partnerLabel !== 'Skill Exchange Partner'"></span>Apply Now
-          </button> -->
+          <!-- <span class="icon-apply_now" *ngIf="jobDetails.partnerLabel !== 'Skill Exchange Partner'"></span>Apply Now -->
+          <!-- </button> -->
           <button class="btn" *ngIf="jobDetails.isApplied == false" (click)="handleButtonClick()">
-            <mat-icon
-              [ngClass]="{'icon-apply_now-blue': jobDetails.partnerLabel !== 'Skill Exchange Partner'}">screen_share</mat-icon>
-            Apply Now
+          <span class="icon-apply_now" *ngIf="jobDetails.partnerLabel !== 'Skill Exchange Partner'"></span>Apply Now
           </button>
+          
           <button class="btn" [disabled]="true" *ngIf="jobDetails.isApplied == true">Applied</button>
         </div>
       </div>

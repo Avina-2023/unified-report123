@@ -38,7 +38,7 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import {MatDatepickerModule} from '@angular/material/datepicker';
-import { ExternalLinkComponent } from './pages/login/external-link/external-link.component';
+import { ExternalLinkComponent } from './pages/external-link/external-link.component';
 // import { DashboardtableComponent } from './dashboardtable/dashboardtable.component';
 
 registerLocaleData(en);
