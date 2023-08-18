@@ -100,10 +100,14 @@ export class JobListingComponent implements OnInit {
     );
   }
 
-  customalert() {
-    this.toaster.error('Job Requirement does not match your profile', null, {
-      positionClass: 'toast-top-center',
-    });
+  customalert(item) {
+    if (item.partnerLabel) {
+      this.toaster.error('Job Requirement does not match your profile', null, {
+        positionClass: 'toast-top-center',
+      });
+    } else {
+      this.gotojob(item);
+    }
   }
   setActiveButton(buttonId: string) {
     this.activeButton = buttonId;
