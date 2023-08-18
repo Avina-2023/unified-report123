@@ -143,14 +143,12 @@
                       </ng-container>
                     </div>
                   </div>
-
                 </div>
               </div>
               <div class="main-sub">
                 <div class="sub-details-1">
                   <div>
                     <!-- <div class='compTitle'><strong>{{ jobDetails.jobRole ? jobDetails.jobRole : jobDetails.jobTitle }}</strong> -->
-
                     <span class="head1 rolebold">{{item.jobRole ? item.jobRole : item.jobTitle}}</span>
                   </div>
                 </div>
@@ -379,7 +377,8 @@
   <div class="filt_mob_top">
     <mat-icon [mat-dialog-close]>west</mat-icon>
     <p class="fil_text">All Filters {{this.selectedValues.length ? '('+this.selectedValues.length +')' : ''}}
-      <span (click)="clearFilters(filter_info.data)" *ngIf="selectedValues.length" class="clear_filter">Clear All</span>
+      <span (click)="clearFilters(filter_info.data)" *ngIf="selectedValues.length" class="clear_filter">Clear
+        All</span>
     </p>
     <p class="apply_top_menu">
       <button (click)="applyfilter()" [mat-dialog-close]>Apply</button>
