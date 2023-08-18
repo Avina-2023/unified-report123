@@ -266,10 +266,7 @@ export class JobListingComponent implements OnInit {
       data.is_checked = true;
       data.isMaster = isMaster;
       data.key = filterKey;
-      console.log(data);
-
       this.selectedValues.push(data);
-
       if (this.filterObj.hasOwnProperty(filterKey)) {
         if (isMaster) {
           this.filterObj[filterKey].push(data._id);
