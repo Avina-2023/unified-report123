@@ -101,7 +101,7 @@
 
             <div *ngIf="partnerLabel && partnerLabel === 'Skill Exchange Partner'">
               <div [disabled]="!item.yearofPassout.includes(removeduplicate2)"
-                (click)=" !item.yearofPassout.includes(removeduplicate2) ? gotojob(item) : customalert()"
+                (click)=" item.yearofPassout.includes(removeduplicate2) ? gotojob(item) : customalert(item)"
                 [ngClass]="{'blurcard': !item.yearofPassout.includes(removeduplicate2)&&item.partnerLabel}"
                 class="name skill-exchange" *ngIf="item.partnerLabel">
                 <div class="text-overlay">{{item.partnerLabel}}</div>
@@ -115,7 +115,7 @@
             </div> -->
 
             <div [disabled]="!item.yearofPassout.includes(removeduplicate2)"
-              (click)="!item.yearofPassout.includes(removeduplicate2) ? gotojob(item) : customalert()"
+              (click)="item.yearofPassout.includes(removeduplicate2) ? gotojob(item) : customalert(item)"
               [ngClass]="{'blurcard': !item.yearofPassout.includes(removeduplicate2)&&item.partnerLabel}">
 
               <div class="minicard-header">
@@ -189,19 +189,19 @@
             <div class="date">
               <!-- <div (click)="gotojob(item)"><span class="icon-calendar"></span></div> -->
               <div [disabled]="!item.yearofPassout.includes(removeduplicate2)"
-                (click)="!item.yearofPassout.includes(removeduplicate2) ? gotojob(item) : customalert()"
+                (click)="!item.yearofPassout.includes(removeduplicate2) ? gotojob(item) : customalert(item)"
                 [ngClass]="{'blurcard': !item.yearofPassout.includes(removeduplicate2)&&item.partnerLabel}"><span
                   class="icon-calendar"></span></div>
               <!-- <div [disabled]="item.yearofPassout != useryopyear" (click)="item.yearofPassout == useryopyear && gotojob(item)" [ngClass]="{'blurcard': item.yearofPassout != useryopyear}">Posted on -->
               <div [disabled]="!item.yearofPassout.includes(removeduplicate2)"
-                (click)="!item.yearofPassout.includes(removeduplicate2) ? gotojob(item) : customalert()"
+                (click)="item.yearofPassout.includes(removeduplicate2) ? gotojob(item) : customalert(item)"
                 [ngClass]="{'blurcard': !item.yearofPassout.includes(removeduplicate2)&&item.partnerLabel}">
                 <span class="icon-clock_postdate dayleftclr"></span>
                 Posted on
                 {{item.createdOn | date : 'd MMM'}}
               </div>
               <div [disabled]="!item.yearofPassout.includes(removeduplicate2)"
-                (click)="!item.yearofPassout.includes(removeduplicate2) ? gotojob(item) : customalert()"
+                (click)="item.yearofPassout.includes(removeduplicate2) ? gotojob(item) : customalert(item)"
                 [ngClass]="{'blurcard': !item.yearofPassout.includes(removeduplicate2)&&item.partnerLabel}">
                 &nbsp;
                 <span class="icon-daysleft_clock dayleftclr"></span>
@@ -210,7 +210,7 @@
 
               <!-- <div class="misc_save" [disabled]="item.yearofPassout != useryopyear" (click)="item.yearofPassout == useryopyear && bookMarkIcon(item)" [ngClass]="{'blurcard': item.yearofPassout != useryopyear}"> -->
               <div class="misc_save" [disabled]="!item.yearofPassout.includes(removeduplicate2)"
-                (click)="!item.yearofPassout.includes(removeduplicate2) && bookMarkIcon(item)"
+                (click)="item.yearofPassout.includes(removeduplicate2) && bookMarkIcon(item)"
                 [ngClass]="{'blurcard': !item.yearofPassout.includes(removeduplicate2)&&item.partnerLabel}">
                 <div class="save">
                   <!-- <img class="book" src="../../../assets/images/Group 25159.svg"> -->
