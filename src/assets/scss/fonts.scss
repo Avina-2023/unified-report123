@@ -58,6 +58,10 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
+  .icon-Icon-ionic-ios-calendar:before {
+    content: "\ea23";
+    color: #707070;
+  }
     .icon-bookmark_icon:before {
       content: "\ea22";
     }
