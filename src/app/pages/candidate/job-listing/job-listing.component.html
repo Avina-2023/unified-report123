@@ -101,9 +101,9 @@
 
             <div *ngIf="partnerLabel && partnerLabel === 'Skill Exchange Partner'">
               <div [disabled]="!item.yearofPassout.includes(removeduplicate2)"
-                (click)="item.yearofPassout.includes(removeduplicate2) ? gotojob(item) : customalert()"
-                [ngClass]="{'blurcard': !item.yearofPassout.includes(removeduplicate2)}" class="name skill-exchange"
-                *ngIf="item.partnerLabel">
+                (click)=" !item.yearofPassout.includes(removeduplicate2) ? gotojob(item) : customalert()"
+                [ngClass]="{'blurcard': !item.yearofPassout.includes(removeduplicate2)&&item.partnerLabel}"
+                class="name skill-exchange" *ngIf="item.partnerLabel">
                 <div class="text-overlay">{{item.partnerLabel}}</div>
               </div>
             </div>
@@ -115,8 +115,8 @@
             </div> -->
 
             <div [disabled]="!item.yearofPassout.includes(removeduplicate2)"
-              (click)="item.yearofPassout.includes(removeduplicate2) ? gotojob(item) : customalert()"
-              [ngClass]="{'blurcard': !item.yearofPassout.includes(removeduplicate2)}">
+              (click)="!item.yearofPassout.includes(removeduplicate2) ? gotojob(item) : customalert()"
+              [ngClass]="{'blurcard': !item.yearofPassout.includes(removeduplicate2)&&item.partnerLabel}">
 
               <div class="minicard-header">
                 <div class="company-image">
@@ -143,14 +143,12 @@
                       </ng-container>
                     </div>
                   </div>
-
                 </div>
               </div>
               <div class="main-sub">
                 <div class="sub-details-1">
                   <div>
                     <!-- <div class='compTitle'><strong>{{ jobDetails.jobRole ? jobDetails.jobRole : jobDetails.jobTitle }}</strong> -->
-
                     <span class="head1 rolebold">{{item.jobRole ? item.jobRole : item.jobTitle}}</span>
                   </div>
                 </div>
@@ -191,20 +189,20 @@
             <div class="date">
               <!-- <div (click)="gotojob(item)"><span class="icon-calendar"></span></div> -->
               <div [disabled]="!item.yearofPassout.includes(removeduplicate2)"
-                (click)="item.yearofPassout.includes(removeduplicate2) ? gotojob(item) : customalert()"
-                [ngClass]="{'blurcard': !item.yearofPassout.includes(removeduplicate2)}"><span
+                (click)="!item.yearofPassout.includes(removeduplicate2) ? gotojob(item) : customalert()"
+                [ngClass]="{'blurcard': !item.yearofPassout.includes(removeduplicate2)&&item.partnerLabel}"><span
                   class="icon-calendar"></span></div>
               <!-- <div [disabled]="item.yearofPassout != useryopyear" (click)="item.yearofPassout == useryopyear && gotojob(item)" [ngClass]="{'blurcard': item.yearofPassout != useryopyear}">Posted on -->
               <div [disabled]="!item.yearofPassout.includes(removeduplicate2)"
-                (click)="item.yearofPassout.includes(removeduplicate2) ? gotojob(item) : customalert()"
-                [ngClass]="{'blurcard': !item.yearofPassout.includes(removeduplicate2)}">
+                (click)="!item.yearofPassout.includes(removeduplicate2) ? gotojob(item) : customalert()"
+                [ngClass]="{'blurcard': !item.yearofPassout.includes(removeduplicate2)&&item.partnerLabel}">
                 <span class="icon-clock_postdate dayleftclr"></span>
                 Posted on
                 {{item.createdOn | date : 'd MMM'}}
               </div>
               <div [disabled]="!item.yearofPassout.includes(removeduplicate2)"
-                (click)="item.yearofPassout.includes(removeduplicate2) ? gotojob(item) : customalert()"
-                [ngClass]="{'blurcard': !item.yearofPassout.includes(removeduplicate2)}">
+                (click)="!item.yearofPassout.includes(removeduplicate2) ? gotojob(item) : customalert()"
+                [ngClass]="{'blurcard': !item.yearofPassout.includes(removeduplicate2)&&item.partnerLabel}">
                 &nbsp;
                 <span class="icon-daysleft_clock dayleftclr"></span>
                 {{item.lastDatetoApply | timeDiff}}
@@ -212,8 +210,8 @@
 
               <!-- <div class="misc_save" [disabled]="item.yearofPassout != useryopyear" (click)="item.yearofPassout == useryopyear && bookMarkIcon(item)" [ngClass]="{'blurcard': item.yearofPassout != useryopyear}"> -->
               <div class="misc_save" [disabled]="!item.yearofPassout.includes(removeduplicate2)"
-                (click)="item.yearofPassout.includes(removeduplicate2) && bookMarkIcon(item)"
-                [ngClass]="{'blurcard': !item.yearofPassout.includes(removeduplicate2)}">
+                (click)="!item.yearofPassout.includes(removeduplicate2) && bookMarkIcon(item)"
+                [ngClass]="{'blurcard': !item.yearofPassout.includes(removeduplicate2)&&item.partnerLabel}">
                 <div class="save">
                   <!-- <img class="book" src="../../../assets/images/Group 25159.svg"> -->
                   <mat-icon [ngClass]="item.isSelected ? 'saved_icon':'unsaved_icon'">
@@ -379,7 +377,8 @@
   <div class="filt_mob_top">
     <mat-icon [mat-dialog-close]>west</mat-icon>
     <p class="fil_text">All Filters {{this.selectedValues.length ? '('+this.selectedValues.length +')' : ''}}
-      <span (click)="clearFilters(filter_info.data)" *ngIf="selectedValues.length" class="clear_filter">Clear All</span>
+      <span (click)="clearFilters(filter_info.data)" *ngIf="selectedValues.length" class="clear_filter">Clear
+        All</span>
     </p>
     <p class="apply_top_menu">
       <button (click)="applyfilter()" [mat-dialog-close]>Apply</button>
