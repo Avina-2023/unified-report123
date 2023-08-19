@@ -15,58 +15,95 @@ export class JobListItemComponent implements OnInit, AfterViewInit {
   public isActive: boolean = true;
   public isDisabled: boolean = true;
   public totalco: any;
-
   public currentdate: any = new Date();
   @Input() data: any;
   @Input() savedButton = false;
   @Input() showApplied = false;
   
-  public totallength: any;
-  public total: any;
-  sampleContent = [];
-  blobToken = environment.blobToken;
-  productionUrl =
+  public totallength: any; 
+  public total: any; 
+  sampleContent = []; 
+  blobToken = environment.blobToken; 
+  productionUrl = 
     environment.SKILL_EDGE_URL == 'https://skilledge.lntedutech.com'
       ? true
       : false;
-  joblist: any;
-  resultShow: any;
+  joblist: any; 
+  resultShow: any; 
 
-  constructor(
-    private apiservice: ApiService,
-    private toastr: ToastrService,
-    public router: Router,
-    private appconfig: AppConfigService,
+  constructor( 
+    private apiservice: ApiService, 
+    private toastr: ToastrService, 
+    public router: Router, 
+    private appconfig: AppConfigService, 
   ) {}
-  ngOnInit():void {
-    
-    this.resultShow = this.data.length
-    this.currentdate = this.currentdate.toISOString();
-   
+  ngOnInit():void {  
+    this.resultShow = this.data.length 
+    this.currentdate = this.currentdate.toISOString(); 
   }
+
+  // apply(item) {
+  //   var obj = {};
+  //   obj = {
+  //     jobId: item.jobId, 
+  //     email: localStorage.getItem('email'), 
+  //     companyId: item.companyId, 
+  //     patner: item.partnerLabel, 
+  //     link: item.applyLink, 
+  //     jobDetails: { 
+  //       education: item.education, 
+  //       specialization: item.specialization,  
+  //       yearofPassout: item.yearofPassout, 
+  //       eligibilityCriteria: item.eligibilityCriteria, 
+  //     }, 
+  //   };
+  //   console.log(item.partnerLabel,'patner');    
+  //   this.apiservice.savedJobs(obj).subscribe((res: any) => {
+  //     if (res.success) {
+  //       this.toastr.success(res.message);
+  //       item.isApplied = true;
+  //     } else {
+  //       this.toastr.warning(res.message);
+  //     }
+  //   });
+  // }
+
   apply(item) {
-    var obj = {};
-    obj = {
-      jobId: item.jobId,
-      email: localStorage.getItem('email'),
-      companyId: item.companyId,
-      jobDetails: {
-        education: item.education,
-        specialization: item.specialization,
-        yearofPassout: item.yearofPassout,
-        eligibilityCriteria: item.eligibilityCriteria,
+    var obj = { 
+      jobId: item.jobId,  
+      email: localStorage.getItem('email'), 
+      companyId: item.companyId,  
+      patner: item.partnerLabel,  
+      link: item.applyLink, 
+      jobDetails: { 
+        education: item.education, 
+        specialization: item.specialization, 
+        yearofPassout: item.yearofPassout, 
+        eligibilityCriteria: item.eligibilityCriteria, 
       },
     };
-    this.apiservice.savedJobs(obj).subscribe((res: any) => {
-      if (res.success) {
-        this.toastr.success(res.message);
-        item.isApplied = true;
-      } else {
-        this.toastr.warning(res.message);
-      }
-    });
+    console.log(item.partnerLabel, 'patner');
+    this.apiservice.savedJobs(obj).subscribe((res: any) => { 
+      if (res.success) { 
+        this.toastr.success(res.message); 
+        item.isApplied = true; 
+      } else { 
+        this.toastr.warning(res.message); 
+      } 
+    }); 
   }
+  
+  handleApplyButtonClick(item) {
+    if (item.partnerLabel === 'Skill Exchange Partner') {
+      this.apply(item);
+    } else {
+      window.open(item.applyLink, '_blank');
+    }
+  }
+  
 
+
+  
   bookMarkIcon(item) {
     item.isSelected = !item.isSelected;
     let jobParams: any = {

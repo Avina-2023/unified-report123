@@ -210,7 +210,7 @@
 
               <!-- <div class="misc_save" [disabled]="item.yearofPassout != useryopyear" (click)="item.yearofPassout == useryopyear && bookMarkIcon(item)" [ngClass]="{'blurcard': item.yearofPassout != useryopyear}"> -->
               <div class="misc_save" [disabled]="!item.yearofPassout.includes(removeduplicate2)"
-                (click)="item.yearofPassout.includes(removeduplicate2) && bookMarkIcon(item)"
+                (click)="bookMarkIcon(item)"
                 [ngClass]="{'blurcard': !item.yearofPassout.includes(removeduplicate2)&&item.partnerLabel}">
                 <div class="save">
                   <!-- <img class="book" src="../../../assets/images/Group 25159.svg"> -->
