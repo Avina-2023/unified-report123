@@ -442,7 +442,7 @@ icncolor:string ='#1B4E9B';
     this.setDatasource();
   }
 
-  setDatasource() {
+  setDatasource(){
     var datasource = this.getAggridJoblist();
     this.gridApi.setServerSideDatasource(datasource);
   }
@@ -478,15 +478,20 @@ icncolor:string ='#1B4E9B';
               // this.allcountvalue = this.alldata.totalCount ? this.alldata.totalCount : this.allcountvalue
               // this.inprogresscountvalue = this.alldata['In Progress'] ? this.alldata['In Progress'] : this.inprogresscountvalue
              
-             
-              this.shortlitcountvalue = this.alldata.Shortlisted ? this.alldata.Shortlisted : this.shortlitcountvalue ?? 0;
-              this.awaitingcountvalue = this.alldata.awaitingReview ? this.alldata.awaitingReview : this.awaitingcountvalue ?? 0;
-              this.rejectedcountvalue = this.alldata.Rejected ? this.alldata.Rejected : this.rejectedcountvalue ?? 0;
-              this.allcountvalue = this.alldata.totalCount ? this.alldata.totalCount : this.allcountvalue ?? 0;
-              this.inprogresscountvalue = this.alldata['In Progress'] ? this.alldata['In Progress'] : this.inprogresscountvalue ?? 0;
+              // this.shortlitcountvalue = this.alldata.Shortlisted ? this.alldata.Shortlisted : this.shortlitcountvalue ?? 0;
+              // this.awaitingcountvalue = this.alldata.awaitingReview ? this.alldata.awaitingReview : this.awaitingcountvalue ?? 0;
+              // this.rejectedcountvalue = this.alldata.Rejected ? this.alldata.Rejected : this.rejectedcountvalue ?? 0;
+              // this.allcountvalue = this.alldata.totalCount ? this.alldata.totalCount : this.allcountvalue ?? 0;
+              // this.inprogresscountvalue = this.alldata['In Progress'] ? this.alldata['In Progress'] : this.inprogresscountvalue ?? 0;
+
+              this.shortlitcountvalue = this.alldata.Shortlisted || 0;
+              this.awaitingcountvalue = this.alldata.awaitingReview || 0;
+              this.rejectedcountvalue = this.alldata.Rejected || 0;
+              this.allcountvalue = this.alldata.totalCount || 0;
+              this.inprogresscountvalue = this.alldata['In Progress'] || 0;
 
 
-             
+          
 
               console.log(this.alldata,'dataaaaa');
                 //this.displayData = JSON.stringify(this.alldata);
