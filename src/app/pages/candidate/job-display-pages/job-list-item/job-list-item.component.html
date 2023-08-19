@@ -16,16 +16,16 @@
               </span>
               <span class="smalltext" *ngFor="let elem of item.jobLocation;let i=index; let isLast=last">{{elem}}<span
                   class="misc_col" *ngIf="!isLast && i < item.jobLocation.length">&nbsp;</span> </span>
-            </div>
-          </div>
+            </div> 
+          </div> 
         </div>
         <div *ngIf="item.partnerLabel && item.partnerLabel === 'Skill Exchange Partner'" class="greenblue">
-          <div class="text-overlay">{{item.partnerLabel }}</div>
+          <div class="text-overlay">{{item.partnerLabel }}</div> 
         </div>
-      </mat-card-header>
-      <hr class="hrline">
-      <mat-card-content>
-        <p class="description-p" *ngIf="item.overview">
+      </mat-card-header>  
+      <hr class="hrline"> 
+      <mat-card-content> 
+        <p class="description-p" *ngIf="item.overview"> 
           {{item.overview}}
         </p>
         <!-- <div class="specialization">
@@ -34,15 +34,15 @@
         <!-- <div class="cardgrid">
           <div class="subtitle">{{item.company}}</div>
         </div> -->
-        <div class="foo-flex">
-          <div class="footer_details">
-            <div class="title">{{item.jobRole}}</div>
+        <div class="foo-flex"> 
+          <div class="footer_details"> 
+            <div class="title">{{item.jobRole}}</div> 
             
             <div class="cardfooter_row"><span>
-                <mat-icon class="icon" [class.active]="isActive"> school</mat-icon>
-              </span>
-              <span class="smalltext" *ngFor="let elem of item.education;let i=index; let isLast=last">{{elem}}<span
-                  class="misc_col" *ngIf="!isLast && i < item.education.length">&nbsp;</span></span>
+                <mat-icon class="icon" [class.active]="isActive"> school</mat-icon> 
+              </span> 
+              <span class="smalltext" *ngFor="let elem of item.education;let i=index; let isLast=last">{{elem}}<span 
+                  class="misc_col" *ngIf="!isLast && i < item.education.length">&nbsp;</span></span> 
             </div>
             <!-- <div class="cardfooter_row"><span>
         <mat-icon class="icon"> location_on</mat-icon>
@@ -53,27 +53,27 @@
             <mat-icon class="icon"> business_center</mat-icon>
           </span>
           <span class="smalltext">{{item.jobType}}</span>
-        </div> -->
+        </div> --> 
 
           </div>
-          <div class="footer_right">
-            <div class="box-job">
-              <span class="full_time"></span> {{item.jobType}}
-            </div>
-            <div class="misc_save" *ngIf="savedButton">
+          <div class="footer_right"> 
+            <div class="box-job"> 
+              <span class="full_time"></span> {{item.jobType}} 
+            </div> 
+            <div class="misc_save" *ngIf="savedButton"> 
               <button class="saved" *ngIf="item?.isApplied == false && currentdate<item?.lastDatetoApply"
-                (click)="apply(item)">Apply Now
-              </button>
-              <button class="saved isDisabled" [disabled]="isDisabled" *ngIf="item?.isApplied == true">Applied
-              </button>
-              <button class="saved isDisabled" [disabled]="isDisabled"
-                *ngIf="item?.isApplied == false && currentdate>item?.lastDatetoApply">Expired
-              </button>
-            </div>
-          </div>
-        </div>
-        <div class="footer-gray">
-          <div class="gray-flex">
+                (click)=" handleApplyButtonClick(item)">Apply Now 
+              </button> 
+              <button class="saved isDisabled" [disabled]="isDisabled" *ngIf="item?.isApplied == true">Applied 
+              </button> 
+              <button class="saved isDisabled" [disabled]="isDisabled" 
+                *ngIf="item?.isApplied == false && currentdate>item?.lastDatetoApply">Expired 
+              </button> 
+            </div> 
+          </div> 
+        </div> 
+        <div class="footer-gray"> 
+          <div class="gray-flex"> 
             <!-- <div class="cardfooter_row" *ngIf="savedButton">
             <div *ngIf="!item.createdOn">
               <span>
