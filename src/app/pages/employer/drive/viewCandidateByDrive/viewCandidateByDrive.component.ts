@@ -97,18 +97,17 @@ export class ViewCandidateByDriveComponent implements OnInit {
   valueone: any;
   dynclass: string = 'navyblue';
   active: number = 0;
-icncolor:string ='#1B4E9B';
+  icncolor: string = '#1B4E9B';
   alldata: any;
   displayData: string;
-  awaitingcountvalue:any;
-  shortlitcountvalue:any;
-  inprogresscountvalue:any;
-  rejectedcountvalue:any;
+  awaitingcountvalue: any;
+  shortlitcountvalue: any;
+  inprogresscountvalue: any;
+  rejectedcountvalue: any;
   allcountvalue: any;
   pageNumberInput: any;
   pageNumber: number = 1;
   currentPage: number;
-  // selectedPageSize: number;
   isFirstPage: boolean = true;
   isLastPage: boolean = false;
   selectedPageSize: number = 10;
@@ -175,7 +174,6 @@ icncolor:string ='#1B4E9B';
   // console.log(this.jobData)
   // }
   tabledata() {
-
     this.columnDefs = [
       {
         headerName: 'S.No',
@@ -187,7 +185,7 @@ icncolor:string ='#1B4E9B';
           return params.rowIndex + 1;
         },
         sortable: false,
-      }, 
+      },
       {
         headerName: 'Name',
         field: 'studentName',
@@ -200,7 +198,7 @@ icncolor:string ='#1B4E9B';
           filterOptions: ['contains'],
         },
         cellRenderer: (params) => {
-          if (params.value && params.value !== undefined 
+          if (params.value && params.value !== undefined
             && params.value !== null && params.value !== '') {
             this.FormateName = params.value;
             return this.titleCase(this.FormateName);
@@ -209,7 +207,7 @@ icncolor:string ='#1B4E9B';
           }
         },
         tooltipValueGetter: (params) => {
-          if (params.value && params.value !== undefined 
+          if (params.value && params.value !== undefined
             && params.value !== null && params.value !== '') {
             this.FormateName = params.value;
             return this.titleCase(this.FormateName);
@@ -220,11 +218,11 @@ icncolor:string ='#1B4E9B';
         cellStyle: (params) => {
           return {
             'text-decoration': 'underline',
-            'color': 'blue', 
-            'cursor':'pointer',
+            'color': 'blue',
+            'cursor': 'pointer',
           };
         },
-      },        
+      },
       {
         headerName: 'Status',
         field: 'jobStatus',
@@ -237,11 +235,11 @@ icncolor:string ='#1B4E9B';
           filterOptions: ['contains'],
         },
         cellClassRules: {
-         'yellow-cell': (params) => params.value === 'awaitingReview',
+          'yellow-cell': (params) => params.value === 'awaitingReview',
           'green-cell': (params) => params.value === 'Shortlisted',
           'red-cell': (params) => params.value === 'Rejected',
           'blue-cell': (params) => params.value === 'In Progress',
-       },
+        },
         cellRenderer: (params) => {
           if (
             params.value &&
@@ -255,8 +253,17 @@ icncolor:string ='#1B4E9B';
             return '-';
           }
         },
-        tooltipField: 'jobStatus',
-      }, 
+        tooltipValueGetter: (params) => {
+          if (params.value && params.value !== undefined
+            && params.value !== null && params.value !== '') {
+            this.FormateName = params.value;
+            return this.titleCase(this.FormateName);
+          } else {
+            return '-';
+          }
+        },
+        // tooltipField: 'jobStatus',
+      },
       {
         headerName: 'Qualification',
         field: 'degree',
@@ -283,60 +290,60 @@ icncolor:string ='#1B4E9B';
         tooltipField: 'degree',
       },
       {
-         headerName: 'Year of Passout',
-         field: 'yearOfPassing',
-         minWidth: 180,
-         filter: 'agNumberColumnFilter',
-         chartDataType: 'series',
-         filterParams: {
-           suppressAndOrCondition: true,
-           filterOptions: [
-             'equals',
-             'lessThan',
-             'lessThanOrEqual',
-             'greaterThan',
-             'greaterThanOrEqual',
-             'inRange',
-           ],
-         },
-         cellRenderer: (params) => {
-           if (
-             params.value &&
-             params.value != undefined &&
-             params.value != null &&
-             params.value != ''
-           ) {
-             return params.value;
-           } else {
-             return '-';
-           }
-         },
-         tooltipField: 'yearOfPassing',
+        headerName: 'Year of Passout',
+        field: 'yearOfPassing',
+        minWidth: 180,
+        filter: 'agNumberColumnFilter',
+        chartDataType: 'series',
+        filterParams: {
+          suppressAndOrCondition: true,
+          filterOptions: [
+            'equals',
+            'lessThan',
+            'lessThanOrEqual',
+            'greaterThan',
+            'greaterThanOrEqual',
+            'inRange',
+          ],
+        },
+        cellRenderer: (params) => {
+          if (
+            params.value &&
+            params.value != undefined &&
+            params.value != null &&
+            params.value != ''
+          ) {
+            return params.value;
+          } else {
+            return '-';
+          }
+        },
+        tooltipField: 'yearOfPassing',
       },
       {
-       headerName: 'Trained by L&T EduTech',
-       field: 'trainedStatus',
-       minWidth: 200,
-       filter: 'agTextColumnFilter',
-       chartDataType: 'category',
-       aggFunc: 'sum',
-       filterParams: {
-         suppressAndOrCondition: true,
-         filterOptions: ['contains'],
-       },
-       cellRenderer: (params) => {
-         if (
-           params.value &&
-           params.value != undefined &&
-           params.value != null &&
-           params.value != ''
-         ) {
-           return params.value;
-         } else {
-           return '-';
-         }
-       },
-       tooltipField: 'trainedStatus',
+        headerName: 'Trained by L&T EduTech',
+        field: 'trainedStatus',
+        minWidth: 200,
+        filter: 'agTextColumnFilter',
+        chartDataType: 'category',
+        aggFunc: 'sum',
+        filterParams: {
+          suppressAndOrCondition: true,
+          filterOptions: ['contains'],
+        },
+        cellRenderer: (params) => {
+          if (
+            params.value &&
+            params.value != undefined &&
+            params.value != null &&
+            params.value != ''
+          ) {
+            return params.value;
+          } else {
+            return '-';
+          }
+        },
+        tooltipField: 'trainedStatus',
       },
       {
         headerName: 'Assessed by L&T EduTech',
@@ -347,7 +354,7 @@ icncolor:string ='#1B4E9B';
         aggFunc: 'sum',
         filterParams: {
           suppressAndOrCondition: true,
-          filterOptions: ['contains' ],
+          filterOptions: ['contains'],
         },
         cellRenderer: (params) => {
           if (
@@ -381,19 +388,19 @@ icncolor:string ='#1B4E9B';
         },
         // tooltipField: 'appliedDate',
       },
-      
-      { 
-       headerName: 'Actions',
-       field: '',
-      minWidth: 225 ,
-      cellRenderer: 'moreOptions',
-     //  onCellClicked: this.sendJobData(),
-      suppressColumnsToolPanel: true,
-      filter: false,
-    }
-   
+
+      {
+        headerName: 'Actions',
+        field: '',
+        minWidth: 225,
+        cellRenderer: 'moreOptions',
+        //  onCellClicked: this.sendJobData(),
+        suppressColumnsToolPanel: true,
+        filter: false,
+      }
+
     ];
-   
+
   }
   exportCSV() {
     this.gridApi.exportDataAsCsv({
@@ -442,7 +449,7 @@ icncolor:string ='#1B4E9B';
     this.setDatasource();
   }
 
-  setDatasource(){
+  setDatasource() {
     var datasource = this.getAggridJoblist();
     this.gridApi.setServerSideDatasource(datasource);
   }
@@ -477,7 +484,7 @@ icncolor:string ='#1B4E9B';
               // this.rejectedcountvalue = this.alldata.Rejected ? this.alldata.Rejected : this.rejectedcountvalue;
               // this.allcountvalue = this.alldata.totalCount ? this.alldata.totalCount : this.allcountvalue
               // this.inprogresscountvalue = this.alldata['In Progress'] ? this.alldata['In Progress'] : this.inprogresscountvalue
-             
+
               // this.shortlitcountvalue = this.alldata.Shortlisted ? this.alldata.Shortlisted : this.shortlitcountvalue ?? 0;
               // this.awaitingcountvalue = this.alldata.awaitingReview ? this.alldata.awaitingReview : this.awaitingcountvalue ?? 0;
               // this.rejectedcountvalue = this.alldata.Rejected ? this.alldata.Rejected : this.rejectedcountvalue ?? 0;
@@ -490,12 +497,9 @@ icncolor:string ='#1B4E9B';
               this.allcountvalue = this.alldata.totalCount || 0;
               this.inprogresscountvalue = this.alldata['In Progress'] || 0;
 
+              console.log(this.alldata, 'dataaaaa');
+              //this.displayData = JSON.stringify(this.alldata);
 
-          
-
-              console.log(this.alldata,'dataaaaa');
-                //this.displayData = JSON.stringify(this.alldata);
-          
               if (this.candidateList.length > 0) {
                 this.pageRowCount =
                   data1 && data1.totalCount ? data1.totalCount : 0;
@@ -578,30 +582,30 @@ icncolor:string ='#1B4E9B';
     this.dynclass = pall[index];
     this.icncolor = icn[index];
     this.active = index;
-    console.log(index,"MYINDEX VALUE")
+    console.log(index, "MYINDEX VALUE")
     let statusmodel = {
       jobStatus: {
         filterType: 'text',
         type: 'contains',
         filter: '',
       },
-    }; 
+    };
     // if (index == 0) {
     //   statusmodel.jobStatus.filter = 'All';
     // }else 
-    if(index == 1) {
+    if (index == 1) {
       statusmodel.jobStatus.filter = 'awaitingReview';
-    }else if(index == 2){
+    } else if (index == 2) {
       statusmodel.jobStatus.filter = 'In Progress';
-    }else if(index == 3){
+    } else if (index == 3) {
       statusmodel.jobStatus.filter = 'rejected';
-    }else if(index == 4){
+    } else if (index == 4) {
       statusmodel.jobStatus.filter = 'Shortlisted';
-     
+
     }
     this.gridApi.setFilterModel(statusmodel);
   }
-  
+
   onCellClicked(event: any): void {
     if (event.colDef.field === 'studentName') {
       this.candidateprofile(event.data);
@@ -630,7 +634,7 @@ icncolor:string ='#1B4E9B';
       console.log('Invalid page number');
     }
   }
-  
+
   // onBtPrevPage(){
   //   this.gridApi.paginationGoToPreviousPage()
   // }
@@ -660,20 +664,20 @@ icncolor:string ='#1B4E9B';
   // }
   // onBtPageGo(pageNumber: string) {
   //   const isValidNumber = this.global_validators.numberOnly();
-    
+
   //   if (!isValidNumber) {
   //     console.log('Invalid input. Please enter a valid number.');
   //     return;
   //   }
-    
+
   //   const parsedNumber = parseInt(pageNumber, 10);
-    
+
   //   if (parsedNumber >= 1 && parsedNumber <= this.gridApi.paginationGetTotalPages()) {
   //     this.gridApi.paginationGoToPage(parsedNumber - 1);
   //   } else {
   //     console.log('Invalid page number');
   //   }
   // }
-  
+
 
 }

@@ -6,7 +6,7 @@
 </div>
 
 
-<ng-template #matDialog let-data>
+<!-- <ng-template #matDialog let-data>
   <div class="main-wrapper">
     <div>
       <div class="warning-imag">
@@ -14,7 +14,6 @@
       </div>
       <div class="text">
         <ng-container *ngIf="data.status === 'Shortlisted'; else otherText">
-          <!-- Are you sure you want to <span class="status-text">{{data.status}}</span> the candidate?  -->
           Are you sure you want to <span class="status-text">Shortlist</span> the candidate? 
         </ng-container>
         <ng-template #otherText>
@@ -43,12 +42,48 @@
       </div>
     </div>
   </div>
+</ng-template> -->
+
+<ng-template #matDialog let-data>
+  <div class="main-wraper">
+    <div>
+      <div class="warning-imag">
+        <img class="warning_symbol" src="../../../../../assets/images/alert image filled.svg">
+      </div>
+      <div class="text">
+        <ng-container *ngIf="data.status === 'Shortlisted'; else otherText">
+          Are you sure you want to <span class="status-text">Shortlist</span> the candidate? 
+        </ng-container>
+        <!-- <ng-template #otherText> -->
+          <ng-container *ngIf="data.status === 'Rejected'; else otherText">
+            Are you sure you want to <span class="status-text">Reject</span> the candidate?
+          </ng-container>
+          <ng-container *ngIf="data.status === 'In Progress'; else otherText">
+            Are you sure you want to <span class="status-text">In Progress</span> the candidate?
+          <!-- </ng-template> -->
+        </ng-container>
+      </div>
+      <div class="button-wraper-fom-pop-up">
+        <ng-container *ngIf="data.status === 'Shortlisted'; else otherButtons">
+          <button class="button1" (click)="getStatusChange(data.status)" type="button" mat-raised-button>
+            Confirm
+          </button>
+        </ng-container>
+        <ng-template #otherButtons>
+          <button class="button2" (click)="getStatusChange(data.status)" type="button" mat-raised-button>
+            Confirm
+          </button>
+        </ng-template>
+        <button class="button3" (click)="closeDialog('cancel')" type="button" mat-raised-button>
+          Cancel
+        </button>
+      </div>
+    </div>
+  </div>
 </ng-template>
 
-
-
 <ng-template #confirmmatDialog let-data>
-  <div class="main-wrapper">
+  <div class="main-wraper">
     <div class="gren-tick">
       <img *ngIf="data.status === 'Shortlisted'" class="status-icon" src="../../../../../assets/images/green_tick_image.png">
       <img *ngIf="data.status === 'Rejected'" class="status-icon" src="../../../../../assets/images/reject-img.png">
@@ -69,7 +104,7 @@
         </ng-template>
       </ng-template>
     </div>
-    <div class="button-wrapper-form-pop-up">
+    <div class="button-wraper-fom-pop-up">
       <button class="b4" (click)="okclose()" type="button" mat-raised-button>
         OK
       </button>

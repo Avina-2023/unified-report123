@@ -18,7 +18,7 @@
 
   <div class="pageheader">
     <span>View Applications</span>
-  </div>
+  </div> 
 
   <div class="matcard">
     <mat-card class="main">
@@ -53,7 +53,8 @@
   <div class="act">
     <div>
       <span class="icon-tick_mark_green" *ngIf="valueone.status === 'Active'"></span>
-      <mat-icon *ngIf="valueone.status === 'Expired'">warning_amber</mat-icon>
+      <!-- <mat-icon *ngIf="valueone.status === 'Expired'">warning_amber</mat-icon> -->
+      <span class="icon-warning" *ngIf="valueone.status === 'Expired'"></span>
     </div>
     <div class="val">{{ valueone.status }}</div>
   </div>
