@@ -208,15 +208,13 @@
                 {{item.lastDatetoApply | timeDiff}}
               </div>
 
-              <!-- <div class="misc_save" [disabled]="item.yearofPassout != useryopyear" (click)="item.yearofPassout == useryopyear && bookMarkIcon(item)" [ngClass]="{'blurcard': item.yearofPassout != useryopyear}"> -->
-              <div class="misc_save" [disabled]="!item.yearofPassout.includes(removeduplicate2)"
-                (click)="bookMarkIcon(item)"
-                [ngClass]="{'blurcard': !item.yearofPassout.includes(removeduplicate2)&&item.partnerLabel}">
+
+              <div class="misc_save" (click)="bookMarkIcon(item)"
+                [ngClass]="{'blurcard disabled-card': !item.yearofPassout.includes(removeduplicate2) && item.partnerLabel}">
                 <div class="save">
-                  <!-- <img class="book" src="../../../assets/images/Group 25159.svg"> -->
-                  <mat-icon [ngClass]="item.isSelected ? 'saved_icon':'unsaved_icon'">
-                    {{item.isSelected?'bookmark':'bookmark_border'}}</mat-icon><span class="book-icon"></span>
-                  <!-- <div>Save</div> -->
+                  <mat-icon [ngClass]="item.isSelected ? 'saved_icon' : 'unsaved_icon'">
+                    {{item.isSelected ? 'bookmark' : 'bookmark_border'}}
+                  </mat-icon><span class="book-icon"></span>
                 </div>
               </div>
             </div>
