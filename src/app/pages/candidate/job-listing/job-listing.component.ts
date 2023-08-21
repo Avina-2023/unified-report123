@@ -334,20 +334,23 @@ export class JobListingComponent implements OnInit {
   }
 
   bookMarkIcon(item) {
-    item.isSelected = !item.isSelected;
-    // positionClass: 'toast-top-center';
-    let jobParams: any = {
-      email: this.appconfig.getLocalStorage('email'),
-      jobId: item.jobId,
-      // positionClass: 'toast-top-center',
-    };
-    this.apiservice.saveJobsDashboard(jobParams).subscribe((res: any) => {
-      if (res.success && item.isSelected) {
-        this.toaster.success('Job Saved Successfully!');
-      } else {
-        this.toaster.success('Job UnSaved Successfully!');
-      }
-    });
+    if (
+      item.yearofPassout.includes(this.removeduplicate2) ||
+      !item.partnerLabel
+    ) {
+      item.isSelected = !item.isSelected;
+      const jobParams: any = {
+        email: this.appconfig.getLocalStorage('email'),
+        jobId: item.jobId,
+      };
+      this.apiservice.saveJobsDashboard(jobParams).subscribe((res: any) => {
+        if (res.success && item.isSelected) {
+          this.toaster.success('Job Saved Successfully!');
+        } else {
+          this.toaster.success('Job UnSaved Successfully!');
+        }
+      });
+    }
   }
 
   clearFilters(response) {
