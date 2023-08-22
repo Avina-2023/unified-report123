@@ -1285,7 +1285,7 @@
 @media only screen and (min-width: 900px) {
   ::ng-deep .spec_desk_dialog {
     .mat-dialog-container {
-      position: absolute !important;
+      // position: absolute !important;
       width: max-content !important;
       height: max-content !important;
       right: 10% !important;
