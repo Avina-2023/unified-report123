@@ -40,6 +40,7 @@
     </div>
     <div class="job-details">
     <div class="heading">Job Status</div>
+
    <!-- <div class="act">
     <div><span class="icon-tick_mark_green"></span></div>
     <div class="val">{{valueone.status}}</div>
@@ -53,7 +54,6 @@
   <div class="act">
     <div>
       <span class="icon-tick_mark_green" *ngIf="valueone.status === 'Active'"></span>
-      <!-- <mat-icon *ngIf="valueone.status === 'Expired'">warning_amber</mat-icon> -->
       <span class="icon-warning" *ngIf="valueone.status === 'Expired'"></span>
     </div>
     <div class="val">{{ valueone.status }}</div>
@@ -165,13 +165,14 @@
         rowHeight="45" 
         [suppressRowClickSelection]="true"
         [suppressRowTransform]="true" 
+        [suppressPaginationPanel]="true"
         [rowSelection]="rowSelection" 
         [pivotPanelShow]="'always'" 
         [sideBar]="false"
         (gridReady)="onGridReady($event)" 
         [rowModelType]="rowModelType" 
         [maintainColumnOrder]="true"
-        [cacheBlockSize]="cacheBlockSize" 
+        [cacheBlockSize]="cacheBlockSize"  
         (selectionChanged)="onSelectionChanged($event)"
         [suppressAggFuncInHeader]="true" 
         [suppressColumnVirtualisation]="true" 

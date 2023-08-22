@@ -578,15 +578,15 @@ export class ViewCandidateByDriveComponent implements OnInit {
   onTabChange(index: number) {
     const pall = ['navyblue', 'yellow', 'lightblue', 'red', 'green'];
     const icn = ['#1B4E9B', '#FFB74D', '#27BBEE', '#EF2917', ' #49AE31'];
-    console.log('Selected tab index:' + index);
-    this.dynclass = pall[index];
-    this.icncolor = icn[index];
-    this.active = index;
-    console.log(index, "MYINDEX VALUE")
-    let statusmodel = {
-      jobStatus: {
-        filterType: 'text',
-        type: 'contains',
+    console.log('Selected tab index:' + index); 
+    this.dynclass = pall[index]; 
+    this.icncolor = icn[index]; 
+    this.active = index; 
+    console.log(index, "MYINDEX VALUE") 
+    let statusmodel = { 
+      jobStatus: { 
+        filterType: 'text', 
+        type: 'contains', 
         filter: '',
       },
     };
