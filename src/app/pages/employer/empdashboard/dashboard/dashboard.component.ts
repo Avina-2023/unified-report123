@@ -31,6 +31,7 @@ export class DashboardComponent implements OnInit {
   totalstrength:any;
   totalstrengthtwo:string;
   public centerText: String = "Center Text";
+  candidatelist: any;
 
 
 
@@ -42,6 +43,7 @@ export class DashboardComponent implements OnInit {
     this.roleCode = this.orgdetails && this.orgdetails[0].roles && this.orgdetails[0].roles[0].roleCode;
     this.getEmpDashBoard()
     this.getEmployerDetails()
+    // this.getcandidatedetails()
   }
   profile(){
 
@@ -181,4 +183,15 @@ public options: ChartOptions = {
   //  emp role only show this function
 
 
+  // getcandidatedetails(){
+  //   let params: any ={}
+  //   this.apiService.getallCandidateDetails(params).subscribe((response:any)=>{
+  //     if(response.success){
+  //       this.candidatelist = response.data
+  //       console.log(this.candidatelist,'canidatedata'); 
+  //     }
+  //   })
+  // }
+
+  
 }

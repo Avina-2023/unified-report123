@@ -1,4 +1,3 @@
-
 import { APP_CONSTANTS } from './../utils/app-constants.service';
 import { environment } from './../../environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -8,11 +7,12 @@ import * as CryptoJS from 'crypto-js';
 import { debounceTime, map } from 'rxjs/operators';
 import { Observable, Subject } from 'rxjs';
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ApiService {
   BASE_URL = environment.API_BASE_URL;
   EDGE_URL = environment.NODE_EDGE_URL;
+  BASE_URL_RE = environment.API_BASE_URL_RE;
   SKILL_EDGE_URL = environment.SKILL_EDGE_URL;
   Prourl = environment.NODE_URL;
   EncryptKEY = environment.encryptionKey;
@@ -20,11 +20,7 @@ export class ApiService {
 
   filterSubject: Subject<any> = new Subject();
   partnersubject: Subject<any> = new Subject();
-  constructor(
-    private http: HttpClient,
-    private appConfig: AppConfigService,
-
-  ) { }
+  constructor(private http: HttpClient, private appConfig: AppConfigService) {}
 
   logout() {
     this.appConfig.clearLocalStorage();
@@ -56,21 +52,24 @@ export class ApiService {
   getDriveBaisedUser(data) {
     return this.http.post(`${this.BASE_URL}/driveCandidateList`, data);
   }
-  getDriveCardData(data){
-    return this.http.post(`${this.BASE_URL}/joblistwithaggrid`,data);
+  getDriveCardData(data) {
+    return this.http.post(`${this.BASE_URL}/joblistwithaggrid`, data);
   }
-  getAGgridData(data){
-    return this.http.post(`${this.BASE_URL}/joblistwithaggrid`,data);
+  getAGgridData(data) {
+    return this.http.post(`${this.BASE_URL}/joblistwithaggrid`, data);
   }
-  getCandidateListByDeive(data){
-    return this.http.post(`${this.BASE_URL}/candidatelistbyappliedjob`,data);
+  getCandidateListByDeive(data) {
+    return this.http.post(`${this.BASE_URL}/candidatelistbyappliedjob`, data);
   }
-getAGgridPatnerList(data){
-  return this.http.post(`${this.BASE_URL}/partnerList`,data);
-}
+  getAGgridPatnerList(data) {
+    return this.http.post(`${this.BASE_URL}/partnerList`, data);
+  }
   encrypt(data) {
     try {
-      return CryptoJS.AES.encrypt(JSON.stringify(data), this.EncryptKEY).toString();
+      return CryptoJS.AES.encrypt(
+        JSON.stringify(data),
+        this.EncryptKEY
+      ).toString();
     } catch (e) {
       console.log(e);
       return data;
@@ -124,33 +123,43 @@ getAGgridPatnerList(data){
   }
 
   getHiringReport(data) {
-    return this.http.post(`${this.BASE_URL}/getAgegridReportList`, data,
-      { reportProgress: true });
-
+    return this.http.post(`${this.BASE_URL}/getAgegridReportList`, data, {
+      reportProgress: true,
+    });
   }
 
   getBehaviourReport(data) {
-    return this.http.post(`${this.BASE_URL}/getBehaviouralReportContent `, data);
+    return this.http.post(
+      `${this.BASE_URL}/getBehaviouralReportContent `,
+      data
+    );
   }
-//   getBajajBehaviourReport(data) {
-//     // data.email=
-//     // 'bppdemo9001@abc.com',
 
-// data.reportId='R2'
-//     return this.http.post(`${this.BASE_URL}/getBehaviouralReportContent1 `, data);
-//   }
+  //   getBajajBehaviourReport(data) {
+  //     // data.email=
+  //     // 'bppdemo9001@abc.com',
+
+  // data.reportId='R2'
+  //     return this.http.post(`${this.BASE_URL}/getBehaviouralReportContent1 `, data);
+  //   }
 
   getCandidateSkills(email) {
-    return this.http.post(`${this.BASE_URL}/getCandidateRecommendedJobs `, email);
+    return this.http.post(
+      `${this.BASE_URL}/getCandidateRecommendedJobs `,
+      email
+    );
   }
 
   getCertificateDetails(certificateCode) {
-    return this.http.get(`${this.BASE_URL}/getCandidateVerificationDetails?certificationID=${certificateCode}`);
+    return this.http.get(
+      `${this.BASE_URL}/getCandidateVerificationDetails?certificationID=${certificateCode}`
+    );
   }
 
   getCandidatefilters(data) {
-    return this.http.post(`${this.BASE_URL}/getCandidatefilters`, data,
-      { reportProgress: true });
+    return this.http.post(`${this.BASE_URL}/getCandidatefilters`, data, {
+      reportProgress: true,
+    });
   }
 
   getcandidateList(data) {
@@ -182,7 +191,10 @@ getAGgridPatnerList(data){
     return this.http.post(`${this.BASE_URL}/getTaxonomyAnalysis`, data);
   }
   getComplexityAnalysisForTest(data) {
-    return this.http.post(`${this.BASE_URL}/getComplexityAnalysisForTest`, data);
+    return this.http.post(
+      `${this.BASE_URL}/getComplexityAnalysisForTest`,
+      data
+    );
   }
 
   getTimeSpentAnalysis(data) {
@@ -190,27 +202,42 @@ getAGgridPatnerList(data){
   }
 
   getSectionWiseComplexityAnalysis(data) {
-    return this.http.post(`${this.BASE_URL}/getSectionWiseComplexityAnalysis`, data);
+    return this.http.post(
+      `${this.BASE_URL}/getSectionWiseComplexityAnalysis`,
+      data
+    );
   }
   getComplexityForTopicAnalysis(data) {
-    return this.http.post(`${this.BASE_URL}/getComplexityForTopicAnalysis`, data);
+    return this.http.post(
+      `${this.BASE_URL}/getComplexityForTopicAnalysis`,
+      data
+    );
   }
   getTaxonomyWiseComplexityAnalysis(data) {
-    return this.http.post(`${this.BASE_URL}/getTaxonomyWiseComplexityAnalysis`, data);
+    return this.http.post(
+      `${this.BASE_URL}/getTaxonomyWiseComplexityAnalysis`,
+      data
+    );
   }
 
   postRegister(data) {
     return this.http.post(`${this.BASE_URL}/employeeRegister`, data);
   }
 
+  registrationForm(data) {
+    return this.http.post(`${this.BASE_URL}/registrationForm`, data);
+  }
+
   getSkillMasterList(data) {
-    return this.http.post(`${this.BASE_URL}/getSkillList`, data,
-      { reportProgress: true });
+    return this.http.post(`${this.BASE_URL}/getSkillList`, data, {
+      reportProgress: true,
+    });
   }
 
   getSkill(data) {
-    return this.http.post(`${this.BASE_URL}/getSkill`, data,
-      { reportProgress: true });
+    return this.http.post(`${this.BASE_URL}/getSkill`, data, {
+      reportProgress: true,
+    });
   }
   skillMasterValidate(data) {
     return this.http.post(`${this.BASE_URL}/skillValidate`, data);
@@ -225,23 +252,23 @@ getAGgridPatnerList(data){
   }
 
   candidateRegistration(data) {
-    return this.http.post(`${this.SKILL_EDGE_URL}/register`, data)
+    return this.http.post(`${this.SKILL_EDGE_URL}/register`, data);
   }
 
   partnerList(data) {
-    return this.http.post(`${this.BASE_URL}/partnerList`, data)
+    return this.http.post(`${this.BASE_URL}/partnerList`, data);
   }
 
   updatePartnerStatus(data) {
-    return this.http.post(`${this.BASE_URL}/updatePartnerStatus`, data)
+    return this.http.post(`${this.BASE_URL}/updatePartnerStatus`, data);
   }
 
   updatePartner(data) {
-    return this.http.post(`${this.BASE_URL}/partnerdetailsupload`, data)
+    return this.http.post(`${this.BASE_URL}/partnerdetailsupload`, data);
   }
 
   industryType(data) {
-    return this.http.post(`${this.BASE_URL}/industrytypelist`, data)
+    return this.http.post(`${this.BASE_URL}/industrytypelist`, data);
   }
 
   forgotPassword(email) {
@@ -262,78 +289,101 @@ getAGgridPatnerList(data){
   }
 
   empProfileDetails(data) {
-    return this.http.post(`${this.BASE_URL}/partnerList`, data)
+    return this.http.post(`${this.BASE_URL}/partnerList`, data);
   }
 
   uservalidationCheck(data) {
-    return this.http.post(`${this.BASE_URL}/uservalidationCheck`, data)
+    return this.http.post(`${this.BASE_URL}/uservalidationCheck`, data);
   }
 
   getState(data) {
-    return this.http.post(`${this.BASE_URL}/stateList`, data)
+    return this.http.post(`${this.BASE_URL}/stateList`, data);
   }
 
   getDistrict(data) {
-    return this.http.post(`${this.BASE_URL}/districtList`, data)
+    return this.http.post(`${this.BASE_URL}/districtList`, data);
   }
 
   imageUpload(data) {
-    return this.http.post(`${this.BASE_URL}/imageUpload`, data)
+    return this.http.post(`${this.BASE_URL}/imageUpload`, data);
   }
   partnerListDashboard() {
-    return this.http.get(`${this.BASE_URL}/partnerListDashboard`)
+    return this.http.get(`${this.BASE_URL}/partnerListDashboard`);
   }
 
-  viewjobRequirments(data){
-    return this.http.post(`${this.BASE_URL}/joblistwithaggrid`,data)
+  viewjobRequirments(data) {
+    return this.http.post(`${this.BASE_URL}/joblistwithaggrid`, data);
   }
 
   // Joblist API
   joblistingDashboard(data) {
-    return this.http.post(`${this.BASE_URL}/joblist`, data)
+    return this.http.post(`${this.BASE_URL}/joblist`, data);
   }
 
   // JobFilter API
   jobfilterDashboard(data) {
-    return this.http.post(`${this.BASE_URL}/jobfilter`, data)
+    return this.http.post(`${this.BASE_URL}/jobfilter`, data);
   }
 
   // Save Jobs API
   saveJobsDashboard(data) {
-    return this.http.post(`${this.BASE_URL}/saveJobs`, data)
+    return this.http.post(`${this.BASE_URL}/saveJobs`, data);
   }
-
 
   // candidate apis
 
-  candidateDashboard(data){
-    return this.http.post(`${this.BASE_URL}/candidatedashboard`,data)
+  candidateDashboard(data) {
+    return this.http.post(`${this.BASE_URL}/candidatedashboard`, data);
   }
 
-// Note : applied-jobs and savedjob common api body was diffrent
+  // Note : applied-jobs and savedjob common api body was diffrent
 
-  candidateJoblist(data){
-    return this.http.post(`${this.BASE_URL}/joblist`,data)
+  candidateJoblist(data) {
+    return this.http.post(`${this.BASE_URL}/joblist`, data);
   }
-  savedJobs(data){
-    return this.http.post(`${this.BASE_URL}/submitJobForm`,data)
+  savedJobs(data) {
+    return this.http.post(`${this.BASE_URL}/submitJobForm`, data);
   }
-  candidateDetails(data){
-    return this.http.post(`${this.BASE_URL}/getcandidatedetail`,data)
+  candidateDetails(data) {
+    return this.http.post(`${this.BASE_URL}/getcandidatedetail`, data);
   }
-  getEmployerDetails(data){
-    return this.http.post(`${this.BASE_URL}/getemployerDetails`,data)
+  getEmployerDetails(data) {
+    return this.http.post(`${this.BASE_URL}/getemployerDetails`, data);
   }
-  uploadExcelFile(data){
-    return this.http.post(`${this.BASE_URL}/jobupload`,data)
+  uploadExcelFile(data) {
+    return this.http.post(`${this.BASE_URL}/jobupload`, data);
   }
-  emailOtpregister(data){
-    return this.http.post(`${this.BASE_URL}/generateEmailOtp`,data)
+  emailOtpregister(data) {
+    return this.http.post(`${this.BASE_URL}/generateEmailOtp`, data);
   }
-  validateEmailOtp(data){
-    return this.http.post(`${this.BASE_URL}/validateEmailOtp`,data)
+  validateEmailOtp(data) {
+    return this.http.post(`${this.BASE_URL}/validateEmailOtp`, data);
+  }
+  behaviouralDashboard(data) {
+    return this.http.post(`${this.BASE_URL_RE}/behaviouralDashboard`, data);
+  }
+  behaviourResultAks(data) {
+    return this.http.post(`${this.BASE_URL_RE}/behaviourResultAks`, data);
   }
 
-
-
+  getStatusupdated(data) {
+    return this.http.post(`${this.BASE_URL}/updateJobApplicationStatus`, data);
+  }
+  districtList(stateId) {
+    // this.datas is api body data
+    return this.http.post(`${this.BASE_URL}/districtList`, stateId);
+  }
+  getallStates() {
+    // return this.http.post(`${this.BASE_URL}/api/state_api`, Id, { headers: this.withoutTokens(), withCredentials: true });
+    return this.http.get(`../assets/json/state.json`);
+  }
+  getallCandidateDetails(data) {
+    return this.http.post(`${this.BASE_URL}/getallcandidatedetails`, data);
+  }
+  getJobDetail(data) {
+    return this.http.post(`${this.BASE_URL}/getJobDetail`, data);
+  }
+  getCandidateByFilter(data){
+    return this.http.post(`${this.BASE_URL}/candidateFilter`, data);
+  }
 }

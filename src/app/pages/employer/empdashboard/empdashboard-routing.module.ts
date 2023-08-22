@@ -9,6 +9,7 @@ import { DemographyChartComponent } from './demography-chart/demography-chart.co
 import { DisciplineChartComponent } from './discipline-chart/discipline-chart.component'
 import { EmpProfileComponent } from './emp-profile/emp-profile.component';
 import { GraduationChartComponent } from './graduation-chart/graduation-chart.component';
+import { CandidateSearchComponent } from './candidate-search/candidate-search.component';
 
 const routes: Routes = [
   {
@@ -35,7 +36,9 @@ const routes: Routes = [
   {
     path:`${APP_CONSTANTS.ROUTES.EMPDASHBOARD.CHANGEPWD}`,component:ChangePasswordComponent
   },
-
+  {
+    path: `${APP_CONSTANTS.ROUTES.EMPDASHBOARD.CANDIDATESEARCH}`,component:CandidateSearchComponent
+  },
 
   {
     path: '',

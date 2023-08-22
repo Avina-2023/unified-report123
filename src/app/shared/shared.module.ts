@@ -19,6 +19,7 @@ import {SidebarComponent} from './sidebar/sidebar.component';
 import { BajajBegaviouralPdfReportDownloadComponent } from './bajaj-begavioural-pdf-report-download/bajaj-begavioural-pdf-report-download.component';
 import { BajajReportCanvasComponent } from './bajaj-report-canvas/bajaj-report-canvas.component'
 import { CommonPaginatorComponent } from './common-paginator/common-paginator.component';
+import { CommonBannerComponent } from './common-banner/common-banner.component';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -38,7 +39,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     AlertDialogComponent,
     BajajBegaviouralPdfReportDownloadComponent,
     BajajReportCanvasComponent,
-    CommonPaginatorComponent
+    CommonPaginatorComponent,
+    CommonBannerComponent
   ],
   imports: [
     CommonModule,
@@ -69,7 +71,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     BehaviouralReportCanvasComponent,
     BajajBegaviouralPdfReportDownloadComponent,
     BajajReportCanvasComponent,
-    CommonPaginatorComponent
+    CommonPaginatorComponent,
+    CommonBannerComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
   providers: [

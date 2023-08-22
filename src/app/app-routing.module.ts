@@ -10,6 +10,7 @@ import { LoginPageComponent } from './pages/login/login-page/login-page.componen
 import { APP_CONSTANTS } from './utils/app-constants.service';
 import { IsloggedInGuard } from './guards/islogged-in.guard';
 import { CertificateViewComponent } from './pages/certificate-view/certificate-view.component';
+import { ExternalLinkComponent } from './pages/external-link/external-link.component';
 const routes: Routes = [
   {
     path: `${APP_CONSTANTS.ROUTES.LANDINGPAGE.LANDINGPAGE}`, loadChildren: () => import('./pages/landing-screen/landing-screen.module').then(m => m.LandingScreenModule)
@@ -47,6 +48,9 @@ const routes: Routes = [
   // {
   //   path: `${APP_CONSTANTS.ROUTES.REPORTS.HOME}`, loadChildren: () => import('./pages/view-reports/view-reports.module').then(m => m.ViewReportsModule),data:{key:'user'}
   // },
+  {
+    path: `${APP_CONSTANTS.ROUTES.EXTLOGIN}`, component: ExternalLinkComponent
+  },
   {
     path: `error`,
     pathMatch: 'full',

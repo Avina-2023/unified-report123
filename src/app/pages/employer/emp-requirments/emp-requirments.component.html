@@ -163,13 +163,13 @@
             <!-- <mat-icon class="android">android</mat-icon> -->
             <span class="icon-calendar-icon icon-calsize"></span>
             <span> Posted on
-              {{ one.postedDate | date : 'd MMM , y' }}
+              {{ one.postedDate | date : 'd MMM, y' }}
             </span>
           </div>
         </div>
         <div class="lastRightline">
 
-          <span class="applied" (click)="viewApplication(one.jobId)">
+          <span class="applied" (click)="viewApplication(one)">
             <mat-icon class="schedule">schedule</mat-icon>
             Applied
             <u>{{ one.candidatesAppliedCount }}</u>
@@ -245,7 +245,7 @@
             <!-- <mat-icon class="drotation"> 3d_rotation </mat-icon> -->
             <span class="icon-recognization icon-size"></span>
             <span class="passedout" *ngFor="let item of one.yearofPassout; let isLast=last">
-              {{item}}{{isLast ? '' : ', '}} Passed Out</span>
+              {{item}}{{isLast ? '' : ', '}} </span>
           </div>
           <div class="packAge">
             <!-- <mat-icon class="accountbalance">account_balance</mat-icon> -->
@@ -264,17 +264,17 @@
           <div class="daysLeft">
             <!-- <mat-icon class="android">android</mat-icon> -->
             <span class="icon-calendar-icon icon-calsize"></span>
-             <span> Posted on
-              {{ one.postedDate | date : 'd MMM , y'}}
+             <span> Posted On
+              {{ one.postedDate | date : 'd MMM, y'}}
             </span>
           </div>
         </div>
         <div class="lastRightline">
 
-          <span class="applied" (click)="viewApplication(one.jobId)">
+          <span class="applied" (click)="viewApplication(one)">
             <mat-icon class="schedule">schedule</mat-icon>
             Applied
-            <u>{{ one.candidatesAppliedCount }}</u>
+           ( <u>{{ one.candidatesAppliedCount }}</u>)
           </span>
 
           <!-- <span class="settings" [routerLink]="routerlink.VIEWDRIVE.DRIVESETTINGS">

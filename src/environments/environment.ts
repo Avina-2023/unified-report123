@@ -22,6 +22,7 @@ export const environment = {
   CAMPUS_URL:'https://campus.lntedutech.com/l#/login',
   SKILL_EDGE_URL :'https://skilledge.lntedutech.com',
   SKILL_PROFILE_URL :'https://profile.lntedutech.com',
+  API_BASE_URL_RE: 'https://reportedge.lntedutech.com',
   // API_BASE_URL: 'https://uapedgeservicedev.lntedutech.com',
   // NODE_EDGE_URL: 'https://uapedgeservicedev.lntedutech.com',
   cryptoEncryptionKey:"(!@#Passcode!@#)",

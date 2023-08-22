@@ -7,8 +7,15 @@
   <span class="toolbar-spacer"></span>
   <div class="toolbar-pic">
     <span class="username">{{candidateName}}</span>
-    <img class="profileimg"
-      [src]="profileimge && profileimge !=''?profileimge:'../../../../assets/images/emp-dashboard-icons/user.png'">
+    <button mat-button [matMenuTriggerFor]="menu">
+      <img class="profileimg"
+        [src]="profileimge && profileimge !=''?profileimge:'../../../../assets/images/emp-dashboard-icons/user.png'">
+    </button>
+    <mat-menu #menu="matMenu">
+      <button style="color:#1B4E9B;" mat-menu-item (click)="logout()"> <mat-icon
+          style="color:#1B4E9B;">output</mat-icon>Log Out</button>
+      <!-- <span class="icon-logout"></span> -->
+    </mat-menu>
   </div>
 </mat-toolbar>
 <div class="content">
@@ -20,6 +27,11 @@
           [routerLink]="routelinks.CNDIDATELANDING">
           <div class="innerLine"></div>
           <mat-icon mat-list-icon>home_outline</mat-icon>
+          <span class="full-width" *ngIf="isExpanded || isShowing">Dashboard</span>
+        </mat-list-item>
+        <mat-list-item class="navItems" (click)="gotoDashboard()">
+          <div class="innerLine"></div>
+          <mat-icon mat-list-icon>home</mat-icon>
           <span class="full-width" *ngIf="isExpanded || isShowing">Dashboard</span>
         </mat-list-item>
         <mat-list-item class="navItems" (click)="gotoProfile()">
@@ -37,8 +49,8 @@
           [ngClass]="router.url==routelinks.CANDIDATEDASH.JOBLIST || router.url==routelinks.CANDIDATEDASH.JOBDESCRIPTION? 'active':''"
           [routerLink]="routelinks.CANDIDATEDASH.JOBLIST">
           <div class="innerLine"></div>
-          <mat-icon mat-list-icon>search</mat-icon>
-          <span class="full-width" *ngIf="isExpanded || isShowing">Find & Apply Jobs</span>
+          <mat-icon mat-list-icon>work_outline</mat-icon>
+          <span class="full-width" *ngIf="isExpanded || isShowing">Jobs</span>
         </mat-list-item>
         <mat-list-item class="navItems" [ngClass]="router.url==routelinks.CANDIDATEDASH.JOBSAPPLIED? 'active':''"
           [routerLink]="routelinks.CANDIDATEDASH.JOBSAPPLIED">
@@ -49,14 +61,15 @@
         <mat-list-item class="navItems" [ngClass]="router.url==routelinks.CANDIDATEDASH.JOBSSAVED? 'active':''"
           [routerLink]="routelinks.CANDIDATEDASH.JOBSSAVED">
           <div class="innerLine"></div>
-          <mat-icon mat-list-icon class="material-symbols-outlined">bookmark_outline</mat-icon>
-          <span class="full-width" *ngIf="isExpanded || isShowing">Saved Jobs</span>
+          <img class="book" src="../../../assets/images/Group 23057.svg">
+          <!-- <mat-icon mat-list-icon class="material-symbols-outlined">bookmark_outline</mat-icon> -->
+          <span class="full-width-save" *ngIf="isExpanded || isShowing">Saved Jobs</span>
         </mat-list-item>
 
-        <mat-list-item class=" lastitem hrlogout" (click)="logout()">
+        <!-- <mat-list-item class=" lastitem hrlogout" (click)="logout()">
           <mat-icon mat-list-icon class="material-symbols-outlined">logout_outline</mat-icon>
           <span class="full-width" *ngIf="isExpanded || isShowing">Logout</span>
-        </mat-list-item>
+        </mat-list-item> -->
       </mat-nav-list>
       <mat-nav-list>
       </mat-nav-list>
@@ -72,16 +85,19 @@
   </div>
 </div>
 <div>
-<ng-template #confirmDialog>
-  <div class="logout">
-    <mat-icon mat-dialog-close>close</mat-icon>
-    <div class="box">
-      <p>Are you sure you want to logout?</p>
+  <ng-template #confirmDialog>
+    <div class="logout">
+     <div class="clos-icn"><mat-icon mat-dialog-close>close</mat-icon></div>
+      <div class="logot-img">
+        <img src="../../../assets/images/alert-image.png" />
+      </div>
+      <div class="box">
+        <p>Are you sure you want to logout?</p>
+      </div>
+      <div mat-dialog-actions class="actions">
+        <button class="yes" mat-button (click)="confirm(true)" cdkFocusInitial>Yes</button>
+        <button class="no" mat-button (click)="confirm(false)">No</button>
+      </div>
     </div>
-    <div mat-dialog-actions class="actions" >
-      <button class="yes" mat-button (click)="confirm(true)" cdkFocusInitial>Yes</button>
-      <button class="no" mat-button (click)="confirm(false)">No</button>
-    </div>
-  </div>
-</ng-template>
+  </ng-template>
 </div>

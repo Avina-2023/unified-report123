@@ -21,75 +21,132 @@
       </div>
   </div>
 
-  <div class="assessmentInfoarea">
-      <ng-container *ngIf="assessmentsList && assessmentsList.length > 0">
-          <ng-container *ngFor="
-        let assessment of assessmentsList;
-        let i = index;
-        first as isFirst
-      ">
-              <mat-expansion-panel [expanded]="true" *ngIf="assessment.assessmentname">
-                  <mat-expansion-panel-header>
-                      <div class="expandheaderArea">
-                          <div class="width-51">
-                              <em class="icon-Assessment"></em>
-                              <span>Test Name
-                                  <span class="color-black">{{ assessment.assessmentname ? assessment.assessmentname : '-' }}</span>
-                              </span>
-                          </div>
-                          <div class="width-270">
-                              <em class="icon-Booked"></em>
-                              <span>Test Date
-                                  <span class="color-black">{{
-                                      assessment.assessmentdate
-                                      ? momentForm(assessment.assessmentdate)
-                                      : "-"
-                                      }}</span>
-                              </span>
-                          </div>
-                          <div class="width-150">
-                              <em class="icon-SpeedoMeter"></em>
-                              <span>Total Score
-                                  <span class="color-black">{{ assessment.score ? assessment.score : 0
-                                      }}/{{ assessment.maxscore ? assessment.maxscore : 0 }}</span>
-                              </span>
-                          </div>
-                          <div class="width-168">
-                              <!-- <em class="icon-Like"></em> -->
-                              <span>Rating
-                                  <span [ngClass]="{
-                    warningColor: assessment.percentageScore < 40,
-                    WarnColor:
-                      assessment.percentageScore >= 40 &&
-                      assessment.percentageScore < 80,
-                    successColor: assessment.percentageScore >= 80
-                  }">{{ getCredibility(assessment.percentageScore) }}</span>
-                              </span>
-                          </div>
-                          <div class="width-150">
-                              <div class="primaryInfo">
-                                  <em *ngIf="assessment?.teststatus === 'In Complete'" class="icon-uncheck"></em>
-                                  <em *ngIf="assessment?.teststatus === 'Not Taken'" class="icon-uncheck"></em>
-                                  <em *ngIf="assessment?.teststatus === 'Complete'" class="icon-checked"></em>
-                                  <span> Completion
-                                  <span [ngClass]="{ warningColor: assessment?.teststatus === 'In Complete' && assessment?.teststatus === 'Not Taken', successColor: assessment?.teststatus === 'Complete'
-                                  }">
-                                      <span style="font-size: 1em;display: contents;">{{assessment?.teststatus}}</span></span>
-                                  </span>
-                              </div>
-                              <!-- <span>Completion
-                                  <span class="status" [ngClass]="{ warningColor: assessment?.teststatus === 'In Complete' && assessment?.teststatus === 'Not Taken',
-                                                 successColor: assessment?.teststatus === 'Complete'}">
-                              <em  *ngIf="assessment?.teststatus === 'In Complete'" class=" icons icon-uncheck"></em>
-                              <em   *ngIf="assessment?.teststatus === 'Not Taken'" class=" icons icon-uncheck"></em>
-                              <em  *ngIf="assessment?.teststatus === 'Complete'"class=" icons icon-checked"></em>
+    <div class="assessmentInfoarea">
+        <ng-container *ngIf="assessmentsList && assessmentsList.length > 0">
+            <ng-container *ngFor="
+          let assessment of assessmentsList;
+          let i = index;
+          first as isFirst
+        ">
+                <mat-expansion-panel [expanded]="true" *ngIf="assessment.assessmentname">
+                    <mat-expansion-panel-header>
+                        <div class="expandheaderArea">
+                            <div class="width-51">
+                                <em class="icon-Assessment"></em>
+                                <span>Test Name
+                                    <span class="color-black">{{ assessment.assessmentname ? assessment.assessmentname : '-' }}</span>
+                                </span>
+                            </div>
+                            <div class="width-270">
+                                <em class="icon-Booked"></em>
+                                <span>Test Date
+                                    <span class="color-black">{{
+                                        assessment.assessmentdate
+                                        ? momentForm(assessment.assessmentdate)
+                                        : "-"
+                                        }}</span>
+                                </span>
+                            </div>
+                            <div class="width-150">
+                                <em class="icon-SpeedoMeter"></em>
+                                <span>Total Score
+                                    <span class="color-black">{{ assessment.score ? assessment.score : 0
+                                        }}/{{ assessment.maxscore ? assessment.maxscore : 0 }}</span>
+                                </span>
+                            </div>
+                            <div class="width-168">
+                                <!-- <em class="icon-Like"></em> -->
+                                <span>Rating
+                                    <span [ngClass]="{
+                      warningColor: assessment.percentageScore < 40,
+                      WarnColor:
+                        assessment.percentageScore >= 40 &&
+                        assessment.percentageScore < 80,
+                      successColor: assessment.percentageScore >= 80
+                    }">{{ getCredibility(assessment.percentageScore) }}</span>
+                                </span>
+                            </div>
+                            <div class="width-150">
+                                <div class="primaryInfo">
+                                    <em *ngIf="assessment?.teststatus === 'In Complete'" class="icon-uncheck"></em>
+                                    <em *ngIf="assessment?.teststatus === 'Not Taken'" class="icon-uncheck"></em>
+                                    <em *ngIf="assessment?.teststatus === 'Complete'" class="icon-checked"></em>
+                                    <span> Completion
+                                    <span [ngClass]="{ warningColor: assessment?.teststatus === 'In Complete' && assessment?.teststatus === 'Not Taken', successColor: assessment?.teststatus === 'Complete'
+                                    }">
+                                        <span style="font-size: 1em;display: contents;">{{assessment?.teststatus}}</span></span>
+                                    </span>
+                                </div>
+                                <!-- <span>Completion
+                                    <span class="status" [ngClass]="{ warningColor: assessment?.teststatus === 'In Complete' && assessment?.teststatus === 'Not Taken',
+                                                   successColor: assessment?.teststatus === 'Complete'}">
+                                <em  *ngIf="assessment?.teststatus === 'In Complete'" class=" icons icon-uncheck"></em>
+                                <em   *ngIf="assessment?.teststatus === 'Not Taken'" class=" icons icon-uncheck"></em>
+                                <em  *ngIf="assessment?.teststatus === 'Complete'"class=" icons icon-checked"></em>
 
-                                  <span class="statusCheck">{{assessment?.teststatus}}</span>
-                              </span>
-                              </span> -->
-                          </div>
-                      </div>
-                  </mat-expansion-panel-header>
+                                    <span class="statusCheck">{{assessment?.teststatus}}</span>
+                                </span>
+                                </span> -->
+                            </div>
+                        </div>
+                    </mat-expansion-panel-header>
+
+                    <div class="expandContentArea">
+                        <div class="ContentInfoDetails">
+                            <div>
+                                <span class="heading">Scheduled Duration</span>
+                                <span class="content">{{ assessment.duration ? assessment.duration : 0 }}<span>Mins</span></span>
+                            </div>
+                            <div *ngIf="assessment.source != 'ICP'">
+                                <span class="heading">Test Taken Duration</span>
+                                <div class="content">
+                                    <span>{{ getTimetaken(assessment.timetaken)}}</span>
+                                    <span class="time">
+                                        {{TimeTakenMins != undefined ? TimeTakenMins : '0' }}<span>Mins</span> {{timeTakenSec != undefined ? timeTakenSec : '0' }}<span>sec</span>
+                                    </span>
+                                </div>
+                            </div>
+                            <!-- <div>Marks Scored<span>{{ assessment.score}}<span></span></span></div> -->
+                            <div>
+                                <span class="heading">Proctoring</span>
+                                <span class="content">{{ assessment.proctored ? "Yes" : "No"}}
+                                    <ng-container *ngIf="isaccess">
+                                        <!-- *ngIf="assessment.proctored && assessment.source != 'ICP'" -->
+                                        <span *ngIf="assessment.proctored"  class="warningColor pointer" (click)="open(assessment)">View Details</span>
+            </ng-container>
+            </span>
+            </div>
+            <!-- <div class="primaryInfo">
+                                Completion
+                                <span [ngClass]="{ warningColor: assessment?.teststatus === 'In Complete' && assessment?.teststatus === 'Not Taken',
+                                                   successColor: assessment?.teststatus === 'Complete'}">
+                                <em *ngIf="assessment?.teststatus === 'In Complete'" class="icon-uncheck"></em>
+                                <em *ngIf="assessment?.teststatus === 'Not Taken'" class="icon-uncheck"></em>
+                                <em *ngIf="assessment?.teststatus === 'Complete'"class="icon-checked"></em>
+
+                                    <span>{{assessment?.teststatus}}</span>
+                                </span>
+                            </div> -->
+            </div>
+            <div class="ContentInfoSummary">
+                <div class="assessmentHeaderinfo">
+                    <div class="Summaryhtxt" *ngIf="isaccess">
+                        Sectional Summary
+                        <!-- <span *ngIf="assessment.source != 'STEP'" class="primaryClick" (click)="questionview(assessment);inboundClick = !inboundClick"><em
+                                            class="icon-right-next"></em> View Questionwise Analysis</span> -->
+                    </div>
+                    <div *ngIf="inboundClick">
+                        <ng-container *ngIf="listOfSections && listOfSections.length > 0">
+                            <ng-container *ngFor="let sections of listOfSections; let j = index;">
+                                <mat-expansion-panel [expanded]="false" *ngIf="listOfSections[0].testName == assessment.assessmentname">
+                                    <mat-expansion-panel-header>
+                                        <div class="expandheaderArea">
+                                            <div class="htxt">{{sections._id}}</div>
+                                            <div class="txtinfo">
+                                                <span> No. of Attempted Questions</span> {{sections.tableList.length}}
+                                            </div>
+                                        </div>
+                                    </mat-expansion-panel-header>
 
                   <div class="expandContentArea">
                       <div class="ContentInfoDetails">
@@ -433,8 +490,8 @@
           </div>
       </div>
 
-  </div>
-  <div class="alert" *ngIf="showErrormsg"> <span class="material-icons novideo">
-      videocam_off
-      </span>No video found</div>
+    </div>
+    <div class="alert" *ngIf="showErrormsg"> <span class="material-icons novideo">
+        videocam_off
+        </span>No video found</div>
 </ng-template>

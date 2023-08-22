@@ -52,7 +52,8 @@ export class JobDescriptionComponent implements OnInit {
     // this.router.getCurrentNavigation().extras &&
     // this.router.getCurrentNavigation().extras.state &&
     // this.router.getCurrentNavigation().extras.state.detail;
-    // console.log(this.jobDetails);
+     console.log(this.jobDetails, 'job details');
+     console.log(this.jobDetails.applyLink, 'joblinkkkkkkkkk');
   }
 
   openDialog(dialogval){
@@ -105,6 +106,7 @@ export class JobDescriptionComponent implements OnInit {
     });
   }
 
+
   applyJob(){
     let obj =
     {
@@ -115,7 +117,7 @@ export class JobDescriptionComponent implements OnInit {
         education:this.jobDetails.education,
         specialization:this.jobDetails.specialization,
         yearofPassout:this.jobDetails.yearofPassout,
-        eligiblityCriteria:this.jobDetails.eligiblityCriteria
+        eligibilityCriteria:this.jobDetails.eligibilityCriteria
       }
     }
       this.skillexService.savedJobs(obj).subscribe((res: any) => {
@@ -137,4 +139,12 @@ export class JobDescriptionComponent implements OnInit {
     }
 
 
+    handleButtonClick() {
+      if (this.jobDetails.partnerLabel === 'Skill Exchange Partner') {
+        this.applyJob();
+      } else {
+        // window.location.href = this.jobDetails.applyLink;   //open link in same tab
+        window.open(this.jobDetails.applyLink, '_blank');  //open link in different tab
+      }
+    }
 }
