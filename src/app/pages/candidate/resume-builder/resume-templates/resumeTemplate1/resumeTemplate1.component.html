@@ -6,15 +6,22 @@
       <div class="inner_spacing">
         <p class="username_title">{{username}}</p>
         <div *ngIf="this.candidate.education_details?.educations&&this.candidate.education_details.educations.length">
-          <p  *ngIf="this.candidate.education_details?.educations[0]?.specification?.length" class="username_subtitle">{{this.candidate.education_details.educations[0].specification}}
-           <span *ngIf="this.candidate.education_details.educations[0].discipline.length">({{this.candidate.education_details.educations[0].discipline}})</span></p>
+          <p *ngIf="this.candidate.education_details?.educations[0]?.specification?.length" class="username_subtitle">
+            {{this.candidate.education_details.educations[0].specification}}
+            <span
+              *ngIf="this.candidate.education_details.educations[0].discipline.length">({{this.candidate.education_details.educations[0].discipline}})</span>
+          </p>
         </div>
         <p class="user_addres">
-          <span *ngIf="candidate.contact_details?.permanent_line1_street_add">{{candidate.contact_details.permanent_line1_street_add}}<br></span>
-          <span *ngIf="candidate.contact_details?.permanent_line2_street_add">{{candidate.contact_details.permanent_line2_street_add}}<br></span>
-          <span *ngIf="candidate.contact_details?.permanent_address_line_3">{{candidate.contact_details.permanent_address_line_3}}<br></span>
+          <span
+            *ngIf="candidate.contact_details?.permanent_line1_street_add">{{candidate.contact_details.permanent_line1_street_add}}<br></span>
+          <span
+            *ngIf="candidate.contact_details?.permanent_line2_street_add">{{candidate.contact_details.permanent_line2_street_add}}<br></span>
+          <span
+            *ngIf="candidate.contact_details?.permanent_address_line_3">{{candidate.contact_details.permanent_address_line_3}}<br></span>
           <span *ngIf="candidate.contact_details?.permanent_city">{{candidate.contact_details.permanent_city}}</span>
-          <span *ngIf="candidate.contact_details?.permanent_state"> , {{candidate.contact_details.permanent_state}}</span> 
+          <span *ngIf="candidate.contact_details?.permanent_state"> ,
+            {{candidate.contact_details.permanent_state}}</span>
           <span *ngIf="candidate.contact_details?.permanent_zip"> - {{candidate.contact_details.permanent_zip}}</span>
 
         </p>
@@ -51,7 +58,7 @@
     </div>
     <div class="second-div skillset cv_spacing last">
       <div *ngFor="let item of candidate.experience_details.skills;let i=index;">
-        <button class="skillbutton">{{item}}</button>
+        <button class="skillbutton">{{item.skill}}</button>
       </div>
     </div>
   </div>
@@ -164,5 +171,5 @@
 
   </div>
 
-  
+
 </section>
