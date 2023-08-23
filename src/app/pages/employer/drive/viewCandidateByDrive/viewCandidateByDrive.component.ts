@@ -223,6 +223,47 @@ export class ViewCandidateByDriveComponent implements OnInit {
           };
         },
       },
+      // {
+      //   headerName: 'Status',
+      //   field: 'jobStatus',
+      //   minWidth: 175,
+      //   filter: 'agTextColumnFilter',
+      //   chartDataType: 'category',
+      //   aggFunc: 'sum',
+      //   filterParams: {
+      //     suppressAndOrCondition: true,
+      //     filterOptions: ['contains'],
+      //   },
+      //   cellClassRules: {
+      //     'yellow-cell': (params) => params.value === 'awaitingReview',
+      //     'green-cell': (params) => params.value === 'Shortlisted',
+      //     'red-cell': (params) => params.value === 'Rejected',
+      //     'blue-cell': (params) => params.value === 'In Progress',
+      //   },
+      //   cellRenderer: (params) => {
+      //     if (
+      //       params.value &&
+      //       params.value != undefined &&
+      //       params.value != null &&
+      //       params.value != ''
+      //     ) {
+      //       this.FormateName = params.value;
+      //       return this.titleCase(this.FormateName);
+      //     } else {
+      //       return '-';
+      //     }
+      //   },
+      //   tooltipValueGetter: (params) => {
+      //     if (params.value && params.value !== undefined
+      //       && params.value !== null && params.value !== '') {
+      //       this.FormateName = params.value;
+      //       return this.titleCase(this.FormateName);
+      //     } else {
+      //       return '-';
+      //     }
+      //   },
+      //   // tooltipField: 'jobStatus',
+      // },
       {
         headerName: 'Status',
         field: 'jobStatus',
@@ -242,27 +283,27 @@ export class ViewCandidateByDriveComponent implements OnInit {
         },
         cellRenderer: (params) => {
           if (
-            params.value &&
-            params.value != undefined &&
-            params.value != null &&
-            params.value != ''
-          ) {
-            this.FormateName = params.value;
-            return this.titleCase(this.FormateName);
+            params.value && 
+            params.value !== undefined && 
+            params.value !== null && 
+            params.value !== ''
+            ) {
+            return params.value === 'awaitingReview' ? 'Awaiting Review' : this.titleCase(params.value);
           } else {
             return '-';
           }
         },
         tooltipValueGetter: (params) => {
-          if (params.value && params.value !== undefined
-            && params.value !== null && params.value !== '') {
-            this.FormateName = params.value;
-            return this.titleCase(this.FormateName);
+          if (params.value && 
+            params.value !== undefined && 
+            params.value !== null && 
+            params.value !== ''
+            ) {
+            return params.value === 'awaitingReview' ? 'Awaiting Review' : this.titleCase(params.value);
           } else {
             return '-';
           }
         },
-        // tooltipField: 'jobStatus',
       },
       {
         headerName: 'Qualification',
@@ -388,7 +429,6 @@ export class ViewCandidateByDriveComponent implements OnInit {
         },
         // tooltipField: 'appliedDate',
       },
-
       {
         headerName: 'Actions',
         field: '',
@@ -467,7 +507,7 @@ export class ViewCandidateByDriveComponent implements OnInit {
             if (data1.success == false) {
               params.fail();
               params.success({
-                rowData: [],
+                rowData: [], 
                 rowCount: 0,
               });
               this.gridApi.showNoRowsOverlay();
@@ -475,21 +515,6 @@ export class ViewCandidateByDriveComponent implements OnInit {
               this.candidateList = data1 && data1.data ? data1.data : [];
               console.log(this.candidateList, 'candidateList');
               this.alldata = data1;
-              // this.alldata = data1;
-
-              // working
-
-              // this.shortlitcountvalue = this.alldata.Shortlisted ? this.alldata.Shortlisted ?? 0 : this.shortlitcountvalue;
-              // this.awaitingcountvalue = this.alldata.awaitingReview ? this.alldata.awaitingReview ?? 0 : this.awaitingcountvalue;
-              // this.rejectedcountvalue = this.alldata.Rejected ? this.alldata.Rejected : this.rejectedcountvalue;
-              // this.allcountvalue = this.alldata.totalCount ? this.alldata.totalCount : this.allcountvalue
-              // this.inprogresscountvalue = this.alldata['In Progress'] ? this.alldata['In Progress'] : this.inprogresscountvalue
-
-              // this.shortlitcountvalue = this.alldata.Shortlisted ? this.alldata.Shortlisted : this.shortlitcountvalue ?? 0;
-              // this.awaitingcountvalue = this.alldata.awaitingReview ? this.alldata.awaitingReview : this.awaitingcountvalue ?? 0;
-              // this.rejectedcountvalue = this.alldata.Rejected ? this.alldata.Rejected : this.rejectedcountvalue ?? 0;
-              // this.allcountvalue = this.alldata.totalCount ? this.alldata.totalCount : this.allcountvalue ?? 0;
-              // this.inprogresscountvalue = this.alldata['In Progress'] ? this.alldata['In Progress'] : this.inprogresscountvalue ?? 0;
 
               this.shortlitcountvalue = this.alldata.Shortlisted || 0;
               this.awaitingcountvalue = this.alldata.awaitingReview || 0;
@@ -506,9 +531,9 @@ export class ViewCandidateByDriveComponent implements OnInit {
                 this.gridApi.hideOverlay();
                 params.success({
                   rowData: this.candidateList,
-                  rowCount: this.pageRowCount,
+                  rowCount: this.candidateList.length,
                 });
-              } else {
+              } else { 
                 params.success({
                   rowData: this.candidateList,
                   rowCount: 0,
@@ -575,6 +600,7 @@ export class ViewCandidateByDriveComponent implements OnInit {
     this.jobDetailsdata = this.appconfig.getLocalStorage('currentJobData');
     this.valueone = JSON.parse(this.jobDetailsdata);
   }
+  
   onTabChange(index: number) {
     const pall = ['navyblue', 'yellow', 'lightblue', 'red', 'green'];
     const icn = ['#1B4E9B', '#FFB74D', '#27BBEE', '#EF2917', ' #49AE31'];

@@ -41,92 +41,16 @@
     <div class="job-details">
     <div class="heading">Job Status</div>
 
-   <!-- <div class="act">
-    <div><span class="icon-tick_mark_green"></span></div>
-    <div class="val">{{valueone.status}}</div>
-   </div> -->
-
-   <!-- <div class="act">
-    <div><span class="icon-tick_mark_green" *ngIf="valueone.status === 'Active'"></span></div>
-    <div class="val">{{ valueone.status }}</div>
-  </div> -->
-
   <div class="act">
     <div>
       <span class="icon-tick_mark_green" *ngIf="valueone.status === 'Active'"></span>
-      <span class="icon-warning" *ngIf="valueone.status === 'Expired'"></span>
+      <span *ngIf="valueone.status === 'Expired'"></span>
     </div>
     <div class="val">{{ valueone.status }}</div>
   </div>
     </div>
     </mat-card>
     </div>
-    <!-- <div class="tableheader" [ngClass]="dynclass">
-      <mat-tab-group class="mattab" (selectedIndexChange)="onTabChange($event)">
-        <mat-tab label="All"><mat-chip>700</mat-chip></mat-tab>
-        <mat-tab label="Awaiting Review"><div>900</div></mat-tab>
-        <mat-tab label="In Progress"></mat-tab>
-        <mat-tab label="Rejected"></mat-tab>
-        <mat-tab label="Shortlisted"></mat-tab>
-      </mat-tab-group>
-    </div>
-
-    <div class="tableheader" [ngClass]="dynclass">
-      <mat-tab-group class="mattab" (selectedIndexChange)="onTabChange($event)">
-        <mat-tab *ngFor="let tab of tabs">
-          <ng-template mat-tab-label>
-            <span class="tab-name">{{ tab.title }}</span>
-            <div><span class="tab-count">{{ tab.items.length }}</span></div>
-          </ng-template>
-        </mat-tab>
-      </mat-tab-group>
-    </div> -->
-
-    <!-- <div class="tableheader" [ngClass]="dynclass">
-      <mat-tab-group class="mattab" (selectedIndexChange)="onTabChange($event)">
-        <mat-tab *ngFor="let tab of tabs;  let i = index">
-          <ng-template mat-tab-label>
-            <span class="tab-name">{{ tab.title }}</span>
-            <div>
-              <span class="tab-count" [style.background-color]="active === i ? icncolor :  null">
-                {{ tab.items.length }}</span>
-            </div>
-          </ng-template>
-        </mat-tab>
-      </mat-tab-group>
-    </div> -->
-
-
-
-    <!-- <div class="tableheader" [ngClass]="dynclass">
-      <mat-tab-group class="mattab" (selectedIndexChange)="onTabChange($event)">
-        <mat-tab *ngFor="let tab of tabs;  let i = index">
-          <ng-template mat-tab-label>
-            <span class="tab-name">{{ tab.title }}</span>
-            <div>
-              <span class="tab-count" [style.background-color]="active === i ? icncolor :  null">
-                <span *ngIf="tab.title == 'totalCount'"> 
-                  {{ alldata?.awaitingReview }}
-                </span>
-                <span *ngIf="tab.title == 'Awaiting Review'">
-                  <label *ngIf="alldata?.awaitingReview > 0  ">{{ alldata?.awaitingReview }}</label>
-                  <label *ngIf="alldata?.awaitingReview == 0">0</label>
-                </span>
-                <span *ngIf="tab.title == 'Rejected'">
-                  <label *ngIf="alldata?.Rejected > 0  ">{{ alldata?.Rejected }}</label>
-                  <label *ngIf="alldata?.Rejected==0">0</label>
-                </span>
-                <span *ngIf="tab.title == 'Shortlisted'">
-                  <label *ngIf="alldata?.Shortlisted > 0">{{ alldata?.Shortlisted }}</label>
-                  <label *ngIf="alldata?.Shortlisted == 0">0</label>
-                </span>
-              </span>
-            </div>
-          </ng-template>
-        </mat-tab>
-      </mat-tab-group>
-    </div> -->
-
 
     <div class="tableheader" [ngClass]="dynclass">
       <mat-tab-group class="mattab" (selectedIndexChange)="onTabChange($event)">
@@ -187,18 +111,6 @@
 
     
   <div class="row-pagnation">
-    <!-- <div class="example-header">
-      Rows:
-      <select (change)="onPageSizeChanged()" id="page-size">
-        <option value="10">10</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="5">5</option>
-        <option value="5">5</option>
-        <option value="15">15</option>
-        <option value="20">20</option>
-      </select>
-    </div> -->
 
     <div class="example-header">
       Rows:
@@ -210,7 +122,6 @@
       </select>
     </div>
     
-   
     <div class="goto-sear">
       <div class="pagintion">
         <button class="prev" (click)=" onBtPrevPage()">Prev</button>

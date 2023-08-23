@@ -516,21 +516,21 @@ justify-content: space-between;
   background: #49AE31 !important;
   color: #ffff;
   border-radius: 5px;
-  padding: 6px 25px;
+  padding: 6px 27px;
 }
 
 ::ng-deep .red-cell span {
   background: #EF2917 !important;
   color: #ffff;
   border-radius: 5px;
-  padding: 6px 31px;
+  padding: 6px 35px;
 }
 
 ::ng-deep .blue-cell span {
   background: #27BBEE !important;
   color: #ffff;
   border-radius: 5px;
-  padding: 6px 24px;
+  padding: 6px 26px;
 }
 .pageheader{
   padding: 20px 20px 15px 25px;
@@ -541,12 +541,16 @@ justify-content: space-between;
 }
 
 
-::ng-deep .mat-tab-label[aria-selected="true"][aria-posinset="1"] .mat-tab-label-content {
+// ::ng-deep .mat-tab-label[aria-selected="true"][aria-posinset="1"] .mat-tab-label-content {
+::ng-deep.mat-tab-label.mat-tab-label-active:not(.mat-tab-disabled),
+::ng-deep.mat-tab-label.mat-tab-label-active.cdk-keyboard-focused:not(.mat-tab-disabled) {
   color: #1B4E9B;
+  opacity: 1;
 }
 
 ::ng-deep .mat-tab-label[aria-selected="true"][aria-posinset="2"] .mat-tab-label-content {
   color: #FFB74D;
+  opacity: 1;
 }
 
 ::ng-deep .mat-tab-label[aria-selected="true"][aria-posinset="3"] .mat-tab-label-content {
@@ -597,9 +601,9 @@ justify-content: space-between;
   .one{
     margin: 0px 3px 0px 3px;
     padding: 4px 7px 4px 7px;
-    background: #1B4E9B;
+    // background: #1B4E9B;
     cursor: pointer;
-    color: #ffffff;
+    color: #000000CC;
     border-radius: 7px;
     border: none;
   }
