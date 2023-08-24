@@ -386,4 +386,10 @@ export class ApiService {
   getCandidateByFilter(data){
     return this.http.post(`${this.BASE_URL}/candidateFilter`, data);
   }
+  candidateResultDetails(data) {
+    return this.http.post(`${this.BASE_URL_RE}/candidateResultDetails`, data);
+  }
+  courseTracking(data) {
+    return this.http.post("https://devfacade.lntedutech.com/learnerProgressStatus", data);
+  }
 }
