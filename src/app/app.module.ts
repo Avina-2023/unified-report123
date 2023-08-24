@@ -40,6 +40,8 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { ExternalLinkComponent } from './pages/external-link/external-link.component';
 // import { DashboardtableComponent } from './dashboardtable/dashboardtable.component';
+import { NgCircleProgressModule } from 'ng-circle-progress';
+
 
 registerLocaleData(en);
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -83,6 +85,9 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     NzSelectModule,
     NzDropDownModule,
     CarouselModule,
+    NgCircleProgressModule.forRoot({
+      
+    }),
     // PopupCellRenderer,
     ToastrModule.forRoot(
       {

@@ -10,10 +10,10 @@
     <div class="card_one">
       <div class="inner_content pd-20 card_sticky">
         <div>
-          <img src={{candidateData.personal_details.profileImage}} />
+          <img src={{candidateData?.personal_details?.profileImage}} />
         </div>
         <div class="title txt-center  hidden_div">
-          <div class="content_wrap">{{candidateData.personal_details.name}}</div>
+          <div class="content_wrap">{{candidateData?.personal_details?.name}}</div>
         </div>
         <div class="description txt-center  hidden_div">
           <div class="content_wrap">{{candidateData.email}}</div>
@@ -54,7 +54,7 @@
             <h2 class="head_title"> Personal Details </h2>
             <div class="flx_div flx_center hidden_div title">
               <div class="key">Name</div>
-              <div class="value content_wrap">{{candidateData.personal_details.name}}</div>
+              <div class="value content_wrap">{{candidateData.personal_details?.name}}</div>
             </div>
             <div class="flx_div flx_center hidden_div title">
               <div class="key">Email</div>
@@ -158,12 +158,12 @@
             <h2 class="head_title">Hobbies/Interests </h2>
             <div class="flx_div ">
               <div class="hobbies">
-                <div *ngFor="let hobby of candidateData.personal_details.hobbies_intrest">{{ hobby.hobbiesAndInterests
+                <div *ngFor="let hobby of candidateData.personal_details?.hobbies_intrest">{{ hobby.hobbiesAndInterests
                   }}
                 </div>
               </div>
               <div
-                *ngIf="!candidateData.personal_details.hobbies_intrest || candidateData.personal_details.hobbies_intrest.length === 0"
+                *ngIf="!candidateData?.personal_details.hobbies_intrest || candidateData.personal_details.hobbies_intrest.length === 0"
                 class="value_ar hob_mar">
                 No Hobbies/Interests details available
               </div>
@@ -642,27 +642,27 @@
                 <div mat-icon-button class="nav-icon" (click)="showPrevious()" [ngClass]="{'disabled': assessmentIndex === 0}">
                   <mat-icon>keyboard_arrow_left</mat-icon>
                 </div>
-                <div mat-icon-button class="nav-icon" (click)="showNext()" [ngClass]="{'disabled': assessmentIndex === AssesmentDetails.length - 1}">
+                <div mat-icon-button class="nav-icon" (click)="showNext()" [ngClass]="{'disabled': assessmentIndex === AssesmentDetails?.length - 1}">
                   <mat-icon>keyboard_arrow_right</mat-icon>
                 </div>
                </div>
             </div>
             <div class="ass-image">
               <img src="https://www.shutterstock.com/image-photo/rear-view-business-man-using-260nw-624272975.jpg" alt="" />
-              <div class="ass-name">{{selectedAssessment.Name}}</div>
+              <div class="ass-name">{{selectedAssessment.Test_Name}}</div>
             </div>
             <div class="ass-date">
               <div>
-                <span>{{selectedAssessment.Date}}</span>
+                <span>{{selectedAssessment.Delivery_Start_Time|date}}</span>
               </div>
               <div>
-                <div class="stats">{{selectedAssessment.Status}}</div>
+                <div class="stats">{{'Completed'}}</div>
               </div>
             </div>
             <div class="horizonatlscrollline"> 
               <div class="horizonatlline">
                 <div class="horizonatllinecircle" [style.left]="getLeftValue()">
-                  <div class="horizonatllinecircleinsidetext">{{selectedAssessment.Score}}</div>
+                  <div class="horizonatllinecircleinsidetext">{{selectedAssessment.SCORE_TOTAL<0?0:selectedAssessment.SCORE_TOTAL}}</div>
                 </div>
               </div>        
             </div>
@@ -671,14 +671,14 @@
                 <span class="rating">Ratings:</span>
               </div>
               <div>
-                <img *ngIf="selectedAssessment.Score >= 0 && selectedAssessment.Score <= 33" src="../../../../../assets/images/red-semi.png">
-                <img *ngIf="selectedAssessment.Score >= 34 && selectedAssessment.Score <= 66" src="../../../../../assets/images/orange-semi.png">
-                <img *ngIf="selectedAssessment.Score >= 67 && selectedAssessment.Score <= 100" src="../../../../../assets/images/green-semi.png">
+                <img *ngIf="selectedAssessment.SCORE_TOTAL >= 0 && selectedAssessment.SCORE_TOTAL <= 33" src="../../../../../assets/images/red-semi.png">
+                <img *ngIf="selectedAssessment.SCORE_TOTAL >= 34 && selectedAssessment.SCORE_TOTAL <= 66" src="../../../../../assets/images/orange-semi.png">
+                <img *ngIf="selectedAssessment.SCORE_TOTAL >= 67 && selectedAssessment.SCORE_TOTAL <= 100" src="../../../../../assets/images/green-semi.png">
               </div>
               <div>
-                <span class="behaviour1" *ngIf="selectedAssessment.Score >= 0 && selectedAssessment.Score <= 33">Low</span>
-                <span class="behaviour2" *ngIf="selectedAssessment.Score >= 34 && selectedAssessment.Score <= 66">Average</span>
-                <span class="behaviour" *ngIf="selectedAssessment.Score >= 67 && selectedAssessment.Score <= 100">Good</span>
+                <span class="behaviour1" *ngIf="selectedAssessment.SCORE_TOTAL >= 0 && selectedAssessment.SCORE_TOTAL <= 33">Low</span>
+                <span class="behaviour2" *ngIf="selectedAssessment.SCORE_TOTAL >= 34 && selectedAssessment.SCORE_TOTAL <= 66">Average</span>
+                <span class="behaviour" *ngIf="selectedAssessment.SCORE_TOTAL >= 67 && selectedAssessment.SCORE_TOTAL <= 100">Good</span>
               </div>
             </div>   
           </div>
@@ -693,8 +693,22 @@
               <img src="https://miro.medium.com/v2/resize:fit:1400/1*bMgQ8MhbnQexpqHgIgBJPA.png" alt="" />
               <div class="overlay-2">Angular</div>
             </div>
-            <div>
-             <div>Percentage</div>
+            <div class="percen">
+             <div class="percen-name">Percentage : </div>
+             <div class="percen-num">
+              <circle-progress 
+              [percent]="75" 
+              [radius]="30" 
+              [showImage]="false"
+              [showSubtitle]="false"
+              [titleColor]="000000"
+              [outerStrokeWidth]="7" 
+              [innerStrokeWidth]="0"
+              [outerStrokeColor]="'#78C000'" 
+              [animation]="true"
+              [animationDuration]="300">
+              </circle-progress>
+             </div>
             </div>
         </mat-card>
         </div>
@@ -730,7 +744,7 @@
         <img class="green_tick" src="../../../../../assets/images/green_tick_image.png">
       </div>
       <div class="text">
-        <span class="boldcandidate">{{candidateData.personal_details.name}}</span> has been
+        <span class="boldcandidate">{{candidateData?.personal_details?.name}}</span> has been
         <span> Shortlisted successfully</span>
       </div>
       <div class="button-wrapper-form-pop-up">
@@ -776,15 +790,14 @@
       </div>
     </div>
   </ng-template>
-
-  <div class="prog">
-  <div class="progress-container">
-    <progress id="myprogress" value="90" max="100"></progress>
-    <span id="progress-text">45</span>%
-  </div>
-</div>
-
- 
 </div>
 
 
+<circle-progress
+  [percent]="55"
+  [radius]="100"
+  [outerStrokeWidth]="16"
+  [outerStrokeColor]="'#78C000'"
+  [animation]="true"
+  [animationDuration]="300"
+></circle-progress>
