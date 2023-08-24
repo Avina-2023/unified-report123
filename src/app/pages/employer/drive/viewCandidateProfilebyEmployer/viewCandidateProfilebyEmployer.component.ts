@@ -57,15 +57,125 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
   @ViewChild('matDialog', { static: false }) matDialogRef: TemplateRef<any>;
   @ViewChild('confirmmatDialog') confirmmatDialogRef!: TemplateRef<any>;
   @ViewChild('rejectDialog') rejectDialogRef!: TemplateRef<any>;
+  // @ViewChild('myprogress', { static: false }) progressBar: ElementRef;
+  // @ViewChild('progressText', { static: false }) progressText: ElementRef;
   @ViewChild('confirmrejectmatDialog')
+  
   confirmrejectmatDialogRef!: TemplateRef<any>;
   params: any;
   statusdata: any;
   jobId: any;
   jobStatus: any;
   jobdata: any;
+  // progressBar: any;
+  // progressText: any;
+  //  elementRef: any; 
+  assessmentIndex = 0; 
+  selectedAssessment: any;
 
-  //  elementRef: any;
+  AssesmentDetails:any = [
+    {
+      "Name" : "Assesment 1",
+      "Status": "Completed",
+      "Score": "10",
+      "Date":"FEB 20, 2023"
+    },
+    {
+      "Name" : "Assesment 2",
+      "Status": "Inprogress",
+      "Score": "20",
+      "Date":"JAN 20, 2023"
+    },
+    {
+      "Name" : "Assesment 3",
+      "Status": "Completed",
+      "Score": "33",
+      "Date":"MAR 20, 2023"
+    },
+    {
+      "Name" : "Assesment 4",
+      "Status": "Inprogress",
+      "Score": "35",
+      "Date":"JUN 20, 2023"
+    },
+    {
+      "Name" : "Assesment 5",
+      "Status": "Completed",
+      "Score": "57",
+      "Date":"SEP 15, 2023"
+    },
+    {
+      "Name" : "Assesment 6",
+      "Status": "Inprogress",
+      "Score": "65",
+      "Date":"JUL 20, 2023"
+    },
+    {
+      "Name" : "Assesment 7",
+      "Status": "Completed",
+      "Score": "70",
+      "Date":"MAR 17, 2023"
+    },
+    {
+      "Name" : "Assesment 8",
+      "Status": "Completed",
+      "Score": "77",
+      "Date":"MAR 17, 2023"
+    },
+    {
+      "Name" : "Assesment 9",
+      "Status": "Completed",
+      "Score": "87",
+      "Date":"MAR 17, 2023"
+    },
+    {
+      "Name" : "Assesment 10",
+      "Status": "Completed",
+      "Score": "97",
+      "Date":"MAR 17, 2023"
+    }, 
+  ]
+
+  CertificationDetails:any = [
+    {
+      "Name" : "Certificate 1",
+      "Score": "10",
+    },
+    {
+      "Name" : "Certificate 2",
+      "Score": "20",
+    },
+    {
+      "Name" : "Certificate 3",
+      "Score": "30",
+    },
+    {
+      "Name" : "Certificate 4",
+      "Score": "40",
+    },
+    {
+      "Name" : "Certificate 5",
+      "Score": "50",
+    },
+    {
+      "Name" : "Certificate 6",
+      "Score": "60",
+    },
+    {
+      "Name" : "Certificate 7",
+      "Score": "70",
+    },
+    {
+      "Name" : "Certificate 8",
+      "Score": "80",
+    },
+    {
+      "Name" : "Certificate 9",
+      "Score": "90",
+    },
+  ]
+
+
   constructor(
     private apiService: ApiService,
     private appConfig: AppConfigService,
@@ -84,19 +194,41 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
     // let localjobData = JSON.parse(
     //   this.appConfig.getLocalStorage('currentJobData')
     // );
+    // this.startProgressBarUpdate();
+    this.selectedAssessment = this.AssesmentDetails[this.assessmentIndex];
+
   }
 
-  scrollTo(direction: 'left' | 'right') {
-    const container = this.headerRef.nativeElement;
-    const containerWidth = container.offsetWidth;
-    const scrollAmount = containerWidth;
-
-    if (direction === 'left') {
-      container.scrollLeft -= scrollAmount;
-    } else if (direction === 'right') {
-      container.scrollLeft += scrollAmount;
+  showPrevious() {
+    if (this.assessmentIndex > 0) {
+      this.assessmentIndex--;
+      this.selectedAssessment = this.AssesmentDetails[this.assessmentIndex];
     }
   }
+
+  showNext() {
+    if (this.assessmentIndex < this.AssesmentDetails.length - 1) {
+      this.assessmentIndex++;
+      this.selectedAssessment = this.AssesmentDetails[this.assessmentIndex];
+    }
+  }
+
+  getLeftValue(): string {
+    const score = +this.selectedAssessment.Score; 
+    const leftPercentage = (score / 100) * 100; 
+    return leftPercentage + '%';
+  }
+
+  scrollTo(direction: 'left' | 'right') { 
+    const container = this.headerRef.nativeElement; 
+    const containerWidth = container.offsetWidth; 
+    const scrollAmount = containerWidth; 
+    if (direction === 'left') { 
+      container.scrollLeft -= scrollAmount; 
+    } else if (direction === 'right'){
+      container.scrollLeft += scrollAmount; 
+    } 
+  } 
 
   CandidateDetails() {
     var obj = {};
@@ -312,4 +444,34 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
       return `${city}, ${state}, ${country}`;
     }
   }
+
+  // updateProgressBar() {
+  //   const interval = setInterval(() => {
+  //     let value = parseFloat(this.progressBar.nativeElement.value);
+  //     value = Math.min(value + 0.1, 100) % 100;
+
+  //     this.progressBar.nativeElement.value = value;
+  //     this.progressText.nativeElement.innerText = Math.round(value) + '%';
+
+  //     if (value === 0) {
+  //       clearInterval(interval);
+  //     }
+  //   }, 10);
+  // }
+
+
+  // startProgressBarUpdate() {
+  //   const interval = setInterval(() => {
+  //     let value = parseFloat(this.progressBar.nativeElement.value);
+  //     value = Math.min(value + 0.1, 100) % 100;
+
+  //     this.progressBar.nativeElement.value = value;
+  //     this.progressText.nativeElement.innerText = Math.round(value) + '%';
+
+  //     if (value === 0) {
+  //       clearInterval(interval);
+  //     }
+  //   }, 10);
+  // }
+  
 }

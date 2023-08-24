@@ -38,12 +38,6 @@ export class CandidateDetailsCardComponent implements OnInit {
     this.router.navigate(['/auth/dashboard/dashboard'])
   }
 
-  some(pages){
-    let {pageindex,length} = pages
-    this.pageNumber=pages.value;
-    this.	getcandidatedetails()
-    }
-
  
   // getcandidatedetails(){
   //   let params: any ={
@@ -112,6 +106,7 @@ export class CandidateDetailsCardComponent implements OnInit {
 		this.getcandidatedetails();
 	}
 
+  
   filterRemoval(data, filterKey) {
 		if ((this.filterObj.hasOwnProperty(filterKey)) && (this.filterObj[filterKey].includes(data.name))) {
 			if (this.filterObj[filterKey].length > 1) {
@@ -122,6 +117,12 @@ export class CandidateDetailsCardComponent implements OnInit {
 			}
 		}
 	}
+
+  some(pages){
+    let {pageindex,length} = pages
+    this.pageNumber=pages.value;
+    this.	getcandidatedetails()
+    }
 
   
 }
