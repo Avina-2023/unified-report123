@@ -73,68 +73,7 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
   assessmentIndex = 0; 
   selectedAssessment: any;
 
-  AssesmentDetails:any = [
-    {
-      "Name" : "Assesment 1",
-      "Status": "Completed",
-      "Score": "10",
-      "Date":"FEB 20, 2023"
-    },
-    {
-      "Name" : "Assesment 2",
-      "Status": "Inprogress",
-      "Score": "20",
-      "Date":"JAN 20, 2023"
-    },
-    {
-      "Name" : "Assesment 3",
-      "Status": "Completed",
-      "Score": "33",
-      "Date":"MAR 20, 2023"
-    },
-    {
-      "Name" : "Assesment 4",
-      "Status": "Inprogress",
-      "Score": "35",
-      "Date":"JUN 20, 2023"
-    },
-    {
-      "Name" : "Assesment 5",
-      "Status": "Completed",
-      "Score": "57",
-      "Date":"SEP 15, 2023"
-    },
-    {
-      "Name" : "Assesment 6",
-      "Status": "Inprogress",
-      "Score": "65",
-      "Date":"JUL 20, 2023"
-    },
-    {
-      "Name" : "Assesment 7",
-      "Status": "Completed",
-      "Score": "70",
-      "Date":"MAR 17, 2023"
-    },
-    {
-      "Name" : "Assesment 8",
-      "Status": "Completed",
-      "Score": "77",
-      "Date":"MAR 17, 2023"
-    },
-    {
-      "Name" : "Assesment 9",
-      "Status": "Completed",
-      "Score": "87",
-      "Date":"MAR 17, 2023"
-    },
-    {
-      "Name" : "Assesment 10",
-      "Status": "Completed",
-      "Score": "97",
-      "Date":"MAR 17, 2023"
-    }, 
-  ]
+  AssesmentDetails:any 
 
   CertificationDetails:any = [
     {
@@ -174,6 +113,8 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
       "Score": "90",
     },
   ]
+  // emailId: string = 'ltidemouser1@dispostable.com';
+  candidateResultData: any;
 
 
   constructor(
@@ -184,6 +125,8 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
     public router: Router
   ) {}
   ngOnInit() {
+    this.getCandidateResults();
+
     this.jobDetailsdata = JSON.parse(
       this.appConfig.getLocalStorage('currentJobData')
     );
@@ -191,11 +134,12 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
       this.appConfig.getLocalStorage('C_Candidate_status')
     );
     this.CandidateDetails();
+    console.log(this.AssesmentDetails)
     // let localjobData = JSON.parse(
     //   this.appConfig.getLocalStorage('currentJobData')
     // );
     // this.startProgressBarUpdate();
-    this.selectedAssessment = this.AssesmentDetails[this.assessmentIndex];
+   
 
   }
 
@@ -203,10 +147,12 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
     if (this.assessmentIndex > 0) {
       this.assessmentIndex--;
       this.selectedAssessment = this.AssesmentDetails[this.assessmentIndex];
+      console.log("previous",this.AssesmentDetails);
     }
   }
 
   showNext() {
+    console.log(this.AssesmentDetails)
     if (this.assessmentIndex < this.AssesmentDetails.length - 1) {
       this.assessmentIndex++;
       this.selectedAssessment = this.AssesmentDetails[this.assessmentIndex];
@@ -444,34 +390,19 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
       return `${city}, ${state}, ${country}`;
     }
   }
+  getCandidateResults(){
+    var objDetails = {};
+    objDetails= {
+      "emailId": this.candidateStatus.email,
+    }
+    this.apiService.candidateResultDetails(objDetails).subscribe((response:any)=>{
+      if(response.success){
+        this.candidateResultData = response.data[0]
+        // this.AssesmentDetails = [...this.candidateResultData.Aptitude,...this.candidateResultData.Coding,...this.candidateResultData.English];
+        this.AssesmentDetails = [...this.candidateResultData.Aptitude];
 
-  // updateProgressBar() {
-  //   const interval = setInterval(() => {
-  //     let value = parseFloat(this.progressBar.nativeElement.value);
-  //     value = Math.min(value + 0.1, 100) % 100;
-
-  //     this.progressBar.nativeElement.value = value;
-  //     this.progressText.nativeElement.innerText = Math.round(value) + '%';
-
-  //     if (value === 0) {
-  //       clearInterval(interval);
-  //     }
-  //   }, 10);
-  // }
-
-
-  // startProgressBarUpdate() {
-  //   const interval = setInterval(() => {
-  //     let value = parseFloat(this.progressBar.nativeElement.value);
-  //     value = Math.min(value + 0.1, 100) % 100;
-
-  //     this.progressBar.nativeElement.value = value;
-  //     this.progressText.nativeElement.innerText = Math.round(value) + '%';
-
-  //     if (value === 0) {
-  //       clearInterval(interval);
-  //     }
-  //   }, 10);
-  // }
-  
+        this.selectedAssessment = this.AssesmentDetails[this.assessmentIndex]
+      }
+    })
+  }
 }

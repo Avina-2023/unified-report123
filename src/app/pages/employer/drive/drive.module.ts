@@ -12,6 +12,7 @@ import { PopUpCellRendererComponent } from './manage-drive/pop-up-cell-renderer/
 import { DriveSettingsComponent } from './drive-settings/drive-settings.component';
 import { ViewCandidateByDriveComponent } from './viewCandidateByDrive/viewCandidateByDrive.component';
 import { ViewCandidateProfilebyEmployerComponent } from './viewCandidateProfilebyEmployer/viewCandidateProfilebyEmployer.component';
+import { NgCircleProgressModule } from 'ng-circle-progress';
 
 @NgModule({
   declarations: [
@@ -28,8 +29,9 @@ import { ViewCandidateProfilebyEmployerComponent } from './viewCandidateProfileb
     DriveRoutingModule,
     MatMenuModule,
     MatIconModule,
-    MatCheckboxModule,
-    FormsModule
+    MatCheckboxModule, 
+    FormsModule,
+    NgCircleProgressModule
   ],
 })
 export class DriveModule {}
