@@ -145,6 +145,7 @@ export class ViewCandidateByDriveComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.jobId = this.appconfig.getLocalStorage('currentJobID');
     this.autoSizeAll(false);
     // this.filterData();
     this.jobData = this.appconfig.jobData;
@@ -163,7 +164,7 @@ export class ViewCandidateByDriveComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    this.appconfig.clearLocalStorageOne('currentJobID');
+    // this.appconfig.clearLocalStorageOne('currentJobID');
   }
   arrayofData: any = [];
 
