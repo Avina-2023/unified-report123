@@ -612,18 +612,18 @@
           <div class="job_description content_wrap">
             <ng-container *ngIf="candidateStatus.jobStatus === 'Shortlisted'">
               <img src="../../../../../assets/images/green_tick_image.png" alt="Shortlisted" class="status_icon">
-            </ng-container>
+            </ng-container> 
             <ng-container *ngIf="candidateStatus.jobStatus === 'Rejected'">
               <img src="../../../../../assets/images/rejected red filled.svg" alt="Rejected" class="status_icon">
             </ng-container>
-            <ng-container *ngIf="candidateStatus.jobStatus === 'In Progress'">
-              <img src="../../../../../assets/images/blue tick rounded.svg" alt="In Progress" class="status_icon">
-            </ng-container>
-            <ng-container *ngIf="candidateStatus.jobStatus === 'awaiting Review'">
-              <img src="../../../../../assets/images/orange awating review.svg" alt="awaiting Review"
-                class="status_icon">
-            </ng-container>
-            {{candidateStatus.jobStatus}}
+            <ng-container *ngIf="candidateStatus.jobStatus === 'In Progress'"> 
+              <img src="../../../../../assets/images/blue tick rounded.svg" alt="In Progress" class="status_icon"> 
+            </ng-container> 
+            <ng-container *ngIf="candidateStatus.jobStatus === 'awaiting Review'"> 
+              <img src="../../../../../assets/images/orange awating review.svg" alt="awaiting Review" 
+                class="status_icon"> 
+            </ng-container> 
+            {{candidateStatus.jobStatus}} 
           </div>
         </div>
         <div>
@@ -632,6 +632,74 @@
           <div class="reject_btn" (click)="matDialogreject()"
             [ngClass]="{'disable': candidateStatus.jobStatus === 'Rejected'}">Reject</div>
         </div>
+
+        
+        <mat-card class="asses-details-card">
+          <div class="assessment-container">
+            <div class="prev-next">
+              <div class="assesment-detail">
+                Assesment Details 
+                <div mat-icon-button class="nav-icon" (click)="showPrevious()" [ngClass]="{'disabled': assessmentIndex === 0}">
+                  <mat-icon>keyboard_arrow_left</mat-icon>
+                </div>
+                <div mat-icon-button class="nav-icon" (click)="showNext()" [ngClass]="{'disabled': assessmentIndex === AssesmentDetails.length - 1}">
+                  <mat-icon>keyboard_arrow_right</mat-icon>
+                </div>
+               </div>
+            </div>
+            <div class="ass-image">
+              <img src="https://www.shutterstock.com/image-photo/rear-view-business-man-using-260nw-624272975.jpg" alt="" />
+              <div class="ass-name">{{selectedAssessment.Name}}</div>
+            </div>
+            <div class="ass-date">
+              <div>
+                <span>{{selectedAssessment.Date}}</span>
+              </div>
+              <div>
+                <div class="stats">{{selectedAssessment.Status}}</div>
+              </div>
+            </div>
+            <div class="horizonatlscrollline"> 
+              <div class="horizonatlline">
+                <div class="horizonatllinecircle" [style.left]="getLeftValue()">
+                  <div class="horizonatllinecircleinsidetext">{{selectedAssessment.Score}}</div>
+                </div>
+              </div>        
+            </div>
+            <div class="semi-circle-score">
+              <div>
+                <span class="rating">Ratings:</span>
+              </div>
+              <div>
+                <img *ngIf="selectedAssessment.Score >= 0 && selectedAssessment.Score <= 33" src="../../../../../assets/images/red-semi.png">
+                <img *ngIf="selectedAssessment.Score >= 34 && selectedAssessment.Score <= 66" src="../../../../../assets/images/orange-semi.png">
+                <img *ngIf="selectedAssessment.Score >= 67 && selectedAssessment.Score <= 100" src="../../../../../assets/images/green-semi.png">
+              </div>
+              <div>
+                <span class="behaviour1" *ngIf="selectedAssessment.Score >= 0 && selectedAssessment.Score <= 33">Low</span>
+                <span class="behaviour2" *ngIf="selectedAssessment.Score >= 34 && selectedAssessment.Score <= 66">Average</span>
+                <span class="behaviour" *ngIf="selectedAssessment.Score >= 67 && selectedAssessment.Score <= 100">Good</span>
+              </div>
+            </div>   
+          </div>
+        </mat-card>
+        
+        <div class="course-details">
+          <mat-card class="cours-details-card">
+            <div class="Course-detail">
+             Certification Details 
+            </div>
+            <div class="course-image">
+              <img src="https://miro.medium.com/v2/resize:fit:1400/1*bMgQ8MhbnQexpqHgIgBJPA.png" alt="" />
+              <div class="overlay-2">Angular</div>
+            </div>
+            <div>
+             <div>Percentage</div>
+            </div>
+        </mat-card>
+        </div>
+
+
       </div>
     </div>
   </div>
@@ -708,4 +776,15 @@
       </div>
     </div>
   </ng-template>
+
+  <div class="prog">
+  <div class="progress-container">
+    <progress id="myprogress" value="90" max="100"></progress>
+    <span id="progress-text">45</span>%
+  </div>
 </div>
+
+ 
+</div>
+
+
