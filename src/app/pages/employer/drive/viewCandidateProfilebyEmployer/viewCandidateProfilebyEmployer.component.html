@@ -634,8 +634,9 @@
         </div>
 
         
-        <mat-card class="asses-details-card">
-          <div class="assessment-container">
+        <ng-container *ngIf="AssesmentDetails.length > 0; else noAssessmentDetails">
+        <mat-card class="asses-details-card" >
+          <div class="assessment-container" >
             <div class="prev-next">
               <div class="assesment-detail">
                 Assesment Details 
@@ -683,8 +684,16 @@
             </div>   
           </div>
         </mat-card>
-        
-        <div class="course-details">
+      </ng-container>
+      <ng-template #noAssessmentDetails>
+        <div class="no-assessment-message">
+         <mat-card>
+          <span style="font-weight: 700;">NO ASSESMENT DETAILS AVAILABLE</span>
+         </mat-card>
+        </div>
+      </ng-template>
+      
+        <!-- <div class="course-details">
           <mat-card class="cours-details-card">
             <div class="Course-detail">
              Certification Details 
@@ -711,9 +720,54 @@
              </div>
             </div>
         </mat-card>
+        </div> -->
+
+        <div class="course-details">
+          <mat-card class="cours-details-card">
+            <div class="course-name-arrow">
+              <div class="Course-detail">
+                Certification Details
+              </div>
+              <div>
+                <div mat-icon-button class="nav-icon1" (click)="prevCertification()" [ngClass]="{'disabled': currentIndex === 0}">
+                  <mat-icon>keyboard_arrow_left</mat-icon>
+                </div>
+                <div mat-icon-button class="nav-icon1" (click)="nextCertification()" [ngClass]="{'disabled': currentIndex === CertificationDetails.length - 1}">
+                  <mat-icon>keyboard_arrow_right</mat-icon>
+                </div>
+              </div>
+            </div>
+
+
+            <ng-container *ngIf="currentCertification">
+              <div class="course-image">
+                <!-- <img src="https://miro.medium.com/v2/resize:fit:1400/1*bMgQ8MhbnQexpqHgIgBJPA.png" alt="" /> -->
+                <img [src]="currentCertification.imgurl" alt="" />
+                <div class="overlay-2">{{ currentCertification.Name }}</div>
+              </div>
+              <div class="percen">
+                <div class="percen-name">Percentage: </div>
+                <div class="percen-num">
+                  <circle-progress
+                    [percent]="currentCertification.Score"
+                    [radius]="30"
+                    [showImage]="false"
+                    [showSubtitle]="false"
+                    [titleColor]="000000"
+                    [outerStrokeWidth]="7"
+                    [innerStrokeWidth]="0"
+                    [outerStrokeColor]="'#78C000'"
+                    [animation]="true"
+                    [animationDuration]="300">
+                  </circle-progress>
+                </div>
+              </div>
+            </ng-container>
+            
+          </mat-card>
         </div>
 
-
+        
       </div>
     </div>
   </div>

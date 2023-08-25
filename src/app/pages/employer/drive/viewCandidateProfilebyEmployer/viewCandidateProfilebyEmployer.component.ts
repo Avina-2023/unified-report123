@@ -73,48 +73,62 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
   assessmentIndex = 0; 
   selectedAssessment: any;
 
+  currentIndex = 0;
+  currentCertification: any;
+
   AssesmentDetails:any 
 
   CertificationDetails:any = [
     {
-      "Name" : "Certificate 1",
-      "Score": "10",
-    },
-    {
-      "Name" : "Certificate 2",
-      "Score": "20",
-    },
-    {
-      "Name" : "Certificate 3",
-      "Score": "30",
-    },
-    {
-      "Name" : "Certificate 4",
-      "Score": "40",
-    },
-    {
-      "Name" : "Certificate 5",
-      "Score": "50",
-    },
-    {
-      "Name" : "Certificate 6",
-      "Score": "60",
-    },
-    {
-      "Name" : "Certificate 7",
-      "Score": "70",
-    },
-    {
-      "Name" : "Certificate 8",
-      "Score": "80",
-    },
-    {
-      "Name" : "Certificate 9",
+      "Name" : "Concepts Risk Management",
       "Score": "90",
+      "imgurl":"https://lmsassetspremium.lntedutech.com/portalicons/concept-of-project-risk.webp"
     },
+    {
+      "Name" : "Material Handling System",
+      "Score": "60",
+      "imgurl":"https://lmsassetspremium.lntedutech.com/portalicons/material-handling-system.webp"
+    },
+    {
+      "Name" : "Conflict Management",
+      "Score": "77",
+      "imgurl":"https://lmsassetspremium.lntedutech.com/portalicons/lean-construction.webp"
+    },
+    // {
+    //   "Name" : "Certificate 4",
+    //   "Score": "90",
+    //   "imgurl":"https://lmsassetspremium.lntedutech.com/portalicons/concept-of-project-risk.webp"
+    // },
+    // {
+    //   "Name" : "Certificate 5",
+    //   "Score": "50",
+    //   "imgurl":"https://lmsassetspremium.lntedutech.com/portalicons/concept-of-project-risk.webp"
+    // },
+    // {
+    //   "Name" : "Certificate 6",
+    //   "Score": "60",
+    //   "imgurl":"https://lmsassetspremium.lntedutech.com/portalicons/concept-of-project-risk.webp"
+    // },
+    // {
+    //   "Name" : "Certificate 7",
+    //   "Score": "70",
+    //   "imgurl":"https://lmsassetspremium.lntedutech.com/portalicons/concept-of-project-risk.webp"
+    // },
+    // {
+    //   "Name" : "Certificate 8",
+    //   "Score": "80",
+    //   "imgurl":"https://lmsassetspremium.lntedutech.com/portalicons/concept-of-project-risk.webp"
+    // },
+    // {
+    //   "Name" : "Certificate 9",
+    //   "Score": "90",
+    //   "imgurl":"https://lmsassetspremium.lntedutech.com/portalicons/concept-of-project-risk.webp"
+    // },
   ]
+
   // emailId: string = 'ltidemouser1@dispostable.com';
   candidateResultData: any;
+  candidateCourseData: any;
 
 
   constructor(
@@ -123,9 +137,9 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
     private elementRef: ElementRef,
     private dialog: MatDialog,
     public router: Router
+    
   ) {}
   ngOnInit() {
-    this.getCandidateResults();
 
     this.jobDetailsdata = JSON.parse(
       this.appConfig.getLocalStorage('currentJobData')
@@ -139,7 +153,10 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
     //   this.appConfig.getLocalStorage('currentJobData')
     // );
     // this.startProgressBarUpdate();
-   
+    this.getCandidateResults();
+    // this.getCourseDetails();
+    this.currentCertification = this.CertificationDetails[this.currentIndex];
+
 
   }
 
@@ -159,11 +176,27 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
     }
   }
 
+  prevCertification() {
+    if (this.currentIndex > 0) {
+      this.currentIndex--;
+      this.currentCertification = this.CertificationDetails[this.currentIndex];
+    }
+  }
+
+  nextCertification() {
+    if (this.currentIndex < this.CertificationDetails.length - 1) {
+      this.currentIndex++;
+      this.currentCertification = this.CertificationDetails[this.currentIndex];
+    }
+  }
+
   getLeftValue(): string {
-    const score = +this.selectedAssessment.Score; 
+    const score = +this.selectedAssessment.SCORE_TOTAL; 
     const leftPercentage = (score / 100) * 100; 
     return leftPercentage + '%';
   }
+
+
 
   scrollTo(direction: 'left' | 'right') { 
     const container = this.headerRef.nativeElement; 
@@ -393,16 +426,28 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
   getCandidateResults(){
     var objDetails = {};
     objDetails= {
-      "emailId": this.candidateStatus.email,
+      "emailId": this.candidateStatus?.email,
     }
     this.apiService.candidateResultDetails(objDetails).subscribe((response:any)=>{
       if(response.success){
         this.candidateResultData = response.data[0]
-        // this.AssesmentDetails = [...this.candidateResultData.Aptitude,...this.candidateResultData.Coding,...this.candidateResultData.English];
-        this.AssesmentDetails = [...this.candidateResultData.Aptitude];
-
+        this.AssesmentDetails = [...this.candidateResultData.Aptitude,...this.candidateResultData.Coding,...this.candidateResultData.English];
+        // this.AssesmentDetails = [...this.candidateResultData.Aptitude];
+        console.log(this.candidateResultData,' this.candidateResultData');
+        console.log(this.AssesmentDetails,'AssesmentDetails');        
         this.selectedAssessment = this.AssesmentDetails[this.assessmentIndex]
       }
     })
   }
+
+  // getCourseDetails(){
+  //   var courseObj={};
+  //   courseObj={
+  //   }
+  //   this.apiService.courseTracking(courseObj).subscribe((response:any)=>{
+  //     if(response.success){
+  //       this.candidateCourseData = response.data
+  //     }
+  //   })
+  // }
 }
