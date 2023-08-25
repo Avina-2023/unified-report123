@@ -7,7 +7,7 @@ RUN echo "Oh dang look at port ${PORT}"
 
 COPY package.json ./
 RUN npm config set registry http://registry.npmjs.org/
-RUN npm install
+RUN npm install --force
 RUN npm install @types/core-js --save-dev
 RUN npm install ng2-charts@2.2.3
 
