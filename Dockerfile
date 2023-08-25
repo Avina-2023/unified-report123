@@ -1,5 +1,5 @@
 ### STAGE 1: Build ###
-FROM node:16.13.2 AS build
+FROM node:14.19.0 AS build
 WORKDIR /usr/src/app
 ARG environment
 ENV PORT=$environment
@@ -7,7 +7,7 @@ RUN echo "Oh dang look at port ${PORT}"
 
 COPY package.json ./
 RUN npm config set registry http://registry.npmjs.org/
-RUN npm install --force
+RUN npm install
 RUN npm install @types/core-js --save-dev
 RUN npm install ng2-charts@2.2.3
 
