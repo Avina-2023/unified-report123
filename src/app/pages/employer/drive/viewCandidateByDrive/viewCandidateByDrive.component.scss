@@ -96,7 +96,7 @@ margin-bottom: 10px;
   height: 549px;
   position: relative;
   background: #ffffff;
-  border-radius: 5px;
+  // border-radius: 5px;
   opacity: 1;
   box-shadow: 0px 3px 6px #2c28281c;
 }
@@ -271,6 +271,10 @@ justify-content: space-between;
       flex-direction: row;
       .icon-tick_mark_green{
         padding: 2px 4px 1px 1px
+      }
+      .icon-warning{
+        padding: 2px 5px 0px 0px;
+        color: red;
       }
     }
   }
@@ -512,21 +516,21 @@ justify-content: space-between;
   background: #49AE31 !important;
   color: #ffff;
   border-radius: 5px;
-  padding: 6px 25px;
+  padding: 6px 27px;
 }
 
 ::ng-deep .red-cell span {
   background: #EF2917 !important;
   color: #ffff;
   border-radius: 5px;
-  padding: 6px 31px;
+  padding: 6px 35px;
 }
 
 ::ng-deep .blue-cell span {
   background: #27BBEE !important;
   color: #ffff;
   border-radius: 5px;
-  padding: 6px 24px;
+  padding: 6px 26px;
 }
 .pageheader{
   padding: 20px 20px 15px 25px;
@@ -537,12 +541,16 @@ justify-content: space-between;
 }
 
 
-::ng-deep .mat-tab-label[aria-selected="true"][aria-posinset="1"] .mat-tab-label-content {
+// ::ng-deep .mat-tab-label[aria-selected="true"][aria-posinset="1"] .mat-tab-label-content {
+::ng-deep.mat-tab-label.mat-tab-label-active:not(.mat-tab-disabled),
+::ng-deep.mat-tab-label.mat-tab-label-active.cdk-keyboard-focused:not(.mat-tab-disabled) {
   color: #1B4E9B;
+  opacity: 1;
 }
 
 ::ng-deep .mat-tab-label[aria-selected="true"][aria-posinset="2"] .mat-tab-label-content {
   color: #FFB74D;
+  opacity: 1;
 }
 
 ::ng-deep .mat-tab-label[aria-selected="true"][aria-posinset="3"] .mat-tab-label-content {
@@ -579,22 +587,23 @@ justify-content: space-between;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  border: 2px solid #E2E2E3;
+  // border: 2px solid #E2E2E3;
+  background-color: #ffffff;
   .example-header{
-    padding: 2px;
+    padding: 2px 2px 2px 10px;;
   }
   .pagintion{
     display: flex;
     flex-direction: row;
     justify-content: center;
-    margin: 0pc 5px 0pc 5px;
+    margin: 0px 5px 0px 5px;
   }
   .one{
     margin: 0px 3px 0px 3px;
     padding: 4px 7px 4px 7px;
-    background: #1B4E9B;
+    // background: #1B4E9B;
     cursor: pointer;
-    color: #ffffff;
+    color: #000000CC;
     border-radius: 7px;
     border: none;
   }
@@ -621,7 +630,7 @@ justify-content: space-between;
     display: flex; 
     flex-direction: row; 
     align-items: center;
-    padding: 5px;
+    padding: 5px 14px 5px 5px;
     .goto{
       padding: 1px;
       color: #848484;
@@ -634,6 +643,7 @@ justify-content: space-between;
     }
     .go{
       color: #1B4E9B;
+      background: #ffffff;
       cursor: pointer;
       font-weight: 700;
       border: none;
