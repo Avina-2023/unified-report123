@@ -1,5 +1,5 @@
 ### STAGE 1: Build ###
-FROM node:14.19.0 AS build
+FROM node:16.13.2 AS build
 WORKDIR /usr/src/app
 ARG environment
 ENV PORT=$environment
