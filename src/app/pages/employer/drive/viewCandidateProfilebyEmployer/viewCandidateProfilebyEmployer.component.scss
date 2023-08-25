@@ -444,6 +444,22 @@
       .course-details{
         margin: 40px 0px 0px 0px;
         .cours-details-card{
+          .course-name-arrow{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            .nav-icon1 {
+              display: inline-flex;
+              align-items: center;
+              cursor: pointer;
+              padding: 8px;
+            }
+            
+            .nav-icon1.disabled {
+              cursor : not-allowed;
+              opacity: 0.3;
+            }
+          }
           .Course-detail{
             margin: 2px 0px 5px 0px;
             color: #000000;
@@ -458,9 +474,9 @@
               position: absolute;
               color: #FFFFFF;
               font-size: 15px;
-              top: 49%;
+              top: 56%;
               left: 9%;
-              width: 84%;
+              width: 85%;
               background-color: rgba(0, 0, 0, 0.5);
               border-radius: initial;
             }
