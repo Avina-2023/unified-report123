@@ -431,8 +431,8 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
     this.apiService.candidateResultDetails(objDetails).subscribe((response:any)=>{
       if(response.success){
         this.candidateResultData = response.data[0]
-        this.AssesmentDetails = [...this.candidateResultData.Aptitude,...this.candidateResultData.Coding,...this.candidateResultData.English];
-        // this.AssesmentDetails = [...this.candidateResultData.Aptitude];
+        // this.AssesmentDetails = [...this.candidateResultData.Aptitude,...this.candidateResultData.Coding,...this.candidateResultData.English];
+        this.AssesmentDetails = [...this.candidateResultData.Aptitude];
         console.log(this.candidateResultData,' this.candidateResultData');
         console.log(this.AssesmentDetails,'AssesmentDetails');        
         this.selectedAssessment = this.AssesmentDetails[this.assessmentIndex]

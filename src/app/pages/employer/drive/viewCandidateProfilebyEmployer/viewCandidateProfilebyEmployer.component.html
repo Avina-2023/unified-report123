@@ -672,12 +672,14 @@
                 <span class="rating">Ratings:</span>
               </div>
               <div>
-                <img *ngIf="selectedAssessment.SCORE_TOTAL >= 0 && selectedAssessment.SCORE_TOTAL <= 33" src="../../../../../assets/images/red-semi.png">
+                <!-- <img *ngIf="selectedAssessment.SCORE_TOTAL >= 0 && selectedAssessment.SCORE_TOTAL <= 33" src="../../../../../assets/images/red-semi.png"> -->
+                <img *ngIf="selectedAssessment.SCORE_TOTAL <= 33" src="../../../../../assets/images/red-semi.png">
                 <img *ngIf="selectedAssessment.SCORE_TOTAL >= 34 && selectedAssessment.SCORE_TOTAL <= 66" src="../../../../../assets/images/orange-semi.png">
                 <img *ngIf="selectedAssessment.SCORE_TOTAL >= 67 && selectedAssessment.SCORE_TOTAL <= 100" src="../../../../../assets/images/green-semi.png">
               </div>
               <div>
-                <span class="behaviour1" *ngIf="selectedAssessment.SCORE_TOTAL >= 0 && selectedAssessment.SCORE_TOTAL <= 33">Low</span>
+                <!-- <span class="behaviour1" *ngIf="selectedAssessment.SCORE_TOTAL >= 0 && selectedAssessment.SCORE_TOTAL <= 33">Low</span> -->
+                <span class="behaviour1" *ngIf="selectedAssessment.SCORE_TOTAL <= 33">Low</span>
                 <span class="behaviour2" *ngIf="selectedAssessment.SCORE_TOTAL >= 34 && selectedAssessment.SCORE_TOTAL <= 66">Average</span>
                 <span class="behaviour" *ngIf="selectedAssessment.SCORE_TOTAL >= 67 && selectedAssessment.SCORE_TOTAL <= 100">Good</span>
               </div>
