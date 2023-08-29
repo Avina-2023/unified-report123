@@ -386,10 +386,17 @@ export class ApiService {
   getCandidateByFilter(data){
     return this.http.post(`${this.BASE_URL}/candidateFilter`, data);
   }
-  candidateResultDetails(data) {
-    return this.http.post(`${this.BASE_URL_RE}/candidateResultDetails`, data);
+  // candidateResultDetails(data) {
+  //   return this.http.post(`${this.BASE_URL_RE}/candidateResultDetails`, data); 
+  // } 
+  // courseTracking(data) {
+  //   return this.http.post("https://devfacade.lntedutech.com/learnerProgressStatus", data);
+  // }
+
+  candidateResultDetails(data){
+    return this.http.post(`${this.BASE_URL}/candidateResultDetails`, data)
   }
-  courseTracking(data) {
-    return this.http.post("https://devfacade.lntedutech.com/learnerProgressStatus", data);
+  getcourseTracking(data){
+    return this.http.post(`${this.BASE_URL}/learnerProgressStatus`,data);
   }
 }

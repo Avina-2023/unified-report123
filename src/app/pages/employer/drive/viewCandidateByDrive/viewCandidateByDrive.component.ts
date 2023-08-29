@@ -268,7 +268,7 @@ export class ViewCandidateByDriveComponent implements OnInit {
       {
         headerName: 'Status',
         field: 'jobStatus',
-        minWidth: 175,
+        minWidth: 165,
         filter: 'agTextColumnFilter',
         chartDataType: 'category',
         aggFunc: 'sum',
@@ -309,7 +309,7 @@ export class ViewCandidateByDriveComponent implements OnInit {
       {
         headerName: 'Qualification',
         field: 'degree',
-        minWidth: 140,
+        minWidth: 133,
         filter: 'agTextColumnFilter',
         chartDataType: 'category',
         aggFunc: 'sum',
@@ -334,7 +334,7 @@ export class ViewCandidateByDriveComponent implements OnInit {
       {
         headerName: 'Year of Passout',
         field: 'yearOfPassing',
-        minWidth: 180,
+        minWidth: 147,
         filter: 'agNumberColumnFilter',
         chartDataType: 'series',
         filterParams: {
@@ -365,7 +365,7 @@ export class ViewCandidateByDriveComponent implements OnInit {
       {
         headerName: 'Trained by L&T EduTech',
         field: 'trainedStatus',
-        minWidth: 200,
+        minWidth: 170,
         filter: 'agTextColumnFilter',
         chartDataType: 'category',
         aggFunc: 'sum',
@@ -415,7 +415,7 @@ export class ViewCandidateByDriveComponent implements OnInit {
       {
         headerName: 'Applied Date',
         field: 'appliedDate',
-        minWidth: 175,
+        minWidth: 135,
         valueFormatter: function (params) {
           return moment(params.value).format('DD-MM-yy');
         },

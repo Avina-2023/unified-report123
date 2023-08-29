@@ -4,7 +4,51 @@
     }
 
 }
+.main{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    .welcome-update{
+        .welcome-name{
+            .welcome-text{
+                color: #FFFFFF;
+                font-weight: 300;
+                font-size: 17px;
+                margin: 10px 0px 10px 5px;
+            }
+            .username-text{
+                color: #FFFFFF;
+                font-weight: 600;
+                font-size: 27px;
+                margin: 10px 0px 10px 0px;
+            }
+        }
+        .updat-button{
+            margin: 20px 0px 0px 0px;
+            .update-btn{
+                border: none;
+                width: 130px;
+                background: #1B4E9B;
+                box-shadow: 0px 3px 6px #2c28281c;
+                border-radius: 5px;
+                color: #fff;
+                height: 35px;
+                font-size: 14px;
+            }
+        }
+    }
+    .percent-side{
+        .prof-comp{
+            .prof-comp1{
+                background-color: #27BBEE;
+                // background-color: transparent linear-gradient(96deg, #27BBEE 0%, #294D96 100%) 0% 0% no-repeat padding-box;;
+                color: #FFFFFF;
+            }
+        }
+    }
 
+}
 .container-fluid.p-0 {
     overflow: inherit !important;
     margin-bottom: 100px;
@@ -16,9 +60,11 @@
 }
 
 .top-bg {
-    background-color: #1B4E9B;
+    // background-color: #1B4E9B;
+    // background-color: #FFFFFF;
     width: 100%;
-    height: 240px;
+    height: 170px;
+    background-image: url('../../../../../assets/images/emp-dashboard.png'); 
 }
 
 :host ::ng-deep .mat-grid-list {
@@ -26,69 +72,84 @@
     position: inherit;
 }
 
+.cand-prof-dash{
+    margin: 25px 10px 0px 30px;
+    font-weight: 700;
+    font-size: 20px;
+}
+.candidate-count{
+    margin: 20px 10px 10px 10px;
+}
 
 .couning-card {
     width: 295px;
     height: 120px;
 }
 
-.top-left {
-    position: relative;
-    left: 0;
-    float: left;
+// .top-left {
+//     position: relative;
+//     left: 0;
+//     float: left;
 
-    .dashboard-text {
-        text-align: left;
-        font-size: 18px;
-        color: #e5e5e5 !important;
-        text-transform: capitalize;
-        font-weight: 200;
-    }
+//     .welcome-name{
+//         display: flex;
+//         flex-direction: column;
+//     }
+//     .dashboard-text {
+//         text-align: left;
+//         font-size: 18px;
+//         color: #e5e5e5 !important;
+//         text-transform: capitalize;
+//         font-weight: 200;
+//     }
 
-    .welcome-text {
-        font-size: 22px;
-        text-align: left;
-        letter-spacing: NaNpx;
-        color: #fff !important;
-        text-transform: capitalize;
-        opacity: 0.9;
-        position: relative;
-        top: 30px;
-        font-weight: 200;
-    }
+//     .welcome-text {
+//         font-size: 22px;
+//         // text-align: left;
+//         // letter-spacing: NaNpx;
+//         // color: #fff !important;
+//         // text-transform: capitalize;
+//         // opacity: 0.9;
+//         // position: relative;
+//         // top: 30px;
+//         // font-weight: 200;
 
-    .username-text {
-        font: normal normal 300 18px/24px Roboto;
-        text-align: left;
-        letter-spacing: NaNpx;
-        color: #FFFFFF;
-        text-transform: capitalize;
-        opacity: 1;
-        font-size: 28px;
-        position: relative;
-        top: 25px;
-    }
+//     }
 
-    .profilebtn {
-        position: relative;
-        top: 20px;
-    }
+//     .username-text {
+//         font: normal normal 300 18px/24px Roboto;
+//         text-align: left;
+//         letter-spacing: NaNpx;
+//         color: #FFFFFF;
+//         text-transform: capitalize;
+//         opacity: 1;
+//         font-size: 28px;
+//         position: relative;
+//         top: 25px;
+//     }
 
-    .update-info {
-        border: none;
-        width: 130px;
-        background: #26C1F6 0% 0% no-repeat padding-box;
-        box-shadow: 0px 3px 6px #2c28281c;
-        border-radius: 25px;
-        opacity: 1;
-        color: #fff;
-        padding: 6px;
-        height: 35px;
-        font-size: 14px;
-        position: relative;
-        top: 41px;
-    }
-}
+//     .profilebtn {
+//         position: relative;
+//         top: 20px;
+//     }
+
+//     .update-info {
+//         border: none;
+//         width: 130px;
+//         // background: #26C1F6 0% 0% no-repeat padding-box;
+//         background: #1B4E9B;
+//         box-shadow: 0px 3px 6px #2c28281c;
+//         // border-radius: 25px;
+//         border-radius: 5px;
+//         opacity: 1;
+//         color: #fff;
+//         padding: 6px;
+//         height: 35px;
+//         font-size: 14px;
+//         position: relative;
+//         top: 41px;
+//     }
+// }
 
 .top-right {
     position: relative;
@@ -101,6 +162,18 @@
         right: 18px;
     }
 }
+// .prof-value{
+//     position: relative;
+//     float: right;
+//     top: 25px;
+//     .prof-text{
+//         background: transparent linear-gradient(96deg, #27BBEE 0%, #294D96 100%) 0% 0% no-repeat padding-box;
+//         color: #fff;
+//     }
+//     .prof-num{
+//         background-color: #FFFFFF;
+//     }
+// }
 
 .card {
     background: #FFFFFF 0% 0% no-repeat padding-box;
@@ -468,9 +541,10 @@ div[role="progressbar"]::before {
 }
 
 .prof_demo {
-    margin-top: 80px;
-    margin-left: 20px;
-    margin-right: 20px;
+    // margin-top: 80px;
+    // margin-left: 20px;
+    // margin-right: 20px;
+    margin: 40px 20px 0px 20px;
 
     .card_one {
         width: 30%;

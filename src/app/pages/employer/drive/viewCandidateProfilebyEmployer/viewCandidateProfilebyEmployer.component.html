@@ -619,7 +619,7 @@
             <ng-container *ngIf="candidateStatus.jobStatus === 'In Progress'"> 
               <img src="../../../../../assets/images/blue tick rounded.svg" alt="In Progress" class="status_icon"> 
             </ng-container> 
-            <ng-container *ngIf="candidateStatus.jobStatus === 'awaiting Review'"> 
+            <ng-container *ngIf="candidateStatus.jobStatus === 'awaitingReview'"> 
               <img src="../../../../../assets/images/orange awating review.svg" alt="awaiting Review" 
                 class="status_icon"> 
             </ng-container> 
@@ -633,8 +633,7 @@
             [ngClass]="{'disable': candidateStatus.jobStatus === 'Rejected'}">Reject</div>
         </div>
 
-        
-        <ng-container *ngIf="AssesmentDetails.length > 0; else noAssessmentDetails">
+        <!-- <ng-container *ngIf="AssesmentDetails.length > 0; else noAssessmentDetails">
         <mat-card class="asses-details-card" >
           <div class="assessment-container" >
             <div class="prev-next">
@@ -671,14 +670,12 @@
               <div>
                 <span class="rating">Ratings:</span>
               </div>
-              <div>
-                <!-- <img *ngIf="selectedAssessment.SCORE_TOTAL >= 0 && selectedAssessment.SCORE_TOTAL <= 33" src="../../../../../assets/images/red-semi.png"> -->
+            <div>
                 <img *ngIf="selectedAssessment.SCORE_TOTAL <= 33" src="../../../../../assets/images/red-semi.png">
                 <img *ngIf="selectedAssessment.SCORE_TOTAL >= 34 && selectedAssessment.SCORE_TOTAL <= 66" src="../../../../../assets/images/orange-semi.png">
                 <img *ngIf="selectedAssessment.SCORE_TOTAL >= 67 && selectedAssessment.SCORE_TOTAL <= 100" src="../../../../../assets/images/green-semi.png">
               </div>
               <div>
-                <!-- <span class="behaviour1" *ngIf="selectedAssessment.SCORE_TOTAL >= 0 && selectedAssessment.SCORE_TOTAL <= 33">Low</span> -->
                 <span class="behaviour1" *ngIf="selectedAssessment.SCORE_TOTAL <= 33">Low</span>
                 <span class="behaviour2" *ngIf="selectedAssessment.SCORE_TOTAL >= 34 && selectedAssessment.SCORE_TOTAL <= 66">Average</span>
                 <span class="behaviour" *ngIf="selectedAssessment.SCORE_TOTAL >= 67 && selectedAssessment.SCORE_TOTAL <= 100">Good</span>
@@ -693,7 +690,7 @@
           <span style="font-weight: 700;">NO ASSESMENT DETAILS AVAILABLE</span>
          </mat-card>
         </div>
-      </ng-template>
+      </ng-template> -->
       
         <!-- <div class="course-details">
           <mat-card class="cours-details-card">
@@ -724,7 +721,7 @@
         </mat-card>
         </div> -->
 
-        <div class="course-details">
+        <!-- <div class="course-details">
           <mat-card class="cours-details-card">
             <div class="course-name-arrow">
               <div class="Course-detail">
@@ -739,11 +736,8 @@
                 </div>
               </div>
             </div>
-
-
             <ng-container *ngIf="currentCertification">
               <div class="course-image">
-                <!-- <img src="https://miro.medium.com/v2/resize:fit:1400/1*bMgQ8MhbnQexpqHgIgBJPA.png" alt="" /> -->
                 <img [src]="currentCertification.imgurl" alt="" />
                 <div class="overlay-2">{{ currentCertification.Name }}</div>
               </div>
@@ -767,10 +761,124 @@
             </ng-container>
             
           </mat-card>
-        </div>
-
+        </div> -->
         
       </div>
+
+      <div class="job_details_card pd-30 card_sticky">
+        <ng-container *ngIf="AssesmentDetails.length > 0">
+          <mat-card class="asses-details-card" >
+            <div class="assessment-container" >
+              <div class="prev-next">
+                <div class="assesment-detail">
+                  Assesment Details 
+                  <div mat-icon-button class="nav-icon" (click)="showPrevious()" [ngClass]="{'disabled': assessmentIndex === 0}">
+                    <mat-icon>keyboard_arrow_left</mat-icon>
+                  </div>
+                  <div mat-icon-button class="nav-icon" (click)="showNext()" [ngClass]="{'disabled': assessmentIndex === AssesmentDetails?.length - 1}">
+                    <mat-icon>keyboard_arrow_right</mat-icon>
+                  </div>
+                 </div>
+              </div>
+              <div class="ass-image">
+                <img src="https://www.shutterstock.com/image-photo/rear-view-business-man-using-260nw-624272975.jpg" alt="" />
+                <div class="ass-name">{{selectedAssessment.Test_Name}}</div>
+              </div>
+              <div class="ass-date">
+                <div>
+                  <span class="asses-datee">{{selectedAssessment.Delivery_Start_Time|date}}</span>
+                </div>
+                <div>
+                  <div class="stats">{{'Completed'}}</div>
+                </div>
+              </div>
+              <div class="scor">
+                <span class="scor1">Score:</span>
+              </div>
+              <div class="horizonatlscrollline"> 
+                <div class="horizonatlline">
+                  <div class="horizonatllinecircle" [style.left]="getLeftValue()">
+                    <div class="horizonatllinecircleinsidetext">{{selectedAssessment.SCORE_TOTAL<0?0:selectedAssessment.SCORE_TOTAL}}</div>
+                  </div>
+                </div>        
+              </div>
+              <div class="semi-circle-score">
+                <div>
+                  <span class="rating">Ratings:</span>
+                </div>
+              <div>
+                  <!-- <img *ngIf="selectedAssessment.SCORE_TOTAL >= 0 && selectedAssessment.SCORE_TOTAL <= 33" src="../../../../../assets/images/red-semi.png"> -->
+                  <img *ngIf="selectedAssessment.SCORE_TOTAL <= 33" src="../../../../../assets/images/red-semi.png">
+                  <img *ngIf="selectedAssessment.SCORE_TOTAL >= 34 && selectedAssessment.SCORE_TOTAL <= 66" src="../../../../../assets/images/orange-semi.png">
+                  <img *ngIf="selectedAssessment.SCORE_TOTAL >= 67 && selectedAssessment.SCORE_TOTAL <= 100" src="../../../../../assets/images/green-semi.png">
+                </div>
+                <div>
+                  <!-- <span class="behaviour1" *ngIf="selectedAssessment.SCORE_TOTAL >= 0 && selectedAssessment.SCORE_TOTAL <= 33">Low</span> -->
+                  <span class="behaviour1" *ngIf="selectedAssessment.SCORE_TOTAL <= 33">Low</span>
+                  <span class="behaviour2" *ngIf="selectedAssessment.SCORE_TOTAL >= 34 && selectedAssessment.SCORE_TOTAL <= 66">Average</span>
+                  <span class="behaviour" *ngIf="selectedAssessment.SCORE_TOTAL >= 67 && selectedAssessment.SCORE_TOTAL <= 100">Good</span>
+                </div>
+              </div>   
+            </div>
+          </mat-card>
+        </ng-container>
+        <!-- <ng-template #noAssessmentDetails>
+          <div class="no-assessment-message">
+           <mat-card>
+            <span style="font-weight: 700;">NO ASSESMENT DETAILS AVAILABLE</span>
+           </mat-card>
+          </div>
+        </ng-template> -->
+      </div>
+      
+      <div class="job_details_card pd-30 card_sticky" >
+        <div class="course-details" *ngIf="currentCertification">
+          <mat-card class="cours-details-card" *ngIf = "courseResultData.length > 0">
+            <div class="course-name-arrow">
+              <div class="Course-detail">
+                Certification Details
+              </div>
+              <div>
+                <div mat-icon-button class="nav-icon1" (click)="prevCertification()" [ngClass]="{'disabled': currentIndex === 0}">
+                  <mat-icon>keyboard_arrow_left</mat-icon>
+                </div>
+                <div mat-icon-button class="nav-icon1" (click)="nextCertification()" [ngClass]="{'disabled': currentIndex === courseResultData.length - 1}">
+                  <mat-icon>keyboard_arrow_right</mat-icon>
+                </div>
+              </div>
+            </div>
+      
+            <ng-container *ngIf="currentCertification">
+              <div class="course-image">
+                <!-- <img [src]="currentCertification.courseImgUrl" alt="" /> -->
+                <img src="https://miro.medium.com/v2/resize:fit:1400/1*bMgQ8MhbnQexpqHgIgBJPA.png" alt="" />
+                <div class="overlay-2">{{ currentCertification.courseName }}</div>
+              </div>
+              <div class="percen">
+                <div class="percen-name">Percentage: </div>
+                <div class="percen-num">
+                  <circle-progress
+                    [percent]="currentCertification.coursePercentage"
+                    [radius]="30"
+                    [showImage]="false"
+                    [showSubtitle]="false"
+                    [titleColor]="000000"
+                    [outerStrokeWidth]="7"
+                    [innerStrokeWidth]="0"
+                    [outerStrokeColor]="'#78C000'"
+                    [animation]="true"
+                    [animationDuration]="300">
+                  </circle-progress>
+                </div>
+                <!-- {{currentCertification.courseId}} -->
+              </div>
+            </ng-container>
+      
+          </mat-card>
+        </div>
+      </div>
+      
+      
     </div>
   </div>
 
@@ -847,13 +955,3 @@
     </div>
   </ng-template>
 </div>
-
-
-<circle-progress
-  [percent]="55"
-  [radius]="100"
-  [outerStrokeWidth]="16"
-  [outerStrokeColor]="'#78C000'"
-  [animation]="true"
-  [animationDuration]="300"
-></circle-progress>
