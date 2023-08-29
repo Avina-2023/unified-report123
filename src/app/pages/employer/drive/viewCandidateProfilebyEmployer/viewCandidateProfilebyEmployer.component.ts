@@ -129,6 +129,7 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
   // emailId: string = 'ltidemouser1@dispostable.com';
   candidateResultData: any;
   candidateCourseData: any;
+  courseResultData: any;
 
 
   constructor(
@@ -157,6 +158,7 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
     // this.getCourseDetails();
     this.currentCertification = this.CertificationDetails[this.currentIndex];
 
+    this.getCandidateCourseDetails();
 
   }
 
@@ -176,19 +178,34 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
     }
   }
 
+  // prevCertification() {
+  //   if (this.currentIndex > 0) {
+  //     this.currentIndex--;
+  //     this.currentCertification = this.CertificationDetails[this.currentIndex];
+  //   }
+  // }
+
+  // nextCertification() {
+  //   if (this.currentIndex < this.CertificationDetails.length - 1) {
+  //     this.currentIndex++;
+  //     this.currentCertification = this.CertificationDetails[this.currentIndex];
+  //   }
+  // }
+
   prevCertification() {
     if (this.currentIndex > 0) {
       this.currentIndex--;
-      this.currentCertification = this.CertificationDetails[this.currentIndex];
+      this.currentCertification = this.courseResultData[this.currentIndex];
+    }
+  }
+  
+  nextCertification() {
+    if (this.currentIndex < this.courseResultData.length - 1) {
+      this.currentIndex++;
+      this.currentCertification = this.courseResultData[this.currentIndex];
     }
   }
 
-  nextCertification() {
-    if (this.currentIndex < this.CertificationDetails.length - 1) {
-      this.currentIndex++;
-      this.currentCertification = this.CertificationDetails[this.currentIndex];
-    }
-  }
 
   getLeftValue(): string {
     const score = +this.selectedAssessment.SCORE_TOTAL; 
@@ -440,14 +457,70 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
     })
   }
 
-  // getCourseDetails(){
+  // getCandidateCourseDetails(){
   //   var courseObj={};
   //   courseObj={
+  //     "userEmail": this.candidateStatus?.email
   //   }
-  //   this.apiService.courseTracking(courseObj).subscribe((response:any)=>{
+  //   this.apiService.getcourseTracking(courseObj).subscribe((response:any)=>{
   //     if(response.success){
-  //       this.candidateCourseData = response.data
+  //       this.courseResultData = response.data
+  //       console.log(this.courseResultData,'courseResultData');
   //     }
   //   })
   // }
+
+  //working
+
+  getCandidateCourseDetails() {
+    var courseObj = {
+      "userEmail": this.candidateStatus?.email
+    };
+    this.apiService.getcourseTracking(courseObj).subscribe((response: any) => {
+      if (response.success) {
+        this.courseResultData = response.data; 
+        console.log(this.courseResultData, 'courseResultData');
+        this.currentIndex = 0; 
+        this.currentCertification = this.courseResultData[0]; 
+      }
+    });
+  }
+
+  // getCandidateCourseDetails() {
+  //   var courseObj = {
+  //     "userEmail": this.candidateStatus?.email
+  //   };
+  //   this.apiService.getcourseTracking(courseObj).subscribe((response: any) => {
+  //     if (response.success) {
+  //       this.courseResultData = response.data;
+  //       console.log(this.courseResultData, 'courseResultData');
+        
+  //       // Push additional values to the courseResultData array
+  //       this.courseResultData.push(
+  //         {
+  //           "courseName": "PROD Course - Concrete Updated001",
+  //           "coursePercentage": "0",
+  //           "courseId": "m8e6bxe9",
+  //           "courseImgUrl": "https://lxpdevstorage.blob.core.windows.net/container1/images/8767635887412857-Concrete.jpg"
+  //         },
+  //         {
+  //           "courseName": "Four Level - Design of Structural Steel",
+  //           "coursePercentage": "0",
+  //           "courseId": "ajj8y8d0",
+  //           "courseImgUrl": "https://lxpdevstorage.blob.core.windows.net/container1/images/5576570247112613-Codes for foundation.jpg"
+  //         },
+  //         {
+  //           "courseName": "Applied Industrial IoT(2Credit)",
+  //           "coursePercentage": "0",
+  //           "courseId": "oyme1jgr",
+  //           "courseImgUrl": "https://lxpdevstorage.blob.core.windows.net/container1/images/6898463953642624-Applied Industrial IoT.png"
+  //         }
+  //       );
+        
+  //       this.currentIndex = 0;
+  //       this.currentCertification = this.courseResultData[0];
+  //     }
+  //   });
+  // }
+  
 }

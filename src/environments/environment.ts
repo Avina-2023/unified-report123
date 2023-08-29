@@ -17,7 +17,7 @@ export const environment = {
   API_BASE_URL: 'https://skilledgedev.lntedutech.com',
   API_BASE_URL_RE: 'https://reportedgedev.lntedutech.com',
   NODE_EDGE_URL: 'https://skilledgedev.lntedutech.com',
-  NODE_URL: 'https://uapcoreservicesdev.lntedutech.com',
+  NODE_URL: 'https://uapcoreservicesdev.lntedutech.com',
   PROCTOR_URL : 'http://lntproctordev.lntedutech.com/api/storage/',
   PROCTOR : 'https://lntproctordev.lntedutech.com',
   MONGOCHARTURL: 'https://charts.mongodb.com/charts-microcertuat-gzomw',

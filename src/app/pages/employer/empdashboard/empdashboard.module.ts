@@ -20,6 +20,8 @@ import { DetailsCardComponent } from './dashboard/details-card/details-card.comp
 import { ActionButtonsComponent } from '../drive/viewCandidateByDrive/actionButtons/actionButtons.component';
 import { CandidateDetailsCardComponent } from './dashboard/candidate-details-card/candidate-details-card.component';
 import { CandidateSearchComponent } from './candidate-search/candidate-search.component';
+import { NgCircleProgressModule } from 'ng-circle-progress';
+
 @NgModule({
   declarations: [
     DashboardComponent,
@@ -44,7 +46,8 @@ import { CandidateSearchComponent } from './candidate-search/candidate-search.co
     MatChipsModule,
     ReactiveFormsModule,
     FormsModule,
-    NgApexchartsModule
+    NgApexchartsModule,
+    NgCircleProgressModule
   ],
 })
 export class EmployerModule { }
