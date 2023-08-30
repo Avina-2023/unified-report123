@@ -1,5 +1,5 @@
 <div class="container-fluid p-0" style="overflow:hidden;">
-    <div class="top-bg p-4">
+    <div class="top-bg ">
         <!-- <div class="row mb-3">
             <div class="col-md-6">
                 <div class="top-left">
@@ -33,13 +33,13 @@
                 </div>
             </div>
             <div class="percent-side">
-                <div>
+                <div class="percent-side-bg">
                   <circle-progress
                     [percent]="profileCompletion"
                     [radius]="30"
                     [showImage]="false"
                     [showSubtitle]="false"
-                    [titleColor]="'#ffffff'"
+                    [titleColor]="'#000000'"
                     [outerStrokeWidth]="7"
                     [innerStrokeWidth]="0"
                     [outerStrokeColor]="'#FFB74D'"
@@ -50,7 +50,7 @@
                 <div class="prof-comp">
                     <span class="prof-comp1">Profile Completion</span>
                 </div>
-            </div>
+            </div> 
         </div>
     </div>
 
@@ -65,20 +65,19 @@
                     <div class="card-body">
                         <div class="media d-flex">
                             <div class="media-body text-left">
-                                <span class="card-head">Total Candidates</span>
+                                <span class="card-head">Total Number Of Students</span>
                                 <div class="card-number">{{ dashBoardDetails[0]?.cardDetails.totalCandidate }}</div>
-                            </div>
+                            </div> 
                             <div class="align-self-center">
                                 <img class="font-large-2 float-right ic-img"
-                                    src="../../../assets/images/emp-dashboard-icons/small-ic-1.png">
-                            </div>
+                                    src="../../../assets/images/emp-dashboard-icons/small-ic-1.png"> 
+                            </div> 
                         </div>
                         <div class="media d-flex">
                             <div class="card-inside-percentage-box">
                                 <span class="icon-arrow-round-up"></span>
-                                <span>
-                                   {{
-                                    dashBoardDetails[0]?.cardDetails.totalCandidateIncrease }} %
+                                <span> 
+                                   {{ dashBoardDetails[0]?.cardDetails.totalCandidateIncrease }} %
                                 </span>
                             </div>
                             <span class="ml-2 card-last-text">Since last month</span>
@@ -151,14 +150,14 @@
                     <div class="card-body">
                         <div class="media d-flex">
                             <div class="media-body text-left">
-                                <span class="card-head"> Assessed Candidates</span>
+                                <span class="card-head">Total Number Of Students Assessed</span>
                                 <div class="card-number">{{ dashBoardDetails[0]?.cardDetails.assessedCandidates }}
-                                </div>
-                            </div>
+                                </div> 
+                            </div> 
                             <div class="align-self-center">
                                 <img class="font-large-2 float-right ic-img"
                                     src="../../../assets/images/emp-dashboard-icons/small-ic-3.png">
-                            </div>
+                            </div> 
                         </div>
                         <div class="media d-flex">
                             <div class="card-inside-percentage-box">
@@ -167,11 +166,11 @@
                                     {{
                                     dashBoardDetails[0]?.cardDetails.assessedCandidatesIncrease }}%
                                 </span>
-                            </div>
-                            <span class="ml-2 card-last-text">Since last month</span>
-                        </div>
-                    </div>
-                </div>
+                            </div> 
+                            <span class="ml-2 card-last-text">Since last month</span> 
+                        </div> 
+                    </div> 
+                </div> 
             </div>
         </div>
         <div class="col-md-4">
@@ -180,7 +179,7 @@
                     <div class="card-body">
                         <div class="media d-flex">
                             <div class="media-body text-left">
-                                <span class="card-head">Trained Candidates</span>
+                                <span class="card-head">Total Number Of Students Trained</span>
                                 <div class="card-number">{{ dashBoardDetails[0]?.cardDetails.trainedCandidate }}
                                 </div>
                             </div>
@@ -285,10 +284,6 @@
             <app-degree-chart [item]="degreeData"></app-degree-chart>
         </div>
     </div>
-
-    <!-- <app-details-card>
-        
-    </app-details-card> -->
 
     <!-- <app-candidate-details-card>
         

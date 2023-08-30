@@ -94,36 +94,6 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
       "Score": "77",
       "imgurl":"https://lmsassetspremium.lntedutech.com/portalicons/lean-construction.webp"
     },
-    // {
-    //   "Name" : "Certificate 4",
-    //   "Score": "90",
-    //   "imgurl":"https://lmsassetspremium.lntedutech.com/portalicons/concept-of-project-risk.webp"
-    // },
-    // {
-    //   "Name" : "Certificate 5",
-    //   "Score": "50",
-    //   "imgurl":"https://lmsassetspremium.lntedutech.com/portalicons/concept-of-project-risk.webp"
-    // },
-    // {
-    //   "Name" : "Certificate 6",
-    //   "Score": "60",
-    //   "imgurl":"https://lmsassetspremium.lntedutech.com/portalicons/concept-of-project-risk.webp"
-    // },
-    // {
-    //   "Name" : "Certificate 7",
-    //   "Score": "70",
-    //   "imgurl":"https://lmsassetspremium.lntedutech.com/portalicons/concept-of-project-risk.webp"
-    // },
-    // {
-    //   "Name" : "Certificate 8",
-    //   "Score": "80",
-    //   "imgurl":"https://lmsassetspremium.lntedutech.com/portalicons/concept-of-project-risk.webp"
-    // },
-    // {
-    //   "Name" : "Certificate 9",
-    //   "Score": "90",
-    //   "imgurl":"https://lmsassetspremium.lntedutech.com/portalicons/concept-of-project-risk.webp"
-    // },
   ]
 
   // emailId: string = 'ltidemouser1@dispostable.com';
