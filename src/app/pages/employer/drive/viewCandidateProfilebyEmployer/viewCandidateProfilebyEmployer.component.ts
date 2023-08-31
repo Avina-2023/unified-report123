@@ -100,6 +100,8 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
   candidateResultData: any;
   candidateCourseData: any;
   courseResultData: any;
+  courseImg: any;
+  courseImg1: any;
 
 
   constructor(
@@ -449,9 +451,12 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
     this.apiService.getcourseTracking(courseObj).subscribe((response: any) => {
       if (response.success) {
         this.courseResultData = response.data; 
-        console.log(this.courseResultData, 'courseResultData');
+        // this.courseImg = this.courseResultData.courseImgUrl + environment.SAS_Token
+        // console.log(this.courseResultData, 'courseResultData');
         this.currentIndex = 0; 
         this.currentCertification = this.courseResultData[0]; 
+        // console.log(this.currentCertification,'currentCertificationcurrentCertification');
+        this.courseImg1 = this.currentCertification.courseImgUrl + environment.SAS_Token  
       }
     });
   }

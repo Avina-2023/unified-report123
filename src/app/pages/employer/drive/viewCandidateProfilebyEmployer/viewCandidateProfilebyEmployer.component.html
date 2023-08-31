@@ -769,9 +769,9 @@
         <ng-container *ngIf="AssesmentDetails.length > 0">
           <mat-card class="asses-details-card" >
             <div class="assessment-container" >
-              <div class="prev-next">
                 <div class="assesment-detail">
-                  Assesment Details 
+                  <div class="ass-name">Assesment Details </div>
+                  <div class="prev-next">
                   <div mat-icon-button class="nav-icon" (click)="showPrevious()" [ngClass]="{'disabled': assessmentIndex === 0}">
                     <mat-icon>keyboard_arrow_left</mat-icon>
                   </div>
@@ -781,7 +781,14 @@
                  </div>
               </div>
               <div class="ass-image">
-                <img src="https://www.shutterstock.com/image-photo/rear-view-business-man-using-260nw-624272975.jpg" alt="" />
+                <!-- <img src="https://t3.ftcdn.net/jpg/02/45/87/36/360_F_245873693_0geCBYQipchlBwGPXskG5SZckAdJkTLa.jpg" alt="" /> -->
+                <img src="https://media.istockphoto.com/id/1398462038/photo/online-exam-or-test.jpg?s=612x612&w=0&k=20&c=hvaH_2oA0Dm-tpQ8T5JBF_39QF3xhpic38Yi2AngaCE=" alt=""/>
+                <!-- <img src="https://media.istockphoto.com/id/1483355290/photo/businessman-using-a-laptop-and-taking-an-assessment-questionnaire-evaluation-online-survey.jpg?s=612x612&w=0&k=20&c=PhztRjrkCSetcm_9cWDDB1IIgw1hi4tr7FF8BbBkWeg=" alt=""/> -->
+                <!-- <img src="https://media.istockphoto.com/id/1445353573/photo/assessment-questionnaire-quiz-or-survey-form-with-checkboxes-on-computer-screen-person.jpg?s=612x612&w=0&k=20&c=vBaRGBc2mT5U1FCBbSTYdZM-dGc0rvoZ99lQzye525U=" alt=""/> -->
+                <!-- <img src="https://media.istockphoto.com/id/1488803384/photo/digital-assets-document-and-mark-correct-sign-for-standard-quality-control-certification.jpg?s=612x612&w=0&k=20&c=3NMj_esWa686dlpCW-ECOvkT6KqLCPN6UjrNUKO7_1M=" alt=""/> -->
+                <!-- <img src="https://media.istockphoto.com/id/1516691318/photo/service-quality-assurance-guarantee-standards-iso-standards-quality-assurance-control.jpg?s=612x612&w=0&k=20&c=bBixTCD6d-WWd2Ec3rB7e0XSG-GXYirKfanamn2qG80=" alt=""/> -->
+                <!-- <img src="https://media.istockphoto.com/id/1498727341/photo/checklist-and-clipboard-task-documentation-management-business-people-working-laptop.jpg?s=612x612&w=0&k=20&c=fS4lhJ8B0A8H3tl9aCJ1nK4cOQGxQfRj5Lee1p612wA=" alt=""/> -->
+                
                 <div class="ass-name">{{selectedAssessment.Test_Name}}</div>
               </div>
               <div class="ass-date">
@@ -850,8 +857,8 @@
       
             <ng-container *ngIf="currentCertification">
               <div class="course-image">
+                <img [src]="courseImg1" alt="" /> 
                 <!-- <img [src]="currentCertification.courseImgUrl" alt="" /> -->
-                <img src="https://miro.medium.com/v2/resize:fit:1400/1*bMgQ8MhbnQexpqHgIgBJPA.png" alt="" />
                 <div class="overlay-2">{{ currentCertification.courseName }}</div>
               </div>
               <div class="percen">
