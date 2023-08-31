@@ -18,5 +18,9 @@ export class DetailsCardComponent implements OnInit {
 
   ngOnInit() {
   }
+  getBorderColor(index: number): string {
+    const colors = ['#27BBEE', '#43425D', '#1B4E9B', '#49AE31']; 
+    return colors[index % colors.length];
+  }
 
 }

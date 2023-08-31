@@ -433,11 +433,12 @@ export class ViewCandidateByDriveComponent implements OnInit {
       {
         headerName: 'Actions',
         field: '',
-        minWidth: 225,
+        minWidth: 150,
         cellRenderer: 'moreOptions',
         //  onCellClicked: this.sendJobData(),
         suppressColumnsToolPanel: true,
         filter: false,
+        pinned: 'right',
       }
 
     ];
