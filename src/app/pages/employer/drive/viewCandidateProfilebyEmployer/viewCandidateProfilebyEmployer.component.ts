@@ -57,8 +57,6 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
   @ViewChild('matDialog', { static: false }) matDialogRef: TemplateRef<any>;
   @ViewChild('confirmmatDialog') confirmmatDialogRef!: TemplateRef<any>;
   @ViewChild('rejectDialog') rejectDialogRef!: TemplateRef<any>;
-  // @ViewChild('myprogress', { static: false }) progressBar: ElementRef;
-  // @ViewChild('progressText', { static: false }) progressText: ElementRef;
   @ViewChild('confirmrejectmatDialog')
   
   confirmrejectmatDialogRef!: TemplateRef<any>;
@@ -96,6 +94,28 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
     },
   ]
 
+  // Assuming you have an array of external data to be added
+ externalData:any = [
+  {
+    "courseName": "PROD Course - Concrete Updated001",
+    "coursePercentage": "65",
+    "courseId": "m8e6bxe9",
+    "courseImgUrl": "https://lxpdevstorage.blob.core.windows.net/container1/images/8767635887412857-Concrete.jpg"
+  },
+  {
+    "courseName": "Four Level - Design of Structural Steel",
+    "coursePercentage": "70",
+    "courseId": "ajj8y8d0",
+    "courseImgUrl": "https://lxpdevstorage.blob.core.windows.net/container1/images/5576570247112613-Codes for foundation.jpg"
+  },
+  {
+    "courseName": "Applied Industrial IoT(2Credit)",
+    "coursePercentage": "90",
+    "courseId": "oyme1jgr",
+    "courseImgUrl": "https://lxpdevstorage.blob.core.windows.net/container1/images/6898463953642624-Applied Industrial IoT.png"
+  }
+];
+
   // emailId: string = 'ltidemouser1@dispostable.com';
   candidateResultData: any;
   candidateCourseData: any;
@@ -121,7 +141,6 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
       this.appConfig.getLocalStorage('C_Candidate_status')
     );
     this.CandidateDetails();
-    console.log(this.AssesmentDetails)
     // let localjobData = JSON.parse(
     //   this.appConfig.getLocalStorage('currentJobData')
     // );
@@ -138,7 +157,6 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
     if (this.assessmentIndex > 0) {
       this.assessmentIndex--;
       this.selectedAssessment = this.AssesmentDetails[this.assessmentIndex];
-      console.log("previous",this.AssesmentDetails);
     }
   }
 
@@ -149,20 +167,6 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
       this.selectedAssessment = this.AssesmentDetails[this.assessmentIndex];
     }
   }
-
-  // prevCertification() {
-  //   if (this.currentIndex > 0) {
-  //     this.currentIndex--;
-  //     this.currentCertification = this.CertificationDetails[this.currentIndex];
-  //   }
-  // }
-
-  // nextCertification() {
-  //   if (this.currentIndex < this.CertificationDetails.length - 1) {
-  //     this.currentIndex++;
-  //     this.currentCertification = this.CertificationDetails[this.currentIndex];
-  //   }
-  // }
 
   prevCertification() {
     if (this.currentIndex > 0) {
@@ -178,14 +182,11 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
     }
   }
 
-
   getLeftValue(): string {
     const score = +this.selectedAssessment.SCORE_TOTAL; 
     const leftPercentage = (score / 100) * 100; 
     return leftPercentage + '%';
   }
-
-
 
   scrollTo(direction: 'left' | 'right') { 
     const container = this.headerRef.nativeElement; 
@@ -198,6 +199,41 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
     } 
   } 
 
+  // CandidateDetails() {
+  //   var obj = {};
+  //   obj = {
+  //     email: this.apiService.encryptnew(
+  //       this.candidateStatus.email,
+  //       environment.cryptoEncryptionKey
+  //     ),
+  //   };
+  //   // obj = {
+  //   //   email: this.apiService.encryptnew(
+  //   //     'gokul47@dispostable.com',
+  //   //     environment.cryptoEncryptionKey
+  //   //   ),
+  //   // };
+  //   this.apiService.candidateDetails(obj).subscribe((res: any) => {
+  //     if (res.success) {
+  //       // if (Array.isArray(res.data)) {
+  //       this.candidateData = res.data;
+  //       console.log(this.candidateData, 'candidate data');
+  //       this.getStateAPI();
+  //       // this.getAllPresentCities;
+  //       // } else {
+  //       //   this.candidateData = [res.data];
+  //       //   console.log(this.candidateData, 'candidate data');
+  //       // }
+  //     }
+  //     this.appConfig.setLocalStorage(
+  //       'candidateProfile',
+  //       JSON.stringify(this.candidateData)
+  //     );
+  //   });
+  // }
+
+
+
   CandidateDetails() {
     var obj = {};
     obj = {
@@ -206,23 +242,11 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
         environment.cryptoEncryptionKey
       ),
     };
-    // obj = {
-    //   email: this.apiService.encryptnew(
-    //     'gokul47@dispostable.com',
-    //     environment.cryptoEncryptionKey
-    //   ),
-    // };
     this.apiService.candidateDetails(obj).subscribe((res: any) => {
       if (res.success) {
-        // if (Array.isArray(res.data)) {
         this.candidateData = res.data;
         console.log(this.candidateData, 'candidate data');
         this.getStateAPI();
-        // this.getAllPresentCities;
-        // } else {
-        //   this.candidateData = [res.data];
-        //   console.log(this.candidateData, 'candidate data');
-        // }
       }
       this.appConfig.setLocalStorage(
         'candidateProfile',
@@ -230,6 +254,11 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
       );
     });
   }
+
+
+
+
+
 
   scrollToSection(sectionId: string) {
     this.activeSection = sectionId;
@@ -401,12 +430,12 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
   //     );
   // }
   getPermanentAddressTooltip(): string {
-    const city = this.candidateData.contact_details.permanent_city;
-    const state = this.candidateData.contact_details.permanent_state;
+    const city = this.candidateData?.contact_details.permanent_city;
+    const state = this.candidateData?.contact_details.permanent_state;
     const country = 'India'; // Assuming the country is always India for this example
 
     // Check if the state length is too long and construct the tooltip content accordingly
-    if (state.length > 15) {
+    if (state?.length > 15) {
       return `${city}, ${state}, ${country}`;
     } else {
       return `${city}, ${state}, ${country}`;
@@ -422,25 +451,12 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
         this.candidateResultData = response.data[0]
         // this.AssesmentDetails = [...this.candidateResultData.Aptitude,...this.candidateResultData.Coding,...this.candidateResultData.English];
         this.AssesmentDetails = [...this.candidateResultData.Aptitude];
-        console.log(this.candidateResultData,' this.candidateResultData');
+        console.log(this.candidateResultData,' this.AssesedcandidateData');
         console.log(this.AssesmentDetails,'AssesmentDetails');        
         this.selectedAssessment = this.AssesmentDetails[this.assessmentIndex]
       }
     })
   }
-
-  // getCandidateCourseDetails(){
-  //   var courseObj={};
-  //   courseObj={
-  //     "userEmail": this.candidateStatus?.email
-  //   }
-  //   this.apiService.getcourseTracking(courseObj).subscribe((response:any)=>{
-  //     if(response.success){
-  //       this.courseResultData = response.data
-  //       console.log(this.courseResultData,'courseResultData');
-  //     }
-  //   })
-  // }
 
   //working
 
@@ -452,10 +468,10 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
       if (response.success) {
         this.courseResultData = response.data; 
         // this.courseImg = this.courseResultData.courseImgUrl + environment.SAS_Token
-        // console.log(this.courseResultData, 'courseResultData');
+        console.log(this.courseResultData, 'courseResultData');
         this.currentIndex = 0; 
         this.currentCertification = this.courseResultData[0]; 
-        // console.log(this.currentCertification,'currentCertificationcurrentCertification');
+         console.log(this.currentCertification,'currentCertificationcurrentCertification');
         this.courseImg1 = this.currentCertification.courseImgUrl + environment.SAS_Token  
       }
     });
@@ -498,4 +514,22 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
   //   });
   // }
   
+
+  
+  // for demo purpose
+
+  // getCandidateCourseDetails() {
+  //   var courseObj = {
+  //     "userEmail": this.candidateStatus?.email
+  //   };
+  //   this.apiService.getcourseTracking(courseObj).subscribe((response: any) => {
+  //     if (response.success) {
+  //       this.courseResultData = response.data.concat(this.externalData); 
+  //       this.currentIndex = 0; 
+  //       this.currentCertification = this.courseResultData[0]; 
+  //       this.courseImg1 = this.currentCertification.courseImgUrl + environment.SAS_Token;
+  //     }
+  //   });
+  // }
+
 }
