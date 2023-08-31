@@ -25,7 +25,12 @@
     }
     .sorting {
       padding: 0px 25px 0px 0px;
+      .select_value{
+        padding: 0px 10px;
+      }
+
     }
+
     ::ng-deep .mat-form-field-flex {
       background: var(--unnamed-color-ffffff) 0% 0% no-repeat padding-box;
       background: #ffffff 0% 0% no-repeat padding-box;
@@ -107,7 +112,7 @@
           white-space: nowrap;
           text-overflow: ellipsis;
           overflow: hidden;
-          width: 170px;
+          // width: 170px;
         }
         .candidate-edu {
           display: flex;
@@ -215,3 +220,4 @@
     }
   }
 }
+
