@@ -78,6 +78,7 @@
       flex-wrap: wrap;
       align-items: center !important;
       .card-1 {
+
         display: flex;
         flex-direction: column;
         // align-items: center;
@@ -88,7 +89,13 @@
           position: absolute;
           top: 0px;
           right: 10px;
+          font-size: 20px;
         }
+                .bookmark_2 {
+                  position: absolute;
+                  top: 0px;
+                  right: 30px;
+                }
         .details {
           display: flex;
           flex-direction: column;
@@ -220,4 +227,9 @@
     }
   }
 }
-
+.col1 {
+  color: #84B6C7
+}
+.col2 {
+  color:  #92CD84
+}

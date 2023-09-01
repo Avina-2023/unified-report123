@@ -125,9 +125,9 @@
     <div class="goto-sear">
       <div class="pagintion">
         <button class="prev" (click)=" onBtPrevPage()">Prev</button>
-       <button class="one" (click)=" onBtPageOne()">1</button>
-       <button class="one" (click)="  onBtPageTwo()">2</button>
-        <button class="one" (click)=" onBtPageThree()">3</button>
+        <div *ngFor="let item of pageArray; let i = index">
+          <button class="one" (click)=" gotoPage(i+1)">{{item+1}}</button>
+        </div>
         <button class="next" (click)=" onBtNextPage()">Next</button>
       </div>
       <div class="goto"> Go To Page: </div>

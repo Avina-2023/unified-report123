@@ -30,12 +30,21 @@
           </div>
         </div>
         <br>
-        <div class="value" *ngIf="candidateStatus.trainedStatus=='Yes'"> <i class="flag_lnt icon-bookmark col1">
+        <!-- <div class="value" *ngIf="candidateStatus.trainedStatus=='Yes'"> <i class="flag_lnt icon-bookmark col1">
           </i><span class="boldcandidate">Trained by L&T EduTech</span>
-        </div>
-        <div class="value" *ngIf="candidateStatus.assessedStatus=='Yes'"><i class="flag_lnt icon-bookmark col2">
+        </div> -->
+        <div class="value" *ngIf = "courseResultData?.length > 0"> 
+          <div><span class="flag_lnt icon-bookmark col1"></span></div>
+          <div><span class="boldcandidate">Trained by L&T EduTech</span></div>
+      </div> 
+        <!-- <div class="value" *ngIf="candidateStatus.assessedStatus=='Yes'"><i class="flag_lnt icon-bookmark col2">
           </i><span class="boldcandidate">Assessed by L&T EduTech</span>
-        </div>
+        </div> -->
+        <div class="value" *ngIf="AssesmentDetails?.length > 0"> 
+          <div><span class="flag_lnt icon-bookmark col2"></span></div>
+          <div><span class="boldcandidate">Assessed by L&T EduTech</span></div>
+        </div> 
+        
       </div>
     </div>
     <div class="card_two">
@@ -62,23 +71,23 @@
             </div>
             <div class="flx_div flx_center hidden_div title">
               <div class="key">Mobile No.</div>
-              <div class="value content_wrap">{{candidateData?.personal_details.mobile}}</div>
+              <div class="value content_wrap">{{candidateData?.personal_details?.mobile}}</div>
             </div>
             <div class="flx_div flx_center hidden_div title">
               <div class="key">Gender</div>
-              <div class="value content_wrap">{{candidateData?.personal_details.gender}}</div>
+              <div class="value content_wrap">{{candidateData?.personal_details?.gender}}</div>
             </div>
             <div class="flx_div flx_center hidden_div title">
               <div class="key">Date of Birth (as per X Std Certificate)</div>
-              <div class="value content_wrap">{{candidateData?.personal_details.dob| date : 'dd-MM-yyyy'}}</div>
+              <div class="value content_wrap">{{candidateData?.personal_details?.dob| date : 'dd-MM-yyyy'}}</div>
             </div>
             <div class="flx_div flx_center hidden_div title">
               <div class="key">Marital Status</div>
-              <div class="value content_wrap">{{candidateData?.personal_details.marital_status}}</div>
+              <div class="value content_wrap">{{candidateData?.personal_details?.marital_status}}</div>
             </div>
             <div class="flx_div flx_center hidden_div title">
               <div class="key">Mother Tongue</div>
-              <div class="value content_wrap">{{candidateData?.personal_details.mother_tongue}}</div>
+              <div class="value content_wrap">{{candidateData?.personal_details?.mother_tongue}}</div>
             </div>
             <div class="flx_div flx_center hidden_div title">
               <div class="key">Domicile State</div>
@@ -127,7 +136,7 @@
             <div class="flx_center title">
               <div class="key"></div>
               <div class="flx_div flx_center flx_between"
-                *ngFor="let language of candidateData?.personal_details.languages_known">
+                *ngFor="let language of candidateData?.personal_details?.languages_known">
 
                 <span class="key">{{ language.language }}</span>
 
@@ -147,7 +156,7 @@
             </div>
 
             <div
-              *ngIf="!candidateData?.personal_details.languages_known || candidateData?.personal_details.languages_known.length === 0"
+              *ngIf="!candidateData?.personal_details?.languages_known || candidateData?.personal_details?.languages_known.length === 0"
               class="value_ar lan_mar">
               No languages details available
             </div>
@@ -163,7 +172,7 @@
                 </div>
               </div>
               <div
-                *ngIf="!candidateData?.personal_details.hobbies_intrest || candidateData?.personal_details.hobbies_intrest.length === 0"
+                *ngIf="!candidateData?.personal_details?.hobbies_intrest || candidateData?.personal_details?.hobbies_intrest.length === 0"
                 class="value_ar hob_mar">
                 No Hobbies/Interests details available
               </div>
@@ -192,16 +201,16 @@
                 <div class="flx_div flx_baseline title">
                   <div class="key">Present Address</div>
                   <div class="value" id="presentAddress">
-                    {{candidateData?.contact_details.present_line_street_addres}}
-                    {{candidateData?.contact_details.present_line2_street_addre ? ', ' +
-                    candidateData?.contact_details.present_line2_street_addre : ''}}
-                    {{candidateData?.contact_details.present_address_line_3 ? ', ' +
-                    candidateData?.contact_details.present_address_line_3
+                    {{candidateData?.contact_details?.present_line_street_addres}}
+                    {{candidateData?.contact_details?.present_line2_street_addre ? ', ' +
+                    candidateData?.contact_details?.present_line2_street_addre : ''}}
+                    {{candidateData?.contact_details?.present_address_line_3 ? ', ' +
+                    candidateData?.contact_details?.present_address_line_3
                     : ''}},
                     {{form_present_city ? ', ' + form_present_city : 'NA'}}
                     {{form_present_state ? ', ' + form_present_state : 'NA'}},
                     <!-- {{form_present_country ? ', ' + form_present_country : 'NA'}}, -->
-                    {{candidateData?.contact_details.present_zip}}
+                    {{candidateData?.contact_details?.present_zip}}
                   </div>
                 </div>
               </div>
@@ -219,18 +228,18 @@
                 <div class="flx_div flx_baseline title">
                   <div class="key">Permanent Address</div>
                   <div class="value" id="permanentAddress">
-                    {{candidateData?.contact_details.permanent_line1_street_add}}
-                    {{candidateData?.contact_details.permanent_line2_street_add ? ', ' +
-                    candidateData?.contact_details.permanent_line2_street_add : ''}}
-                    {{candidateData?.contact_details.permanent_address_line_3 ? ', ' +
-                    candidateData?.contact_details.permanent_address_line_3 : ''}}
-                    {{candidateData?.contact_details.permanent_city ? ', ' + candidateData?.contact_details.permanent_city
+                    {{candidateData?.contact_details?.permanent_line1_street_add}}
+                    {{candidateData?.contact_details?.permanent_line2_street_add ? ', ' +
+                    candidateData?.contact_details?.permanent_line2_street_add : ''}}
+                    {{candidateData?.contact_details?.permanent_address_line_3 ? ', ' +
+                    candidateData?.contact_details?.permanent_address_line_3 : ''}}
+                    {{candidateData?.contact_details?.permanent_city ? ', ' + candidateData?.contact_details?.permanent_city
                     : ''}}
-                    {{candidateData?.contact_details.permanent_state ? ', ' +
-                    candidateData?.contact_details.permanent_state : ''}}
-                    {{candidateData?.contact_details.permanent_country ? ', ' +
-                    candidateData?.contact_details.permanent_country : ''}}
-                    {{candidateData?.contact_details.permanent_zip ? '-' + candidateData?.contact_details.permanent_zip :
+                    {{candidateData?.contact_details?.permanent_state ? ', ' +
+                    candidateData?.contact_details?.permanent_state : ''}}
+                    {{candidateData?.contact_details?.permanent_country ? ', ' +
+                    candidateData?.contact_details?.permanent_country : ''}}
+                    {{candidateData?.contact_details?.permanent_zip ? '-' + candidateData?.contact_details?.permanent_zip :
                     ''}}
                   </div>
                 </div>
@@ -360,15 +369,15 @@
               <div class="key_totalexp">Total Experience</div>
               <div class="experience">
                 <div class="experience-box"
-                  *ngIf="candidateData?.experience_details.work_details.total_exp_years || candidateData?.experience_details.work_details.total_exp_months">
-                  {{ candidateData?.experience_details.work_details.total_exp_years }}</div>
-                <span class="value_2" *ngIf="candidateData?.experience_details.work_details.total_exp_years">Years</span>
-                <div class="experience-box" *ngIf="candidateData?.experience_details.work_details.total_exp_months">
-                  {{ candidateData?.experience_details.work_details.total_exp_months }}</div>
+                  *ngIf="candidateData?.experience_details?.work_details?.total_exp_years || candidateData?.experience_details?.work_details?.total_exp_months">
+                  {{ candidateData?.experience_details?.work_details?.total_exp_years }}</div>
+                <span class="value_2" *ngIf="candidateData?.experience_details?.work_details?.total_exp_years">Years</span>
+                <div class="experience-box" *ngIf="candidateData?.experience_details?.work_details?.total_exp_months">
+                  {{ candidateData?.experience_details?.work_details?.total_exp_months }}</div>
                 <span class="value_2"
-                  *ngIf="candidateData?.experience_details.work_details.total_exp_months">Months</span>
+                  *ngIf="candidateData?.experience_details?.work_details?.total_exp_months">Months</span>
                 <span class="no-experience"
-                  *ngIf="!candidateData?.experience_details.work_details.total_exp_years && !candidateData?.experience_details.work_details.total_exp_months">No
+                  *ngIf="!candidateData?.experience_details?.work_details?.total_exp_years && !candidateData?.experience_details?.work_details?.total_exp_months">No
                   Experience</span>
               </div>
             </div>
@@ -376,12 +385,12 @@
             <div class="profile_details pd-20">
               <h2 class="head_title_skills">Skills </h2>
               <div class="flx_div skills">
-                <div *ngFor="let skill of candidateData?.experience_details.skills">{{ skill.skill }}</div>
+                <div *ngFor="let skill of candidateData?.experience_details?.skills">{{ skill.skill }}</div>
               </div>
             </div>
             <h2 class="head_title"> Professional Experience </h2>
             <div class="brdr_btm_line pb-10"
-              *ngFor="let employment of candidateData?.experience_details.employments; let i = index">
+              *ngFor="let employment of candidateData?.experience_details?.employments; let i = index">
               <h2 class="sub_heading">Employment {{i+1}}</h2>
               <div>
                 <div class="flx_div flx_center hidden_div title">
@@ -413,14 +422,14 @@
                 </div>
                 <div class="flx_div flx_center hidden_div title" *ngIf="!employment.is_working_here">
                   <div class="key">Duration To</div>
-                  <div class="value content_wrap">{{ employment.duration_to ? (employment.duration_to | date : 'MMM y')
+                  <div class="value content_wrap">{{ employment?.duration_to ? (employment?.duration_to | date : 'MMM y')
                     : 'NIL' }}</div>
                 </div>
                 <div class="flx_div flx_baseline title">
                   <div class="key_edu">
                     <div class="value_withcheckbox">
-                      <label *ngIf="employment.is_working_here">
-                        <input type="checkbox" [checked]="employment.is_working_here" disabled />
+                      <label *ngIf="employment?.is_working_here">
+                        <input type="checkbox" [checked]="employment?.is_working_here" disabled />
                         I am Currently working here
                       </label>
                     </div>
@@ -430,9 +439,9 @@
             </div>
             <h2 class="head_title"> Articleship/Training Details</h2>
             <div class="brdr_btm_line pb-10"
-              *ngFor="let employment of candidateData?.experience_details.intern; let i = index">
+              *ngFor="let employment of candidateData?.experience_details?.intern; let i = index">
               <h2 class="sub_heading">Articleship/Training {{i+1}}</h2>
-              <div *ngIf="candidateData?.experience_details.is_intern_status == true">
+              <div *ngIf="candidateData?.experience_details?.is_intern_status == true">
                 <div class="flx_div flx_center hidden_div title">
                   <div class="key">Employer Name</div>
                   <div class="value content_wrap">
@@ -455,7 +464,7 @@
                   </div>
                 </div>
               </div>
-              <div *ngIf="candidateData?.experience_details.is_intern_status != true">
+              <div *ngIf="candidateData?.experience_details?.is_intern_status != true">
                 <div class="value_ar">No Articleship/Training Details Available</div>
               </div>
             </div>
@@ -663,7 +672,7 @@
             <div class="horizonatlscrollline"> 
               <div class="horizonatlline">
                 <div class="horizonatllinecircle" [style.left]="getLeftValue()">
-                  <div class="horizonatllinecircleinsidetext">{{selectedAssessment.SCORE_TOTAL<0?0:selectedAssessment.SCORE_TOTAL}}</div>
+                  <div class="horizonatllinecircleinsidetext">{{selectedAssessment.max_score<0?0:selectedAssessment.max_score}}</div>
                 </div>
               </div>        
             </div>
@@ -672,14 +681,14 @@
                 <span class="rating">Ratings:</span>
               </div>
             <div>
-                <img *ngIf="selectedAssessment.SCORE_TOTAL <= 33" src="../../../../../assets/images/red-semi.png">
-                <img *ngIf="selectedAssessment.SCORE_TOTAL >= 34 && selectedAssessment.SCORE_TOTAL <= 66" src="../../../../../assets/images/orange-semi.png">
-                <img *ngIf="selectedAssessment.SCORE_TOTAL >= 67 && selectedAssessment.SCORE_TOTAL <= 100" src="../../../../../assets/images/green-semi.png">
+                <img *ngIf="selectedAssessment.max_score <= 33" src="../../../../../assets/images/red-semi.png">
+                <img *ngIf="selectedAssessment.max_score >= 34 && selectedAssessment.max_score <= 66" src="../../../../../assets/images/orange-semi.png">
+                <img *ngIf="selectedAssessment.max_score >= 67 && selectedAssessment.max_score <= 100" src="../../../../../assets/images/green-semi.png">
               </div>
               <div>
-                <span class="behaviour1" *ngIf="selectedAssessment.SCORE_TOTAL <= 33">Low</span>
-                <span class="behaviour2" *ngIf="selectedAssessment.SCORE_TOTAL >= 34 && selectedAssessment.SCORE_TOTAL <= 66">Average</span>
-                <span class="behaviour" *ngIf="selectedAssessment.SCORE_TOTAL >= 67 && selectedAssessment.SCORE_TOTAL <= 100">Good</span>
+                <span class="behaviour1" *ngIf="selectedAssessment.max_score <= 33">Low</span>
+                <span class="behaviour2" *ngIf="selectedAssessment.max_score >= 34 && selectedAssessment.max_score <= 66">Average</span>
+                <span class="behaviour" *ngIf="selectedAssessment.max_score >= 67 && selectedAssessment.max_score <= 100">Good</span>
               </div>
             </div>   
           </div>
@@ -791,11 +800,12 @@
                 <!-- <img src="https://media.istockphoto.com/id/1516691318/photo/service-quality-assurance-guarantee-standards-iso-standards-quality-assurance-control.jpg?s=612x612&w=0&k=20&c=bBixTCD6d-WWd2Ec3rB7e0XSG-GXYirKfanamn2qG80=" alt=""/> -->
                 <!-- <img src="https://media.istockphoto.com/id/1498727341/photo/checklist-and-clipboard-task-documentation-management-business-people-working-laptop.jpg?s=612x612&w=0&k=20&c=fS4lhJ8B0A8H3tl9aCJ1nK4cOQGxQfRj5Lee1p612wA=" alt=""/> -->
                 
-                <div class="ass-name">{{selectedAssessment.Test_Name}}</div>
+                <div class="ass-name" *ngIf="selectedAssessment.test_name">{{selectedAssessment.test_name}}</div>
+                <div class="ass-name" *ngIf="selectedAssessment.assessment_name">{{selectedAssessment.assessment_name}}</div>
               </div>
               <div class="ass-date">
                 <div>
-                  <span class="asses-datee">{{selectedAssessment.Delivery_Start_Time|date}}</span>
+                  <span class="asses-datee">{{selectedAssessment.assessment_date|date}}</span>
                 </div>
                 <div>
                   <div class="stats">{{'Completed'}}</div>
@@ -807,7 +817,7 @@
               <div class="horizonatlscrollline"> 
                 <div class="horizonatlline">
                   <div class="horizonatllinecircle" [style.left]="getLeftValue()">
-                    <div class="horizonatllinecircleinsidetext">{{selectedAssessment.SCORE_TOTAL<0?0:selectedAssessment.SCORE_TOTAL}}</div>
+                    <div class="horizonatllinecircleinsidetext">{{selectedAssessment.max_score<0?0:selectedAssessment.max_score}}</div>
                   </div>
                 </div>        
               </div>
@@ -816,16 +826,16 @@
                   <span class="rating">Ratings:</span>
                 </div>
               <div>
-                  <!-- <img *ngIf="selectedAssessment.SCORE_TOTAL >= 0 && selectedAssessment.SCORE_TOTAL <= 33" src="../../../../../assets/images/red-semi.png"> -->
-                  <img *ngIf="selectedAssessment.SCORE_TOTAL <= 33" src="../../../../../assets/images/red-semi.png">
-                  <img *ngIf="selectedAssessment.SCORE_TOTAL >= 34 && selectedAssessment.SCORE_TOTAL <= 66" src="../../../../../assets/images/orange-semi.png">
-                  <img *ngIf="selectedAssessment.SCORE_TOTAL >= 67 && selectedAssessment.SCORE_TOTAL <= 100" src="../../../../../assets/images/green-semi.png">
+                  <!-- <img *ngIf="selectedAssessment.max_score >= 0 && selectedAssessment.max_score <= 33" src="../../../../../assets/images/red-semi.png"> -->
+                  <img *ngIf="selectedAssessment.max_score <= 33" src="../../../../../assets/images/red-semi.png">
+                  <img *ngIf="selectedAssessment.max_score >= 34 && selectedAssessment.max_score <= 66" src="../../../../../assets/images/orange-semi.png">
+                  <img *ngIf="selectedAssessment.max_score >= 67 && selectedAssessment.max_score <= 100" src="../../../../../assets/images/green-semi.png">
                 </div>
                 <div>
-                  <!-- <span class="behaviour1" *ngIf="selectedAssessment.SCORE_TOTAL >= 0 && selectedAssessment.SCORE_TOTAL <= 33">Low</span> -->
-                  <span class="behaviour1" *ngIf="selectedAssessment.SCORE_TOTAL <= 33">Low</span>
-                  <span class="behaviour2" *ngIf="selectedAssessment.SCORE_TOTAL >= 34 && selectedAssessment.SCORE_TOTAL <= 66">Average</span>
-                  <span class="behaviour" *ngIf="selectedAssessment.SCORE_TOTAL >= 67 && selectedAssessment.SCORE_TOTAL <= 100">Good</span>
+                  <!-- <span class="behaviour1" *ngIf="selectedAssessment.max_score >= 0 && selectedAssessment.max_score <= 33">Low</span> -->
+                  <span class="behaviour1" *ngIf="selectedAssessment.max_score <= 33">Low</span>
+                  <span class="behaviour2" *ngIf="selectedAssessment.max_score >= 34 && selectedAssessment.max_score <= 66">Average</span>
+                  <span class="behaviour" *ngIf="selectedAssessment.max_score >= 67 && selectedAssessment.max_score <= 100">Good</span>
                 </div>
               </div>   
             </div>
@@ -953,7 +963,7 @@
         <img class="rejected_icon" src="../../../../../assets/images/rejected red filled.svg">
       </div>
       <div class="text">
-        <span class="boldcandidate">{{candidateData?.personal_details.name}}</span> has been
+        <span class="boldcandidate">{{candidateData?.personal_details?.name}}</span> has been
         <span> Rejected successfully</span>
       </div>
       <div class="button-wrapper-form-pop-up">

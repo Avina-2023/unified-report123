@@ -19,7 +19,13 @@
     </div>
     <div class="candidate-card">
       <mat-card class="card-1" *ngFor="let item of candidatelist;">
-        <span class="icon-bookmark"></span>
+
+        <span class="">
+          <span *ngIf="item.assessments"><i *ngIf="item?.assessments?.length" class="flag_lnt icon-bookmark col1"
+              matTooltip="Assessed by L&T EduTech"></i></span>
+          <span *ngIf="item.courses"><i *ngIf="item?.courses?.length" class="flag_lnt icon-bookmark bookmark_2 col2"
+              matTooltip="Certified by L&T EduTech"></i></span>
+        </span>
         <div class="details">
           <div class="candidate-image">
             <img *ngIf="item.profileImage; else noProfileImage" [src]="item.profileImage" alt="Profile Picture"
@@ -55,18 +61,16 @@
           </div>
           <span style="border: 1px solid #E6E6E6;"></span>
           <div class="view-prof" (click)="clickSave(item)"
-            [ngStyle]="item.isSaved ? { 'background-color': '#1b4e9b', 'color': '#ffffff' } : {}">
+            [ngStyle]="item.savedStatus ? { 'background-color': '#1b4e9b', 'color': '#ffffff' } : {}">
             <div>
-              <mat-icon class="view-icon" [ngStyle]="item.isSaved ? { 'color': '#ffffff' } : {}">save</mat-icon>
+              <mat-icon class="view-icon" [ngStyle]="item.savedStatus ? { 'color': '#ffffff' } : {}">save</mat-icon>
             </div>
             <div>
               <button mat-button class="button2" [class]="item.customClass">
-                {{ item.isSaved ? 'Saved' : 'Save' }}
+                {{ item.savedStatus ? 'Saved' : 'Save' }}
               </button>
             </div>
           </div>
-
-
         </div>
         <!-- <div class="act-button">
           <div class="view-profile">
