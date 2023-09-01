@@ -55,7 +55,10 @@ export class CandidateDetailsCardComponent implements OnInit {
     this.router.navigate(['/auth/dashboard/dashboard']);
   }
   toviewprofile(candidateData) {
-    this.appconfig.setLocalStorage("C_Candidate_status", JSON.stringify(candidateData));
+    this.appconfig.setLocalStorage(
+      'C_Candidate_status',
+      JSON.stringify(candidateData)
+    );
     this.router.navigate(['/auth/drive/viewCandidateProfilebyEmployer']);
   }
   some(pages) {
@@ -81,34 +84,53 @@ export class CandidateDetailsCardComponent implements OnInit {
   //   })
   // }
   filterCandidates() {
-    if (this.selectedOption === 'saved') {
-      this.getcandidatedetails();
-    }
+    this.getcandidatedetails();
+
     // else {
     //   this.getcandidatedetails();
     // }
   }
 
+  // getcandidatedetails() {
+  //   var objDetails = {};
+  //   objDetails = {
+  //     pageNumber: this.pageNumber,
+  //     itemsPerPage: this.itemsPerPage,
+  //   };
+
+  //
+  // let params: any ={
+  //   "pageNumber": this.pageNumber,
+  //   "itemsPerPage": this.itemsPerPage,
+  // }
+  //
+
+  //   this.apiservice
+  //     .getallCandidateDetails(objDetails)
+  //     .subscribe((response: any) => {
+  //       if (response.success) {
+  //         this.candidatelist = response.data;
+  //         console.log(this.candidatelist, 'canidatedata');
+  //         this.totallength = this.candidatelist.length;
+  //         console.log(this.totallength);
+
+  //         this.total = Math.ceil(response.totalCount / this.itemsPerPage);
+  //       }
+  //     });
+  // }
   getcandidatedetails() {
-    var objDetails = {};
-    objDetails = {
+    const objDetails = {
       pageNumber: this.pageNumber,
       itemsPerPage: this.itemsPerPage,
+      commonSearch: this.selectedOption,
     };
-
-    //
-    // let params: any ={
-    //   "pageNumber": this.pageNumber,
-    //   "itemsPerPage": this.itemsPerPage,
-    // }
-    //
 
     this.apiservice
       .getallCandidateDetails(objDetails)
       .subscribe((response: any) => {
         if (response.success) {
           this.candidatelist = response.data;
-          console.log(this.candidatelist, 'canidatedata');
+          console.log(this.candidatelist, 'candidate data');
           this.totallength = this.candidatelist.length;
           console.log(this.totallength);
 
