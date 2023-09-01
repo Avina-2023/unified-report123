@@ -54,7 +54,8 @@ export class CandidateDetailsCardComponent implements OnInit {
   dashboard() {
     this.router.navigate(['/auth/dashboard/dashboard']);
   }
-  toviewprofile() {
+  toviewprofile(candidateData) {
+    this.appconfig.setLocalStorage("C_Candidate_status", JSON.stringify(candidateData));
     this.router.navigate(['/auth/drive/viewCandidateProfilebyEmployer']);
   }
   some(pages) {
