@@ -21,14 +21,14 @@ export class CandidateDetailsCardComponent implements OnInit {
   public total: any;
   public totallength: any;
   public pageNumber: any = 1;
-  public itemsPerPage: any = 5;
+  public itemsPerPage: any = 100;
   filter_info = { data: [] };
   filterObj = {};
   selectedValues: any[] = [];
   highLevelEducationSpecification: string | undefined;
   educations: any[] = [];
   item = {
-    isSaved: false,
+    savedStatus: false,
     customClass: '',
   };
   constructor(
@@ -145,16 +145,14 @@ export class CandidateDetailsCardComponent implements OnInit {
   // }
   clickSave(candidate: any) {
     const savecanparams: any = {
-      email: this.appconfig.getLocalStorage('email'),
-      savedStatus: !candidate.isSaved, // Toggle the savedStatus
+      // email: this.appconfig.getLocalStorage('email'),
+      email: candidate.email,
+      savedStatus: !candidate.savedStatus,
     };
 
     this.apiservice.getsaveCandidate(savecanparams).subscribe((res: any) => {
-      // Update the isSaved property based on the response
-      candidate.isSaved = !candidate.isSaved;
-
-      // Update the customClass property based on the isSaved status
-      candidate.customClass = candidate.isSaved ? 'view-prof:hover' : '';
+      candidate.savedStatus = !candidate.savedStatus;
+      candidate.customClass = candidate.savedStatus ? 'view-prof:hover' : '';
     });
   }
 
