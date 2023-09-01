@@ -111,6 +111,8 @@ export class ViewCandidateByDriveComponent implements OnInit {
   isFirstPage: boolean = true;
   isLastPage: boolean = false;
   selectedPageSize: number = 10;
+  totalPages: number;
+  pageArray: number[] = [1];
   constructor(
     private ApiService: ApiService,
     private toastr: ToastrService,
@@ -165,6 +167,11 @@ export class ViewCandidateByDriveComponent implements OnInit {
 
   ngOnDestroy() {
     // this.appconfig.clearLocalStorageOne('currentJobID');
+  }
+
+  paginationCounter(){
+    this.totalPages = Math.ceil(this.pageRowCount/this.selectedPageSize)
+    this.pageArray = Array.from(Array(this.totalPages).keys());
   }
   arrayofData: any = [];
 
@@ -512,6 +519,7 @@ export class ViewCandidateByDriveComponent implements OnInit {
                 rowData: [], 
                 rowCount: 0,
               });
+              this.totalPages = 1
               this.gridApi.showNoRowsOverlay();
             } else {
               this.candidateList = data1 && data1.data ? data1.data : [];
@@ -530,6 +538,8 @@ export class ViewCandidateByDriveComponent implements OnInit {
               if (this.candidateList.length > 0) {
                 this.pageRowCount =
                   data1 && data1.totalCount ? data1.totalCount : 0;
+                  this.totalPages = Math.ceil(this.pageRowCount/this.selectedPageSize)
+                  console.log(this.totalPages)
                 this.gridApi.hideOverlay();
                 params.success({
                   rowData: this.candidateList,
@@ -540,9 +550,11 @@ export class ViewCandidateByDriveComponent implements OnInit {
                   rowData: this.candidateList,
                   rowCount: 0,
                 });
+                this.totalPages = 1
                 this.gridApi.showNoRowsOverlay();
               }
             }
+            this.paginationCounter();
           },
           (err) => {
             params.fail();
@@ -652,6 +664,7 @@ export class ViewCandidateByDriveComponent implements OnInit {
   // }
 
   onPageSizeChanged() {
+    this.paginationCounter();
     this.gridApi.paginationSetPageSize(this.selectedPageSize);
   }
 
@@ -670,15 +683,10 @@ export class ViewCandidateByDriveComponent implements OnInit {
     this.gridApi.paginationGoToPreviousPage();
     // this.updatePaginationButtons(this.gridApi.paginationGetCurrentPage(), this.gridApi.paginationGetTotalPages());
   }
-  onBtPageOne() {
-    this.gridApi.paginationGoToPage(0);
+  gotoPage(i) {
+    this.gridApi.paginationGoToPage(i);
   }
-  onBtPageTwo() {
-    this.gridApi.paginationGoToPage(1);
-  }
-  onBtPageThree() {
-    this.gridApi.paginationGoToPage(2);
-  }
+  
   // onBtNextPage(){
   //   this.gridApi.paginationGoToNextPage()
   // }
