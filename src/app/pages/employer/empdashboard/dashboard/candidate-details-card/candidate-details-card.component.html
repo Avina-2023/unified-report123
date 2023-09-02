@@ -1,7 +1,7 @@
 <div class="main1">
   <div class="main2">
     <div class="dash">
-      <h5 class="findtext">Candidate Search</h5>
+      <h5 class="findtext"> Candidate Search</h5>
     </div>
     <div class="count-filter">
       <div class="count"><span>Results Showing ({{totallength}})</span></div>
@@ -48,11 +48,24 @@
               </div>
             </div>
           </div>
+
+
+          <!-- <div class="candidate-loc">
+            <div> <mat-icon class="loc-icon"> location_on</mat-icon></div>
+            <div class="loc-name">{{item.permanentaddress.permanent_city}}, {{getStateName(item.permanentaddress.permanent_state)}}
+            </div>
+          </div> -->
+
           <div class="candidate-loc">
             <div> <mat-icon class="loc-icon"> location_on</mat-icon></div>
-            <div class="loc-name">{{item.permanentaddress.permanent_city}}, {{item.permanentaddress.permanent_state}}
+            <div class="loc-name">
+              <!-- {{item.permanentaddress.permanent_city}},  -->
+              {{ getStateNameById(item.permanentaddress.permanent_state) }}
+              <!-- {{getStateName(item.permanentaddress.permanent_state)}} -->
             </div>
           </div>
+
+
         </div>
         <div class="action-button">
           <div class="view-prof">
@@ -83,10 +96,10 @@
           </div>
         </div> -->
       </mat-card>
-      <div class="pagination">
-        <app-common-paginator *ngIf="total" (send)="some($event)" [totalcount]="total"></app-common-paginator>
-      </div>
-      <div class="pagination"><app-common-paginator></app-common-paginator></div>
+
+    </div>
+    <div class="pagination">
+      <app-common-paginator *ngIf="total" (send)="some($event)" [totalcount]="total"></app-common-paginator>
     </div>
   </div>
   <div class="filter-candidate">

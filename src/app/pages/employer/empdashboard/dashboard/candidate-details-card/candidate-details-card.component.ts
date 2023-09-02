@@ -21,7 +21,7 @@ export class CandidateDetailsCardComponent implements OnInit {
   public total: any;
   public totallength: any;
   public pageNumber: any = 1;
-  public itemsPerPage: any = 100;
+  public itemsPerPage: any = 5;
   filter_info = { data: [] };
   filterObj = {};
   selectedValues: any[] = [];
@@ -31,11 +31,16 @@ export class CandidateDetailsCardComponent implements OnInit {
     savedStatus: false,
     customClass: '',
   };
+  sampleContent = [];
+  allStatesData: any;
+  stateData: any = [];
+  state: any;
+  stateObj: any;
   constructor(
     public router: Router,
     private apiservice: ApiService,
     private appconfig: AppConfigService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     const highLevelEducation = this.educations.find(
@@ -49,6 +54,7 @@ export class CandidateDetailsCardComponent implements OnInit {
     this.getcandidatedetails();
     this.getcandidateFilter();
     this.filterCandidates();
+    this.getAllStates();
   }
 
   dashboard() {
@@ -58,11 +64,7 @@ export class CandidateDetailsCardComponent implements OnInit {
     this.appconfig.setLocalStorage("C_Candidate_status", JSON.stringify(candidateData));
     this.router.navigate(['/auth/drive/viewCandidateProfilebyEmployer']);
   }
-  some(pages) {
-    let { pageindex, length } = pages;
-    this.pageNumber = pages.value;
-    this.getcandidatedetails();
-  }
+
 
   // getcandidatedetails(){
   //   let params: any ={
@@ -89,32 +91,52 @@ export class CandidateDetailsCardComponent implements OnInit {
     // }
   }
 
+  getAllStates(){
+    this.apiservice.getallStates().subscribe((data:any)=>{
+      this.stateData = data[0];
+      console.log(this.stateData,'states'); 
+    })
+  }
+
+  getStateNameById(stateId: string): string {
+    const state = this.stateData.find((item) => item.id === stateId);
+    return state ? state.name : 'unKnown';
+  }
+  
+
+  // getStateName(stateId) {
+  //   this.state = this.stateData[0].find(items => items.id == stateId);
+  //   console.log(this.state, 'statedatadfs');
+  //   return this.state ? this.state : 'Unknown State';
+  // }
+
+  // getStateNameById(id: string): string {
+  //    this.stateObj = this.stateData[0].find(item => item.id == id);
+  //   console.log(this.stateObj,'ascjdnsvjnewkvjnk');
+  //   return this.stateObj ? this.stateObj.name : 'State Not Found'; 
+  // }
+
   getcandidatedetails() {
     var objDetails = {};
     objDetails = {
       pageNumber: this.pageNumber,
       itemsPerPage: this.itemsPerPage,
     };
-
-    //
-    // let params: any ={
-    //   "pageNumber": this.pageNumber,
-    //   "itemsPerPage": this.itemsPerPage,
-    // }
-    //
-
-    this.apiservice
-      .getallCandidateDetails(objDetails)
-      .subscribe((response: any) => {
-        if (response.success) {
-          this.candidatelist = response.data;
-          console.log(this.candidatelist, 'canidatedata');
-          this.totallength = this.candidatelist.length;
-          console.log(this.totallength);
-
-          this.total = Math.ceil(response.totalCount / this.itemsPerPage);
-        }
-      });
+    this.apiservice.getallCandidateDetails(objDetails).subscribe((response: any) => {
+      if (response.success) {
+        this.candidatelist = response.data;
+        console.log(this.candidatelist, 'cadidatedata');
+        console.log(response, 'response');
+        this.totallength = 15;
+        console.log(this.totallength, 'totallength');
+        this.total = Math.ceil(this.totallength / this.itemsPerPage);
+        // this.total = 3;
+        console.log(this.total, 'totalvalue');
+        this.candidatelist.forEach((element) => {
+          this.sampleContent.push(element.overview);
+        });
+      }
+    });
   }
 
   // clickSave() {
@@ -187,17 +209,24 @@ export class CandidateDetailsCardComponent implements OnInit {
   }
 
   filterRemoval(data, filterKey) {
-    if (
+    if(
       this.filterObj.hasOwnProperty(filterKey) &&
       this.filterObj[filterKey].includes(data.name)
-    ) {
-      if (this.filterObj[filterKey].length > 1) {
+    ){
+      if(this.filterObj[filterKey].length > 1){
         this.filterObj[filterKey] = this.filterObj[filterKey].filter(
-          (item) => item != data.name
-        );
-      } else {
+        (item) => item != data.name
+      );
+      }else{
         delete this.filterObj[filterKey];
       }
     }
   }
+
+  some(pages) {
+    let { pageindex, length } = pages;
+    this.pageNumber = pages.value;
+    this.getcandidatedetails();
+  }
+
 }
