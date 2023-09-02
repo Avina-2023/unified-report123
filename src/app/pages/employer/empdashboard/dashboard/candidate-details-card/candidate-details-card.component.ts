@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { log } from 'console';
 import { ApiService } from 'src/app/services/api.service';
 import { AppConfigService } from 'src/app/utils/app-config.service';
+import { MatDialog } from '@angular/material/dialog';
+
 export interface PaginatedResponse<T> {
   items: T[];
   total: number;
@@ -14,6 +16,8 @@ export interface PaginatedResponse<T> {
   styleUrls: ['./candidate-details-card.component.scss'],
 })
 export class CandidateDetailsCardComponent implements OnInit {
+  @ViewChild('moreItems', { static: false }) matDialogRef: TemplateRef<any>;
+  @ViewChild('mobFilter', { static: false }) mobDialogRef: TemplateRef<any>;
   selectedOption: string = 'all';
   commonSearch: string = 'all';
   candidatedetails: any[] = [];
@@ -36,10 +40,15 @@ export class CandidateDetailsCardComponent implements OnInit {
   stateData: any = [];
   state: any;
   stateObj: any;
+  searchInput: any;
+  buttonClicked: any;
+  filterItems: any;
   constructor(
     public router: Router,
     private apiservice: ApiService,
-    private appconfig: AppConfigService
+    private appconfig: AppConfigService,
+    public dialog: MatDialog,
+
   ) { }
 
   ngOnInit(): void {
@@ -121,13 +130,15 @@ export class CandidateDetailsCardComponent implements OnInit {
     objDetails = {
       pageNumber: this.pageNumber,
       itemsPerPage: this.itemsPerPage,
+      filter: this.filterObj,
+
     };
     this.apiservice.getallCandidateDetails(objDetails).subscribe((response: any) => {
       if (response.success) {
         this.candidatelist = response.data;
         console.log(this.candidatelist, 'cadidatedata');
         console.log(response, 'response');
-        this.totallength = 15;
+        this.totallength = response.totalCount;
         console.log(this.totallength, 'totallength');
         this.total = Math.ceil(this.totallength / this.itemsPerPage);
         // this.total = 3;
@@ -208,16 +219,20 @@ export class CandidateDetailsCardComponent implements OnInit {
     this.getcandidatedetails();
   }
 
-  filterRemoval(data, filterKey) {
-    if(
+  filterRemoval(data, filterKey, isMaster?) {
+    if (
       this.filterObj.hasOwnProperty(filterKey) &&
-      this.filterObj[filterKey].includes(data.name)
-    ){
-      if(this.filterObj[filterKey].length > 1){
-        this.filterObj[filterKey] = this.filterObj[filterKey].filter(
-        (item) => item != data.name
-      );
-      }else{
+      this.filterObj[filterKey].includes(isMaster ? data.id : data.name)
+    ) {
+      if (this.filterObj[filterKey].length > 1) {
+        this.filterObj[filterKey] = this.filterObj[filterKey].filter((item) => {
+          if (isMaster) {
+            return item !== data.id;
+          } else {
+            return item !== data.name;
+          }
+        });
+      } else {
         delete this.filterObj[filterKey];
       }
     }
@@ -229,4 +244,52 @@ export class CandidateDetailsCardComponent implements OnInit {
     this.getcandidatedetails();
   }
 
+  checkboxChecked(event, data, filterKey, isMaster, from?: any) {
+    if (event?.checked) {
+      data.is_checked = true;
+      data.isMaster = isMaster;
+      data.key = filterKey;
+      this.pageNumber = 1; //pagination
+
+      this.selectedValues.push(data);
+      if (this.filterObj.hasOwnProperty(filterKey)) {
+        if (isMaster) {
+          this.filterObj[filterKey].push(data.id);
+        } else {
+          this.filterObj[filterKey].push(data.name);
+        }
+      } else {
+        if (isMaster) {
+          this.filterObj[filterKey] = [data.id];
+        } else {
+          this.filterObj[filterKey] = [data.name];
+        }
+      }
+    } else {
+      data.is_checked = false;
+      this.selectedValues = this.selectedValues.filter((item) => {
+        if (isMaster) {
+          return item.id !== data.id;
+        } else {
+          return item.name !== data.name;
+        }
+      });
+      this.filterRemoval(data, filterKey, isMaster);
+      // console.log(this.filterObj);
+    }
+    if (from == 'direct') {
+       this.getcandidatedetails();
+    }
+  }
+
+  textsearch() {
+    this.buttonClicked.next();
+  }
+
+  openDialog(displayValue) {
+    this.filterItems = displayValue;
+    this.dialog.open(this.matDialogRef, {
+      panelClass: 'spec_desk_dialog',
+    });
+  }
 }

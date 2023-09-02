@@ -216,6 +216,44 @@
       top: 0;
       z-index: 1;
 
+      .all-clear{
+        display: flex;
+        flex-direction: row;
+        align-items: baseline;
+        justify-content: space-between;
+        .all_filter{
+          color: #000000;
+          font-weight: 600;
+          margin: 0px 0px 0px -20px
+        }
+        .clear_filter{
+          color: #294d96;
+          cursor: pointer;
+          margin: 0px 15px 0px 0px;
+          font-size: 14px;
+        }
+      }
+
+      .fil_output{
+        display: flex;
+        flex-wrap: wrap;
+        max-height: 65px;
+        overflow: auto;
+        .checkedVal{
+          padding: 1px 8px 0px 8px;
+          border: 1px solid #1b4e9b14;
+          background: #1b4e9b14;
+          color: #1b4e9b;
+          margin: 4px;
+          border-radius: 18px;
+          font-size: 13px;
+        }
+        .close_icon {
+          font-size: 16px !important;
+          text-align: end;
+          cursor: pointer;
+        }
+      }
       ::-webkit-scrollbar {
         display: inline-block;
         width: 6px;
@@ -229,6 +267,19 @@
         background: #0089b3;
       }
     }
+    @media only screen and (min-width: 900px) {
+      ::ng-deep .spec_desk_dialog {
+        .mat-dialog-container {
+          // position: absolute !important;
+          width: max-content !important;
+          height: max-content !important;
+          right: 10% !important;
+          top: 20% !important;
+          padding: 0px !important;
+          overflow: inherit !important;
+        }
+      }
+    }
   }
 }
 .col1 {
@@ -236,4 +287,63 @@
 }
 .col2 {
   color:  #92CD84
+}
+.dlog_template {
+  display: flex;
+  width: 100%;
+  height: 43px;
+  border-bottom: 2px solid #e7e7e764;
+  padding: 5px 10px;
+
+  h1 {
+    display: flex;
+    width: 50%;
+    float: left;
+  }
+
+  .close_div {
+    padding: 0px;
+    margin-bottom: 0px;
+    width: 50%;
+    flex-direction: row-reverse;
+
+    .close-icon {
+      text-align: center;
+      margin-top: -20px;
+      padding: 0px;
+    }
+  }
+}
+.job_designation {
+  font-size: 14px !important;
+  font-weight: bold !important;
+  color: #000 !important;
+  line-height: 1.2;
+}
+
+.close_div {
+  padding: 0px;
+  margin-bottom: 0px;
+  width: 50%;
+  flex-direction: row-reverse;
+
+  .close-icon {
+    text-align: center;
+    margin-top: -20px;
+    padding: 0px;
+  }
+}
+
+.aply_btn {
+  background-color: #26bbef;
+  margin: 10px 20px;
+  float: right;
+}
+
+.mat_dlg_cnt {
+  width: 100%;
+  display: grid;
+  flex-wrap: wrap;
+  grid-template-columns: auto auto auto;
+  font-size: 12px;
 }

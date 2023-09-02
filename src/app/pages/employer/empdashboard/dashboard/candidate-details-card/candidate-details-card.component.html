@@ -102,61 +102,89 @@
       <app-common-paginator *ngIf="total" (send)="some($event)" [totalcount]="total"></app-common-paginator>
     </div>
   </div>
-  <div class="filter-candidate">
-    <div class="filter" *ngIf="this.filter_info.data.length">
-      <div class="fil_head">
-        <p>
-          <mat-icon class="misc_icon">filter_list</mat-icon><span class="job_designation">All Filters
-            {{this.selectedValues.length ? '(' + this.selectedValues.length + ')' : ''}}</span>
-          <span (click)="clearFilters(filter_info.data)" *ngIf="selectedValues.length" class="clear_filter">Clear
-            All</span>
-        </p>
-        <div class="fil_output">
-          <div class="checkedVal" *ngFor="let chkbox of selectedValues;let i = index">
-            {{chkbox.name}} <mat-icon class="close_icon" (click)="closeSelectedValues(chkbox,i)">close</mat-icon>
-          </div>
-        </div>
+  <div class="filter-candidate" *ngIf="this.filter_info.data.length">
+    <div class="fil_head">
+      <div class="all-clear">
+        <div><mat-icon class="misc_icon"></mat-icon><span class="job_designation all_filter">All Filters
+          {{this.selectedValues.length ? '(' + this.selectedValues.length + ')' : ''}}</span></div>
+        <div><span (click)="clearFilters(filter_info.data)" *ngIf="selectedValues.length" class="clear_filter">Clear
+          All</span></div>
       </div>
-      <div class="filt_list">
-        <div class="filter_col" *ngFor="let fillist of filter_info.data">
-          <p class="filter_head" (click)="fillist.isShow=!fillist.isShow">
-            <mat-icon class="misc_icon">{{fillist.iconName}}</mat-icon><span
-              class="job_designation">{{fillist.fieldName}}</span>
-            <mat-icon class="expand_icon" class="clickBtn misc_icon">expand_more</mat-icon>
-          </p>
-          <div *ngFor="let course of fillist.subContent; let i = index">
-            <span *ngIf="i<4">
-              <mat-checkbox (change)="checkboxChecked($event,course,fillist.key,'direct')" [checked]="course.is_checked"
-                class="fldName" color="primary" *ngIf="!fillist.isShow">{{course.name}} ({{course.totalCount}})
-              </mat-checkbox>
-            </span>
-          </div>
-          <button *ngIf="(fillist.subContent.length)>4" mat-button
-            (click)="openDialog(fillist)">+{{fillist.subContent.length-4}} more</button>
+      <div class="fil_output">
+        <div class="checkedVal" *ngFor="let chkbox of selectedValues;let i = index">
+          {{chkbox.name}} <mat-icon class="close_icon" (click)="closeSelectedValues(chkbox,i)">close</mat-icon>
         </div>
       </div>
     </div>
-
-    <ng-template #moreItems>
-      <div class="dlog_template">
-        <h1 class="job_designation" mat-dialog-title>{{filterItems.fieldName}}</h1>
-        <div class="close_div" mat-dialog-actions>
-          <button mat-button class="close-icon" [mat-dialog-close]="true">
-            <mat-icon>close</mat-icon>
-          </button>
+    <div class="filt_list">
+      <div class="filter_col" *ngFor="let fillist of filter_info.data">
+        <p class="filter_head" (click)="fillist.isShow=!fillist.isShow">
+          <mat-icon class="misc_icon">{{fillist.iconName}}</mat-icon><span
+            class="job_designation">{{fillist.fieldName}}</span>
+          <mat-icon class="expand_icon" class="clickBtn misc_icon">expand_more</mat-icon>
+        </p>
+        <div *ngFor="let course of fillist.subContent; let i = index">
+          <span *ngIf="i<4">
+            <mat-checkbox (change)="checkboxChecked($event,course,fillist.key,fillist.isMaster,'direct')"
+              [checked]="course.is_checked" class="fldName" color="primary" *ngIf="!fillist.isShow">{{course.name}}
+              ({{course.totalCount}})
+            </mat-checkbox>
+          </span>
         </div>
+        <button *ngIf="(fillist.subContent.length)>4" mat-button
+          (click)="openDialog(fillist)">+{{fillist.subContent.length-4}} more</button>
       </div>
-      <br>
-      <div mat-dialog-content>
-        <div class="filter_col mat_dlg_cnt">
-          <div *ngFor="let course of filterItems.subContent">
-            <mat-checkbox class="mat_courses" (change)="checkboxChecked($event,course,filterItems.key )"
-              [checked]="course.is_checked" color="primary">{{course.name}} ({{course.totalCount}})</mat-checkbox>
-          </div>
-        </div>
-        <button [mat-dialog-close] class="aply_btn" (click)="applyfilter()" mat-raised-button
-          color="primary">Apply</button>
-      </div>
-    </ng-template>
+    </div>
   </div>
 </div>
+<ng-template #moreItems>
+  <div class="dlog_template">
+    <h1 class="job_designation" mat-dialog-title>{{filterItems.fieldName}}</h1>
+    <div class="close_div" mat-dialog-actions>
+      <button mat-button class="close-icon" [mat-dialog-close]="true">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+  </div>
+  <br>
+  <div mat-dialog-content>
+    <div class="filter_col mat_dlg_cnt">
+      <div *ngFor="let course of filterItems.subContent">
+        <mat-checkbox class="mat_courses" (change)="checkboxChecked($event,course,filterItems.key,filterItems.isMaster)"
+          [checked]="course.is_checked" color="primary">{{course.name}} ({{course.totalCount}})</mat-checkbox>
+      </div>
+    </div>
+    <button [mat-dialog-close] class="aply_btn" (click)="applyfilter()" mat-raised-button color="primary">Apply</button>
+  </div>
+</ng-template>
+
+<ng-template #mobFilter>
+  <div class="filt_mob_top">
+    <mat-icon [mat-dialog-close]>west</mat-icon>
+    <p class="fil_text">All Filters {{this.selectedValues.length ? '('+this.selectedValues.length +')' : ''}}
+      <span (click)="clearFilters(filter_info.data)" *ngIf="selectedValues.length" class="clear_filter">Clear
+        All</span>
+    </p>
+    <p class="apply_top_menu">
+      <button (click)="applyfilter()" [mat-dialog-close]>Apply</button>
+    </p>
+  </div>
+  <div class="mob_courses">
+    <div class="sub_crse">
+      <div *ngFor="let fillist of filter_info.data;let indx = index">
+        <div class="field_crse" (click)="fil_elements(filter_info.data,fillist.subContent,indx,fillist.key)"
+          [ngClass]="fillist.active?'redlab':''">
+          {{fillist.fieldName}} <mat-icon *ngIf="fillist.active">arrow_forward_ios</mat-icon>
+        </div>
+      </div>
+    </div>
+    <div class="mob_card_crse">
+      <span *ngIf="filterItems">
+        <mat-checkbox color="primary" (change)="checkboxChecked($event,item,item.key,item.isMaster)"
+          [checked]="item.is_checked" class="mob_filter_res" *ngFor="let item of filterItems">{{item.name}}
+          ({{item.totalCount}})
+        </mat-checkbox>
+      </span>
+    </div>
+  </div>
+</ng-template>
