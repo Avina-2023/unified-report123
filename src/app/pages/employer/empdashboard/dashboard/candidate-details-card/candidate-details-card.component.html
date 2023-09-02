@@ -1,52 +1,75 @@
 <div class="main1">
-
   <div class="main2">
     <div class="dash">
       <h5 class="findtext">Candidate Search</h5>
     </div>
     <div class="count-filter">
-      <div class="count"><span>Results Showing(35)</span></div>
+      <div class="count"><span>Results Showing ({{totallength}})</span></div>
       <div class="sorting">
         <mat-form-field>
-          <mat-label>Select an option</mat-label>
-          <mat-select>
-            <mat-option>None</mat-option>
-            <mat-option value="option1">Option 1</mat-option>
-            <mat-option value="option2">Option 2</mat-option>
-            <mat-option value="option3">Option 3</mat-option>
+          <mat-select [(value)]="selectedOption" (selectionChange)="filterCandidates()" class="select_value">
+            <mat-option value="all">All</mat-option>
+            <mat-option value="saved">Saved Candidates</mat-option>
+            <mat-option value="certified">L&T Certified</mat-option>
+            <mat-option value="assessed">L&T Assessed</mat-option>
           </mat-select>
         </mat-form-field>
       </div>
+
     </div>
     <div class="candidate-card">
       <mat-card class="card-1" *ngFor="let item of candidatelist;">
-        <span class="icon-bookmark"></span>
+
+        <span class="">
+          <span *ngIf="item.assessments"><i *ngIf="item?.assessments?.length" class="flag_lnt icon-bookmark col1"
+              matTooltip="Assessed by L&T EduTech"></i></span>
+          <span *ngIf="item.courses"><i *ngIf="item?.courses?.length" class="flag_lnt icon-bookmark bookmark_2 col2"
+              matTooltip="Certified by L&T EduTech"></i></span>
+        </span>
         <div class="details">
           <div class="candidate-image">
-            <img src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Profile Picture"
+            <img *ngIf="item.profileImage; else noProfileImage" [src]="item.profileImage" alt="Profile Picture"
               class="round-profile-pic">
+            <ng-template #noProfileImage>
+              <img src="../../../../../../assets/images/removed dp.png" alt="No Profile Picture"
+                class="round-profile-pic">
+            </ng-template>
           </div>
           <div class="candidate-name">
-            {{item.email}}
+            {{item.firstName}}
           </div>
           <div class="candidate-edu">
-            <div>B.Sc Physics -</div>
-            <div>june 2022</div>
+            <div *ngFor="let education of item.educations">
+              <div *ngIf="education.is_highLevelEdu" class="high-level">
+                {{education.specification ? education.specification + (education.discipline ? ' ' + education.discipline
+                : '') :
+                education.discipline ? education.discipline : education.level }}
+                - {{ education.end_date |date:'MMMM yyyy'}}
+              </div>
+            </div>
           </div>
           <div class="candidate-loc">
             <div> <mat-icon class="loc-icon"> location_on</mat-icon></div>
-            <div class="loc-name">Chennai, TamilNadu</div>
+            <div class="loc-name">{{item.permanentaddress.permanent_city}}, {{item.permanentaddress.permanent_state}}
+            </div>
           </div>
         </div>
         <div class="action-button">
           <div class="view-prof">
             <div><mat-icon class="view-icon">visibility</mat-icon></div>
-            <div (click)="toviewprofile()"><button mat-button class="buton">View Profile</button></div>
+            <div (click)="toviewprofile(item)"><button mat-button class="buton">View Profile</button></div>
           </div>
           <span style="border: 1px solid #E6E6E6;"></span>
-          <div class="view-prof">
-            <div><mat-icon class="view-icon">save</mat-icon></div>
-            <div><button mat-button class="buton2">Save</button></div>
+          <div class="view-prof" (click)="clickSave(item)"
+            [ngStyle]="item.savedStatus ? { 'background-color': '#1b4e9b', 'color': '#ffffff' } : {}">
+            <div>
+              <mat-icon class="view-icon" [ngStyle]="item.savedStatus ? { 'color': '#ffffff' } : {}">save</mat-icon>
+            </div>
+            <div>
+              <button mat-button class="button2" [class]="item.customClass">
+                {{ item.savedStatus ? 'Saved' : 'Save' }}
+              </button>
+            </div>
           </div>
         </div>
         <!-- <div class="act-button">
@@ -66,7 +89,6 @@
       <div class="pagination"><app-common-paginator></app-common-paginator></div>
     </div>
   </div>
-
   <div class="filter-candidate">
     <div class="filter" *ngIf="this.filter_info.data.length">
       <div class="fil_head">
@@ -124,5 +146,4 @@
       </div>
     </ng-template>
   </div>
-
 </div>

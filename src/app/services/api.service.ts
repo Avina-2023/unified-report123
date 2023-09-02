@@ -20,6 +20,7 @@ export class ApiService {
 
   filterSubject: Subject<any> = new Subject();
   partnersubject: Subject<any> = new Subject();
+  getFilteredCandidates: any;
   constructor(private http: HttpClient, private appConfig: AppConfigService) {}
 
   logout() {
@@ -325,6 +326,11 @@ export class ApiService {
     return this.http.post(`${this.BASE_URL}/jobfilter`, data);
   }
 
+  // candidateFilter API for candidatesearch
+  candidateFilter(data) {
+    return this.http.post(`${this.BASE_URL}/candidateFilter`, data);
+  }
+
   // Save Jobs API
   saveJobsDashboard(data) {
     return this.http.post(`${this.BASE_URL}/saveJobs`, data);
@@ -383,13 +389,23 @@ export class ApiService {
   getJobDetail(data) {
     return this.http.post(`${this.BASE_URL}/getJobDetail`, data);
   }
-  getCandidateByFilter(data){
+  getCandidateByFilter(data) {
     return this.http.post(`${this.BASE_URL}/candidateFilter`, data);
   }
-  candidateResultDetails(data) {
-    return this.http.post(`${this.BASE_URL_RE}/candidateResultDetails`, data);
+  getsaveCandidate(data) {
+    return this.http.post(`${this.BASE_URL}/saveCandidate`, data);
   }
-  courseTracking(data) {
-    return this.http.post("https://devfacade.lntedutech.com/learnerProgressStatus", data);
+  // candidateResultDetails(data) {
+  //   return this.http.post(`${this.BASE_URL_RE}/candidateResultDetails`, data);
+  // }
+  // courseTracking(data) {
+  //   return this.http.post("https://devfacade.lntedutech.com/learnerProgressStatus", data);
+  // }
+
+  candidateResultDetails(data) {
+    return this.http.post(`${this.BASE_URL}/candidateResultDetails`, data);
+  }
+  getcourseTracking(data) {
+    return this.http.post(`${this.BASE_URL}/learnerProgressStatus`, data);
   }
 }

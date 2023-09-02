@@ -5,7 +5,7 @@
 
 
   .card_sticky{
-    // position: sticky;
+     position: sticky;
     top: 0px;
     border-top: 10px solid #f2f2f2;
   }
@@ -36,6 +36,9 @@
 
   .pd-20 {
     padding: 20px;
+  }
+  .pd-30{
+    margin: 15px 0px 0px 0px;
   }
   .pt-10{
     padding-top: 10px;
@@ -106,8 +109,12 @@
       font-size: 13px;
       line-height: 21px;
     }
-
-
+    .value{
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      
+    }
   }
 
   .profile_header {
@@ -272,6 +279,7 @@
 
     .job_details_card {
       background: #fff;
+      position: relative;
 
       .job_header {
         font-size: 16px;
@@ -330,21 +338,27 @@
       }
 
       .asses-details-card{
-        .prev-next{
+        padding: 10px 15px 10px 15px;
+        .assesment-detail{
+          margin: 0px 0px 5px 0px;
+          font-weight: 700;
           display: flex;
           flex-direction: row;
           align-items: center;
-        }
-        .assesment-detail{
-          margin: 2px 0px 5px 0px;
-          font-weight: 700;
+          justify-content: space-between;
+          .prev-next{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+          }
           .nav-icon {
             display: inline-flex;
             align-items: center;
             cursor: pointer;
             padding: 8px;
+            color: #1B4E9B;
           }
-          
+
           .nav-icon.disabled {
             cursor : not-allowed;
             opacity: 0.3;
@@ -359,24 +373,34 @@
             position: absolute;
             color: #FFFFFF;
             font-size: 15px;
-            top: 57%;
-            left: 6%;
+            top: 50.7%;
+            left: 5.5%;
             width: 89%;
             background-color: rgba(0, 0, 0, 0.5);
             border-radius: initial;
           }
         }
-        
+
         .ass-date{
           display: flex;
           flex-direction: row;
           align-items: center;
           justify-content: space-between;
+          margin: 12px 0px 0px 0px;
+          .asses-datee{
+            color: #848484;
+          }
           .stats{
             border-radius: 5px;
             color: #FFFFFF;
             background-color: #65AC45;
             padding: 0px 4px 0px 4px;
+          }
+        }
+        .scor{
+          margin: 10px 0px 0px 0px;
+          .scor1{
+            font-weight: 900;
           }
         }
         .horizonatlscrollline{
@@ -393,7 +417,7 @@
           display: flex;
           position: relative;
           align-items: center;
-        }        
+        }
         .horizonatllinecircle{
           height: 27px;
           width: 27px;
@@ -411,7 +435,7 @@
           font-weight: 600;
         }
         .semi-circle-score{
-          margin: 20px 0px 0px 0px;
+          margin: 30px 0px 0px 0px;
           display: flex;
           flex-direction: row;
           align-items: center;
@@ -442,19 +466,22 @@
       }
 
       .course-details{
-        margin: 40px 0px 0px 0px;
+        // margin: 40px 0px 0px 0px;
         .cours-details-card{
+          padding: 10px 15px 10px 15px;
           .course-name-arrow{
             display: flex;
             flex-direction: row;
             align-items: center;
+            justify-content: space-between;
             .nav-icon1 {
               display: inline-flex;
               align-items: center;
               cursor: pointer;
               padding: 8px;
+              color: #1B4E9B;
             }
-            
+
             .nav-icon1.disabled {
               cursor : not-allowed;
               opacity: 0.3;
@@ -474,13 +501,13 @@
               position: absolute;
               color: #FFFFFF;
               font-size: 15px;
-              top: 56%;
-              left: 9%;
-              width: 85%;
+              top: 60.3%;
+              left: 5.5%;
+              width: 89%;
               background-color: rgba(0, 0, 0, 0.5);
               border-radius: initial;
             }
-            
+
           }
           .percen{
             display: flex;
@@ -825,7 +852,7 @@ display: block;
   progress {
     width: 300px;
   }
-  
+
   #progress-text {
     font-size: 24px;
     margin-top: 10px;

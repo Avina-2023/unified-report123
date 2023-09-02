@@ -2,10 +2,10 @@
   My Dashboard
 </div>
 <div class="main-card">
-  <mat-card class="dash-card" *ngFor="let card of jobCards">
+  <mat-card class="dash-card" *ngFor="let card of jobCards;  let i = index" [style.border-color]="getBorderColor(i)">
     <div class="count">
       <div class="num">{{ card.count }}</div>
-      <div>{{ card.title }}</div>
+      <div class="title">{{ card.title }}</div>
     </div>
     <div class="imic">
       <img src={{card.Img}} />

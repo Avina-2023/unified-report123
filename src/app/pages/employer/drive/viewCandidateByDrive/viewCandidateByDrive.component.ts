@@ -111,6 +111,8 @@ export class ViewCandidateByDriveComponent implements OnInit {
   isFirstPage: boolean = true;
   isLastPage: boolean = false;
   selectedPageSize: number = 10;
+  totalPages: number;
+  pageArray: number[] = [1];
   constructor(
     private ApiService: ApiService,
     private toastr: ToastrService,
@@ -165,6 +167,11 @@ export class ViewCandidateByDriveComponent implements OnInit {
 
   ngOnDestroy() {
     // this.appconfig.clearLocalStorageOne('currentJobID');
+  }
+
+  paginationCounter(){
+    this.totalPages = Math.ceil(this.pageRowCount/this.selectedPageSize)
+    this.pageArray = Array.from(Array(this.totalPages).keys());
   }
   arrayofData: any = [];
 
@@ -268,7 +275,7 @@ export class ViewCandidateByDriveComponent implements OnInit {
       {
         headerName: 'Status',
         field: 'jobStatus',
-        minWidth: 175,
+        minWidth: 165,
         filter: 'agTextColumnFilter',
         chartDataType: 'category',
         aggFunc: 'sum',
@@ -309,7 +316,7 @@ export class ViewCandidateByDriveComponent implements OnInit {
       {
         headerName: 'Qualification',
         field: 'degree',
-        minWidth: 140,
+        minWidth: 133,
         filter: 'agTextColumnFilter',
         chartDataType: 'category',
         aggFunc: 'sum',
@@ -334,7 +341,7 @@ export class ViewCandidateByDriveComponent implements OnInit {
       {
         headerName: 'Year of Passout',
         field: 'yearOfPassing',
-        minWidth: 180,
+        minWidth: 147,
         filter: 'agNumberColumnFilter',
         chartDataType: 'series',
         filterParams: {
@@ -365,7 +372,7 @@ export class ViewCandidateByDriveComponent implements OnInit {
       {
         headerName: 'Trained by L&T EduTech',
         field: 'trainedStatus',
-        minWidth: 200,
+        minWidth: 170,
         filter: 'agTextColumnFilter',
         chartDataType: 'category',
         aggFunc: 'sum',
@@ -415,7 +422,7 @@ export class ViewCandidateByDriveComponent implements OnInit {
       {
         headerName: 'Applied Date',
         field: 'appliedDate',
-        minWidth: 175,
+        minWidth: 135,
         valueFormatter: function (params) {
           return moment(params.value).format('DD-MM-yy');
         },
@@ -433,11 +440,12 @@ export class ViewCandidateByDriveComponent implements OnInit {
       {
         headerName: 'Actions',
         field: '',
-        minWidth: 225,
+        minWidth: 150,
         cellRenderer: 'moreOptions',
         //  onCellClicked: this.sendJobData(),
         suppressColumnsToolPanel: true,
         filter: false,
+        pinned: 'right',
       }
 
     ];
@@ -511,6 +519,7 @@ export class ViewCandidateByDriveComponent implements OnInit {
                 rowData: [], 
                 rowCount: 0,
               });
+              this.totalPages = 1
               this.gridApi.showNoRowsOverlay();
             } else {
               this.candidateList = data1 && data1.data ? data1.data : [];
@@ -529,6 +538,8 @@ export class ViewCandidateByDriveComponent implements OnInit {
               if (this.candidateList.length > 0) {
                 this.pageRowCount =
                   data1 && data1.totalCount ? data1.totalCount : 0;
+                  this.totalPages = Math.ceil(this.pageRowCount/this.selectedPageSize)
+                  console.log(this.totalPages)
                 this.gridApi.hideOverlay();
                 params.success({
                   rowData: this.candidateList,
@@ -539,9 +550,11 @@ export class ViewCandidateByDriveComponent implements OnInit {
                   rowData: this.candidateList,
                   rowCount: 0,
                 });
+                this.totalPages = 1
                 this.gridApi.showNoRowsOverlay();
               }
             }
+            this.paginationCounter();
           },
           (err) => {
             params.fail();
@@ -651,6 +664,7 @@ export class ViewCandidateByDriveComponent implements OnInit {
   // }
 
   onPageSizeChanged() {
+    this.paginationCounter();
     this.gridApi.paginationSetPageSize(this.selectedPageSize);
   }
 
@@ -669,15 +683,10 @@ export class ViewCandidateByDriveComponent implements OnInit {
     this.gridApi.paginationGoToPreviousPage();
     // this.updatePaginationButtons(this.gridApi.paginationGetCurrentPage(), this.gridApi.paginationGetTotalPages());
   }
-  onBtPageOne() {
-    this.gridApi.paginationGoToPage(0);
+  gotoPage(i) {
+    this.gridApi.paginationGoToPage(i);
   }
-  onBtPageTwo() {
-    this.gridApi.paginationGoToPage(1);
-  }
-  onBtPageThree() {
-    this.gridApi.paginationGoToPage(2);
-  }
+  
   // onBtNextPage(){
   //   this.gridApi.paginationGoToNextPage()
   // }
