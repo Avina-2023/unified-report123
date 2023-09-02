@@ -70,7 +70,10 @@ export class CandidateDetailsCardComponent implements OnInit {
     this.router.navigate(['/auth/dashboard/dashboard']);
   }
   toviewprofile(candidateData) {
-    this.appconfig.setLocalStorage("C_Candidate_status", JSON.stringify(candidateData));
+    this.appconfig.setLocalStorage(
+      'C_Candidate_status',
+      JSON.stringify(candidateData)
+    );
     this.router.navigate(['/auth/drive/viewCandidateProfilebyEmployer']);
   }
 
@@ -92,9 +95,8 @@ export class CandidateDetailsCardComponent implements OnInit {
   //   })
   // }
   filterCandidates() {
-    if (this.selectedOption === 'saved') {
-      this.getcandidatedetails();
-    }
+    this.getcandidatedetails();
+
     // else {
     //   this.getcandidatedetails();
     // }
@@ -126,12 +128,11 @@ export class CandidateDetailsCardComponent implements OnInit {
   // }
 
   getcandidatedetails() {
-    var objDetails = {};
-    objDetails = {
+    const objDetails = {
       pageNumber: this.pageNumber,
       itemsPerPage: this.itemsPerPage,
       filter: this.filterObj,
-
+      commonSearch: this.selectedOption,
     };
     this.apiservice.getallCandidateDetails(objDetails).subscribe((response: any) => {
       if (response.success) {
@@ -143,9 +144,7 @@ export class CandidateDetailsCardComponent implements OnInit {
         this.total = Math.ceil(this.totallength / this.itemsPerPage);
         // this.total = 3;
         console.log(this.total, 'totalvalue');
-        this.candidatelist.forEach((element) => {
-          this.sampleContent.push(element.overview);
-        });
+       
       }
     });
   }
