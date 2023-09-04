@@ -47,9 +47,8 @@ export class CandidateDetailsCardComponent implements OnInit {
     public router: Router,
     private apiservice: ApiService,
     private appconfig: AppConfigService,
-    public dialog: MatDialog,
-
-  ) { }
+    public dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
     const highLevelEducation = this.educations.find(
@@ -77,7 +76,6 @@ export class CandidateDetailsCardComponent implements OnInit {
     this.router.navigate(['/auth/drive/viewCandidateProfilebyEmployer']);
   }
 
-
   // getcandidatedetails(){
   //   let params: any ={
   //     "pageNumber": this.pageNumber,
@@ -102,18 +100,17 @@ export class CandidateDetailsCardComponent implements OnInit {
     // }
   }
 
-  getAllStates(){
-    this.apiservice.getallStates().subscribe((data:any)=>{
+  getAllStates() {
+    this.apiservice.getallStates().subscribe((data: any) => {
       this.stateData = data[0];
-      console.log(this.stateData,'states'); 
-    })
+      console.log(this.stateData, 'states');
+    });
   }
 
   getStateNameById(stateId: string): string {
     const state = this.stateData.find((item) => item.id === stateId);
     return state ? state.name : 'unKnown';
   }
-  
 
   // getStateName(stateId) {
   //   this.state = this.stateData[0].find(items => items.id == stateId);
@@ -124,7 +121,7 @@ export class CandidateDetailsCardComponent implements OnInit {
   // getStateNameById(id: string): string {
   //    this.stateObj = this.stateData[0].find(item => item.id == id);
   //   console.log(this.stateObj,'ascjdnsvjnewkvjnk');
-  //   return this.stateObj ? this.stateObj.name : 'State Not Found'; 
+  //   return this.stateObj ? this.stateObj.name : 'State Not Found';
   // }
 
   getcandidatedetails() {
@@ -134,19 +131,20 @@ export class CandidateDetailsCardComponent implements OnInit {
       filter: this.filterObj,
       commonSearch: this.selectedOption,
     };
-    this.apiservice.getallCandidateDetails(objDetails).subscribe((response: any) => {
-      if (response.success) {
-        this.candidatelist = response.data;
-        console.log(this.candidatelist, 'cadidatedata');
-        console.log(response, 'response');
-        this.totallength = response.totalCount;
-        console.log(this.totallength, 'totallength');
-        this.total = Math.ceil(this.totallength / this.itemsPerPage);
-        // this.total = 3;
-        console.log(this.total, 'totalvalue');
-       
-      }
-    });
+    this.apiservice
+      .getallCandidateDetails(objDetails)
+      .subscribe((response: any) => {
+        if (response.success) {
+          this.candidatelist = response.data;
+          console.log(this.candidatelist, 'cadidatedata');
+          console.log(response, 'response');
+          this.totallength = response.totalCount;
+          console.log(this.totallength, 'totallength');
+          this.total = Math.ceil(this.totallength / this.itemsPerPage);
+          // this.total = 3;
+          console.log(this.total, 'totalvalue');
+        }
+      });
   }
 
   // clickSave() {
@@ -277,7 +275,7 @@ export class CandidateDetailsCardComponent implements OnInit {
       // console.log(this.filterObj);
     }
     if (from == 'direct') {
-       this.getcandidatedetails();
+      this.getcandidatedetails();
     }
   }
 
