@@ -229,7 +229,10 @@
                     {{form_present_city ? ', ' + form_present_city : 'NA'}}
                     {{form_present_state ? ', ' + form_present_state : 'NA'}},
                     <!-- {{form_present_country ? ', ' + form_present_country : 'NA'}}, -->
-                    {{candidateData?.contact_details?.present_zip}}
+                    <ng-container *ngIf="candidateData?.contact_details?.present_zip">
+                      India- {{ candidateData.contact_details.present_zip }}
+                    </ng-container>
+                    <!-- {{candidateData?.contact_details?.present_zip}} -->
                   </div>
                 </div>
               </div>
@@ -656,7 +659,8 @@
               <img src="../../../../../assets/images/orange awating review.svg" alt="awaiting Review"
                 class="status_icon">
             </ng-container>
-            {{ candidateStatus.jobStatus.charAt(0).toUpperCase() + 'Awaiting Review'.slice(1) }}
+            <!-- {{ candidateStatus.jobStatus.charAt(0).toUpperCase() + 'Awaiting Review'.slice(1) }} -->
+            {{ candidateStatus.jobStatus.charAt(0).toUpperCase() + candidateStatus.jobStatus.slice(1) }}
           </div>
         </div>
         <div>
