@@ -659,8 +659,8 @@
               <img src="../../../../../assets/images/orange awating review.svg" alt="awaiting Review"
                 class="status_icon">
             </ng-container>
-            <!-- {{ candidateStatus.jobStatus.charAt(0).toUpperCase() + 'Awaiting Review'.slice(1) }} -->
-            {{ candidateStatus.jobStatus.charAt(0).toUpperCase() + candidateStatus.jobStatus.slice(1) }}
+            {{ candidateStatus.jobStatus === 'awaitingReview' ? 'Awaiting Review' : candidateStatus.jobStatus }}
+
           </div>
         </div>
         <div>
