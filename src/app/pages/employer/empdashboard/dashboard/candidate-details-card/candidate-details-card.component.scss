@@ -27,6 +27,9 @@
       padding: 0px 25px 0px 0px;
       .select_value{
         padding: 0px 10px;
+        ::ng-deep .mat-select-value {
+            font-weight: bold;
+          }
       }
 
     }
@@ -347,3 +350,4 @@
   grid-template-columns: auto auto auto;
   font-size: 12px;
 }
+
