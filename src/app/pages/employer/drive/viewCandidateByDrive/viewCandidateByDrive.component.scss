@@ -640,6 +640,7 @@ justify-content: space-between;
       border-radius: 5px;
       border: 1px solid #CECECE;
       margin: 0px 3px 0px 3px;
+      padding: 2px 0px 0px 7px;
     }
     .go{
       color: #1B4E9B;
@@ -647,6 +648,10 @@ justify-content: space-between;
       cursor: pointer;
       font-weight: 700;
       border: none;
+    }
+    .go.disabled {
+      cursor: not-allowed;
+      opacity: 0.5;
     }
   }
 }
