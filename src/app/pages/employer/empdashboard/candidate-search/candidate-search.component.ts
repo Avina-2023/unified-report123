@@ -26,7 +26,7 @@ export class CandidateSearchComponent implements OnInit {
   public total: any;
   public totallength: any;
   public pageNumber: any = 1;
-  public itemsPerPage: any = 6;
+  public itemsPerPage: any = 150;
   filter_info = { data: [] };
   filterObj = {};
   selectedValues: any[] = [];
