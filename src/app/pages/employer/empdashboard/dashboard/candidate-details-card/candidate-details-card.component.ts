@@ -73,7 +73,9 @@ export class CandidateDetailsCardComponent implements OnInit {
       'C_Candidate_status',
       JSON.stringify(candidateData)
     );
-    this.router.navigate(['/auth/drive/viewCandidateProfilebyEmployer']);
+    this.router.navigateByUrl(
+      '/auth/drive/viewCandidateProfilebyEmployer?from=CS'
+    );
   }
 
   // getcandidatedetails(){
