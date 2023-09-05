@@ -221,11 +221,11 @@
                   <div class="key">Present Address</div>
                   <div class="value" id="presentAddress">
                     {{candidateData?.contact_details?.present_line_street_addres}}
-                    {{candidateData?.contact_details?.present_line2_street_addre ? ', ' +
+                    {{candidateData?.contact_details?.present_line2_street_addre ? ' ' +
                     candidateData?.contact_details?.present_line2_street_addre : ''}}
-                    {{candidateData?.contact_details?.present_address_line_3 ? ', ' +
+                    {{candidateData?.contact_details?.present_address_line_3 ? '' +
                     candidateData?.contact_details?.present_address_line_3
-                    : ''}},
+                    : ''}}
                     {{form_present_city ? ', ' + form_present_city : 'NA'}}
                     {{form_present_state ? ', ' + form_present_state : 'NA'}},
                     <!-- {{form_present_country ? ', ' + form_present_country : 'NA'}}, -->
@@ -238,20 +238,12 @@
               </div>
               <div>
                 <h2 class="sub_heading  pt-10">Permanent Address</h2>
-                <!-- <div class="flx_div flx_baseline title">
-                  <div class="key">Permanent Address</div>
-                  <div class="value">{{candidateData.contact_details.permanent_line1_street_add}},
-                    {{candidateData.contact_details.permanent_line2_street_add}},
-                    {{candidateData.contact_details.permanent_address_line_3}},
-                    {{candidateData.contact_details.permanent_city}},
-                    {{candidateData.contact_details.permanent_state}},
-                    {{candidateData.contact_details.permanent_zip}} </div>
-                </div> -->
+
                 <div class="flx_div flx_baseline title">
                   <div class="key">Permanent Address</div>
                   <div class="value" id="permanentAddress">
                     {{candidateData?.contact_details?.permanent_line1_street_add}}
-                    {{candidateData?.contact_details?.permanent_line2_street_add ? ', ' +
+                    {{candidateData?.contact_details?.permanent_line2_street_add ? ' ' +
                     candidateData?.contact_details?.permanent_line2_street_add : ''}}
                     {{candidateData?.contact_details?.permanent_address_line_3 ? ', ' +
                     candidateData?.contact_details?.permanent_address_line_3 : ''}}
@@ -660,7 +652,6 @@
                 class="status_icon">
             </ng-container>
             {{ candidateStatus.jobStatus === 'awaitingReview' ? 'Awaiting Review' : candidateStatus.jobStatus }}
-
           </div>
         </div>
         <div>
