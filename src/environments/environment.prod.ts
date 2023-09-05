@@ -21,28 +21,28 @@ export const environment = {
 
   // NODE_EDGE_URL: 'https://uapedgeservicedev.lntedutech.com',
 
-  API_BASE_URL: 'https://skilledgedev.lntedutech.com',
+  API_BASE_URL: 'https://skilledgeqa.lntedutech.com',
 
   API_BASE_URL_RE: 'https://reportedgeqa.lntedutech.com',
 
-  NODE_EDGE_URL: 'https://skilledgedev.lntedutech.com',
+  NODE_EDGE_URL: 'https://skilledgeqa.lntedutech.com',
 
-  NODE_URL: 'https://uapcoreservicesdev.lntedutech.com',
+  NODE_URL: 'https://uapcoreservicesqa.lntedutech.com',
 
-  PROCTOR_URL: 'http://lntproctordev.lntedutech.com/api/storage/',
+  PROCTOR_URL: 'http://lntproctorqa.lntedutech.com/api/storage/',
 
-  PROCTOR: 'https://lntproctordev.lntedutech.com',
+  PROCTOR: 'https://lntproctorqa.lntedutech.com',
 
   MONGOCHARTURL: 'https://charts.mongodb.com/charts-microcertuat-gzomw',
 
   OFFCAMPUSDRIVE:
-    'https://campus-dev.lntedutech.com/l#/open/off-campus/profile',
+    'https://campus-qa.lntedutech.com/l#/open/off-campus/profile',
 
-  CAMPUS_URL: 'http://campus-dev.lntedutech.com/l#/login',
+  CAMPUS_URL: 'http://campus-qa.lntedutech.com/l#/login',
 
-  SKILL_EDGE_URL: 'https://skilledgedev.lntedutech.com',
+  SKILL_EDGE_URL: 'https://skilledgeqa.lntedutech.com',
 
-  SKILL_PROFILE_URL: 'https://profile-dev.lntedutech.com',
+  SKILL_PROFILE_URL: 'https://profile-qa.lntedutech.com',
 
   cryptoEncryptionKey: '(!@#Passcode!@#)',
 
