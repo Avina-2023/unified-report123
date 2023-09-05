@@ -21,7 +21,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { GlobalValidatorService } from 'src/app/globalvalidators/global-validator.service';
 interface Tab {
   title: string;
-  items: string[]
+  items: string[];
 }
 @Component({
   selector: 'app-viewCandidateByDrive',
@@ -106,13 +106,15 @@ export class ViewCandidateByDriveComponent implements OnInit {
   rejectedcountvalue: any;
   allcountvalue: any;
   pageNumberInput: any;
-  pageNumber: number = 1;
+  pageNumber: number = 0;
   currentPage: number;
   isFirstPage: boolean = true;
   isLastPage: boolean = false;
   selectedPageSize: number = 10;
   totalPages: number;
   pageArray: number[] = [1];
+  isPrevButtonDisabled: boolean = false;
+  isNextButtonDisabled: boolean = false;
   constructor(
     private ApiService: ApiService,
     private toastr: ToastrService,
@@ -120,7 +122,7 @@ export class ViewCandidateByDriveComponent implements OnInit {
     private sendData: SentDataToOtherComp,
     public router: Router,
     private activeroute: ActivatedRoute,
-    private global_validators: GlobalValidatorService,
+    private global_validators: GlobalValidatorService
   ) {
     this.jobId = this.appconfig.getLocalStorage('currentJobID');
     this.serverSideStoreType = 'partial';
@@ -169,10 +171,10 @@ export class ViewCandidateByDriveComponent implements OnInit {
     // this.appconfig.clearLocalStorageOne('currentJobID');
   }
 
-  paginationCounter(){
-    this.totalPages = Math.ceil(this.pageRowCount/this.selectedPageSize)
-    this.pageArray = Array.from(Array(this.totalPages).keys());
-  }
+  // paginationCounter(){
+  //   this.totalPages = Math.ceil(this.pageRowCount/this.selectedPageSize)
+  //   this.pageArray = Array.from(Array(this.totalPages).keys());
+  // }
   arrayofData: any = [];
 
   // Ag Grid Section
@@ -206,8 +208,12 @@ export class ViewCandidateByDriveComponent implements OnInit {
           filterOptions: ['contains'],
         },
         cellRenderer: (params) => {
-          if (params.value && params.value !== undefined
-            && params.value !== null && params.value !== '') {
+          if (
+            params.value &&
+            params.value !== undefined &&
+            params.value !== null &&
+            params.value !== ''
+          ) {
             this.FormateName = params.value;
             return this.titleCase(this.FormateName);
           } else {
@@ -215,8 +221,12 @@ export class ViewCandidateByDriveComponent implements OnInit {
           }
         },
         tooltipValueGetter: (params) => {
-          if (params.value && params.value !== undefined
-            && params.value !== null && params.value !== '') {
+          if (
+            params.value &&
+            params.value !== undefined &&
+            params.value !== null &&
+            params.value !== ''
+          ) {
             this.FormateName = params.value;
             return this.titleCase(this.FormateName);
           } else {
@@ -226,8 +236,8 @@ export class ViewCandidateByDriveComponent implements OnInit {
         cellStyle: (params) => {
           return {
             'text-decoration': 'underline',
-            'color': 'blue',
-            'cursor': 'pointer',
+            color: 'blue',
+            cursor: 'pointer',
           };
         },
       },
@@ -291,23 +301,28 @@ export class ViewCandidateByDriveComponent implements OnInit {
         },
         cellRenderer: (params) => {
           if (
-            params.value && 
-            params.value !== undefined && 
-            params.value !== null && 
+            params.value &&
+            params.value !== undefined &&
+            params.value !== null &&
             params.value !== ''
-            ) {
-            return params.value === 'awaitingReview' ? 'Awaiting Review' : this.titleCase(params.value);
+          ) {
+            return params.value === 'awaitingReview'
+              ? 'Awaiting Review'
+              : this.titleCase(params.value);
           } else {
             return '-';
           }
         },
         tooltipValueGetter: (params) => {
-          if (params.value && 
-            params.value !== undefined && 
-            params.value !== null && 
+          if (
+            params.value &&
+            params.value !== undefined &&
+            params.value !== null &&
             params.value !== ''
-            ) {
-            return params.value === 'awaitingReview' ? 'Awaiting Review' : this.titleCase(params.value);
+          ) {
+            return params.value === 'awaitingReview'
+              ? 'Awaiting Review'
+              : this.titleCase(params.value);
           } else {
             return '-';
           }
@@ -446,10 +461,8 @@ export class ViewCandidateByDriveComponent implements OnInit {
         suppressColumnsToolPanel: true,
         filter: false,
         pinned: 'right',
-      }
-
+      },
     ];
-
   }
   exportCSV() {
     this.gridApi.exportDataAsCsv({
@@ -491,7 +504,6 @@ export class ViewCandidateByDriveComponent implements OnInit {
     return splitStr.join(' ');
   }
 
-
   onGridReady(params: any) {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
@@ -516,10 +528,10 @@ export class ViewCandidateByDriveComponent implements OnInit {
             if (data1.success == false) {
               params.fail();
               params.success({
-                rowData: [], 
+                rowData: [],
                 rowCount: 0,
               });
-              this.totalPages = 1
+              this.totalPages = 1;
               this.gridApi.showNoRowsOverlay();
             } else {
               this.candidateList = data1 && data1.data ? data1.data : [];
@@ -538,19 +550,21 @@ export class ViewCandidateByDriveComponent implements OnInit {
               if (this.candidateList.length > 0) {
                 this.pageRowCount =
                   data1 && data1.totalCount ? data1.totalCount : 0;
-                  this.totalPages = Math.ceil(this.pageRowCount/this.selectedPageSize)
-                  console.log(this.totalPages)
+                this.totalPages = Math.ceil(
+                  this.pageRowCount / this.selectedPageSize
+                );
+                console.log(this.totalPages);
                 this.gridApi.hideOverlay();
                 params.success({
                   rowData: this.candidateList,
                   rowCount: this.candidateList.length,
                 });
-              } else { 
+              } else {
                 params.success({
                   rowData: this.candidateList,
                   rowCount: 0,
                 });
-                this.totalPages = 1
+                this.totalPages = 1;
                 this.gridApi.showNoRowsOverlay();
               }
             }
@@ -591,21 +605,6 @@ export class ViewCandidateByDriveComponent implements OnInit {
     this.router.navigate(['/auth/partner/jobrequirment']);
   }
 
-  // onTabChange(event: MatTabChange) {
-  //   this.selectedTab = event.tab.textLabel;
-  //   this.filterData();
-  // }
-
-  // filterData() {
-  //   if (this.selectedTab === 'All') {
-  //     // this.filteredColumnDefs = this.columnDefs;
-  //     this.filteredRowData = this.rowData;
-  //   } else {
-  //     // this.filteredColumnDefs = this.columnDefs;
-  //     this.filteredRowData = this.rowData.filter(item => item.status === this.selectedTab);
-  //   }
-  // }
-
   refresh() {
     this.gridApi.refreshServerSideStore({ purge: true });
   }
@@ -614,25 +613,25 @@ export class ViewCandidateByDriveComponent implements OnInit {
     this.jobDetailsdata = this.appconfig.getLocalStorage('currentJobData');
     this.valueone = JSON.parse(this.jobDetailsdata);
   }
-  
+
   onTabChange(index: number) {
     const pall = ['navyblue', 'yellow', 'lightblue', 'red', 'green'];
     const icn = ['#1B4E9B', '#FFB74D', '#27BBEE', '#EF2917', ' #49AE31'];
-    console.log('Selected tab index:' + index); 
-    this.dynclass = pall[index]; 
-    this.icncolor = icn[index]; 
-    this.active = index; 
-    console.log(index, "MYINDEX VALUE") 
-    let statusmodel = { 
-      jobStatus: { 
-        filterType: 'text', 
-        type: 'contains', 
+    console.log('Selected tab index:' + index);
+    this.dynclass = pall[index];
+    this.icncolor = icn[index];
+    this.active = index;
+    console.log(index, 'MYINDEX VALUE');
+    let statusmodel = {
+      jobStatus: {
+        filterType: 'text',
+        type: 'contains',
         filter: '',
       },
     };
     // if (index == 0) {
     //   statusmodel.jobStatus.filter = 'All';
-    // }else 
+    // }else
     if (index == 1) {
       statusmodel.jobStatus.filter = 'awaitingReview';
     } else if (index == 2) {
@@ -641,7 +640,6 @@ export class ViewCandidateByDriveComponent implements OnInit {
       statusmodel.jobStatus.filter = 'rejected';
     } else if (index == 4) {
       statusmodel.jobStatus.filter = 'Shortlisted';
-
     }
     this.gridApi.setFilterModel(statusmodel);
   }
@@ -653,15 +651,18 @@ export class ViewCandidateByDriveComponent implements OnInit {
   }
 
   candidateprofile(data: any): void {
-    this.appconfig.setLocalStorage("C_Candidate_status", JSON.stringify(data));
-    this.router.navigate(['/auth/drive/viewCandidateProfilebyEmployer']);
+    this.appconfig.setLocalStorage('C_Candidate_status', JSON.stringify(data));
+    this.router.navigateByUrl(
+      '/auth/drive/viewCandidateProfilebyEmployer?from=NAME'
+    );
   }
 
-  // onPageSizeChanged() {
-  //   var value = (document.getElementById('page-size') as HTMLInputElement)
-  //     .value;
-  //   this.gridApi.paginationSetPageSize(Number(value));
-  // }
+  paginationCounter(){
+    this.totalPages = Math.ceil(this.pageRowCount/this.selectedPageSize)
+    this.pageArray = Array.from(Array(this.totalPages).keys());
+    this.isPrevButtonDisabled = this.pageArray[0] === 0;
+    this.isNextButtonDisabled = false;
+  }
 
   onPageSizeChanged() {
     this.paginationCounter();
@@ -669,51 +670,34 @@ export class ViewCandidateByDriveComponent implements OnInit {
   }
 
   onBtPageGo(pageNumber: number) {
-    if (pageNumber >= 1 && pageNumber <= this.gridApi.paginationGetTotalPages()) {
+    if (this.pageNumberInput && this.pageNumberInput <= this.totalPages) {
       this.gridApi.paginationGoToPage(pageNumber - 1);
     } else {
       console.log('Invalid page number');
     }
   }
 
-  // onBtPrevPage(){
-  //   this.gridApi.paginationGoToPreviousPage()
-  // }
   onBtPrevPage() {
     this.gridApi.paginationGoToPreviousPage();
-    // this.updatePaginationButtons(this.gridApi.paginationGetCurrentPage(), this.gridApi.paginationGetTotalPages());
   }
+
   gotoPage(i) {
     this.gridApi.paginationGoToPage(i);
+    this.isPrevButtonDisabled = i === 0;
+    if (i === this.pageArray.length - 1) {
+      this.isNextButtonDisabled = true; 
+    } else {
+      this.isNextButtonDisabled = false;
+    } 
   }
   
-  // onBtNextPage(){
-  //   this.gridApi.paginationGoToNextPage()
-  // }
   onBtNextPage() {
     this.gridApi.paginationGoToNextPage();
-    // this.updatePaginationButtons(this.gridApi.paginationGetCurrentPage(), this.gridApi.paginationGetTotalPages());
   }
-  // updatePaginationButtons(currentPage: number, totalPages: number) {
-  //   this.isFirstPage = currentPage === 0;
-  //   this.isLastPage = currentPage === totalPages - 1;
-  // }
-  // onBtPageGo(pageNumber: string) {
-  //   const isValidNumber = this.global_validators.numberOnly();
 
-  //   if (!isValidNumber) {
-  //     console.log('Invalid input. Please enter a valid number.');
-  //     return;
-  //   }
-
-  //   const parsedNumber = parseInt(pageNumber, 10);
-
-  //   if (parsedNumber >= 1 && parsedNumber <= this.gridApi.paginationGetTotalPages()) {
-  //     this.gridApi.paginationGoToPage(parsedNumber - 1);
-  //   } else {
-  //     console.log('Invalid page number');
-  //   }
-  // }
-
+  isPageGoButtonDisabled(): boolean {
+    return this.totalPages <= 1;
+  }
+  
 
 }
