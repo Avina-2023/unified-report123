@@ -616,10 +616,12 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
       (data: any) => {
         this.getAllStates = data[0];
         this.getAllStates.forEach((element) => {
-          if (
-            element.id == this.candidateData.personal_details.domicile_state
-          ) {
+          if (element.id == this.candidateData.contact_details.present_state) {
             this.form_domicile_state = element.name;
+            this.getCityName(
+              element.id,
+              this.candidateData.contact_details.preset_city
+            );
           }
           if (element.id == this.candidateData.contact_details.present_state) {
             this.form_present_state = element.name;
@@ -630,7 +632,7 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
     );
   }
 
-  getAllPresentCities(id, cityId, callback) {
+  getCityName(id, cityId) {
     const ApiData = {
       state_id: id,
     };
@@ -639,18 +641,19 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
       .districtList(ApiData)
       .subscribe(
         (datas: any) => {
-          console.log(datas, 'citydata');
+          debugger;
 
+          console.log(datas, 'citydata');
           this.allPresentCityList = datas.data;
-          this.allPresentCityList.forEach((element) => {
-            if (element.id == this.candidateData.contact_details.preset_city) {
+          datas.data.forEach((element) => {
+            if (element.id == cityId) {
               this.form_present_city = element.name;
+              // return element.name;
             }
           });
-          callback(city);
         },
         (err) => {
-          callback(null);
+          console.log(err);
         }
       );
   }
