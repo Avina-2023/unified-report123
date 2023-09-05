@@ -106,13 +106,15 @@ export class ViewCandidateByDriveComponent implements OnInit {
   rejectedcountvalue: any;
   allcountvalue: any;
   pageNumberInput: any;
-  pageNumber: number = 1;
+  pageNumber: number = 0;
   currentPage: number;
   isFirstPage: boolean = true;
   isLastPage: boolean = false;
   selectedPageSize: number = 10;
   totalPages: number;
   pageArray: number[] = [1];
+  isPrevButtonDisabled: boolean = false;
+  isNextButtonDisabled: boolean = false;
   constructor(
     private ApiService: ApiService,
     private toastr: ToastrService,
@@ -169,10 +171,10 @@ export class ViewCandidateByDriveComponent implements OnInit {
     // this.appconfig.clearLocalStorageOne('currentJobID');
   }
 
-  paginationCounter(){
-    this.totalPages = Math.ceil(this.pageRowCount/this.selectedPageSize)
-    this.pageArray = Array.from(Array(this.totalPages).keys());
-  }
+  // paginationCounter(){
+  //   this.totalPages = Math.ceil(this.pageRowCount/this.selectedPageSize)
+  //   this.pageArray = Array.from(Array(this.totalPages).keys());
+  // }
   arrayofData: any = [];
 
   // Ag Grid Section
@@ -491,7 +493,6 @@ export class ViewCandidateByDriveComponent implements OnInit {
     return splitStr.join(' ');
   }
 
-
   onGridReady(params: any) {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
@@ -591,21 +592,6 @@ export class ViewCandidateByDriveComponent implements OnInit {
     this.router.navigate(['/auth/partner/jobrequirment']);
   }
 
-  // onTabChange(event: MatTabChange) {
-  //   this.selectedTab = event.tab.textLabel;
-  //   this.filterData();
-  // }
-
-  // filterData() {
-  //   if (this.selectedTab === 'All') {
-  //     // this.filteredColumnDefs = this.columnDefs;
-  //     this.filteredRowData = this.rowData;
-  //   } else {
-  //     // this.filteredColumnDefs = this.columnDefs;
-  //     this.filteredRowData = this.rowData.filter(item => item.status === this.selectedTab);
-  //   }
-  // }
-
   refresh() {
     this.gridApi.refreshServerSideStore({ purge: true });
   }
@@ -657,11 +643,12 @@ export class ViewCandidateByDriveComponent implements OnInit {
     this.router.navigate(['/auth/drive/viewCandidateProfilebyEmployer']);
   }
 
-  // onPageSizeChanged() {
-  //   var value = (document.getElementById('page-size') as HTMLInputElement)
-  //     .value;
-  //   this.gridApi.paginationSetPageSize(Number(value));
-  // }
+  paginationCounter(){
+    this.totalPages = Math.ceil(this.pageRowCount/this.selectedPageSize)
+    this.pageArray = Array.from(Array(this.totalPages).keys());
+    this.isPrevButtonDisabled = this.pageArray[0] === 0;
+    this.isNextButtonDisabled = false;
+  }
 
   onPageSizeChanged() {
     this.paginationCounter();
@@ -669,51 +656,34 @@ export class ViewCandidateByDriveComponent implements OnInit {
   }
 
   onBtPageGo(pageNumber: number) {
-    if (pageNumber >= 1 && pageNumber <= this.gridApi.paginationGetTotalPages()) {
+    if (this.pageNumberInput && this.pageNumberInput <= this.totalPages) {
       this.gridApi.paginationGoToPage(pageNumber - 1);
     } else {
       console.log('Invalid page number');
     }
   }
 
-  // onBtPrevPage(){
-  //   this.gridApi.paginationGoToPreviousPage()
-  // }
   onBtPrevPage() {
     this.gridApi.paginationGoToPreviousPage();
-    // this.updatePaginationButtons(this.gridApi.paginationGetCurrentPage(), this.gridApi.paginationGetTotalPages());
   }
+
   gotoPage(i) {
     this.gridApi.paginationGoToPage(i);
+    this.isPrevButtonDisabled = i === 0;
+    if (i === this.pageArray.length - 1) {
+      this.isNextButtonDisabled = true; 
+    } else {
+      this.isNextButtonDisabled = false;
+    } 
   }
   
-  // onBtNextPage(){
-  //   this.gridApi.paginationGoToNextPage()
-  // }
   onBtNextPage() {
     this.gridApi.paginationGoToNextPage();
-    // this.updatePaginationButtons(this.gridApi.paginationGetCurrentPage(), this.gridApi.paginationGetTotalPages());
   }
-  // updatePaginationButtons(currentPage: number, totalPages: number) {
-  //   this.isFirstPage = currentPage === 0;
-  //   this.isLastPage = currentPage === totalPages - 1;
-  // }
-  // onBtPageGo(pageNumber: string) {
-  //   const isValidNumber = this.global_validators.numberOnly();
 
-  //   if (!isValidNumber) {
-  //     console.log('Invalid input. Please enter a valid number.');
-  //     return;
-  //   }
-
-  //   const parsedNumber = parseInt(pageNumber, 10);
-
-  //   if (parsedNumber >= 1 && parsedNumber <= this.gridApi.paginationGetTotalPages()) {
-  //     this.gridApi.paginationGoToPage(parsedNumber - 1);
-  //   } else {
-  //     console.log('Invalid page number');
-  //   }
-  // }
-
+  isPageGoButtonDisabled(): boolean {
+    return this.totalPages <= 1;
+  }
+  
 
 }

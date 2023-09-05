@@ -124,16 +124,19 @@
     
     <div class="goto-sear">
       <div class="pagintion">
-        <button class="prev" (click)=" onBtPrevPage()">Prev</button>
+        {{totalPages}}  {{pageArray}}
+        <!-- <button class="prev" (click)=" onBtPrevPage()">Prev</button> -->
+        <button class="prev" (click)="onBtPrevPage()" [disabled]="isPrevButtonDisabled">Prev</button>
         <div *ngFor="let item of pageArray; let i = index">
-          <button class="one" (click)=" gotoPage(i+1)">{{item+1}}</button>
+          <button class="one" (click)=" gotoPage(i)">{{item+1}}</button>
         </div>
-        <button class="next" (click)=" onBtNextPage()">Next</button>
+        <!-- <button class="next" (click)=" onBtNextPage()">Next</button> -->
+        <button class="next" (click)="onBtNextPage()" [disabled]="isNextButtonDisabled">Next</button>
       </div>
       <div class="goto"> Go To Page: </div>
       <div>
         <input type="string" class="goto-search" [(ngModel)]="pageNumberInput" />
-        <button class="go" (click)="onBtPageGo(pageNumberInput)">Go</button>
+        <button class="go" (click)="onBtPageGo(pageNumberInput)"  [disabled]="pageNumberInput===''||pageNumberInput===undefined||(totalPages < pageNumberInput)">Go</button>
       </div>
     </div>
 
