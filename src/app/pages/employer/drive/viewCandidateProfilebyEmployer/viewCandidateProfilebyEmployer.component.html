@@ -9,9 +9,16 @@
 
     <div class="card_one">
       <div class="inner_content pd-20 card_sticky">
-        <div>
+        <!-- <div>
           <img src={{candidateData?.personal_details?.profileImage}} />
+        </div> -->
+        <div>
+          <img *ngIf="!candidateData?.personal_details?.profileImage"
+            src="../../../../../../assets/images/removed dp.png" alt="No Profile Picture" class="round-profile-pic">
+          <img *ngIf="candidateData?.personal_details?.profileImage" [src]="candidateData.personal_details.profileImage"
+            alt="Candidate Profile Picture" class="round-profile-pic">
         </div>
+
         <div class="title txt-center  hidden_div">
           <div class="content_wrap">{{candidateData?.personal_details?.name}}</div>
         </div>
@@ -21,30 +28,42 @@
             {{candidateData.contact_details.permanent_city}},&nbsp;{{candidateData.contact_details.permanent_state}},&nbsp;<span
               class="countryimg"> &nbsp;&nbsp;&nbsp;&nbsp;<img src="assets/images/india_flag.svg"></span>
           </div> -->
-          <div class="content_wrap">
+          <!-- <div class="content_wrap">
             <span [matTooltip]="getPermanentAddressTooltip()" matTooltipPosition="above">
               {{ candidateData?.contact_details?.permanent_city }},&nbsp;
               {{ candidateData?.contact_details?.permanent_state }},&nbsp;
               <span class="countryimg"> &nbsp;&nbsp;&nbsp;&nbsp;<img src="assets/images/india_flag.svg"></span>
             </span>
+          </div> -->
+          <div class="content_wrap">
+            <span [matTooltip]="getPermanentAddressTooltip()" matTooltipPosition="above">
+              {{ candidateData?.contact_details?.permanent_city }}
+              <ng-container *ngIf="candidateData?.contact_details?.permanent_state">
+                , {{ candidateData.contact_details.permanent_state }}
+              </ng-container>
+              <ng-container *ngIf="candidateData?.contact_details?.permanent_state">
+                <span class="countryimg">&nbsp;&nbsp;&nbsp;&nbsp;<img src="assets/images/india_flag.svg"></span>
+              </ng-container>
+            </span>
           </div>
+
         </div>
         <br>
         <!-- <div class="value" *ngIf="candidateStatus.trainedStatus=='Yes'"> <i class="flag_lnt icon-bookmark col1">
           </i><span class="boldcandidate">Trained by L&T EduTech</span>
         </div> -->
-        <div class="value" *ngIf = "courseResultData?.length > 0"> 
+        <div class="value" *ngIf="courseResultData?.length > 0">
           <div><span class="flag_lnt icon-bookmark col1"></span></div>
           <div><span class="boldcandidate">Trained by L&T EduTech</span></div>
-      </div> 
+        </div>
         <!-- <div class="value" *ngIf="candidateStatus.assessedStatus=='Yes'"><i class="flag_lnt icon-bookmark col2">
           </i><span class="boldcandidate">Assessed by L&T EduTech</span>
         </div> -->
-        <div class="value" *ngIf="AssesmentDetails?.length > 0"> 
+        <div class="value" *ngIf="AssesmentDetails?.length > 0">
           <div><span class="flag_lnt icon-bookmark col2"></span></div>
           <div><span class="boldcandidate">Assessed by L&T EduTech</span></div>
-        </div> 
-        
+        </div>
+
       </div>
     </div>
     <div class="card_two">
@@ -210,7 +229,10 @@
                     {{form_present_city ? ', ' + form_present_city : 'NA'}}
                     {{form_present_state ? ', ' + form_present_state : 'NA'}},
                     <!-- {{form_present_country ? ', ' + form_present_country : 'NA'}}, -->
-                    {{candidateData?.contact_details?.present_zip}}
+                    <ng-container *ngIf="candidateData?.contact_details?.present_zip">
+                      India- {{ candidateData.contact_details.present_zip }}
+                    </ng-container>
+                    <!-- {{candidateData?.contact_details?.present_zip}} -->
                   </div>
                 </div>
               </div>
@@ -233,13 +255,15 @@
                     candidateData?.contact_details?.permanent_line2_street_add : ''}}
                     {{candidateData?.contact_details?.permanent_address_line_3 ? ', ' +
                     candidateData?.contact_details?.permanent_address_line_3 : ''}}
-                    {{candidateData?.contact_details?.permanent_city ? ', ' + candidateData?.contact_details?.permanent_city
+                    {{candidateData?.contact_details?.permanent_city ? ', ' +
+                    candidateData?.contact_details?.permanent_city
                     : ''}}
                     {{candidateData?.contact_details?.permanent_state ? ', ' +
                     candidateData?.contact_details?.permanent_state : ''}}
                     {{candidateData?.contact_details?.permanent_country ? ', ' +
                     candidateData?.contact_details?.permanent_country : ''}}
-                    {{candidateData?.contact_details?.permanent_zip ? '-' + candidateData?.contact_details?.permanent_zip :
+                    {{candidateData?.contact_details?.permanent_zip ? '-' +
+                    candidateData?.contact_details?.permanent_zip :
                     ''}}
                   </div>
                 </div>
@@ -371,7 +395,8 @@
                 <div class="experience-box"
                   *ngIf="candidateData?.experience_details?.work_details?.total_exp_years || candidateData?.experience_details?.work_details?.total_exp_months">
                   {{ candidateData?.experience_details?.work_details?.total_exp_years }}</div>
-                <span class="value_2" *ngIf="candidateData?.experience_details?.work_details?.total_exp_years">Years</span>
+                <span class="value_2"
+                  *ngIf="candidateData?.experience_details?.work_details?.total_exp_years">Years</span>
                 <div class="experience-box" *ngIf="candidateData?.experience_details?.work_details?.total_exp_months">
                   {{ candidateData?.experience_details?.work_details?.total_exp_months }}</div>
                 <span class="value_2"
@@ -422,7 +447,8 @@
                 </div>
                 <div class="flx_div flx_center hidden_div title" *ngIf="!employment.is_working_here">
                   <div class="key">Duration To</div>
-                  <div class="value content_wrap">{{ employment?.duration_to ? (employment?.duration_to | date : 'MMM y')
+                  <div class="value content_wrap">{{ employment?.duration_to ? (employment?.duration_to | date : 'MMM
+                    y')
                     : 'NIL' }}</div>
                 </div>
                 <div class="flx_div flx_baseline title">
@@ -536,7 +562,7 @@
                 <div class="value content_wrap" [title]="certification.certificationDescription">
                   {{ certification.certificationDescription ? certification.certificationDescription : 'NIL' }}
                 </div>
-              </div> 
+              </div>
               <div class="flx_div flx_baseline title">
                 <div class="key">Certification Validity from</div>
                 <div class="value content_wrap">{{certification.certificationValidityFrom| date : 'MMM y'}}</div>
@@ -601,9 +627,9 @@
         </div>
       </div>
     </div>
-    
+
     <div class="card_three">
-      <div class="job_details_card pd-20 card_sticky">
+      <div class="job_details_card pd-20 card_sticky" *ngIf="!hideSection">
         <div class="job_header">Job Details</div>
         <div class="job_card hidden_div">
           <div class="job_title content_wrap">Applied for</div>
@@ -622,18 +648,19 @@
           <div class="job_description content_wrap">
             <ng-container *ngIf="candidateStatus.jobStatus === 'Shortlisted'">
               <img src="../../../../../assets/images/green_tick_image.png" alt="Shortlisted" class="status_icon">
-            </ng-container> 
+            </ng-container>
             <ng-container *ngIf="candidateStatus.jobStatus === 'Rejected'">
               <img src="../../../../../assets/images/rejected red filled.svg" alt="Rejected" class="status_icon">
             </ng-container>
-            <ng-container *ngIf="candidateStatus.jobStatus === 'In Progress'"> 
-              <img src="../../../../../assets/images/blue tick rounded.svg" alt="In Progress" class="status_icon"> 
-            </ng-container> 
-            <ng-container *ngIf="candidateStatus.jobStatus === 'awaitingReview'"> 
-              <img src="../../../../../assets/images/orange awating review.svg" alt="awaiting Review" 
-                class="status_icon"> 
-            </ng-container> 
-            {{candidateStatus.jobStatus}} 
+            <ng-container *ngIf="candidateStatus.jobStatus === 'In Progress'">
+              <img src="../../../../../assets/images/blue tick rounded.svg" alt="In Progress" class="status_icon">
+            </ng-container>
+            <ng-container *ngIf="candidateStatus.jobStatus === 'awaitingReview'">
+              <img src="../../../../../assets/images/orange awating review.svg" alt="awaiting Review"
+                class="status_icon">
+            </ng-container>
+            {{ candidateStatus.jobStatus === 'awaitingReview' ? 'Awaiting Review' : candidateStatus.jobStatus }}
+
           </div>
         </div>
         <div>
@@ -648,7 +675,7 @@
           <div class="assessment-container" >
             <div class="prev-next">
               <div class="assesment-detail">
-                Assesment Details 
+                Assesment Details
                 <div mat-icon-button class="nav-icon" (click)="showPrevious()" [ngClass]="{'disabled': assessmentIndex === 0}">
                   <mat-icon>keyboard_arrow_left</mat-icon>
                 </div>
@@ -669,12 +696,12 @@
                 <div class="stats">{{'Completed'}}</div>
               </div>
             </div>
-            <div class="horizonatlscrollline"> 
+            <div class="horizonatlscrollline">
               <div class="horizonatlline">
                 <div class="horizonatllinecircle" [style.left]="getLeftValue()">
                   <div class="horizonatllinecircleinsidetext">{{selectedAssessment.max_score<0?0:selectedAssessment.max_score}}</div>
                 </div>
-              </div>        
+              </div>
             </div>
             <div class="semi-circle-score">
               <div>
@@ -690,7 +717,7 @@
                 <span class="behaviour2" *ngIf="selectedAssessment.max_score >= 34 && selectedAssessment.max_score <= 66">Average</span>
                 <span class="behaviour" *ngIf="selectedAssessment.max_score >= 67 && selectedAssessment.max_score <= 100">Good</span>
               </div>
-            </div>   
+            </div>
           </div>
         </mat-card>
       </ng-container>
@@ -701,11 +728,11 @@
          </mat-card>
         </div>
       </ng-template> -->
-      
+
         <!-- <div class="course-details">
           <mat-card class="cours-details-card">
             <div class="Course-detail">
-             Certification Details 
+             Certification Details
             </div>
             <div class="course-image">
               <img src="https://miro.medium.com/v2/resize:fit:1400/1*bMgQ8MhbnQexpqHgIgBJPA.png" alt="" />
@@ -714,15 +741,15 @@
             <div class="percen">
              <div class="percen-name">Percentage : </div>
              <div class="percen-num">
-              <circle-progress 
-              [percent]="75" 
-              [radius]="30" 
+              <circle-progress
+              [percent]="75"
+              [radius]="30"
               [showImage]="false"
               [showSubtitle]="false"
               [titleColor]="000000"
-              [outerStrokeWidth]="7" 
+              [outerStrokeWidth]="7"
               [innerStrokeWidth]="0"
-              [outerStrokeColor]="'#78C000'" 
+              [outerStrokeColor]="'#78C000'"
               [animation]="true"
               [animationDuration]="300">
               </circle-progress>
@@ -769,39 +796,44 @@
                 </div>
               </div>
             </ng-container>
-            
+
           </mat-card>
         </div> -->
-        
+
       </div>
 
 
       <div class="job_details_card pd-30 card_sticky">
         <ng-container *ngIf="AssesmentDetails?.length > 0">
-          <mat-card class="asses-details-card" >
-            <div class="assessment-container" >
-                <div class="assesment-detail">
-                  <div class="ass-name">Assesment Details </div>
-                  <div class="prev-next">
-                  <div mat-icon-button class="nav-icon" (click)="showPrevious()" [ngClass]="{'disabled': assessmentIndex === 0}">
+          <mat-card class="asses-details-card">
+            <div class="assessment-container">
+              <div class="assesment-detail">
+                <div class="ass-name">Assesment Details </div>
+                <div class="prev-next">
+                  <div mat-icon-button class="nav-icon" (click)="showPrevious()"
+                    [ngClass]="{'disabled': assessmentIndex === 0}">
                     <mat-icon>keyboard_arrow_left</mat-icon>
                   </div>
-                  <div mat-icon-button class="nav-icon" (click)="showNext()" [ngClass]="{'disabled': assessmentIndex === AssesmentDetails?.length - 1}">
+                  <div mat-icon-button class="nav-icon" (click)="showNext()"
+                    [ngClass]="{'disabled': assessmentIndex === AssesmentDetails?.length - 1}">
                     <mat-icon>keyboard_arrow_right</mat-icon>
                   </div>
-                 </div>
+                </div>
               </div>
               <div class="ass-image">
                 <!-- <img src="https://t3.ftcdn.net/jpg/02/45/87/36/360_F_245873693_0geCBYQipchlBwGPXskG5SZckAdJkTLa.jpg" alt="" /> -->
-                <img src="https://media.istockphoto.com/id/1398462038/photo/online-exam-or-test.jpg?s=612x612&w=0&k=20&c=hvaH_2oA0Dm-tpQ8T5JBF_39QF3xhpic38Yi2AngaCE=" alt=""/>
+                <img
+                  src="https://media.istockphoto.com/id/1398462038/photo/online-exam-or-test.jpg?s=612x612&w=0&k=20&c=hvaH_2oA0Dm-tpQ8T5JBF_39QF3xhpic38Yi2AngaCE="
+                  alt="" />
                 <!-- <img src="https://media.istockphoto.com/id/1483355290/photo/businessman-using-a-laptop-and-taking-an-assessment-questionnaire-evaluation-online-survey.jpg?s=612x612&w=0&k=20&c=PhztRjrkCSetcm_9cWDDB1IIgw1hi4tr7FF8BbBkWeg=" alt=""/> -->
                 <!-- <img src="https://media.istockphoto.com/id/1445353573/photo/assessment-questionnaire-quiz-or-survey-form-with-checkboxes-on-computer-screen-person.jpg?s=612x612&w=0&k=20&c=vBaRGBc2mT5U1FCBbSTYdZM-dGc0rvoZ99lQzye525U=" alt=""/> -->
                 <!-- <img src="https://media.istockphoto.com/id/1488803384/photo/digital-assets-document-and-mark-correct-sign-for-standard-quality-control-certification.jpg?s=612x612&w=0&k=20&c=3NMj_esWa686dlpCW-ECOvkT6KqLCPN6UjrNUKO7_1M=" alt=""/> -->
                 <!-- <img src="https://media.istockphoto.com/id/1516691318/photo/service-quality-assurance-guarantee-standards-iso-standards-quality-assurance-control.jpg?s=612x612&w=0&k=20&c=bBixTCD6d-WWd2Ec3rB7e0XSG-GXYirKfanamn2qG80=" alt=""/> -->
                 <!-- <img src="https://media.istockphoto.com/id/1498727341/photo/checklist-and-clipboard-task-documentation-management-business-people-working-laptop.jpg?s=612x612&w=0&k=20&c=fS4lhJ8B0A8H3tl9aCJ1nK4cOQGxQfRj5Lee1p612wA=" alt=""/> -->
-                
+
                 <div class="ass-name" *ngIf="selectedAssessment.test_name">{{selectedAssessment.test_name}}</div>
-                <div class="ass-name" *ngIf="selectedAssessment.assessment_name">{{selectedAssessment.assessment_name}}</div>
+                <div class="ass-name" *ngIf="selectedAssessment.assessment_name">{{selectedAssessment.assessment_name}}
+                </div>
               </div>
               <div class="ass-date">
                 <div>
@@ -814,32 +846,39 @@
               <div class="scor">
                 <span class="scor1">Score:</span>
               </div>
-              <div class="horizonatlscrollline"> 
+              <div class="horizonatlscrollline">
                 <div class="horizonatlline">
                   <div class="horizonatllinecircle" [style.left]="getLeftValue()">
-                    <div class="horizonatllinecircleinsidetext">{{selectedAssessment.max_score<0?0:selectedAssessment.max_score}}</div>
+                    <div class="horizonatllinecircleinsidetext">{{selectedAssessment.max_score
+                      <0?0:selectedAssessment.max_score}}< /div>
+                    </div>
                   </div>
-                </div>        
+                </div>
+                <div class="semi-circle-score">
+                  <div>
+                    <span class="rating">Ratings:</span>
+                  </div>
+                  <div>
+                    <!-- <img *ngIf="selectedAssessment.max_score >= 0 && selectedAssessment.max_score <= 33" src="../../../../../assets/images/red-semi.png"> -->
+                    <img *ngIf="selectedAssessment.max_score <= 33" src="../../../../../assets/images/red-semi.png">
+                    <img *ngIf="selectedAssessment.max_score >= 34 && selectedAssessment.max_score <= 66"
+                      src="../../../../../assets/images/orange-semi.png">
+                    <img *ngIf="selectedAssessment.max_score >= 67 && selectedAssessment.max_score <= 100"
+                      src="../../../../../assets/images/green-semi.png">
+                  </div>
+                  <div>
+                    <!-- <span class="behaviour1" *ngIf="selectedAssessment.max_score >= 0 && selectedAssessment.max_score <= 33">Low</span> -->
+                    <span class="behaviour1" *ngIf="selectedAssessment.max_score <= 33">Low</span>
+                    <span class="behaviour2"
+                      *ngIf="selectedAssessment.max_score >= 34 && selectedAssessment.max_score <= 66">Average</span>
+                    <span class="behaviour"
+                      *ngIf="selectedAssessment.max_score >= 67 && selectedAssessment.max_score <= 100">Good</span>
+                  </div>
+                </div>
               </div>
-              <div class="semi-circle-score">
-                <div>
-                  <span class="rating">Ratings:</span>
-                </div>
-              <div>
-                  <!-- <img *ngIf="selectedAssessment.max_score >= 0 && selectedAssessment.max_score <= 33" src="../../../../../assets/images/red-semi.png"> -->
-                  <img *ngIf="selectedAssessment.max_score <= 33" src="../../../../../assets/images/red-semi.png">
-                  <img *ngIf="selectedAssessment.max_score >= 34 && selectedAssessment.max_score <= 66" src="../../../../../assets/images/orange-semi.png">
-                  <img *ngIf="selectedAssessment.max_score >= 67 && selectedAssessment.max_score <= 100" src="../../../../../assets/images/green-semi.png">
-                </div>
-                <div>
-                  <!-- <span class="behaviour1" *ngIf="selectedAssessment.max_score >= 0 && selectedAssessment.max_score <= 33">Low</span> -->
-                  <span class="behaviour1" *ngIf="selectedAssessment.max_score <= 33">Low</span>
-                  <span class="behaviour2" *ngIf="selectedAssessment.max_score >= 34 && selectedAssessment.max_score <= 66">Average</span>
-                  <span class="behaviour" *ngIf="selectedAssessment.max_score >= 67 && selectedAssessment.max_score <= 100">Good</span>
-                </div>
-              </div>   
             </div>
           </mat-card>
+
         </ng-container>
         <!-- <ng-template #noAssessmentDetails>
           <div class="no-assessment-message">
@@ -849,55 +888,49 @@
           </div>
         </ng-template> -->
       </div>
-      
-      <div class="job_details_card pd-30 card_sticky" >
+
+      <div class="job_details_card pd-30 card_sticky">
         <div class="course-details" *ngIf="currentCertification">
-          <mat-card class="cours-details-card" *ngIf = "courseResultData?.length > 0">
+          <mat-card class="cours-details-card" *ngIf="courseResultData?.length > 0">
             <div class="course-name-arrow">
               <div class="Course-detail">
                 Certification Details
               </div>
               <div>
-                <div mat-icon-button class="nav-icon1" (click)="prevCertification()" [ngClass]="{'disabled': currentIndex === 0}">
+                <div mat-icon-button class="nav-icon1" (click)="prevCertification()"
+                  [ngClass]="{'disabled': currentIndex === 0}">
                   <mat-icon>keyboard_arrow_left</mat-icon>
                 </div>
-                <div mat-icon-button class="nav-icon1" (click)="nextCertification()" [ngClass]="{'disabled': currentIndex === courseResultData.length - 1}">
+                <div mat-icon-button class="nav-icon1" (click)="nextCertification()"
+                  [ngClass]="{'disabled': currentIndex === courseResultData.length - 1}">
                   <mat-icon>keyboard_arrow_right</mat-icon>
                 </div>
               </div>
             </div>
-      
+
             <ng-container *ngIf="currentCertification">
               <div class="course-image">
-                <img [src]="courseImg1" alt="" /> 
+                <img [src]="courseImg1" alt="" />
                 <!-- <img [src]="currentCertification.courseImgUrl" alt="" /> -->
                 <div class="overlay-2">{{ currentCertification.courseName }}</div>
               </div>
               <div class="percen">
                 <div class="percen-name">Percentage: </div>
                 <div class="percen-num">
-                  <circle-progress
-                    [percent]="currentCertification.coursePercentage"
-                    [radius]="30"
-                    [showImage]="false"
-                    [showSubtitle]="false"
-                    [titleColor]="000000"
-                    [outerStrokeWidth]="7"
-                    [innerStrokeWidth]="0"
-                    [outerStrokeColor]="'#78C000'"
-                    [animation]="true"
-                    [animationDuration]="300">
+                  <circle-progress [percent]="currentCertification.coursePercentage" [radius]="30" [showImage]="false"
+                    [showSubtitle]="false" [titleColor]="000000" [outerStrokeWidth]="7" [innerStrokeWidth]="0"
+                    [outerStrokeColor]="'#78C000'" [animation]="true" [animationDuration]="300">
                   </circle-progress>
                 </div>
                 <!-- {{currentCertification.courseId}} -->
               </div>
             </ng-container>
-      
+
           </mat-card>
         </div>
       </div>
-      
-      
+
+
     </div>
   </div>
 
