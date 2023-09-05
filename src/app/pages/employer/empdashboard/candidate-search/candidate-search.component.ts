@@ -276,6 +276,19 @@ export class CandidateSearchComponent implements OnInit {
       panelClass: 'spec_desk_dialog',
     });
   }
+  // getTooltipText(education: any): string {
+  //   return `${education.specification ? education.specification + (education.discipline ? ' ' + education.discipline : '') :
+  //     education.discipline ? education.discipline : education.level } - ${education.end_date} `;
+  // }
 
+  getTooltipText(education: any): string {
+    const date = new Date(education.end_date);
+    const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long' };
+    const formattedDate = date.toLocaleDateString(undefined, options);
+    
+    return `${education.specification ? education.specification + (education.discipline ? ' ' + education.discipline : '') :
+      education.discipline ? education.discipline : education.level } - ${formattedDate}`;
+  }
 
+  
 }
