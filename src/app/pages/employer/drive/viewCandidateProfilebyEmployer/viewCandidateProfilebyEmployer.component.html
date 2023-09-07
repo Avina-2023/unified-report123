@@ -221,9 +221,9 @@
                   <div class="key">Present Address</div>
                   <div class="value" id="presentAddress">
                     {{candidateData?.contact_details?.present_line_street_addres}}
-                    {{candidateData?.contact_details?.present_line2_street_addre ? ' ' +
+                    {{candidateData?.contact_details?.present_line2_street_addre ? '' +
                     candidateData?.contact_details?.present_line2_street_addre : ''}}
-                    {{candidateData?.contact_details?.present_address_line_3 ? '' +
+                    {{candidateData?.contact_details?.present_address_line_3 ? ',' +
                     candidateData?.contact_details?.present_address_line_3
                     : ''}}
                     {{form_present_city ? ', ' + form_present_city : 'NA'}}
@@ -238,7 +238,6 @@
               </div>
               <div>
                 <h2 class="sub_heading  pt-10">Permanent Address</h2>
-
                 <div class="flx_div flx_baseline title">
                   <div class="key">Permanent Address</div>
                   <div class="value" id="permanentAddress">
@@ -330,7 +329,6 @@
                   {{candidates.gap}}
                 </div>
               </div> -->
-
               <!-- <div class="flx_div flx_baseline title">
                 <div class="key">Do you have any gap during the education?</div>
                 <div class="value">
@@ -343,7 +341,6 @@
                   {{candidates.historyOfbacklog}}
                 </div>
               </div>
-
               <div class="flx_div flx_baseline title">
                 <div class="key">No. of Active Backlogs(if any) ?</div>
                 <div class="value">
@@ -363,7 +360,6 @@
                   <!-- {{candidates.reasonForbacklog}} -->
                 </div>
               </div>
-
               <div class="flx_div flx_baseline title">
                 <div class="key_edu">
                   <div class="value_withcheckbox" *ngIf="candidates.is_highLevelEdu">
@@ -488,7 +484,6 @@
             </div>
           </div>
         </div>
-
         <div id="project" #projectSection class="inner_content">
           <div class="profile_details pd-20">
             <h2 class="head_title"> Project Details </h2>
