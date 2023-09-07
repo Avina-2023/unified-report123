@@ -491,9 +491,9 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
     }
   }
 
-  getLeftValue(): string {
-    const score = +this.selectedAssessment.max_score;
-    const leftPercentage = (score / 100) * 100;
+  getLeftValue(): string { 
+    const score = +this.selectedAssessment.max_score; 
+    const leftPercentage = (score / 100) * 100; 
     return leftPercentage + '%';
   }
 
@@ -568,27 +568,23 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
     });
   }
 
-  assesmentdata() {
-    this.candidateResultData = this.candidateData.assessments;
+  assesmentdata() { 
+    this.candidateResultData = this.candidateData.assessments; 
     // this.AssesmentDetails = [...this.candidateResultData.Aptitude,...this.candidateResultData.Coding,...this.candidateResultData.English];
-    this.AssesmentDetails = this.candidateResultData;
-    console.log(this.candidateResultData, ' this.AssesedcandidateData');
-    console.log(this.AssesmentDetails, 'AssesmentDetails');
-    this.selectedAssessment = this.AssesmentDetails[this.assessmentIndex];
-  }
+    this.AssesmentDetails = this.candidateResultData; 
+    console.log(this.candidateResultData, ' this.AssesedcandidateData'); 
+    console.log(this.AssesmentDetails, 'AssesmentDetails'); 
+    this.selectedAssessment = this.AssesmentDetails[this.assessmentIndex]; 
+  } 
 
-  courseData() {
-    this.courseResultData = this.candidateData.courses;
-    console.log(this.courseResultData, 'courseResultData');
-    this.currentIndex = 0;
-    this.currentCertification = this.courseResultData[0];
-    console.log(
-      this.currentCertification,
-      'currentCertificationcurrentCertification'
-    );
-    this.courseImg1 =
-      this.currentCertification.courseImgUrl + environment.SAS_Token;
-  }
+  courseData() { 
+    this.courseResultData = this.candidateData.courses; 
+    console.log(this.courseResultData, 'courseResultData'); 
+    this.currentIndex = 0; 
+    this.currentCertification = this.courseResultData[0]; 
+    console.log(this.currentCertification,'currentCertificationcurrentCertification');
+    this.courseImg1 = this.currentCertification.courseImgUrl + environment.SAS_Token;
+  } 
 
   scrollToSection(sectionId: string) {
     this.activeSection = sectionId;
