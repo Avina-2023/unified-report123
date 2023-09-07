@@ -28,7 +28,7 @@ export class CandidateSearchComponent implements OnInit {
   public pageNumber: any = 1;
   public itemsPerPage: any = 100;
   filter_info = { data: [] };
-  filterObj = {};
+  filterObj:any = {};
   selectedValues: any[] = [];
   highLevelEducationSpecification: string | undefined;
   educations: any[] = [];
@@ -72,7 +72,7 @@ export class CandidateSearchComponent implements OnInit {
   }
   toviewprofile(candidateData) {
     this.appconfig.setLocalStorage('C_Candidate_status', JSON.stringify(candidateData));
-    this.router.navigate(['/auth/drive/viewCandidateProfilebyEmployer']);
+    this.router.navigateByUrl('/auth/drive/viewCandidateProfilebyEmployer?from=CS');
   }
 
 
@@ -113,11 +113,12 @@ export class CandidateSearchComponent implements OnInit {
   }
 
   getcandidatedetails() {
+    this.filterObj.commonSearch =  this.selectedOption
     const objDetails = {
       pageNumber: this.pageNumber,
       itemsPerPage: this.itemsPerPage,
       filter: this.filterObj,
-      commonSearch: this.selectedOption,
+      
     };
     this.apiservice.getallCandidateDetails(objDetails).subscribe((response: any) => {
       if (response.success) {
@@ -131,7 +132,7 @@ export class CandidateSearchComponent implements OnInit {
         console.log(this.total, 'totalvalue');
        
       }
-    });
+    }); 
   }
 
   // clickSave() {
@@ -167,7 +168,6 @@ export class CandidateSearchComponent implements OnInit {
       email: candidate.email,
       savedStatus: !candidate.savedStatus,
     };
-
     this.apiservice.getsaveCandidate(savecanparams).subscribe((res: any) => {
       candidate.savedStatus = !candidate.savedStatus;
       candidate.customClass = candidate.savedStatus ? 'view-prof:hover' : '';
@@ -276,19 +276,15 @@ export class CandidateSearchComponent implements OnInit {
       panelClass: 'spec_desk_dialog',
     });
   }
-  // getTooltipText(education: any): string {
-  //   return `${education.specification ? education.specification + (education.discipline ? ' ' + education.discipline : '') :
-  //     education.discipline ? education.discipline : education.level } - ${education.end_date} `;
-  // }
 
   getTooltipText(education: any): string {
     const date = new Date(education.end_date);
     const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long' };
     const formattedDate = date.toLocaleDateString(undefined, options);
-    
     return `${education.specification ? education.specification + (education.discipline ? ' ' + education.discipline : '') :
       education.discipline ? education.discipline : education.level } - ${formattedDate}`;
   }
 
+  
   
 }
