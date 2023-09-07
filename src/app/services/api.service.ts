@@ -379,7 +379,7 @@ export class ApiService {
     // this.datas is api body data
     return this.http.post(`${this.BASE_URL}/districtList`, stateId);
   }
-  getallStates() {
+  getallStates(){
     // return this.http.post(`${this.BASE_URL}/api/state_api`, Id, { headers: this.withoutTokens(), withCredentials: true });
     return this.http.get(`../assets/json/state.json`);
   }
@@ -389,11 +389,11 @@ export class ApiService {
   getJobDetail(data) {
     return this.http.post(`${this.BASE_URL}/getJobDetail`, data);
   }
-  getCandidateByFilter(data) {
+  getCandidateByFilter(data){
     return this.http.post(`${this.BASE_URL}/candidateFilter`, data);
   }
-  getsaveCandidate(data) {
-    return this.http.post(`${this.BASE_URL}/saveCandidate`, data);
+  getsaveCandidate(data){
+    return this.http.post(`${this.BASE_URL}/saveCandidate`, data); 
   }
   // candidateResultDetails(data) {
   //   return this.http.post(`${this.BASE_URL_RE}/candidateResultDetails`, data);
@@ -402,10 +402,10 @@ export class ApiService {
   //   return this.http.post("https://devfacade.lntedutech.com/learnerProgressStatus", data);
   // }
 
-  candidateResultDetails(data) {
-    return this.http.post(`${this.BASE_URL}/candidateResultDetails`, data);
+  candidateResultDetails(data){
+    return this.http.post(`${this.BASE_URL}/candidateResultDetails`,data);
   }
-  getcourseTracking(data) {
-    return this.http.post(`${this.BASE_URL}/learnerProgressStatus`, data);
+  getcourseTracking(data){
+    return this.http.post(`${this.BASE_URL}/learnerProgressStatus`,data);
   }
 }
