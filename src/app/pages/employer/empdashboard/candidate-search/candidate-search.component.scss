@@ -122,7 +122,8 @@
             white-space: nowrap;
             text-overflow: ellipsis;
             overflow: hidden;
-            // width: 170px;
+            width: 170px;
+            text-align: center;
           }
           .candidate-edu {
             display: flex;

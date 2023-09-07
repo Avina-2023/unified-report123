@@ -35,12 +35,16 @@
                   class="round-profile-pic">
               </ng-template>
             </div>
-            <div class="candidate-name">
+            <div class="candidate-name" [matTooltip]="item.firstName">
               {{item.firstName}}
             </div>
             <div class="candidate-edu">
               <div *ngFor="let education of item.educations">
-                <div *ngIf="education.is_highLevelEdu" class="high-level">
+                <!-- <div *ngIf="education.is_highLevelEdu" class="high-level">
+                  {{education.specification ? education.specification + (education.discipline ? ' ' + education.discipline : '') :
+                  education.discipline ? education.discipline : education.level }} - {{ education.end_date |date:'MMMM yyyy'}}
+                </div> -->
+                <div *ngIf="education.is_highLevelEdu" class="high-level" [matTooltip]="getTooltipText(education)">
                   {{education.specification ? education.specification + (education.discipline ? ' ' + education.discipline : '') :
                   education.discipline ? education.discipline : education.level }} - {{ education.end_date |date:'MMMM yyyy'}}
                 </div>

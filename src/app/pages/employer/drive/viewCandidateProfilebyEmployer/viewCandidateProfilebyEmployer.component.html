@@ -221,9 +221,9 @@
                   <div class="key">Present Address</div>
                   <div class="value" id="presentAddress">
                     {{candidateData?.contact_details?.present_line_street_addres}}
-                    {{candidateData?.contact_details?.present_line2_street_addre ? ' ' +
+                    {{candidateData?.contact_details?.present_line2_street_addre ? '' +
                     candidateData?.contact_details?.present_line2_street_addre : ''}}
-                    {{candidateData?.contact_details?.present_address_line_3 ? '' +
+                    {{candidateData?.contact_details?.present_address_line_3 ? ',' +
                     candidateData?.contact_details?.present_address_line_3
                     : ''}}
                     {{form_present_city ? ', ' + form_present_city : 'NA'}}
@@ -238,7 +238,6 @@
               </div>
               <div>
                 <h2 class="sub_heading  pt-10">Permanent Address</h2>
-
                 <div class="flx_div flx_baseline title">
                   <div class="key">Permanent Address</div>
                   <div class="value" id="permanentAddress">
@@ -330,7 +329,6 @@
                   {{candidates.gap}}
                 </div>
               </div> -->
-
               <!-- <div class="flx_div flx_baseline title">
                 <div class="key">Do you have any gap during the education?</div>
                 <div class="value">
@@ -343,7 +341,6 @@
                   {{candidates.historyOfbacklog}}
                 </div>
               </div>
-
               <div class="flx_div flx_baseline title">
                 <div class="key">No. of Active Backlogs(if any) ?</div>
                 <div class="value">
@@ -363,7 +360,6 @@
                   <!-- {{candidates.reasonForbacklog}} -->
                 </div>
               </div>
-
               <div class="flx_div flx_baseline title">
                 <div class="key_edu">
                   <div class="value_withcheckbox" *ngIf="candidates.is_highLevelEdu">
@@ -488,7 +484,6 @@
             </div>
           </div>
         </div>
-
         <div id="project" #projectSection class="inner_content">
           <div class="profile_details pd-20">
             <h2 class="head_title"> Project Details </h2>
@@ -660,171 +655,34 @@
           <div class="reject_btn" (click)="matDialogreject()"
             [ngClass]="{'disable': candidateStatus.jobStatus === 'Rejected'}">Reject</div>
         </div>
-
-        <!-- <ng-container *ngIf="AssesmentDetails.length > 0; else noAssessmentDetails">
-        <mat-card class="asses-details-card" >
-          <div class="assessment-container" >
-            <div class="prev-next">
-              <div class="assesment-detail">
-                Assesment Details
-                <div mat-icon-button class="nav-icon" (click)="showPrevious()" [ngClass]="{'disabled': assessmentIndex === 0}">
-                  <mat-icon>keyboard_arrow_left</mat-icon>
-                </div>
-                <div mat-icon-button class="nav-icon" (click)="showNext()" [ngClass]="{'disabled': assessmentIndex === AssesmentDetails?.length - 1}">
-                  <mat-icon>keyboard_arrow_right</mat-icon>
-                </div>
-               </div>
-            </div>
-            <div class="ass-image">
-              <img src="https://www.shutterstock.com/image-photo/rear-view-business-man-using-260nw-624272975.jpg" alt="" />
-              <div class="ass-name">{{selectedAssessment.Test_Name}}</div>
-            </div>
-            <div class="ass-date">
-              <div>
-                <span>{{selectedAssessment.Delivery_Start_Time|date}}</span>
-              </div>
-              <div>
-                <div class="stats">{{'Completed'}}</div>
-              </div>
-            </div>
-            <div class="horizonatlscrollline">
-              <div class="horizonatlline">
-                <div class="horizonatllinecircle" [style.left]="getLeftValue()">
-                  <div class="horizonatllinecircleinsidetext">{{selectedAssessment.max_score<0?0:selectedAssessment.max_score}}</div>
-                </div>
-              </div>
-            </div>
-            <div class="semi-circle-score">
-              <div>
-                <span class="rating">Ratings:</span>
-              </div>
-            <div>
-                <img *ngIf="selectedAssessment.max_score <= 33" src="../../../../../assets/images/red-semi.png">
-                <img *ngIf="selectedAssessment.max_score >= 34 && selectedAssessment.max_score <= 66" src="../../../../../assets/images/orange-semi.png">
-                <img *ngIf="selectedAssessment.max_score >= 67 && selectedAssessment.max_score <= 100" src="../../../../../assets/images/green-semi.png">
-              </div>
-              <div>
-                <span class="behaviour1" *ngIf="selectedAssessment.max_score <= 33">Low</span>
-                <span class="behaviour2" *ngIf="selectedAssessment.max_score >= 34 && selectedAssessment.max_score <= 66">Average</span>
-                <span class="behaviour" *ngIf="selectedAssessment.max_score >= 67 && selectedAssessment.max_score <= 100">Good</span>
-              </div>
-            </div>
-          </div>
-        </mat-card>
-      </ng-container>
-      <ng-template #noAssessmentDetails>
-        <div class="no-assessment-message">
-         <mat-card>
-          <span style="font-weight: 700;">NO ASSESMENT DETAILS AVAILABLE</span>
-         </mat-card>
-        </div>
-      </ng-template> -->
-
-        <!-- <div class="course-details">
-          <mat-card class="cours-details-card">
-            <div class="Course-detail">
-             Certification Details
-            </div>
-            <div class="course-image">
-              <img src="https://miro.medium.com/v2/resize:fit:1400/1*bMgQ8MhbnQexpqHgIgBJPA.png" alt="" />
-              <div class="overlay-2">Angular</div>
-            </div>
-            <div class="percen">
-             <div class="percen-name">Percentage : </div>
-             <div class="percen-num">
-              <circle-progress
-              [percent]="75"
-              [radius]="30"
-              [showImage]="false"
-              [showSubtitle]="false"
-              [titleColor]="000000"
-              [outerStrokeWidth]="7"
-              [innerStrokeWidth]="0"
-              [outerStrokeColor]="'#78C000'"
-              [animation]="true"
-              [animationDuration]="300">
-              </circle-progress>
-             </div>
-            </div>
-        </mat-card>
-        </div> -->
-
-        <!-- <div class="course-details">
-          <mat-card class="cours-details-card">
-            <div class="course-name-arrow">
-              <div class="Course-detail">
-                Certification Details
-              </div>
-              <div>
-                <div mat-icon-button class="nav-icon1" (click)="prevCertification()" [ngClass]="{'disabled': currentIndex === 0}">
-                  <mat-icon>keyboard_arrow_left</mat-icon>
-                </div>
-                <div mat-icon-button class="nav-icon1" (click)="nextCertification()" [ngClass]="{'disabled': currentIndex === CertificationDetails.length - 1}">
-                  <mat-icon>keyboard_arrow_right</mat-icon>
-                </div>
-              </div>
-            </div>
-            <ng-container *ngIf="currentCertification">
-              <div class="course-image">
-                <img [src]="currentCertification.imgurl" alt="" />
-                <div class="overlay-2">{{ currentCertification.Name }}</div>
-              </div>
-              <div class="percen">
-                <div class="percen-name">Percentage: </div>
-                <div class="percen-num">
-                  <circle-progress
-                    [percent]="currentCertification.Score"
-                    [radius]="30"
-                    [showImage]="false"
-                    [showSubtitle]="false"
-                    [titleColor]="000000"
-                    [outerStrokeWidth]="7"
-                    [innerStrokeWidth]="0"
-                    [outerStrokeColor]="'#78C000'"
-                    [animation]="true"
-                    [animationDuration]="300">
-                  </circle-progress>
-                </div>
-              </div>
-            </ng-container>
-
-          </mat-card>
-        </div> -->
-
       </div>
 
 
-      <div class="job_details_card pd-30 card_sticky">
-        <ng-container *ngIf="AssesmentDetails?.length > 0">
-          <mat-card class="asses-details-card">
-            <div class="assessment-container">
-              <div class="assesment-detail">
-                <div class="ass-name">Assesment Details </div>
-                <div class="prev-next">
-                  <div mat-icon-button class="nav-icon" (click)="showPrevious()"
-                    [ngClass]="{'disabled': assessmentIndex === 0}">
+      <div class="job_details_card pd-30 card_sticky"> 
+        <ng-container *ngIf="AssesmentDetails?.length > 0"> 
+          <mat-card class="asses-details-card">  
+            <div class="assessment-container"> 
+              <div class="assesment-detail"> 
+                <div class="ass-name">Assesment Details</div>
+                <div class="prev-next"> 
+                  <div mat-icon-button class="nav-icon" (click)="showPrevious()" [ngClass]="{'disabled': assessmentIndex === 0}">
                     <mat-icon>keyboard_arrow_left</mat-icon>
                   </div>
-                  <div mat-icon-button class="nav-icon" (click)="showNext()"
-                    [ngClass]="{'disabled': assessmentIndex === AssesmentDetails?.length - 1}">
+                  <div mat-icon-button class="nav-icon" (click)="showNext()" [ngClass]="{'disabled': assessmentIndex === AssesmentDetails?.length - 1}">
                     <mat-icon>keyboard_arrow_right</mat-icon>
                   </div>
-                </div>
               </div>
-              <div class="ass-image">
+              </div> 
+              <div class="ass-image"> 
                 <!-- <img src="https://t3.ftcdn.net/jpg/02/45/87/36/360_F_245873693_0geCBYQipchlBwGPXskG5SZckAdJkTLa.jpg" alt="" /> -->
-                <img
-                  src="https://media.istockphoto.com/id/1398462038/photo/online-exam-or-test.jpg?s=612x612&w=0&k=20&c=hvaH_2oA0Dm-tpQ8T5JBF_39QF3xhpic38Yi2AngaCE="
-                  alt="" />
+                <img src="https://media.istockphoto.com/id/1398462038/photo/online-exam-or-test.jpg?s=612x612&w=0&k=20&c=hvaH_2oA0Dm-tpQ8T5JBF_39QF3xhpic38Yi2AngaCE=" alt="" />
                 <!-- <img src="https://media.istockphoto.com/id/1483355290/photo/businessman-using-a-laptop-and-taking-an-assessment-questionnaire-evaluation-online-survey.jpg?s=612x612&w=0&k=20&c=PhztRjrkCSetcm_9cWDDB1IIgw1hi4tr7FF8BbBkWeg=" alt=""/> -->
                 <!-- <img src="https://media.istockphoto.com/id/1445353573/photo/assessment-questionnaire-quiz-or-survey-form-with-checkboxes-on-computer-screen-person.jpg?s=612x612&w=0&k=20&c=vBaRGBc2mT5U1FCBbSTYdZM-dGc0rvoZ99lQzye525U=" alt=""/> -->
                 <!-- <img src="https://media.istockphoto.com/id/1488803384/photo/digital-assets-document-and-mark-correct-sign-for-standard-quality-control-certification.jpg?s=612x612&w=0&k=20&c=3NMj_esWa686dlpCW-ECOvkT6KqLCPN6UjrNUKO7_1M=" alt=""/> -->
                 <!-- <img src="https://media.istockphoto.com/id/1516691318/photo/service-quality-assurance-guarantee-standards-iso-standards-quality-assurance-control.jpg?s=612x612&w=0&k=20&c=bBixTCD6d-WWd2Ec3rB7e0XSG-GXYirKfanamn2qG80=" alt=""/> -->
                 <!-- <img src="https://media.istockphoto.com/id/1498727341/photo/checklist-and-clipboard-task-documentation-management-business-people-working-laptop.jpg?s=612x612&w=0&k=20&c=fS4lhJ8B0A8H3tl9aCJ1nK4cOQGxQfRj5Lee1p612wA=" alt=""/> -->
-
-                <div class="ass-name" *ngIf="selectedAssessment.test_name">{{selectedAssessment.test_name}}</div>
-                <div class="ass-name" *ngIf="selectedAssessment.assessment_name">{{selectedAssessment.assessment_name}}
-                </div>
+                <div class="ass-name" *ngIf="selectedAssessment.test_name">{{selectedAssessment.test_name}} </div>
+                <div class="ass-name" *ngIf="selectedAssessment.assessment_name">{{selectedAssessment.assessment_name}} </div>
               </div>
               <div class="ass-date">
                 <div>
@@ -837,38 +695,33 @@
               <div class="scor">
                 <span class="scor1">Score:</span>
               </div>
-              <div class="horizonatlscrollline">
-                <div class="horizonatlline">
-                  <div class="horizonatllinecircle" [style.left]="getLeftValue()">
-                    <div class="horizonatllinecircleinsidetext">{{selectedAssessment.max_score
-                      <0?0:selectedAssessment.max_score}}< /div>
-                    </div>
+              <div class="horizonatlscrollline"> 
+                <div class="horizonatlline"> 
+                  <div class="horizonatllinecircle" [style.left]="getLeftValue()"> 
+                    <div class="horizonatllinecircleinsidetext" > 
+                      <!-- {{selectedAssessment.max_score}} -->
+                      {{ selectedAssessment.max_score < 0 ? 0 : selectedAssessment.max_score }}
+                    </div> 
                   </div>
                 </div>
-                <div class="semi-circle-score">
-                  <div>
-                    <span class="rating">Ratings:</span>
-                  </div>
-                  <div>
+                <div class="semi-circle-score"> 
+                  <div>  <span class="rating">Ratings:</span> </div>
+                  <div> 
                     <!-- <img *ngIf="selectedAssessment.max_score >= 0 && selectedAssessment.max_score <= 33" src="../../../../../assets/images/red-semi.png"> -->
-                    <img *ngIf="selectedAssessment.max_score <= 33" src="../../../../../assets/images/red-semi.png">
-                    <img *ngIf="selectedAssessment.max_score >= 34 && selectedAssessment.max_score <= 66"
-                      src="../../../../../assets/images/orange-semi.png">
-                    <img *ngIf="selectedAssessment.max_score >= 67 && selectedAssessment.max_score <= 100"
-                      src="../../../../../assets/images/green-semi.png">
+                    <img *ngIf="selectedAssessment.max_score <= 33" src="../../../../../assets/images/red-semi.png"> 
+                    <img *ngIf="selectedAssessment.max_score >= 34 && selectedAssessment.max_score <= 66" src="../../../../../assets/images/orange-semi.png">
+                    <img *ngIf="selectedAssessment.max_score >= 67 && selectedAssessment.max_score <= 100" src="../../../../../assets/images/green-semi.png">
                   </div>
-                  <div>
+                  <div> 
                     <!-- <span class="behaviour1" *ngIf="selectedAssessment.max_score >= 0 && selectedAssessment.max_score <= 33">Low</span> -->
-                    <span class="behaviour1" *ngIf="selectedAssessment.max_score <= 33">Low</span>
-                    <span class="behaviour2"
-                      *ngIf="selectedAssessment.max_score >= 34 && selectedAssessment.max_score <= 66">Average</span>
-                    <span class="behaviour"
-                      *ngIf="selectedAssessment.max_score >= 67 && selectedAssessment.max_score <= 100">Good</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </mat-card>
+                    <span class="behaviour1" *ngIf="selectedAssessment.max_score <= 33">Low</span> 
+                    <span class="behaviour2" *ngIf="selectedAssessment.max_score >= 34 && selectedAssessment.max_score <= 66">Average</span> 
+                    <span class="behaviour" *ngIf="selectedAssessment.max_score >= 67 && selectedAssessment.max_score <= 100">Good</span>
+                  </div> 
+                </div> 
+              </div> 
+            </div> 
+          </mat-card> 
 
         </ng-container>
         <!-- <ng-template #noAssessmentDetails>
@@ -888,12 +741,10 @@
                 Certification Details
               </div>
               <div>
-                <div mat-icon-button class="nav-icon1" (click)="prevCertification()"
-                  [ngClass]="{'disabled': currentIndex === 0}">
+                <div mat-icon-button class="nav-icon1" (click)="prevCertification()" [ngClass]="{'disabled': currentIndex === 0}">
                   <mat-icon>keyboard_arrow_left</mat-icon>
                 </div>
-                <div mat-icon-button class="nav-icon1" (click)="nextCertification()"
-                  [ngClass]="{'disabled': currentIndex === courseResultData.length - 1}">
+                <div mat-icon-button class="nav-icon1" (click)="nextCertification()" [ngClass]="{'disabled': currentIndex === courseResultData.length - 1}">
                   <mat-icon>keyboard_arrow_right</mat-icon>
                 </div>
               </div>
@@ -908,9 +759,17 @@
               <div class="percen">
                 <div class="percen-name">Percentage: </div>
                 <div class="percen-num">
-                  <circle-progress [percent]="currentCertification.coursePercentage" [radius]="30" [showImage]="false"
-                    [showSubtitle]="false" [titleColor]="000000" [outerStrokeWidth]="7" [innerStrokeWidth]="0"
-                    [outerStrokeColor]="'#78C000'" [animation]="true" [animationDuration]="300">
+                  <circle-progress 
+                  [percent]="currentCertification.coursePercentage" 
+                  [radius]="30" 
+                  [showImage]="false"
+                    [showSubtitle]="false" 
+                    [titleColor]="000000" 
+                    [outerStrokeWidth]="7" 
+                    [innerStrokeWidth]="0"
+                    [outerStrokeColor]="'#78C000'" 
+                    [animation]="true" 
+                    [animationDuration]="300">
                   </circle-progress>
                 </div>
                 <!-- {{currentCertification.courseId}} -->
@@ -920,10 +779,8 @@
           </mat-card>
         </div>
       </div>
-
-
     </div>
-  </div>
+  </div> 
 
   <ng-template #matDialog>
     <div class="main-wrapper">
