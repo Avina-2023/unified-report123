@@ -105,12 +105,12 @@ export class RegisterPageComponent implements OnInit {
       ],
       email: ['', [Validators.required, Validators.pattern(emailregex)]],
       term:['',[Validators.requiredTrue]],
+      employerName: ['', [Validators.required]],
+        industryType: ['', [Validators.required]],
     });
   }
 
   register() {
-
-
 
     if (this.registerForm.valid) {
       let data = {
@@ -120,12 +120,17 @@ export class RegisterPageComponent implements OnInit {
         jobtype: this.registerForm.value.jobtype,
         designation: this.registerForm.value.designation,
         company: this.registerForm.value.company,
+        employerName: this.registerForm.value.employerName,
+        industryType: this.registerForm.value.industryType,
         // otpForm:this.otpForm.value.otpForm,
         //  terms:this.registerForm.value.term,
       };
       console.log(data,'data ');
       this.userEmail =  data.email
       this.userName =  data.name
+
+      // this.apiService.registrationForm().subscribe((response: any) => {}
+
 
       this.apiService.postRegister(data).subscribe((response: any) => {
         console.log(response,'responsesd');

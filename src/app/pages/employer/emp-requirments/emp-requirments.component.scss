@@ -623,6 +623,10 @@ display: none;
       color: #0097cc;
       opacity: 1;
       cursor: pointer;
+      display: flex;
+      .icon-checked_Skyblue{
+        margin: 0px 2px 0px 0px;
+      }
     }
   }
 }

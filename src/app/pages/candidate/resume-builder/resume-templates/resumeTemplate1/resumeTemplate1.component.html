@@ -6,17 +6,23 @@
       <div class="inner_spacing">
         <p class="username_title">{{username}}</p>
         <div *ngIf="this.candidate.education_details?.educations&&this.candidate.education_details.educations.length">
-          <p  *ngIf="this.candidate.education_details?.educations[0]?.specification?.length" class="username_subtitle">{{this.candidate.education_details.educations[0].specification}}
-           <span *ngIf="this.candidate.education_details.educations[0].discipline.length">({{this.candidate.education_details.educations[0].discipline}})</span></p>
+          <p *ngIf="this.candidate.education_details?.educations[0]?.specification?.length" class="username_subtitle">
+            {{this.candidate.education_details.educations[0].specification}}
+            <span
+              *ngIf="this.candidate.education_details.educations[0].discipline.length">({{this.candidate.education_details.educations[0].discipline}})</span>
+          </p>
         </div>
         <p class="user_addres">
-          <span *ngIf="candidate.contact_details?.permanent_line1_street_add">{{candidate.contact_details.permanent_line1_street_add}}<br></span>
-          <span *ngIf="candidate.contact_details?.permanent_line2_street_add">{{candidate.contact_details.permanent_line2_street_add}}<br></span>
-          <span *ngIf="candidate.contact_details?.permanent_address_line_3">{{candidate.contact_details.permanent_address_line_3}}<br></span>
+          <span
+            *ngIf="candidate.contact_details?.permanent_line1_street_add">{{candidate.contact_details.permanent_line1_street_add}}<br></span>
+          <span
+            *ngIf="candidate.contact_details?.permanent_line2_street_add">{{candidate.contact_details.permanent_line2_street_add}}<br></span>
+          <span
+            *ngIf="candidate.contact_details?.permanent_address_line_3">{{candidate.contact_details.permanent_address_line_3}}<br></span>
           <span *ngIf="candidate.contact_details?.permanent_city">{{candidate.contact_details.permanent_city}}</span>
-          <span *ngIf="candidate.contact_details?.permanent_state"> , {{candidate.contact_details.permanent_state}}</span> 
+          <span *ngIf="candidate.contact_details?.permanent_state"> ,
+            {{candidate.contact_details.permanent_state}}</span>
           <span *ngIf="candidate.contact_details?.permanent_zip"> - {{candidate.contact_details.permanent_zip}}</span>
-
         </p>
         <p class="user_phone">{{candidate.personal_details.mobile}}</p>
         <p class="user_email">{{candidate.email}}</p>
@@ -43,7 +49,6 @@
       </div>
     </div>
   </div>
-
   <div class="user_intro topic" *ngIf="this.candidate.experience_details?.skills?.length">
     <div class="first-div">
       <p class="res_icon"></p>
@@ -51,11 +56,11 @@
     </div>
     <div class="second-div skillset cv_spacing last">
       <div *ngFor="let item of candidate.experience_details.skills;let i=index;">
-        <button class="skillbutton">{{item}}</button>
+        <button class="skillbutton">{{item.skill}}</button>
       </div>
     </div>
   </div>
-  <div class="user_intro topic" *ngFor="let item of candidate.experience_details.intern;let i=index; let lindex=last">
+  <!-- <div class="user_intro topic" *ngFor="let item of candidate.experience_details.intern;let i=index; let lindex=last">
     <div class="first-div" *ngIf="this.candidate.experience_details?.intern?.length && i==0">
       <p class="res_icon"></p>
       <p class="res_title">Training Details</p>
@@ -74,6 +79,44 @@
         </div>
       </div>
     </div>
+  </div> -->
+  <div *ngIf="candidate.experience_details?.intern?.length">
+    <!-- Loop through internship details if available -->
+    <div class="user_intro topic"
+      *ngFor="let item of candidate.experience_details.intern; let i=index; let lindex=last">
+      <!-- Display appropriate header for first and subsequent items -->
+      <div class="first-div" *ngIf="i == 0">
+        <p class="res_icon"></p>
+        <p class="res_title">Training Details</p>
+      </div>
+      <div class="first-div" *ngIf="i != 0">
+        <p class=""></p>
+        <p class="res_title"></p>
+      </div>
+      <!-- Display internship details -->
+      <div class="second-div training" [ngClass]="{ 'last': lindex }">
+        <div class="inner_spacing">
+          <div class="skills">
+            <p class="cv_title">{{item.employer_name}}</p>
+            <p class="cv_subtitle">
+              {{ (item.from_date && item.to_date) ? (item.from_date | date:'MMM yyyy') + ' - ' + (item.to_date |
+              date:'MMM yyyy') +
+              ' (' + datediff(item.from_date, item.to_date) + ')' :
+              (item.from_date ? (item.from_date | date:'MMM yyyy') : '') + (item.to_date ? (' - ' + item.to_date |
+              date:'MMM yyyy')
+              : '') }}
+            </p>
+            <!-- Display work responsibility if available -->
+            <p class="cv_title">{{item.work_responsiability}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Display message when no training details are available -->
+  <div *ngIf="!candidate.experience_details?.intern?.length">
+    <p>No training details available.</p>
   </div>
 
 
@@ -94,14 +137,11 @@
           <p class="cv_title">{{item.employment_name_address}}</p>
           <p class="cv_subtitle">{{item.postion_field}}<br><span class="cv_subtitle">({{item.duration_year}} year
               {{item.duration_month}} months)</span></p>
-
           <p class="cv_subtitle">{{item.nature_work}}</p>
         </div>
       </div>
     </div>
   </div>
-
-
   <!-- <div class="user_intro topic">
     <div class="first-div">
       <p class="res_icon"></p>
@@ -113,7 +153,6 @@
         Ipsum PlaceLoreum street, Ipsum PlaceLoreum street, Ipsum PlaceLoreum street, Ipsum Place</p>
     </div>
   </div>
-
   <div class="user_intro topic">
     <div class="first-div">
       <p class="res_icon"></p>
@@ -132,7 +171,6 @@
       </div>
     </div>
   </div> -->
-
   <div class="user_intro topic" *ngIf="this.candidate.personal_details?.languages_known?.length">
     <div class="first-div">
       <p class="res_icon"></p>
@@ -157,12 +195,8 @@
           <td class="lang"><span
               [ngClass]="{ 'icon-check-rounded': item.is_speak == 1, 'icon-close-rounded': item.is_speak == 0}"></span>
           </td>
-
         </tr>
       </table>
     </div>
-
   </div>
-
-  
 </section>

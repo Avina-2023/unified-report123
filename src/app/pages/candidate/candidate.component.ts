@@ -22,7 +22,13 @@ export class CandidateComponent implements OnInit {
   candidateName = localStorage.getItem('name')
   productionUrl = environment.SKILL_EDGE_URL == "https://skilledge.lntedutech.com"?true:false;
   profileimge: any ="";
-  constructor(public router:Router, private apiservice:ApiService, private appconfig:AppConfigService, private msgData : SentDataToOtherComp, public dialog: MatDialog, ) {
+  constructor(
+    public router:Router, 
+    private apiservice:ApiService, 
+    private appconfig:AppConfigService, 
+    private msgData : SentDataToOtherComp, 
+    public dialog: MatDialog,
+    ) {
     this.router.events.subscribe(event => {
       if(event instanceof NavigationEnd) {
 
@@ -31,7 +37,7 @@ export class CandidateComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    this.profileimge = this.appconfig.getLocalStorage('profileImage');
     this.msgData.getMessage().subscribe((data)=>{
       if(data.data=='profileImage'&& data.value !="" && data.value != undefined){
         if (data.value && this.productionUrl == true) {
@@ -41,9 +47,9 @@ export class CandidateComponent implements OnInit {
         }
       }
     })
-
-
   }
+
+  
   // ngOnChanges(){
   //   this.profileimge = this.appconfig.getLocalStorage('profileImage');
 

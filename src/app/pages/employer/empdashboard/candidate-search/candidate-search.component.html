@@ -1,2 +1,192 @@
-
-<app-candidate-details-card></app-candidate-details-card>
+<div class="main1">
+    <div class="main2">
+      <div class="dash">
+        <h5 class="findtext"> Candidate Search</h5>
+      </div>
+      <div class="count-filter">
+        <div class="count"><span>Results Showing ({{totallength}})</span></div>
+        <div class="sorting">
+          <mat-form-field>
+            <mat-select [(value)]="selectedOption" (selectionChange)="filterCandidates()" class="select_value">
+              <mat-option value="all">All</mat-option>
+              <mat-option value="saved candidate">Saved Candidates</mat-option>
+              <mat-option value="l&t certified">L&T Certified</mat-option>
+              <mat-option value="l&t assessed">L&T Assessed</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+  
+      </div>
+      <div class="candidate-card">
+        <mat-card class="card-1" *ngFor="let item of candidatelist;">
+  
+          <span class="">
+            <span *ngIf="item.assessments"><i *ngIf="item?.assessments?.length" class="flag_lnt icon-bookmark col1"
+                matTooltip="Assessed by L&T EduTech"></i></span>
+            <span *ngIf="item.courses"><i *ngIf="item?.courses?.length" class="flag_lnt icon-bookmark bookmark_2 col2"
+                matTooltip="Certified by L&T EduTech"></i></span>
+          </span>
+          <div class="details">
+            <div class="candidate-image">
+              <img *ngIf="item.profileImage; else noProfileImage" [src]="item.profileImage" alt="Profile Picture"
+                class="round-profile-pic">
+              <ng-template #noProfileImage>
+                <img src="../../../../../../assets/images/removed dp.png" alt="No Profile Picture"
+                  class="round-profile-pic">
+              </ng-template>
+            </div>
+            <div class="candidate-name">
+              {{item.firstName}}
+            </div>
+            <div class="candidate-edu">
+              <div *ngFor="let education of item.educations">
+                <!-- <div *ngIf="education.is_highLevelEdu" class="high-level">
+                  {{education.specification ? education.specification + (education.discipline ? ' ' + education.discipline : '') :
+                  education.discipline ? education.discipline : education.level }} - {{ education.end_date |date:'MMMM yyyy'}}
+                </div> -->
+                <div *ngIf="education.is_highLevelEdu" class="high-level" [matTooltip]="getTooltipText(education)">
+                  {{education.specification ? education.specification + (education.discipline ? ' ' + education.discipline : '') :
+                  education.discipline ? education.discipline : education.level }} - {{ education.end_date |date:'MMMM yyyy'}}
+                </div>
+              </div>
+            </div>
+  
+  
+            <!-- <div class="candidate-loc">
+              <div> <mat-icon class="loc-icon"> location_on</mat-icon></div>
+              <div class="loc-name">{{item.permanentaddress.permanent_city}}, {{getStateName(item.permanentaddress.permanent_state)}}
+              </div>
+            </div> -->
+  
+            <div class="candidate-loc">
+              <div> <mat-icon class="loc-icon"> location_on</mat-icon></div>
+              <div class="loc-name">
+                <!-- {{item.permanentaddress.permanent_city}},  -->
+                {{ getStateNameById(item.permanentaddress.permanent_state) }}
+                <!-- {{getStateName(item.permanentaddress.permanent_state)}} -->
+              </div>
+            </div>
+  
+  
+          </div>
+          <div class="action-button">
+            <div class="view-prof">
+              <div><mat-icon class="view-icon">visibility</mat-icon></div>
+              <div (click)="toviewprofile(item)"><button mat-button class="buton">View Profile</button></div>
+            </div>
+            <span style="border: 1px solid #E6E6E6;"></span>
+            <div class="view-prof" (click)="clickSave(item)"
+              [ngStyle]="item.savedStatus ? { 'background-color': '#1b4e9b', 'color': '#ffffff' } : {}">
+              <div>
+                <mat-icon class="view-icon" [ngStyle]="item.savedStatus ? { 'color': '#ffffff' } : {}">save</mat-icon>
+              </div>
+              <div>
+                <button mat-button class="button2" [class]="item.customClass">
+                  {{ item.savedStatus ? 'Saved' : 'Save' }}
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- <div class="act-button">
+            <div class="view-profile">
+              <div class="view-icn"><mat-icon>visibility</mat-icon></div>
+              <div class="view-btn"><button mat-button>View Profile</button></div>
+            </div>
+            <div class="view-saved">
+              <div class="sav-icn"><mat-icon>save</mat-icon></div>
+              <div class="save-btn"><button mat-button>Save</button></div>
+            </div>
+          </div> -->
+        </mat-card>
+  
+      </div>
+      <div class="pagination">
+        <app-common-paginator *ngIf="total" (send)="some($event)" [totalcount]="total"></app-common-paginator>
+      </div>
+    </div>
+    <div class="filter-candidate" *ngIf="this.filter_info.data.length">
+      <div class="fil_head">
+        <div class="all-clear">
+          <div><mat-icon class="misc_icon"></mat-icon><span class="job_designation all_filter">All Filters
+            {{this.selectedValues.length ? '(' + this.selectedValues.length + ')' : ''}}</span></div>
+          <div><span (click)="clearFilters(filter_info.data)" *ngIf="selectedValues.length" class="clear_filter">Clear
+            All</span></div>
+        </div>
+        <div class="fil_output">
+          <div class="checkedVal" *ngFor="let chkbox of selectedValues;let i = index">
+            {{chkbox.name}} <mat-icon class="close_icon" (click)="closeSelectedValues(chkbox,i)">close</mat-icon>
+          </div>
+        </div>
+      </div>
+      <div class="filt_list">
+        <div class="filter_col" *ngFor="let fillist of filter_info.data">
+          <p class="filter_head" (click)="fillist.isShow=!fillist.isShow">
+            <mat-icon class="misc_icon">{{fillist.iconName}}</mat-icon><span
+              class="job_designation">{{fillist.fieldName}}</span>
+            <mat-icon class="expand_icon" class="clickBtn misc_icon">expand_more</mat-icon>
+          </p>
+          <div *ngFor="let course of fillist.subContent; let i = index">
+            <span *ngIf="i<4">
+              <mat-checkbox (change)="checkboxChecked($event,course,fillist.key,fillist.isMaster,'direct')"
+                [checked]="course.is_checked" class="fldName" color="primary" *ngIf="!fillist.isShow">{{course.name}}
+                ({{course.totalCount}})
+              </mat-checkbox>
+            </span>
+          </div>
+          <button *ngIf="(fillist.subContent.length)>4" mat-button
+            (click)="openDialog(fillist)">+{{fillist.subContent.length-4}} more</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ng-template #moreItems>
+    <div class="dlog_template">
+      <h1 class="job_designation" mat-dialog-title>{{filterItems.fieldName}}</h1>
+      <div class="close_div" mat-dialog-actions>
+        <button mat-button class="close-icon" [mat-dialog-close]="true">
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
+    </div>
+    <br>
+    <div mat-dialog-content>
+      <div class="filter_col mat_dlg_cnt">
+        <div *ngFor="let course of filterItems.subContent">
+          <mat-checkbox class="mat_courses" (change)="checkboxChecked($event,course,filterItems.key,filterItems.isMaster)"
+            [checked]="course.is_checked" color="primary">{{course.name}} ({{course.totalCount}})</mat-checkbox>
+        </div>
+      </div>
+      <button [mat-dialog-close] class="aply_btn" (click)="applyfilter()" mat-raised-button color="primary">Apply</button>
+    </div>
+  </ng-template>
+  
+  <ng-template #mobFilter>
+    <div class="filt_mob_top">
+      <mat-icon [mat-dialog-close]>west</mat-icon>
+      <p class="fil_text">All Filters {{this.selectedValues.length ? '('+this.selectedValues.length +')' : ''}}
+        <span (click)="clearFilters(filter_info.data)" *ngIf="selectedValues.length" class="clear_filter">Clear
+          All</span>
+      </p>
+      <p class="apply_top_menu">
+        <button (click)="applyfilter()" [mat-dialog-close]>Apply</button>
+      </p>
+    </div>
+    <div class="mob_courses">
+      <div class="sub_crse">
+        <div *ngFor="let fillist of filter_info.data;let indx = index">
+          <div class="field_crse" (click)="fil_elements(filter_info.data,fillist.subContent,indx,fillist.key)"
+            [ngClass]="fillist.active?'redlab':''">
+            {{fillist.fieldName}} <mat-icon *ngIf="fillist.active">arrow_forward_ios</mat-icon>
+          </div>
+        </div>
+      </div>
+      <div class="mob_card_crse">
+        <span *ngIf="filterItems">
+          <mat-checkbox color="primary" (change)="checkboxChecked($event,item,item.key,item.isMaster)"
+            [checked]="item.is_checked" class="mob_filter_res" *ngFor="let item of filterItems">{{item.name}}
+            ({{item.totalCount}})
+          </mat-checkbox>
+        </span>
+      </div>
+    </div>
+  </ng-template>
