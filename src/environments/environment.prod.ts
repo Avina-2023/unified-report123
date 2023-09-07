@@ -36,4 +36,5 @@ export const environment = {
   // NODE_EDGE_URL: 'https://uapedgeservicedev.lntedutech.com',
   cryptoEncryptionKey:"(!@#Passcode!@#)",
   blobToken:"?sv=2020-08-04&ss=bfqt&srt=sco&sp=rwdlacupitfx&se=2221-11-23T19:12:41Z&st=2021-11-23T11:12:41Z&spr=https,http&sig=R6%2BlZGrzjuFs1aAy2uUG%2BNkjVig5%2F8disv01i86VK8M%3D",
+  SAS_Token:"?sv=2018-03-28&ss=b&srt=sco&sp=racwdl&st=2021-05-11T11%3A03%3A15Z&se=2171-05-11T11%3A08%3A15Z&spr=https%2Chttp&sig=76RdVvRTJz%2FH8rnfnUFTQu6gKhVPjXFqXrjF%2FhWgO04%3D"
 };
