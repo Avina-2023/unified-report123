@@ -494,8 +494,8 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
   }
 
   getLeftValue(): string { 
-    const score = +this.selectedAssessment.max_score; 
-    const leftPercentage = (score / 100) * 100; 
+    const score = +this.selectedAssessment.score; 
+    const leftPercentage = (score / this.selectedAssessment.max_score) * 100; 
     return leftPercentage + '%';
   }
 

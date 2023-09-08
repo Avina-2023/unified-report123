@@ -378,6 +378,9 @@
             width: 89%;
             background-color: rgba(0, 0, 0, 0.5);
             border-radius: initial;
+            white-space: nowrap;
+              text-overflow: ellipsis;
+              overflow: hidden;
           }
         }
 
@@ -495,6 +498,7 @@
           .course-image{
             img{
               width: 100%;
+              height: 180px;
               margin: 0px 0px 17px 0px;
             }
             .overlay-2{
@@ -506,6 +510,10 @@
               width: 89%;
               background-color: rgba(0, 0, 0, 0.5);
               border-radius: initial;
+              padding: 2px;
+              white-space: nowrap;
+              text-overflow: ellipsis;
+              overflow: hidden;
             }
 
           }
