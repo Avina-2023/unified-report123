@@ -488,7 +488,7 @@
           <div class="profile_details pd-20">
             <h2 class="head_title"> Project Details </h2>
             <div class="brdr_btm_line pb-10"
-              *ngFor="let project of candidateData?.project_details.projects; let i = index">
+              *ngFor="let project of candidateData?.project_details?.projects; let i = index">
               <h2 class="sub_heading">Project {{i+1}}</h2>
               <div class="flx_div flx_center hidden_div title">
                 <div class="key">Project Type</div>
@@ -523,7 +523,7 @@
               </div>
 
             </div>
-            <div *ngIf="candidateData?.project_details.projects.length === 0">
+            <div *ngIf="candidateData?.project_details?.projects?.length === 0">
               <div class="value_ar">No project details available</div>
             </div>
           </div>
@@ -605,9 +605,9 @@
               </div>
 
             </div>
-            <div *ngIf="candidateData?.accomplishment_details.certifications.length === 0
-                        && candidateData?.accomplishment_details.awards.length === 0
-                        && candidateData?.accomplishment_details.journals.length === 0">
+            <div *ngIf="candidateData?.accomplishment_details?.certifications?.length === 0
+                        && candidateData?.accomplishment_details?.awards?.length === 0
+                        && candidateData?.accomplishment_details?.journals?.length === 0">
               <div class="value_ar">No accomplishment details available</div>
             </div>
           </div>
