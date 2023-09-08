@@ -72,7 +72,7 @@ export class CandidateSearchComponent implements OnInit {
   }
   toviewprofile(candidateData) {
     this.appconfig.setLocalStorage('C_Candidate_status', JSON.stringify(candidateData));
-    this.router.navigateByUrl('/auth/drive/viewCandidateProfilebyEmployer?from=CS');
+    this.router.navigate(['/auth/drive/viewCandidateProfilebyEmployer']);
   }
 
 
@@ -286,5 +286,9 @@ export class CandidateSearchComponent implements OnInit {
   }
 
   
+  applyfilter() {
+    this.filterObj.commonSearch =  this.selectedOption
+    this.getcandidatedetails();
+  }
   
 }
