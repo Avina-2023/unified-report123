@@ -681,8 +681,8 @@
                 <!-- <img src="https://media.istockphoto.com/id/1488803384/photo/digital-assets-document-and-mark-correct-sign-for-standard-quality-control-certification.jpg?s=612x612&w=0&k=20&c=3NMj_esWa686dlpCW-ECOvkT6KqLCPN6UjrNUKO7_1M=" alt=""/> -->
                 <!-- <img src="https://media.istockphoto.com/id/1516691318/photo/service-quality-assurance-guarantee-standards-iso-standards-quality-assurance-control.jpg?s=612x612&w=0&k=20&c=bBixTCD6d-WWd2Ec3rB7e0XSG-GXYirKfanamn2qG80=" alt=""/> -->
                 <!-- <img src="https://media.istockphoto.com/id/1498727341/photo/checklist-and-clipboard-task-documentation-management-business-people-working-laptop.jpg?s=612x612&w=0&k=20&c=fS4lhJ8B0A8H3tl9aCJ1nK4cOQGxQfRj5Lee1p612wA=" alt=""/> -->
-                <div class="ass-name" *ngIf="selectedAssessment.test_name">{{selectedAssessment.test_name}} </div>
-                <div class="ass-name" *ngIf="selectedAssessment.assessment_name">{{selectedAssessment.assessment_name}} </div>
+                <div class="ass-name" [matTooltip]="selectedAssessment.test_name" *ngIf="selectedAssessment.test_name">{{selectedAssessment.test_name}} </div>
+                <div class="ass-name" [matTooltip]="selectedAssessment.assessment_name" *ngIf="selectedAssessment.assessment_name">{{selectedAssessment.assessment_name}} </div>
               </div>
               <div class="ass-date">
                 <div>
@@ -700,7 +700,7 @@
                   <div class="horizonatllinecircle" [style.left]="getLeftValue()"> 
                     <div class="horizonatllinecircleinsidetext" > 
                       <!-- {{selectedAssessment.max_score}} -->
-                      {{ selectedAssessment.max_score < 0 ? 0 : selectedAssessment.max_score }}
+                      {{ selectedAssessment.score < 0 ? 0 : selectedAssessment.score }}
                     </div> 
                   </div>
                 </div>
@@ -708,15 +708,15 @@
                   <div>  <span class="rating">Ratings:</span> </div>
                   <div> 
                     <!-- <img *ngIf="selectedAssessment.max_score >= 0 && selectedAssessment.max_score <= 33" src="../../../../../assets/images/red-semi.png"> -->
-                    <img *ngIf="selectedAssessment.max_score <= 33" src="../../../../../assets/images/red-semi.png"> 
-                    <img *ngIf="selectedAssessment.max_score >= 34 && selectedAssessment.max_score <= 66" src="../../../../../assets/images/orange-semi.png">
-                    <img *ngIf="selectedAssessment.max_score >= 67 && selectedAssessment.max_score <= 100" src="../../../../../assets/images/green-semi.png">
+                    <img *ngIf="selectedAssessment.score <= 33" src="../../../../../assets/images/red-semi.png"> 
+                    <img *ngIf="selectedAssessment.score >= 34 && selectedAssessment.score <= 66" src="../../../../../assets/images/orange-semi.png">
+                    <img *ngIf="selectedAssessment.score >= 67 && selectedAssessment.score <= 100" src="../../../../../assets/images/green-semi.png">
                   </div>
                   <div> 
                     <!-- <span class="behaviour1" *ngIf="selectedAssessment.max_score >= 0 && selectedAssessment.max_score <= 33">Low</span> -->
-                    <span class="behaviour1" *ngIf="selectedAssessment.max_score <= 33">Low</span> 
-                    <span class="behaviour2" *ngIf="selectedAssessment.max_score >= 34 && selectedAssessment.max_score <= 66">Average</span> 
-                    <span class="behaviour" *ngIf="selectedAssessment.max_score >= 67 && selectedAssessment.max_score <= 100">Good</span>
+                    <span class="behaviour1" *ngIf="selectedAssessment.score <= 33">Low</span> 
+                    <span class="behaviour2" *ngIf="selectedAssessment.score >= 34 && selectedAssessment.score <= 66">Average</span> 
+                    <span class="behaviour" *ngIf="selectedAssessment.score >= 67 && selectedAssessment.score <= 100">Good</span>
                   </div> 
                 </div> 
               </div> 
@@ -754,7 +754,7 @@
               <div class="course-image">
                 <img [src]="courseImg1" alt="" />
                 <!-- <img [src]="currentCertification.courseImgUrl" alt="" /> -->
-                <div class="overlay-2">{{ currentCertification.courseName }}</div>
+                <div class="overlay-2" [matTooltip]="currentCertification.courseName">{{ currentCertification.courseName }}</div>
               </div>
               <div class="percen">
                 <div class="percen-name">Percentage: </div>
