@@ -28,7 +28,7 @@
           </span>
           <div class="details">
             <div class="candidate-image">
-              <img *ngIf="item.profileImage; else noProfileImage" [src]="item.profileImage" alt="Profile Picture"
+              <img *ngIf="item.profileImage; else noProfileImage" [src]="item.profileImage+blobtoken" alt="Profile Picture"
                 class="round-profile-pic">
               <ng-template #noProfileImage>
                 <img src="../../../../../../assets/images/removed dp.png" alt="No Profile Picture"

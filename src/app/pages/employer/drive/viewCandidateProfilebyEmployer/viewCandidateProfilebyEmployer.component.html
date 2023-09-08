@@ -15,7 +15,7 @@
         <div>
           <img *ngIf="!candidateData?.personal_details?.profileImage"
             src="../../../../../../assets/images/removed dp.png" alt="No Profile Picture" class="round-profile-pic">
-          <img *ngIf="candidateData?.personal_details?.profileImage" [src]="candidateData.personal_details.profileImage"
+          <img *ngIf="candidateData?.personal_details?.profileImage" [src]="candidateData.personal_details.profileImage + blobtoken"
             alt="Candidate Profile Picture" class="round-profile-pic">
         </div>
 

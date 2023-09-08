@@ -22,6 +22,7 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
   @ViewChild('headerRef', { static: true })
   headerRef!: ElementRef<HTMLDivElement>;
   routerlink = APP_CONSTANTS.ENDPOINTS;
+  blobtoken:string = environment.blobToken;
   personalDetailsMap: any;
   journalentry = { journalEntityUrl: '' };
   shouldTruncate: boolean = false;
@@ -430,6 +431,7 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
     private activatedRoute: ActivatedRoute
   ) {}
   ngOnInit() {
+    console.log(this.blobtoken,"goklu")
     this.activatedRoute.queryParams.subscribe((queryParams) => {
       // Check the 'from' query parameter
       const from = queryParams['from'];
@@ -637,7 +639,6 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
       .districtList(ApiData)
       .subscribe(
         (datas: any) => {
-          debugger;
 
           console.log(datas, 'citydata');
           this.allPresentCityList = datas.data;
