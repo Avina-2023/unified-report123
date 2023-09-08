@@ -4,6 +4,7 @@ import { log } from 'console';
 import { ApiService } from 'src/app/services/api.service';
 import { AppConfigService } from 'src/app/utils/app-config.service';
 import { MatDialog } from '@angular/material/dialog';
+import { environment } from 'src/environments/environment';
 
 export interface PaginatedResponse<T> {
   items: T[];
@@ -19,6 +20,7 @@ export class CandidateSearchComponent implements OnInit {
 
   @ViewChild('moreItems', { static: false }) matDialogRef: TemplateRef<any>;
   @ViewChild('mobFilter', { static: false }) mobDialogRef: TemplateRef<any>;
+  blobtoken:string = environment.blobToken;
   selectedOption: string = 'all';
   commonSearch: string = 'all';
   candidatedetails: any[] = [];
