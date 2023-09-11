@@ -431,17 +431,12 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
     private activatedRoute: ActivatedRoute
   ) {}
   ngOnInit() {
-    console.log(this.blobtoken,"goklu")
     this.activatedRoute.queryParams.subscribe((queryParams) => {
-      // Check the 'from' query parameter
       const from = queryParams['from'];
 
-      // Check if 'from' is equal to 'CS'
       if (from === 'CS') {
-        // Set a boolean variable to hide the section
         this.hideSection = true;
       } else {
-        // Set the boolean variable to show the section
         this.hideSection = false;
       }
     });
@@ -472,7 +467,6 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
   }
 
   showNext() {
-    console.log(this.AssesmentDetails);
     if (this.assessmentIndex < this.AssesmentDetails.length - 1) {
       this.assessmentIndex++;
       this.selectedAssessment = this.AssesmentDetails[this.assessmentIndex];
@@ -510,39 +504,6 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
     }
   }
 
-  // CandidateDetails() {
-  //   var obj = {};
-  //   obj = {
-  //     email: this.apiService.encryptnew(
-  //       this.candidateStatus.email,
-  //       environment.cryptoEncryptionKey
-  //     ),
-  //   };
-  //   // obj = {
-  //   //   email: this.apiService.encryptnew(
-  //   //     'gokul47@dispostable.com',
-  //   //     environment.cryptoEncryptionKey
-  //   //   ),
-  //   // };
-  //   this.apiService.candidateDetails(obj).subscribe((res: any) => {
-  //     if (res.success) {
-  //       // if (Array.isArray(res.data)) {
-  //       this.candidateData = res.data;
-  //       console.log(this.candidateData, 'candidate data');
-  //       this.getStateAPI();
-  //       // this.getAllPresentCities;
-  //       // } else {
-  //       //   this.candidateData = [res.data];
-  //       //   console.log(this.candidateData, 'candidate data');
-  //       // }
-  //     }
-  //     this.appConfig.setLocalStorage(
-  //       'candidateProfile',
-  //       JSON.stringify(this.candidateData)
-  //     );
-  //   });
-  // }
-
   CandidateDetails() {
     var obj = {};
     obj = {
@@ -557,7 +518,6 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
         // if (Array.isArray(res.data)) {
         // this.candidateData = this.externalData[0];
         this.candidateData = res.data;
-        console.log(this.candidateData, 'candidate data');
         this.getStateAPI();
         this.assesmentdata();
         this.courseData();
@@ -574,17 +534,13 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
     this.candidateResultData = this.candidateData.assessments; 
     // this.AssesmentDetails = [...this.candidateResultData.Aptitude,...this.candidateResultData.Coding,...this.candidateResultData.English];
     this.AssesmentDetails = this.candidateResultData; 
-    console.log(this.candidateResultData, ' this.AssesedcandidateData'); 
-    console.log(this.AssesmentDetails, 'AssesmentDetails'); 
     this.selectedAssessment = this.AssesmentDetails[this.assessmentIndex]; 
   } 
 
   courseData() { 
     this.courseResultData = this.candidateData.courses; 
-    console.log(this.courseResultData, 'courseResultData'); 
     this.currentIndex = 0; 
     this.currentCertification = this.courseResultData[0]; 
-    console.log(this.currentCertification,'currentCertificationcurrentCertification');
     this.courseImg1 = this.currentCertification.courseImgUrl + environment.SAS_Token;
   } 
 
@@ -635,21 +591,16 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
       state_id: id,
     };
     let city;
-    this.updatedCitySubscription = this.apiService
-      .districtList(ApiData)
-      .subscribe(
-        (datas: any) => {
-
-          console.log(datas, 'citydata');
-          this.allPresentCityList = datas.data;
-          datas.data.forEach((element) => {
-            if (element.id == cityId) {
-              this.form_present_city = element.name;
+    this.updatedCitySubscription = this.apiService.districtList(ApiData).subscribe((datas: any) => {
+          this.allPresentCityList = datas.data;  
+          datas.data.forEach((element) => { 
+            if (element.id == cityId) { 
+              this.form_present_city = element.name; 
               // return element.name;
             }
           });
-        },
-        (err) => {
+        }, 
+        (err) => { 
           console.log(err);
         }
       );
@@ -709,7 +660,7 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
       disableClose: false,
       panelClass: 'popupModalContainerForForms',
     });
-    console.log('confirm');
+    
   }
   confirmrejectDialog(status) {
     const data = {
@@ -772,92 +723,5 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
     }
   }
 
-  // getCandidateResults(){
-  //   var objDetails = {};
-  //   objDetails= {
-  //     "emailId": this.candidateStatus?.email,
-  //   }
-  //   this.apiService.candidateResultDetails(objDetails).subscribe((response:any)=>{
-  //     if(response.success){
-  //       this.candidateResultData = response.data[0]
-  //       // this.AssesmentDetails = [...this.candidateResultData.Aptitude,...this.candidateResultData.Coding,...this.candidateResultData.English];
-  //       this.AssesmentDetails = [...this.candidateResultData.Aptitude];
-  //       console.log(this.candidateResultData,' this.AssesedcandidateData');
-  //       console.log(this.AssesmentDetails,'AssesmentDetails');
-  //       this.selectedAssessment = this.AssesmentDetails[this.assessmentIndex]
-  //     }
-  //   })
-  // }
-
-  //working
-
-  // getCandidateCourseDetails() {
-  //   var courseObj = {
-  //     "userEmail": this.candidateStatus?.email
-  //   };
-  //   this.apiService.getcourseTracking(courseObj).subscribe((response: any) => {
-  //     if (response.success) {
-  //       this.courseResultData = response.data;
-  //       // this.courseImg = this.courseResultData.courseImgUrl + environment.SAS_Token
-  //       console.log(this.courseResultData, 'courseResultData');
-  //       this.currentIndex = 0;
-  //       this.currentCertification = this.courseResultData[0];
-  //        console.log(this.currentCertification,'currentCertificationcurrentCertification');
-  //       this.courseImg1 = this.currentCertification.courseImgUrl + environment.SAS_Token
-  //     }
-  //   });
-  // }
-
-  // getCandidateCourseDetails() {
-  //   var courseObj = {
-  //     "userEmail": this.candidateStatus?.email
-  //   };
-  //   this.apiService.getcourseTracking(courseObj).subscribe((response: any) => {
-  //     if (response.success) {
-  //       this.courseResultData = response.data;
-  //       console.log(this.courseResultData, 'courseResultData');
-
-  //       // Push additional values to the courseResultData array
-  //       this.courseResultData.push(
-  //         {
-  //           "courseName": "PROD Course - Concrete Updated001",
-  //           "coursePercentage": "0",
-  //           "courseId": "m8e6bxe9",
-  //           "courseImgUrl": "https://lxpdevstorage.blob.core.windows.net/container1/images/8767635887412857-Concrete.jpg"
-  //         },
-  //         {
-  //           "courseName": "Four Level - Design of Structural Steel",
-  //           "coursePercentage": "0",
-  //           "courseId": "ajj8y8d0",
-  //           "courseImgUrl": "https://lxpdevstorage.blob.core.windows.net/container1/images/5576570247112613-Codes for foundation.jpg"
-  //         },
-  //         {
-  //           "courseName": "Applied Industrial IoT(2Credit)",
-  //           "coursePercentage": "0",
-  //           "courseId": "oyme1jgr",
-  //           "courseImgUrl": "https://lxpdevstorage.blob.core.windows.net/container1/images/6898463953642624-Applied Industrial IoT.png"
-  //         }
-  //       );
-
-  //       this.currentIndex = 0;
-  //       this.currentCertification = this.courseResultData[0];
-  //     }
-  //   });
-  // }
-
-  // for demo purpose
-
-  // getCandidateCourseDetails() {
-  //   var courseObj = {
-  //     "userEmail": this.candidateStatus?.email
-  //   };
-  //   this.apiService.getcourseTracking(courseObj).subscribe((response: any) => {
-  //     if (response.success) {
-  //       this.courseResultData = response.data.concat(this.externalData);
-  //       this.currentIndex = 0;
-  //       this.currentCertification = this.courseResultData[0];
-  //       this.courseImg1 = this.currentCertification.courseImgUrl + environment.SAS_Token;
-  //     }
-  //   });
-  // }
+  
 }
