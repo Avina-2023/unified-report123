@@ -274,6 +274,11 @@
 
   }
 
+  .alternate-card {
+    margin: 0 1.5%;
+    width: 77%;
+  }
+
   .card_three {
     width: 26%;
 
@@ -364,12 +369,12 @@
             opacity: 0.3;
           }
         }
-        .ass-image{
+        .asses-image{
           img{
             width: 100%;
             margin: 0px 0px 17px 0px;
           }
-          .ass-name{
+          .asses-name{
             position: absolute;
             color: #FFFFFF;
             font-size: 15px;
@@ -384,7 +389,7 @@
           }
         }
 
-        .ass-date{
+        .asses-date{
           display: flex;
           flex-direction: row;
           align-items: center;

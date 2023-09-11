@@ -66,7 +66,7 @@
 
       </div>
     </div>
-    <div class="card_two">
+    <div class="card_two" [ngClass]="{'alternate-card': !(AssesmentDetails?.length > 0) && !(courseResultData?.length > 0)}">
 
       <div class="details_header flx_div flx_center card_sticky" #headerRef>
         <div class="overall-detail" *ngFor="let detail of details" [class.active]="activeSection === detail.sectionId"
@@ -616,7 +616,8 @@
     </div>
 
     <div class="card_three">
-      <div class="job_details_card pd-20 card_sticky" *ngIf="!hideSection">
+      
+      <div class="job_details_card pd-20 card_sticky card_hide" *ngIf="!hideSection">
         <div class="job_header">Job Details</div>
         <div class="job_card hidden_div">
           <div class="job_title content_wrap">Applied for</div>
@@ -658,12 +659,12 @@
       </div>
 
 
-      <div class="job_details_card pd-30 card_sticky"> 
-        <ng-container *ngIf="AssesmentDetails?.length > 0"> 
+      <div class="job_details_card pd-30 card_sticky card_hide" *ngIf="AssesmentDetails?.length > 0"> 
+        <ng-container > 
           <mat-card class="asses-details-card">  
             <div class="assessment-container"> 
               <div class="assesment-detail"> 
-                <div class="ass-name">Assesment Details</div>
+                <div class="asses-name">Assesment Details</div>
                 <div class="prev-next"> 
                   <div mat-icon-button class="nav-icon" (click)="showPrevious()" [ngClass]="{'disabled': assessmentIndex === 0}">
                     <mat-icon>keyboard_arrow_left</mat-icon>
@@ -673,7 +674,7 @@
                   </div>
               </div>
               </div> 
-              <div class="ass-image"> 
+              <div class="asses-image"> 
                 <!-- <img src="https://t3.ftcdn.net/jpg/02/45/87/36/360_F_245873693_0geCBYQipchlBwGPXskG5SZckAdJkTLa.jpg" alt="" /> -->
                 <img src="https://media.istockphoto.com/id/1398462038/photo/online-exam-or-test.jpg?s=612x612&w=0&k=20&c=hvaH_2oA0Dm-tpQ8T5JBF_39QF3xhpic38Yi2AngaCE=" alt="" />
                 <!-- <img src="https://media.istockphoto.com/id/1483355290/photo/businessman-using-a-laptop-and-taking-an-assessment-questionnaire-evaluation-online-survey.jpg?s=612x612&w=0&k=20&c=PhztRjrkCSetcm_9cWDDB1IIgw1hi4tr7FF8BbBkWeg=" alt=""/> -->
@@ -681,10 +682,10 @@
                 <!-- <img src="https://media.istockphoto.com/id/1488803384/photo/digital-assets-document-and-mark-correct-sign-for-standard-quality-control-certification.jpg?s=612x612&w=0&k=20&c=3NMj_esWa686dlpCW-ECOvkT6KqLCPN6UjrNUKO7_1M=" alt=""/> -->
                 <!-- <img src="https://media.istockphoto.com/id/1516691318/photo/service-quality-assurance-guarantee-standards-iso-standards-quality-assurance-control.jpg?s=612x612&w=0&k=20&c=bBixTCD6d-WWd2Ec3rB7e0XSG-GXYirKfanamn2qG80=" alt=""/> -->
                 <!-- <img src="https://media.istockphoto.com/id/1498727341/photo/checklist-and-clipboard-task-documentation-management-business-people-working-laptop.jpg?s=612x612&w=0&k=20&c=fS4lhJ8B0A8H3tl9aCJ1nK4cOQGxQfRj5Lee1p612wA=" alt=""/> -->
-                <div class="ass-name" [matTooltip]="selectedAssessment.test_name" *ngIf="selectedAssessment.test_name">{{selectedAssessment.test_name}} </div>
-                <div class="ass-name" [matTooltip]="selectedAssessment.assessment_name" *ngIf="selectedAssessment.assessment_name">{{selectedAssessment.assessment_name}} </div>
+                <div class="asses-name" [matTooltip]="selectedAssessment.test_name" *ngIf="selectedAssessment.test_name">{{selectedAssessment.test_name}} </div>
+                <div class="asses-name" [matTooltip]="selectedAssessment.assessment_name" *ngIf="selectedAssessment.assessment_name">{{selectedAssessment.assessment_name}} </div>
               </div>
-              <div class="ass-date">
+              <div class="asses-date">
                 <div>
                   <span class="asses-datee">{{selectedAssessment.assessment_date|date}}</span>
                 </div>
@@ -733,9 +734,9 @@
         </ng-template> -->
       </div>
 
-      <div class="job_details_card pd-30 card_sticky">
+      <div class="job_details_card pd-30 card_sticky card_hide" *ngIf="courseResultData?.length > 0">
         <div class="course-details" *ngIf="currentCertification">
-          <mat-card class="cours-details-card" *ngIf="courseResultData?.length > 0">
+          <mat-card class="cours-details-card" >
             <div class="course-name-arrow">
               <div class="Course-detail">
                 Certification Details

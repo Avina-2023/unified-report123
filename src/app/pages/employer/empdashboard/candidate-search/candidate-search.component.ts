@@ -74,26 +74,13 @@ export class CandidateSearchComponent implements OnInit {
   }
   toviewprofile(candidateData) {
     this.appconfig.setLocalStorage('C_Candidate_status', JSON.stringify(candidateData));
+    // this.router.navigate(['/auth/drive/viewCandidateProfilebyEmployer']);
     this.router.navigateByUrl('/auth/drive/viewCandidateProfilebyEmployer?from=CS');
+    // this.router.navigateByUrl('/auth/drive/viewCandidateProfilebyEmployer?from=CS&hideCardThree=true');
   }
 
 
-  // getcandidatedetails(){
-  //   let params: any ={
-  //     "pageNumber": this.pageNumber,
-  //     "itemsPerPage": this.itemsPerPage,
-  //   }
-  //   this.apiservice.getallCandidateDetails(params).subscribe((response:any)=>{
-  //     if(response.success){
-  //       this.candidatelist = response.data
-  //       console.log(this.candidatelist,'canidatedata');
-  //       // this.totallength =this.candidatelist.length
-  //       // this.total = Math.ceil(response.totalCount/this.itemsPerPage);
-  //       this.totallength = response.totalCount;
-  //       this.total = Math.ceil(response.totalCount/this.itemsPerPage);
-  //     }
-  //   })
-  // }
+  
   filterCandidates() {
     this.getcandidatedetails();
 
@@ -105,7 +92,6 @@ export class CandidateSearchComponent implements OnInit {
   getAllStates(){
     this.apiservice.getallStates().subscribe((data:any)=>{
       this.stateData = data[0];
-      console.log(this.stateData,'states'); 
     })
   }
 
@@ -125,45 +111,14 @@ export class CandidateSearchComponent implements OnInit {
     this.apiservice.getallCandidateDetails(objDetails).subscribe((response: any) => {
       if (response.success) {
         this.candidatelist = response.data;
-        console.log(this.candidatelist, 'cadidatedata');
-        console.log(response, 'response');
         this.totallength = response.totalCount;
-        console.log(this.totallength, 'totallength');
         this.total = Math.ceil(this.totallength / this.itemsPerPage);
-        // this.total = 3;
-        console.log(this.total, 'totalvalue');
-       
+        // this.total = 3;       
       }
     }); 
   }
 
-  // clickSave() {
-  //   let savecanparams: any = {
-  //     // email: 'gokul47@dispostable.com',
-  //     email: this.appconfig.getLocalStorage('email'),
-  //     savedStatus: true,
-  //   };
-  //   this.apiservice.getsaveCandidate(savecanparams).subscribe((res: any) => {
-
-  // if (res.success && item.isSelected) {
-  //   this.toaster.success('Job Saved Successfully!');
-  // } else {
-  //   this.toaster.success('Job UnSaved Successfully!');
-  // }
-
-  //   });
-  // }
-  // clickSave(candidate: any) {
-  //   const savecanparams: any = {
-  //     email: this.appconfig.getLocalStorage('email'),
-  //     savedStatus: !candidate.isSaved, // Toggle the savedStatus
-  //   };
-
-  //   this.apiservice.getsaveCandidate(savecanparams).subscribe((res: any) => {
-  //     // Update the isSaved property based on the response
-  //     candidate.isSaved = !candidate.isSaved;
-  //   });
-  // }
+  
   clickSave(candidate: any) {
     const savecanparams: any = {
       // email: this.appconfig.getLocalStorage('email'),
@@ -181,7 +136,6 @@ export class CandidateSearchComponent implements OnInit {
     this.apiservice.candidateFilter(filterparams).subscribe((res: any) => {
       if (res.success) {
         this.filter_info = res;
-        console.log(this.filter_info);
       }
     });
   }
@@ -201,7 +155,6 @@ export class CandidateSearchComponent implements OnInit {
     data.is_checked = false;
     this.selectedValues.splice(index, 1);
     this.filterRemoval(data, data.key);
-    //console.log(this.filterObj);
     this.getcandidatedetails();
   }
 
@@ -261,7 +214,6 @@ export class CandidateSearchComponent implements OnInit {
         }
       });
       this.filterRemoval(data, filterKey, isMaster);
-      // console.log(this.filterObj);
     }
     if (from == 'direct') {
        this.getcandidatedetails();
@@ -288,5 +240,9 @@ export class CandidateSearchComponent implements OnInit {
   }
 
   
+  applyfilter() {
+    this.filterObj.commonSearch =  this.selectedOption
+    this.getcandidatedetails();
+  }
   
 }

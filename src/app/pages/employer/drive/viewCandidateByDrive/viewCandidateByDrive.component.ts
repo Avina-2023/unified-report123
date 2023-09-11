@@ -387,7 +387,7 @@ export class ViewCandidateByDriveComponent implements OnInit {
       {
         headerName: 'Trained by L&T EduTech',
         field: 'trainedStatus',
-        minWidth: 170,
+        minWidth: 200,
         filter: 'agTextColumnFilter',
         chartDataType: 'category',
         aggFunc: 'sum',
