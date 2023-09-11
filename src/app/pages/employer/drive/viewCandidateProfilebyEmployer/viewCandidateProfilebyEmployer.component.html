@@ -49,16 +49,11 @@
 
         </div>
         <br>
-        <!-- <div class="value" *ngIf="candidateStatus.trainedStatus=='Yes'"> <i class="flag_lnt icon-bookmark col1">
-          </i><span class="boldcandidate">Trained by L&T EduTech</span>
-        </div> -->
+
         <div class="value" *ngIf="courseResultData?.length > 0">
           <div><span class="flag_lnt icon-bookmark col1"></span></div>
           <div><span class="boldcandidate">Trained by L&T EduTech</span></div>
         </div>
-        <!-- <div class="value" *ngIf="candidateStatus.assessedStatus=='Yes'"><i class="flag_lnt icon-bookmark col2">
-          </i><span class="boldcandidate">Assessed by L&T EduTech</span>
-        </div> -->
         <div class="value" *ngIf="AssesmentDetails?.length > 0">
           <div><span class="flag_lnt icon-bookmark col2"></span></div>
           <div><span class="boldcandidate">Assessed by L&T EduTech</span></div>
@@ -66,7 +61,11 @@
 
       </div>
     </div>
-    <div class="card_two" [ngClass]="{'alternate-card': !(AssesmentDetails?.length > 0) && !(courseResultData?.length > 0)}">
+    <!-- <div class="card_two"  [ngClass]="{'alternate-card': !(AssesmentDetails?.length > 0) && !(courseResultData?.length > 0)}"> -->
+      <!-- <div class="card_two"> -->
+    <!-- <div class="card_two" [ngClass]="{'alternate-card': !(AssesmentDetails?.length > 0) && !(courseResultData?.length > 0) && hideSection !== true}"> -->
+    <!-- <div class="card_two" [ngClass]="{'wide-card': hideSection || !(AssesmentDetails?.length > 0) || !(courseResultData?.length > 0)}"> -->
+      <div class="card_two" [ngClass]="{ 'wide-card': hideSection && !(AssesmentDetails?.length > 0) && !(courseResultData?.length > 0) }">
 
       <div class="details_header flx_div flx_center card_sticky" #headerRef>
         <div class="overall-detail" *ngFor="let detail of details" [class.active]="activeSection === detail.sectionId"
@@ -74,7 +73,6 @@
           <span [ngClass]="{ 'blue-text': activeSection === detail.sectionId }">{{ detail.label }}</span>
         </div>
       </div>
-
 
       <div class="content">
         <div id="personal" #personalSection class="inner_content">
@@ -658,7 +656,6 @@
         </div>
       </div>
 
-
       <div class="job_details_card pd-30 card_sticky card_hide" *ngIf="AssesmentDetails?.length > 0"> 
         <ng-container > 
           <mat-card class="asses-details-card">  
@@ -780,6 +777,7 @@
           </mat-card>
         </div>
       </div>
+
     </div>
   </div> 
 
