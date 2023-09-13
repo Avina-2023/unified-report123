@@ -35,7 +35,9 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
     { label: 'Accomplishment Details', sectionId: 'accomplishment' },
     // { label: 'Disciplinary Details', sectionId: 'disciplinary' },
   ];
-  activeSection: string = 'personal';
+  // activeSection: string = 'personal';
+  activeSection: string = this.details[0].sectionId;
+  currentSectionIndex: number = 0;
   candidateData: any;
   email: any;
   getAllStates: any;
@@ -227,18 +229,41 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
     this.courseResultData = this.candidateData.courses; 
     this.currentIndex = 0; 
     this.currentCertification = this.courseResultData[0]; 
-    this.courseImg1 = this.currentCertification.courseImgUrl + environment.SAS_Token;
+    this.courseImg1 = this.currentCertification?.courseImgUrl + environment.SAS_Token;
   } 
 
   scrollToSection(sectionId: string) {
     this.activeSection = sectionId;
-    const section = this.elementRef.nativeElement.querySelector(
-      '#' + sectionId
-    );
+    const section = this.elementRef.nativeElement.querySelector('#' + sectionId );
     if (section) {
       section.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   }
+
+  isFirstSection(): boolean {
+    return this.currentSectionIndex === 0;
+  }
+
+  isLastSection(): boolean {
+    return this.currentSectionIndex === this.details.length - 1;
+  }
+
+  moveToPrevious() {
+    if (!this.isFirstSection()) {
+      this.currentSectionIndex--;
+      const previousSectionId = this.details[this.currentSectionIndex].sectionId;
+      this.scrollToSection(previousSectionId);
+    }
+  }
+
+  moveToNext() {
+    if (!this.isLastSection()) {
+      this.currentSectionIndex++;
+      const nextSectionId = this.details[this.currentSectionIndex].sectionId;
+      this.scrollToSection(nextSectionId);
+    }
+  }
+
 
   tocandidtedrive() {
     this.router.navigate(['/auth/drive/candidatelist']);

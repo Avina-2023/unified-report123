@@ -62,11 +62,23 @@
       </div>
     </div>
     <!-- <div class="card_two"  [ngClass]="{'alternate-card': !(AssesmentDetails?.length > 0) && !(courseResultData?.length > 0)}"> -->
-      <!-- <div class="card_two"> -->
+    <!-- <div class="card_two"> -->
     <!-- <div class="card_two" [ngClass]="{'alternate-card': !(AssesmentDetails?.length > 0) && !(courseResultData?.length > 0) && hideSection !== true}"> -->
     <!-- <div class="card_two" [ngClass]="{'wide-card': hideSection || !(AssesmentDetails?.length > 0) || !(courseResultData?.length > 0)}"> -->
+
+
       <div class="card_two" [ngClass]="{ 'wide-card': hideSection && !(AssesmentDetails?.length > 0) && !(courseResultData?.length > 0) }">
 
+
+        <!-- <div class="navigation-icons">
+          <div mat-icon-button class="nav-iconn" (click)="moveToPrevious()" [ngClass]="{'disabled': isFirstSection()}">
+            <mat-icon>keyboard_arrow_left</mat-icon>
+          </div>
+          <div mat-icon-button class="nav-iconn" (click)="moveToNext()" [ngClass]="{'disabled': isLastSection()}">
+            <mat-icon>keyboard_arrow_right</mat-icon>
+          </div>
+        </div> -->
+        
       <div class="details_header flx_div flx_center card_sticky" #headerRef>
         <div class="overall-detail" *ngFor="let detail of details" [class.active]="activeSection === detail.sectionId"
           (click)="scrollToSection(detail.sectionId)">
@@ -669,7 +681,7 @@
                   <div mat-icon-button class="nav-icon" (click)="showNext()" [ngClass]="{'disabled': assessmentIndex === AssesmentDetails?.length - 1}">
                     <mat-icon>keyboard_arrow_right</mat-icon>
                   </div>
-              </div>
+                </div>
               </div> 
               <div class="asses-image"> 
                 <!-- <img src="https://t3.ftcdn.net/jpg/02/45/87/36/360_F_245873693_0geCBYQipchlBwGPXskG5SZckAdJkTLa.jpg" alt="" /> -->
