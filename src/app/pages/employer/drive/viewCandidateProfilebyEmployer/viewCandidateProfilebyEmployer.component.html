@@ -49,16 +49,11 @@
 
         </div>
         <br>
-        <!-- <div class="value" *ngIf="candidateStatus.trainedStatus=='Yes'"> <i class="flag_lnt icon-bookmark col1">
-          </i><span class="boldcandidate">Trained by L&T EduTech</span>
-        </div> -->
+
         <div class="value" *ngIf="courseResultData?.length > 0">
           <div><span class="flag_lnt icon-bookmark col1"></span></div>
           <div><span class="boldcandidate">Trained by L&T EduTech</span></div>
         </div>
-        <!-- <div class="value" *ngIf="candidateStatus.assessedStatus=='Yes'"><i class="flag_lnt icon-bookmark col2">
-          </i><span class="boldcandidate">Assessed by L&T EduTech</span>
-        </div> -->
         <div class="value" *ngIf="AssesmentDetails?.length > 0">
           <div><span class="flag_lnt icon-bookmark col2"></span></div>
           <div><span class="boldcandidate">Assessed by L&T EduTech</span></div>
@@ -66,15 +61,30 @@
 
       </div>
     </div>
-    <div class="card_two" [ngClass]="{'alternate-card': !(AssesmentDetails?.length > 0) && !(courseResultData?.length > 0)}">
+    <!-- <div class="card_two"  [ngClass]="{'alternate-card': !(AssesmentDetails?.length > 0) && !(courseResultData?.length > 0)}"> -->
+    <!-- <div class="card_two"> -->
+    <!-- <div class="card_two" [ngClass]="{'alternate-card': !(AssesmentDetails?.length > 0) && !(courseResultData?.length > 0) && hideSection !== true}"> -->
+    <!-- <div class="card_two" [ngClass]="{'wide-card': hideSection || !(AssesmentDetails?.length > 0) || !(courseResultData?.length > 0)}"> -->
 
+
+      <div class="card_two" [ngClass]="{ 'wide-card': hideSection && !(AssesmentDetails?.length > 0) && !(courseResultData?.length > 0) }">
+
+
+        <!-- <div class="navigation-icons">
+          <div mat-icon-button class="nav-iconn" (click)="moveToPrevious()" [ngClass]="{'disabled': isFirstSection()}">
+            <mat-icon>keyboard_arrow_left</mat-icon>
+          </div>
+          <div mat-icon-button class="nav-iconn" (click)="moveToNext()" [ngClass]="{'disabled': isLastSection()}">
+            <mat-icon>keyboard_arrow_right</mat-icon>
+          </div>
+        </div> -->
+        
       <div class="details_header flx_div flx_center card_sticky" #headerRef>
         <div class="overall-detail" *ngFor="let detail of details" [class.active]="activeSection === detail.sectionId"
           (click)="scrollToSection(detail.sectionId)">
           <span [ngClass]="{ 'blue-text': activeSection === detail.sectionId }">{{ detail.label }}</span>
         </div>
       </div>
-
 
       <div class="content">
         <div id="personal" #personalSection class="inner_content">
@@ -658,7 +668,6 @@
         </div>
       </div>
 
-
       <div class="job_details_card pd-30 card_sticky card_hide" *ngIf="AssesmentDetails?.length > 0"> 
         <ng-container > 
           <mat-card class="asses-details-card">  
@@ -672,7 +681,7 @@
                   <div mat-icon-button class="nav-icon" (click)="showNext()" [ngClass]="{'disabled': assessmentIndex === AssesmentDetails?.length - 1}">
                     <mat-icon>keyboard_arrow_right</mat-icon>
                   </div>
-              </div>
+                </div>
               </div> 
               <div class="asses-image"> 
                 <!-- <img src="https://t3.ftcdn.net/jpg/02/45/87/36/360_F_245873693_0geCBYQipchlBwGPXskG5SZckAdJkTLa.jpg" alt="" /> -->
@@ -780,6 +789,7 @@
           </mat-card>
         </div>
       </div>
+
     </div>
   </div> 
 

@@ -622,7 +622,7 @@ export class ViewCandidateByDriveComponent implements OnInit {
     this.icncolor = icn[index];
     this.active = index;
     console.log(index, 'MYINDEX VALUE');
-    let statusmodel = {
+    let statusmodel = { 
       jobStatus: {
         filterType: 'text',
         type: 'contains',
@@ -651,10 +651,8 @@ export class ViewCandidateByDriveComponent implements OnInit {
   }
 
   candidateprofile(data: any): void {
-    this.appconfig.setLocalStorage('C_Candidate_status', JSON.stringify(data));
-    this.router.navigateByUrl(
-      '/auth/drive/viewCandidateProfilebyEmployer?from=NAME'
-    );
+    this.appconfig.setLocalStorage('C_Candidate_status', JSON.stringify(data)); 
+    this.router.navigateByUrl('/auth/drive/viewCandidateProfilebyEmployer?from=VA');
   }
 
   paginationCounter(){
