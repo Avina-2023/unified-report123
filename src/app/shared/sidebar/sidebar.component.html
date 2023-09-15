@@ -71,6 +71,14 @@
         </div>
       </mat-list-item>
 
+      <mat-list-item (click)="validateClick('overallreport')"
+        [ngClass]="[check === 'empdashboard' ? 'selected' : 'notSelected']"
+        *ngIf='roleCode === "SADM" || roleCode === "OADM" || roleCode === "ADM" || roleCode === "HR" || roleCode === "ISADM" || roleCode === "IADM"'>
+        <div class="sidebar-admin">
+          <em class="icon-dashboard_grey"></em>
+          <span class="headerfont" mat-line *ngIf="isExpanded">OverAll-Reports</span>
+        </div>
+      </mat-list-item>
 
       <mat-list-item [ngClass]="['notSelected']"
         *ngIf='roleCode === "SADM" || roleCode === "OADM" || roleCode === "ADM" || roleCode === "HR" || roleCode === "ISADM" || roleCode === "IADM"'
