@@ -81,6 +81,10 @@ export const APP_CONSTANTS = {
       REQUIRMENT: 'auth/partner/jobrequirment',
       UPLOADREQUIRMENT: 'auth/partner/uploadpostrequirment',
     },
+    OVERALLREPORTS:{
+      HOME: '/auth/overall-reports',
+      //OVERALLREPORTS: '/auth/report/overallreports'
+    },
     VIEWDRIVE: {
       HOME: '/auth/drive',
       MANAGEDRIVE: '/auth/drive/managedrive',
@@ -166,7 +170,10 @@ export const APP_CONSTANTS = {
       REQUIRMENT: 'jobrequirment',
       UPLOADREQUIRMENT: 'uploadpostrequirment',
     },
-
+    OVERALLREPORTS:{
+      HOME: 'overall-reports',
+      //OVERALLREPORTS: 'overallreports'
+    },
     DRIVE: {
       HOME: 'drive',
       MANAGEDRIVE: 'managedrive',

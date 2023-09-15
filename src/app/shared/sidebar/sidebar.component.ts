@@ -111,6 +111,9 @@ export class SidebarComponent implements OnInit {
     } else if (value == 'partnerlist') {
       this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.PARTNER.HOME);
     }
+    else if (value == 'overallreport') {
+      this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.OVERALLREPORTS.HOME);
+    }
   }
   hiring(value) {
     this.check = value;
