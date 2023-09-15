@@ -105,8 +105,8 @@ export class RegisterPageComponent implements OnInit {
       ],
       email: ['', [Validators.required, Validators.pattern(emailregex)]],
       term:['',[Validators.requiredTrue]],
-      employerName: ['', [Validators.required]],
-        industryType: ['', [Validators.required]],
+      // employerName: ['', [Validators.required]],
+      //   industryType: ['', [Validators.required]],
     });
   }
 
@@ -120,8 +120,8 @@ export class RegisterPageComponent implements OnInit {
         jobtype: this.registerForm.value.jobtype,
         designation: this.registerForm.value.designation,
         company: this.registerForm.value.company,
-        employerName: this.registerForm.value.employerName,
-        industryType: this.registerForm.value.industryType,
+        // employerName: this.registerForm.value.employerName,
+        // industryType: this.registerForm.value.industryType,
         // otpForm:this.otpForm.value.otpForm,
         //  terms:this.registerForm.value.term,
       };

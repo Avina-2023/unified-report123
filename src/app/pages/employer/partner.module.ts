@@ -16,6 +16,7 @@ import { MaterialModule } from 'src/app/material/material.module';
 import {EmpUploadPostrequirmentComponent} from './emp-upload-postrequirment/emp-upload-postrequirment.component'
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzSelectModule } from 'ng-zorro-antd/select';
+import { OverallReportComponent } from './overall-Report/overall-Report.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
     MoreOptionsComponent,
     EmpPostrequirmentsComponent,
     EmpRequirmentsComponent,
-    EmpUploadPostrequirmentComponent
+    EmpUploadPostrequirmentComponent,
+    OverallReportComponent
 
   ],
   imports: [
