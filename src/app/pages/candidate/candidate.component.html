@@ -8,8 +8,12 @@
   <div class="toolbar-pic">
     <span class="username">{{candidateName}}</span>
     <button mat-button [matMenuTriggerFor]="menu">
-      <img class="profileimg"
-        [src]="profileimge && profileimge !=''?profileimge:'../../../../assets/images/emp-dashboard-icons/user.png'">
+      <!-- <img class="profileimg"
+        [src]="profileimge && profileimge !=''?profileimge:'../../../../assets/images/emp-dashboard-icons/user.png'"> -->
+        <!-- <img class="profileimg" 
+        [src]="profileimge && profileimge !='' && profileimge !='undefined'?profileimge:'../../../../assets/images/emp-dashboard-icons/user.png'"> -->
+        <img class="profileimg" 
+        [src]="profileimge && profileimge !='' && profileimge !='undefined'?profileimge:'../../../../assets/images/candidate-userprofile.png'">
     </button>
     <mat-menu #menu="matMenu"> 
       <button style="color:#1B4E9B;" mat-menu-item (click)="logout()"> <mat-icon 
