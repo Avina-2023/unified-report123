@@ -26,7 +26,8 @@ export class ApiService {
   logout() {
     this.appConfig.clearLocalStorage();
     this.appConfig.clearSessionStorage();
-    return this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.HOME);
+    // return this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.HOME);
+    window.location.href = "https://reviewinfo.lntedutech.com/login/";
   }
 
   login(data: any) {
