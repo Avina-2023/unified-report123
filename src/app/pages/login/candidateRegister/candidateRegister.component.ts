@@ -27,7 +27,7 @@ export class candidateRegister implements OnInit {
   msg = ''
   secretKey = "(!@#Passcode!@#)";
   // skillProfileUrl = "/login?from=freshGrad";
-  skillProfileUrl = "https://reviewinfo.lntedutech.com/login/";
+  skillProfileUrl = "https://myaccount.lntedutech.com/login/";
   dialogRef: any;
   constructor(public fb: FormBuilder,private dialog: MatDialog, private glovbal_validators: GlobalValidatorService, public toastr: ToastrService, private ApiService: ApiService,public appConfig: AppConfigService, private router:Router   ) { }
 
