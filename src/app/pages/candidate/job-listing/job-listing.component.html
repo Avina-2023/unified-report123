@@ -149,7 +149,7 @@
                 <div class="sub-details-1">
                   <div>
                     <!-- <div class='compTitle'><strong>{{ jobDetails.jobRole ? jobDetails.jobRole : jobDetails.jobTitle }}</strong> -->
-                    <span class="head1 rolebold">{{item.jobRole ? item.jobRole : item.jobTitle}}</span>
+                    <span class="head1 rolebold" [matTooltip]="item.jobRole ? item.jobRole : item.jobTitle">{{item.jobRole ? item.jobRole : item.jobTitle}}</span>
                   </div>
                 </div>
                 <!-- <div style="display: flex;">
