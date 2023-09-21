@@ -271,16 +271,16 @@
         </div>
         <div class="lastRightline">
 
-          <span class="applied" (click)="viewApplication(one)">
+          <div class="applied" (click)="viewApplication(one)">
             <!-- <mat-icon class="schedule">schedule</mat-icon> -->
             <div><span class="icon-checked_Skyblue"></span></div>
             Applied
            (<span>{{ one.candidatesAppliedCount }}</span>)
-          </span>
+          </div>
 
-          <span class="applied" (click)="viewSettings()">
-            Settings
-          </span>
+          <div class="applied" (click)="viewSettings()">
+            <div><mat-icon class="setting">settings</mat-icon></div><div>Settings</div>
+          </div>
 
           <!-- <span class="settings" [routerLink]="routerlink.VIEWDRIVE.DRIVESETTINGS">
             <mat-icon class="setting">settings</mat-icon>

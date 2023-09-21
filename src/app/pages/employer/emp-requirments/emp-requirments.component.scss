@@ -601,10 +601,12 @@ display: none;
   }
 
   .lastRightline {
-    padding-right: 20px;
+    // padding-right: 20px;
+    display: flex;
+    align-items: center;
 
     .settings {
-      padding-right: 5px;
+      // padding-right: 5px;
       width: 49px;
       text-align: left;
       text-decoration: underline;
@@ -627,6 +629,15 @@ display: none;
       .icon-checked_Skyblue{
         margin: 0px 2px 0px 0px;
       }
+    }
+    .applied1{
+      display: flex;
+      color: #0097cc;
+      opacity: 1;
+      cursor: pointer;
+      align-items: center;
+      padding-right: 20px;
+      text-decoration: underline;
     }
   }
 }
