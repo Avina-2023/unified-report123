@@ -6,44 +6,6 @@
 </div>
 
 
-<!-- <ng-template #matDialog let-data>
-  <div class="main-wrapper">
-    <div>
-      <div class="warning-imag">
-        <img class="warning_icon" src="../../../../../assets/images/alert image filled.svg">
-      </div>
-      <div class="text">
-        <ng-container *ngIf="data.status === 'Shortlisted'; else otherText">
-          Are you sure you want to <span class="status-text">Shortlist</span> the candidate? 
-        </ng-container>
-        <ng-template #otherText>
-          <ng-container *ngIf="data.status === 'Rejected'; else inProgressText">
-            Are you sure you want to <span class="status-text">Reject</span> the candidate?
-          </ng-container>
-          <ng-template #inProgressText>
-            Are you sure you want to move the candidate to <span class="status-text">In Progress</span>?
-          </ng-template>
-        </ng-template>
-      </div>
-      <div class="button-wrapper-form-pop-up">
-        <ng-container *ngIf="data.status === 'Shortlisted'; else otherButtons">
-          <button class="button1" (click)="getStatusChange(data.status)" type="button" mat-raised-button>
-            Confirm
-          </button>
-        </ng-container>
-        <ng-template #otherButtons>
-          <button class="button2" (click)="getStatusChange(data.status)" type="button" mat-raised-button>
-            Confirm
-          </button>
-        </ng-template>
-        <button class="button3" (click)="closeDialog('cancel')" type="button" mat-raised-button>
-          Cancel
-        </button>
-      </div>
-    </div>
-  </div>
-</ng-template> -->
-
 <ng-template #matDialog let-data>
   <div class="main-wraper">
     <div>

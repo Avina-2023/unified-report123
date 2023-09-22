@@ -123,6 +123,10 @@ viewApplication(jobdata){
   this.appConfig.setLocalStorage('currentJobData',JSON.stringify(jobdata));
   this.sendData.sendMessage_Dyn("jobData",jobdata,this.sendData.jobData_Subject);
 }
+
+viewSettings(){
+  this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.VIEWDRIVE.DRIVESETTINGS)
+}
 some(pages){
   this.filterModel.startRow= (( pages.value-1)*this.defaultRowPerPage)
   this.filterModel.endRow = ( (pages.value)*this.defaultRowPerPage)

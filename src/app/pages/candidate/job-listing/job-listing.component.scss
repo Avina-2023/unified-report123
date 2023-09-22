@@ -857,6 +857,10 @@
   justify-content: flex-start;
   padding: 15px 0px 0px 5px;
   color: #707070;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 390px;
   .head1 {
     font-size: 16px;
     font-weight: bold !important;

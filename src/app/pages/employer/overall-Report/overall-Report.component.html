@@ -1,106 +1,19 @@
-<div class="overall-report-dashboard">
+<div style="background-color: #F4F7FC;"> 
 <div class="dashboard"> Dashboard</div>
-<div class="main-Dashboard">
-  <mat-card class="main-Dashboard-details">
-    <div class="Registrarion-name"><span>Registrations</span></div>
-    <div class="line"></div>
-    <div class="Registrarion-count"><span>10000</span></div>
-    <div class="candidates-count">
-      <div class="name-count">
-        <div class="candidate-count">426</div>
-        <div class="candidate-certified">Certified</div>
-      </div>
-      <div class="name-count">
-        <div class="candidate-count">987</div>
-        <div class="candidate-certified">Assessed</div>
-      </div>
-      <div class="name-count">
-        <div class="candidate-count">65</div>
-        <div class="candidate-certified">General</div>
-      </div>
-    </div>
-  </mat-card>
 
-  <!-- <mat-card class="main-Dashboard-details">
-    <div class="Registrarion-name"><span>Skill Profile</span></div>
-    <div class="line"></div>
-    <div class="Registrarion-count"><span>2000</span></div>
-    <div class="candidates-count">
-      <div class="name-count">
-        <div class="candidate-count">426</div>
-        <div class="candidate-certified">Certified</div>
-      </div>
-      <div class="name-count">
-        <div class="candidate-count">987</div>
-        <div class="candidate-certified">Assessed</div>
-      </div>
-      <div class="name-count">
-        <div class="candidate-count">65</div>
-        <div class="candidate-certified">General</div>
-      </div>
-    </div>
-  </mat-card>
-  <mat-card class="main-Dashboard-details">
-    <div class="Registrarion-name"><span>Hiring Patners Job Applicants</span></div>
-    <div class="line"></div>
-    <div class="Registrarion-count"><span>5000</span></div>
-    <div class="candidates-count">
-      <div class="name-count">
-        <div class="candidate-count">426</div>
-        <div class="candidate-certified">Certified</div>
-      </div>
-      <div class="name-count">
-        <div class="candidate-count">987</div>
-        <div class="candidate-certified">Assessed</div>
-      </div>
-      <div class="name-count">
-        <div class="candidate-count">65</div>
-        <div class="candidate-certified">General</div>
-      </div>
-    </div>
-  </mat-card> -->
-
+<div class="main-card">
+  <app-overall-Report-details-card [borderColor]="'#DC3545'" [registrationCountColor]="'#DC3545'" [cardName]="'Registrations'" [backgroundColor]="'#DC354514'" [totalCount]="10000" [subCount1]="100" [subCount2]="200" [subCount3]="300"></app-overall-Report-details-card>
+  <app-overall-Report-details-card [borderColor]="'#FF5733'" [registrationCountColor]="'#FF5733'" [cardName]="'Skill Profiles'" [backgroundColor]="'#FF573314'" [totalCount]="2000" [subCount1]="100" [subCount2]="200" [subCount3]="300"></app-overall-Report-details-card>
+  <app-overall-Report-details-card [borderColor]="'#007BFF'" [registrationCountColor]="'#007BFF'" [cardName]="'Hiring partners Job applicants'" [backgroundColor]="'#007BFF14'" [totalCount]="3000" [subCount1]="100" [subCount2]="200" [subCount3]="300"></app-overall-Report-details-card>
+  <app-overall-Report-details-card [borderColor]="'#28A745'" [registrationCountColor]="'#28A745'" [cardName]="'Hiring Partners Internship Applicants'" [backgroundColor]="'#28A74514'" [totalCount]="4000" [subCount1]="100" [subCount2]="200" [subCount3]="300"></app-overall-Report-details-card>
+  <app-overall-Report-details-card [borderColor]="'#FFC107'" [registrationCountColor]="'#FFC107'" [cardName]="'Open market Job View'" [backgroundColor]="'#FFC10714'" [totalCount]="5000" [subCount1]="100" [subCount2]="200" [subCount3]="300"></app-overall-Report-details-card>
+  <app-overall-Report-details-card [borderColor]="'#6610F2'" [registrationCountColor]="'#6610F2'" [cardName]="'Open market Internship View'" [backgroundColor]="'#6610F214'" [totalCount]="6000" [subCount1]="100" [subCount2]="200" [subCount3]="300"></app-overall-Report-details-card>
 </div>
 
-<div class="Company-Dashboard">
-  <mat-card class="company-Dashboard-details">
-    <div class="company-name"><span>No Of Companies</span></div>
-    <div class="line"></div>  
-    <div class="total-jobs">
-      <div><span class="total-jobs-count">2400</span></div>
-      <div class="section-job-count">
-        <div class="open-jobs">
-          <div class="open-jobs-countt"><span class="open-jobs-count">1400</span></div>
-          <div><span class="open-jobs-name">Open Market</span></div>
-        </div>
-        <div class="patner-jobs">
-          <div class="patner-jobs-countt"><span class="patner-jobs-count">1000</span></div>
-          <div><span class="patner-jobs-name">Hiring Patners</span></div>
-        </div>
-      </div>
-    </div>
-  </mat-card>
+<div class="main-card2">
+  <app-overall-Report-minicard-details [cardTitle]="'No of Companies'" [minitotalCount]="6000" [minisubCount1]="200" [minisubCount2]="300" ></app-overall-Report-minicard-details>
+  <app-overall-Report-minicard-details [cardTitle]="'No of Job Drives'" [minitotalCount]="7000" [minisubCount1]="200" [minisubCount2]="300" ></app-overall-Report-minicard-details>
+  <app-overall-Report-minicard-details [cardTitle]="'No of Internships'" [minitotalCount]="9000" [minisubCount1]="200" [minisubCount2]="300" ></app-overall-Report-minicard-details>
 </div>
-
-
-<!-- <div style="border: 1px solid red;padding:10px;">
-  <div style="border-bottom: 1px solid grey;">Registration</div>
-  <div>10000</div>
-  <div style="display:flex;justify-content:space-evenly;align-items:center;background:blue;padding:10px;">
-    <div>
-      <p>426</p>
-      <p>Certified</p>
-    </div>
-    <div>
-      <p>426</p>
-      <p>Asses</p>
-    </div>
-    <div>
-      <p>426</p>
-      <p>General</p>
-    </div>
-  </div>
-</div> -->
-
 
 </div>

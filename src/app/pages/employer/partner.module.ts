@@ -17,7 +17,8 @@ import {EmpUploadPostrequirmentComponent} from './emp-upload-postrequirment/emp-
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { OverallReportComponent } from './overall-Report/overall-Report.component';
-
+import { OverallReportDetailsCardComponent } from './overall-Report/overall-Report-details-card/overall-Report-details-card.component';
+import { OverallReportMinicardDetailsComponent } from './overall-Report/overall-Report-minicard-details/overall-Report-minicard-details.component';
 @NgModule({
   declarations: [
     AddPartnerComponent,
@@ -28,7 +29,9 @@ import { OverallReportComponent } from './overall-Report/overall-Report.componen
     EmpPostrequirmentsComponent,
     EmpRequirmentsComponent,
     EmpUploadPostrequirmentComponent,
-    OverallReportComponent
+    OverallReportComponent,
+    OverallReportDetailsCardComponent,
+    OverallReportMinicardDetailsComponent
 
   ],
   imports: [
