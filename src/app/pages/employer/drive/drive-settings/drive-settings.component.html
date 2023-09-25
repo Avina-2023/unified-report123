@@ -1,195 +1,317 @@
-<div class="body"> 
-<div class="DS-link-text-container"> 
-<div class="titile1"> 
-    <div class="active-link" (click)="dashboard()">View Job Requirements</div>
-</div>
-<span class="arrow"> > </span>
-<span> 
-<div class="titile2">
-    <div class="title2-text"> Drive Settings </div>
-</div>
-</span> 
-</div> 
-    <div class="header"> <div class="header-text"> Drive Settings</div> </div>
-<div class="drive-setting-container">
-    <div class="ds-body-container">
-        <div class="left-scroll">
-            <div class="left-scroll-container">
-            <div>
-                <div class="left-box1">
-                    <img src="{{valueone.bannerImage}}" class="logo">
-                </div> 
-                <div class="left-box-border"></div>
-            </div> 
-            <div>
-                <div>
-                    <div class="left-box1">
-                        <div class="job-role">
-                            <div class="job-role-text1-container">
-                                <div class="job-role-text1"> {{valueone.jobRole}} </div>
+<div class="body">
+    <div class="DS-link-text-container">
+        <div class="titile1">
+            <div class="active-link" (click)="dashboard()">View Job Requirements</div>
+        </div>
+        <span class="arrow"> > </span>
+        <span>
+            <div class="titile2">
+                <div class="title2-text"> Drive Settings </div>
+            </div>
+        </span>
+    </div>
+    <div class="header">
+        <div class="header-text"> Drive Settings</div>
+    </div>
+
+    <div class="drive-setting-container">
+        <div class="ds-body-container">
+            <div class="left-scroll">
+                <div class="left-scroll-container">
+                    <div>
+                        <div class="left-box1">
+                            <img src="{{valueone.bannerImage}}" class="logo">
+                        </div>
+                        <div class="left-box-border"></div>
+                    </div>
+                    <div>
+                        <div>
+                            <div class="left-box1">
+                                <div class="job-role">
+                                    <div class="job-role-text1-container">
+                                        <div class="job-role-text1"> {{valueone.jobRole}} </div>
+                                    </div>
+                                    <div class="job-role-text2-container">
+                                        <div class="job-role-text2"> {{valueone.jobType}} </div>
+                                    </div>
+                                    <div class="job-role-status-container">
+                                        <div class="status"> {{valueone.status}} </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="job-role-text2-container">
-                                <div class="job-role-text2"> {{valueone.jobType}} </div>
+                        </div>
+                        <div class="left-box-border"></div>
+                    </div>
+                    <div>
+                        <div class="left-box1">
+                            <div>
+                                <div class="candidate-applied-no-container">
+                                    <div class="candidate-applied-no">{{valueone.candidatesAppliedCount}}</div>
+                                </div>
+                                <div class="candidate-applied-text-container">
+                                    <div class="candidate-applied-text">Candidates Applied</div>
+                                </div>
                             </div>
-                            <div class="job-role-status-container">
-                                <div class="status"> {{valueone.status}} </div>
-                            </div> 
-                        </div> 
-                    </div> 
-                </div> 
-                    <div class="left-box-border"></div>
-            </div> 
-                <div>
-                    <div class="left-box1">
-                        <div> 
-                            <div class="candidate-applied-no-container">
-                                <div class="candidate-applied-no">{{valueone.candidatesAppliedCount}}</div>
+                        </div>
+                        <div class="left-box-border"></div>
+                    </div>
+                    <div>
+                        <div class="left-box1">
+                            <div>
+                                <div class="app-close-on-text-container">
+                                    <div class="app-close-on-text">Application closes on:</div>
+                                </div>
+                                <div class="app-close-on-date-container">
+                                    <div class="app-close-on-date">
+                                        {{valueone.lastDatetoApply | date:'MMM dd, yyyy'}}
+                                    </div>
+                                </div>
                             </div>
-                            <div class="candidate-applied-text-container">
-                                <div class="candidate-applied-text">Candidates Applied</div>
-                            </div> 
-                        </div> 
-                    </div> 
-                    <div class="left-box-border"></div> 
-                </div> 
-                <div>
-                    <div class="left-box1">
-                    <div> 
-                        <div class="app-close-on-text-container">
-                            <div class="app-close-on-text">Application closes on:</div>
-                        </div> 
-                        <div class="app-close-on-date-container">
-                            <div class="app-close-on-date">
-                                {{valueone.lastDatetoApply | date:'MMM dd, yyyy'}}, 12:00 am
+                        </div>
+                    </div>
+                </div>
+                <div class="lef-scroll-Rborder"> </div>
+            </div>
+
+            <div class="right-scroll">
+                <div class="job-profile">
+                    <div class="jobprofile-header-container">
+                        <div class="jobprofile-header">
+                            <div class="jobprofile-header-text">
+                                Job Profile Details
                             </div>
-                        </div> 
-                    </div> 
-                    </div> 
-                </div> 
-            </div> 
-            <div class="lef-scroll-Rborder"> </div>
-      </div>
-        <div class="right-scroll">
-            <div class="job-profile">
-                <div class="jobprofile-header-container">
-                    <div class="jobprofile-header">
-                        <div class="jobprofile-header-text">
-                            Job Profile Details
-                        </div> 
-                    </div> 
-                    <div class="edit-icon">
-                        <mat-icon>create</mat-icon>Edit
-                    </div> 
-                </div> 
-                <div class="border-line">
-                    <div class="bottom-border"></div>
-                </div> 
-                <div>
-                    <div> 
-                        <div class="label-conainer">
-                            <div class="label">
-                                <div class="label-text">Job Role</div>
-                            </div> 
-                            <div class="lable-value">
-                                <div class="label-value-text">{{valueone.jobRole}}</div>
-                            </div> 
-                        </div> 
-                        <div class="border-line">
-                            <div class="bottom-border"></div>
-                        </div> 
-                    </div> 
-                    <div> 
-                        <div class="label-conainer">
-                            <div class="label">
-                                <div class="label-text">Job Title</div>
+                        </div>
+                        <div class="edit-icon">
+                            <mat-icon>create</mat-icon>Edit
+                        </div>
+                    </div>
+                    <div class="border-line">
+                        <div class="bottom-border"></div>
+                    </div>
+                    <div>
+                        <div>
+                            <div class="label-conainer">
+                                <div class="label">
+                                    <div class="label-text">Job Role</div>
+                                </div>
+                                <div class="lable-value">
+                                    <div class="label-value-text">{{valueone.jobRole}}</div>
+                                </div>
                             </div>
-                            <div class="lable-value">
-                                <div class="label-value-text">{{valueone.jobTitle}}</div>
-                            </div> 
-                        </div> 
-                        <div class="border-line">
-                            <div class="bottom-border"></div>
-                        </div> 
+                            <div class="border-line">
+                                <div class="bottom-border"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="label-conainer">
+                                <div class="label">
+                                    <div class="label-text">Job Title</div>
+                                </div>
+                                <div class="lable-value">
+                                    <div class="label-value-text">{{valueone.jobTitle}}</div>
+                                </div>
+                            </div>
+                            <div class="border-line">
+                                <div class="bottom-border"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="label-conainer">
+                                <div class="label">
+                                    <div class="label-text">Job Location</div>
+                                </div>
+                                <div class="lable-value">
+                                    <div class="label-value-text">{{valueone.jobLocation}}</div>
+                                </div>
+                            </div>
+                            <div class="border-line">
+                                <div class="bottom-border"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="label-conainer">
+                                <div class="label">
+                                    <div class="label-text">Key Skills</div>
+                                </div>
+                                <div class="lable-value">
+                                    <div class="label-value-text">{{valueone.skillSet}}</div>
+                                </div>
+                            </div>
+                            <div class="border-line">
+                                <div class="bottom-border"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="label-conainer">
+                                <div class="label">
+                                    <div class="label-text">CTC</div>
+                                </div>
+                                <div class="lable-value">
+                                    <div class="label-value-text">{{valueone.ctc}}</div>
+                                </div>
+                            </div>
+                            <div class="border-line">
+                                <div class="bottom-border"> </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="label-conainer">
+                                <div class="label">
+                                    <div class="label-text">Job Description</div>
+                                </div>
+                                <div class="lable-value">
+                                    <div class="label-value-text">
+                                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+                                        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
+                                        when an unknown printer took a galley of type and scrambled it to make a type specimen book
+                                        <!-- {{valueone.description}} -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="Eligibility-criteria">
+                    <div class="jobprofile-header-container2">
+                        <div class="jobprofile-header2">
+                            <div class="jobprofile-header-text2">
+                                Eligibility Criteria
+                            </div>
+                        </div>
+                    </div>
+                    <div class="border-line">
+                        <div class="bottom-border"></div>
+                    </div>
+                    <div class="education">
+                        <div class="education-lable">
+                            <div class="education-lable-text"> Education </div>
+                        </div>
+                        <div class="edit-icon">
+                            <mat-icon>create</mat-icon>Edit
+                        </div>
+                    </div>
+                    <div class="border-line">
+                        <div class="bottom-border"></div>
+                    </div>
+                   <div class="edu-values"> {{valueone.education}} </div>
+                </div>
+
+                <div class="Set-criteria">
+                    <div class="set-criteria-header-container2">
+                        <div class="jobprofile-criteria">
+                            <div class="jobprofile-header-text2">
+                                Set Criteria
+                            </div>
+                            <div class="add-criteria">
+                                Add Criteria
+                            </div>
+                        </div>
+                    </div>
+                    <div class="border-line">
+                        <div class="bottom-border"></div>
+                    </div>
+                    <div class="education">
+                        <div class="education-lable">
+                            <div class="education-lable-text"> No Criteria defined. All students are eligible </div>
+                        </div>     
                     </div> 
-                <div>
-                    <div class="label-conainer">
-                        <div class="label">
-                            <div class="label-text">Job Location</div>
-                        </div> 
-                        <div class="lable-value">
-                            <div class="label-value-text">{{valueone.jobLocation}}</div>
-                        </div>        
+                </div>
+
+                <div class="Set-criteria">
+                    <div class="set-criteria-header-container2">
+                        <div class="jobprofile-criteria">
+                            <div class="jobprofile-header-text2">
+                                Year Of Passing
+                            </div>
+                            <div class="add-criteria">
+                                <mat-icon>create</mat-icon> Edit
+                            </div>
+                        </div>
+                    </div>
+                    <div class="border-line">
+                        <div class="bottom-border"></div>
+                    </div>
+                    <div class="education">
+                        <div class="education-lable">
+                            <!-- <div class="yop-text">{{valueone.yearofPassout}}</div> -->
+                            <!-- <div *ngFor="let year of valueone.yearofPassout" class="yop-text">
+                                {{ year }}
+                              </div> -->
+                              <div class="yop-container">
+                                <ng-container *ngFor="let year of valueone.yearofPassout">
+                                  <div class="yop-text">{{ year }}</div>
+                                </ng-container>
+                              </div>
+                              
+                        </div>     
                     </div> 
-                    <div class="border-line"> 
-                         <div class="bottom-border"></div>
+                </div>
+
+                <div class="Set-criteria">
+                    <div class="set-criteria-header-container2">
+                        <div class="jobprofile-criteria">
+                            <div class="jobprofile-header-text2">
+                                Backlogs
+                            </div>
+                            <div class="add-criteria">
+                                <mat-icon>create</mat-icon>Edit
+                            </div>
+                        </div>
+                    </div>
+                    <div class="border-line">
+                        <div class="bottom-border"></div>
+                    </div>
+                    <div class="education">
+                        <div class="education-lable">
+                            <div class="education-lable-text"> No Criteria defined. All students are eligible </div>
+                        </div>     
                     </div> 
-                </div> 
-            <div> 
-                <div class="label-conainer">
-                    <div class="label">
-                        <div class="label-text">Key Skills</div>
+                </div>
+
+                <div class="Set-criteria">
+                    <div class="set-criteria-header-container2">
+                        <div class="jobprofile-criteria">
+                            <div class="jobprofile-header-text2">
+                                Gender
+                            </div>
+                            <div class="add-criteria">
+                                <mat-icon>create</mat-icon>Edit
+                            </div>
+                        </div>
+                    </div>
+                    <div class="border-line">
+                        <div class="bottom-border"></div>
+                    </div>
+                    <div class="education">
+                        <div class="education-lable">
+                            <div class="education-lable-text"> No Gender defined. All Candidates are eligible </div>
+                        </div>     
                     </div> 
-                    <div class="lable-value">
-                        <div class="label-value-text">{{valueone.skillSet}}</div>
-                    </div> 
-                </div> 
-                <div class="border-line">
-                    <div class="bottom-border"></div>
-                </div> 
-            </div> 
-            <div>
-                <div class="label-conainer">
-                    <div class="label">
-                        <div class="label-text">CTC</div>
-                    </div> 
-                    <div class="lable-value">
-                        <div class="label-value-text">{{valueone.ctc}}</div>
-                    </div> 
-                </div> 
-                <div class="border-line">
-                    <div class="bottom-border"> </div>
-                </div> 
-            </div> 
-                <div>
-                    <div class="label-conainer">
-                        <div class="label">
-                            <div class="label-text">Job Description</div>
-                        </div> 
-                    <div class="lable-value">
-                        <div class="label-value-text">Lorem Ipsum is simply dummy text of the printing and
-                            typesetting industry. Lorem Ipsum has been the industry's standard dummy text
-                            ever
-                            since the 1500s, when an unknown printer took a galley of type and scrambled it
-                            to
-                            make a type specimen book</div>
-                    </div> 
-                    </div> 
-                </div> 
-            </div> 
-        </div> 
-        <div class="Eligibility-criteria">
-            <div class="jobprofile-header-container2">
-                <div class="jobprofile-header2">
-                    <div class="jobprofile-header-text2">
-                        Eligibility Criteria
-                    </div> 
-                </div> 
-            </div>  
-                <div class="border-line">
-                    <div class="bottom-border"></div>
-                </div> 
-                <div class="education">
-                    <div class="education-lable">
-                        <div class="education-lable-text"> Education </div>
-                    </div> 
-                    <div class="edit-icon">
-                        <mat-icon>create</mat-icon>Edit
-                    </div> 
-                </div> 
-                <div class="border-line">
-                    <div class="bottom-border"></div>
-                </div> 
-        </div> 
-        </div> 
-    </div> 
+                </div>
+     
+                <div class="Set-criteria">
+                    <div class="set-criteria-header-container2">
+                        <div class="other-info">Other Information</div>
+                    </div>
+                    <div class="border-line">
+                        <div class="bottom-border"></div>
+                    </div>
+                    <div class="set-criteria-header-container2">
+                        <div class="jobprofile-criteria">
+                            <div class="jobprofile-header-text2">
+                                Hiring Process
+                            </div>
+                            <div class="add-criteria">
+                                Add info
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
 </div>

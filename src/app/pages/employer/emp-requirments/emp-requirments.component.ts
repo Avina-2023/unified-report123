@@ -117,15 +117,17 @@ applyFilter(filtervalue:string){
 viewjobpagenator(){}
 
 viewApplication(jobdata){
-  console.log(jobdata)
   this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.VIEWDRIVE.VIEWCANDIDATE);
   this.appConfig.setLocalStorage("currentJobID",jobdata.jobId)
   this.appConfig.setLocalStorage('currentJobData',JSON.stringify(jobdata));
   this.sendData.sendMessage_Dyn("jobData",jobdata,this.sendData.jobData_Subject);
 }
 
-viewSettings(){
+viewSettings(jobdata){
   this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.VIEWDRIVE.DRIVESETTINGS)
+  this.appConfig.setLocalStorage("currentJobID",jobdata.jobId)
+  this.appConfig.setLocalStorage('currentJobData',JSON.stringify(jobdata));
+  this.sendData.sendMessage_Dyn("jobData",jobdata,this.sendData.jobData_Subject);
 }
 some(pages){
   this.filterModel.startRow= (( pages.value-1)*this.defaultRowPerPage)
