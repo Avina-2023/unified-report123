@@ -35,7 +35,8 @@
                                         <div class="job-role-text2"> {{valueone.jobType}} </div>
                                     </div>
                                     <div class="job-role-status-container">
-                                        <div class="status"> {{valueone.status}} </div>
+                                        <!-- <div class="status"> {{valueone.status}} </div> -->
+                                        <div [ngClass]="{'status-active': valueone.status === 'Active', 'status-expired': valueone.status === 'Expired'}">{{ valueone.status }}</div>
                                     </div>
                                 </div>
                             </div>
@@ -45,7 +46,7 @@
                     <div>
                         <div class="left-box1">
                             <div>
-                                <div class="candidate-applied-no-container">
+                                <div class="candidate-applied-no-container"  (click)="navigateToCandidateList()">
                                     <div class="candidate-applied-no">{{valueone.candidatesAppliedCount}}</div>
                                 </div>
                                 <div class="candidate-applied-text-container">

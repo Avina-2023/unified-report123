@@ -55,7 +55,6 @@ export class SidebarComponent implements OnInit {
         this.driveIconToggle = true;
         this.check = 'managedrive';
         break;
-
       case '/auth/partner/addpartner':
         this.menuIconToggle = true;
         this.check = 'addpartner';
@@ -83,6 +82,10 @@ export class SidebarComponent implements OnInit {
         this.menuIconToggle = true;
         this.check = 'Viewcandidatelist';
         break;
+      case '/auth/drive/drivesettings':
+        this.menuIconToggle = true;
+        this.check = 'driveSettings';
+        break;
       case '/auth/drive/viewCandidateProfilebyEmployer':
         this.menuIconToggle = true;
         this.check = 'viewProfilebyEmployer';
@@ -91,9 +94,12 @@ export class SidebarComponent implements OnInit {
         this.check = 'managedrive';
         this.driveIconToggle = true;
         break;
-      case '/auth/dashboard/candidatesearch':
-        this.check = 'empcandidatesearch';
-        break;
+      case '/auth/dashboard/candidatesearch': 
+      this.check = 'empcandidatesearch';
+      break;
+      case '/auth/overall-reports': 
+      this.check = 'overallReports';
+      break;
       default:
         this.check = 'empdashboard';
         break;
