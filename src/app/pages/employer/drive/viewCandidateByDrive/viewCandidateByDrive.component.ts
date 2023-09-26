@@ -559,10 +559,10 @@ export class ViewCandidateByDriveComponent implements OnInit {
     this.gridApi.refreshServerSideStore({ purge: true });
   }
 
-  getJobDetails() {
-    this.jobDetailsdata = this.appconfig.getLocalStorage('currentJobData');
-    this.valueone = JSON.parse(this.jobDetailsdata);
-  }
+  getJobDetails() { 
+    this.jobDetailsdata = this.appconfig.getLocalStorage('currentJobData'); 
+    this.valueone = JSON.parse(this.jobDetailsdata); 
+  } 
 
   onTabChange(index: number) {
     const pall = ['navyblue', 'yellow', 'lightblue', 'red', 'green'];

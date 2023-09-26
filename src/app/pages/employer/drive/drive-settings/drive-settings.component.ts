@@ -9,12 +9,14 @@ import { AppConfigService } from 'src/app/utils/app-config.service';
 export class DriveSettingsComponent implements OnInit { 
   jobDetailsdata: any;
   valueone: any;
+  // jobData: any;
   constructor(
     public router: Router,
     private appconfig: AppConfigService,
   ) { }
   ngOnInit(): void { 
     this.getJobDetails();
+    // this.jobData = this.appconfig.jobData;
   } 
   getJobDetails() {
     this.jobDetailsdata = this.appconfig.getLocalStorage('currentJobData');
@@ -24,4 +26,7 @@ export class DriveSettingsComponent implements OnInit {
   dashboard() {
     this.router.navigate(['/auth/partner/jobrequirment']);
   } 
+  navigateToCandidateList() {
+    this.router.navigate(['/auth/drive/candidatelist']);
+  }
 } 
