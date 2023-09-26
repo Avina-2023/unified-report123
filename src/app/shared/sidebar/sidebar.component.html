@@ -21,7 +21,7 @@
         </div>
       </mat-list-item>
       <mat-list-item
-        [ngClass]="[check === 'empView' || check === 'empPost' || check === 'Viewcandidatelist' || check === 'viewProfilebyEmployer' ? 'selected' : 'notSelected']"
+        [ngClass]="[check === 'empView' || check === 'empPost' || check === 'Viewcandidatelist' || check === 'driveSettings' || check === 'viewProfilebyEmployer' ? 'selected' : 'notSelected']"
         *ngIf='roleCode === "EMP"' [matMenuTriggerFor]="menu">
         <div class="sidemenu workmenu">
           <div>
@@ -72,7 +72,7 @@
       </mat-list-item>
 
       <mat-list-item (click)="validateClick('overallreport')"
-        [ngClass]="[check === 'empdashboard' ? 'selected' : 'notSelected']"
+        [ngClass]="[check === 'overallReports' ? 'selected' : 'notSelected']"
         *ngIf='roleCode === "SADM" || roleCode === "OADM" || roleCode === "ADM" || roleCode === "HR" || roleCode === "ISADM" || roleCode === "IADM"'>
         <div class="sidebar-admin">
           <em class="icon-dashboard_grey"></em>

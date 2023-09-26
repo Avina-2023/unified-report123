@@ -26,4 +26,7 @@ export class DriveSettingsComponent implements OnInit {
   dashboard() {
     this.router.navigate(['/auth/partner/jobrequirment']);
   } 
+  navigateToCandidateList() {
+    this.router.navigate(['/auth/drive/candidatelist']);
+  }
 } 
