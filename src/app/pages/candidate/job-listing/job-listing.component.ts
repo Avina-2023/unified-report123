@@ -28,7 +28,7 @@ import { debounceTime } from 'rxjs/internal/operators/debounceTime';
 export class JobListingComponent implements OnInit {
   message: string;
   public pageNumber: any = 1;
-  public itemsPerPage: any = 6;
+  public itemsPerPage: any = 12;
   public totallength: any;
   public total: any;
   @ViewChild('moreItems', { static: false }) matDialogRef: TemplateRef<any>;
