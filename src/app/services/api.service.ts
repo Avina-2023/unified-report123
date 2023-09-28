@@ -409,4 +409,7 @@ export class ApiService {
   getcourseTracking(data){
     return this.http.post(`${this.BASE_URL}/learnerProgressStatus`,data);
   }
+  getOverAllReport(data){
+    return this.http.get(`${this.BASE_URL}/reportDashboard`,data);
+  }
 }
