@@ -48,12 +48,8 @@ export class JobDescriptionComponent implements OnInit {
 
   getRoute() {
     this.jobDetails = JSON.parse(this.appConfig.getLocalStorage('jobDesc'))
-    // this.jobDetails = this.router.getCurrentNavigation() &&
-    // this.router.getCurrentNavigation().extras &&
-    // this.router.getCurrentNavigation().extras.state &&
-    // this.router.getCurrentNavigation().extras.state.detail;
-     console.log(this.jobDetails, 'job details');
-     console.log(this.jobDetails.applyLink, 'joblinkkkkkkkkk');
+      // console.log(this.jobDetails, 'job details');
+      // console.log(this.jobDetails.workType, 'workTypeeeeeee');
   }
 
   openDialog(dialogval){

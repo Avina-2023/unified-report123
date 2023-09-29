@@ -103,10 +103,16 @@
           </div> 
         </div> 
       </div> 
+
       <div class="listspace"> 
-        <div class="desTitle"> CTC: </div>
+        <!-- <div class="desTitle"> CTC: </div> -->
+        <div class="desTitle">
+          {{ jobDetails.workType === 'Internships' ? 'Stipend :' : 'CTC:' }}
+        </div>
         <div class="genText"> {{jobDetails.ctc}} </div>
       </div> 
+
+
       <div class="listspace">
         <div class="desTitle"> Year of Passing: </div>
         <span class="genTextpassout" *ngFor="let content of jobDetails.yearofPassout ;  let first = first">

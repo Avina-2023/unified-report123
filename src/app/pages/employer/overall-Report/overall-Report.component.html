@@ -12,6 +12,8 @@
     [subCount2]="item.content[1].count"
     [subCount3]="item.content[2].count">
   </app-overall-Report-details-card>
+  <app-overall-Report-details-card [borderColor]="'#7388A9'" [registrationCountColor]="'#7388A9'" [cardName]="'Hiring patner Internship applicants'" [backgroundColor]="'#7388A914'" [totalCount]="0" [subCount1]="0" [subCount2]="0" [subCount3]="0"></app-overall-Report-details-card>
+  <app-overall-Report-details-card [borderColor]="'#4CAF50'" [registrationCountColor]="'#4CAF50'" [cardName]="'Open market Internship View'" [backgroundColor]="'#4CAF5014'" [totalCount]="0" [subCount1]="0" [subCount2]="0" [subCount3]="0"></app-overall-Report-details-card>
 </div>
 
 <div class="main-card2"  *ngIf="overallreportdata">
@@ -21,6 +23,7 @@
     [minisubCount1]="list.content[0].count"
     [minisubCount2]="list.content[1].count">
   </app-overall-Report-minicard-details>
+  <app-overall-Report-minicard-details [cardTitle]="'No of Internships'" [minitotalCount]="0" [minisubCount1]="0" [minisubCount2]="0" ></app-overall-Report-minicard-details>
 </div>
 
 </div>
