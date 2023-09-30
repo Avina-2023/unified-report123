@@ -33,7 +33,6 @@
 
     </div>
     <div class="job-details1"> 
-      <!-- <div class="job-intern"><span class="job-intern1">#Jobs</span></div> -->
       <div class="job-intern"><span class="job-intern2">{{jobDetails.jobType}}</span></div> 
     </div> 
     <div class="job-details">
@@ -44,7 +43,6 @@
       </div>
       <div class="genText1"> 
         <div> <span class="icon-clock_postdate"></span></div>
-        <!-- <div class="locate" *ngFor="let item of jobDetails.jobLocation;let i=index; let isLast=last">{{item}}<span class="misc_col" *ngIf="!isLast && i < jobDetails.jobLocation.length">&nbsp;</span> </div> -->
         <div class="locate">Posted On {{jobDetails.createdOn | date : 'd MMM'}}</div>
       </div>
       <div class="genText1"> 
@@ -103,10 +101,16 @@
           </div> 
         </div> 
       </div> 
+
       <div class="listspace"> 
-        <div class="desTitle"> CTC: </div>
+        <!-- <div class="desTitle"> CTC: </div> -->
+        <div class="desTitle">
+          {{ jobDetails.workType === 'Internships' ? 'Stipend :' : 'CTC:' }}
+        </div>
         <div class="genText"> {{jobDetails.ctc}} </div>
       </div> 
+
+
       <div class="listspace">
         <div class="desTitle"> Year of Passing: </div>
         <span class="genTextpassout" *ngFor="let content of jobDetails.yearofPassout ;  let first = first">
@@ -155,3 +159,27 @@
       <div class="msgsub" style="margin-top:10px">You will be soon contacted by the recruiter</div>
     </div>
   </ng-template>
+
+  <!-- <ng-template #externalApply>
+    <div class="wrapper">
+      <div class="closer"><mat-icon mat-dialog-close>close</mat-icon></div>
+      <div><img width="100px" class="ticsize" src="/assets/images/alert-image.png"></div>
+      <div class="message">This link will take you to a third-party page that is not part of Skill Exchange.</div>
+      <div class="msgsub" style="margin-top:10px">The given link is external and is not verified by L&T EduTech for its safety</div>
+    </div>
+  </ng-template> -->
+
+  <ng-template #externalApply>
+    <div class="ext-closer"><mat-icon mat-dialog-close>close</mat-icon></div>
+    <div class="ext-redirect-popup">
+      <div class="ext-redirect-content">
+           <img src="assets/images/landing/newLogo.png">
+           <div class="heading">This link will take you to a third-party page that is not part of Skill Exchange.</div>
+           <div class="redirect-message">The given link is external and is not verified by L&T EduTech for its safety.</div>
+           <!-- <div class="redirect-message">The applicant may choose to proceed or return back to homepage</div> -->
+           <!-- <a href="https://example.com/test/test/test">https://example.com/test/test/test</a> -->
+      </div>
+  <button class="mat-raised-button primary ext-btn" (click)="redirectToApplyLink()">Proceed</button>
+  </div>
+  </ng-template>
+  
