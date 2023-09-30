@@ -1,0 +1,31 @@
+[
+    [
+        {
+            "id": "0",
+            "education": "Any Graduation"
+        },
+        {
+            "id": "1",
+            "education": "SSLC"
+        },
+        {
+            "id": "2",
+            "education": "HSC"
+        },
+        {
+            "id": "3",
+            "education": "Diploma"
+        },
+        {
+            "id": "4",
+            "education": "UG"
+        },
+        {
+            "id": "5",
+            "education": "PG"
+        }
+        
+    ]
+]
+
+

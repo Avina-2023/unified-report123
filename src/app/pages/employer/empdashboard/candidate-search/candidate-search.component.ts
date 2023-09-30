@@ -17,7 +17,6 @@ export interface PaginatedResponse<T> {
   styleUrls: ['./candidate-search.component.scss']
 })
 export class CandidateSearchComponent implements OnInit {
-
   @ViewChild('moreItems', { static: false }) matDialogRef: TemplateRef<any>;
   @ViewChild('mobFilter', { static: false }) mobDialogRef: TemplateRef<any>;
   blobtoken:string = environment.blobToken;
@@ -68,6 +67,17 @@ export class CandidateSearchComponent implements OnInit {
     this.filterCandidates();
     this.getAllStates();
   }
+
+  // transformToTitleCase(text: string): string {
+  //   return text
+  //     .toLowerCase()
+  //     .split(' ')
+  //     .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+  //     .join(' ');
+  // }
+  // // {{transformToTitleCase(chkbox.name)}}
+
+
 
   dashboard() {
     this.router.navigate(['/auth/dashboard/dashboard']);
@@ -227,9 +237,37 @@ export class CandidateSearchComponent implements OnInit {
   openDialog(displayValue) {
     this.filterItems = displayValue;
     this.dialog.open(this.matDialogRef, {
-      panelClass: 'spec_desk_dialog',
+      panelClass: 'spec_desk_dialog'
     });
   }
+
+
+  // openDialog(displayValue) {
+  //   this.filterItems = displayValue;
+  
+  //   // Get a reference to the button element
+  //   const buttonElement = document.querySelector('.expand_more_icon');
+  
+  //   if (buttonElement) {
+  //     // Calculate the position of the button
+  //     const buttonRect = buttonElement.getBoundingClientRect();
+  //     const top = buttonRect.top + window.scrollY;
+  //     const left = buttonRect.left + window.scrollX;
+  
+  //     // Calculate the position of the dialog relative to the button
+  //     //const dialogRefTop = top + buttonRect.height;
+  //     const dialogRefTop =  buttonRect.height;
+  //     const dialogRefLeft = left;
+  
+  //     // Open the dialog at the calculated position
+  //     const dialogRef = this.dialog.open(this.matDialogRef, {
+  //       panelClass: 'spec_desk_dialog',
+  //       position: { top: `${dialogRefTop}px`, left: `${dialogRefLeft}px` },
+  //     });
+  //   }
+  // }
+  
+
 
   getTooltipText(education: any): string {
     const date = new Date(education.end_date);

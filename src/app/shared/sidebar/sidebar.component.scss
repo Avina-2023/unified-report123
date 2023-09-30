@@ -70,7 +70,7 @@ mat-sidenav:not(.mat-drawer-opened) {
 
 .sidebar-icon1 {
   position: relative;
-  padding-top: 10px;
+  //padding-top: 10px;
 }
 .sidebar-iconsearch{
 
@@ -104,14 +104,14 @@ mat-sidenav:not(.mat-drawer-opened) {
   letter-spacing: 0.55px;
   opacity: 1;
   font-weight: 400;
-  // padding: 0px 14px;
-  padding: 0px 14px 10px 14px;
+  padding: 0px 14px;
+  //padding: 0px 14px 10px 14px;
   color: #858585;
 
 }
 
 .sidestyle {
-  margin-top: 5px;
+  //margin-top: 5px;
 }
 .Candidate_se{
   padding: 0px 0px 0px 0px;
@@ -119,6 +119,8 @@ mat-sidenav:not(.mat-drawer-opened) {
 .workicon{
   color: #858585;
   bottom: 3px;
+  display:flex;
+  align-items: center;
 }
 
 .playArrowicon{
@@ -131,17 +133,35 @@ mat-sidenav:not(.mat-drawer-opened) {
      background: #fff!important;
      position: absolute!important;
      left: 7%!important;
+     left: 64px!important;
      bottom: 88%!important;
 
  }}
+
+ ::ng-deep .mat-expansion-panel {
+  box-shadow: none !important;
+}
+::ng-deep mat-expansion-panel-header span {
+  display: flex;
+  align-items: center;
+}
 
 // //}
 
 
 
-.sidemenu {
-  width: 100%;
-  text-align: center;
+// .sidemenu {
+//   width: 100%;
+//   text-align: center;
+// }
+.sidemenu{
+  width: fit-content;
+    text-align: center;
+    display: flex;
+    align-items: baseline;
+}
+.employer_menu{
+  padding: 0px 20px;
 }
 
 .mathgt {
@@ -175,7 +195,7 @@ mat-sidenav:not(.mat-drawer-opened) {
     }
 }
 .sidebar_wdth{
- width: 100px;
+ //width: 100px;
 }
 
 ::ng-deep {
@@ -203,3 +223,8 @@ mat-sidenav:not(.mat-drawer-opened) {
   position: relative;
 }
 
+::ng-deep .showDiv{
+  //height: 70px!important;
+    background: #ededed!important;
+    padding: 11px!important;
+}
