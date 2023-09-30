@@ -17,26 +17,26 @@
   </div> -->
 
   <div class="pageheader">
-    <span>View Applications</span>
+    <span><strong>View Applications</strong></span>
   </div> 
 
   <div class="matcard">
     <mat-card class="main">
     <div class="job-details">
     <div class="heading">Job Title</div>
-    <div class="val">{{valueone.jobRole}}</div>
+    <div class="val text_capitalize">{{valueone.jobRole}}</div>
     </div>
     <div class="job-details">
     <div class="heading">Location</div>
-    <div class="val">{{valueone.jobLocation}}</div>
+    <div class="val text_capitalize">{{valueone.jobLocation}}</div>
     </div>
     <div class="job-details">
     <div class="heading">Job-Type</div>
-    <div class="val">{{valueone.jobType}}</div>
+    <div class="val text_capitalize">{{valueone.jobType}}</div>
     </div>
     <div class="job-details">
     <div class="heading">Application Closes On</div>
-    <div class="val">{{valueone.lastDatetoApply| date : 'dd-MM-y' }}</div>
+    <div class="val text_capitalize">{{valueone.lastDatetoApply| date : 'dd-MM-y' }}</div>
     </div>
     <div class="job-details">
     <div class="heading">Job Status</div>
@@ -46,7 +46,7 @@
       <span class="icon-tick_mark_green" *ngIf="valueone.status === 'Active'"></span>
       <span *ngIf="valueone.status === 'Expired'"></span>
     </div>
-    <div class="val">{{ valueone.status }}</div>
+    <div class="val text_capitalize">{{ valueone.status }}</div>
   </div>
     </div>
     </mat-card>

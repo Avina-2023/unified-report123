@@ -109,4 +109,14 @@ export class AppConfigService {
     }
   }
 
+
+  transformToTitleCase(text: string): string {
+    return text
+      .toLowerCase()
+      .split(' ')
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ');
+  }
+  //usage: {{appconfig.transformToTitleCase(item.firstName)}}
+
 }

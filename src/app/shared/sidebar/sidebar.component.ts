@@ -3,6 +3,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatMenuTrigger } from '@angular/material/menu';
 import { NavigationEnd, Router } from '@angular/router';
+import { log } from 'console';
 import { LoadingService } from 'src/app/services/loading.service';
 import { AppConfigService } from 'src/app/utils/app-config.service';
 import { APP_CONSTANTS } from 'src/app/utils/app-constants.service';
@@ -15,6 +16,7 @@ import { APP_CONSTANTS } from 'src/app/utils/app-constants.service';
 export class SidebarComponent implements OnInit {
   @ViewChild('menuTrigger') menuTrigger: MatMenuTrigger;
   isExpanded: boolean;
+  isnotShowing: boolean = true;
   name: string;
   text: string;
   roles: any;
@@ -103,6 +105,20 @@ export class SidebarComponent implements OnInit {
       default:
         this.check = 'empdashboard';
         break;
+    }
+  }
+
+
+  mouseenter() {
+    if (!this.isExpanded) {
+      this.isnotShowing = false;
+    }
+  }
+  
+
+  mouseleave() {
+    if (!this.isExpanded) {
+      this.isnotShowing = true;
     }
   }
 
