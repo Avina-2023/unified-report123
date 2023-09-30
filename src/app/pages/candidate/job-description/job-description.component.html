@@ -161,3 +161,27 @@
       <div class="msgsub" style="margin-top:10px">You will be soon contacted by the recruiter</div>
     </div>
   </ng-template>
+
+  <!-- <ng-template #externalApply>
+    <div class="wrapper">
+      <div class="closer"><mat-icon mat-dialog-close>close</mat-icon></div>
+      <div><img width="100px" class="ticsize" src="/assets/images/alert-image.png"></div>
+      <div class="message">This link will take you to a third-party page that is not part of Skill Exchange.</div>
+      <div class="msgsub" style="margin-top:10px">The given link is external and is not verified by L&T EduTech for its safety</div>
+    </div>
+  </ng-template> -->
+
+  <ng-template #externalApply>
+    <div class="ext-closer"><mat-icon mat-dialog-close>close</mat-icon></div>
+    <div class="ext-redirect-popup">
+      <div class="ext-redirect-content">
+           <img src="assets/images/landing/newLogo.png">
+           <div class="heading">This link will take you to a third-party page that is not part of Skill Exchange.</div>
+           <div class="redirect-message">The given link is external and is not verified by L&T EduTech for its safety.</div>
+           <!-- <div class="redirect-message">The applicant may choose to proceed or return back to homepage</div> -->
+           <!-- <a href="https://example.com/test/test/test">https://example.com/test/test/test</a> -->
+      </div>
+  <button class="mat-raised-button primary ext-btn" (click)="redirectToApplyLink()">Proceed</button>
+  </div>
+  </ng-template>
+  

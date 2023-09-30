@@ -1,5 +1,6 @@
 import { Component, OnInit, TemplateRef, ViewChild, Pipe, PipeTransform } from '@angular/core';
-import { MatDialog,  } from '@angular/material/dialog';
+// import { MatDialog,  } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { APP_CONSTANTS } from 'src/app/utils/app-constants.service';
 import { ApiService } from 'src/app/services/api.service';
 import { AppConfigService } from 'src/app/utils/app-config.service';
@@ -21,6 +22,7 @@ export class JobDescriptionComponent implements OnInit {
   @ViewChild('incompleteProfile',{static: false}) matDialogRef: TemplateRef<any>;
   @ViewChild('eligiblity',{static: false}) eligiblitypop: TemplateRef<any>;
   @ViewChild('successApply',{static: false}) applySuccess: TemplateRef<any>;
+  @ViewChild('externalApply', {static: false}) extApply: TemplateRef<any>;
   @Pipe({
     name: 'trim',
     pure: false
@@ -135,12 +137,55 @@ export class JobDescriptionComponent implements OnInit {
     }
 
 
+    // handleButtonClick() {
+    //   if (this.jobDetails.partnerLabel === 'Skill Exchange Partner') {
+    //     this.applyJob();
+    //   } else {
+    //     // window.location.href = this.jobDetails.applyLink;   //open link in same tab
+    //     window.open(this.jobDetails.applyLink, '_blank');  //open link in different tab
+    //   }
+    // }
+
+    // handleButtonClick() {
+    //   if (this.jobDetails.partnerLabel === 'Skill Exchange Partner') {
+    //     this.applyJob();
+    //   } else {
+    //     this.openExternalApplyDialog();
+    //   }
+    // }
+    
+    // openExternalApplyDialog() {
+    //   const dialogRef = this.mdDialog.open(this.extApply, {
+    //     width: '400px', 
+    //   });
+    
+    //   dialogRef.afterClosed().subscribe(result => {
+    //   });
+    // }
+
+
     handleButtonClick() {
       if (this.jobDetails.partnerLabel === 'Skill Exchange Partner') {
         this.applyJob();
       } else {
-        // window.location.href = this.jobDetails.applyLink;   //open link in same tab
-        window.open(this.jobDetails.applyLink, '_blank');  //open link in different tab
+        this.openExternalApplyDialog();
       }
     }
+  
+    openExternalApplyDialog() {
+      const dialogRef = this.mdDialog.open(this.extApply, {
+        width: '65%', 
+        height: 'auto',
+        // height: '50%',
+        disableClose: true, 
+      });
+      dialogRef.afterClosed().subscribe(result => {
+      });
+    }
+  
+    redirectToApplyLink() {
+      window.open(this.jobDetails.applyLink, '_blank');  //open link in different tab
+      // window.location.href = this.jobDetails.applyLink; //open link in same tab
+    }
+    
 }

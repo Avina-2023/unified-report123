@@ -1,9 +1,6 @@
 import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 import { ICellRendererAngularComp } from 'ag-grid-angular';
-import {
-  ICellRendererParams,
-  IAfterGuiAttachedParams,
-} from 'ag-grid-community';
+import { ICellRendererParams, IAfterGuiAttachedParams } from 'ag-grid-community';
 // import {MatIconModule} from '@angular/material/icon';
 // import { MatTableModule } from '@angular/material/table';
 // import { MatNoDataRow, MatTableDataSource } from '@angular/material/table';
