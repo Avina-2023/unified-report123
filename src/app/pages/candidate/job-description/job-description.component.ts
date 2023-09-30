@@ -158,7 +158,6 @@ export class JobDescriptionComponent implements OnInit {
     //   const dialogRef = this.mdDialog.open(this.extApply, {
     //     width: '400px', 
     //   });
-    
     //   dialogRef.afterClosed().subscribe(result => {
     //   });
     // }
