@@ -23,15 +23,9 @@
 
       
       <mat-list-item
-<<<<<<< Updated upstream
         [ngClass]="[check === 'empView' || check === 'empPost' || check === 'Viewcandidatelist' || check === 'driveSettings' || check === 'viewProfilebyEmployer' ? 'selected' : 'notSelected']"
         *ngIf='roleCode === "EMP"' [matMenuTriggerFor]="menu">
         <div class="sidemenu workmenu">
-=======
-        [ngClass]="[check === 'empView' || check === 'empPost' || check === 'Viewcandidatelist' || check === 'viewProfilebyEmployer' ? 'selected' : 'notSelected']"
-        *ngIf='roleCode === "EMP"'   [matMenuTriggerFor]="menu">
-        <div class="sidemenu workmenu employer_menu">
->>>>>>> Stashed changes
           <div>
             <div class="workicon"> <mat-icon>card_travel</mat-icon>
             <div *ngIf="!isExpanded && !isnotShowing"  [ngClass]="{'showText': isnotShowing == true}" class="sidebar-text headerfont sidestyle">Job

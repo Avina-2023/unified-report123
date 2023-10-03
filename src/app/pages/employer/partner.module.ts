@@ -19,7 +19,7 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
 import { OverallReportComponent } from './overall-Report/overall-Report.component';
 import { OverallReportDetailsCardComponent } from './overall-Report/overall-Report-details-card/overall-Report-details-card.component';
 import { OverallReportMinicardDetailsComponent } from './overall-Report/overall-Report-minicard-details/overall-Report-minicard-details.component';
-import { AngularEditorModule } from '@kolkov/angular-editor';
+// import { AngularEditorModule } from '@kolkov/angular-editor';
 
 @NgModule({
   declarations: [
@@ -46,7 +46,7 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
     ReactiveFormsModule,
     NzDropDownModule,
     NzSelectModule,
-    AngularEditorModule
+    // AngularEditorModule
   ],
 })
 export class Adminmodule { }

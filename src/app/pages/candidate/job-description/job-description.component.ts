@@ -15,6 +15,7 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./job-description.component.scss']
 })
 export class JobDescriptionComponent implements OnInit {
+  jobViewsCount: any;
   transform(value: string): any {
     return value.trim()
   }
@@ -46,6 +47,7 @@ export class JobDescriptionComponent implements OnInit {
 
   ngOnInit() {
     this.getRoute()
+    this.jobViewCount();
   }
 
   getRoute() {
@@ -131,12 +133,20 @@ export class JobDescriptionComponent implements OnInit {
             this.openDialog(this.eligiblitypop)
           }
         }
-
       });
-
     }
 
-
+    jobViewCount(){
+      let obj = {
+        email: this.appConfig.getLocalStorage('email'),
+        jobId: this.jobDetails.jobId
+      }
+      this.skillexService.getAppliedcount(obj).subscribe((response: any) => {
+        if(response.success){
+          this.jobViewsCount = response.data;
+        }
+      })
+    }
     // handleButtonClick() {
     //   if (this.jobDetails.partnerLabel === 'Skill Exchange Partner') {
     //     this.applyJob();
@@ -146,45 +156,31 @@ export class JobDescriptionComponent implements OnInit {
     //   }
     // }
 
-    // handleButtonClick() {
-    //   if (this.jobDetails.partnerLabel === 'Skill Exchange Partner') {
-    //     this.applyJob();
-    //   } else {
-    //     this.openExternalApplyDialog();
-    //   }
-    // }
-    
-    // openExternalApplyDialog() {
-    //   const dialogRef = this.mdDialog.open(this.extApply, {
-    //     width: '400px', 
-    //   });
-    //   dialogRef.afterClosed().subscribe(result => {
-    //   });
-    // }
-
-
     handleButtonClick() {
       if (this.jobDetails.partnerLabel === 'Skill Exchange Partner') {
         this.applyJob();
       } else {
         this.openExternalApplyDialog();
+        //  this.jobViewCount();
       }
     }
   
     openExternalApplyDialog() {
       const dialogRef = this.mdDialog.open(this.extApply, {
-        width: '65%', 
+        width: '50%', 
         height: 'auto',
         // height: '50%',
         disableClose: true, 
       });
       dialogRef.afterClosed().subscribe(result => {
       });
+      //  this.jobViewCount();
     }
   
     redirectToApplyLink() {
       window.open(this.jobDetails.applyLink, '_blank');  //open link in different tab
       // window.location.href = this.jobDetails.applyLink; //open link in same tab
+      // this.jobViewCount();
     }
     
 }

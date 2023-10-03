@@ -370,9 +370,10 @@ li {
   align-items: center;
 
 .heading{
-  color: #707070;
-  font-weight: bolder;
-  font-size: 24px;
+    color: #000000;
+    font-weight: bolder;
+    font-size: 16px;
+    padding: 24px 0px 0px 0px;
 }
 }
 .ext-redirect-popup img{
@@ -391,7 +392,7 @@ li {
 .ext-btn{
   background-color: #1B4E9B;
   color: #FFFFFF;
-  margin: 15px 0px 0px 0px;
+  margin: 30px;
 }
 .ext-btn:hover {
   background-color: #FFFFFF;
