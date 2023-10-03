@@ -27,12 +27,29 @@ export class BehaviouralPdfReportDownloadComponent implements OnInit {
   InAppReport: any;
   orgdetails: any;
   orgId: any;
+  desirabilitydata:any;
+  desirabilitydataIndexdata:any
+  responseBiasProfileContentdata:any
+  responseBiasProfileContentdescription:any
+  responseBiasProfileContentDesirabillityIndexData :any;
+  // responseBiasProfileContentData:any;
+  getreportsnapshotlength:any;
+  responseBias
   benchMarkScore = [
     {score:"1-2",label:"DEVELOPMENT SCOPE",color:"red"},
     {score:"3-4-5",label:"LESS INCLINED",color:"yellow"},
     {score:"6-7-8",label:"MORE INCLINED",color:"orange"},
     {score:"9-10",label:"STRENGTH",color:"green"}
   ];
+  benchMarkScoredata =  [
+    {score:"1-3",label:"LOW",color:"red",bias:"Strong Bias",biascore:"81-100%",biaslabel:"Strong",colorcode:"#DE001C"},
+    {score:"4-7",label:"AVERAGE",color:"orange",bias:"Mild Bias",biascore:"71-80%",biaslabel:"Mild",colorcode:"#F7A500"},
+    {score:"8-10",label:"HIGH",color:"green",bias:"Low Bias",biascore:"> 70%",biaslabel:"Low",colorcode:"#0DB200"},
+  ];
+
+  scoreValue:any;
+
+
   removeheading: any;
   roles: any;
 
@@ -65,6 +82,13 @@ export class BehaviouralPdfReportDownloadComponent implements OnInit {
   getReportData() {
     this.getAllBehaviourData = this.data.data ? this.data.data : null;
     this.getAllBehaviourAPIDetails = this.data ? this.data : null;
+    this.desirabilitydata = this.data ? this.data :null;
+
+    this.responseBiasProfileContentdata = this.desirabilitydata.data.responseBiasProfileDescription.topicName
+    this.responseBiasProfileContentdescription = this.desirabilitydata.data.responseBiasProfileDescription.description
+    this.desirabilitydataIndexdata = this.desirabilitydata.data.desirabilityIndex
+    this.responseBiasProfileContentDesirabillityIndexData = this.desirabilitydata.data.responseBiasProfileContent[0]
+    this.scoreValue = this.desirabilitydata.data.responseBiasProfileContent[0].score
     this.getAllBasicData = this.data.basicDetails
       ? this.data.basicDetails
       : null;
@@ -90,7 +114,7 @@ export class BehaviouralPdfReportDownloadComponent implements OnInit {
       return this.img = '/assets/images/pdfDownload/Thought-1.png';
     } else if (name == 'INTERPERSONAL') {
       return this.img = '/assets/images/pdfDownload/Interpersonal-1.png';
-    } else if (name == 'CORE/PERSONAL') {
+    } else if (name == 'PERSONAL') {
       return this.img = '/assets/images/pdfDownload/Core-1.png';
     } else if (name == 'EMOTION') {
       return this.img = '/assets/images/pdfDownload/Emotion-1.png';
@@ -104,7 +128,7 @@ export class BehaviouralPdfReportDownloadComponent implements OnInit {
       return this.img = '/assets/images/pdfDownload/THOUGHT_FACTOR.png';
     } else if (name == 'INTERPERSONAL') {
       return this.img = '/assets/images/pdfDownload/INTERPERSONAL_FACTOR.png';
-    } else if (name == 'CORE/PERSONAL') {
+    } else if (name == 'PERSONAL') {
       return this.img = '/assets/images/pdfDownload/COREPERSONAL_FACTOR.png';
     } else if (name == 'EMOTION') {
       return this.img = '/assets/images/pdfDownload/EMOTION_FACTOR.png';
@@ -145,7 +169,7 @@ export class BehaviouralPdfReportDownloadComponent implements OnInit {
       return this.img = '';
     }
   }
-  
+
   downloadAsPDF() {
     this.toastr.success('Please wait','PDF is downloading')
     var element = document.getElementById('element-to-print');
@@ -163,14 +187,18 @@ export class BehaviouralPdfReportDownloadComponent implements OnInit {
           pdf.setPage(i)
           pdf.setFontSize(9);
           pdf.setTextColor(150);
-          // for right align 
+          // for right align
           // pdf.text('Page ' + i + ' of ' + number_of_pages, (pdf.internal.pageSize.getWidth() - 0.90 ), (pdf.internal.pageSize.getHeight()-0.35));
-          pdf.text('Page ' + i + ' of ' + number_of_pages, (pdf.internal.pageSize.getWidth() - 4.30 ), (pdf.internal.pageSize.getHeight()-0.25));
+
+          var textdata = 'Page ' +( i+1 - 1) + ' of ' + (number_of_pages);
+          pdf.text(textdata, (pdf.internal.pageSize.getWidth() - 1.15 ), (pdf.internal.pageSize.getHeight()-0.30));
+
+          // pdf.text('Page ' + i + ' of ' + number_of_pages, (pdf.internal.pageSize.getWidth() - 4.30 ), (pdf.internal.pageSize.getHeight()-0.25));
       }
-    
+
       }, (err) => {
       }).save();
-     
+
   }
 
   splitHeading(glimpse){
@@ -187,13 +215,13 @@ export class BehaviouralPdfReportDownloadComponent implements OnInit {
         let heading = "CORE/PERSONAL FACTOR";
         this.removeheading = glimpse.replace("CORE/PERSONAL FACTOR", "  ");
         return heading;
-        
+
       }else{
         let heading = "EMOTION FACTOR";
         this.removeheading = glimpse.replace("EMOTION FACTOR", "  ");
         return heading;
       }
-    
+
   }
 }
 
