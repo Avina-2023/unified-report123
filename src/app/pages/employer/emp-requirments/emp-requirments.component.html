@@ -232,6 +232,11 @@
         <span class="departmentBorder" *ngFor="let item of one.specialization">{{item}}</span>
       </div>
 
+      <div class="bTech">
+          <span class=icon-graduation-cap-solid></span>
+          <span class="Btech" *ngFor="let item of one.education; let isLast=last">
+            {{item}}{{isLast ? '' : ', '}}</span>
+        </div>
 
       <br>
       <div class="lastLine">
@@ -254,12 +259,11 @@
           </div>
 
 
-          <div class="bTech">
-            <!-- <mat-icon class="bookmark">bookmark</mat-icon> -->
+          <!-- <div class="bTech">
             <span class=icon-graduation-cap-solid></span>
             <span class="Btech" *ngFor="let item of one.education; let isLast=last">
               {{item}}{{isLast ? '' : ', '}}</span>
-          </div>
+          </div> -->
 
           <div class="daysLeft">
             <!-- <mat-icon class="android">android</mat-icon> -->

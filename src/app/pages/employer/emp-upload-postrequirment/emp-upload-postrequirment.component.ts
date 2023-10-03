@@ -100,7 +100,7 @@ import { ToastrService } from 'ngx-toastr';
 import { ApiService } from 'src/app/services/api.service';
 import { environment } from 'src/environments/environment';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AngularEditorConfig } from '@kolkov/angular-editor';
+// import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { NzSelectSizeType } from 'ng-zorro-antd/select';
 
 @Component({
@@ -133,34 +133,34 @@ export class EmpUploadPostrequirmentComponent implements OnInit {
   //Rich Text Editor
   htmlContent = '';
   htmlContent_1 = '';
-  config: AngularEditorConfig = {
-    editable: true,
-    spellcheck: true,
-    height: '100px',
-    minHeight: '10px',
-    placeholder: 'Enter text here...',
-    translate: 'no',
-    defaultParagraphSeparator: 'p',
-    defaultFontName: 'Arial',
-    toolbarHiddenButtons: [
-      ['bold']
-    ],
-    customClasses: [
-      {
-        name: "quote",
-        class: "quote",
-      },
-      {
-        name: 'redText',
-        class: 'redText'
-      },
-      {
-        name: "titleText",
-        class: "titleText",
-        tag: "h1",
-      },
-    ]
-  };
+  // config: AngularEditorConfig = {
+  //   editable: true,
+  //   spellcheck: true,
+  //   height: '100px',
+  //   minHeight: '10px',
+  //   placeholder: 'Enter text here...',
+  //   translate: 'no',
+  //   defaultParagraphSeparator: 'p',
+  //   defaultFontName: 'Arial',
+  //   toolbarHiddenButtons: [
+  //     ['bold']
+  //   ],
+  //   customClasses: [
+  //     {
+  //       name: "quote",
+  //       class: "quote",
+  //     },
+  //     {
+  //       name: 'redText',
+  //       class: 'redText'
+  //     },
+  //     {
+  //       name: "titleText",
+  //       class: "titleText",
+  //       tag: "h1",
+  //     },
+  //   ]
+  // };
   fixed: any;
   range: any;
   yearofPassing: string[];

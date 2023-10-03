@@ -422,4 +422,7 @@ export class ApiService {
   getOverAllReport(data){
     return this.http.get(`${this.BASE_URL}/reportDashboard`,data);
   }
+  getAppliedcount(data){
+    return this.http.post(`${this.BASE_URL}/jobViewsLog`,data);
+  }
 }
