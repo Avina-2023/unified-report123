@@ -1,5 +1,6 @@
 import { Component, OnInit, TemplateRef, ViewChild, Pipe, PipeTransform } from '@angular/core';
-import { MatDialog,  } from '@angular/material/dialog';
+// import { MatDialog,  } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { APP_CONSTANTS } from 'src/app/utils/app-constants.service';
 import { ApiService } from 'src/app/services/api.service';
 import { AppConfigService } from 'src/app/utils/app-config.service';
@@ -14,6 +15,7 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./job-description.component.scss']
 })
 export class JobDescriptionComponent implements OnInit {
+  jobViewsCount: any;
   transform(value: string): any {
     return value.trim()
   }
@@ -21,6 +23,7 @@ export class JobDescriptionComponent implements OnInit {
   @ViewChild('incompleteProfile',{static: false}) matDialogRef: TemplateRef<any>;
   @ViewChild('eligiblity',{static: false}) eligiblitypop: TemplateRef<any>;
   @ViewChild('successApply',{static: false}) applySuccess: TemplateRef<any>;
+  @ViewChild('externalApply', {static: false}) extApply: TemplateRef<any>;
   @Pipe({
     name: 'trim',
     pure: false
@@ -44,16 +47,13 @@ export class JobDescriptionComponent implements OnInit {
 
   ngOnInit() {
     this.getRoute()
+    this.jobViewCount();
   }
 
   getRoute() {
     this.jobDetails = JSON.parse(this.appConfig.getLocalStorage('jobDesc'))
-    // this.jobDetails = this.router.getCurrentNavigation() &&
-    // this.router.getCurrentNavigation().extras &&
-    // this.router.getCurrentNavigation().extras.state &&
-    // this.router.getCurrentNavigation().extras.state.detail;
-     console.log(this.jobDetails, 'job details');
-     console.log(this.jobDetails.applyLink, 'joblinkkkkkkkkk');
+      // console.log(this.jobDetails, 'job details');
+      // console.log(this.jobDetails.workType, 'workTypeeeeeee');
   }
 
   openDialog(dialogval){
@@ -133,18 +133,54 @@ export class JobDescriptionComponent implements OnInit {
             this.openDialog(this.eligiblitypop)
           }
         }
-
       });
-
     }
 
+    jobViewCount(){
+      let obj = {
+        email: this.appConfig.getLocalStorage('email'),
+        jobId: this.jobDetails.jobId
+      }
+      this.skillexService.getAppliedcount(obj).subscribe((response: any) => {
+        if(response.success){
+          this.jobViewsCount = response.data;
+        }
+      })
+    }
+    // handleButtonClick() {
+    //   if (this.jobDetails.partnerLabel === 'Skill Exchange Partner') {
+    //     this.applyJob();
+    //   } else {
+    //     // window.location.href = this.jobDetails.applyLink;   //open link in same tab
+    //     window.open(this.jobDetails.applyLink, '_blank');  //open link in different tab
+    //   }
+    // }
 
     handleButtonClick() {
       if (this.jobDetails.partnerLabel === 'Skill Exchange Partner') {
         this.applyJob();
       } else {
-        // window.location.href = this.jobDetails.applyLink;   //open link in same tab
-        window.open(this.jobDetails.applyLink, '_blank');  //open link in different tab
+        this.openExternalApplyDialog();
+        //  this.jobViewCount();
       }
     }
+  
+    openExternalApplyDialog() {
+      const dialogRef = this.mdDialog.open(this.extApply, {
+        width: '50%', 
+        height: 'auto',
+        // height: '50%',
+        disableClose: true, 
+      });
+      dialogRef.afterClosed().subscribe(result => {
+      });
+      //  this.jobViewCount();
+    }
+  
+    redirectToApplyLink() {
+      window.open(this.jobDetails.applyLink, '_blank');  //open link in different tab
+      // window.location.href = this.jobDetails.applyLink; //open link in same tab
+      // this.jobViewCount();
+    }
+    
 }

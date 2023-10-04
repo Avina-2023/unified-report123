@@ -1,106 +1,29 @@
-<div class="overall-report-dashboard">
+<div style="background-color: #F4F7FC;"> 
 <div class="dashboard"> Dashboard</div>
-<div class="main-Dashboard">
-  <mat-card class="main-Dashboard-details">
-    <div class="Registrarion-name"><span>Registrations</span></div>
-    <div class="line"></div>
-    <div class="Registrarion-count"><span>10000</span></div>
-    <div class="candidates-count">
-      <div class="name-count">
-        <div class="candidate-count">426</div>
-        <div class="candidate-certified">Certified</div>
-      </div>
-      <div class="name-count">
-        <div class="candidate-count">987</div>
-        <div class="candidate-certified">Assessed</div>
-      </div>
-      <div class="name-count">
-        <div class="candidate-count">65</div>
-        <div class="candidate-certified">General</div>
-      </div>
-    </div>
-  </mat-card>
 
-  <!-- <mat-card class="main-Dashboard-details">
-    <div class="Registrarion-name"><span>Skill Profile</span></div>
-    <div class="line"></div>
-    <div class="Registrarion-count"><span>2000</span></div>
-    <div class="candidates-count">
-      <div class="name-count">
-        <div class="candidate-count">426</div>
-        <div class="candidate-certified">Certified</div>
-      </div>
-      <div class="name-count">
-        <div class="candidate-count">987</div>
-        <div class="candidate-certified">Assessed</div>
-      </div>
-      <div class="name-count">
-        <div class="candidate-count">65</div>
-        <div class="candidate-certified">General</div>
-      </div>
-    </div>
-  </mat-card>
-  <mat-card class="main-Dashboard-details">
-    <div class="Registrarion-name"><span>Hiring Patners Job Applicants</span></div>
-    <div class="line"></div>
-    <div class="Registrarion-count"><span>5000</span></div>
-    <div class="candidates-count">
-      <div class="name-count">
-        <div class="candidate-count">426</div>
-        <div class="candidate-certified">Certified</div>
-      </div>
-      <div class="name-count">
-        <div class="candidate-count">987</div>
-        <div class="candidate-certified">Assessed</div>
-      </div>
-      <div class="name-count">
-        <div class="candidate-count">65</div>
-        <div class="candidate-certified">General</div>
-      </div>
-    </div>
-  </mat-card> -->
-
+<div class="main-card" *ngIf="overallreportdata">
+  <app-overall-Report-details-card *ngFor="let item of overallreportdata.generalReport; let i = index" 
+    [borderColor]="colorconfig[i]?.color"
+    [registrationCountColor]="colorconfig[i]?.color"
+    [cardName]="item.label" 
+    [backgroundColor]="colorconfig[i]?.bgcolor"
+    [totalCount]="item.totalCount" 
+    [subCount1]="item.content[0].count" 
+    [subCount2]="item.content[1].count"
+    [subCount3]="item.content[2].count">
+  </app-overall-Report-details-card>
+  <app-overall-Report-details-card [borderColor]="'#7388A9'" [registrationCountColor]="'#7388A9'" [cardName]="'Hiring patner Internship applicants'" [backgroundColor]="'#7388A914'" [totalCount]="0" [subCount1]="0" [subCount2]="0" [subCount3]="0"></app-overall-Report-details-card>
+  <app-overall-Report-details-card [borderColor]="'#4CAF50'" [registrationCountColor]="'#4CAF50'" [cardName]="'Open market Internship View'" [backgroundColor]="'#4CAF5014'" [totalCount]="0" [subCount1]="0" [subCount2]="0" [subCount3]="0"></app-overall-Report-details-card>
 </div>
 
-<div class="Company-Dashboard">
-  <mat-card class="company-Dashboard-details">
-    <div class="company-name"><span>No Of Companies</span></div>
-    <div class="line"></div>  
-    <div class="total-jobs">
-      <div><span class="total-jobs-count">2400</span></div>
-      <div class="section-job-count">
-        <div class="open-jobs">
-          <div class="open-jobs-countt"><span class="open-jobs-count">1400</span></div>
-          <div><span class="open-jobs-name">Open Market</span></div>
-        </div>
-        <div class="patner-jobs">
-          <div class="patner-jobs-countt"><span class="patner-jobs-count">1000</span></div>
-          <div><span class="patner-jobs-name">Hiring Patners</span></div>
-        </div>
-      </div>
-    </div>
-  </mat-card>
+<div class="main-card2"  *ngIf="overallreportdata">
+  <app-overall-Report-minicard-details *ngFor="let list of overallreportdata.companyReport"
+    [cardTitle]="list.label" 
+    [minitotalCount]="list.totalCount" 
+    [minisubCount1]="list.content[0].count"
+    [minisubCount2]="list.content[1].count">
+  </app-overall-Report-minicard-details>
+  <app-overall-Report-minicard-details [cardTitle]="'No of Internships'" [minitotalCount]="0" [minisubCount1]="0" [minisubCount2]="0" ></app-overall-Report-minicard-details>
 </div>
-
-
-<!-- <div style="border: 1px solid red;padding:10px;">
-  <div style="border-bottom: 1px solid grey;">Registration</div>
-  <div>10000</div>
-  <div style="display:flex;justify-content:space-evenly;align-items:center;background:blue;padding:10px;">
-    <div>
-      <p>426</p>
-      <p>Certified</p>
-    </div>
-    <div>
-      <p>426</p>
-      <p>Asses</p>
-    </div>
-    <div>
-      <p>426</p>
-      <p>General</p>
-    </div>
-  </div>
-</div> -->
-
 
 </div>

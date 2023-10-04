@@ -26,7 +26,8 @@ export class ApiService {
   logout() {
     this.appConfig.clearLocalStorage();
     this.appConfig.clearSessionStorage();
-    return this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.HOME);
+    // return this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.HOME);
+    window.location.href = "https://reviewinfo.lntedutech.com/login/";
   }
 
   login(data: any) {
@@ -383,6 +384,16 @@ export class ApiService {
     // return this.http.post(`${this.BASE_URL}/api/state_api`, Id, { headers: this.withoutTokens(), withCredentials: true });
     return this.http.get(`../assets/json/state.json`);
   }
+
+  getallCollegeCourses(){
+    return this.http.get(`../assets/json/colleges.json`);
+  }
+  
+  getallEducations(){
+    return this.http.get(`../assets/json/education.json`);
+  }
+
+
   getallCandidateDetails(data) {
     return this.http.post(`${this.BASE_URL}/getallcandidatedetails`, data);
   }
@@ -407,5 +418,11 @@ export class ApiService {
   }
   getcourseTracking(data){
     return this.http.post(`${this.BASE_URL}/learnerProgressStatus`,data);
+  }
+  getOverAllReport(data){
+    return this.http.get(`${this.BASE_URL}/reportDashboard`,data);
+  }
+  getAppliedcount(data){
+    return this.http.post(`${this.BASE_URL}/jobViewsLog`,data);
   }
 }

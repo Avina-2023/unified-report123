@@ -42,7 +42,6 @@ import { ExternalLinkComponent } from './pages/external-link/external-link.compo
 // import { DashboardtableComponent } from './dashboardtable/dashboardtable.component';
 import { NgCircleProgressModule } from 'ng-circle-progress';
 
-
 registerLocaleData(en);
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true

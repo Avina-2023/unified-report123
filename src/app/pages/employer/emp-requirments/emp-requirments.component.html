@@ -232,6 +232,11 @@
         <span class="departmentBorder" *ngFor="let item of one.specialization">{{item}}</span>
       </div>
 
+      <div class="bTech">
+          <span class=icon-graduation-cap-solid></span>
+          <span class="Btech" *ngFor="let item of one.education; let isLast=last">
+            {{item}}{{isLast ? '' : ', '}}</span>
+        </div>
 
       <br>
       <div class="lastLine">
@@ -254,12 +259,11 @@
           </div>
 
 
-          <div class="bTech">
-            <!-- <mat-icon class="bookmark">bookmark</mat-icon> -->
+          <!-- <div class="bTech">
             <span class=icon-graduation-cap-solid></span>
             <span class="Btech" *ngFor="let item of one.education; let isLast=last">
               {{item}}{{isLast ? '' : ', '}}</span>
-          </div>
+          </div> -->
 
           <div class="daysLeft">
             <!-- <mat-icon class="android">android</mat-icon> -->
@@ -271,12 +275,16 @@
         </div>
         <div class="lastRightline">
 
-          <span class="applied" (click)="viewApplication(one)">
+          <div class="applied" (click)="viewApplication(one)">
             <!-- <mat-icon class="schedule">schedule</mat-icon> -->
             <div><span class="icon-checked_Skyblue"></span></div>
             Applied
            (<span>{{ one.candidatesAppliedCount }}</span>)
-          </span>
+          </div>
+
+          <div class="applied" (click)="viewSettings(one)">
+            <div><mat-icon class="setting">settings</mat-icon></div><div>Settings</div>
+          </div>
 
           <!-- <span class="settings" [routerLink]="routerlink.VIEWDRIVE.DRIVESETTINGS">
             <mat-icon class="setting">settings</mat-icon>

@@ -1,15 +1,23 @@
+*{
+  font-family: inter;
+}
+.fnt_inter{
+  font-family: inter!important;
+}
 .main1 {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     .main2 {
-      width: 70%;
+      width: 75%;
+      background: #F5F5F5;
       .dash {
         display: flex;
         align-items: baseline;
-        padding: 15px 0px 0px 39px;
+        padding: 20px 15px 0px 15px;
+        margin: 10px;
         .findtext {
-          font-size: 20px !important;
+          font-size: 17px !important;
           font-weight: 600 !important;
         }
       }
@@ -18,16 +26,17 @@
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
+        padding: 0px 25px;
       }
       .count {
-        padding: 0px 0px 0px 40px;
+        //padding: 0px 0px 0px 40px;
         font-size: 14px;
         font-weight: 700;
       }
       .sorting {
-        padding: 0px 25px 0px 0px;
+       // padding: 0px 25px 0px 0px;
         .select_value{
-           padding: 0px 10px 7px 10px;
+           padding: 0px 15px 7px 15px;
         }
   
       }
@@ -73,8 +82,11 @@
         opacity: 1;
       }
       .candidate-card {
-        padding: 20px 0px 0px 20px;
-        display: flex;
+        // padding: 20px 0px 0px 20px;
+        padding: 0px 15px;
+        //display: flex;
+        display: grid;
+        grid-template-columns: 33.33% 33.33% 33.33%;
         flex-direction: row;
         flex-wrap: wrap;
         align-items: center !important;
@@ -82,9 +94,10 @@
           display: flex;
           flex-direction: column;
           // align-items: center;
-          width: 237px;
-          padding: 5px 0px 0px 0px;
-          margin: 10px 25px 10px 25px;
+          // width: 237px;
+          width: auto;
+          padding: 0px;
+          margin: 10px;
           .icon-bookmark {
             position: absolute;
             top: 0px;
@@ -130,7 +143,7 @@
             flex-direction: row;
             font-size: 12px;
             color: #848484;
-            margin: 0px 0px 10px 0px;
+            margin: 0px 0px 3px 0px;
             .high-level{
               white-space: nowrap;
               text-overflow: ellipsis;
@@ -205,7 +218,7 @@
       }
     }
     .filter-candidate {
-      width: 30%;
+      width: 25%;
       .filter {
         height: 550px;
         overflow-y: auto;
@@ -224,6 +237,7 @@
         border-bottom: 1px solid #e7e7e763;
         background: #fff;
         box-shadow: 1px 1px 1px 1px #e7e7e763;
+        border-top: 5px solid whitesmoke;
         top: 0;
         z-index: 1;
   
@@ -253,8 +267,8 @@
           .checkedVal{
             padding: 1px 8px 0px 8px;
             border: 1px solid #1b4e9b14;
-            background: #1b4e9b14;
-            color: #1b4e9b;
+            background: #1B4E9B;
+            color: #fff;
             margin: 4px;
             border-radius: 18px;
             font-size: 13px;
@@ -279,8 +293,10 @@
         }
       }
       .filt_list{
-        height: 90vh !important;
-        // overflow-y: scroll;
+        // height: 90vh !important;
+        overflow-y: scroll;
+        position: fixed;
+        height: 75vh!important;
         // width: 110vh;
       }
       @media only screen and (min-width: 900px) {
@@ -299,10 +315,10 @@
     }
   }
   .col1 {
-    color: #84B6C7
+    color: #3aa2c3;
   }
   .col2 {
-    color:  #92CD84
+    color:  #24c71e;
   }
   .dlog_template {
     display: flex;
@@ -351,7 +367,7 @@
   }
   
   .aply_btn {
-    background-color: #26bbef;
+    background-color: #1B4E9B;
     margin: 10px 20px;
     float: right;
   }
@@ -363,3 +379,37 @@
     grid-template-columns: auto auto auto;
     font-size: 12px;
   }
+
+
+::ng-deep .sel_field.mat-form-field-appearance-legacy .mat-form-field-infix {
+    padding: 0px!important;
+}
+::ng-deep .mat-toolbar {
+  background: #fff!important;
+}
+
+::ng-deep  .fldName span.mat-checkbox-label {
+  overflow: hidden!important;
+  white-space: nowrap!important;
+  text-overflow: ellipsis!important;
+  max-width: 250px!important;
+}
+
+.mat_courses{
+  margin: 0px 10px;
+}
+::ng-deep .spec_desk_dialog .mat-dialog-container {
+  padding: 10px;
+  overflow: hidden;
+}
+
+.expand_more_icon{
+  color: #1B4E9B;
+    text-decoration: underline;
+    font-size: 13px;
+    font-weight: 600;
+}
+.option_title{
+  padding-bottom: 8px !important;
+  margin-bottom: 0px!important;
+}

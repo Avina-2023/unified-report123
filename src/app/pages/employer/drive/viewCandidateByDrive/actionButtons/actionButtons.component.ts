@@ -1,9 +1,6 @@
 import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 import { ICellRendererAngularComp } from 'ag-grid-angular';
-import {
-  ICellRendererParams,
-  IAfterGuiAttachedParams,
-} from 'ag-grid-community';
+import { ICellRendererParams, IAfterGuiAttachedParams } from 'ag-grid-community';
 // import {MatIconModule} from '@angular/material/icon';
 // import { MatTableModule } from '@angular/material/table';
 // import { MatNoDataRow, MatTableDataSource } from '@angular/material/table';
@@ -36,7 +33,7 @@ export class ActionButtonsComponent implements ICellRendererAngularComp {
     private ApiService: ApiService,
     private appconfig: AppConfigService,
     private messenger: SentDataToOtherComp,
-    private dialog: MatDialog
+    private dialog: MatDialog 
   ) {}
   refresh(params: ICellRendererParams): boolean {
     throw new Error('Method not implemented.');
@@ -46,64 +43,37 @@ export class ActionButtonsComponent implements ICellRendererAngularComp {
   // }
   agInit(params: ICellRendererParams): void {
     this.params = params;
-    console.log(this.params, 'params');
-    // console.log(this.params.data,'candidatedata');
-    // console.log(this.params.data.jobStatus,'job statuses');
-    // console.log(this.params.data.studentName,'studentname');
-    params.value;
+    console.log(this.params, 'params'); 
+    params.value; 
   }
   afterGuiAttached?(params?: IAfterGuiAttachedParams): void {
     throw new Error('Method not implemented.');
   }
 
   ngOnInit() {
-    let localjobData = JSON.parse(
-      this.appconfig.getLocalStorage('currentJobData')
-    );
-    this.jobdata = this.appconfig.jobData
-      ? this.appconfig.jobData
-      : localjobData;
+    let localjobData = JSON.parse(this.appconfig.getLocalStorage('currentJobData'));
+    this.jobdata = this.appconfig.jobData ? this.appconfig.jobData : localjobData;
   }
 
-  candidateprofile() {
-    this.appconfig.setLocalStorage(
-      'C_Candidate_status',
-      JSON.stringify(this.params.data)
-    );
-    this.router.navigateByUrl(
-      '/auth/drive/viewCandidateProfilebyEmployer?from=VA'
-    );
-  }
+  candidateprofile() { 
+    this.appconfig.setLocalStorage('C_Candidate_status', JSON.stringify(this.params.data)); 
+    this.router.navigateByUrl('/auth/drive/viewCandidateProfilebyEmployer?from=VA'); 
+  } 
 
-  // getStatusChange(status){
-  //   console.log(this.jobdata)
-  //   let data = {
-  //     "email": this.params.data.email,
-  //     "jobId": this.jobdata.jobId,
-  //     "jobStatus": status
-  //   }
-  //   console.log(this.params)
-  //   this.ApiService.getStatusupdated(data).subscribe((response:any) => {
-  //     if (response.success){
-  //       this.statusdata = response.data;
-  //       this.messenger.sendMessage("grid-refresh",true)
-  //     }
-  //   })
-  // }
 
-  getStatusChange(status) {
-    console.log(this.jobdata);
+  getStatusChange(status) { 
+    // console.log(this.jobdata);
     let data = {
-      email: this.params.data.email,
-      jobId: this.jobdata.jobId,
-      jobStatus: status,
+      email: this.params.data.email, 
+      jobId: this.jobdata.jobId, 
+      jobStatus: status, 
     };
-    this.ApiService.getStatusupdated(data).subscribe((response: any) => {
-      if (response.success) {
+    this.ApiService.getStatusupdated(data).subscribe((response: any) => { 
+      if (response.success) { 
         // this.statusdata = response?.success;
         this.statusdata = response?.data;
         console.log(this.statusdata);
-        this.messenger.sendMessage('grid-refresh', true);
+        this.messenger.sendMessage('grid-refresh', true); 
       } else {
       }
     });

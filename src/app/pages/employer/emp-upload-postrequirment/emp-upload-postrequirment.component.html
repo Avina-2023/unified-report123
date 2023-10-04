@@ -1,4 +1,4 @@
-<div class="top-bg">
+<!-- <div class="top-bg">
   <p class="cardTitle">Post Job Requirements</p>
   <div class="card">
     <div class="card-content">
@@ -34,11 +34,12 @@
             accept="text/csv, application/octet-stream, ms-excel" (change)="onFileSelected($event)"
             (click)="$event.target.value=null" type="file" alt="upload" />
 
-          <!-- <div class="note2"> <span [matTooltip]="fileName" class="blackLable subInstruction">{{
+           /*<div class="note2"> <span [matTooltip]="fileName" class="blackLable subInstruction">{{
               trimFilename(fileName) || " Upload only .csv format"}}</span></div>
           <div *ngIf="fileName" class="close" (click)="cancleUpload()">
             <span class="pointer-close"><mat-icon class="close-icon">close</mat-icon></span>
-          </div> -->
+          </div> */
+
         </div>
     <div class="submitbtn">
       <button type="submit" [disabled]="IsToFeildEnable" (click)="saveUploadModel()">Submit</button>
@@ -50,4 +51,216 @@
 
 
 </div>
+</div> -->
+
+
+<div class="post_title">Post Jobs/Internships</div>
+<div class="form_card">
+  <div class="job_title">Job Details</div>
+  <div class="matGroup">
+    <mat-radio-group aria-label="Select an option" [(ngModel)]="selectedOption">
+      <mat-radio-button value="jobs">Jobs</mat-radio-button>
+      <mat-radio-button value="internships" class="intern">Internships</mat-radio-button>
+    </mat-radio-group>
+  </div>
+  <div *ngIf="selectedOption === 'jobs'" class="pd-top-20">
+    <form [formGroup]="jobForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="jobRole">Job Role<span class="mandatory_symbl">*</span></label>
+        <input type="text" id="jobRole" formControlName="jobRole" class="form-control" placeholder="Software Developer">
+        <div *ngIf="jobForm.get('jobRole').hasError('required') && jobForm.get('jobRole').touched" class="text-danger">
+          Job Role is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="jobTitle">Job Title<span class="mandatory_symbl">*</span></label>
+        <input type="text" id="jobTitle" formControlName="jobTitle" class="form-control" placeholder="Associate">
+        <div *ngIf="jobForm.get('jobTitle').hasError('required') && jobForm.get('jobTitle').touched"
+          class="text-danger">
+          Job Title is required.
+        </div>
+      </div>
+      <div class="flex_div width-100 mg-r-10">
+        <div class="form-group width-50">
+          <label for="jobLocation">Job Location<span class="mandatory_symbl">*</span></label>
+          <input type="text" id="jobLocation" formControlName="jobLocation" class="form-control"
+            placeholder="Chennai, Bangalore">
+          <div *ngIf="jobForm.get('jobLocation').hasError('required') && jobForm.get('jobLocation').touched"
+            class="text-danger">
+            Job Location is required.
+          </div>
+        </div>
+
+        <div class="form-group width-50 mg-l-10">
+          <label for="jobType">Job Type<span class="mandatory_symbl">*</span></label>
+          <!-- <select id="jobType" formControlName="jobType" class="form-control">
+            <option class="placeholder_text" value="" disabled selected>Job Type</option>
+            <option value="Full Time">Full Time</option>
+            <option value="Part Time">Part Time</option>
+          </select> -->
+
+          <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Job Type" [(ngModel)]="jobType" formControlName="jobType">
+            <nz-option nzLabel="Full Time" nzValue="Full Time"></nz-option>
+            <nz-option nzLabel="Part Time" nzValue="Part Time"></nz-option>
+          </nz-select>
+
+          <div *ngIf="jobForm.get('jobType').hasError('required') && jobForm.get('jobType').touched"
+            class="text-danger">
+            Job Type is required.
+          </div>
+        </div>
+      </div>
+
+
+
+      <!-- <fieldset class="education-fieldset">
+        <legend>Education<span class="mandatory_symbl">*</span></legend>
+        <div class="form-group flex_div">
+          <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Graduation" [(ngModel)]="graduation"
+            formControlName="graduation" class="mg-r-10 width-20" (ngModelChange)="onGraduationChange($event)">
+            <nz-option *ngFor="let option of educations" [nzLabel]="option.education"
+              [nzValue]="option.education"></nz-option>
+          </nz-select>
+          <nz-select [nzDisabled]="isdegreeDisabled()" nzShowSearch nzAllowClear nzPlaceHolder="Degree"
+            [(ngModel)]="degree" formControlName="degree" class="mg-l-10 width-20"
+            (ngModelChange)="onDegreeChange($event)">
+            <nz-option *ngFor="let option of degreeOptions" [nzLabel]="option.specification_name"
+              [nzValue]="option.specification_name"></nz-option>
+          </nz-select>
+          <nz-select [nzDisabled]="isSelectDisabled()" nzShowSearch nzAllowClear nzPlaceHolder="Course"
+            [(ngModel)]="course" formControlName="course" class="mg-l-10 width-20"
+            (ngModelChange)="onCourseChange($event)">
+            <nz-option *ngFor="let option of courseOptions" [nzLabel]="option" [nzValue]="option"></nz-option>
+          </nz-select>
+          <nz-select [nzDisabled]="iscourseDisabled()" [(ngModel)]="multipleSpecialization" [nzSize]="default"
+            nzMode="multiple" nzPlaceHolder="--Select Specialization (Multiple Select)---"
+            class="specialization mg-l-10 overflow_scroll width-40" formControlName="specialization">
+            <nz-option *ngFor="let option of listOfSpecializations" [nzLabel]="option.discipline_name"
+              [nzValue]="option.discipline_name"></nz-option>
+          </nz-select>
+        </div>
+        <div class="add_more_text">Add More</div>
+      </fieldset> -->
+
+
+      <fieldset class="education-fieldset">
+        <legend>Education<span class="mandatory_symbl">*</span></legend>
+        <div *ngFor="let group of formGroups; let i = index" class="form-group flex_div">
+          <!-- Duplicated content -->
+          <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Graduation" [formControl]="group.get('graduation')"
+            class="mg-r-10 width-30" (ngModelChange)="onGraduationChange($event, i)">
+            <nz-option *ngFor="let option of educations" [nzLabel]="option.education" [nzValue]="option.education"></nz-option>
+          </nz-select>
+
+          <!-- <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Graduation" [formControl]="group.get('graduation')"
+            class="mg-r-10 width-30" (ngModelChange)="onGraduationChange($event, i)">
+            <ng-container *ngFor="let option of educations; let j = index">
+            <nz-option  [nzDisabled]="(i >= 1 && j === 0) || (i >= 2 && j === 1)" [nzLabel]="option.education" [nzValue]="option.education"></nz-option>
+          </ng-container>
+          </nz-select> -->
+    
+          <nz-select [nzDisabled]="isdegreeDisabled(i)" nzShowSearch nzAllowClear nzPlaceHolder="Degree"
+            [formControl]="group.get('degree')" class="mg-l-10 width-30" (ngModelChange)="onDegreeChange($event, i)">
+            <nz-option *ngFor="let option of degreeOptions" [nzLabel]="option.specification_name"
+              [nzValue]="option.specification_name"></nz-option>
+          </nz-select>
+    
+          <!-- <nz-select [nzDisabled]="isSelectDisabled(i)" nzShowSearch nzAllowClear nzPlaceHolder="Course"
+            [formControl]="group.get('course')" class="mg-l-10 width-20" (ngModelChange)="onCourseChange($event, i)">
+            <nz-option *ngFor="let option of courseOptions" [nzLabel]="option" [nzValue]="option"></nz-option>
+          </nz-select> -->
+    
+          <nz-select nzAllowClear [nzDisabled]="iscourseDisabled(i)" [ngModel]="group.get('multipleSpecialization')?.value"
+            [ngModelOptions]="{ standalone: true }" [nzSize]="default" nzMode="multiple"
+            nzPlaceHolder="--Select Specialization (Multiple Select)---"
+            [formControl]="group.get('specialization')" class="mg-l-10 width-40 overflow_scroll">
+            <nz-option *ngFor="let option of listOfSpecializations" [nzLabel]="option.discipline_name"
+              [nzValue]="option.discipline_name"></nz-option>
+          </nz-select>
+          <!-- End of duplicated content -->
+    
+          <!-- Remove button for each group -->
+          <div class="remove_group_text" *ngIf="formGroups.length > 1 && i > 0" (click)="removeEducationGroup(i)">Remove</div>
+        </div>
+        <div class="add_more_text" (click)="addEducationGroup()">Add More</div>
+      </fieldset>
+
+
+
+      <div class="flex_div width-100 mg-r-10">
+        <div class="width-50">
+          <label>CTC<span class="mandatory_symbl">*</span></label>
+          <div class="form-group salary-range">
+            <mat-radio-group aria-label="Select an option" [(ngModel)]="selectedRangeOption"
+              (ngModelChange)="onCtcOptionChange()" formControlName="ctcOption" style="width:40%;">
+              <mat-radio-button value="fixed">Fixed</mat-radio-button>
+              <mat-radio-button value="range" class="range">Range</mat-radio-button>
+            </mat-radio-group>
+
+            <div *ngIf="selectedRangeOption === 'fixed'" style="width:-webkit-fill-available;">
+              <nz-select nzShowSearch nzAllowClear nzPlaceHolder="ctc" [(ngModel)]="fixed" formControlName="fixed">
+                <nz-option nzLabel="12 lacs" nzValue="12 lacs"></nz-option>
+                <nz-option nzLabel="13 lacs" nzValue="13 lacs"></nz-option>
+              </nz-select>
+            </div>
+            <div *ngIf="selectedRangeOption === 'range'" style="width:-webkit-fill-available;">
+              <nz-select nzShowSearch nzAllowClear nzPlaceHolder="ctc" [(ngModel)]="range" formControlName="range">
+                <nz-option nzLabel="12 lacs" nzValue="12 lacs"></nz-option>
+                <nz-option nzLabel="13 lacs" nzValue="13 lacs"></nz-option>
+              </nz-select>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="form-group width-50 mg-l-10">
+          <label for="yearofPassing">Year of Passing <span class="mandatory_symbl">*</span></label>
+          <nz-select [(ngModel)]="yearofPassingValue" [nzSize]="large" nzMode="multiple"
+            nzPlaceHolder="Select the Year of Passing" class="yearofPassing" formControlName="yearofPassing" nzAllowClear>
+            <nz-option *ngFor="let item of yearofPassing" [nzLabel]="item" [nzValue]="item"></nz-option>
+          </nz-select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="keySkills">Key skills <span class="mandatory_symbl">*</span></label>
+        <nz-select nzAllowClear [(ngModel)]="multipleValue" [nzSize]="default" nzMode="multiple" nzPlaceHolder="Select the Skills"
+          class="keySkills" formControlName="keySkills">
+          <nz-option *ngFor="let option of listOfOption" [nzLabel]="option.label" [nzValue]="option.value"></nz-option>
+        </nz-select>
+      </div>
+
+
+      <div class="form-group">
+        <label for="jobDescription">About Jobs / Job Description<span class="mandatory_symbl">*</span></label>
+        <angular-editor [(ngModel)]="htmlContent" [config]="config" formControlName="jobDescription"
+          id="jobDescription"></angular-editor>
+      </div>
+      <div class="form-group">
+        <label for="jobRequirements">Job Requirements</label>
+        <angular-editor [(ngModel)]="htmlContent_1" [config]="config" formControlName="jobRequirements"
+          id="jobRequirements"></angular-editor>
+      </div>
+
+      <div class="form-group">
+        <mat-form-field style="width: 50%;">
+          <mat-label>Last Date to Apply</mat-label>
+          <input matInput placeholder="last date" [matDatepicker]="picker" formControlName="lastDatetoApply">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+
+
+
+
+
+
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+  </div>
+  <div *ngIf="selectedOption === 'internships'" class="pd-top-20">
+    <p>Display content for Internships here...</p>
+  </div>
 </div>

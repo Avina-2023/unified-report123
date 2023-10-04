@@ -3,6 +3,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatMenuTrigger } from '@angular/material/menu';
 import { NavigationEnd, Router } from '@angular/router';
+import { log } from 'console';
 import { LoadingService } from 'src/app/services/loading.service';
 import { AppConfigService } from 'src/app/utils/app-config.service';
 import { APP_CONSTANTS } from 'src/app/utils/app-constants.service';
@@ -15,6 +16,7 @@ import { APP_CONSTANTS } from 'src/app/utils/app-constants.service';
 export class SidebarComponent implements OnInit {
   @ViewChild('menuTrigger') menuTrigger: MatMenuTrigger;
   isExpanded: boolean;
+  isnotShowing: boolean = true;
   name: string;
   text: string;
   roles: any;
@@ -55,7 +57,6 @@ export class SidebarComponent implements OnInit {
         this.driveIconToggle = true;
         this.check = 'managedrive';
         break;
-
       case '/auth/partner/addpartner':
         this.menuIconToggle = true;
         this.check = 'addpartner';
@@ -83,6 +84,10 @@ export class SidebarComponent implements OnInit {
         this.menuIconToggle = true;
         this.check = 'Viewcandidatelist';
         break;
+      case '/auth/drive/drivesettings':
+        this.menuIconToggle = true;
+        this.check = 'driveSettings';
+        break;
       case '/auth/drive/viewCandidateProfilebyEmployer':
         this.menuIconToggle = true;
         this.check = 'viewProfilebyEmployer';
@@ -91,12 +96,29 @@ export class SidebarComponent implements OnInit {
         this.check = 'managedrive';
         this.driveIconToggle = true;
         break;
-      case '/auth/dashboard/candidatesearch':
-        this.check = 'empcandidatesearch';
-        break;
+      case '/auth/dashboard/candidatesearch': 
+      this.check = 'empcandidatesearch';
+      break;
+      case '/auth/overall-reports': 
+      this.check = 'overallReports';
+      break;
       default:
         this.check = 'empdashboard';
         break;
+    }
+  }
+
+
+  mouseenter() {
+    if (!this.isExpanded) {
+      this.isnotShowing = false;
+    }
+  }
+  
+
+  mouseleave() {
+    if (!this.isExpanded) {
+      this.isnotShowing = true;
     }
   }
 

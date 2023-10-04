@@ -33,7 +33,6 @@
 
     </div>
     <div class="job-details1"> 
-      <!-- <div class="job-intern"><span class="job-intern1">#Jobs</span></div> -->
       <div class="job-intern"><span class="job-intern2">{{jobDetails.jobType}}</span></div> 
     </div> 
     <div class="job-details">
@@ -44,7 +43,6 @@
       </div>
       <div class="genText1"> 
         <div> <span class="icon-clock_postdate"></span></div>
-        <!-- <div class="locate" *ngFor="let item of jobDetails.jobLocation;let i=index; let isLast=last">{{item}}<span class="misc_col" *ngIf="!isLast && i < jobDetails.jobLocation.length">&nbsp;</span> </div> -->
         <div class="locate">Posted On {{jobDetails.createdOn | date : 'd MMM'}}</div>
       </div>
       <div class="genText1"> 
@@ -103,10 +101,16 @@
           </div> 
         </div> 
       </div> 
+
       <div class="listspace"> 
-        <div class="desTitle"> CTC: </div>
+        <!-- <div class="desTitle"> CTC: </div> -->
+        <div class="desTitle">
+          {{ jobDetails.workType === 'Internships' ? 'Stipend :' : 'CTC:' }}
+        </div>
         <div class="genText"> {{jobDetails.ctc}} </div>
       </div> 
+
+
       <div class="listspace">
         <div class="desTitle"> Year of Passing: </div>
         <span class="genTextpassout" *ngFor="let content of jobDetails.yearofPassout ;  let first = first">
@@ -156,58 +160,26 @@
     </div>
   </ng-template>
 
-
-  <div class="main-Dashboard">
-    <mat-card class="main-Dashboard-details">
-      <div class="Registrarion-name"><span>Registrations</span></div>
-      <div class="line"></div>
-      <div class="Registrarion-count"><span>100000</span></div>
-      <div class="candidates-count">
-        <div class="name-count">
-          <div class="candidate-count">426</div>
-          <div class="candidate-certified">Certified</div>
-        </div>
-        <div class="name-count">
-          <div class="candidate-count">987</div>
-          <div class="candidate-certified">Assessed</div>
-        </div>
-        <div class="name-count">
-          <div class="candidate-count">65</div>
-          <div class="candidate-certified">General</div>
-        </div>
-      </div>
-    </mat-card>
-  </div>
-
-  <div class="Company-Dashboard">
-    <mat-card class="company-Dashboard-details">
-      <div class="company-name"><span>No Of Companies</span></div>
-      <div class="line"></div>  
-      <div class="total-jobs">
-        <div><span class="total-jobs-count">2400</span></div>
-        <div class="section-job-count">
-          <div class="open-jobs">
-            <div class="open-jobs-countt"><span class="open-jobs-count">1400</span></div>
-            <div><span class="open-jobs-name">Open Market</span></div>
-          </div>
-          <div class="patner-jobs">
-            <div class="patner-jobs-countt"><span class="patner-jobs-count">1000</span></div>
-            <div><span class="patner-jobs-name">Hiring Patners</span></div>
-          </div>
-        </div>
-      </div>
-    </mat-card>
-  </div>
-
-
-  <div style="border: 1px solid red;padding:10px;">
-    <div style="border-bottom: 1px solid grey;">Registration</div>
-    <div>10000</div>
-    <div style="display:flex;justify-content:space-evenly;align-items:center;background:blue;padding:10px;">
-
-    <div><p>426</p><p>Certified</p></div>
-    <div><p>426</p><p>Asses</p></div>
-    <div><p>426</p><p>General</p></div>
+  <!-- <ng-template #externalApply>
+    <div class="wrapper">
+      <div class="closer"><mat-icon mat-dialog-close>close</mat-icon></div>
+      <div><img width="100px" class="ticsize" src="/assets/images/alert-image.png"></div>
+      <div class="message">This link will take you to a third-party page that is not part of Skill Exchange.</div>
+      <div class="msgsub" style="margin-top:10px">The given link is external and is not verified by L&T EduTech for its safety</div>
     </div>
+  </ng-template> -->
 
-</div>
+  <ng-template #externalApply>
+    <div class="ext-closer"><mat-icon mat-dialog-close>close</mat-icon></div>
+    <div class="ext-redirect-popup">
+      <div class="ext-redirect-content">
+           <img src="assets/images/landing/newLogo.png">
+           <div class="heading">This link will take you to a third-party page that is not part of Skill Exchange.</div>
+           <div class="redirect-message">The given link is external and is not verified by L&T EduTech for its safety.</div>
+           <!-- <div class="redirect-message">The applicant may choose to proceed or return back to homepage</div> -->
+           <!-- <a href="https://example.com/test/test/test">https://example.com/test/test/test</a> -->
+      </div>
+  <button class="mat-raised-button primary ext-btn" (click)="redirectToApplyLink()">Proceed</button>
+  </div>
+  </ng-template>
+  

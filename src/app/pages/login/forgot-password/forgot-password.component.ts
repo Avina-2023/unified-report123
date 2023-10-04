@@ -74,7 +74,8 @@ if(this.isCandidate){
       if(success.success){
         this.toastr.success(success.message);
         // this.appConfig.routeNavigation("/login");
-        this.appConfig.routeNavigationWithQueryParam("login",{from:"freshGrad"});
+        // this.appConfig.routeNavigationWithQueryParam("login",{from:"freshGrad"});
+        window.location.href = "https://reviewinfo.lntedutech.com/login/";
         }else{
           this.toastr.error(success.message);
         }
@@ -131,7 +132,8 @@ if(this.isCandidate){
   signIn() {
     // this.appConfig.routeNavigation("login");
     if(this.isCandidate){
-      this.appConfig.routeNavigationWithQueryParam("login",{from:"freshGrad"});
+      // this.appConfig.routeNavigationWithQueryParam("login",{from:"freshGrad"});
+      window.location.href = "https://reviewinfo.lntedutech.com/login/";
     }else{
       this.appConfig.routeNavigationWithQueryParam("login",{from:"employer"});
     }
