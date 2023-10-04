@@ -231,7 +231,7 @@
                                                 <img alt="" [src]="factorsSkillsImage(skillsDetail?.name)">
                                             </figure>
                                             <div class="content">
-                                            <span>{{skillsDetail?.name}}: &nbsp;</span>
+                                            <span style="left:-13px">{{skillsDetail?.name}}: &nbsp;</span>
                                             <ul class="paragraph-list" style="margin-top: 6px;">
                                               <li *ngFor="let item of skillsDetail?.scorebasedSkillDescription">
                                                   <img src="/assets/images/list-arrow.svg" alt=""><span  class="skillsDetail">{{item}}</span>
@@ -324,7 +324,7 @@
                                     <div class="heading4">{{item?.skillName}}</div>
                                     <ul>
                                         <ng-container *ngIf="item?.strengthContent && item?.strengthContent.length > 0">
-                                            <li *ngFor="let content of item?.strengthContent">
+                                            <li *ngFor="let content of item?.strengthContent" style="margin-left: 1.5em; text-indent: -1.5em;">
                                                 <img src="/assets/images/list-arrow.svg" alt="">
                                                 <span>{{content?.item}}</span>
                                                 <ng-container *ngIf="content?.sub_item && content?.sub_item.length > 0">
@@ -408,7 +408,7 @@
                                     <div class="development-glimpse">A low score in this competency indicates that</div>
                                     <ul>
                                         <ng-container *ngIf="item?.developmentContent && item?.developmentContent.length > 0">
-                                            <li *ngFor="let content of item?.developmentContent">
+                                            <li *ngFor="let content of item?.developmentContent" style="margin-left: 1.5em; text-indent: -1.5em;">
                                                 <img src="/assets/images/list-arrow.svg" alt="">
                                                 <span>{{content?.item}}</span>
                                                 <ng-container *ngIf="content?.sub_item && content?.sub_item.length > 0">
@@ -479,7 +479,7 @@
       <div class="container">
         <div class="row mt-5" style="display: grid;">
           <div style="width: 93% !important;">
-         <div [style.left.%]="scoreValue-4" class="indicatorbox" >
+         <div [style.left.%]="scoreValue-3" class="indicatorbox" >
          <img po [src]="scoreValue >= 0 && scoreValue <= 40 ? '/assets/images/pdfDownload/red.png' : scoreValue > 40 && scoreValue <= 80 ? '/assets/images/pdfDownload/orange.png' : scoreValue > 80 && scoreValue <= 100 ? '/assets/images/pdfDownload/green.png' : ''" alt="Image" *ngIf="scoreValue >= 0 && scoreValue <= 100" />
          <div class="indicatorboxtxt">{{scoreValue}}</div>
         </div>
@@ -581,7 +581,7 @@
         <ng-container *ngFor="let score of benchMarkScoredata">
           <div class="score-content">
             <div class="line" [ngStyle]="{'background-color': score.colorcode}"></div>
-            <div class="scorepoint" style="position: relative;top: 11px;left: 10px;">{{score.bias}}</div>
+            <div class="scorepoint" style="position: relative;top: 6px;left: 10px;">{{score.bias}}</div>
           </div>
         </ng-container>
       </div>
