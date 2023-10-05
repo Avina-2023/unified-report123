@@ -109,15 +109,35 @@ export class SidebarComponent implements OnInit {
     }
   }
 
+  // mouseenter() {
+  //   if (!this.isExpanded) {
+  //     this.isnotShowing = false;
+  //   }
+  // }
+
+  // mouseleave() {
+  //   if (!this.isExpanded) {
+  //     this.isnotShowing = true;
+  //   }
+  // }
+
   mouseenter() {
     if (!this.isExpanded) {
       this.isnotShowing = false;
+      console.log('mouse entered');
+    }
+    if(this.isExpanded){
+      this.isnotShowing = false;
+      console.log('mouse entered');
     }
   }
-
   mouseleave() {
     if (!this.isExpanded) {
       this.isnotShowing = true;
+    }
+    if(this.isExpanded){
+      this.isnotShowing = true;
+      console.log('mouse left');
     }
   }
 
@@ -131,10 +151,8 @@ export class SidebarComponent implements OnInit {
       this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.EMPDASHBOARD.HOME);
     } else if (value == 'partnerlist') {
       this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.PARTNER.HOME);
-    } else if (value == 'overallreport') {
-      this.appconfig.routeNavigation(
-        APP_CONSTANTS.ENDPOINTS.OVERALLREPORTS.HOME
-      );
+    } else if (value == 'overallreport') { 
+      this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.OVERALLREPORTS.HOME);
     }
   }
   hiring(value) {

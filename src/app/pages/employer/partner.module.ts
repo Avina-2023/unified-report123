@@ -22,6 +22,7 @@ import { OverallReportMinicardDetailsComponent } from './overall-Report/overall-
 import { AddJobsComponent } from './add-jobs/add-jobs.component';
 import { ViewJobsComponent } from './view-jobs/view-jobs.component';
 // import { AngularEditorModule } from '@kolkov/angular-editor';
+import { ActionButtonViewJobsComponent } from './view-jobs/action-button-viewJobs/action-button-viewJobs.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { ViewJobsComponent } from './view-jobs/view-jobs.component';
     OverallReportComponent,
     OverallReportDetailsCardComponent,
     OverallReportMinicardDetailsComponent,
+    ActionButtonViewJobsComponent
   ],
   imports: [
     CommonModule,
