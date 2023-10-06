@@ -1,0 +1,242 @@
+<div class="body">
+  <div class="subBody">
+    <h3 class="title">Add Jobs</h3>
+    <div class="partnerCardBody">
+      <mat-card class="partnerCard">
+        <div class="">
+          <p class="job_title">Job Details</p>
+        </div>
+        <mat-card-content class="cardValue">
+          <div class="primaryWrapper">
+            <div class="left">
+              <form [formGroup]="addjobsForm" enctype="multipart/form-data">
+                <div class="inputContainer">
+                  <label>Company Name<span>*</span></label>
+                  <mat-form-field appearance="outline">
+                    <input matInput placeholder="Enter Company Name" formControlName="CompanyName" required>
+                  </mat-form-field>
+                  <ng-container *ngIf="CompanyName.invalid && CompanyName.touched">
+                    <mat-error class="error" *ngIf="CompanyName?.errors?.required">{{'Company Name is
+                      Required'}}</mat-error>
+                  </ng-container>
+                </div>
+
+                <div class="inputContainer">
+                  <label>Job Role <span>*</span></label>
+                  <mat-form-field appearance="outline">
+                    <input matInput placeholder="Enter Job Role" formControlName="JobRole" required>
+                  </mat-form-field>
+                  <ng-container *ngIf="JobRole.invalid && JobRole.touched">
+                    <mat-error class="error" *ngIf="JobRole?.errors?.required">{{'Job Role is Required'}}</mat-error>
+                  </ng-container>
+                </div>
+                <div class="inputContainer">
+                  <label>Job Title<span>*</span></label>
+                  <mat-form-field appearance="outline">
+                    <input formControlName="establishedYear" type="text" maxlength="4" matInput
+                      placeholder="Enter Job Title">
+                  </mat-form-field>
+                </div>
+              </form>
+            </div>
+            <div class="right">
+              <div class="inputContainer">
+                <label>Company Logo<span>*</span></label>
+                <p class="errmsg" *ngIf="">{{errorMsgforLogo}}</p>
+                <div class="wrapper">
+                  <div>
+                    <img *ngIf="" class="cloudicon" src="/assets/images/partner/cloud-upload-blu.svg" alt="">
+                    <img *ngIf="" class="cloudicon" [src]="displayImageUrl" height="100" width="200">
+                  </div>
+                  <div class="buttonClass">
+                    <div class="subButton">
+                      <input type="file" accept="image/png, image/jpeg" class="file-input" (change)="($event)"
+                        (click)="$event.target.value=null" #fileUpload>
+                      <button mat-flat-button (click)="fileUpload.click()">Browse</button>
+                    </div>
+                  </div>
+                  <div class="titlealign">
+                    <p class="labeldes">Photo must be in .jpg or .png format</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="primaryWrap">
+            <div class="leftWrap">
+              <form [formGroup]="addjobsForm" enctype="multipart/form-data">
+
+                <div class="inputContainer">
+                  <label>Job Location<span>*</span></label>
+                  <mat-form-field appearance="outline">
+                    <input formControlName="JobLocation" matInput placeholder="Enter Job Location">
+                  </mat-form-field>
+                  <ng-container *ngIf="JobLocation.invalid && JobLocation.touched">
+                    <mat-error class="error" *ngIf="JobLocation?.errors?.required">{{'Job Location is
+                      Required'}}</mat-error>
+                  </ng-container>
+                </div>
+              </form>
+            </div>
+            <div class="rightWrap">
+              <form [formGroup]="addjobsForm" enctype="multipart/form-data">
+
+                <div class="inputContainer">
+                  <label>Job Type<span>*</span></label>
+                  <mat-form-field appearance="outline">
+                    <mat-select formControlName="JobType" placeholder="— Select Job Type —">
+                      <mat-option *ngFor="let type of industryTypes" [value]="type">{{ type }}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                  <ng-container *ngIf="JobType.invalid && JobType.touched">
+                    <mat-error class="error" *ngIf="JobType?.errors?.required">{{'Job Type is
+                      Required'}}</mat-error>
+                  </ng-container>
+                </div>
+              </form>
+            </div>
+
+
+          </div>
+
+          <div class="primaryWrap">
+            <div class="leftWrap">
+              <form [formGroup]="addjobsForm" enctype="multipart/form-data">
+
+                <div class="inputContainer">
+                  <label>Degree<span>*</span></label>
+                  <mat-form-field appearance="outline">
+                    <input formControlName="degree" matInput placeholder="Enter Degree">
+                  </mat-form-field>
+                  <ng-container *ngIf="degree.invalid && degree.touched">
+                    <mat-error class="error" *ngIf="degree?.errors?.required">{{'Degree is
+                      Required'}}</mat-error>
+                  </ng-container>
+                </div>
+              </form>
+            </div>
+
+
+            <div class="rightWrap">
+              <form [formGroup]="addjobsForm" enctype="multipart/form-data">
+
+                <div class="inputContainer">
+                  <label>Specialization<span>*</span></label>
+                  <mat-form-field appearance="outline">
+                    <input formControlName="specialization" matInput placeholder="Enter Specialization">
+                  </mat-form-field>
+                  <ng-container *ngIf="specialization.invalid && specialization.touched">
+                    <mat-error class="error" *ngIf="specialization?.errors?.required">{{'Specialization is
+                      Required'}}</mat-error>
+                  </ng-container>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <div class="primaryWrap">
+            <div class="leftWrap">
+              <form [formGroup]="addjobsForm" enctype="multipart/form-data">
+
+                <div class="inputContainer">
+                  <label>Key skill<span>*</span></label>
+                  <mat-form-field appearance="outline">
+                    <input formControlName="keyskill" matInput placeholder="Enter Skill Set">
+                  </mat-form-field>
+                  <ng-container *ngIf="keyskill.invalid && keyskill.touched">
+                    <mat-error class="error" *ngIf="keyskill?.errors?.required">{{'Keyskill is
+                      Required'}}</mat-error>
+                  </ng-container>
+                </div>
+              </form>
+            </div>
+
+            <div class="rightWrap">
+              <form [formGroup]="addjobsForm" enctype="multipart/form-data">
+
+                <div class="inputContainer">
+                  <label>Last day to apply<span>*</span></label>
+                  <mat-form-field appearance="outline">
+                    <input formControlName="lastdate" [matDatepicker]="picker" matInput placeholder="— Select Date —">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                  </mat-form-field>
+                  <ng-container *ngIf="lastdate.invalid && lastdate.touched">
+                    <mat-error class="error" *ngIf="lastdate?.errors?.required">{{'Please select Date'}}</mat-error>
+                  </ng-container>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="primarysingleWrap">
+            <div class="singleWrap">
+              <form [formGroup]="addjobsForm" enctype="multipart/form-data">
+
+                <div class="inputContainer">
+                  <label>Apply link<span>*</span></label>
+                  <mat-form-field appearance="outline">
+                    <input formControlName="url" matInput placeholder="Enter URL">
+                  </mat-form-field>
+                  <ng-container *ngIf="url.invalid && url.touched">
+                    <mat-error class="error" *ngIf="url?.errors?.required">{{'URL is
+                      Required'}}</mat-error>
+                  </ng-container>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="primarysingleWrap">
+            <div class="singleWrap">
+              <form [formGroup]="addjobsForm" enctype="multipart/form-data">
+
+                <div class="inputContainer">
+                  <label>Job Description<span>*</span></label>
+                  <mat-form-field appearance="outline">
+                    <textarea type="textarea" maxlength="250" formControlName="description" style="resize: none;"
+                      class="descstyle" matInput placeholder="Enter Job Description"></textarea>
+                  </mat-form-field>
+                  <ng-container *ngIf="description.invalid && description.touched">
+                    <mat-error class="error" *ngIf="description?.errors?.required">{{'Description is
+                      Required'}}</mat-error>
+                  </ng-container>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="primarysingleWrap">
+            <div class="singleWrap">
+              <form [formGroup]="addjobsForm" enctype="multipart/form-data">
+
+                <div class="inputContainer">
+                  <label>Job Requirements<span>*</span></label>
+                  <mat-form-field appearance="outline">
+                    <textarea type="textarea" maxlength="250" formControlName="requirements" style="resize: none;"
+                      class="descstyle" matInput placeholder="Enter Job Requirements"></textarea>
+                  </mat-form-field>
+                  <ng-container *ngIf="requirements.invalid && requirements.touched">
+                    <mat-error class="error" *ngIf="requirements?.errors?.required">{{'Requirements is
+                      Required'}}</mat-error>
+                  </ng-container>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div>
+            <form [formGroup]="addjobsForm" enctype="multipart/form-data">
+
+              <div class="buttonClass">
+
+                <div class="subButton">
+
+                  <button mat-flat-button [disabled]="!addjobsForm.valid">Save</button>
+                </div>
+                <div class="subButton2">
+                  <button mat-flat-button [disabled]="!addjobsForm.valid">clear</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>

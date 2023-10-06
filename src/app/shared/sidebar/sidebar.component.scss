@@ -166,7 +166,8 @@ mat-sidenav:not(.mat-drawer-opened) {
 }
 
 .mathgt {
-  width: 200px;
+  // width: 200px;
+  width: fit-content;
 }
 
 .mathigh,
