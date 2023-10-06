@@ -1,17 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core'; 
 import { ColDef, GridApi } from 'ag-grid-community';
 import { GridOptions } from '@ag-grid-enterprise/all-modules';
 import { ApiService } from 'src/app/services/api.service';
-
+import { ActionButtonViewJobsComponent } from './action-button-viewJobs/action-button-viewJobs.component';
 
 interface Tab {
   title: string;
   items: string[];
 }
-@Component({
-  selector: 'app-view-jobs',
-  templateUrl: './view-jobs.component.html',
-  styleUrls: ['./view-jobs.component.scss']
+@Component({ 
+  selector: 'app-view-jobs', 
+  templateUrl: './view-jobs.component.html', 
+  styleUrls: ['./view-jobs.component.scss'] 
 })
 export class ViewJobsComponent implements OnInit {
   private gridApi!: GridApi;
@@ -24,16 +24,23 @@ export class ViewJobsComponent implements OnInit {
     { title: 'Pending' },
     { title: 'Rejected' },
   ];
-
+  public gridOptions: GridOptions;
   constructor() { }
 
   ngOnInit() {
   }
 
-  
+  titleCase(str) {
+    var splitStr = str.toLowerCase().split(' ');
+    for (var i = 0; i < splitStr.length; i++) {
+      splitStr[i] =
+        splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1);
+    }
+    return splitStr.join(' ');
+  }
   onTabChange(index: number) {
-    const pall = ['navyblue', 'yellow', 'lightblue', 'red', 'green'];
-    const icn = ['#1B4E9B', '#FFB74D', '#27BBEE', '#EF2917', ' #49AE31'];
+    const pall = ['navyblue', 'green', 'lightblue', 'red'];
+    const icn = ['#1B4E9B', '#49AE31', '#27BBEE', '#EF2917'];
     console.log('Selected tab index:' + index);
     this.dynclass = pall[index];
     this.icncolor = icn[index];
@@ -50,14 +57,15 @@ export class ViewJobsComponent implements OnInit {
     //   statusmodel.jobStatus.filter = 'All';
     // }else
     if (index == 1) {
-      statusmodel.jobStatus.filter = 'awaitingReview';
+      statusmodel.jobStatus.filter = 'Approved';
     } else if (index == 2) {
-      statusmodel.jobStatus.filter = 'In Progress';
+      statusmodel.jobStatus.filter = 'Pending';
     } else if (index == 3) {
-      statusmodel.jobStatus.filter = 'rejected';
-    } else if (index == 4) {
-      statusmodel.jobStatus.filter = 'Shortlisted';
-    }
+      statusmodel.jobStatus.filter = 'Rejected';
+    } 
+    // else if (index == 4) {
+    //   statusmodel.jobStatus.filter = 'Shortlisted';
+    // }
     this.gridApi.setFilterModel(statusmodel);
   }
 

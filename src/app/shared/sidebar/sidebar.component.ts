@@ -124,11 +124,11 @@ export class SidebarComponent implements OnInit {
   mouseenter() {
     if (!this.isExpanded) {
       this.isnotShowing = false;
-      console.log('mouse entered');
+      // console.log('mouse entered');
     }
     if(this.isExpanded){
       this.isnotShowing = false;
-      console.log('mouse entered');
+      // console.log('mouse entered');
     }
   }
   mouseleave() {
@@ -137,7 +137,7 @@ export class SidebarComponent implements OnInit {
     }
     if(this.isExpanded){
       this.isnotShowing = true;
-      console.log('mouse left');
+      // console.log('mouse left');
     }
   }
 
