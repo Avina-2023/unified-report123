@@ -37,6 +37,7 @@
   position: relative;
   z-index: 1;
 }
+
 .title {
   left: 12px;
   position: relative;
@@ -52,9 +53,11 @@
   display: flex;
   justify-content: space-around;
   padding: 20px;
-.job_title{
-  font: normal normal bold 16px/21px Roboto;
-}
+
+  .job_title {
+    font: normal normal bold 16px/21px Roboto;
+  }
+
   .partnerCard {
     width: 99%;
     border-radius: 9px;
@@ -70,6 +73,7 @@
     padding: 4px 0 10px 0 !important;
   }
 }
+
 .primaryWrapper {
   margin-top: 20px !important;
   display: flex;
@@ -105,18 +109,21 @@
 
   .right {
     width: 49%;
-.inputContainer {
-    label {
-      display: block;
-      color: #262626;
-      font-size: 12px;
-      font-weight: bold;
-      margin-bottom: 0.5em;
-      span {
-        color: red;
+
+    .inputContainer {
+      label {
+        display: block;
+        color: #262626;
+        font-size: 12px;
+        font-weight: bold;
+        margin-bottom: 0.5em;
+
+        span {
+          color: red;
+        }
       }
     }
-  }
+
     .wrapper {
       padding: 10px;
       height: 218pX;
@@ -176,44 +183,45 @@
 
 }
 
-.primaryWrap{
-    display: flex;
-    position: relative;
+.primaryWrap {
+  display: flex;
+  position: relative;
+
   .leftWrap {
-      width: 49%;
+    width: 49%;
 
-      .inputContainer {
-        label {
-          display: block;
-          color: #262626;
-          font-size: 12px;
-          font-weight: bold;
-          margin-bottom: 0.5em;
+    .inputContainer {
+      label {
+        display: block;
+        color: #262626;
+        font-size: 12px;
+        font-weight: bold;
+        margin-bottom: 0.5em;
 
-          span {
-            color: red;
-          }
+        span {
+          color: red;
         }
       }
     }
+  }
 
-            .rightWrap {
-              width: 50%;
+  .rightWrap {
+    width: 50%;
 
-              .inputContainer {
-                label {
-                  display: block;
-                  color: #262626;
-                  font-size: 12px;
-                  font-weight: bold;
-                  margin-bottom: 0.5em;
+    .inputContainer {
+      label {
+        display: block;
+        color: #262626;
+        font-size: 12px;
+        font-weight: bold;
+        margin-bottom: 0.5em;
 
-                  span {
-                    color: red;
-                  }
-                }
-              }
-            }
+        span {
+          color: red;
+        }
+      }
+    }
+  }
 }
 
 .inputContainer {
@@ -221,6 +229,7 @@
     width: 98%;
   }
 }
+
 .primarysingleWrap {
   display: flex;
   position: relative;
