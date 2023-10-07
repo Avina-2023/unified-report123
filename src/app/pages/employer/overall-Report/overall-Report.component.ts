@@ -25,7 +25,7 @@ export class OverallReportComponent implements OnInit {
     },
     {
       color: '#7388A9',
-      bgcolor: '#FFC10714'
+      bgcolor: '#4CAF5014'
     }
   ]
 
