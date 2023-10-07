@@ -211,9 +211,9 @@ export class BehaviouralPdfReportDownloadComponent implements OnInit {
         this.removeheading = glimpse.replace("INTERPERSONAL FACTOR", "  ");
         return heading;
 
-      }else if (glimpse.includes("CORE/PERSONAL FACTOR")){
-        let heading = "CORE/PERSONAL FACTOR";
-        this.removeheading = glimpse.replace("CORE/PERSONAL FACTOR", "  ");
+      }else if (glimpse.includes("PERSONAL FACTOR")){
+        let heading = "PERSONAL FACTOR";
+        this.removeheading = glimpse.replace("PERSONAL FACTOR", "  ");
         return heading;
 
       }else{
