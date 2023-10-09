@@ -198,6 +198,12 @@ margin: 0px 20px;
 .flex_div{
   display:flex;
 }
+.flx_center{
+  align-items: center;
+}
+.flx_evenly{
+  justify-content: space-evenly;
+}
 input::placeholder{
   color: #848484; /* Change to your desired color */
   //font-weight: 300;
@@ -292,4 +298,23 @@ width: auto!important;
     cursor: pointer;
     width: fit-content;
     float: right;
+}
+::ng-deep .ng-invalid.ng-touched .ant-select-selector {
+  border: 1px solid red!important;
+}
+::ng-deep .ng-touched.ng-valid .ant-select-selector{
+  border: 1px solid #ced4da!important;
+}
+input.ng-touched.ng-invalid {
+  border: 1px solid red;
+}
+.lastDatetoApply{
+  border: none!important;
+}
+::ng-deep .ng-invalid.ng-touched .angular-editor-textarea{
+  border: 1px solid red!important;
+}
+
+::ng-deep .ng-touched.ng-valid .angular-editor-textarea{
+  border: 1px solid #ced4da!important;
 }
