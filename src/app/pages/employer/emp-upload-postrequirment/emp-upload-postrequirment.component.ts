@@ -101,7 +101,7 @@ import { ApiService } from 'src/app/services/api.service';
 import { environment } from 'src/environments/environment';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NzSelectSizeType } from 'ng-zorro-antd/select';
-import { AngularEditorConfig } from '@kolkov/angular-editor';
+// import { AngularEditorConfig } from '@kolkov/angular-editor';
 
 
 @Component({
@@ -132,32 +132,32 @@ export class EmpUploadPostrequirmentComponent implements OnInit {
   htmlContent_1 = '';
 
 
-  config: AngularEditorConfig = {
-    editable: true,
-    spellcheck: true,
-    minHeight: '100px',
-    maxHeight: '100px',
-    placeholder: 'Type here...',
-    translate: 'no',
-    sanitize: false,
-    toolbarPosition: 'top',
-    defaultFontName: 'Arial',
-    customClasses: [
-      {
-        name: 'quote',
-        class: 'quote',
-      },
-      {
-        name: 'redText',
-        class: 'redText'
-      },
-      {
-        name: 'titleText',
-        class: 'titleText',
-        tag: 'h1',
-      },
-    ]
-  };
+  // config: AngularEditorConfig = {
+  //   editable: true,
+  //   spellcheck: true,
+  //   minHeight: '100px',
+  //   maxHeight: '100px',
+  //   placeholder: 'Type here...',
+  //   translate: 'no',
+  //   sanitize: false,
+  //   toolbarPosition: 'top',
+  //   defaultFontName: 'Arial',
+  //   customClasses: [
+  //     {
+  //       name: 'quote',
+  //       class: 'quote',
+  //     },
+  //     {
+  //       name: 'redText',
+  //       class: 'redText'
+  //     },
+  //     {
+  //       name: 'titleText',
+  //       class: 'titleText',
+  //       tag: 'h1',
+  //     },
+  //   ]
+  // };
 
 
   fixed: any;

@@ -1,11 +1,11 @@
-import { Component, Input, OnInit, AfterViewInit } from '@angular/core';
+import { Component, Input, OnInit, TemplateRef, ViewChild, AfterViewInit } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { log } from 'console';
 import { AppConfigService } from 'src/app/utils/app-config.service';
-
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 @Component({
   selector: 'app-job-list-item',
   templateUrl: './job-list-item.component.html',
@@ -19,7 +19,8 @@ export class JobListItemComponent implements OnInit, AfterViewInit {
   @Input() data: any;
   @Input() savedButton = false;
   @Input() showApplied = false;
-  
+  @ViewChild('externalApply', {static: false}) extApply: TemplateRef<any>;
+
   public totallength: any; 
   public total: any; 
   sampleContent = []; 
@@ -36,37 +37,13 @@ export class JobListItemComponent implements OnInit, AfterViewInit {
     private toastr: ToastrService, 
     public router: Router, 
     private appconfig: AppConfigService, 
+    private mdDialog: MatDialog,
   ) {}
   ngOnInit():void {  
     this.resultShow = this.data.length 
     this.currentdate = this.currentdate.toISOString(); 
+    
   }
-
-  // apply(item) {
-  //   var obj = {};
-  //   obj = {
-  //     jobId: item.jobId, 
-  //     email: localStorage.getItem('email'), 
-  //     companyId: item.companyId, 
-  //     patner: item.partnerLabel, 
-  //     link: item.applyLink, 
-  //     jobDetails: { 
-  //       education: item.education, 
-  //       specialization: item.specialization,  
-  //       yearofPassout: item.yearofPassout, 
-  //       eligibilityCriteria: item.eligibilityCriteria, 
-  //     }, 
-  //   };
-  //   console.log(item.partnerLabel,'patner');    
-  //   this.apiservice.savedJobs(obj).subscribe((res: any) => {
-  //     if (res.success) {
-  //       this.toastr.success(res.message);
-  //       item.isApplied = true;
-  //     } else {
-  //       this.toastr.warning(res.message);
-  //     }
-  //   });
-  // }
 
   apply(item) {
     var obj = { 
@@ -82,7 +59,6 @@ export class JobListItemComponent implements OnInit, AfterViewInit {
         eligibilityCriteria: item.eligibilityCriteria, 
       },
     };
-    console.log(item.partnerLabel, 'patner');
     this.apiservice.savedJobs(obj).subscribe((res: any) => { 
       if (res.success) { 
         this.toastr.success(res.message); 
@@ -96,14 +72,32 @@ export class JobListItemComponent implements OnInit, AfterViewInit {
   handleApplyButtonClick(item) {
     if (item.partnerLabel === 'Skill Exchange Partner') {
       this.apply(item);
+      
     } else {
-      window.open(item.applyLink, '_blank');
+      // window.open(item.applyLink, '_blank');
+      this.openExternalApplyDialog(item);
+      this.appconfig.setLocalStorage('savedJobData', JSON.stringify(item));
     }
   }
   
 
+  openExternalApplyDialog(item) {
+    const dialogRef = this.mdDialog.open(this.extApply, {
+      width: '50%', 
+      height: 'auto',
+      disableClose: true, 
+    });
+    dialogRef.afterClosed().subscribe(result => {
+     
+    });
+  }
 
-  
+  redirectToApplyLink() {
+    const dataItem = JSON.parse(localStorage.getItem('savedJobData')); 
+     window.open(dataItem.applyLink, '_blank');  //open link in different tab
+  }
+ 
+
   bookMarkIcon(item) {
     item.isSelected = !item.isSelected;
     let jobParams: any = {

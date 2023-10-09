@@ -24,7 +24,6 @@
         </div>
       </mat-list-item>
 
-
       <mat-list-item
         [ngClass]="[check === 'empView' || check === 'empPost' || check === 'Viewcandidatelist' || check === 'driveSettings' || check === 'viewProfilebyEmployer' ? 'selected' : 'notSelected']"
         *ngIf='roleCode === "EMP"' [matMenuTriggerFor]="menu">
@@ -49,8 +48,6 @@
             Requirements</button>
         </mat-menu>
       </mat-list-item>
-
-
 
       <mat-list-item (click)="candidatesearch('empcandidatesearch')"
         [ngClass]="[check === 'empcandidatesearch' ? 'selected' : 'notSelected']" *ngIf='roleCode === "EMP"'>
@@ -79,7 +76,7 @@
           <!-- <span class="position-relative  left1">
             <mat-icon>keyboard_arrow_down</mat-icon>
           </span> -->
-        </div>
+        </div> 
       </mat-list-item>
 
       <mat-list-item (click)="validateClick('overallreport')"
@@ -98,7 +95,8 @@
           <em class="icon-graduation-gap "
             style="transform: rotateY(180deg);font-size: 18px;margin-left: -2px;margin-top: 0px"></em>
           <span class="headerfont" (click)="validateClick('managedrive')" mat-line *ngIf="isExpanded && !isnotShowing">Drive</span>
-          <div class="arrow">
+         
+          <div class="arrow" *ngIf="isExpanded && !isnotShowing">
             <span *ngIf="!driveIconToggle" class="position-relative left2 headerfont">
               <mat-icon>arrow_drop_down</mat-icon>
             </span>
@@ -126,7 +124,7 @@
           <em class="icon-User"></em>
           <span class="headerfont" (click)="validateClick('partnerlist')" mat-line *ngIf="isExpanded && !isnotShowing">Hiring
             Partners</span>
-          <div class="arrow">
+          <div class="arrow" *ngIf="isExpanded && !isnotShowing">
             <span *ngIf="!menuIconToggle" class="position-relative left2 headerfont">
               <mat-icon>arrow_drop_down</mat-icon>
             </span>
@@ -172,7 +170,7 @@
           <em class="icon-work-suitcase"></em>
           <span class="headerfont" (click)="validateClick('')" mat-line *ngIf="isExpanded && !isnotShowing">Open
             Jobs</span>
-          <div class="arrow">
+          <div class="arrow" *ngIf="isExpanded && !isnotShowing">
             <span *ngIf="!jobIconToggle" class="position-relative left2 headerfont">
               <mat-icon>arrow_drop_down</mat-icon>
             </span>
