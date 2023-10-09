@@ -32,7 +32,7 @@
             <span class="heading4">This Report Describes:</span>
             <p>The behavioural profile of <span><b>{{getAllBasicData?.firstname ? getAllBasicData?.firstname : ''}}</b></span> is mapped on the basis of four factors. <br />The report also covers the potential candidate’s Strengths and Development scope.</p>
             <figure>
-                <img src="/assets/images/pdfDownload/reportDescribes.png" alt="" />
+                <img src="/assets/images/pdfDownload/reportDiscribes1.svg" alt="" />
             </figure>
         </section>
         <!-- footer start -->
@@ -61,7 +61,7 @@
 
                     <div class="heading3">THE FOUR FACTORS</div>
                     <figure>
-                        <img src="/assets/images/pdfDownload/factoreimgwall.svg" alt="" />
+                        <img src="/assets/images/pdfDownload/factoreimgwall1.png" alt="" />
                     </figure>
                 </section>
             </section>
@@ -106,7 +106,7 @@
                                                         <ng-container *ngFor="let array of [0,1,2,3,4,5,6,7,8,9]; let stenIndex = index">
                                                             <li [ngStyle]="{'background-color': ((stenIndex + 1) > (10 - (skills?.stenScore ? skills?.stenScore : 0 ))) ? skills?.colourcode : ''}"></li>
                                                         </ng-container>
-                                                        <span *ngIf="skills?.stenScore > 0" class="arrowUp">
+                                                        <span  *ngIf="skills?.stenScore > 0" class="arrowUp">
                                                 <em class="icon-ArrowUp"></em>
                                             </span>
                                                     </ul>
@@ -114,7 +114,7 @@
                                             </ng-container>
                                             <div class="right d-flex justify-content-between">
                                                 <button *ngFor="let skills of competency.skills; let s = index" [ngClass]="'a' + s + 1" class="d-flex align-items-center justify-content-between a01 ng-star-inserted">{{skills?.name}}
-                                        <span [ngStyle]="{background: skills?.colourcode}">{{skills?.stenScore ? skills?.stenScore : 0}}</span>
+                                        <span class="skillsNumber" [ngStyle]="{background: skills?.colourcode}">{{skills?.stenScore ? skills?.stenScore : 0}}</span>
                                     </button>
                                             </div>
                                         </div>
@@ -166,7 +166,7 @@
 
             <div class="benchmarkInfo" style="    position: relative; top: -11px;">
                 <figure class="chart">
-                    <img src="/assets/images/behaviourmeter.svg" alt="">
+                    <img src="/assets/images/pdfDownload/newBench.svg" alt="">
                 </figure>
                 <div class="score d-flex justify-content-between flex-wrap">
                     <div class="heading5">SCORE BENCHMARK INFO</div>
@@ -231,7 +231,7 @@
                                                 <img alt="" [src]="factorsSkillsImage(skillsDetail?.name)">
                                             </figure>
                                             <div class="content">
-                                            <span style="left:-13px">{{skillsDetail?.name}}: &nbsp;</span>
+                                            <span class="skillname" style="left:-13px">{{skillsDetail?.name}}: &nbsp;</span>
                                             <ul class="paragraph-list" style="margin-top: 6px;">
                                               <li *ngFor="let item of skillsDetail?.scorebasedSkillDescription">
                                                   <img src="/assets/images/list-arrow.svg" alt=""><span  class="skillsDetail">{{item}}</span>
@@ -308,7 +308,7 @@
             min-height: 960px;">
                 <section class="strengthAreas commonStyle">
                     <figure class="scope-head d-flex align-items-center">
-                        <img src="/assets/images/STRENGTH.svg" alt="">
+                        <!-- <img src="/assets/images/STRENGTH.svg" alt=""> -->
                         <span class="heading3">STRENGTH AREAS</span>
                     </figure>
                     <p *ngIf="getAllBehaviourData">{{getAllBehaviourData?.strengthAreaDescription}}</p>
@@ -389,7 +389,7 @@
             <section class="commonHeight">
                 <section class="devScope commonStyle">
                     <figure class="scope-head d-flex align-items-center">
-                        <img src="/assets/images/DEVELOPMENT.svg" alt="">
+                        <!-- <img src="/assets/images/DEVELOPMENT.svg" alt=""> -->
                         <span class="heading3">DEVELOPMENT SCOPE</span>
                     </figure>
                     <p *ngIf="getAllBehaviourData">{{getAllBehaviourData?.developmentScopeDescription}}</p>
@@ -568,7 +568,7 @@
             <th>Description</th>
           </tr>
           <tr *ngFor="let value of desirabilitydataIndexdata">
-            <td>{{value.desirabilityLevel}}</td>
+            <td class="bias">{{value.desirabilityLevel}}</td>
             <td> {{value.range}}</td>
             <td ><div  [innerHTML]="value.description"></div></td>
           </tr>
@@ -617,7 +617,7 @@
                         <p *ngIf="getAllBehaviourData?.conclusion">{{getAllBehaviourData?.conclusion?.description}}</p>
                     </div>
 
-                    <div class="heading3">Strength Areas</div>
+                    <div class="heading3 m-l">Strength Areas</div>
                     <ng-container *ngIf="getAllBehaviourAPIDetails && getAllBehaviourAPIDetails?.strengthconclusionPoints && getAllBehaviourAPIDetails?.strengthconclusionPoints.length > 0 else noStrength">
                         <ng-container *ngFor="let conclusion of getAllBehaviourAPIDetails.strengthconclusionPoints;let s = index">
                             <div class="wrapper d-flex justify-content-between">
@@ -679,7 +679,7 @@
                     </div>
 
 
-                    <div class="heading3">DEVELOPMENT SCOPE</div>
+                    <div class="heading3 m-l">DEVELOPMENT SCOPE AREAS</div>
                     <ng-container *ngIf="getAllBehaviourAPIDetails && getAllBehaviourAPIDetails?.developmentconclusionPoints && getAllBehaviourAPIDetails?.developmentconclusionPoints.length > 0 else noImprovements">
                         <ng-container *ngFor="let conclusion of getAllBehaviourAPIDetails.developmentconclusionPoints;let d = index">
                             <div class="wrapper d-flex justify-content-between">
@@ -704,7 +704,7 @@
                                     </div>
                                     <p *ngIf="getAllBehaviourData?.conclusion">{{getAllBehaviourData?.conclusion?.description}}</p>
                                 </div>
-                                <div class="heading3">DEVELOPMENT SCOPE</div>
+                                <div class="heading3 m-l">DEVELOPMENT SCOPE AREAS</div>
                             </div>
                         </ng-container>
                     </ng-container>
