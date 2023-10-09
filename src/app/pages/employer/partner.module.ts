@@ -19,6 +19,9 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
 import { OverallReportComponent } from './overall-Report/overall-Report.component';
 import { OverallReportDetailsCardComponent } from './overall-Report/overall-Report-details-card/overall-Report-details-card.component';
 import { OverallReportMinicardDetailsComponent } from './overall-Report/overall-Report-minicard-details/overall-Report-minicard-details.component';
+import { AngularEditorModule } from '@kolkov/angular-editor';
+
+
 import { AddJobsComponent } from './add-jobs/add-jobs.component';
 import { ViewJobsComponent } from './view-jobs/view-jobs.component';
 // import { AngularEditorModule } from '@kolkov/angular-editor';
@@ -51,7 +54,7 @@ import { ActionButtonViewJobsComponent } from './view-jobs/action-button-viewJob
     ReactiveFormsModule,
     NzDropDownModule,
     NzSelectModule,
-    // AngularEditorModule
+    AngularEditorModule
   ],
 })
 export class Adminmodule {}
