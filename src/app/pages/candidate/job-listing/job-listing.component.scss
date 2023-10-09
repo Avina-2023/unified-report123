@@ -229,7 +229,7 @@
 
 .name.skill-exchange .text-overlay {
   text-align: center;
-  font: normal normal medium 8px/12px Lato; 
+  font: normal normal medium 8px/12px Lato;
   opacity: 1;
 }
 .flex-layout {
@@ -751,8 +751,16 @@
         padding-right: 3px;
       }
     }
+        .truncate-text {
+          display: inline-block;
+          max-width: 100%!important;
+          /* Adjust this value to your desired maximum width */
+          // white-space: nowrap;
+          // overflow: hidden;
+          // text-overflow: ellipsis;
+        }
   }
-  .main-card2 { 
+  .main-card2 {
     height: 245px;
     width: 48%;
     border: 1px solid #d0d0d0;
@@ -786,8 +794,16 @@
           color: #1b4e9b;
           opacity: 1;
           padding-left: 10px;
-          // padding: 0px 0px 0px 10px;
+               // padding: 0px 0px 0px 10px;
         }
+                .truncate-text {
+                  display: inline-block;
+                  max-width: 150px;
+                  /* Adjust this value to your desired maximum width */
+                  white-space: nowrap;
+                  overflow: hidden;
+                  text-overflow: ellipsis;
+                }
         img {
           width: 70px;
           height: 28px;
@@ -952,7 +968,7 @@
   // margin: 10px 0px 0px 0px;
 }
 
-.type_fulltime { 
+.type_fulltime {
   background: #1b4e9b14 0% 0% no-repeat padding-box;
     border-radius: 17px;
     width: 89px;
@@ -965,7 +981,7 @@
     // margin: 0px 0px 0px 10px;
     border: 1px solid #1B4E9B;
     padding: 1px 15px 1px 15px;
-    border-radius: 12px; 
+    border-radius: 12px;
     color: #1B4E9B;
 }
 .loation_sty{

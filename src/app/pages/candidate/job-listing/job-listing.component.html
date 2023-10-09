@@ -1,4 +1,4 @@
-<app-common-banner [name]="url"></app-common-banner> 
+<app-common-banner [name]="url"></app-common-banner>
 <div class="flex-layout">
   <div class="job_board">
     <!-- <div class="find_job banner_header"> -->
@@ -8,8 +8,8 @@
         <h5 class="findtext"> &nbsp; > &nbsp;Find Jobs</h5>
       </div> -->
     <br>
-   
-   
+
+
   <div class="button-container">
     <button class="custom-button allbtn" [ngClass]="{'active': activeButton === 'all'}"
       (click)="setActiveButton('all')">All</button>
@@ -18,7 +18,7 @@
     <button class="custom-button" [ngClass]="{'active': activeButton === 'Internships'}"
       (click)="setActiveButton('Internships')">Internships</button>
   </div>
-    
+
     <br>
 
   <div class="search-bar">
@@ -44,14 +44,14 @@
     <div class="results_dash">
       <div> Results Showing ({{this.totallength}})</div>
       <div class="arrow_grid">
-        <div class="sort"> 
+        <div class="sort">
           <p class="sortby_text">Sort by:</p>
-          <mat-select class="panelPosition mat-select-arrow-wrapper " appearance="outline" [(ngModel)]="sortData" 
-            (selectionChange)="getJobList()" placeholder="Relevance"> 
+          <mat-select class="panelPosition mat-select-arrow-wrapper " appearance="outline" [(ngModel)]="sortData"
+            (selectionChange)="getJobList()" placeholder="Relevance">
             <mat-option value="relevance"> Relevance </mat-option>
             <mat-option value="recently posted"> Recently Posted </mat-option>
-          </mat-select> 
-        </div> 
+          </mat-select>
+        </div>
 
          <div class="icon-container">
            <div class="grid-container" [ngClass]="{'grid_2-selected': grid2Selected}" (click)="toggleGrid2()">
@@ -59,7 +59,7 @@
              <span class="icon-list_view grid_2" matTooltip="List View" matTooltipClass="custom-tooltip"></span>
            </div>
          </div>
-      </div> 
+      </div>
     </div>
 
     <div class="main2">
@@ -78,36 +78,38 @@
 
             <div [disabled]="!item.yearofPassout.includes(removeduplicate2)" (click)="item.yearofPassout.includes(removeduplicate2) ? gotojob(item) : customalert(item)"
              [ngClass]="{'blurcard': !item.yearofPassout.includes(removeduplicate2)&&item.partnerLabel}">
-              <div class="minicard-header"> 
+              <div class="minicard-header">
                 <div class="company-image">
                   <img [src]="item.companyLogo ? item.companyLogo : '../../../../assets/images/bottomCircle.png'" alt="" />
-                </div> 
-                <div class="minicard-heading"> 
-                  <span class="head2">{{item.company}}</span> 
-                  <div class="sub-details"> 
-                     <div> 
+                </div>
+                <div class="minicard-heading">
+<!-- <span matTooltip="{{ item.company }}" class="head2">{{ item.company }}</span> -->
+<span matTooltip="{{ item.company }}" class="head2 truncate-text">
+{{ item.company }}</span>
+                  <div class="sub-details">
+                     <div>
                        <mat-icon class="locicon">location_on</mat-icon>
                      </div>
-                    <div class="loation_sty"> 
+                    <div class="loation_sty">
                       <ng-container *ngFor="let location of item.jobLocation; let last = last"> {{ location }}{{ !last ? ', ' : '' }} </ng-container>
                     </div>
                   </div>
                 </div>
               </div>
               <div class="main-sub">
-                <div class="sub-details-1"> 
-                  <div> 
+                <div class="sub-details-1">
+                  <div>
                     <!-- <div class='compTitle'><strong>{{ jobDetails.jobRole ? jobDetails.jobRole : jobDetails.jobTitle }}</strong> -->
                     <span class="head1 rolebold" [matTooltip]="item.jobRole ? item.jobRole : item.jobTitle">{{item.jobRole ? item.jobRole : item.jobTitle}}</span>
-                  </div> 
-                </div> 
+                  </div>
+                </div>
                 <div class="box">
                   <div>
                     <span class="jobTTyp">#{{item.workType}}</span>
                   </div>
-                  <div class="type_fulltime"> 
-                    <span class="icon-full_time"></span> {{item.jobType}} 
-                  </div> 
+                  <div class="type_fulltime">
+                    <span class="icon-full_time"></span> {{item.jobType}}
+                  </div>
                 </div>
                 <div class="degree">
                   <span class="icon-graduation-cap-solid"></span>
@@ -131,9 +133,9 @@
 
               <div class="misc_save" (click)="bookMarkIcon(item)"  [ngClass]="{'blurcard disabled-card': !item.yearofPassout.includes(removeduplicate2) && item.partnerLabel}">
                 <div class="save">
-                  <mat-icon [ngClass]="item.isSelected ? 'saved_icon' : 'unsaved_icon'"> 
-                    {{item.isSelected ? 'bookmark' : 'bookmark_border'}} 
-                  </mat-icon><span class="book-icon"></span> 
+                  <mat-icon [ngClass]="item.isSelected ? 'saved_icon' : 'unsaved_icon'">
+                    {{item.isSelected ? 'bookmark' : 'bookmark_border'}}
+                  </mat-icon><span class="book-icon"></span>
                 </div>
               </div>
             </div>
