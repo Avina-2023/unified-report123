@@ -1,14 +1,3 @@
-// import { Component, OnInit } from '@angular/core'; 
-// import { ColDef, GridApi } from 'ag-grid-community';
-// import { GridOptions } from '@ag-grid-enterprise/all-modules';
-// import { ApiService } from 'src/app/services/api.service';
-// import * as moment from 'moment';
-// import { ActionButtonViewJobsComponent } from './action-button-viewJobs/action-button-viewJobs.component';
-// import { Subscription } from 'rxjs';
-// import { ToastrService } from 'ngx-toastr';
-// import { MatNoDataRow, MatTableDataSource } from '@angular/material/table';
-// import { log } from 'console';
-
 import { Component, ContentChild, OnInit, ViewChild } from '@angular/core';
 import { ApiService } from '../../../services/api.service';
 import { ToastrService } from 'ngx-toastr';
@@ -21,6 +10,8 @@ import { GridOptions } from '@ag-grid-enterprise/all-modules';
 import { Subscription } from 'rxjs';
 import { SentDataToOtherComp } from 'src/app/services/sendDataToOtherComp.service';
 import * as moment from 'moment';
+import { ActionButtonViewJobsComponent } from './action-button-viewJobs/action-button-viewJobs.component';
+
 
 interface Tab {
   title: string;
@@ -89,7 +80,16 @@ export class ViewJobsComponent implements OnInit {
   constructor(
     private ApiService: ApiService,
     private toastr: ToastrService,
-  ) { }
+  ) {
+    this.gridOptions = <GridOptions>{
+      context: {
+        componentParent: this,
+      },
+      frameworkComponents: {
+        moreOptions: ActionButtonViewJobsComponent,
+      },
+    };
+   }
 
   ngOnInit() {
     this.tabledata();
@@ -274,6 +274,16 @@ export class ViewJobsComponent implements OnInit {
           return moment(params.value).format('MMM D, yy');
         },
       },
+      // {
+      //   headerName: 'Actions',
+      //   field: '',
+      //   minWidth: 150,
+      //   cellRenderer: 'moreOptions',
+      //   //  onCellClicked: this.sendJobData(),
+      //   suppressColumnsToolPanel: true,
+      //   filter: false,
+      //   pinned: 'right',
+      // },
     ];
 
     this.rowModelType = 'serverSide';
@@ -330,11 +340,10 @@ export class ViewJobsComponent implements OnInit {
                 rowCount: 0,
               });
               this.gridApi.showNoRowsOverlay();
-              console.log('data not found');
+              // console.log('data not found');
             } else {
               this.partnerListAgData = data1 && data1.data ? data1.data : [];
-              console.log('data found');
-              
+              // console.log('data found');
               if (this.partnerListAgData.length > 0) {
                 this.pageRowCount =
                   data1 && data1.totalCount ? data1.totalCount : 0;
