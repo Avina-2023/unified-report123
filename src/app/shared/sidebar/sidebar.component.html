@@ -83,7 +83,12 @@
         [ngClass]="[check === 'overallReports' ? 'selected' : 'notSelected']"
         *ngIf='roleCode === "SADM" || roleCode === "OADM" || roleCode === "ADM" || roleCode === "HR" || roleCode === "ISADM" || roleCode === "IADM"'>
         <div class="sidebar-admin">
-          <em class="icon-dashboard_grey"></em>
+          <!-- <em class="icon-Drive"></em>
+          <em class="icon-Document"></em>
+          <em class="icon-GeneratedResults"></em>
+          <em class="icon-FileEdit"></em>
+          <em class="icon-Clipboard"></em> -->
+          <em class="icon-Document"></em>
           <span class="headerfont" mat-line *ngIf="isExpanded && !isnotShowing">OverAll-Reports</span>
         </div>
       </mat-list-item>
