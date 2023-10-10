@@ -100,8 +100,9 @@ import { ToastrService } from 'ngx-toastr';
 import { ApiService } from 'src/app/services/api.service';
 import { environment } from 'src/environments/environment';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-// import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { NzSelectSizeType } from 'ng-zorro-antd/select';
+// import { AngularEditorConfig } from '@kolkov/angular-editor';
+
 
 @Component({
   selector: 'app-emp-upload-postrequirment',
@@ -113,14 +114,10 @@ export class EmpUploadPostrequirmentComponent implements OnInit {
   fileName: '';
   userdetails: any;
   IsToFeildEnable = true;
-  selectedOption: string;
+  selectedOption: string = 'jobs';
   selectedRangeOption: string = 'fixed';
-
-
   jobForm: FormGroup;
   formGroups: FormGroup[] = [];
-
-
   submitted: boolean = false;
 
   //Multiselect Dropdown
@@ -133,37 +130,39 @@ export class EmpUploadPostrequirmentComponent implements OnInit {
   //Rich Text Editor
   htmlContent = '';
   htmlContent_1 = '';
+
+
   // config: AngularEditorConfig = {
   //   editable: true,
   //   spellcheck: true,
-  //   height: '100px',
-  //   minHeight: '10px',
-  //   placeholder: 'Enter text here...',
+  //   minHeight: '100px',
+  //   maxHeight: '100px',
+  //   placeholder: 'Type here...',
   //   translate: 'no',
-  //   defaultParagraphSeparator: 'p',
+  //   sanitize: false,
+  //   toolbarPosition: 'top',
   //   defaultFontName: 'Arial',
-  //   toolbarHiddenButtons: [
-  //     ['bold']
-  //   ],
   //   customClasses: [
   //     {
-  //       name: "quote",
-  //       class: "quote",
+  //       name: 'quote',
+  //       class: 'quote',
   //     },
   //     {
   //       name: 'redText',
   //       class: 'redText'
   //     },
   //     {
-  //       name: "titleText",
-  //       class: "titleText",
-  //       tag: "h1",
+  //       name: 'titleText',
+  //       class: 'titleText',
+  //       tag: 'h1',
   //     },
   //   ]
   // };
+
+
   fixed: any;
   range: any;
-  yearofPassing: string[];
+  yearofPassout: string[];
   degree: string;
   graduation: string;
   degreeOptions = [
@@ -182,6 +181,9 @@ export class EmpUploadPostrequirmentComponent implements OnInit {
   ugCourses: any;
   ugDegree: any;
   pgDegree: any;
+  startrange: any;
+  endrange: any;
+  stipend: any;
 
   constructor(private apiService: ApiService, private toastr: ToastrService, private fb: FormBuilder) {
     this.selectedOption = 'jobs';
@@ -204,20 +206,22 @@ export class EmpUploadPostrequirmentComponent implements OnInit {
         'value': 'Angular'
       }
     ];
-    this.yearofPassing = ['2013', '2014', '2015'];
+    this.yearofPassout = ['2013', '2014', '2015'];
     this.jobForm = this.fb.group({
       jobRole: ['', Validators.required],
       jobTitle: ['', Validators.required],
       jobLocation: ['', Validators.required],
       jobType: ['', Validators.required],
-      jobDescription: ['', Validators.required],
-      jobRequirements: ['', Validators.required],
+      description: ['', Validators.required],
+      requirement: ['', Validators.required],
       ctcOption: ['', Validators.required],
       fixed: [''],
-      range: [''],
+      startrange: [''],
+      endrange: [''],
+      stipend: [''],
       lastDatetoApply: ['', Validators.required],
-      keySkills: [this.multipleValue, Validators.required],
-      yearofPassing: [this.yearofPassingValue, Validators.required],
+      skillSet: [this.multipleValue, Validators.required],
+      yearofPassout: [this.yearofPassingValue, Validators.required],
       educationGroups: this.fb.array([this.createEducationGroup()])
     });
     this.formGroups = this.jobForm.get('educationGroups')['controls'];
@@ -308,11 +312,11 @@ export class EmpUploadPostrequirmentComponent implements OnInit {
     currentFormGroup.get('degree').setValue(null);
     currentFormGroup.get('course').setValue(null);
     currentFormGroup.get('specialization').setValue(null);
-  
+
     if (selectedGraduation === null) {
       return;
     }
-  
+
     if (selectedGraduation === 'SSLC' || selectedGraduation === 'HSC' || selectedGraduation === 'Any Graduation' || selectedGraduation === 'Diploma') {
       this.degreeOptions = [
         { "id": "0", "specification_name": "Any Degree / Graduation" },
@@ -329,9 +333,8 @@ export class EmpUploadPostrequirmentComponent implements OnInit {
               ? 'X Std'
               : 'XII Std'
       );
-      
     }
-  
+
     if (selectedGraduation === 'Any Graduation' || selectedGraduation === 'SSLC' || selectedGraduation === 'HSC') {
       currentFormGroup.get('specialization').clearValidators();
       currentFormGroup.get('specialization').updateValueAndValidity();
@@ -339,7 +342,7 @@ export class EmpUploadPostrequirmentComponent implements OnInit {
       currentFormGroup.get('specialization').setValidators(Validators.required);
       currentFormGroup.get('specialization').updateValueAndValidity();
     }
-  
+
 
     if (selectedGraduation === 'UG' || selectedGraduation === 'PG') {
       currentFormGroup.get('degree').setValidators(Validators.required);
@@ -348,16 +351,16 @@ export class EmpUploadPostrequirmentComponent implements OnInit {
       currentFormGroup.get('degree').clearValidators();
       currentFormGroup.get('degree').updateValueAndValidity();
     }
-  
+
     if (selectedGraduation) {
-     // currentFormGroup.get('degree').setValue(null);
+      // currentFormGroup.get('degree').setValue(null);
       currentFormGroup.get('specialization').setValue([]);
     }
-  
+
     if (selectedGraduation === 'UG') {
       this.degreeOptions = this.ugDegree;
     }
-  
+
     if (selectedGraduation === 'PG') {
       this.degreeOptions = this.pgDegree;
     }
@@ -379,41 +382,41 @@ export class EmpUploadPostrequirmentComponent implements OnInit {
     // currentFormGroup.get('specialization').setValidators(Validators.required);
     // currentFormGroup.get('specialization').updateValueAndValidity();
   }
-  
+
 
   // onDegreeChange(selectedDegree: string, index: number) {
   //   const currentFormGroup = this.formGroups[index];
-  
+
   //   if (selectedDegree === null) {
   //     currentFormGroup.get('course').setValue(null);
   //   }
-  
+
   //   // Handle additional logic if needed...
   // }
 
   onDegreeChange(selectedCourse: string, index: number) {
     const currentFormGroup = this.formGroups[index];
-  
+
     // Handle course change logic...
     // if (selectedCourse === 'Any Course' || selectedCourse === null) {
     //   currentFormGroup.get('specialization').setValue(null);
     //   currentFormGroup.get('specialization').clearValidators();
     //   currentFormGroup.get('specialization').updateValueAndValidity();
     // }
-  
+
     //if (selectedCourse === 'Pick From the List') {
-      // Additional logic based on the selected course...
-      
-  
-     
-   // }
+    // Additional logic based on the selected course...
+
+
+
+    // }
   }
-  
+
 
 
   // isSelectDisabled(index: number): boolean {
   //   const currentFormGroup = this.formGroups[index];
-  
+
   //   if ((currentFormGroup.get('graduation').value === 'UG' || currentFormGroup.get('graduation').value === 'PG') &&
   //     currentFormGroup.get('degree').value !== 'Any Degree / Graduation' &&
   //     currentFormGroup.get('degree').value &&
@@ -423,47 +426,95 @@ export class EmpUploadPostrequirmentComponent implements OnInit {
   //     return (currentFormGroup.get('graduation').value !== 'Diploma' && currentFormGroup.get('graduation').value !== 'Phd');
   //   }
   // }
-  
+
   iscourseDisabled(index: number): boolean {
     const currentFormGroup = this.formGroups[index];
-  
-    if (currentFormGroup.get('graduation').value === 'Diploma' || currentFormGroup.get('graduation').value === 'UG' || currentFormGroup.get('graduation').value === 'PG'){
+
+    const selectedValue = currentFormGroup.get('specialization')?.value;
+    if (selectedValue && selectedValue.includes('Any Specialization')) {
+      const clearedValues = selectedValue.filter(value => value === 'Any Specialization');
+      currentFormGroup.get('specialization')?.patchValue(clearedValues, { emitEvent: false });
+    }
+
+    if (currentFormGroup.get('graduation').value === 'Diploma' || currentFormGroup.get('graduation').value === 'UG' || currentFormGroup.get('graduation').value === 'PG') {
       return false; // Do not apply disabled
     } else {
       return true; // Apply disabled
     }
   }
-  
+
   isdegreeDisabled(index: number): boolean {
     const currentFormGroup = this.formGroups[index];
-  
+
     if (currentFormGroup.get('graduation').value === 'UG' || currentFormGroup.get('graduation').value === 'PG') {
       return false; // Do not apply disabled
     } else {
       return true; // Apply disabled
     }
   }
-  
-  
+
+  ctcChange() {
+    const fixedControl = this.jobForm.get('fixed');
+    const startrangeControl = this.jobForm.get('startrange');
+    const endrangeControl = this.jobForm.get('endrange');
+    const stipendControl = this.jobForm.get('stipend');
+    const ctcOptionControl = this.jobForm.get('ctcOption');
+    if (this.selectedOption === 'jobs') {
+      stipendControl.clearValidators();
+      stipendControl.setValue(null);
+      stipendControl.updateValueAndValidity();
+      ctcOptionControl.setValidators(Validators.required);
+      ctcOptionControl.updateValueAndValidity();
+      this.selectedRangeOption = 'fixed';
+    }
+    if (this.selectedOption === 'internships') {
+      stipendControl.setValidators(Validators.required);
+      stipendControl.updateValueAndValidity();
+      fixedControl.clearValidators();
+      fixedControl.setValue(null);
+      fixedControl.updateValueAndValidity();
+
+      startrangeControl.clearValidators();
+      startrangeControl.setValue(null);
+      startrangeControl.updateValueAndValidity();
+
+      endrangeControl.clearValidators();
+      endrangeControl.setValue(null);
+      endrangeControl.updateValueAndValidity();
+
+      ctcOptionControl.clearValidators();
+      ctcOptionControl.setValue(null);
+      ctcOptionControl.updateValueAndValidity();
+    }
+  }
+
+
   onCtcOptionChange() {
     const fixedControl = this.jobForm.get('fixed');
-    const rangeControl = this.jobForm.get('range');
-
+    const startrangeControl = this.jobForm.get('startrange');
+    const endrangeControl = this.jobForm.get('endrange');
+    const stipendControl = this.jobForm.get('stipend');
     if (this.selectedRangeOption === 'fixed') {
       fixedControl.setValidators(Validators.required);
       fixedControl.setValue(this.fixed); // Set the value of the selected control
-      rangeControl.clearValidators();
-      rangeControl.setValue(null); // Set the opposite control's value to null
+      startrangeControl.clearValidators();
+      endrangeControl.clearValidators();
+      startrangeControl.setValue(null); // Set the opposite control's value to null
+      endrangeControl.setValue(null);
     } else if (this.selectedRangeOption === 'range') {
-      rangeControl.setValidators(Validators.required);
-      rangeControl.setValue(this.range); // Set the value of the selected control
+      startrangeControl.setValidators(Validators.required);
+      endrangeControl.setValidators(Validators.required);
+      startrangeControl.setValue(this.startrange); // Set the value of the selected control
+      endrangeControl.setValue(this.endrange);
       fixedControl.clearValidators();
       fixedControl.setValue(null); // Set the opposite control's value to null
     }
-
+    
     fixedControl.updateValueAndValidity();
-    rangeControl.updateValueAndValidity();
+    startrangeControl.updateValueAndValidity();
+    endrangeControl.updateValueAndValidity();
   }
+
 
 
   onSubmit() {
@@ -473,10 +524,10 @@ export class EmpUploadPostrequirmentComponent implements OnInit {
         jobFormValues: this.jobForm.value,
         dynamicFormData: this.formGroups.map(formGroup => formGroup.value)
       };
-  
+
       // Log or send consolidatedData to your backend
       console.log(consolidatedData);
-  
+
       // Clear the form or navigate to another page if needed
       //this.jobForm.reset();
       //this.formGroups.forEach(formGroup => formGroup.reset());
@@ -504,7 +555,7 @@ console.log('ngForm Status:', this.jobForm.status);*/
       this.toastr.warning('Please fill in all required fields.', 'Form Validation Error');
     }
   }
-  
+
 
 
 }

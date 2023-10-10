@@ -1,0 +1,100 @@
+.heading{
+  padding: 20px 0px 20px 30px;
+  color: #000000;
+  font-size: 19px;
+}
+.main-card{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.main{
+    width: 265px;
+    padding: 20px 20px 20px 20px;
+.main-2{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    .title-count{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        .title{
+            color: #343434;
+            font-size: 14px;
+        }
+        .count{
+            color: #1B4E9B;
+            font-size: 21px;
+            font-weight: 600;
+        }
+    }
+    .total-job-img{
+       img{
+        width: 45px;
+        height: 45px;
+       }
+    }
+}
+}
+
+.tableheader{
+  padding: 20px 0px 0px 0px;
+  .tab-name{
+    padding-right: 4px;
+  }
+ .tab-count{
+   padding: 1px 12px 1px 12px;
+   margin: 3px;
+   border-radius: 7px;
+   color: #ffffff;
+   background-color: #848484;
+  }
+}
+
+::ng-deep.mat-tab-label.mat-tab-label-active:not(.mat-tab-disabled),
+::ng-deep.mat-tab-label.mat-tab-label-active.cdk-keyboard-focused:not(.mat-tab-disabled) {
+  color: #1B4E9B;
+  opacity: 1;
+}
+
+// ::ng-deep .mat-tab-label[aria-selected="true"][aria-posinset="2"] .mat-tab-label-content {
+//   color: #FFB74D;
+//   opacity: 1;
+// }
+
+::ng-deep .mat-tab-label[aria-selected="true"][aria-posinset="2"] .mat-tab-label-content {
+  color: #49AE31;
+}
+
+::ng-deep .mat-tab-label[aria-selected="true"][aria-posinset="3"] .mat-tab-label-content {
+  color: #27BBEE;
+}
+
+::ng-deep .mat-tab-label[aria-selected="true"][aria-posinset="4"] .mat-tab-label-content {
+  color: #EF2917;
+}
+
+// ::ng-deep .mat-tab-label[aria-selected="true"][aria-posinset="5"] .mat-tab-label-content {
+//   color: #49AE31;
+// }
+
+::ng-deep .navyblue .mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar  {
+  background-color: #1B4E9B;
+}
+// ::ng-deep .yellow .mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar  {
+//   background-color: #FFB74D;
+// }
+::ng-deep .green .mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar  {
+  background-color: #49AE31;
+}
+::ng-deep .lightblue .mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar  {
+  background-color: #27BBEE;
+}
+::ng-deep .red .mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar  {
+  background-color: #EF2917;
+}
+// ::ng-deep .green .mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar  {
+//   background-color: #49AE31;
+// }
+

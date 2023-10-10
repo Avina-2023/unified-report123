@@ -183,12 +183,19 @@ export class BehaviouralPdfReportDownloadComponent implements OnInit {
     pdf().from(element).set(opt).toPdf().get('pdf').then(function (pdf) {
       var number_of_pages = pdf.internal.getNumberOfPages()
       var pdf_pages = pdf.internal.pages
+      var imgData = document.getElementById('footerimg')
       for (var i = 1; i < pdf_pages.length; i++) {
           pdf.setPage(i)
           pdf.setFontSize(9);
           pdf.setTextColor(150);
-          // for right align
-          // pdf.text('Page ' + i + ' of ' + number_of_pages, (pdf.internal.pageSize.getWidth() - 0.90 ), (pdf.internal.pageSize.getHeight()-0.35));
+         var imgWidth = pdf.internal.pageSize.getWidth()-2;
+         var imgHeight =0.6;
+         if(i!==1){
+          pdf.addImage(imgData, 'JPEG', 0.5, pdf.internal.pageSize.getHeight() - imgHeight, imgWidth, imgHeight,{
+            height:'20px;'
+          });
+         }
+
 
           var textdata = 'Page ' +( i+1 - 1) + ' of ' + (number_of_pages);
           pdf.text(textdata, (pdf.internal.pageSize.getWidth() - 1.15 ), (pdf.internal.pageSize.getHeight()-0.30));

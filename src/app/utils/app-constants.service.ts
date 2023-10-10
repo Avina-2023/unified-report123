@@ -80,8 +80,14 @@ export const APP_CONSTANTS = {
       PARTNERENQUIRY: '/auth/partner/partnerenquiry',
       REQUIRMENT: 'auth/partner/jobrequirment',
       UPLOADREQUIRMENT: 'auth/partner/uploadpostrequirment',
+      ADDOPENJOBS: '/auth/partner/addopenjobs',
+      VIEWOPENJOBS: '/auth/partner/viewopenjobs',
     },
-    OVERALLREPORTS:{
+    // OPENJOBS: {
+    //   HOME: '/auth/openjobs',
+    //   // VIEWJOBS: 'auth/',
+    // },
+    OVERALLREPORTS: {
       HOME: '/auth/overall-reports',
       //OVERALLREPORTS: '/auth/report/overallreports'
     },
@@ -97,7 +103,7 @@ export const APP_CONSTANTS = {
       HOME: '/auth/dashboard',
       PROFILE: '/auth/dashboard/profile',
       CHANGEPWD: '/auth/dashboard/changePwd',
-      CANDIDATESEARCH: '/auth/dashboard/candidatesearch'
+      CANDIDATESEARCH: '/auth/dashboard/candidatesearch',
     },
     EMPJOBS: {
       REQUIRMENT: 'auth/jobrequirment',
@@ -169,8 +175,15 @@ export const APP_CONSTANTS = {
       PARTNERENQUIRY: 'partnerenquiry',
       REQUIRMENT: 'jobrequirment',
       UPLOADREQUIRMENT: 'uploadpostrequirment',
+      ADDOPENJOBS: 'addopenjobs',
+      VIEWOPENJOBS: 'viewopenjobs',
     },
-    OVERALLREPORTS:{
+    // OPENJOBS: {
+    //   HOME: 'openjobs',
+    //   ADDJOBS: 'addjobs',
+    //   // VIEWJOBS: 'viewjobs',
+    // },
+    OVERALLREPORTS: {
       HOME: 'overall-reports',
       //OVERALLREPORTS: 'overallreports'
     },
@@ -194,7 +207,7 @@ export const APP_CONSTANTS = {
       POSTREQUIRMENT: 'postrequirment',
       REQUIRMENT: 'jobrequirment',
       // REQUIRMENT:'jobrequirment'
-      CANDIDATESEARCH: 'candidatesearch'
+      CANDIDATESEARCH: 'candidatesearch',
     },
   },
 };

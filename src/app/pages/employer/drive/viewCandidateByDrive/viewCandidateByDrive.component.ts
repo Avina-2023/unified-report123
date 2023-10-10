@@ -244,7 +244,7 @@ export class ViewCandidateByDriveComponent implements OnInit {
       {
         headerName: 'Status',
         field: 'jobStatus',
-        minWidth: 165,
+        minWidth: 195,
         filter: 'agTextColumnFilter',
         chartDataType: 'category',
         aggFunc: 'sum',

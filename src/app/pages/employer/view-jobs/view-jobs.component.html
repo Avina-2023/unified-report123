@@ -1,0 +1,104 @@
+<div class="heading">View Jobs</div>
+
+<div class="main-card">
+  <mat-card class="main">
+    <div class="main-2">
+      <div class="title-count">
+        <div class="title">No of Jobs</div>
+        <div class="count">100</div>
+      </div>
+      <div class="total-job-img">
+        <img src="../../../../assets/images/job-bags.png"/>
+      </div>
+    </div>
+  </mat-card>
+  <mat-card class="main">
+    <div class="main-2">
+      <div class="title-count">
+        <div class="title">No of Jobs Approved</div>
+        <div class="count">100</div>
+      </div>
+      <div class="total-job-img">
+        <img src="../../../../assets/images/green-checkk.png"/>
+      </div>
+    </div>
+  </mat-card>
+  <mat-card class="main">
+    <div class="main-2">
+      <div class="title-count">
+        <div class="title">No of Jobs In Pending</div>
+        <div class="count">100</div>
+      </div>
+      <div class="total-job-img">
+        <img src="../../../../assets/images/job-pendingg.png"/>
+      </div>
+    </div>
+  </mat-card>
+  <mat-card class="main">
+    <div class="main-2">
+      <div class="title-count">
+        <div class="title">No of Rejected Jobs</div>
+        <div class="count">100</div>
+      </div>
+      <div class="total-job-img">
+        <img src="../../../../assets/images/rejected.png"/>
+      </div>
+    </div>
+  </mat-card>
+</div>
+
+
+<div class="tableheader" [ngClass]="dynclass">
+  <mat-tab-group class="mattab" (selectedIndexChange)="onTabChange($event)">
+    <mat-tab *ngFor="let tab of tabs;  let i = index">
+      <ng-template mat-tab-label>
+        <span class="tab-name">{{ tab.title }}</span>
+        <div>
+          <span class="tab-count" [style.background-color]="active == i ? icncolor :  null">
+            <span *ngIf="tab.title == 'All'"> 100 </span>
+            <span *ngIf="tab.title == 'Approved'"> 100 </span>
+            <span *ngIf="tab.title == 'Pending'"> 100 </span>
+            <span *ngIf="tab.title == 'Rejected'"> 100 </span>
+          </span>
+        </div>
+      </ng-template>
+    </mat-tab>
+  </mat-tab-group>
+</div>
+
+
+<div class="ag-grid">
+  <ag-grid-angular 
+  style="width: 100%; height: 100%;"
+   class="ag-theme-alpine" 
+   [gridOptions]="gridOptions"
+    [columnDefs]="columnDefs" 
+    [defaultColDef]="defaultColDef" 
+    [masterDetail]="masterDetail" 
+    [overlayNoRowsTemplate]="overlayNoRowsTemplate" 
+    [rowData]="filteredRowData" [enableRangeSelection]="true"
+    [tooltipShowDelay]="0" 
+    [animateRows]="true" 
+    headerHeight="45" 
+    rowHeight="45" 
+    [suppressRowClickSelection]="true"
+    [suppressRowTransform]="true" 
+    [suppressPaginationPanel]="true"
+    [rowSelection]="rowSelection" 
+    [pivotPanelShow]="'always'" 
+    [sideBar]="false"
+    (gridReady)="onGridReady($event)" 
+    [rowModelType]="rowModelType" 
+    [maintainColumnOrder]="true"
+    [cacheBlockSize]="cacheBlockSize"  
+    (selectionChanged)="onSelectionChanged($event)"
+    [suppressAggFuncInHeader]="true" 
+    [suppressColumnVirtualisation]="true" 
+    [autoGroupColumnDef]="autoGroupColumnDef"
+    [serverSideStoreType]="serverSideStoreType" 
+    [pagination]="true" 
+    [paginationPageSize]="10" 
+    [sideBar]="sideBar"
+    allColumns="true">
+  </ag-grid-angular>
+</div>

@@ -10,21 +10,28 @@ import { StylePaginatorDirective } from './partner-list/style-paginator.directiv
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PartnerEnquiriesComponent } from './partner-enquiries/partner-enquiries.component';
 import { MoreOptionsComponent } from './partner-list/more-options/more-options.component';
-import {EmpRequirmentsComponent} from './emp-requirments/emp-requirments.component'
-import {EmpPostrequirmentsComponent} from './emp-postrequirments/emp-postrequirments.component';
+import { EmpRequirmentsComponent } from './emp-requirments/emp-requirments.component';
+import { EmpPostrequirmentsComponent } from './emp-postrequirments/emp-postrequirments.component';
 import { MaterialModule } from 'src/app/material/material.module';
-import {EmpUploadPostrequirmentComponent} from './emp-upload-postrequirment/emp-upload-postrequirment.component'
+import { EmpUploadPostrequirmentComponent } from './emp-upload-postrequirment/emp-upload-postrequirment.component';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { OverallReportComponent } from './overall-Report/overall-Report.component';
 import { OverallReportDetailsCardComponent } from './overall-Report/overall-Report-details-card/overall-Report-details-card.component';
 import { OverallReportMinicardDetailsComponent } from './overall-Report/overall-Report-minicard-details/overall-Report-minicard-details.component';
+
+
+import { AddJobsComponent } from './add-jobs/add-jobs.component';
+import { ViewJobsComponent } from './view-jobs/view-jobs.component';
 // import { AngularEditorModule } from '@kolkov/angular-editor';
+import { ActionButtonViewJobsComponent } from './view-jobs/action-button-viewJobs/action-button-viewJobs.component';
 
 @NgModule({
   declarations: [
     AddPartnerComponent,
     PartnerListComponent,
+    AddJobsComponent,
+    ViewJobsComponent,
     StylePaginatorDirective,
     PartnerEnquiriesComponent,
     MoreOptionsComponent,
@@ -33,8 +40,8 @@ import { OverallReportMinicardDetailsComponent } from './overall-Report/overall-
     EmpUploadPostrequirmentComponent,
     OverallReportComponent,
     OverallReportDetailsCardComponent,
-    OverallReportMinicardDetailsComponent
-
+    OverallReportMinicardDetailsComponent,
+    ActionButtonViewJobsComponent
   ],
   imports: [
     CommonModule,
@@ -46,7 +53,7 @@ import { OverallReportMinicardDetailsComponent } from './overall-Report/overall-
     ReactiveFormsModule,
     NzDropDownModule,
     NzSelectModule,
-    // AngularEditorModule
+    
   ],
 })
-export class Adminmodule { }
+export class Adminmodule {}
