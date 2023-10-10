@@ -738,6 +738,11 @@
       padding: 0px 0px 0px 20px;
       margin: 15px 0px 0px 0px;
     }
+        .truncate-text {
+          display: inline-block;
+          max-width: 100% !important;
+
+        }
     .degree {
       // padding-left: 20px;
       white-space: nowrap;
@@ -752,6 +757,7 @@
         color: #848484;
         padding-right: 3px;
       }
+
     }
   }
   .main-card2 {
@@ -801,6 +807,14 @@
           padding-left: 10px;
           // padding: 0px 0px 0px 10px;
         }
+                .truncate-text {
+                  display: inline-block;
+                  max-width: 150px;
+                  /* Adjust this value to your desired maximum width */
+                  white-space: nowrap;
+                  overflow: hidden;
+                  text-overflow: ellipsis;
+                }
         img {
           width: 70px;
           height: 28px;
