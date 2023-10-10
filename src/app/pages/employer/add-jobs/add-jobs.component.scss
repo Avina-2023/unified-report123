@@ -1,0 +1,292 @@
+.body {
+  padding-bottom: 20px;
+  position: relative;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    left: 0;
+    z-index: 0;
+  }
+
+  &::before {
+    background-color: #1B4E9B;
+    top: 0;
+    height: 20%;
+  }
+
+  &::after {
+    background-color: #f2f2f2;
+    bottom: 0;
+    height: 80%;
+  }
+}
+
+.partnerCardTitle {
+  margin: 0px -16px !important;
+
+  p {
+    padding: 6px 40px;
+  }
+}
+
+.subBody {
+  padding-bottom: 75px;
+  position: relative;
+  z-index: 1;
+}
+
+.title {
+  left: 12px;
+  position: relative;
+  color: #FFFFFF;
+  padding: 15px;
+  opacity: 0.8;
+  margin-bottom: 0px;
+  font-size: 20px !important;
+  font-weight: 100 !important;
+}
+
+.partnerCardBody {
+  display: flex;
+  justify-content: space-around;
+  padding: 20px;
+
+  .job_title {
+    font: normal normal bold 16px/21px Roboto;
+  }
+
+  .partnerCard {
+    width: 99%;
+    border-radius: 9px;
+
+    .cardValue {
+      .descstyle {
+        height: 86px;
+      }
+    }
+  }
+
+  ::ng-deep .mat-form-field-appearance-outline .mat-form-field-infix {
+    padding: 4px 0 10px 0 !important;
+  }
+}
+
+.primaryWrapper {
+  margin-top: 20px !important;
+  display: flex;
+  position: relative;
+
+  .heading {
+    position: absolute;
+    left: 20px;
+    font-size: 15px;
+    font-weight: 600;
+    top: -12px;
+    background-color: #FFFFFF;
+    padding: 3px 10px;
+  }
+
+  .left {
+    width: 49%;
+
+    .inputContainer {
+      label {
+        display: block;
+        color: #262626;
+        font-size: 12px;
+        font-weight: bold;
+        margin-bottom: 0.5em;
+
+        span {
+          color: red;
+        }
+      }
+    }
+  }
+
+  .right {
+    width: 49%;
+
+    .inputContainer {
+      label {
+        display: block;
+        color: #262626;
+        font-size: 12px;
+        font-weight: bold;
+        margin-bottom: 0.5em;
+
+        span {
+          color: red;
+        }
+      }
+    }
+
+    .wrapper {
+      padding: 10px;
+      height: 218pX;
+      border: 1px dashed #B4B4B4;
+      border-radius: 5px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+
+    }
+
+    .cloudicon {
+      padding-right: 10px;
+    }
+
+    .titlealign {
+      padding-top: 10px;
+    }
+
+  }
+
+  .midForm {
+    width: 98%;
+    padding: 20px 10px;
+    border: .5px solid #B4B4B4;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .eoiform {
+    width: 98%;
+    padding: 10px;
+    height: 198px;
+    border: 1px dashed #B4B4B4;
+    border-radius: 5px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+
+    .cloudicon {
+      padding-right: 10px;
+      padding-bottom: 10px;
+    }
+
+    .titlealign {
+      padding-top: 10px;
+    }
+
+    .imgdata {
+      display: contents;
+    }
+  }
+
+}
+
+.primaryWrap {
+  display: flex;
+  position: relative;
+
+  .leftWrap {
+    width: 49%;
+
+    .inputContainer {
+      label {
+        display: block;
+        color: #262626;
+        font-size: 12px;
+        font-weight: bold;
+        margin-bottom: 0.5em;
+
+        span {
+          color: red;
+        }
+      }
+    }
+  }
+
+  .rightWrap {
+    width: 50%;
+
+    .inputContainer {
+      label {
+        display: block;
+        color: #262626;
+        font-size: 12px;
+        font-weight: bold;
+        margin-bottom: 0.5em;
+
+        span {
+          color: red;
+        }
+      }
+    }
+  }
+}
+
+.inputContainer {
+  .mat-form-field {
+    width: 98%;
+  }
+}
+
+.primarysingleWrap {
+  display: flex;
+  position: relative;
+
+  .singleWrap {
+    width: 100%;
+
+    .inputContainer {
+      label {
+        display: block;
+        color: #262626;
+        font-size: 12px;
+        font-weight: bold;
+        margin-bottom: 0.5em;
+
+        span {
+          color: red;
+        }
+      }
+    }
+  }
+
+
+}
+
+.inputContainer {
+  .mat-form-field {
+    width: 98%;
+  }
+}
+
+.buttonClass {
+  margin-top: 20px !important;
+  display: flex;
+  justify-content: center;
+
+  .subButton {
+    padding-right: 10px;
+
+    ::ng-deep.mat-flat-button {
+      background-color: #1B4E9B !important;
+      color: #FFFFFF;
+      border-radius: 25px;
+      padding: 2px 27px 0px 27px !important;
+      line-height: 33px;
+    }
+  }
+
+  .subButton2 {
+    padding-right: 10px;
+
+    ::ng-deep.mat-flat-button {
+      background-color: #848484 !important;
+      color: #FFFFFF;
+      border-radius: 25px;
+      padding: 2px 27px 0px 27px !important;
+      line-height: 33px;
+    }
+  }
+}

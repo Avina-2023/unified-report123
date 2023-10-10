@@ -147,14 +147,6 @@ export class JobDescriptionComponent implements OnInit {
         }
       })
     }
-    // handleButtonClick() {
-    //   if (this.jobDetails.partnerLabel === 'Skill Exchange Partner') {
-    //     this.applyJob();
-    //   } else {
-    //     // window.location.href = this.jobDetails.applyLink;   //open link in same tab
-    //     window.open(this.jobDetails.applyLink, '_blank');  //open link in different tab
-    //   }
-    // }
 
     handleButtonClick() {
       if (this.jobDetails.partnerLabel === 'Skill Exchange Partner') {
@@ -169,7 +161,6 @@ export class JobDescriptionComponent implements OnInit {
       const dialogRef = this.mdDialog.open(this.extApply, {
         width: '50%', 
         height: 'auto',
-        // height: '50%',
         disableClose: true, 
       });
       dialogRef.afterClosed().subscribe(result => {
@@ -180,7 +171,6 @@ export class JobDescriptionComponent implements OnInit {
     redirectToApplyLink() {
       window.open(this.jobDetails.applyLink, '_blank');  //open link in different tab
       // window.location.href = this.jobDetails.applyLink; //open link in same tab
-      // this.jobViewCount();
     }
     
 }

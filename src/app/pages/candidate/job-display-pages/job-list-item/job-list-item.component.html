@@ -58,7 +58,8 @@
           </div>
           <div class="footer_right"> 
             <div class="box-job"> 
-              <span class="full_time"></span> {{item.jobType}} 
+              <div class="jobTTyp">#{{item.workType}}</div>
+              <div class="full_time">{{item.jobType}}</div>
             </div> 
             <div class="misc_save" *ngIf="savedButton"> 
               <button class="saved" *ngIf="item?.isApplied == false && currentdate<item?.lastDatetoApply"
@@ -133,3 +134,15 @@
   </div>
 </div>
 </div>
+
+<ng-template #externalApply>
+  <div class="ext-closer"><mat-icon mat-dialog-close>close</mat-icon></div>
+  <div class="ext-redirect-popup">
+    <div class="ext-redirect-content">
+         <img src="assets/images/landing/newLogo.png">
+         <div class="heading">This link will take you to a third-party page that is not part of Skill Exchange.</div>
+         <div class="redirect-message">The given link is external and is not verified by L&T EduTech for its safety.</div>
+    </div>
+<button class="mat-raised-button primary ext-btn" (click)="redirectToApplyLink()">Proceed</button>
+</div>
+</ng-template>

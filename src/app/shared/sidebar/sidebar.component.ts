@@ -25,6 +25,7 @@ export class SidebarComponent implements OnInit {
   menuIconToggle: boolean;
   menuIconToggle1: boolean;
   driveIconToggle: boolean;
+  jobIconToggle: boolean;
   check = 'empdashboard';
   constructor(
     private appconfig: AppConfigService,
@@ -96,29 +97,47 @@ export class SidebarComponent implements OnInit {
         this.check = 'managedrive';
         this.driveIconToggle = true;
         break;
-      case '/auth/dashboard/candidatesearch': 
-      this.check = 'empcandidatesearch';
-      break;
-      case '/auth/overall-reports': 
-      this.check = 'overallReports';
-      break;
+      case '/auth/dashboard/candidatesearch':
+        this.check = 'empcandidatesearch';
+        break;
+      case '/auth/overall-reports':
+        this.check = 'overallReports';
+        break;
       default:
         this.check = 'empdashboard';
         break;
     }
   }
 
+  // mouseenter() {
+  //   if (!this.isExpanded) {
+  //     this.isnotShowing = false;
+  //   }
+  // }
+
+  // mouseleave() {
+  //   if (!this.isExpanded) {
+  //     this.isnotShowing = true;
+  //   }
+  // }
 
   mouseenter() {
     if (!this.isExpanded) {
       this.isnotShowing = false;
+      // console.log('mouse entered');
+    }
+    if(this.isExpanded){
+      this.isnotShowing = false;
+      // console.log('mouse entered');
     }
   }
-  
-
   mouseleave() {
     if (!this.isExpanded) {
       this.isnotShowing = true;
+    }
+    if(this.isExpanded){
+      this.isnotShowing = true;
+      // console.log('mouse left');
     }
   }
 
@@ -132,14 +151,23 @@ export class SidebarComponent implements OnInit {
       this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.EMPDASHBOARD.HOME);
     } else if (value == 'partnerlist') {
       this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.PARTNER.HOME);
-    }
-    else if (value == 'overallreport') {
+    } else if (value == 'overallreport') { 
       this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.OVERALLREPORTS.HOME);
     }
   }
   hiring(value) {
     this.check = value;
     this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.PARTNER.ADDPARTNER);
+  }
+  addjobs(value) {
+    this.check = value;
+    this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.PARTNER.ADDOPENJOBS);
+  }
+  viewjobs(value) {
+    this.check = value;
+    this.appconfig.routeNavigation(
+      APP_CONSTANTS.ENDPOINTS.PARTNER.VIEWOPENJOBS
+    );
   }
   drive(value) {
     this.check = value;
@@ -202,5 +230,8 @@ export class SidebarComponent implements OnInit {
   }
   changedriveIcon() {
     this.driveIconToggle = !this.driveIconToggle;
+  }
+  changeJobIcon() {
+    this.jobIconToggle = !this.jobIconToggle;
   }
 }
