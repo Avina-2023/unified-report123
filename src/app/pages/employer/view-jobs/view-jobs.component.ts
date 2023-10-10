@@ -1,10 +1,26 @@
-import { Component, OnInit } from '@angular/core'; 
+// import { Component, OnInit } from '@angular/core'; 
+// import { ColDef, GridApi } from 'ag-grid-community';
+// import { GridOptions } from '@ag-grid-enterprise/all-modules';
+// import { ApiService } from 'src/app/services/api.service';
+// import * as moment from 'moment';
+// import { ActionButtonViewJobsComponent } from './action-button-viewJobs/action-button-viewJobs.component';
+// import { Subscription } from 'rxjs';
+// import { ToastrService } from 'ngx-toastr';
+// import { MatNoDataRow, MatTableDataSource } from '@angular/material/table';
+// import { log } from 'console';
+
+import { Component, ContentChild, OnInit, ViewChild } from '@angular/core';
+import { ApiService } from '../../../services/api.service';
+import { ToastrService } from 'ngx-toastr';
 import { ColDef, GridApi } from 'ag-grid-community';
+import { MatNoDataRow, MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
+import { AppConfigService } from 'src/app/utils/app-config.service';
+import { APP_CONSTANTS } from '../../../utils/app-constants.service';
 import { GridOptions } from '@ag-grid-enterprise/all-modules';
-import { ApiService } from 'src/app/services/api.service';
-import * as moment from 'moment';
-import { ActionButtonViewJobsComponent } from './action-button-viewJobs/action-button-viewJobs.component';
 import { Subscription } from 'rxjs';
+import { SentDataToOtherComp } from 'src/app/services/sendDataToOtherComp.service';
+import * as moment from 'moment';
 
 interface Tab {
   title: string;
@@ -16,22 +32,20 @@ interface Tab {
   styleUrls: ['./view-jobs.component.scss'] 
 })
 export class ViewJobsComponent implements OnInit {
+
   private gridApi!: GridApi;
   public gridOptions: GridOptions;
-  public masterDetail;
-  public rowSelection = 'multiple';
-  public columnDefsmini;
-  public rowModelType;
-  public rowData: any[] | null = [1, 2];
-  public gridColumnApi: any;
-  public serverSideStoreType;
   public defaultColDef: ColDef;
-  public autoGroupColumnDef: ColDef = {
-    flex: 1,
-    minWidth: 320,
-  };
-  selectedRow: any[];
-  cacheBlockSize: any = 1000;
+  public gridColumnApi;
+  public rowModelType;
+  public rowSelection = 'multiple';
+  public serverSideStoreType;
+  pagination: boolean;
+  paginationPageSize: number;
+  public masterDetail;
+  cacheBlockSize: any = 10;
+
+
   dynclass: string = 'navyblue';
   active: number = 0;
   icncolor: string = '#1B4E9B';
@@ -41,19 +55,14 @@ export class ViewJobsComponent implements OnInit {
     { title: 'Pending' },
     { title: 'Rejected' },
   ];
-  columnDefs: any = [];
-  filteredRowData: any[];
-  FormateName: any;
-  subscription: Subscription;
-  driveAgGridSubscription: Subscription;
-  jobId: String = '';
-  totalPages: number;
-  alldata: any;
-  candidateList: any = [];
-  pageRowCount = 0;
-  selectedPageSize: number = 10;
-  pageArray: number[] = [1];
-  public overlayNoRowsTemplate = ' <span><br><br><img src="assets/images/skillMaster/norecord.svg" alt="" /> <br><br> <h3>No Records Found</h3></span>';
+  public autoGroupColumnDef: ColDef = {
+    flex: 1,
+    minWidth: 320,
+  };
+
+  public overlayNoRowsTemplate =
+  ' <span><br><br><img src="assets/images/skillMaster/norecord.svg" alt="" /> <br><br> <h3>No Records Found</h3></span>';
+  partnerEnquirieAgGridSubscription: Subscription;
   sideBar = {
     toolPanels: [
       {
@@ -66,20 +75,32 @@ export class ViewJobsComponent implements OnInit {
     ],
     defaultToolPanel: '',
   };
- 
+  partnerListAgData:  any = [];
+  pageRowCount = 0;
+  public rowData: any[] | null = [];
+  totalPartnerCount: number;
+  columnDefs: any = [];
+  FormateName: any;
+  FormateLastName: any;
+  partnerList: any = [];
+  dataSource = new MatTableDataSource<any>([]);
+  emptyData = new MatTableDataSource([{ empty: 'row' }]);
+
   constructor(
     private ApiService: ApiService,
+    private toastr: ToastrService,
   ) { }
 
   ngOnInit() {
-    this.getAggridJoblist();
+    this.tabledata();
   }
 
   tabledata() {
+    
     this.columnDefs = [
       {
         headerName: 'S.No',
-        field: 'id',
+        field: '_id',
         minWidth: 85,
         suppressColumnsToolPanel: true,
         filter: false,
@@ -90,7 +111,54 @@ export class ViewJobsComponent implements OnInit {
       },
       {
         headerName: 'Name',
-        field: 'studentName',
+        field: 'firstName',
+        minWidth: 175,
+        filter: 'agTextColumnFilter',
+        chartDataType: 'category',
+        aggFunc: 'sum',
+        filterParams: {
+          suppressAndOrCondition: true,
+          filterOptions: ['contains'],
+        },
+        // cellRenderer: (params) => {
+        //   if (params.value && params.value != undefined && params.value != null && params.value != "" && params.data.lastName != undefined && params.data.lastName !=  "") {
+        //     this.FormateName = params.value + params.data.lastName   ;
+        //     return this.FormateName;
+        //   } else
+        //   if(params.value && params.value != undefined && params.value != null && params.value != "" && params.data.lastName == undefined || params.data.lastName == "" ){
+        //     this.FormateName = params.value;
+        //     return this.FormateName;
+        //   }
+        //   {
+        //     return "-";
+        //   }
+        // },
+        cellRenderer: (params) => {
+          if (
+            params.value &&
+            params.value != undefined &&
+            params.value != null &&
+            params.value != ''
+          ) {
+            this.FormateName = params.value;
+            if (
+              params.data.lastName != undefined &&
+              params.data.lastName != ''
+            ) {
+              this.FormateLastName = params.data.lastName;
+              return this.FormateName + this.FormateLastName;
+            } else {
+              return this.FormateName;
+            }
+          } else {
+            return '-';
+          }
+        },
+        tooltipField: 'firstName',
+      },
+      {
+        headerName: 'Designation',
+        field: 'designation',
         minWidth: 175,
         filter: 'agTextColumnFilter',
         chartDataType: 'category',
@@ -102,9 +170,9 @@ export class ViewJobsComponent implements OnInit {
         cellRenderer: (params) => {
           if (
             params.value &&
-            params.value !== undefined &&
-            params.value !== null &&
-            params.value !== ''
+            params.value != undefined &&
+            params.value != null &&
+            params.value != ''
           ) {
             this.FormateName = params.value;
             return this.titleCase(this.FormateName);
@@ -112,31 +180,12 @@ export class ViewJobsComponent implements OnInit {
             return '-';
           }
         },
-        tooltipValueGetter: (params) => {
-          if (
-            params.value &&
-            params.value !== undefined &&
-            params.value !== null &&
-            params.value !== ''
-          ) {
-            this.FormateName = params.value;
-            return this.titleCase(this.FormateName);
-          } else {
-            return '-';
-          }
-        },
-        cellStyle: (params) => {
-          return {
-            'text-decoration': 'underline',
-            color: 'blue',
-            cursor: 'pointer',
-          };
-        },
+        tooltipField: 'designation',
       },
       {
-        headerName: 'Status',
-        field: 'jobStatus',
-        minWidth: 195,
+        headerName: 'Company',
+        field: 'company',
+        minWidth: 175,
         filter: 'agTextColumnFilter',
         chartDataType: 'category',
         aggFunc: 'sum',
@@ -144,76 +193,104 @@ export class ViewJobsComponent implements OnInit {
           suppressAndOrCondition: true,
           filterOptions: ['contains'],
         },
-        cellClassRules: {
-          'yellow-cell': (params) => params.value === 'awaitingReview',
-          'green-cell': (params) => params.value === 'Shortlisted',
-          'red-cell': (params) => params.value === 'Rejected',
-          'blue-cell': (params) => params.value === 'In Progress',
+        cellRenderer: (params) => {
+          if (
+            params.value &&
+            params.value != undefined &&
+            params.value != null &&
+            params.value != ''
+          ) {
+            this.FormateName = params.value;
+            return this.titleCase(this.FormateName);
+          } else {
+            return '-';
+          }
+        },
+        tooltipField: 'company',
+      },
+      {
+        headerName: 'Email',
+        field: 'email',
+        minWidth: 175,
+        filter: 'agTextColumnFilter',
+        chartDataType: 'category',
+        aggFunc: 'sum',
+        filterParams: {
+          suppressAndOrCondition: true,
+          filterOptions: ['contains'],
         },
         cellRenderer: (params) => {
           if (
-            params.value &&  params.value !== undefined &&
-            params.value !== null && params.value !== ''
-          ) { 
-            return params.value === 'awaitingReview' ? 'Awaiting Review' : this.titleCase(params.value);
+            params.value &&
+            params.value != undefined &&
+            params.value != null &&
+            params.value != ''
+          ) {
+            this.FormateName = params.value;
+            return this.FormateName;
           } else {
             return '-';
           }
         },
-        tooltipValueGetter: (params) => {
-          if ( params.value && params.value !== undefined 
-            && params.value !== null && params.value !== ''
-          ) { 
-            return params.value === 'awaitingReview' ? 'Awaiting Review' : this.titleCase(params.value);
-          } else {
-            return '-';
-          }
-        },
+        tooltipField: 'email',
       },
       {
-        headerName: 'Applied Date', 
-        field: 'appliedDate', 
-        minWidth: 135,
-        valueFormatter: function (params){
-          return moment(params.value).format('DD-MM-yy'); 
-        }, 
-        tooltipValueGetter: function (params){
-          return moment(params.value).format('DD-MM-yy').toString(); 
-        },
-        filter: 'agDateColumnFilter', 
-        chartDataType: 'series', 
-        filterParams: { 
+        headerName: 'Mobile',
+        field: 'mobile',
+        minWidth: 175,
+        filter: 'agTextColumnFilter',
+        chartDataType: 'category',
+        aggFunc: 'sum',
+        filterParams: {
           suppressAndOrCondition: true,
-          filterOptions: ['equals', 'lessThan', 'greaterThan', 'inRange'], 
+          filterOptions: ['contains'],
         },
-        // tooltipField: 'appliedDate',
+        cellRenderer: (params) => {
+          if (
+            params.value &&
+            params.value != undefined &&
+            params.value != null &&
+            params.value != ''
+          ) {
+            this.FormateName = params.value;
+            return this.FormateName;
+          } else {
+            return '-';
+          }
+        },
+        tooltipField: 'mobile',
       },
       {
-        headerName: 'Actions',
-        field: '',
-        minWidth: 150,
-        cellRenderer: 'moreOptions',
-        //  onCellClicked: this.sendJobData(),
-        suppressColumnsToolPanel: true,
-        filter: false,
-        pinned: 'right',
+        headerName: 'Registered Date',
+        field: 'createdAt',
+        minWidth: 180,
+        filter: 'agDateColumnFilter',
+        chartDataType: 'series',
+        filterParams: {
+          suppressAndOrCondition: true,
+          filterOptions: ['equals', 'lessThan', 'greaterThan', 'inRange'],
+        },
+        valueFormatter: function (params) {
+          return moment(params.value).format('MMM D, yy');
+        },
       },
     ];
-  }
 
-  onGridReady(params: any) {
-    this.gridApi = params.api;
-    this.gridColumnApi = params.columnApi;
-    this.setDatasource();
-  }
-  
-  async onSelectionChanged(event) {
-    var rowData = event.api.getSelectedNodes();
-    var ids = [];
-    await rowData.forEach((elem) => {
-      ids.push(elem.data._id);
-    });
-    this.selectedRow = ids;
+    this.rowModelType = 'serverSide';
+    this.serverSideStoreType = 'partial';
+    this.pagination = true;
+    this.paginationPageSize = 10;
+    this.defaultColDef = {
+      flex: 1,
+      enableRowGroup: true,
+      enablePivot: true,
+      sortable: true,
+      resizable: true,
+      filter: true,
+      // enableFilter: true,
+      minWidth: 220,
+      // sideBar: 'filter',
+    };
   }
 
   titleCase(str) {
@@ -224,19 +301,25 @@ export class ViewJobsComponent implements OnInit {
     }
     return splitStr.join(' ');
   }
-
-  setDatasource() {
+  onGridReady(params: any) {
+    this.gridApi = params.api;
+    this.gridColumnApi = params.columnApi;
     var datasource = this.getAggridJoblist();
-    this.gridApi.setServerSideDatasource(datasource);
+    params.api.setServerSideDatasource(datasource);
   }
 
   getAggridJoblist() {
     // debugger;
     return {
       getRows: (params) => {
+        console.log(params,'hii');
         let apiData: any = params;
-        apiData.request.jobId = this.jobId;
-        this.driveAgGridSubscription = this.ApiService.getCandidateListByDeive(
+        apiData.request.filterModel['createdBy'] = {
+          filterType: 'set',
+          values: ['UapAdmin'],
+        };
+        apiData.request.type = "partnerEnquiries";
+        this.partnerEnquirieAgGridSubscription = this.ApiService.partnerList(
           apiData.request
         ).subscribe(
           (data1: any) => {
@@ -246,50 +329,34 @@ export class ViewJobsComponent implements OnInit {
                 rowData: [],
                 rowCount: 0,
               });
-              this.totalPages = 1;
               this.gridApi.showNoRowsOverlay();
+              console.log('data not found');
             } else {
-              this.candidateList = data1 && data1.data ? data1.data : [];
-              console.log(this.candidateList, 'candidateList');
-              this.alldata = data1;
-
-              // this.shortlitcountvalue = this.alldata.Shortlisted || 0;
-              // this.awaitingcountvalue = this.alldata.awaitingReview || 0;
-              // this.rejectedcountvalue = this.alldata.Rejected || 0;
-              // this.allcountvalue = this.alldata.totalCount || 0;
-              // this.inprogresscountvalue = this.alldata['In Progress'] || 0;
-
-              console.log(this.alldata, 'dataaaaa');
-              //this.displayData = JSON.stringify(this.alldata);
-
-              if (this.candidateList.length > 0) {
+              this.partnerListAgData = data1 && data1.data ? data1.data : [];
+              console.log('data found');
+              
+              if (this.partnerListAgData.length > 0) {
                 this.pageRowCount =
                   data1 && data1.totalCount ? data1.totalCount : 0;
-                this.totalPages = Math.ceil(
-                  this.pageRowCount / this.selectedPageSize
-                );
-                console.log(this.totalPages);
                 this.gridApi.hideOverlay();
                 params.success({
-                  rowData: this.candidateList,
-                  rowCount: this.candidateList.length,
+                  rowData: this.partnerListAgData,
+                  rowCount: this.pageRowCount,
                 });
               } else {
                 params.success({
-                  rowData: this.candidateList,
+                  rowData: this.partnerListAgData,
                   rowCount: 0,
                 });
-                this.totalPages = 1;
                 this.gridApi.showNoRowsOverlay();
               }
             }
-            this.paginationCounter();
           },
           (err) => {
             params.fail();
             params.success({
-              rowData: this.candidateList,
-              rowCount: this.pageRowCount,
+              rowData: [],
+              rowCount: 0,
             });
           }
         );
@@ -298,14 +365,24 @@ export class ViewJobsComponent implements OnInit {
     };
   }
 
-  paginationCounter(){
-    this.totalPages = Math.ceil(this.pageRowCount/this.selectedPageSize)
-    this.pageArray = Array.from(Array(this.totalPages).keys());
-  }
-
-  onPageSizeChanged() {
-    this.paginationCounter();
-    this.gridApi.paginationSetPageSize(this.selectedPageSize);
+  fetchData(data: any) {
+    data.type = 'partnerEnquiries';
+    this.ApiService.partnerList(data).subscribe(
+      (partnerList: any) => {
+        if (partnerList.success == false) {
+          this.toastr.warning('Connection failed, Please try again.');
+        } else {
+          partnerList.data.forEach((element, index) => {
+            element.sno = index + 1;
+          });
+          this.dataSource.data = partnerList.data;
+          this.totalPartnerCount = partnerList.totalCount;
+        }
+      },
+      (err) => {
+        this.toastr.warning('Connection failed, Please try again.');
+      }
+    );
   }
 
   onTabChange(index: number) {
