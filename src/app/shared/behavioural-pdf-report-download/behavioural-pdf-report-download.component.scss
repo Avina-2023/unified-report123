@@ -58,7 +58,7 @@ td {
             bottom: 20px;
             left: 20px;
             font-size: 50px;
-            font-weight: 700;
+            font-weight: bolder;
             color: #1D1D1B;
             text-transform: uppercase;
             line-height: normal;
@@ -70,7 +70,7 @@ td {
       position: relative;
       bottom: 1px;
         width: 825px;
-        height: 12px;
+        height: 5px;
         background-image: linear-gradient(to right, #23bbee, #00bed9, #00beb4, #00ba85, #5ab253);
     }
 
@@ -87,7 +87,7 @@ td {
             .heading3 {
                 color: #09568C;
                 font-size: 26px;
-                font-weight: 400;
+                font-weight: 600;
                 line-height: normal;
             }
             span {
@@ -743,15 +743,15 @@ span {
             }
         }
         .description {
-            padding: 15px 15px 0px 15px;
-            background-color: $whiteColor;
-            border: 1px solid rgba(177, 177, 177, 0.5);
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 15px;
-            margin-top: 15px;
-            position: relative;
+          padding: 12px 7px 0px 15px;
+    background-color: #ffffff;
+    border: 1px solid rgba(177, 177, 177, 0.5);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 10px;
+    margin-top: 9px;
+    position: relative;
             &::before {
                 content: '';
                 position: absolute;
@@ -783,9 +783,9 @@ span {
                     li {
                         // display: flex;
                         // align-items: center;
-                        margin-bottom: 10px;
+                        margin-bottom: 2px;
                         ul {
-                            margin: 10px 0 0 25px;
+                            margin: 3px 0 0 25px;
                         }
                         img {
                             margin-right: 10px;
@@ -833,7 +833,7 @@ span {
             font-weight: 700;
             color: #09568C;
             line-height: normal;
-            margin: 15px 0;
+            margin: 15px 15px 0px 15px;
             text-transform: uppercase;
         }
         .wrapper {
@@ -872,7 +872,7 @@ span {
                         font-size: 14px;
                         font-weight: 500;
                         line-height: 20px;
-                        margin-top: 10px;
+                        margin-top: 3px;
                     }
                 }
             }
@@ -905,7 +905,7 @@ span {
     }
 
     .benchmarkInfo {
-        overflow: auto;
+        overflow: hidden;
         height: 100%;
         display: flex;
         justify-content: space-between;
@@ -917,8 +917,10 @@ span {
             display: flex;
             justify-content: center;
             img {
-                // max-width: 70%;
-                width: 74%;
+              width: 78%;
+              position: relative;
+              top: 5px;
+                // width: 74%;
                  margin: 0;
                 margin-right: 20%;
             }
@@ -1006,7 +1008,7 @@ span {
         margin-top: 15px;
         .paragraphP{
           padding-top: 15px;
-          font-size: 10px;
+          font-size: 9px;
           font-weight: 400;
           color: #868686;
           line-height: 1px;
@@ -1242,7 +1244,7 @@ span {
         letter-spacing: 0.2px;
     color: #1D1D1B;
     font-family: 'Roboto';
-    font-weight: 500;
+    font-weight: 600;
       }
       .boldtext{
         font-weight: 700;
@@ -1303,7 +1305,7 @@ span {
       }
     .rangeindicator{
     height: 16px;
-    width: 3px;
+    width: 4px;
     background-color: #c2c7cb;
     top: -4px;
     position: relative;
