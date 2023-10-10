@@ -96,7 +96,7 @@
                                             </figure>
                                             <div>
                                                 <div class="heading">{{competency?.name}}</div>
-                                                <p class="justify">{{competency?.description}}</p>
+                                                <p>{{competency?.description}}</p>
                                             </div>
                                         </div>
                                         <div class="chart d-flex justify-content-between">
@@ -164,7 +164,7 @@
 
             </section>
 
-            <div class="benchmarkInfo" style="    position: relative; top: -11px;">
+            <div class="benchmarkInfo" style="position: relative; top: -11px;">
                 <figure class="chart">
                     <img src="/assets/images/pdfDownload/newBench.svg" alt="">
                 </figure>
@@ -231,7 +231,7 @@
                                                 <img alt="" [src]="factorsSkillsImage(skillsDetail?.name)">
                                             </figure>
                                             <div class="content">
-                                            <span class="skillname" style="left:-13px">{{skillsDetail?.name}}: &nbsp;</span>
+                                            <span class="skillname" style="left:-13px;text-transform: uppercase;">{{skillsDetail?.name}}: &nbsp;</span>
                                             <ul class="paragraph-list" style="margin-top: 6px;">
                                               <li *ngFor="let item of skillsDetail?.scorebasedSkillDescription">
                                                   <img src="/assets/images/list-arrow.svg" alt=""><span  class="skillsDetail">{{item}}</span>
@@ -387,10 +387,11 @@
         <div class="html2pdf__page-break"></div>
         <section class="heightContainer">
             <section class="commonHeight">
-                <section class="devScope commonStyle">
-                    <figure class="scope-head d-flex align-items-center">
+                <section class="devScope commonStyle" style="position: relative;
+                left: 15px;">
+                    <figure class="scope-head d-flex align-items-center" style="margin-bottom: 0px;">
                         <!-- <img src="/assets/images/DEVELOPMENT.svg" alt=""> -->
-                        <span class="heading3">DEVELOPMENT SCOPE</span>
+                        <span class="heading3" style="margin-left: 0px;">DEVELOPMENT SCOPE</span>
                     </figure>
                     <p *ngIf="getAllBehaviourData">{{getAllBehaviourData?.developmentScopeDescription}}</p>
 
@@ -427,9 +428,9 @@
                             </div>
                             <span *ngIf="((b +1) % 2 == 0) && (getAllBehaviourAPIDetails?.developmentContent.length != b+1)">
                                 <div  class="html2pdf__page-break"></div>
-                                <figure  class="scope-head d-flex align-items-center m-t-40">
-                                    <img src="/assets/images/DEVELOPMENT.svg" alt="">
-                                    <span class="heading3">DEVELOPMENT SCOPE</span>
+                                <figure  class="scope-head d-flex align-items-center m-t-40" style="margin-bottom: 5px;">
+                                    <!-- <img src="/assets/images/DEVELOPMENT.svg" alt=""> -->
+                                    <span class="heading3" style="margin-left: 0px;">DEVELOPMENT SCOPE</span>
                             </figure>
                             <p *ngIf="getAllBehaviourData">{{getAllBehaviourData?.developmentScopeDescription}}</p>
                             </span>
@@ -478,7 +479,7 @@
 
 
       <div class="container">
-        <div class="row mt-5" style="display: grid;">
+        <div class="row" style="display: grid;margin-top: 23px;">
           <div style="width: 93% !important;">
          <div [style.left.%]="scoreValue-3" class="indicatorbox" >
          <img po [src]="scoreValue >= 0 && scoreValue <= 40 ? '/assets/images/pdfDownload/green.png' : scoreValue > 40 && scoreValue <= 80 ? '/assets/images/pdfDownload/orange.png' : scoreValue > 80 && scoreValue <= 100 ? '/assets/images/pdfDownload/red.png' : ''" alt="Image" *ngIf="scoreValue >= 0 && scoreValue <= 100" />
@@ -699,7 +700,7 @@
 
                             <div class="" *ngIf="((d + 1) % 4 == 0)  && (getAllBehaviourAPIDetails?.developmentconclusionPoints.length != d+1)">
                                 <div class="html2pdf__page-break"></div>
-                                <div class="header" *ngIf="getAllBehaviourData?.conclusion">
+                                <div class="header" style="margin-top: 30px;" *ngIf="getAllBehaviourData?.conclusion">
                                     <div class="heading">
                                         {{getAllBehaviourData?.conclusion?.topicName}}
                                     </div>
@@ -727,7 +728,7 @@
 
 
 <div>
-  <img src="/assets/images/pdfDownload/footeralignment.png" id="footerimg" alt="footer" style="position: relative;height: 20px;right:20px"/>
+  <img src="/assets/images/pdfDownload/footernew.png" id="footerimg" alt="footer" style="position: relative;height: 20px;right:20px"/>
 </div>
 
 <ng-template #noImprovements>
