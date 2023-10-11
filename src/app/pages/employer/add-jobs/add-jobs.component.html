@@ -14,9 +14,9 @@
                   <label>Company Name<span>*</span></label>
                   <mat-form-field appearance="outline">
                     <input matInput placeholder="Enter Company Name" formControlName="CompanyName" required>
+                    <mat-error class="error" *ngIf="CompanyName?.errors?.required">{{'Company Name is Required'}}</mat-error>
                   </mat-form-field>
                   <ng-container *ngIf="CompanyName.invalid && CompanyName.touched">
-                    <mat-error class="error" *ngIf="CompanyName?.errors?.required">{{'Company Name is Required'}}</mat-error>
                   </ng-container>
                 </div>
 
@@ -24,33 +24,36 @@
                   <label>Job Role <span>*</span></label>
                   <mat-form-field appearance="outline">
                     <input matInput placeholder="Enter Job Role" formControlName="JobRole" required>
+                    <mat-error class="error" *ngIf="JobRole?.errors?.required">{{'Job Role is Required'}}</mat-error>
                   </mat-form-field>
                   <ng-container *ngIf="JobRole.invalid && JobRole.touched">
-                    <mat-error class="error" *ngIf="JobRole?.errors?.required">{{'Job Role is Required'}}</mat-error>
                   </ng-container>
                 </div>
                 <div class="inputContainer">
                   <label>Job Title<span>*</span></label>
                   <mat-form-field appearance="outline">
-                    <input formControlName="establishedYear" type="text" maxlength="4" matInput
-                      placeholder="Enter Job Title">
+                    <input matInput placeholder="Enter Job Title" formControlName="JobTitle" required>
+                    <mat-error class="error" *ngIf="JobTitle?.errors?.required">{{'Job Ttitle is Required'}}</mat-error>
                   </mat-form-field>
+                  <ng-container *ngIf="JobTitle.invalid && JobTitle.touched">
+                  </ng-container>
                 </div>
               </form>
             </div>
             <div class="right">
               <div class="inputContainer">
                 <label>Company Logo<span>*</span></label>
-                <p class="errmsg" *ngIf="">{{errorMsgforLogo}}</p>
+                <p class="errmsg" *ngIf="errorMsgforCmpnyLogo">{{errorMsgforCmpnyLogo}}</p>
                 <div class="wrapper">
                   <div>
-                    <img *ngIf="" class="cloudicon" src="/assets/images/partner/cloud-upload-blu.svg" alt="">
-                    <img *ngIf="" class="cloudicon" [src]="displayImageUrl" height="100" width="200">
+                    <img *ngIf="!employerLogo" class="cloudicon"
+                      src="../../../../assets/images/Icon ionic-md-cloud-upload.jpg" alt="">
+                    <img *ngIf="employerLogo" class="imgicon" [src]="displayImageUrl" height="100" width="200">
                   </div>
                   <div class="buttonClass">
                     <div class="subButton">
-                      <input type="file" accept="image/png, image/jpeg" class="file-input" (change)="($event)"
-                        (click)="$event.target.value=null" #fileUpload>
+                      <input type="file" accept="image/png, image/jpeg" class="file-input"
+                        (change)="onEmployerLogoFileSelected($event)" (click)="$event.target.value=null" #fileUpload>
                       <button mat-flat-button (click)="fileUpload.click()">Browse</button>
                     </div>
                   </div>
@@ -64,42 +67,37 @@
           <div class="primaryWrap">
             <div class="leftWrap">
               <form [formGroup]="addjobsForm" enctype="multipart/form-data">
-
                 <div class="inputContainer">
                   <label>Job Location<span>*</span></label>
                   <mat-form-field appearance="outline">
                     <input formControlName="JobLocation" matInput placeholder="Enter Job Location">
+                    <mat-error class="error" *ngIf="JobLocation?.errors?.required">{{'Job Location is Required'}}</mat-error>
                   </mat-form-field>
                   <ng-container *ngIf="JobLocation.invalid && JobLocation.touched">
-                    <mat-error class="error" *ngIf="JobLocation?.errors?.required">{{'Job Location is Required'}}</mat-error>
                   </ng-container>
                 </div>
               </form>
             </div>
             <div class="rightWrap">
               <form [formGroup]="addjobsForm" enctype="multipart/form-data">
-
                 <div class="inputContainer">
                   <label>Job Type<span>*</span></label>
                   <mat-form-field appearance="outline">
                     <mat-select formControlName="JobType" placeholder="— Select Job Type —">
                       <mat-option *ngFor="let type of industryTypes" [value]="type">{{ type }}</mat-option>
                     </mat-select>
+                    <mat-error class="error" *ngIf="JobType?.errors?.required">{{'Job Type is Required'}}</mat-error>
                   </mat-form-field>
                   <ng-container *ngIf="JobType.invalid && JobType.touched">
-                    <mat-error class="error" *ngIf="JobType?.errors?.required">{{'Job Type is Required'}}</mat-error>
                   </ng-container>
                 </div>
               </form>
             </div>
-
-
           </div>
 
           <div class="primaryWrap">
             <div class="leftWrap">
               <form [formGroup]="addjobsForm" enctype="multipart/form-data">
-
                 <div class="inputContainer">
                   <label>Degree<span>*</span></label>
                   <mat-form-field appearance="outline">
@@ -111,18 +109,15 @@
                 </div>
               </form>
             </div>
-
-
             <div class="rightWrap">
               <form [formGroup]="addjobsForm" enctype="multipart/form-data">
-
                 <div class="inputContainer">
                   <label>Specialization<span>*</span></label>
                   <mat-form-field appearance="outline">
                     <input formControlName="specialization" matInput placeholder="Enter Specialization">
+                    <mat-error class="error" *ngIf="specialization?.errors?.required">{{'Specialization is Required'}}</mat-error>
                   </mat-form-field>
                   <ng-container *ngIf="specialization.invalid && specialization.touched">
-                    <mat-error class="error" *ngIf="specialization?.errors?.required">{{'Specialization is Required'}}</mat-error>
                   </ng-container>
                 </div>
               </form>
@@ -132,7 +127,6 @@
           <div class="primaryWrap flex_div width-100 mg-r-10">
             <!-- <div class="leftWrap">
               <form [formGroup]="addjobsForm" enctype="multipart/form-data">
-
                 <div class="inputContainer">
                   <label>Degree<span>*</span></label>
                   <mat-form-field appearance="outline">
@@ -144,47 +138,45 @@
                 </div>
               </form>
             </div> -->
-          <div class="leftWrap">
-            <form [formGroup]="addjobsForm" enctype="multipart/form-data">
-              <div class="inputContainer">
-                <label>CTC<span>*</span></label>
-                <div class="form-group salary-range" style="display: flex; align-items: center;">
-                  <mat-radio-group formControlName="ctcOptions" aria-label="Select an option" [(ngModel)]="selectedOption" style="margin: 0px 0px 13px 0px">
-                    <mat-radio-button value="1" style="font-weight: bold;font-size: 14px;">Fixed</mat-radio-button>
-                    <mat-radio-button value="2" style="padding: 10px;font-weight: bold;font-size: 14px;">Range</mat-radio-button>
-                  </mat-radio-group>
+            <div class="leftWrap">
+              <form [formGroup]="addjobsForm" enctype="multipart/form-data">
+                <div class="inputContainer">
+                  <label>CTC<span>*</span></label>
+                  <div class="form-group salary-range" style="display: flex; ">
+                    <mat-radio-group formControlName="ctcOptions" aria-label="Select an option"
+                      [(ngModel)]="selectedOption" style="margin: 0px 0px 13px 0px">
+                      <mat-radio-button value="1" style="font-weight: bold;font-size: 14px;">Fixed</mat-radio-button>
+                      <mat-radio-button value="2"
+                        style="padding: 10px;font-weight: bold;font-size: 14px;">Range</mat-radio-button>
+                    </mat-radio-group>
 
-                  <!-- Fixed input -->
-                  <div *ngIf="selectedOption === '1'" style="width: 71.5%;">
-                    <mat-form-field class="example-full-width" appearance="outline">
-                      <mat-select formControlName="fixedctc" matNativeControl name="ctc" placeholder="— Select Value —">
-                      <mat-option *ngFor="let type of industryTypes" [value]="type">{{ type }}</mat-option>
-                      </mat-select>
-                    </mat-form-field>
+                    <!-- Fixed input -->
+                    <div *ngIf="selectedOption === '1'" style="width: 71.5%;">
+                      <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-select formControlName="fixedctc" matNativeControl name="ctc"
+                          placeholder="— Select Value —">
+                          <mat-option *ngFor="let type of industryTypes" [value]="type">{{ type }}</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </div>
+
+                    <!-- Range inputs -->
+                    <div *ngIf="selectedOption === '2'" style="display: flex; width: 37%;">
+                      <mat-form-field appearance="outline" style="flex: 1; padding-right: 13px;">
+                        <mat-select formControlName="startrangectc" placeholder="— Select Range —">
+                          <mat-option *ngFor="let type of industryTypes" [value]="type">{{ type }}</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                      <mat-form-field appearance="outline" style="flex: 1 ;padding-right: 13px;">
+                        <mat-select formControlName="endrangectc" placeholder="— Select Range —">
+                          <mat-option *ngFor="let type of industryTypes" [value]="type">{{ type }}</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </div>
                   </div>
-
-                  <!-- Range inputs -->
-                  <div *ngIf="selectedOption === '2'" style="display: flex; width: 37%;">
-                    <mat-form-field appearance="outline" style="flex: 1; padding-right: 13px;" >
-                      <mat-select formControlName="startrangectc" placeholder="— Select Range —">
-                                              <mat-option *ngFor="let type of industryTypes" [value]="type">{{ type }}</mat-option>
-
-                      </mat-select>
-                    </mat-form-field>
-                    <mat-form-field appearance="outline" style="flex: 1 ;padding-right: 13px;">
-                      <mat-select formControlName="endrangectc" placeholder="— Select Range —">
-                                              <mat-option *ngFor="let type of industryTypes" [value]="type">{{ type }}</mat-option>
-
-                      </mat-select>
-                    </mat-form-field>
-                  </div>
-
                 </div>
-              </div>
-            </form>
-          </div>
-
-
+              </form>
+            </div>
 
             <div class="rightWrap">
               <form [formGroup]="addjobsForm" enctype="multipart/form-data">
@@ -192,25 +184,25 @@
                   <label>Year of Passing<span>*</span></label>
                   <mat-form-field appearance="outline">
                     <input formControlName="yearPassing" matInput placeholder="Enter Year of Passing">
+                    <mat-error class="error" *ngIf="yearPassing?.errors?.required">{{'Year of Passing is Required'}}</mat-error>
                   </mat-form-field>
                   <ng-container *ngIf="yearPassing.invalid && yearPassing.touched">
-                    <mat-error class="error" *ngIf="yearPassing?.errors?.required">{{'Year of Passing is Required'}}</mat-error>
                   </ng-container>
                 </div>
               </form>
             </div>
           </div>
 
-          <div class="primaryWrap">
+          <div class="primaryWrap" style="margin: -25px 0px 0px 0px;">
             <div class="leftWrap">
               <form [formGroup]="addjobsForm" enctype="multipart/form-data">
                 <div class="inputContainer">
                   <label>Key skill<span>*</span></label>
                   <mat-form-field appearance="outline">
                     <input formControlName="keyskill" matInput placeholder="Enter Skill Set">
+                    <mat-error class="error" *ngIf="keyskill?.errors?.required">{{'Keyskill is Required'}}</mat-error>
                   </mat-form-field>
                   <ng-container *ngIf="keyskill.invalid && keyskill.touched">
-                    <mat-error class="error" *ngIf="keyskill?.errors?.required">{{'Keyskill is Required'}}</mat-error>
                   </ng-container>
                 </div>
               </form>
@@ -224,9 +216,9 @@
                     <input formControlName="lastdate" [matDatepicker]="picker" matInput placeholder="— Select Date —">
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #picker></mat-datepicker>
+                    <mat-error class="error" *ngIf="lastdate?.errors?.required">{{'Please select Date'}}</mat-error>
                   </mat-form-field>
                   <ng-container *ngIf="lastdate.invalid && lastdate.touched">
-                    <mat-error class="error" *ngIf="lastdate?.errors?.required">{{'Please select Date'}}</mat-error>
                   </ng-container>
                 </div>
               </form>
@@ -235,14 +227,13 @@
           <div class="primarysingleWrap">
             <div class="singleWrap">
               <form [formGroup]="addjobsForm" enctype="multipart/form-data">
-
                 <div class="inputContainer">
                   <label>Apply link<span>*</span></label>
                   <mat-form-field appearance="outline">
                     <input formControlName="url" matInput placeholder="Enter URL">
+                    <mat-error class="error" *ngIf="url?.errors?.required">{{'URL is Required'}}</mat-error>
                   </mat-form-field>
                   <ng-container *ngIf="url.invalid && url.touched">
-                    <mat-error class="error" *ngIf="url?.errors?.required">{{'URL is Required'}}</mat-error>
                   </ng-container>
                 </div>
               </form>
@@ -251,15 +242,22 @@
           <div class="primarysingleWrap">
             <div class="singleWrap">
               <form [formGroup]="addjobsForm" enctype="multipart/form-data">
-
                 <div class="inputContainer">
                   <label>Job Description<span>*</span></label>
                   <mat-form-field appearance="outline">
-                    <textarea type="textarea" maxlength="250" formControlName="description" style="resize: none;"
-                      class="descstyle" matInput placeholder="Enter Job Description"></textarea>
+                    <angular-editor [(ngModel)]="htmlContent_description" formControlName="description"
+                      placeholder="Enter Job Description" id="description"></angular-editor>
+                    <textarea type="textarea" maxlength="250" formControlName="description"
+                      style="resize: none;display: none;" class="descstyle" matInput
+                      placeholder="Enter Job Description"></textarea>
+                    <!-- <angular-editor [config]="editorConfig" [(ngModel)]="htmlContent_description" formControlName="description"
+                        id="description"></angular-editor>
+                      <textarea type="textarea" maxlength="250" formControlName="description" style="resize: none; display: none;"
+                        class="descstyle" matInput placeholder="Enter Job Description"></textarea> -->
+
+                    <mat-error class="error" *ngIf="description?.errors?.required">{{'Description is Required'}}</mat-error>
                   </mat-form-field>
                   <ng-container *ngIf="description.invalid && description.touched">
-                    <mat-error class="error" *ngIf="description?.errors?.required">{{'Description is Required'}}</mat-error>
                   </ng-container>
                 </div>
               </form>
@@ -268,15 +266,17 @@
           <div class="primarysingleWrap">
             <div class="singleWrap">
               <form [formGroup]="addjobsForm" enctype="multipart/form-data">
-
                 <div class="inputContainer">
                   <label>Job Requirements<span>*</span></label>
                   <mat-form-field appearance="outline">
-                    <textarea type="textarea" maxlength="250" formControlName="requirements" style="resize: none;"
-                      class="descstyle" matInput placeholder="Enter Job Requirements"></textarea>
+                    <angular-editor [(ngModel)]="htmlContent_requirement" formControlName="requirements"
+                      placeholder="Enter Job Requirements" id="requirements"></angular-editor>
+                    <textarea type="textarea" maxlength="250" formControlName="requirements"
+                      style="resize: none;display: none;" class="descstyle" matInput
+                      placeholder="Enter Job Requirements"></textarea>
+                    <mat-error class="error" *ngIf="requirements?.errors?.required">{{'Requirements is Required'}}</mat-error>
                   </mat-form-field>
                   <ng-container *ngIf="requirements.invalid && requirements.touched">
-                    <mat-error class="error" *ngIf="requirements?.errors?.required">{{'Requirements is Required'}}</mat-error>
                   </ng-container>
                 </div>
               </form>
@@ -284,21 +284,18 @@
           </div>
           <div>
             <form [formGroup]="addjobsForm" enctype="multipart/form-data">
-
               <div class="buttonClass">
-
                 <div class="subButton">
-
-                  <button mat-flat-button [disabled]="!addjobsForm.valid">Save</button>
+                  <button mat-flat-button [disabled]="!addjobsForm.valid" (click)="saveForm()">Save</button>
                 </div>
                 <div class="subButton2">
-                  <button mat-flat-button [disabled]="!addjobsForm.valid">clear</button>
+                  <button mat-flat-button (click)="clearForm()">Clear</button>
                 </div>
               </div>
             </form>
           </div>
         </mat-card-content>
-
       </mat-card>
     </div>
   </div>
+</div>
