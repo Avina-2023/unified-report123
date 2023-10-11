@@ -93,7 +93,6 @@ config: AngularEditorConfig = {
     this.formerrorInitialize();
     // this.getIndustryType();
 this.addjobsForm = this.formBuilder.group({
-      // Define your form controls and validators here
     });
   }
   formerrorInitialize() {
