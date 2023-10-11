@@ -32,7 +32,7 @@
             <span class="heading4">This Report Describes:</span>
             <p>The behavioural profile of <span><b>{{getAllBasicData?.firstname ? getAllBasicData?.firstname : ''}}'s</b></span> is mapped on the basis of four factors. <br />The report also covers the potential candidate’s Strengths and Development scope.</p>
             <figure>
-                <img src="/assets/images/pdfDownload/reportDiscribes1.svg" alt="" />
+                <img src="/assets/images/pdfDownload/factorimg.svg" alt="" />
             </figure>
         </section>
         <!-- footer start -->
@@ -199,7 +199,7 @@
 
             <ng-container *ngFor="let factors of getAllBehaviourData.reportSnapShot.competency; let factorIndex = index">
                 <section class="heightContainer">
-                    <section class="commonHeight" style="min-height: 905px !important;">
+                    <section class="commonHeight" style="min-height: 903px !important;">
                         <section class="thoughtSection">
                             <div class="commonHeader">
                                 <figure class="bg">
@@ -481,16 +481,32 @@
       <div class="container">
         <div class="row" style="display: grid;margin-top: 23px;">
           <div style="width: 93% !important;">
-         <div [style.left.%]="scoreValue-3" class="indicatorbox" >
+            <ng-container *ngIf="scoreValue < 50">
+         <div [style.left.%]="scoreValue-2" class="indicatorbox" >
          <img po [src]="scoreValue >= 0 && scoreValue <= 40 ? '/assets/images/pdfDownload/green.png' : scoreValue > 40 && scoreValue <= 80 ? '/assets/images/pdfDownload/orange.png' : scoreValue > 80 && scoreValue <= 100 ? '/assets/images/pdfDownload/red.png' : ''" alt="Image" *ngIf="scoreValue >= 0 && scoreValue <= 100" />
          <div class="indicatorboxtxt">{{scoreValue}}</div>
         </div>
+      </ng-container>
+      <ng-container *ngIf="scoreValue > 51">
+        <div [style.left.%]="scoreValue-3" class="indicatorbox" >
+        <img po [src]="scoreValue >= 0 && scoreValue <= 40 ? '/assets/images/pdfDownload/green.png' : scoreValue > 40 && scoreValue <= 80 ? '/assets/images/pdfDownload/orange.png' : scoreValue > 80 && scoreValue <= 100 ? '/assets/images/pdfDownload/red.png' : ''" alt="Image" *ngIf="scoreValue >= 0 && scoreValue <= 100" />
+        <div class="indicatorboxtxt">{{scoreValue}}</div>
+       </div>
+     </ng-container>
       </div>
           <!-- <br/> -->
+          <ng-container *ngIf="scoreValue > 51">
           <div class="rangeBox">
-            <div class="rangeindicator" [style.left.%]="scoreValue"></div>
+            <div class="rangeindicator" [style.left.%]="scoreValue-0.5"></div>
             <div class="rangeBox-inside" [style.width.%]="scoreValue" [ngClass]="{  'green': scoreValue >= 0 && scoreValue <= 40,'yellow': scoreValue > 40 && scoreValue <= 80, 'red': scoreValue > 80 && scoreValue <= 100}"></div>
           </div>
+          </ng-container>
+          <ng-container *ngIf="scoreValue < 50">
+            <div class="rangeBox">
+              <div class="rangeindicator" [style.left.%]="scoreValue+0.5"></div>
+              <div class="rangeBox-inside" [style.width.%]="scoreValue+0.5" [ngClass]="{  'green': scoreValue >= 0 && scoreValue <= 40,'yellow': scoreValue > 40 && scoreValue <= 80, 'red': scoreValue > 80 && scoreValue <= 100}"></div>
+            </div>
+            </ng-container>
           <div class="d-flex">
             <div class="checkpoint">
               <div class="d-grid">
@@ -728,7 +744,7 @@
 
 
 <div>
-  <img src="/assets/images/pdfDownload/footernew.png" id="footerimg" alt="footer" style="position: relative;height: 20px;right:20px"/>
+  <img src="/assets/images/pdfDownload/footerone.png" id="footerimg" alt="footer" style="position: relative;height: 20px;right:20px"/>
 </div>
 
 <ng-template #noImprovements>

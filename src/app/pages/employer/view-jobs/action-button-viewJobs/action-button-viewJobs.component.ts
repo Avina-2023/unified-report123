@@ -16,6 +16,7 @@ export class ActionButtonViewJobsComponent implements ICellRendererAngularComp {
   @ViewChild('matDialog', { static: false }) matDialogRef: TemplateRef<any>;
   @ViewChild('confirmmatDialog') confirmmatDialogRef!: TemplateRef<any>;
 
+  params: ICellRendererParams;
   constructor(
     public router: Router,
     private ApiService: ApiService,
