@@ -66,6 +66,11 @@
       .descstyle {
         height: 86px;
       }
+
+      ::ng-deep .mat-form-field-wrapper {
+
+        margin: -0.25em 0;
+      }
     }
   }
 
@@ -126,7 +131,8 @@
 
     .wrapper {
       padding: 10px;
-      height: 218pX;
+      height: 188pX;
+      margin: -3px 0px 0px 0px;
       border: 1px dashed #B4B4B4;
       border-radius: 5px;
       display: flex;
@@ -138,6 +144,16 @@
 
     .cloudicon {
       padding-right: 10px;
+    }
+    .imgicon{
+      margin: 8px 0px -10px 0px;
+    }
+
+    .labeldes {
+      text-align: center;
+      font: normal normal 300 14px/19px Roboto;
+      letter-spacing: 0.14px;
+      color: #848484;
     }
 
     .titlealign {
@@ -202,6 +218,16 @@
           color: red;
         }
       }
+
+    }
+
+    ::ng-deep .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+      border-color: #1B4E9B;
+    }
+
+    ::ng-deep .mat-radio-button.mat-accent .mat-radio-inner-circle {
+      color: #1B4E9B;
+      background-color: #1B4E9B;
     }
   }
 
@@ -249,6 +275,7 @@
           color: red;
         }
       }
+
     }
   }
 
@@ -289,4 +316,9 @@
       line-height: 33px;
     }
   }
+
+  .file-input {
+    display: none;
+  }
+
 }
