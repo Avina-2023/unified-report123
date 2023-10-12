@@ -16,6 +16,10 @@ export class ActionButtonViewJobsComponent implements ICellRendererAngularComp {
   @ViewChild('matDialog', { static: false }) matDialogRef: TemplateRef<any>;
   @ViewChild('confirmmatDialog') confirmmatDialogRef!: TemplateRef<any>;
 
+  jobdata: any;
+  jobStatus: any;
+  statusdata: any;
+  params: ICellRendererParams;
   constructor(
     public router: Router,
     private ApiService: ApiService,
@@ -26,20 +30,49 @@ export class ActionButtonViewJobsComponent implements ICellRendererAngularComp {
   refresh(params: ICellRendererParams): boolean {
     throw new Error('Method not implemented.');
   }
-  agInit(params: ICellRendererParams): void {
-    throw new Error('Method not implemented.');
-  }
   // agInit(params: ICellRendererParams): void {
-  //   this.params = params;
-  //   console.log(this.params, 'params'); 
-  //   params.value; 
+  //   throw new Error('Method not implemented.');
   // }
+  agInit(params: ICellRendererParams): void {
+    this.params = params;
+    console.log(this.params, 'params'); 
+    params.value; 
+  }
   afterGuiAttached?(params?: IAfterGuiAttachedParams): void {
     throw new Error('Method not implemented.');
   }
   
 
   ngOnInit() {
+    let localjobData = JSON.parse(this.appconfig.getLocalStorage('currentJobData'));
+    this.jobdata = this.appconfig.jobData ? this.appconfig.jobData : localjobData;
+  }
+
+  getStatusChange(status) { 
+    // console.log(this.jobdata);
+    let data = {
+      email: this.params.data.email, 
+      jobId: this.jobdata.jobId, 
+      jobStatus: status, 
+    };
+    this.ApiService.getStatusupdated(data).subscribe((response: any) => { 
+      if (response.success) { 
+        // this.statusdata = response?.success;
+        this.statusdata = response?.data;
+        console.log(this.statusdata);
+        this.messenger.sendMessage('grid-refresh', true); 
+      } else {
+      }
+    });
+    const dialogRef = this.dialog.open(this.confirmmatDialogRef, {
+      width: '400px',
+      height: 'auto',
+      autoFocus: false,
+      closeOnNavigation: true,
+      disableClose: false,
+      panelClass: 'popupModalContainerForForms',
+      data: { status },
+    });
   }
 
   closeDialog() {

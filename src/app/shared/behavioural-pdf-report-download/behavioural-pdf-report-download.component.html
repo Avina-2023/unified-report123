@@ -8,7 +8,7 @@
 
     <section class="banner">
         <div class="content">
-            BEHAVIOURAL<br />PERSONAL PROFILE
+          BEHAVIOURAL<br />PROFILING REPORT
         </div>
     </section>
 
@@ -30,9 +30,9 @@
 
         <section class="reportDescribes">
             <span class="heading4">This Report Describes:</span>
-            <p>The behavioural profile of <span><b>{{getAllBasicData?.firstname ? getAllBasicData?.firstname : ''}}</b></span> is mapped on the basis of four factors. <br />The report also covers the potential candidate’s Strengths and Development scope.</p>
+            <p>The behavioural profile of <span><b>{{getAllBasicData?.firstname ? getAllBasicData?.firstname : ''}}'s</b></span> is mapped on the basis of four factors. <br />The report also covers the potential candidate’s Strengths and Development scope.</p>
             <figure>
-                <img src="/assets/images/pdfDownload/reportDiscribes1.svg" alt="" />
+                <img src="/assets/images/pdfDownload/factorimg.svg" alt="" />
             </figure>
         </section>
         <!-- footer start -->
@@ -61,18 +61,18 @@
 
                     <div class="heading3">THE FOUR FACTORS</div>
                     <figure>
-                        <img src="/assets/images/pdfDownload/factoreimgwall1.png" alt="" />
+                        <img src="/assets/images/pdfDownload/factors.png" alt="" />
                     </figure>
                 </section>
             </section>
-            <footer class="d-flex justify-content-between m-t-30">
+            <!-- <footer class="d-flex justify-content-between m-t-30">
                 <div class="copyrights">
                     <p>©2023 L&T EduTech. All Rights Reserved.</p>
                 </div>
                 <figure class="logo">
                     <img src="/assets/images/pdfDownload/Logo1.png" alt="" />
                 </figure>
-            </footer>
+            </footer> -->
         </section>
         <!-- break to next page -->
         <div class="html2pdf__page-break"></div>
@@ -96,7 +96,7 @@
                                             </figure>
                                             <div>
                                                 <div class="heading">{{competency?.name}}</div>
-                                                <p class="justify">{{competency?.description}}</p>
+                                                <p>{{competency?.description}}</p>
                                             </div>
                                         </div>
                                         <div class="chart d-flex justify-content-between">
@@ -107,7 +107,7 @@
                                                             <li [ngStyle]="{'background-color': ((stenIndex + 1) > (10 - (skills?.stenScore ? skills?.stenScore : 0 ))) ? skills?.colourcode : ''}"></li>
                                                         </ng-container>
                                                         <span  *ngIf="skills?.stenScore > 0" class="arrowUp">
-                                                <em class="icon-ArrowUp"></em>
+                                                <!-- <em class="icon-ArrowUp"></em> -->
                                             </span>
                                                     </ul>
                                                 </div>
@@ -139,7 +139,7 @@
                                                             <li [ngStyle]="{'background-color': ((stenIndex + 1) > (10 - (skills?.stenScore ? skills?.stenScore : 0 ))) ? skills?.colourcode : ''}"></li>
                                                         </ng-container>
                                                         <span *ngIf="skills?.stenScore > 0" class="arrowUp">
-                                                <em class="icon-ArrowUp"></em>
+                                                <!-- <em class="icon-ArrowUp"></em> -->
                                             </span>
                                                     </ul>
                                                 </div>
@@ -164,7 +164,7 @@
 
             </section>
 
-            <div class="benchmarkInfo" style="    position: relative; top: -11px;">
+            <div class="benchmarkInfo" style="position: relative; top: -11px;">
                 <figure class="chart">
                     <img src="/assets/images/pdfDownload/newBench.svg" alt="">
                 </figure>
@@ -181,14 +181,14 @@
                 </div>
             </div>
 
-            <footer class="d-flex justify-content-between" style="margin-top: 10px;">
+            <!-- <footer class="d-flex justify-content-between" style="margin-top: 10px;">
                 <div class="copyrights">
                     <p>©2023 L&T EduTech. All Rights Reserved.</p>
                 </div>
                 <figure class="logo">
                     <img src="/assets/images/pdfDownload/Logo1.png" alt="" />
                 </figure>
-            </footer>
+            </footer> -->
         </section>
         <!-- REPORT SNAPSHOT END -->
 
@@ -199,7 +199,7 @@
 
             <ng-container *ngFor="let factors of getAllBehaviourData.reportSnapShot.competency; let factorIndex = index">
                 <section class="heightContainer">
-                    <section class="commonHeight" style="min-height: 905px !important;">
+                    <section class="commonHeight" style="min-height: 903px !important;">
                         <section class="thoughtSection">
                             <div class="commonHeader">
                                 <figure class="bg">
@@ -231,7 +231,7 @@
                                                 <img alt="" [src]="factorsSkillsImage(skillsDetail?.name)">
                                             </figure>
                                             <div class="content">
-                                            <span class="skillname" style="left:-13px">{{skillsDetail?.name}}: &nbsp;</span>
+                                            <span class="skillname" style="left:-13px;text-transform: uppercase;">{{skillsDetail?.name}}: &nbsp;</span>
                                             <ul class="paragraph-list" style="margin-top: 6px;">
                                               <li *ngFor="let item of skillsDetail?.scorebasedSkillDescription">
                                                   <img src="/assets/images/list-arrow.svg" alt=""><span  class="skillsDetail">{{item}}</span>
@@ -287,14 +287,14 @@
                             </div>
                         </div>
                     </div>
-                    <footer class="d-flex justify-content-between">
+                    <!-- <footer class="d-flex justify-content-between">
                         <div class="copyrights">
                             <p>©2023 L&T EduTech. All Rights Reserved.</p>
                         </div>
                         <figure class="logo">
                             <img src="/assets/images/pdfDownload/Logo1.png" alt="" />
                         </figure>
-                    </footer>
+                    </footer> -->
                 </section>
                 <!-- break to next page -->
                 <div class="html2pdf__page-break"></div>
@@ -353,28 +353,28 @@
                             </footer> -->
 
 
-                            <!-- <span *ngIf="((a + 1) % 2 == 0) && (getAllBehaviourAPIDetails?.strengthContent.length != a+1)">
+                            <span *ngIf="((a + 1) % 2 == 0) && (getAllBehaviourAPIDetails?.strengthContent.length != a+1)">
                                 <div class="html2pdf__page-break"></div>
                                 <figure class="scope-head d-flex align-items-center m-t-40">
                                     <img src="/assets/images/STRENGTH.svg" alt="">
                                     <span class="heading3">STRENGTH AREAS</span>
                             </figure>
                             <p *ngIf="getAllBehaviourData">{{getAllBehaviourData?.strengthAreaDescription}}</p>
-                            </span> -->
+                            </span>
 
                         </ng-container>
                     </ng-container>
 
                 </section>
             </section>
-            <footer class="d-flex justify-content-between">
+            <!-- <footer class="d-flex justify-content-between">
                 <div class="copyrights">
                     <p>©2023 L&T EduTech. All Rights Reserved.</p>
                 </div>
                 <figure class="logo">
                     <img src="/assets/images/pdfDownload/Logo1.png" alt="" />
                 </figure>
-            </footer>
+            </footer> -->
         </section>
 
 
@@ -387,10 +387,11 @@
         <div class="html2pdf__page-break"></div>
         <section class="heightContainer">
             <section class="commonHeight">
-                <section class="devScope commonStyle">
-                    <figure class="scope-head d-flex align-items-center">
+                <section class="devScope commonStyle" style="position: relative;
+                left: 15px;">
+                    <figure class="scope-head d-flex align-items-center" style="margin-bottom: 0px;">
                         <!-- <img src="/assets/images/DEVELOPMENT.svg" alt=""> -->
-                        <span class="heading3">DEVELOPMENT SCOPE</span>
+                        <span class="heading3" style="margin-left: 0px;">DEVELOPMENT SCOPE</span>
                     </figure>
                     <p *ngIf="getAllBehaviourData">{{getAllBehaviourData?.developmentScopeDescription}}</p>
 
@@ -408,6 +409,7 @@
                                     <div class="development-glimpse">A low score in this competency indicates that</div>
                                     <ul>
                                         <ng-container *ngIf="item?.developmentContent && item?.developmentContent.length > 0">
+
                                             <li *ngFor="let content of item?.developmentContent" style="margin-left: 1.5em; text-indent: -1.5em;">
                                                 <img src="/assets/images/list-arrow.svg" alt="">
                                                 <span>{{content?.item}}</span>
@@ -426,9 +428,9 @@
                             </div>
                             <span *ngIf="((b +1) % 2 == 0) && (getAllBehaviourAPIDetails?.developmentContent.length != b+1)">
                                 <div  class="html2pdf__page-break"></div>
-                                <figure  class="scope-head d-flex align-items-center m-t-40">
-                                    <img src="/assets/images/DEVELOPMENT.svg" alt="">
-                                    <span class="heading3">DEVELOPMENT SCOPE</span>
+                                <figure  class="scope-head d-flex align-items-center m-t-40" style="margin-bottom: 5px;">
+                                    <!-- <img src="/assets/images/DEVELOPMENT.svg" alt=""> -->
+                                    <span class="heading3" style="margin-left: 0px;">DEVELOPMENT SCOPE</span>
                             </figure>
                             <p *ngIf="getAllBehaviourData">{{getAllBehaviourData?.developmentScopeDescription}}</p>
                             </span>
@@ -450,14 +452,14 @@
                     </ng-container>
                 </section>
             </section>
-            <footer class="d-flex justify-content-between" style="margin-top: 10px;">
+            <!-- <footer class="d-flex justify-content-between" style="margin-top: 10px;">
               <div class="copyrights">
                   <p> ©2023 L&T EduTech. All Rights Reserved.</p>
               </div>
               <figure class="logo">
                   <img src="/assets/images/pdfDownload/Logo1.png" alt="" />
               </figure>
-          </footer>
+          </footer> -->
         </section>
  <!-- break to next page -->
  <div class="html2pdf__page-break"></div>
@@ -477,18 +479,34 @@
 
 
       <div class="container">
-        <div class="row mt-5" style="display: grid;">
+        <div class="row" style="display: grid;margin-top: 23px;">
           <div style="width: 93% !important;">
-         <div [style.left.%]="scoreValue-3" class="indicatorbox" >
-         <img po [src]="scoreValue >= 0 && scoreValue <= 40 ? '/assets/images/pdfDownload/red.png' : scoreValue > 40 && scoreValue <= 80 ? '/assets/images/pdfDownload/orange.png' : scoreValue > 80 && scoreValue <= 100 ? '/assets/images/pdfDownload/green.png' : ''" alt="Image" *ngIf="scoreValue >= 0 && scoreValue <= 100" />
+            <ng-container *ngIf="scoreValue < 50">
+         <div [style.left.%]="scoreValue-2" class="indicatorbox" >
+         <img po [src]="scoreValue >= 0 && scoreValue <= 40 ? '/assets/images/pdfDownload/green.png' : scoreValue > 40 && scoreValue <= 80 ? '/assets/images/pdfDownload/orange.png' : scoreValue > 80 && scoreValue <= 100 ? '/assets/images/pdfDownload/red.png' : ''" alt="Image" *ngIf="scoreValue >= 0 && scoreValue <= 100" />
          <div class="indicatorboxtxt">{{scoreValue}}</div>
         </div>
+      </ng-container>
+      <ng-container *ngIf="scoreValue > 51">
+        <div [style.left.%]="scoreValue-3" class="indicatorbox" >
+        <img po [src]="scoreValue >= 0 && scoreValue <= 40 ? '/assets/images/pdfDownload/green.png' : scoreValue > 40 && scoreValue <= 80 ? '/assets/images/pdfDownload/orange.png' : scoreValue > 80 && scoreValue <= 100 ? '/assets/images/pdfDownload/red.png' : ''" alt="Image" *ngIf="scoreValue >= 0 && scoreValue <= 100" />
+        <div class="indicatorboxtxt">{{scoreValue}}</div>
+       </div>
+     </ng-container>
       </div>
           <!-- <br/> -->
+          <ng-container *ngIf="scoreValue > 51">
           <div class="rangeBox">
-            <div class="rangeindicator" [style.left.%]="scoreValue"></div>
-            <div class="rangeBox-inside" [style.width.%]="scoreValue" [ngClass]="{  'red': scoreValue >= 0 && scoreValue <= 40,'yellow': scoreValue > 40 && scoreValue <= 80, 'green': scoreValue > 80 && scoreValue <= 100}"></div>
+            <div class="rangeindicator" [style.left.%]="scoreValue-0.5"></div>
+            <div class="rangeBox-inside" [style.width.%]="scoreValue" [ngClass]="{  'green': scoreValue >= 0 && scoreValue <= 40,'yellow': scoreValue > 40 && scoreValue <= 80, 'red': scoreValue > 80 && scoreValue <= 100}"></div>
           </div>
+          </ng-container>
+          <ng-container *ngIf="scoreValue < 50">
+            <div class="rangeBox">
+              <div class="rangeindicator" [style.left.%]="scoreValue+0.5"></div>
+              <div class="rangeBox-inside" [style.width.%]="scoreValue+0.5" [ngClass]="{  'green': scoreValue >= 0 && scoreValue <= 40,'yellow': scoreValue > 40 && scoreValue <= 80, 'red': scoreValue > 80 && scoreValue <= 100}"></div>
+            </div>
+            </ng-container>
           <div class="d-flex">
             <div class="checkpoint">
               <div class="d-grid">
@@ -587,14 +605,14 @@
       </div>
     </div>
   </section>
-    <footer class="d-flex justify-content-between" style="margin-top: 0px;">
+    <!-- <footer class="d-flex justify-content-between" style="margin-top: 0px;">
       <div class="copyrights">
           <p>©2023 L&T EduTech. All Rights Reserved.</p>
       </div>
       <figure class="logo">
           <img src="/assets/images/pdfDownload/Logo1.png" alt="" />
       </figure>
-  </footer>
+  </footer> -->
   </section>
 
 
@@ -654,14 +672,14 @@
                     </ng-container>
                 </section>
             </section>
-            <footer class="d-flex justify-content-between" style="margin-top: 10px;">
+            <!-- <footer class="d-flex justify-content-between" style="margin-top: 10px;">
               <div class="copyrights">
                   <p>©2023 L&T EduTech. All Rights Reserved.</p>
               </div>
               <figure class="logo">
                   <img src="/assets/images/pdfDownload/Logo1.png" alt="" />
               </figure>
-          </footer>
+          </footer> -->
         </section>
 
         <!-- break to next page -->
@@ -698,7 +716,7 @@
 
                             <div class="" *ngIf="((d + 1) % 4 == 0)  && (getAllBehaviourAPIDetails?.developmentconclusionPoints.length != d+1)">
                                 <div class="html2pdf__page-break"></div>
-                                <div class="header" *ngIf="getAllBehaviourData?.conclusion">
+                                <div class="header" style="margin-top: 30px;" *ngIf="getAllBehaviourData?.conclusion">
                                     <div class="heading">
                                         {{getAllBehaviourData?.conclusion?.topicName}}
                                     </div>
@@ -710,16 +728,23 @@
                     </ng-container>
                 </section>
             </section>
-            <footer class="d-flex justify-content-between" style="margin-top: 10px;">
+            <!-- <footer class="d-flex justify-content-between" style="margin-top: 10px;">
               <div class="copyrights">
                   <p>©2023 L&T EduTech. All Rights Reserved.</p>
               </div>
               <figure class="logo">
                   <img src="/assets/images/pdfDownload/Logo1.png" alt="" />
               </figure>
-          </footer>
+          </footer> -->
         </section>
     </div>
+</div>
+
+
+
+
+<div>
+  <img src="/assets/images/pdfDownload/footerone.png" id="footerimg" alt="footer" style="position: relative;height: 20px;right:20px"/>
 </div>
 
 <ng-template #noImprovements>
