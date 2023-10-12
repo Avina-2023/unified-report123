@@ -1,12 +1,5 @@
 import { ApiService } from 'src/app/services/api.service';
-import {
-  Component,
-  OnInit,
-  TemplateRef,
-  ViewChild,
-  ElementRef,
-  Renderer2,
-} from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild, ElementRef, Renderer2,} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { I } from '@angular/cdk/keycodes';
 import { AppConfigService } from 'src/app/utils/app-config.service';
@@ -70,21 +63,21 @@ export class JobListingComponent implements OnInit {
   grid2Selected = false;
   partnerLabel: string | undefined;
   private buttonClicked = new Subject<string>();
-  // isSelected:any;
+  workOption: any;
   constructor(
     public dialog: MatDialog,
-    private apiservice: ApiService,
-    private appconfig: AppConfigService,
-    public router: Router,
+    private apiservice: ApiService, 
+    private appconfig: AppConfigService, 
+    public router: Router, 
     private toaster: ToastrService,
     private renderer: Renderer2,
     private el: ElementRef
   ) {}
   url = 'Jobs';
   ngOnInit() {
-    this.getJobList();
-    this.getJobFilter();
-    this.candidateData();
+    this.getJobList(); 
+    this.getJobFilter(); 
+    this.candidateData(); 
     this.enabledisable();
     this.partnerLabel = 'Skill Exchange Partner';
     this.debouncefn();
@@ -93,7 +86,6 @@ export class JobListingComponent implements OnInit {
   debouncefn() {
     const buttonClickedDebounced = this.buttonClicked.pipe(debounceTime(200));
     buttonClickedDebounced.subscribe((itemId: string) =>
-      //The actual action that should be performed on click
       {
         this.getJobList();
       }
@@ -109,125 +101,54 @@ export class JobListingComponent implements OnInit {
       this.gotojob(item);
     }
   }
-  setActiveButton(buttonId: string) {
-    this.activeButton = buttonId;
-  }
 
   toggleGrid2() {
     this.grid2Selected = !this.grid2Selected;
   }
   candidateData() {
-    this.candidateDetails = localStorage.getItem('candidateProfile');
-
-    let educationyear = JSON.parse(this.candidateDetails);
-    // this.useryop = educationyear?.education_details?.educations[0]?.year_of_passing;
-    this.useryop =
-      educationyear?.education_details?.educations[
-        educationyear.education_details.educations.length - 1
-      ]?.year_of_passing;
-    // console.log( educationyear?.education_details?.educations[educationyear.education_details.educations.length - 1]?.year_of_passing , 'YOP')
-    // console.log(educationyear,'details2')
-    this.yopdate = new Date(this.useryop);
-    this.useryopyear = this.yopdate.getFullYear();
-    this.removeduplicate2 = this.useryopyear.toString();
-    console.log(this.useryopyear, 'useryop1');
-    return this.useryopyear;
+    this.candidateDetails = localStorage.getItem('candidateProfile'); 
+    let educationyear = JSON.parse(this.candidateDetails); 
+    this.useryop = educationyear?.education_details?.educations[ educationyear.education_details.educations.length - 1 ]?.year_of_passing; 
+    this.yopdate = new Date(this.useryop);  
+    this.useryopyear = this.yopdate.getFullYear(); 
+    this.removeduplicate2 = this.useryopyear.toString(); 
+    console.log(this.useryopyear, 'useryop1'); 
+    return this.useryopyear; 
   }
-
-  // getJobList() {
-  //   // this.filter.textSearch = searchInput;
-  //   let params: any = {
-  //     pageNumber: this.pageNumber,
-  //     itemsPerPage: this.itemsPerPage,
-  //     filter: this.filterObj,
-  //     sort: this.sortData,
-  //     specialization: 'Computer Science Engineering',
-  //     email: this.appconfig.getLocalStorage('email'),
-  //     // "isApplied":false,
-  //     // "isSelected":false
-  //   };
-
-  //   this.apiservice.joblistingDashboard(params).subscribe((response: any) => {
-  //     if (response.success) {
-  //       this.joblist = response.data;
-
-  //       console.log(this.joblist, 'jobdata');
-
-  //       // this.joblist?.forEach((element)=>{
-  //       // 	element?.yearofPassout?.forEach((element)=>{
-  //       // 		if(element == this.useryopyear){
-  //       // 			this.common.push(element);
-  //       // 		}
-  //       // 	})
-  //       // 	return this.common;
-  //       // })
-
-  //       //  this.removeduplicate = this.common.filter((item,index)=>{
-  //       // 	return this.common.indexOf(item) === index
-
-  //       // })
-  //       // this.removeduplicate1 = this.removeduplicate.toString()
-  //       // console.log("unique",this.removeduplicate1);
-
-  //       // console.log(this.common,'common')
-
-  //       this.totallength = response.totalCount;
-  //       this.total = Math.ceil(response.totalCount / this.itemsPerPage);
-  //       // console.log(this.total)
-  //       this.joblist.forEach((element) => {
-  //         this.sampleContent.push(element.overview);
-  //       });
-  //     }
-  //   });
-  // }
 
   getJobList() {
     if (this.searchInput) {
       this.filterObj.textSearch = this.searchInput;
-    } else {
+    }else {
       delete this.filterObj.textSearch;
     }
     let params: any = {
-      pageNumber: this.pageNumber,
-      itemsPerPage: this.itemsPerPage,
+      pageNumber: this.pageNumber, 
+      itemsPerPage: this.itemsPerPage, 
       // filter: {
       //   textSearch: this.searchInput,
       // },
-      filter: this.filterObj,
-      sort: this.sortData,
+      filter: this.filterObj, 
+      sort: this.sortData, 
       specialization: 'Computer Science Engineering',
-      email: this.appconfig.getLocalStorage('email'),
+      email: this.appconfig.getLocalStorage('email'), 
     };
-
-    this.apiservice.joblistingDashboard(params).subscribe((response: any) => {
-      if (response.success) {
-        this.joblist = response.data;
+    this.apiservice.joblistingDashboard(params).subscribe((response: any) => { 
+      if (response.success) { 
+        this.joblist = response.data; 
         this.totallength = response.totalCount;
-        this.total = Math.ceil(response.totalCount / this.itemsPerPage);
-        this.joblist.forEach((element) => {
-          this.sampleContent.push(element.overview);
-        });
-      }
-    });
-  }
+        this.total = Math.ceil(response.totalCount / this.itemsPerPage); 
+        this.joblist.forEach((element) => { 
+        this.sampleContent.push(element.overview); 
+        }); 
+      } 
+    }); 
+  } 
 
   enabledisable() {
     console.log(this.useryopyear);
   }
 
-  jobyop() {
-    // this.yop?.forEach((element,i) => {
-    // 	console.log(element,'element');
-    // 	if(element == this.useryopyear){
-    // 	this.jobDisable = true
-    // 	console.log(this.jobDisable,'jobDisable1');
-    // 	}
-    // 	else {
-    // 		this.jobDisable = false
-    // 		console.log(this.jobDisable,'jobDisable1');
-    // 	}
-    // })
-  }
 
   openDialog(displayValue) {
     this.filterItems = displayValue;
@@ -398,4 +319,14 @@ export class JobListingComponent implements OnInit {
   dashboard() {
     this.router.navigate(['/candidateview/dashboard']);
   }
+
+  setActiveButton(workOption) {
+    this.activeButton = workOption;
+    this.filterObj.workType = [workOption];
+    if (this.filterObj.workType == 'all') {
+      this.filterObj = {};
+    }
+    this.getJobList()
+  }
+
 }

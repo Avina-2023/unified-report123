@@ -241,51 +241,10 @@ export class ViewCandidateByDriveComponent implements OnInit {
           };
         },
       },
-      // {
-      //   headerName: 'Status',
-      //   field: 'jobStatus',
-      //   minWidth: 175,
-      //   filter: 'agTextColumnFilter',
-      //   chartDataType: 'category',
-      //   aggFunc: 'sum',
-      //   filterParams: {
-      //     suppressAndOrCondition: true,
-      //     filterOptions: ['contains'],
-      //   },
-      //   cellClassRules: {
-      //     'yellow-cell': (params) => params.value === 'awaitingReview',
-      //     'green-cell': (params) => params.value === 'Shortlisted',
-      //     'red-cell': (params) => params.value === 'Rejected',
-      //     'blue-cell': (params) => params.value === 'In Progress',
-      //   },
-      //   cellRenderer: (params) => {
-      //     if (
-      //       params.value &&
-      //       params.value != undefined &&
-      //       params.value != null &&
-      //       params.value != ''
-      //     ) {
-      //       this.FormateName = params.value;
-      //       return this.titleCase(this.FormateName);
-      //     } else {
-      //       return '-';
-      //     }
-      //   },
-      //   tooltipValueGetter: (params) => {
-      //     if (params.value && params.value !== undefined
-      //       && params.value !== null && params.value !== '') {
-      //       this.FormateName = params.value;
-      //       return this.titleCase(this.FormateName);
-      //     } else {
-      //       return '-';
-      //     }
-      //   },
-      //   // tooltipField: 'jobStatus',
-      // },
       {
         headerName: 'Status',
         field: 'jobStatus',
-        minWidth: 165,
+        minWidth: 195,
         filter: 'agTextColumnFilter',
         chartDataType: 'category',
         aggFunc: 'sum',
@@ -301,28 +260,19 @@ export class ViewCandidateByDriveComponent implements OnInit {
         },
         cellRenderer: (params) => {
           if (
-            params.value &&
-            params.value !== undefined &&
-            params.value !== null &&
-            params.value !== ''
-          ) {
-            return params.value === 'awaitingReview'
-              ? 'Awaiting Review'
-              : this.titleCase(params.value);
+            params.value &&  params.value !== undefined &&
+            params.value !== null && params.value !== ''
+          ) { 
+            return params.value === 'awaitingReview' ? 'Awaiting Review' : this.titleCase(params.value);
           } else {
             return '-';
           }
         },
         tooltipValueGetter: (params) => {
-          if (
-            params.value &&
-            params.value !== undefined &&
-            params.value !== null &&
-            params.value !== ''
-          ) {
-            return params.value === 'awaitingReview'
-              ? 'Awaiting Review'
-              : this.titleCase(params.value);
+          if ( params.value && params.value !== undefined 
+            && params.value !== null && params.value !== ''
+          ) { 
+            return params.value === 'awaitingReview' ? 'Awaiting Review' : this.titleCase(params.value);
           } else {
             return '-';
           }
@@ -387,7 +337,7 @@ export class ViewCandidateByDriveComponent implements OnInit {
       {
         headerName: 'Trained by L&T EduTech',
         field: 'trainedStatus',
-        minWidth: 170,
+        minWidth: 200,
         filter: 'agTextColumnFilter',
         chartDataType: 'category',
         aggFunc: 'sum',
@@ -409,17 +359,17 @@ export class ViewCandidateByDriveComponent implements OnInit {
         },
         tooltipField: 'trainedStatus',
       },
-      {
-        headerName: 'Assessed by L&T EduTech',
-        field: 'assessedStatus',
-        minWidth: 210,
-        filter: 'agTextColumnFilter',
+      { 
+        headerName: 'Assessed by L&T EduTech', 
+        field: 'assessedStatus', 
+        minWidth: 210, 
+        filter: 'agTextColumnFilter', 
         chartDataType: 'category',
         aggFunc: 'sum',
-        filterParams: {
+        filterParams: { 
           suppressAndOrCondition: true,
           filterOptions: ['contains'],
-        },
+        }, 
         cellRenderer: (params) => {
           if (
             params.value &&
@@ -427,7 +377,7 @@ export class ViewCandidateByDriveComponent implements OnInit {
             params.value != null &&
             params.value != ''
           ) {
-            return params.value;
+            return params.value; 
           } else {
             return '-';
           }
@@ -435,20 +385,20 @@ export class ViewCandidateByDriveComponent implements OnInit {
         tooltipField: 'assessedStatus',
       },
       {
-        headerName: 'Applied Date',
-        field: 'appliedDate',
+        headerName: 'Applied Date', 
+        field: 'appliedDate', 
         minWidth: 135,
-        valueFormatter: function (params) {
-          return moment(params.value).format('DD-MM-yy');
+        valueFormatter: function (params){
+          return moment(params.value).format('DD-MM-yy'); 
+        }, 
+        tooltipValueGetter: function (params){
+          return moment(params.value).format('DD-MM-yy').toString(); 
         },
-        tooltipValueGetter: function (params) {
-          return moment(params.value).format('DD-MM-yy').toString();
-        },
-        filter: 'agDateColumnFilter',
-        chartDataType: 'series',
-        filterParams: {
+        filter: 'agDateColumnFilter', 
+        chartDataType: 'series', 
+        filterParams: { 
           suppressAndOrCondition: true,
-          filterOptions: ['equals', 'lessThan', 'greaterThan', 'inRange'],
+          filterOptions: ['equals', 'lessThan', 'greaterThan', 'inRange'], 
         },
         // tooltipField: 'appliedDate',
       },
@@ -609,10 +559,10 @@ export class ViewCandidateByDriveComponent implements OnInit {
     this.gridApi.refreshServerSideStore({ purge: true });
   }
 
-  getJobDetails() {
-    this.jobDetailsdata = this.appconfig.getLocalStorage('currentJobData');
-    this.valueone = JSON.parse(this.jobDetailsdata);
-  }
+  getJobDetails() { 
+    this.jobDetailsdata = this.appconfig.getLocalStorage('currentJobData'); 
+    this.valueone = JSON.parse(this.jobDetailsdata); 
+  } 
 
   onTabChange(index: number) {
     const pall = ['navyblue', 'yellow', 'lightblue', 'red', 'green'];
@@ -622,7 +572,7 @@ export class ViewCandidateByDriveComponent implements OnInit {
     this.icncolor = icn[index];
     this.active = index;
     console.log(index, 'MYINDEX VALUE');
-    let statusmodel = {
+    let statusmodel = { 
       jobStatus: {
         filterType: 'text',
         type: 'contains',
@@ -651,10 +601,8 @@ export class ViewCandidateByDriveComponent implements OnInit {
   }
 
   candidateprofile(data: any): void {
-    this.appconfig.setLocalStorage('C_Candidate_status', JSON.stringify(data));
-    this.router.navigateByUrl(
-      '/auth/drive/viewCandidateProfilebyEmployer?from=NAME'
-    );
+    this.appconfig.setLocalStorage('C_Candidate_status', JSON.stringify(data)); 
+    this.router.navigateByUrl('/auth/drive/viewCandidateProfilebyEmployer?from=VA');
   }
 
   paginationCounter(){

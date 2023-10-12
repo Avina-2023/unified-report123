@@ -1,13 +1,13 @@
 <div class="main1">
     <div class="main2">
       <div class="dash">
-        <h5 class="findtext"> Candidate Search</h5>
+        <h5 class="findtext fnt_inter"> Candidate Search</h5>
       </div>
       <div class="count-filter">
         <div class="count"><span>Results Showing ({{totallength}})</span></div>
         <div class="sorting">
-          <mat-form-field>
-            <mat-select [(value)]="selectedOption" (selectionChange)="filterCandidates()" class="select_value">
+          <mat-form-field class="sel_field">
+            <mat-select [(value)]="selectedOption" (selectionChange)="filterCandidates()" class="select_value" [panelClass]="'custom-mat-select-panel'">
               <mat-option value="all">All</mat-option>
               <mat-option value="saved candidate">Saved Candidates</mat-option>
               <mat-option value="l&t certified">L&T Certified</mat-option>
@@ -36,7 +36,7 @@
               </ng-template>
             </div>
             <div class="candidate-name" [matTooltip]="item.firstName">
-              {{item.firstName}}
+              {{appconfig.transformToTitleCase(item.firstName)}}
             </div>
             <div class="candidate-edu">
               <div *ngFor="let education of item.educations">
@@ -120,26 +120,26 @@
       </div>
       <div class="filt_list">
         <div class="filter_col" *ngFor="let fillist of filter_info.data">
-          <p class="filter_head" (click)="fillist.isShow=!fillist.isShow">
+          <p class="filter_head option_title" (click)="fillist.isShow=!fillist.isShow">
             <mat-icon class="misc_icon">{{fillist.iconName}}</mat-icon><span
               class="job_designation">{{fillist.fieldName}}</span>
             <mat-icon class="expand_icon" class="clickBtn misc_icon">expand_more</mat-icon>
           </p>
           <div *ngFor="let course of fillist.subContent; let i = index">
-            <span *ngIf="i<4">
+            <span matTooltip="{{course.name}}" *ngIf="i<4">
               <mat-checkbox (change)="checkboxChecked($event,course,fillist.key,fillist.isMaster,'direct')"
                 [checked]="course.is_checked" class="fldName" color="primary" *ngIf="!fillist.isShow">{{course.name}}
                 ({{course.totalCount}})
               </mat-checkbox>
             </span>
           </div>
-          <button *ngIf="(fillist.subContent.length)>4" mat-button
+          <button class="expand_more_icon" *ngIf="(fillist.subContent.length)>4" mat-button
             (click)="openDialog(fillist)">+{{fillist.subContent.length-4}} more</button>
         </div>
       </div>
     </div>
   </div>
-  <ng-template #moreItems>
+  <ng-template #moreItems class="spec-item">
     <div class="dlog_template">
       <h1 class="job_designation" mat-dialog-title>{{filterItems.fieldName}}</h1>
       <div class="close_div" mat-dialog-actions>
@@ -156,7 +156,7 @@
             [checked]="course.is_checked" color="primary">{{course.name}} ({{course.totalCount}})</mat-checkbox>
         </div>
       </div>
-      <button [mat-dialog-close] class="aply_btn" (click)="applyfilter()" mat-raised-button color="primary">Apply</button>
+      <button [mat-dialog-close] class="aply_btn" (click)="applyfilter()" mat-raised-button color="primary">Apply </button>
     </div>
   </ng-template>
   
@@ -168,7 +168,7 @@
           All</span>
       </p>
       <p class="apply_top_menu">
-        <button (click)="applyfilter()" [mat-dialog-close]>Apply</button>
+        <button (click)="applyfilter()"  [mat-dialog-close]>Apply</button>
       </p>
     </div>
     <div class="mob_courses">

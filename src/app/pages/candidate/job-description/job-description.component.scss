@@ -121,6 +121,14 @@ li {
         font-size: 14px;
       }
     }
+    .worktyp{
+      border: 1px solid #1B4E9B;
+      padding: 3px 15px 3px 15px;
+      border-radius: 20px;
+      color: #1B4E9B;
+      margin: 0px 10px 0px 0px;
+      background: #fff;
+    }
   }
   .descriptionArea {
     display: flex;
@@ -349,6 +357,59 @@ li {
   }
 }
 
+// =========== ext redirection codes================
+
+.ext-closer{
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+}
+.ext-redirect-popup{
+  border: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+.ext-redirect-content{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+.heading{
+    color: #000000;
+    font-weight: bolder;
+    font-size: 16px;
+    padding: 24px 0px 0px 0px;
+}
+}
+.ext-redirect-popup img{
+  width: 200px;
+  height: auto;
+  margin: 10px 0;
+}
+
+.redirect-message{
+  margin-top: 10px;
+}
+.ext-redirect-popup a{
+  margin: 10px 0;
+}
+
+.ext-btn{
+  background-color: #1B4E9B;
+  color: #FFFFFF;
+  margin: 30px;
+}
+.ext-btn:hover {
+  background-color: #FFFFFF;
+   color: #1B4E9B;
+ }
+
+
+// ======================
+
 @media only screen and (max-width: 600px) {
   .coverImage {
     img {
@@ -412,3 +473,5 @@ li {
     }
   }
 }
+
+
