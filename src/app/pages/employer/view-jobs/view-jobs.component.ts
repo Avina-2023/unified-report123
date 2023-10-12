@@ -80,6 +80,8 @@ export class ViewJobsComponent implements OnInit {
   constructor(
     private ApiService: ApiService,
     private toastr: ToastrService,
+    private sendData: SentDataToOtherComp,
+    private appconfig: AppConfigService,
   ) {
     this.gridOptions = <GridOptions>{
       context: {
@@ -93,6 +95,14 @@ export class ViewJobsComponent implements OnInit {
 
   ngOnInit() {
     this.tabledata();
+    this.sendData
+      .getMessage()
+      .subscribe((data: { data: string; value: any }) => {
+        if (data.data == 'grid-refresh') {
+          console.log('inside');
+          this.refresh();
+        }
+      });
   }
 
   tabledata() {
@@ -274,16 +284,15 @@ export class ViewJobsComponent implements OnInit {
           return moment(params.value).format('MMM D, yy');
         },
       },
-      // {
-      //   headerName: 'Actions',
-      //   field: '',
-      //   minWidth: 150,
-      //   cellRenderer: 'moreOptions',
-      //   //  onCellClicked: this.sendJobData(),
-      //   suppressColumnsToolPanel: true,
-      //   filter: false,
-      //   pinned: 'right',
-      // },
+      {
+        headerName: 'Actions',
+        field: '',
+        minWidth: 150,
+        cellRenderer: 'moreOptions',
+        //  onCellClicked: this.sendJobData(),
+        suppressColumnsToolPanel: true,
+        filter: false,
+      }
     ];
 
     this.rowModelType = 'serverSide';
@@ -340,13 +349,14 @@ export class ViewJobsComponent implements OnInit {
                 rowCount: 0,
               });
               this.gridApi.showNoRowsOverlay();
-              // console.log('data not found');
             } else {
               this.partnerListAgData = data1 && data1.data ? data1.data : [];
-              // console.log('data found');
               if (this.partnerListAgData.length > 0) {
                 this.pageRowCount =
-                  data1 && data1.totalCount ? data1.totalCount : 0;
+                  data1 && data1.totalCount ? data1.totalCount : 0; 
+                  console.log(this.partnerListAgData,'data');
+                  console.log(data1,'data1');
+                  
                 this.gridApi.hideOverlay();
                 params.success({
                   rowData: this.partnerListAgData,
@@ -372,6 +382,13 @@ export class ViewJobsComponent implements OnInit {
         this.gridApi.hideOverlay();
       },
     };
+  }
+
+  getalldata(partnerListAgData){
+    this.appconfig.setLocalStorage('currentJobData',JSON.stringify(partnerListAgData));
+  }
+  refresh() {
+    this.gridApi.refreshServerSideStore({ purge: true });
   }
 
   fetchData(data: any) {

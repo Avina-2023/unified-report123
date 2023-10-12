@@ -61,3 +61,93 @@
         opacity: 0.6;
       }
 }
+
+.main-wraper{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    .warning-imag{
+        padding: 1px 1px 10px 137px !important;
+    }
+    .text{
+        padding: 1px 1px 10px 27px;
+        .status-text{
+            font-weight:900;
+        }
+    }
+    .button-wraper-fom-pop-up{
+        display: flex;
+       justify-content: center;
+
+       .button1{
+        background-color: #1B4E9B !important;
+        color: #FFFFFF;
+        line-height: 2;
+        border-radius: 4px;
+        font-size: 14px;
+        background-size: 200%;
+        transition: .5s ease-out;
+        width: 90px;
+        margin: 3px;
+      }
+       .button2{
+        background-color: #1B4E9B !important;
+        color: #FFFFFF;
+        line-height: 2;
+        border-radius: 4px;
+        font-size: 14px;
+        background-size: 200%;
+        transition: .5s ease-out;
+        width: 90px;
+        margin: 3px;
+      }
+       .button3 {
+         background-color: #1B4E9B !important;
+         color: #FFFFFF;
+         line-height: 2;
+         border-radius: 4px;
+         font-size: 14px;
+         background-size: 200%;
+         transition: .5s ease-out;
+         width: 90px;
+         margin: 3px;
+       }
+ 
+       .button1:hover{
+         background-color: #FFFFFF !important;
+         color: #1B4E9B;
+       }
+       .button2:hover{
+        background-color: #FFFFFF !important;
+         color: #1B4E9B;
+       }
+       .button3:hover {
+        background-color: #FFFFFF !important;
+         color: #1B4E9B;
+       }
+    }
+
+    .gren-tick{
+        text-align: center;
+        img{
+          height: 47px;
+          margin: 15px 0px 16px 0px;
+        }
+    }
+    .text1{
+        // padding: 0px 0px 10px 60px;
+        text-align: center;
+        margin: 7px 0px 19px 0px;
+        .candidatename{
+          font-weight: 900;
+        }
+    }
+    .b4{
+        background-color: #1B4E9B;
+        color: #FFFFFF;
+    }
+    .b4:hover {
+        background-color: #FFFFFF;
+         color: #1B4E9B;
+       }
+}
