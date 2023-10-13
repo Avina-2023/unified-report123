@@ -747,7 +747,7 @@ span {
             }
         }
         .description {
-          padding: 12px 7px 0px 15px;
+          padding: 12px 7px 8px 15px;
     background-color: #ffffff;
     border: 1px solid rgba(177, 177, 177, 0.5);
     display: flex;
@@ -1094,6 +1094,10 @@ span {
     .m-t-40 {
         margin-top: 35px !important;
     }
+    .m-t-45{
+      margin-top: 45px !important;
+  }
+
 
     .m-t-80 {
         margin-top: 80px;
@@ -1259,7 +1263,7 @@ span {
       .boldtext{
         font-weight: 700;
         color: #000000;
-        margin-top: 20px;
+        margin-top: 10px;
         margin-bottom: 10px;
       }
 
