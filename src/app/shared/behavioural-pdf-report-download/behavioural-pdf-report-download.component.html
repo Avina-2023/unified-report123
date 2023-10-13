@@ -355,7 +355,7 @@
 
                             <span *ngIf="((a + 1) % 2 == 0) && (getAllBehaviourAPIDetails?.strengthContent.length != a+1)">
                                 <div class="html2pdf__page-break"></div>
-                                <figure class="scope-head d-flex align-items-center m-t-40">
+                                <figure class="scope-head d-flex align-items-center m-t-45">
                                     <!-- <img src="/assets/images/STRENGTH.svg" alt=""> -->
                                     <span class="heading3">STRENGTH AREAS</span>
                             </figure>
@@ -406,7 +406,7 @@
                                 </div>
                                 <div class="right">
                                     <div class="heading4">{{item?.skillName}}</div>
-                                    <div class="development-glimpse">A low score in this competency indicates that :</div>
+                                    <div class="development-glimpse">A low score in this competency indicates that:</div>
                                     <ul>
                                         <ng-container *ngIf="item?.developmentContent && item?.developmentContent.length > 0">
                                             <li *ngFor="let content of item?.developmentContent;let last = last">
@@ -668,10 +668,10 @@
                             <!-- break page -->
 
 
-                            <div class="m-t-40" *ngIf="((s + 1) % 4 == 0)  && (getAllBehaviourAPIDetails?.strengthconclusionPoints.length != s+1)">
+                            <div  *ngIf="((s + 1) % 4 == 0)  && (getAllBehaviourAPIDetails?.strengthconclusionPoints.length != s+1)">
                                 <div class="html2pdf__page-break"></div>
 
-                                <div class="header" *ngIf="getAllBehaviourData?.conclusion">
+                                <div class="header m-t-45" *ngIf="getAllBehaviourData?.conclusion">
 
                                     <div class="heading">
                                         {{getAllBehaviourData?.conclusion?.topicName}}
