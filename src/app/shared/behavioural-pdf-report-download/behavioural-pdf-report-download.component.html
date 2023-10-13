@@ -199,7 +199,7 @@
 
             <ng-container *ngFor="let factors of getAllBehaviourData.reportSnapShot.competency; let factorIndex = index">
                 <section class="heightContainer">
-                    <section class="commonHeight" style="min-height: 903px !important;">
+                    <section class="commonHeight" style="min-height: 900px !important;">
                         <section class="thoughtSection">
                             <div class="commonHeader">
                                 <figure class="bg">
@@ -356,7 +356,7 @@
                             <span *ngIf="((a + 1) % 2 == 0) && (getAllBehaviourAPIDetails?.strengthContent.length != a+1)">
                                 <div class="html2pdf__page-break"></div>
                                 <figure class="scope-head d-flex align-items-center m-t-40">
-                                    <img src="/assets/images/STRENGTH.svg" alt="">
+                                    <!-- <img src="/assets/images/STRENGTH.svg" alt=""> -->
                                     <span class="heading3">STRENGTH AREAS</span>
                             </figure>
                             <p *ngIf="getAllBehaviourData">{{getAllBehaviourData?.strengthAreaDescription}}</p>
@@ -406,11 +406,25 @@
                                 </div>
                                 <div class="right">
                                     <div class="heading4">{{item?.skillName}}</div>
-                                    <div class="development-glimpse">A low score in this competency indicates that</div>
+                                    <div class="development-glimpse">A low score in this competency indicates that :</div>
                                     <ul>
                                         <ng-container *ngIf="item?.developmentContent && item?.developmentContent.length > 0">
+                                            <li *ngFor="let content of item?.developmentContent;let last = last">
+                                              <img *ngIf="!last" src="/assets/images/list-arrow.svg" alt="">
+                                              <span>{{content?.item}}</span>
+                                              <ng-container *ngIf="content.sub_item">
+                                                <h3 style="margin-top: 14px;margin-bottom: 7px;"><b>{{ content.sub_item.title }}</b></h3>
+                                                <span style="position: relative;left: -17px;">{{content.sub_item.subinfo[0].title }}</span>
+                                                <ul style="position: relative;left: -17px;margin: 0 !important;">
+                                                  <li *ngFor="let subItem of content.sub_item.subinfo[0].items">
+                                                    <img src="/assets/images/list-arrow.svg" alt=""><span>{{subItem?.item}}</span>
+                                                  </li>
+                                                </ul>
+                                              </ng-container>
+                                            </li>
 
-                                            <li *ngFor="let content of item?.developmentContent" style="margin-left: 1.5em; text-indent: -1.5em;">
+
+                                            <!-- <li *ngFor="let content of item?.developmentContent" style="margin-left: 1.5em; text-indent: -1.5em;">
                                                 <img src="/assets/images/list-arrow.svg" alt="">
                                                 <span>{{content?.item}}</span>
                                                 <ng-container *ngIf="content?.sub_item && content?.sub_item.length > 0">
@@ -420,7 +434,7 @@
                                                         </li>
                                                     </ul>
                                                 </ng-container>
-                                            </li>
+                                            </li> -->
                                         </ng-container>
                                     </ul>
                                 </div>
@@ -481,13 +495,14 @@
       <div class="container">
         <div class="row" style="display: grid;margin-top: 23px;">
           <div style="width: 93% !important;">
-            <ng-container *ngIf="scoreValue < 50">
+
+            <ng-container *ngIf="scoreValue >= 0 && scoreValue <= 50">
          <div [style.left.%]="scoreValue-2" class="indicatorbox" >
          <img po [src]="scoreValue >= 0 && scoreValue <= 40 ? '/assets/images/pdfDownload/green.png' : scoreValue > 40 && scoreValue <= 80 ? '/assets/images/pdfDownload/orange.png' : scoreValue > 80 && scoreValue <= 100 ? '/assets/images/pdfDownload/red.png' : ''" alt="Image" *ngIf="scoreValue >= 0 && scoreValue <= 100" />
          <div class="indicatorboxtxt">{{scoreValue}}</div>
         </div>
       </ng-container>
-      <ng-container *ngIf="scoreValue > 51">
+      <ng-container *ngIf="scoreValue >= 51 && scoreValue <= 100">
         <div [style.left.%]="scoreValue-3" class="indicatorbox" >
         <img po [src]="scoreValue >= 0 && scoreValue <= 40 ? '/assets/images/pdfDownload/green.png' : scoreValue > 40 && scoreValue <= 80 ? '/assets/images/pdfDownload/orange.png' : scoreValue > 80 && scoreValue <= 100 ? '/assets/images/pdfDownload/red.png' : ''" alt="Image" *ngIf="scoreValue >= 0 && scoreValue <= 100" />
         <div class="indicatorboxtxt">{{scoreValue}}</div>
@@ -495,13 +510,13 @@
      </ng-container>
       </div>
           <!-- <br/> -->
-          <ng-container *ngIf="scoreValue > 51">
+          <ng-container *ngIf="scoreValue >= 51 && scoreValue <= 100">
           <div class="rangeBox">
             <div class="rangeindicator" [style.left.%]="scoreValue-0.5"></div>
             <div class="rangeBox-inside" [style.width.%]="scoreValue" [ngClass]="{  'green': scoreValue >= 0 && scoreValue <= 40,'yellow': scoreValue > 40 && scoreValue <= 80, 'red': scoreValue > 80 && scoreValue <= 100}"></div>
           </div>
           </ng-container>
-          <ng-container *ngIf="scoreValue < 50">
+          <ng-container *ngIf="scoreValue >= 0 && scoreValue <= 50">
             <div class="rangeBox">
               <div class="rangeindicator" [style.left.%]="scoreValue+0.5"></div>
               <div class="rangeBox-inside" [style.width.%]="scoreValue+0.5" [ngClass]="{  'green': scoreValue >= 0 && scoreValue <= 40,'yellow': scoreValue > 40 && scoreValue <= 80, 'red': scoreValue > 80 && scoreValue <= 100}"></div>
@@ -697,7 +712,7 @@
                     </div>
 
 
-                    <div class="heading3 m-l">DEVELOPMENT SCOPE AREAS</div>
+                    <div class="heading3 m-l">DEVELOPMENT SCOPE</div>
                     <ng-container *ngIf="getAllBehaviourAPIDetails && getAllBehaviourAPIDetails?.developmentconclusionPoints && getAllBehaviourAPIDetails?.developmentconclusionPoints.length > 0 else noImprovements">
                         <ng-container *ngFor="let conclusion of getAllBehaviourAPIDetails.developmentconclusionPoints;let d = index">
                             <div class="wrapper d-flex justify-content-between">
@@ -708,7 +723,6 @@
                                     <ng-container *ngIf="conclusion && conclusion.conclusionPoints">
                                         <ol>
                                             <li *ngFor="let points of conclusion.conclusionPoints">{{points}}</li>
-
                                         </ol>
                                     </ng-container>
                                 </div>
@@ -722,7 +736,7 @@
                                     </div>
                                     <p *ngIf="getAllBehaviourData?.conclusion">{{getAllBehaviourData?.conclusion?.description}}</p>
                                 </div>
-                                <div class="heading3 m-l">DEVELOPMENT SCOPE AREAS</div>
+                                <div class="heading3 m-l">DEVELOPMENT SCOPE</div>
                             </div>
                         </ng-container>
                     </ng-container>
