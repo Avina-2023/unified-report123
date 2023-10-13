@@ -216,7 +216,7 @@
 }
 .name.skill-exchange {
   width: 156px;
-  height: 22px;
+  // height: 22px;
   position: absolute;
   right: 0%;
   display: inline-block;
@@ -224,7 +224,7 @@
   border-radius: 14px 0 0 14px;
   color: #ffffff;
   align-items: center;
-  margin: 10px 0px 0px 0px;
+  margin: 7px 0px 0px 0px;
 }
 
 .name.skill-exchange .text-overlay {
@@ -776,6 +776,18 @@
           border-bottom: 1px solid #d0d0d0;
           padding: 12px 15px 25px 15px!important;
         }
+                .name.skill-exchange {
+                  width: 156px;
+                  // height: 22px;
+                  position: absolute;
+                  right: 0%;
+                  display: inline-block;
+                  background-image: linear-gradient(to left, #8abc2e, #25bcef);
+                  border-radius: 14px 0 0 14px;
+                  color: #ffffff;
+                  align-items: center;
+                  margin: 11px 0px 0px 0px!important;
+                }
   }
   .main-card2 {
     height: 245px;
@@ -841,6 +853,7 @@
     position: sticky;
     padding: 25px 0px 10px 0px;
   }
+
 }
 .main-sub {
   display: flex;
