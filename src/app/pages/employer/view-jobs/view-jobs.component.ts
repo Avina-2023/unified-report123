@@ -221,7 +221,7 @@ export class ViewJobsComponent implements OnInit {
       {
         headerName: 'Email',
         field: 'email',
-        minWidth: 175,
+        minWidth: 235,
         filter: 'agTextColumnFilter',
         chartDataType: 'category',
         aggFunc: 'sum',
