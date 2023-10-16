@@ -269,6 +269,10 @@ export class ApiService {
     return this.http.post(`${this.BASE_URL}/partnerdetailsupload`, data);
   }
 
+  UploadPostJob(data){
+    return this.http.post(`${this.BASE_URL}/postJob`, data);
+  }
+
   industryType(data) {
     return this.http.post(`${this.BASE_URL}/industrytypelist`, data);
   }
@@ -388,7 +392,7 @@ export class ApiService {
   getallCollegeCourses(){
     return this.http.get(`../assets/json/colleges.json`);
   }
-  
+
   getallEducations(){
     return this.http.get(`../assets/json/education.json`);
   }
@@ -404,7 +408,7 @@ export class ApiService {
     return this.http.post(`${this.BASE_URL}/candidateFilter`, data);
   }
   getsaveCandidate(data){
-    return this.http.post(`${this.BASE_URL}/saveCandidate`, data); 
+    return this.http.post(`${this.BASE_URL}/saveCandidate`, data);
   }
   // candidateResultDetails(data) {
   //   return this.http.post(`${this.BASE_URL_RE}/candidateResultDetails`, data);
