@@ -15,6 +15,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 export class ActionButtonViewJobsComponent implements ICellRendererAngularComp {
   @ViewChild('matDialog', { static: false }) matDialogRef: TemplateRef<any>;
   @ViewChild('confirmmatDialog') confirmmatDialogRef!: TemplateRef<any>;
+  @ViewChild('editJobmatDialog', {static: false}) editJobmatDialogRef: TemplateRef<any>;
 
   jobdata: any;
   jobStatus: any;
@@ -103,5 +104,13 @@ export class ActionButtonViewJobsComponent implements ICellRendererAngularComp {
       data: { status },
     });
   }
-  
+  openEditJobDialog() {
+    const dialogRef = this.dialog.open(this.editJobmatDialogRef, {
+      width: '1090px', 
+      height: 'auto',
+      disableClose: true, 
+    });
+    dialogRef.afterClosed().subscribe(result => {
+    });
+  }
 }

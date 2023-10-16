@@ -1,7 +1,7 @@
 <div class="icon-list">
   <button class="accept-icon icn" (click)="openStatusDialog('Shortlisted')" matTooltip="Select"><mat-icon>done</mat-icon></button>
   <button class="reject-icon icn"  (click)="openStatusDialog('Rejected')" matTooltip="Reject"><mat-icon>clear</mat-icon></button>
-  <button class="view-icon icn"  matTooltip="View Profile"><mat-icon>mode_edit</mat-icon></button>
+  <button class="view-icon icn"  (click)="openEditJobDialog()" matTooltip="Edit Profile"><mat-icon>mode_edit</mat-icon></button>
 </div>
 
 <ng-template #matDialog let-data>
@@ -42,8 +42,6 @@
   </div>
 </ng-template>
 
-
-
 <ng-template #confirmmatDialog let-data>
   <div class="main-wraper">
     <div class="gren-tick">
@@ -72,4 +70,139 @@
       </button>
     </div>
   </div>
+</ng-template>
+
+<ng-template #editJobmatDialog>
+  <div class="ext-closer"><mat-icon mat-dialog-close>close</mat-icon></div>
+  <!-- <div class="ext-redirect-popup"> -->
+    <!-- <div class="ext-redirect-content">
+         <img src="assets/images/landing/newLogo.png">
+         <div class="heading">This link will take you to a third-party page that is not part of Skill Exchange.</div>
+         <div class="redirect-message">The given link is external and is not verified by L&T EduTech for its safety.</div>
+    </div> -->
+
+    <div>
+      <div class="main-Container-popup">
+
+        <div class="left-side">
+
+          <div class="company-logo"> 
+            <img src="../../../../assets/images/jobs-available.png" /> 
+          </div>
+          <div class="border-line1">
+            <div class="bottom-border1"></div>
+          </div>
+         
+            <div class="job-Role">Front End Developer</div>
+            <div class="Job-Type">Full Time</div>
+            <div class="Job-Status">Approved</div>
+          
+            <div class="border-line1">
+              <div class="bottom-border1"></div>
+            </div>
+
+            <div class="last-date-apply">Last Date To Apply</div>
+            <div class="last-date">Sep 22, 2023 12:00 pm</div>
+
+            <div class="border-line1">
+              <div class="bottom-border1"></div>
+            </div>
+          
+        </div>
+
+
+        <div class="right-side">
+    
+          <div class="main-head">
+            <div><span class="heading">Job Details</span></div>
+            <div class="edit"><mat-icon>create</mat-icon>Edit</div>
+          </div>
+          <div class="border-line">
+            <div class="bottom-border"></div>
+          </div>
+    
+          <div class="main-heading2">
+            <div class="title">Job Role</div>
+            <div class="role">Front End Developer</div>
+          </div>
+          <div class="border-line">
+            <div class="bottom-border"></div>
+          </div>
+
+          <div class="main-heading2">
+            <div class="title">Job Location</div>
+            <div class="role">Chennai</div>
+          </div>
+          <div class="border-line">
+            <div class="bottom-border"></div>
+          </div>
+          <div class="main-heading2">
+            <div class="title">Job Type</div>
+            <div class="role">Full Time</div>
+          </div>
+          <div class="border-line">
+            <div class="bottom-border"></div>
+          </div>
+          <div class="main-heading2">
+            <div class="title">Degree</div>
+            <div class="role">B.Tech</div>
+          </div>
+          <div class="border-line">
+            <div class="bottom-border"></div>
+          </div>
+          <div class="main-heading2">
+            <div class="title">Specialization</div>
+            <div class="role">Computer Science</div>
+          </div>
+          <div class="border-line">
+            <div class="bottom-border"></div>
+          </div>
+          <div class="main-heading2">
+            <div class="title">Key Skills</div>
+            <div class="role">Angular, Node, MongoDB</div>
+          </div>
+          <div class="border-line">
+            <div class="bottom-border"></div>
+          </div>
+          <div class="main-heading2">
+            <div class="title">CTC</div>
+            <div class="role">8 LPA - 12 LPA</div>
+          </div>
+          <div class="border-line">
+            <div class="bottom-border"></div>
+          </div>
+          <div class="main-heading2">
+            <div class="title">Year of Passing</div>
+            <div class="role">2022</div>
+          </div>
+          <div class="border-line">
+            <div class="bottom-border"></div>
+          </div>
+          <div class="main-heading2">
+            <div class="title">Apply Link</div>
+            <div class="role">https://skillexchange.lntedutech.com</div>
+          </div>
+          <div class="border-line">
+            <div class="bottom-border"></div>
+          </div>
+          <div class="main-heading2">
+            <div class="title">Job Description</div>
+            <div class="role">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla, id laboriosam, error ratione corporis vero doloribus iure iusto quis vitae, asperiores saepe omnis unde corrupti autem. Rerum ab cupiditate aspernatur?</div>
+          </div>
+          <div class="border-line">
+            <div class="bottom-border"></div>
+          </div>
+          <div class="main-heading2">
+            <div class="title">Job Requirements</div>
+            <div class="role">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque reiciendis inventore tempore temporibus delectus voluptas unde consequuntur libero officia minus corrupti, eius, quod rerum quaerat, deserunt nisi minima perferendis debitis?</div>
+          </div>
+          <div class="border-line">
+            <div class="bottom-border"></div>
+          </div>
+    
+        </div>
+      </div>
+    </div>
+
+<!-- </div> -->
 </ng-template>
