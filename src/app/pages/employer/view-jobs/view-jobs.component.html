@@ -67,38 +67,35 @@
 </div>
 
 
+<div class="border">
 <div class="ag-grid">
-  <ag-grid-angular 
-  style="width: 100%; height: 100%;"
-   class="ag-theme-alpine" 
-   [gridOptions]="gridOptions"
+  <ag-grid-angular style="width: 100%; height: 100%;" class="ag-theme-alpine" 
+    [gridOptions]="gridOptions"
     [columnDefs]="columnDefs" 
     [defaultColDef]="defaultColDef" 
-    [masterDetail]="masterDetail" 
+    [masterDetail]="masterDetail"
     [overlayNoRowsTemplate]="overlayNoRowsTemplate" 
-    [rowData]="filteredRowData" [enableRangeSelection]="true"
+    [rowData]="rowData" 
+    [enableRangeSelection]="true"
     [tooltipShowDelay]="0" 
-    [animateRows]="true" 
-    headerHeight="45" 
-    rowHeight="45" 
+    [animateRows]="true" headerHeight="45" rowHeight="45" 
     [suppressRowClickSelection]="true"
     [suppressRowTransform]="true" 
-    [suppressPaginationPanel]="true"
     [rowSelection]="rowSelection" 
     [pivotPanelShow]="'always'" 
     [sideBar]="false"
     (gridReady)="onGridReady($event)" 
     [rowModelType]="rowModelType" 
     [maintainColumnOrder]="true"
-    [cacheBlockSize]="cacheBlockSize"  
-    (selectionChanged)="onSelectionChanged($event)"
+    [cacheBlockSize]="cacheBlockSize" 
     [suppressAggFuncInHeader]="true" 
-    [suppressColumnVirtualisation]="true" 
-    [autoGroupColumnDef]="autoGroupColumnDef"
+    [suppressColumnVirtualisation]="true"
+    [autoGroupColumnDef]="autoGroupColumnDef" 
     [serverSideStoreType]="serverSideStoreType" 
-    [pagination]="true" 
+    [pagination]="true"
     [paginationPageSize]="10" 
-    [sideBar]="sideBar"
-    allColumns="true">
+    [sideBar]="sideBar" 
+    allColumns=true>
   </ag-grid-angular>
+</div>
 </div>

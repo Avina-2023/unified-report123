@@ -83,10 +83,10 @@
                   <img [src]="item.companyLogo ? item.companyLogo : '../../../../assets/images/bottomCircle.png'" alt="" />
                 </div>
                 <div class="minicard-heading">
-<!-- <span matTooltip="{{ item.company }}" class="head2">{{ item.company }}</span> -->
-<span matTooltip="{{ item.company }}" class="head2" [ngClass]="{'truncate-text': item.partnerLabel}">
+                  <span class="head2">{{item.company}}</span>
+<!-- <span matTooltip="{{ item.company }}" class="head2" [ngClass]="{'truncate-text': item.partnerLabel}">
   {{ item.company }}
-</span>
+</span> -->
 
                   <div class="sub-details">
                      <div>
