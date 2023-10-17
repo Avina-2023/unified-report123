@@ -412,12 +412,17 @@
                                             <li *ngFor="let content of item?.developmentContent;let last = last">
                                               <img *ngIf="!last" src="/assets/images/list-arrow.svg" alt="">
                                               <span>{{content?.item}}</span>
-                                              <ng-container *ngIf="content.sub_item">
-                                                <h3 style="margin-top: 14px;margin-bottom: 7px;"><b>{{ content.sub_item.title }}</b></h3>
-                                                <span style="position: relative;left: -17px;">{{content.sub_item.subinfo[0].title }}</span>
-                                                <ul style="position: relative;left: -17px;margin: 0 !important;">
-                                                  <li *ngFor="let subItem of content.sub_item.subinfo[0].items">
-                                                    <img src="/assets/images/list-arrow.svg" alt=""><span>{{subItem?.item}}</span>
+                                              <ng-container *ngIf="content?.sub_item">
+                                                <h3 style="margin-top: 14px;margin-bottom: 7px;"><b>{{ content?.sub_item?.title }}</b></h3>
+
+                                                <ul style="position: relative;left: -4px;margin: 0 !important;">
+                                                  <li *ngFor="let subItem of content?.sub_item?.subinfo">
+                                                    <span style="position: relative;left: -17px;">{{subItem?.title }}</span>
+                                                    <ul style="    position: relative; right: 56px;">
+                                                      <li *ngFor="let subSubItem of subItem?.items">
+                                                        <img src="/assets/images/list-arrow.svg" alt=""><span>{{subSubItem?.item}}</span>
+                                                      </li>
+                                                    </ul>
                                                   </li>
                                                 </ul>
                                               </ng-container>
@@ -440,7 +445,7 @@
                                 </div>
 
                             </div>
-                            <span *ngIf="((b +1) % 2 == 0) && (getAllBehaviourAPIDetails?.developmentContent.length != b+1)">
+                            <span *ngIf="((b + 1) % 1 == 0) && (getAllBehaviourAPIDetails?.developmentContent.length != b+1)">
                                 <div  class="html2pdf__page-break"></div>
                                 <figure  class="scope-head d-flex align-items-center m-t-40" style="margin-bottom: 5px;">
                                     <!-- <img src="/assets/images/DEVELOPMENT.svg" alt=""> -->
