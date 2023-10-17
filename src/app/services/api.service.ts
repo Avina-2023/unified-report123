@@ -384,6 +384,11 @@ export class ApiService {
     // this.datas is api body data
     return this.http.post(`${this.BASE_URL}/districtList`, stateId);
   }
+
+  getDepartmentcourses(data){
+  return this.http.post(`${this.BASE_URL}/getDepartment`, data);
+  }
+
   getallStates(){
     // return this.http.post(`${this.BASE_URL}/api/state_api`, Id, { headers: this.withoutTokens(), withCredentials: true });
     return this.http.get(`../assets/json/state.json`);
@@ -396,7 +401,6 @@ export class ApiService {
   getallEducations(){
     return this.http.get(`../assets/json/education.json`);
   }
-
 
   getallCandidateDetails(data) {
     return this.http.post(`${this.BASE_URL}/getallcandidatedetails`, data);

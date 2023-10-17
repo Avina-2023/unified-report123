@@ -4,7 +4,8 @@ import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { ApiService } from './../../../services/api.service';
 import { ToastrService } from 'ngx-toastr';
 import { environment } from 'src/environments/environment';
-
+import { AppConfigService } from 'src/app/utils/app-config.service';
+import { APP_CONSTANTS } from '../../../utils/app-constants.service';
 @Component({
   selector: 'app-add-jobs',
   templateUrl: './add-jobs.component.html',
@@ -33,6 +34,7 @@ export class AddJobsComponent implements OnInit {
     'Capgemini',
     'Hexaware ',
   ];
+  jobLocation = [''];
   JobLocations = [
     'ANY LOCATION',
     'CHENNAI',
@@ -54,6 +56,7 @@ export class AddJobsComponent implements OnInit {
   //   'JAVASCRIPT',
   //   'PHP',
   // ]
+  jobType = [''];
   JobType = [
      'Full Time',
      'Internship',
@@ -65,6 +68,7 @@ YearofPassing = [
     '2024',
     '2025',
   ]
+  skillSet = [''];
   ctcArray = ['Option 1', 'Option 2', 'Option 3'];
   rangefromArray = ['Option A', 'Option B', 'Option C'];
   rangetoArray = ['Option X', 'Option Y', 'Option Z'];
@@ -72,6 +76,7 @@ YearofPassing = [
   selectedOption: string = '1';
   htmlContent_description = '';
   htmlContent_requirement = '';
+  htmlContent_information = '';
   employerLogo = '';
   formBuilder: any;
   errorMsgforCmpnyLogo = '';
@@ -144,17 +149,14 @@ config: AngularEditorConfig = {
 //   ],
 // };
 
-  constructor(private fb: FormBuilder, private apiService: ApiService, private ApiService: ApiService, private toastr: ToastrService) {
+  constructor(private fb: FormBuilder, private apiService: ApiService, private ApiService: ApiService,private appconfig: AppConfigService, private toastr: ToastrService) {
     // this.addjobsForm = this.fb.group({
     //   fixedctc: [''],
     //   startrangectc: [''],
     //   endrangectc: [''],
     //   ctcOptions: ['1'],
     // });
-
-
   }
-
   ngOnInit(): void {
     this.getallEducation();
     this.getallCourses();
@@ -169,7 +171,6 @@ config: AngularEditorConfig = {
   const data: any = {};
   this.apiService.getSkill(data).subscribe((res: any) => {
     if (res.success) {
-      // Map the 'skillName' property from each object to create an array of skill names
       this.newSkill = res.data.map(item => item.skillName);
     }
   });
@@ -196,13 +197,15 @@ config: AngularEditorConfig = {
       ctcOptions: ['1'],
       company: ['', [Validators.required]],
       jobRole: ['', [Validators.required]],
-      JobLocations: ['', [Validators.required]],
-      JobType: ['', [Validators.required]],
+      jobLocation: [[], [Validators.required]],
+      // jobLocation: ['', [Validators.required]],
+      jobType: ['', [Validators.required]],
       jobTitle: ['', [Validators.required]],
       degree: ['', [Validators.required]],
       specialization: ['', [Validators.required]],
-      keySkill: ['', [Validators.required]],
-      // lastdate: ['', [Validators.required]],
+      skillSet: ['', [Validators.required]],
+      lastDatetoApply: [[]],
+      yearofPassout: [[], [Validators.required]],
       applyLink: [
         '',
         [
@@ -210,15 +213,15 @@ config: AngularEditorConfig = {
           Validators.pattern(/^(https?:\/\/)?([\w\d.-]+)\.([a-z]{2,})(\/\S*)?$/i)
         ]
       ],
-       lastDatetoApply: [
-        '',
-        [
-          Validators.required,
-          Validators.pattern(/^[0-9]+$/),
-          Validators.minLength(4),
-          Validators.maxLength(4),
-        ]
-      ],
+      //  lastDatetoApply: [
+      //   '',
+      //   [
+      //     Validators.required,
+      //     Validators.pattern(/^[0-9]+$/),
+      //     Validators.minLength(4),
+      //     Validators.maxLength(4),
+      //   ]
+      // ],
       // mobile: [
       //   '',
       //   Validators.compose([
@@ -228,10 +231,11 @@ config: AngularEditorConfig = {
       //     Validators.pattern('[1-9]{1}[0-9]{9}'),
       //   ]),
       // ],
-      description: ['', [Validators.required]],
+      // description: ['', [Validators.required]],
       requirement: ['', [Validators.required]],
-      additionalInformation: ['', []],
-            // ctcOptions: ['1'],
+      description: ['', [Validators.required]],
+      additionalInformation: [],
+      // ctcOptions: ['1'],
       educationGroups: this.fb.array([this.createEducationGroup()])
 
     });
@@ -254,9 +258,10 @@ config: AngularEditorConfig = {
    get jobTitle() {
     return this.addjobsForm.get('jobTitle');
   }
-  get jobLocation() {
-    return this.addjobsForm.get('jobLocation');
-  }
+
+  //  get jobLocation() {
+  //   return this.addjobsForm.get('jobLocation');
+  // }
   // get jobType() {
   //   return this.addjobsForm.get('jobType');
   // }
@@ -284,15 +289,15 @@ config: AngularEditorConfig = {
   get applyLink() {
     return this.addjobsForm.get('applyLink');
   }
-  get description() {
-    return this.addjobsForm.get('description');
-  }
-  get requirement() {
-    return this.addjobsForm.get('requirement');
-  }
-  get lastDatetoApply() {
-    return this.addjobsForm.get('lastDatetoApply');
-  }
+  // get description() {
+  //   return this.addjobsForm.get('description');
+  // }
+  // get requirement() {
+  //   return this.addjobsForm.get('requirement');
+  // }
+  // get lastDatetoApply() {
+  //   return this.addjobsForm.get('lastDatetoApply');
+  // }
 // onEmployerLogoFileSelected(event) {
 //   this.errorMsgforCmpnyLogo = '';
 //   this.employerCmpnyLogoFile = event.target.files[0];
@@ -333,10 +338,24 @@ removeEducationGroup(index: number): void {
       this.addjobsForm.setControl('educationGroups', this.fb.array(this.formGroups));
     }
   }
-saveForm() {
-    if (this.addjobsForm.valid) {
-      // Perform form submission actions{
+  onSubmit() {
+    // const areEducationGroupsValid = this.formGroups.every(formGroup => formGroup.valid);
+    // if (this.addjobsForm.valid && areEducationGroupsValid) {
+    //   const consolidatedData = {
+    //     jobFormValues: this.addjobsForm.value,
+    //     dynamicFormData: this.formGroups.map(formGroup => formGroup.value)
+    //   };
+    //   console.log(consolidatedData);
 
+    // } else {
+    //   this.addjobsForm.markAllAsTouched();
+    //   this.formGroups.forEach(formGroup => formGroup.markAllAsTouched());
+    //   this.toastr.warning('Please fill in all required fields.', 'Form Validation Error');
+    // }
+  }
+saveForm() {
+    // if (this.addjobsForm.valid) {
+      // Perform form submission actions{
       var obj = {
             "company": this.addjobsForm.value.company,
             "jobRole": this.addjobsForm.value.jobRole,
@@ -347,8 +366,8 @@ saveForm() {
             "skillSet": this.addjobsForm.value.skillSet,
             "lastDatetoApply":this.addjobsForm.value.lastDatetoApply,
             "additionalInformation":this.addjobsForm.value.additionalInformation,
-            "description":this.addjobsForm.value.item,
-            "requirement":this.addjobsForm.value.item,
+            "description":this.addjobsForm.value.description,
+            "requirement":this.addjobsForm.value.requirement,
             "applyLink":this.addjobsForm.value.applyLink,
 
             //"email":this.existsEmail==""?this.registerForm.value.email:this.existsEmail,
@@ -360,12 +379,12 @@ saveForm() {
           this.toastr.warning(data.message);
         } else {
           this.toastr.success(data.message);
-          //this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.PARTNER.PARTNERLIST);
+          this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.PARTNER.PARTNERLIST);
         }
       }, (err) => {
         this.toastr.warning('Connection failed, Please try again.');
       });
-    }
+    // }
 
   }
 
@@ -491,12 +510,8 @@ getallEducation() {
 
     //if (selectedCourse === 'Pick From the List') {
     // Additional logic based on the selected course...
-
-
-
     // }
   }
-
 
 
   // isSelectDisabled(index: number): boolean {
