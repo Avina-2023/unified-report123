@@ -87,7 +87,7 @@ YearofPassing = [
   multipleSpecialization = [];
   listOfSpecializations: any;
   educations: any;
-  graduation: string;
+  level: string;
   degreeOptions = [
     { "id": "0", "specification_name": "Any Degree / Graduation" },
     { "id": "1", "specification_name": "X Std" },
@@ -101,10 +101,9 @@ YearofPassing = [
   pgCourses: any;
   ugCourses: any;
 
-
   productionUrl = environment.SKILL_EDGE_URL == "https://skilledge.lntedutech.com"?true:false;
 
-config: AngularEditorConfig = {
+  config: AngularEditorConfig = {
     editable: true,
     spellcheck: true,
     minHeight: '100px',
@@ -199,11 +198,11 @@ config: AngularEditorConfig = {
       jobRole: ['', [Validators.required]],
       jobLocation: [[], [Validators.required]],
       // jobLocation: ['', [Validators.required]],
-      jobType: ['', [Validators.required]],
+      jobType: [[], [Validators.required]],
       jobTitle: ['', [Validators.required]],
-      degree: ['', [Validators.required]],
-      specialization: ['', [Validators.required]],
-      skillSet: ['', [Validators.required]],
+      specification: ['', [Validators.required]],
+      discipline: ['', [Validators.required]],
+      skillSet: [[], [Validators.required]],
       lastDatetoApply: [[]],
       yearofPassout: [[], [Validators.required]],
       applyLink: [
@@ -243,10 +242,10 @@ config: AngularEditorConfig = {
   }
    createEducationGroup(): FormGroup {
     return this.fb.group({
-      graduation: [null, Validators.required],
-      degree: [null],
-      course: [null],
-      specialization: [this.multipleSpecialization],
+      level: [null, Validators.required],
+      specification: [null],
+     // course: [null],
+      discipline: [this.multipleSpecialization],
     });
   }
   get company() {
@@ -265,11 +264,11 @@ config: AngularEditorConfig = {
   // get jobType() {
   //   return this.addjobsForm.get('jobType');
   // }
-  get degree() {
-    return this.addjobsForm.get('degree');
+  get specification() {
+    return this.addjobsForm.get('specification');
   }
-  get specialization() {
-    return this.addjobsForm.get('specialization');
+  get discipline() {
+    return this.addjobsForm.get('discipline');
   }
   get fixedctc() {
     return this.addjobsForm.get('fixedctc');
@@ -369,6 +368,7 @@ saveForm() {
             "description":this.addjobsForm.value.description,
             "requirement":this.addjobsForm.value.requirement,
             "applyLink":this.addjobsForm.value.applyLink,
+        "education": this.formGroups.map(formGroup => formGroup.value)
 
             //"email":this.existsEmail==""?this.registerForm.value.email:this.existsEmail,
             //"existsUser":this.existsUser
@@ -413,9 +413,9 @@ getallEducation() {
   onGraduationChange(selectedGraduation: string, index: number) {
     const currentFormGroup = this.formGroups[index];
     // Clear values in the current form group
-    currentFormGroup.get('degree').setValue(null);
-    currentFormGroup.get('course').setValue(null);
-    currentFormGroup.get('specialization').setValue(null);
+    currentFormGroup.get('specification').setValue(null);
+    //currentFormGroup.get('course').setValue(null);
+    currentFormGroup.get('discipline').setValue(null);
 
     if (selectedGraduation === null) {
       return;
@@ -428,7 +428,7 @@ getallEducation() {
         { "id": "2", "specification_name": "XII Std" },
         { "id": "2", "specification_name": "Diploma" }
       ];
-      currentFormGroup.get('degree').setValue(
+      currentFormGroup.get('specification').setValue(
         selectedGraduation === 'Any Graduation'
           ? 'Any Degree / Graduation'
           : selectedGraduation === 'Diploma'
@@ -440,25 +440,25 @@ getallEducation() {
     }
 
     if (selectedGraduation === 'Any Graduation' || selectedGraduation === 'SSLC' || selectedGraduation === 'HSC') {
-      currentFormGroup.get('specialization').clearValidators();
-      currentFormGroup.get('specialization').updateValueAndValidity();
+      currentFormGroup.get('discipline').clearValidators();
+      currentFormGroup.get('discipline').updateValueAndValidity();
     } else {
-      currentFormGroup.get('specialization').setValidators(Validators.required);
-      currentFormGroup.get('specialization').updateValueAndValidity();
+      currentFormGroup.get('discipline').setValidators(Validators.required);
+      currentFormGroup.get('discipline').updateValueAndValidity();
     }
 
 
     if (selectedGraduation === 'UG' || selectedGraduation === 'PG') {
-      currentFormGroup.get('degree').setValidators(Validators.required);
-      currentFormGroup.get('degree').updateValueAndValidity();
+      currentFormGroup.get('specification').setValidators(Validators.required);
+      currentFormGroup.get('specification').updateValueAndValidity();
     } else {
-      currentFormGroup.get('degree').clearValidators();
-      currentFormGroup.get('degree').updateValueAndValidity();
+      currentFormGroup.get('specification').clearValidators();
+      currentFormGroup.get('specification').updateValueAndValidity();
     }
 
     if (selectedGraduation) {
       // currentFormGroup.get('degree').setValue(null);
-      currentFormGroup.get('specialization').setValue([]);
+      currentFormGroup.get('discipline').setValue([]);
     }
 
     if (selectedGraduation === 'UG') {
@@ -469,18 +469,18 @@ getallEducation() {
       this.degreeOptions = this.pgDegree;
     }
 
-    if (currentFormGroup.get('graduation').value === 'Diploma') {
-      currentFormGroup.get('specialization').setValue(null);
+    if (currentFormGroup.get('level').value === 'Diploma') {
+      currentFormGroup.get('discipline').setValue(null);
       this.listOfSpecializations = this.diplomaCourses;
     }
 
-    if (currentFormGroup.get('graduation').value === 'UG') {
-      currentFormGroup.get('specialization').setValue(null);
+    if (currentFormGroup.get('level').value === 'UG') {
+      currentFormGroup.get('discipline').setValue(null);
       this.listOfSpecializations = this.ugCourses;
     }
 
-    if (currentFormGroup.get('graduation').value === 'PG') {
-      currentFormGroup.get('specialization').setValue(null);
+    if (currentFormGroup.get('level').value === 'PG') {
+      currentFormGroup.get('discipline').setValue(null);
       this.listOfSpecializations = this.pgCourses;
     }
     // currentFormGroup.get('specialization').setValidators(Validators.required);
@@ -530,13 +530,13 @@ getallEducation() {
   iscourseDisabled(index: number): boolean {
     const currentFormGroup = this.formGroups[index];
 
-    const selectedValue = currentFormGroup.get('specialization')?.value;
+    const selectedValue = currentFormGroup.get('discipline')?.value;
     if (selectedValue && selectedValue.includes('Any Specialization')) {
       const clearedValues = selectedValue.filter(value => value === 'Any Specialization');
-      currentFormGroup.get('specialization')?.patchValue(clearedValues, { emitEvent: false });
+      currentFormGroup.get('discipline')?.patchValue(clearedValues, { emitEvent: false });
     }
 
-    if (currentFormGroup.get('graduation').value === 'Diploma' || currentFormGroup.get('graduation').value === 'UG' || currentFormGroup.get('graduation').value === 'PG') {
+    if (currentFormGroup.get('level').value === 'Diploma' || currentFormGroup.get('level').value === 'UG' || currentFormGroup.get('level').value === 'PG') {
       return false; // Do not apply disabled
     } else {
       return true; // Apply disabled
@@ -546,7 +546,7 @@ getallEducation() {
   isdegreeDisabled(index: number): boolean {
     const currentFormGroup = this.formGroups[index];
 
-    if (currentFormGroup.get('graduation').value === 'UG' || currentFormGroup.get('graduation').value === 'PG') {
+    if (currentFormGroup.get('level').value === 'UG' || currentFormGroup.get('level').value === 'PG') {
       return false; // Do not apply disabled
     } else {
       return true; // Apply disabled

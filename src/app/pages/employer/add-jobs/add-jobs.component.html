@@ -95,7 +95,6 @@
                         <nz-option *ngFor="let item of JobType" [nzLabel]="item" [nzValue]="item"></nz-option>
                       </nz-select>
                     </div>
-
                   </div>
                 </div>
 
@@ -133,11 +132,11 @@
                     <fieldset class="education-fieldset">
                       <div *ngFor="let group of formGroups; let i = index" class="form-group flex_div">
                         <div class="mg-r-10 width-30 "><nz-select nzShowSearch nzAllowClear nzPlaceHolder="Graduation"
-                            [formControl]="group.get('graduation')" (ngModelChange)="onGraduationChange($event, i)">
+                            [formControl]="group.get('level')" (ngModelChange)="onGraduationChange($event, i)">
                             <nz-option *ngFor="let option of educations" [nzLabel]="option.education"
                               [nzValue]="option.education"></nz-option>
                           </nz-select>
-                          <div *ngIf="group.get('graduation').hasError('required') && group.get('graduation').touched"
+                          <div *ngIf="group.get('level').hasError('required') && group.get('level').touched"
                             class="text-danger">
                             Graduation Field Required.
                           </div>
@@ -145,11 +144,11 @@
 
                         <div class="mg-l-10 width-30">
                           <nz-select [nzDisabled]="isdegreeDisabled(i)" nzShowSearch nzAllowClear nzPlaceHolder="Degree"
-                            [formControl]="group.get('degree')" (ngModelChange)="onDegreeChange($event, i)">
+                            [formControl]="group.get('specification')" (ngModelChange)="onDegreeChange($event, i)">
                             <nz-option *ngFor="let option of degreeOptions" [nzLabel]="option.specification_name"
                               [nzValue]="option.specification_name"></nz-option>
                           </nz-select>
-                          <div *ngIf="group.get('degree').hasError('required') && group.get('degree').touched"
+                          <div *ngIf="group.get('specification').hasError('required') && group.get('specification').touched"
                             class="text-danger">
                             Degree Required.
                           </div>
@@ -159,12 +158,12 @@
                             [ngModel]="group.get('multipleSpecialization')?.value"
                             [ngModelOptions]="{ standalone: true }" [nzSize]="default" nzMode="multiple"
                             nzPlaceHolder="--Select Specialization (Multiple Select)---" class="custom-nz-select"
-                            [formControl]="group.get('specialization')">
+                            [formControl]="group.get('discipline')">
                             <nz-option *ngFor="let option of listOfSpecializations" [nzLabel]="option.discipline_name"
                               [nzValue]="option.discipline_name"></nz-option>
                           </nz-select>
                           <div
-                            *ngIf="group.get('specialization').hasError('required') && group.get('specialization').touched"
+                            *ngIf="group.get('discipline').hasError('required') && group.get('discipline').touched"
                             class="text-danger">
                             Specialization is Required.
                           </div>
@@ -182,7 +181,7 @@
                     <div class="inputContainer">
                       <label>CTC<span>*</span></label>
                       <div class="form-group salary-range" style="display: flex; ">
-                        <mat-radio-group formControlName="ctcOptions" aria-label="Select an option"
+                        <mat-radio-group formControlName="ctcType" aria-label="Select an option"
                           [(ngModel)]="selectedOption" style="margin: -5px 0px 13px 0px">
                           <mat-radio-button value="1"
                             style="font-weight: bold;font-size: 14px;">Fixed</mat-radio-button>
@@ -191,7 +190,7 @@
                         </mat-radio-group>
 
                         <!-- Fixed input -->
-                        <div *ngIf="selectedOption === '1'" style="width: 71.5%;">
+                        <div *ngIf="selectedOption === '1'"  style="width: 71.5%;">
                           <mat-form-field class="example-full-width" appearance="outline">
                             <input formControlName="fixedctc" matInput placeholder=" —Enter Value —">
                             <mat-error class="error" *ngIf="fixedctc?.errors?.required">{{'Ctc is Required'}}</mat-error>
