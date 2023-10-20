@@ -433,4 +433,10 @@ export class ApiService {
   getAppliedcount(data){
     return this.http.post(`${this.BASE_URL}/jobViewsLog`,data);
   }
+  getAGgridViewOpenJob(data){
+    return this.http.post(`${this.BASE_URL}/adminJobList`,data);
+  }
+  getOpenJobStatusUpdated(data) {
+    return this.http.post(`${this.BASE_URL}/updateApproveStatus`, data);
+  }
 }

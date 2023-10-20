@@ -1,0 +1,43 @@
+<div>
+  <div class="main-Container-popup">
+
+    <div class="left-side">
+      <div class="company-logo">
+        <img src="../../../../assets/images/jobs-available.png" />
+      </div>
+      <div class="border-line1">
+        <div class="bottom-border1"></div>
+      </div>
+      <div class="job-Role">{{jobdata.jobRole}}</div>
+      <div class="job-type-status">
+        <div class="Job-Type">{{jobdata.jobType}}</div>
+      <div class="Job-Status">{{jobdata.approveStatus}}</div>
+      </div>
+      <div class="border-line1">
+        <div class="bottom-border1"></div>
+      </div>
+      <div class="posted">Posted by</div>
+      <div class="posted-name">Posted Name</div>
+      <div class="border-line1">
+        <div class="bottom-border1"></div>
+      </div>
+      <div class="posted">Total No Of Views</div>
+      <div class="posted-name">23000</div>
+      <div class="border-line1">
+        <div class="bottom-border1"></div>
+      </div>
+      <div class="last-date-apply">Last Date To Apply</div>
+      <div class="last-date">{{jobdata.lastDatetoApply | date: 'MMM d, y'}}</div>
+      <div class="border-line1">
+        <div class="bottom-border1"></div>
+      </div>
+    </div>
+
+    <div class="right-side">
+
+      <!-- <app-add-jobs></app-add-jobs> -->
+
+    </div>
+
+  </div>
+</div>
