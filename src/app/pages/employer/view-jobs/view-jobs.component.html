@@ -6,7 +6,7 @@
     <div class="main-2">
       <div class="title-count">
         <div class="title">No of Jobs</div>
-        <div class="count">100</div>
+        <div class="count">{{allcountvalue}}</div>
       </div>
       <div class="total-job-img">
         <img src="../../../../assets/images/job-bags.png"/>
@@ -17,7 +17,7 @@
     <div class="main-2">
       <div class="title-count">
         <div class="title">No of Jobs Approved</div>
-        <div class="count">100</div>
+        <div class="count">{{approvecountvalue}}</div>
       </div>
       <div class="total-job-img">
         <img src="../../../../assets/images/green-checkk.png"/>
@@ -28,7 +28,7 @@
     <div class="main-2">
       <div class="title-count">
         <div class="title">No of Jobs In Pending</div>
-        <div class="count">100</div>
+        <div class="count">{{pendingcountvalue}}</div>
       </div>
       <div class="total-job-img">
         <img src="../../../../assets/images/job-pendingg.png"/>
@@ -39,7 +39,7 @@
     <div class="main-2">
       <div class="title-count">
         <div class="title">No of Rejected Jobs</div>
-        <div class="count">100</div>
+        <div class="count">{{rejectedcountvalue}}</div>
       </div>
       <div class="total-job-img">
         <img src="../../../../assets/images/rejected.png"/>
@@ -56,14 +56,14 @@
         <span class="tab-name">{{ tab.title }}</span>
         <div>
           <span class="tab-count" [style.background-color]="active == i ? icncolor :  null">
-            <span *ngIf="tab.title == 'All'"> 100 </span>
-            <span *ngIf="tab.title == 'Approved'"> 100 </span>
-            <span *ngIf="tab.title == 'Pending'"> 100 </span>
-            <span *ngIf="tab.title == 'Rejected'"> 100 </span>
+            <span *ngIf="tab.title == 'All'"> {{allcountvalue}} </span>
+            <span *ngIf="tab.title == 'Approved'"> {{approvecountvalue}} </span>
+            <span *ngIf="tab.title == 'Pending'"> {{pendingcountvalue}} </span>
+            <span *ngIf="tab.title == 'Rejected'"> {{rejectedcountvalue}} </span>
           </span>
         </div>
       </ng-template>
-    </mat-tab>
+    </mat-tab> 
   </mat-tab-group>
 </div>
 
@@ -99,6 +99,36 @@
     allColumns=true>
   </ag-grid-angular>
 </div>
+
+<!-- <div class="row-pagnation">
+
+  <div class="example-header">
+    Rows:
+    <select (change)="onPageSizeChanged()" [(ngModel)]="selectedPageSize" name="pageSize">
+      <option value="5">5</option>
+      <option value="10">10</option>
+      <option value="15">15</option>
+      <option value="20">20</option>
+    </select>
+  </div>
+  
+  <div class="goto-sear">
+    <div class="pagintion">
+      <button class="prev" (click)="onBtPrevPage()" [disabled]="isPrevButtonDisabled">Prev</button>
+      <div *ngFor="let item of pageArray; let i = index">
+        <button class="one" (click)=" gotoPage(i)">{{item+1}}</button>
+      </div>
+      <button class="next" (click)="onBtNextPage()" [disabled]="isNextButtonDisabled">Next</button>
+    </div>
+    <div class="goto"> Go To Page: </div>
+    <div>
+      <input type="string" class="goto-search" [(ngModel)]="pageNumberInput" />
+      <button class="go" [ngClass]="{disabled: pageNumberInput===''||pageNumberInput===undefined||(totalPages < pageNumberInput)}" (click)="onBtPageGo(pageNumberInput)"  [disabled]="pageNumberInput===''||pageNumberInput===undefined||(totalPages < pageNumberInput)">Go</button>
+    </div>
+  </div>
+  
+</div> -->
+
 </div>
 
 </div>

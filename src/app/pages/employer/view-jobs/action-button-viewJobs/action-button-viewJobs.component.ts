@@ -15,8 +15,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 export class ActionButtonViewJobsComponent implements ICellRendererAngularComp {
   @ViewChild('matDialog', { static: false }) matDialogRef: TemplateRef<any>;
   @ViewChild('confirmmatDialog') confirmmatDialogRef!: TemplateRef<any>;
+  @ViewChild('viewEditJobmatDialog', {static: false}) viewEditJobmatDialogRef: TemplateRef<any>;
   @ViewChild('editJobmatDialog', {static: false}) editJobmatDialogRef: TemplateRef<any>;
-
   jobdata: any;
   jobStatus: any;
   statusdata: any;
@@ -36,31 +36,34 @@ export class ActionButtonViewJobsComponent implements ICellRendererAngularComp {
   // }
   agInit(params: ICellRendererParams): void {
     this.params = params;
-    console.log(this.params, 'params'); 
+    // console.log(this.params, 'params'); 
     params.value; 
   }
   afterGuiAttached?(params?: IAfterGuiAttachedParams): void {
     throw new Error('Method not implemented.');
   }
-  
 
   ngOnInit() {
-    let localjobData = JSON.parse(this.appconfig.getLocalStorage('currentJobData'));
+    //getting ag-grid data from local storage
+    let localjobData = JSON.parse(this.appconfig.getLocalStorage('partnerListAgData'));
     this.jobdata = this.appconfig.jobData ? this.appconfig.jobData : localjobData;
   }
 
+  editOpenJobProfile() { 
+    //save data in local storage to edit job page
+    this.appconfig.setLocalStorage('openJobData', JSON.stringify(this.params.data)); 
+  } 
+
   getStatusChange(status) { 
-    // console.log(this.jobdata);
     let data = {
-      email: this.params.data.email, 
-      jobId: this.jobdata.jobId, 
-      jobStatus: status, 
+      jobId: this.params.data.jobId,
+      approveStatus: status, 
     };
-    this.ApiService.getStatusupdated(data).subscribe((response: any) => { 
+
+    this.ApiService.getOpenJobStatusUpdated(data).subscribe((response: any) => { 
       if (response.success) { 
-        // this.statusdata = response?.success;
         this.statusdata = response?.data;
-        console.log(this.statusdata);
+        // console.log(this.statusdata);
         this.messenger.sendMessage('grid-refresh', true); 
       } else {
       }
@@ -104,13 +107,26 @@ export class ActionButtonViewJobsComponent implements ICellRendererAngularComp {
       data: { status },
     });
   }
-  openEditJobDialog() {
-    const dialogRef = this.dialog.open(this.editJobmatDialogRef, {
-      width: '1090px', 
+
+  openViewJobDialog() {
+    const dialogRef = this.dialog.open(this.viewEditJobmatDialogRef, {
+      width: '1000px', 
       height: 'auto',
       disableClose: true, 
     });
     dialogRef.afterClosed().subscribe(result => {
     });
   }
+
+  openEditJobDialog() {
+    const dialogRef = this.dialog.open(this.editJobmatDialogRef, {
+      width: '1000px', 
+      height: 'auto',
+      disableClose: true, 
+    });
+    dialogRef.afterClosed().subscribe(result => {
+    });
+    this.editOpenJobProfile()
+  }
+
 }

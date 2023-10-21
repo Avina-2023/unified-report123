@@ -1,0 +1,95 @@
+.main-Container-popup{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .border-line {
+    padding:0px 15px 0px 15px ;
+  } 
+  .bottom-border {
+    border: 0.699999988079071px solid #B4B4B4;
+    opacity: 0.3;
+  }
+  .left-side{
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    // border-right: 1px solid #848484;
+    border-right: 0.699999988079071px solid #B4B4B4;
+    .border-line1 {
+      padding:0px 15px 0px 15px ;
+    } 
+    .bottom-border1 {
+      border: 0.699999988079071px solid #B4B4B4;
+      opacity: 0.3;
+      width: 270px;
+    }
+    .company-logo{
+      padding: 0px 0px 25px 0px;
+    }
+    .job-Role{
+      color: #1B4E9B;
+      font-size: 19px;
+      font-weight: 600;
+      margin: 5px 0px 5px 0px;
+      padding: 20px 0px 10px 0px;
+    }
+    .job-type-status{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin: 10px 0px 25px 0px;
+    }
+    .Job-Type{
+      font-size: 12px;
+      color: #FFFFFF;
+      background: #1B4E9B;
+      padding: 3px 10px 3px 10px;
+      margin: 0px 3px 0px 0px;
+      border-radius: 9px;
+    }
+    .Job-Status{
+      color: #FFFFFF;
+      background: #49AE31;
+      padding: 3px 7px 3px 7px;
+      margin: 0px 0px 0px 3px;
+      border-radius: 9px;
+    }
+    .posted{
+        font-size: 12px;
+        color: #262626;
+        margin: 17px 0px 3px 0px;
+    }
+    .posted-name{
+        font-size: 16px;
+        color: #262626;
+        font-weight: 600;
+        margin: 3px 0px 25px 0px;
+    }
+    .last-date-apply{
+      color: #262626;
+      font-weight: 700;
+      font-size: 13px;
+      margin: 30px 0px 20px 0px;
+    }
+    .last-date{
+      font-size: 14px;
+      color: #FF0000;
+      margin: 0px 0px 50px 0px;
+    }
+  }
+  .right-side{
+    width: 70%;
+    height: 400px;
+    overflow-y: scroll;
+  }
+  .right-side::-webkit-scrollbar {
+    display: none; /* Hide scrollbar for Chrome, Safari, and Opera */
+    // width: 0;
+  }
+  
+  .right-side {
+    -ms-overflow-style: none; /* Hide scrollbar for Internet Explorer and Edge */
+    scrollbar-width: none; /* Hide scrollbar for Firefox */
+  }

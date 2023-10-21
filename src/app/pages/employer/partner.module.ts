@@ -26,6 +26,7 @@ import { AddJobsComponent } from './add-jobs/add-jobs.component';
 import { ViewJobsComponent } from './view-jobs/view-jobs.component';
 // import { AngularEditorModule } from '@kolkov/angular-editor';
 import { ActionButtonViewJobsComponent } from './view-jobs/action-button-viewJobs/action-button-viewJobs.component';
+import { EditJobComponent } from './view-jobs/edit-job/edit-job.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { ActionButtonViewJobsComponent } from './view-jobs/action-button-viewJob
     OverallReportComponent,
     OverallReportDetailsCardComponent,
     OverallReportMinicardDetailsComponent,
-    ActionButtonViewJobsComponent
+    ActionButtonViewJobsComponent,
+    EditJobComponent
   ],
   imports: [
     CommonModule,
