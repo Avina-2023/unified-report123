@@ -348,13 +348,14 @@
               <div class="flx_div flx_baseline title">
                 <div class="key">History of Backlogs?</div>
                 <div class="value">
-                  {{candidates.historyOfbacklog}}
+                  {{ candidates.historyOfbacklog || 'NIL' }}
                 </div>
               </div>
+
               <div class="flx_div flx_baseline title">
                 <div class="key">No. of Active Backlogs(if any) ?</div>
                 <div class="value">
-                  {{candidates.noActivebacklog}}
+                  {{candidates.noActivebacklog || 'NIL'}}
                 </div>
               </div>
               <div class="flx_div flx_baseline title">
@@ -412,86 +413,88 @@
               </div>
             </div>
             <h2 class="head_title"> Professional Experience </h2>
-            <div class="brdr_btm_line pb-10"
-              *ngFor="let employment of candidateData?.experience_details?.employments; let i = index">
-              <h2 class="sub_heading">Employment {{i+1}}</h2>
-              <div>
-                <div class="flx_div flx_center hidden_div title">
-                  <div class="key">Employer Name</div>
-                  <div class="value content_wrap">
-                    {{ employment.employment_name_address || 'NIL' }}
-                  </div>
+          <div class="brdr_btm_line pb-10"
+            *ngFor="let employment of candidateData?.experience_details?.employments; let i = index">
+            <h2 class="sub_heading">Employment {{i+1}}</h2>
+            <div>
+              <div class="flx_div flx_center hidden_div title">
+                <div class="key">Employer Name</div>
+                <div class="value content_wrap">
+                  {{ employment.employment_name_address || 'NIL' }}
                 </div>
+              </div>
 
-                <div class="flx_div flx_center hidden_div title">
-                  <div class="key">Position Held</div>
-                  <div class="value content_wrap">{{ employment.postion_field ? employment.postion_field : 'NIL' }}
-                  </div>
+              <div class="flx_div flx_center hidden_div title">
+                <div class="key">Position Held</div>
+                <div class="value content_wrap">
+                  {{ employment.postion_field ? employment.postion_field : 'NIL' }}
                 </div>
-                <div class="flx_div flx_center hidden_div title">
-                  <div class="key">Achievements/Responsibility/Tasks</div>
+              </div>
+              <div class="flx_div flx_center hidden_div title">
+                <div class="key">Achievements/Responsibility/Tasks</div>
+                <div class="value content_wrap" [title]="employment.achievement">
+                  {{ employment.achievement ? employment.achievement : 'NIL' }}
+                </div>
+              </div>
 
-                  <div class="value content_wrap" [title]="employment.achievement">
-                    {{ employment.achievement ? employment.achievement : 'NIL' }}
-                  </div>
-
+              <div class="flx_div flx_center hidden_div title">
+                <div class="key">Duration From</div>
+                <div class="value content_wrap">
+                  {{ employment.duration_from ? (employment.duration_from | date : 'MMM y') : 'NIL' }}
                 </div>
-
-                <div class="flx_div flx_center hidden_div title">
-                  <div class="key">Duration From</div>
-                  <div class="value content_wrap">{{ employment.duration_from ? (employment.duration_from | date : 'MMM
-                    y') : 'NIL' }}
-                  </div>
+              </div>
+              <div class="flx_div flx_center hidden_div title" *ngIf="!employment.is_working_here">
+                <div class="key">Duration To</div>
+                <div class="value content_wrap">
+                  {{ employment?.duration_to ? (employment?.duration_to | date : 'MMM y') : 'NIL' }}
                 </div>
-                <div class="flx_div flx_center hidden_div title" *ngIf="!employment.is_working_here">
-                  <div class="key">Duration To</div>
-                  <div class="value content_wrap">{{ employment?.duration_to ? (employment?.duration_to | date : 'MMM
-                    y')
-                    : 'NIL' }}</div>
-                </div>
-                <div class="flx_div flx_baseline title">
-                  <div class="key_edu">
-                    <div class="value_withcheckbox">
-                      <label *ngIf="employment?.is_working_here">
-                        <input type="checkbox" [checked]="employment?.is_working_here" disabled />
-                        I am Currently working here
-                      </label>
-                    </div>
+              </div>
+              <div class="flx_div flx_baseline title">
+                <div class="key_edu">
+                  <div class="value_withcheckbox">
+                    <label *ngIf="employment?.is_working_here">
+                      <input type="checkbox" [checked]="employment?.is_working_here" disabled />
+                      I am Currently working here
+                    </label>
                   </div>
                 </div>
               </div>
             </div>
+          </div>
+          <div
+            *ngIf="!(candidateData?.experience_details?.employments && candidateData.experience_details.employments.length > 0)">
+            <div class="value_ar">No Professional Experience Available</div>
+          </div>
+
             <h2 class="head_title"> Articleship/Training Details</h2>
-            <div class="brdr_btm_line pb-10"
-              *ngFor="let employment of candidateData?.experience_details?.intern; let i = index">
+          <div class="brdr_btm_line pb-10"
+            *ngIf="candidateData?.experience_details?.intern && candidateData.experience_details.intern.length > 0">
+            <ng-container *ngFor="let employment of candidateData.experience_details.intern; let i = index">
               <h2 class="sub_heading">Articleship/Training {{i+1}}</h2>
-              <div *ngIf="candidateData?.experience_details?.is_intern_status == true">
-                <div class="flx_div flx_center hidden_div title">
-                  <div class="key">Employer Name</div>
-                  <div class="value content_wrap">
-                    <!-- {{employment.employer_name ? employment.employer_name : 'NIL'}} -->
-                    {{employment.employer_name}}
-                  </div>
-                </div>
-                <div class="flx_div flx_center hidden_div title">
-                  <div class="key">Period From</div>
-                  <div class="value content_wrap">{{employment.from_date| date : 'MMM y'}}</div>
-                </div>
-                <div class="flx_div flx_center hidden_div title">
-                  <div class="key">Period To</div>
-                  <div class="value content_wrap">{{employment.to_date| date : 'MMM y'}}</div>
-                </div>
-                <div class="flx_div flx_center hidden_div title">
-                  <div class="key">Achievements/Responsibility/Tasks</div>
-                  <div class="value content_wrap" [title]="employment.work_responsiability">
-                    {{ employment.work_responsiability }}
-                  </div>
+              <div class="flx_div flx_center hidden_div title">
+                <div class="key">Employer Name</div>
+                <div class="value content_wrap">{{employment.employer_name}}</div>
+              </div>
+              <div class="flx_div flx_center hidden_div title">
+                <div class="key">Period From</div>
+                <div class="value content_wrap">{{employment.from_date | date : 'MMM y'}}</div>
+              </div>
+              <div class="flx_div flx_center hidden_div title">
+                <div class="key">Period To</div>
+                <div class="value content_wrap">{{employment.to_date | date : 'MMM y'}}</div>
+              </div>
+              <div class="flx_div flx_center hidden_div title">
+                <div class="key">Achievements/Responsibility/Tasks</div>
+                <div class="value content_wrap" [title]="employment.work_responsiability">
+                  {{employment.work_responsiability}}
                 </div>
               </div>
-              <div *ngIf="candidateData?.experience_details?.is_intern_status != true">
-                <div class="value_ar">No Articleship/Training Details Available</div>
-              </div>
-            </div>
+            </ng-container>
+          </div>
+          <div *ngIf="!(candidateData?.experience_details?.intern && candidateData.experience_details.intern.length > 0)">
+            <div class="value_ar">No Articleship/Training Details Available</div>
+          </div>
+
           </div>
         </div>
         <div id="project" #projectSection class="inner_content">
@@ -533,7 +536,7 @@
               </div>
 
             </div>
-            <div *ngIf="candidateData?.project_details?.projects?.length === 0">
+            <div *ngIf="!candidateData?.project_details?.projects || candidateData?.project_details?.projects.length === 0">
               <div class="value_ar">No project details available</div>
             </div>
           </div>
@@ -631,15 +634,15 @@
         <div class="job_header">Job Details</div>
         <div class="job_card hidden_div">
           <div class="job_title content_wrap">Applied for</div>
-          <div class="job_description content_wrap">{{jobDetailsdata.jobRole}}</div>
+          <div class="job_description content_wrap">{{jobDetailsdata?.jobRole}}</div>
         </div>
         <div class="job_card hidden_div">
           <div class="job_title content_wrap">Job Type</div>
-          <div class="job_description content_wrap">{{jobDetailsdata.jobType}}</div>
+          <div class="job_description content_wrap">{{jobDetailsdata?.jobType}}</div>
         </div>
         <div class="job_card hidden_div">
           <div class="job_title content_wrap">Location</div>
-          <div class="job_description content_wrap">{{jobDetailsdata.jobLocation}}</div>
+          <div class="job_description content_wrap">{{jobDetailsdata?.jobLocation}}</div>
         </div>
         <div class="job_card hidden_div">
           <div class="job_title content_wrap">Candidate Status</div>
