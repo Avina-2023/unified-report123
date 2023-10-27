@@ -241,6 +241,12 @@ export class ApiService {
       reportProgress: true,
     });
   }
+
+  masterCompany() {
+    return this.http.get(`${this.BASE_URL}/companyMaster`, {
+    });
+  }
+
   skillMasterValidate(data) {
     return this.http.post(`${this.BASE_URL}/skillValidate`, data);
   }
