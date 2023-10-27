@@ -10,15 +10,18 @@
           <div class="primarysingleWrap">
             <div class="singleWrap">
               <form [formGroup]="addjobsForm">
-                <div class="inputContainer">
-                  <label>Company Name<span>*</span></label>
-                  <mat-form-field appearance="outline">
-                    <input formControlName="company" matInput placeholder="Enter Company Name">
-                    <mat-error class="error" *ngIf="company?.errors?.required">{{'Company Name is Required'}}</mat-error>
-                  </mat-form-field>
-                  <ng-container *ngIf="company.invalid && company.touched">
-                  </ng-container>
-                </div>
+              <div class="inputContainer">
+                <label>Company Name<span>*</span></label>
+                <mat-form-field appearance="outline">
+                  <mat-label>Enter Company Name</mat-label>
+                  <mat-select formControlName="company" placeholder="Select Company Name">
+                     <mat-option *ngFor="let company of companyOptions" [value]="company">{{ company }}</mat-option>
+                  </mat-select>
+                  <!-- <mat-error class="error" *ngIf="companyForm.get('company')?.hasError('required')">{{ 'Company Name is Required'
+                    }}</mat-error> -->
+                </mat-form-field>
+              </div>
+
 
                 <div class="primaryWrap">
                   <div class="leftWrap">
@@ -249,6 +252,8 @@
                         class="custom-nz-select my-custom-nz-select" required>
                         <nz-option *ngFor="let item of newSkill" [nzLabel]="item" [nzValue]="item"></nz-option>
                       </nz-select>
+                      <div *ngIf="addjobsForm.get('skillSet').hasError('required') && addjobsForm.get('skillSet').touched" class="text-danger">Skill Set is
+                        Required.</div>
                     </div>
                   </div>
 
@@ -282,7 +287,7 @@
                     <div class="inputContainer">
                       <label>Job Description<span>*</span></label>
                       <mat-form-field appearance="outline">
-                        <angular-editor [(ngModel)]="htmlContent_description" formControlName="description"
+                        <angular-editor [(ngModel)]="htmlContent_description" formControlName=""
                           placeholder="Enter Job Description" id="description"></angular-editor>
                         <textarea type="textarea" maxlength="250" formControlName="description"
                           style="resize: none;display: none;" class="descstyle" matInput
@@ -296,7 +301,7 @@
                     <div class="inputContainer">
                       <label>Job Requirements<span>*</span></label>
                       <mat-form-field appearance="outline">
-                        <angular-editor [(ngModel)]="htmlContent_requirement" formControlName="requirement"
+                        <angular-editor [(ngModel)]="htmlContent_requirement" formControlName=""
                           placeholder="Enter Job Requirements" id="requirements"></angular-editor>
                         <textarea type="textarea" maxlength="250" formControlName="requirements"
                           style="resize: none;display: none;" class="descstyle" matInput
@@ -310,7 +315,7 @@
                     <div class="inputContainer">
                       <label>Additional Information</label>
                       <mat-form-field appearance="outline">
-                        <angular-editor [(ngModel)]="htmlContent_information" formControlName="additionalInformation"
+                        <angular-editor [(ngModel)]="htmlContent_information" formControlName=""
                           placeholder="Enter Additional Information " id="additionalInformation"></angular-editor>
                         <textarea type="textarea" maxlength="250" formControlName="additionalInformation"
                           style="resize: none;display: none;" class="descstyle" matInput

@@ -15,6 +15,7 @@ export class AddJobsComponent implements OnInit {
   addjobsForm: FormGroup;
   keySkills: string[] = [];
   newSkill: string[] = [];
+  companyOptions: string[] = [];
   industryTypes = [
     'Full time',
     'Internship',
@@ -162,6 +163,7 @@ YearofPassing = [
     // this.getRoute();
     this.formerrorInitialize();
     this.skilllist();
+    this.companylist();
     // this.getIndustryType();
     this.addjobsForm = this.formBuilder.group({
     });
@@ -173,7 +175,23 @@ YearofPassing = [
       this.newSkill = res.data.map(item => item.skillName);
     }
   });
-}
+  }
+
+  companylist() {
+     const data: any = {};
+    this.apiService.masterCompany().subscribe(
+  (res: any) => {
+    console.log(res);
+    if (res.success) {
+      this.companyOptions = res.data.map(item => item.company);
+    }
+  },
+  (error) => {
+    console.error('API request error:', error);
+  }
+);
+  }
+
   formerrorInitialize() {
     // const emailregex: RegExp =
     //   /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -368,7 +386,7 @@ saveForm() {
             "description":this.addjobsForm.value.description,
             "requirement":this.addjobsForm.value.requirement,
             "applyLink":this.addjobsForm.value.applyLink,
-        "education": this.formGroups.map(formGroup => formGroup.value)
+            "education": this.formGroups.map(formGroup => formGroup.value)
 
             //"email":this.existsEmail==""?this.registerForm.value.email:this.existsEmail,
             //"existsUser":this.existsUser
