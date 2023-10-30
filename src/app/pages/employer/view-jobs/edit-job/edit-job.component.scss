@@ -1,0 +1,248 @@
+.main-Container-popup{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .border-line {
+    padding:0px 15px 0px 15px ;
+  }
+  .bottom-border {
+    border: 0.699999988079071px solid #B4B4B4;
+    opacity: 0.3;
+  }
+  .left-side{
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    // border-right: 1px solid #848484;
+    border-right: 0.699999988079071px solid #B4B4B4;
+    .border-line1 {
+      // padding:0px 15px 0px 15px ;
+    }
+    .bottom-border1 {
+      border: 0.699999988079071px solid #B4B4B4;
+      opacity: 0.3;
+      width: 270px;
+    }
+    .company-logo{
+      padding: 0px 0px 25px 0px;
+    }
+    .job-Role{
+      color: #1B4E9B;
+      font-size: 19px;
+      font-weight: 600;
+      margin: 5px 0px 5px 0px;
+      padding: 20px 0px 10px 0px;
+    }
+    .job-type-status{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin: 10px 0px 25px 0px;
+    }
+    .Job-Type{
+      font-size: 12px;
+      color: #FFFFFF;
+      background: #1B4E9B;
+      padding: 3px 10px 3px 10px;
+      margin: 0px 3px 0px 0px;
+      border-radius: 9px;
+    }
+    .Job-Status{
+      color: #FFFFFF;
+      background: #49AE31;
+      padding: 3px 7px 3px 7px;
+      margin: 0px 0px 0px 3px;
+      border-radius: 9px;
+    }
+    .posted{
+        font-size: 12px;
+        color: #262626;
+        margin: 17px 0px 3px 0px;
+    }
+    .posted-name{
+        font-size: 16px;
+        color: #262626;
+        font-weight: 600;
+        margin: 3px 0px 25px 0px;
+    }
+    .last-date-apply{
+      color: #262626;
+      font-weight: 700;
+      font-size: 13px;
+      margin: 30px 0px 20px 0px;
+    }
+    .last-date{
+      font-size: 14px;
+      color: #FF0000;
+      margin: 0px 0px 50px 0px;
+    }
+  }
+  .right-side{
+    width: 70%;
+    height: 400px;
+    overflow-y: scroll;
+  }
+  .right-side::-webkit-scrollbar {
+    display: none; /* Hide scrollbar for Chrome, Safari, and Opera */
+    // width: 0;
+  }
+
+  .right-side {
+    -ms-overflow-style: none; /* Hide scrollbar for Internet Explorer and Edge */
+    scrollbar-width: none; /* Hide scrollbar for Firefox */
+  }
+     .job_title_ {
+       font: normal normal bold 16px/21px Roboto;
+       padding: 15px 0px 0px 10px;
+     }
+ .inputContainer {
+   label {
+     display: block;
+     color: #666666;
+     font-size: 11px;
+     font-weight: bold;
+     margin-bottom: 0.5em;
+     width: 30%;
+   }
+.mat-form-field {
+  width: 98%;
+}
+ ::ng-deep .mat-form-field-appearance-outline .mat-form-field-infix {
+   padding: 4px 0 10px 0 !important;
+ }
+ }
+.buttonClass {
+  margin-top: 20px !important;
+  display: flex;
+  justify-content: right;
+
+  .subButton {
+    padding-right: 10px;
+
+    ::ng-deep.mat-flat-button {
+      background-color: #1B4E9B !important;
+      color: #FFFFFF;
+      border-radius: 5px;
+      padding: 2px 27px 0px 27px !important;
+      line-height: 33px;
+    }
+  }
+
+  .subButton2 {
+    padding-right: 10px;
+
+    ::ng-deep.mat-flat-button {
+      background-color: #848484 !important;
+      color: #FFFFFF;
+      border-radius: 5px;
+      padding: 2px 27px 0px 27px !important;
+      line-height: 33px;
+    }
+  }
+
+  .file-input {
+    display: none;
+  }
+
+}
+
+// education field set
+
+nz-select {
+  width: 100%;
+}
+
+::ng-deep.my-custom-nz-select .ant-select-selector {
+  height: 37px;
+  margin: -3px 0px 0px 0px;
+  border-radius: 5px !important;
+}
+
+::ng-deep.custom-nz-select .ant-select-arrow {
+  right: 5px;
+}
+
+::ng-deep .custom-nz-select .ant-select-selection-item {
+  background: #1B4E9B;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 24px;
+  padding: 4px 8px;
+  text-align: center;
+}
+
+::ng-deep .custom-nz-select .ant-select-selection-item-content {
+  color: var(--unnamed-color-ffffff);
+  text-align: left;
+  font: normal normal 300 12px/16px Roboto;
+  letter-spacing: 0px;
+  color: #FFFFFF;
+}
+
+::ng-deep .custom-nz-select .ant-select-selection-item-remove svg {
+  margin: -10px 0px 1px 5px
+}
+
+::ng-deep .custom-nz-select .ant-select-selection-item-remove {
+  color: #FFFFFF;
+}
+
+.education-fieldset legend {
+  font-size: 15px;
+  color: #212529;
+  padding: 2px 5px;
+  border-radius: 5px;
+  width: fit-content;
+}
+.edu_label {
+  display: block;
+  color: #666666;
+  font-size: 11px;
+  font-weight: bold;
+  margin-bottom: 0.5em;
+  width: 30%;
+  padding: 0px 0px 10px 15px;
+}
+
+.mg-r-10 {
+  margin-right: 10px;
+}
+
+.mg-l-10 {
+  margin-left: 10px;
+}
+
+.width-30 {
+  width: 30% !important;
+}
+
+.width-40 {
+  width: 37% !important;
+}
+
+.flex_div {
+  display: flex;
+}
+
+.add_more_text {
+  color: #1B4E9A;
+  text-decoration: underline;
+  font-size: 14px;
+  cursor: pointer;
+  width: fit-content;
+  float: right;
+}
+
+.text-danger {
+  font-size: 13px;
+  padding-top: 5px;
+}
+
+.remove_group_text {
+  // width: 12px;
+  opacity: 1;
+  color: #FF0000;
+  margin: 4px -12px 0px 5px;
+}

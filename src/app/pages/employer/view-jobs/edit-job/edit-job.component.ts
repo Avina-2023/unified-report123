@@ -1,21 +1,27 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { AngularEditorConfig } from '@kolkov/angular-editor';
-import { ApiService } from './../../../services/api.service';
-import { ToastrService } from 'ngx-toastr';
-import { environment } from 'src/environments/environment';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ApiService } from 'src/app/services/api.service';
 import { AppConfigService } from 'src/app/utils/app-config.service';
-import { APP_CONSTANTS } from '../../../utils/app-constants.service';
+import { ToastrService } from 'ngx-toastr';
+import { AngularEditorConfig } from '@kolkov/angular-editor';
+import { environment } from 'src/environments/environment';
+
+
 @Component({
-  selector: 'app-add-jobs',
-  templateUrl: './add-jobs.component.html',
-  styleUrls: ['./add-jobs.component.scss'],
+  selector: 'app-edit-job',
+  templateUrl: './edit-job.component.html',
+  styleUrls: ['./edit-job.component.scss']
 })
-export class AddJobsComponent implements OnInit {
+export class EditJobComponent implements OnInit {
   addjobsForm: FormGroup;
+  formGroups: FormGroup[] = [];
+
+
+  jobdata: any;
+  selectedOption: string = '1';
+
   keySkills: string[] = [];
   newSkill: string[] = [];
-  companyOptions: string[] = [];
   industryTypes = [
     'Full time',
     'Internship',
@@ -74,7 +80,6 @@ YearofPassing = [
   rangefromArray = ['Option A', 'Option B', 'Option C'];
   rangetoArray = ['Option X', 'Option Y', 'Option Z'];
   // selectedOption: string = 'jobs';
-  selectedOption: string = '1';
   htmlContent_description = '';
   htmlContent_requirement = '';
   htmlContent_information = '';
@@ -84,7 +89,6 @@ YearofPassing = [
   employerCmpnyLogoFile: any;
   displayImageUrl = "";
   employerLogoUrl: string;
-  formGroups: FormGroup[] = [];
   multipleSpecialization = [];
   listOfSpecializations: any;
   educations: any;
@@ -149,21 +153,25 @@ YearofPassing = [
 //   ],
 // };
 
-  constructor(private fb: FormBuilder, private apiService: ApiService, private ApiService: ApiService,private appconfig: AppConfigService, private toastr: ToastrService) {
-    // this.addjobsForm = this.fb.group({
-    //   fixedctc: [''],
-    //   startrangectc: [''],
-    //   endrangectc: [''],
-    //   ctcOptions: ['1'],
-    // });
-  }
-  ngOnInit(): void {
-    this.getallEducation();
+  constructor(
+    private ApiService: ApiService,
+    private appconfig: AppConfigService,
+    private fb: FormBuilder,
+    private apiService: ApiService,
+    private toastr: ToastrService
+  ) { }
+
+  ngOnInit() {
+    //on click on edit in ag-grid table it'll get data particular rowdata from localstorage
+    let localjobData = JSON.parse(this.appconfig.getLocalStorage('openJobData'));
+    this.jobdata = this.appconfig.jobData ? this.appconfig.jobData : localjobData;
+    console.log(this.jobdata, 'data for edit job page');
+
+     this.getallEducation();
     this.getallCourses();
     // this.getRoute();
     this.formerrorInitialize();
     this.skilllist();
-    this.companylist();
     // this.getIndustryType();
     this.addjobsForm = this.formBuilder.group({
     });
@@ -175,24 +183,8 @@ YearofPassing = [
       this.newSkill = res.data.map(item => item.skillName);
     }
   });
-  }
-
-  companylist() {
-     const data: any = {};
-    this.apiService.masterCompany().subscribe(
-  (res: any) => {
-    console.log(res);
-    if (res.success) {
-      this.companyOptions = res.data.map(item => item.company);
-    }
-  },
-  (error) => {
-    console.error('API request error:', error);
-  }
-);
-  }
-
-  formerrorInitialize() {
+}
+   formerrorInitialize() {
     // const emailregex: RegExp =
     //   /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     this.addjobsForm = this.fb.group({
@@ -266,79 +258,6 @@ YearofPassing = [
       discipline: [this.multipleSpecialization],
     });
   }
-  get company() {
-    return this.addjobsForm.get('company');
-  }
-  get jobRole() {
-    return this.addjobsForm.get('jobRole');
-  }
-   get jobTitle() {
-    return this.addjobsForm.get('jobTitle');
-  }
-
-  //  get jobLocation() {
-  //   return this.addjobsForm.get('jobLocation');
-  // }
-  // get jobType() {
-  //   return this.addjobsForm.get('jobType');
-  // }
-  get specification() {
-    return this.addjobsForm.get('specification');
-  }
-  get discipline() {
-    return this.addjobsForm.get('discipline');
-  }
-  get fixedctc() {
-    return this.addjobsForm.get('fixedctc');
-  }
-  get startrangectc() {
-    return this.addjobsForm.get('startrangectc');
-  }
-  get endrangectc() {
-    return this.addjobsForm.get('endrangectc');
-  }
-  get keyskill() {
-    return this.addjobsForm.get('keyskill');
-  }
-  get lastdate() {
-    return this.addjobsForm.get('lastdate');
-  }
-  get applyLink() {
-    return this.addjobsForm.get('applyLink');
-  }
-  // get description() {
-  //   return this.addjobsForm.get('description');
-  // }
-  // get requirement() {
-  //   return this.addjobsForm.get('requirement');
-  // }
-  // get lastDatetoApply() {
-  //   return this.addjobsForm.get('lastDatetoApply');
-  // }
-// onEmployerLogoFileSelected(event) {
-//   this.errorMsgforCmpnyLogo = '';
-//   this.employerCmpnyLogoFile = event.target.files[0];
-//    const fd = new FormData();
-//     fd.append("uploadFile",event.target.files[0]);
-//     fd.append("type", "profile");
-// this.ApiService.imageUpload(fd).subscribe((imageData: any) => {
-//       if (imageData.success == false) {
-//         this.toastr.warning(imageData.message);
-//       } else {
-//         this.employerLogo = event.target.files[0].name;
-//         if (imageData.data && this.productionUrl == true) {
-//           this.displayImageUrl = imageData.data + environment.blobToken
-//         } else if (imageData.data && this.productionUrl == false) {
-//           this.displayImageUrl = imageData.data
-//         }
-//         this.employerLogoUrl = imageData.data;
-//       }
-//     }, (err) => {
-//       this.toastr.warning('Connection failed, Please try again.');
-//     });
-
-//   }
-
 addEducationGroup(): void {
     const lastGroupIndex = this.formGroups.length - 1;
     const lastGroup = this.formGroups[lastGroupIndex];
@@ -354,60 +273,6 @@ removeEducationGroup(index: number): void {
       this.formGroups.splice(index, 1);
       this.addjobsForm.setControl('educationGroups', this.fb.array(this.formGroups));
     }
-  }
-  onSubmit() {
-    // const areEducationGroupsValid = this.formGroups.every(formGroup => formGroup.valid);
-    // if (this.addjobsForm.valid && areEducationGroupsValid) {
-    //   const consolidatedData = {
-    //     jobFormValues: this.addjobsForm.value,
-    //     dynamicFormData: this.formGroups.map(formGroup => formGroup.value)
-    //   };
-    //   console.log(consolidatedData);
-
-    // } else {
-    //   this.addjobsForm.markAllAsTouched();
-    //   this.formGroups.forEach(formGroup => formGroup.markAllAsTouched());
-    //   this.toastr.warning('Please fill in all required fields.', 'Form Validation Error');
-    // }
-  }
-saveForm() {
-    // if (this.addjobsForm.valid) {
-      // Perform form submission actions{
-      var obj = {
-            "company": this.addjobsForm.value.company,
-            "jobRole": this.addjobsForm.value.jobRole,
-            "jobTitle": this.addjobsForm.value.jobTitle,
-            "jobLocation":this.addjobsForm.value.jobLocation,
-            "jobType":this.addjobsForm.value.jobType,
-            "yearofPassout":this.addjobsForm.value.yearofPassout,
-            "skillSet": this.addjobsForm.value.skillSet,
-            "lastDatetoApply":this.addjobsForm.value.lastDatetoApply,
-            "additionalInformation":this.addjobsForm.value.additionalInformation,
-            "description":this.addjobsForm.value.description,
-            "requirement":this.addjobsForm.value.requirement,
-            "applyLink":this.addjobsForm.value.applyLink,
-            "education": this.formGroups.map(formGroup => formGroup.value)
-
-            //"email":this.existsEmail==""?this.registerForm.value.email:this.existsEmail,
-            //"existsUser":this.existsUser
-      }
-      this.apiService.UploadPostJob(obj).subscribe((data: any) => {
-        // console.log(data)
-        if (data.success == false) {
-          this.toastr.warning(data.message);
-        } else {
-          this.toastr.success(data.message);
-          this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.PARTNER.PARTNERLIST);
-        }
-      }, (err) => {
-        this.toastr.warning('Connection failed, Please try again.');
-      });
-    // }
-
-  }
-
-  clearForm() {
-    this.addjobsForm.reset();
   }
 getallEducation() {
     this.apiService.getallEducations().subscribe((data: any) => {
@@ -570,4 +435,12 @@ getallEducation() {
       return true; // Apply disabled
     }
   }
+
+  saveviewForm(){
+
+  }
+  clearviewForm() {
+
+  }
+
 }

@@ -151,3 +151,174 @@
          color: #1B4E9B;
        }
 }
+
+.ext-closer{
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+}
+
+.ext-redirect-popup a{
+  margin: 10px 0;
+}
+
+.main-Container-popup{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.border-line {
+  padding:0px 15px 0px 15px ;
+} 
+.bottom-border {
+  border: 0.699999988079071px solid #B4B4B4;
+  opacity: 0.3;
+}
+.left-side{
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  // border-right: 1px solid #848484;
+  border-right: 0.699999988079071px solid #B4B4B4;
+  .border-line1 {
+    padding:0px 15px 0px 15px ;
+  } 
+  .bottom-border1 {
+    border: 0.699999988079071px solid #B4B4B4;
+    opacity: 0.3;
+    width: 270px;
+  }
+  .company-logo{
+    padding: 0px 0px 25px 0px;
+  }
+  .job-Role{
+    color: #1B4E9B;
+    font-size: 19px;
+    font-weight: 600;
+    margin: 5px 0px 5px 0px;
+    padding: 30px 0px 10px 0px;
+  }
+  .Job-Type{
+    font-size: 12px;
+    color: #FFFFFF;
+    background: #1B4E9B;
+    padding: 3px 10px 3px 10px;
+    margin: 7px 0px 7px 0px;
+    border-radius: 5px;
+  }
+  .Job-Status{
+    color: #FFFFFF;
+    background: #49AE31;
+    padding: 2px 7px 2px 7px;
+    margin: 10px 0px 35px 0px;
+    border-radius: 5px;
+  }
+  .last-date-apply{
+    color: #262626;
+    font-weight: 700;
+    font-size: 13px;
+    margin: 30px 0px 20px 0px;
+  }
+  .last-date{
+    font-size: 14px;
+    color: #FF0000;
+    margin: 0px 0px 50px 0px;
+  }
+}
+.right-side{
+  width: 70%;
+  height: 400px;
+  overflow-y: scroll;
+}
+.right-side::-webkit-scrollbar {
+  display: none; /* Hide scrollbar for Chrome, Safari, and Opera */
+  // width: 0;
+}
+
+.right-side {
+  -ms-overflow-style: none; /* Hide scrollbar for Internet Explorer and Edge */
+  scrollbar-width: none; /* Hide scrollbar for Firefox */
+}
+  .main-head{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 20px 20px 10px 20px;
+    .heading{
+      font-size: 16px;
+      font-weight: 700;
+    }
+    .edit{
+      color: #1B4E9B;
+      cursor: pointer;
+    }
+  }
+  .main-heading2{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 20px 0px 10px 0px;
+    .title{
+      width: 40%;
+      color: #848484;
+      font-size: 14px;
+      margin: 0px 0px 0px 50px
+    }
+    .role{
+      width: 65%;
+      font-size: 14px;
+      font-weight: 700;
+      color: #262626;
+      // padding: 0px 300px 0px 0px;
+    }
+  }
+
+  .ext-closer1{
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+  }
+  .ext-redirect-popup{
+    border: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+  .ext-redirect-content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  
+  .heading{
+      color: #000000;
+      font-weight: bolder;
+      font-size: 16px;
+      padding: 24px 0px 0px 0px;
+  }
+  }
+  .ext-redirect-popup img{
+    width: 200px;
+    height: auto;
+    margin: 10px 0;
+  }
+  
+  .redirect-message{
+    margin-top: 10px;
+  }
+  .ext-redirect-popup a{
+    margin: 10px 0;
+  }
+  
+  .ext-btn{
+    background-color: #1B4E9B;
+    color: #FFFFFF;
+    margin: 30px;
+  }
+  .ext-btn:hover {
+    background-color: #FFFFFF;
+     color: #1B4E9B;
+   }
