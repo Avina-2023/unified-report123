@@ -3,7 +3,7 @@
     (click)="openStatusDialog('approved')" matTooltip="Select"><mat-icon>done</mat-icon></button>
   <button class="reject-icon icn" [ngClass]="{'disable': params.data.approveStatus === 'rejected'}"
     (click)="openStatusDialog('rejected')" matTooltip="Reject"><mat-icon>clear</mat-icon></button>
-  <button class="view-icon icn" (click)="openEditJobDialog()"
+  <button class="view-icon icn" (click)="openViewJobDialog()"
     matTooltip="Edit Profile"><mat-icon>mode_edit</mat-icon></button>
 </div>
 
@@ -199,7 +199,7 @@
           <div class="role">
             <p *ngFor="let desc of params.data.description" style="display: block">{{ desc.item }}</p>
           </div>
-          
+
 
         </div>
         <div class="border-line">
@@ -246,8 +246,8 @@
 
     </div>
   </div> -->
-  
+
   <app-edit-job>
   </app-edit-job>
-  
+
 </ng-template>
