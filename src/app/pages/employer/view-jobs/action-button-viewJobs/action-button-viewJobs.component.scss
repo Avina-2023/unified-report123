@@ -16,7 +16,7 @@
         cursor: wait;
         background-color: #C6C6C6;
       }
-    
+
     .reject-icon {
         background-color: #FFFFFF;
         // border-radius: 7px;
@@ -112,7 +112,7 @@
          width: 90px;
          margin: 3px;
        }
- 
+
        .button1:hover{
          background-color: #FFFFFF !important;
          color: #1B4E9B;
@@ -169,7 +169,7 @@
 }
 .border-line {
   padding:0px 15px 0px 15px ;
-} 
+}
 .bottom-border {
   border: 0.699999988079071px solid #B4B4B4;
   opacity: 0.3;
@@ -183,7 +183,7 @@
   border-right: 0.699999988079071px solid #B4B4B4;
   .border-line1 {
     padding:0px 15px 0px 15px ;
-  } 
+  }
   .bottom-border1 {
     border: 0.699999988079071px solid #B4B4B4;
     opacity: 0.3;
@@ -199,6 +199,7 @@
     margin: 5px 0px 5px 0px;
     padding: 30px 0px 10px 0px;
   }
+
   .Job-Type{
     font-size: 12px;
     color: #FFFFFF;
@@ -266,14 +267,38 @@
       font-size: 14px;
       margin: 0px 0px 0px 50px
     }
-    .role{
-      width: 65%;
-      font-size: 14px;
-      font-weight: 700;
-      color: #262626;
-      // padding: 0px 300px 0px 0px;
-    }
-  }
+        .role {
+          width: 65%;
+          font-size: 14px;
+          font-weight: 700;
+          color: #262626;
+
+          // padding: 0px 300px 0px 0px;
+          .key-skills {
+            background-color: #1B4E9B;
+            color: #FFFFFF;
+            border-radius: 24px;
+            padding: 5px 10px;
+            display: inline-block;
+          }
+
+          .specialization-box {
+            background-color: #1B4E9B;
+            padding: 5px;
+            border-radius: 24px;
+            display: inline-block;
+            margin-left: 5px;
+          }
+
+          .specialization {
+            color: #FFFFFF;
+          }
+
+          .education {
+            margin-right: 5px;
+          }
+        }
+        }
 
   .ext-closer1{
     display: flex;
@@ -292,7 +317,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-  
+
   .heading{
       color: #000000;
       font-weight: bolder;
@@ -305,14 +330,14 @@
     height: auto;
     margin: 10px 0;
   }
-  
+
   .redirect-message{
     margin-top: 10px;
   }
   .ext-redirect-popup a{
     margin: 10px 0;
   }
-  
+
   .ext-btn{
     background-color: #1B4E9B;
     color: #FFFFFF;
