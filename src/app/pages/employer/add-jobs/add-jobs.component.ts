@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { ApiService } from './../../../services/api.service';
@@ -6,6 +6,8 @@ import { ToastrService } from 'ngx-toastr';
 import { environment } from 'src/environments/environment';
 import { AppConfigService } from 'src/app/utils/app-config.service';
 import { APP_CONSTANTS } from '../../../utils/app-constants.service';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+
 @Component({
   selector: 'app-add-jobs',
   templateUrl: './add-jobs.component.html',
@@ -62,13 +64,7 @@ export class AddJobsComponent implements OnInit {
      'Full Time',
      'Internship',
   ]
-YearofPassing = [
-     '2021',
-    '2022',
-    '2023',
-    '2024',
-    '2025',
-  ]
+  YearofPassing: string[] = [];
   skillSet = [];
   isFixed: boolean = true;
   isRange: boolean = false;
@@ -86,11 +82,12 @@ YearofPassing = [
   listOfSpecializations: any;
   educations: any;
   level: string;
-  degreeOptions = [
-    { "id": "0", "specification_name": "Any Degree / Graduation" },
-    { "id": "1", "specification_name": "X Std" },
-    { "id": "2", "specification_name": "XII Std" }
-  ]
+  // degreeOptions = [
+  //   { "id": "0", "specification_name": "Any Degree / Graduation" },
+  //   { "id": "1", "specification_name": "X Std" },
+  //   { "id": "2", "specification_name": "XII Std" }
+  // ]
+   degreeOptions: any[];
   courseOptions = ['Any Course', 'Pick From the List'];
   ugDegree: any;
   diplomaCourses: string[];
@@ -146,17 +143,26 @@ YearofPassing = [
 //   ],
 // };
 
-  constructor(private fb: FormBuilder, private apiService: ApiService, private ApiService: ApiService,private appconfig: AppConfigService, private toastr: ToastrService) {
-    // this.addjobsForm = this.fb.group({
-    //   fixedctc: [''],
-    //   startrangectc: [''],
-    //   endrangectc: [''],
-    //   ctcOptions: ['1'],
-    // });
+    @ViewChild('jobsaved', { static: false }) jobsavedtemplate: TemplateRef<any>;
+  ugDegrees: any[];
+  pgDegrees: any[];
+  phdDegrees: any[];
+  alldegree: any;
+  allDisciplines: any;
+
+
+  constructor(private fb: FormBuilder, private apiService: ApiService, private ApiService: ApiService,private appconfig: AppConfigService, private toastr: ToastrService,private dialog: MatDialog) {
+
+    const currentYear = new Date().getFullYear()-1;
+    for (let i = currentYear ; i >= currentYear - 10; i--) {
+      this.YearofPassing.push(i.toString());
+    }
+
   }
   ngOnInit(): void {
     this.getallEducation();
     this.getallCourses();
+    this.getalldegree();
     // this.getRoute();
     this.formerrorInitialize();
     this.skilllist();
@@ -172,6 +178,21 @@ YearofPassing = [
       this.newSkill = res.data.map(item => item.skillName);
     }
   });
+  }
+
+handleSearch(event: Event): void {
+    const inputElement = event.target as HTMLInputElement;
+    const searchText = inputElement.value;
+    const data: any = {
+      searchText: searchText
+    };
+    console.log('Search text:', searchText);
+    this.apiService.getSkill(data).subscribe((res: any) => {
+      if (res.success) {
+        this.newSkill = res.data.map((item) => item.skillName);
+        console.log(res, 'searchSkills');
+      }
+    });
   }
 
   companylist() {
@@ -198,11 +219,11 @@ YearofPassing = [
 
           startrangectc: ['', [
           Validators.required,
-          Validators.pattern(/^[0-9,]*$/)
+          // Validators.pattern(/^[0-9,]*$/)
         ]],
       endrangectc: ['',[
           Validators.required,
-          Validators.pattern(/^[0-9,]*$/)
+          // Validators.pattern(/^[0-9,]*$/)
         ]],
       company: ['', [Validators.required]],
       jobRole: ['', [Validators.required]],
@@ -213,7 +234,7 @@ YearofPassing = [
       specification: ['', [Validators.required]],
       discipline: ['', [Validators.required]],
       skillSet: [[], [Validators.required]],
-      lastDatetoApply: [[]],
+      lastDatetoApply: [[], [Validators.required]],
       yearofPassout: [[], [Validators.required]],
       applyLink: [
         '',
@@ -242,16 +263,10 @@ YearofPassing = [
       // ],
       // description: ['', [Validators.required]],
       requirement: ['', [Validators.required]],
-description: this.fb.array([
-  this.fb.group({
-    item: ['', [Validators.required]]
-  })
-]),
+      description:  ['', [Validators.required]],
       additionalInformation: [],
       // ctcOptions: ['1'],
       educationGroups: this.fb.array([this.createEducationGroup()])
-
-
     });
     this.formGroups = this.addjobsForm.get('educationGroups')['controls'];
   }
@@ -303,15 +318,16 @@ description: this.fb.array([
   get applyLink() {
     return this.addjobsForm.get('applyLink');
   }
-  // get description() {
-  //   return this.addjobsForm.get('description');
-  // }
-  // get requirement() {
-  //   return this.addjobsForm.get('requirement');
-  // }
-  // get lastDatetoApply() {
-  //   return this.addjobsForm.get('lastDatetoApply');
-  // }
+   get lastDatetoApply() {
+    return this.addjobsForm.get('lastDatetoApply');
+  }
+  get description() {
+    return this.addjobsForm.get('description');
+  }
+  get requirement() {
+    return this.addjobsForm.get('requirement');
+  }
+
 // onEmployerLogoFileSelected(event) {
 //   this.errorMsgforCmpnyLogo = '';
 //   this.employerCmpnyLogoFile = event.target.files[0];
@@ -376,10 +392,16 @@ removeEducationGroup(index: number): void {
   }
 
   saveForm() {
-
+ const popup = this.dialog.open(this.jobsavedtemplate, {
+        width: '446px',
+        height: '303px',
+        disableClose: true,
+        hasBackdrop: true,
+      });
     // if (this.addjobsForm.valid) {
       // Perform form submission actions{
-      var obj = {
+    var obj = {
+            "companyId": this.addjobsForm.value.companyId,
             "company": this.addjobsForm.value.company,
             "jobRole": this.addjobsForm.value.jobRole,
             "jobTitle": this.addjobsForm.value.jobTitle,
@@ -389,6 +411,8 @@ removeEducationGroup(index: number): void {
             "skillSet": this.addjobsForm.value.skillSet,
             "ctcType": this.addjobsForm.value.ctcType,
             "ctc": this.addjobsForm.value.ctc,
+            "startRangeCtc": this.addjobsForm.value.startRangeCtc,
+            "endRangeCtc": this.addjobsForm.value.endRangeCtc,
             "lastDatetoApply":this.addjobsForm.value.lastDatetoApply,
             "additionalInformation":this.addjobsForm.value.additionalInformation,
             "description":this.addjobsForm.value.description,
@@ -403,6 +427,7 @@ removeEducationGroup(index: number): void {
         // console.log(data)
         if (data.success == false) {
           this.toastr.warning(data.message);
+
         } else {
           this.toastr.success(data.message);
           this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.PARTNER.PARTNERLIST);
@@ -411,7 +436,6 @@ removeEducationGroup(index: number): void {
         this.toastr.warning('Connection failed, Please try again.');
       });
     // }
-
   }
 
   clearForm() {
@@ -422,7 +446,6 @@ getallEducation() {
       this.educations = data[0];
     })
   }
-
   getallCourses() {
     this.apiService.getallCollegeCourses().subscribe((data: any) => {
       this.allCourses = data;
@@ -436,34 +459,77 @@ getallEducation() {
     })
   }
 
+getalldegree() {
+  this.apiService.getDegreeList().subscribe((data: any) => {
+   this.alldegree = data;
+   console.log(this.alldegree, 'degreeList');
+   // Define separate arrays for UG and PG degrees
+   this.ugDegrees = [];
+   this.pgDegrees = [];
+   this.phdDegrees = [];
+   this.alldegree.data.forEach((item: any) => {
+    if (item.qualification === "UG") {
+     this.ugDegrees = this.ugDegrees.concat(item.degree);
+    } else if (item.qualification === "PG") {
+     this.pgDegrees = this.pgDegrees.concat(item.degree);
+    }
+    else if (item.qualification === "Phd") {
+     this.phdDegrees = this.phdDegrees.concat(item.degree);
+    }
+   });
+   console.log(this.ugDegrees, 'UG degrees');
+   console.log(this.pgDegrees, 'PG degrees');
+   console.log(this.phdDegrees, 'Phd degrees');
+  });
+ }
+
   onGraduationChange(selectedGraduation: string, index: number) {
     const currentFormGroup = this.formGroups[index];
     // Clear values in the current form group
     currentFormGroup.get('specification').setValue(null);
     //currentFormGroup.get('course').setValue(null);
     currentFormGroup.get('discipline').setValue(null);
-
     if (selectedGraduation === null) {
       return;
     }
+    // if (selectedGraduation === 'SSLC' || selectedGraduation === 'HSC' || selectedGraduation === 'Any Graduation' || selectedGraduation === 'Diploma') {
+    //   this.degreeOptions = [
+    //     { "id": "0", "specification_name": "Any Degree / Graduation" },
+    //     { "id": "1", "specification_name": "X Std" },
+    //     { "id": "2", "specification_name": "XII Std" },
+    //     { "id": "2", "specification_name": "Diploma" }
+    //   ];
+    //   currentFormGroup.get('specification').setValue(
+    //     selectedGraduation === 'Any Graduation'
+    //       ? 'Any Degree / Graduation'
+    //       : selectedGraduation === 'Diploma'
+    //         ? 'Diploma'
+    //         : selectedGraduation === 'SSLC'
+    //           ? 'X Std'
+    //           : 'XII Std'
+    //   );
+    // }
 
-    if (selectedGraduation === 'SSLC' || selectedGraduation === 'HSC' || selectedGraduation === 'Any Graduation' || selectedGraduation === 'Diploma') {
-      this.degreeOptions = [
-        { "id": "0", "specification_name": "Any Degree / Graduation" },
-        { "id": "1", "specification_name": "X Std" },
-        { "id": "2", "specification_name": "XII Std" },
-        { "id": "2", "specification_name": "Diploma" }
-      ];
-      currentFormGroup.get('specification').setValue(
-        selectedGraduation === 'Any Graduation'
-          ? 'Any Degree / Graduation'
-          : selectedGraduation === 'Diploma'
-            ? 'Diploma'
-            : selectedGraduation === 'SSLC'
-              ? 'X Std'
-              : 'XII Std'
-      );
+ if (selectedGraduation === 'SSLC' || selectedGraduation === 'HSC' || selectedGraduation === 'Any Graduation') {
+   this.degreeOptions = ['Any Degree / Graduation', 'X Std', 'XII Std'];
+   currentFormGroup.get('specification').setValue(
+    selectedGraduation === 'Any Graduation'
+     ? 'Any Degree / Graduation'
+     : selectedGraduation === 'HSC'
+      ? 'XII Std'
+      : selectedGraduation === 'SSLC'
+       ? 'X Std'
+       : ''
+   );
     }
+     if (selectedGraduation === 'Diploma') {
+   this.degreeOptions = ['Diploma UG', 'Diploma PG'];
+   currentFormGroup.get('specification').setValue(
+    selectedGraduation === 'Diploma'
+     ? ['Diploma UG', 'Diploma PG']
+     : ''
+   );
+  }
 
     if (selectedGraduation === 'Any Graduation' || selectedGraduation === 'SSLC' || selectedGraduation === 'HSC') {
       currentFormGroup.get('discipline').clearValidators();
@@ -472,7 +538,6 @@ getallEducation() {
       currentFormGroup.get('discipline').setValidators(Validators.required);
       currentFormGroup.get('discipline').updateValueAndValidity();
     }
-
 
     if (selectedGraduation === 'UG' || selectedGraduation === 'PG') {
       currentFormGroup.get('specification').setValidators(Validators.required);
@@ -486,34 +551,32 @@ getallEducation() {
       // currentFormGroup.get('degree').setValue(null);
       currentFormGroup.get('discipline').setValue([]);
     }
-
-    if (selectedGraduation === 'UG') {
-      this.degreeOptions = this.ugDegree;
-    }
-
-    if (selectedGraduation === 'PG') {
-      this.degreeOptions = this.pgDegree;
-    }
-
+  if (selectedGraduation === 'UG') {
+   this.degreeOptions = this.ugDegrees;
+  }
+  if (selectedGraduation === 'PG') {
+   this.degreeOptions = this.pgDegrees;
+  }
+  if (selectedGraduation === 'Phd') {
+   this.degreeOptions = this.phdDegrees;
+  }
     if (currentFormGroup.get('level').value === 'Diploma') {
       currentFormGroup.get('discipline').setValue(null);
-      this.listOfSpecializations = this.diplomaCourses;
+     // this.listOfSpecializations = this.diplomaCourses;
     }
 
     if (currentFormGroup.get('level').value === 'UG') {
       currentFormGroup.get('discipline').setValue(null);
-      this.listOfSpecializations = this.ugCourses;
+      //this.listOfSpecializations = this.ugCourses;
     }
 
     if (currentFormGroup.get('level').value === 'PG') {
       currentFormGroup.get('discipline').setValue(null);
-      this.listOfSpecializations = this.pgCourses;
+      //this.listOfSpecializations = this.pgCourses;
     }
     // currentFormGroup.get('specialization').setValidators(Validators.required);
     // currentFormGroup.get('specialization').updateValueAndValidity();
   }
-
-
   // onDegreeChange(selectedDegree: string, index: number) {
   //   const currentFormGroup = this.formGroups[index];
 
@@ -526,32 +589,23 @@ getallEducation() {
 
   onDegreeChange(selectedCourse: string, index: number) {
     const currentFormGroup = this.formGroups[index];
-
-    // Handle course change logic...
-    // if (selectedCourse === 'Any Course' || selectedCourse === null) {
-    //   currentFormGroup.get('specialization').setValue(null);
-    //   currentFormGroup.get('specialization').clearValidators();
-    //   currentFormGroup.get('specialization').updateValueAndValidity();
-    // }
-
-    //if (selectedCourse === 'Pick From the List') {
-    // Additional logic based on the selected course...
-    // }
+    currentFormGroup.get('discipline').setValue(null);
+    //if (selectedCourse !== null && typeof selectedCourse === 'string') {
+    if (selectedCourse !== null && typeof selectedCourse === 'string' && selectedCourse !== 'Any Degree / Graduation' && selectedCourse !== 'X Std' && selectedCourse !== 'XII Std') {
+      console.log(selectedCourse, 'selectedCoursevalues');
+      const params = { "degree": selectedCourse };
+      this.apiService.getDepartmentcourses(params).subscribe((response: any) => {
+        this.allDisciplines = response.data;
+        if (this.allDisciplines) {
+          console.log(this.allDisciplines, 'specializationlist');
+          this.listOfSpecializations = this.allDisciplines;
+        }
+      }, error => {
+        // Handle API
+        console.error('API error:', error);
+      });
+    }
   }
-
-
-  // isSelectDisabled(index: number): boolean {
-  //   const currentFormGroup = this.formGroups[index];
-
-  //   if ((currentFormGroup.get('graduation').value === 'UG' || currentFormGroup.get('graduation').value === 'PG') &&
-  //     currentFormGroup.get('degree').value !== 'Any Degree / Graduation' &&
-  //     currentFormGroup.get('degree').value &&
-  //     currentFormGroup.get('graduation').value) {
-  //     return false; // Do not apply disabled
-  //   } else {
-  //     return (currentFormGroup.get('graduation').value !== 'Diploma' && currentFormGroup.get('graduation').value !== 'Phd');
-  //   }
-  // }
 
   iscourseDisabled(index: number): boolean {
     const currentFormGroup = this.formGroups[index];
@@ -562,7 +616,7 @@ getallEducation() {
       currentFormGroup.get('discipline')?.patchValue(clearedValues, { emitEvent: false });
     }
 
-    if (currentFormGroup.get('level').value === 'Diploma' || currentFormGroup.get('level').value === 'UG' || currentFormGroup.get('level').value === 'PG') {
+    if (currentFormGroup.get('level').value === 'Diploma' || currentFormGroup.get('level').value === 'UG' || currentFormGroup.get('level').value === 'PG' || currentFormGroup.get('level').value === 'Phd') {
       return false; // Do not apply disabled
     } else {
       return true; // Apply disabled
@@ -572,7 +626,7 @@ getallEducation() {
   isdegreeDisabled(index: number): boolean {
     const currentFormGroup = this.formGroups[index];
 
-    if (currentFormGroup.get('level').value === 'UG' || currentFormGroup.get('level').value === 'PG') {
+    if (currentFormGroup.get('level').value === 'UG' || currentFormGroup.get('level').value === 'PG' || currentFormGroup.get('level').value === 'Phd' || currentFormGroup.get('level').value === 'Diploma') {
       return false; // Do not apply disabled
     } else {
       return true; // Apply disabled

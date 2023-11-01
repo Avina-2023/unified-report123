@@ -87,7 +87,6 @@
         <div class="job-Role">{{params.data.jobRole}}</div>
         <div class="Job-Type">{{params.data.jobType}}</div>
         <div class="Job-Status">{{params.data.approveStatus}}</div>
-
         <div class="border-line1">
           <div class="bottom-border1"></div>
         </div>
@@ -113,7 +112,23 @@
         </div>
 
         <div class="main-heading2">
+          <div class="title">Company Name</div>
+          <div class="role">{{params.data.company}}</div>
+        </div>
+        <div class="border-line">
+          <div class="bottom-border"></div>
+        </div>
+
+        <div class="main-heading2">
           <div class="title">Job Role</div>
+          <div class="role">{{params.data.jobRole}}</div>
+        </div>
+        <div class="border-line">
+          <div class="bottom-border"></div>
+        </div>
+
+        <div class="main-heading2">
+          <div class="title">Job Title</div>
           <div class="role">{{params.data.jobTitle}}</div>
         </div>
         <div class="border-line">
@@ -127,6 +142,7 @@
         <div class="border-line">
           <div class="bottom-border"></div>
         </div>
+
         <div class="main-heading2">
           <div class="title">Job Type</div>
           <div class="role">{{params.data.jobType}}</div>
@@ -134,27 +150,22 @@
         <div class="border-line">
           <div class="bottom-border"></div>
         </div>
+
         <div class="main-heading2">
-          <div class="title">Degree</div>
-          <div class="role">{{params.data.education}}</div>
+          <div class="title">Education</div>
+          <div class="role">
+            <span class="education">{{ params.data.education }}</span>
+            <ng-container *ngFor="let specialization of params.data.specialization; let last = last">
+              <span class="specialization-box" [ngClass]="{'last-box': last}">
+                <span class="specialization">{{ specialization }}</span>
+              </span>
+            </ng-container>
+          </div>
         </div>
         <div class="border-line">
           <div class="bottom-border"></div>
         </div>
-        <div class="main-heading2">
-          <div class="title">Specialization</div>
-          <div class="role">{{params.data.specialization}}</div>
-        </div>
-        <div class="border-line">
-          <div class="bottom-border"></div>
-        </div>
-        <div class="main-heading2">
-          <div class="title">Key Skills</div>
-          <div class="role">{{params.data.skillSet}}</div>
-        </div>
-        <div class="border-line">
-          <div class="bottom-border"></div>
-        </div>
+
         <div class="main-heading2">
           <div class="title">CTC</div>
           <div class="role">{{params.data.ctc}}</div>
@@ -162,6 +173,7 @@
         <div class="border-line">
           <div class="bottom-border"></div>
         </div>
+
         <div class="main-heading2">
           <div class="title">Year of Passing</div>
           <div class="role">{{params.data.yearofPassout}}</div>
@@ -169,13 +181,41 @@
         <div class="border-line">
           <div class="bottom-border"></div>
         </div>
+        <!-- <div class="main-heading2">
+                <div class="title">Key Skills</div>
+                <div class="role">{{params.data.skillSet}}</div>
+              </div> -->
+
+      <div class="main-heading2">
+        <div class="title">Key Skills</div>
+        <div class="role">
+          <ng-container *ngFor="let skill of params.data.skillSet; let last = last">
+            <span class="key-skills" [ngClass]="{'box': !last}">{{ skill }}</span>
+          </ng-container>
+        </div>
+      </div>
+        <div class="border-line">
+          <div class="bottom-border"></div>
+        </div>
+
+      <div class="main-heading2">
+        <div class="title">Last day to Apply</div>
+        <div class="role">{{ params.data.lastDatetoApply | date:'MM/dd/yyyy' }}</div>
+      </div>
+        <div class="border-line">
+          <div class="bottom-border"></div>
+        </div>
+
         <div class="main-heading2">
           <div class="title">Apply Link</div>
-          <div class="role">{{params.data.applyLink}}</div>
+          <div class="role">
+            <a [href]="params.data.applyLink" target="_blank">{{ params.data.applyLink }}</a>
+          </div>
         </div>
         <div class="border-line">
           <div class="bottom-border"></div>
         </div>
+
         <div class="main-heading2">
           <div class="title">Job Description</div>
           <div class="role">{{params.data.about}}</div>
@@ -183,6 +223,7 @@
         <div class="border-line">
           <div class="bottom-border"></div>
         </div>
+
         <div class="main-heading2">
           <div class="title">Job Requirements</div>
 
@@ -199,12 +240,18 @@
           <div class="role">
             <p *ngFor="let desc of params.data.description" style="display: block">{{ desc.item }}</p>
           </div>
+          </div>
+          <div class="border-line">
+            <div class="bottom-border"></div>
+          </div>
 
-
-        </div>
-        <div class="border-line">
-          <div class="bottom-border"></div>
-        </div>
+          <div class="main-heading2">
+            <div class="title">Additional Information</div>
+            <div class="role">{{params.data.additionalInformation}}</div>
+          </div>
+          <div class="border-line">
+            <div class="bottom-border"></div>
+          </div>
 
       </div>
     </div>

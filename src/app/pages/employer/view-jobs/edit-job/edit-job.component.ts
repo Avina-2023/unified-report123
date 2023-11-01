@@ -57,13 +57,7 @@ export class EditJobComponent implements OnInit {
     'PONDYCHERRY',
     'SURAT',
   ]
-  // keySkills = [
-  //   'UI/UX',
-  //   'JAVA',
-  //   'PYTHON',
-  //   'JAVASCRIPT',
-  //   'PHP',
-  // ]
+
   jobType = [''];
   JobType = [
      'Full Time',
@@ -444,7 +438,7 @@ getallEducation() {
 
   }
   clearviewForm() {
-
+    this.addjobsForm.reset();
   }
 
 }
