@@ -1,4 +1,6 @@
-<div>
+<div class="">
+  <div class="">
+    <h3 class="title ">Job Details</h3>
   <div class="main-Container-popup">
 
     <div class="left-side">
@@ -40,14 +42,15 @@
       <hr>
       <form [formGroup]="addjobsForm">
         <div style="width: 100%;">
-          <div class="inputContainer" style="display: flex; align-items: center;">
-            <label style="margin-right: 10px; padding: 0px 0px 10px 15px;">Company Name</label>
-            <mat-form-field appearance="outline" style="width: 90%;">
-              <input formControlName="" matInput placeholder="Enter Company Name">
-            </mat-form-field>
-          </div>
-        </div>
-        <hr style="margin: -6px 0px 15px 0px;">
+                  <div class="inputContainer" style="display: flex; align-items: center;">
+                    <label style="margin-right: 10px; padding: 0px 0px 10px 15px;">Company Name</label>
+                    <mat-form-field appearance="outline" style="width: 90%;">
+                      <input formControlName="" matInput placeholder="Enter Company Name">
+                    </mat-form-field>
+                  </div>
+                </div>
+
+        <hr style="margin: 0px 0px 15px 0px;">
         <div style="width: 100%;">
           <div class="inputContainer" style="display: flex; align-items: center;">
             <label style="margin-right: 10px; padding: 0px 0px 10px 15px;">Job Role</label>
@@ -134,6 +137,40 @@
   </div>
         <div class="add_more_text" (click)="addEducationGroup()">Add More</div>
         </div>
+
+<hr>
+<div style="width: 100%; display: flex; justify-content: space-between; align-items: center;">
+  <label class="edu_label" style="margin-right: 10px;">CTC</label>
+  <div style="width: 90%; display: flex; align-items: center;">
+    <mat-radio-group formControlName="ctcType" aria-label="Select an option" [(ngModel)]="selectedOption">
+      <mat-radio-button value="1" style="font-weight: bold; font-size: 14px;">Fixed</mat-radio-button>
+      <mat-radio-button value="2" style="font-weight: bold; font-size: 14px;padding: 10px">Range</mat-radio-button>
+    </mat-radio-group>
+
+    <!-- Fixed input -->
+    <div *ngIf="selectedOption === '1'" style="width: 50%;padding: 0px 0px 0px 15px;">
+      <mat-form-field style="width: 140%;" class="example-full-width" appearance="outline">
+        <input formControlName="fixedctc" matInput placeholder="Enter Value">
+        <mat-error class="error" *ngIf="fixedctc?.errors?.required">Ctc is Required</mat-error>
+      </mat-form-field>
+    </div>
+
+    <!-- Range inputs -->
+    <div *ngIf="selectedOption === '2'" style="width: 45%;">
+      <mat-form-field appearance="outline" style="padding-right: 13px;">
+        <input formControlName="startrangectc" matInput placeholder="Enter Value">
+        <mat-error class="error" *ngIf="startrangectc?.errors?.required">Ctc range from is Required</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" style="padding-right: 13px;">
+        <input formControlName="endrangectc" matInput placeholder="Enter Value">
+        <mat-error class="error" *ngIf="endrangectc?.errors?.required">Ctc range to is Required</mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+</div>
+
+
         <hr>
         <div style="width: 100%;">
           <div class="inputContainer" style="display: flex; align-items: center;">
@@ -228,3 +265,5 @@
     </div>
   </div>
 </div>
+</div>
+

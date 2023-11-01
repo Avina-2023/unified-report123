@@ -15,7 +15,8 @@ import { environment } from 'src/environments/environment';
 export class EditJobComponent implements OnInit {
   addjobsForm: FormGroup;
   formGroups: FormGroup[] = [];
-
+  isCompanyEditable: boolean = false;
+  isJobRoleEditable: boolean = false;
 
   jobdata: any;
   selectedOption: string = '1';
@@ -159,6 +160,9 @@ YearofPassing = [
     private fb: FormBuilder,
     private apiService: ApiService,
     private toastr: ToastrService
+
+
+
   ) { }
 
   ngOnInit() {

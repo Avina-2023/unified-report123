@@ -57,7 +57,7 @@ export class AddJobsComponent implements OnInit {
   //   'JAVASCRIPT',
   //   'PHP',
   // ]
-  jobType = [''];
+  jobType = "";
   JobType = [
      'Full Time',
      'Internship',
@@ -69,12 +69,9 @@ YearofPassing = [
     '2024',
     '2025',
   ]
-  skillSet = [''];
-  ctcArray = ['Option 1', 'Option 2', 'Option 3'];
-  rangefromArray = ['Option A', 'Option B', 'Option C'];
-  rangetoArray = ['Option X', 'Option Y', 'Option Z'];
-  // selectedOption: string = 'jobs';
-  selectedOption: string = '1';
+  skillSet = [];
+  isFixed: boolean = true;
+  isRange: boolean = false;
   htmlContent_description = '';
   htmlContent_requirement = '';
   htmlContent_information = '';
@@ -196,13 +193,9 @@ YearofPassing = [
     // const emailregex: RegExp =
     //   /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     this.addjobsForm = this.fb.group({
-  fixedctc: [
-        '',
-        [
-          Validators.required,
-          Validators.pattern(/^[0-9,]*$/)
-        ]
-      ],
+     ctcType: ['fixed', Validators.required],
+     ctc: ['', Validators.required],
+
           startrangectc: ['', [
           Validators.required,
           Validators.pattern(/^[0-9,]*$/)
@@ -211,7 +204,6 @@ YearofPassing = [
           Validators.required,
           Validators.pattern(/^[0-9,]*$/)
         ]],
-      ctcOptions: ['1'],
       company: ['', [Validators.required]],
       jobRole: ['', [Validators.required]],
       jobLocation: [[], [Validators.required]],
@@ -250,10 +242,15 @@ YearofPassing = [
       // ],
       // description: ['', [Validators.required]],
       requirement: ['', [Validators.required]],
-      description: ['', [Validators.required]],
+description: this.fb.array([
+  this.fb.group({
+    item: ['', [Validators.required]]
+  })
+]),
       additionalInformation: [],
       // ctcOptions: ['1'],
       educationGroups: this.fb.array([this.createEducationGroup()])
+
 
     });
     this.formGroups = this.addjobsForm.get('educationGroups')['controls'];
@@ -355,6 +352,13 @@ removeEducationGroup(index: number): void {
       this.addjobsForm.setControl('educationGroups', this.fb.array(this.formGroups));
     }
   }
+ onCtcTypeChange(value: string) {
+  this.isFixed = value === 'fixed';
+  this.isRange = value === 'range';
+
+}
+
+
   onSubmit() {
     // const areEducationGroupsValid = this.formGroups.every(formGroup => formGroup.valid);
     // if (this.addjobsForm.valid && areEducationGroupsValid) {
@@ -370,7 +374,9 @@ removeEducationGroup(index: number): void {
     //   this.toastr.warning('Please fill in all required fields.', 'Form Validation Error');
     // }
   }
-saveForm() {
+
+  saveForm() {
+
     // if (this.addjobsForm.valid) {
       // Perform form submission actions{
       var obj = {
@@ -381,6 +387,8 @@ saveForm() {
             "jobType":this.addjobsForm.value.jobType,
             "yearofPassout":this.addjobsForm.value.yearofPassout,
             "skillSet": this.addjobsForm.value.skillSet,
+            "ctcType": this.addjobsForm.value.ctcType,
+            "ctc": this.addjobsForm.value.ctc,
             "lastDatetoApply":this.addjobsForm.value.lastDatetoApply,
             "additionalInformation":this.addjobsForm.value.additionalInformation,
             "description":this.addjobsForm.value.description,
