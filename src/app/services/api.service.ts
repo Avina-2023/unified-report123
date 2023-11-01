@@ -395,6 +395,10 @@ export class ApiService {
   return this.http.post(`${this.BASE_URL}/getDepartment`, data);
   }
 
+  getDegreeList(){
+    return this.http.get(`${this.BASE_URL}/getDegreeList`);
+  }
+
   getallStates(){
     // return this.http.post(`${this.BASE_URL}/api/state_api`, Id, { headers: this.withoutTokens(), withCredentials: true });
     return this.http.get(`../assets/json/state.json`);
