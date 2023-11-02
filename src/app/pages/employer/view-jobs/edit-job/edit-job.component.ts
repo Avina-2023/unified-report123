@@ -15,33 +15,21 @@ import { environment } from 'src/environments/environment';
 export class EditJobComponent implements OnInit {
   addjobsForm: FormGroup;
   formGroups: FormGroup[] = [];
-  isCompanyEditable: boolean = false;
-  isJobRoleEditable: boolean = false;
-
+  // isCompanyEditable: boolean = false;
+  // isJobRoleEditable: boolean = false;
+  companyOptions: string[] = [];
+  keySkills: string[] = [];
+  newSkill: string[] = [];
+  YearofPassing: string[] = [];
   jobdata: any;
   selectedOption: string = '1';
 
-  keySkills: string[] = [];
-  newSkill: string[] = [];
   industryTypes = [
     'Full time',
     'Internship',
     'All',
   ];
-  Company_Name= [
-    'TCS',
-    'Cognizant',
-    'ZOHO',
-    'Wipro',
-    'HCL',
-    'TehchMahindra',
-    'Infosys',
-    'LnT_Edutech',
-    'Movate',
-    'Samsung',
-    'Capgemini',
-    'Hexaware ',
-  ];
+
   jobLocation = [''];
   JobLocations = [
     'ANY LOCATION',
@@ -58,19 +46,14 @@ export class EditJobComponent implements OnInit {
     'SURAT',
   ]
 
-  jobType = [''];
+  jobType = "";
   JobType = [
      'Full Time',
      'Internship',
   ]
-YearofPassing = [
-     '2021',
-    '2022',
-    '2023',
-    '2024',
-    '2025',
-  ]
-  skillSet = [''];
+  skillSet = [];
+
+  //skillSet = [''];
   ctcArray = ['Option 1', 'Option 2', 'Option 3'];
   rangefromArray = ['Option A', 'Option B', 'Option C'];
   rangetoArray = ['Option X', 'Option Y', 'Option Z'];
@@ -157,7 +140,10 @@ YearofPassing = [
 
 
 
-  ) { }
+  ) {  const currentYear = new Date().getFullYear()-1;
+    for (let i = currentYear ; i >= currentYear - 10; i--) {
+      this.YearofPassing.push(i.toString());
+    }}
 
   ngOnInit() {
     //on click on edit in ag-grid table it'll get data particular rowdata from localstorage
@@ -170,18 +156,11 @@ YearofPassing = [
     // this.getRoute();
     this.formerrorInitialize();
     this.skilllist();
-    // this.getIndustryType();
+    this.companylist();
     this.addjobsForm = this.formBuilder.group({
     });
   }
-   skilllist() {
-  const data: any = {};
-  this.apiService.getSkill(data).subscribe((res: any) => {
-    if (res.success) {
-      this.newSkill = res.data.map(item => item.skillName);
-    }
-  });
-}
+
    formerrorInitialize() {
     // const emailregex: RegExp =
     //   /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -211,9 +190,9 @@ YearofPassing = [
       specification: ['', [Validators.required]],
       discipline: ['', [Validators.required]],
       skillSet: [[], [Validators.required]],
-      lastDatetoApply: [[]],
+      lastDatetoApply: [[], [Validators.required]],
       yearofPassout: [[], [Validators.required]],
-      applyLink: [
+       applyLink: [
         '',
         [
           Validators.required,
@@ -247,6 +226,19 @@ YearofPassing = [
 
     });
     this.formGroups = this.addjobsForm.get('educationGroups')['controls'];
+  }
+
+   get jobRole() {
+    return this.addjobsForm.get('jobRole');
+  }
+   get jobTitle() {
+    return this.addjobsForm.get('jobTitle');
+  }
+  get lastDatetoApply() {
+    return this.addjobsForm.get('lastDatetoApply');
+  }
+  get applyLink() {
+    return this.addjobsForm.get('applyLink');
   }
    createEducationGroup(): FormGroup {
     return this.fb.group({
@@ -432,6 +424,45 @@ getallEducation() {
     } else {
       return true; // Apply disabled
     }
+  }
+
+skilllist() {
+  const data: any = {};
+  this.apiService.getSkill(data).subscribe((res: any) => {
+    if (res.success) {
+      this.newSkill = res.data.map(item => item.skillName);
+    }
+  });
+  }
+
+handleSearch(event: Event): void {
+    const inputElement = event.target as HTMLInputElement;
+    const searchText = inputElement.value;
+    const data: any = {
+      searchText: searchText
+    };
+    console.log('Search text:', searchText);
+    this.apiService.getSkill(data).subscribe((res: any) => {
+      if (res.success) {
+        this.newSkill = res.data.map((item) => item.skillName);
+        console.log(res, 'searchSkills');
+      }
+    });
+  }
+
+ companylist() {
+     const data: any = {};
+    this.apiService.masterCompany().subscribe(
+  (res: any) => {
+    console.log(res);
+    if (res.success) {
+      this.companyOptions = res.data.map(item => item.company);
+    }
+  },
+  (error) => {
+    console.error('API request error:', error);
+  }
+);
   }
 
   saveviewForm(){

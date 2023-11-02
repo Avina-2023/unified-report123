@@ -18,6 +18,7 @@ export class AddJobsComponent implements OnInit {
   keySkills: string[] = [];
   newSkill: string[] = [];
   companyOptions: string[] = [];
+  companyId: string[] = [];
   industryTypes = [
     'Full time',
     'Internship',
@@ -195,20 +196,41 @@ handleSearch(event: Event): void {
     });
   }
 
+//   companylist() {
+//      const data: any = {};
+//     this.apiService.masterCompany().subscribe(
+//   (res: any) => {
+//     console.log(res);
+//     if (res.success) {
+//       this.companyOptions = res.data.map(item => item.company);
+//       //this.companyOptions = res.data;
+//       console.log(this.companyOptions, '');
+//     }
+//   },
+//   (error) => {
+//     console.error('API request error:', error);
+//   }
+// );
+//   }
+
   companylist() {
-     const data: any = {};
-    this.apiService.masterCompany().subscribe(
-  (res: any) => {
-    console.log(res);
-    if (res.success) {
-      this.companyOptions = res.data.map(item => item.company);
+  const data: any = {};
+  this.apiService.masterCompany().subscribe(
+    (res: any) => {
+      console.log(res);
+      if (res.success) {
+        this.companyOptions = res.data.map(item => ({
+          company: item.company,
+          companyId: item.companyId
+        }));
+        console.log(this.companyOptions, '');
+      }
+    },
+    (error) => {
+      console.error('API request error:', error);
     }
-  },
-  (error) => {
-    console.error('API request error:', error);
-  }
-);
-  }
+  );
+}
 
   formerrorInitialize() {
     // const emailregex: RegExp =

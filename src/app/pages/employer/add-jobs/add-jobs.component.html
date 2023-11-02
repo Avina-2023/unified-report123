@@ -10,10 +10,9 @@
           <div class="primarysingleWrap">
             <div class="singleWrap">
               <form [formGroup]="addjobsForm">
-                <div class="inputContainer">
+                <!-- <div class="inputContainer">
                   <label>Company Name<span>*</span></label>
                   <mat-form-field appearance="outline">
-                    <mat-label>Enter Company Name</mat-label>
                     <mat-select formControlName="company" placeholder="Select Company Name">
                       <mat-option *ngFor="let company of companyOptions" [value]="company">
                         {{ company }}
@@ -22,8 +21,25 @@
                     <mat-error *ngIf="addjobsForm.get('company').hasError('required')">
                       Company name is Required
                     </mat-error>
-                  </mat-form-field>
-                </div>
+                    </mat-form-field>
+                    </div> -->
+
+
+                    <div class="inputContainer">
+                      <label>Company Name<span>*</span></label>
+                      <mat-form-field appearance="outline">
+                        <mat-select formControlName="company" placeholder="Select Company Name">
+                          <mat-option *ngFor="let company of companyOptions" [value]="company">
+                            {{ company.company }}
+                          </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="addjobsForm.get('company').hasError('required')">
+                          Company name is Required
+                        </mat-error>
+                      </mat-form-field>
+                    </div>
+
+
 
                 <div class="primaryWrap">
                   <div class="leftWrap">
@@ -95,8 +111,7 @@
                     <div class="inputContainer">
                       <label>Job Type<span>*</span></label>
                       <mat-form-field appearance="outline" style="width: 98%;">
-                        <mat-label>— Select Job Type — </mat-label>
-                        <mat-select [(ngModel)]="jobType" formControlName="jobType">
+                        <mat-select [(ngModel)]="jobType" formControlName="jobType" placeholder="Select Job Type">
                           <mat-option *ngFor="let item of JobType" [value]="item">{{ item }}</mat-option>
                         </mat-select>
                         <mat-error *ngIf="addjobsForm.get('jobType').hasError('required')">
@@ -242,15 +257,7 @@
 
                 <div class="primaryWrap" style="margin: -25px 0px 0px 0px;">
                   <div class="leftWrap">
-                    <!-- <form [formGroup]="addjobsForm" enctype="multipart/form-data">
-                <div class="inputContainer" style="margin: 0px 5px 0px 0px;">
-                  <label>Key skills <span>*</span></label>
-                  <nz-select [(ngModel)]="keySkills" style="width: 98%;" nzMode="multiple" nzAllowClear nzShowSearch
-                    nzPlaceHolder="-- Select Skill Set (Multiple Select) --" formControlName="skillSet" class="custom-nz-select my-custom-nz-select"  required>
-                    <nz-option *ngFor="let item of keySkills" [nzLabel]="item" [nzValue]="item"></nz-option>
-                  </nz-select>
-                </div>
-              </form> -->
+
                     <div class="inputContainer" style="margin: 0px 5px 0px 0px;">
                       <label>Key skills <span>*</span></label>
                       <nz-select [(ngModel)]="skillSet" style="width: 98%;" nzMode="multiple" nzAllowClear nzShowSearch
@@ -258,7 +265,6 @@
                         (input)="handleSearch($event)" class="custom-nz-select my-custom-nz-select" required>
                         <nz-option *ngFor="let item of newSkill" [nzLabel]="item" [nzValue]="item"></nz-option>
                       </nz-select>
-
                       <div
                         *ngIf="addjobsForm.get('skillSet').hasError('required') && addjobsForm.get('skillSet').touched"
                         class="text-danger">Skill Set is
@@ -333,7 +339,7 @@
                       <label>Additional Information</label>
                       <mat-form-field appearance="outline">
                         <angular-editor [(ngModel)]="htmlContent_information" formControlName="additionalInformation"
-                          placeholder="Enter Additional Information " id="additionalInformation"></angular-editor>
+                          placeholder="Enter Additional Information" id="additionalInformation"></angular-editor>
                         <textarea type="textarea" maxlength="250" formControlName="additionalInformation"
                           style="resize: none;display: none;" class="descstyle" matInput
                           placeholder="Additional Information"></textarea>
