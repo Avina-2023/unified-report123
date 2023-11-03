@@ -24,8 +24,7 @@
                     </mat-form-field>
                     </div> -->
 
-
-                    <div class="inputContainer">
+                    <!-- <div class="inputContainer">
                       <label>Company Name<span>*</span></label>
                       <mat-form-field appearance="outline">
                         <mat-select formControlName="company" placeholder="Select Company Name">
@@ -37,9 +36,21 @@
                           Company name is Required
                         </mat-error>
                       </mat-form-field>
+                    </div> -->
+
+                    <div class="inputContainer">
+                      <label>Company Name<span>*</span></label>
+                      <mat-form-field appearance="outline">
+                        <mat-select formControlName="company" placeholder="Select Company Name" [(ngModel)]="selectedCompany">
+                          <mat-option *ngFor="let company of companyOptions" [value]="company">
+                            {{ company.company }}
+                          </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="addjobsForm.get('company').hasError('required')">
+                          Company name is Required
+                        </mat-error>
+                      </mat-form-field>
                     </div>
-
-
 
                 <div class="primaryWrap">
                   <div class="leftWrap">
@@ -150,6 +161,7 @@
               </form>
             </div>
           </div> -->
+
                 <div>
                   <div class="edu_box ">
                     <label class="edu_heading">Education<span class="edu_man">*</span></label>
@@ -207,32 +219,32 @@
                     <div class="inputContainer">
                       <label>CTC<span>*</span></label>
                       <div class="form-group salary-range" style="display: flex;">
-                        <mat-radio-group style="margin: -5px 0px 0px 0px; " formControlName="ctcType"
-                          aria-label="Select an option">
-                          <mat-radio-button (change)="onCtcTypeChange('fixed')" [value]="'fixed'"
+                        <mat-radio-group style="margin: -5px 0px 0px 0px; " formControlName="ctcOption"
+                          aria-label="Select an option" [(ngModel)]="selectedRangeOption" (ngModelChange)="onCtcOptionChange()">
+                          <mat-radio-button  value="fixed"
                             style="font-weight: bold; font-size: 14px;">Fixed</mat-radio-button>
-                          <mat-radio-button (change)="onCtcTypeChange('range')" [value]="'range'"
+                          <mat-radio-button value="range"
                             style="padding: 10px; font-weight: bold; font-size: 14px;">Range</mat-radio-button>
                         </mat-radio-group>
 
                         <!-- Fixed input -->
-                        <div *ngIf="isFixed" style="width: 71.5%;">
+                        <div *ngIf="selectedRangeOption === 'fixed'"style="width: 71.5%;">
                           <mat-form-field class="example-full-width" appearance="outline">
-                            <input formControlName="ctc" matInput placeholder="CTC (numeric only)">
-                            <mat-error *ngIf="addjobsForm.get('ctc').hasError('required')">CTC is required</mat-error>
+                            <input formControlName="fixed"  matInput placeholder="CTC (numeric only)">
+                            <mat-error *ngIf="addjobsForm.get('fixed').hasError('required')">CTC is required</mat-error>
                           </mat-form-field>
                         </div>
 
                         <!-- Range inputs -->
-                        <div *ngIf="isRange" style="display: flex; width: 37%;">
+                        <div *ngIf="selectedRangeOption === 'range'" style="display: flex; width: 37%;">
                           <mat-form-field appearance="outline" style="padding-right: 13px;">
-                            <input formControlName="startRangeCtc" matInput placeholder="CTC (numeric only)">
-                          <mat-error *ngIf="addjobsForm.get('ctc').hasError('required')"> Start Range CTC is required</mat-error>
+                            <input formControlName="startrange" matInput placeholder="CTC (numeric only)">
+                          <mat-error *ngIf="addjobsForm.get('startrange').hasError('required')"> Start Range CTC is required</mat-error>
                           </mat-form-field>
 
                           <mat-form-field appearance="outline" style="padding-right: 13px;">
-                            <input formControlName="endRangeCtc" matInput placeholder="CTC (numeric only)">
-                              <mat-error *ngIf="addjobsForm.get('ctc').hasError('required')"> End Range CTC is required</mat-error>
+                            <input formControlName="endrange" matInput placeholder="CTC (numeric only)">
+                              <mat-error *ngIf="addjobsForm.get('endrange').hasError('required')"> End Range CTC is required</mat-error>
                           </mat-form-field>
                         </div>
                       </div>

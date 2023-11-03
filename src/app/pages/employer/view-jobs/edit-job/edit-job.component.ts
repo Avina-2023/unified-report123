@@ -15,14 +15,14 @@ import { environment } from 'src/environments/environment';
 export class EditJobComponent implements OnInit {
   addjobsForm: FormGroup;
   formGroups: FormGroup[] = [];
-  // isCompanyEditable: boolean = false;
-  // isJobRoleEditable: boolean = false;
   companyOptions: string[] = [];
   keySkills: string[] = [];
   newSkill: string[] = [];
   YearofPassing: string[] = [];
   jobdata: any;
-  selectedOption: string = '1';
+  selectedRangeOption: string = 'fixed';
+  selectedOption: string;
+
 
   industryTypes = [
     'Full time',
@@ -112,6 +112,9 @@ export class EditJobComponent implements OnInit {
       },
     ]
     };
+  startrange: any;
+  endrange: any;
+  fixed: any;
 
 //   editorConfig = {
 //   editable: true, // Set this to 'false' to make the editor read-only
@@ -165,22 +168,19 @@ export class EditJobComponent implements OnInit {
     // const emailregex: RegExp =
     //   /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     this.addjobsForm = this.fb.group({
-  fixedctc: [
-        '',
-        [
-          Validators.required,
-          Validators.pattern(/^[0-9,]*$/)
-        ]
-      ],
-          startrangectc: ['', [
-          Validators.required,
-          Validators.pattern(/^[0-9,]*$/)
-        ]],
-      endrangectc: ['',[
-          Validators.required,
-          Validators.pattern(/^[0-9,]*$/)
-        ]],
-      ctcOptions: ['1'],
+     ctcOption: ['', Validators.required],
+           fixed:['', [
+                    Validators.required,
+                    Validators.pattern(/^[0-9,]+/)
+                    ]],
+      startrange: ['', [
+                    Validators.required,
+                    Validators.pattern(/^[0-9,]+/)
+                    ]],
+   endrange: ['', [
+                    Validators.required,
+                    Validators.pattern(/^[0-9,]+/)
+]],
       company: ['', [Validators.required]],
       jobRole: ['', [Validators.required]],
       jobLocation: [[], [Validators.required]],
@@ -465,8 +465,120 @@ handleSearch(event: Event): void {
 );
   }
 
-  saveviewForm(){
 
+ctcChange() {
+    const fixedControl = this.addjobsForm.get('fixed');
+    const startrangeControl = this.addjobsForm.get('startrange');
+    const endrangeControl = this.addjobsForm.get('endrange');
+    const ctcOptionControl = this.addjobsForm.get('ctcOption');
+    if (this.selectedOption === 'Jobs') {
+      ctcOptionControl.setValidators(Validators.required);
+      ctcOptionControl.updateValueAndValidity();
+      this.selectedRangeOption = 'fixed';
+    }
+    if (this.selectedOption === 'Internships') {
+      fixedControl.clearValidators();
+      fixedControl.setValue(null);
+      fixedControl.updateValueAndValidity();
+
+      startrangeControl.clearValidators();
+      startrangeControl.setValue(null);
+      startrangeControl.updateValueAndValidity();
+
+      endrangeControl.clearValidators();
+      endrangeControl.setValue(null);
+      endrangeControl.updateValueAndValidity();
+
+      ctcOptionControl.clearValidators();
+      ctcOptionControl.setValue(null);
+      ctcOptionControl.updateValueAndValidity();
+    }
+    this.addjobsForm.reset();
+  }
+
+
+  onCtcOptionChange() {
+    const fixedControl = this.addjobsForm.get('fixed');
+    const startrangeControl = this.addjobsForm.get('startrange');
+    const endrangeControl = this.addjobsForm.get('endrange');
+    if (this.selectedRangeOption === 'fixed') {
+      fixedControl.setValidators(Validators.required);
+      fixedControl.setValue(this.fixed);
+      startrangeControl.clearValidators();
+      endrangeControl.clearValidators();
+      startrangeControl.setValue(null);
+      endrangeControl.setValue(null);
+    } else if (this.selectedRangeOption === 'range') {
+      startrangeControl.setValidators(Validators.required);
+      endrangeControl.setValidators(Validators.required);
+      startrangeControl.setValue(this.startrange);
+      endrangeControl.setValue(this.endrange);
+      fixedControl.clearValidators();
+      fixedControl.setValue(null);
+    }
+    fixedControl.updateValueAndValidity();
+    startrangeControl.updateValueAndValidity();
+    endrangeControl.updateValueAndValidity();
+  }
+
+  saveviewForm(){
+    const isFixed = this.addjobsForm.value.fixed;
+    const startRange = this.addjobsForm.value.startrange;
+    const endRange = this.addjobsForm.value.endrange;
+
+    const htmlDescription = this.addjobsForm.value?.description;
+    const htmljobRequirements = this.addjobsForm.value?.requirement;
+    const htmladditionalinformation = this.addjobsForm.value?.additionalInformation;
+
+  const descriptionItems = [
+    {
+      item: htmlDescription
+    }
+  ];
+  const requirementItems = [
+    {
+      item: htmljobRequirements
+    }
+  ];
+  const additionalInformation = [
+    {
+      item: htmladditionalinformation
+    }
+  ];
+ var obj = {
+            "companyId": this.addjobsForm.value.companyId,
+            "company": this.addjobsForm.value.company,
+            "jobRole": this.addjobsForm.value.jobRole,
+            "jobTitle": this.addjobsForm.value.jobTitle,
+            "jobLocation":this.addjobsForm.value.jobLocation,
+            "jobType":this.addjobsForm.value.jobType,
+            "yearofPassout":this.addjobsForm.value.yearofPassout,
+            "skillSet": this.addjobsForm.value.skillSet,
+            "ctcType": this.addjobsForm.value.ctcOption,
+            "ctc": isFixed ? this.addjobsForm.value?.fixed : `${startRange} - ${endRange}`,
+            "lastDatetoApply":this.addjobsForm.value.lastDatetoApply,
+            "additionalInformation": additionalInformation,
+            "description": descriptionItems,
+            "requirement": requirementItems,
+            "applyLink": this.addjobsForm.value.applyLink,
+            "education": this.formGroups.map(formGroup => formGroup.value)
+            //"email":this.existsEmail==""?this.registerForm.value.email:this.existsEmail,
+            //"existsUser":this.existsUser
+    }
+      console.log(obj,'post');
+      this.apiService.UploadPostJob(obj).subscribe((data: any) => {
+        // console.log(data)
+        if (data.success == false) {
+          this.toastr.warning(data.message);
+
+        } else {
+          this.toastr.success(data.message);
+          // this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.PARTNER.PARTNERLIST);
+        }
+      }, (err) => {
+        this.toastr.warning('Connection failed, Please try again.');
+      });
+    // }
   }
   clearviewForm() {
     this.addjobsForm.reset();
