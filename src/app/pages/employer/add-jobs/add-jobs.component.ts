@@ -145,7 +145,7 @@ export class AddJobsComponent implements OnInit {
   selectedOption: string;
   constructor(private fb: FormBuilder,
     private apiService: ApiService,
-    private ApiService: ApiService,
+    //private ApiService: ApiService,
     private appconfig: AppConfigService,
     private toastr: ToastrService,
     private dialog: MatDialog) {
@@ -248,7 +248,6 @@ companylist() {
   );
 }
 
-// Function to format the selected company
 formatCompany(selectedCompany: any): void {
   if (selectedCompany) {
     const payload = {
@@ -282,6 +281,7 @@ formatCompany(selectedCompany: any): void {
       // jobLocation: ['', [Validators.required]],
       jobType: [[], [Validators.required]],
       jobTitle: ['', [Validators.required]],
+      level: ['', [Validators.required]],
       specification: ['', [Validators.required]],
       discipline: ['', [Validators.required]],
       skillSet: [[], [Validators.required]],
@@ -712,8 +712,8 @@ getalldegree() {
     // if (this.addjobsForm.valid) {
       // Perform form submission actions{
     var obj = {
-            "companyId": this.addjobsForm.value.companyId,
-            "company": this.addjobsForm.value.company,
+            "companyId": this.addjobsForm.value.company.companyId,
+            "company": this.addjobsForm.value.company.company,
             "jobRole": this.addjobsForm.value.jobRole,
             "jobTitle": this.addjobsForm.value.jobTitle,
             "jobLocation":this.addjobsForm.value.jobLocation,

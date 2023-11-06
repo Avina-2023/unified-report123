@@ -46,7 +46,7 @@
                             {{ company.company }}
                           </mat-option>
                         </mat-select>
-                        <mat-error *ngIf="addjobsForm.get('company').hasError('required')">
+                        <mat-error *ngIf="addjobsForm.get('company')?.hasError('required')">
                           Company name is Required
                         </mat-error>
                       </mat-form-field>
@@ -125,7 +125,7 @@
                         <mat-select [(ngModel)]="jobType" formControlName="jobType" placeholder="Select Job Type">
                           <mat-option *ngFor="let item of JobType" [value]="item">{{ item }}</mat-option>
                         </mat-select>
-                        <mat-error *ngIf="addjobsForm.get('jobType').hasError('required')">
+                        <mat-error *ngIf="addjobsForm.get('jobType')?.hasError('required')">
                           Job type is required
                         </mat-error>
                       </mat-form-field>
@@ -231,7 +231,7 @@
                         <div *ngIf="selectedRangeOption === 'fixed'"style="width: 71.5%;">
                           <mat-form-field class="example-full-width" appearance="outline">
                             <input formControlName="fixed"  matInput placeholder="CTC (numeric only)">
-                            <mat-error *ngIf="addjobsForm.get('fixed').hasError('required')">CTC is required</mat-error>
+                            <mat-error *ngIf="addjobsForm.get('fixed')?.hasError('required')">CTC is required</mat-error>
                           </mat-form-field>
                         </div>
 
@@ -239,12 +239,12 @@
                         <div *ngIf="selectedRangeOption === 'range'" style="display: flex; width: 37%;">
                           <mat-form-field appearance="outline" style="padding-right: 13px;">
                             <input formControlName="startrange" matInput placeholder="CTC (numeric only)">
-                          <mat-error *ngIf="addjobsForm.get('startrange').hasError('required')"> Start Range CTC is required</mat-error>
+                          <mat-error *ngIf="addjobsForm.get('startrange')?.hasError('required')"> Start Range CTC is required</mat-error>
                           </mat-form-field>
 
                           <mat-form-field appearance="outline" style="padding-right: 13px;">
                             <input formControlName="endrange" matInput placeholder="CTC (numeric only)">
-                              <mat-error *ngIf="addjobsForm.get('endrange').hasError('required')"> End Range CTC is required</mat-error>
+                              <mat-error *ngIf="addjobsForm.get('endrange')?.hasError('required')"> End Range CTC is required</mat-error>
                           </mat-form-field>
                         </div>
                       </div>
@@ -291,7 +291,7 @@
                       <input formControlName="lastDatetoApply" [matDatepicker]="picker" matInput placeholder="— Select Date —">
                       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                       <mat-datepicker #picker></mat-datepicker>
-                      <mat-error *ngIf="addjobsForm.get('lastDatetoApply').hasError('required')">
+                      <mat-error *ngIf="addjobsForm.get('lastDatetoApply')?.hasError('required')">
                         Last day to apply is required.
                       </mat-error>
                        </mat-form-field>
@@ -323,7 +323,7 @@
                           style="resize: none;display: none;" class="descstyle" matInput
                           placeholder="Enter Job Description"></textarea>
                       </mat-form-field>
-                      <mat-error *ngIf="addjobsForm.get('description').hasError('required') && addjobsForm.get('description').touched">
+                      <mat-error *ngIf="addjobsForm.get('description')?.hasError('required') && addjobsForm.get('description').touched">
                         Job Description is required.
                       </mat-error>
                     </div>
@@ -339,7 +339,7 @@
                         <textarea type="textarea" maxlength="250" formControlName="requirement" style="resize: none;display: none;"
                           class="descstyle" matInput placeholder="Enter Job Requirements"></textarea>
                       </mat-form-field>
-                      <mat-error *ngIf="addjobsForm.get('requirement').hasError('required') && addjobsForm.get('requirement').touched">
+                      <mat-error *ngIf="addjobsForm.get('requirement')?.hasError('required') && addjobsForm.get('requirement').touched">
                         Job Requirement is required.
                       </mat-error>
                     </div>
