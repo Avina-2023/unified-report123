@@ -486,76 +486,7 @@ ctcChange() {
     endrangeControl.updateValueAndValidity();
   }
 
-  saveForm() {
-    const isFixed = this.addjobsForm.value.fixed;
-    const startRange = this.addjobsForm.value.startrange;
-    const endRange = this.addjobsForm.value.endrange;
 
-   const htmlDescription = this.addjobsForm.value?.description;
-  const htmljobRequirements = this.addjobsForm.value?.requirement;
-  const htmladditionalinformation = this.addjobsForm.value?.additionalInformation;
-
-  const descriptionItems = [
-    {
-      item: htmlDescription
-    }
-  ];
-  const requirementItems = [
-    {
-      item: htmljobRequirements
-    }
-  ];
-  const additionalInformation = [
-    {
-      item: htmladditionalinformation
-    }
-  ];
- const popup = this.dialog.open(this.jobsavedtemplate, {
-        width: '446px',
-        height: '303px',
-        disableClose: true,
-        hasBackdrop: true,
-      });
-    // if (this.addjobsForm.valid) {
-      // Perform form submission actions{
-    var obj = {
-            "companyId": this.addjobsForm.value.companyId,
-            "company": this.addjobsForm.value.company,
-            "jobRole": this.addjobsForm.value.jobRole,
-            "jobTitle": this.addjobsForm.value.jobTitle,
-            "jobLocation":this.addjobsForm.value.jobLocation,
-            "jobType":this.addjobsForm.value.jobType,
-            "yearofPassout":this.addjobsForm.value.yearofPassout,
-            "skillSet": this.addjobsForm.value.skillSet,
-            "ctcType": this.addjobsForm.value.ctcOption,
-            "ctc": isFixed ? this.addjobsForm.value?.fixed : `${startRange} - ${endRange}`,
-            "lastDatetoApply":this.addjobsForm.value.lastDatetoApply,
-            "additionalInformation": additionalInformation,
-            "description": descriptionItems,
-            "requirement": requirementItems,
-            "applyLink": this.addjobsForm.value.applyLink,
-            "education": this.formGroups.map(formGroup => formGroup.value)
-            //"email":this.existsEmail==""?this.registerForm.value.email:this.existsEmail,
-            //"existsUser":this.existsUser
-    }
-      console.log(obj,'post');
-      this.apiService.UploadPostJob(obj).subscribe((data: any) => {
-        // console.log(data)
-        if (data.success == false) {
-          this.toastr.warning(data.message);
-
-        } else {
-          this.toastr.success(data.message);
-          // this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.PARTNER.PARTNERLIST);
-        }
-      }, (err) => {
-        this.toastr.warning('Connection failed, Please try again.');
-      });
-    // }
-  }
-  clearForm() {
-    this.addjobsForm.reset();
-  }
 getallEducation() {
     this.apiService.getallEducations().subscribe((data: any) => {
       this.educations = data[0];
@@ -747,4 +678,76 @@ getalldegree() {
       return true; // Apply disabled
     }
   }
+
+ saveForm() {
+    const isFixed = this.addjobsForm.value.fixed;
+    const startRange = this.addjobsForm.value.startrange;
+    const endRange = this.addjobsForm.value.endrange;
+
+   const htmlDescription = this.addjobsForm.value?.description;
+  const htmljobRequirements = this.addjobsForm.value?.requirement;
+  const htmladditionalinformation = this.addjobsForm.value?.additionalInformation;
+
+  const descriptionItems = [
+    {
+      item: htmlDescription
+    }
+  ];
+  const requirementItems = [
+    {
+      item: htmljobRequirements
+    }
+  ];
+  const additionalInformation = [
+    {
+      item: htmladditionalinformation
+    }
+  ];
+ const popup = this.dialog.open(this.jobsavedtemplate, {
+        width: '446px',
+        height: '303px',
+        disableClose: true,
+        hasBackdrop: true,
+      });
+    // if (this.addjobsForm.valid) {
+      // Perform form submission actions{
+    var obj = {
+            "companyId": this.addjobsForm.value.companyId,
+            "company": this.addjobsForm.value.company,
+            "jobRole": this.addjobsForm.value.jobRole,
+            "jobTitle": this.addjobsForm.value.jobTitle,
+            "jobLocation":this.addjobsForm.value.jobLocation,
+            "jobType":this.addjobsForm.value.jobType,
+            "yearofPassout":this.addjobsForm.value.yearofPassout,
+            "skillSet": this.addjobsForm.value.skillSet,
+            "ctcType": this.addjobsForm.value.ctcOption,
+            "ctc": isFixed ? this.addjobsForm.value?.fixed : `${startRange} - ${endRange}`,
+            "lastDatetoApply":this.addjobsForm.value.lastDatetoApply,
+            "additionalInformation": additionalInformation,
+            "description": descriptionItems,
+            "requirement": requirementItems,
+            "applyLink": this.addjobsForm.value.applyLink,
+            "education": this.formGroups.map(formGroup => formGroup.value)
+            //"email":this.existsEmail==""?this.registerForm.value.email:this.existsEmail,
+            //"existsUser":this.existsUser
+    }
+      console.log(obj,'post');
+      this.apiService.UploadPostJob(obj).subscribe((data: any) => {
+        // console.log(data)
+        if (data.success == false) {
+          this.toastr.warning(data.message);
+
+        } else {
+          this.toastr.success(data.message);
+          // this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.PARTNER.PARTNERLIST);
+        }
+      }, (err) => {
+        this.toastr.warning('Connection failed, Please try again.');
+      });
+    // }
+  }
+  clearForm() {
+    this.addjobsForm.reset();
+  }
+
 }

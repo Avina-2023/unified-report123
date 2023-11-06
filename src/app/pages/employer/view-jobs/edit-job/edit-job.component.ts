@@ -16,6 +16,8 @@ export class EditJobComponent implements OnInit {
   addjobsForm: FormGroup;
   formGroups: FormGroup[] = [];
   companyOptions: string[] = [];
+  companyId: any;
+  company: string[] = [];
   keySkills: string[] = [];
   newSkill: string[] = [];
   YearofPassing: string[] = [];
@@ -48,8 +50,8 @@ export class EditJobComponent implements OnInit {
 
   jobType = "";
   JobType = [
-     'Full Time',
-     'Internship',
+    'Full Time',
+    'Internship',
   ]
   skillSet = [];
 
@@ -84,7 +86,7 @@ export class EditJobComponent implements OnInit {
   pgCourses: any;
   ugCourses: any;
 
-  productionUrl = environment.SKILL_EDGE_URL == "https://skilledge.lntedutech.com"?true:false;
+  productionUrl = environment.SKILL_EDGE_URL == "https://skilledge.lntedutech.com" ? true : false;
 
   config: AngularEditorConfig = {
     editable: true,
@@ -111,28 +113,28 @@ export class EditJobComponent implements OnInit {
         tag: 'h1',
       },
     ]
-    };
+  };
   startrange: any;
   endrange: any;
   fixed: any;
 
-//   editorConfig = {
-//   editable: true, // Set this to 'false' to make the editor read-only
-//   spellcheck: true,
-//   height: 'auto',
-//   minHeight: '100px',
-//   placeholder: 'Enter Job Description',
-//   translate: 'yes',
-//   defaultParagraphSeparator: 'p',
-//   defaultFontName: 'Arial',
-//   toolbarHiddenButtons: [
-//     ['fontName'],
-//     ['insertImage'],
-//     ['strikeThrough'],
-//     ['subscript'],
-//     ['superscript'],
-//   ],
-// };
+  //   editorConfig = {
+  //   editable: true, // Set this to 'false' to make the editor read-only
+  //   spellcheck: true,
+  //   height: 'auto',
+  //   minHeight: '100px',
+  //   placeholder: 'Enter Job Description',
+  //   translate: 'yes',
+  //   defaultParagraphSeparator: 'p',
+  //   defaultFontName: 'Arial',
+  //   toolbarHiddenButtons: [
+  //     ['fontName'],
+  //     ['insertImage'],
+  //     ['strikeThrough'],
+  //     ['subscript'],
+  //     ['superscript'],
+  //   ],
+  // };
 
   constructor(
     private ApiService: ApiService,
@@ -143,10 +145,12 @@ export class EditJobComponent implements OnInit {
 
 
 
-  ) {  const currentYear = new Date().getFullYear()-1;
-    for (let i = currentYear ; i >= currentYear - 10; i--) {
+  ) {
+    const currentYear = new Date().getFullYear() - 1;
+    for (let i = currentYear; i >= currentYear - 10; i--) {
       this.YearofPassing.push(i.toString());
-    }}
+    }
+  }
 
   ngOnInit() {
     //on click on edit in ag-grid table it'll get data particular rowdata from localstorage
@@ -154,15 +158,34 @@ export class EditJobComponent implements OnInit {
     this.jobdata = this.appconfig.jobData ? this.appconfig.jobData : localjobData;
     console.log(this.jobdata, 'data for edit job page');
 
-     this.getallEducation();
+    this.getallEducation();
     this.getallCourses();
     // this.getRoute();
     this.formerrorInitialize();
     this.skilllist();
     this.companylist();
-    this.addjobsForm = this.formBuilder.group({
+    // this.addjobsForm = this.formBuilder.group({
+    // });
+    this.patchFormValues()
+  }
+ patchFormValues() {
+  if (this.jobdata) {
+    this.addjobsForm.patchValue({
+      company: this.jobdata.company,
+      jobRole: this.jobdata.jobRole,
+      jobTitle: this.jobdata.jobTitle,
+      jobLocation: this.jobdata.jobLocation,
+      jobType: this.jobdata.jobType,
+      applyLink: this.jobdata.applyLink,
+      yearofPassout: this.jobdata.yearofPassout,
+      skillSet: this.jobdata.skillSet,
+      ctcOption: this.jobdata.ctcType,
+      fixed: this.jobdata.ctc, // Only if it's a fixed type
+      // ... continue patching other form controls
     });
   }
+}
+
 
    formerrorInitialize() {
     // const emailregex: RegExp =
@@ -180,7 +203,7 @@ export class EditJobComponent implements OnInit {
    endrange: ['', [
                     Validators.required,
                     Validators.pattern(/^[0-9,]+/)
-]],
+                     ]],
       company: ['', [Validators.required]],
       jobRole: ['', [Validators.required]],
       jobLocation: [[], [Validators.required]],

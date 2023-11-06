@@ -105,6 +105,7 @@ export class ViewJobsComponent implements OnInit {
     this.gridOptions = <GridOptions>{
       context: {
         componentParent: this,
+        drivedata: this.columnDefs
       },
       frameworkComponents: {
         moreOptions: ActionButtonViewJobsComponent,
