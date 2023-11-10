@@ -112,9 +112,13 @@
               <label style="padding: 0px 0px 10px 15px;">Job Type</label>
               <mat-form-field appearance="outline" style="width: 90%;padding: 0px 0px 0px 6px;">
                 <mat-label>— Select Job Type — </mat-label>
-                <mat-select [(ngModel)]="jobType" formControlName="jobType">
+                <!-- <mat-select [(ngModel)]="jobType" formControlName="jobType">
+                  <mat-option *ngFor="let item of JobType" [value]="item">{{ item }}</mat-option>
+                </mat-select> -->
+                <mat-select [(ngModel)]="jobdata.jobType" formControlName="jobType">
                   <mat-option *ngFor="let item of JobType" [value]="item">{{ item }}</mat-option>
                 </mat-select>
+
                 <mat-error *ngIf="addjobsForm.get('jobType').hasError('required')">
                   Job type is required
                 </mat-error>
@@ -195,9 +199,9 @@
               </div>
 
               <!-- Range inputs -->
-              <div *ngIf="selectedRangeOption === 'range'" style="width: 45%;">
+              <div *ngIf="selectedRangeOption === 'range'" style="display: flex; align-items: center; margin-left: 10px;" >
                 <mat-form-field appearance="outline" style="padding-right: 13px;">
-                  <input formControlName="startrange" matInput placeholder="CTC (numeric only)">
+                  <input formControlName="startrange" matInput placeholder="CTC (numeric only)"style="">
                       <mat-error *ngIf="addjobsForm.get('startrange').hasError('required')"> Start Range CTC is required</mat-error>
                 </mat-form-field>
 
@@ -234,14 +238,14 @@
             <div class="inputContainer" style="display: flex; align-items: center;">
               <label style="padding: 20px 0px 20px 15px;">Key skills</label>
               <nz-select [(ngModel)]="skillSet" style="width: 90%;padding: 0px 0px 0px 6px;" nzMode="multiple" nzAllowClear
-                nzShowSearch nzPlaceHolder="-- Select Skill Set (Multiple Select) --" formControlName="skillSet"
+                nzShowSearch nzPlaceHolder="-- Select Skill Set (Multiple Select) --" [formControlName]="'skillSet'"
                 (input)="handleSearch($event)" class="custom-nz-select my-custom-nz-select" required>
                 <nz-option *ngFor="let item of newSkill" [nzLabel]="item" [nzValue]="item"></nz-option>
               </nz-select>
-              <div *ngIf="addjobsForm.get('skillSet').hasError('required') && addjobsForm.get('skillSet').touched"
+            </div>
+              <div  width *ngIf="addjobsForm.get('skillSet').hasError('required') && addjobsForm.get('skillSet').touched"
                 class="text-danger">Skill Set is
                 Required.</div>
-            </div>
           </div>
           <div class="border-line">
             <div class="bottom-border"></div>

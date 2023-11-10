@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from 'src/app/services/api.service';
 import { AppConfigService } from 'src/app/utils/app-config.service';
 import { ToastrService } from 'ngx-toastr';
@@ -53,7 +53,7 @@ export class EditJobComponent implements OnInit {
     'Full Time',
     'Internship',
   ]
-  skillSet = [];
+  skillSet:any = [];
 
   //skillSet = [''];
   ctcArray = ['Option 1', 'Option 2', 'Option 3'];
@@ -167,9 +167,13 @@ export class EditJobComponent implements OnInit {
     // this.addjobsForm = this.formBuilder.group({
     // });
     this.patchFormValues()
+    // this.patchSkillSet()
   }
- patchFormValues() {
-  if (this.jobdata) {
+  patchFormValues() {
+   console.log(this.addjobsForm,'bef');
+
+   if (this.jobdata) {
+    console.log(   this.jobdata,'jobdata');
     this.addjobsForm.patchValue({
       company: this.jobdata.company,
       jobRole: this.jobdata.jobRole,
@@ -178,11 +182,37 @@ export class EditJobComponent implements OnInit {
       jobType: this.jobdata.jobType,
       applyLink: this.jobdata.applyLink,
       yearofPassout: this.jobdata.yearofPassout,
-      skillSet: this.jobdata.skillSet,
+      // skillSet: this.jobdata.skillSet,
       ctcOption: this.jobdata.ctcType,
       fixed: this.jobdata.ctc, // Only if it's a fixed type
       // ... continue patching other form controls
     });
+     this.patchSkillSet()
+  }
+  }
+  patchSkillSet() {
+  if (this.jobdata && this.jobdata.skillSet) {
+    this.jobdata.skillSet.forEach(elem => {
+      console.log(elem,'elemelem');
+      let skill:any = []
+      skill = {
+          elem
+      }
+      // this.getskillSet.push(skill)
+     // console.log(this.getskillSet,'getskillSet');
+
+      // this.addjobsForm.value.skillSet
+
+      // this.addjobsForm.value.skillSet.push(skill)
+      // console.log(this.addjobsForm.value.skillSet,'this.addjobsForm.value.skillSet');
+
+    })
+    console.log(this.addjobsForm.controls);
+
+    // Assuming this.jobdata.skillSet is an array of skills
+    // for (const skill of this.jobdata.skillSet) {
+    //   skillSetArray.push(new FormControl(skill));
+    // }
   }
 }
 
@@ -212,7 +242,8 @@ export class EditJobComponent implements OnInit {
       jobTitle: ['', [Validators.required]],
       specification: ['', [Validators.required]],
       discipline: ['', [Validators.required]],
-      skillSet: [[], [Validators.required]],
+      skillSet: ['', [Validators.required]],
+      //[this.skillSet]: [this.fb.array([]), [Validators.required]],
       lastDatetoApply: [[], [Validators.required]],
       yearofPassout: [[], [Validators.required]],
        applyLink: [
@@ -250,7 +281,9 @@ export class EditJobComponent implements OnInit {
     });
     this.formGroups = this.addjobsForm.get('educationGroups')['controls'];
   }
-
+// get getskillSet() {
+//     return this.addjobsForm.get([this.skillSet]) as FormArray;
+//   }
    get jobRole() {
     return this.addjobsForm.get('jobRole');
   }
