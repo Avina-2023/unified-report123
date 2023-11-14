@@ -280,31 +280,59 @@ export class ViewJobsComponent implements OnInit {
       //   tooltipField: 'education',
       // },
 
-      {
-        headerName: 'Degree',
-        field: 'education',
-        minWidth: 200,
-        filter: 'agTextColumnFilter',
-        chartDataType: 'category',
-        aggFunc: 'sum',
-        filterParams: {
-          suppressAndOrCondition: true,
-          filterOptions: ['contains'],
-        },
-        cellRenderer: (params) => {
-          if (
-            params.value &&
-            Array.isArray(params.value) &&
-            params.value.length > 0
-          ) {
-            const degrees = params.value.join(', ');
-            return degrees;
-          } else {
-            return '-';
-          }
-        },
-        tooltipField: 'education',
-      },
+      // {
+      //   headerName: 'Degree',
+      //   field: 'education',
+      //   minWidth: 200,
+      //   filter: 'agTextColumnFilter',
+      //   chartDataType: 'category',
+      //   aggFunc: 'sum',
+      //   filterParams: {
+      //     suppressAndOrCondition: true,
+      //     filterOptions: ['contains'],
+      //   },
+      //   cellRenderer: (params) => {
+      //     if (
+      //       params.value &&
+      //       Array.isArray(params.value) &&
+      //       params.value.length > 0
+      //     ) {
+      //       const degrees = params.value.join(', ');
+      //       return degrees;
+      //     } else {
+      //       return '-';
+      //     }
+      //   },
+      //   tooltipField: 'education',
+      // },
+
+{
+  headerName: 'Degree',
+  field: 'education',
+  minWidth: 200,
+  filter: 'agTextColumnFilter',
+  chartDataType: 'category',
+  aggFunc: 'sum',
+  filterParams: {
+    suppressAndOrCondition: true,
+    filterOptions: ['contains'],
+  },
+  cellRenderer: (params) => {
+    if (
+      params.value &&
+      Array.isArray(params.value) &&
+      params.value.length > 0
+    ) {
+      const levels = params.value.map(entry => entry.specification).join(', ');
+      return levels;
+    } else {
+      return '-';
+    }
+  },
+  tooltipField: 'education',
+},
+
+
       {
         headerName: 'Job Type',
         field: 'jobType',
