@@ -27,20 +27,6 @@ export class AddJobsComponent implements OnInit {
     'Internship',
     'All',
   ];
-  Company_Name= [
-    'TCS',
-    'Cognizant',
-    'ZOHO',
-    'Wipro',
-    'HCL',
-    'TehchMahindra',
-    'Infosys',
-    'LnT_Edutech',
-    'Movate',
-    'Samsung',
-    'Capgemini',
-    'Hexaware ',
-  ];
   jobLocation = [''];
   JobLocations = [
     'ANY LOCATION',
@@ -459,23 +445,23 @@ ctcChange() {
       ctcOptionControl.updateValueAndValidity();
       this.selectedRangeOption = 'fixed';
     }
-    if (this.selectedOption === 'Internships') {
-      fixedControl.clearValidators();
-      fixedControl.setValue(null);
-      fixedControl.updateValueAndValidity();
+    // if (this.selectedOption === 'Internships') {
+    //   fixedControl.clearValidators();
+    //   fixedControl.setValue(null);
+    //   fixedControl.updateValueAndValidity();
 
-      startrangeControl.clearValidators();
-      startrangeControl.setValue(null);
-      startrangeControl.updateValueAndValidity();
+    //   startrangeControl.clearValidators();
+    //   startrangeControl.setValue(null);
+    //   startrangeControl.updateValueAndValidity();
 
-      endrangeControl.clearValidators();
-      endrangeControl.setValue(null);
-      endrangeControl.updateValueAndValidity();
+    //   endrangeControl.clearValidators();
+    //   endrangeControl.setValue(null);
+    //   endrangeControl.updateValueAndValidity();
 
-      ctcOptionControl.clearValidators();
-      ctcOptionControl.setValue(null);
-      ctcOptionControl.updateValueAndValidity();
-    }
+    //   ctcOptionControl.clearValidators();
+    //   ctcOptionControl.setValue(null);
+    //   ctcOptionControl.updateValueAndValidity();
+    // }
     this.addjobsForm.reset();
   }
 
@@ -701,12 +687,7 @@ getalldegree() {
       this.appconfig.routeNavigation('/auth/partner/viewopenjobs');
 }
   saveForm() {
-// const popup = this.dialog.open(this.jobsavedtemplate, {
-//         width: '400px',
-//         height: '240px',
-//         disableClose: true,
-//         hasBackdrop: true,
-//       });
+
     const areEducationGroupsValid = this.formGroups.every(formGroup => formGroup.valid);
 
     const isFixed = this.addjobsForm.value.fixed;
@@ -735,7 +716,8 @@ getalldegree() {
 
   const additionalInformation = htmladditionalinformation ? { note: htmladditionalinformation } : {};
 
-     if (this.addjobsForm.valid && areEducationGroupsValid) {
+   // if (this.addjobsForm.valid && areEducationGroupsValid)
+    {
       // Perform form submission actions{
     var obj = {
             "companyId": this.addjobsForm.value.company.companyId,
@@ -773,18 +755,23 @@ getalldegree() {
 
         } else {
         this.toastr.success(data.message);
-
+        const popup = this.dialog.open(this.jobsavedtemplate, {
+        width: '400px',
+        height: '240px',
+        disableClose: true,
+        hasBackdrop: true,
+      });
           // this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.PARTNER.PARTNERLIST);
         }
       }, (err) => {
         this.toastr.warning('Connection failed, Please try again.');
       });
     }
-     else {
-       this.addjobsForm.markAllAsTouched();
-       this.formGroups.forEach(formGroup => formGroup.markAllAsTouched());
-       this.toastr.warning('Please fill in all required fields.', 'Form Validation Error');
-    }
+    //  else {
+    //    this.addjobsForm.markAllAsTouched();
+    //    this.formGroups.forEach(formGroup => formGroup.markAllAsTouched());
+    //    this.toastr.warning('Please fill in all required fields.', 'Form Validation Error');
+    // }
   }
   clearForm() {
     this.addjobsForm.reset();

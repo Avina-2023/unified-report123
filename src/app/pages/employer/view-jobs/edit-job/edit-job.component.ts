@@ -20,46 +20,27 @@ export class EditJobComponent implements OnInit {
   company: string[] = [];
   keySkills: string[] = [];
   newSkill: string[] = [];
+  JobLocations: any = [];
   YearofPassing: string[] = [];
   jobdata: any;
   selectedRangeOption: string = 'fixed';
   selectedOption: string;
-
-
   industryTypes = [
     'Full time',
     'Internship',
     'All',
   ];
-
-  jobLocation = [''];
-  JobLocations = [
-    'ANY LOCATION',
-    'CHENNAI',
-    'BANGLORE',
-    'MUMBAI',
-    'DELHI',
-    'PUNE',
-    'KOLKATA',
-    'KOCHI',
-    'HYDERABAD',
-    'MADURAI',
-    'PONDYCHERRY',
-    'SURAT',
-  ]
-
   jobType = "";
   JobType = [
     'Full Time',
     'Internship',
   ]
-  skillSet:any = [];
-
-  //skillSet = [''];
+  skillSet: any;
+  jobLocation: any;
+  description: any;
   ctcArray = ['Option 1', 'Option 2', 'Option 3'];
   rangefromArray = ['Option A', 'Option B', 'Option C'];
   rangetoArray = ['Option X', 'Option Y', 'Option Z'];
-  // selectedOption: string = 'jobs';
   htmlContent_description = '';
   htmlContent_requirement = '';
   htmlContent_information = '';
@@ -143,8 +124,6 @@ export class EditJobComponent implements OnInit {
     private apiService: ApiService,
     private toastr: ToastrService
 
-
-
   ) {
     const currentYear = new Date().getFullYear() - 1;
     for (let i = currentYear; i >= currentYear - 10; i--) {
@@ -160,6 +139,7 @@ export class EditJobComponent implements OnInit {
 
     this.getallEducation();
     this.getallCourses();
+    this.cityLocation();
     // this.getRoute();
     this.formerrorInitialize();
     this.skilllist();
@@ -169,52 +149,69 @@ export class EditJobComponent implements OnInit {
     this.patchFormValues()
     // this.patchSkillSet()
   }
-  patchFormValues() {
-   console.log(this.addjobsForm,'bef');
 
-   if (this.jobdata) {
-    console.log(   this.jobdata,'jobdata');
+
+
+patchFormValues() {
+  console.log(this.addjobsForm, 'bef');
+
+  if (this.jobdata) {
+    console.log(this.jobdata, 'jobdata');
+
+ const formattedJobLocation = this.jobdata.jobLocation.map(location =>
+      location.toUpperCase().replace(/\b\w/g, (char) => char.toLowerCase())
+    );
+
     this.addjobsForm.patchValue({
       company: this.jobdata.company,
       jobRole: this.jobdata.jobRole,
       jobTitle: this.jobdata.jobTitle,
-      jobLocation: this.jobdata.jobLocation,
+      jobLocation: formattedJobLocation,
       jobType: this.jobdata.jobType,
       applyLink: this.jobdata.applyLink,
       yearofPassout: this.jobdata.yearofPassout,
-      // skillSet: this.jobdata.skillSet,
+      skillSet: this.jobdata.skillSet,
+      lastDatetoApply: this.jobdata.lastDatetoApply,
       ctcOption: this.jobdata.ctcType,
       fixed: this.jobdata.ctc, // Only if it's a fixed type
+      description: this.jobdata.description,
+      requirement: this.jobdata.requirement,
+      additionalInformation: this.jobdata.additionalInformation,
       // ... continue patching other form controls
     });
-     this.patchSkillSet()
-  }
-  }
-  patchSkillSet() {
-  if (this.jobdata && this.jobdata.skillSet) {
-    this.jobdata.skillSet.forEach(elem => {
-      console.log(elem,'elemelem');
-      let skill:any = []
-      skill = {
-          elem
+
+    // Patch education data
+    if (this.jobdata.education && this.jobdata.education.length > 0) {
+      for (let i = 0; i < this.jobdata.education.length; i++) {
+        if (i < this.formGroups.length) {
+          const educationItem = this.jobdata.education[i];
+
+          this.formGroups[i].patchValue({
+            level: educationItem.level,
+            specification: educationItem.specification,
+            discipline: educationItem.discipline,
+          });
+        } else {
+          // If there are more education entries in jobdata than in formGroups, add a new form group
+          this.addEducationGroup();
+          const lastAddedGroup = this.formGroups[this.formGroups.length - 1];
+
+          if (lastAddedGroup) {
+            lastAddedGroup.patchValue({
+              level: this.jobdata.education[i].level,
+              specification: this.jobdata.education[i].specification,
+              discipline: this.jobdata.education[i].discipline,
+            });
+          }
+
+        }
       }
-      // this.getskillSet.push(skill)
-     // console.log(this.getskillSet,'getskillSet');
-
-      // this.addjobsForm.value.skillSet
-
-      // this.addjobsForm.value.skillSet.push(skill)
-      // console.log(this.addjobsForm.value.skillSet,'this.addjobsForm.value.skillSet');
-
-    })
-    console.log(this.addjobsForm.controls);
-
-    // Assuming this.jobdata.skillSet is an array of skills
-    // for (const skill of this.jobdata.skillSet) {
-    //   skillSetArray.push(new FormControl(skill));
-    // }
+    }
   }
+
+  console.log(this.addjobsForm, '------------------');
 }
+
 
 
    formerrorInitialize() {
@@ -230,13 +227,13 @@ export class EditJobComponent implements OnInit {
                     Validators.required,
                     Validators.pattern(/^[0-9,]+/)
                     ]],
-   endrange: ['', [
+       endrange: ['', [
                     Validators.required,
                     Validators.pattern(/^[0-9,]+/)
                      ]],
       company: ['', [Validators.required]],
       jobRole: ['', [Validators.required]],
-      jobLocation: [[], [Validators.required]],
+      jobLocation: ['', [Validators.required]],
       // jobLocation: ['', [Validators.required]],
       jobType: [[], [Validators.required]],
       jobTitle: ['', [Validators.required]],
@@ -521,6 +518,28 @@ handleSearch(event: Event): void {
 );
   }
 
+  cityLocation() {
+    const data: any = {};
+    this.apiService.getCities(data).subscribe((res: any) => {
+      if (res.success) {
+        this.JobLocations = res.data.map(item => item.city);
+        console.log(this.JobLocations, 'locations');
+      }
+    });
+  }
+
+  locationSearch(event: Event): void {
+    const inputElement = event.target as HTMLInputElement;
+    const searchText = inputElement.value;
+    const data: any = {
+      searchText: searchText
+    };
+    this.apiService.getCities(data).subscribe((res: any) => {
+      if (res.success) {
+        this.JobLocations = res.data.map((item) => item.city);
+      }
+    });
+  }
 
 ctcChange() {
     const fixedControl = this.addjobsForm.get('fixed');
@@ -596,11 +615,8 @@ ctcChange() {
       item: htmljobRequirements
     }
   ];
-  const additionalInformation = [
-    {
-      item: htmladditionalinformation
-    }
-  ];
+  const additionalInformation = htmladditionalinformation ? { note: htmladditionalinformation } : {};
+
  var obj = {
             "companyId": this.addjobsForm.value.companyId,
             "company": this.addjobsForm.value.company,

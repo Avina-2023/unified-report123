@@ -569,13 +569,14 @@ export class ViewJobsComponent implements OnInit {
                 this.gridApi.hideOverlay();
                 params.success({
                   rowData: this.partnerListAgData,
-                  // rowCount: this.allcountvalue,
-                   rowCount: this.alldata.data.length,
+                  rowCount: this.allcountvalue,
+                  //  rowCount: this.alldata.data.length,
                 });
                 // localStorage.setItem('partnerListAgData', JSON.stringify(this.partnerListAgData));
                 } else {
                 params.success({
                   rowData: this.partnerListAgData,
+                 // rowData: [],
                   rowCount: 0,
                 });
                 this.gridApi.showNoRowsOverlay();
