@@ -164,11 +164,66 @@
   }
 }*/
 
+
+.clear_btn {
+  border: 1px solid #1B4E9B;
+  color: #1B4E9B;
+  padding: 8px 20px;
+  color: #1B4E9B;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.submit_btn {
+  margin: 0 auto;
+  position: relative;
+  justify-content: space-between;
+  width: fit-content;
+
+  div {
+    margin: 0 10px;
+  }
+}
+
+.save_btn {
+  background: #1B4E9B;
+  padding: 6px 20px !important;
+  border: 1px solid #1B4E9B;
+}
+
+.close-icon {
+  display: inline-block;
+  width: 10px;
+  color: red;
+  font-family: cursive;
+  font-weight: 700;
+  transform: rotate(0deg);
+  padding-left: 10px;
+  cursor: pointer;
+  font-size: 20px;
+}
+
 .post_title {
   padding: 20px;
   font-size: 18px;
   color: #000000;
   font-weight: 800;
+}
+
+.txt_center {
+  text-align: center;
+
+  p {
+    margin: 20px 0px;
+  }
+}
+
+button.go_to_viewjob {
+  color: #fff;
+  padding: 10px 20px;
+  background: #1B4E9B;
+  border: 1px solid #1B4E9B;
+  font-size: 16px;
 }
 
 .form_card {
@@ -357,3 +412,5 @@ input.ng-touched.ng-invalid {
 ::ng-deep .ng-touched.ng-valid .angular-editor-textarea {
   border: 1px solid #ced4da !important;
 }
+
+

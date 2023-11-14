@@ -32,6 +32,7 @@ export class DashboardComponent implements OnInit {
   totalstrengthtwo:string;
   public centerText: String = "Center Text";
   candidatelist: any;
+  companyDetails: any;
 
 
 
@@ -168,12 +169,14 @@ public options: ChartOptions = {
     };
     this.apiService.getEmployerDetails(obj).subscribe((result: any) => {
       if (result.success) {
-        console.log(result)
+        console.log(result);
+        this.companyDetails = result.data;
         this.username = result.data.firstName;
         this.profileCompletion = result.data.profileCompletion;
         console.log(this.profileCompletion,'profilecompletion');
-        
         localStorage.setItem('companyId', result.data.userId);
+        localStorage.setItem('companyDetails', JSON.stringify(this.companyDetails));
+
       } else {
         console.log("failed to load employer details")
       }
