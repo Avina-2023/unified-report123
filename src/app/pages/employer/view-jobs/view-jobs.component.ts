@@ -329,7 +329,7 @@ export class ViewJobsComponent implements OnInit {
       return '-';
     }
   },
-  tooltipField: 'education',
+ // tooltipField: 'education',
 },
 
 
