@@ -26,7 +26,7 @@ export class ActionButtonViewJobsComponent implements ICellRendererAngularComp {
     private ApiService: ApiService,
     private appconfig: AppConfigService,
     private messenger: SentDataToOtherComp,
-    private dialog: MatDialog 
+    private dialog: MatDialog
   ) { }
   refresh(params: ICellRendererParams): boolean {
     throw new Error('Method not implemented.');
@@ -36,8 +36,8 @@ export class ActionButtonViewJobsComponent implements ICellRendererAngularComp {
   // }
   agInit(params: ICellRendererParams): void {
     this.params = params;
-    // console.log(this.params, 'params'); 
-    params.value; 
+    console.log(this.params, 'params');
+    params.value;
   }
   afterGuiAttached?(params?: IAfterGuiAttachedParams): void {
     throw new Error('Method not implemented.');
@@ -49,22 +49,22 @@ export class ActionButtonViewJobsComponent implements ICellRendererAngularComp {
     this.jobdata = this.appconfig.jobData ? this.appconfig.jobData : localjobData;
   }
 
-  editOpenJobProfile() { 
+  editOpenJobProfile() {
     //save data in local storage to edit job page
-    this.appconfig.setLocalStorage('openJobData', JSON.stringify(this.params.data)); 
-  } 
+    this.appconfig.setLocalStorage('openJobData', JSON.stringify(this.params.data));
+  }
 
-  getStatusChange(status) { 
+  getStatusChange(status) {
     let data = {
       jobId: this.params.data.jobId,
-      approveStatus: status, 
+      approveStatus: status,
     };
 
-    this.ApiService.getOpenJobStatusUpdated(data).subscribe((response: any) => { 
-      if (response.success) { 
+    this.ApiService.getOpenJobStatusUpdated(data).subscribe((response: any) => {
+      if (response.success) {
         this.statusdata = response?.data;
         // console.log(this.statusdata);
-        this.messenger.sendMessage('grid-refresh', true); 
+        this.messenger.sendMessage('grid-refresh', true);
       } else {
       }
     });
@@ -108,21 +108,21 @@ export class ActionButtonViewJobsComponent implements ICellRendererAngularComp {
     });
   }
 
-  openViewJobDialog() {
-    const dialogRef = this.dialog.open(this.viewEditJobmatDialogRef, {
-      width: '1000px', 
-      height: 'auto',
-      disableClose: true, 
-    });
-    dialogRef.afterClosed().subscribe(result => {
-    });
-  }
+  // openViewJobDialog() {
+  //   const dialogRef = this.dialog.open(this.viewEditJobmatDialogRef, {
+  //     width: '1000px',
+  //     height: 'auto',
+  //     disableClose: true,
+  //   });
+  //   dialogRef.afterClosed().subscribe(result => {
+  //   });
+  // }
 
   openEditJobDialog() {
     const dialogRef = this.dialog.open(this.editJobmatDialogRef, {
-      width: '1000px', 
+      width: '1000px',
       height: 'auto',
-      disableClose: true, 
+      disableClose: true,
     });
     dialogRef.afterClosed().subscribe(result => {
     });
