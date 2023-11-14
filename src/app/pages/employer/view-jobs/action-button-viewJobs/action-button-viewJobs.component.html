@@ -3,7 +3,7 @@
     (click)="openStatusDialog('approved')" matTooltip="Select"><mat-icon>done</mat-icon></button>
   <button class="reject-icon icn" [ngClass]="{'disable': params.data.approveStatus === 'rejected'}"
     (click)="openStatusDialog('rejected')" matTooltip="Reject"><mat-icon>clear</mat-icon></button>
-  <button class="view-icon icn" (click)="openViewJobDialog()"
+  <button class="view-icon icn" (click)="openEditJobDialog()"
     matTooltip="Edit Profile"><mat-icon>mode_edit</mat-icon></button>
 </div>
 

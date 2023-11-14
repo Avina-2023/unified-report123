@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from 'src/app/services/api.service';
 import { AppConfigService } from 'src/app/utils/app-config.service';
 import { ToastrService } from 'ngx-toastr';
@@ -15,33 +15,23 @@ import { environment } from 'src/environments/environment';
 export class EditJobComponent implements OnInit {
   addjobsForm: FormGroup;
   formGroups: FormGroup[] = [];
-  isCompanyEditable: boolean = false;
-  isJobRoleEditable: boolean = false;
-
-  jobdata: any;
-  selectedOption: string = '1';
-
+  companyOptions: string[] = [];
+  companyId: any;
+  company: string[] = [];
   keySkills: string[] = [];
   newSkill: string[] = [];
+  YearofPassing: string[] = [];
+  jobdata: any;
+  selectedRangeOption: string = 'fixed';
+  selectedOption: string;
+
+
   industryTypes = [
     'Full time',
     'Internship',
     'All',
   ];
-  Company_Name= [
-    'TCS',
-    'Cognizant',
-    'ZOHO',
-    'Wipro',
-    'HCL',
-    'TehchMahindra',
-    'Infosys',
-    'LnT_Edutech',
-    'Movate',
-    'Samsung',
-    'Capgemini',
-    'Hexaware ',
-  ];
+
   jobLocation = [''];
   JobLocations = [
     'ANY LOCATION',
@@ -58,19 +48,14 @@ export class EditJobComponent implements OnInit {
     'SURAT',
   ]
 
-  jobType = [''];
+  jobType = "";
   JobType = [
-     'Full Time',
-     'Internship',
+    'Full Time',
+    'Internship',
   ]
-YearofPassing = [
-     '2021',
-    '2022',
-    '2023',
-    '2024',
-    '2025',
-  ]
-  skillSet = [''];
+  skillSet:any = [];
+
+  //skillSet = [''];
   ctcArray = ['Option 1', 'Option 2', 'Option 3'];
   rangefromArray = ['Option A', 'Option B', 'Option C'];
   rangetoArray = ['Option X', 'Option Y', 'Option Z'];
@@ -101,7 +86,7 @@ YearofPassing = [
   pgCourses: any;
   ugCourses: any;
 
-  productionUrl = environment.SKILL_EDGE_URL == "https://skilledge.lntedutech.com"?true:false;
+  productionUrl = environment.SKILL_EDGE_URL == "https://skilledge.lntedutech.com" ? true : false;
 
   config: AngularEditorConfig = {
     editable: true,
@@ -128,25 +113,28 @@ YearofPassing = [
         tag: 'h1',
       },
     ]
-    };
+  };
+  startrange: any;
+  endrange: any;
+  fixed: any;
 
-//   editorConfig = {
-//   editable: true, // Set this to 'false' to make the editor read-only
-//   spellcheck: true,
-//   height: 'auto',
-//   minHeight: '100px',
-//   placeholder: 'Enter Job Description',
-//   translate: 'yes',
-//   defaultParagraphSeparator: 'p',
-//   defaultFontName: 'Arial',
-//   toolbarHiddenButtons: [
-//     ['fontName'],
-//     ['insertImage'],
-//     ['strikeThrough'],
-//     ['subscript'],
-//     ['superscript'],
-//   ],
-// };
+  //   editorConfig = {
+  //   editable: true, // Set this to 'false' to make the editor read-only
+  //   spellcheck: true,
+  //   height: 'auto',
+  //   minHeight: '100px',
+  //   placeholder: 'Enter Job Description',
+  //   translate: 'yes',
+  //   defaultParagraphSeparator: 'p',
+  //   defaultFontName: 'Arial',
+  //   toolbarHiddenButtons: [
+  //     ['fontName'],
+  //     ['insertImage'],
+  //     ['strikeThrough'],
+  //     ['subscript'],
+  //     ['superscript'],
+  //   ],
+  // };
 
   constructor(
     private ApiService: ApiService,
@@ -157,7 +145,12 @@ YearofPassing = [
 
 
 
-  ) { }
+  ) {
+    const currentYear = new Date().getFullYear() - 1;
+    for (let i = currentYear; i >= currentYear - 10; i--) {
+      this.YearofPassing.push(i.toString());
+    }
+  }
 
   ngOnInit() {
     //on click on edit in ag-grid table it'll get data particular rowdata from localstorage
@@ -165,43 +158,82 @@ YearofPassing = [
     this.jobdata = this.appconfig.jobData ? this.appconfig.jobData : localjobData;
     console.log(this.jobdata, 'data for edit job page');
 
-     this.getallEducation();
+    this.getallEducation();
     this.getallCourses();
     // this.getRoute();
     this.formerrorInitialize();
     this.skilllist();
-    // this.getIndustryType();
-    this.addjobsForm = this.formBuilder.group({
-    });
+    this.companylist();
+    // this.addjobsForm = this.formBuilder.group({
+    // });
+    this.patchFormValues()
+    // this.patchSkillSet()
   }
-   skilllist() {
-  const data: any = {};
-  this.apiService.getSkill(data).subscribe((res: any) => {
-    if (res.success) {
-      this.newSkill = res.data.map(item => item.skillName);
-    }
-  });
+  patchFormValues() {
+   console.log(this.addjobsForm,'bef');
+
+   if (this.jobdata) {
+    console.log(   this.jobdata,'jobdata');
+    this.addjobsForm.patchValue({
+      company: this.jobdata.company,
+      jobRole: this.jobdata.jobRole,
+      jobTitle: this.jobdata.jobTitle,
+      jobLocation: this.jobdata.jobLocation,
+      jobType: this.jobdata.jobType,
+      applyLink: this.jobdata.applyLink,
+      yearofPassout: this.jobdata.yearofPassout,
+      // skillSet: this.jobdata.skillSet,
+      ctcOption: this.jobdata.ctcType,
+      fixed: this.jobdata.ctc, // Only if it's a fixed type
+      // ... continue patching other form controls
+    });
+     this.patchSkillSet()
+  }
+  }
+  patchSkillSet() {
+  if (this.jobdata && this.jobdata.skillSet) {
+    this.jobdata.skillSet.forEach(elem => {
+      console.log(elem,'elemelem');
+      let skill:any = []
+      skill = {
+          elem
+      }
+      // this.getskillSet.push(skill)
+     // console.log(this.getskillSet,'getskillSet');
+
+      // this.addjobsForm.value.skillSet
+
+      // this.addjobsForm.value.skillSet.push(skill)
+      // console.log(this.addjobsForm.value.skillSet,'this.addjobsForm.value.skillSet');
+
+    })
+    console.log(this.addjobsForm.controls);
+
+    // Assuming this.jobdata.skillSet is an array of skills
+    // for (const skill of this.jobdata.skillSet) {
+    //   skillSetArray.push(new FormControl(skill));
+    // }
+  }
 }
+
+
    formerrorInitialize() {
     // const emailregex: RegExp =
     //   /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     this.addjobsForm = this.fb.group({
-  fixedctc: [
-        '',
-        [
-          Validators.required,
-          Validators.pattern(/^[0-9,]*$/)
-        ]
-      ],
-          startrangectc: ['', [
-          Validators.required,
-          Validators.pattern(/^[0-9,]*$/)
-        ]],
-      endrangectc: ['',[
-          Validators.required,
-          Validators.pattern(/^[0-9,]*$/)
-        ]],
-      ctcOptions: ['1'],
+     ctcOption: ['', Validators.required],
+           fixed:['', [
+                    Validators.required,
+                    Validators.pattern(/^[0-9,]+/)
+                    ]],
+      startrange: ['', [
+                    Validators.required,
+                    Validators.pattern(/^[0-9,]+/)
+                    ]],
+   endrange: ['', [
+                    Validators.required,
+                    Validators.pattern(/^[0-9,]+/)
+                     ]],
       company: ['', [Validators.required]],
       jobRole: ['', [Validators.required]],
       jobLocation: [[], [Validators.required]],
@@ -210,10 +242,11 @@ YearofPassing = [
       jobTitle: ['', [Validators.required]],
       specification: ['', [Validators.required]],
       discipline: ['', [Validators.required]],
-      skillSet: [[], [Validators.required]],
-      lastDatetoApply: [[]],
+      skillSet: ['', [Validators.required]],
+      //[this.skillSet]: [this.fb.array([]), [Validators.required]],
+      lastDatetoApply: [[], [Validators.required]],
       yearofPassout: [[], [Validators.required]],
-      applyLink: [
+       applyLink: [
         '',
         [
           Validators.required,
@@ -247,6 +280,21 @@ YearofPassing = [
 
     });
     this.formGroups = this.addjobsForm.get('educationGroups')['controls'];
+  }
+// get getskillSet() {
+//     return this.addjobsForm.get([this.skillSet]) as FormArray;
+//   }
+   get jobRole() {
+    return this.addjobsForm.get('jobRole');
+  }
+   get jobTitle() {
+    return this.addjobsForm.get('jobTitle');
+  }
+  get lastDatetoApply() {
+    return this.addjobsForm.get('lastDatetoApply');
+  }
+  get applyLink() {
+    return this.addjobsForm.get('applyLink');
   }
    createEducationGroup(): FormGroup {
     return this.fb.group({
@@ -434,8 +482,159 @@ getallEducation() {
     }
   }
 
-  saveviewForm(){
+skilllist() {
+  const data: any = {};
+  this.apiService.getSkill(data).subscribe((res: any) => {
+    if (res.success) {
+      this.newSkill = res.data.map(item => item.skillName);
+    }
+  });
+  }
 
+handleSearch(event: Event): void {
+    const inputElement = event.target as HTMLInputElement;
+    const searchText = inputElement.value;
+    const data: any = {
+      searchText: searchText
+    };
+    console.log('Search text:', searchText);
+    this.apiService.getSkill(data).subscribe((res: any) => {
+      if (res.success) {
+        this.newSkill = res.data.map((item) => item.skillName);
+        console.log(res, 'searchSkills');
+      }
+    });
+  }
+
+ companylist() {
+     const data: any = {};
+    this.apiService.masterCompany().subscribe(
+  (res: any) => {
+    console.log(res);
+    if (res.success) {
+      this.companyOptions = res.data.map(item => item.company);
+    }
+  },
+  (error) => {
+    console.error('API request error:', error);
+  }
+);
+  }
+
+
+ctcChange() {
+    const fixedControl = this.addjobsForm.get('fixed');
+    const startrangeControl = this.addjobsForm.get('startrange');
+    const endrangeControl = this.addjobsForm.get('endrange');
+    const ctcOptionControl = this.addjobsForm.get('ctcOption');
+    if (this.selectedOption === 'Jobs') {
+      ctcOptionControl.setValidators(Validators.required);
+      ctcOptionControl.updateValueAndValidity();
+      this.selectedRangeOption = 'fixed';
+    }
+    if (this.selectedOption === 'Internships') {
+      fixedControl.clearValidators();
+      fixedControl.setValue(null);
+      fixedControl.updateValueAndValidity();
+
+      startrangeControl.clearValidators();
+      startrangeControl.setValue(null);
+      startrangeControl.updateValueAndValidity();
+
+      endrangeControl.clearValidators();
+      endrangeControl.setValue(null);
+      endrangeControl.updateValueAndValidity();
+
+      ctcOptionControl.clearValidators();
+      ctcOptionControl.setValue(null);
+      ctcOptionControl.updateValueAndValidity();
+    }
+    this.addjobsForm.reset();
+  }
+
+
+  onCtcOptionChange() {
+    const fixedControl = this.addjobsForm.get('fixed');
+    const startrangeControl = this.addjobsForm.get('startrange');
+    const endrangeControl = this.addjobsForm.get('endrange');
+    if (this.selectedRangeOption === 'fixed') {
+      fixedControl.setValidators(Validators.required);
+      fixedControl.setValue(this.fixed);
+      startrangeControl.clearValidators();
+      endrangeControl.clearValidators();
+      startrangeControl.setValue(null);
+      endrangeControl.setValue(null);
+    } else if (this.selectedRangeOption === 'range') {
+      startrangeControl.setValidators(Validators.required);
+      endrangeControl.setValidators(Validators.required);
+      startrangeControl.setValue(this.startrange);
+      endrangeControl.setValue(this.endrange);
+      fixedControl.clearValidators();
+      fixedControl.setValue(null);
+    }
+    fixedControl.updateValueAndValidity();
+    startrangeControl.updateValueAndValidity();
+    endrangeControl.updateValueAndValidity();
+  }
+
+  saveviewForm(){
+    const isFixed = this.addjobsForm.value.fixed;
+    const startRange = this.addjobsForm.value.startrange;
+    const endRange = this.addjobsForm.value.endrange;
+
+    const htmlDescription = this.addjobsForm.value?.description;
+    const htmljobRequirements = this.addjobsForm.value?.requirement;
+    const htmladditionalinformation = this.addjobsForm.value?.additionalInformation;
+
+  const descriptionItems = [
+    {
+      item: htmlDescription
+    }
+  ];
+  const requirementItems = [
+    {
+      item: htmljobRequirements
+    }
+  ];
+  const additionalInformation = [
+    {
+      item: htmladditionalinformation
+    }
+  ];
+ var obj = {
+            "companyId": this.addjobsForm.value.companyId,
+            "company": this.addjobsForm.value.company,
+            "jobRole": this.addjobsForm.value.jobRole,
+            "jobTitle": this.addjobsForm.value.jobTitle,
+            "jobLocation":this.addjobsForm.value.jobLocation,
+            "jobType":this.addjobsForm.value.jobType,
+            "yearofPassout":this.addjobsForm.value.yearofPassout,
+            "skillSet": this.addjobsForm.value.skillSet,
+            "ctcType": this.addjobsForm.value.ctcOption,
+            "ctc": isFixed ? this.addjobsForm.value?.fixed : `${startRange} - ${endRange}`,
+            "lastDatetoApply":this.addjobsForm.value.lastDatetoApply,
+            "additionalInformation": additionalInformation,
+            "description": descriptionItems,
+            "requirement": requirementItems,
+            "applyLink": this.addjobsForm.value.applyLink,
+            "education": this.formGroups.map(formGroup => formGroup.value)
+            //"email":this.existsEmail==""?this.registerForm.value.email:this.existsEmail,
+            //"existsUser":this.existsUser
+    }
+      console.log(obj,'post');
+      this.apiService.UploadPostJob(obj).subscribe((data: any) => {
+        // console.log(data)
+        if (data.success == false) {
+          this.toastr.warning(data.message);
+
+        } else {
+          this.toastr.success(data.message);
+          // this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.PARTNER.PARTNERLIST);
+        }
+      }, (err) => {
+        this.toastr.warning('Connection failed, Please try again.');
+      });
+    // }
   }
   clearviewForm() {
     this.addjobsForm.reset();

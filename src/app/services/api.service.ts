@@ -399,6 +399,12 @@ export class ApiService {
     return this.http.get(`${this.BASE_URL}/getDegreeList`);
   }
 
+getCities(data) {
+    return this.http.post(`${this.BASE_URL}/getCity`, data, {
+      reportProgress: true,
+    });
+  }
+
   getallStates(){
     // return this.http.post(`${this.BASE_URL}/api/state_api`, Id, { headers: this.withoutTokens(), withCredentials: true });
     return this.http.get(`../assets/json/state.json`);

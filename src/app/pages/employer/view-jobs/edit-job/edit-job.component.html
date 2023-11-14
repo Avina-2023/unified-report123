@@ -49,7 +49,14 @@
             <div class="inputContainer" style="display: flex; align-items: center;">
               <label style="margin-right: 10px; padding: 0px 0px 10px 15px;">Company Name</label>
               <mat-form-field appearance="outline" style="width: 90%;">
-                <input formControlName="" matInput placeholder="Enter Company Name">
+                <mat-select formControlName="company" placeholder="Select Company Name">
+                  <mat-option *ngFor="let company of companyOptions" [value]="company">
+                    {{ company }}
+                  </mat-option>
+                </mat-select>
+                <mat-error *ngIf="addjobsForm.get('company').hasError('required')">
+                  Company name is Required
+                </mat-error>
               </mat-form-field>
             </div>
           </div>
@@ -61,9 +68,11 @@
             <div class="inputContainer" style="display: flex; align-items: center;">
               <label style="margin-right: 10px; padding: 0px 0px 10px 15px;">Job Role</label>
               <mat-form-field appearance="outline" style="width: 90%;">
-                <input formControlName="" matInput placeholder="Enter Company Name">
-                <!-- <mat-error class="error" *ngIf="company?.errors?.required">{{'Company Name is Required'}}</mat-error> -->
+                <input formControlName="jobRole" matInput placeholder="Enter Job Role">
+                <mat-error class="error" *ngIf="jobRole?.errors?.required">{{'Job Role is Required'}}</mat-error>
               </mat-form-field>
+              <ng-container *ngIf="jobRole.invalid && jobRole.touched">
+              </ng-container>
             </div>
           </div>
           <div class="border-line">
@@ -74,9 +83,11 @@
             <div class="inputContainer" style="display: flex; align-items: center;">
               <label style="padding: 0px 0px 10px 15px;">Job Title</label>
               <mat-form-field appearance="outline" style="width: 90%;padding: 0px 0px 0px 6px;">
-                <input formControlName="" matInput placeholder="Enter Company Name">
-                <!-- <mat-error class="error" *ngIf="company?.errors?.required">{{'Company Name is Required'}}</mat-error> -->
+                <input formControlName="jobTitle" matInput placeholder="Enter Company Name">
+                <mat-error class="error" *ngIf="jobTitle?.errors?.required">{{'Job Ttitle is Required'}}</mat-error>
               </mat-form-field>
+              <ng-container *ngIf="jobTitle.invalid && jobTitle.touched">
+              </ng-container>
             </div>
           </div>
           <div class="border-line">
@@ -101,9 +112,16 @@
               <label style="padding: 0px 0px 10px 15px;">Job Type</label>
               <mat-form-field appearance="outline" style="width: 90%;padding: 0px 0px 0px 6px;">
                 <mat-label>— Select Job Type — </mat-label>
-                <mat-select [(ngModel)]="jobType" formControlName="jobType">
+                <!-- <mat-select [(ngModel)]="jobType" formControlName="jobType">
+                  <mat-option *ngFor="let item of JobType" [value]="item">{{ item }}</mat-option>
+                </mat-select> -->
+                <mat-select [(ngModel)]="jobdata.jobType" formControlName="jobType">
                   <mat-option *ngFor="let item of JobType" [value]="item">{{ item }}</mat-option>
                 </mat-select>
+
+                <mat-error *ngIf="addjobsForm.get('jobType').hasError('required')">
+                  Job type is required
+                </mat-error>
               </mat-form-field>
             </div>
           </div>
@@ -166,31 +184,30 @@
           <div style="width: 100%; display: flex; justify-content: space-between; align-items: center;">
             <label class="edu_label" style="margin-right: 10px;">CTC</label>
             <div style="width: 90%; display: flex; align-items: center;">
-              <mat-radio-group formControlName="ctcType" aria-label="Select an option" [(ngModel)]="selectedOption">
-                <mat-radio-button value="1" style="font-weight: bold; font-size: 14px;">Fixed</mat-radio-button>
-                <mat-radio-button value="2"
+              <mat-radio-group formControlName="ctcOption" aria-label="Select an option" [(ngModel)]="selectedRangeOption" (ngModelChange)="onCtcOptionChange()">
+                <mat-radio-button value="fixed" style="font-weight: bold; font-size: 14px;">Fixed</mat-radio-button>
+                <mat-radio-button value="range"
                   style="font-weight: bold; font-size: 14px;padding: 10px">Range</mat-radio-button>
               </mat-radio-group>
 
-              <!-- Fixed input -->
-              <div *ngIf="selectedOption === '1'" style="width: 50%;padding: 0px 0px 0px 15px;">
+             <!-- Fixed input -->
+              <div *ngIf="selectedRangeOption === 'fixed'" style="width: 50%;padding: 0px 0px 0px 15px;">
                 <mat-form-field style="width: 140%;" class="example-full-width" appearance="outline">
-                  <input formControlName="fixedctc" matInput placeholder="Enter Value">
-                  <mat-error class="error" *ngIf="fixedctc?.errors?.required">Ctc is Required</mat-error>
+                  <input formControlName="fixed" matInput placeholder="Enter Value">
+                     <mat-error *ngIf="addjobsForm.get('fixed').hasError('required')">CTC is required</mat-error>
                 </mat-form-field>
               </div>
 
               <!-- Range inputs -->
-              <div *ngIf="selectedOption === '2'" style="width: 45%;">
+              <div *ngIf="selectedRangeOption === 'range'" style="display: flex; align-items: center; margin-left: 10px;" >
                 <mat-form-field appearance="outline" style="padding-right: 13px;">
-                  <input formControlName="startrangectc" matInput placeholder="Enter Value">
-                  <mat-error class="error" *ngIf="startrangectc?.errors?.required">Ctc range from is
-                    Required</mat-error>
+                  <input formControlName="startrange" matInput placeholder="CTC (numeric only)"style="">
+                      <mat-error *ngIf="addjobsForm.get('startrange').hasError('required')"> Start Range CTC is required</mat-error>
                 </mat-form-field>
 
                 <mat-form-field appearance="outline" style="padding-right: 13px;">
-                  <input formControlName="endrangectc" matInput placeholder="Enter Value">
-                  <mat-error class="error" *ngIf="endrangectc?.errors?.required">Ctc range to is Required</mat-error>
+                  <input formControlName="endrange" matInput placeholder="CTC (numeric only)">
+                     <mat-error *ngIf="addjobsForm.get('endrange').hasError('required')"> End Range CTC is required</mat-error>
                 </mat-form-field>
               </div>
             </div>
@@ -205,8 +222,12 @@
               <nz-select style="width: 90%; padding: 0px 0px 0px 6px;" nzMode="multiple" nzAllowClear nzShowSearch
                 nzPlaceHolder="-- Select Year of Passing (Multiple Select)" formControlName="yearofPassout"
                 class="custom-nz-select my-custom-nz-select">
-                <!-- <nz-option *ngFor="let item of YearofPassing" [nzLabel]="item" [nzValue]="item"></nz-option> -->
+                <nz-option *ngFor="let item of YearofPassing" [nzLabel]="item" [nzValue]="item"></nz-option>
               </nz-select>
+            </div>
+            <div *ngIf="addjobsForm.get('yearofPassout').hasError('required') && addjobsForm.get('yearofPassout').touched"
+              class="text-danger">
+              Year of Passing is required.
             </div>
           </div>
           <div class="border-line">
@@ -216,11 +237,15 @@
           <div style="width: 100%;">
             <div class="inputContainer" style="display: flex; align-items: center;">
               <label style="padding: 20px 0px 20px 15px;">Key skills</label>
-              <nz-select style="width: 90%;padding: 0px 0px 0px 6px;" nzMode="multiple" nzAllowClear nzShowSearch
-                nzPlaceHolder="-- Select Skill Set (Multiple Select) --" formControlName="skillSet"
-                class="custom-nz-select my-custom-nz-select" required>
+              <nz-select [(ngModel)]="skillSet" style="width: 90%;padding: 0px 0px 0px 6px;" nzMode="multiple" nzAllowClear
+                nzShowSearch nzPlaceHolder="-- Select Skill Set (Multiple Select) --" [formControlName]="'skillSet'"
+                (input)="handleSearch($event)" class="custom-nz-select my-custom-nz-select" required>
+                <nz-option *ngFor="let item of newSkill" [nzLabel]="item" [nzValue]="item"></nz-option>
               </nz-select>
             </div>
+              <div  width *ngIf="addjobsForm.get('skillSet').hasError('required') && addjobsForm.get('skillSet').touched"
+                class="text-danger">Skill Set is
+                Required.</div>
           </div>
           <div class="border-line">
             <div class="bottom-border"></div>
@@ -234,6 +259,9 @@
                   placeholder="— Select Date —">
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
+                <mat-error *ngIf="addjobsForm.get('lastDatetoApply').hasError('required')">
+                  Last day to apply is required.
+                </mat-error>
               </mat-form-field>
             </div>
           </div>
@@ -245,8 +273,11 @@
             <div class="inputContainer" style="display: flex; align-items: center;">
               <label style="padding: 0px 0px 10px 15px;">Apply link</label>
               <mat-form-field appearance="outline" style="width: 90%;padding: 0px 0px 0px 6px;">
-                <input formControlName="" matInput placeholder="Enter URL">
+                <input formControlName="applyLink" matInput placeholder="Enter URL">
+                <mat-error class="error" *ngIf="applyLink?.errors?.required">{{'URL is Required'}}</mat-error>
               </mat-form-field>
+              <ng-container *ngIf="applyLink.invalid && applyLink.touched">
+              </ng-container>
             </div>
           </div>
           <div class="border-line">
@@ -273,11 +304,11 @@
             <div class="inputContainer" style="display: flex; align-items: center;">
               <label style="margin: 0px 0px 27% 0px;padding: 0px 0px 0px 15px;">Job Requirements</label>
               <mat-form-field appearance="outline" style="width: 90%;padding: 0px 0px 0px 6px;">
-                <angular-editor formControlName="description" placeholder="Enter Job Description"
-                  id="description"></angular-editor>
-                <textarea type="textarea" maxlength="250" formControlName="description"
+                <angular-editor formControlName="requirement" placeholder="Enter Job requirement"
+                  id="requirement"></angular-editor>
+                <textarea type="textarea" maxlength="250" formControlName="requirement"
                   style="resize: none;display: none;" class="descstyle" matInput
-                  placeholder="Enter Job Description"></textarea>
+                  placeholder="Enter Job requirement"></textarea>
               </mat-form-field>
             </div>
           </div>
@@ -289,9 +320,9 @@
             <div class="inputContainer" style="display: flex; align-items: center;">
               <label style="margin: 0px 0px 27% 0px;padding: 0px 0px 0px 15px;">Additional Information</label>
               <mat-form-field appearance="outline" style="width: 90%;padding: 0px 0px 0px 6px;">
-                <angular-editor formControlName="description" placeholder="Enter Job Description"
-                  id="description"></angular-editor>
-                <textarea type="textarea" maxlength="250" formControlName="description"
+                <angular-editor formControlName="additionalInformation" placeholder="Enter additionalInformation "
+                  id="additionalInformation"></angular-editor>
+                <textarea type="textarea" maxlength="250" formControlName="additionalInformation"
                   style="resize: none;display: none;" class="descstyle" matInput
                   placeholder="Enter Job Description"></textarea>
               </mat-form-field>

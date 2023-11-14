@@ -19,11 +19,11 @@ interface Tab {
   title: string;
   items: string[];
 }
-@Component({ 
-  selector: 'app-view-jobs', 
-  templateUrl: './view-jobs.component.html', 
-  styleUrls: ['./view-jobs.component.scss'] 
-}) 
+@Component({
+  selector: 'app-view-jobs',
+  templateUrl: './view-jobs.component.html',
+  styleUrls: ['./view-jobs.component.scss']
+})
 export class ViewJobsComponent implements OnInit {
 
   private gridApi!: GridApi;
@@ -105,6 +105,7 @@ export class ViewJobsComponent implements OnInit {
     this.gridOptions = <GridOptions>{
       context: {
         componentParent: this,
+        drivedata: this.columnDefs
       },
       frameworkComponents: {
         moreOptions: ActionButtonViewJobsComponent,
@@ -125,7 +126,7 @@ export class ViewJobsComponent implements OnInit {
   }
 
   tabledata() {
-    
+
     this.columnDefs = [
       {
         headerName: 'S.No',
@@ -198,7 +199,7 @@ export class ViewJobsComponent implements OnInit {
         },
         tooltipField: 'jobRole',
       },
-      
+
       // {
       //   headerName: 'Job Location',
       //   field: 'address',
@@ -250,7 +251,7 @@ export class ViewJobsComponent implements OnInit {
           }
         },
         tooltipField: 'jobLocation',
-      }, 
+      },
 
       // {
       //   headerName: 'Degree',
@@ -357,6 +358,33 @@ export class ViewJobsComponent implements OnInit {
         tooltipField: 'yearofPassout',
       },
 
+{
+        headerName: 'Posted By',
+        field: 'postedBy',
+        minWidth: 235,
+        filter: 'agTextColumnFilter',
+        chartDataType: 'category',
+        aggFunc: 'sum',
+        filterParams: {
+          suppressAndOrCondition: true,
+          filterOptions: ['contains'],
+        },
+        cellRenderer: (params) => {
+          if (
+            params.value &&
+            params.value != undefined &&
+            params.value != null &&
+            params.value != ''
+          ) {
+            this.FormateName = params.value;
+            return this.titleCase(this.FormateName);
+          } else {
+            return '-';
+          }
+        },
+        tooltipField: 'Posted By',
+      },
+
       // {
       //   headerName: 'Year Of Passout',
       //   field: 'yearofPassout',
@@ -385,7 +413,7 @@ export class ViewJobsComponent implements OnInit {
       //   tooltipField: 'yearofPassout',
       // },
 
-      
+
       {
         headerName: 'Last Date To Apply',
         field: 'lastDatetoApply',
@@ -399,6 +427,26 @@ export class ViewJobsComponent implements OnInit {
         valueFormatter: function (params) {
           return moment(params.value).format('MMM D, yy');
         },
+      },
+      {
+        headerName: 'Total Views',
+        field: 'viewCount',
+       // cellStyle: { textAlign: "center" },
+        minWidth: 175,
+        filter: 'agNumberColumnFilter',
+        chartDataType: 'series',
+        filterParams: {
+          suppressAndOrCondition: true,
+          filterOptions: ['equals', 'lessThan', 'lessThanOrEqual', 'greaterThan', 'greaterThanOrEqual', 'inRange']
+        },
+        cellRenderer: (params) => {
+          if (params.value && params.value != undefined && params.value != null && params.value != "") {
+            return params.value;
+          } else {
+            return 0;
+          }
+        },
+        tooltipField: 'viewCount',
       },
       {
         headerName: 'Status',
@@ -450,7 +498,7 @@ export class ViewJobsComponent implements OnInit {
         filter: false,
         // pinned: 'right',
       },
-     
+
     ];
 
     this.rowModelType = 'serverSide';
@@ -508,14 +556,14 @@ export class ViewJobsComponent implements OnInit {
               console.log(this.alldata,'alldata');
               console.log(this.alldata.data,'alldata.data');
               console.log(this.alldata.data.length,'alldata.data.length');
-              
+
               this.approvecountvalue = this.alldata.totalCount.approvedCount || 0;
               this.pendingcountvalue = this.alldata.totalCount.pendingCount || 0;
               this.rejectedcountvalue = this.alldata.totalCount.rejectedCount || 0;
               this.allcountvalue = this.alldata.totalCount.totalCount || 0;
-              
+
               if (this.partnerListAgData.length > 0) {
-                this.pageRowCount = data1 && data1.totalCount ? data1.totalCount : 0; 
+                this.pageRowCount = data1 && data1.totalCount ? data1.totalCount : 0;
                 // console.log(this.pageRowCount,'pageRowCount');
                 this.totalPages = Math.ceil(this.pageRowCount / this.selectedPageSize);
                 this.gridApi.hideOverlay();
@@ -645,12 +693,12 @@ export class ViewJobsComponent implements OnInit {
   //   this.gridApi.paginationGoToPage(i);
   //   this.isPrevButtonDisabled = i === 0;
   //   if (i === this.pageArray.length - 1) {
-  //     this.isNextButtonDisabled = true; 
+  //     this.isNextButtonDisabled = true;
   //   } else {
   //     this.isNextButtonDisabled = false;
-  //   } 
+  //   }
   // }
-  
+
   // onBtNextPage() {
   //   this.gridApi.paginationGoToNextPage();
   // }
@@ -658,12 +706,12 @@ export class ViewJobsComponent implements OnInit {
   // isPageGoButtonDisabled(): boolean {
   //   return this.totalPages <= 1;
   // }
-  
+
 
   getalldata(partnerListAgData){
     this.appconfig.setLocalStorage('openJobData',JSON.stringify(partnerListAgData));
   }
-  
+
   refresh() {
     this.gridApi.refreshServerSideStore({ purge: true });
   }
@@ -673,10 +721,10 @@ export class ViewJobsComponent implements OnInit {
     const icn = ['#1B4E9B', '#49AE31', '#27BBEE', '#EF2917'];
     console.log('Selected tab index:' + index);
     this.dynclass = pall[index];
-    this.icncolor = icn[index]; 
+    this.icncolor = icn[index];
     this.active = index;
     console.log(index, 'MYINDEX VALUE');
-    let statusmodel = { 
+    let statusmodel = {
       approveStatus: {
         filterType: 'text',
         type: 'contains',
@@ -689,9 +737,9 @@ export class ViewJobsComponent implements OnInit {
       statusmodel.approveStatus.filter = 'pending';
     } else if (index == 3) {
       statusmodel.approveStatus.filter = 'rejected';
-    } 
+    }
     this.gridApi.setFilterModel(statusmodel);
   }
 
-  
+
 }
