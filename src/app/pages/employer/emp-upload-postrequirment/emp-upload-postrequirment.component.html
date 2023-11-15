@@ -34,11 +34,11 @@
             accept="text/csv, application/octet-stream, ms-excel" (change)="onFileSelected($event)"
             (click)="$event.target.value=null" type="file" alt="upload" />
 
-           /*<div class="note2"> <span [matTooltip]="fileName" class="blackLable subInstruction">{{
+           <div class="note2"> <span [matTooltip]="fileName" class="blackLable subInstruction">{{
               trimFilename(fileName) || " Upload only .csv format"}}</span></div>
           <div *ngIf="fileName" class="close" (click)="cancleUpload()">
             <span class="pointer-close"><mat-icon class="close-icon">close</mat-icon></span>
-          </div> */
+          </div> 
 
         </div>
     <div class="submitbtn">
@@ -59,11 +59,11 @@
   <div class="job_title">Job Details</div>
   <div class="matGroup">
     <mat-radio-group aria-label="Select an option" [(ngModel)]="selectedOption" (ngModelChange)="ctcChange()">
-      <mat-radio-button value="jobs">Jobs</mat-radio-button>
-      <mat-radio-button value="internships" class="intern">Internships</mat-radio-button>
+      <mat-radio-button value="Jobs" color="primary">Jobs</mat-radio-button>
+      <mat-radio-button value="Internships" class="intern" color="primary">Internships</mat-radio-button>
     </mat-radio-group>
   </div>
-  <div *ngIf="selectedOption === 'jobs' || selectedOption === 'internships'" class="pd-top-20">
+  <div *ngIf="selectedOption === 'Jobs' || selectedOption === 'Internships'" class="pd-top-20">
     <form [formGroup]="jobForm" (ngSubmit)="onSubmit()">
       <div class="form-group">
         <label for="jobRole">Job Role<span class="mandatory_symbl">*</span></label>
@@ -83,8 +83,12 @@
       <div class="flex_div width-100 mg-r-10">
         <div class="form-group width-50">
           <label for="jobLocation">Job Location<span class="mandatory_symbl">*</span></label>
-          <input type="text" id="jobLocation" formControlName="jobLocation" class="form-control"
-            placeholder="Chennai, Bangalore">
+          <!-- <input type="text" id="jobLocation" formControlName="jobLocation" class="form-control"
+            placeholder="Chennai, Bangalore"> -->
+          <nz-select nzShowSearch nzAllowClear nzMode="multiple" nzPlaceHolder="Chennai, Bangalore"
+            [(ngModel)]="multipleLocation" formControlName="jobLocation" (input)="locationSearch($event)">
+            <nz-option *ngFor="let option of locations" [nzLabel]="option" [nzValue]="option"></nz-option>
+          </nz-select>
           <div *ngIf="jobForm.get('jobLocation').hasError('required') && jobForm.get('jobLocation').touched"
             class="text-danger">
             Job Location is required.
@@ -107,67 +111,57 @@
 
       <fieldset class="education-fieldset">
         <legend>Education<span class="mandatory_symbl">*</span></legend>
-        <div *ngFor="let group of formGroups; let i = index" class="form-group flex_div">
-          <div class="mg-r-10 width-30"><nz-select nzShowSearch nzAllowClear nzPlaceHolder="Graduation"
-              [formControl]="group.get('graduation')" (ngModelChange)="onGraduationChange($event, i)">
-              <nz-option *ngFor="let option of educations" [nzLabel]="option.education"
-                [nzValue]="option.education"></nz-option>
+        <div *ngFor="let group of formGroups; let i = index" class="form-group flex_div education_set">
+          <div class="mg-r-10 width-30">
+            <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Graduation" [formControl]="group.get('level')"
+              (ngModelChange)="onGraduationChange($event, i)">
+              <nz-option *ngFor="let option of educations" [nzLabel]="option.education" [nzValue]="option.education"
+                [nzDisabled]="isGraduationDisabled(option.education, i)"></nz-option>
             </nz-select>
-            <div *ngIf="group.get('graduation').hasError('required') && group.get('graduation').touched"
-              class="text-danger">
+            <div *ngIf="group.get('level').hasError('required') && group.get('level').touched" class="text-danger">
               Graduation Field Required.
             </div>
           </div>
-
           <div class="mg-l-10 width-30">
             <nz-select [nzDisabled]="isdegreeDisabled(i)" nzShowSearch nzAllowClear nzPlaceHolder="Degree"
-              [formControl]="group.get('degree')" (ngModelChange)="onDegreeChange($event, i)">
-              <nz-option *ngFor="let option of degreeOptions" [nzLabel]="option.specification_name"
-                [nzValue]="option.specification_name"></nz-option>
+              [formControl]="group.get('specification')" (ngModelChange)="onDegreeChange($event, i)">
+              <nz-option *ngFor="let option of degreeOptions" [nzLabel]="option" [nzValue]="option"></nz-option>
             </nz-select>
-            <div *ngIf="group.get('degree').hasError('required') && group.get('degree').touched" class="text-danger">
+            <div *ngIf="group.get('specification').hasError('required') && group.get('specification').touched"
+              class="text-danger">
               Degree Required.
             </div>
           </div>
-
-
           <div class="mg-l-10 width-40 overflow_scroll">
             <nz-select nzAllowClear [nzDisabled]="iscourseDisabled(i)"
               [ngModel]="group.get('multipleSpecialization')?.value" [ngModelOptions]="{ standalone: true }"
               [nzSize]="default" nzMode="multiple" nzPlaceHolder="--Select Specialization (Multiple Select)---"
-              [formControl]="group.get('specialization')">
-              <nz-option *ngFor="let option of listOfSpecializations" [nzLabel]="option.discipline_name"
-                [nzValue]="option.discipline_name"></nz-option>
+              [formControl]="group.get('discipline')">
+              <nz-option *ngFor="let option of listOfSpecializations" [nzLabel]="option" [nzValue]="option"></nz-option>
             </nz-select>
-
-            <div *ngIf="group.get('specialization').hasError('required') && group.get('specialization').touched"
+            <div *ngIf="group.get('discipline').hasError('required') && group.get('discipline').touched"
               class="text-danger">
               Specialization is Required.
             </div>
           </div>
-
-          <div class="remove_group_text" *ngIf="formGroups.length > 1 && i > 0" (click)="removeEducationGroup(i)">Remove
+          <div class="remove_group_text" *ngIf="formGroups.length > 1 && i > 0" (click)="removeEducationGroup(i)"><span
+              class="close-icon">X</span>
           </div>
         </div>
         <div class="add_more_text" (click)="addEducationGroup()">Add More</div>
       </fieldset>
 
       <div class="flex_div width-100 mg-r-10">
-        <div class="width-50" *ngIf="selectedOption === 'jobs'">
+        <div class="width-50" *ngIf="selectedOption === 'Jobs'">
           <label>CTC<span class="mandatory_symbl">*</span></label>
           <div class="form-group salary-range">
             <mat-radio-group aria-label="Select an option" [(ngModel)]="selectedRangeOption"
               (ngModelChange)="onCtcOptionChange()" formControlName="ctcOption" style="width:40%;">
-              <mat-radio-button value="fixed">Fixed</mat-radio-button>
-              <mat-radio-button value="range" class="range">Range</mat-radio-button>
+              <mat-radio-button value="fixed" color="primary">Fixed</mat-radio-button>
+              <mat-radio-button value="range" class="range" color="primary">Range</mat-radio-button>
             </mat-radio-group>
 
             <div *ngIf="selectedRangeOption === 'fixed'" style="width:-webkit-fill-available;">
-              <!-- <nz-select nzShowSearch nzAllowClear nzPlaceHolder="ctc" [(ngModel)]="fixed" formControlName="fixed">
-                <nz-option nzLabel="12 lacs" nzValue="12 lacs"></nz-option>
-                <nz-option nzLabel="13 lacs" nzValue="13 lacs"></nz-option>
-              </nz-select> -->
-
               <input type="number" id="numberInput" formControlName="fixed" class="form-control"
                 placeholder="CTC (numeric only)">
               <div *ngIf="jobForm.get('fixed').hasError('required') && jobForm.get('fixed').touched"
@@ -177,10 +171,6 @@
 
             </div>
             <div *ngIf="selectedRangeOption === 'range'" style="width:-webkit-fill-available;">
-              <!-- <nz-select nzShowSearch nzAllowClear nzPlaceHolder="ctc" [(ngModel)]="range" formControlName="range">
-                <nz-option nzLabel="12 lacs" nzValue="12 lacs"></nz-option>
-                <nz-option nzLabel="13 lacs" nzValue="13 lacs"></nz-option>
-              </nz-select> -->
               <div class="flex_div flx_evenly flx_center">
                 <div><input type="number" id="numberInput" formControlName="startrange" class="form-control"
                     placeholder="CTC Start Range (numeric only)">
@@ -202,9 +192,8 @@
           </div>
         </div>
 
-        <div class="width-50" *ngIf="selectedOption === 'internships'">
+        <div class="width-50" *ngIf="selectedOption === 'Internships'">
           <label>Stipend<span class="mandatory_symbl">*</span></label>
-          <!-- <div class="form-group salary-range"> -->
           <div class="form-group">
             <input type="number" id="numberInput" formControlName="stipend" class="form-control"
               placeholder="Stipend (numeric only)">
@@ -231,8 +220,8 @@
       <div class="form-group">
         <label for="keySkills">Key skills <span class="mandatory_symbl">*</span></label>
         <nz-select nzAllowClear [(ngModel)]="multipleValue" [nzSize]="default" nzMode="multiple"
-          nzPlaceHolder="Select the Skills" class="keySkills" formControlName="skillSet">
-          <nz-option *ngFor="let option of listOfOption" [nzLabel]="option.label" [nzValue]="option.value"></nz-option>
+          nzPlaceHolder="Select the Skills" class="keySkills" formControlName="skillSet" (input)="handleSearch($event)">
+          <nz-option *ngFor="let option of listOfOption" [nzLabel]="option" [nzValue]="option"></nz-option>
         </nz-select>
         <div *ngIf="jobForm.get('skillSet').hasError('required') && jobForm.get('skillSet').touched"
           class="text-danger">
@@ -259,22 +248,36 @@
         </div>
       </div>
 
+      <label for="lastDatetoApply">Last Date to Apply</label>
       <div class="form-group">
         <mat-form-field style="width: 50%;">
-          <mat-label>Last Date to Apply</mat-label>
-          <input matInput placeholder="last date" [matDatepicker]="picker" formControlName="lastDatetoApply"
-            class="lastDatetoApply">
+          <input matInput placeholder="MM/DD/YYYY" [matDatepicker]="picker" formControlName="lastDatetoApply"
+            class="lastDatetoApply" [min]="getCurrentDate()" readonly>
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
-        <!-- <div *ngIf="jobForm.get('lastDatetoApply').hasError('required') && jobForm.get('lastDatetoApply').touched" class="text-danger">
+        <div style="margin-top: -15px;"
+          *ngIf="jobForm.get('lastDatetoApply').hasError('required') && jobForm.get('lastDatetoApply').touched"
+          class="text-danger">
           Last Date to Apply Required.
-        </div> -->
+        </div>
       </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
+      <div class="flex_div flx_center submit_btn">
+        <div><button type="submit" class="btn btn-primary save_btn">Save</button></div>
+        <div class="clear_btn" (click)="clearForm()">Clear</div>
+      </div>
     </form>
   </div>
-  <!-- <div *ngIf="selectedOption === 'internships'" class="pd-top-20">
-    <p>Display content for Internships here...</p>
-  </div> -->
 </div>
+
+
+
+<ng-template #jobsaved>
+  <div class="txt_center">
+    <img style="justify-content: center;width: 60px;align-items: center;text-align: center;"
+      src="../../../../assets/images/green_tick_image.png">
+    <p class="job_text"><strong>Job</strong> has been <br>
+      Saved successfully</p>
+    <div><button class="go_to_viewjob" (click)="jobSaved()" type="submit">ok</button></div>
+  </div>
+</ng-template>
