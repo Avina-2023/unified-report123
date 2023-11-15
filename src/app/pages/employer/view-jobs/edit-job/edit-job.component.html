@@ -50,8 +50,8 @@
             <div class="inputContainer" style="display: flex; align-items: center;">
               <label style="margin-right: 10px; padding: 0px 0px 10px 15px;">Company Name</label>
               <mat-form-field appearance="outline" style="width: 90%;">
-                <mat-select formControlName="company" placeholder="Select Company Name">
-                  <mat-option *ngFor="let company of companyOptions" [value]="company">
+                <mat-select [formControlName]="'company'" placeholder="Select Company Name"  [value]="selectedCompany">
+                  <mat-option *ngFor="let company of companyOptions"[value]="company">
                     {{ company.company }}
                   </mat-option>
                 </mat-select>
@@ -61,6 +61,7 @@
               </mat-form-field>
             </div>
           </div>
+
           <div class="border-line">
             <div class="bottom-border"></div>
           </div>
@@ -154,8 +155,8 @@
                   <div class="mg-l-10 width-30">
                     <nz-select [nzDisabled]="isdegreeDisabled(i)" nzShowSearch nzAllowClear nzPlaceHolder="Degree"
                       [formControl]="group.get('specification')" (ngModelChange)="onDegreeChange($event, i)">
-                      <nz-option *ngFor="let option of degreeOptions" [nzLabel]="option.specification_name"
-                        [nzValue]="option.specification_name"></nz-option>
+                      <nz-option *ngFor="let option of degreeOptions" [nzLabel]="option"
+                        [nzValue]="option"></nz-option>
                     </nz-select>
                     <div *ngIf="group.get('specification').hasError('required') && group.get('specification').touched"
                       class="text-danger">
@@ -168,8 +169,8 @@
                       [ngModel]="group.get('multipleSpecialization')?.value" [ngModelOptions]="{ standalone: true }"
                       [nzSize]="default" nzMode="multiple" nzPlaceHolder="--Select Specialization (Multiple Select)---"
                       class="custom-nz-select" [formControl]="group.get('discipline')">
-                      <nz-option *ngFor="let option of listOfSpecializations" [nzLabel]="option.discipline_name"
-                        [nzValue]="option.discipline_name"></nz-option>
+                      <nz-option *ngFor="let option of listOfSpecializations" [nzLabel]="option"
+                        [nzValue]="option"></nz-option>
                     </nz-select>
                     <div *ngIf="group.get('discipline').hasError('required') && group.get('discipline').touched"
                       class="text-danger">
