@@ -21,7 +21,7 @@ export class ApiService {
   filterSubject: Subject<any> = new Subject();
   partnersubject: Subject<any> = new Subject();
   getFilteredCandidates: any;
-  constructor(private http: HttpClient, private appConfig: AppConfigService) {}
+  constructor(private http: HttpClient, private appConfig: AppConfigService) { }
 
   logout() {
     this.appConfig.clearLocalStorage();
@@ -242,6 +242,13 @@ export class ApiService {
     });
   }
 
+
+  getCities(data) {
+    return this.http.post(`${this.BASE_URL}/getCity`, data, {
+      reportProgress: true,
+    });
+  }
+
   masterCompany() {
     return this.http.get(`${this.BASE_URL}/companyMaster`, {
     });
@@ -275,7 +282,7 @@ export class ApiService {
     return this.http.post(`${this.BASE_URL}/partnerdetailsupload`, data);
   }
 
-  UploadPostJob(data){
+  UploadPostJob(data) {
     return this.http.post(`${this.BASE_URL}/postJob`, data);
   }
 
@@ -391,30 +398,24 @@ export class ApiService {
     return this.http.post(`${this.BASE_URL}/districtList`, stateId);
   }
 
-  getDepartmentcourses(data){
-  return this.http.post(`${this.BASE_URL}/getDepartment`, data);
+  getDepartmentcourses(data) {
+    return this.http.post(`${this.BASE_URL}/getDepartment`, data);
   }
 
-  getDegreeList(){
+  getDegreeList() {
     return this.http.get(`${this.BASE_URL}/getDegreeList`);
   }
 
-getCities(data) {
-    return this.http.post(`${this.BASE_URL}/getCity`, data, {
-      reportProgress: true,
-    });
-  }
-
-  getallStates(){
+  getallStates() {
     // return this.http.post(`${this.BASE_URL}/api/state_api`, Id, { headers: this.withoutTokens(), withCredentials: true });
     return this.http.get(`../assets/json/state.json`);
   }
 
-  getallCollegeCourses(){
+  getallCollegeCourses() {
     return this.http.get(`../assets/json/colleges.json`);
   }
 
-  getallEducations(){
+  getallEducations() {
     return this.http.get(`../assets/json/education.json`);
   }
 
@@ -424,10 +425,10 @@ getCities(data) {
   getJobDetail(data) {
     return this.http.post(`${this.BASE_URL}/getJobDetail`, data);
   }
-  getCandidateByFilter(data){
+  getCandidateByFilter(data) {
     return this.http.post(`${this.BASE_URL}/candidateFilter`, data);
   }
-  getsaveCandidate(data){
+  getsaveCandidate(data) {
     return this.http.post(`${this.BASE_URL}/saveCandidate`, data);
   }
   // candidateResultDetails(data) {
@@ -437,20 +438,20 @@ getCities(data) {
   //   return this.http.post("https://devfacade.lntedutech.com/learnerProgressStatus", data);
   // }
 
-  candidateResultDetails(data){
-    return this.http.post(`${this.BASE_URL}/candidateResultDetails`,data);
+  candidateResultDetails(data) {
+    return this.http.post(`${this.BASE_URL}/candidateResultDetails`, data);
   }
-  getcourseTracking(data){
-    return this.http.post(`${this.BASE_URL}/learnerProgressStatus`,data);
+  getcourseTracking(data) {
+    return this.http.post(`${this.BASE_URL}/learnerProgressStatus`, data);
   }
-  getOverAllReport(data){
-    return this.http.get(`${this.BASE_URL}/reportDashboard`,data);
+  getOverAllReport(data) {
+    return this.http.get(`${this.BASE_URL}/reportDashboard`, data);
   }
-  getAppliedcount(data){
-    return this.http.post(`${this.BASE_URL}/jobViewsLog`,data);
+  getAppliedcount(data) {
+    return this.http.post(`${this.BASE_URL}/jobViewsLog`, data);
   }
-  getAGgridViewOpenJob(data){
-    return this.http.post(`${this.BASE_URL}/adminJobList`,data);
+  getAGgridViewOpenJob(data) {
+    return this.http.post(`${this.BASE_URL}/adminJobList`, data);
   }
   getOpenJobStatusUpdated(data) {
     return this.http.post(`${this.BASE_URL}/updateApproveStatus`, data);
