@@ -109,6 +109,7 @@ import { formatDate } from '@angular/common';
 import { AppConfigService } from 'src/app/utils/app-config.service';
 import { APP_CONSTANTS } from 'src/app/utils/app-constants.service';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { log } from 'console';
 
 
 @Component({
@@ -319,7 +320,7 @@ export class EmpUploadPostrequirmentComponent implements OnInit {
 
 
 
-  addEducationGroup(): void {
+  /*addEducationGroup(): void {
     const lastGroupIndex = this.formGroups.length - 1;
     const lastGroup = this.formGroups[lastGroupIndex];
     if (lastGroup.valid) {
@@ -330,16 +331,6 @@ export class EmpUploadPostrequirmentComponent implements OnInit {
       if (graduationsToDisable.includes(lastGroupGraduation)) {
         this.disabledGraduations.push(lastGroupGraduation);
       }
-
-      /*const newGroup = this.createEducationGroup();
-     // If the selected graduation in the last group is 'SSLC', disable 'SSLC' in the new group
-     const lastGroupGraduation = lastGroup.get('level').value;
-     if (lastGroupGraduation === 'SSLC') {
-       newGroup.get('level').disable({ onlySelf: true });
-     }
-     this.formGroups.push(newGroup);*/
-
-
     } else {
       lastGroup.markAllAsTouched();
       this.toastr.warning('Please fill in all required fields in the last added group.', 'Form Validation Error');
@@ -356,7 +347,61 @@ export class EmpUploadPostrequirmentComponent implements OnInit {
   isGraduationDisabled(graduationValue: string, groupIndex: number): boolean {
     // Check if the graduationValue is in the disabledGraduations array
     return this.disabledGraduations.includes(graduationValue);
+  }*/
+
+
+
+
+  // Your existing code...
+
+addEducationGroup(): void {
+  const lastGroupIndex = this.formGroups.length - 1;
+  const lastGroup = this.formGroups[lastGroupIndex];
+  if (lastGroup.valid) {
+    this.formGroups.push(this.createEducationGroup());
+    this.updateDisabledGraduations();
+  } else {
+    lastGroup.markAllAsTouched();
+    this.toastr.warning('Please fill in all required fields in the last added group.', 'Form Validation Error');
   }
+}
+
+removeEducationGroup(index: number): void {
+  if (this.formGroups.length > 1 && index > 0) {
+    const removedGroup = this.formGroups[index];
+    const removedGroupGraduation = removedGroup.get('level').value;
+
+    // Remove the graduation from the disabledGraduations array
+    const graduationIndex = this.disabledGraduations.indexOf(removedGroupGraduation);
+    if (graduationIndex !== -1) {
+      this.disabledGraduations.splice(graduationIndex, 1);
+    }
+
+    this.formGroups.splice(index, 1);
+    this.jobForm.setControl('educationGroups', this.fb.array(this.formGroups));
+  }
+}
+
+updateDisabledGraduations(): void {
+  this.disabledGraduations = [];
+  for (const group of this.formGroups) {
+    const graduationValue = group.get('level').value;
+    if (graduationValue && !this.disabledGraduations.includes(graduationValue)) {
+      this.disabledGraduations.push(graduationValue);
+    }
+  }
+}
+
+// Your existing code...
+
+isGraduationDisabled(graduationValue: string, groupIndex: number): boolean {
+  // Check if the graduationValue is in the disabledGraduations array
+  // Apply the disabled condition only for 'SSLC', 'HSC', and 'Any Graduation'
+  return ['SSLC', 'HSC', 'Any Graduation'].includes(graduationValue) && this.disabledGraduations.includes(graduationValue);
+}
+
+// Your existing code...
+
 
 
 
@@ -463,14 +508,24 @@ export class EmpUploadPostrequirmentComponent implements OnInit {
     });
   }
 
+
+
   onGraduationChange(selectedGraduation: string, index: number) {
+    this.updateDisabledGraduations();
+    
+
     const currentFormGroup = this.formGroups[index];
+    //console.log(selectedGraduation);
+    
+   
     // Clear values in the current form group
     currentFormGroup.get('specification').setValue(null);
     //currentFormGroup.get('course').setValue(null);
     currentFormGroup.get('discipline').setValue(null);
 
     if (selectedGraduation === null) {
+      console.log('value empty');
+      this.updateDisabledGraduations();
       return;
     }
 
@@ -701,7 +756,7 @@ export class EmpUploadPostrequirmentComponent implements OnInit {
         "description": descriptionItems,
         "requirement": requirementItems,
         "driveDate": "",
-        "isActive": true
+        "isActive": false
       };
 
       if (this.selectedOption === 'Jobs') {
