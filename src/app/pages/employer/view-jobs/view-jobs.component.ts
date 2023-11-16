@@ -92,6 +92,7 @@ export class ViewJobsComponent implements OnInit {
   isPrevButtonDisabled: boolean = false;
   isNextButtonDisabled: boolean = false;
   pageNumberInput: any;
+  allcount: any;
 
 
 
@@ -558,15 +559,16 @@ export class ViewJobsComponent implements OnInit {
     var datasource = this.getAggridJoblist();
     params.api.setServerSideDatasource(datasource);
   }
-
+// old code
   getAggridJoblist() {
-    // debugger;
+    //debugger;
     return {
       getRows: (params) => {
         let apiData: any = params;
         apiData.request.filterModel['jobCategoryId'] = {
           filterType: 'text',
-          type : "contains",
+          type: "contains",
+          // "endRow": 2,
           filter :"64cc8cbd112e2bb777bc92fb"
         };
         this.partnerEnquirieAgGridSubscription = this.ApiService.getAGgridViewOpenJob(apiData.request).subscribe(
@@ -581,31 +583,37 @@ export class ViewJobsComponent implements OnInit {
             } else {
               this.partnerListAgData = data1 && data1.data ? data1.data : [];
               this.alldata = data1;
-              console.log(this.alldata,'alldata');
-              console.log(this.alldata.data,'alldata.data');
-              console.log(this.alldata.data.length,'alldata.data.length');
-
               this.approvecountvalue = this.alldata.totalCount.approvedCount || 0;
               this.pendingcountvalue = this.alldata.totalCount.pendingCount || 0;
               this.rejectedcountvalue = this.alldata.totalCount.rejectedCount || 0;
-              this.allcountvalue = this.alldata.totalCount.totalCount || 0;
-
+              this.allcount = this.alldata.totalCount.totalCount || 0;
+              if (apiData.request.filterModel && apiData.request.filterModel.approveStatus && apiData.request.filterModel.approveStatus?.filter == 'approved') {
+                  this.allcountvalue = this.alldata.totalCount.approvedCount || 0;
+              }else if (apiData.request.filterModel && apiData.request.filterModel.approveStatus && apiData.request.filterModel.approveStatus?.filter == 'pending') {
+                  this.allcountvalue = this.alldata.totalCount.pendingCount || 0;
+              }else if (apiData.request.filterModel && apiData.request.filterModel.approveStatus && apiData.request.filterModel.approveStatus?.filter == 'rejected') {
+                  this.allcountvalue = this.alldata.totalCount.rejectedCount || 0;
+              } else {
+                  this.allcountvalue = this.alldata.totalCount.totalCount || 0;
+              }
+              // if(apiData.request.approveStatus.filter)
               if (this.partnerListAgData.length > 0) {
-                this.pageRowCount = data1 && data1.totalCount ? data1.totalCount : 0;
-                // console.log(this.pageRowCount,'pageRowCount');
+                this.pageRowCount = data1 && data1.totalCount.totalCount ? data1.totalCount.totalCount : 0;
+                console.log(this.allcountvalue,this.pageRowCount,'ApipageRowCount');
                 this.totalPages = Math.ceil(this.pageRowCount / this.selectedPageSize);
                 this.gridApi.hideOverlay();
                 params.success({
                   rowData: this.partnerListAgData,
-                  rowCount: this.allcountvalue,
+                   rowCount: this.allcountvalue,
                   //  rowCount: this.alldata.data.length,
                 });
+
                 // localStorage.setItem('partnerListAgData', JSON.stringify(this.partnerListAgData));
                 } else {
                 params.success({
                   rowData: this.partnerListAgData,
-                 // rowData: [],
-                  rowCount: 0,
+                  //rowData: [],
+                  // rowCount: 0,
                 });
                 this.gridApi.showNoRowsOverlay();
               }
@@ -623,6 +631,36 @@ export class ViewJobsComponent implements OnInit {
       },
     };
   }
+
+   onTabChange(index: number) {
+    const pall = ['navyblue', 'green', 'lightblue', 'red'];
+    const icn = ['#1B4E9B', '#49AE31', '#27BBEE', '#EF2917'];
+    console.log('Selected tab index:' + index);
+    this.dynclass = pall[index];
+    this.icncolor = icn[index];
+    this.active = index;
+    console.log(index, 'MYINDEX VALUE');
+    let statusmodel = {
+      approveStatus: {
+        filterType: 'text',
+        type: 'contains',
+        filter: '',
+      },
+    };
+    if (index == 1) {
+      statusmodel.approveStatus.filter = 'approved';
+    } else if (index == 2) {
+      statusmodel.approveStatus.filter = 'pending';
+    } else if (index == 3) {
+      statusmodel.approveStatus.filter = 'rejected';
+    }
+    this.gridApi.setFilterModel(statusmodel);
+  }
+
+  // old code end
+
+
+
 
   // getAggridJoblist() {
   //   // debugger;
@@ -745,30 +783,7 @@ export class ViewJobsComponent implements OnInit {
     this.gridApi.refreshServerSideStore({ purge: true });
   }
 
-  onTabChange(index: number) {
-    const pall = ['navyblue', 'green', 'lightblue', 'red'];
-    const icn = ['#1B4E9B', '#49AE31', '#27BBEE', '#EF2917'];
-    console.log('Selected tab index:' + index);
-    this.dynclass = pall[index];
-    this.icncolor = icn[index];
-    this.active = index;
-    console.log(index, 'MYINDEX VALUE');
-    let statusmodel = {
-      approveStatus: {
-        filterType: 'text',
-        type: 'contains',
-        filter: '',
-      },
-    };
-    if (index == 1) {
-      statusmodel.approveStatus.filter = 'approved';
-    } else if (index == 2) {
-      statusmodel.approveStatus.filter = 'pending';
-    } else if (index == 3) {
-      statusmodel.approveStatus.filter = 'rejected';
-    }
-    this.gridApi.setFilterModel(statusmodel);
-  }
+
 
 
 }
