@@ -56,46 +56,46 @@
         <span class="tab-name">{{ tab.title }}</span>
         <div>
           <span class="tab-count" [style.background-color]="active == i ? icncolor :  null">
-            <span *ngIf="tab.title == 'All'"> {{allcountvalue}} </span>
+            <span *ngIf="tab.title == 'All'"> {{allcount}} </span>
             <span *ngIf="tab.title == 'Approved'"> {{approvecountvalue}} </span>
             <span *ngIf="tab.title == 'Pending'"> {{pendingcountvalue}} </span>
             <span *ngIf="tab.title == 'Rejected'"> {{rejectedcountvalue}} </span>
           </span>
         </div>
       </ng-template>
-    </mat-tab> 
+    </mat-tab>
   </mat-tab-group>
 </div>
 
 
 <div class="border">
 <div class="ag-grid">
-  <ag-grid-angular style="width: 100%; height: 100%;" class="ag-theme-alpine" 
+  <ag-grid-angular style="width: 100%; height: 100%;" class="ag-theme-alpine"
     [gridOptions]="gridOptions"
-    [columnDefs]="columnDefs" 
-    [defaultColDef]="defaultColDef" 
+    [columnDefs]="columnDefs"
+    [defaultColDef]="defaultColDef"
     [masterDetail]="masterDetail"
-    [overlayNoRowsTemplate]="overlayNoRowsTemplate" 
-    [rowData]="rowData" 
+    [overlayNoRowsTemplate]="overlayNoRowsTemplate"
+    [rowData]="rowData"
     [enableRangeSelection]="true"
-    [tooltipShowDelay]="0" 
-    [animateRows]="true" headerHeight="45" rowHeight="45" 
+    [tooltipShowDelay]="0"
+    [animateRows]="true" headerHeight="45" rowHeight="45"
     [suppressRowClickSelection]="true"
-    [suppressRowTransform]="true" 
-    [rowSelection]="rowSelection" 
-    [pivotPanelShow]="'always'" 
+    [suppressRowTransform]="true"
+    [rowSelection]="rowSelection"
+    [pivotPanelShow]="'always'"
     [sideBar]="false"
-    (gridReady)="onGridReady($event)" 
-    [rowModelType]="rowModelType" 
+    (gridReady)="onGridReady($event)"
+    [rowModelType]="rowModelType"
     [maintainColumnOrder]="true"
-    [cacheBlockSize]="cacheBlockSize" 
-    [suppressAggFuncInHeader]="true" 
+    [cacheBlockSize]="cacheBlockSize"
+    [suppressAggFuncInHeader]="true"
     [suppressColumnVirtualisation]="true"
-    [autoGroupColumnDef]="autoGroupColumnDef" 
-    [serverSideStoreType]="serverSideStoreType" 
+    [autoGroupColumnDef]="autoGroupColumnDef"
+    [serverSideStoreType]="serverSideStoreType"
     [pagination]="true"
-    [paginationPageSize]="10" 
-    [sideBar]="sideBar" 
+    [paginationPageSize]="10"
+    [sideBar]="sideBar"
     allColumns=true>
   </ag-grid-angular>
 </div>
@@ -111,7 +111,7 @@
       <option value="20">20</option>
     </select>
   </div>
-  
+
   <div class="goto-sear">
     <div class="pagintion">
       <button class="prev" (click)="onBtPrevPage()" [disabled]="isPrevButtonDisabled">Prev</button>
@@ -126,7 +126,7 @@
       <button class="go" [ngClass]="{disabled: pageNumberInput===''||pageNumberInput===undefined||(totalPages < pageNumberInput)}" (click)="onBtPageGo(pageNumberInput)"  [disabled]="pageNumberInput===''||pageNumberInput===undefined||(totalPages < pageNumberInput)">Go</button>
     </div>
   </div>
-  
+
 </div> -->
 
 </div>
