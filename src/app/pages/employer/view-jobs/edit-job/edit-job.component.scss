@@ -309,3 +309,10 @@ nz-select {
   opacity: 1;
   color: #FCFCFC;
 }
+::ng-deep.overflow_scroll nz-select-top-control {
+  height: 32px !important;
+  overflow-y: scroll !important;
+}
+::ng-deep.overflow_hidden nz-select-top-control {
+  overflow: hidden;
+}
