@@ -11,7 +11,7 @@
             <div class="singleWrap">
               <form [formGroup]="addjobsForm">
                 <!--  -->
-                <div class="inputContainer">
+                <!-- <div class="inputContainer">
                   <label>Company Name<span>*</span></label>
                   <mat-form-field appearance="outline">
                     <mat-select formControlName="company" placeholder="Select Company Name"
@@ -24,20 +24,21 @@
                       Company name is Required
                     </mat-error>
                   </mat-form-field>
-                </div>
+                </div> -->
 
                 <!--  -->
-                <!-- <div class="inputContainer">
-                      <label>Company Name <span>*</span></label>
-                      <nz-select style="width: 98%;" nzAllowClear nzShowSearch [(ngModel)]="selectedCompany"
-                        nzPlaceHolder="-- Select Company Name (Multiple Select)" formControlName="company" class="">
-                        <nz-option *ngFor="let company of companyOptions" [nzLabel]="company.company"
-                          [nzValue]="company.companyId"></nz-option>
-                      </nz-select>
-                    </div>
-                    <div *ngIf="addjobsForm.get('company').hasError('required') && addjobsForm.get('company').touched" class="text-danger">
-                      Company Name is required.
-                    </div> -->
+                <div class="inputContainer" style="padding: 0px 0px 15px 0px;">
+                  <label>Company Name <span>*</span></label>
+                  <nz-select style="width: 98%;" nzAllowClear nzShowSearch [(ngModel)]="selectedCompany"
+                    nzPlaceHolder="-- Select Company Name --" formControlName="company" class="">
+                    <nz-option *ngFor="let company of companyOptions" [nzLabel]="company.company"
+                      [nzValue]="company.companyId"></nz-option>
+                  </nz-select>
+                </div>
+                <div *ngIf="addjobsForm.get('company').hasError('required') && addjobsForm.get('company').touched"
+                  class="text-danger">
+                  Company Name is required.
+                </div>
 
                 <div class="primaryWrap">
                   <div class="leftWrap">
@@ -93,8 +94,7 @@
                       <label>Job Location <span>*</span></label>
                       <nz-select style="width: 98%;" nzMode="multiple" nzAllowClear nzShowSearch
                         nzPlaceHolder="-- Select Job Location (Multiple Select)" formControlName="jobLocation"
-                        (input)="locationSearch($event)"
-                        class="custom-nz-select my-custom-nz-select">
+                        (input)="locationSearch($event)" class="custom-nz-select my-custom-nz-select">
                         <nz-option *ngFor="let location of JobLocations" [nzLabel]="location"
                           [nzValue]="location"></nz-option>
                       </nz-select>
@@ -377,8 +377,7 @@
         <img style="justify-content: center;width: 60px;align-items: center;text-align: center;"
           src="../../../../assets/images/green_tick_image.png">
         <p class="job_text"><strong>Job</strong> has been<br>Saved successfully</p>
-        <div><button class="go_to_viewjob" type="submit"
-            (click)="closeThankYou()">ok</button></div>
+        <div><button class="go_to_viewjob" type="submit" (click)="closeThankYou()">ok</button></div>
       </div>
     </ng-template>
   </div>
