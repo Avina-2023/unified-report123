@@ -47,7 +47,7 @@
         <form [formGroup]="addjobsForm">
 
           <div style="width: 100%;">
-            <div class="inputContainer" style="display: flex; align-items: center;">
+            <!-- <div class="inputContainer" style="display: flex; align-items: center;">
               <label style="margin-right: 10px; padding: 0px 0px 10px 15px;">Company Name</label>
               <mat-form-field appearance="outline" style="width: 90%;">
                 <mat-select [formControlName]="'company'" placeholder="Select Company Name">
@@ -59,6 +59,19 @@
                   Company name is Required
                 </mat-error>
               </mat-form-field>
+            </div> -->
+            <div class="inputContainer" style="display: flex; align-items: center;padding: 0px 0px 20px 0px">
+              <label style="margin-right: 10px; padding: 0px 0px 10px 15px;">Company Name</label>
+              <nz-select style="width: 90%;" nzAllowClear nzShowSearch [(ngModel)]="selectedCompany"
+                nzPlaceHolder="Select Company Name" formControlName="company">
+                <nz-option *ngFor="let company of companyOptions" [nzLabel]="company.company"
+                  [nzValue]="company.companyId" [nzSelected]="company.companyId === jobdata.company ? true : false">
+                </nz-option>
+              </nz-select>
+            </div>
+            <div *ngIf="addjobsForm.get('company').hasError('required') && addjobsForm.get('company').touched"
+              class="text-danger">
+              Company Name is required.
             </div>
           </div>
 
@@ -92,6 +105,7 @@
               </ng-container>
             </div>
           </div>
+
           <div class="border-line">
             <div class="bottom-border"></div>
           </div>
@@ -101,7 +115,7 @@
               <label style="padding: 20px 0px 20px 15px;">Job Location</label>
               <nz-select style="width: 90%;padding: 0px 0px 0px 6px;" nzMode="tags" nzAllowClear nzShowSearch
                 nzPlaceHolder="-- Select Job Location --" formControlName="jobLocation" (input)="locationSearch($event)"
-                class="custom-nz-select my-custom-nz-select" >
+                class="custom-nz-select my-custom-nz-select">
                 <nz-option *ngFor="let location of JobLocations" [nzLabel]="location" [nzValue]="location"></nz-option>
               </nz-select>
             </div>
@@ -132,68 +146,73 @@
           <div class="border-line">
             <div class="bottom-border"></div>
           </div>
-<div>
-          <div style="width: 100%; display: flex;">
-            <div style="width: 30%;">
-              <label class="edu_label">Education</label>
+          <div>
+            <div style="width: 100%; display: flex;">
+              <div style="width: 30%;">
+                <label class="edu_label">Education</label>
+              </div>
+              <div style="width: 90%;">
+                <ng-container *ngFor="let group of formGroups; let i = index">
+                  <div class="form-group flex_div">
+                    <div class="mg-r-10 width-30 ">
+                      <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Graduation" [formControl]="group.get('level')"
+                        (ngModelChange)="onGraduationChange($event, i)">
+                        <nz-option *ngFor="let option of educations" [nzLabel]="option.education"
+                          [nzValue]="option.education">
+                        </nz-option>
+                      </nz-select>
+                      <div *ngIf="group.get('level').hasError('required') && group.get('level').touched"
+                        class="text-danger">
+                        Graduation Field Required.
+                      </div>
+                    </div>
+
+                    <div class="mg-l-10 width-30">
+                      <nz-select [nzDisabled]="isdegreeDisabled(i)" nzShowSearch nzAllowClear nzPlaceHolder="Degree"
+                        [formControl]="group.get('specification')" (ngModelChange)="onDegreeChange($event, i)">
+                        <nz-option *ngFor="let option of degreeOptions" [nzLabel]="option"
+                          [nzValue]="option"></nz-option>
+                      </nz-select>
+                      <div *ngIf="group.get('specification').hasError('required') && group.get('specification').touched"
+                        class="text-danger">
+                        Degree Required.
+                      </div>
+                    </div>
+
+                    <div class="mg-l-10 width-40 overflow_scroll overflow_hidden">
+                      <nz-select nzAllowClear [nzDisabled]="iscourseDisabled(i)"
+                        [ngModel]="group.get('multipleSpecialization')?.value" [ngModelOptions]="{ standalone: true }"
+                        [nzSize]="default" nzMode="multiple"
+                        nzPlaceHolder="--Select Specialization (Multiple Select)---" class="custom-nz-select"
+                        [formControl]="group.get('discipline')">
+                        <nz-option *ngFor="let option of listOfSpecializations" [nzLabel]="option"
+                          [nzValue]="option"></nz-option>
+                      </nz-select>
+                      <div *ngIf="group.get('discipline').hasError('required') && group.get('discipline').touched"
+                        class="text-danger">
+                        Specialization is Required.
+                      </div>
+                    </div>
+
+                    <div class="remove_group_text" *ngIf="formGroups.length > 1 && i > 0"
+                      (click)="removeEducationGroup(i)">X</div>
+                  </div>
+                </ng-container>
+              </div>
             </div>
-            <div style="width: 90%;">
-              <ng-container *ngFor="let group of formGroups; let i = index">
-                <div class="form-group flex_div">
-                  <div class="mg-r-10 width-30 ">
-                    <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Graduation" [formControl]="group.get('level')"
-                      (ngModelChange)="onGraduationChange($event, i)">
-                      <nz-option *ngFor="let option of educations" [nzLabel]="option.education" [nzValue]="option.education">
-                      </nz-option>
-                    </nz-select>
-                    <div *ngIf="group.get('level').hasError('required') && group.get('level').touched" class="text-danger">
-                      Graduation Field Required.
-                    </div>
-                  </div>
 
-                  <div class="mg-l-10 width-30">
-                    <nz-select [nzDisabled]="isdegreeDisabled(i)" nzShowSearch nzAllowClear nzPlaceHolder="Degree"
-                      [formControl]="group.get('specification')" (ngModelChange)="onDegreeChange($event, i)">
-                      <nz-option *ngFor="let option of degreeOptions" [nzLabel]="option"
-                        [nzValue]="option"></nz-option>
-                    </nz-select>
-                    <div *ngIf="group.get('specification').hasError('required') && group.get('specification').touched"
-                      class="text-danger">
-                      Degree Required.
-                    </div>
-                  </div>
-
-                  <div class="mg-l-10 width-40 overflow_scroll overflow_hidden">
-                    <nz-select nzAllowClear [nzDisabled]="iscourseDisabled(i)"
-                      [ngModel]="group.get('multipleSpecialization')?.value" [ngModelOptions]="{ standalone: true }"
-                      [nzSize]="default" nzMode="multiple" nzPlaceHolder="--Select Specialization (Multiple Select)---"
-                      class="custom-nz-select" [formControl]="group.get('discipline')">
-                      <nz-option *ngFor="let option of listOfSpecializations" [nzLabel]="option"
-                        [nzValue]="option"></nz-option>
-                    </nz-select>
-                    <div *ngIf="group.get('discipline').hasError('required') && group.get('discipline').touched"
-                      class="text-danger">
-                      Specialization is Required.
-                    </div>
-                  </div>
-
-                  <div class="remove_group_text" *ngIf="formGroups.length > 1 && i > 0" (click)="removeEducationGroup(i)">X</div>
-                </div>
-              </ng-container>
-            </div>
+            <div class="add_more_text" (click)="addEducationGroup()">Add More</div>
           </div>
 
-          <div class="add_more_text" (click)="addEducationGroup()">Add More</div>
-</div>
-
-         <hr style="margin: 30px 0px 0px 0px;  padding: 0px 15px 15px 15px;margin-left: 18px;" >
+          <hr style="margin: 30px 0px 0px 0px;  padding: 0px 15px 15px 15px;margin-left: 18px;">
           <div style="width: 100%; display: flex; justify-content: space-between; align-items: center;">
             <label class="edu_label" style="margin-right: 10px;">CTC</label>
             <div style="width: 90%; display: flex; align-items: center;">
-              <mat-radio-group formControlName="ctcOption" aria-label="Select an option" [(ngModel)]="selectedRangeOption"
-                (ngModelChange)="onCtcOptionChange()">
+              <mat-radio-group formControlName="ctcOption" aria-label="Select an option"
+                [(ngModel)]="selectedRangeOption" (ngModelChange)="onCtcOptionChange()">
                 <mat-radio-button value="fixed" style="font-weight: bold; font-size: 14px;">Fixed</mat-radio-button>
-                <mat-radio-button value="range" style="font-weight: bold; font-size: 14px; padding: 10px">Range</mat-radio-button>
+                <mat-radio-button value="range"
+                  style="font-weight: bold; font-size: 14px; padding: 10px">Range</mat-radio-button>
               </mat-radio-group>
 
               <!-- Fixed input -->
@@ -205,7 +224,8 @@
               </div>
 
               <!-- Range inputs -->
-              <div *ngIf="selectedRangeOption === 'range'" style="display: flex; align-items: center; margin-left: 10px;">
+              <div *ngIf="selectedRangeOption === 'range'"
+                style="display: flex; align-items: center; margin-left: 10px;">
                 <mat-form-field appearance="outline" style="padding-right: 5px; width: 160px;">
                   <input formControlName="startrange" matInput placeholder="CTC (numeric only)" style="">
                   <mat-error *ngIf="addjobsForm.get('startrange').hasError('required')"> CTC is required</mat-error>
@@ -232,7 +252,8 @@
                 <nz-option *ngFor="let item of YearofPassing" [nzLabel]="item" [nzValue]="item"></nz-option>
               </nz-select>
             </div>
-            <div *ngIf="addjobsForm.get('yearofPassout').hasError('required') && addjobsForm.get('yearofPassout').touched"
+            <div
+              *ngIf="addjobsForm.get('yearofPassout').hasError('required') && addjobsForm.get('yearofPassout').touched"
               class="text-danger">
               Year of Passing is required.
             </div>
@@ -244,15 +265,15 @@
           <div style="width: 100%;">
             <div class="inputContainer overflow_scroll" style="display: flex; align-items: center;">
               <label style="padding: 20px 0px 20px 15px;">Key skills</label>
-              <nz-select  style="width: 90%;padding: 0px 0px 0px 6px;" nzMode="multiple" nzAllowClear
-                nzShowSearch nzPlaceHolder="-- Select Skill Set (Multiple Select) --" formControlName="skillSet"
+              <nz-select style="width: 90%;padding: 0px 0px 0px 6px;" nzMode="multiple" nzAllowClear nzShowSearch
+                nzPlaceHolder="-- Select Skill Set (Multiple Select) --" formControlName="skillSet"
                 (input)="handleSearch($event)" class="custom-nz-select my-custom-nz-select" required>
                 <nz-option *ngFor="let item of newSkill" [nzLabel]="item" [nzValue]="item"></nz-option>
               </nz-select>
             </div>
-              <div  width *ngIf="addjobsForm.get('skillSet').hasError('required') && addjobsForm.get('skillSet').touched"
-                class="text-danger">Skill Set is
-                Required.</div>
+            <div width *ngIf="addjobsForm.get('skillSet').hasError('required') && addjobsForm.get('skillSet').touched"
+              class="text-danger">Skill Set is
+              Required.</div>
           </div>
           <div class="border-line">
             <div class="bottom-border"></div>
@@ -341,7 +362,7 @@
                 <button mat-flat-button (click)="saveviewForm()">Save</button>
               </div>
               <div class="subButton2">
-                <button mat-flat-button (click)="clearviewForm()">Clear</button>
+                <button mat-flat-button (click)="clearviewForm()">Cancel</button>
               </div>
             </div>
           </div>

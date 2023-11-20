@@ -706,7 +706,8 @@ ctcChange() {
     }
   // }
   clearviewForm() {
-    this.addjobsForm.reset();
+      this.dialog.closeAll();
+      this.appconfig.routeNavigation('/auth/partner/viewopenjobs');
   }
 
   closeThankYou() {
