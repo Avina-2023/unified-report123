@@ -31,13 +31,8 @@ export class EditJobComponent implements OnInit {
   JobLocations: any = [];
   YearofPassing: string[] = [];
   jobdata: any;
-  selectedRangeOption: string = 'fixed';
+  selectedRangeOption: any;
   selectedOption: string;
-  industryTypes = [
-    'Full time',
-    'Internship',
-    'All',
-  ];
   jobType = "";
   JobType = [
     'Full Time',
@@ -46,9 +41,6 @@ export class EditJobComponent implements OnInit {
   skillSet: any;
   jobLocation: any;
   description: any;
-  ctcArray = ['Option 1', 'Option 2', 'Option 3'];
-  rangefromArray = ['Option A', 'Option B', 'Option C'];
-  rangetoArray = ['Option X', 'Option Y', 'Option Z'];
   htmlContent_description = '';
   htmlContent_requirement = '';
   htmlContent_information = '';
@@ -147,20 +139,27 @@ export class EditJobComponent implements OnInit {
     //on click on edit in ag-grid table it'll get data particular rowdata from localstorage
     let localjobData = JSON.parse(this.appconfig.getLocalStorage('openJobData'));
     this.jobdata = this.appconfig.jobData ? this.appconfig.jobData : localjobData;
-    console.log(this.jobdata, 'data for edit job page');
+    //console.log(this.jobdata, 'data for edit job page');
+    // console.log(this.jobdata.ctcType, 'testctc');
+    this.selectedRangeOption= this.jobdata.ctcType;
+    console.log(this.selectedRangeOption, ' selected testctc');
+
 
     this.formerrorInitialize();
+    this.companylist();
     this.getallEducation();
     this.getallCourses();
     this.getalldegree();
     this.cityLocation();
     this.skilllist();
-    this.companylist();
+
     // this.addjobsForm = this.formBuilder.group({
     // });
     this.patchFormValues();
     console.log(this.addjobsForm, '------------------');
-    console.log(this.jobdata.company,'test selected');
+    console.log(this.jobdata.company, 'test selected');
+    console.log();
+
 
   }
   patchFormValues() {
@@ -171,11 +170,10 @@ export class EditJobComponent implements OnInit {
     if (this.jobdata) {
 
       console.log(this.jobdata, 'jobdata');
+      const ctcValues = this.jobdata.ctc.split(' - ');
       this.addjobsForm.patchValue({
-
-
         //company: { company: this.jobdata.company, companyId: this.jobdata.companyId },
-        company: this.jobdata.company,
+        company:  this.jobdata.company,
         jobRole: this.jobdata.jobRole,
         jobTitle: this.jobdata.jobTitle,
         jobLocation: this.jobdata.jobLocation,
@@ -184,50 +182,30 @@ export class EditJobComponent implements OnInit {
         yearofPassout: this.jobdata.yearofPassout,
         skillSet: this.jobdata.skillSet,
         lastDatetoApply: this.jobdata.lastDatetoApply,
-
+        fixed: this.jobdata.ctc,
+        startrange: this.jobdata.ctcType === 'range' ? ctcValues[0] : null,
+        endrange: this.jobdata.ctcType === 'range' ? ctcValues[1] : null,
         description: this.jobdata.description.length > 0 ? this.jobdata.description[0].item : '',
         requirement: this.jobdata.requirement.length > 0 ? this.jobdata.requirement[0].item : '',
         additionalInformation: this.jobdata.additionalInformation ? this.jobdata.additionalInformation.note : '',
       });
 
-
   }
     if (this.jobdata.education) {
       // Clear existing form groups
       this.formGroups = [];
-
-      // Loop through education data and add form groups
       for (const eduItem of this.jobdata.education) {
         const formGroup = this.fb.group({
           level: [eduItem.level],
           specification: [eduItem.specification],
           discipline: [eduItem.discipline],
         });
-
         this.formGroups.push(formGroup);
       }
-
-      this.addjobsForm.setControl('education', this.fb.array(this.formGroups));
+      this.addjobsForm.setControl('educationGroups', this.fb.array(this.formGroups));
       console.log('Form Groups:', this.formGroups);
+      console.log('Form Value After Patching Education:', this.addjobsForm.value);
     }
-
-    /// patching for ctc
-      const ctcType = this.jobdata.ctcType;
-
-    if (ctcType === 'fixed') {
-      this.addjobsForm.patchValue({
-        ctcOption: 'fixed',
-        fixed: this.jobdata.ctc,
-      });
-    } else if (ctcType === 'range') {
-      const [startRange, endRange] = (this.jobdata.ctc || '').split(' - ');
-      this.addjobsForm.patchValue({
-        ctcOption: 'range',
-        startrange: startRange,
-        endrange: endRange,
-      });
-    }
-
     // }, 1000);
   }
 
@@ -239,7 +217,7 @@ export class EditJobComponent implements OnInit {
       fixed:[''],
       startrange:[''],
       endrange: [''],
-       company: ['', [Validators.required]],
+      company: ['', [Validators.required]],
       jobRole: ['', [Validators.required]],
       jobLocation: ['', [Validators.required]],
       jobType: [[], [Validators.required]],
@@ -614,7 +592,7 @@ ctcChange() {
     const endrangeControl = this.addjobsForm.get('endrange');
     if (this.selectedRangeOption === 'fixed') {
       fixedControl.setValidators(Validators.required);
-      fixedControl.setValue(this.fixed);
+      fixedControl.setValue(this.jobdata.ctc);
       startrangeControl.clearValidators();
       endrangeControl.clearValidators();
       startrangeControl.setValue(null);
@@ -622,10 +600,16 @@ ctcChange() {
     } else if (this.selectedRangeOption === 'range') {
       startrangeControl.setValidators(Validators.required);
       endrangeControl.setValidators(Validators.required);
-      startrangeControl.setValue(this.startrange);
-      endrangeControl.setValue(this.endrange);
+      // startrangeControl.setValue(this.startrange);
+      // endrangeControl.setValue(this.endrange);
       fixedControl.clearValidators();
       fixedControl.setValue(null);
+      const ctcValues = this.jobdata.ctc.split(' - ');
+      startrangeControl.patchValue(ctcValues[0]);
+      endrangeControl.patchValue(ctcValues[1]);
+      // startrangeControl.patchValue(this.jobdata.startrange);
+      // endrangeControl.patchValue(this.jobdata.endrange);
+      // const fixedControl = this.addjobsForm.get('fixed');
     }
     fixedControl.updateValueAndValidity();
     startrangeControl.updateValueAndValidity();

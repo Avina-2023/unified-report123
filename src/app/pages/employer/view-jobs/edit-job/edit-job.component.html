@@ -65,7 +65,7 @@
               <nz-select style="width: 90%;" nzAllowClear nzShowSearch [(ngModel)]="selectedCompany"
                 nzPlaceHolder="Select Company Name" formControlName="company">
                 <nz-option *ngFor="let company of companyOptions" [nzLabel]="company.company"
-                  [nzValue]="company.companyId" [nzSelected]="company.companyId === jobdata.company ? true : false">
+                  [nzValue]="company" [nzSelected]="company.companyId === jobdata.company ? true : false">
                 </nz-option>
               </nz-select>
             </div>
