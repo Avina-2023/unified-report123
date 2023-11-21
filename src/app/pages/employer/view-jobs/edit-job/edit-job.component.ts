@@ -20,7 +20,6 @@ export class EditJobComponent implements OnInit {
   addjobsForm: FormGroup;
   formGroups: FormGroup[] = [];
   companyOptions: string[] = [];
-  //selectedCompany = ["Movate"];
   companyId: any;
   company: any;
   jobId: any;
@@ -144,14 +143,13 @@ export class EditJobComponent implements OnInit {
     this.selectedRangeOption= this.jobdata.ctcType;
     console.log(this.selectedRangeOption, ' selected testctc');
 
-
-    this.formerrorInitialize();
     this.companylist();
     this.getallEducation();
     this.getallCourses();
     this.getalldegree();
     this.cityLocation();
     this.skilllist();
+    this.formerrorInitialize();
 
     // this.addjobsForm = this.formBuilder.group({
     // });
@@ -161,6 +159,7 @@ export class EditJobComponent implements OnInit {
     console.log();
 
 
+
   }
   patchFormValues() {
     // setTimeout(() => {
@@ -168,6 +167,9 @@ export class EditJobComponent implements OnInit {
 
     //console.log(company, 'company test');
     if (this.jobdata) {
+   this.selectedCompany = this.jobdata.company;
+
+      this.addjobsForm.get('company').setValue(this.jobdata.company);
 
       console.log(this.jobdata, 'jobdata');
       const ctcValues = this.jobdata.ctc.split(' - ');
@@ -203,8 +205,8 @@ export class EditJobComponent implements OnInit {
         this.formGroups.push(formGroup);
       }
       this.addjobsForm.setControl('educationGroups', this.fb.array(this.formGroups));
-      console.log('Form Groups:', this.formGroups);
-      console.log('Form Value After Patching Education:', this.addjobsForm.value);
+      // console.log('Form Groups:', this.formGroups);
+      // console.log('Form Value After Patching Education:', this.addjobsForm.value);
     }
     // }, 1000);
   }
@@ -213,10 +215,11 @@ export class EditJobComponent implements OnInit {
     // const emailregex: RegExp =
     //   /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
      this.addjobsForm = this.fb.group({
-     ctcOption: ['', Validators.required],
+      ctcOption: ['', Validators.required],
       fixed:[''],
       startrange:[''],
       endrange: [''],
+      // company: [null, [Validators.required]],
       company: ['', [Validators.required]],
       jobRole: ['', [Validators.required]],
       jobLocation: ['', [Validators.required]],
@@ -440,6 +443,7 @@ getalldegree() {
     const currentFormGroup = this.formGroups[index];
     currentFormGroup.get('discipline').setValue(null);
     //if (selectedCourse !== null && typeof selectedCourse === 'string') {
+
     if (selectedCourse !== null && typeof selectedCourse === 'string' && selectedCourse !== 'Any Degree / Graduation' && selectedCourse !== 'X Std' && selectedCourse !== 'XII Std') {
       console.log(selectedCourse, 'selectedCoursevalues');
       const params = { "degree": selectedCourse };

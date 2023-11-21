@@ -57,7 +57,7 @@
                       <label>Job Title<span>*</span></label>
                       <mat-form-field appearance="outline">
                         <input formControlName="jobTitle" matInput placeholder="Enter Job Title">
-                        <mat-error class="error" *ngIf="jobTitle?.errors?.required">{{'Job Ttitle is Required'}}</mat-error>
+                        <mat-error class="error" *ngIf="jobTitle?.errors?.required">{{'Job Title is Required'}}</mat-error>
                       </mat-form-field>
                       <ng-container *ngIf="jobTitle.invalid && jobTitle.touched">
                       </ng-container>
