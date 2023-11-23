@@ -35,6 +35,8 @@ export class DriveSettingsComponent implements OnInit {
   startRow: any = 0;
   endRow: any = 5;
   editMode = false;
+  addneweducationGroupCriteria = false;
+  criteriaEditGroup = false;
   showCustomCriteria = false;
   editGenderMode = false;
   editBacklogsMode = false;
@@ -141,7 +143,7 @@ export class DriveSettingsComponent implements OnInit {
     this.editGenderModeVisible = !this.editGenderModeVisible;
   }
 
-  toggleBacklogsEditMode(){
+  toggleBacklogsEditMode() {
     this.editBacklogsMode = !this.editBacklogsMode;
     this.editBacklogsModeVisible = !this.editBacklogsModeVisible;
   }
@@ -149,6 +151,7 @@ export class DriveSettingsComponent implements OnInit {
   toggleCustomCriteria() {
     this.editCustomCriteria = !this.editCustomCriteria;
     this.editCustomCriteriaVisible = !this.editCustomCriteriaVisible;
+    this.addneweducationGroupCriteria = !this.addneweducationGroupCriteria;
   }
 
   toggleEditEducation(educationItem: EducationItem, index: number) {
@@ -174,10 +177,11 @@ export class DriveSettingsComponent implements OnInit {
   }
 
 
-  toggleeditCustomCriteria(eligibilityItem: EligibilityItem, index:number){
+  toggleeditCustomCriteria(eligibilityItem: EligibilityItem, index: number) {
     //this.showCustomCriteria = !this.showCustomCriteria;
     this.editCustomCriteriaVisible = !this.editCustomCriteriaVisible;
-    this.editGroup = !this.editGroup;
+    this.addneweducationGroupCriteria = !this.addneweducationGroupCriteria;
+    this.criteriaEditGroup = !this.criteriaEditGroup;
     const isAnyEditFormOpen = this.jobReqData.eligibilityCriteria.some(item => item.showCustomCriteria);
     if (!isAnyEditFormOpen) {
       this.jobReqData.eligibilityCriteria = this.jobReqData.eligibilityCriteria.map((item, i) => ({
@@ -187,12 +191,12 @@ export class DriveSettingsComponent implements OnInit {
       eligibilityItem = this.jobReqData.eligibilityCriteria[index];
     } else {
       this.editCustomCriteriaVisible = !this.editCustomCriteriaVisible;
-      this.editGroup = !this.editGroup;
+      this.criteriaEditGroup = !this.criteriaEditGroup;
       // Another edit form is already open, provide feedback or take other actions
       console.log('Cannot open another edit option because another edit form is already open.');
       this.toastr.warning('Close the currently open edit form before opening another one.', 'Edit Form Restriction');
     }
-}
+  }
 
   cancelEditMode(educationItem: EducationItem) {
     educationItem.editEducation = !educationItem.editEducation;
@@ -219,6 +223,15 @@ export class DriveSettingsComponent implements OnInit {
   jobReqData: any;
   formGroups: FormGroup[] = [];
   criteriaGroups: FormGroup[] = [];
+  educationLevels = [
+    'Class X',
+    'Class XII',
+    'Diploma',
+    'UG',
+    'PG',
+    'Phd',
+    'Through Out'
+  ];
   // jobData: any;
   constructor(
     public router: Router,
@@ -245,6 +258,8 @@ export class DriveSettingsComponent implements OnInit {
     for (let i = currentYear; i >= currentYear - 10; i--) {
       this.yearPassed.push(i.toString());
     }
+
+    
   }
 
   jobProfileDetails() {
@@ -375,6 +390,11 @@ export class DriveSettingsComponent implements OnInit {
 
     return forbiddenLevelsInJobReqData.includes(educationLevel.toLowerCase()) &&
       forbiddenLevels.includes(educationLevel.toLowerCase());
+  }
+
+  isEducationLevelDisabled(educationLevel: string): boolean {
+    // Check if the education level is already present in jobReqData.eligibilityCriteria
+    return this.jobReqData.eligibilityCriteria.some(criteria => criteria.educationLevel === educationLevel);
   }
 
   getallEducation() {
@@ -729,7 +749,7 @@ export class DriveSettingsComponent implements OnInit {
       // Use the index parameter to splice the array and remove the item at the specified index
       this.jobReqData?.eligibilityCriteria.splice(index, 1);
     }
-     //console.log(this.jobReqData?.eligibilityCriteria, 'deltedvalue');
+    //console.log(this.jobReqData?.eligibilityCriteria, 'deltedvalue');
     var deletedObj = {
       "jobId": this.jobReqData?.jobId,
       "companyId": this.jobReqData?.companyId,
@@ -737,12 +757,12 @@ export class DriveSettingsComponent implements OnInit {
     };
     this.deleteFields(deletedObj);
   }
-  
-  
-  
 
 
-  deleteFields(deletedObj){
+
+
+
+  deleteFields(deletedObj) {
     this.http.UploadPostJob(deletedObj).subscribe((data: any) => {
       if (data.success == false) {
         this.toastr.warning(data.message);
@@ -895,7 +915,7 @@ export class DriveSettingsComponent implements OnInit {
   }*/
 
   }
-  cancelBacklogs(){
+  cancelBacklogs() {
     this.editBacklogsMode = !this.editBacklogsMode;
     this.editBacklogsModeVisible = !this.editBacklogsModeVisible;
     location.reload();
@@ -955,14 +975,22 @@ export class DriveSettingsComponent implements OnInit {
     const arecriteriaGroupsValid = this.criteriaGroups.every(formGroup => formGroup.valid);
     if (arecriteriaGroupsValid) {
       const updatedCriteria = this.criteriaGroups.map(formGroup => formGroup.value);
-      var criteriaObj = {
-        "jobId": this.jobReqData?.jobId,
-        "companyId": this.jobReqData?.companyId,
-        "eligibilityCriteria": updatedCriteria
-      };
-	  //console.log(criteriaObj, 'criteria values');
-    this.updateJobData(criteriaObj);
+      if (this.jobReqData && this.jobReqData.eligibilityCriteria && this.jobReqData.eligibilityCriteria[index]) {
+        this.jobReqData.eligibilityCriteria[index] = updatedCriteria[0];
+        this.jobReqData.eligibilityCriteria = this.jobReqData.eligibilityCriteria.map(cri => {
+          const { showCustomCriteria, ...eduWithoutCriteria } = cri;
+          return eduWithoutCriteria;
+        });
+        var criteriaObj = {
+          "jobId": this.jobReqData?.jobId,
+          "companyId": this.jobReqData?.companyId,
+          "eligibilityCriteria": this.jobReqData.eligibilityCriteria
+        };
+        //console.log(criteriaObj, 'criteria values');
+        this.updateJobData(criteriaObj);
       }
+
+    }
     else {
       this.criteriaGroups.forEach(formGroup => formGroup.markAllAsTouched());
       this.toastr.warning('Please fill in all required fields.', 'Form Validation Error');
@@ -980,16 +1008,16 @@ export class DriveSettingsComponent implements OnInit {
         "companyId": this.jobReqData?.companyId,
         "eligibilityCriteria": this.jobReqData?.eligibilityCriteria
       };
-	  //console.log(criteriaObj, 'criteria values');
-    this.updateJobData(criteriaObj);
-      }
+      //console.log(criteriaObj, 'criteria values');
+      this.updateJobData(criteriaObj);
+    }
     else {
       this.criteriaGroups.forEach(formGroup => formGroup.markAllAsTouched());
       this.toastr.warning('Please fill in all required fields.', 'Form Validation Error');
     }
   }
 
-  cancelCustomCriteria(i){
+  cancelCustomCriteria(i) {
     location.reload();
   }
 

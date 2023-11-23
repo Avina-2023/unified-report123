@@ -521,7 +521,7 @@
                                 Set Criteria
                             </div>
                             <div class="add-criteria flex_div flx_center" (click)="toggleCustomCriteria()"
-                                *ngIf="editCustomCriteriaVisible">
+                                *ngIf="editCustomCriteriaVisible && !addneweducationGroupCriteria && !criteriaEditGroup">
                                 <mat-icon>add</mat-icon>
                                 <div style="margin-left: -5px;">Add Criteria</div>
                             </div>
@@ -531,138 +531,129 @@
                         <div class="bottom-border"></div>
                     </div>
                     <!-- <div class="flex_div flx_between"> -->
-                        <div class="width-100 edu-values">
-                            <div
-                                *ngIf="jobReqData && jobReqData.eligibilityCriteria && jobReqData.eligibilityCriteria.length == 0 && !showCustomCriteria">
-                                <div class="education-lable-text">
-                                    No Criteria defined. All students are eligible
-                                </div>
+                    <div class="width-100 edu-values">
+                        <div
+                            *ngIf="jobReqData && jobReqData.eligibilityCriteria && jobReqData.eligibilityCriteria.length == 0 && !showCustomCriteria">
+                            <div class="education-lable-text">
+                                No Criteria defined. All students are eligible
                             </div>
-
-                            <div class="edu-values" *ngIf="jobReqData?.eligibilityCriteria">
-                                <div *ngFor="let eligibilityItem of jobReqData?.eligibilityCriteria; let i=index;">
-                                    <div *ngIf="!eligibilityItem.showCustomCriteria">
-                                        <div class="education-lable flex_div flx_baseline width-100 flx_between">
-                                            <div>
-                                                <span
-                                                    class="education-lable-text">{{eligibilityItem.marks}}{{eligibilityItem.scoreType
-                                                    == 'cgpa'
-                                                    ? '
-                                                    CGPA' : '% marks'}} </span> in <span
-                                                    class="education-lable-text">{{eligibilityItem.educationLevel}}</span>
-                                                for the
-                                                Academic
-                                                Qualification
-                                            </div>
-
-                                            <div class="flex_div flx_center submit_btn pd-tp-10" style="float:right;">
-                                                <div class="mg-5"><button type="submit" class="btn btn-primary save_btn"
-                                                        (click)="toggleeditCustomCriteria(eligibilityItem, i)">Edit</button>
-                                                </div>
-                                                <div class="cancel_btn mg-5"
-                                                    (click)="deleteCustomCriteria(eligibilityItem, i)">Delete</div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="education-lable width-100 inputForm custom-form pd-20 edu-values"
-                                        *ngIf="eligibilityItem.showCustomCriteria">
-                                        <div>
-                                            <div>Applications Must have scored</div>
-                                            <div class="flex_div flx_center flx_between mg-tp-10"
-                                                *ngFor="let criteria of criteriaGroups; let i = index">
-                                                <div class="percent width-30">
-                                                    <nz-select [nzSize]="'large'" nzMode="default"
-                                                        nzPlaceHolder="Select" class="scoreType"
-                                                        [formControl]="criteria.controls['scoreType']" nzAllowClear
-                                                        nzShowSearch [ngModel]="eligibilityItem?.scoreType">
-                                                        <nz-option [nzLabel]="'%'" [nzValue]="'percentage'"></nz-option>
-                                                        <nz-option [nzLabel]="'CGPA'" [nzValue]="'cgpa'"></nz-option>
-                                                    </nz-select>
-                                                    <div *ngIf="criteria.get('scoreType').hasError('required') && criteria.get('scoreType').touched"
-                                                        class="text-danger">
-                                                        ScoreType is Required
-                                                    </div>
-                                                </div>
-                                                <div class="width-30">
-                                                    <input style="height: 42px;" class="inputForm"
-                                                        [formControl]="criteria.controls['marks']" type="number"
-                                                        placeholder="Score" [ngModel]="eligibilityItem?.marks">
-                                                    <div *ngIf="criteria.get('marks').hasError('required') && criteria.get('marks').touched"
-                                                        class="text-danger">
-                                                        Score Required
-                                                    </div>
-                                                </div>
-                                                <div>in </div>
-                                                <div class="width-30">
-                                                    <nz-select [ngModel]="eligibilityItem?.educationLevel"
-                                                        [nzSize]="'large'" nzMode="default" nzPlaceHolder="Select"
-                                                        class="educationLevel"
-                                                        [formControl]="criteria.controls['educationLevel']" nzAllowClear
-                                                        nzShowSearch>
-                                                        <nz-option [nzLabel]="'Class X'"
-                                                            [nzValue]="'Class X'"></nz-option>
-                                                        <nz-option [nzLabel]="'Class XII'"
-                                                            [nzValue]="'Class XII'"></nz-option>
-                                                        <nz-option [nzLabel]="'Diploma'"
-                                                            [nzValue]="'Diploma'"></nz-option>
-                                                        <nz-option [nzLabel]="'UG'" [nzValue]="'UG'"></nz-option>
-                                                        <nz-option [nzLabel]="'PG'" [nzValue]="'PG'"></nz-option>
-                                                        <nz-option [nzLabel]="'Phd'" [nzValue]="'Phd'"></nz-option>
-                                                        <nz-option [nzLabel]="'Through Out'"
-                                                            [nzValue]="'Through Out'"></nz-option>
-                                                    </nz-select>
-                                                    <div *ngIf="criteria.get('educationLevel').hasError('required') && criteria.get('educationLevel').touched"
-                                                        class="text-danger">
-                                                        Education Level is Required
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="flex_div flx_center submit_btn pd-tp-10" style="float:right;">
-                                                <div class="mg-5 pd-20"><button type="submit"
-                                                        class="btn btn-primary save_btn"
-                                                        (click)="saveCustomCriteria(i)">Save</button></div>
-                                                <div class="cancel_btn mg-5" (click)="cancelCustomCriteria(i)">Cancel
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-
                         </div>
 
-                        <!-- <div class="education-lable width-100 inputForm custom-form pd-20 edu-values"
+                        <div class="edu-values" *ngIf="jobReqData?.eligibilityCriteria">
+                            <div *ngFor="let eligibilityItem of jobReqData?.eligibilityCriteria; let i=index;">
+                                <div *ngIf="!eligibilityItem.showCustomCriteria">
+                                    <div class="education-lable flex_div flx_baseline width-100 flx_between">
+                                        <div>
+                                            <span
+                                                class="education-lable-text">{{eligibilityItem.marks}}{{eligibilityItem.scoreType
+                                                == 'cgpa'
+                                                ? '
+                                                CGPA' : '% marks'}} </span> in <span
+                                                class="education-lable-text">{{eligibilityItem.educationLevel}}</span>
+                                            for the
+                                            Academic
+                                            Qualification
+                                        </div>
+
+                                        <div class="flex_div flx_center submit_btn pd-tp-10" style="float:right;">
+                                            <div class="mg-5"><button type="submit" class="btn btn-primary save_btn"
+                                                    (click)="toggleeditCustomCriteria(eligibilityItem, i)">Edit</button>
+                                            </div>
+                                            <div class="cancel_btn mg-5"
+                                                (click)="deleteCustomCriteria(eligibilityItem, i)">Delete</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="education-lable width-100 inputForm custom-form pd-20 edu-values"
+                                    *ngIf="eligibilityItem.showCustomCriteria">
+                                    <div>
+                                        <div>Applications Must have scored</div>
+                                        <div class="flex_div flx_center flx_between mg-tp-10"
+                                            *ngFor="let criteria of criteriaGroups; let i = index">
+                                            <div class="percent width-30">
+                                                <nz-select [nzSize]="'large'" nzMode="default" nzPlaceHolder="Select"
+                                                    class="scoreType" [formControl]="criteria.controls['scoreType']"
+                                                    nzAllowClear nzShowSearch [ngModel]="eligibilityItem?.scoreType">
+                                                    <nz-option [nzLabel]="'%'" [nzValue]="'percentage'"></nz-option>
+                                                    <nz-option [nzLabel]="'CGPA'" [nzValue]="'cgpa'"></nz-option>
+                                                </nz-select>
+                                                <div *ngIf="criteria.get('scoreType').hasError('required') && criteria.get('scoreType').touched"
+                                                    class="text-danger">
+                                                    ScoreType is Required
+                                                </div>
+                                            </div>
+                                            <div class="width-30">
+                                                <input style="height: 42px;" class="inputForm"
+                                                    [formControl]="criteria.controls['marks']" type="number"
+                                                    placeholder="Score" [ngModel]="eligibilityItem?.marks">
+                                                <div *ngIf="criteria.get('marks').hasError('required') && criteria.get('marks').touched"
+                                                    class="text-danger">
+                                                    Score Required
+                                                </div>
+                                            </div>
+                                            <div>in </div>
+                                            <div class="width-30">
+                                                <nz-select [ngModel]="eligibilityItem?.educationLevel"
+                                                    [nzSize]="'large'" nzMode="default" nzPlaceHolder="Select"
+                                                    class="educationLevel"
+                                                    [formControl]="criteria.controls['educationLevel']" nzAllowClear
+                                                    nzShowSearch>
+                                                    <nz-option *ngFor="let option of educationLevels" [nzLabel]="option"
+                                                        [nzValue]="option"
+                                                        [nzDisabled]="isEducationLevelDisabled(option)">
+                                                    </nz-option>
+                                                </nz-select>
+                                                <div *ngIf="criteria.get('educationLevel').hasError('required') && criteria.get('educationLevel').touched"
+                                                    class="text-danger">
+                                                    Education Level is Required
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="flex_div flx_center submit_btn pd-tp-10" style="float:right;">
+                                            <div class="mg-5 pd-20"><button type="submit"
+                                                    class="btn btn-primary save_btn"
+                                                    (click)="saveCustomCriteria(i)">Save</button></div>
+                                            <div class="cancel_btn mg-5" (click)="cancelCustomCriteria(i)">Cancel
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+
+                    <!-- <div class="education-lable width-100 inputForm custom-form pd-20 edu-values"
                             *ngIf="editCustomCriteria"> -->
-                        <div class="education-lable width-100 inputForm custom-form pd-20 edu-values"
-                            *ngIf="editCustomCriteria && !editGroup;">
-                            <div>Applications Must have scored</div>
-                            <div class="flex_div flx_center flx_between mg-tp-10"
-                                *ngFor="let criteria of criteriaGroups; let i = index">
-                                <div class="percent width-30">
-                                    <nz-select [nzSize]="'large'" nzMode="default" nzPlaceHolder="Select"
-                                        class="scoreType" [formControl]="criteria.controls['scoreType']" nzAllowClear
-                                        nzShowSearch>
-                                        <nz-option [nzLabel]="'%'" [nzValue]="'percentage'"></nz-option>
-                                        <nz-option [nzLabel]="'CGPA'" [nzValue]="'cgpa'"></nz-option>
-                                    </nz-select>
-                                    <div *ngIf="criteria.get('scoreType').hasError('required') && criteria.get('scoreType').touched"
-                                        class="text-danger">
-                                        ScoreType is Required
-                                    </div>
+                    <div class="education-lable width-100 inputForm custom-form pd-20 edu-values"
+                        *ngIf="editCustomCriteria && !criteriaEditGroup;">
+                        <div>Applications Must have scored</div>
+                        <div class="flex_div flx_center flx_between mg-tp-10"
+                            *ngFor="let criteria of criteriaGroups; let i = index">
+                            <div class="percent width-30">
+                                <nz-select [nzSize]="'large'" nzMode="default" nzPlaceHolder="Select" class="scoreType"
+                                    [formControl]="criteria.controls['scoreType']" nzAllowClear nzShowSearch>
+                                    <nz-option [nzLabel]="'%'" [nzValue]="'percentage'"></nz-option>
+                                    <nz-option [nzLabel]="'CGPA'" [nzValue]="'cgpa'"></nz-option>
+                                </nz-select>
+                                <div *ngIf="criteria.get('scoreType').hasError('required') && criteria.get('scoreType').touched"
+                                    class="text-danger">
+                                    ScoreType is Required
                                 </div>
-                                <div class="width-30">
-                                    <input style="height: 42px;" class="inputForm"
-                                        [formControl]="criteria.controls['marks']" type="number" placeholder="Score">
-                                    <div *ngIf="criteria.get('marks').hasError('required') && criteria.get('marks').touched"
-                                        class="text-danger">
-                                        Score Required
-                                    </div>
+                            </div>
+                            <div class="width-30">
+                                <input style="height: 42px;" class="inputForm"
+                                    [formControl]="criteria.controls['marks']" type="number" placeholder="Score">
+                                <div *ngIf="criteria.get('marks').hasError('required') && criteria.get('marks').touched"
+                                    class="text-danger">
+                                    Score Required
                                 </div>
-                                <div>in </div>
-                                <div class="width-30"><nz-select [nzSize]="'large'" nzMode="default"
+                            </div>
+                            <div>in </div>
+                            <!-- <div class="width-30"><nz-select [nzSize]="'large'" nzMode="default"
                                         nzPlaceHolder="Select" class="educationLevel"
                                         [formControl]="criteria.controls['educationLevel']" nzAllowClear nzShowSearch>
                                         <nz-option [nzLabel]="'Class X'" [nzValue]="'Class X'"></nz-option>
@@ -677,17 +668,33 @@
                                         class="text-danger">
                                         Education Level is Required
                                     </div>
+                                </div> -->
+
+                            <div class="width-30">
+                                <nz-select [nzSize]="'large'" nzMode="default" nzPlaceHolder="Select"
+                                    class="educationLevel" [formControl]="criteria.controls['educationLevel']"
+                                    nzAllowClear nzShowSearch>
+                                    <nz-option *ngFor="let option of educationLevels" [nzLabel]="option"
+                                        [nzValue]="option" [nzDisabled]="isEducationLevelDisabled(option)">
+                                    </nz-option>
+                                </nz-select>
+                                <div *ngIf="criteria.get('educationLevel').hasError('required') && criteria.get('educationLevel').touched"
+                                    class="text-danger">
+                                    Education Level is Required
                                 </div>
                             </div>
 
-                            <div class="flex_div flx_center submit_btn pd-tp-10" *ngIf="editCustomCriteria"
-                                style="float:right;margin-top: 20px;">
-                                <div class="mg-5"><button type="submit" class="btn btn-primary save_btn"
-                                        (click)="addmoreCustomCriteria(i)">Save</button></div>
-                                <div class="cancel_btn mg-5" (click)="cancelCustomCriteria(i)">Cancel</div>
-                            </div>
 
                         </div>
+
+                        <div class="flex_div flx_center submit_btn pd-tp-10" *ngIf="editCustomCriteria"
+                            style="float:right;margin-top: 20px;">
+                            <div class="mg-5"><button type="submit" class="btn btn-primary save_btn"
+                                    (click)="addmoreCustomCriteria(i)">Save</button></div>
+                            <div class="cancel_btn mg-5" (click)="cancelCustomCriteria(i)">Cancel</div>
+                        </div>
+
+                    </div>
                     <!-- </div> -->
                 </div>
 
