@@ -60,20 +60,21 @@
                 </mat-error>
               </mat-form-field>
             </div> -->
-          <div class="inputContainer" style="display: flex; align-items: center;padding: 0px 0px 20px 0px">
-            <label style="margin-right: 10px; padding: 0px 0px 10px 15px;">Company Name</label>
-            <nz-select style="width: 90%;" nzAllowClear nzShowSearch
-              nzPlaceHolder="Select Company Name" formControlName="company">
-              <nz-option *ngFor="let company of companyOptions" [nzLabel]="company.company" [nzValue]="company"
-                [nzSelected]="company.companyId === jobdata.company ? true : false">
-              </nz-option>
-            </nz-select>
-          </div>
 
-            <div *ngIf="addjobsForm.get('company').hasError('required') && addjobsForm.get('company').touched"
+            <!--  -->
+            <div class="inputContainer" style="display: flex; align-items: center;padding: 0px 0px 20px 0px">
+              <label style="margin-right: 10px; padding: 0px 0px 10px 15px;">Company Name</label>
+              <nz-select style="width: 90%;" nzAllowClear nzShowSearch nzPlaceHolder="Select Company Name"
+                formControlName="company">
+                <nz-option *ngFor="let company of companyOptions" [nzLabel]="company.company"
+                  [nzValue]="company"></nz-option>
+              </nz-select>
+            </div>
+
+            <!-- <div *ngIf="addjobsForm.get('company').hasError('required') && addjobsForm.get('company').touched"
               class="text-danger">
               Company Name is required.
-            </div>
+            </div> -->
           </div>
 
           <div class="border-line">
@@ -154,7 +155,7 @@
               </div>
               <div style="width: 90%;">
                 <ng-container *ngFor="let group of formGroups; let i = index">
-                  <div class="form-group flex_div">
+                  <div class="form-group flex_div" [disabled]="isFormApproved">
                     <div class="mg-r-10 width-30 ">
                       <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Graduation" [formControl]="group.get('level')"
                         (ngModelChange)="onGraduationChange($event, i)">
@@ -359,10 +360,10 @@
           </div>
           <div>
             <div class="buttonClass">
-              <div class="subButton">
+              <div class="subButton" *ngIf="!isFormApproved">
                 <button mat-flat-button (click)="saveviewForm()">Save</button>
               </div>
-              <div class="subButton2">
+              <div class="subButton2" *ngIf="!isFormApproved">
                 <button mat-flat-button (click)="clearviewForm()">Cancel</button>
               </div>
             </div>
