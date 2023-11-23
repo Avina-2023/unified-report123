@@ -9,8 +9,6 @@ import { formatDate } from '@angular/common';
 import { log } from 'console';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 
-
-
 @Component({
   selector: 'app-edit-job',
   templateUrl: './edit-job.component.html',
@@ -20,24 +18,18 @@ export class EditJobComponent implements OnInit {
   addjobsForm: FormGroup;
   formGroups: FormGroup[] = [];
   companyOptions: string[] = [];
-  //selectedCompany = ["Movate"];
   companyId: any;
   company: any;
   jobId: any;
-  selectedCompany: any;
+  // selectedCompany: any;
   selectedCompanyData: any;
   keySkills: string[] = [];
   newSkill: string[] = [];
   JobLocations: any = [];
   YearofPassing: string[] = [];
   jobdata: any;
-  selectedRangeOption: string = 'fixed';
+  selectedRangeOption: any;
   selectedOption: string;
-  industryTypes = [
-    'Full time',
-    'Internship',
-    'All',
-  ];
   jobType = "";
   JobType = [
     'Full Time',
@@ -46,9 +38,6 @@ export class EditJobComponent implements OnInit {
   skillSet: any;
   jobLocation: any;
   description: any;
-  ctcArray = ['Option 1', 'Option 2', 'Option 3'];
-  rangefromArray = ['Option A', 'Option B', 'Option C'];
-  rangetoArray = ['Option X', 'Option Y', 'Option Z'];
   htmlContent_description = '';
   htmlContent_requirement = '';
   htmlContent_information = '';
@@ -127,7 +116,7 @@ export class EditJobComponent implements OnInit {
   //     ['superscript'],
   //   ],
   // };
-@ViewChild('jobsaved', { static: false }) jobsavedtemplate: TemplateRef<any>;
+  @ViewChild('jobsaved', { static: false }) jobsavedtemplate: TemplateRef<any>;
   constructor(
     private ApiService: ApiService,
     private appconfig: AppConfigService,
@@ -147,33 +136,60 @@ export class EditJobComponent implements OnInit {
     //on click on edit in ag-grid table it'll get data particular rowdata from localstorage
     let localjobData = JSON.parse(this.appconfig.getLocalStorage('openJobData'));
     this.jobdata = this.appconfig.jobData ? this.appconfig.jobData : localjobData;
-    console.log(this.jobdata, 'data for edit job page');
+    //console.log(this.jobdata, 'data for edit job page');
+    // console.log(this.jobdata.ctcType, 'testctc');
+    this.selectedRangeOption = this.jobdata.ctcType;
+    console.log(this.selectedRangeOption, ' selected testctc');
 
-    this.formerrorInitialize();
+    this.companylist();
     this.getallEducation();
     this.getallCourses();
     this.getalldegree();
     this.cityLocation();
     this.skilllist();
-    this.companylist();
+    this.formerrorInitialize();
+
     // this.addjobsForm = this.formBuilder.group({
     // });
     this.patchFormValues();
     console.log(this.addjobsForm, '------------------');
-    console.log(this.jobdata.company,'test selected');
+    console.log(this.jobdata.company, 'test selected');
+    console.log();
 
   }
+
+companylist() {
+    const data: any = {};
+    this.apiService.masterCompany().subscribe(
+      (res: any) => {
+        console.log(res);
+        if (res.success) {
+          console.log(res.data, 'res.data');
+
+          this.companyOptions = res.data.map(item => ({
+            company: item.company,
+            companyId: item.companyId
+          }));
+          console.log(this.companyOptions, '0000');
+
+        }
+      },
+      (error) => {
+        console.error('API request error:', error);
+      }
+    );
+  }
+
   patchFormValues() {
     // setTimeout(() => {
-  //let company = this.companyOptions.find((item:any) => {item.companyId ===  this.jobdata.companyId});
+    //let company = this.companyOptions.find((item:any) => {item.companyId ===  this.jobdata.companyId});
 
     //console.log(company, 'company test');
     if (this.jobdata) {
-
       console.log(this.jobdata, 'jobdata');
+      const ctcValues = this.jobdata.ctc.split(' - ');
+      // this.jobdata.company = this.jobdata.company;
       this.addjobsForm.patchValue({
-
-
         //company: { company: this.jobdata.company, companyId: this.jobdata.companyId },
         company: this.jobdata.company,
         jobRole: this.jobdata.jobRole,
@@ -184,77 +200,58 @@ export class EditJobComponent implements OnInit {
         yearofPassout: this.jobdata.yearofPassout,
         skillSet: this.jobdata.skillSet,
         lastDatetoApply: this.jobdata.lastDatetoApply,
-
+        fixed: this.jobdata.ctc,
+        startrange: this.jobdata.ctcType === 'range' ? ctcValues[0] : null,
+        endrange: this.jobdata.ctcType === 'range' ? ctcValues[1] : null,
         description: this.jobdata.description.length > 0 ? this.jobdata.description[0].item : '',
         requirement: this.jobdata.requirement.length > 0 ? this.jobdata.requirement[0].item : '',
         additionalInformation: this.jobdata.additionalInformation ? this.jobdata.additionalInformation.note : '',
       });
 
-
-  }
+    }
     if (this.jobdata.education) {
       // Clear existing form groups
       this.formGroups = [];
-
-      // Loop through education data and add form groups
       for (const eduItem of this.jobdata.education) {
         const formGroup = this.fb.group({
           level: [eduItem.level],
           specification: [eduItem.specification],
           discipline: [eduItem.discipline],
         });
-
         this.formGroups.push(formGroup);
       }
-
-      this.addjobsForm.setControl('education', this.fb.array(this.formGroups));
-      console.log('Form Groups:', this.formGroups);
+      this.addjobsForm.setControl('educationGroups', this.fb.array(this.formGroups));
+      // console.log('Form Groups:', this.formGroups);
+      // console.log('Form Value After Patching Education:', this.addjobsForm.value);
     }
-
-    /// patching for ctc
-      const ctcType = this.jobdata.ctcType;
-
-    if (ctcType === 'fixed') {
-      this.addjobsForm.patchValue({
-        ctcOption: 'fixed',
-        fixed: this.jobdata.ctc,
-      });
-    } else if (ctcType === 'range') {
-      const [startRange, endRange] = (this.jobdata.ctc || '').split(' - ');
-      this.addjobsForm.patchValue({
-        ctcOption: 'range',
-        startrange: startRange,
-        endrange: endRange,
-      });
-    }
-
     // }, 1000);
   }
 
-   formerrorInitialize() {
+  formerrorInitialize() {
     // const emailregex: RegExp =
     //   /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-     this.addjobsForm = this.fb.group({
-     ctcOption: ['', Validators.required],
-      fixed:[''],
-      startrange:[''],
+    this.addjobsForm = this.fb.group({
+      ctcOption: ['', Validators.required],
+      fixed: [''],
+      startrange: [''],
       endrange: [''],
-       company: ['', [Validators.required]],
+      // company: [null, [Validators.required]],
+      company: ['', [Validators.required]],
       jobRole: ['', [Validators.required]],
       jobLocation: ['', [Validators.required]],
       jobType: [[], [Validators.required]],
       jobTitle: ['', [Validators.required]],
-      specification: ['', [Validators.required]],
-      discipline: ['', [Validators.required]],
+      // specification: ['', [Validators.required]],
+      // discipline: ['', [Validators.required]],
       skillSet: ['', [Validators.required]],
       //[this.skillSet]: [this.fb.array([]), [Validators.required]],
       lastDatetoApply: [[], [Validators.required]],
       yearofPassout: [[], [Validators.required]],
-       applyLink: [
+      applyLink: [
         '',
         [
           Validators.required,
-          Validators.pattern(/^(https?:\/\/)?([\w\d.-]+)\.([a-z]{2,})(\/\S*)?$/i)
+          // Validators.pattern(/^(https?:\/\/)?([\w\d.-]+)\.([a-z]{2,})(\/\S*)?$/i)
         ]
       ],
 
@@ -262,19 +259,19 @@ export class EditJobComponent implements OnInit {
       description: ['', [Validators.required]],
       additionalInformation: [],
       // ctcOptions: ['1'],
-       //education: this.formBuilder.array([]),
+      //education: this.formBuilder.array([]),
       educationGroups: this.fb.array([this.createEducationGroup()])
 
     });
     this.formGroups = this.addjobsForm.get('educationGroups')['controls'];
   }
-// get getskillSet() {
-//     return this.addjobsForm.get([this.skillSet]) as FormArray;
-//   }
-   get jobRole() {
+  // get getskillSet() {
+  //     return this.addjobsForm.get([this.skillSet]) as FormArray;
+  //   }
+  get jobRole() {
     return this.addjobsForm.get('jobRole');
   }
-   get jobTitle() {
+  get jobTitle() {
     return this.addjobsForm.get('jobTitle');
   }
   get lastDatetoApply() {
@@ -283,7 +280,7 @@ export class EditJobComponent implements OnInit {
   get applyLink() {
     return this.addjobsForm.get('applyLink');
   }
-   get fixedctc() {
+  get fixedctc() {
     return this.addjobsForm.get('fixedctc');
   }
 
@@ -295,7 +292,7 @@ export class EditJobComponent implements OnInit {
       discipline: [this.multipleSpecialization],
     });
   }
-addEducationGroup(): void {
+  addEducationGroup(): void {
     const lastGroupIndex = this.formGroups.length - 1;
     const lastGroup = this.formGroups[lastGroupIndex];
     if (lastGroup.valid) {
@@ -305,14 +302,14 @@ addEducationGroup(): void {
       this.toastr.warning('Please fill in all required fields in the last added group.', 'Form Validation Error');
     }
   }
-removeEducationGroup(index: number): void {
+  removeEducationGroup(index: number): void {
     if (this.formGroups.length > 1 && index > 0) {
       this.formGroups.splice(index, 1);
       this.addjobsForm.setControl('educationGroups', this.fb.array(this.formGroups));
     }
   }
 
-getallEducation() {
+  getallEducation() {
     this.apiService.getallEducations().subscribe((data: any) => {
       this.educations = data[0];
     })
@@ -330,29 +327,29 @@ getallEducation() {
     })
   }
 
-getalldegree() {
-  this.apiService.getDegreeList().subscribe((data: any) => {
-   this.alldegree = data;
-   console.log(this.alldegree, 'degreeList');
-   // Define separate arrays for UG and PG degrees
-   this.ugDegrees = [];
-   this.pgDegrees = [];
-   this.phdDegrees = [];
-   this.alldegree.data.forEach((item: any) => {
-    if (item.qualification === "UG") {
-     this.ugDegrees = this.ugDegrees.concat(item.degree);
-    } else if (item.qualification === "PG") {
-     this.pgDegrees = this.pgDegrees.concat(item.degree);
-    }
-    else if (item.qualification === "Phd") {
-     this.phdDegrees = this.phdDegrees.concat(item.degree);
-    }
-   });
-   console.log(this.ugDegrees, 'UG degrees');
-   console.log(this.pgDegrees, 'PG degrees');
-   console.log(this.phdDegrees, 'Phd degrees');
-  });
- }
+  getalldegree() {
+    this.apiService.getDegreeList().subscribe((data: any) => {
+      this.alldegree = data;
+      console.log(this.alldegree, 'degreeList');
+      // Define separate arrays for UG and PG degrees
+      this.ugDegrees = [];
+      this.pgDegrees = [];
+      this.phdDegrees = [];
+      this.alldegree.data.forEach((item: any) => {
+        if (item.qualification === "UG") {
+          this.ugDegrees = this.ugDegrees.concat(item.degree);
+        } else if (item.qualification === "PG") {
+          this.pgDegrees = this.pgDegrees.concat(item.degree);
+        }
+        else if (item.qualification === "Phd") {
+          this.phdDegrees = this.phdDegrees.concat(item.degree);
+        }
+      });
+      console.log(this.ugDegrees, 'UG degrees');
+      console.log(this.pgDegrees, 'PG degrees');
+      console.log(this.phdDegrees, 'Phd degrees');
+    });
+  }
 
   onGraduationChange(selectedGraduation: string, index: number) {
     const currentFormGroup = this.formGroups[index];
@@ -381,26 +378,26 @@ getalldegree() {
     //   );
     // }
 
- if (selectedGraduation === 'SSLC' || selectedGraduation === 'HSC' || selectedGraduation === 'Any Graduation') {
-   this.degreeOptions = ['Any Degree / Graduation', 'X Std', 'XII Std'];
-   currentFormGroup.get('specification').setValue(
-    selectedGraduation === 'Any Graduation'
-     ? 'Any Degree / Graduation'
-     : selectedGraduation === 'HSC'
-      ? 'XII Std'
-      : selectedGraduation === 'SSLC'
-       ? 'X Std'
-       : ''
-   );
+    if (selectedGraduation === 'SSLC' || selectedGraduation === 'HSC' || selectedGraduation === 'Any Graduation') {
+      this.degreeOptions = ['Any Degree / Graduation', 'X Std', 'XII Std'];
+      currentFormGroup.get('specification').setValue(
+        selectedGraduation === 'Any Graduation'
+          ? 'Any Degree / Graduation'
+          : selectedGraduation === 'HSC'
+            ? 'XII Std'
+            : selectedGraduation === 'SSLC'
+              ? 'X Std'
+              : ''
+      );
     }
-     if (selectedGraduation === 'Diploma') {
-   this.degreeOptions = ['Diploma UG', 'Diploma PG'];
-   currentFormGroup.get('specification').setValue(
-    selectedGraduation === 'Diploma'
-     ? ['Diploma UG', 'Diploma PG']
-     : ''
-   );
-  }
+    if (selectedGraduation === 'Diploma') {
+      this.degreeOptions = ['Diploma UG', 'Diploma PG'];
+      currentFormGroup.get('specification').setValue(
+        selectedGraduation === 'Diploma'
+          ? ['Diploma UG', 'Diploma PG']
+          : ''
+      );
+    }
 
     if (selectedGraduation === 'Any Graduation' || selectedGraduation === 'SSLC' || selectedGraduation === 'HSC') {
       currentFormGroup.get('discipline').clearValidators();
@@ -422,18 +419,18 @@ getalldegree() {
       // currentFormGroup.get('degree').setValue(null);
       currentFormGroup.get('discipline').setValue([]);
     }
-  if (selectedGraduation === 'UG') {
-   this.degreeOptions = this.ugDegrees;
-  }
-  if (selectedGraduation === 'PG') {
-   this.degreeOptions = this.pgDegrees;
-  }
-  if (selectedGraduation === 'Phd') {
-   this.degreeOptions = this.phdDegrees;
-  }
+    if (selectedGraduation === 'UG') {
+      this.degreeOptions = this.ugDegrees;
+    }
+    if (selectedGraduation === 'PG') {
+      this.degreeOptions = this.pgDegrees;
+    }
+    if (selectedGraduation === 'Phd') {
+      this.degreeOptions = this.phdDegrees;
+    }
     if (currentFormGroup.get('level').value === 'Diploma') {
       currentFormGroup.get('discipline').setValue(null);
-     // this.listOfSpecializations = this.diplomaCourses;
+      // this.listOfSpecializations = this.diplomaCourses;
     }
 
     if (currentFormGroup.get('level').value === 'UG') {
@@ -462,6 +459,7 @@ getalldegree() {
     const currentFormGroup = this.formGroups[index];
     currentFormGroup.get('discipline').setValue(null);
     //if (selectedCourse !== null && typeof selectedCourse === 'string') {
+
     if (selectedCourse !== null && typeof selectedCourse === 'string' && selectedCourse !== 'Any Degree / Graduation' && selectedCourse !== 'X Std' && selectedCourse !== 'XII Std') {
       console.log(selectedCourse, 'selectedCoursevalues');
       const params = { "degree": selectedCourse };
@@ -505,16 +503,16 @@ getalldegree() {
   }
 
 
-skilllist() {
-  const data: any = {};
-  this.apiService.getSkill(data).subscribe((res: any) => {
-    if (res.success) {
-      this.newSkill = res.data.map(item => item.skillName);
-    }
-  });
+  skilllist() {
+    const data: any = {};
+    this.apiService.getSkill(data).subscribe((res: any) => {
+      if (res.success) {
+        this.newSkill = res.data.map(item => item.skillName);
+      }
+    });
   }
 
-handleSearch(event: Event): void {
+  handleSearch(event: Event): void {
     const inputElement = event.target as HTMLInputElement;
     const searchText = inputElement.value;
     const data: any = {
@@ -529,26 +527,7 @@ handleSearch(event: Event): void {
     });
   }
 
-companylist() {
-  const data: any = {};
-  this.apiService.masterCompany().subscribe(
-    (res: any) => {
-      console.log(res);
-      if (res.success) {
-        console.log(res.data,'res.data');
 
-        this.companyOptions = res.data.map(item => ({
-          company: item.company,
-          companyId: item.companyId
-        }));
-        console.log(this.companyOptions, '0000');
-      }
-    },
-    (error) => {
-      console.error('API request error:', error);
-    }
-  );
-}
 
   cityLocation() {
     const data: any = {};
@@ -570,14 +549,11 @@ companylist() {
       if (res.success) {
         this.JobLocations = res.data.map((item) => item.city);
       }
-       this.patchFormValues();
+      this.patchFormValues();
     });
   }
 
-
-
-
-ctcChange() {
+  ctcChange() {
     const fixedControl = this.addjobsForm.get('fixed');
     const startrangeControl = this.addjobsForm.get('startrange');
     const endrangeControl = this.addjobsForm.get('endrange');
@@ -614,7 +590,7 @@ ctcChange() {
     const endrangeControl = this.addjobsForm.get('endrange');
     if (this.selectedRangeOption === 'fixed') {
       fixedControl.setValidators(Validators.required);
-      fixedControl.setValue(this.fixed);
+      fixedControl.setValue(this.jobdata.ctc);
       startrangeControl.clearValidators();
       endrangeControl.clearValidators();
       startrangeControl.setValue(null);
@@ -622,10 +598,16 @@ ctcChange() {
     } else if (this.selectedRangeOption === 'range') {
       startrangeControl.setValidators(Validators.required);
       endrangeControl.setValidators(Validators.required);
-      startrangeControl.setValue(this.startrange);
-      endrangeControl.setValue(this.endrange);
+      // startrangeControl.setValue(this.startrange);
+      // endrangeControl.setValue(this.endrange);
       fixedControl.clearValidators();
       fixedControl.setValue(null);
+      const ctcValues = this.jobdata.ctc.split(' - ');
+      startrangeControl.patchValue(ctcValues[0]);
+      endrangeControl.patchValue(ctcValues[1]);
+      // startrangeControl.patchValue(this.jobdata.startrange);
+      // endrangeControl.patchValue(this.jobdata.endrange);
+      // const fixedControl = this.addjobsForm.get('fixed');
     }
     fixedControl.updateValueAndValidity();
     startrangeControl.updateValueAndValidity();
@@ -657,54 +639,60 @@ ctcChange() {
     ];
     const additionalInformation = htmladditionalinformation ? { note: htmladditionalinformation } : {};
     { }
-    // if (this.addjobsForm.valid && areEducationGroupsValid) {
-      var obj = {
-        "jobId": this.jobdata.jobId,
-        "companyId": this.addjobsForm.value.company.companyId,
-        "company": this.addjobsForm.value.company.company,
-        "jobRole": this.addjobsForm.value.jobRole,
-        "jobTitle": this.addjobsForm.value.jobTitle,
-        "jobLocation": this.addjobsForm.value.jobLocation,
-        "jobType": this.addjobsForm.value.jobType,
-        "yearofPassout": this.addjobsForm.value.yearofPassout,
-        "skillSet": this.addjobsForm.value.skillSet,
-        "ctcType": this.addjobsForm.value.ctcOption,
-        "ctc": isFixed ? this.addjobsForm.value?.fixed : `${startRange} - ${endRange}`,
-        "lastDatetoApply": this.addjobsForm.value.lastDatetoApply,
-        "additionalInformation": additionalInformation,
-        "description": descriptionItems,
-        "requirement": requirementItems,
-        "partnerLabel": "",
-        "address": "",
-        "companyLogo": "https://example.com/path/to/your/logo.png",
-        "isActive": true,
-        "jobCategoryId": "64cc8cbd112e2bb777bc92fb",
-        "postedDate": formatDate(new Date(), 'dd-MM-yyyy', 'en-IN', 'IST'),
-        "workType": "Jobs",
-        "applyLink": this.addjobsForm.value.applyLink,
-        "education": this.formGroups.map(formGroup => formGroup.value)
-      }
-      console.log(obj, 'post');
-      this.apiService.UploadPostJob(obj).subscribe((data: any) => {
-
-        // console.log(data)
-        if (data.success === false) {
-          this.toastr.warning(data.message);
-        } else {
-          this.toastr.success(data.message);
-          this.toastr.success(data.message);
-          const popup = this.dialog.open(this.jobsavedtemplate, {
-            width: '400px',
-            height: '240px',
-            disableClose: true,
-            hasBackdrop: true,
-          });
-        }
-      }, (err) => {
-        this.toastr.warning('Connection failed, Please try again.');
-      });
+       if (this.addjobsForm.valid && areEducationGroupsValid) {
+    var obj = {
+      "jobId": this.jobdata.jobId,
+      "companyId": this.addjobsForm.value.company.companyId,
+      "company": this.addjobsForm.value.company.company,
+      "jobRole": this.addjobsForm.value.jobRole,
+      "jobTitle": this.addjobsForm.value.jobTitle,
+      "jobLocation": this.addjobsForm.value.jobLocation,
+      "jobType": this.addjobsForm.value.jobType,
+      "yearofPassout": this.addjobsForm.value.yearofPassout,
+      "skillSet": this.addjobsForm.value.skillSet,
+      "ctcType": this.addjobsForm.value.ctcOption,
+      "ctc": isFixed ? this.addjobsForm.value?.fixed : `${startRange} - ${endRange}`,
+      "lastDatetoApply": this.addjobsForm.value.lastDatetoApply,
+      "additionalInformation": additionalInformation,
+      "description": descriptionItems,
+      "requirement": requirementItems,
+      "partnerLabel": "",
+      "address": "",
+      "companyLogo": "https://example.com/path/to/your/logo.png",
+      "isActive": true,
+      "jobCategoryId": "64cc8cbd112e2bb777bc92fb",
+      "postedDate": formatDate(new Date(), 'dd-MM-yyyy', 'en-IN', 'IST'),
+      "workType": "Jobs",
+      "applyLink": this.addjobsForm.value.applyLink,
+      "education": this.formGroups.map(formGroup => formGroup.value)
     }
-  // }
+    console.log(obj, 'post');
+    this.apiService.UploadPostJob(obj).subscribe((data: any) => {
+
+      // console.log(data)
+      if (data.success === false) {
+        this.toastr.warning(data.message);
+      } else {
+        this.toastr.success(data.message);
+        this.toastr.success(data.message);
+        const popup = this.dialog.open(this.jobsavedtemplate, {
+          width: '400px',
+          height: '240px',
+          disableClose: true,
+          hasBackdrop: true,
+        });
+      }
+    }, (err) => {
+      this.toastr.warning('Connection failed, Please try again.');
+    });
+  }
+    else {
+        console.log("Form Validation Failed", this.addjobsForm.errors);
+        this.addjobsForm.markAllAsTouched();
+        this.formGroups.forEach(formGroup => formGroup.markAllAsTouched());
+        this.toastr.warning('Please fill in all required fields.', 'Form Validation Error');
+      }
+   }
   clearviewForm() {
       this.dialog.closeAll();
       this.appconfig.routeNavigation('/auth/partner/viewopenjobs');

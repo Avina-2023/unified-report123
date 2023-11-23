@@ -10,7 +10,7 @@
           <div class="primarysingleWrap">
             <div class="singleWrap">
               <form [formGroup]="addjobsForm">
-                <!--  -->
+                <!-- mat select  -->
                 <!-- <div class="inputContainer">
                   <label>Company Name<span>*</span></label>
                   <mat-form-field appearance="outline">
@@ -25,21 +25,21 @@
                     </mat-error>
                   </mat-form-field>
                 </div> -->
-
-                <!--  -->
+<!--  -->
+                <!-- nz zorro -->
                 <div class="inputContainer" style="padding: 0px 0px 15px 0px;">
                   <label>Company Name <span>*</span></label>
                   <nz-select style="width: 98%;" nzAllowClear nzShowSearch [(ngModel)]="selectedCompany"
                     nzPlaceHolder="-- Select Company Name --" formControlName="company" class="">
                     <nz-option *ngFor="let company of companyOptions" [nzLabel]="company.company"
-                      [nzValue]="company.companyId"></nz-option>
+                      [nzValue]="company"></nz-option>
                   </nz-select>
                 </div>
                 <div *ngIf="addjobsForm.get('company').hasError('required') && addjobsForm.get('company').touched"
                   class="text-danger">
                   Company Name is required.
                 </div>
-
+<!--  -->
                 <div class="primaryWrap">
                   <div class="leftWrap">
                     <div class="inputContainer">
@@ -57,7 +57,7 @@
                       <label>Job Title<span>*</span></label>
                       <mat-form-field appearance="outline">
                         <input formControlName="jobTitle" matInput placeholder="Enter Job Title">
-                        <mat-error class="error" *ngIf="jobTitle?.errors?.required">{{'Job Ttitle is Required'}}</mat-error>
+                        <mat-error class="error" *ngIf="jobTitle?.errors?.required">{{'Job Title is Required'}}</mat-error>
                       </mat-form-field>
                       <ng-container *ngIf="jobTitle.invalid && jobTitle.touched">
                       </ng-container>
@@ -92,7 +92,7 @@
                   <div class="leftWrap">
                     <div class="inputContainer">
                       <label>Job Location <span>*</span></label>
-                      <nz-select style="width: 98%;" nzMode="multiple" nzAllowClear nzShowSearch
+                      <nz-select style="width: 98%;" nzMode="tags" nzAllowClear nzShowSearch
                         nzPlaceHolder="-- Select Job Location (Multiple Select)" formControlName="jobLocation"
                         (input)="locationSearch($event)" class="custom-nz-select my-custom-nz-select">
                         <nz-option *ngFor="let location of JobLocations" [nzLabel]="location"
