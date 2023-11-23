@@ -13,6 +13,11 @@ import { DriveSettingsComponent } from './drive-settings/drive-settings.componen
 import { ViewCandidateByDriveComponent } from './viewCandidateByDrive/viewCandidateByDrive.component';
 import { ViewCandidateProfilebyEmployerComponent } from './viewCandidateProfilebyEmployer/viewCandidateProfilebyEmployer.component';
 import { NgCircleProgressModule } from 'ng-circle-progress';
+import { ReactiveFormsModule } from '@angular/forms';
+import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
+import { NzSelectModule } from 'ng-zorro-antd/select';
+import { AngularEditorModule } from '@kolkov/angular-editor';
+
 
 @NgModule({
   declarations: [
@@ -31,7 +36,11 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
     MatIconModule,
     MatCheckboxModule, 
     FormsModule,
-    NgCircleProgressModule
+    NgCircleProgressModule,
+    ReactiveFormsModule,
+    NzDropDownModule,
+    NzSelectModule,
+    AngularEditorModule
   ],
 })
 export class DriveModule {}
