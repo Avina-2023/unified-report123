@@ -192,22 +192,25 @@ export class EditJobComponent implements OnInit {
         additionalInformation: this.jobdata.additionalInformation ? this.jobdata.additionalInformation.note : '',
       });
     }
-    if (this.jobdata.education) {
-      // Clear existing form groups
-      this.formGroups = [];
-      for (const eduItem of this.jobdata.education) {
-        const formGroup = this.fb.group({
-          level: [eduItem.level],
-          specification: [eduItem.specification],
-          discipline: [eduItem.discipline],
-        });
-        this.formGroups.push(formGroup);
-      }
-      this.addjobsForm.setControl('educationGroups', this.fb.array(this.formGroups));
-      // console.log('Form Groups:', this.formGroups);
-      // console.log('Form Value After Patching Education:', this.addjobsForm.value);
-    }
+    // if (this.jobdata.education) {
+    //   // Clear existing form groups
+    //   this.formGroups = [];
+    //   for (const eduItem of this.jobdata.education) {
+    //     const formGroup = this.fb.group({
+    //       level: [eduItem.level],
+    //       specification: [eduItem.specification],
+    //       discipline: [eduItem.discipline],
+    //     });
+    //     this.formGroups.push(formGroup);
+    //   }
+    //   this.addjobsForm.setControl('educationGroups', this.fb.array(this.formGroups));
+    //   // console.log('Form Groups:', this.formGroups);
+    //   // console.log('Form Value After Patching Education:', this.addjobsForm.value);
+    // }
     // }, 1000);
+
+
+
   }
   formerrorInitialize() {
     // const emailregex: RegExp =
@@ -334,6 +337,7 @@ export class EditJobComponent implements OnInit {
 
   onGraduationChange(selectedGraduation: string, index: number) {
     const currentFormGroup = this.formGroups[index];
+
     // Clear values in the current form group
     currentFormGroup.get('specification').setValue(null);
     //currentFormGroup.get('course').setValue(null);
