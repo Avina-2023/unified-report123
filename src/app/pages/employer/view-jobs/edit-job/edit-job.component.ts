@@ -233,7 +233,7 @@ export class EditJobComponent implements OnInit {
         '',
         [
           Validators.required,
-          // Validators.pattern(/^(https?:\/\/)?([\w\d.-]+)\.([a-z]{2,})(\/\S*)?$/i)
+          Validators.pattern(/^(https?:\/\/)?([\w\d.-]+)\.([a-z]{2,})(\/\S*)?$/i)
         ]
       ],
       requirement: ['', [Validators.required]],
@@ -248,6 +248,9 @@ export class EditJobComponent implements OnInit {
   // get getskillSet() {
   //     return this.addjobsForm.get([this.skillSet]) as FormArray;
   //   }
+  get urlFormaterror() {
+    return this.addjobsForm.controls;
+  }
   get jobRole() {
     return this.addjobsForm.get('jobRole');
   }
@@ -679,6 +682,7 @@ export class EditJobComponent implements OnInit {
             disableClose: true,
             hasBackdrop: true,
           });
+          window.location.reload();
         }
       }, (err) => {
         this.toastr.warning('Connection failed, Please try again.');

@@ -25,7 +25,7 @@
                     </mat-error>
                   </mat-form-field>
                 </div> -->
-<!--  -->
+                <!--  -->
                 <!-- nz zorro -->
                 <div class="inputContainer" style="padding: 0px 0px 15px 0px;">
                   <label>Company Name <span>*</span></label>
@@ -39,7 +39,7 @@
                   class="text-danger">
                   Company Name is required.
                 </div>
-<!--  -->
+                <!--  -->
                 <div class="primaryWrap">
                   <div class="leftWrap">
                     <div class="inputContainer">
@@ -219,7 +219,7 @@
                         <!-- Fixed input -->
                         <div *ngIf="selectedRangeOption === 'fixed'" style="width: 71.5%;">
                           <mat-form-field class="example-full-width" appearance="outline">
-                            <input formControlName="fixed" matInput placeholder="CTC (numeric only)">
+                            <input type="number" formControlName="fixed" matInput placeholder="CTC (numeric only)">
                             <mat-error *ngIf="addjobsForm.get('fixed')?.hasError('required')">CTC is
                               required</mat-error>
                           </mat-form-field>
@@ -228,13 +228,13 @@
                         <!-- Range inputs -->
                         <div *ngIf="selectedRangeOption === 'range'" style="display: flex; width: 37%;">
                           <mat-form-field appearance="outline" style="padding-right: 13px;">
-                            <input formControlName="startrange" matInput placeholder="CTC (numeric only)">
+                            <input type="number" formControlName="startrange" matInput placeholder="CTC (numeric only)">
                             <mat-error *ngIf="addjobsForm.get('startrange')?.hasError('required')"> Start Range CTC is
                               required</mat-error>
                           </mat-form-field>
 
                           <mat-form-field appearance="outline" style="padding-right: 13px;">
-                            <input formControlName="endrange" matInput placeholder="CTC (numeric only)">
+                            <input type="number" formControlName="endrange" matInput placeholder="CTC (numeric only)">
                             <mat-error *ngIf="addjobsForm.get('endrange')?.hasError('required')"> End Range CTC is
                               required</mat-error>
                           </mat-form-field>
@@ -262,7 +262,6 @@
 
                 <div class="primaryWrap" style="margin: -25px 0px 0px 0px;">
                   <div class="leftWrap">
-
                     <div class="inputContainer overflow_scroll" style="margin: 0px 5px 0px 0px;">
                       <label>Key skills <span>*</span></label>
                       <nz-select [(ngModel)]="skillSet" style="width: 98%;" nzMode="multiple" nzAllowClear nzShowSearch
@@ -300,9 +299,12 @@
                       <mat-form-field appearance="outline">
                         <input formControlName="applyLink" matInput placeholder="Enter URL">
                         <mat-error class="error" *ngIf="applyLink?.errors?.required">{{'URL is Required'}}</mat-error>
+                        <mat-error class="error" *ngIf="urlFormaterror.applyLink.errors?.pattern">
+                          {{ 'Invalid URL format' }}
+                        </mat-error>
                       </mat-form-field>
-                      <ng-container *ngIf="applyLink.invalid && applyLink.touched">
-                      </ng-container>
+                      <ng-container
+                        *ngIf="urlFormaterror.applyLink.invalid && urlFormaterror.applyLink.touched"></ng-container>
                     </div>
                   </div>
                 </div>

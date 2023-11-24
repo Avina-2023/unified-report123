@@ -13,7 +13,9 @@
         <div class="job-Role">{{jobdata.jobRole}}</div>
         <div class="job-type-status">
           <div class="Job-Type">{{jobdata.jobType}}</div>
-          <div class="Job-Status">{{jobdata.approveStatus}}</div>
+          <div
+            class="Job-Status {{jobdata.approveStatus === 'approved' ? 'approved' : (jobdata.approveStatus === 'rejected' ? 'rejected' : 'pending')}}">
+            {{jobdata.approveStatus}}</div>
         </div>
         <div class="border-line1">
           <div class="bottom-border1"></div>
@@ -70,11 +72,10 @@
                   [nzValue]="company"></nz-option>
               </nz-select>
             </div>
-
-            <!-- <div *ngIf="addjobsForm.get('company').hasError('required') && addjobsForm.get('company').touched"
+            <div *ngIf="addjobsForm.get('company').hasError('required') && addjobsForm.get('company').touched"
               class="text-danger">
               Company Name is required.
-            </div> -->
+            </div>
           </div>
 
           <div class="border-line">
@@ -220,7 +221,7 @@
               <!-- Fixed input -->
               <div *ngIf="selectedRangeOption === 'fixed'" style="width: 50%; padding: 0px 0px 0px 15px;">
                 <mat-form-field style="width: 140%;" class="example-full-width" appearance="outline">
-                  <input formControlName="fixed" matInput placeholder="Enter Value">
+                  <input type="number" formControlName="fixed" matInput placeholder="Enter Value">
                   <mat-error *ngIf="addjobsForm.get('fixed').hasError('required')">CTC is required</mat-error>
                 </mat-form-field>
               </div>
@@ -229,12 +230,12 @@
               <div *ngIf="selectedRangeOption === 'range'"
                 style="display: flex; align-items: center; margin-left: 10px;">
                 <mat-form-field appearance="outline" style="padding-right: 5px; width: 160px;">
-                  <input formControlName="startrange" matInput placeholder="CTC (numeric only)" style="">
+                  <input type="number" formControlName="startrange" matInput placeholder="CTC (numeric only)" style="">
                   <mat-error *ngIf="addjobsForm.get('startrange').hasError('required')"> CTC is required</mat-error>
                 </mat-form-field>
 
                 <mat-form-field appearance="outline" style="padding-right: 5px; width: 160px;">
-                  <input formControlName="endrange" matInput placeholder="CTC (numeric only)">
+                  <input type="number" formControlName="endrange" matInput placeholder="CTC (numeric only)">
                   <mat-error *ngIf="addjobsForm.get('endrange').hasError('required')"> CTC is required</mat-error>
                 </mat-form-field>
               </div>
@@ -273,10 +274,10 @@
                 <nz-option *ngFor="let item of newSkill" [nzLabel]="item" [nzValue]="item"></nz-option>
               </nz-select>
             </div>
-            <div width *ngIf="addjobsForm.get('skillSet').hasError('required') && addjobsForm.get('skillSet').touched"
-              class="text-danger">Skill Set is
-              Required.</div>
           </div>
+          <div width *ngIf="addjobsForm.get('skillSet').hasError('required') && addjobsForm.get('skillSet').touched"
+            class="text-danger">Skill Set is
+            Required.</div>
           <div class="border-line">
             <div class="bottom-border"></div>
           </div>
@@ -305,9 +306,9 @@
               <mat-form-field appearance="outline" style="width: 90%;padding: 0px 0px 0px 6px;">
                 <input formControlName="applyLink" matInput placeholder="Enter URL">
                 <mat-error class="error" *ngIf="applyLink?.errors?.required">{{'URL is Required'}}</mat-error>
+                <mat-error class="error" *ngIf="urlFormaterror.applyLink.errors?.pattern">{{'Invalid URL format'}}</mat-error>
               </mat-form-field>
-              <ng-container *ngIf="applyLink.invalid && applyLink.touched">
-              </ng-container>
+              <ng-container *ngIf="urlFormaterror.applyLink.invalid && urlFormaterror.applyLink.touched"></ng-container>
             </div>
           </div>
           <div class="border-line">

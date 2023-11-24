@@ -82,13 +82,32 @@
       margin: 0px 3px 0px 0px;
       border-radius: 9px;
     }
-    .Job-Status{
-      color: #FFFFFF;
-      background: #49AE31;
-      padding: 3px 7px 3px 7px;
-      margin: 0px 0px 0px 3px;
-      border-radius: 9px;
-    }
+    // .Job-Status{
+    //   color: #FFFFFF;
+    //   background: #49AE31;
+    //   padding: 3px 7px 3px 7px;
+    //   margin: 0px 0px 0px 3px;
+    //   border-radius: 9px;
+    // }
+        .Job-Status {
+          padding: 3px 7px 3px 7px;
+          margin: 0px 0px 0px 3px;
+          border-radius: 9px;
+        }
+
+        .Job-Status.approved {
+          color: #FFFFFF;
+          background: #49AE31;
+        }
+
+        .Job-Status.rejected {
+          color: #FFFFFF;
+          background: #EF2917;
+        }
+        .Job-Status.pending {
+          color: #FFFFFF;
+          background: #27BBEE;
+        }
     .posted{
         font-size: 12px;
         color: #262626;
