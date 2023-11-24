@@ -22,6 +22,15 @@ interface EligibilityItem {
 }
 
 
+interface HiringItem {
+  stage: string;
+  title: string;
+  venue: string;
+  date: Date;
+  editHiringProcess: boolean;
+}
+
+
 @Component({
   selector: 'app-drive-settings',
   templateUrl: './drive-settings.component.html',
@@ -32,9 +41,11 @@ export class DriveSettingsComponent implements OnInit {
   jobForm: FormGroup;
   educationForm: FormGroup;
   genderForm: FormGroup;
+  infoForm: FormGroup;
   startRow: any = 0;
   endRow: any = 5;
   editMode = false;
+  editadditionalInfoMode = false;
   addneweducationGroupCriteria = false;
   criteriaEditGroup = false;
   showCustomCriteria = false;
@@ -45,6 +56,7 @@ export class DriveSettingsComponent implements OnInit {
   editCustomCriteria = false;
   editCriteriaModeVisible = true;
   editGenderModeVisible = true;
+  editInfoModeVisible = true;
   editBacklogsModeVisible = true;
   editCustomCriteriaVisible = true;
   locations: any;
@@ -125,15 +137,23 @@ export class DriveSettingsComponent implements OnInit {
   customCriteriaForm: FormGroup;
   yearofPassingValue: any;
   editEducation = false;
+  editHiringProcess = false;
   addneweducationGroup = false;
   editGroup = false;
+  addnewhiringProcessGroup = false;
+  editHiringGroup = false;
   backlogsForm: FormGroup;
+  hiringForm: FormGroup;
 
   toggleEditMode() {
     this.editMode = !this.editMode;
     this.editModeVisible = !this.editModeVisible;
   }
 
+  toggleInfoEditMode(){
+    this.editadditionalInfoMode = !this.editadditionalInfoMode;
+    this.editInfoModeVisible = !this.editInfoModeVisible;
+  }
   toggleCriteriaEditMode() {
     this.editCriteriaMode = !this.editCriteriaMode;
     this.editCriteriaModeVisible = !this.editCriteriaModeVisible;
@@ -147,6 +167,8 @@ export class DriveSettingsComponent implements OnInit {
     this.editBacklogsMode = !this.editBacklogsMode;
     this.editBacklogsModeVisible = !this.editBacklogsModeVisible;
   }
+
+
 
   toggleCustomCriteria() {
     this.editCustomCriteria = !this.editCustomCriteria;
@@ -177,6 +199,9 @@ export class DriveSettingsComponent implements OnInit {
   }
 
 
+
+
+
   toggleeditCustomCriteria(eligibilityItem: EligibilityItem, index: number) {
     //this.showCustomCriteria = !this.showCustomCriteria;
     this.editCustomCriteriaVisible = !this.editCustomCriteriaVisible;
@@ -198,9 +223,37 @@ export class DriveSettingsComponent implements OnInit {
     }
   }
 
+
+  toggleeditHiringProcess(hiringItem: HiringItem, index: number) {
+    this.addnewhiringProcessGroup = !this.addnewhiringProcessGroup;
+    this.editHiringGroup = !this.editHiringGroup;
+    // Check if any other edit form is currently open
+    const isAnyEditFormOpen = this.jobReqData.hiringProcess.some(item => item.editHiringProcess);
+    if (!isAnyEditFormOpen) {
+      // No other edit form is open, proceed to toggle the clicked item's edit state
+      this.jobReqData.hiringProcess = this.jobReqData.hiringProcess.map((item, i) => ({
+        ...item,
+        editHiringProcess: i === index ? !item.editHiringProcess : false,
+      }));
+
+      // Optionally, you may want to update the hiringItem reference to the one in the updated array
+      hiringItem = this.jobReqData.hiringProcess[index];
+    } else {
+      this.editHiringGroup = !this.editHiringGroup;
+      // Another edit form is already open, provide feedback or take other actions
+      console.log('Cannot open another edit option because another edit form is already open.');
+      this.toastr.warning('Close the currently open edit form before opening another one.', 'Edit Form Restriction');
+    }
+  }
+
   cancelEditMode(educationItem: EducationItem) {
     educationItem.editEducation = !educationItem.editEducation;
     location.reload();
+  }
+
+  cancelHiringProcess(hiringItem: HiringItem){
+   hiringItem.editHiringProcess = !hiringItem.editHiringProcess;
+   location.reload();
   }
 
   currentJobID = localStorage.getItem('currentJobID');
@@ -223,6 +276,7 @@ export class DriveSettingsComponent implements OnInit {
   jobReqData: any;
   formGroups: FormGroup[] = [];
   criteriaGroups: FormGroup[] = [];
+  hiringFormGroups: FormGroup[] = [];
   educationLevels = [
     'Class X',
     'Class XII',
@@ -232,6 +286,18 @@ export class DriveSettingsComponent implements OnInit {
     'Phd',
     'Through Out'
   ];
+  stageLevels = [
+    'Stage 1',
+    'Stage 2',
+    'Stage 3',
+    'Stage 4',
+    'Stage 5',
+    'Stage 6',
+    'Stage 7',
+    'Stage 8',
+    'Stage 9',
+    'Stage 10'
+  ]
   // jobData: any;
   constructor(
     public router: Router,
@@ -259,7 +325,7 @@ export class DriveSettingsComponent implements OnInit {
       this.yearPassed.push(i.toString());
     }
 
-    
+
   }
 
   jobProfileDetails() {
@@ -300,7 +366,7 @@ export class DriveSettingsComponent implements OnInit {
     //yearofpass data
 
     this.yearofPassForm = this.fb.group({
-      yearofPassout: [null]
+      yearofPassout: [null, Validators.required]
     });
 
     this.yearofPassForm.patchValue({
@@ -310,7 +376,7 @@ export class DriveSettingsComponent implements OnInit {
     //gender data
 
     this.genderForm = this.fb.group({
-      gender: ['']
+      gender: ['', Validators.required]
     });
 
     this.genderForm.patchValue({
@@ -321,11 +387,11 @@ export class DriveSettingsComponent implements OnInit {
     //backlogs data
 
     this.backlogsForm = this.fb.group({
-      noOfBacklogs: ['', Validators.required]
+      noofBacklog: ['', Validators.required]
     });
 
     this.backlogsForm.patchValue({
-      noOfBacklogs: this.jobReqData?.noOfBacklogs ? this.jobReqData?.noOfBacklogs : ''
+      noofBacklog: this.jobReqData?.noofBacklog ? this.jobReqData?.noofBacklog : ''
     });
 
 
@@ -339,6 +405,26 @@ export class DriveSettingsComponent implements OnInit {
 
 
 
+    //hiring Process data
+    this.hiringForm = this.fb.group({
+      hiringGroups: this.fb.array([this.createHiringGroup()])
+    });
+    this.hiringFormGroups = this.hiringForm.get('hiringGroups')['controls'];
+
+
+     //info data
+
+     this.infoForm = this.fb.group({
+      additionalInformation: ['', Validators.required]
+    });
+
+    this.infoForm.patchValue({
+      additionalInformation: this.jobReqData?.additionalInformation.length == 0 ? '' : this.jobReqData?.additionalInformation[0]?.note
+    });
+
+
+
+
   }
 
 
@@ -348,6 +434,15 @@ export class DriveSettingsComponent implements OnInit {
       specification: [null],
       // course: [null],
       discipline: [this.multipleSpecialization],
+    });
+  }
+
+  createHiringGroup(): FormGroup {
+    return this.fb.group({
+      stage: [null, Validators.required],
+      title: [null, Validators.required],
+      venue: [null, Validators.required],
+      date: ['', Validators.required],
     });
   }
 
@@ -373,6 +468,18 @@ export class DriveSettingsComponent implements OnInit {
   }
 
 
+
+  addhiringGroup(): void {
+    this.addnewhiringProcessGroup = !this.addnewhiringProcessGroup;
+    if (!this.addnewhiringProcessGroup) {
+      this.hiringFormGroups.push(this.createHiringGroup());
+      console.log('group added');
+    } else {
+      console.log('group already added');
+    }
+    //this.updateDisabledGraduations();
+  }
+
   updateDisabledGraduations(): void {
     this.disabledGraduations = [];
     for (const group of this.formGroups) {
@@ -395,6 +502,11 @@ export class DriveSettingsComponent implements OnInit {
   isEducationLevelDisabled(educationLevel: string): boolean {
     // Check if the education level is already present in jobReqData.eligibilityCriteria
     return this.jobReqData.eligibilityCriteria.some(criteria => criteria.educationLevel === educationLevel);
+  }
+
+  ishiringLevelDisabled(hiringLevel: string): boolean {
+    // Check if the education level is already present in jobReqData.eligibilityCriteria
+    return this.jobReqData.hiringProcess.some(criteria => criteria.stage === hiringLevel);
   }
 
   getallEducation() {
@@ -703,27 +815,60 @@ export class DriveSettingsComponent implements OnInit {
           "companyId": this.jobReqData?.companyId,
           "education": this.jobReqData.education
         };
-
         this.updateJobData(eduObj);
-        //console.log(eduObj, 'educationobject');
-        /*this.http.UploadPostJob(eduObj).subscribe((data: any) => {
-          if (data.success == false) {
-            this.toastr.warning(data.message);
-          } else {
-            this.toastr.success(data.message);
-            location.reload();
-            //this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.PARTNER.REQUIRMENT);
-          }
-        }, (err) => {
-          this.toastr.warning('Connection failed, Please try again.');
-        });*/
-
-
       }
     }
-
     else {
       this.formGroups.forEach(formGroup => formGroup.markAllAsTouched());
+      this.toastr.warning('Please fill in all required fields.', 'Form Validation Error');
+    }
+  }
+
+  saveHiringProcess(index:number){
+    const arehiringGroupsValid = this.hiringFormGroups.every(formGroup => formGroup.valid);
+
+    if (arehiringGroupsValid) {
+      const updatedHiring = this.hiringFormGroups.map(formGroup => formGroup.value);
+      if (this.jobReqData && this.jobReqData.hiringProcess && this.jobReqData.hiringProcess[index]) {
+        // Update the education data at the specified index
+        this.jobReqData.hiringProcess[index] = updatedHiring[0];
+        // Remove the "editEducation" property from each object
+        this.jobReqData.hiringProcess = this.jobReqData.hiringProcess.map(hire => {
+          const { editHiringGroup, ...eduWithoutEdit } = hire;
+          return eduWithoutEdit;
+        });
+        var hireObj = {
+          "jobId": this.jobReqData?.jobId,
+          "companyId": this.jobReqData?.companyId,
+          "hiringProcess": this.jobReqData.hiringProcess
+        };
+        //console.log(hireObj, 'hiring object');
+        this.updateJobData(hireObj);
+      }
+    }
+    else {
+      this.hiringFormGroups.forEach(formGroup => formGroup.markAllAsTouched());
+      this.toastr.warning('Please fill in all required fields.', 'Form Validation Error');
+    }
+  }
+
+  addHireItem(index:number){
+
+    const arehiringGroupsValid = this.hiringFormGroups.every(formGroup => formGroup.valid);
+    if (arehiringGroupsValid) {
+      const updatedHiring = this.hiringFormGroups.map(formGroup => formGroup.value);
+      this.jobReqData.hiringProcess = [...this.jobReqData.hiringProcess, ...updatedHiring];
+        var hireObj = {
+          "jobId": this.jobReqData?.jobId,
+          "companyId": this.jobReqData?.companyId,
+          "hiringProcess": this.jobReqData.hiringProcess
+        };
+        //console.log(hireObj, 'hiring object');
+        this.updateJobData(hireObj);
+      
+    }
+    else {
+      this.hiringFormGroups.forEach(formGroup => formGroup.markAllAsTouched());
       this.toastr.warning('Please fill in all required fields.', 'Form Validation Error');
     }
   }
@@ -743,6 +888,23 @@ export class DriveSettingsComponent implements OnInit {
     this.deleteFields(deletedObj);
   }
 
+
+  DeleteHiring(hiringItem: any, index:number){
+    if (this.jobReqData && this.jobReqData.hiringProcess) {
+      // Use the index parameter to splice the array and remove the item at the specified index
+      this.jobReqData.hiringProcess.splice(index, 1);
+    }
+    // console.log(this.jobReqData.education, 'deletededucation');
+    var deletedhireObj = {
+      "jobId": this.jobReqData?.jobId,
+      "companyId": this.jobReqData?.companyId,
+      "hiringProcess": this.jobReqData.hiringProcess
+    };
+    this.deleteFields(deletedhireObj);
+
+  }
+
+
   deleteCustomCriteria(index: number) {
     // Assuming jobReqData.education is your array of education items
     if (this.jobReqData && this.jobReqData?.eligibilityCriteria) {
@@ -756,6 +918,43 @@ export class DriveSettingsComponent implements OnInit {
       "eligibilityCriteria": this.jobReqData?.eligibilityCriteria
     };
     this.deleteFields(deletedObj);
+  }
+
+  deleteBacklogs() {
+    if (this.jobReqData && this.jobReqData?.noofBacklog) {
+      var deletedObj = {
+        "jobId": this.jobReqData?.jobId,
+        "companyId": this.jobReqData?.companyId,
+        "noofBacklog": ''
+      };
+      this.deleteFields(deletedObj);
+    }
+  }
+
+  deleteGender() {
+
+    if (this.jobReqData && this.jobReqData?.gender) {
+      var deletedObj = {
+        "jobId": this.jobReqData?.jobId,
+        "companyId": this.jobReqData?.companyId,
+        "gender": ''
+      };
+      this.deleteFields(deletedObj);
+    }
+
+  }
+
+  deleteadditionalInfo(){
+
+    if (this.jobReqData && this.jobReqData?.hiringProcess) {
+      var deletedInfo = {
+        "jobId": this.jobReqData?.jobId,
+        "companyId": this.jobReqData?.companyId,
+        "additionalInformation": []
+      };
+      this.deleteFields(deletedInfo);
+    }
+
   }
 
 
@@ -791,17 +990,6 @@ export class DriveSettingsComponent implements OnInit {
         "education": this.jobReqData.education
       };
       this.updateJobData(addedEduObj);
-      /*this.http.UploadPostJob(addedEduObj).subscribe((data: any) => {
-        if (data.success == false) {
-          this.toastr.warning(data.message);
-        } else {
-          this.toastr.success(data.message);
-          location.reload();
-          //this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.PARTNER.REQUIRMENT);
-        }
-      }, (err) => {
-        this.toastr.warning('Connection failed, Please try again.');
-      });*/
     }
     else {
       this.formGroups.forEach(formGroup => formGroup.markAllAsTouched());
@@ -945,8 +1133,8 @@ export class DriveSettingsComponent implements OnInit {
         "companyId": this.jobReqData?.companyId,
         "gender": this.genderForm?.value?.gender
       };
-      //this.updateJobData(genderObj);
-      console.log(genderObj);
+      this.updateJobData(genderObj);
+      //console.log(genderObj);
     }
     else {
       this.genderForm.markAllAsTouched();
@@ -954,14 +1142,40 @@ export class DriveSettingsComponent implements OnInit {
     }
   }
 
+
+  saveadditionalInfo() {
+    if (this.infoForm.valid) {
+	const infoDescription = this.infoForm.value?.additionalInformation;
+	const infoItems = [
+      {
+        note: infoDescription
+      }
+    ];
+      var infoObj = {
+        "jobId": this.jobReqData?.jobId,
+        "companyId": this.jobReqData?.companyId,
+        "additionalInformation": infoItems
+      };
+      this.updateJobData(infoObj);
+      console.log(infoObj);
+    }
+    else {
+      this.infoForm.markAllAsTouched();
+      this.toastr.warning('Please fill in all required fields.', 'Form Validation Error');
+    }
+  }
+
+  
+
+
   saveBacklogs() {
     if (this.backlogsForm.valid) {
       var backlogsObj = {
         "jobId": this.jobReqData?.jobId,
         "companyId": this.jobReqData?.companyId,
-        "noOfBacklogs": this.backlogsForm?.value?.noOfBacklogs
+        "noofBacklog": this.backlogsForm?.value?.noofBacklog
       };
-      //this.updateJobData(backlogsObj);
+      this.updateJobData(backlogsObj);
       console.log(backlogsObj);
     }
     else {

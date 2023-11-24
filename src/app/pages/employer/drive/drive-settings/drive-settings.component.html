@@ -66,7 +66,7 @@
                                 </div>
                                 <div class="app-close-on-date-container">
                                     <div class="app-close-on-date">
-                                        {{jobReqData?.lastDatetoApply | date:'MMM dd, yyyy'}}
+                                        {{ jobReqData?.lastDatetoApply | date:'MMM dd, yyyy h:mm a' }}
                                     </div>
                                 </div>
                             </div>
@@ -342,10 +342,10 @@
                         </div> -->
                     </div>
                     <div class="edu-values" *ngIf="jobReqData?.education.length == 0">
-                        <div class="education-lable-text"> No Education defined. All students are eligible </div>
+                        <div class="education-lable-text mg-15"> No Education defined. All students are eligible </div>
                     </div>
                     <div class="edu-values" *ngIf="jobReqData?.education">
-                        <div *ngFor="let educationItem of jobReqData?.education; let i=index;">
+                        <div class="mg-15" *ngFor="let educationItem of jobReqData?.education; let i=index;">
                             <div class="flex_div edu_items" *ngIf="!educationItem.editEducation">
                                 <div class="edu_section width-20 pd-5 font_bold">
                                     {{ educationItem.specification }}</div>
@@ -379,7 +379,7 @@
                                 </div>
                             </div>
                             <div *ngIf="educationItem.editEducation">
-                                <div style="border: 1px solid #dfdfdf; margin-bottom: 100px; width: 100%;">
+                                <div style="margin-bottom: 100px; width: 100%;">
                                     <fieldset class="education-fieldset">
                                         <div *ngFor="let group of formGroups; let i = index"
                                             class="inputForm flex_div education_set pd-20">
@@ -450,11 +450,12 @@
                     </div>
 
                     <div *ngIf="!addneweducationGroup && !editGroup" class="add_more_text"
-                        (click)="addEducationGroup()">Add More
+                        (click)="addEducationGroup()">{{jobReqData?.education.length == 0 ? "Add Education" : "Add
+                        More"}}
                     </div>
 
                     <div class="edu-values" *ngIf="addneweducationGroup && !editGroup">
-                        <fieldset class="education-fieldset">
+                        <fieldset class="education-fieldset mg-15">
                             <div *ngFor="let group of formGroups; let i = index"
                                 class="inputForm pd-20 flex_div education_set">
                                 <div class="mg-r-10 width-30">
@@ -755,7 +756,7 @@
                                 Backlogs
                             </div>
                             <div class="add-criteria" (click)="toggleBacklogsEditMode()"
-                                *ngIf="editBacklogsModeVisible">
+                                *ngIf="editBacklogsModeVisible && jobReqData?.noofBacklog?.length == 0">
                                 <mat-icon>create</mat-icon>Edit
                             </div>
                         </div>
@@ -764,22 +765,29 @@
                         <div class="bottom-border"></div>
                     </div>
                     <div class="education">
-                        <div class="education-lable" *ngIf="!editBacklogsMode">
-                            <!-- <div class="education-lable-text" *ngIf="jobReqData?.noOfBacklogs?.length == 0"> No Backlogs
-                                defined. All students are eligible </div> -->
-                            <div class="education-lable-text"> No Backlogs
+                        <div class="education-lable width-100" *ngIf="!editBacklogsMode">
+                            <div class="education-lable-text" *ngIf="jobReqData?.noofBacklog?.length == 0"> No Backlogs
                                 defined. All students are eligible </div>
-                            <div class="education-lable-text" *ngfor="let backlogs of jobReqData?.noOfBacklogs">
-                                Only
-                                Candidates with maximum of {{backlogs}} are eligible</div>
+                            <div class="flex_div flx_baseline flx_between" *ngIf="jobReqData?.noofBacklog?.length">
+                                <div class="education-lable-text">
+                                    Only Candidates with maximum of {{jobReqData?.noofBacklog}} or less backlogs are
+                                    eligible
+                                </div>
+                                <div class="flex_div flx_center submit_btn pd-tp-10" style="float:right;">
+                                    <div class="mg-5"><button type="submit" class="btn btn-primary save_btn"
+                                            (click)="toggleBacklogsEditMode()">Edit</button>
+                                    </div>
+                                    <div class="cancel_btn mg-5" (click)="deleteBacklogs()">Delete</div>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="education-lable width-100 inputForm custom-form pd-20" *ngIf="editBacklogsMode">
                             <div class="flex_div width-100 flx_baseline flx_evenly">
-                                <div><label for="noOfBacklogs">Maximum No.of Backlogs</label></div>
+                                <div><label for="noofBacklog">Maximum No.of Backlogs</label></div>
                                 <div class="width-50">
-                                    <input formControlName="noOfBacklogs" type="number" class="inputForm">
-                                    <div *ngIf="backlogsForm.get('noOfBacklogs').hasError('required') && backlogsForm.get('noOfBacklogs').touched"
+                                    <input formControlName="noofBacklog" type="number" class="inputForm">
+                                    <div *ngIf="backlogsForm.get('noofBacklog').hasError('required') && backlogsForm.get('noofBacklog').touched"
                                         class="text-danger">
                                         No.of Backlogs Required
                                     </div>
@@ -792,7 +800,6 @@
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
 
@@ -802,7 +809,8 @@
                             <div class="jobprofile-header-text2">
                                 Gender
                             </div>
-                            <div class="add-criteria" (click)="toggleGenderEditMode()" *ngIf="editGenderModeVisible">
+                            <div class="add-criteria" (click)="toggleGenderEditMode()"
+                                *ngIf="editGenderModeVisible && !jobReqData?.gender">
                                 <mat-icon>create</mat-icon>Edit
                             </div>
                         </div>
@@ -811,23 +819,37 @@
                         <div class="bottom-border"></div>
                     </div>
                     <div class="education">
-                        <div class="education-lable" *ngIf="!editGenderMode">
-                            <!-- <div class="education-lable-text" *ngIf="jobReqData?.gender.length == 0"> No Gender defined.
-                                All Candidates are eligible </div> -->
-                            <div class="education-lable-text"> No Gender defined.
+                        <div class="education-lable width-100" *ngIf="!editGenderMode">
+                            <div class="education-lable-text" *ngIf="jobReqData?.gender == ''"> No Gender defined.
                                 All Candidates are eligible </div>
-                            <div class="education-lable-text" *ngFor="let gender of jobReqData?.gender">
-                                <div class="yop-text">{{ gender }}</div>
+
+                            <div class="flex_div flx_baseline flx_between" *ngIf="jobReqData?.gender">
+                                <div class="education-lable-text">
+                                    Only <span class="text-capitalize">{{ jobReqData?.gender == "others" ? "Transgender"
+                                        : jobReqData?.gender }}</span> Candidates are eligible.
+                                </div>
+                                <div class="flex_div flx_center submit_btn pd-tp-10" style="float:right;">
+                                    <div class="mg-5"><button type="submit" class="btn btn-primary save_btn"
+                                            (click)="toggleGenderEditMode()">Edit</button>
+                                    </div>
+                                    <div class="cancel_btn mg-5" (click)="deleteGender()">Delete</div>
+                                </div>
                             </div>
+
+
                         </div>
 
                         <div class="education-lable width-100 inputForm custom-form pd-20" *ngIf="editGenderMode">
                             <nz-select [nzSize]="'large'" nzMode="default" nzPlaceHolder="Select Gender" class="gender"
                                 formControlName="gender" nzAllowClear nzShowSearch>
-                                <nz-option [nzLabel]="'Male'" [nzValue]="'Male'"></nz-option>
-                                <nz-option [nzLabel]="'Female'" [nzValue]="'Female'"></nz-option>
-                                <nz-option [nzLabel]="'Others'" [nzValue]="'Others'"></nz-option>
+                                <nz-option [nzLabel]="'Male'" [nzValue]="'male'"></nz-option>
+                                <nz-option [nzLabel]="'Female'" [nzValue]="'female'"></nz-option>
+                                <nz-option [nzLabel]="'Others'" [nzValue]="'others'"></nz-option>
                             </nz-select>
+                            <div *ngIf="genderForm.get('gender').hasError('required') && genderForm.get('gender').touched"
+                                class="text-danger">
+                                Gender Required.
+                            </div>
 
 
                             <div class="flex_div flx_center submit_btn pd-tp-10" *ngIf="editGenderMode"
@@ -841,24 +863,299 @@
                     </div>
                 </div>
 
-                <div class="set-criteria">
+                <!-- <div class="set-criteria">
                     <div class="set-criteria-header-container2">
                         <div class="other-info">Other Information</div>
                     </div>
                     <div class="border-line">
                         <div class="bottom-border"></div>
                     </div>
-                    <div class="set-criteria-header-container2">
+                    <div class="set-criteria-header-container2 bd-btm-10 mg-15">
                         <div class="jobprofile-criteria">
                             <div class="jobprofile-header-text2">
                                 Hiring Process
                             </div>
-                            <div class="add-criteria">
-                                Add info
+                            
+                            <div class="add-criteria flex_div flx_center">
+                                <mat-icon>add</mat-icon>
+                                <div style="margin-left: -5px;">Add Process</div>
                             </div>
+
+
+                        </div>
+                    </div>
+                </div> -->
+
+
+
+                <div class="jobprofile-header-container2">
+                    <div class="jobprofile-header2">
+                        <div class="jobprofile-header-text2">
+                            Other Information
                         </div>
                     </div>
                 </div>
+                <div class="border-line">
+                    <div class="bottom-border"></div>
+                </div>
+
+                <div class="hiring_criteria">
+                    <div class="hiring_process flex_div flx_between width-100">
+                        <div class="education-lable-text mg-15">
+                            Hiring Process
+                        </div>
+                        <div class="mg-15 add-criteria flex_div flx_center" (click)="addhiringGroup()"
+                            *ngIf="!addnewhiringProcessGroup && !editHiringGroup && jobReqData?.hiringProcess.length == 0">
+                            <mat-icon>add</mat-icon>
+                            <div style="margin-left: -5px;">Add Process</div>
+                        </div>
+                    </div>
+                    <div class="border-line">
+                        <div class="bottom-border"></div>
+                    </div>
+                    <div class="edu-values" *ngIf="jobReqData?.hiringProcess.length == 0">
+                        <div class="education-lable-text mg-15"> No Hiring Process added. </div>
+                    </div>
+                    <div class="edu-values" *ngIf="jobReqData?.hiringProcess.length">
+                        <div class="mg-15 mg-tp-30" *ngFor="let hiringItem of jobReqData?.hiringProcess; let i=index;">
+                            <div class="flex_div edu_items" *ngIf="!hiringItem.editHiringProcess">
+                                <div class="edu_section width-20 pd-5 font_bold stage_div"
+                                    style="padding: 40px 0px!important;">
+                                    <div style="margin: auto;">{{ hiringItem.stage }}</div>
+                                </div>
+                                <div class="separator_line_width"></div>
+                                <div class="sec_discipline width-60 flx_column lt-15">
+                                    <div class="font_bold">{{hiringItem.title}}</div> <br>
+                                    <div>{{hiringItem.date | date:'MMM dd, yyyy h:mm a'}} - {{hiringItem.venue}} </div>
+
+                                </div>
+                                <div class="separator_line_width"></div>
+                                <div class="edu_section width-20">
+                                    <div class="pd-5">
+                                        <div style="cursor: pointer;color: #1B4E9B;text-align:center;"
+                                            (click)="toggleeditHiringProcess(hiringItem, i)">
+                                            <mat-icon>create</mat-icon>Edit
+                                        </div>
+                                    </div>
+                                    <div class="separator_line_ht"></div>
+                                    <div class="pd-5">
+                                        <div style="cursor: pointer;color: #1B4E9B;text-align:center;"
+                                            (click)="DeleteHiring(hiringItem, i)">
+                                            <mat-icon>delete</mat-icon>Delete
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div *ngIf="hiringItem.editHiringProcess">
+                                <div style="border: 1px solid #dfdfdf; margin-bottom: 100px; width: 100%;">
+                                    <fieldset class="education-fieldset mg-15">
+                                        <div *ngFor="let group of hiringFormGroups; let i = index"
+                                            class="customForm flex_div education_set pd-20">
+                                            <div class="mg-r-10 width-25">
+                                                <label for="stage">Stage</label>
+                                                <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Select Stage"
+                                                    [formControl]="group.get('stage')" [(ngModel)]="hiringItem.stage">
+                                                    <!-- <nz-option *ngFor="let option of educations" [nzLabel]="option.education" [nzValue]="option.education"
+                                                [nzDisabled]="isGraduationDisabled(option.education, i)"></nz-option> -->
+                                                    <nz-option *ngFor="let option of stageLevels" [nzLabel]="option"
+                                                        [nzValue]="option"
+                                                        [nzDisabled]="ishiringLevelDisabled(option)"></nz-option>
+                                                </nz-select>
+                                                <div *ngIf="group.get('stage').hasError('required') && group.get('stage').touched"
+                                                    class="text-danger">
+                                                    Stage Field Required.
+                                                </div>
+                                            </div>
+                                            <div class="mg-l-10 width-25">
+                                                <label for="title">Title</label>
+                                                <input [(ngModel)]="hiringItem.title" [formControl]="group.get('title')"
+                                                    placeholder="Enter Title" class="inputForm">
+                                                <div *ngIf="group.get('title').hasError('required') && group.get('title').touched"
+                                                    class="text-danger">
+                                                    Title Required.
+                                                </div>
+                                            </div>
+                                            <div class="mg-l-10 width-25">
+                                                <label for="venue">Venue</label>
+                                                <input [(ngModel)]="hiringItem.venue" [formControl]="group.get('venue')"
+                                                    placeholder="Enter Venue" class="inputForm">
+                                                <div *ngIf="group.get('venue').hasError('required') && group.get('venue').touched"
+                                                    class="text-danger">
+                                                    Venue is Required.
+                                                </div>
+                                            </div>
+
+                                            <div class="mg-l-10 width-25">
+                                                <label for="date">Date & Time</label>
+                                                <div class="flex_div flx_center"
+                                                    style="border:1px solid #e4e4e4;height: 34px;">
+                                                    <input style="border:none!important;height:fit-content;"
+                                                        [(ngModel)]="hiringItem.date" matInput
+                                                        placeholder="Select Date & Time" [matDatepicker]="picker"
+                                                        [formControl]="group.get('date')" class="inputForm" readonly>
+                                                    <mat-datepicker-toggle matSuffix
+                                                        [for]="picker"></mat-datepicker-toggle>
+                                                    <mat-datepicker #picker></mat-datepicker>
+                                                </div>
+                                                <div *ngIf="group.get('date').hasError('required') && group.get('date').touched"
+                                                    class="text-danger">
+                                                    Date is Required.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                    <div class="flex_div flx_center submit_btn" style="float:right;padding: 20px 0px;">
+                                        <div class="mg-5">
+                                            <button type="submit" class="btn btn-primary save_btn"
+                                                (click)="saveHiringProcess(i)">Save</button>
+                                        </div>
+                                        <div class="cancel_btn mg-5" (click)="cancelHiringProcess(hiringItem)">Cancel
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="!addnewhiringProcessGroup && !editHiringGroup && jobReqData?.hiringProcess.length"
+                        class="add_more_text" (click)="addhiringGroup()">Add More
+                    </div>
+                    <div class="edu-values" *ngIf="addnewhiringProcessGroup && !editHiringGroup">
+                        <fieldset class="education-fieldset mg-15">
+                            <div *ngFor="let group of hiringFormGroups; let i = index"
+                                class="customForm inputForm flex_div education_set pd-20">
+                                <div class="mg-r-10 width-25">
+                                    <label for="stage">Stage</label>
+                                    <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Select Stage"
+                                        [formControl]="group.get('stage')">
+                                        <!-- <nz-option *ngFor="let option of educations" [nzLabel]="option.education" [nzValue]="option.education"
+                                                [nzDisabled]="isGraduationDisabled(option.education, i)"></nz-option> -->
+                                        <nz-option *ngFor="let option of stageLevels" [nzLabel]="option"
+                                            [nzValue]="option" [nzDisabled]="ishiringLevelDisabled(option)"></nz-option>
+                                    </nz-select>
+                                    <div *ngIf="group.get('stage').hasError('required') && group.get('stage').touched"
+                                        class="text-danger">
+                                        Stage Field Required.
+                                    </div>
+                                </div>
+                                <div class="mg-l-10 width-25">
+                                    <label for="title">Title</label>
+                                    <input [formControl]="group.get('title')" placeholder="Enter Title"
+                                        class="inputForm">
+                                    <div *ngIf="group.get('title').hasError('required') && group.get('title').touched"
+                                        class="text-danger">
+                                        Title Required.
+                                    </div>
+                                </div>
+                                <div class="mg-l-10 width-25">
+                                    <label for="venue">Venue</label>
+                                    <input [formControl]="group.get('venue')" placeholder="Enter Venue"
+                                        class="inputForm">
+                                    <div *ngIf="group.get('venue').hasError('required') && group.get('venue').touched"
+                                        class="text-danger">
+                                        Venue is Required.
+                                    </div>
+                                </div>
+                                <div class="mg-l-10 width-25">
+                                    <label for="date">Date & Time</label>
+                                    <div class="flex_div flx_center" style="border:1px solid #e4e4e4;height: 34px;">
+                                        <input style="border:none!important;height:fit-content;" matInput
+                                            placeholder="Select Date & Time" [matDatepicker]="picker"
+                                            [formControl]="group.get('date')" class="inputForm" readonly>
+                                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                        <mat-datepicker #picker></mat-datepicker>
+                                    </div>
+                                    <div *ngIf="group.get('date').hasError('required') && group.get('date').touched"
+                                        class="text-danger">
+                                        Date is Required.
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <div class="flex_div flx_center submit_btn" style="float:right;padding: 20px 0px;">
+                            <div class="mg-5">
+                                <button type="submit" class="btn btn-primary save_btn"
+                                    (click)="addHireItem(i)">Save</button>
+                            </div>
+                            <div class="cancel_btn mg-5" (click)="cancelAddItem(i)">Cancel
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+
+
+                <div class="set-criteria" [formGroup]="infoForm">
+                    <div class="set-criteria-header-container2">
+                        <div class="jobprofile-criteria">
+                            <div class="jobprofile-header-text2">
+                                Additional Information
+                            </div>
+                            <div class="add-criteria flex_div flx_center" (click)="toggleInfoEditMode()"
+                                *ngIf="editInfoModeVisible && jobReqData?.additionalInformation.length == 0">
+                                <mat-icon>add</mat-icon>
+                                <div style="margin-left: -5px;">Add Info</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="border-line">
+                        <div class="bottom-border"></div>
+                    </div>
+
+                    <div class="education">
+                        <div class="education-lable width-100" *ngIf="!editadditionalInfoMode">
+                            <div class="education-lable-text" *ngIf="jobReqData?.additionalInformation == ''"> No
+                                Information added </div>
+
+                            <div class="flex_div flx_baseline flx_between" *ngIf="jobReqData?.additionalInformation.length">
+                                <div class="education-lable-text" [innerHTML]="jobReqData?.additionalInformation.length == 0 ? '' : jobReqData?.additionalInformation[0]?.note"></div>
+                                <div class="flex_div flx_center submit_btn pd-tp-10" style="float:right;">
+                                    <div class="mg-5"><button type="submit" class="btn btn-primary save_btn"
+                                            (click)="toggleInfoEditMode()">Edit</button>
+                                    </div>
+                                    <div class="cancel_btn mg-5" (click)="deleteadditionalInfo()">Delete</div>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                        <div class="education-lable width-100 inputForm custom-form pd-20"
+                            *ngIf="editadditionalInfoMode">
+                            <angular-editor [property]='binding' [config]="config"
+                                formControlName="additionalInformation" id="additionalInformation"></angular-editor>
+                            <div *ngIf="infoForm.get('additionalInformation').hasError('required') && infoForm.get('additionalInformation').touched"
+                                class="text-danger">
+                                Additional Information Required.
+                            </div>
+
+
+                            <div class="flex_div flx_center submit_btn pd-tp-10"
+                                style="float:right;" *ngIf="editadditionalInfoMode">
+                                <div class="mg-5"><button type="submit" class="btn btn-primary save_btn"
+                                        (click)="saveadditionalInfo()">Save</button></div>
+                                <div class="cancel_btn mg-5" (click)="cancelAddItem()">Cancel</div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
             </div>
         </div>

@@ -92,6 +92,45 @@ input.ng-touched.ng-invalid {
   border: 1px solid #ced4da !important;
 }
 
+.text-capitalize {
+  text-transform: capitalize;
+}
+
+.hiring_criteria {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.mg-tp-30 {
+  margin-top: 30px !important;
+}
+
+.flx_column {
+  flex-direction: column !important;
+}
+
+.lt-15 {
+  line-height: 15px !important;
+}
+
+.stage_div {
+  color: #fff;
+  background: #1B4E9B;
+  margin: initial !important;
+}
+.hiring_process {
+  padding-bottom: 5px;
+}
+
+.mg-15 {
+  margin: 0px 15px;
+}
+
+.bd-btm-10 {
+  border-bottom: 1px solid #eee3e3;
+
+}
+
 .inputForm,
 .inputForm:focus-visible {
   border: 1px solid #e8e8e8;
@@ -103,7 +142,8 @@ input.ng-touched.ng-invalid {
   margin-bottom: 50px;
   margin-top: 30px;
 }
-.mg-tp-10{
+
+.mg-tp-10 {
   margin-top: 10px;
 }
 
@@ -124,12 +164,15 @@ nz-select {
 .width-40 {
   width: 40% !important;
 }
+
 .width-50 {
   width: 50%;
 }
-.flx_between{
+
+.flx_between {
   justify-content: space-between;
 }
+
 .mg-r-10 {
   margin-right: 10px;
 }
@@ -496,6 +539,9 @@ nz-select {
 
   .width-20 {
     width: 20%;
+  }
+  .width-25{
+    width: 25%;
   }
 
   .edu_section {
