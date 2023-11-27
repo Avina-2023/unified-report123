@@ -4,8 +4,25 @@
   <button class="reject-icon icn" [ngClass]="{'disable': params.data.approveStatus === 'rejected'}"
     (click)="openStatusDialog('rejected')" matTooltip="Reject"><mat-icon>clear</mat-icon></button>
   <button class="view-icon icn" (click)="openEditJobDialog()"
-    matTooltip="Edit Profile"><mat-icon>mode_edit</mat-icon></button>
+    [matTooltip]="params.data.approveStatus === 'approved' ? 'View Profile' : 'Edit Profile'">
+    <mat-icon>{{ params.data.approveStatus === 'approved' ? 'remove_red_eye' : 'mode_edit' }}</mat-icon>
+  </button>
 </div>
+
+<!-- <div class="icon-list">
+  <button class="accept-icon icn" [ngClass]="{'disable': params.data.approveStatus === 'approved'}"
+    (click)="openStatusDialog('approved')" matTooltip="Select"><mat-icon>done</mat-icon></button>
+
+  <button class="reject-icon icn" [ngClass]="{'disable': params.data.approveStatus === 'rejected'}"
+    (click)="openStatusDialog('rejected')" matTooltip="Reject"><mat-icon>clear</mat-icon></button>
+
+  <button class="view-icon icn" [disabled]="params.data.approveStatus === 'approved'"
+    [ngStyle]="{'opacity': params.data.approveStatus === 'approved' ? '0.2' : '1'}" (click)="openEditJobDialog()"
+    [matTooltip]="params.data.approveStatus === 'approved' ? null : 'Edit Profile'">
+    <mat-icon>mode_edit</mat-icon>
+  </button>
+</div> -->
+
 
 <ng-template #matDialog let-data>
   <div class="main-wraper">

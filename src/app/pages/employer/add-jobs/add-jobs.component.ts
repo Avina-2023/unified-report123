@@ -282,7 +282,7 @@ export class AddJobsComponent implements OnInit {
         '',
         [
           Validators.required,
-          // Validators.pattern(/^(https?:\/\/)?([\w\d.-]+)\.([a-z]{2,})(\/\S*)?$/i)
+          Validators.pattern(/^(https?:\/\/)?([\w\d.-]+)\.([a-z]{2,})(\/\S*)?$/i)
         ]
       ],
 
@@ -300,6 +300,9 @@ export class AddJobsComponent implements OnInit {
       // course: [null],
       discipline: [this.multipleSpecialization],
     });
+  }
+   get urlFormaterror() {
+    return this.addjobsForm.controls;
   }
   get company() {
     return this.addjobsForm.get('company');

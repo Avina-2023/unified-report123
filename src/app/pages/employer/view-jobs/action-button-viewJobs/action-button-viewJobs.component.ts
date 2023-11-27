@@ -7,6 +7,7 @@ import { SentDataToOtherComp } from 'src/app/services/sendDataToOtherComp.servic
 import { AppConfigService } from 'src/app/utils/app-config.service';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { log } from 'console';
 @Component({
   selector: 'app-action-button-viewJobs',
   templateUrl: './action-button-viewJobs.component.html',
@@ -50,8 +51,12 @@ export class ActionButtonViewJobsComponent implements ICellRendererAngularComp {
   }
 
   editOpenJobProfile() {
+    console.log('test syrjbh');
+
     //save data in local storage to edit job page
     this.appconfig.setLocalStorage('openJobData', JSON.stringify(this.params.data));
+    console.log(this.params.data.jobId,'test 2');
+
   }
 
   getStatusChange(status) {
@@ -119,6 +124,8 @@ export class ActionButtonViewJobsComponent implements ICellRendererAngularComp {
   // }
 
   openEditJobDialog() {
+    console.log('test for edit');
+
     const dialogRef = this.dialog.open(this.editJobmatDialogRef, {
       width: '1000px',
       height: 'auto',
