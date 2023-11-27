@@ -119,28 +119,33 @@ export class EditJobComponent implements OnInit {
   approvalStatus: string;
   patchedValue: string;
   isFormApproved: boolean = false;
+  education_data: any;
   constructor(
     private ApiService: ApiService,
     private appconfig: AppConfigService,
     private fb: FormBuilder,
     private apiService: ApiService,
     private dialog: MatDialog,
-    private toastr: ToastrService
+    private toastr: ToastrService,
   ) {
     const currentYear = new Date().getFullYear() - 1;
     for (let i = currentYear; i >= currentYear - 10; i--) {
       this.YearofPassing.push(i.toString());
     }
+    // console.log("from edit", this.appconfig.getLocalStorage('openJobData'));
   }
   ngOnInit() {
+    // console.log("before from init", this.appconfig.getLocalStorage('openJobData'));
     //on click on edit in ag-grid table it'll get data particular rowdata from localstorage
     let localjobData = JSON.parse(this.appconfig.getLocalStorage('openJobData'));
+    console.log(localjobData,'console localjobdata');
+
     this.jobdata = this.appconfig.jobData ? this.appconfig.jobData : localjobData;
-    //console.log(this.jobdata, 'data for edit job page');
-    // console.log(this.jobdata.ctcType, 'testctc');
-    //console.log(this.jobdata?.approveStatus, 'approvestates');
+    //  this.jobdata =  localjobData;
+    console.log(this.jobdata, 'data for edit job page');
+
     this.selectedRangeOption = this.jobdata.ctcType;
-    console.log(this.selectedRangeOption, ' selected testctc');
+    //console.log(this.selectedRangeOption, ' selected testctc');
     this.companylist();
     this.getallEducation();
     this.getallCourses();
@@ -160,22 +165,24 @@ export class EditJobComponent implements OnInit {
     // this.addjobsForm = this.formBuilder.group({
     // });
     this.patchFormValues();
-    console.log(this.addjobsForm, '------------------');
-    console.log(this.jobdata.company, 'test selected');
-    console.log();
+    // console.log(this.addjobsForm, '------------------');
+    // console.log(this.jobdata.company, 'test selected');
+    // console.log();
   }
+
   patchFormValues() {
     // setTimeout(() => {
-    //let company = this.companyOptions.find((item:any) => {item.companyId ===  this.jobdata.companyId});
+    // let company = this.companyOptions.find((item:any) => {item.companyId ===  this.jobdata.companyId});
     //console.log(company, 'company test');
-    if (this.jobdata) {
+     if (this.jobdata) {
       console.log(this.jobdata, 'jobdata');
-      this.addjobsForm.get('company').setValue(this.jobdata.company);
       const ctcValues = this.jobdata.ctc.split(' - ');
-      // this.jobdata.company = this.jobdata.company;
+      this.jobdata.company = this.jobdata.company;
       this.addjobsForm.patchValue({
-        //company: { company: this.jobdata.company, companyId: this.jobdata.companyId },
-        //company: this.jobdata.company,
+        // company: { company: this.jobdata.company, companyId: this.jobdata.companyId },
+        // company: this.jobdata.company,
+        // company: companyName,
+        company:this.companyOptions,
         jobRole: this.jobdata.jobRole,
         jobTitle: this.jobdata.jobTitle,
         jobLocation: this.jobdata.jobLocation,
@@ -208,8 +215,6 @@ export class EditJobComponent implements OnInit {
     //   // console.log('Form Value After Patching Education:', this.addjobsForm.value);
     // }
     // }, 1000);
-
-
 
   }
   formerrorInitialize() {
@@ -587,7 +592,6 @@ export class EditJobComponent implements OnInit {
     }
     this.addjobsForm.reset();
   }
-
 
   onCtcOptionChange() {
     const fixedControl = this.addjobsForm.get('fixed');

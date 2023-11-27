@@ -16,6 +16,7 @@ import { formatDate } from '@angular/common';
 })
 export class AddJobsComponent implements OnInit {
   addjobsForm: FormGroup;
+  selectedJobLocations: string[] = [];
   keySkills: string[] = [];
   newSkill: string[] = [];
   companyOptions: string[] = [];
