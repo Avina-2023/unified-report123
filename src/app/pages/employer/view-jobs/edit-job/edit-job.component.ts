@@ -8,7 +8,6 @@ import { environment } from 'src/environments/environment';
 import { formatDate } from '@angular/common';
 import { log } from 'console';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-
 @Component({
   selector: 'app-edit-job',
   templateUrl: './edit-job.component.html',
@@ -117,6 +116,9 @@ export class EditJobComponent implements OnInit {
   //   ],
   // };
   @ViewChild('jobsaved', { static: false }) jobsavedtemplate: TemplateRef<any>;
+  approvalStatus: string;
+  patchedValue: string;
+  isFormApproved: boolean = false;
   constructor(
     private ApiService: ApiService,
     private appconfig: AppConfigService,
@@ -124,23 +126,21 @@ export class EditJobComponent implements OnInit {
     private apiService: ApiService,
     private dialog: MatDialog,
     private toastr: ToastrService
-
   ) {
     const currentYear = new Date().getFullYear() - 1;
     for (let i = currentYear; i >= currentYear - 10; i--) {
       this.YearofPassing.push(i.toString());
     }
   }
-
   ngOnInit() {
     //on click on edit in ag-grid table it'll get data particular rowdata from localstorage
     let localjobData = JSON.parse(this.appconfig.getLocalStorage('openJobData'));
     this.jobdata = this.appconfig.jobData ? this.appconfig.jobData : localjobData;
     //console.log(this.jobdata, 'data for edit job page');
     // console.log(this.jobdata.ctcType, 'testctc');
+    //console.log(this.jobdata?.approveStatus, 'approvestates');
     this.selectedRangeOption = this.jobdata.ctcType;
     console.log(this.selectedRangeOption, ' selected testctc');
-
     this.companylist();
     this.getallEducation();
     this.getallCourses();
@@ -149,49 +149,33 @@ export class EditJobComponent implements OnInit {
     this.skilllist();
     this.formerrorInitialize();
 
+  if (this.jobdata?.approveStatus === 'approved') {
+    this.addjobsForm.disable();
+    this.config.editable = false;
+    this.isFormApproved = true;
+  }
+  else {
+    console.log('Other value or addjobsForm is not initialized.');
+  }
     // this.addjobsForm = this.formBuilder.group({
     // });
     this.patchFormValues();
     console.log(this.addjobsForm, '------------------');
     console.log(this.jobdata.company, 'test selected');
     console.log();
-
   }
-
-companylist() {
-    const data: any = {};
-    this.apiService.masterCompany().subscribe(
-      (res: any) => {
-        console.log(res);
-        if (res.success) {
-          console.log(res.data, 'res.data');
-
-          this.companyOptions = res.data.map(item => ({
-            company: item.company,
-            companyId: item.companyId
-          }));
-          console.log(this.companyOptions, '0000');
-
-        }
-      },
-      (error) => {
-        console.error('API request error:', error);
-      }
-    );
-  }
-
   patchFormValues() {
     // setTimeout(() => {
     //let company = this.companyOptions.find((item:any) => {item.companyId ===  this.jobdata.companyId});
-
     //console.log(company, 'company test');
     if (this.jobdata) {
       console.log(this.jobdata, 'jobdata');
+      this.addjobsForm.get('company').setValue(this.jobdata.company);
       const ctcValues = this.jobdata.ctc.split(' - ');
       // this.jobdata.company = this.jobdata.company;
       this.addjobsForm.patchValue({
         //company: { company: this.jobdata.company, companyId: this.jobdata.companyId },
-        company: this.jobdata.company,
+        //company: this.jobdata.company,
         jobRole: this.jobdata.jobRole,
         jobTitle: this.jobdata.jobTitle,
         jobLocation: this.jobdata.jobLocation,
@@ -207,26 +191,27 @@ companylist() {
         requirement: this.jobdata.requirement.length > 0 ? this.jobdata.requirement[0].item : '',
         additionalInformation: this.jobdata.additionalInformation ? this.jobdata.additionalInformation.note : '',
       });
-
     }
-    if (this.jobdata.education) {
-      // Clear existing form groups
-      this.formGroups = [];
-      for (const eduItem of this.jobdata.education) {
-        const formGroup = this.fb.group({
-          level: [eduItem.level],
-          specification: [eduItem.specification],
-          discipline: [eduItem.discipline],
-        });
-        this.formGroups.push(formGroup);
-      }
-      this.addjobsForm.setControl('educationGroups', this.fb.array(this.formGroups));
-      // console.log('Form Groups:', this.formGroups);
-      // console.log('Form Value After Patching Education:', this.addjobsForm.value);
-    }
+    // if (this.jobdata.education) {
+    //   // Clear existing form groups
+    //   this.formGroups = [];
+    //   for (const eduItem of this.jobdata.education) {
+    //     const formGroup = this.fb.group({
+    //       level: [eduItem.level],
+    //       specification: [eduItem.specification],
+    //       discipline: [eduItem.discipline],
+    //     });
+    //     this.formGroups.push(formGroup);
+    //   }
+    //   this.addjobsForm.setControl('educationGroups', this.fb.array(this.formGroups));
+    //   // console.log('Form Groups:', this.formGroups);
+    //   // console.log('Form Value After Patching Education:', this.addjobsForm.value);
+    // }
     // }, 1000);
-  }
 
+
+
+  }
   formerrorInitialize() {
     // const emailregex: RegExp =
     //   /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -235,8 +220,8 @@ companylist() {
       fixed: [''],
       startrange: [''],
       endrange: [''],
-      // company: [null, [Validators.required]],
-      company: ['', [Validators.required]],
+       company: [null, [Validators.required]],
+      //company: ['', [Validators.required]],
       jobRole: ['', [Validators.required]],
       jobLocation: ['', [Validators.required]],
       jobType: [[], [Validators.required]],
@@ -251,23 +236,24 @@ companylist() {
         '',
         [
           Validators.required,
-          // Validators.pattern(/^(https?:\/\/)?([\w\d.-]+)\.([a-z]{2,})(\/\S*)?$/i)
+          Validators.pattern(/^(https?:\/\/)?([\w\d.-]+)\.([a-z]{2,})(\/\S*)?$/i)
         ]
       ],
-
       requirement: ['', [Validators.required]],
       description: ['', [Validators.required]],
       additionalInformation: [],
       // ctcOptions: ['1'],
       //education: this.formBuilder.array([]),
       educationGroups: this.fb.array([this.createEducationGroup()])
-
     });
     this.formGroups = this.addjobsForm.get('educationGroups')['controls'];
   }
   // get getskillSet() {
   //     return this.addjobsForm.get([this.skillSet]) as FormArray;
   //   }
+  get urlFormaterror() {
+    return this.addjobsForm.controls;
+  }
   get jobRole() {
     return this.addjobsForm.get('jobRole');
   }
@@ -283,7 +269,6 @@ companylist() {
   get fixedctc() {
     return this.addjobsForm.get('fixedctc');
   }
-
   createEducationGroup(): FormGroup {
     return this.fb.group({
       level: [null, Validators.required],
@@ -308,7 +293,6 @@ companylist() {
       this.addjobsForm.setControl('educationGroups', this.fb.array(this.formGroups));
     }
   }
-
   getallEducation() {
     this.apiService.getallEducations().subscribe((data: any) => {
       this.educations = data[0];
@@ -353,6 +337,7 @@ companylist() {
 
   onGraduationChange(selectedGraduation: string, index: number) {
     const currentFormGroup = this.formGroups[index];
+
     // Clear values in the current form group
     currentFormGroup.get('specification').setValue(null);
     //currentFormGroup.get('course').setValue(null);
@@ -527,14 +512,12 @@ companylist() {
     });
   }
 
-
-
   cityLocation() {
     const data: any = {};
     this.apiService.getCities(data).subscribe((res: any) => {
       if (res.success) {
         this.JobLocations = res.data.map(item => item.city);
-        console.log(this.JobLocations, 'locations');
+        //console.log(this.JobLocations, 'locations');
       }
     });
   }
@@ -542,17 +525,39 @@ companylist() {
   locationSearch(event: Event): void {
     const inputElement = event.target as HTMLInputElement;
     const searchText = inputElement.value;
+    // Make an API request to search for skills based on the typed text.
     const data: any = {
       searchText: searchText
     };
+    //console.log('Search text:', searchText);
     this.apiService.getCities(data).subscribe((res: any) => {
       if (res.success) {
         this.JobLocations = res.data.map((item) => item.city);
+        //console.log(this.JobLocations, 'locate');
       }
-      this.patchFormValues();
     });
   }
+  companylist() {
+    const data: any = {};
+    this.apiService.masterCompany().subscribe(
+      (res: any) => {
+        console.log(res);
+        if (res.success) {
+          console.log(res.data, 'res.data');
 
+          this.companyOptions = res.data.map(item => ({
+            company: item.company,
+            companyId: item.companyId
+          }));
+          console.log(this.companyOptions, '0000');
+
+        }
+      },
+      (error) => {
+        console.error('API request error:', error);
+      }
+    );
+  }
   ctcChange() {
     const fixedControl = this.addjobsForm.get('fixed');
     const startrangeControl = this.addjobsForm.get('startrange');
@@ -639,53 +644,54 @@ companylist() {
     ];
     const additionalInformation = htmladditionalinformation ? { note: htmladditionalinformation } : {};
     { }
-       if (this.addjobsForm.valid && areEducationGroupsValid) {
-    var obj = {
-      "jobId": this.jobdata.jobId,
-      "companyId": this.addjobsForm.value.company.companyId,
-      "company": this.addjobsForm.value.company.company,
-      "jobRole": this.addjobsForm.value.jobRole,
-      "jobTitle": this.addjobsForm.value.jobTitle,
-      "jobLocation": this.addjobsForm.value.jobLocation,
-      "jobType": this.addjobsForm.value.jobType,
-      "yearofPassout": this.addjobsForm.value.yearofPassout,
-      "skillSet": this.addjobsForm.value.skillSet,
-      "ctcType": this.addjobsForm.value.ctcOption,
-      "ctc": isFixed ? this.addjobsForm.value?.fixed : `${startRange} - ${endRange}`,
-      "lastDatetoApply": this.addjobsForm.value.lastDatetoApply,
-      "additionalInformation": additionalInformation,
-      "description": descriptionItems,
-      "requirement": requirementItems,
-      "partnerLabel": "",
-      "address": "",
-      "companyLogo": "https://example.com/path/to/your/logo.png",
-      "isActive": true,
-      "jobCategoryId": "64cc8cbd112e2bb777bc92fb",
-      "postedDate": formatDate(new Date(), 'dd-MM-yyyy', 'en-IN', 'IST'),
-      "workType": "Jobs",
-      "applyLink": this.addjobsForm.value.applyLink,
-      "education": this.formGroups.map(formGroup => formGroup.value)
-    }
-    console.log(obj, 'post');
-    this.apiService.UploadPostJob(obj).subscribe((data: any) => {
-
-      // console.log(data)
-      if (data.success === false) {
-        this.toastr.warning(data.message);
-      } else {
-        this.toastr.success(data.message);
-        this.toastr.success(data.message);
-        const popup = this.dialog.open(this.jobsavedtemplate, {
-          width: '400px',
-          height: '240px',
-          disableClose: true,
-          hasBackdrop: true,
-        });
+    if (this.addjobsForm.valid && areEducationGroupsValid && !this.isFormApproved) {
+      var obj = {
+        "jobId": this.jobdata.jobId,
+        "companyId": this.addjobsForm.value.company.companyId,
+        "company": this.addjobsForm.value.company.company,
+        "jobRole": this.addjobsForm.value.jobRole,
+        "jobTitle": this.addjobsForm.value.jobTitle,
+        "jobLocation": this.addjobsForm.value.jobLocation,
+        "jobType": this.addjobsForm.value.jobType,
+        "yearofPassout": this.addjobsForm.value.yearofPassout,
+        "skillSet": this.addjobsForm.value.skillSet,
+        "ctcType": this.addjobsForm.value.ctcOption,
+        "ctc": isFixed ? this.addjobsForm.value?.fixed : `${startRange} - ${endRange}`,
+        "lastDatetoApply": this.addjobsForm.value.lastDatetoApply,
+        "additionalInformation": additionalInformation,
+        "description": descriptionItems,
+        "requirement": requirementItems,
+        "partnerLabel": "",
+        "address": "",
+        "companyLogo": "https://example.com/path/to/your/logo.png",
+        "isActive": true,
+        "jobCategoryId": "64cc8cbd112e2bb777bc92fb",
+        "postedDate": formatDate(new Date(), 'dd-MM-yyyy', 'en-IN', 'IST'),
+        "workType": "Jobs",
+        "applyLink": this.addjobsForm.value.applyLink,
+        "education": this.formGroups.map(formGroup => formGroup.value)
       }
-    }, (err) => {
-      this.toastr.warning('Connection failed, Please try again.');
-    });
-  }
+      console.log(obj, 'post');
+      this.apiService.UploadPostJob(obj).subscribe((data: any) => {
+
+        // console.log(data)
+        if (data.success === false) {
+          this.toastr.warning(data.message);
+        } else {
+          this.toastr.success(data.message);
+          this.toastr.success(data.message);
+          const popup = this.dialog.open(this.jobsavedtemplate, {
+            width: '400px',
+            height: '240px',
+            disableClose: true,
+            hasBackdrop: true,
+          });
+          window.location.reload();
+        }
+      }, (err) => {
+        this.toastr.warning('Connection failed, Please try again.');
+      });
+    }
     else {
         console.log("Form Validation Failed", this.addjobsForm.errors);
         this.addjobsForm.markAllAsTouched();
@@ -697,10 +703,8 @@ companylist() {
       this.dialog.closeAll();
       this.appconfig.routeNavigation('/auth/partner/viewopenjobs');
   }
-
   closeThankYou() {
       this.dialog.closeAll();
       this.appconfig.routeNavigation('/auth/partner/viewopenjobs');
 }
-
 }
