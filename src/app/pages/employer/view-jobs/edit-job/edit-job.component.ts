@@ -20,8 +20,8 @@ export class EditJobComponent implements OnInit {
   companyId: any;
   company: any;
   jobId: any;
-  // selectedCompany: any;
   selectedCompanyData: any;
+  disabledGraduations: string[] = [];
   keySkills: string[] = [];
   newSkill: string[] = [];
   JobLocations: any = [];
@@ -51,6 +51,9 @@ export class EditJobComponent implements OnInit {
   educations: any;
   level: string;
   degreeOptions: any[];
+ //degreeOptions : any = ['Any Degree / Graduation', 'X Std', 'XII Std', 'Diploma UG', 'Diploma PG'];
+ 
+
   courseOptions = ['Any Course', 'Pick From the List'];
   ugDegree: any;
   diplomaCourses: string[];
@@ -97,24 +100,6 @@ export class EditJobComponent implements OnInit {
   pgDegrees: { id: string; specification_name: string; }[];
   phdDegrees: { id: string; specification_name: string; }[];
   alldegree: any;
-
-  //   editorConfig = {
-  //   editable: true, // Set this to 'false' to make the editor read-only
-  //   spellcheck: true,
-  //   height: 'auto',
-  //   minHeight: '100px',
-  //   placeholder: 'Enter Job Description',
-  //   translate: 'yes',
-  //   defaultParagraphSeparator: 'p',
-  //   defaultFontName: 'Arial',
-  //   toolbarHiddenButtons: [
-  //     ['fontName'],
-  //     ['insertImage'],
-  //     ['strikeThrough'],
-  //     ['subscript'],
-  //     ['superscript'],
-  //   ],
-  // };
   @ViewChild('jobsaved', { static: false }) jobsavedtemplate: TemplateRef<any>;
   approvalStatus: string;
   patchedValue: string;
@@ -133,49 +118,39 @@ export class EditJobComponent implements OnInit {
     }
   }
   ngOnInit() {
-    //on click on edit in ag-grid table it'll get data particular rowdata from localstorage
     let localjobData = JSON.parse(this.appconfig.getLocalStorage('openJobData'));
     this.jobdata = this.appconfig.jobData ? this.appconfig.jobData : localjobData;
-    //console.log(this.jobdata, 'data for edit job page');
-    // console.log(this.jobdata.ctcType, 'testctc');
-    //console.log(this.jobdata?.approveStatus, 'approvestates');
     this.selectedRangeOption = this.jobdata.ctcType;
     console.log(this.selectedRangeOption, ' selected testctc');
     this.companylist();
     this.getallEducation();
     this.getallCourses();
-    this.getalldegree();
+    this.getalldegrees();
     this.cityLocation();
     this.skilllist();
     this.formerrorInitialize();
 
   if (this.jobdata?.approveStatus === 'approved') {
     this.addjobsForm.disable();
+    
     this.config.editable = false;
     this.isFormApproved = true;
   }
   else {
     console.log('Other value or addjobsForm is not initialized.');
   }
-    // this.addjobsForm = this.formBuilder.group({
-    // });
-    this.patchFormValues();
-    console.log(this.addjobsForm, '------------------');
-    console.log(this.jobdata.company, 'test selected');
-    console.log();
+   
+    this.patchFormValues(); 
   }
+
+  
+  
   patchFormValues() {
-    // setTimeout(() => {
-    //let company = this.companyOptions.find((item:any) => {item.companyId ===  this.jobdata.companyId});
-    //console.log(company, 'company test');
     if (this.jobdata) {
       console.log(this.jobdata, 'jobdata');
       this.addjobsForm.get('company').setValue(this.jobdata.company);
       const ctcValues = this.jobdata.ctc.split(' - ');
-      // this.jobdata.company = this.jobdata.company;
       this.addjobsForm.patchValue({
-        //company: { company: this.jobdata.company, companyId: this.jobdata.companyId },
-        //company: this.jobdata.company,
         jobRole: this.jobdata.jobRole,
         jobTitle: this.jobdata.jobTitle,
         jobLocation: this.jobdata.jobLocation,
@@ -191,45 +166,89 @@ export class EditJobComponent implements OnInit {
         requirement: this.jobdata.requirement.length > 0 ? this.jobdata.requirement[0].item : '',
         additionalInformation: this.jobdata.additionalInformation ? this.jobdata.additionalInformation.note : '',
       });
-    }
-    // if (this.jobdata.education) {
-    //   // Clear existing form groups
-    //   this.formGroups = [];
-    //   for (const eduItem of this.jobdata.education) {
-    //     const formGroup = this.fb.group({
-    //       level: [eduItem.level],
-    //       specification: [eduItem.specification],
-    //       discipline: [eduItem.discipline],
-    //     });
-    //     this.formGroups.push(formGroup);
-    //   }
-    //   this.addjobsForm.setControl('educationGroups', this.fb.array(this.formGroups));
-    //   // console.log('Form Groups:', this.formGroups);
-    //   // console.log('Form Value After Patching Education:', this.addjobsForm.value);
-    // }
-    // }, 1000);
 
-
-
+      const educationGroupsArray = this.addjobsForm.get('educationGroups') as FormArray;
+      while (educationGroupsArray.length !== 0) {
+        educationGroupsArray.removeAt(0);
+      }
+      for (const educationItem of this.jobdata.education) {
+        const educationGroup = this.createEducationGroup();
+        educationGroup.patchValue({
+          level: educationItem.level,
+          specification: educationItem.specification,
+          discipline: educationItem.discipline,
+        });
+        // Pass the educationItem.level to getalldegree() and set degreeOptions accordingly
+        // this.getalldegree(educationItem.level);
+        this.patchEducation(educationItem);
+        educationGroupsArray.push(educationGroup);
+      }
+    } 
   }
+
+  patchEducation(education: any) {
+    this.apiService.getDegreeList().subscribe((data: any) => {
+      this.alldegree = data;
+      // Initialize degreeOptions with the common options
+      this.degreeOptions = ['Any Degree / Graduation', 'X Std', 'XII Std'];
+      console.log(this.alldegree, 'degreeList');
+      // Define separate arrays for UG, PG, and Phd degrees
+      this.ugDegrees = [];
+      this.pgDegrees = [];
+      this.phdDegrees = [];
+  
+      this.alldegree.data.forEach((item: any) => {
+        if (item.qualification === "UG") {
+          this.ugDegrees = this.ugDegrees.concat(item.degree);
+        } else if (item.qualification === "PG") {
+          this.pgDegrees = this.pgDegrees.concat(item.degree);
+        } else if (item.qualification === "Phd") {
+          this.phdDegrees = this.phdDegrees.concat(item.degree);
+        }
+      });
+  
+      // Set degreeOptions based on the provided level
+      if (education.level === 'UG') {
+        this.degreeOptions = this.ugDegrees;
+      } else if (education.level === 'PG') {
+        this.degreeOptions = this.pgDegrees;
+      } else if (education.level === 'Phd') {
+        this.degreeOptions = this.phdDegrees;
+      }
+      else if (education.level === 'Diploma') {
+        this.degreeOptions = ['Diploma UG', 'Diploma PG'];
+      }
+
+      const params = { "degree": education.specification };
+      this.apiService.getDepartmentcourses(params).subscribe((response: any) => {
+        this.allDisciplines = response.data;
+        if (this.allDisciplines) {
+          console.log(this.allDisciplines, 'specializationlist');
+          this.listOfSpecializations = this.allDisciplines;
+        }
+      }, error => {
+        console.error('API error:', error);
+      });
+  
+      // console.log(this.ugDegrees, 'UG degrees');
+      // console.log(this.pgDegrees, 'PG degrees');
+      // console.log(this.phdDegrees, 'Phd degrees');
+      // console.log(this.degreeOptions, 'Updated degreeOptions based on level');
+    });
+  }
+
   formerrorInitialize() {
-    // const emailregex: RegExp =
-    //   /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    this.addjobsForm = this.fb.group({
+   this.addjobsForm = this.fb.group({
       ctcOption: ['', Validators.required],
       fixed: [''],
       startrange: [''],
       endrange: [''],
        company: [null, [Validators.required]],
-      //company: ['', [Validators.required]],
       jobRole: ['', [Validators.required]],
       jobLocation: ['', [Validators.required]],
       jobType: [[], [Validators.required]],
       jobTitle: ['', [Validators.required]],
-      // specification: ['', [Validators.required]],
-      // discipline: ['', [Validators.required]],
       skillSet: ['', [Validators.required]],
-      //[this.skillSet]: [this.fb.array([]), [Validators.required]],
       lastDatetoApply: [[], [Validators.required]],
       yearofPassout: [[], [Validators.required]],
       applyLink: [
@@ -242,15 +261,11 @@ export class EditJobComponent implements OnInit {
       requirement: ['', [Validators.required]],
       description: ['', [Validators.required]],
       additionalInformation: [],
-      // ctcOptions: ['1'],
-      //education: this.formBuilder.array([]),
       educationGroups: this.fb.array([this.createEducationGroup()])
     });
     this.formGroups = this.addjobsForm.get('educationGroups')['controls'];
   }
-  // get getskillSet() {
-  //     return this.addjobsForm.get([this.skillSet]) as FormArray;
-  //   }
+  
   get urlFormaterror() {
     return this.addjobsForm.controls;
   }
@@ -271,10 +286,9 @@ export class EditJobComponent implements OnInit {
   }
   createEducationGroup(): FormGroup {
     return this.fb.group({
-      level: [null, Validators.required],
-      specification: [null],
-      // course: [null],
-      discipline: [this.multipleSpecialization],
+      level: ['', Validators.required],
+      specification: [''],
+      discipline: [[]],
     });
   }
   addEducationGroup(): void {
@@ -282,17 +296,56 @@ export class EditJobComponent implements OnInit {
     const lastGroup = this.formGroups[lastGroupIndex];
     if (lastGroup.valid) {
       this.formGroups.push(this.createEducationGroup());
+      this.updateDisabledGraduations();
     } else {
       lastGroup.markAllAsTouched();
       this.toastr.warning('Please fill in all required fields in the last added group.', 'Form Validation Error');
     }
   }
+
+  
+
+
   removeEducationGroup(index: number): void {
+    // if (this.formGroups.length > 1 && index > 0) {
+    //   this.formGroups.splice(index, 1);
+    //   this.addjobsForm.setControl('educationGroups', this.fb.array(this.formGroups));
+    // }
+
     if (this.formGroups.length > 1 && index > 0) {
+      const removedGroup = this.formGroups[index];
+      const removedGroupGraduation = removedGroup.get('level').value;
+  
+      // Remove the graduation from the disabledGraduations array
+      const graduationIndex = this.disabledGraduations.indexOf(removedGroupGraduation);
+      if (graduationIndex !== -1) {
+        this.disabledGraduations.splice(graduationIndex, 1);
+      }
+  
       this.formGroups.splice(index, 1);
       this.addjobsForm.setControl('educationGroups', this.fb.array(this.formGroups));
     }
+
+    
   }
+
+  updateDisabledGraduations(): void {
+    this.disabledGraduations = [];
+    for (const group of this.formGroups) {
+      const graduationValue = group.get('level').value;
+      if (graduationValue && !this.disabledGraduations.includes(graduationValue)) {
+        this.disabledGraduations.push(graduationValue);
+      }
+    }
+  }
+  
+  isGraduationDisabled(graduationValue: string, groupIndex: number): boolean {
+    // Check if the graduationValue is in the disabledGraduations array
+    // Apply the disabled condition only for 'SSLC', 'HSC', and 'Any Graduation'
+    return ['SSLC', 'HSC', 'Any Graduation'].includes(graduationValue) && this.disabledGraduations.includes(graduationValue);
+  }
+
+
   getallEducation() {
     this.apiService.getallEducations().subscribe((data: any) => {
       this.educations = data[0];
@@ -311,7 +364,7 @@ export class EditJobComponent implements OnInit {
     })
   }
 
-  getalldegree() {
+  getalldegrees() {
     this.apiService.getDegreeList().subscribe((data: any) => {
       this.alldegree = data;
       console.log(this.alldegree, 'degreeList');
@@ -335,6 +388,10 @@ export class EditJobComponent implements OnInit {
     });
   }
 
+  
+  
+  
+
   onGraduationChange(selectedGraduation: string, index: number) {
     const currentFormGroup = this.formGroups[index];
 
@@ -345,24 +402,7 @@ export class EditJobComponent implements OnInit {
     if (selectedGraduation === null) {
       return;
     }
-    // if (selectedGraduation === 'SSLC' || selectedGraduation === 'HSC' || selectedGraduation === 'Any Graduation' || selectedGraduation === 'Diploma') {
-    //   this.degreeOptions = [
-    //     { "id": "0", "specification_name": "Any Degree / Graduation" },
-    //     { "id": "1", "specification_name": "X Std" },
-    //     { "id": "2", "specification_name": "XII Std" },
-    //     { "id": "2", "specification_name": "Diploma" }
-    //   ];
-    //   currentFormGroup.get('specification').setValue(
-    //     selectedGraduation === 'Any Graduation'
-    //       ? 'Any Degree / Graduation'
-    //       : selectedGraduation === 'Diploma'
-    //         ? 'Diploma'
-    //         : selectedGraduation === 'SSLC'
-    //           ? 'X Std'
-    //           : 'XII Std'
-    //   );
-    // }
-
+    
     if (selectedGraduation === 'SSLC' || selectedGraduation === 'HSC' || selectedGraduation === 'Any Graduation') {
       this.degreeOptions = ['Any Degree / Graduation', 'X Std', 'XII Std'];
       currentFormGroup.get('specification').setValue(
@@ -377,11 +417,11 @@ export class EditJobComponent implements OnInit {
     }
     if (selectedGraduation === 'Diploma') {
       this.degreeOptions = ['Diploma UG', 'Diploma PG'];
-      currentFormGroup.get('specification').setValue(
-        selectedGraduation === 'Diploma'
-          ? ['Diploma UG', 'Diploma PG']
-          : ''
-      );
+      // currentFormGroup.get('specification').setValue(
+      //   selectedGraduation === 'Diploma'
+      //     ? ['Diploma UG', 'Diploma PG']
+      //     : ''
+      // );
     }
 
     if (selectedGraduation === 'Any Graduation' || selectedGraduation === 'SSLC' || selectedGraduation === 'HSC') {
@@ -392,7 +432,7 @@ export class EditJobComponent implements OnInit {
       currentFormGroup.get('discipline').updateValueAndValidity();
     }
 
-    if (selectedGraduation === 'UG' || selectedGraduation === 'PG') {
+    if (selectedGraduation === 'UG' || selectedGraduation === 'PG' || selectedGraduation === 'Diploma') {
       currentFormGroup.get('specification').setValidators(Validators.required);
       currentFormGroup.get('specification').updateValueAndValidity();
     } else {
@@ -425,21 +465,10 @@ export class EditJobComponent implements OnInit {
 
     if (currentFormGroup.get('level').value === 'PG') {
       currentFormGroup.get('discipline').setValue(null);
-      //this.listOfSpecializations = this.pgCourses;
     }
-    // currentFormGroup.get('specialization').setValidators(Validators.required);
-    // currentFormGroup.get('specialization').updateValueAndValidity();
+   
   }
-  // onDegreeChange(selectedDegree: string, index: number) {
-  //   const currentFormGroup = this.formGroups[index];
-
-  //   if (selectedDegree === null) {
-  //     currentFormGroup.get('course').setValue(null);
-  //   }
-
-  //   // Handle additional logic if needed...
-  // }
-
+  
   onDegreeChange(selectedCourse: string, index: number) {
     const currentFormGroup = this.formGroups[index];
     currentFormGroup.get('discipline').setValue(null);

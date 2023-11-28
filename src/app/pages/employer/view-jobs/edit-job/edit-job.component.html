@@ -156,26 +156,27 @@
               </div>
               <!-- {{jobdata.education[0].level}} -->
               <div style="width: 90%;">
-                <div *ngFor="let item of jobdata.education">
-                  <!-- <div *ngFor="let item of this.jobdata.education" > test educatipn</div> -->
+                <!-- <div *ngFor="let item of this.jobdata.education" > test educatipn</div> -->
                 <ng-container *ngFor="let group of formGroups; let i = index">
-                  <div class="form-group flex_div" [disabled]="isFormApproved">
+                  <div class="form-group flex_div edu_array" [disabled]="isFormApproved">
                     <div class="mg-r-10 width-30 ">
-                      <nz-select [(ngModel)]=" item.level" nzShowSearch nzAllowClear nzPlaceHolder="Graduation"
-                        [formControl]="group.get('level')" (ngModelChange)="onGraduationChange($event, i)">
-                        <nz-option *ngFor="let option of educations" [nzLabel]="option.education" [nzValue]="option.education">
+                      <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Graduation" [formControl]="group.get('level')"
+                        (ngModelChange)="onGraduationChange($event, i)">
+                        <nz-option *ngFor="let option of educations" [nzLabel]="option.education"
+                          [nzValue]="option.education" [nzDisabled]="isGraduationDisabled(option.education, i)">
                         </nz-option>
                       </nz-select>
-                      <div *ngIf="group.get('level').hasError('required') && group.get('level').touched" class="text-danger">
+                      <div *ngIf="group.get('level').hasError('required') && group.get('level').touched"
+                        class="text-danger">
                         Graduation Field Required.
                       </div>
                     </div>
 
                     <div class="mg-l-10 width-30">
-                      <nz-select [(ngModel)]="item.specification" [nzDisabled]="isdegreeDisabled(i)" nzShowSearch
-                        nzAllowClear nzPlaceHolder="Degree" [formControl]="group.get('specification')"
-                        (ngModelChange)="onDegreeChange($event, i)">
-                        <nz-option *ngFor="let option of degreeOptions" [nzLabel]="option" [nzValue]="option"></nz-option>
+                      <nz-select [nzDisabled]="isdegreeDisabled(i)" nzShowSearch nzAllowClear nzPlaceHolder="Degree"
+                        [formControl]="group.get('specification')" (ngModelChange)="onDegreeChange($event, i)">
+                        <nz-option *ngFor="let option of degreeOptions" [nzLabel]="option"
+                          [nzValue]="option"></nz-option>
                       </nz-select>
                       <div *ngIf="group.get('specification').hasError('required') && group.get('specification').touched"
                         class="text-danger">
@@ -184,11 +185,12 @@
                     </div>
 
                     <div class="mg-l-10 width-40 overflow_scroll overflow_hidden">
-                      <nz-select [(ngModel)]="item.discipline" nzAllowClear [nzDisabled]="iscourseDisabled(i)"
-                        [ngModel]="group.get('multipleSpecialization')?.value" [ngModelOptions]="{ standalone: true }"
-                        [nzSize]="default" nzMode="multiple" nzPlaceHolder="--Select Specialization (Multiple Select)---"
-                        class="custom-nz-select" [formControl]="group.get('discipline')">
-                        <nz-option *ngFor="let option of listOfSpecializations" [nzLabel]="option" [nzValue]="option"></nz-option>
+                      <nz-select nzAllowClear [nzDisabled]="iscourseDisabled(i)" [ngModelOptions]="{ standalone: true }"
+                        [nzSize]="default" nzMode="multiple"
+                        nzPlaceHolder="--Select Specialization (Multiple Select)---" class="custom-nz-select"
+                        [formControl]="group.get('discipline')">
+                        <nz-option *ngFor="let option of listOfSpecializations" [nzLabel]="option"
+                          [nzValue]="option"></nz-option>
                       </nz-select>
                       <div *ngIf="group.get('discipline').hasError('required') && group.get('discipline').touched"
                         class="text-danger">
@@ -196,13 +198,12 @@
                       </div>
                     </div>
 
-                    <div class="remove_group_text" *ngIf="formGroups.length > 1 && i > 0" (click)="removeEducationGroup(i)">X</div>
+                    <div class="remove_group_text" *ngIf="formGroups.length > 1 && i > 0"
+                      (click)="removeEducationGroup(i)">X</div>
                   </div>
                 </ng-container>
-                </div>
               </div>
             </div>
-
             <div class="add_more_text" (click)="addEducationGroup()">Add More</div>
           </div>
 
@@ -305,7 +306,8 @@
               <mat-form-field appearance="outline" style="width: 90%;padding: 0px 0px 0px 6px;">
                 <input formControlName="applyLink" matInput placeholder="Enter URL">
                 <mat-error class="error" *ngIf="applyLink?.errors?.required">{{'URL is Required'}}</mat-error>
-                <mat-error class="error" *ngIf="urlFormaterror.applyLink.errors?.pattern">{{'Invalid URL format'}}</mat-error>
+                <mat-error class="error" *ngIf="urlFormaterror.applyLink.errors?.pattern">{{'Invalid URL
+                  format'}}</mat-error>
               </mat-form-field>
               <ng-container *ngIf="urlFormaterror.applyLink.invalid && urlFormaterror.applyLink.touched"></ng-container>
             </div>
