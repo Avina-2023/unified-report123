@@ -320,10 +320,16 @@ nz-select {
 }
 
 .remove_group_text {
-  // width: 12px;
   opacity: 1;
-  color: #FF0000;
-  margin: 4px -12px 0px 5px;
+    color: #FF0000;
+    font-weight: bold;
+    font-family: cursive;
+    cursor: pointer;
+    margin: 10px 0px 0px 0px;
+    padding: 0px 10px;
+}
+.edu_array:first-child{
+  margin: 10px 30px 20px 0px;
 }
 
 .border-line {
