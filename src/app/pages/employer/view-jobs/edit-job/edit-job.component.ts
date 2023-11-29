@@ -104,6 +104,7 @@ export class EditJobComponent implements OnInit {
   approvalStatus: string;
   patchedValue: string;
   isFormApproved: boolean = false;
+  companypatch: { company: any; companyId: any; };
   constructor(
     private ApiService: ApiService,
     private appconfig: AppConfigService,
@@ -146,11 +147,22 @@ export class EditJobComponent implements OnInit {
   
   
   patchFormValues() {
+    // setTimeout(() => {
+    // let company = this.companyOptions.find((item:any) => {item.companyId ===  this.jobdata.companyId});
+    //console.log(company, 'company test');
     if (this.jobdata) {
-      console.log(this.jobdata, 'jobdata');
-      this.addjobsForm.get('company').setValue(this.jobdata.company);
+      this.companypatch = { company: this.jobdata.company, companyId: this.jobdata.companyId }
       const ctcValues = this.jobdata.ctc.split(' - ');
+      //const dataFromLocalStorage = JSON.parse(localStorage.getItem('openJobData'));
+      console.log(this.companypatch,'companypatch');
+      // const selectedCompany = this.companyOptions.find((item: any) => item.companyId === this.jobdata.companyId);
+      this.jobdata.company = this.jobdata.company;
       this.addjobsForm.patchValue({
+        // company: { company: this.jobdata.company, companyId: this.jobdata.companyId },
+        // company: this.jobdata.company,
+        // company: companyName,
+        // company: selectedCompany,
+        //company: dataFromLocalStorage?.company || '',
         jobRole: this.jobdata.jobRole,
         jobTitle: this.jobdata.jobTitle,
         jobLocation: this.jobdata.jobLocation,
@@ -171,22 +183,34 @@ export class EditJobComponent implements OnInit {
       while (educationGroupsArray.length !== 0) {
         educationGroupsArray.removeAt(0);
       }
-      for (const educationItem of this.jobdata.education) {
+      
+      for (let i = 0; i < this.jobdata.education.length; i++) {
+        const educationItem = this.jobdata.education[i];
         const educationGroup = this.createEducationGroup();
         educationGroup.patchValue({
           level: educationItem.level,
           specification: educationItem.specification,
           discipline: educationItem.discipline,
         });
-        // Pass the educationItem.level to getalldegree() and set degreeOptions accordingly
-        // this.getalldegree(educationItem.level);
-        this.patchEducation(educationItem);
+        // Pass the educationItem and the index to patchEducation
+        this.patchEducation(educationItem, i);
         educationGroupsArray.push(educationGroup);
       }
+
     } 
+    // }, 1000);
+  }
+  
+
+  compareFn(c1: any, c2: any): boolean { return c1 && c2 ? c1.companyId === c2.companyId : c1 === c2; }
+  // get getskillSet() {
+  //     return this.addjobsForm.get([this.skillSet]) as FormArray;
+  //   }
+  onMyValueChange(event) {
+    console.log(event,'eventconsole');
   }
 
-  patchEducation(education: any) {
+  patchEducation(education: any, index:number) {
     this.apiService.getDegreeList().subscribe((data: any) => {
       this.alldegree = data;
       // Initialize degreeOptions with the common options
@@ -219,6 +243,8 @@ export class EditJobComponent implements OnInit {
         this.degreeOptions = ['Diploma UG', 'Diploma PG'];
       }
 
+
+      
       const params = { "degree": education.specification };
       this.apiService.getDepartmentcourses(params).subscribe((response: any) => {
         this.allDisciplines = response.data;
@@ -235,6 +261,7 @@ export class EditJobComponent implements OnInit {
       // console.log(this.phdDegrees, 'Phd degrees');
       // console.log(this.degreeOptions, 'Updated degreeOptions based on level');
     });
+    this.updateDisabledGraduations();
   }
 
   formerrorInitialize() {
@@ -243,7 +270,7 @@ export class EditJobComponent implements OnInit {
       fixed: [''],
       startrange: [''],
       endrange: [''],
-       company: [null, [Validators.required]],
+      // company: [null, [Validators.required]],
       jobRole: ['', [Validators.required]],
       jobLocation: ['', [Validators.required]],
       jobType: [[], [Validators.required]],
@@ -294,6 +321,10 @@ export class EditJobComponent implements OnInit {
   addEducationGroup(): void {
     const lastGroupIndex = this.formGroups.length - 1;
     const lastGroup = this.formGroups[lastGroupIndex];
+    console.log(lastGroup.value, 'lastgrupvalue');
+    if (lastGroup.value == ''){
+      console.log('nullvalue presents');
+    }
     if (lastGroup.valid) {
       this.formGroups.push(this.createEducationGroup());
       this.updateDisabledGraduations();
@@ -393,8 +424,8 @@ export class EditJobComponent implements OnInit {
   
 
   onGraduationChange(selectedGraduation: string, index: number) {
+    this.updateDisabledGraduations();
     const currentFormGroup = this.formGroups[index];
-
     // Clear values in the current form group
     currentFormGroup.get('specification').setValue(null);
     //currentFormGroup.get('course').setValue(null);
@@ -676,8 +707,8 @@ export class EditJobComponent implements OnInit {
     if (this.addjobsForm.valid && areEducationGroupsValid && !this.isFormApproved) {
       var obj = {
         "jobId": this.jobdata.jobId,
-        "companyId": this.addjobsForm.value.company.companyId,
-        "company": this.addjobsForm.value.company.company,
+        "companyId": this.companypatch.companyId,
+        "company": this.companypatch.company,
         "jobRole": this.addjobsForm.value.jobRole,
         "jobTitle": this.addjobsForm.value.jobTitle,
         "jobLocation": this.addjobsForm.value.jobLocation,
@@ -715,7 +746,7 @@ export class EditJobComponent implements OnInit {
             disableClose: true,
             hasBackdrop: true,
           });
-          window.location.reload();
+          //window.location.reload();
         }
       }, (err) => {
         this.toastr.warning('Connection failed, Please try again.');
@@ -735,5 +766,6 @@ export class EditJobComponent implements OnInit {
   closeThankYou() {
       this.dialog.closeAll();
       this.appconfig.routeNavigation('/auth/partner/viewopenjobs');
+      location.reload();
 }
 }

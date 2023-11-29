@@ -479,7 +479,7 @@ isGraduationDisabled(graduationValue: string, groupIndex: number): boolean {
     
 
     const currentFormGroup = this.formGroups[index];
-    //console.log(selectedGraduation);
+    console.log(currentFormGroup);
     
    
     // Clear values in the current form group
@@ -508,11 +508,11 @@ isGraduationDisabled(graduationValue: string, groupIndex: number): boolean {
 
     if (selectedGraduation === 'Diploma') {
       this.degreeOptions = ['Diploma UG', 'Diploma PG'];
-      currentFormGroup.get('specification').setValue(
-        selectedGraduation === 'Diploma'
-          ? ['Diploma UG', 'Diploma PG']
-          : ''
-      );
+      // currentFormGroup.get('specification').setValue(
+      //   selectedGraduation === 'Diploma'
+      //     ? ['Diploma UG', 'Diploma PG']
+      //     : ''
+      // );
     }
 
     if (selectedGraduation === 'Any Graduation' || selectedGraduation === 'SSLC' || selectedGraduation === 'HSC') {
@@ -524,7 +524,7 @@ isGraduationDisabled(graduationValue: string, groupIndex: number): boolean {
     }
 
 
-    if (selectedGraduation === 'UG' || selectedGraduation === 'PG') {
+    if (selectedGraduation === 'UG' || selectedGraduation === 'PG' || selectedGraduation === 'Diploma') {
       currentFormGroup.get('specification').setValidators(Validators.required);
       currentFormGroup.get('specification').updateValueAndValidity();
     } else {
