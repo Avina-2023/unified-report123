@@ -30,148 +30,171 @@
   z-index: 1;
 }
 
+.main-Container-popup {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
 
-.main-Container-popup{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+.border-line {
+  padding: 0px 15px 0px 15px;
+}
+
+.bottom-border {
+  border: 0.699999988079071px solid #B4B4B4;
+  opacity: 0.3;
+}
+
+.left-side {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  // border-right: 1px solid #848484;
+  border-right: 0.699999988079071px solid #B4B4B4;
+
+  .border-line1 {
+    // padding:0px 15px 0px 15px ;
   }
-  .border-line {
-    padding:0px 15px 0px 15px ;
-  }
-  .bottom-border {
+
+  .bottom-border1 {
     border: 0.699999988079071px solid #B4B4B4;
     opacity: 0.3;
+    width: 270px;
   }
-  .left-side{
-    width: 30%;
+
+  .company-logo {
+    padding: 0px 0px 25px 0px;
+  }
+
+  .job-Role {
+    color: #1B4E9B;
+    font-size: 19px;
+    font-weight: 600;
+    margin: 5px 0px 5px 0px;
+    padding: 20px 0px 10px 0px;
+  }
+
+  .job-type-status {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    // border-right: 1px solid #848484;
-    border-right: 0.699999988079071px solid #B4B4B4;
-    .border-line1 {
-      // padding:0px 15px 0px 15px ;
-    }
-    .bottom-border1 {
-      border: 0.699999988079071px solid #B4B4B4;
-      opacity: 0.3;
-      width: 270px;
-    }
-    .company-logo{
-      padding: 0px 0px 25px 0px;
-    }
-    .job-Role{
-      color: #1B4E9B;
-      font-size: 19px;
-      font-weight: 600;
-      margin: 5px 0px 5px 0px;
-      padding: 20px 0px 10px 0px;
-    }
-    .job-type-status{
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        margin: 10px 0px 25px 0px;
-    }
-    .Job-Type{
-      font-size: 12px;
-      color: #FFFFFF;
-      background: #1B4E9B;
-      padding: 3px 10px 3px 10px;
-      margin: 0px 3px 0px 0px;
-      border-radius: 9px;
-    }
-    // .Job-Status{
-    //   color: #FFFFFF;
-    //   background: #49AE31;
-    //   padding: 3px 7px 3px 7px;
-    //   margin: 0px 0px 0px 3px;
-    //   border-radius: 9px;
-    // }
-        .Job-Status {
-          padding: 3px 7px 3px 7px;
-          margin: 0px 0px 0px 3px;
-          border-radius: 9px;
-        }
-
-        .Job-Status.approved {
-          color: #FFFFFF;
-          background: #49AE31;
-        }
-
-        .Job-Status.rejected {
-          color: #FFFFFF;
-          background: #EF2917;
-        }
-        .Job-Status.pending {
-          color: #FFFFFF;
-          background: #27BBEE;
-        }
-    .posted{
-        font-size: 12px;
-        color: #262626;
-        margin: 17px 0px 3px 0px;
-    }
-    .posted-name{
-        font-size: 16px;
-        color: #262626;
-        font-weight: 600;
-        margin: 3px 0px 25px 0px;
-    }
-    .last-date-apply{
-      color: #262626;
-      font-weight: 700;
-      font-size: 13px;
-      margin: 30px 0px 20px 0px;
-    }
-    .last-date{
-      font-size: 14px;
-      color: #FF0000;
-      margin: 0px 0px 50px 0px;
-    }
-  }
-  .right-side{
-    width: 70%;
-    height: 400px;
-    overflow-y: scroll;
-  }
-  .right-side::-webkit-scrollbar {
-    display: none; /* Hide scrollbar for Chrome, Safari, and Opera */
-    // width: 0;
+    margin: 10px 0px 25px 0px;
   }
 
-  .right-side {
-    -ms-overflow-style: none; /* Hide scrollbar for Internet Explorer and Edge */
-    scrollbar-width: none; /* Hide scrollbar for Firefox */
+  .Job-Type {
+    font-size: 12px;
+    color: #FFFFFF;
+    background: #1B4E9B;
+    padding: 3px 10px 3px 10px;
+    margin: 0px 3px 0px 0px;
+    border-radius: 9px;
   }
-     .job_title_ {
-       font: normal normal bold 16px/21px Roboto;
-       padding: 15px 0px 0px 10px;
-     }
- .inputContainer {
-   label {
-     display: block;
-     color: #666666;
-     font-size: 11px;
-     font-weight: bold;
-     margin-bottom: 0.5em;
-     width: 30%;
-   }
-   .binded_data{
+
+  // .Job-Status{
+  //   color: #FFFFFF;
+  //   background: #49AE31;
+  //   padding: 3px 7px 3px 7px;
+  //   margin: 0px 0px 0px 3px;
+  //   border-radius: 9px;
+  // }
+  .Job-Status {
+    padding: 3px 7px 3px 7px;
+    margin: 0px 0px 0px 3px;
+    border-radius: 9px;
+  }
+
+  .Job-Status.approved {
+    color: #FFFFFF;
+    background: #49AE31;
+  }
+
+  .Job-Status.rejected {
+    color: #FFFFFF;
+    background: #EF2917;
+  }
+
+  .Job-Status.pending {
+    color: #FFFFFF;
+    background: #27BBEE;
+  }
+
+  .posted {
+    font-size: 12px;
+    color: #262626;
+    margin: 17px 0px 3px 0px;
+  }
+
+  .posted-name {
+    font-size: 16px;
+    color: #262626;
+    font-weight: 600;
+    margin: 3px 0px 25px 0px;
+  }
+
+  .last-date-apply {
+    color: #262626;
+    font-weight: 700;
+    font-size: 13px;
+    margin: 30px 0px 20px 0px;
+  }
+
+  .last-date {
+    font-size: 14px;
+    color: #FF0000;
+    margin: 0px 0px 50px 0px;
+  }
+}
+
+.right-side {
+  width: 70%;
+  height: 400px;
+  overflow-y: scroll;
+}
+
+.right-side::-webkit-scrollbar {
+  display: none;
+  /* Hide scrollbar for Chrome, Safari, and Opera */
+  // width: 0;
+}
+
+.right-side {
+  -ms-overflow-style: none;
+  /* Hide scrollbar for Internet Explorer and Edge */
+  scrollbar-width: none;
+  /* Hide scrollbar for Firefox */
+}
+
+.job_title_ {
+  font: normal normal bold 16px/21px Roboto;
+  padding: 15px 0px 0px 10px;
+}
+
+.inputContainer {
+  label {
+    display: block;
+    color: #666666;
+    font-size: 11px;
+    font-weight: bold;
+    margin-bottom: 0.5em;
+    width: 30%;
+  }
+
+  .binded_data {
     width: 90%;
     padding: 0px 0px 15px 0px;
     // font: normal normal normal 13px/16px Inter;
-      color: #262626;
-      font-size: 14px;
-   }
-.mat-form-field {
-  width: 98%;
+    color: #262626;
+    font-size: 14px;
+  }
+  .mat-form-field {
+    width: 98%;
+  }
+  ::ng-deep .mat-form-field-appearance-outline .mat-form-field-infix {
+    padding: 4px 0 10px 0 !important;
+  }
 }
- ::ng-deep .mat-form-field-appearance-outline .mat-form-field-infix {
-   padding: 4px 0 10px 0 !important;
- }
- }
+
 .buttonClass {
   margin-top: 20px !important;
   display: flex;
@@ -179,7 +202,6 @@
 
   .subButton {
     padding-right: 10px;
-
     ::ng-deep.mat-flat-button {
       background-color: #1B4E9B !important;
       color: #FFFFFF;
@@ -191,7 +213,6 @@
 
   .subButton2 {
     padding-right: 10px;
-
     ::ng-deep.mat-flat-button {
       background-color: #B4B4B4 !important;
       color: #FFFFFF;
@@ -200,11 +221,9 @@
       line-height: 33px;
     }
   }
-
   .file-input {
     display: none;
   }
-
 }
 
 // education field set
@@ -255,6 +274,7 @@ nz-select {
   border-radius: 5px;
   width: fit-content;
 }
+
 .edu_label {
   display: block;
   color: #666666;
@@ -311,6 +331,7 @@ nz-select {
 .edu_array:first-child{
   margin: 10px 30px 20px 0px;
 }
+
 .border-line {
   padding: 0px 15px 15px 15px;
 }
@@ -319,6 +340,7 @@ nz-select {
   border: 0.699999988079071px solid #B4B4B4;
   opacity: 0.3;
 }
+
 .job_text {
   font-size: 16px;
 }
@@ -326,6 +348,7 @@ nz-select {
 .thank_you_page {
   text-align: center;
 }
+
 .go_to_viewjob {
   width: 69px;
   height: 39px;
@@ -334,14 +357,15 @@ nz-select {
   opacity: 1;
   color: #FCFCFC;
 }
+
 ::ng-deep.overflow_scroll nz-select-top-control {
   height: 32px !important;
   overflow-y: scroll !important;
 }
+
 ::ng-deep.overflow_hidden nz-select-top-control {
   overflow: hidden;
 }
-
 .companyPatch {
   display: block;
   color: #666666;

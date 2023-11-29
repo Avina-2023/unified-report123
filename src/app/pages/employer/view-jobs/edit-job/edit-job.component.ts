@@ -52,7 +52,7 @@ export class EditJobComponent implements OnInit {
   level: string;
   degreeOptions: any[];
  //degreeOptions : any = ['Any Degree / Graduation', 'X Std', 'XII Std', 'Diploma UG', 'Diploma PG'];
- 
+
 
   courseOptions = ['Any Course', 'Pick From the List'];
   ugDegree: any;
@@ -111,18 +111,20 @@ export class EditJobComponent implements OnInit {
     private fb: FormBuilder,
     private apiService: ApiService,
     private dialog: MatDialog,
-    private toastr: ToastrService
+    private toastr: ToastrService,
   ) {
     const currentYear = new Date().getFullYear() - 1;
     for (let i = currentYear; i >= currentYear - 10; i--) {
       this.YearofPassing.push(i.toString());
     }
+    // console.log("from edit", this.appconfig.getLocalStorage('openJobData'));
   }
   ngOnInit() {
     let localjobData = JSON.parse(this.appconfig.getLocalStorage('openJobData'));
+    console.log(localjobData,'console localjobdata');
     this.jobdata = this.appconfig.jobData ? this.appconfig.jobData : localjobData;
     this.selectedRangeOption = this.jobdata.ctcType;
-    console.log(this.selectedRangeOption, ' selected testctc');
+    //console.log(this.selectedRangeOption, ' selected testctc');
     this.companylist();
     this.getallEducation();
     this.getallCourses();
@@ -133,19 +135,19 @@ export class EditJobComponent implements OnInit {
 
   if (this.jobdata?.approveStatus === 'approved') {
     this.addjobsForm.disable();
-    
+
     this.config.editable = false;
     this.isFormApproved = true;
   }
   else {
     console.log('Other value or addjobsForm is not initialized.');
   }
-   
-    this.patchFormValues(); 
+
+    this.patchFormValues();
   }
 
-  
-  
+
+
   patchFormValues() {
     // setTimeout(() => {
     // let company = this.companyOptions.find((item:any) => {item.companyId ===  this.jobdata.companyId});
@@ -183,7 +185,7 @@ export class EditJobComponent implements OnInit {
       while (educationGroupsArray.length !== 0) {
         educationGroupsArray.removeAt(0);
       }
-      
+
       for (let i = 0; i < this.jobdata.education.length; i++) {
         const educationItem = this.jobdata.education[i];
         const educationGroup = this.createEducationGroup();
@@ -197,10 +199,10 @@ export class EditJobComponent implements OnInit {
         educationGroupsArray.push(educationGroup);
       }
 
-    } 
+    }
     // }, 1000);
   }
-  
+
 
   compareFn(c1: any, c2: any): boolean { return c1 && c2 ? c1.companyId === c2.companyId : c1 === c2; }
   // get getskillSet() {
@@ -220,7 +222,7 @@ export class EditJobComponent implements OnInit {
       this.ugDegrees = [];
       this.pgDegrees = [];
       this.phdDegrees = [];
-  
+
       this.alldegree.data.forEach((item: any) => {
         if (item.qualification === "UG") {
           this.ugDegrees = this.ugDegrees.concat(item.degree);
@@ -230,7 +232,7 @@ export class EditJobComponent implements OnInit {
           this.phdDegrees = this.phdDegrees.concat(item.degree);
         }
       });
-  
+
       // Set degreeOptions based on the provided level
       if (education.level === 'UG') {
         this.degreeOptions = this.ugDegrees;
@@ -244,7 +246,7 @@ export class EditJobComponent implements OnInit {
       }
 
 
-      
+
       const params = { "degree": education.specification };
       this.apiService.getDepartmentcourses(params).subscribe((response: any) => {
         this.allDisciplines = response.data;
@@ -255,7 +257,7 @@ export class EditJobComponent implements OnInit {
       }, error => {
         console.error('API error:', error);
       });
-  
+
       // console.log(this.ugDegrees, 'UG degrees');
       // console.log(this.pgDegrees, 'PG degrees');
       // console.log(this.phdDegrees, 'Phd degrees');
@@ -292,7 +294,7 @@ export class EditJobComponent implements OnInit {
     });
     this.formGroups = this.addjobsForm.get('educationGroups')['controls'];
   }
-  
+
   get urlFormaterror() {
     return this.addjobsForm.controls;
   }
@@ -334,7 +336,7 @@ export class EditJobComponent implements OnInit {
     }
   }
 
-  
+
 
 
   removeEducationGroup(index: number): void {
@@ -346,18 +348,18 @@ export class EditJobComponent implements OnInit {
     if (this.formGroups.length > 1 && index > 0) {
       const removedGroup = this.formGroups[index];
       const removedGroupGraduation = removedGroup.get('level').value;
-  
+
       // Remove the graduation from the disabledGraduations array
       const graduationIndex = this.disabledGraduations.indexOf(removedGroupGraduation);
       if (graduationIndex !== -1) {
         this.disabledGraduations.splice(graduationIndex, 1);
       }
-  
+
       this.formGroups.splice(index, 1);
       this.addjobsForm.setControl('educationGroups', this.fb.array(this.formGroups));
     }
 
-    
+
   }
 
   updateDisabledGraduations(): void {
@@ -369,7 +371,7 @@ export class EditJobComponent implements OnInit {
       }
     }
   }
-  
+
   isGraduationDisabled(graduationValue: string, groupIndex: number): boolean {
     // Check if the graduationValue is in the disabledGraduations array
     // Apply the disabled condition only for 'SSLC', 'HSC', and 'Any Graduation'
@@ -419,9 +421,9 @@ export class EditJobComponent implements OnInit {
     });
   }
 
-  
-  
-  
+
+
+
 
   onGraduationChange(selectedGraduation: string, index: number) {
     this.updateDisabledGraduations();
@@ -433,7 +435,7 @@ export class EditJobComponent implements OnInit {
     if (selectedGraduation === null) {
       return;
     }
-    
+
     if (selectedGraduation === 'SSLC' || selectedGraduation === 'HSC' || selectedGraduation === 'Any Graduation') {
       this.degreeOptions = ['Any Degree / Graduation', 'X Std', 'XII Std'];
       currentFormGroup.get('specification').setValue(
@@ -497,9 +499,9 @@ export class EditJobComponent implements OnInit {
     if (currentFormGroup.get('level').value === 'PG') {
       currentFormGroup.get('discipline').setValue(null);
     }
-   
+
   }
-  
+
   onDegreeChange(selectedCourse: string, index: number) {
     const currentFormGroup = this.formGroups[index];
     currentFormGroup.get('discipline').setValue(null);
@@ -647,7 +649,6 @@ export class EditJobComponent implements OnInit {
     }
     this.addjobsForm.reset();
   }
-
 
   onCtcOptionChange() {
     const fixedControl = this.addjobsForm.get('fixed');

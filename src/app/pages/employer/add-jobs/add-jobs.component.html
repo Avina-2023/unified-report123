@@ -46,7 +46,8 @@
                       <label>Job Role<span>*</span></label>
                       <mat-form-field appearance="outline">
                         <input formControlName="jobRole" matInput placeholder="Enter Job Role">
-                        <mat-error class="error" *ngIf="jobRole?.errors?.required">{{'Job Role is Required'}}</mat-error>
+                        <mat-error class="error" *ngIf="jobRole?.errors?.required">{{'Job Role is Required'}}
+                        </mat-error>
                       </mat-form-field>
                       <ng-container *ngIf="jobRole.invalid && jobRole.touched">
                       </ng-container>
@@ -57,7 +58,8 @@
                       <label>Job Title<span>*</span></label>
                       <mat-form-field appearance="outline">
                         <input formControlName="jobTitle" matInput placeholder="Enter Job Title">
-                        <mat-error class="error" *ngIf="jobTitle?.errors?.required">{{'Job Title is Required'}}</mat-error>
+                        <mat-error class="error" *ngIf="jobTitle?.errors?.required">{{'Job Title is Required'}}
+                        </mat-error>
                       </mat-form-field>
                       <ng-container *ngIf="jobTitle.invalid && jobTitle.touched">
                       </ng-container>
@@ -99,6 +101,19 @@
                           [nzValue]="location"></nz-option>
                       </nz-select>
                     </div>
+                    <!-- <div class="inputContainer">
+                      <label>Job Location <span>*</span></label>
+                      <div style="display: flex;">
+                        <nz-select style="width: 98%;" nzMode="tags" nzAllowClear nzShowSearch
+                          nzPlaceHolder="-- Select Job Location (Multiple Select)" formControlName="jobLocation"
+                          [(ngModel)]="selectedJobLocations" (input)="locationSearch($event)" class="custom-nz-select my-custom-nz-select">
+                          <nz-option *ngFor="let location of JobLocations" [nzLabel]="location" [nzValue]="location"></nz-option>
+                        <div style="padding: 0px 0px 0px 0px;" *ngIf="selectedJobLocations.length > 0" class="selected-count">
+                          {{ selectedJobLocations.length }}
+                        </div>
+                        </nz-select>
+                      </div>
+                    </div> -->
                     <div
                       *ngIf="addjobsForm.get('jobLocation').hasError('required') && addjobsForm.get('jobLocation').touched"
                       class="text-danger">
@@ -303,8 +318,8 @@
                           {{ 'Invalid URL format' }}
                         </mat-error>
                       </mat-form-field>
-                      <ng-container
-                        *ngIf="urlFormaterror.applyLink.invalid && urlFormaterror.applyLink.touched"></ng-container>
+                      <ng-container *ngIf="urlFormaterror.applyLink.invalid && urlFormaterror.applyLink.touched">
+                      </ng-container>
                     </div>
                   </div>
                 </div>
