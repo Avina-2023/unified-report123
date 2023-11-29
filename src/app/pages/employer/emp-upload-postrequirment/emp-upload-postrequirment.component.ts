@@ -287,7 +287,6 @@ export class EmpUploadPostrequirmentComponent implements OnInit {
       educationGroups: this.fb.array([this.createEducationGroup()])
     });
     this.formGroups = this.jobForm.get('educationGroups')['controls'];
-
   }
 
 
@@ -318,41 +317,6 @@ export class EmpUploadPostrequirmentComponent implements OnInit {
     });
   }
 
-
-
-  /*addEducationGroup(): void {
-    const lastGroupIndex = this.formGroups.length - 1;
-    const lastGroup = this.formGroups[lastGroupIndex];
-    if (lastGroup.valid) {
-      this.formGroups.push(this.createEducationGroup());
-
-      const lastGroupGraduation = lastGroup.get('level').value;
-      const graduationsToDisable = ['SSLC', 'HSC', 'Any Graduation'];
-      if (graduationsToDisable.includes(lastGroupGraduation)) {
-        this.disabledGraduations.push(lastGroupGraduation);
-      }
-    } else {
-      lastGroup.markAllAsTouched();
-      this.toastr.warning('Please fill in all required fields in the last added group.', 'Form Validation Error');
-    }
-  }
-
-  removeEducationGroup(index: number): void {
-    if (this.formGroups.length > 1 && index > 0) {
-      this.formGroups.splice(index, 1);
-      this.jobForm.setControl('educationGroups', this.fb.array(this.formGroups));
-    }
-  }
-
-  isGraduationDisabled(graduationValue: string, groupIndex: number): boolean {
-    // Check if the graduationValue is in the disabledGraduations array
-    return this.disabledGraduations.includes(graduationValue);
-  }*/
-
-
-
-
-  // Your existing code...
 
 addEducationGroup(): void {
   const lastGroupIndex = this.formGroups.length - 1;
@@ -515,7 +479,7 @@ isGraduationDisabled(graduationValue: string, groupIndex: number): boolean {
     
 
     const currentFormGroup = this.formGroups[index];
-    //console.log(selectedGraduation);
+    console.log(currentFormGroup);
     
    
     // Clear values in the current form group
@@ -544,11 +508,11 @@ isGraduationDisabled(graduationValue: string, groupIndex: number): boolean {
 
     if (selectedGraduation === 'Diploma') {
       this.degreeOptions = ['Diploma UG', 'Diploma PG'];
-      currentFormGroup.get('specification').setValue(
-        selectedGraduation === 'Diploma'
-          ? ['Diploma UG', 'Diploma PG']
-          : ''
-      );
+      // currentFormGroup.get('specification').setValue(
+      //   selectedGraduation === 'Diploma'
+      //     ? ['Diploma UG', 'Diploma PG']
+      //     : ''
+      // );
     }
 
     if (selectedGraduation === 'Any Graduation' || selectedGraduation === 'SSLC' || selectedGraduation === 'HSC') {
@@ -560,7 +524,7 @@ isGraduationDisabled(graduationValue: string, groupIndex: number): boolean {
     }
 
 
-    if (selectedGraduation === 'UG' || selectedGraduation === 'PG') {
+    if (selectedGraduation === 'UG' || selectedGraduation === 'PG' || selectedGraduation === 'Diploma') {
       currentFormGroup.get('specification').setValidators(Validators.required);
       currentFormGroup.get('specification').updateValueAndValidity();
     } else {

@@ -156,7 +156,7 @@
             <!-- <mat-icon class="bookmark">bookmark</mat-icon> -->
             <span class=icon-graduation-cap-solid></span>
             <span class="Btech" *ngFor="let item of one.education; let isLast=last">
-              {{item}}{{isLast ? '' : ', '}}</span>
+              {{item.specification}}{{isLast ? '' : ', '}}</span>
           </div>
 
           <div class="daysLeft">
@@ -235,7 +235,7 @@
       <div class="bTech">
           <span class=icon-graduation-cap-solid></span>
           <span class="Btech" *ngFor="let item of one.education; let isLast=last">
-            {{item}}{{isLast ? '' : ', '}}</span>
+            {{item.specification}}{{isLast ? '' : ', '}}</span>
         </div>
 
       <br>
