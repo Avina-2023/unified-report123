@@ -61,21 +61,44 @@
               </mat-form-field>
             </div> -->
 
-            <!--  -->
-            <div class="inputContainer" style="display: flex; align-items: center;padding: 0px 0px 20px 0px">
+            <!-- patching using formcontrolname  -->
+            <!-- <div class="inputContainer" style="display: flex; align-items: center;padding: 0px 0px 20px 0px">
               <label style="margin-right: 10px; padding: 0px 0px 10px 15px;">Company Name</label>
               <nz-select style="width: 90%;" nzAllowClear nzShowSearch nzPlaceHolder="Select Company Name"
                 formControlName="company">
                 <nz-option *ngFor="let company of companyOptions" [nzLabel]="company.company" [nzValue]="company">
                 </nz-option>
               </nz-select>
+            </div> -->
+
+            <!-- patching using ng model -->
+
+            <!-- <div class="inputContainer" style="display: flex; align-items: center; padding: 0px 0px 20px 0px">
+              <label style="margin-right: 10px; padding: 0px 0px 10px 15px;">Company Name</label>
+              <nz-select style="width: 90%;" nzAllowClear nzShowSearch nzPlaceHolder="Select Company Name"
+                [(ngModel)]="companypatch" [compareWith]="compareFn" (ngModelChange)="onMyValueChange($event)">
+                <nz-option *ngFor="let company of companyOptions"  [nzLabel]="company.company" [nzValue]="company">
+                </nz-option>
+              </nz-select>
+            </div> -->
+
+            <!-- company patching alone without dropdown -->
+
+            <div style="display: flex; align-items: center;padding: 0px 0px 20px 0px">
+              <span class="companyPatch" style="margin-right: 10px; padding: 0px 0px 10px 15px;">Company Name</span>
+              <span style="width: 90%;border: 1px solid #ccc; padding: 10px; border-radius: 5px; background-color: #f8f8f8;">
+                {{ jobdata.company }}
+              </span>
             </div>
-            <div *ngIf="addjobsForm.get('company').hasError('required') && addjobsForm.get('company').touched"
+
+            <!-- <div *ngIf="addjobsForm.get('company').hasError('required') && addjobsForm.get('company').touched"
               class="text-danger">
               Company Name is required.
-            </div>
+            </div> -->
+            <!-- <div *ngIf="companypatch" class="text-danger">
+              Company Name is required.
+            </div> -->
           </div>
-
           <div class="border-line">
             <div class="bottom-border"></div>
           </div>
