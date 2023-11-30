@@ -148,7 +148,7 @@
 
 .right-side {
   width: 70%;
-  height: 400px;
+  height: 550px;
   overflow-y: scroll;
 }
 
@@ -304,7 +304,14 @@ nz-select {
 .flex_div {
   display: flex;
 }
-
+.flex_grid{
+  display: grid;
+  grid-template-columns: 32% 32% 32% 2%;
+  width: 100%;
+}
+.mg-10{
+  margin: 0px 10px;
+}
 .add_more_text {
   color: #1B4E9A;
   text-decoration: underline;

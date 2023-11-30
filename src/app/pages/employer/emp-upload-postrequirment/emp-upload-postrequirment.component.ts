@@ -243,6 +243,7 @@ export class EmpUploadPostrequirmentComponent implements OnInit {
   // disabledGraduations: any;
   // Inside your component class
   disabledGraduations: string[] = [];
+  disabledSpecifications: string[] = [];
 
 
   constructor(
@@ -318,54 +319,51 @@ export class EmpUploadPostrequirmentComponent implements OnInit {
   }
 
 
-addEducationGroup(): void {
-  const lastGroupIndex = this.formGroups.length - 1;
-  const lastGroup = this.formGroups[lastGroupIndex];
-  if (lastGroup.valid) {
-    this.formGroups.push(this.createEducationGroup());
-    this.updateDisabledGraduations();
-  } else {
-    lastGroup.markAllAsTouched();
-    this.toastr.warning('Please fill in all required fields in the last added group.', 'Form Validation Error');
-  }
-}
-
-removeEducationGroup(index: number): void {
-  if (this.formGroups.length > 1 && index > 0) {
-    const removedGroup = this.formGroups[index];
-    const removedGroupGraduation = removedGroup.get('level').value;
-
-    // Remove the graduation from the disabledGraduations array
-    const graduationIndex = this.disabledGraduations.indexOf(removedGroupGraduation);
-    if (graduationIndex !== -1) {
-      this.disabledGraduations.splice(graduationIndex, 1);
-    }
-
-    this.formGroups.splice(index, 1);
-    this.jobForm.setControl('educationGroups', this.fb.array(this.formGroups));
-  }
-}
-
-updateDisabledGraduations(): void {
-  this.disabledGraduations = [];
-  for (const group of this.formGroups) {
-    const graduationValue = group.get('level').value;
-    if (graduationValue && !this.disabledGraduations.includes(graduationValue)) {
-      this.disabledGraduations.push(graduationValue);
+  addEducationGroup(): void {
+    const lastGroupIndex = this.formGroups.length - 1;
+    const lastGroup = this.formGroups[lastGroupIndex];
+    if (lastGroup.valid) {
+      this.formGroups.push(this.createEducationGroup());
+      this.updateDisabledGraduations();
+    } else {
+      lastGroup.markAllAsTouched();
+      this.toastr.warning('Please fill in all required fields in the last added group.', 'Form Validation Error');
     }
   }
-}
 
-// Your existing code...
+  removeEducationGroup(index: number): void {
+    if (this.formGroups.length > 1 && index > 0) {
+      const removedGroup = this.formGroups[index];
+      const removedGroupGraduation = removedGroup.get('level').value;
 
-isGraduationDisabled(graduationValue: string, groupIndex: number): boolean {
-  // Check if the graduationValue is in the disabledGraduations array
-  // Apply the disabled condition only for 'SSLC', 'HSC', and 'Any Graduation'
-  return ['SSLC', 'HSC', 'Any Graduation'].includes(graduationValue) && this.disabledGraduations.includes(graduationValue);
-}
+      // Remove the graduation from the disabledGraduations array
+      const graduationIndex = this.disabledGraduations.indexOf(removedGroupGraduation);
+      if (graduationIndex !== -1) {
+        this.disabledGraduations.splice(graduationIndex, 1);
+      }
 
-// Your existing code...
+      this.formGroups.splice(index, 1);
+      this.jobForm.setControl('educationGroups', this.fb.array(this.formGroups));
+    }
+  }
 
+  updateDisabledGraduations(): void {
+    this.disabledGraduations = [];
+    for (const group of this.formGroups) {
+      const graduationValue = group.get('level').value;
+      if (graduationValue && !this.disabledGraduations.includes(graduationValue)) {
+        this.disabledGraduations.push(graduationValue);
+      }
+    }
+  }
+
+
+  isGraduationDisabled(graduationValue: string, groupIndex: number): boolean {
+    // Check if the graduationValue is in the disabledGraduations array
+    // Apply the disabled condition only for 'SSLC', 'HSC', and 'Any Graduation'
+   return ['SSLC', 'HSC', 'Any Graduation'].includes(graduationValue) && this.disabledGraduations.includes(graduationValue);
+   
+  }
 
 
 
@@ -474,14 +472,53 @@ isGraduationDisabled(graduationValue: string, groupIndex: number): boolean {
 
 
 
+  degreeOptionChange(selectedGraduation: string, index: number) {
+    const currentFormGroup = this.formGroups[index];
+    console.log(currentFormGroup.get('level').value);
+    if (currentFormGroup.get('level').value === 'SSLC' || currentFormGroup.get('level').value === 'HSC' || currentFormGroup.get('level').value === 'Any Graduation') {
+      this.degreeOptions = ['Any Degree / Graduation', 'X Std', 'XII Std'];
+    }
+    if (currentFormGroup.get('level').value === 'Diploma') {
+      this.degreeOptions = ['Diploma UG', 'Diploma PG'];
+    }
+    if (currentFormGroup.get('level').value === 'UG') {
+      this.degreeOptions = this.ugDegrees;
+    }
+
+    if (currentFormGroup.get('level').value === 'PG') {
+      this.degreeOptions = this.pgDegrees;
+    }
+
+    if (currentFormGroup.get('level').value === 'Phd') {
+      this.degreeOptions = this.phdDegrees;
+    }
+  }
+
+  disciplineOptionChange(selectedCourse: string, index: number) {
+    const currentFormGroup = this.formGroups[index];
+    console.log(currentFormGroup.get('specification').value);
+    if (currentFormGroup.get('specification').value !== null) {
+      const params = { "degree": currentFormGroup.get('specification').value };
+      this.apiService.getDepartmentcourses(params).subscribe((response: any) => {
+        this.allDisciplines = response.data;
+        if (this.allDisciplines) {
+          console.log(this.allDisciplines, 'specializationlist');
+          this.listOfSpecializations = this.allDisciplines;
+        }
+      }, error => {
+        // Handle API error here
+        console.error('API error:', error);
+      });
+    }
+    else {
+      this.listOfSpecializations = [];
+    }
+  }
+
   onGraduationChange(selectedGraduation: string, index: number) {
     this.updateDisabledGraduations();
-    
-
     const currentFormGroup = this.formGroups[index];
     console.log(currentFormGroup);
-    
-   
     // Clear values in the current form group
     currentFormGroup.get('specification').setValue(null);
     //currentFormGroup.get('course').setValue(null);

@@ -51,7 +51,7 @@ export class EditJobComponent implements OnInit {
   educations: any;
   level: string;
   degreeOptions: any[];
- //degreeOptions : any = ['Any Degree / Graduation', 'X Std', 'XII Std', 'Diploma UG', 'Diploma PG'];
+  //degreeOptions : any = ['Any Degree / Graduation', 'X Std', 'XII Std', 'Diploma UG', 'Diploma PG'];
 
 
   courseOptions = ['Any Course', 'Pick From the List'];
@@ -121,7 +121,7 @@ export class EditJobComponent implements OnInit {
   }
   ngOnInit() {
     let localjobData = JSON.parse(this.appconfig.getLocalStorage('openJobData'));
-    console.log(localjobData,'console localjobdata');
+    console.log(localjobData, 'console localjobdata');
     this.jobdata = this.appconfig.jobData ? this.appconfig.jobData : localjobData;
     this.selectedRangeOption = this.jobdata.ctcType;
     //console.log(this.selectedRangeOption, ' selected testctc');
@@ -133,18 +133,24 @@ export class EditJobComponent implements OnInit {
     this.skilllist();
     this.formerrorInitialize();
 
-  if (this.jobdata?.approveStatus === 'approved') {
-    this.addjobsForm.disable();
+    //     if (this.jobdata?.approveStatus === 'approved') {
+    //       this.addjobsForm.disable();
+    //       const educationGroupsArray = this.addjobsForm.get('educationGroups') as FormArray;
+    // educationGroupsArray.controls.forEach(group => {
+    //   group.disable();
+    // });
 
-    this.config.editable = false;
-    this.isFormApproved = true;
-  }
-  else {
-    console.log('Other value or addjobsForm is not initialized.');
-  }
+    //       this.config.editable = false;
+    //       this.isFormApproved = true;
+    //     }
+    //     else {
+    //       console.log('Other value or addjobsForm is not initialized.');
+    //     }
 
     this.patchFormValues();
   }
+
+
 
 
 
@@ -156,7 +162,7 @@ export class EditJobComponent implements OnInit {
       this.companypatch = { company: this.jobdata.company, companyId: this.jobdata.companyId }
       const ctcValues = this.jobdata.ctc.split(' - ');
       //const dataFromLocalStorage = JSON.parse(localStorage.getItem('openJobData'));
-      console.log(this.companypatch,'companypatch');
+      console.log(this.companypatch, 'companypatch');
       // const selectedCompany = this.companyOptions.find((item: any) => item.companyId === this.jobdata.companyId);
       this.jobdata.company = this.jobdata.company;
       this.addjobsForm.patchValue({
@@ -199,7 +205,23 @@ export class EditJobComponent implements OnInit {
         educationGroupsArray.push(educationGroup);
       }
 
+
     }
+
+    if (this.jobdata?.approveStatus === 'approved') {
+      this.addjobsForm.disable();
+      const educationGroupsArray = this.addjobsForm.get('educationGroups') as FormArray;
+      educationGroupsArray.controls.forEach(group => {
+        group.disable();
+      });
+
+      this.config.editable = false;
+      this.isFormApproved = true;
+    }
+    else {
+      console.log('Other value or addjobsForm is not initialized.');
+    }
+
     // }, 1000);
   }
 
@@ -209,10 +231,10 @@ export class EditJobComponent implements OnInit {
   //     return this.addjobsForm.get([this.skillSet]) as FormArray;
   //   }
   onMyValueChange(event) {
-    console.log(event,'eventconsole');
+    console.log(event, 'eventconsole');
   }
 
-  patchEducation(education: any, index:number) {
+  patchEducation(education: any, index: number) {
     this.apiService.getDegreeList().subscribe((data: any) => {
       this.alldegree = data;
       // Initialize degreeOptions with the common options
@@ -267,7 +289,7 @@ export class EditJobComponent implements OnInit {
   }
 
   formerrorInitialize() {
-   this.addjobsForm = this.fb.group({
+    this.addjobsForm = this.fb.group({
       ctcOption: ['', Validators.required],
       fixed: [''],
       startrange: [''],
@@ -324,7 +346,7 @@ export class EditJobComponent implements OnInit {
     const lastGroupIndex = this.formGroups.length - 1;
     const lastGroup = this.formGroups[lastGroupIndex];
     console.log(lastGroup.value, 'lastgrupvalue');
-    if (lastGroup.value == ''){
+    if (lastGroup.value == '') {
       console.log('nullvalue presents');
     }
     if (lastGroup.valid) {
@@ -422,7 +444,48 @@ export class EditJobComponent implements OnInit {
   }
 
 
+  degreeOptionChange(selectedGraduation: string, index: number) {
+    const currentFormGroup = this.formGroups[index];
+    console.log(currentFormGroup.get('level').value);
+    if (currentFormGroup.get('level').value === 'SSLC' || currentFormGroup.get('level').value === 'HSC' || currentFormGroup.get('level').value === 'Any Graduation') {
+      this.degreeOptions = ['Any Degree / Graduation', 'X Std', 'XII Std'];
+    }
+    if (currentFormGroup.get('level').value === 'Diploma') {
+      this.degreeOptions = ['Diploma UG', 'Diploma PG'];
+    }
+    if (currentFormGroup.get('level').value === 'UG') {
+      this.degreeOptions = this.ugDegrees;
+    }
 
+    if (currentFormGroup.get('level').value === 'PG') {
+      this.degreeOptions = this.pgDegrees;
+    }
+
+    if (currentFormGroup.get('level').value === 'Phd') {
+      this.degreeOptions = this.phdDegrees;
+    }
+  }
+
+  disciplineOptionChange(selectedCourse: string, index: number) {
+    const currentFormGroup = this.formGroups[index];
+    console.log(currentFormGroup.get('specification').value);
+    if (currentFormGroup.get('specification').value !== null) {
+      const params = { "degree": currentFormGroup.get('specification').value };
+      this.apiService.getDepartmentcourses(params).subscribe((response: any) => {
+        this.allDisciplines = response.data;
+        if (this.allDisciplines) {
+          console.log(this.allDisciplines, 'specializationlist');
+          this.listOfSpecializations = this.allDisciplines;
+        }
+      }, error => {
+        // Handle API error here
+        console.error('API error:', error);
+      });
+    }
+    else {
+      this.listOfSpecializations = [];
+    }
+  }
 
 
   onGraduationChange(selectedGraduation: string, index: number) {
@@ -521,6 +584,38 @@ export class EditJobComponent implements OnInit {
         console.error('API error:', error);
       });
     }
+
+    if (currentFormGroup.get('level').value != null && currentFormGroup.get('specification').value == null) {
+      //currentFormGroup.get('specification').setValue(null);
+      console.log('validation set');
+      currentFormGroup.get('specification').setValidators(Validators.required);
+      currentFormGroup.get('specification').updateValueAndValidity();
+      currentFormGroup.get('discipline').setValidators(Validators.required);
+      currentFormGroup.get('discipline').updateValueAndValidity();
+    }
+
+
+  }
+
+
+  onCourseChange(selectedCourse: string, index: number) {
+    const currentFormGroup = this.formGroups[index];
+    // if(currentFormGroup.get('discipline').value == null){
+    //   // currentFormGroup.get('level').setValue(null);
+
+    // }
+    const levelArray = ['SSLC', 'HSC', 'Any Graduation'];
+
+    if (
+      currentFormGroup.get('level').value !== null &&
+      currentFormGroup.get('specification').value !== null &&
+      currentFormGroup.get('discipline').value?.length === 0 &&
+      !levelArray.includes(currentFormGroup.get('level').value)
+    ) {
+      currentFormGroup.get('level').setValue(null);
+      console.log('empty course value');
+    }
+
   }
 
   iscourseDisabled(index: number): boolean {
@@ -754,19 +849,19 @@ export class EditJobComponent implements OnInit {
       });
     }
     else {
-        console.log("Form Validation Failed", this.addjobsForm.errors);
-        this.addjobsForm.markAllAsTouched();
-        this.formGroups.forEach(formGroup => formGroup.markAllAsTouched());
-        this.toastr.warning('Please fill in all required fields.', 'Form Validation Error');
-      }
-   }
+      console.log("Form Validation Failed", this.addjobsForm.errors);
+      this.addjobsForm.markAllAsTouched();
+      this.formGroups.forEach(formGroup => formGroup.markAllAsTouched());
+      this.toastr.warning('Please fill in all required fields.', 'Form Validation Error');
+    }
+  }
   clearviewForm() {
-      this.dialog.closeAll();
-      this.appconfig.routeNavigation('/auth/partner/viewopenjobs');
+    this.dialog.closeAll();
+    this.appconfig.routeNavigation('/auth/partner/viewopenjobs');
   }
   closeThankYou() {
-      this.dialog.closeAll();
-      this.appconfig.routeNavigation('/auth/partner/viewopenjobs');
-      location.reload();
-}
+    this.dialog.closeAll();
+    this.appconfig.routeNavigation('/auth/partner/viewopenjobs');
+    location.reload();
+  }
 }

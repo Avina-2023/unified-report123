@@ -985,7 +985,7 @@
                                                 </div>
                                             </div>
 
-                                            <div class="mg-l-10 width-25">
+                                            <!-- <div class="mg-l-10 width-25">
                                                 <label for="date">Date & Time</label>
                                                 <div class="flex_div flx_center"
                                                     style="border:1px solid #e4e4e4;height: 34px;">
@@ -1001,7 +1001,24 @@
                                                     class="text-danger">
                                                     Date is Required.
                                                 </div>
+                                            </div> -->
+
+
+                                            <div class="mg-l-10 width-25">
+                                                <label for="date">Date & Time</label>
+                                                <div class="flex_div flx_center"
+                                                    style="border:1px solid #e4e4e4;height: 34px;">
+                                                    <input [(ngModel)]="hiringItem.date" [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1"
+                                                        placeholder="Date Time" [formControl]="group.get('date')"
+                                                        class="inputForm">
+                                                    <owl-date-time #dt1></owl-date-time>
+                                                </div>
+                                                <div *ngIf="group.get('date').hasError('required') && group.get('date').touched"
+                                                    class="text-danger">
+                                                    Date is Required.
+                                                </div>
                                             </div>
+
                                         </div>
                                     </fieldset>
                                     <div class="flex_div flx_center submit_btn" style="float:right;padding: 20px 0px;">
@@ -1057,7 +1074,7 @@
                                 </div>
                                 <div class="mg-l-10 width-25">
                                     <label for="date">Date & Time</label>
-                                    <div class="flex_div flx_center" style="border:1px solid #e4e4e4;height: 34px;">
+                                    <!-- <div class="flex_div flx_center" style="border:1px solid #e4e4e4;height: 34px;">
                                         <input style="border:none!important;height:fit-content;" matInput
                                             placeholder="Select Date & Time" [matDatepicker]="picker"
                                             [formControl]="group.get('date')" class="inputForm" readonly>
@@ -1067,7 +1084,20 @@
                                     <div *ngIf="group.get('date').hasError('required') && group.get('date').touched"
                                         class="text-danger">
                                         Date is Required.
+                                    </div> -->
+
+                                    <div class="flex_div flx_center" style="border:1px solid #e4e4e4;height: 34px;">
+                                        <input [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1" placeholder="Date Time"
+                                            [formControl]="group.get('date')" class="inputForm">
+                                        <owl-date-time #dt1></owl-date-time>
                                     </div>
+                                    <div *ngIf="group.get('date').hasError('required') && group.get('date').touched"
+                                        class="text-danger">
+                                        Date is Required.
+                                    </div>
+
+
+
                                 </div>
                             </div>
                         </fieldset>
@@ -1110,8 +1140,11 @@
                             <div class="education-lable-text" *ngIf="jobReqData?.additionalInformation == ''"> No
                                 Information added </div>
 
-                            <div class="flex_div flx_baseline flx_between" *ngIf="jobReqData?.additionalInformation.length">
-                                <div class="education-lable-text" [innerHTML]="jobReqData?.additionalInformation.length == 0 ? '' : jobReqData?.additionalInformation[0]?.note"></div>
+                            <div class="flex_div flx_baseline flx_between"
+                                *ngIf="jobReqData?.additionalInformation.length">
+                                <div class="education-lable-text"
+                                    [innerHTML]="jobReqData?.additionalInformation.length == 0 ? '' : jobReqData?.additionalInformation[0]?.note">
+                                </div>
                                 <div class="flex_div flx_center submit_btn pd-tp-10" style="float:right;">
                                     <div class="mg-5"><button type="submit" class="btn btn-primary save_btn"
                                             (click)="toggleInfoEditMode()">Edit</button>
@@ -1133,8 +1166,8 @@
                             </div>
 
 
-                            <div class="flex_div flx_center submit_btn pd-tp-10"
-                                style="float:right;" *ngIf="editadditionalInfoMode">
+                            <div class="flex_div flx_center submit_btn pd-tp-10" style="float:right;"
+                                *ngIf="editadditionalInfoMode">
                                 <div class="mg-5"><button type="submit" class="btn btn-primary save_btn"
                                         (click)="saveadditionalInfo()">Save</button></div>
                                 <div class="cancel_btn mg-5" (click)="cancelAddItem()">Cancel</div>
