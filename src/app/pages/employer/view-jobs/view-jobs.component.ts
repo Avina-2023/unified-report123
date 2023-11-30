@@ -605,17 +605,17 @@ export class ViewJobsComponent implements OnInit {
 
                 params.success({
                   rowData: this.partnerListAgData,
-                  //rowCount: this.allcountvalue,
-                    rowCount: this.alldata.data.length,
+                  rowCount: this.allcountvalue,
+                  //rowCount: this.alldata.data.length, // no of data count for search
                 });
                 // localStorage.setItem('partnerListAgData', JSON.stringify(this.partnerListAgData));
               } else {
-                this.gridApi.showNoRowsOverlay();
                 params.success({
                   rowData: this.partnerListAgData,
                   //rowData: [],
-                   rowCount: 0,
+                   rowCount: 0, // if no data for search
                 });
+                this.gridApi.showNoRowsOverlay();
               }
             }
           },
