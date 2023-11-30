@@ -599,23 +599,23 @@ export class ViewJobsComponent implements OnInit {
               // if(apiData.request.approveStatus.filter)
               if (this.partnerListAgData.length > 0) {
                 this.pageRowCount = data1 && data1.totalCount.totalCount ? data1.totalCount.totalCount : 0;
-                console.log(this.allcountvalue,this.pageRowCount,'ApipageRowCount');
                 this.totalPages = Math.ceil(this.pageRowCount / this.selectedPageSize);
                 this.gridApi.hideOverlay();
+                console.log(this.allcountvalue, this.pageRowCount, 'ApipageRowCount');
+
                 params.success({
                   rowData: this.partnerListAgData,
-                   rowCount: this.allcountvalue,
-                  //  rowCount: this.alldata.data.length,
+                  //rowCount: this.allcountvalue,
+                    rowCount: this.alldata.data.length,
                 });
-
                 // localStorage.setItem('partnerListAgData', JSON.stringify(this.partnerListAgData));
-                } else {
+              } else {
+                this.gridApi.showNoRowsOverlay();
                 params.success({
                   rowData: this.partnerListAgData,
                   //rowData: [],
-                  // rowCount: 0,
+                   rowCount: 0,
                 });
-                this.gridApi.showNoRowsOverlay();
               }
             }
           },
