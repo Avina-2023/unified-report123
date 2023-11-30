@@ -614,7 +614,7 @@ export class ViewJobsComponent implements OnInit {
                 params.success({
                   rowData: this.partnerListAgData,
                   //rowData: [],
-                  // rowCount: 0,
+                   rowCount: 0,
                 });
               }
             }
