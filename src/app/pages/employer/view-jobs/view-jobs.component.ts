@@ -588,8 +588,13 @@ export class ViewJobsComponent implements OnInit {
               this.rejectedcountvalue = this.alldata.totalCount.rejectedCount || 0;
               this.allcount = this.alldata.totalCount.totalCount || 0;
               if (apiData.request.filterModel && apiData.request.filterModel.approveStatus && apiData.request.filterModel.approveStatus?.filter == 'approved') {
-                  this.allcountvalue = this.alldata.totalCount.approvedCount || 0;
-              }else if (apiData.request.filterModel && apiData.request.filterModel.approveStatus && apiData.request.filterModel.approveStatus?.filter == 'pending') {
+                this.allcountvalue = this.alldata.totalCount.approvedCount || 0;
+              }
+              // else if (apiData.request.filterModel) {
+              //   this.allcountvalue = this.alldata.data.length;
+              //   //this.allcountvalue = this.alldata.data.length == this.allcountvalue ? this.allcountvalue : this.alldata.data.length;
+              // }
+              else if (apiData.request.filterModel && apiData.request.filterModel.approveStatus && apiData.request.filterModel.approveStatus?.filter == 'pending') {
                   this.allcountvalue = this.alldata.totalCount.pendingCount || 0;
               }else if (apiData.request.filterModel && apiData.request.filterModel.approveStatus && apiData.request.filterModel.approveStatus?.filter == 'rejected') {
                   this.allcountvalue = this.alldata.totalCount.rejectedCount || 0;
@@ -605,16 +610,19 @@ export class ViewJobsComponent implements OnInit {
 
                 params.success({
                   rowData: this.partnerListAgData,
-                  rowCount: this.allcountvalue,
+                  rowCount: apiData.request.quickFilterText ? this.alldata.data.length : this.allcountvalue,
+                  //rowCount: this.allcountvalue !== this.alldata.data.length ? this.allcountvalue : this.alldata.data.length,
+                  //rowCount: this.partnerListAgData.length,
                   //rowCount: this.alldata.data.length, // no of data count for search
                 });
+                console.log(this.allcountvalue,'count value');
                 // localStorage.setItem('partnerListAgData', JSON.stringify(this.partnerListAgData));
               } else {
                 params.success({
-                  rowData: this.partnerListAgData,
-                  //rowData: [],
-                   rowCount: 0, // if no data for search
-                });
+                   rowData: this.partnerListAgData,
+                  // //rowData: [],
+                    rowCount: 0, // if no data for search
+                  });
                 this.gridApi.showNoRowsOverlay();
               }
             }
