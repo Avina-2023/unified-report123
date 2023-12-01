@@ -173,7 +173,7 @@
                         <div class="mg-r-10 width-30 "><nz-select nzShowSearch nzAllowClear nzPlaceHolder="Graduation"
                             [formControl]="group.get('level')" (ngModelChange)="onGraduationChange($event, i)">
                             <nz-option *ngFor="let option of educations" [nzLabel]="option.education"
-                              [nzValue]="option.education"></nz-option>
+                              [nzValue]="option.education" [nzDisabled]="isGraduationDisabled(option.education, i)"></nz-option>
                           </nz-select>
                           <div *ngIf="group.get('level').hasError('required') && group.get('level').touched"
                             class="text-danger">
@@ -183,9 +183,9 @@
 
                         <div class="mg-l-10 width-30">
                           <nz-select [nzDisabled]="isdegreeDisabled(i)" nzShowSearch nzAllowClear nzPlaceHolder="Degree"
-                            [formControl]="group.get('specification')" (ngModelChange)="onDegreeChange($event, i)">
+                            [formControl]="group.get('specification')" (ngModelChange)="onDegreeChange($event, i)" (click)="degreeOptionChange($event, i)">
                             <nz-option *ngFor="let option of degreeOptions" [nzLabel]="option"
-                              [nzValue]="option"></nz-option>
+                              [nzValue]="option" [nzDisabled]="isOptionDisabled(option, i)"></nz-option>
                           </nz-select>
                           <div
                             *ngIf="group.get('specification').hasError('required') && group.get('specification').touched"
@@ -198,7 +198,7 @@
                             [ngModel]="group.get('multipleSpecialization')?.value"
                             [ngModelOptions]="{ standalone: true }" [nzSize]="default" nzMode="multiple"
                             nzPlaceHolder="--Select Specialization (Multiple Select)---" class="custom-nz-select"
-                            [formControl]="group.get('discipline')">
+                            [formControl]="group.get('discipline')" (click)="disciplineOptionChange($event, i)">
                             <nz-option *ngFor="let option of listOfSpecializations" [nzLabel]="option"
                               [nzValue]="option"></nz-option>
                           </nz-select>

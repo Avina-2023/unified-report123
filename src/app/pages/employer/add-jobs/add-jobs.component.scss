@@ -451,6 +451,10 @@ nz-select.ng-touched.ng-invalid {
   background: none !important;
 }
 
+// ::ng-deep input.ng-touched.ng-invalid[_ngcontent-bbi-c435] {
+//   border: 1px solid none;
+// }
+
 ::ng-deep .ng-touched.ng-valid .ant-select-selector {
   border: 1px solid #ced4da !important;
 }

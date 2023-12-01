@@ -291,7 +291,7 @@ export class EmpUploadPostrequirmentComponent implements OnInit {
   }
 
 
-  
+
 
   companyDetails() {
     // Retrieve the company details from localstorage
@@ -362,24 +362,24 @@ export class EmpUploadPostrequirmentComponent implements OnInit {
 
   // updateDisabledSpecifications(): void {
   //   this.disabledSpecifications = [];
-  
+
   //   for (const group of this.formGroups) {
   //     const specificationValue = group.get('specification').value;
-  
+
   //     // Check if the specification value is not null and is not already in the disabledSpecifications array
   //     if (specificationValue !== null && !this.disabledSpecifications.includes(specificationValue)) {
   //       this.disabledSpecifications.push(specificationValue);
   //     }
   //   }
   // }
-  
+
 
 
   isGraduationDisabled(graduationValue: string, groupIndex: number): boolean {
     // Check if the graduationValue is in the disabledGraduations array
     // Apply the disabled condition only for 'SSLC', 'HSC', and 'Any Graduation'
-   return ['SSLC', 'HSC', 'Any Graduation'].includes(graduationValue) && this.disabledGraduations.includes(graduationValue);
-   
+   return ['SSLC', 'HSC', 'Any Graduation']?.includes(graduationValue) && this.disabledGraduations?.includes(graduationValue);
+
   }
 
   // isOptionDisabled(option: string, index:number): boolean {
@@ -401,16 +401,16 @@ export class EmpUploadPostrequirmentComponent implements OnInit {
       }
     }
   }
-  
+
   isOptionDisabled(option: string, currentIndex: number): boolean {
     // Update the disabledSpecifications array for the current index
     this.updateDisabledSpecifications(currentIndex);
-  
+
     // Check if the option is in the disabledSpecifications array
-    return this.disabledSpecifications.includes(option);
+    return this.disabledSpecifications?.includes(option);
   }
 
-  
+
 
   getallEducation() {
     this.apiService.getallEducations().subscribe((data: any) => {

@@ -118,6 +118,8 @@ export class AddJobsComponent implements OnInit {
   startrange: any;
   endrange: any;
   selectedOption: string;
+  disabledSpecifications: any[];
+  disabledGraduations: any[];
   constructor(private fb: FormBuilder,
     private apiService: ApiService,
     //private ApiService: ApiService,
@@ -377,6 +379,7 @@ export class AddJobsComponent implements OnInit {
     const lastGroup = this.formGroups[lastGroupIndex];
     if (lastGroup.valid) {
       this.formGroups.push(this.createEducationGroup());
+      this.updateDisabledGraduations();
     } else {
       lastGroup.markAllAsTouched();
       this.toastr.warning('Please fill in all required fields in the last added group.', 'Form Validation Error');
@@ -389,11 +392,52 @@ export class AddJobsComponent implements OnInit {
     }
   }
 
+updateDisabledGraduations(): void {
+    this.disabledGraduations = [];
+    for (const group of this.formGroups) {
+      const graduationValue = group.get('level').value;
+      if (graduationValue && !this.disabledGraduations.includes(graduationValue)) {
+        this.disabledGraduations.push(graduationValue);
+      }
+    }
+  }
+
+isGraduationDisabled(graduationValue: string, groupIndex: number): boolean {
+    // Check if the graduationValue is in the disabledGraduations array
+    // Apply the disabled condition only for 'SSLC', 'HSC', and 'Any Graduation'
+   return ['SSLC', 'HSC', 'Any Graduation']?.includes(graduationValue) && this.disabledGraduations?.includes(graduationValue);
+
+  }
+
+updateDisabledSpecifications(currentIndex: number): void {
+    this.disabledSpecifications = [];
+    for (let i = 0; i < this.formGroups.length; i++) {
+      if (i !== currentIndex) {
+        const specificationValue = this.formGroups[i].get('specification').value;
+        // Check if the specification value is not null and is not already in the disabledSpecifications array
+        if (specificationValue !== null && !this.disabledSpecifications.includes(specificationValue)) {
+          this.disabledSpecifications.push(specificationValue);
+        }
+      }
+    }
+  }
+
+  isOptionDisabled(option: string, currentIndex: number): boolean {
+    // Update the disabledSpecifications array for the current index
+    this.updateDisabledSpecifications(currentIndex);
+
+    // Check if the option is in the disabledSpecifications array
+    return this.disabledSpecifications?.includes(option);
+  }
+
   getallEducation() {
     this.apiService.getallEducations().subscribe((data: any) => {
       this.educations = data[0];
     })
   }
+
+
+
   getallCourses() {
     this.apiService.getallCollegeCourses().subscribe((data: any) => {
       this.allCourses = data;
@@ -431,13 +475,59 @@ export class AddJobsComponent implements OnInit {
     });
   }
 
+degreeOptionChange(selectedGraduation: string, index: number) {
+    const currentFormGroup = this.formGroups[index];
+    console.log(currentFormGroup.get('level').value);
+    if (currentFormGroup.get('level').value === 'SSLC' || currentFormGroup.get('level').value === 'HSC' || currentFormGroup.get('level').value === 'Any Graduation') {
+      this.degreeOptions = ['Any Degree / Graduation', 'X Std', 'XII Std'];
+    }
+    if (currentFormGroup.get('level').value === 'Diploma') {
+      this.degreeOptions = ['Diploma UG', 'Diploma PG'];
+    }
+    if (currentFormGroup.get('level').value === 'UG') {
+      this.degreeOptions = this.ugDegrees;
+    }
+
+    if (currentFormGroup.get('level').value === 'PG') {
+      this.degreeOptions = this.pgDegrees;
+    }
+
+    if (currentFormGroup.get('level').value === 'Phd') {
+      this.degreeOptions = this.phdDegrees;
+    }
+  }
+
+  disciplineOptionChange(selectedCourse: string, index: number) {
+    const currentFormGroup = this.formGroups[index];
+    console.log(currentFormGroup.get('specification').value);
+    if (currentFormGroup.get('specification').value !== null) {
+      const params = { "degree": currentFormGroup.get('specification').value };
+      this.apiService.getDepartmentcourses(params).subscribe((response: any) => {
+        this.allDisciplines = response.data;
+        if (this.allDisciplines) {
+          console.log(this.allDisciplines, 'specializationlist');
+          this.listOfSpecializations = this.allDisciplines;
+        }
+      }, error => {
+        // Handle API error here
+        console.error('API error:', error);
+      });
+    }
+    else {
+      this.listOfSpecializations = [];
+    }
+  }
+
+
   onGraduationChange(selectedGraduation: string, index: number) {
+    this.updateDisabledGraduations();
     const currentFormGroup = this.formGroups[index];
     // Clear values in the current form group
     currentFormGroup.get('specification').setValue(null);
     //currentFormGroup.get('course').setValue(null);
     currentFormGroup.get('discipline').setValue(null);
     if (selectedGraduation === null) {
+      this.updateDisabledGraduations();
       return;
     }
     // if (selectedGraduation === 'SSLC' || selectedGraduation === 'HSC' || selectedGraduation === 'Any Graduation' || selectedGraduation === 'Diploma') {

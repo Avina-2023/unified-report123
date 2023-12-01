@@ -398,10 +398,8 @@ export class EditJobComponent implements OnInit {
   isGraduationDisabled(graduationValue: string, groupIndex: number): boolean {
     // Check if the graduationValue is in the disabledGraduations array
     // Apply the disabled condition only for 'SSLC', 'HSC', and 'Any Graduation'
-    return ['SSLC', 'HSC', 'Any Graduation'].includes(graduationValue) && this.disabledGraduations.includes(graduationValue);
+    return ['SSLC', 'HSC', 'Any Graduation']?.includes(graduationValue) && this.disabledGraduations?.includes(graduationValue);
   }
-
-
 
   updateDisabledSpecifications(currentIndex: number): void {
     this.disabledSpecifications = [];
@@ -415,15 +413,14 @@ export class EditJobComponent implements OnInit {
       }
     }
   }
-  
+
   isOptionDisabled(option: string, currentIndex: number): boolean {
     // Update the disabledSpecifications array for the current index
     this.updateDisabledSpecifications(currentIndex);
-  
-    // Check if the option is in the disabledSpecifications array
-    return this.disabledSpecifications.includes(option);
-  }
 
+    // Check if the option is in the disabledSpecifications array
+    return this.disabledSpecifications?.includes(option);
+  }
 
   getallEducation() {
     this.apiService.getallEducations().subscribe((data: any) => {
@@ -466,7 +463,6 @@ export class EditJobComponent implements OnInit {
       console.log(this.phdDegrees, 'Phd degrees');
     });
   }
-
 
   degreeOptionChange(selectedGraduation: string, index: number) {
     const currentFormGroup = this.formGroups[index];
@@ -511,7 +507,6 @@ export class EditJobComponent implements OnInit {
     }
   }
 
-
   onGraduationChange(selectedGraduation: string, index: number) {
     this.updateDisabledGraduations();
     const currentFormGroup = this.formGroups[index];
@@ -551,7 +546,6 @@ export class EditJobComponent implements OnInit {
       currentFormGroup.get('discipline').setValidators(Validators.required);
       currentFormGroup.get('discipline').updateValueAndValidity();
     }
-
     if (selectedGraduation === 'UG' || selectedGraduation === 'PG' || selectedGraduation === 'Diploma') {
       currentFormGroup.get('specification').setValidators(Validators.required);
       currentFormGroup.get('specification').updateValueAndValidity();
@@ -573,6 +567,7 @@ export class EditJobComponent implements OnInit {
     if (selectedGraduation === 'Phd') {
       this.degreeOptions = this.phdDegrees;
     }
+
     if (currentFormGroup.get('level').value === 'Diploma') {
       currentFormGroup.get('discipline').setValue(null);
       // this.listOfSpecializations = this.diplomaCourses;
@@ -586,7 +581,6 @@ export class EditJobComponent implements OnInit {
     if (currentFormGroup.get('level').value === 'PG') {
       currentFormGroup.get('discipline').setValue(null);
     }
-
   }
 
   onDegreeChange(selectedCourse: string, index: number) {
@@ -617,16 +611,12 @@ export class EditJobComponent implements OnInit {
       currentFormGroup.get('discipline').setValidators(Validators.required);
       currentFormGroup.get('discipline').updateValueAndValidity();
     }
-
-
   }
-
 
   onCourseChange(selectedCourse: string, index: number) {
     const currentFormGroup = this.formGroups[index];
     // if(currentFormGroup.get('discipline').value == null){
     //   // currentFormGroup.get('level').setValue(null);
-
     // }
     const levelArray = ['SSLC', 'HSC', 'Any Graduation'];
 
@@ -639,7 +629,6 @@ export class EditJobComponent implements OnInit {
       currentFormGroup.get('level').setValue(null);
       console.log('empty course value');
     }
-
   }
 
   iscourseDisabled(index: number): boolean {
@@ -718,6 +707,7 @@ export class EditJobComponent implements OnInit {
       }
     });
   }
+
   companylist() {
     const data: any = {};
     this.apiService.masterCompany().subscribe(
@@ -739,6 +729,7 @@ export class EditJobComponent implements OnInit {
       }
     );
   }
+
   ctcChange() {
     const fixedControl = this.addjobsForm.get('fixed');
     const startrangeControl = this.addjobsForm.get('startrange');
