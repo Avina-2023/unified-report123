@@ -104,6 +104,7 @@
         span {
           color: red;
         }
+
       }
     }
   }
@@ -201,6 +202,7 @@
     width: 49%;
 
     .inputContainer {
+
       label {
         display: block;
         color: #262626;
@@ -445,7 +447,9 @@ nz-select {
 nz-select.ng-touched.ng-invalid {
   border: 1px solid red;
 }
-
+::ng-deep nz-select-top-control {
+  background: none !important;
+}
 
 ::ng-deep .ng-touched.ng-valid .ant-select-selector {
   border: 1px solid #ced4da !important;
@@ -507,3 +511,4 @@ input.ng-touched.ng-invalid {
   height: 32px !important;
   overflow-y: scroll !important;
 }
+
