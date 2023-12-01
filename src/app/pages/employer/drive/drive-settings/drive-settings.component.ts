@@ -144,6 +144,7 @@ export class DriveSettingsComponent implements OnInit {
   editHiringGroup = false;
   backlogsForm: FormGroup;
   hiringForm: FormGroup;
+  disabledSpecifications: any[];
 
   toggleEditMode() {
     this.editMode = !this.editMode;
@@ -464,7 +465,7 @@ export class DriveSettingsComponent implements OnInit {
     } else {
       console.log('group already added');
     }
-    this.updateDisabledGraduations();
+    //this.updateDisabledGraduations();
   }
 
 
@@ -480,24 +481,36 @@ export class DriveSettingsComponent implements OnInit {
     //this.updateDisabledGraduations();
   }
 
-  updateDisabledGraduations(): void {
-    this.disabledGraduations = [];
-    for (const group of this.formGroups) {
-      const graduationValue = group.get('level').value;
-      if (graduationValue && !this.disabledGraduations.includes(graduationValue)) {
-        this.disabledGraduations.push(graduationValue);
-      }
-    }
-  }
+  // updateDisabledGraduations(): void {
+  //   this.disabledGraduations = [];
+  //   for (const group of this.formGroups) {
+  //     const graduationValue = group.get('level').value;
+  //     if (graduationValue && !this.disabledGraduations.includes(graduationValue)) {
+  //       this.disabledGraduations.push(graduationValue);
+  //     }
+  //   }
+  // }
 
   isGraduationDisabled(educationLevel: string): boolean {
-
     const forbiddenLevelsInJobReqData = this.jobReqData.education.map(edu => edu.level.toLowerCase());
     const forbiddenLevels = ['sslc', 'hsc', 'any graduation'];
 
     return forbiddenLevelsInJobReqData.includes(educationLevel.toLowerCase()) &&
       forbiddenLevels.includes(educationLevel.toLowerCase());
   }
+
+
+  isSpecDisabled(degreeOption: string): boolean {
+    const forbiddenSpecsInJobReqData = this.jobReqData.education.map(edu => edu.specification.toLowerCase());
+
+    return forbiddenSpecsInJobReqData.includes(degreeOption.toLowerCase());
+}
+
+
+  
+
+ 
+  
 
   isEducationLevelDisabled(educationLevel: string): boolean {
     // Check if the education level is already present in jobReqData.eligibilityCriteria

@@ -291,6 +291,8 @@ export class EmpUploadPostrequirmentComponent implements OnInit {
   }
 
 
+  
+
   companyDetails() {
     // Retrieve the company details from localstorage
     this.companyData = localStorage.getItem('companyDetails');
@@ -358,6 +360,21 @@ export class EmpUploadPostrequirmentComponent implements OnInit {
   }
 
 
+  // updateDisabledSpecifications(): void {
+  //   this.disabledSpecifications = [];
+  
+  //   for (const group of this.formGroups) {
+  //     const specificationValue = group.get('specification').value;
+  
+  //     // Check if the specification value is not null and is not already in the disabledSpecifications array
+  //     if (specificationValue !== null && !this.disabledSpecifications.includes(specificationValue)) {
+  //       this.disabledSpecifications.push(specificationValue);
+  //     }
+  //   }
+  // }
+  
+
+
   isGraduationDisabled(graduationValue: string, groupIndex: number): boolean {
     // Check if the graduationValue is in the disabledGraduations array
     // Apply the disabled condition only for 'SSLC', 'HSC', and 'Any Graduation'
@@ -365,7 +382,35 @@ export class EmpUploadPostrequirmentComponent implements OnInit {
    
   }
 
+  // isOptionDisabled(option: string, index:number): boolean {
+  //   // Check if the option contains 'Diploma UG'
+  //   //return option.includes('Diploma UG');
+  //   return option.includes('Diploma UG') || this.disabledSpecifications.includes(option);
+  // }
 
+
+  updateDisabledSpecifications(currentIndex: number): void {
+    this.disabledSpecifications = [];
+    for (let i = 0; i < this.formGroups.length; i++) {
+      if (i !== currentIndex) {
+        const specificationValue = this.formGroups[i].get('specification').value;
+        // Check if the specification value is not null and is not already in the disabledSpecifications array
+        if (specificationValue !== null && !this.disabledSpecifications.includes(specificationValue)) {
+          this.disabledSpecifications.push(specificationValue);
+        }
+      }
+    }
+  }
+  
+  isOptionDisabled(option: string, currentIndex: number): boolean {
+    // Update the disabledSpecifications array for the current index
+    this.updateDisabledSpecifications(currentIndex);
+  
+    // Check if the option is in the disabledSpecifications array
+    return this.disabledSpecifications.includes(option);
+  }
+
+  
 
   getallEducation() {
     this.apiService.getallEducations().subscribe((data: any) => {

@@ -125,7 +125,7 @@
           <div class="mg-l-10 width-30">
             <nz-select [nzDisabled]="isdegreeDisabled(i)" nzShowSearch nzAllowClear nzPlaceHolder="Degree"
               [formControl]="group.get('specification')" (ngModelChange)="onDegreeChange($event, i)" (click)="degreeOptionChange($event, i)">
-              <nz-option *ngFor="let option of degreeOptions" [nzLabel]="option" [nzValue]="option"></nz-option>
+              <nz-option [nzDisabled]="isOptionDisabled(option, i)" *ngFor="let option of degreeOptions" [nzLabel]="option" [nzValue]="option"></nz-option>
             </nz-select>
             <div *ngIf="group.get('specification').hasError('required') && group.get('specification').touched"
               class="text-danger">
