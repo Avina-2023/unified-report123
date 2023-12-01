@@ -495,22 +495,22 @@ export class DriveSettingsComponent implements OnInit {
     const forbiddenLevelsInJobReqData = this.jobReqData.education.map(edu => edu.level.toLowerCase());
     const forbiddenLevels = ['sslc', 'hsc', 'any graduation'];
 
-    return forbiddenLevelsInJobReqData.includes(educationLevel.toLowerCase()) &&
-      forbiddenLevels.includes(educationLevel.toLowerCase());
+    return forbiddenLevelsInJobReqData?.includes(educationLevel.toLowerCase()) &&
+      forbiddenLevels?.includes(educationLevel.toLowerCase());
   }
 
 
   isSpecDisabled(degreeOption: string): boolean {
     const forbiddenSpecsInJobReqData = this.jobReqData.education.map(edu => edu.specification.toLowerCase());
 
-    return forbiddenSpecsInJobReqData.includes(degreeOption.toLowerCase());
+    return forbiddenSpecsInJobReqData?.includes(degreeOption.toLowerCase());
 }
 
 
-  
 
- 
-  
+
+
+
 
   isEducationLevelDisabled(educationLevel: string): boolean {
     // Check if the education level is already present in jobReqData.eligibilityCriteria
@@ -878,7 +878,7 @@ export class DriveSettingsComponent implements OnInit {
         };
         //console.log(hireObj, 'hiring object');
         this.updateJobData(hireObj);
-      
+
     }
     else {
       this.hiringFormGroups.forEach(formGroup => formGroup.markAllAsTouched());
@@ -1178,7 +1178,7 @@ export class DriveSettingsComponent implements OnInit {
     }
   }
 
-  
+
 
 
   saveBacklogs() {
@@ -1265,4 +1265,4 @@ export class DriveSettingsComponent implements OnInit {
 
 
 
-} 
+}
