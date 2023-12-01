@@ -124,8 +124,8 @@
           </div>
           <div class="mg-l-10 width-30">
             <nz-select [nzDisabled]="isdegreeDisabled(i)" nzShowSearch nzAllowClear nzPlaceHolder="Degree"
-              [formControl]="group.get('specification')" (ngModelChange)="onDegreeChange($event, i)">
-              <nz-option *ngFor="let option of degreeOptions" [nzLabel]="option" [nzValue]="option"></nz-option>
+              [formControl]="group.get('specification')" (ngModelChange)="onDegreeChange($event, i)" (click)="degreeOptionChange($event, i)">
+              <nz-option [nzDisabled]="isOptionDisabled(option, i)" *ngFor="let option of degreeOptions" [nzLabel]="option" [nzValue]="option"></nz-option>
             </nz-select>
             <div *ngIf="group.get('specification').hasError('required') && group.get('specification').touched"
               class="text-danger">
@@ -136,7 +136,7 @@
             <nz-select nzAllowClear [nzDisabled]="iscourseDisabled(i)"
               [ngModel]="group.get('multipleSpecialization')?.value" [ngModelOptions]="{ standalone: true }"
               [nzSize]="default" nzMode="multiple" nzPlaceHolder="--Select Specialization (Multiple Select)---"
-              [formControl]="group.get('discipline')">
+              [formControl]="group.get('discipline')" (click)="disciplineOptionChange($event, i)">
               <nz-option *ngFor="let option of listOfSpecializations" [nzLabel]="option" [nzValue]="option"></nz-option>
             </nz-select>
             <div *ngIf="group.get('discipline').hasError('required') && group.get('discipline').touched"

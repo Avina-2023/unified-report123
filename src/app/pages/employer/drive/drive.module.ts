@@ -17,6 +17,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { AngularEditorModule } from '@kolkov/angular-editor';
+import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 
 
 @NgModule({
@@ -40,7 +41,9 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
     ReactiveFormsModule,
     NzDropDownModule,
     NzSelectModule,
-    AngularEditorModule
+    AngularEditorModule,
+    OwlDateTimeModule, 
+    OwlNativeDateTimeModule
   ],
 })
 export class DriveModule {}
