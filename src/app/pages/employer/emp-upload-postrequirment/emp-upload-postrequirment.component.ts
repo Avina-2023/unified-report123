@@ -378,7 +378,7 @@ export class EmpUploadPostrequirmentComponent implements OnInit {
   isGraduationDisabled(graduationValue: string, groupIndex: number): boolean {
     // Check if the graduationValue is in the disabledGraduations array
     // Apply the disabled condition only for 'SSLC', 'HSC', and 'Any Graduation'
-   return ['SSLC', 'HSC', 'Any Graduation']?.includes(graduationValue) && this.disabledGraduations?.includes(graduationValue);
+    return ['SSLC', 'HSC', 'Any Graduation']?.includes(graduationValue) && this.disabledGraduations?.includes(graduationValue);
 
   }
 
@@ -768,6 +768,20 @@ export class EmpUploadPostrequirmentComponent implements OnInit {
         item: htmljobRequirements
       }
     ];
+
+
+    const inputDate = new Date(this.jobForm.value?.lastDatetoApply);
+    // Set time zone offset to zero (UTC)
+    inputDate.setMinutes(inputDate.getMinutes() - inputDate.getTimezoneOffset());
+    // Set the UTC hours, minutes, and seconds to 23:59:59
+    inputDate.setUTCHours(23, 59, 59);
+    // Convert to UTC and get the ISO string
+    const ISTDateString = inputDate.toISOString();
+    console.log(ISTDateString);
+
+
+
+
 
     if (this.jobForm.valid && areEducationGroupsValid) {
       const inputDate = new Date(this.jobForm.value?.lastDatetoApply);
