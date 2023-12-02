@@ -230,7 +230,7 @@
       </div>
 
       <div class="form-group">
-        <label for="jobDescription">About Jobs / Job Description<span class="mandatory_symbl">*</span></label>
+        <label for="jobDescription">About the Job / Job Description<span class="mandatory_symbl">*</span></label>
         <angular-editor [(ngModel)]="htmlContent" [property]='binding' [config]="config" formControlName="description"
           id="jobDescription"></angular-editor>
         <div *ngIf="jobForm.get('description').hasError('required') && jobForm.get('description').touched"
