@@ -15,13 +15,13 @@
           <div class="Job-Type">{{jobdata.jobType}}</div>
           <div
             class="Job-Status {{jobdata.approveStatus === 'approved' ? 'approved' : (jobdata.approveStatus === 'rejected' ? 'rejected' : 'pending')}}">
-            {{jobdata.approveStatus}}</div>
+            {{jobdata.approveStatus | titlecase}}</div>
         </div>
         <div class="border-line1">
           <div class="bottom-border1"></div>
         </div>
         <div class="posted">Posted by</div>
-        <div class="posted-name">{{jobdata.postedBy}}</div>
+        <div class="posted-name">UapAdmin</div>
         <div class="border-line1">
           <div class="bottom-border1"></div>
         </div>
@@ -179,7 +179,7 @@
                 <label class="edu_label">Education</label>
               </div>
               <!-- {{jobdata.education[0].level}} -->
-              <div style="width: 84%;">
+              <div style="width: 73%;">
                 <!-- <div *ngFor="let item of this.jobdata.education" > test educatipn</div> -->
                 <ng-container *ngFor="let group of formGroups; let i = index">
                   <div class="form-group flex_grid edu_array" [disabled]="isFormApproved">
@@ -198,9 +198,10 @@
 
                     <div class="width-100 mg-10">
                       <nz-select [nzDisabled]="isdegreeDisabled(i)" nzShowSearch nzAllowClear nzPlaceHolder="Degree"
-                        [formControl]="group.get('specification')" (ngModelChange)="onDegreeChange($event, i)" (click)="degreeOptionChange($event, i)">
-                        <nz-option *ngFor="let option of degreeOptions" [nzLabel]="option"
-                          [nzValue]="option" [nzDisabled]="isOptionDisabled(option, i)"></nz-option>
+                        [formControl]="group.get('specification')" (ngModelChange)="onDegreeChange($event, i)"
+                        (click)="degreeOptionChange($event, i)">
+                        <nz-option *ngFor="let option of degreeOptions" [nzLabel]="option" [nzValue]="option"
+                          [nzDisabled]="isOptionDisabled(option, i)"></nz-option>
                       </nz-select>
                       <div *ngIf="group.get('specification').hasError('required') && group.get('specification').touched"
                         class="text-danger">
@@ -209,10 +210,11 @@
                     </div>
 
                     <div class="width-100 overflow_scroll overflow_hidden">
-                      <nz-select (ngModelChange)="onCourseChange($event, i)" nzAllowClear [nzDisabled]="iscourseDisabled(i)" [ngModelOptions]="{ standalone: true }"
-                        [nzSize]="default" nzMode="multiple"
-                        nzPlaceHolder="--Select Specialization (Multiple Select)---" class="custom-nz-select"
-                        [formControl]="group.get('discipline')" (click)="disciplineOptionChange($event, i)">
+                      <nz-select (ngModelChange)="onCourseChange($event, i)" nzAllowClear
+                        [nzDisabled]="iscourseDisabled(i)" [ngModelOptions]="{ standalone: true }" [nzSize]="default"
+                        nzMode="multiple" nzPlaceHolder="--Select Specialization (Multiple Select)---"
+                        class="custom-nz-select" [formControl]="group.get('discipline')"
+                        (click)="disciplineOptionChange($event, i)">
                         <nz-option *ngFor="let option of listOfSpecializations" [nzLabel]="option"
                           [nzValue]="option"></nz-option>
                       </nz-select>

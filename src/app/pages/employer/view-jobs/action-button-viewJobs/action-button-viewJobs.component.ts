@@ -128,7 +128,7 @@ export class ActionButtonViewJobsComponent implements ICellRendererAngularComp {
 
     const dialogRef = this.dialog.open(this.editJobmatDialogRef, {
       width: '1000px',
-      height: 'auto',
+      height: '80',
       disableClose: true,
     });
     dialogRef.afterClosed().subscribe(result => {
