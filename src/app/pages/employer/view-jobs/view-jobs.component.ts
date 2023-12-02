@@ -333,7 +333,6 @@ export class ViewJobsComponent implements OnInit {
  // tooltipField: 'education',
 },
 
-
       {
         headerName: 'Job Type',
         field: 'jobType',
@@ -666,10 +665,6 @@ export class ViewJobsComponent implements OnInit {
   }
 
   // old code end
-
-
-
-
   // getAggridJoblist() {
   //   // debugger;
   //   return {
@@ -790,8 +785,5 @@ export class ViewJobsComponent implements OnInit {
   refresh() {
     this.gridApi.refreshServerSideStore({ purge: true });
   }
-
-
-
 
 }

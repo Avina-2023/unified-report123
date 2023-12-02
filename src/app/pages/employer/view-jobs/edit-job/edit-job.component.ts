@@ -8,6 +8,7 @@ import { environment } from 'src/environments/environment';
 import { formatDate } from '@angular/common';
 import { log } from 'console';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+
 @Component({
   selector: 'app-edit-job',
   templateUrl: './edit-job.component.html',
@@ -64,7 +65,7 @@ export class EditJobComponent implements OnInit {
 
   productionUrl = environment.SKILL_EDGE_URL == "https://skilledge.lntedutech.com" ? true : false;
 
-  config: AngularEditorConfig = {
+   config: AngularEditorConfig = {
     editable: true,
     spellcheck: true,
     minHeight: '100px',
@@ -73,7 +74,7 @@ export class EditJobComponent implements OnInit {
     translate: 'no',
     sanitize: false,
     toolbarPosition: 'top',
-    defaultFontName: 'Arial',
+    defaultFontName: 'inter',
     customClasses: [
       {
         name: 'quote',
@@ -88,7 +89,24 @@ export class EditJobComponent implements OnInit {
         class: 'titleText',
         tag: 'h1',
       },
-    ]
+    ],
+    toolbarHiddenButtons: [
+      ['fontName'],
+      ['insertImage'],
+      ['strikeThrough'],
+      ['subscript'],
+      ['superscript'],
+      ['fontSize'],
+      ['textColor'],
+      ['backgroundColor'],
+      ['link'],
+      ['unlink'],
+      ['insertVideo'],
+      ['insertHorizontalRule'],
+      ['removeFormat'],
+      ['customClasses'],
+      ['toggleEditorMode']
+    ],
   };
   startrange: any;
   endrange: any;
@@ -815,6 +833,13 @@ export class EditJobComponent implements OnInit {
     ];
     const additionalInformation = htmladditionalinformation ? { note: htmladditionalinformation } : {};
     { }
+     const inputDate = new Date(this.addjobsForm.value?.lastDatetoApply);
+      // Set time zone offset to zero (UTC)
+      inputDate.setMinutes(inputDate.getMinutes() - inputDate.getTimezoneOffset());
+      // Set the UTC hours, minutes, and seconds to 23:59:59
+      inputDate.setUTCHours(23, 59, 59);
+      // Convert to UTC and get the ISO string
+      const ISTDateString = inputDate.toISOString();
     if (this.addjobsForm.valid && areEducationGroupsValid && !this.isFormApproved) {
       var obj = {
         "jobId": this.jobdata.jobId,
@@ -828,7 +853,8 @@ export class EditJobComponent implements OnInit {
         "skillSet": this.addjobsForm.value.skillSet,
         "ctcType": this.addjobsForm.value.ctcOption,
         "ctc": isFixed ? this.addjobsForm.value?.fixed : `${startRange} - ${endRange}`,
-        "lastDatetoApply": this.addjobsForm.value.lastDatetoApply,
+        //"lastDatetoApply": this.addjobsForm.value.lastDatetoApply,
+        "lastDatetoApply": ISTDateString,
         "additionalInformation": additionalInformation,
         "description": descriptionItems,
         "requirement": requirementItems,
