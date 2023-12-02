@@ -341,7 +341,7 @@
                             <mat-icon>create</mat-icon>Edit
                         </div> -->
                     </div>
-                    <div class="edu-values" *ngIf="jobReqData?.education.length == 0">
+                    <div class="edu-values" *ngIf="jobReqData?.education?.length == 0">
                         <div class="education-lable-text mg-15"> No Education defined. All students are eligible </div>
                     </div>
                     <div class="edu-values" *ngIf="jobReqData?.education">
@@ -404,7 +404,7 @@
                                                 <nz-select [nzDisabled]="isdegreeDisabled(i)"
                                                     [(ngModel)]="educationItem.specification" nzShowSearch nzAllowClear
                                                     nzPlaceHolder="Degree" [formControl]="group.get('specification')"
-                                                    (ngModelChange)="onDegreeChange($event, i)">
+                                                    (ngModelChange)="onDegreeChange($event, i)" (click)="degreeOptionChange($event, i)">
                                                     <nz-option *ngFor="let option of degreeOptions" [nzLabel]="option"
                                                         [nzValue]="option" [nzDisabled]="isSpecDisabled(option, i)"></nz-option>
                                                 </nz-select>
@@ -420,7 +420,7 @@
                                                     [ngModelOptions]="{ standalone: true }" [nzSize]="default"
                                                     nzMode="multiple"
                                                     nzPlaceHolder="--Select Specialization (Multiple Select)---"
-                                                    [formControl]="group.get('discipline')">
+                                                    [formControl]="group.get('discipline')" (click)="disciplineOptionChange($event, i)">
                                                     <nz-option *ngFor="let option of listOfSpecializations"
                                                         [nzLabel]="option" [nzValue]="option"></nz-option>
                                                 </nz-select>
@@ -429,7 +429,7 @@
                                                     Specialization is Required.
                                                 </div>
                                             </div>
-                                            <div class="remove_group_text" *ngIf="formGroups.length > 1 && i > 0"
+                                            <div class="remove_group_text" *ngIf="formGroups?.length > 1 && i > 0"
                                                 (click)="removeEducationGroup(i)"><span class="close-icon">X</span>
                                             </div>
                                         </div>
@@ -450,7 +450,7 @@
                     </div>
 
                     <div *ngIf="!addneweducationGroup && !editGroup" class="add_more_text"
-                        (click)="addEducationGroup()">{{jobReqData?.education.length == 0 ? "Add Education" : "Add
+                        (click)="addEducationGroup()">{{jobReqData?.education?.length == 0 ? "Add Education" : "Add
                         More"}}
                     </div>
 
@@ -475,7 +475,7 @@
                                 <div class="mg-l-10 width-30">
                                     <nz-select [nzDisabled]="isdegreeDisabled(i)" nzShowSearch nzAllowClear
                                         nzPlaceHolder="Degree" [formControl]="group.get('specification')"
-                                        (ngModelChange)="onDegreeChange($event, i)">
+                                        (ngModelChange)="onDegreeChange($event, i)" (click)="degreeOptionChange($event, i)">
                                         <nz-option *ngFor="let option of degreeOptions" [nzLabel]="option"
                                             [nzValue]="option" [nzDisabled]="isSpecDisabled(option, i)"></nz-option>
                                     </nz-select>
@@ -489,7 +489,7 @@
                                         [ngModel]="group.get('multipleSpecialization')?.value"
                                         [ngModelOptions]="{ standalone: true }" [nzSize]="default" nzMode="multiple"
                                         nzPlaceHolder="--Select Specialization (Multiple Select)---"
-                                        [formControl]="group.get('discipline')">
+                                        [formControl]="group.get('discipline')" (click)="disciplineOptionChange($event, i)">
                                         <nz-option *ngFor="let option of listOfSpecializations" [nzLabel]="option"
                                             [nzValue]="option"></nz-option>
                                     </nz-select>
@@ -534,8 +534,8 @@
                     <!-- <div class="flex_div flx_between"> -->
                     <div class="width-100 edu-values">
                         <div
-                            *ngIf="jobReqData && jobReqData.eligibilityCriteria && jobReqData.eligibilityCriteria.length == 0 && !showCustomCriteria">
-                            <div class="education-lable-text">
+                            *ngIf="jobReqData && jobReqData.eligibilityCriteria && jobReqData.eligibilityCriteria?.length == 0 && !showCustomCriteria">
+                            <div class="education-lable-text mg-15">
                                 No Criteria defined. All students are eligible
                             </div>
                         </div>
@@ -717,7 +717,7 @@
                     <div class="education">
                         <div class="education-lable" *ngIf="!editCriteriaMode">
                             <div class="yop-container">
-                                <div class="education-lable-text" *ngIf="jobReqData?.yearofPassout.length == 0"> No
+                                <div class="education-lable-text" *ngIf="jobReqData?.yearofPassout?.length == 0"> No
                                     Year
                                     of Passout defined. All Candidates are eligible </div>
                             </div>
@@ -756,7 +756,7 @@
                                 Backlogs
                             </div>
                             <div class="add-criteria" (click)="toggleBacklogsEditMode()"
-                                *ngIf="editBacklogsModeVisible && jobReqData?.noofBacklog?.length == 0">
+                                *ngIf="editBacklogsModeVisible && (jobReqData?.noofBacklog?.length == 0 || !jobReqData?.noofBacklog)">
                                 <mat-icon>create</mat-icon>Edit
                             </div>
                         </div>
@@ -766,12 +766,13 @@
                     </div>
                     <div class="education">
                         <div class="education-lable width-100" *ngIf="!editBacklogsMode">
-                            <div class="education-lable-text" *ngIf="jobReqData?.noofBacklog?.length == 0"> No Backlogs
+                            <div class="education-lable-text" *ngIf="(jobReqData?.noofBacklog?.length == 0 || !jobReqData?.noofBacklog)"> No Backlogs
                                 defined. All students are eligible </div>
                             <div class="flex_div flx_baseline flx_between" *ngIf="jobReqData?.noofBacklog?.length">
                                 <div class="education-lable-text">
-                                    Only Candidates with maximum of {{jobReqData?.noofBacklog}} or less backlogs are
-                                    eligible
+                                    {{ jobReqData?.noofBacklog == 0 ? 'Only candidates without any backlogs are eligible' : 'Candidates with a maximum of ' + jobReqData?.noofBacklog + ' or less backlogs are eligible' }}
+
+
                                 </div>
                                 <div class="flex_div flx_center submit_btn pd-tp-10" style="float:right;">
                                     <div class="mg-5"><button type="submit" class="btn btn-primary save_btn"
@@ -820,7 +821,7 @@
                     </div>
                     <div class="education">
                         <div class="education-lable width-100" *ngIf="!editGenderMode">
-                            <div class="education-lable-text" *ngIf="jobReqData?.gender == ''"> No Gender defined.
+                            <div class="education-lable-text" *ngIf="(jobReqData?.gender == '' || !jobReqData?.gender)"> No Gender defined.
                                 All Candidates are eligible </div>
 
                             <div class="flex_div flx_baseline flx_between" *ngIf="jobReqData?.gender">
@@ -905,7 +906,7 @@
                             Hiring Process
                         </div>
                         <div class="mg-15 add-criteria flex_div flx_center" (click)="addhiringGroup()"
-                            *ngIf="!addnewhiringProcessGroup && !editHiringGroup && jobReqData?.hiringProcess.length == 0">
+                            *ngIf="!addnewhiringProcessGroup && !editHiringGroup && (jobReqData?.hiringProcess?.length == 0 || !jobReqData?.hiringProcess)">
                             <mat-icon>add</mat-icon>
                             <div style="margin-left: -5px;">Add Process</div>
                         </div>
@@ -913,10 +914,10 @@
                     <div class="border-line">
                         <div class="bottom-border"></div>
                     </div>
-                    <div class="edu-values" *ngIf="jobReqData?.hiringProcess.length == 0">
+                    <div class="edu-values" *ngIf="(jobReqData?.hiringProcess?.length == 0 || !jobReqData?.hiringProcess)">
                         <div class="education-lable-text mg-15"> No Hiring Process added. </div>
                     </div>
-                    <div class="edu-values" *ngIf="jobReqData?.hiringProcess.length">
+                    <div class="edu-values" *ngIf="jobReqData?.hiringProcess?.length">
                         <div class="mg-15 mg-tp-30" *ngFor="let hiringItem of jobReqData?.hiringProcess; let i=index;">
                             <div class="flex_div edu_items" *ngIf="!hiringItem.editHiringProcess">
                                 <div class="edu_section width-20 pd-5 font_bold stage_div"
@@ -1033,7 +1034,7 @@
                             </div>
                         </div>
                     </div>
-                    <div *ngIf="!addnewhiringProcessGroup && !editHiringGroup && jobReqData?.hiringProcess.length"
+                    <div *ngIf="!addnewhiringProcessGroup && !editHiringGroup && jobReqData?.hiringProcess?.length"
                         class="add_more_text" (click)="addhiringGroup()">Add More
                     </div>
                     <div class="edu-values" *ngIf="addnewhiringProcessGroup && !editHiringGroup">
@@ -1119,12 +1120,12 @@
 
                 <div class="set-criteria" [formGroup]="infoForm">
                     <div class="set-criteria-header-container2">
-                        <div class="jobprofile-criteria">
+                        <div class="jobprofile-criteria width-100">
                             <div class="jobprofile-header-text2">
                                 Additional Information
                             </div>
                             <div class="add-criteria flex_div flx_center" (click)="toggleInfoEditMode()"
-                                *ngIf="editInfoModeVisible && jobReqData?.additionalInformation.length == 0">
+                                *ngIf="editInfoModeVisible && (jobReqData?.additionalInformation?.length == 0 || !jobReqData?.additionalInformation)">
                                 <mat-icon>add</mat-icon>
                                 <div style="margin-left: -5px;">Add Info</div>
                             </div>
@@ -1137,14 +1138,19 @@
 
                     <div class="education">
                         <div class="education-lable width-100" *ngIf="!editadditionalInfoMode">
-                            <div class="education-lable-text" *ngIf="jobReqData?.additionalInformation == ''"> No
+                            <div class="education-lable-text" *ngIf="(jobReqData?.additionalInformation == '' || !jobReqData?.additionalInformation)"> No
                                 Information added </div>
 
                             <div class="flex_div flx_baseline flx_between"
-                                *ngIf="jobReqData?.additionalInformation.length">
+                                *ngIf="jobReqData?.additionalInformation?.note || jobReqData?.additionalInformation[0]?.note">
+                                <!-- <div class="education-lable-text"
+                                    [innerHTML]="jobReqData?.additionalInformation?.length == 0 ? '' : jobReqData?.additionalInformation[0]?.note">
+                                </div> -->
+
                                 <div class="education-lable-text"
-                                    [innerHTML]="jobReqData?.additionalInformation.length == 0 ? '' : jobReqData?.additionalInformation[0]?.note">
+                                    [innerHTML]="jobReqData?.additionalInformation[0]?.note || jobReqData?.additionalInformation?.note">
                                 </div>
+
                                 <div class="flex_div flx_center submit_btn pd-tp-10" style="float:right;">
                                     <div class="mg-5"><button type="submit" class="btn btn-primary save_btn"
                                             (click)="toggleInfoEditMode()">Edit</button>

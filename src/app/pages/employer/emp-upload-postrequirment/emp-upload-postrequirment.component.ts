@@ -378,7 +378,7 @@ export class EmpUploadPostrequirmentComponent implements OnInit {
   isGraduationDisabled(graduationValue: string, groupIndex: number): boolean {
     // Check if the graduationValue is in the disabledGraduations array
     // Apply the disabled condition only for 'SSLC', 'HSC', and 'Any Graduation'
-   return ['SSLC', 'HSC', 'Any Graduation']?.includes(graduationValue) && this.disabledGraduations?.includes(graduationValue);
+    return ['SSLC', 'HSC', 'Any Graduation']?.includes(graduationValue) && this.disabledGraduations?.includes(graduationValue);
 
   }
 
@@ -769,11 +769,21 @@ export class EmpUploadPostrequirmentComponent implements OnInit {
       }
     ];
 
+
+
+
     if (this.jobForm.valid && areEducationGroupsValid) {
+      // const inputDate = new Date(this.jobForm.value?.lastDatetoApply);
+      // const ISTOffset = 330; // IST is UTC+5:30
+      // const ISTDate = new Date(inputDate.getTime() + (ISTOffset * 60000));
+      // const ISTDateString = ISTDate.toISOString();
       const inputDate = new Date(this.jobForm.value?.lastDatetoApply);
-      const ISTOffset = 330; // IST is UTC+5:30
-      const ISTDate = new Date(inputDate.getTime() + (ISTOffset * 60000));
-      const ISTDateString = ISTDate.toISOString();
+      // Set time zone offset to zero (UTC)
+      inputDate.setMinutes(inputDate.getMinutes() - inputDate.getTimezoneOffset());
+      // Set the UTC hours, minutes, and seconds to 23:59:59
+      inputDate.setUTCHours(23, 59, 59);
+      // Convert to UTC and get the ISO string
+      const ISTDateString = inputDate.toISOString();
       var obj = {
         "companyId": this.companyDataResult?.userId,
         "companyEmail": this.companyDataResult?.email,

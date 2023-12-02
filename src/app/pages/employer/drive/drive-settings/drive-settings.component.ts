@@ -420,7 +420,7 @@ export class DriveSettingsComponent implements OnInit {
     });
 
     this.infoForm.patchValue({
-      additionalInformation: this.jobReqData?.additionalInformation.length == 0 ? '' : this.jobReqData?.additionalInformation[0]?.note
+      additionalInformation: this.jobReqData?.additionalInformation?.length == 0 ? '' : this.jobReqData?.additionalInformation[0]?.note
     });
 
 
@@ -469,6 +469,50 @@ export class DriveSettingsComponent implements OnInit {
   }
 
 
+  degreeOptionChange(selectedGraduation: string, index: number) {
+    const currentFormGroup = this.formGroups[index];
+    console.log(currentFormGroup.get('level').value);
+    if (currentFormGroup.get('level').value === 'SSLC' || currentFormGroup.get('level').value === 'HSC' || currentFormGroup.get('level').value === 'Any Graduation') {
+      this.degreeOptions = ['Any Degree / Graduation', 'X Std', 'XII Std'];
+    }
+    if (currentFormGroup.get('level').value === 'Diploma') {
+      this.degreeOptions = ['Diploma UG', 'Diploma PG'];
+    }
+    if (currentFormGroup.get('level').value === 'UG') {
+      this.degreeOptions = this.ugDegrees;
+    }
+ 
+    if (currentFormGroup.get('level').value === 'PG') {
+      this.degreeOptions = this.pgDegrees;
+    }
+ 
+    if (currentFormGroup.get('level').value === 'Phd') {
+      this.degreeOptions = this.phdDegrees;
+    }
+  }
+ 
+  disciplineOptionChange(selectedCourse: string, index: number) {
+    const currentFormGroup = this.formGroups[index];
+    console.log(currentFormGroup.get('specification').value);
+    if (currentFormGroup.get('specification').value !== null) {
+      const params = { "degree": currentFormGroup.get('specification').value };
+      this.http.getDepartmentcourses(params).subscribe((response: any) => {
+        this.allDisciplines = response.data;
+        if (this.allDisciplines) {
+          console.log(this.allDisciplines, 'specializationlist');
+          this.listOfSpecializations = this.allDisciplines;
+        }
+      }, error => {
+        // Handle API error here
+        console.error('API error:', error);
+      });
+    }
+    else {
+      this.listOfSpecializations = [];
+    }
+  }
+
+
 
   addhiringGroup(): void {
     this.addnewhiringProcessGroup = !this.addnewhiringProcessGroup;
@@ -492,18 +536,18 @@ export class DriveSettingsComponent implements OnInit {
   // }
 
   isGraduationDisabled(educationLevel: string): boolean {
-    const forbiddenLevelsInJobReqData = this.jobReqData.education.map(edu => edu.level.toLowerCase());
+    const forbiddenLevelsInJobReqData = this.jobReqData?.education.map(edu => edu?.level?.toLowerCase());
     const forbiddenLevels = ['sslc', 'hsc', 'any graduation'];
 
-    return forbiddenLevelsInJobReqData?.includes(educationLevel.toLowerCase()) &&
-      forbiddenLevels?.includes(educationLevel.toLowerCase());
+    return forbiddenLevelsInJobReqData?.includes(educationLevel?.toLowerCase()) &&
+      forbiddenLevels?.includes(educationLevel?.toLowerCase());
   }
 
 
   isSpecDisabled(degreeOption: string): boolean {
-    const forbiddenSpecsInJobReqData = this.jobReqData.education.map(edu => edu.specification.toLowerCase());
+    const forbiddenSpecsInJobReqData = this.jobReqData?.education.map(edu => edu?.specification?.toLowerCase());
 
-    return forbiddenSpecsInJobReqData?.includes(degreeOption.toLowerCase());
+    return forbiddenSpecsInJobReqData?.includes(degreeOption?.toLowerCase());
 }
 
 
@@ -514,12 +558,12 @@ export class DriveSettingsComponent implements OnInit {
 
   isEducationLevelDisabled(educationLevel: string): boolean {
     // Check if the education level is already present in jobReqData.eligibilityCriteria
-    return this.jobReqData.eligibilityCriteria.some(criteria => criteria.educationLevel === educationLevel);
+    return this.jobReqData?.eligibilityCriteria?.some(criteria => criteria?.educationLevel === educationLevel);
   }
 
   ishiringLevelDisabled(hiringLevel: string): boolean {
     // Check if the education level is already present in jobReqData.eligibilityCriteria
-    return this.jobReqData.hiringProcess.some(criteria => criteria.stage === hiringLevel);
+    return this.jobReqData?.hiringProcess?.some(criteria => criteria?.stage === hiringLevel);
   }
 
   getallEducation() {
@@ -866,15 +910,19 @@ export class DriveSettingsComponent implements OnInit {
   }
 
   addHireItem(index:number){
-
     const arehiringGroupsValid = this.hiringFormGroups.every(formGroup => formGroup.valid);
     if (arehiringGroupsValid) {
       const updatedHiring = this.hiringFormGroups.map(formGroup => formGroup.value);
+      if(this.jobReqData?.hiringProcess){
       this.jobReqData.hiringProcess = [...this.jobReqData.hiringProcess, ...updatedHiring];
+      }
+      else{
+        this.jobReqData.hiringProcess = updatedHiring;
+      }
         var hireObj = {
           "jobId": this.jobReqData?.jobId,
           "companyId": this.jobReqData?.companyId,
-          "hiringProcess": this.jobReqData.hiringProcess
+          "hiringProcess": this.jobReqData?.hiringProcess
         };
         //console.log(hireObj, 'hiring object');
         this.updateJobData(hireObj);
@@ -959,12 +1007,13 @@ export class DriveSettingsComponent implements OnInit {
 
   deleteadditionalInfo(){
 
-    if (this.jobReqData && this.jobReqData?.hiringProcess) {
+    if (this.jobReqData && this.jobReqData?.additionalInformation) {
       var deletedInfo = {
         "jobId": this.jobReqData?.jobId,
         "companyId": this.jobReqData?.companyId,
         "additionalInformation": []
       };
+      //console.log(deletedInfo);
       this.deleteFields(deletedInfo);
     }
 

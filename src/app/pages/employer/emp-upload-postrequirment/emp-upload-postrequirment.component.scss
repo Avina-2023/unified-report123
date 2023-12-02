@@ -405,7 +405,7 @@ input.ng-touched.ng-invalid {
   border: none !important;
 }
 
-::ng-deep .ng-invalid.ng-touched .angular-editor-textarea {
+::ng-deep .ng-invalid .ng-touched .angular-editor-textarea {
   border: 1px solid red !important;
 }
 
