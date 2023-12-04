@@ -7,7 +7,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NzSelectSizeType } from 'ng-zorro-antd/select';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { log } from 'console';
-
 interface EducationItem {
   specification: string;
   discipline: string[];
@@ -151,7 +150,7 @@ export class DriveSettingsComponent implements OnInit {
     this.editModeVisible = !this.editModeVisible;
   }
 
-  toggleInfoEditMode(){
+  toggleInfoEditMode() {
     this.editadditionalInfoMode = !this.editadditionalInfoMode;
     this.editInfoModeVisible = !this.editInfoModeVisible;
   }
@@ -252,9 +251,9 @@ export class DriveSettingsComponent implements OnInit {
     location.reload();
   }
 
-  cancelHiringProcess(hiringItem: HiringItem){
-   hiringItem.editHiringProcess = !hiringItem.editHiringProcess;
-   location.reload();
+  cancelHiringProcess(hiringItem: HiringItem) {
+    hiringItem.editHiringProcess = !hiringItem.editHiringProcess;
+    location.reload();
   }
 
   currentJobID = localStorage.getItem('currentJobID');
@@ -307,10 +306,12 @@ export class DriveSettingsComponent implements OnInit {
     private toastr: ToastrService,
     private http: ApiService,
   ) {
+    
 
   }
 
   ngOnInit(): void {
+    
     this.getJobDetails();
     this.jobProfileDetails();
     this.cityLocation();
@@ -329,6 +330,15 @@ export class DriveSettingsComponent implements OnInit {
 
   }
 
+  // isObjectEmpty(obj: any): boolean {
+  //   return Object?.keys(obj)?.length === 0;
+  // }
+
+  isObjectEmpty(obj: any): boolean {
+    return obj === undefined || obj === null || Object.keys(obj).length === 0;
+  }
+  
+  
   jobProfileDetails() {
     this.jobForm = this.fb.group({
       jobRole: ['', Validators.required],
@@ -340,7 +350,8 @@ export class DriveSettingsComponent implements OnInit {
       startrange: [''],
       endrange: [''],
       description: ['', Validators.required],
-      requirement: ['', Validators.required]
+      requirement: ['', Validators.required],
+      lastDatetoApply: ['', Validators.required]
     });
 
     this.jobForm.patchValue({
@@ -352,7 +363,9 @@ export class DriveSettingsComponent implements OnInit {
       startrange: this.lowerLimit,
       endrange: this.upperLimit,
       description: this.jobReqData?.description[0].item,
-      requirement: this.jobReqData?.requirement[0].item
+      requirement: this.jobReqData?.requirement[0].item,
+      lastDatetoApply: this.jobReqData?.lastDatetoApply
+
       // Set other form control values here
     });
 
@@ -413,14 +426,15 @@ export class DriveSettingsComponent implements OnInit {
     this.hiringFormGroups = this.hiringForm.get('hiringGroups')['controls'];
 
 
-     //info data
+    //info data
 
-     this.infoForm = this.fb.group({
+    this.infoForm = this.fb.group({
       additionalInformation: ['', Validators.required]
     });
 
     this.infoForm.patchValue({
-      additionalInformation: this.jobReqData?.additionalInformation?.length == 0 ? '' : this.jobReqData?.additionalInformation[0]?.note
+      //additionalInformation: this.jobReqData?.additionalInformation?.length == 0 ? '' : this.jobReqData?.additionalInformation[0]?.note
+      additionalInformation: this.jobReqData?.additionalInformation?.note
     });
 
 
@@ -469,6 +483,20 @@ export class DriveSettingsComponent implements OnInit {
   }
 
 
+  // getCurrentDate(): string {
+  //   const today = new Date();
+  //   const year = today.getFullYear();
+  //   const month = (today.getMonth() + 1).toString().padStart(2, '0');
+  //   const day = today.getDate().toString().padStart(2, '0');
+  //   return `${year}-${month}-${day}`;
+  // }
+
+  getCurrentDate(): Date {
+    return new Date();
+  }
+
+
+
   degreeOptionChange(selectedGraduation: string, index: number) {
     const currentFormGroup = this.formGroups[index];
     console.log(currentFormGroup.get('level').value);
@@ -481,16 +509,16 @@ export class DriveSettingsComponent implements OnInit {
     if (currentFormGroup.get('level').value === 'UG') {
       this.degreeOptions = this.ugDegrees;
     }
- 
+
     if (currentFormGroup.get('level').value === 'PG') {
       this.degreeOptions = this.pgDegrees;
     }
- 
+
     if (currentFormGroup.get('level').value === 'Phd') {
       this.degreeOptions = this.phdDegrees;
     }
   }
- 
+
   disciplineOptionChange(selectedCourse: string, index: number) {
     const currentFormGroup = this.formGroups[index];
     console.log(currentFormGroup.get('specification').value);
@@ -548,7 +576,7 @@ export class DriveSettingsComponent implements OnInit {
     const forbiddenSpecsInJobReqData = this.jobReqData?.education.map(edu => edu?.specification?.toLowerCase());
 
     return forbiddenSpecsInJobReqData?.includes(degreeOption?.toLowerCase());
-}
+  }
 
 
 
@@ -881,7 +909,7 @@ export class DriveSettingsComponent implements OnInit {
     }
   }
 
-  saveHiringProcess(index:number){
+  saveHiringProcess(index: number) {
     const arehiringGroupsValid = this.hiringFormGroups.every(formGroup => formGroup.valid);
 
     if (arehiringGroupsValid) {
@@ -909,23 +937,23 @@ export class DriveSettingsComponent implements OnInit {
     }
   }
 
-  addHireItem(index:number){
+  addHireItem(index: number) {
     const arehiringGroupsValid = this.hiringFormGroups.every(formGroup => formGroup.valid);
     if (arehiringGroupsValid) {
       const updatedHiring = this.hiringFormGroups.map(formGroup => formGroup.value);
-      if(this.jobReqData?.hiringProcess){
-      this.jobReqData.hiringProcess = [...this.jobReqData.hiringProcess, ...updatedHiring];
+      if (this.jobReqData?.hiringProcess) {
+        this.jobReqData.hiringProcess = [...this.jobReqData.hiringProcess, ...updatedHiring];
       }
-      else{
+      else {
         this.jobReqData.hiringProcess = updatedHiring;
       }
-        var hireObj = {
-          "jobId": this.jobReqData?.jobId,
-          "companyId": this.jobReqData?.companyId,
-          "hiringProcess": this.jobReqData?.hiringProcess
-        };
-        //console.log(hireObj, 'hiring object');
-        this.updateJobData(hireObj);
+      var hireObj = {
+        "jobId": this.jobReqData?.jobId,
+        "companyId": this.jobReqData?.companyId,
+        "hiringProcess": this.jobReqData?.hiringProcess
+      };
+      //console.log(hireObj, 'hiring object');
+      this.updateJobData(hireObj);
 
     }
     else {
@@ -950,7 +978,7 @@ export class DriveSettingsComponent implements OnInit {
   }
 
 
-  DeleteHiring(hiringItem: any, index:number){
+  DeleteHiring(hiringItem: any, index: number) {
     if (this.jobReqData && this.jobReqData.hiringProcess) {
       // Use the index parameter to splice the array and remove the item at the specified index
       this.jobReqData.hiringProcess.splice(index, 1);
@@ -1005,13 +1033,13 @@ export class DriveSettingsComponent implements OnInit {
 
   }
 
-  deleteadditionalInfo(){
+  deleteadditionalInfo() {
 
     if (this.jobReqData && this.jobReqData?.additionalInformation) {
       var deletedInfo = {
         "jobId": this.jobReqData?.jobId,
         "companyId": this.jobReqData?.companyId,
-        "additionalInformation": []
+        "additionalInformation": {}
       };
       //console.log(deletedInfo);
       this.deleteFields(deletedInfo);
@@ -1073,6 +1101,24 @@ export class DriveSettingsComponent implements OnInit {
     const endRange = this.jobForm.value.endrange;
     const htmlDescription = this.jobForm.value?.description;
     const htmljobRequirements = this.jobForm.value?.requirement;
+
+
+    /*const inputDate = new Date(this.jobForm.value?.lastDatetoApply);
+      // Set time zone offset to zero (UTC)
+      inputDate.setMinutes(inputDate.getMinutes() - inputDate.getTimezoneOffset());
+      // Set the UTC hours, minutes, and seconds to 23:59:59
+      inputDate.setUTCHours(23, 59, 59);
+      // Convert to UTC and get the ISO string
+      const ISTDateString = inputDate.toISOString();*/
+
+    const inputDate = new Date(this.jobForm.value?.lastDatetoApply);
+    // Set the hours, minutes, and seconds to 23:59:59
+    inputDate.setHours(23, 59, 59);
+    // Convert to UTC and get the ISO string
+    const ISTDateString = inputDate.toISOString();
+
+
+
     const descriptionItems = [
       {
         item: htmlDescription
@@ -1094,7 +1140,8 @@ export class DriveSettingsComponent implements OnInit {
         "jobLocation": this.jobForm.value?.jobLocation,
         "skillSet": this.jobForm.value?.skillSet,
         "description": descriptionItems,
-        "requirement": requirementItems
+        "requirement": requirementItems,
+        "lastDatetoApply": ISTDateString
       }
 
       if (this.selectedOption === 'Jobs') {
@@ -1207,16 +1254,13 @@ export class DriveSettingsComponent implements OnInit {
 
   saveadditionalInfo() {
     if (this.infoForm.valid) {
-	const infoDescription = this.infoForm.value?.additionalInformation;
-	const infoItems = [
-      {
-        note: infoDescription
-      }
-    ];
-      var infoObj = {
+      const infoDescription = this.infoForm.value?.additionalInformation;
+      const infoObj = {
         "jobId": this.jobReqData?.jobId,
         "companyId": this.jobReqData?.companyId,
-        "additionalInformation": infoItems
+        "additionalInformation": {
+          note: infoDescription
+        }
       };
       this.updateJobData(infoObj);
       console.log(infoObj);

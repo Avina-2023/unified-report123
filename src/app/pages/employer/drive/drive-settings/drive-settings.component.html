@@ -66,7 +66,7 @@
                                 </div>
                                 <div class="app-close-on-date-container">
                                     <div class="app-close-on-date">
-                                        {{ jobReqData?.lastDatetoApply | date:'MMM dd, yyyy h:mm a' }}
+                                        {{ jobReqData?.lastDatetoApply | date: 'MMM d, y h:mm a' }}
                                     </div>
                                 </div>
                             </div>
@@ -308,6 +308,33 @@
                                 </div>
 
                             </div>
+                            <div class="border-line">
+                                <div class="bottom-border"></div>
+                            </div>
+                        </div>
+
+
+                        <div class="label-conainer">
+                            <div class="label">
+                                <div class="label-text">Last Date to Apply</div>
+                            </div>
+                            <div class="lable-value" *ngIf="!editMode">
+                                <div class="label-value-text">{{ jobReqData?.lastDatetoApply | date: 'MMM d, y h:mm a' }}</div>
+                            </div>
+
+                            <div class="label-value custom-form flex_div" *ngIf="editMode">
+                                <input placeholder="MM/DD/YYYY" [matDatepicker]="picker"
+                                    formControlName="lastDatetoApply" class="lastDatetoApply inputForm"
+                                    readonly>
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+                                <div *ngIf="jobForm.get('lastDatetoApply').hasError('required') && jobForm.get('lastDatetoApply').touched"
+                                    class="text-danger">
+                                    Last Date to Apply Required.
+                                </div>
+                            </div>
+
+
                         </div>
 
 
@@ -404,9 +431,11 @@
                                                 <nz-select [nzDisabled]="isdegreeDisabled(i)"
                                                     [(ngModel)]="educationItem.specification" nzShowSearch nzAllowClear
                                                     nzPlaceHolder="Degree" [formControl]="group.get('specification')"
-                                                    (ngModelChange)="onDegreeChange($event, i)" (click)="degreeOptionChange($event, i)">
+                                                    (ngModelChange)="onDegreeChange($event, i)"
+                                                    (click)="degreeOptionChange($event, i)">
                                                     <nz-option *ngFor="let option of degreeOptions" [nzLabel]="option"
-                                                        [nzValue]="option" [nzDisabled]="isSpecDisabled(option, i)"></nz-option>
+                                                        [nzValue]="option"
+                                                        [nzDisabled]="isSpecDisabled(option, i)"></nz-option>
                                                 </nz-select>
                                                 <div *ngIf="group.get('specification').hasError('required') && group.get('specification').touched"
                                                     class="text-danger">
@@ -420,7 +449,8 @@
                                                     [ngModelOptions]="{ standalone: true }" [nzSize]="default"
                                                     nzMode="multiple"
                                                     nzPlaceHolder="--Select Specialization (Multiple Select)---"
-                                                    [formControl]="group.get('discipline')" (click)="disciplineOptionChange($event, i)">
+                                                    [formControl]="group.get('discipline')"
+                                                    (click)="disciplineOptionChange($event, i)">
                                                     <nz-option *ngFor="let option of listOfSpecializations"
                                                         [nzLabel]="option" [nzValue]="option"></nz-option>
                                                 </nz-select>
@@ -475,7 +505,8 @@
                                 <div class="mg-l-10 width-30">
                                     <nz-select [nzDisabled]="isdegreeDisabled(i)" nzShowSearch nzAllowClear
                                         nzPlaceHolder="Degree" [formControl]="group.get('specification')"
-                                        (ngModelChange)="onDegreeChange($event, i)" (click)="degreeOptionChange($event, i)">
+                                        (ngModelChange)="onDegreeChange($event, i)"
+                                        (click)="degreeOptionChange($event, i)">
                                         <nz-option *ngFor="let option of degreeOptions" [nzLabel]="option"
                                             [nzValue]="option" [nzDisabled]="isSpecDisabled(option, i)"></nz-option>
                                     </nz-select>
@@ -489,7 +520,8 @@
                                         [ngModel]="group.get('multipleSpecialization')?.value"
                                         [ngModelOptions]="{ standalone: true }" [nzSize]="default" nzMode="multiple"
                                         nzPlaceHolder="--Select Specialization (Multiple Select)---"
-                                        [formControl]="group.get('discipline')" (click)="disciplineOptionChange($event, i)">
+                                        [formControl]="group.get('discipline')"
+                                        (click)="disciplineOptionChange($event, i)">
                                         <nz-option *ngFor="let option of listOfSpecializations" [nzLabel]="option"
                                             [nzValue]="option"></nz-option>
                                     </nz-select>
@@ -766,11 +798,14 @@
                     </div>
                     <div class="education">
                         <div class="education-lable width-100" *ngIf="!editBacklogsMode">
-                            <div class="education-lable-text" *ngIf="(jobReqData?.noofBacklog?.length == 0 || !jobReqData?.noofBacklog)"> No Backlogs
+                            <div class="education-lable-text"
+                                *ngIf="(jobReqData?.noofBacklog?.length == 0 || !jobReqData?.noofBacklog)"> No Backlogs
                                 defined. All students are eligible </div>
                             <div class="flex_div flx_baseline flx_between" *ngIf="jobReqData?.noofBacklog?.length">
                                 <div class="education-lable-text">
-                                    {{ jobReqData?.noofBacklog == 0 ? 'Only candidates without any backlogs are eligible' : 'Candidates with a maximum of ' + jobReqData?.noofBacklog + ' or less backlogs are eligible' }}
+                                    {{ jobReqData?.noofBacklog == 0 ? 'Only candidates without any backlogs are
+                                    eligible' : 'Candidates with a maximum of ' + jobReqData?.noofBacklog + ' or less
+                                    backlogs are eligible' }}
 
 
                                 </div>
@@ -821,7 +856,8 @@
                     </div>
                     <div class="education">
                         <div class="education-lable width-100" *ngIf="!editGenderMode">
-                            <div class="education-lable-text" *ngIf="(jobReqData?.gender == '' || !jobReqData?.gender)"> No Gender defined.
+                            <div class="education-lable-text" *ngIf="(jobReqData?.gender == '' || !jobReqData?.gender)">
+                                No Gender defined.
                                 All Candidates are eligible </div>
 
                             <div class="flex_div flx_baseline flx_between" *ngIf="jobReqData?.gender">
@@ -914,7 +950,8 @@
                     <div class="border-line">
                         <div class="bottom-border"></div>
                     </div>
-                    <div class="edu-values" *ngIf="(jobReqData?.hiringProcess?.length == 0 || !jobReqData?.hiringProcess)">
+                    <div class="edu-values"
+                        *ngIf="(jobReqData?.hiringProcess?.length == 0 || !jobReqData?.hiringProcess)">
                         <div class="education-lable-text mg-15"> No Hiring Process added. </div>
                     </div>
                     <div class="edu-values" *ngIf="jobReqData?.hiringProcess?.length">
@@ -1009,9 +1046,9 @@
                                                 <label for="date">Date & Time</label>
                                                 <div class="flex_div flx_center"
                                                     style="border:1px solid #e4e4e4;height: 34px;">
-                                                    <input [(ngModel)]="hiringItem.date" [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1"
-                                                        placeholder="Date Time" [formControl]="group.get('date')"
-                                                        class="inputForm">
+                                                    <input [(ngModel)]="hiringItem.date" [owlDateTime]="dt1"
+                                                        [owlDateTimeTrigger]="dt1" placeholder="Date Time"
+                                                        [formControl]="group.get('date')" class="inputForm">
                                                     <owl-date-time #dt1></owl-date-time>
                                                 </div>
                                                 <div *ngIf="group.get('date').hasError('required') && group.get('date').touched"
@@ -1125,7 +1162,7 @@
                                 Additional Information
                             </div>
                             <div class="add-criteria flex_div flx_center" (click)="toggleInfoEditMode()"
-                                *ngIf="editInfoModeVisible && (jobReqData?.additionalInformation?.length == 0 || !jobReqData?.additionalInformation)">
+                                *ngIf="editInfoModeVisible && (isObjectEmpty(jobReqData?.additionalInformation) || !jobReqData?.additionalInformation)">
                                 <mat-icon>add</mat-icon>
                                 <div style="margin-left: -5px;">Add Info</div>
                             </div>
@@ -1138,11 +1175,18 @@
 
                     <div class="education">
                         <div class="education-lable width-100" *ngIf="!editadditionalInfoMode">
-                            <div class="education-lable-text" *ngIf="(jobReqData?.additionalInformation == '' || !jobReqData?.additionalInformation)"> No
+                            <!-- <div class="education-lable-text"
+                                *ngIf="(jobReqData?.additionalInformation == '' || !jobReqData?.additionalInformation)">
+                                No
+                                Information added </div> -->
+
+                                <div class="education-lable-text"
+                                *ngIf="isObjectEmpty(jobReqData?.additionalInformation)">
+                                No
                                 Information added </div>
 
                             <div class="flex_div flx_baseline flx_between"
-                                *ngIf="jobReqData?.additionalInformation?.note || jobReqData?.additionalInformation[0]?.note">
+                                *ngIf="!isObjectEmpty(jobReqData?.additionalInformation)">
                                 <!-- <div class="education-lable-text"
                                     [innerHTML]="jobReqData?.additionalInformation?.length == 0 ? '' : jobReqData?.additionalInformation[0]?.note">
                                 </div> -->
