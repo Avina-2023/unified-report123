@@ -647,6 +647,13 @@ export class EmpUploadPostrequirmentComponent implements OnInit {
   onDegreeChange(selectedCourse: string, index: number) {
     const currentFormGroup = this.formGroups[index];
     currentFormGroup.get('discipline').setValue(null);
+
+    if (selectedCourse == 'Any Degree') {
+      this.listOfSpecializations = ['Any Specialization'];
+      currentFormGroup.get('discipline').setValue(['Any Specialization']);
+    }
+
+
     if (selectedCourse !== null && typeof selectedCourse === 'string' && selectedCourse !== 'Any Degree / Graduation' && selectedCourse !== 'X Std' && selectedCourse !== 'XII Std') {
       console.log(selectedCourse, 'selectedCoursevalues');
       const params = { "degree": selectedCourse };
@@ -666,16 +673,23 @@ export class EmpUploadPostrequirmentComponent implements OnInit {
   iscourseDisabled(index: number): boolean {
     const currentFormGroup = this.formGroups[index];
 
-    const selectedValue = currentFormGroup.get('discipline')?.value;
-    if (selectedValue && selectedValue.includes('Any Specialization')) {
-      const clearedValues = selectedValue.filter(value => value === 'Any Specialization');
-      currentFormGroup.get('discipline')?.patchValue(clearedValues, { emitEvent: false });
-    }
+    // const selectedValue = currentFormGroup.get('discipline')?.value;
+    // if (selectedValue && selectedValue.includes('Any Specialization')) {
+    //   const clearedValues = selectedValue.filter(value => value === 'Any Specialization');
+    //   currentFormGroup.get('discipline')?.patchValue(clearedValues, { emitEvent: false });
+    // }
 
-    if (currentFormGroup.get('level').value === 'Diploma' || currentFormGroup.get('level').value === 'UG' || currentFormGroup.get('level').value === 'PG' || currentFormGroup.get('level').value === 'Phd') {
-      return false; // Do not apply disabled
-    } else {
-      return true; // Apply disabled
+    // if (currentFormGroup.get('level').value === 'Diploma' || currentFormGroup.get('level').value === 'UG' || currentFormGroup.get('level').value === 'PG' || currentFormGroup.get('level').value === 'Phd') {
+    //   return false; // Do not apply disabled
+    // } else {
+    //   return true; // Apply disabled
+    // }
+
+    if (currentFormGroup.get('specification').value === 'X Std' || currentFormGroup.get('specification').value === 'Any Degree / Graduation' || currentFormGroup.get('specification').value === 'XII Std' || currentFormGroup.get('specification').value === 'Any Degree' || currentFormGroup.get('specification').value == null) {
+      return true; // Do not apply disabled
+    }
+    else {
+      return false; // Apply disabled
     }
   }
 
@@ -770,20 +784,24 @@ export class EmpUploadPostrequirmentComponent implements OnInit {
     ];
 
 
-
-
     if (this.jobForm.valid && areEducationGroupsValid) {
       // const inputDate = new Date(this.jobForm.value?.lastDatetoApply);
       // const ISTOffset = 330; // IST is UTC+5:30
       // const ISTDate = new Date(inputDate.getTime() + (ISTOffset * 60000));
       // const ISTDateString = ISTDate.toISOString();
-      const inputDate = new Date(this.jobForm.value?.lastDatetoApply);
+     // const inputDate = new Date(this.jobForm.value?.lastDatetoApply);
       // Set time zone offset to zero (UTC)
-      inputDate.setMinutes(inputDate.getMinutes() - inputDate.getTimezoneOffset());
+      //inputDate.setMinutes(inputDate.getMinutes() - inputDate.getTimezoneOffset());
       // Set the UTC hours, minutes, and seconds to 23:59:59
-      inputDate.setUTCHours(23, 59, 59);
+      //inputDate.setUTCHours(23, 59, 59);
       // Convert to UTC and get the ISO string
+      //const ISTDateString = inputDate.toISOString();
+
+      const inputDate = new Date(this.jobForm.value?.lastDatetoApply);
+      inputDate.setHours(23, 59, 59);
       const ISTDateString = inputDate.toISOString();
+
+
       var obj = {
         "companyId": this.companyDataResult?.userId,
         "companyEmail": this.companyDataResult?.email,
@@ -805,7 +823,7 @@ export class EmpUploadPostrequirmentComponent implements OnInit {
         "lastDatetoApply": ISTDateString,
         // "lastDatetoApply": this.jobForm.value.lastDatetoApply,
         "eligibilityCriteria": [],
-        "additionalInformation": [],
+        "additionalInformation": {},
         "partnerLabel": "Skill Exchange Partner",
         "jobCategoryId": "64cc8ce4112e2bb777bcbef5",
         "education": this.formGroups.map(formGroup => formGroup.value),
