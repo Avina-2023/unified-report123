@@ -834,12 +834,10 @@ export class EditJobComponent implements OnInit {
     const additionalInformation = htmladditionalinformation ? { note: htmladditionalinformation } : {};
     { }
      const inputDate = new Date(this.addjobsForm.value?.lastDatetoApply);
-      // Set time zone offset to zero (UTC)
-      inputDate.setMinutes(inputDate.getMinutes() - inputDate.getTimezoneOffset());
-      // Set the UTC hours, minutes, and seconds to 23:59:59
-      inputDate.setUTCHours(23, 59, 59);
-      // Convert to UTC and get the ISO string
-      const ISTDateString = inputDate.toISOString();
+    // Set the hours, minutes, and seconds to 23:59:59
+    inputDate.setHours(23, 59, 59);
+    // Convert to UTC and get the ISO string
+    const ISTDateString = inputDate.toISOString();
     if (this.addjobsForm.valid && areEducationGroupsValid && !this.isFormApproved) {
       var obj = {
         "jobId": this.jobdata.jobId,
