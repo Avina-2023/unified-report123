@@ -73,7 +73,7 @@ export class AddJobsComponent implements OnInit {
     translate: 'no',
     sanitize: false,
     toolbarPosition: 'top',
-    defaultFontName: 'Arial',
+    defaultFontName: 'inter',
     customClasses: [
       {
         name: 'quote',
@@ -88,7 +88,24 @@ export class AddJobsComponent implements OnInit {
         class: 'titleText',
         tag: 'h1',
       },
-    ]
+    ],
+    toolbarHiddenButtons: [
+      ['fontName'],
+      ['insertImage'],
+      ['strikeThrough'],
+      ['subscript'],
+      ['superscript'],
+      ['fontSize'],
+      ['textColor'],
+      ['backgroundColor'],
+      ['link'],
+      ['unlink'],
+      ['insertVideo'],
+      ['insertHorizontalRule'],
+      ['removeFormat'],
+      ['customClasses'],
+      ['toggleEditorMode']
+    ],
   };
 
   //   editorConfig = {
@@ -754,7 +771,13 @@ degreeOptionChange(selectedGraduation: string, index: number) {
     ];
 
     const additionalInformation = htmladditionalinformation ? { note: htmladditionalinformation } : {};
-
+    const inputDate = new Date(this.addjobsForm.value?.lastDatetoApply);
+      // Set time zone offset to zero (UTC)
+      inputDate.setMinutes(inputDate.getMinutes() - inputDate.getTimezoneOffset());
+      // Set the UTC hours, minutes, and seconds to 23:59:59
+      inputDate.setUTCHours(23, 59, 59);
+      // Convert to UTC and get the ISO string
+      const ISTDateString = inputDate.toISOString();
      if (this.addjobsForm.valid && areEducationGroupsValid)
     {
       // Perform form submission actions{
@@ -769,7 +792,8 @@ degreeOptionChange(selectedGraduation: string, index: number) {
         "skillSet": this.addjobsForm.value.skillSet,
         "ctcType": this.addjobsForm.value.ctcOption,
         "ctc": isFixed ? this.addjobsForm.value?.fixed : `${startRange} - ${endRange}`,
-        "lastDatetoApply": this.addjobsForm.value.lastDatetoApply,
+        // "lastDatetoApply": this.addjobsForm.value.lastDatetoApply,
+        "lastDatetoApply": ISTDateString,
         "additionalInformation": additionalInformation,
         "description": descriptionItems,
         "requirement": requirementItems,
