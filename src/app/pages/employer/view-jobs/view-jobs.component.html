@@ -1,3 +1,4 @@
+<div class="body">
 <div class="heading">View Jobs</div>
 
 <div class="main-card">
@@ -5,7 +6,9 @@
     <div class="main-2">
       <div class="title-count">
         <div class="title">No of Jobs</div>
-        <div class="count">100</div>
+        <!-- <div class="count">{{allcountvalue}}</div> -->
+        <div class="count">{{allcount}}</div>
+
       </div>
       <div class="total-job-img">
         <img src="../../../../assets/images/job-bags.png"/>
@@ -16,7 +19,7 @@
     <div class="main-2">
       <div class="title-count">
         <div class="title">No of Jobs Approved</div>
-        <div class="count">100</div>
+        <div class="count">{{approvecountvalue}}</div>
       </div>
       <div class="total-job-img">
         <img src="../../../../assets/images/green-checkk.png"/>
@@ -27,7 +30,7 @@
     <div class="main-2">
       <div class="title-count">
         <div class="title">No of Jobs In Pending</div>
-        <div class="count">100</div>
+        <div class="count">{{pendingcountvalue}}</div>
       </div>
       <div class="total-job-img">
         <img src="../../../../assets/images/job-pendingg.png"/>
@@ -38,7 +41,7 @@
     <div class="main-2">
       <div class="title-count">
         <div class="title">No of Rejected Jobs</div>
-        <div class="count">100</div>
+        <div class="count">{{rejectedcountvalue}}</div>
       </div>
       <div class="total-job-img">
         <img src="../../../../assets/images/rejected.png"/>
@@ -55,10 +58,10 @@
         <span class="tab-name">{{ tab.title }}</span>
         <div>
           <span class="tab-count" [style.background-color]="active == i ? icncolor :  null">
-            <span *ngIf="tab.title == 'All'"> 100 </span>
-            <span *ngIf="tab.title == 'Approved'"> 100 </span>
-            <span *ngIf="tab.title == 'Pending'"> 100 </span>
-            <span *ngIf="tab.title == 'Rejected'"> 100 </span>
+            <span *ngIf="tab.title == 'All'"> {{allcount}} </span>
+            <span *ngIf="tab.title == 'Approved'"> {{approvecountvalue}} </span>
+            <span *ngIf="tab.title == 'Pending'"> {{pendingcountvalue}} </span>
+            <span *ngIf="tab.title == 'Rejected'"> {{rejectedcountvalue}} </span>
           </span>
         </div>
       </ng-template>
@@ -69,33 +72,65 @@
 
 <div class="border">
 <div class="ag-grid">
-  <ag-grid-angular style="width: 100%; height: 100%;" class="ag-theme-alpine" 
+  <ag-grid-angular style="width: 100%; height: 100%;" class="ag-theme-alpine"
     [gridOptions]="gridOptions"
-    [columnDefs]="columnDefs" 
-    [defaultColDef]="defaultColDef" 
+    [columnDefs]="columnDefs"
+    [defaultColDef]="defaultColDef"
     [masterDetail]="masterDetail"
-    [overlayNoRowsTemplate]="overlayNoRowsTemplate" 
-    [rowData]="rowData" 
+    [overlayNoRowsTemplate]="overlayNoRowsTemplate"
+    [rowData]="rowData"
     [enableRangeSelection]="true"
-    [tooltipShowDelay]="0" 
-    [animateRows]="true" headerHeight="45" rowHeight="45" 
+    [tooltipShowDelay]="0"
+    [animateRows]="true" headerHeight="45" rowHeight="45"
     [suppressRowClickSelection]="true"
-    [suppressRowTransform]="true" 
-    [rowSelection]="rowSelection" 
-    [pivotPanelShow]="'always'" 
+    [suppressRowTransform]="true"
+    [rowSelection]="rowSelection"
+    [pivotPanelShow]="'always'"
     [sideBar]="false"
-    (gridReady)="onGridReady($event)" 
-    [rowModelType]="rowModelType" 
+    (gridReady)="onGridReady($event)"
+    [rowModelType]="rowModelType"
     [maintainColumnOrder]="true"
-    [cacheBlockSize]="cacheBlockSize" 
-    [suppressAggFuncInHeader]="true" 
+    [cacheBlockSize]="cacheBlockSize"
+    [suppressAggFuncInHeader]="true"
     [suppressColumnVirtualisation]="true"
-    [autoGroupColumnDef]="autoGroupColumnDef" 
-    [serverSideStoreType]="serverSideStoreType" 
+    [autoGroupColumnDef]="autoGroupColumnDef"
+    [serverSideStoreType]="serverSideStoreType"
     [pagination]="true"
-    [paginationPageSize]="10" 
-    [sideBar]="sideBar" 
+    [paginationPageSize]="10"
+    [sideBar]="sideBar"
     allColumns=true>
   </ag-grid-angular>
 </div>
+
+<!-- <div class="row-pagnation">
+
+  <div class="example-header">
+    Rows:
+    <select (change)="onPageSizeChanged()" [(ngModel)]="selectedPageSize" name="pageSize">
+      <option value="5">5</option>
+      <option value="10">10</option>
+      <option value="15">15</option>
+      <option value="20">20</option>
+    </select>
+  </div>
+
+  <div class="goto-sear">
+    <div class="pagintion">
+      <button class="prev" (click)="onBtPrevPage()" [disabled]="isPrevButtonDisabled">Prev</button>
+      <div *ngFor="let item of pageArray; let i = index">
+        <button class="one" (click)=" gotoPage(i)">{{item+1}}</button>
+      </div>
+      <button class="next" (click)="onBtNextPage()" [disabled]="isNextButtonDisabled">Next</button>
+    </div>
+    <div class="goto"> Go To Page: </div>
+    <div>
+      <input type="string" class="goto-search" [(ngModel)]="pageNumberInput" />
+      <button class="go" [ngClass]="{disabled: pageNumberInput===''||pageNumberInput===undefined||(totalPages < pageNumberInput)}" (click)="onBtPageGo(pageNumberInput)"  [disabled]="pageNumberInput===''||pageNumberInput===undefined||(totalPages < pageNumberInput)">Go</button>
+    </div>
+  </div>
+
+</div> -->
+
+</div>
+
 </div>

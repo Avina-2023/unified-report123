@@ -156,7 +156,7 @@
             <!-- <mat-icon class="bookmark">bookmark</mat-icon> -->
             <span class=icon-graduation-cap-solid></span>
             <span class="Btech" *ngFor="let item of one.education; let isLast=last">
-              {{item}}{{isLast ? '' : ', '}}</span>
+              {{item.specification}}{{isLast ? '' : ', '}}</span>
           </div>
 
           <div class="daysLeft">
@@ -209,7 +209,7 @@
               <p>Application closes on:</p>
             </span>
             <div>
-              <p class="date">{{one.lastDatetoApply | date: 'MMM d, y ' }} 11:59 PM</p>
+              <p class="date">{{ one.lastDatetoApply | date: 'MMM d, y h:mm a' }}</p>
             </div>
           </div>
 
@@ -235,7 +235,7 @@
       <div class="bTech">
           <span class=icon-graduation-cap-solid></span>
           <span class="Btech" *ngFor="let item of one.education; let isLast=last">
-            {{item}}{{isLast ? '' : ', '}}</span>
+            {{item.specification}}{{isLast ? '' : ', '}}</span>
         </div>
 
       <br>
