@@ -168,7 +168,9 @@
 
       <!-- open job -->
 
-      <!-- <mat-list-item [ngClass]="['notSelected']"
+
+
+      <mat-list-item [ngClass]="['notSelected']"
         *ngIf='roleCode === "SADM" || roleCode === "OADM" || roleCode === "ADM" || roleCode === "HR" || roleCode === "ISADM" || roleCode === "IADM"'
         [routerLinkActive]="['is-active']">
         <div class="sidebar-admin" (click)="changeJobIcon()">
@@ -201,7 +203,9 @@
             <span class="headerfont" mat-line *ngIf="isExpanded && !isnotShowing">View Jobs</span>
           </div>
         </mat-list-item>
-      </ng-container> -->
+      </ng-container>
+
+
     </mat-nav-list>
   </mat-drawer>
 </mat-drawer-container>
