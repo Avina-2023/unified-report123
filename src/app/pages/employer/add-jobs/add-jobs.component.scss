@@ -516,3 +516,17 @@ input.ng-touched.ng-invalid {
   overflow-y: scroll !important;
 }
 
+::ng-deep.ng-invalid.ng-touched .angular-editor-textarea {
+   border: 1px solid #ddd !important;
+}
+::ng-deep.angular-editor-textarea{
+  min-height: 5rem;
+  padding: .5rem .8rem 1rem;
+  border: 1px solid #ddd;
+  background-color: transparent;
+  overflow-x: hidden;
+  overflow-y: auto;
+  position: relative;
+  height: 100px !important;
+}
+
