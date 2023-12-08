@@ -94,7 +94,7 @@
                   <div class="leftWrap">
                     <div class="inputContainer">
                       <label>Job Location <span>*</span></label>
-                      <nz-select style="width: 98%;" nzMode="tags" nzAllowClear nzShowSearch
+                      <nz-select style="width: 98%;" nzMode="multiple" nzAllowClear nzShowSearch
                         nzPlaceHolder="-- Select Job Location (Multiple Select)" formControlName="jobLocation"
                         (input)="locationSearch($event)" class="custom-nz-select my-custom-nz-select">
                         <nz-option *ngFor="let location of JobLocations" [nzLabel]="location"
@@ -173,7 +173,8 @@
                         <div class="mg-r-10 width-30 "><nz-select nzShowSearch nzAllowClear nzPlaceHolder="Graduation"
                             [formControl]="group.get('level')" (ngModelChange)="onGraduationChange($event, i)">
                             <nz-option *ngFor="let option of educations" [nzLabel]="option.education"
-                              [nzValue]="option.education" [nzDisabled]="isGraduationDisabled(option.education, i)"></nz-option>
+                              [nzValue]="option.education"
+                              [nzDisabled]="isGraduationDisabled(option.education, i)"></nz-option>
                           </nz-select>
                           <div *ngIf="group.get('level').hasError('required') && group.get('level').touched"
                             class="text-danger">
@@ -183,9 +184,10 @@
 
                         <div class="mg-l-10 width-30">
                           <nz-select [nzDisabled]="isdegreeDisabled(i)" nzShowSearch nzAllowClear nzPlaceHolder="Degree"
-                            [formControl]="group.get('specification')" (ngModelChange)="onDegreeChange($event, i)" (click)="degreeOptionChange($event, i)">
-                            <nz-option *ngFor="let option of degreeOptions" [nzLabel]="option"
-                              [nzValue]="option" [nzDisabled]="isOptionDisabled(option, i)"></nz-option>
+                            [formControl]="group.get('specification')" (ngModelChange)="onDegreeChange($event, i)"
+                            (click)="degreeOptionChange($event, i)">
+                            <nz-option *ngFor="let option of degreeOptions" [nzLabel]="option" [nzValue]="option"
+                              [nzDisabled]="isOptionDisabled(option, i)"></nz-option>
                           </nz-select>
                           <div
                             *ngIf="group.get('specification').hasError('required') && group.get('specification').touched"
@@ -216,7 +218,8 @@
                   </div>
                 </div>
 
-                <div class="primaryWrap flex_div width-100 mg-r-10" style="padding: 15px 0px 0px 0px;">
+                <div class="primaryWrap flex_div width-100 mg-r-10"
+                  style="padding: 15px 0px 0px 0px;margin: 0px 0px 15px 0px;">
 
                   <div class="leftWrap">
                     <div class="inputContainer">
@@ -261,7 +264,7 @@
                   <div class="rightWrap">
                     <div class="inputContainer">
                       <label>Year of Passing<span>*</span></label>
-                      <nz-select style="width: 100%; padding: 0px 0px 0px 7px;" nzMode="multiple" nzAllowClear
+                      <nz-select style="width: 100%; padding: 0px 15px 0px 0px;" nzMode="multiple" nzAllowClear
                         nzShowSearch nzPlaceHolder="-- Select Year of Passing (Multiple Select)"
                         formControlName="yearofPassout" class="custom-nz-select my-custom-nz-select">
                         <nz-option *ngFor="let item of YearofPassing" [nzLabel]="item" [nzValue]="item"></nz-option>
@@ -328,11 +331,10 @@
                     <div class="inputContainer">
                       <label>Job Description<span>*</span></label>
                       <mat-form-field appearance="outline">
-                        <angular-editor [(ngModel)]="htmlContent_description" formControlName="description"
-                          placeholder="Enter Job Description" id="description"></angular-editor>
+                        <angular-editor formControlName="description" placeholder="Enter Job Description"
+                          id="description"></angular-editor>
                         <textarea type="textarea" maxlength="250" formControlName="description"
-                          style="resize: none;display: none;"  matInput
-                          placeholder="Enter Job Description"></textarea>
+                          style="resize: none;display: none;" matInput placeholder="Enter Job Description"></textarea>
                       </mat-form-field>
                       <mat-error
                         *ngIf="addjobsForm.get('description')?.hasError('required') && addjobsForm.get('description').touched">
@@ -346,11 +348,10 @@
                     <div class="inputContainer">
                       <label>Job Requirements<span>*</span></label>
                       <mat-form-field appearance="outline">
-                        <angular-editor [(ngModel)]="htmlContent_requirement" formControlName="requirement"
-                          placeholder="Enter Job Requirements" id="requirements"></angular-editor>
+                        <angular-editor formControlName="requirement" placeholder="Enter Job Requirements"
+                          id="requirements"></angular-editor>
                         <textarea type="textarea" maxlength="250" formControlName="requirement"
-                          style="resize: none;display: none;"  matInput
-                          placeholder="Enter Job Requirements"></textarea>
+                          style="resize: none;display: none;" matInput placeholder="Enter Job Requirements"></textarea>
                       </mat-form-field>
                       <mat-error
                         *ngIf="addjobsForm.get('requirement')?.hasError('required') && addjobsForm.get('requirement').touched">
@@ -364,11 +365,10 @@
                     <div class="inputContainer">
                       <label>Additional Information</label>
                       <mat-form-field appearance="outline">
-                        <angular-editor [(ngModel)]="htmlContent_information" formControlName="additionalInformation"
+                        <angular-editor formControlName="additionalInformation"
                           placeholder="Enter Additional Information" id="additionalInformation"></angular-editor>
                         <textarea type="textarea" maxlength="250" formControlName="additionalInformation"
-                          style="resize: none;display: none;"  matInput
-                          placeholder="Additional Information"></textarea>
+                          style="resize: none;display: none;" matInput placeholder="Additional Information"></textarea>
                       </mat-form-field>
                     </div>
                   </div>

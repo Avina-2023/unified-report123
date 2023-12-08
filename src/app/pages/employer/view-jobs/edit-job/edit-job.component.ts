@@ -38,9 +38,9 @@ export class EditJobComponent implements OnInit {
   skillSet: any;
   jobLocation: any;
   description: any;
-  htmlContent_description = '';
-  htmlContent_requirement = '';
-  htmlContent_information = '';
+  // htmlContent_description = '';
+  // htmlContent_requirement = '';
+  // htmlContent_information = '';
   employerLogo = '';
   formBuilder: any;
   errorMsgforCmpnyLogo = '';
@@ -432,12 +432,63 @@ export class EditJobComponent implements OnInit {
     }
   }
 
-  isOptionDisabled(option: string, currentIndex: number): boolean {
-    // Update the disabledSpecifications array for the current index
-    this.updateDisabledSpecifications(currentIndex);
+  // isOptionDisabled(option: string, currentIndex: number): boolean {
+  //   // Update the disabledSpecifications array for the current index
+  //   this.updateDisabledSpecifications(currentIndex);
 
-    // Check if the option is in the disabledSpecifications array
-    return this.disabledSpecifications?.includes(option);
+  //   // Check if the option is in the disabledSpecifications array
+  //   return this.disabledSpecifications?.includes(option);
+  // }
+
+  isOptionDisabled(option: string, currentIndex: number): boolean {
+    this.updateDisabledSpecifications(currentIndex);
+    let ugLevelCount = 0;
+    let ugdegreeCount = 0;
+    let pgdegreeCount = 0;
+    let pgLevelCount = 0;
+    let phdLevelCount = 0;
+    let phddegreeCount = 0;
+
+    const hasUGLevelAndNonNullValues = this.formGroups.some((group, i) => {
+      if (group.value.level === 'UG' && i !== currentIndex) {
+        ugLevelCount++;
+      }
+      return ugLevelCount > 0;
+    });
+    const hasPGDegreeAndNonNullValues = this.formGroups.some((group, i) => {
+      if (group.value.level === 'PG' && group.value.specification === 'Any Degree' && i !== currentIndex) {
+        pgdegreeCount++;
+      }
+      return pgdegreeCount > 0;
+    });
+    const hasPHDDegreeAndNonNullValues = this.formGroups.some((group, i) => {
+      if (group.value.level === 'Phd' && group.value.specification === 'Any Degree' && i !== currentIndex) {
+        phddegreeCount++;
+      }
+      return phddegreeCount > 0;
+    });
+    const hasUGDegreeAndNonNullValues = this.formGroups.some((group, i) => {
+      if (group.value.level === 'UG' && group.value.specification === 'Any Degree' && i !== currentIndex) {
+        ugdegreeCount++;
+      }
+      return ugdegreeCount > 0;
+    });
+    const hasPGLevelAndNonNullValues = this.formGroups.some((group, i) => {
+      if (group.value.level === 'PG' && i !== currentIndex) {
+        pgLevelCount++;
+      }
+      return pgLevelCount > 0;
+    });
+    const hasPHDLevelAndNonNullValues = this.formGroups.some((group, i) => {
+      if (group.value.level === 'Phd' && i !== currentIndex) {
+        phdLevelCount++;
+      }
+      return phdLevelCount > 0;
+    });
+    const currentFormGroup = this.formGroups[currentIndex];
+    const currentGroupValue = currentFormGroup.get('level').value;
+	return (option !== 'Any Degree' && this.disabledSpecifications?.includes(option)) || (option == "Any Degree" && hasUGLevelAndNonNullValues && currentGroupValue === 'UG') || (option == "Any Degree" && hasPGLevelAndNonNullValues && currentGroupValue === 'PG') || (option == "Any Degree" && hasPHDLevelAndNonNullValues && currentGroupValue === 'Phd') || (option !== "Any Degree" && hasUGLevelAndNonNullValues && hasUGDegreeAndNonNullValues && currentGroupValue === 'UG') || (option !== "Any Degree" && hasPGLevelAndNonNullValues && hasPGDegreeAndNonNullValues && currentGroupValue === 'PG') || (option !== "Any Degree" && hasPHDLevelAndNonNullValues && hasPHDDegreeAndNonNullValues && currentGroupValue === 'Phd');
+
   }
 
   getallEducation() {
@@ -604,6 +655,10 @@ export class EditJobComponent implements OnInit {
   onDegreeChange(selectedCourse: string, index: number) {
     const currentFormGroup = this.formGroups[index];
     currentFormGroup.get('discipline').setValue(null);
+     if (selectedCourse == 'Any Degree') {
+      this.listOfSpecializations = ['Any Specialization'];
+      currentFormGroup.get('discipline').setValue(['Any Specialization']);
+    }
     //if (selectedCourse !== null && typeof selectedCourse === 'string') {
 
     if (selectedCourse !== null && typeof selectedCourse === 'string' && selectedCourse !== 'Any Degree / Graduation' && selectedCourse !== 'X Std' && selectedCourse !== 'XII Std') {
@@ -650,19 +705,25 @@ export class EditJobComponent implements OnInit {
   }
 
   iscourseDisabled(index: number): boolean {
-    const currentFormGroup = this.formGroups[index];
+     const currentFormGroup = this.formGroups[index];
+    // const selectedValue = currentFormGroup.get('discipline')?.value;
+    // if (selectedValue && selectedValue.includes('Any Specialization')) {
+    //   const clearedValues = selectedValue.filter(value => value === 'Any Specialization');
+    //   currentFormGroup.get('discipline')?.patchValue(clearedValues, { emitEvent: false });
+    // }
 
-    const selectedValue = currentFormGroup.get('discipline')?.value;
-    if (selectedValue && selectedValue.includes('Any Specialization')) {
-      const clearedValues = selectedValue.filter(value => value === 'Any Specialization');
-      currentFormGroup.get('discipline')?.patchValue(clearedValues, { emitEvent: false });
+    // if (currentFormGroup.get('level').value === 'Diploma' || currentFormGroup.get('level').value === 'UG' || currentFormGroup.get('level').value === 'PG' || currentFormGroup.get('level').value === 'Phd') {
+    //   return false; // Do not apply disabled
+    // } else {
+    //   return true; // Apply disabled
+    // }
+    if (currentFormGroup.get('specification').value === 'X Std' || currentFormGroup.get('specification').value === 'Any Degree / Graduation' || currentFormGroup.get('specification').value === 'XII Std' || currentFormGroup.get('specification').value === 'Any Degree' || currentFormGroup.get('specification').value == null) {
+      return true; // Do not apply disabled
+    }
+    else {
+      return false; // Apply disabled
     }
 
-    if (currentFormGroup.get('level').value === 'Diploma' || currentFormGroup.get('level').value === 'UG' || currentFormGroup.get('level').value === 'PG' || currentFormGroup.get('level').value === 'Phd') {
-      return false; // Do not apply disabled
-    } else {
-      return true; // Apply disabled
-    }
   }
 
   isdegreeDisabled(index: number): boolean {
@@ -833,6 +894,7 @@ export class EditJobComponent implements OnInit {
     ];
     const additionalInformation = htmladditionalinformation ? { note: htmladditionalinformation } : {};
     { }
+    //Utc to ISO
      const inputDate = new Date(this.addjobsForm.value?.lastDatetoApply);
     // Set the hours, minutes, and seconds to 23:59:59
     inputDate.setHours(23, 59, 59);
