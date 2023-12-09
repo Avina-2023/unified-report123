@@ -146,7 +146,8 @@
                 <nz-option *ngFor="let location of JobLocations" [nzLabel]="location" [nzValue]="location"></nz-option>
               </nz-select>
             </div>
-            <div *ngIf="addjobsForm.get('jobLocation').hasError('required') && addjobsForm.get('jobLocation').touched"
+            <div style="padding: 0% 0% 0% 27%; margin: -10px 0px 0px 0px;"
+              *ngIf="addjobsForm.get('jobLocation').hasError('required') && addjobsForm.get('jobLocation').touched"
               class="text-danger">Job Location is Required.</div>
           </div>
           <div class="border-line">
@@ -282,7 +283,7 @@
                 <nz-option *ngFor="let item of YearofPassing" [nzLabel]="item" [nzValue]="item"></nz-option>
               </nz-select>
             </div>
-            <div
+            <div style="padding: 0% 0% 0% 27%; margin: -10px 0px 0px 0px;"
               *ngIf="addjobsForm.get('yearofPassout').hasError('required') && addjobsForm.get('yearofPassout').touched"
               class="text-danger">
               Year of Passing is required.
@@ -302,7 +303,8 @@
               </nz-select>
             </div>
           </div>
-          <div width *ngIf="addjobsForm.get('skillSet').hasError('required') && addjobsForm.get('skillSet').touched"
+          <div style="padding: 0% 0% 0% 27%; margin: -10px 0px 0px 0px;"
+            *ngIf="addjobsForm.get('skillSet').hasError('required') && addjobsForm.get('skillSet').touched"
             class="text-danger">Skill Set is
             Required.</div>
           <div class="border-line">

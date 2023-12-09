@@ -248,7 +248,6 @@ export class AddJobsComponent implements OnInit {
   //   );
   // }
 
-
   companylist() {
     const data: any = {};
     this.apiService.masterCompany().subscribe(
@@ -423,7 +422,6 @@ isGraduationDisabled(graduationValue: string, groupIndex: number): boolean {
     // Check if the graduationValue is in the disabledGraduations array
     // Apply the disabled condition only for 'SSLC', 'HSC', and 'Any Graduation'
    return ['SSLC', 'HSC', 'Any Graduation']?.includes(graduationValue) && this.disabledGraduations?.includes(graduationValue);
-
   }
 
 updateDisabledSpecifications(currentIndex: number): void {
@@ -587,7 +585,6 @@ degreeOptionChange(selectedGraduation: string, index: number) {
       this.listOfSpecializations = [];
     }
   }
-
 
   onGraduationChange(selectedGraduation: string, index: number) {
     this.updateDisabledGraduations();

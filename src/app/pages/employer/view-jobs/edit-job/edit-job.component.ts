@@ -54,7 +54,6 @@ export class EditJobComponent implements OnInit {
   degreeOptions: any[];
   //degreeOptions : any = ['Any Degree / Graduation', 'X Std', 'XII Std', 'Diploma UG', 'Diploma PG'];
 
-
   courseOptions = ['Any Course', 'Pick From the List'];
   ugDegree: any;
   diplomaCourses: string[];
