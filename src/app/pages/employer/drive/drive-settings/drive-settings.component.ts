@@ -298,18 +298,22 @@ export class DriveSettingsComponent implements OnInit {
     'Phd',
     'Through Out'
   ];
-  stageLevels = [
-    'Stage 1',
-    'Stage 2',
-    'Stage 3',
-    'Stage 4',
-    'Stage 5',
-    'Stage 6',
-    'Stage 7',
-    'Stage 8',
-    'Stage 9',
-    'Stage 10'
-  ]
+  // stageLevels = [
+  //   'Stage 1',
+  //   'Stage 2',
+  //   'Stage 3',
+  //   'Stage 4',
+  //   'Stage 5',
+  //   'Stage 6',
+  //   'Stage 7',
+  //   'Stage 8',
+  //   'Stage 9',
+  //   'Stage 10'
+  // ]
+
+ // stageLevels = Array.from({ length: 10 }, (_, index) => `Stage ${index + 1}`);
+stageLevels: any[];
+deletedIndex: number;
   // jobData: any;
   constructor(
     public router: Router,
@@ -331,6 +335,7 @@ export class DriveSettingsComponent implements OnInit {
     this.getallEducation();
     this.getallCourses();
     this.getalldegree();
+    this.updateStageLevels();
 
     this.yearPassed = [];
     const currentYear = new Date().getFullYear() + 4;
@@ -650,10 +655,7 @@ export class DriveSettingsComponent implements OnInit {
   }
 
   ishiringLevelDisabled(hiringLevel: string): boolean {
-    
     return this.jobReqData?.hiringProcess?.some(criteria => criteria?.stage === hiringLevel);
-    
- 
   }
 
 
@@ -1028,6 +1030,7 @@ export class DriveSettingsComponent implements OnInit {
         this.updateJobData(hireObj);
         this.addnewhiringProcessGroup = !this.addnewhiringProcessGroup;
         this.editHiringGroup = !this.editHiringGroup;
+        //this.updateStageLevels();
       }
     }
     else {
@@ -1054,6 +1057,7 @@ export class DriveSettingsComponent implements OnInit {
       //console.log(hireObj, 'hiring object');
       this.updateJobData(hireObj);
       this.addnewhiringProcessGroup = !this.addnewhiringProcessGroup;
+     // this.updateStageLevels();
 
     }
     else {
@@ -1086,6 +1090,7 @@ export class DriveSettingsComponent implements OnInit {
 
 
   DeleteHiring(hiringItem: any, index: number) {
+    this.deletedIndex = index;
     if (!this.editHiringGroup && !this.addnewhiringProcessGroup){
     if (this.jobReqData && this.jobReqData.hiringProcess) {
       // Use the index parameter to splice the array and remove the item at the specified index
@@ -1099,6 +1104,7 @@ export class DriveSettingsComponent implements OnInit {
       "hiringProcess": this.jobReqData.hiringProcess
     };
     this.deleteFields(deletedhireObj);
+    //this.updateStageLevels();
   }
 
   else{
@@ -1529,6 +1535,11 @@ export class DriveSettingsComponent implements OnInit {
       this.toastr.warning('Connection failed, Please try again.');
     });
   }
+
+  updateStageLevels() {
+    this.stageLevels = Array.from({ length: 20 }, (_, index) => `Stage ${index + 1}`);
+}
+
 
 
 
