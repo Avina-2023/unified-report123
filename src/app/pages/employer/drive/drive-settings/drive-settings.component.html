@@ -79,7 +79,7 @@
             <div class="right-scroll">
 
 
-                <div class="job-profile" [formGroup]="jobForm">
+                <div id="jobProfile" class="job-profile" [formGroup]="jobForm">
                     <div class="jobprofile-header-container">
                         <div class="jobprofile-header">
                             <div class="jobprofile-header-text">
@@ -435,7 +435,7 @@
                                                     (click)="degreeOptionChange($event, i)">
                                                     <nz-option *ngFor="let option of degreeOptions" [nzLabel]="option"
                                                         [nzValue]="option"
-                                                        [nzDisabled]="isSpecDisabled(option, i)"></nz-option>
+                                                        [nzDisabled]="isOptionDisabled(option, i)"></nz-option>
                                                 </nz-select>
                                                 <div *ngIf="group.get('specification').hasError('required') && group.get('specification').touched"
                                                     class="text-danger">
@@ -647,7 +647,7 @@
                                             <div class="mg-5 pd-20"><button type="submit"
                                                     class="btn btn-primary save_btn"
                                                     (click)="saveCustomCriteria(i)">Save</button></div>
-                                            <div class="cancel_btn mg-5" (click)="cancelCustomCriteria(i)">Cancel
+                                            <div class="cancel_btn mg-5" (click)="cancelnewCustomCriteria(i)">Cancel
                                             </div>
                                         </div>
                                     </div>
@@ -1071,7 +1071,7 @@
                             </div>
                         </div>
                     </div>
-                    <div *ngIf="!addnewhiringProcessGroup && !editHiringGroup && jobReqData?.hiringProcess?.length"
+                    <div *ngIf="jobReqData?.hiringProcess?.length"
                         class="add_more_text" (click)="addhiringGroup()">Add More
                     </div>
                     <div class="edu-values" *ngIf="addnewhiringProcessGroup && !editHiringGroup">
@@ -1144,7 +1144,7 @@
                                 <button type="submit" class="btn btn-primary save_btn"
                                     (click)="addHireItem(i)">Save</button>
                             </div>
-                            <div class="cancel_btn mg-5" (click)="cancelAddItem(i)">Cancel
+                            <div class="cancel_btn mg-5" (click)="cancelAddHireItem(i)">Cancel
                             </div>
                         </div>
                     </div>
@@ -1220,7 +1220,7 @@
                                 *ngIf="editadditionalInfoMode">
                                 <div class="mg-5"><button type="submit" class="btn btn-primary save_btn"
                                         (click)="saveadditionalInfo()">Save</button></div>
-                                <div class="cancel_btn mg-5" (click)="cancelAddItem()">Cancel</div>
+                                <div class="cancel_btn mg-5" (click)="canceladditionalInfo()">Cancel</div>
                             </div>
 
                         </div>
