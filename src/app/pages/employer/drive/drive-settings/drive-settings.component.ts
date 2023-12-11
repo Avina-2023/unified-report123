@@ -847,15 +847,18 @@ export class DriveSettingsComponent implements OnInit {
   }
 
   onCtcOptionChange() {
-    const fixedControl = this.jobForm.controls['fixed'].value;
-    const startrangeControl = this.jobForm.get('startrange');
-    const endrangeControl = this.jobForm.get('endrange');
-    const stipendControl = this.jobForm.get('stipend');
+    const fixedControl = this.jobForm.controls['fixed'];
+    // const startrangeControl = this.jobForm.get('startrange');
+    // const endrangeControl = this.jobForm.get('endrange');
+    // const stipendControl = this.jobForm.get('stipend');
+    const startrangeControl = this.jobForm.controls['startrange'];
+    const endrangeControl = this.jobForm.controls['endrange'];
+    const stipendControl = this.jobForm.controls['stipend'];
     if (this.selectedRangeOption === 'fixed') {
-      console.log('ctc changed to fixed');
-      console.log(fixedControl, 'fixed ctc');
-      console.log(startrangeControl, 'start range ctc');
-      console.log(endrangeControl, 'end range ctc');
+      // console.log('ctc changed to fixed');
+      // console.log(fixedControl, 'fixed ctc');
+      // console.log(startrangeControl, 'start range ctc');
+      // console.log(endrangeControl, 'end range ctc');
       
       fixedControl.setValidators(Validators.required);
       fixedControl.setValue(this.jobReqData?.ctc); // Set the value of the selected control
@@ -863,17 +866,19 @@ export class DriveSettingsComponent implements OnInit {
       endrangeControl.clearValidators();
       startrangeControl.setValue(null); // Set the opposite control's value to null
       endrangeControl.setValue(null);
+
     } else if (this.selectedRangeOption === 'range') {
-      console.log('ctc changed to range');
-      console.log(fixedControl, 'fixed ctc');
-      console.log(startrangeControl, 'start range ctc');
-      console.log(endrangeControl, 'end range ctc');
+      // console.log('ctc changed to range');
+      // console.log(fixedControl, 'fixed ctc');
+      // console.log(startrangeControl, 'start range ctc');
+      // console.log(endrangeControl, 'end range ctc');
+      
       startrangeControl.setValidators(Validators.required);
       endrangeControl.setValidators(Validators.required);
       startrangeControl.setValue(this.lowerLimit); // Set the value of the selected control
       endrangeControl.setValue(this.upperLimit);
       fixedControl.clearValidators();
-      fixedControl.setValue(null); // Set the opposite control's value to null
+      fixedControl.setValue(null);
     }
 
     fixedControl.updateValueAndValidity();
@@ -1085,6 +1090,7 @@ export class DriveSettingsComponent implements OnInit {
     if (this.jobReqData && this.jobReqData.hiringProcess) {
       // Use the index parameter to splice the array and remove the item at the specified index
       this.jobReqData.hiringProcess.splice(index, 1);
+      //this.jobReqData.hiringProcess.pop();
     }
     // console.log(this.jobReqData.education, 'deletededucation');
     var deletedhireObj = {
@@ -1311,6 +1317,7 @@ export class DriveSettingsComponent implements OnInit {
   cancelBtn() {
     this.editMode = !this.editMode;
     this.editModeVisible = !this.editModeVisible;
+    this.fetchData();
     //if (this.jobForm.invalid) {
     //location.reload();
     // }
