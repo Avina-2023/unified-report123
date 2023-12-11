@@ -650,9 +650,17 @@ export class DriveSettingsComponent implements OnInit {
   }
 
   ishiringLevelDisabled(hiringLevel: string): boolean {
-    // Check if the education level is already present in jobReqData.eligibilityCriteria
+    
     return this.jobReqData?.hiringProcess?.some(criteria => criteria?.stage === hiringLevel);
+    
+ 
   }
+
+
+  
+
+
+  
 
   getallEducation() {
     this.http.getallEducations().subscribe((data: any) => {
@@ -839,11 +847,16 @@ export class DriveSettingsComponent implements OnInit {
   }
 
   onCtcOptionChange() {
-    const fixedControl = this.jobForm.get('fixed');
+    const fixedControl = this.jobForm.controls['fixed'].value;
     const startrangeControl = this.jobForm.get('startrange');
     const endrangeControl = this.jobForm.get('endrange');
     const stipendControl = this.jobForm.get('stipend');
     if (this.selectedRangeOption === 'fixed') {
+      console.log('ctc changed to fixed');
+      console.log(fixedControl, 'fixed ctc');
+      console.log(startrangeControl, 'start range ctc');
+      console.log(endrangeControl, 'end range ctc');
+      
       fixedControl.setValidators(Validators.required);
       fixedControl.setValue(this.jobReqData?.ctc); // Set the value of the selected control
       startrangeControl.clearValidators();
@@ -851,6 +864,10 @@ export class DriveSettingsComponent implements OnInit {
       startrangeControl.setValue(null); // Set the opposite control's value to null
       endrangeControl.setValue(null);
     } else if (this.selectedRangeOption === 'range') {
+      console.log('ctc changed to range');
+      console.log(fixedControl, 'fixed ctc');
+      console.log(startrangeControl, 'start range ctc');
+      console.log(endrangeControl, 'end range ctc');
       startrangeControl.setValidators(Validators.required);
       endrangeControl.setValidators(Validators.required);
       startrangeControl.setValue(this.lowerLimit); // Set the value of the selected control
@@ -1004,6 +1021,8 @@ export class DriveSettingsComponent implements OnInit {
         };
         //console.log(hireObj, 'hiring object');
         this.updateJobData(hireObj);
+        this.addnewhiringProcessGroup = !this.addnewhiringProcessGroup;
+        this.editHiringGroup = !this.editHiringGroup;
       }
     }
     else {
@@ -1039,6 +1058,7 @@ export class DriveSettingsComponent implements OnInit {
   }
 
   DeleteEducation(educationItem: any, index: number) {
+    if(!this.addneweducationGroup && !this.editGroup){
     // Assuming jobReqData.education is your array of education items
     if (this.jobReqData && this.jobReqData.education) {
       // Use the index parameter to splice the array and remove the item at the specified index
@@ -1054,9 +1074,14 @@ export class DriveSettingsComponent implements OnInit {
     //this.addneweducationGroup = !this.addneweducationGroup;
     //this.editGroup = !this.editGroup;
   }
+  else{
+    this.toastr.warning('Close the currently open edit form before deleting another one.', 'Delete Form Restriction');
+  }
+  }
 
 
   DeleteHiring(hiringItem: any, index: number) {
+    if (!this.editHiringGroup && !this.addnewhiringProcessGroup){
     if (this.jobReqData && this.jobReqData.hiringProcess) {
       // Use the index parameter to splice the array and remove the item at the specified index
       this.jobReqData.hiringProcess.splice(index, 1);
@@ -1068,11 +1093,18 @@ export class DriveSettingsComponent implements OnInit {
       "hiringProcess": this.jobReqData.hiringProcess
     };
     this.deleteFields(deletedhireObj);
+  }
+
+  else{
+    this.toastr.warning('Close the currently open edit form before deleting another one.', 'Delete Form Restriction');
+  }
 
   }
 
 
   deleteCustomCriteria(index: number) {
+
+    if(!this.addneweducationGroupCriteria && !this.criteriaEditGroup){
     // Assuming jobReqData.education is your array of education items
     if (this.jobReqData && this.jobReqData?.eligibilityCriteria) {
       // Use the index parameter to splice the array and remove the item at the specified index
@@ -1088,6 +1120,10 @@ export class DriveSettingsComponent implements OnInit {
     // this.editCustomCriteriaVisible = !this.editCustomCriteriaVisible;
     // this.addneweducationGroupCriteria = !this.addneweducationGroupCriteria;
     // this.criteriaEditGroup = !this.criteriaEditGroup;
+  }
+  else{
+    this.toastr.warning('Close the currently open edit form before deleting another one.', 'Delete Form Restriction');
+  }
   }
 
   deleteBacklogs() {
