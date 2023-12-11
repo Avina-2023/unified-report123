@@ -359,34 +359,12 @@ export class EmpUploadPostrequirmentComponent implements OnInit {
     }
   }
 
-
-  // updateDisabledSpecifications(): void {
-  //   this.disabledSpecifications = [];
-
-  //   for (const group of this.formGroups) {
-  //     const specificationValue = group.get('specification').value;
-
-  //     // Check if the specification value is not null and is not already in the disabledSpecifications array
-  //     if (specificationValue !== null && !this.disabledSpecifications.includes(specificationValue)) {
-  //       this.disabledSpecifications.push(specificationValue);
-  //     }
-  //   }
-  // }
-
-
-
   isGraduationDisabled(graduationValue: string, groupIndex: number): boolean {
     // Check if the graduationValue is in the disabledGraduations array
     // Apply the disabled condition only for 'SSLC', 'HSC', and 'Any Graduation'
     return ['SSLC', 'HSC', 'Any Graduation']?.includes(graduationValue) && this.disabledGraduations?.includes(graduationValue);
 
   }
-
-  // isOptionDisabled(option: string, index:number): boolean {
-  //   // Check if the option contains 'Diploma UG'
-  //   //return option.includes('Diploma UG');
-  //   return option.includes('Diploma UG') || this.disabledSpecifications.includes(option);
-  // }
 
 
   updateDisabledSpecifications(currentIndex: number): void {
@@ -403,12 +381,76 @@ export class EmpUploadPostrequirmentComponent implements OnInit {
   }
 
   isOptionDisabled(option: string, currentIndex: number): boolean {
-    // Update the disabledSpecifications array for the current index
     this.updateDisabledSpecifications(currentIndex);
+    let ugLevelCount = 0;
+    let ugdegreeCount = 0;
+    let pgdegreeCount = 0;
+    let pgLevelCount = 0;
+    let phdLevelCount = 0;
+    let phddegreeCount = 0;
+    const hasUGLevelAndNonNullValues = this.formGroups.some((group, i) => {
+      if (group.value.level === 'UG' && i !== currentIndex) {
+        ugLevelCount++;
+      }
+      return ugLevelCount > 0;
+    });
+    const hasPGDegreeAndNonNullValues = this.formGroups.some((group, i) => {
+      if (group.value.level === 'PG' && group.value.specification === 'Any Degree' && i !== currentIndex) {
+        pgdegreeCount++;
+      }
+      return pgdegreeCount > 0;
+    });
 
-    // Check if the option is in the disabledSpecifications array
-    return this.disabledSpecifications?.includes(option);
+    const hasPHDDegreeAndNonNullValues = this.formGroups.some((group, i) => {
+      if (group.value.level === 'Phd' && group.value.specification === 'Any Degree' && i !== currentIndex) {
+        phddegreeCount++;
+      }
+      return phddegreeCount > 0;
+    });
+
+    const hasUGDegreeAndNonNullValues = this.formGroups.some((group, i) => {
+      if (group.value.level === 'UG' && group.value.specification === 'Any Degree' && i !== currentIndex) {
+        ugdegreeCount++;
+      }
+      return ugdegreeCount > 0;
+    });
+    
+    const hasPGLevelAndNonNullValues = this.formGroups.some((group, i) => {
+      if (group.value.level === 'PG' && i !== currentIndex) {
+        pgLevelCount++;
+      }
+      return pgLevelCount > 0;
+    });
+    const hasPHDLevelAndNonNullValues = this.formGroups.some((group, i) => {
+      if (group.value.level === 'Phd' && i !== currentIndex) {
+        phdLevelCount++;
+      }
+      return phdLevelCount > 0;
+    });
+    const currentFormGroup = this.formGroups[currentIndex];
+    const currentGroupValue = currentFormGroup.get('level').value;
+    console.log(currentFormGroup.get('level').value, 'Current Level Value');
+    //return this.disabledSpecifications?.includes(option);
+    //return (option !== 'Any Degree' && this.disabledSpecifications?.includes(option)) || (option == "Any Degree" && hasUGLevelAndNonNullValues) || (option == "Any Degree" && hasPGLevelAndNonNullValues);
+    return (option !== 'Any Degree' && this.disabledSpecifications?.includes(option)) || (option == "Any Degree" && hasUGLevelAndNonNullValues && currentGroupValue === 'UG') || (option == "Any Degree" && hasPGLevelAndNonNullValues && currentGroupValue === 'PG') || (option == "Any Degree" && hasPHDLevelAndNonNullValues && currentGroupValue === 'Phd') || (option !== "Any Degree" && hasUGLevelAndNonNullValues && hasUGDegreeAndNonNullValues && currentGroupValue === 'UG') || (option !== "Any Degree" && hasPGLevelAndNonNullValues && hasPGDegreeAndNonNullValues && currentGroupValue === 'PG') || (option !== "Any Degree" && hasPHDLevelAndNonNullValues && hasPHDDegreeAndNonNullValues && currentGroupValue === 'Phd');
+    
+    /*if (option !== 'Any Degree' && this.disabledSpecifications?.includes(option)) {
+      return true;
+    } else if (option === 'Any Degree' && hasUGLevelAndNonNullValues && currentGroupValue === 'UG') {
+      return true;
+    } else if (option === 'Any Degree' && hasPGLevelAndNonNullValues && currentGroupValue === 'PG') {
+      return true;
+    } else if (option === 'Any Degree' && hasPHDLevelAndNonNullValues && currentGroupValue === 'Phd') {
+      return true;
+    } else {
+      return false;
+    }*/
   }
+
+
+
+
+
 
 
 
@@ -789,7 +831,7 @@ export class EmpUploadPostrequirmentComponent implements OnInit {
       // const ISTOffset = 330; // IST is UTC+5:30
       // const ISTDate = new Date(inputDate.getTime() + (ISTOffset * 60000));
       // const ISTDateString = ISTDate.toISOString();
-     // const inputDate = new Date(this.jobForm.value?.lastDatetoApply);
+      // const inputDate = new Date(this.jobForm.value?.lastDatetoApply);
       // Set time zone offset to zero (UTC)
       //inputDate.setMinutes(inputDate.getMinutes() - inputDate.getTimezoneOffset());
       // Set the UTC hours, minutes, and seconds to 23:59:59

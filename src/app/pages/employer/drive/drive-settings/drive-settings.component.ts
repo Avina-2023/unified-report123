@@ -144,10 +144,12 @@ export class DriveSettingsComponent implements OnInit {
   backlogsForm: FormGroup;
   hiringForm: FormGroup;
   disabledSpecifications: any[];
+  elementRef: any;
 
   toggleEditMode() {
     this.editMode = !this.editMode;
     this.editModeVisible = !this.editModeVisible;
+    this.jobProfileDetails();
   }
 
   toggleInfoEditMode() {
@@ -177,11 +179,13 @@ export class DriveSettingsComponent implements OnInit {
   }
 
   toggleEditEducation(educationItem: EducationItem, index: number) {
-    this.addneweducationGroup = !this.addneweducationGroup;
-    this.editGroup = !this.editGroup;
+    // this.addneweducationGroup = !this.addneweducationGroup;
+    // this.editGroup = !this.editGroup;
     // Check if any other edit form is currently open
     const isAnyEditFormOpen = this.jobReqData.education.some(item => item.editEducation);
-    if (!isAnyEditFormOpen) {
+    if (!isAnyEditFormOpen && !this.addneweducationGroup && !this.editGroup) {
+      this.addneweducationGroup = !this.addneweducationGroup;
+    this.editGroup = !this.editGroup;
       // No other edit form is open, proceed to toggle the clicked item's edit state
       this.jobReqData.education = this.jobReqData.education.map((item, i) => ({
         ...item,
@@ -191,7 +195,7 @@ export class DriveSettingsComponent implements OnInit {
       // Optionally, you may want to update the educationItem reference to the one in the updated array
       educationItem = this.jobReqData.education[index];
     } else {
-      this.editGroup = !this.editGroup;
+      //this.editGroup = !this.editGroup;
       // Another edit form is already open, provide feedback or take other actions
       console.log('Cannot open another edit option because another edit form is already open.');
       this.toastr.warning('Close the currently open edit form before opening another one.', 'Edit Form Restriction');
@@ -204,19 +208,20 @@ export class DriveSettingsComponent implements OnInit {
 
   toggleeditCustomCriteria(eligibilityItem: EligibilityItem, index: number) {
     //this.showCustomCriteria = !this.showCustomCriteria;
-    this.editCustomCriteriaVisible = !this.editCustomCriteriaVisible;
+    const isAnyEditFormOpen = this.jobReqData.eligibilityCriteria.some(item => item.showCustomCriteria);
+    if (!isAnyEditFormOpen &&  !this.addneweducationGroupCriteria && !this.criteriaEditGroup) {
+      this.editCustomCriteriaVisible = !this.editCustomCriteriaVisible;
     this.addneweducationGroupCriteria = !this.addneweducationGroupCriteria;
     this.criteriaEditGroup = !this.criteriaEditGroup;
-    const isAnyEditFormOpen = this.jobReqData.eligibilityCriteria.some(item => item.showCustomCriteria);
-    if (!isAnyEditFormOpen) {
+    
       this.jobReqData.eligibilityCriteria = this.jobReqData.eligibilityCriteria.map((item, i) => ({
         ...item,
         showCustomCriteria: i === index ? !item.showCustomCriteria : false,
       }));
       eligibilityItem = this.jobReqData.eligibilityCriteria[index];
     } else {
-      this.editCustomCriteriaVisible = !this.editCustomCriteriaVisible;
-      this.criteriaEditGroup = !this.criteriaEditGroup;
+      // this.editCustomCriteriaVisible = !this.editCustomCriteriaVisible;
+      // this.criteriaEditGroup = !this.criteriaEditGroup;
       // Another edit form is already open, provide feedback or take other actions
       console.log('Cannot open another edit option because another edit form is already open.');
       this.toastr.warning('Close the currently open edit form before opening another one.', 'Edit Form Restriction');
@@ -225,11 +230,12 @@ export class DriveSettingsComponent implements OnInit {
 
 
   toggleeditHiringProcess(hiringItem: HiringItem, index: number) {
-    this.addnewhiringProcessGroup = !this.addnewhiringProcessGroup;
-    this.editHiringGroup = !this.editHiringGroup;
     // Check if any other edit form is currently open
+    
     const isAnyEditFormOpen = this.jobReqData.hiringProcess.some(item => item.editHiringProcess);
-    if (!isAnyEditFormOpen) {
+    if (!isAnyEditFormOpen && !this.editHiringGroup && !this.addnewhiringProcessGroup ) {
+     this.addnewhiringProcessGroup = !this.addnewhiringProcessGroup;
+    this.editHiringGroup = !this.editHiringGroup;
       // No other edit form is open, proceed to toggle the clicked item's edit state
       this.jobReqData.hiringProcess = this.jobReqData.hiringProcess.map((item, i) => ({
         ...item,
@@ -239,21 +245,27 @@ export class DriveSettingsComponent implements OnInit {
       // Optionally, you may want to update the hiringItem reference to the one in the updated array
       hiringItem = this.jobReqData.hiringProcess[index];
     } else {
-      this.editHiringGroup = !this.editHiringGroup;
+      //this.editHiringGroup = !this.editHiringGroup;
       // Another edit form is already open, provide feedback or take other actions
       console.log('Cannot open another edit option because another edit form is already open.');
       this.toastr.warning('Close the currently open edit form before opening another one.', 'Edit Form Restriction');
     }
   }
-
+  
   cancelEditMode(educationItem: EducationItem) {
     educationItem.editEducation = !educationItem.editEducation;
-    location.reload();
+    this.fetchData();
+    this.addneweducationGroup = !this.addneweducationGroup;
+    this.editGroup = !this.editGroup;
+   // location.reload();
   }
 
   cancelHiringProcess(hiringItem: HiringItem) {
+    this.fetchData();
     hiringItem.editHiringProcess = !hiringItem.editHiringProcess;
-    location.reload();
+    this.addnewhiringProcessGroup = !this.addnewhiringProcessGroup;
+    this.editHiringGroup = !this.editHiringGroup;
+    //location.reload();
   }
 
   currentJobID = localStorage.getItem('currentJobID');
@@ -286,18 +298,22 @@ export class DriveSettingsComponent implements OnInit {
     'Phd',
     'Through Out'
   ];
-  stageLevels = [
-    'Stage 1',
-    'Stage 2',
-    'Stage 3',
-    'Stage 4',
-    'Stage 5',
-    'Stage 6',
-    'Stage 7',
-    'Stage 8',
-    'Stage 9',
-    'Stage 10'
-  ]
+  // stageLevels = [
+  //   'Stage 1',
+  //   'Stage 2',
+  //   'Stage 3',
+  //   'Stage 4',
+  //   'Stage 5',
+  //   'Stage 6',
+  //   'Stage 7',
+  //   'Stage 8',
+  //   'Stage 9',
+  //   'Stage 10'
+  // ]
+
+ // stageLevels = Array.from({ length: 10 }, (_, index) => `Stage ${index + 1}`);
+stageLevels: any[];
+deletedIndex: number;
   // jobData: any;
   constructor(
     public router: Router,
@@ -306,12 +322,11 @@ export class DriveSettingsComponent implements OnInit {
     private toastr: ToastrService,
     private http: ApiService,
   ) {
-    
+
 
   }
 
   ngOnInit(): void {
-    
     this.getJobDetails();
     this.jobProfileDetails();
     this.cityLocation();
@@ -320,6 +335,7 @@ export class DriveSettingsComponent implements OnInit {
     this.getallEducation();
     this.getallCourses();
     this.getalldegree();
+    this.updateStageLevels();
 
     this.yearPassed = [];
     const currentYear = new Date().getFullYear() + 4;
@@ -337,8 +353,8 @@ export class DriveSettingsComponent implements OnInit {
   isObjectEmpty(obj: any): boolean {
     return obj === undefined || obj === null || Object.keys(obj).length === 0;
   }
-  
-  
+
+
   jobProfileDetails() {
     this.jobForm = this.fb.group({
       jobRole: ['', Validators.required],
@@ -365,8 +381,6 @@ export class DriveSettingsComponent implements OnInit {
       description: this.jobReqData?.description[0].item,
       requirement: this.jobReqData?.requirement[0].item,
       lastDatetoApply: this.jobReqData?.lastDatetoApply
-
-      // Set other form control values here
     });
 
 
@@ -473,7 +487,7 @@ export class DriveSettingsComponent implements OnInit {
 
   addEducationGroup(): void {
     this.addneweducationGroup = !this.addneweducationGroup;
-    if (!this.addneweducationGroup) {
+    if (this.addneweducationGroup && this.editGroup) {
       this.formGroups.push(this.createEducationGroup());
       console.log('group added');
     } else {
@@ -544,6 +558,7 @@ export class DriveSettingsComponent implements OnInit {
 
   addhiringGroup(): void {
     this.addnewhiringProcessGroup = !this.addnewhiringProcessGroup;
+    //this.editHiringGroup = !this.editHiringGroup;
     if (!this.addnewhiringProcessGroup) {
       this.hiringFormGroups.push(this.createHiringGroup());
       console.log('group added');
@@ -566,16 +581,66 @@ export class DriveSettingsComponent implements OnInit {
   isGraduationDisabled(educationLevel: string): boolean {
     const forbiddenLevelsInJobReqData = this.jobReqData?.education.map(edu => edu?.level?.toLowerCase());
     const forbiddenLevels = ['sslc', 'hsc', 'any graduation'];
-
     return forbiddenLevelsInJobReqData?.includes(educationLevel?.toLowerCase()) &&
       forbiddenLevels?.includes(educationLevel?.toLowerCase());
   }
 
 
-  isSpecDisabled(degreeOption: string): boolean {
-    const forbiddenSpecsInJobReqData = this.jobReqData?.education.map(edu => edu?.specification?.toLowerCase());
+  isOptionDisabled(option: string, currentIndex: number): boolean {
+    //   const forbiddenSpecsInJobReqData = this.jobReqData?.education.map(edu => edu?.specification?.toLowerCase());
+    //  return forbiddenSpecsInJobReqData?.includes(option?.toLowerCase());
 
-    return forbiddenSpecsInJobReqData?.includes(degreeOption?.toLowerCase());
+    const forbiddenSpecsInJobReqData = this.jobReqData?.education?.map(edu => edu?.specification);
+    // console.log(forbiddenSpecsInJobReqData, 'forbiddendata');
+    const currentFormGroup = this.formGroups[currentIndex];
+    const currentGroupValue = currentFormGroup.get('level').value;
+    //console.log(currentGroupValue, 'currentGroupValue');
+    const ugLevelCount = this.jobReqData?.education.filter(entry => entry.level === 'UG').length;
+    const ugDegreeCount = this.jobReqData?.education.filter(entry => entry.level === 'UG' && entry.specification === 'Any Degree').length;
+    const pgLevelCount = this.jobReqData?.education.filter(entry => entry.level === 'PG').length;
+    const pgDegreeCount = this.jobReqData?.education.filter(entry => entry.level === 'PG' && entry.specification === 'Any Degree').length;
+
+    const phdLevelCount = this.jobReqData?.education.filter(entry => entry.level === 'Phd').length;
+    const phdDegreeCount = this.jobReqData?.education.filter(entry => entry.level === 'Phd' && entry.specification === 'Any Degree').length;
+    //console.log(ugLevelCount, 'ugCount');
+    // return option?.toLowerCase()!== 'any degree' && forbiddenSpecsInJobReqData?.includes(option?.toLowerCase()) || (option?.toLowerCase() == "any degree" && (ugLevelCount > 1) && currentGroupValue === 'UG') || (option?.toLowerCase() !== "any degree" && (ugLevelCount > 1) && (ugDegreeCount > 1) && currentGroupValue === 'UG');
+
+    return option !== 'Any Degree' && forbiddenSpecsInJobReqData?.includes(option) ||
+      (option == "Any Degree" && (ugLevelCount > 1) && currentGroupValue === 'UG') ||
+      (option !== "Any Degree" && (ugLevelCount > 1) && (ugDegreeCount > 1) && currentGroupValue === 'UG') ||
+      (option == "Any Degree" && (pgLevelCount > 1) && currentGroupValue === 'PG') ||
+      (option !== "Any Degree" && (pgLevelCount > 1) && (pgDegreeCount > 1) && currentGroupValue === 'PG') ||
+      (option == "Any Degree" && (phdLevelCount > 1) && currentGroupValue === 'Phd') ||
+      (option !== "Any Degree" && (phdLevelCount > 1) && (phdDegreeCount > 1) && currentGroupValue === 'Phd');
+
+  }
+
+
+  isSpecDisabled(option: string, currentIndex: number): boolean {
+    const forbiddenSpecsInJobReqData = this.jobReqData?.education.map(edu => edu?.specification?.toLowerCase());
+    //console.log(forbiddenSpecsInJobReqData, 'forbiddendata');
+    const currentFormGroup = this.formGroups[currentIndex];
+    const currentGroupValue = currentFormGroup.get('level').value;
+    //console.log(currentGroupValue, 'currentGroupValue');
+    const ugLevelCount = this.jobReqData?.education.filter(entry => entry.level === 'UG').length;
+    const ugDegreeCount = this.jobReqData?.education.filter(entry => entry.level === 'UG' && entry.specification === 'Any Degree').length;
+    //console.log(ugLevelCount, 'ugCount');
+    const pgLevelCount = this.jobReqData?.education.filter(entry => entry.level === 'PG').length;
+    const pgDegreeCount = this.jobReqData?.education.filter(entry => entry.level === 'PG' && entry.specification === 'Any Degree').length;
+
+    const phdLevelCount = this.jobReqData?.education.filter(entry => entry.level === 'Phd').length;
+    const phdDegreeCount = this.jobReqData?.education.filter(entry => entry.level === 'Phd' && entry.specification === 'Any Degree').length;
+
+
+
+    // return option?.toLowerCase()!== 'any degree' && forbiddenSpecsInJobReqData?.includes(option?.toLowerCase()) || (option?.toLowerCase() == "any degree" && (ugLevelCount > 0) && currentGroupValue === 'UG') || (option?.toLowerCase() !== "any degree" && (ugLevelCount > 0) && (ugDegreeCount > 0) && currentGroupValue === 'UG');
+    return option?.toLowerCase() !== 'any degree' && forbiddenSpecsInJobReqData?.includes(option?.toLowerCase()) ||
+      (option?.toLowerCase() == "any degree" && (ugLevelCount > 0) && currentGroupValue === 'UG') ||
+      (option?.toLowerCase() !== "any degree" && (ugLevelCount > 0) && (ugDegreeCount > 0) && currentGroupValue === 'UG') ||
+      (option?.toLowerCase() == "any degree" && (pgLevelCount > 0) && currentGroupValue === 'PG') ||
+      (option?.toLowerCase() !== "any degree" && (pgLevelCount > 0) && (pgDegreeCount > 0) && currentGroupValue === 'PG') ||
+      (option?.toLowerCase() == "any degree" && (phdLevelCount > 0) && currentGroupValue === 'Phd') ||
+      (option?.toLowerCase() !== "any degree" && (phdLevelCount > 0) && (phdDegreeCount > 0) && currentGroupValue === 'Phd');
   }
 
 
@@ -590,9 +655,14 @@ export class DriveSettingsComponent implements OnInit {
   }
 
   ishiringLevelDisabled(hiringLevel: string): boolean {
-    // Check if the education level is already present in jobReqData.eligibilityCriteria
     return this.jobReqData?.hiringProcess?.some(criteria => criteria?.stage === hiringLevel);
   }
+
+
+  
+
+
+  
 
   getallEducation() {
     this.http.getallEducations().subscribe((data: any) => {
@@ -723,6 +793,13 @@ export class DriveSettingsComponent implements OnInit {
   onDegreeChange(selectedCourse: string, index: number) {
     const currentFormGroup = this.formGroups[index];
     currentFormGroup.get('discipline').setValue(null);
+
+    if (selectedCourse == 'Any Degree') {
+      this.listOfSpecializations = ['Any Specialization'];
+      currentFormGroup.get('discipline').setValue(['Any Specialization']);
+    }
+
+
     if (selectedCourse !== null && typeof selectedCourse === 'string' && selectedCourse !== 'Any Degree / Graduation' && selectedCourse !== 'X Std' && selectedCourse !== 'XII Std') {
       console.log(selectedCourse, 'selectedCoursevalues');
       const params = { "degree": selectedCourse };
@@ -742,16 +819,23 @@ export class DriveSettingsComponent implements OnInit {
   iscourseDisabled(index: number): boolean {
     const currentFormGroup = this.formGroups[index];
 
-    const selectedValue = currentFormGroup.get('discipline')?.value;
-    if (selectedValue && selectedValue.includes('Any Specialization')) {
-      const clearedValues = selectedValue.filter(value => value === 'Any Specialization');
-      currentFormGroup.get('discipline')?.patchValue(clearedValues, { emitEvent: false });
-    }
+    // const selectedValue = currentFormGroup.get('discipline')?.value;
+    // if (selectedValue && selectedValue.includes('Any Specialization')) {
+    //   const clearedValues = selectedValue.filter(value => value === 'Any Specialization');
+    //   currentFormGroup.get('discipline')?.patchValue(clearedValues, { emitEvent: false });
+    // }
 
-    if (currentFormGroup.get('level').value === 'Diploma' || currentFormGroup.get('level').value === 'UG' || currentFormGroup.get('level').value === 'PG' || currentFormGroup.get('level').value === 'Phd') {
-      return false; // Do not apply disabled
-    } else {
-      return true; // Apply disabled
+    // if (currentFormGroup.get('level').value === 'Diploma' || currentFormGroup.get('level').value === 'UG' || currentFormGroup.get('level').value === 'PG' || currentFormGroup.get('level').value === 'Phd') {
+    //   return false; // Do not apply disabled
+    // } else {
+    //   return true; // Apply disabled
+    // }
+
+    if (currentFormGroup.get('specification').value === 'X Std' || currentFormGroup.get('specification').value === 'Any Degree / Graduation' || currentFormGroup.get('specification').value === 'XII Std' || currentFormGroup.get('specification').value === 'Any Degree' || currentFormGroup.get('specification').value == null) {
+      return true; // Do not apply disabled
+    }
+    else {
+      return false; // Apply disabled
     }
   }
 
@@ -765,24 +849,38 @@ export class DriveSettingsComponent implements OnInit {
   }
 
   onCtcOptionChange() {
-    const fixedControl = this.jobForm.get('fixed');
-    const startrangeControl = this.jobForm.get('startrange');
-    const endrangeControl = this.jobForm.get('endrange');
-    const stipendControl = this.jobForm.get('stipend');
+    const fixedControl = this.jobForm.controls['fixed'];
+    // const startrangeControl = this.jobForm.get('startrange');
+    // const endrangeControl = this.jobForm.get('endrange');
+    // const stipendControl = this.jobForm.get('stipend');
+    const startrangeControl = this.jobForm.controls['startrange'];
+    const endrangeControl = this.jobForm.controls['endrange'];
+    const stipendControl = this.jobForm.controls['stipend'];
     if (this.selectedRangeOption === 'fixed') {
+      // console.log('ctc changed to fixed');
+      // console.log(fixedControl, 'fixed ctc');
+      // console.log(startrangeControl, 'start range ctc');
+      // console.log(endrangeControl, 'end range ctc');
+      
       fixedControl.setValidators(Validators.required);
       fixedControl.setValue(this.jobReqData?.ctc); // Set the value of the selected control
       startrangeControl.clearValidators();
       endrangeControl.clearValidators();
       startrangeControl.setValue(null); // Set the opposite control's value to null
       endrangeControl.setValue(null);
+
     } else if (this.selectedRangeOption === 'range') {
+      // console.log('ctc changed to range');
+      // console.log(fixedControl, 'fixed ctc');
+      // console.log(startrangeControl, 'start range ctc');
+      // console.log(endrangeControl, 'end range ctc');
+      
       startrangeControl.setValidators(Validators.required);
       endrangeControl.setValidators(Validators.required);
       startrangeControl.setValue(this.lowerLimit); // Set the value of the selected control
       endrangeControl.setValue(this.upperLimit);
       fixedControl.clearValidators();
-      fixedControl.setValue(null); // Set the opposite control's value to null
+      fixedControl.setValue(null);
     }
 
     fixedControl.updateValueAndValidity();
@@ -884,7 +982,6 @@ export class DriveSettingsComponent implements OnInit {
 
   saveEducation(index: number) {
     const areEducationGroupsValid = this.formGroups.every(formGroup => formGroup.valid);
-
     if (areEducationGroupsValid) {
       const updatedEducation = this.formGroups.map(formGroup => formGroup.value);
       if (this.jobReqData && this.jobReqData.education && this.jobReqData.education[index]) {
@@ -901,6 +998,8 @@ export class DriveSettingsComponent implements OnInit {
           "education": this.jobReqData.education
         };
         this.updateJobData(eduObj);
+        this.addneweducationGroup = !this.addneweducationGroup;
+        this.editGroup = !this.editGroup;
       }
     }
     else {
@@ -929,6 +1028,9 @@ export class DriveSettingsComponent implements OnInit {
         };
         //console.log(hireObj, 'hiring object');
         this.updateJobData(hireObj);
+        this.addnewhiringProcessGroup = !this.addnewhiringProcessGroup;
+        this.editHiringGroup = !this.editHiringGroup;
+        //this.updateStageLevels();
       }
     }
     else {
@@ -954,6 +1056,8 @@ export class DriveSettingsComponent implements OnInit {
       };
       //console.log(hireObj, 'hiring object');
       this.updateJobData(hireObj);
+      this.addnewhiringProcessGroup = !this.addnewhiringProcessGroup;
+     // this.updateStageLevels();
 
     }
     else {
@@ -963,6 +1067,7 @@ export class DriveSettingsComponent implements OnInit {
   }
 
   DeleteEducation(educationItem: any, index: number) {
+    if(!this.addneweducationGroup && !this.editGroup){
     // Assuming jobReqData.education is your array of education items
     if (this.jobReqData && this.jobReqData.education) {
       // Use the index parameter to splice the array and remove the item at the specified index
@@ -975,13 +1080,22 @@ export class DriveSettingsComponent implements OnInit {
       "education": this.jobReqData.education
     };
     this.deleteFields(deletedObj);
+    //this.addneweducationGroup = !this.addneweducationGroup;
+    //this.editGroup = !this.editGroup;
+  }
+  else{
+    this.toastr.warning('Close the currently open edit form before deleting another one.', 'Delete Form Restriction');
+  }
   }
 
 
   DeleteHiring(hiringItem: any, index: number) {
+    this.deletedIndex = index;
+    if (!this.editHiringGroup && !this.addnewhiringProcessGroup){
     if (this.jobReqData && this.jobReqData.hiringProcess) {
       // Use the index parameter to splice the array and remove the item at the specified index
       this.jobReqData.hiringProcess.splice(index, 1);
+      //this.jobReqData.hiringProcess.pop();
     }
     // console.log(this.jobReqData.education, 'deletededucation');
     var deletedhireObj = {
@@ -990,11 +1104,19 @@ export class DriveSettingsComponent implements OnInit {
       "hiringProcess": this.jobReqData.hiringProcess
     };
     this.deleteFields(deletedhireObj);
+    //this.updateStageLevels();
+  }
+
+  else{
+    this.toastr.warning('Close the currently open edit form before deleting another one.', 'Delete Form Restriction');
+  }
 
   }
 
 
   deleteCustomCriteria(index: number) {
+
+    if(!this.addneweducationGroupCriteria && !this.criteriaEditGroup){
     // Assuming jobReqData.education is your array of education items
     if (this.jobReqData && this.jobReqData?.eligibilityCriteria) {
       // Use the index parameter to splice the array and remove the item at the specified index
@@ -1007,6 +1129,13 @@ export class DriveSettingsComponent implements OnInit {
       "eligibilityCriteria": this.jobReqData?.eligibilityCriteria
     };
     this.deleteFields(deletedObj);
+    // this.editCustomCriteriaVisible = !this.editCustomCriteriaVisible;
+    // this.addneweducationGroupCriteria = !this.addneweducationGroupCriteria;
+    // this.criteriaEditGroup = !this.criteriaEditGroup;
+  }
+  else{
+    this.toastr.warning('Close the currently open edit form before deleting another one.', 'Delete Form Restriction');
+  }
   }
 
   deleteBacklogs() {
@@ -1058,7 +1187,8 @@ export class DriveSettingsComponent implements OnInit {
       } else {
         //this.toastr.success(data.message);
         this.toastr.success('Deleted Successfully');
-        location.reload();
+        this.fetchData();
+        //location.reload();
         //this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.PARTNER.REQUIRMENT);
       }
     }, (err) => {
@@ -1080,6 +1210,8 @@ export class DriveSettingsComponent implements OnInit {
         "education": this.jobReqData.education
       };
       this.updateJobData(addedEduObj);
+      this.addneweducationGroup = !this.addneweducationGroup;
+      //this.editGroup = !this.editGroup;
     }
     else {
       this.formGroups.forEach(formGroup => formGroup.markAllAsTouched());
@@ -1088,14 +1220,18 @@ export class DriveSettingsComponent implements OnInit {
   }
 
   cancelAddItem(index: number) {
-    console.log('cancelled');
-    location.reload();
+    this.fetchData();
+    this.addneweducationGroup = !this.addneweducationGroup;
+    //this.editGroup = !this.editGroup;
+  }
+  cancelAddHireItem(index:number){
+    this.fetchData();
+    this.addnewhiringProcessGroup = !this.addnewhiringProcessGroup;
 
   }
 
 
   updateJobProfile() {
-
     const isFixed = this.jobForm.value.fixed;
     const startRange = this.jobForm.value.startrange;
     const endRange = this.jobForm.value.endrange;
@@ -1157,6 +1293,10 @@ export class DriveSettingsComponent implements OnInit {
 
       //console.log(obj, 'obj')
       this.updateJobData(obj);
+      this.editMode = !this.editMode;
+      this.editModeVisible = !this.editModeVisible;
+
+
 
       /*this.http.UploadPostJob(obj).subscribe((data: any) => {
         // console.log(data)
@@ -1183,8 +1323,9 @@ export class DriveSettingsComponent implements OnInit {
   cancelBtn() {
     this.editMode = !this.editMode;
     this.editModeVisible = !this.editModeVisible;
+    this.fetchData();
     //if (this.jobForm.invalid) {
-    location.reload();
+    //location.reload();
     // }
   }
 
@@ -1192,12 +1333,14 @@ export class DriveSettingsComponent implements OnInit {
   cancelYear() {
     this.editCriteriaMode = !this.editCriteriaMode;
     this.editCriteriaModeVisible = !this.editCriteriaModeVisible;
-    location.reload();
+    this.fetchData();
+    //location.reload();
   }
   cancelGender() {
     this.editGenderMode = !this.editGenderMode;
-    this.editCriteriaModeVisible = !this.editCriteriaModeVisible;
-    location.reload();
+    this.editGenderModeVisible = !this.editGenderModeVisible;
+    this.fetchData();
+   // location.reload();
 
     /*if (this.jobReqData && this.jobReqData?.gender) {
       this.jobReqData?.gender = '';
@@ -1215,7 +1358,8 @@ export class DriveSettingsComponent implements OnInit {
   cancelBacklogs() {
     this.editBacklogsMode = !this.editBacklogsMode;
     this.editBacklogsModeVisible = !this.editBacklogsModeVisible;
-    location.reload();
+    this.fetchData();
+    //location.reload();
   }
   saveYear() {
     // console.log('saveyear');
@@ -1226,6 +1370,8 @@ export class DriveSettingsComponent implements OnInit {
         "yearofPassout": this.yearofPassForm?.value?.yearofPassout
       };
       this.updateJobData(saveYearObj);
+      this.editCriteriaMode = !this.editCriteriaMode;
+    this.editCriteriaModeVisible = !this.editCriteriaModeVisible;
       //console.log(saveYearObj);
     }
     else {
@@ -1244,6 +1390,8 @@ export class DriveSettingsComponent implements OnInit {
       };
       this.updateJobData(genderObj);
       //console.log(genderObj);
+      this.editGenderMode = !this.editGenderMode;
+    this.editGenderModeVisible = !this.editGenderModeVisible;
     }
     else {
       this.genderForm.markAllAsTouched();
@@ -1263,12 +1411,21 @@ export class DriveSettingsComponent implements OnInit {
         }
       };
       this.updateJobData(infoObj);
-      console.log(infoObj);
+      //console.log(infoObj);
+      this.editadditionalInfoMode = !this.editadditionalInfoMode;
+    this.editInfoModeVisible = !this.editInfoModeVisible;
     }
     else {
       this.infoForm.markAllAsTouched();
       this.toastr.warning('Please fill in all required fields.', 'Form Validation Error');
     }
+  }
+
+
+  canceladditionalInfo(){
+    this.editadditionalInfoMode = !this.editadditionalInfoMode;
+    this.editInfoModeVisible = !this.editInfoModeVisible;
+    this.fetchData();
   }
 
 
@@ -1282,7 +1439,9 @@ export class DriveSettingsComponent implements OnInit {
         "noofBacklog": this.backlogsForm?.value?.noofBacklog
       };
       this.updateJobData(backlogsObj);
-      console.log(backlogsObj);
+      //console.log(backlogsObj);
+      this.editBacklogsMode = !this.editBacklogsMode;
+    this.editBacklogsModeVisible = !this.editBacklogsModeVisible;
     }
     else {
       this.backlogsForm.markAllAsTouched();
@@ -1308,6 +1467,9 @@ export class DriveSettingsComponent implements OnInit {
         };
         //console.log(criteriaObj, 'criteria values');
         this.updateJobData(criteriaObj);
+        this.editCustomCriteriaVisible = !this.editCustomCriteriaVisible;
+    this.addneweducationGroupCriteria = !this.addneweducationGroupCriteria;
+    this.criteriaEditGroup = !this.criteriaEditGroup;
       }
 
     }
@@ -1330,6 +1492,12 @@ export class DriveSettingsComponent implements OnInit {
       };
       //console.log(criteriaObj, 'criteria values');
       this.updateJobData(criteriaObj);
+
+      this.editCustomCriteria = !this.editCustomCriteria;
+    this.editCustomCriteriaVisible = !this.editCustomCriteriaVisible;
+    this.addneweducationGroupCriteria = !this.addneweducationGroupCriteria;
+
+
     }
     else {
       this.criteriaGroups.forEach(formGroup => formGroup.markAllAsTouched());
@@ -1338,7 +1506,19 @@ export class DriveSettingsComponent implements OnInit {
   }
 
   cancelCustomCriteria(i) {
-    location.reload();
+   // location.reload();
+   this.fetchData();
+   this.editCustomCriteria = !this.editCustomCriteria;
+    this.editCustomCriteriaVisible = !this.editCustomCriteriaVisible;
+    this.addneweducationGroupCriteria = !this.addneweducationGroupCriteria;
+    
+  }
+  cancelnewCustomCriteria(i){
+    //location.reload();
+    this.fetchData();
+    this.editCustomCriteriaVisible = !this.editCustomCriteriaVisible;
+    this.addneweducationGroupCriteria = !this.addneweducationGroupCriteria;
+    this.criteriaEditGroup = !this.criteriaEditGroup;
   }
 
   updateJobData(obj) {
@@ -1347,13 +1527,19 @@ export class DriveSettingsComponent implements OnInit {
         this.toastr.warning(data.message);
       } else {
         this.toastr.success(data.message);
-        location.reload();
+        this.fetchData();
+        //location.reload();
         //this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.PARTNER.REQUIRMENT);
       }
     }, (err) => {
       this.toastr.warning('Connection failed, Please try again.');
     });
   }
+
+  updateStageLevels() {
+    this.stageLevels = Array.from({ length: 20 }, (_, index) => `Stage ${index + 1}`);
+}
+
 
 
 
