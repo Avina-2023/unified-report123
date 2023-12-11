@@ -187,9 +187,11 @@
     color: #262626;
     font-size: 14px;
   }
+
   .mat-form-field {
     width: 98%;
   }
+
   ::ng-deep .mat-form-field-appearance-outline .mat-form-field-infix {
     padding: 4px 0 10px 0 !important;
   }
@@ -202,6 +204,7 @@
 
   .subButton {
     padding-right: 10px;
+
     ::ng-deep.mat-flat-button {
       background-color: #1B4E9B !important;
       color: #FFFFFF;
@@ -213,6 +216,7 @@
 
   .subButton2 {
     padding-right: 10px;
+
     ::ng-deep.mat-flat-button {
       background-color: #B4B4B4 !important;
       color: #FFFFFF;
@@ -221,6 +225,7 @@
       line-height: 33px;
     }
   }
+
   .file-input {
     display: none;
   }
@@ -304,14 +309,17 @@ nz-select {
 .flex_div {
   display: flex;
 }
-.flex_grid{
+
+.flex_grid {
   display: grid;
   grid-template-columns: 25% 25% 46% 2%;
   width: 100%;
 }
-.mg-10{
+
+.mg-10 {
   margin: 0px 10px;
 }
+
 .add_more_text {
   color: #1B4E9A;
   text-decoration: underline;
@@ -328,14 +336,15 @@ nz-select {
 
 .remove_group_text {
   opacity: 1;
-    color: #FF0000;
-    font-weight: bold;
-    font-family: cursive;
-    cursor: pointer;
-    margin: 10px 0px 0px 0px;
-    padding: 0px 10px;
+  color: #FF0000;
+  font-weight: bold;
+  font-family: cursive;
+  cursor: pointer;
+  margin: 10px 0px 0px 0px;
+  padding: 0px 10px;
 }
-.edu_array:first-child{
+
+.edu_array:first-child {
   margin: 10px 30px 20px 0px;
 }
 
@@ -366,7 +375,7 @@ nz-select {
 }
 
 ::ng-deep.overflow_scroll nz-select-top-control {
-   height: 32px !important;
+  height: 32px !important;
   //  max-height: 50px !important;
   overflow-y: scroll !important;
 }
@@ -374,6 +383,7 @@ nz-select {
 ::ng-deep.overflow_hidden nz-select-top-control {
   overflow: hidden;
 }
+
 .companyPatch {
   display: block;
   color: #666666;
@@ -385,4 +395,17 @@ nz-select {
   align-items: center;
   padding: 0px 0px 20px 0px;
   margin: 10px 0px 0px 0px
+}
+
+.error-message {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  color: red;
+  font-size: 12px;
+  /* Adjust the font size as needed */
+}
+
+.error-border {
+  border: 1px solid red;
 }

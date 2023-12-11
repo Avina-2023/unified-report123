@@ -53,10 +53,12 @@
   display: flex;
   justify-content: space-around;
   padding: 20px;
+
   .job_title {
     font: normal normal bold 16px/21px Roboto;
     padding: 16px 0px 0px 10px;
   }
+
   .partnerCard {
     width: 99%;
     border-radius: 9px;
@@ -65,6 +67,7 @@
       .descstyle {
         height: 86px;
       }
+
       ::ng-deep .mat-form-field-wrapper {
         margin: -0.25em 0;
       }
@@ -101,6 +104,7 @@
         font-size: 12px;
         font-weight: bold;
         margin-bottom: 0.5em;
+
         span {
           color: red;
         }
@@ -119,6 +123,7 @@
         font-size: 12px;
         font-weight: bold;
         margin-bottom: 0.5em;
+
         span {
           color: red;
         }
@@ -447,6 +452,7 @@ nz-select {
 nz-select.ng-touched.ng-invalid {
   border: 1px solid red;
 }
+
 ::ng-deep nz-select-top-control {
   background: none !important;
 }
@@ -514,5 +520,24 @@ input.ng-touched.ng-invalid {
 ::ng-deep.overflow_scroll nz-select-top-control {
   height: 32px !important;
   overflow-y: scroll !important;
+}
+
+::ng-deep.ng-invalid.ng-touched .angular-editor-textarea {
+  border: 1px solid #ddd !important;
+}
+
+nz-select.ng-touched.ng-invalid {
+  border: 1px solid red;
+  padding: 3px 0px 0px 0px!important;
+}
+::ng-deep.angular-editor-textarea {
+  min-height: 5rem;
+  padding: .5rem .8rem 1rem;
+  border: 1px solid #ddd;
+  background-color: transparent;
+  overflow-x: hidden;
+  overflow-y: auto;
+  position: relative;
+  height: 100px !important;
 }
 
