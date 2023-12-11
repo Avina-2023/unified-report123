@@ -1071,7 +1071,7 @@
                             </div>
                         </div>
                     </div>
-                    <div *ngIf="jobReqData?.hiringProcess?.length"
+                    <div *ngIf="!this.editHiringGroup && !this.addnewhiringProcessGroup && jobReqData?.hiringProcess?.length"
                         class="add_more_text" (click)="addhiringGroup()">Add More
                     </div>
                     <div class="edu-values" *ngIf="addnewhiringProcessGroup && !editHiringGroup">

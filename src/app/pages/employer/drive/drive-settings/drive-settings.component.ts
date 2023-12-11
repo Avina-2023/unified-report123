@@ -233,7 +233,7 @@ export class DriveSettingsComponent implements OnInit {
     // Check if any other edit form is currently open
     
     const isAnyEditFormOpen = this.jobReqData.hiringProcess.some(item => item.editHiringProcess);
-    if (!isAnyEditFormOpen) {
+    if (!isAnyEditFormOpen && !this.editHiringGroup && !this.addnewhiringProcessGroup ) {
      this.addnewhiringProcessGroup = !this.addnewhiringProcessGroup;
     this.editHiringGroup = !this.editHiringGroup;
       // No other edit form is open, proceed to toggle the clicked item's edit state
@@ -245,7 +245,7 @@ export class DriveSettingsComponent implements OnInit {
       // Optionally, you may want to update the hiringItem reference to the one in the updated array
       hiringItem = this.jobReqData.hiringProcess[index];
     } else {
-      this.editHiringGroup = !this.editHiringGroup;
+      //this.editHiringGroup = !this.editHiringGroup;
       // Another edit form is already open, provide feedback or take other actions
       console.log('Cannot open another edit option because another edit form is already open.');
       this.toastr.warning('Close the currently open edit form before opening another one.', 'Edit Form Restriction');
@@ -264,7 +264,7 @@ export class DriveSettingsComponent implements OnInit {
     this.fetchData();
     hiringItem.editHiringProcess = !hiringItem.editHiringProcess;
     this.addnewhiringProcessGroup = !this.addnewhiringProcessGroup;
-    //this.editHiringGroup = !this.editHiringGroup;
+    this.editHiringGroup = !this.editHiringGroup;
     //location.reload();
   }
 
