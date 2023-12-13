@@ -17,6 +17,7 @@ import { formatDate } from '@angular/common';
 export class AddJobsComponent implements OnInit {
   addjobsForm: FormGroup;
   selectedJobLocations: string[] = [];
+  formTouched: boolean = false;
   keySkills: string[] = [];
   newSkill: string[] = [];
   companyOptions: string[] = [];
@@ -39,10 +40,11 @@ export class AddJobsComponent implements OnInit {
   skillSet = [];
   fixed: any;
   range: any;
-  // htmlContent_description = '';
-  // htmlContent_requirement = '';
-  // htmlContent_information = '';
-  employerLogo = '';
+  htmlContent_description = '';
+  htmlContent_requirement = '';
+  htmlContent_information = '';
+  //employerLogo = '';
+  formDirty: boolean = false;
   formBuilder: any;
   errorMsgforCmpnyLogo = '';
   employerCmpnyLogoFile: any;
@@ -137,7 +139,11 @@ export class AddJobsComponent implements OnInit {
   selectedOption: string;
   disabledSpecifications: any[];
   disabledGraduations: any[];
-  constructor(private fb: FormBuilder,
+  minDate: Date;
+  maxDate: Date;
+
+    constructor
+    (private fb: FormBuilder,
     private apiService: ApiService,
     //private ApiService: ApiService,
     private appconfig: AppConfigService,
@@ -159,7 +165,6 @@ export class AddJobsComponent implements OnInit {
     this.getalldegree();
     // this.getRoute();
     this.formerrorInitialize();
-
     // this.getIndustryType();
     // this.addjobsForm = this.formBuilder.group({
     // });
@@ -808,7 +813,13 @@ degreeOptionChange(selectedGraduation: string, index: number) {
     this.dialog.closeAll();
     this.appconfig.routeNavigation('/auth/partner/viewopenjobs');
   }
+
   saveForm() {
+
+   if (!this.addjobsForm.touched) {
+    this.toastr.warning('Please fill in all required fields.');
+    return;
+  }
 
     const areEducationGroupsValid = this.formGroups.every(formGroup => formGroup.valid);
 
@@ -839,7 +850,6 @@ degreeOptionChange(selectedGraduation: string, index: number) {
     inputDate.setHours(23, 59, 59);
     // Convert to UTC and get the ISO string
     const ISTDateString = inputDate?.toISOString();
-
      if (this.addjobsForm.valid && areEducationGroupsValid)
     {
       // Perform form submission actions{
@@ -897,10 +907,36 @@ degreeOptionChange(selectedGraduation: string, index: number) {
         this.formGroups.forEach(formGroup => formGroup.markAllAsTouched());
         this.toastr.warning('Please fill in all required fields.', 'Form Validation Error');
       }
-    }
-    clearForm() {
-      this.addjobsForm.reset();
+  }
+  //  onFormTouched() {
+  //   if (!this.formTouched) {
+  //     this.formTouched = true;
+  //   }
+  // }
 
-    }
+  // clearForm() {
+  //     this.addjobsForm.reset();
+  //     }
 
+  clearForm() {
+  if (this.addjobsForm.dirty) {
+    // Display a success message for form cleared
+    this.toastr.success('Form cleared successfully.');
+  } else if (!this.formTouched) {
+    // Display a warning message if the form hasn't been touched
+    this.toastr.warning('Please interact with the form before clearing.');
+    return;
+  }
+
+  // Reset the form
+  this.addjobsForm.reset();
+}
+
+
+  getMinDate(): string {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0); // Set hours, minutes, seconds, and milliseconds to 0
+  today.setDate(today.getDate() + 1);
+  return today.toISOString().split('T')[0];
+ }
   }

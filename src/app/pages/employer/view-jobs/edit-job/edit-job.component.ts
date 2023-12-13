@@ -38,9 +38,9 @@ export class EditJobComponent implements OnInit {
   skillSet: any;
   jobLocation: any;
   description: any;
-  // htmlContent_description = '';
-  // htmlContent_requirement = '';
-  // htmlContent_information = '';
+  htmlContent_description = '';
+  htmlContent_requirement = '';
+  htmlContent_information = '';
   employerLogo = '';
   formBuilder: any;
   errorMsgforCmpnyLogo = '';
@@ -964,4 +964,10 @@ export class EditJobComponent implements OnInit {
     this.appconfig.routeNavigation('/auth/partner/viewopenjobs');
     location.reload();
   }
+    getMinDate(): string {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0); // Set hours, minutes, seconds, and milliseconds to 0
+  today.setDate(today.getDate() + 1);
+  return today.toISOString().split('T')[0];
+ }
 }
