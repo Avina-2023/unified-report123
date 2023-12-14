@@ -3,7 +3,7 @@ import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { AppConfigService } from 'src/app/utils/app-config.service';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from 'src/app/services/api.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { NzSelectSizeType } from 'ng-zorro-antd/select';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { log } from 'console';
@@ -185,7 +185,7 @@ export class DriveSettingsComponent implements OnInit {
     const isAnyEditFormOpen = this.jobReqData.education.some(item => item.editEducation);
     if (!isAnyEditFormOpen && !this.addneweducationGroup && !this.editGroup) {
       this.addneweducationGroup = !this.addneweducationGroup;
-    this.editGroup = !this.editGroup;
+      this.editGroup = !this.editGroup;
       // No other edit form is open, proceed to toggle the clicked item's edit state
       this.jobReqData.education = this.jobReqData.education.map((item, i) => ({
         ...item,
@@ -209,11 +209,11 @@ export class DriveSettingsComponent implements OnInit {
   toggleeditCustomCriteria(eligibilityItem: EligibilityItem, index: number) {
     //this.showCustomCriteria = !this.showCustomCriteria;
     const isAnyEditFormOpen = this.jobReqData.eligibilityCriteria.some(item => item.showCustomCriteria);
-    if (!isAnyEditFormOpen &&  !this.addneweducationGroupCriteria && !this.criteriaEditGroup) {
+    if (!isAnyEditFormOpen && !this.addneweducationGroupCriteria && !this.criteriaEditGroup) {
       this.editCustomCriteriaVisible = !this.editCustomCriteriaVisible;
-    this.addneweducationGroupCriteria = !this.addneweducationGroupCriteria;
-    this.criteriaEditGroup = !this.criteriaEditGroup;
-    
+      this.addneweducationGroupCriteria = !this.addneweducationGroupCriteria;
+      this.criteriaEditGroup = !this.criteriaEditGroup;
+
       this.jobReqData.eligibilityCriteria = this.jobReqData.eligibilityCriteria.map((item, i) => ({
         ...item,
         showCustomCriteria: i === index ? !item.showCustomCriteria : false,
@@ -231,11 +231,11 @@ export class DriveSettingsComponent implements OnInit {
 
   toggleeditHiringProcess(hiringItem: HiringItem, index: number) {
     // Check if any other edit form is currently open
-    
+
     const isAnyEditFormOpen = this.jobReqData.hiringProcess.some(item => item.editHiringProcess);
-    if (!isAnyEditFormOpen && !this.editHiringGroup && !this.addnewhiringProcessGroup ) {
-     this.addnewhiringProcessGroup = !this.addnewhiringProcessGroup;
-    this.editHiringGroup = !this.editHiringGroup;
+    if (!isAnyEditFormOpen && !this.editHiringGroup && !this.addnewhiringProcessGroup) {
+      this.addnewhiringProcessGroup = !this.addnewhiringProcessGroup;
+      this.editHiringGroup = !this.editHiringGroup;
       // No other edit form is open, proceed to toggle the clicked item's edit state
       this.jobReqData.hiringProcess = this.jobReqData.hiringProcess.map((item, i) => ({
         ...item,
@@ -251,13 +251,13 @@ export class DriveSettingsComponent implements OnInit {
       this.toastr.warning('Close the currently open edit form before opening another one.', 'Edit Form Restriction');
     }
   }
-  
+
   cancelEditMode(educationItem: EducationItem) {
     educationItem.editEducation = !educationItem.editEducation;
     this.fetchData();
     this.addneweducationGroup = !this.addneweducationGroup;
     this.editGroup = !this.editGroup;
-   // location.reload();
+    // location.reload();
   }
 
   cancelHiringProcess(hiringItem: HiringItem) {
@@ -282,7 +282,7 @@ export class DriveSettingsComponent implements OnInit {
 
   //Multiselect Dropdown
   size: NzSelectSizeType = 'default';
-
+  isCTCOptionAvailable : boolean;
   jobDetailsdata: any;
   valueone: any;
   jobReqData: any;
@@ -311,9 +311,9 @@ export class DriveSettingsComponent implements OnInit {
   //   'Stage 10'
   // ]
 
- // stageLevels = Array.from({ length: 10 }, (_, index) => `Stage ${index + 1}`);
-stageLevels: any[];
-deletedIndex: number;
+  // stageLevels = Array.from({ length: 10 }, (_, index) => `Stage ${index + 1}`);
+  stageLevels: any[];
+  deletedIndex: number;
   // jobData: any;
   constructor(
     public router: Router,
@@ -329,8 +329,8 @@ deletedIndex: number;
   ngOnInit(): void {
     this.getJobDetails();
     this.jobProfileDetails();
-    this.cityLocation();
     this.fetchData();
+    this.cityLocation();
     this.skilllist();
     this.getallEducation();
     this.getallCourses();
@@ -342,13 +342,15 @@ deletedIndex: number;
     for (let i = currentYear; i >= currentYear - 10; i--) {
       this.yearPassed.push(i.toString());
     }
-
-
+    
   }
 
   // isObjectEmpty(obj: any): boolean {
   //   return Object?.keys(obj)?.length === 0;
   // }
+
+  
+  
 
   isObjectEmpty(obj: any): boolean {
     return obj === undefined || obj === null || Object.keys(obj).length === 0;
@@ -361,21 +363,38 @@ deletedIndex: number;
       jobTitle: ['', Validators.required],
       jobLocation: ['', Validators.required],
       skillSet: ['', Validators.required],
-      ctcOption: ['', Validators.required],
+      jobType: ['', Validators.required],
+      //ctcOption: ['', Validators.required],
       fixed: [''],
       startrange: [''],
       endrange: [''],
+      stipend: [''],
       description: ['', Validators.required],
-      requirement: ['', Validators.required],
+      requirement: [''],
       lastDatetoApply: ['', Validators.required]
     });
+
+    if (this.selectedOption === 'Jobs') {
+      this.jobForm.addControl('ctcOption', new FormControl('', Validators.required));
+    }
+
+    if (this.selectedOption === 'Internships') {
+      this.jobForm?.get('ctcOption')?.clearValidators();
+      this.jobForm?.get('ctcOption')?.updateValueAndValidity();
+      const stipendControl = this.jobForm?.controls['stipend'];
+      console.log(stipendControl, 'stipendControl')
+      stipendControl.setValidators(Validators.required);
+      stipendControl.updateValueAndValidity();
+    }
 
     this.jobForm.patchValue({
       jobRole: this.jobReqData?.jobRole,
       jobTitle: this.jobReqData?.jobTitle,
       jobLocation: this.jobReqData?.jobLocation,
+      jobType: this.jobReqData?.jobType,
       skillSet: this.jobReqData?.skillSet,
       fixed: this.jobReqData?.ctc,
+      stipend: this.jobReqData?.ctc,
       startrange: this.lowerLimit,
       endrange: this.upperLimit,
       description: this.jobReqData?.description[0].item,
@@ -452,8 +471,18 @@ deletedIndex: number;
     });
 
 
+    //console.log(this.selectedOption, 'selectedOption');
 
+    this.isCTCOptionAvailable = this.jobReqData?.hasOwnProperty('ctcType');
+    console.log(this.isCTCOptionAvailable, 'ctcoptionavail');
 
+    this.locations?.push(...this.jobReqData?.jobLocation);
+          console.log(this.locations, 'totalLocation');
+
+          //push the api skill value to the default locations array
+          this.listOfOption?.push(...this.jobReqData?.skillSet);
+          console.log(this.listOfOption, 'totalOptions');
+          
   }
 
 
@@ -659,10 +688,10 @@ deletedIndex: number;
   }
 
 
-  
 
 
-  
+
+
 
   getallEducation() {
     this.http.getallEducations().subscribe((data: any) => {
@@ -849,43 +878,51 @@ deletedIndex: number;
   }
 
   onCtcOptionChange() {
-    const fixedControl = this.jobForm.controls['fixed'];
-    // const startrangeControl = this.jobForm.get('startrange');
-    // const endrangeControl = this.jobForm.get('endrange');
-    // const stipendControl = this.jobForm.get('stipend');
-    const startrangeControl = this.jobForm.controls['startrange'];
-    const endrangeControl = this.jobForm.controls['endrange'];
-    const stipendControl = this.jobForm.controls['stipend'];
-    if (this.selectedRangeOption === 'fixed') {
-      // console.log('ctc changed to fixed');
-      // console.log(fixedControl, 'fixed ctc');
-      // console.log(startrangeControl, 'start range ctc');
-      // console.log(endrangeControl, 'end range ctc');
-      
-      fixedControl.setValidators(Validators.required);
-      fixedControl.setValue(this.jobReqData?.ctc); // Set the value of the selected control
-      startrangeControl.clearValidators();
-      endrangeControl.clearValidators();
-      startrangeControl.setValue(null); // Set the opposite control's value to null
-      endrangeControl.setValue(null);
+    if (this.selectedOption === 'Jobs') {
+      const stipendControl = this.jobForm?.controls['stipend'];
+      stipendControl?.clearValidators();
+      stipendControl?.setValue(null);
+      console.log(this.selectedRangeOption, 'selectedrangeoption');
 
-    } else if (this.selectedRangeOption === 'range') {
-      // console.log('ctc changed to range');
-      // console.log(fixedControl, 'fixed ctc');
-      // console.log(startrangeControl, 'start range ctc');
-      // console.log(endrangeControl, 'end range ctc');
-      
-      startrangeControl.setValidators(Validators.required);
-      endrangeControl.setValidators(Validators.required);
-      startrangeControl.setValue(this.lowerLimit); // Set the value of the selected control
-      endrangeControl.setValue(this.upperLimit);
-      fixedControl.clearValidators();
-      fixedControl.setValue(null);
+      const fixedControl = this.jobForm?.controls['fixed'];
+      // const startrangeControl = this.jobForm.get('startrange');
+      // const endrangeControl = this.jobForm.get('endrange');
+
+      const startrangeControl = this.jobForm?.controls['startrange'];
+      const endrangeControl = this.jobForm?.controls['endrange'];
+      //const stipendControl = this.jobForm.controls['stipend'];
+      if (this.selectedRangeOption === 'fixed') {
+        console.log('ctc changed to fixed');
+        console.log(fixedControl, 'fixed ctc');
+        console.log(startrangeControl, 'start range ctc');
+        console.log(endrangeControl, 'end range ctc');
+
+        fixedControl.setValidators(Validators.required);
+        //fixedControl.setValue(this.jobReqData?.ctc); // Set the value of the selected control
+        startrangeControl?.clearValidators();
+        endrangeControl?.clearValidators();
+        startrangeControl?.setValue(null); // Set the opposite control's value to null
+        endrangeControl?.setValue(null);
+
+      } else if (this.selectedRangeOption === 'range') {
+        // console.log('ctc changed to range');
+        // console.log(fixedControl, 'fixed ctc');
+        // console.log(startrangeControl, 'start range ctc');
+        // console.log(endrangeControl, 'end range ctc');
+
+        startrangeControl?.setValidators(Validators.required);
+        endrangeControl?.setValidators(Validators.required);
+        // startrangeControl.setValue(this.lowerLimit); // Set the value of the selected control
+        // endrangeControl.setValue(this.upperLimit);
+        fixedControl?.clearValidators();
+        fixedControl?.setValue(null);
+      }
+
+      fixedControl?.updateValueAndValidity();
+      startrangeControl?.updateValueAndValidity();
+      endrangeControl?.updateValueAndValidity();
+      stipendControl?.updateValueAndValidity();
     }
-
-    fixedControl.updateValueAndValidity();
-    startrangeControl.updateValueAndValidity();
-    endrangeControl.updateValueAndValidity();
   }
 
 
@@ -905,6 +942,8 @@ deletedIndex: number;
     this.http.getCities(data).subscribe((res: any) => {
       if (res.success) {
         this.locations = res.data.map(item => item.city);
+        
+        
         //console.log(this.locations, 'locations');
 
         //this.locations = ['Select', ...res.data.map(item => item.city)];
@@ -914,6 +953,22 @@ deletedIndex: number;
     });
   }
 
+
+  handleSearch(event: Event): void {
+    const inputElement = event.target as HTMLInputElement;
+    const searchText = inputElement.value;
+    // Make an API request to search for skills based on the typed text.
+    const data: any = {
+      searchText: searchText
+    };
+    //console.log('Search text:', searchText);
+    this.http.getSkill(data).subscribe((res: any) => {
+      if (res.success) {
+        this.listOfOption = res.data.map((item) => item.skillName);
+        //console.log(res, 'searchSkills');
+      }
+    });
+  }
 
   locationSearch(event: Event): void {
     const inputElement = event.target as HTMLInputElement;
@@ -940,6 +995,16 @@ deletedIndex: number;
         console.log(this.jobReqData, 'final Job data');
         if (this.jobReqData) {
           this.selectedOption = this.jobReqData?.workType;
+          console.log(this.jobReqData?.jobLocation, 'dblocation');
+          //push the api location value to the default locations array
+          this.locations?.push(...this.jobReqData?.jobLocation);
+          console.log(this.locations, 'totalLocation');
+
+          //push the api skill value to the default locations array
+          this.listOfOption?.push(...this.jobReqData?.skillSet);
+          console.log(this.listOfOption, 'totalOptions');
+          
+          
           this.selectedRangeOption = this.jobReqData?.ctcType;
           if (this.selectedRangeOption === 'range') {
             //console.log(this.jobReqData?.ctc , 'ethics');
@@ -1057,7 +1122,7 @@ deletedIndex: number;
       //console.log(hireObj, 'hiring object');
       this.updateJobData(hireObj);
       this.addnewhiringProcessGroup = !this.addnewhiringProcessGroup;
-     // this.updateStageLevels();
+      // this.updateStageLevels();
 
     }
     else {
@@ -1067,75 +1132,75 @@ deletedIndex: number;
   }
 
   DeleteEducation(educationItem: any, index: number) {
-    if(!this.addneweducationGroup && !this.editGroup){
-    // Assuming jobReqData.education is your array of education items
-    if (this.jobReqData && this.jobReqData.education) {
-      // Use the index parameter to splice the array and remove the item at the specified index
-      this.jobReqData.education.splice(index, 1);
+    if (!this.addneweducationGroup && !this.editGroup) {
+      // Assuming jobReqData.education is your array of education items
+      if (this.jobReqData && this.jobReqData.education) {
+        // Use the index parameter to splice the array and remove the item at the specified index
+        this.jobReqData.education.splice(index, 1);
+      }
+      // console.log(this.jobReqData.education, 'deletededucation');
+      var deletedObj = {
+        "jobId": this.jobReqData?.jobId,
+        "companyId": this.jobReqData?.companyId,
+        "education": this.jobReqData.education
+      };
+      this.deleteFields(deletedObj);
+      //this.addneweducationGroup = !this.addneweducationGroup;
+      //this.editGroup = !this.editGroup;
     }
-    // console.log(this.jobReqData.education, 'deletededucation');
-    var deletedObj = {
-      "jobId": this.jobReqData?.jobId,
-      "companyId": this.jobReqData?.companyId,
-      "education": this.jobReqData.education
-    };
-    this.deleteFields(deletedObj);
-    //this.addneweducationGroup = !this.addneweducationGroup;
-    //this.editGroup = !this.editGroup;
-  }
-  else{
-    this.toastr.warning('Close the currently open edit form before deleting another one.', 'Delete Form Restriction');
-  }
+    else {
+      this.toastr.warning('Close the currently open edit form before deleting another one.', 'Delete Form Restriction');
+    }
   }
 
 
   DeleteHiring(hiringItem: any, index: number) {
     this.deletedIndex = index;
-    if (!this.editHiringGroup && !this.addnewhiringProcessGroup){
-    if (this.jobReqData && this.jobReqData.hiringProcess) {
-      // Use the index parameter to splice the array and remove the item at the specified index
-      this.jobReqData.hiringProcess.splice(index, 1);
-      //this.jobReqData.hiringProcess.pop();
+    if (!this.editHiringGroup && !this.addnewhiringProcessGroup) {
+      if (this.jobReqData && this.jobReqData.hiringProcess) {
+        // Use the index parameter to splice the array and remove the item at the specified index
+        this.jobReqData.hiringProcess.splice(index, 1);
+        //this.jobReqData.hiringProcess.pop();
+      }
+      // console.log(this.jobReqData.education, 'deletededucation');
+      var deletedhireObj = {
+        "jobId": this.jobReqData?.jobId,
+        "companyId": this.jobReqData?.companyId,
+        "hiringProcess": this.jobReqData.hiringProcess
+      };
+      this.deleteFields(deletedhireObj);
+      //this.updateStageLevels();
     }
-    // console.log(this.jobReqData.education, 'deletededucation');
-    var deletedhireObj = {
-      "jobId": this.jobReqData?.jobId,
-      "companyId": this.jobReqData?.companyId,
-      "hiringProcess": this.jobReqData.hiringProcess
-    };
-    this.deleteFields(deletedhireObj);
-    //this.updateStageLevels();
-  }
 
-  else{
-    this.toastr.warning('Close the currently open edit form before deleting another one.', 'Delete Form Restriction');
-  }
+    else {
+      this.toastr.warning('Close the currently open edit form before deleting another one.', 'Delete Form Restriction');
+    }
 
   }
 
 
   deleteCustomCriteria(index: number) {
 
-    if(!this.addneweducationGroupCriteria && !this.criteriaEditGroup){
-    // Assuming jobReqData.education is your array of education items
-    if (this.jobReqData && this.jobReqData?.eligibilityCriteria) {
-      // Use the index parameter to splice the array and remove the item at the specified index
-      this.jobReqData?.eligibilityCriteria.splice(index, 1);
+    if (!this.addneweducationGroupCriteria && !this.criteriaEditGroup) {
+      // Assuming jobReqData.education is your array of education items
+      if (this.jobReqData && this.jobReqData?.eligibilityCriteria) {
+        // Use the index parameter to splice the array and remove the item at the specified index
+        this.jobReqData?.eligibilityCriteria.splice(index, 1);
+      }
+      //console.log(this.jobReqData?.eligibilityCriteria, 'deltedvalue');
+      var deletedObj = {
+        "jobId": this.jobReqData?.jobId,
+        "companyId": this.jobReqData?.companyId,
+        "eligibilityCriteria": this.jobReqData?.eligibilityCriteria
+      };
+      this.deleteFields(deletedObj);
+      // this.editCustomCriteriaVisible = !this.editCustomCriteriaVisible;
+      // this.addneweducationGroupCriteria = !this.addneweducationGroupCriteria;
+      // this.criteriaEditGroup = !this.criteriaEditGroup;
     }
-    //console.log(this.jobReqData?.eligibilityCriteria, 'deltedvalue');
-    var deletedObj = {
-      "jobId": this.jobReqData?.jobId,
-      "companyId": this.jobReqData?.companyId,
-      "eligibilityCriteria": this.jobReqData?.eligibilityCriteria
-    };
-    this.deleteFields(deletedObj);
-    // this.editCustomCriteriaVisible = !this.editCustomCriteriaVisible;
-    // this.addneweducationGroupCriteria = !this.addneweducationGroupCriteria;
-    // this.criteriaEditGroup = !this.criteriaEditGroup;
-  }
-  else{
-    this.toastr.warning('Close the currently open edit form before deleting another one.', 'Delete Form Restriction');
-  }
+    else {
+      this.toastr.warning('Close the currently open edit form before deleting another one.', 'Delete Form Restriction');
+    }
   }
 
   deleteBacklogs() {
@@ -1224,7 +1289,7 @@ deletedIndex: number;
     this.addneweducationGroup = !this.addneweducationGroup;
     //this.editGroup = !this.editGroup;
   }
-  cancelAddHireItem(index:number){
+  cancelAddHireItem(index: number) {
     this.fetchData();
     this.addnewhiringProcessGroup = !this.addnewhiringProcessGroup;
 
@@ -1271,10 +1336,11 @@ deletedIndex: number;
       var obj = {
         "jobId": this.jobReqData?.jobId,
         "companyId": this.jobReqData?.companyId,
-        "jobRole": this.jobForm.value?.jobRole,
-        "jobTitle": this.jobForm.value?.jobTitle,
-        "jobLocation": this.jobForm.value?.jobLocation,
-        "skillSet": this.jobForm.value?.skillSet,
+        "jobRole": this.jobForm?.value?.jobRole,
+        "jobTitle": this.jobForm?.value?.jobTitle,
+        "jobType": this.jobForm?.value?.jobType,
+        "jobLocation": this.jobForm?.value?.jobLocation,
+        "skillSet": this.jobForm?.value?.skillSet,
         "description": descriptionItems,
         "requirement": requirementItems,
         "lastDatetoApply": ISTDateString
@@ -1340,7 +1406,7 @@ deletedIndex: number;
     this.editGenderMode = !this.editGenderMode;
     this.editGenderModeVisible = !this.editGenderModeVisible;
     this.fetchData();
-   // location.reload();
+    // location.reload();
 
     /*if (this.jobReqData && this.jobReqData?.gender) {
       this.jobReqData?.gender = '';
@@ -1371,7 +1437,7 @@ deletedIndex: number;
       };
       this.updateJobData(saveYearObj);
       this.editCriteriaMode = !this.editCriteriaMode;
-    this.editCriteriaModeVisible = !this.editCriteriaModeVisible;
+      this.editCriteriaModeVisible = !this.editCriteriaModeVisible;
       //console.log(saveYearObj);
     }
     else {
@@ -1391,7 +1457,7 @@ deletedIndex: number;
       this.updateJobData(genderObj);
       //console.log(genderObj);
       this.editGenderMode = !this.editGenderMode;
-    this.editGenderModeVisible = !this.editGenderModeVisible;
+      this.editGenderModeVisible = !this.editGenderModeVisible;
     }
     else {
       this.genderForm.markAllAsTouched();
@@ -1413,7 +1479,7 @@ deletedIndex: number;
       this.updateJobData(infoObj);
       //console.log(infoObj);
       this.editadditionalInfoMode = !this.editadditionalInfoMode;
-    this.editInfoModeVisible = !this.editInfoModeVisible;
+      this.editInfoModeVisible = !this.editInfoModeVisible;
     }
     else {
       this.infoForm.markAllAsTouched();
@@ -1422,7 +1488,7 @@ deletedIndex: number;
   }
 
 
-  canceladditionalInfo(){
+  canceladditionalInfo() {
     this.editadditionalInfoMode = !this.editadditionalInfoMode;
     this.editInfoModeVisible = !this.editInfoModeVisible;
     this.fetchData();
@@ -1441,7 +1507,7 @@ deletedIndex: number;
       this.updateJobData(backlogsObj);
       //console.log(backlogsObj);
       this.editBacklogsMode = !this.editBacklogsMode;
-    this.editBacklogsModeVisible = !this.editBacklogsModeVisible;
+      this.editBacklogsModeVisible = !this.editBacklogsModeVisible;
     }
     else {
       this.backlogsForm.markAllAsTouched();
@@ -1468,8 +1534,8 @@ deletedIndex: number;
         //console.log(criteriaObj, 'criteria values');
         this.updateJobData(criteriaObj);
         this.editCustomCriteriaVisible = !this.editCustomCriteriaVisible;
-    this.addneweducationGroupCriteria = !this.addneweducationGroupCriteria;
-    this.criteriaEditGroup = !this.criteriaEditGroup;
+        this.addneweducationGroupCriteria = !this.addneweducationGroupCriteria;
+        this.criteriaEditGroup = !this.criteriaEditGroup;
       }
 
     }
@@ -1494,8 +1560,8 @@ deletedIndex: number;
       this.updateJobData(criteriaObj);
 
       this.editCustomCriteria = !this.editCustomCriteria;
-    this.editCustomCriteriaVisible = !this.editCustomCriteriaVisible;
-    this.addneweducationGroupCriteria = !this.addneweducationGroupCriteria;
+      this.editCustomCriteriaVisible = !this.editCustomCriteriaVisible;
+      this.addneweducationGroupCriteria = !this.addneweducationGroupCriteria;
 
 
     }
@@ -1506,14 +1572,14 @@ deletedIndex: number;
   }
 
   cancelCustomCriteria(i) {
-   // location.reload();
-   this.fetchData();
-   this.editCustomCriteria = !this.editCustomCriteria;
+    // location.reload();
+    this.fetchData();
+    this.editCustomCriteria = !this.editCustomCriteria;
     this.editCustomCriteriaVisible = !this.editCustomCriteriaVisible;
     this.addneweducationGroupCriteria = !this.addneweducationGroupCriteria;
-    
+
   }
-  cancelnewCustomCriteria(i){
+  cancelnewCustomCriteria(i) {
     //location.reload();
     this.fetchData();
     this.editCustomCriteriaVisible = !this.editCustomCriteriaVisible;
@@ -1538,7 +1604,7 @@ deletedIndex: number;
 
   updateStageLevels() {
     this.stageLevels = Array.from({ length: 20 }, (_, index) => `Stage ${index + 1}`);
-}
+  }
 
 
 
