@@ -797,7 +797,7 @@ export class AddJobsComponent implements OnInit {
       startrangeControl.setValue(null);
       endrangeControl.setValue(null);
     }
-    else if (this.selectedRangeOption === 'range') {
+    else  {
       startrangeControl.setValidators(Validators.required);
       endrangeControl.setValidators(Validators.required);
       startrangeControl.setValue(this.startrange);
