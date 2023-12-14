@@ -533,8 +533,9 @@ input.ng-touched.ng-invalid {
 
 nz-select.ng-touched.ng-invalid {
   border: 1px solid red;
-  padding: 1px 0px 0px 0px!important;
+  padding: 1px 0px 0px 0px !important;
 }
+
 ::ng-deep.angular-editor-textarea {
   min-height: 5rem;
   padding: .5rem .8rem 1rem;
@@ -545,4 +546,3 @@ nz-select.ng-touched.ng-invalid {
   position: relative;
   height: 100px !important;
 }
-

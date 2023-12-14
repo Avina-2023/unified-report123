@@ -413,7 +413,7 @@ export class AddJobsComponent implements OnInit {
     }
   }
 
-updateDisabledGraduations(): void {
+  updateDisabledGraduations(): void {
     this.disabledGraduations = [];
     for (const group of this.formGroups) {
       const graduationValue = group.get('level').value;
@@ -423,13 +423,13 @@ updateDisabledGraduations(): void {
     }
   }
 
-isGraduationDisabled(graduationValue: string, groupIndex: number): boolean {
+  isGraduationDisabled(graduationValue: string, groupIndex: number): boolean {
     // Check if the graduationValue is in the disabledGraduations array
     // Apply the disabled condition only for 'SSLC', 'HSC', and 'Any Graduation'
    return ['SSLC', 'HSC', 'Any Graduation']?.includes(graduationValue) && this.disabledGraduations?.includes(graduationValue);
   }
 
-updateDisabledSpecifications(currentIndex: number): void {
+  updateDisabledSpecifications(currentIndex: number): void {
     this.disabledSpecifications = [];
     for (let i = 0; i < this.formGroups.length; i++) {
       if (i !== currentIndex) {
@@ -450,7 +450,7 @@ updateDisabledSpecifications(currentIndex: number): void {
   //   return this.disabledSpecifications?.includes(option);
   // }
 
-isOptionDisabled(option: string, currentIndex: number): boolean {
+  isOptionDisabled(option: string, currentIndex: number): boolean {
     this.updateDisabledSpecifications(currentIndex);
     let ugLevelCount = 0;
     let ugdegreeCount = 0;
@@ -497,7 +497,7 @@ isOptionDisabled(option: string, currentIndex: number): boolean {
     });
     const currentFormGroup = this.formGroups[currentIndex];
     const currentGroupValue = currentFormGroup.get('level').value;
-	return (option !== 'Any Degree' && this.disabledSpecifications?.includes(option)) || (option == "Any Degree" && hasUGLevelAndNonNullValues && currentGroupValue === 'UG') || (option == "Any Degree" && hasPGLevelAndNonNullValues && currentGroupValue === 'PG') || (option == "Any Degree" && hasPHDLevelAndNonNullValues && currentGroupValue === 'Phd') || (option !== "Any Degree" && hasUGLevelAndNonNullValues && hasUGDegreeAndNonNullValues && currentGroupValue === 'UG') || (option !== "Any Degree" && hasPGLevelAndNonNullValues && hasPGDegreeAndNonNullValues && currentGroupValue === 'PG') || (option !== "Any Degree" && hasPHDLevelAndNonNullValues && hasPHDDegreeAndNonNullValues && currentGroupValue === 'Phd');
+	  return (option !== 'Any Degree' && this.disabledSpecifications?.includes(option)) || (option == "Any Degree" && hasUGLevelAndNonNullValues && currentGroupValue === 'UG') || (option == "Any Degree" && hasPGLevelAndNonNullValues && currentGroupValue === 'PG') || (option == "Any Degree" && hasPHDLevelAndNonNullValues && currentGroupValue === 'Phd') || (option !== "Any Degree" && hasUGLevelAndNonNullValues && hasUGDegreeAndNonNullValues && currentGroupValue === 'UG') || (option !== "Any Degree" && hasPGLevelAndNonNullValues && hasPGDegreeAndNonNullValues && currentGroupValue === 'PG') || (option !== "Any Degree" && hasPHDLevelAndNonNullValues && hasPHDDegreeAndNonNullValues && currentGroupValue === 'Phd');
 
   }
 
@@ -548,7 +548,7 @@ isOptionDisabled(option: string, currentIndex: number): boolean {
 //   return selectedLevel === 'UG' && selectedSpecification === 'Any Degree / Graduation';
 // }
 
-degreeOptionChange(selectedGraduation: string, index: number) {
+  degreeOptionChange(selectedGraduation: string, index: number) {
     const currentFormGroup = this.formGroups[index];
     console.log(currentFormGroup.get('level').value);
     if (currentFormGroup.get('level').value === 'SSLC' || currentFormGroup.get('level').value === 'HSC' || currentFormGroup.get('level').value === 'Any Graduation') {
@@ -591,7 +591,7 @@ degreeOptionChange(selectedGraduation: string, index: number) {
     }
   }
 
-  onGraduationChange(selectedGraduation: string, index: number) {
+ onGraduationChange(selectedGraduation: string, index: number) {
     this.updateDisabledGraduations();
     const currentFormGroup = this.formGroups[index];
     // Clear values in the current form group
@@ -796,7 +796,8 @@ degreeOptionChange(selectedGraduation: string, index: number) {
       endrangeControl.clearValidators();
       startrangeControl.setValue(null);
       endrangeControl.setValue(null);
-    } else if (this.selectedRangeOption === 'range') {
+    }
+    else if (this.selectedRangeOption === 'range') {
       startrangeControl.setValidators(Validators.required);
       endrangeControl.setValidators(Validators.required);
       startrangeControl.setValue(this.startrange);
@@ -819,7 +820,7 @@ degreeOptionChange(selectedGraduation: string, index: number) {
    if (!this.addjobsForm.touched) {
     this.toastr.warning('Please fill in all required fields.');
     return;
-  }
+   }
 
     const areEducationGroupsValid = this.formGroups.every(formGroup => formGroup.valid);
 
@@ -887,8 +888,8 @@ degreeOptionChange(selectedGraduation: string, index: number) {
         // console.log(data)
         if (data.success == false) {
           this.toastr.warning(data.message);
-
-        } else {
+        }
+        else {
           this.toastr.success(data.message);
           const popup = this.dialog.open(this.jobsavedtemplate, {
             width: '400px',
@@ -919,24 +920,24 @@ degreeOptionChange(selectedGraduation: string, index: number) {
   //     }
 
   clearForm() {
-  if (this.addjobsForm.dirty) {
+    if (this.addjobsForm.dirty) {
     // Display a success message for form cleared
     this.toastr.success('Form cleared successfully.');
-  } else if (!this.formTouched) {
+    }
+    else if (!this.formTouched) {
     // Display a warning message if the form hasn't been touched
     this.toastr.warning('Please interact with the form before clearing.');
     return;
+    }
+   // Reset the form
+   this.addjobsForm.reset();
   }
 
-  // Reset the form
-  this.addjobsForm.reset();
-}
-
-
-  getMinDate(): string {
-  const today = new Date();
-  today.setHours(0, 0, 0, 0); // Set hours, minutes, seconds, and milliseconds to 0
-  today.setDate(today.getDate() + 1);
-  return today.toISOString().split('T')[0];
+ getMinDate(): string {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0); // Set hours, minutes, seconds, and milliseconds to 0
+    today.setDate(today.getDate() + 1);
+    return today.toISOString().split('T')[0];
  }
-  }
+
+}
