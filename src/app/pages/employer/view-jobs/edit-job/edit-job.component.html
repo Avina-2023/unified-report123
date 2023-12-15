@@ -140,7 +140,7 @@
           <div style="width: 100%;">
             <div class="inputContainer" style="display: flex; align-items: center;">
               <label style="padding: 20px 0px 20px 15px;">Job Location</label>
-              <nz-select style="width: 90%;padding: 0px 0px 0px 6px;" nzMode="tags" nzAllowClear nzShowSearch
+              <nz-select style="width: 90%;padding: 0px 0px 0px 6px;" nzMode="multiple" nzAllowClear nzShowSearch
                 nzPlaceHolder="-- Select Job Location (Multiple Select) --" formControlName="jobLocation"
                 (input)="locationSearch($event)" class="custom-nz-select my-custom-nz-select">
                 <nz-option *ngFor="let location of JobLocations" [nzLabel]="location" [nzValue]="location"></nz-option>
@@ -311,7 +311,7 @@
           <div style="width: 100%;">
             <div class="inputContainer overflow_scroll" style="display: flex; align-items: center;">
               <label style="padding: 20px 0px 20px 15px;">Key Skills</label>
-              <nz-select style="width: 83%; padding: 3px 0px 0px 0px;" nzMode="tags" nzAllowClear nzShowSearch
+              <nz-select style="width: 83%; padding: 3px 0px 0px 0px;" nzMode="multiple" nzAllowClear nzShowSearch
                 nzPlaceHolder="-- Select Skill Set (Multiple Select) --" formControlName="skillSet"
                 (input)="handleSearch($event)" class="custom-nz-select my-custom-nz-select"
                 [ngClass]="{'error-border': addjobsForm.get('skillSet').hasError('required') && addjobsForm.get('skillSet').touched}">
@@ -398,7 +398,7 @@
               <label style="margin: 0px 0px 27% 0px;padding: 0px 0px 0px 15px;">Additional Information</label>
               <mat-form-field appearance="outline" style="width: 90%;padding: 0px 0px 0px 6px;">
                 <angular-editor  [config]="config"
-                  formControlName="additionalInformation" placeholder="Enter additionalInformation "
+                  formControlName="additionalInformation" placeholder="Enter Additional Information "
                   id="additionalInformation"></angular-editor>
                 <textarea type="textarea" maxlength="250" formControlName="additionalInformation"
                   style="resize: none;display: none;" class="descstyle" matInput
