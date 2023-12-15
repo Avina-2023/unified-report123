@@ -142,6 +142,8 @@ export class EditJobComponent implements OnInit {
     let localjobData = JSON.parse(this.appconfig.getLocalStorage('openJobData'));
     console.log(localjobData, 'console localjobdata');
     this.jobdata = this.appconfig.jobData ? this.appconfig.jobData : localjobData;
+    this.JobLocations.push(...this.jobdata?.jobLocation);
+    this.newSkill.push(...this.jobdata?.skillSet);
     this.selectedRangeOption = this.jobdata.ctcType;
     //console.log(this.selectedRangeOption, ' selected testctc');
     this.companylist();
