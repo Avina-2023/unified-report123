@@ -74,6 +74,16 @@ nz-select.ng-touched.ng-invalid {
   border: 1px solid #ced4da !important;
 }
 
+
+::ng-deep .angular-editor-textarea ul li {
+  list-style-type: disc!important;
+}
+
+::ng-deep .angular-editor-textarea{
+padding: 5px 20px!important;
+}
+
+
 input.ng-touched.ng-invalid {
   border: 1px solid red;
 }
@@ -306,6 +316,17 @@ nz-select {
   align-items: center;
   text-align: center;
 }
+.edit-disabled{
+  cursor: not-allowed;
+    color: #1B4E9B;
+}
+.company_img_bg{
+  background-size: contain!important;
+  background-repeat: no-repeat!important;
+  max-width: 150px!important;
+  margin: 0 auto!important;
+  background-position: center!important;
+}
 
 .logo {
   width: 150px;
@@ -465,9 +486,9 @@ nz-select {
 }
 
 .label {
-  width: 200px;
+  width: 30%;
   padding-left: 15px;
-  min-width: 200px;
+  min-width: 30%;
 }
 
 .label-text {
