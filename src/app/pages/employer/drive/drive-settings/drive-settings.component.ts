@@ -282,7 +282,7 @@ export class DriveSettingsComponent implements OnInit {
 
   //Multiselect Dropdown
   size: NzSelectSizeType = 'default';
-  isCTCOptionAvailable : boolean;
+  isCTCOptionAvailable: boolean;
   jobDetailsdata: any;
   valueone: any;
   jobReqData: any;
@@ -342,15 +342,15 @@ export class DriveSettingsComponent implements OnInit {
     for (let i = currentYear; i >= currentYear - 10; i--) {
       this.yearPassed.push(i.toString());
     }
-    
+
   }
 
   // isObjectEmpty(obj: any): boolean {
   //   return Object?.keys(obj)?.length === 0;
   // }
 
-  
-  
+
+
 
   isObjectEmpty(obj: any): boolean {
     return obj === undefined || obj === null || Object.keys(obj).length === 0;
@@ -477,12 +477,12 @@ export class DriveSettingsComponent implements OnInit {
     console.log(this.isCTCOptionAvailable, 'ctcoptionavail');
 
     this.locations?.push(...this.jobReqData?.jobLocation);
-          console.log(this.locations, 'totalLocation');
+    console.log(this.locations, 'totalLocation');
 
-          //push the api skill value to the default locations array
-          this.listOfOption?.push(...this.jobReqData?.skillSet);
-          console.log(this.listOfOption, 'totalOptions');
-          
+    //push the api skill value to the default locations array
+    this.listOfOption?.push(...this.jobReqData?.skillSet);
+    console.log(this.listOfOption, 'totalOptions');
+
   }
 
 
@@ -942,8 +942,8 @@ export class DriveSettingsComponent implements OnInit {
     this.http.getCities(data).subscribe((res: any) => {
       if (res.success) {
         this.locations = res.data.map(item => item.city);
-        
-        
+
+
         //console.log(this.locations, 'locations');
 
         //this.locations = ['Select', ...res.data.map(item => item.city)];
@@ -1003,8 +1003,8 @@ export class DriveSettingsComponent implements OnInit {
           //push the api skill value to the default locations array
           this.listOfOption?.push(...this.jobReqData?.skillSet);
           console.log(this.listOfOption, 'totalOptions');
-          
-          
+
+
           this.selectedRangeOption = this.jobReqData?.ctcType;
           if (this.selectedRangeOption === 'range') {
             //console.log(this.jobReqData?.ctc , 'ethics');

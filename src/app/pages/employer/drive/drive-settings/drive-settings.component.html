@@ -19,7 +19,7 @@
             <div class="left-scroll">
                 <div class="left-scroll-container">
                     <div>
-                        <div class="left-box1 company_img_bg" style="background: url({{jobReqData?.companyLogo}});"> 
+                        <div class="left-box1 company_img_bg" style="background: url({{jobReqData?.companyLogo}});">
                         </div>
 
                         <div class="left-box-border"></div>
@@ -86,7 +86,8 @@
                                 Job Profile Details
                             </div>
                         </div>
-                        <div class="edit-icon" (click)="toggleEditMode()" *ngIf="editModeVisible && jobReqData?.status === 'Pending'">
+                        <div class="edit-icon" (click)="toggleEditMode()"
+                            *ngIf="editModeVisible && jobReqData?.status === 'Pending'">
                             <mat-icon>create</mat-icon>Edit
                         </div>
                         <!-- <div class="edit-disabled" *ngIf="editModeVisible && jobReqData?.status !== 'Pending'">
@@ -379,7 +380,8 @@
 
                             <div class="label-value custom-form flex_div" *ngIf="editMode">
                                 <input placeholder="MM/DD/YYYY" [matDatepicker]="picker"
-                                    formControlName="lastDatetoApply" class="lastDatetoApply inputForm" readonly [min]="getCurrentDate()">
+                                    formControlName="lastDatetoApply" class="lastDatetoApply inputForm" readonly
+                                    [min]="getCurrentDate()">
                                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                                 <mat-datepicker #picker></mat-datepicker>
                                 <div *ngIf="jobForm.get('lastDatetoApply').hasError('required') && jobForm.get('lastDatetoApply').touched"
@@ -450,7 +452,7 @@
                                             (click)="toggleEditEducation(educationItem, i)">
                                             <mat-icon>create</mat-icon>Edit
                                         </div>
-                                        <!-- <div class="edit-disabled" *ngif="jobReqData?.status != 'Pending'" style="text-align:center;">
+                                        <!-- <div class="edit-disabled" *ngIf="jobReqData?.status != 'Pending'" style="text-align:center;">
                                             <mat-icon>create</mat-icon>Edit
                                         </div> -->
                                     </div>
@@ -537,8 +539,8 @@
                         </div>
                     </div>
 
-                    <div *ngIf="!addneweducationGroup && !editGroup && jobReqData?.status === 'Pending'" class="add_more_text"
-                        (click)="addEducationGroup()">
+                    <div *ngIf="!addneweducationGroup && !editGroup && jobReqData?.status === 'Pending'"
+                        class="add_more_text" (click)="addEducationGroup()">
                         {{jobReqData?.education?.length == 0 ? "Add Education" : "Add
                         More"}}
                     </div>
@@ -647,7 +649,8 @@
                                             Qualification
                                         </div>
 
-                                        <div class="flex_div flx_center submit_btn pd-tp-10" style="float:right;" *ngif="jobReqData?.status === 'Pending'">
+                                        <div class="flex_div flx_center submit_btn pd-tp-10" style="float:right;"
+                                            *ngIf="jobReqData?.status === 'Pending'">
                                             <div class="mg-5"><button type="submit" class="btn btn-primary save_btn"
                                                     (click)="toggleeditCustomCriteria(eligibilityItem, i)">Edit</button>
                                             </div>
@@ -869,7 +872,8 @@
 
 
                                 </div>
-                                <div class="flex_div flx_center submit_btn pd-tp-10" style="float:right;" *ngif="jobReqData?.status === 'Pending'">
+                                <div class="flex_div flx_center submit_btn pd-tp-10" style="float:right;"
+                                    *ngIf="jobReqData?.status === 'Pending'">
                                     <div class="mg-5"><button type="submit" class="btn btn-primary save_btn"
                                             (click)="toggleBacklogsEditMode()">Edit</button>
                                     </div>
@@ -925,7 +929,8 @@
                                     Only <span class="text-capitalize">{{ jobReqData?.gender == "others" ? "Transgender"
                                         : jobReqData?.gender }}</span> Candidates are eligible.
                                 </div>
-                                <div class="flex_div flx_center submit_btn pd-tp-10" style="float:right;" *ngif="jobReqData?.status === 'Pending'">
+                                <div class="flex_div flx_center submit_btn pd-tp-10" style="float:right;"
+                                    *ngIf="jobReqData?.status === 'Pending'">
                                     <div class="mg-5"><button type="submit" class="btn btn-primary save_btn"
                                             (click)="toggleGenderEditMode()">Edit</button>
                                     </div>
@@ -1027,8 +1032,8 @@
                                     <div>{{hiringItem.date | date:'MMM dd, yyyy h:mm a'}} - {{hiringItem.venue}} </div>
 
                                 </div>
-                                <div class="separator_line_width" *ngif="jobReqData?.status === 'Pending'"></div>
-                                <div class="edu_section width-20" *ngif="jobReqData?.status === 'Pending'">
+                                <div class="separator_line_width" *ngIf="jobReqData?.status === 'Pending'"></div>
+                                <div class="edu_section width-20" *ngIf="jobReqData?.status === 'Pending'">
                                     <div class="pd-5">
                                         <div style="cursor: pointer;color: #1B4E9B;text-align:center;"
                                             (click)="toggleeditHiringProcess(hiringItem, i)">
@@ -1254,7 +1259,8 @@
                                     [innerHTML]="jobReqData?.additionalInformation[0]?.note || jobReqData?.additionalInformation?.note">
                                 </div>
 
-                                <div class="flex_div flx_center submit_btn pd-tp-10" style="float:right;" *ngif="jobReqData?.status === 'Pending'">
+                                <div class="flex_div flx_center submit_btn pd-tp-10" style="float:right;"
+                                    *ngIf="jobReqData?.status === 'Pending'">
                                     <div class="mg-5"><button type="submit" class="btn btn-primary save_btn"
                                             (click)="toggleInfoEditMode()">Edit</button>
                                     </div>
