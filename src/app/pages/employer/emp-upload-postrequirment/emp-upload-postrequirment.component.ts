@@ -137,7 +137,7 @@ export class EmpUploadPostrequirmentComponent implements OnInit {
   multipleValue = [];
   yearofPassingValue = [];
   multipleSpecialization = [];
-
+  formTouched: boolean = false;
   //Rich Text Editor
   htmlContent = '';
   htmlContent_1 = '';
@@ -148,7 +148,7 @@ export class EmpUploadPostrequirmentComponent implements OnInit {
     spellcheck: true,
     minHeight: '100px',
     maxHeight: '100px',
-    placeholder: 'Type here...',
+   // placeholder: 'Type here...',
     translate: 'no',
     sanitize: false,
     toolbarPosition: 'top',
@@ -276,7 +276,8 @@ export class EmpUploadPostrequirmentComponent implements OnInit {
       jobLocation: [this.multipleLocation, Validators.required],
       jobType: ['', Validators.required],
       description: ['', Validators.required],
-      requirement: ['', Validators.required],
+      // requirement: ['', Validators.required],
+      requirement: [''],
       ctcOption: ['', Validators.required],
       fixed: [''],
       startrange: [''],
@@ -287,10 +288,8 @@ export class EmpUploadPostrequirmentComponent implements OnInit {
       yearofPassout: [this.yearofPassingValue, Validators.required],
       educationGroups: this.fb.array([this.createEducationGroup()])
     });
-    this.formGroups = this.jobForm.get('educationGroups')['controls'];
+    this.formGroups = this.jobForm.get('educationGroups')['controls'];  
   }
-
-
 
 
   companyDetails() {
@@ -932,14 +931,18 @@ export class EmpUploadPostrequirmentComponent implements OnInit {
   }
 
   clearForm() {
+    if (this.jobForm.dirty) {
+      // Display a success message for form cleared
+      this.toastr.success('Form cleared successfully.');
+    } else if (!this.formTouched) {
+      // Display a warning message if the form hasn't been touched
+      this.toastr.warning('Please interact with the form before clearing.');
+      return;
+    }
     const ctcOptionValue = this.jobForm.get('ctcOption').value;
-    // Reset the entire form
     this.jobForm.reset();
     this.formGroups.forEach(formGroup => formGroup.reset());
-    // Set the ctcOption value back to the original value
     this.jobForm.get('ctcOption').setValue(ctcOptionValue);
-    //this.jobForm.reset();
-    //this.formGroups.forEach(formGroup => formGroup.reset());
   }
 
 }

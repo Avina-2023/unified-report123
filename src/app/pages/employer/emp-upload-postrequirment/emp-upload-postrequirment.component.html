@@ -67,17 +67,17 @@
     <form [formGroup]="jobForm" (ngSubmit)="onSubmit()">
       <div class="form-group">
         <label for="jobRole">Job Role<span class="mandatory_symbl">*</span></label>
-        <input type="text" id="jobRole" formControlName="jobRole" class="form-control" placeholder="Software Developer">
+        <input type="text" id="jobRole" formControlName="jobRole" class="form-control" placeholder="Enter Job Role">
         <div *ngIf="jobForm.get('jobRole').hasError('required') && jobForm.get('jobRole').touched" class="text-danger">
-          Job Role is required.
+          Job Role is Required.
         </div>
       </div>
       <div class="form-group">
         <label for="jobTitle">Job Title<span class="mandatory_symbl">*</span></label>
-        <input type="text" id="jobTitle" formControlName="jobTitle" class="form-control" placeholder="Associate">
+        <input type="text" id="jobTitle" formControlName="jobTitle" class="form-control" placeholder="Enter Job Title">
         <div *ngIf="jobForm.get('jobTitle').hasError('required') && jobForm.get('jobTitle').touched"
           class="text-danger">
-          Job Title is required.
+          Job Title is Required.
         </div>
       </div>
       <div class="flex_div width-100 mg-r-10">
@@ -85,26 +85,26 @@
           <label for="jobLocation">Job Location<span class="mandatory_symbl">*</span></label>
           <!-- <input type="text" id="jobLocation" formControlName="jobLocation" class="form-control"
             placeholder="Chennai, Bangalore"> -->
-          <nz-select nzShowSearch nzAllowClear nzMode="multiple" nzPlaceHolder="Chennai, Bangalore"
+          <nz-select nzShowSearch nzAllowClear nzMode="multiple" nzPlaceHolder=" --Select Job Location (Multiple Select)--"
             [(ngModel)]="multipleLocation" formControlName="jobLocation" (input)="locationSearch($event)">
             <nz-option *ngFor="let option of locations" [nzLabel]="option" [nzValue]="option"></nz-option>
           </nz-select>
           <div *ngIf="jobForm.get('jobLocation').hasError('required') && jobForm.get('jobLocation').touched"
             class="text-danger">
-            Job Location is required.
+            Job Location is Required.
           </div>
         </div>
 
         <div class="form-group width-50 mg-l-10">
           <label for="jobType">Job Type<span class="mandatory_symbl">*</span></label>
-          <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Job Type" [(ngModel)]="jobType" formControlName="jobType">
+          <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Select Job Type" [(ngModel)]="jobType" formControlName="jobType">
             <nz-option nzLabel="Full Time" nzValue="Full Time"></nz-option>
             <nz-option nzLabel="Part Time" nzValue="Part Time"></nz-option>
           </nz-select>
 
           <div *ngIf="jobForm.get('jobType').hasError('required') && jobForm.get('jobType').touched"
             class="text-danger">
-            Job Type is required.
+            Job Type is Required.
           </div>
         </div>
       </div>
@@ -119,7 +119,7 @@
                 [nzDisabled]="isGraduationDisabled(option.education, i)"></nz-option>
             </nz-select>
             <div *ngIf="group.get('level').hasError('required') && group.get('level').touched" class="text-danger">
-              Graduation Field Required.
+              Graduation Field is Required.
             </div>
           </div>
           <div class="mg-l-10 width-30">
@@ -173,7 +173,7 @@
             <div *ngIf="selectedRangeOption === 'range'" style="width:-webkit-fill-available;">
               <div class="flex_div flx_evenly flx_center">
                 <div><input type="number" id="numberInput" formControlName="startrange" class="form-control"
-                    placeholder="CTC Start Range (numeric only)">
+                    placeholder="CTC (Numeric)">
                   <div *ngIf="jobForm.get('startrange').hasError('required') && jobForm.get('startrange').touched"
                     class="text-danger">
                     Start Range of CTC required.
@@ -181,7 +181,7 @@
                 </div>
                 <div>-</div>
                 <div><input type="number" id="numberInput" formControlName="endrange" class="form-control"
-                    placeholder="CTC End Range (numeric only)">
+                    placeholder="CTC (Numeric)">
                   <div *ngIf="jobForm.get('endrange').hasError('required') && jobForm.get('endrange').touched"
                     class="text-danger">
                     End Range of CTC required.
@@ -199,7 +199,7 @@
               placeholder="Stipend (numeric only)">
             <div *ngIf="jobForm.get('stipend').hasError('required') && jobForm.get('stipend').touched"
               class="text-danger">
-              Stipend is required
+              Stipend is Required
             </div>
           </div>
         </div>
@@ -207,7 +207,7 @@
         <div class="form-group width-50 mg-l-10">
           <label for="yearofPassing">Year of Passing <span class="mandatory_symbl">*</span></label>
           <nz-select [(ngModel)]="yearofPassingValue" [nzSize]="large" nzMode="multiple"
-            nzPlaceHolder="Select the Year of Passing" class="yearofPassing" formControlName="yearofPassout"
+            nzPlaceHolder="--Select Year of Passing (Multiple Select)--" class="yearofPassing" formControlName="yearofPassout"
             nzAllowClear>
             <nz-option *ngFor="let item of yearofPassout" [nzLabel]="item" [nzValue]="item"></nz-option>
           </nz-select>
@@ -218,9 +218,9 @@
         </div>
       </div>
       <div class="form-group">
-        <label for="keySkills">Key skills <span class="mandatory_symbl">*</span></label>
+        <label for="keySkills">Key Skills <span class="mandatory_symbl">*</span></label>
         <nz-select nzAllowClear [(ngModel)]="multipleValue" [nzSize]="default" nzMode="multiple"
-          nzPlaceHolder="Select the Skills" class="keySkills" formControlName="skillSet" (input)="handleSearch($event)">
+          nzPlaceHolder="--Select Skill Set (Multiple Select)--" class="keySkills" formControlName="skillSet" (input)="handleSearch($event)">
           <nz-option *ngFor="let option of listOfOption" [nzLabel]="option" [nzValue]="option"></nz-option>
         </nz-select>
         <div *ngIf="jobForm.get('skillSet').hasError('required') && jobForm.get('skillSet').touched"
@@ -231,27 +231,27 @@
 
       <div class="form-group">
         <label for="jobDescription">About the Job / Job Description<span class="mandatory_symbl">*</span></label>
-        <angular-editor [(ngModel)]="htmlContent" [property]='binding' [config]="config" formControlName="description"
+        <angular-editor placeholder="Enter Job Description" [(ngModel)]="htmlContent" [property]='binding' [config]="config" formControlName="description"
           id="jobDescription"></angular-editor>
         <div *ngIf="jobForm.get('description').hasError('required') && jobForm.get('description').touched"
           class="text-danger">
-          Job Description Required.
+          Job Description is Required.
         </div>
       </div>
       <div class="form-group">
         <label for="jobRequirements">Job Requirements</label>
-        <angular-editor [(ngModel)]="htmlContent_1" [config]="config" formControlName="requirement"
+        <angular-editor placeholder="Enter Job Requirements" [(ngModel)]="htmlContent_1" [config]="config" formControlName="requirement"
           id="jobRequirements"></angular-editor>
         <div *ngIf="jobForm.get('requirement').hasError('required') && jobForm.get('requirement').touched"
           class="text-danger">
-          Job Requirement field Required.
+          Job Requirement is Required.
         </div>
       </div>
 
-      <label for="lastDatetoApply">Last Date to Apply</label>
+      <label for="lastDatetoApply">Last Date to Apply</label><span class="mandatory_symbl">*</span>
       <div class="form-group">
         <mat-form-field style="width: 50%;">
-          <input matInput placeholder="MM/DD/YYYY" [matDatepicker]="picker" formControlName="lastDatetoApply"
+          <input matInput  placeholder="MM/DD/YYYY" [matDatepicker]="picker" formControlName="lastDatetoApply"
             class="lastDatetoApply" [min]="getCurrentDate()" readonly>
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
@@ -259,7 +259,7 @@
         <div style="margin-top: -15px;"
           *ngIf="jobForm.get('lastDatetoApply').hasError('required') && jobForm.get('lastDatetoApply').touched"
           class="text-danger">
-          Last Date to Apply Required.
+          Last Date to Apply is Required.
         </div>
       </div>
       <div class="flex_div flx_center submit_btn">

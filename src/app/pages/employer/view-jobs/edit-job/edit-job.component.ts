@@ -38,9 +38,9 @@ export class EditJobComponent implements OnInit {
   skillSet: any;
   jobLocation: any;
   description: any;
-  // htmlContent_description = '';
-  // htmlContent_requirement = '';
-  // htmlContent_information = '';
+  htmlContent_description = '';
+  htmlContent_requirement = '';
+  htmlContent_information = '';
   employerLogo = '';
   formBuilder: any;
   errorMsgforCmpnyLogo = '';
@@ -130,7 +130,8 @@ export class EditJobComponent implements OnInit {
     private apiService: ApiService,
     private dialog: MatDialog,
     private toastr: ToastrService,
-  ) {
+  )
+  {
     const currentYear = new Date().getFullYear() - 1;
     for (let i = currentYear; i >= currentYear - 10; i--) {
       this.YearofPassing.push(i.toString());
@@ -141,6 +142,8 @@ export class EditJobComponent implements OnInit {
     let localjobData = JSON.parse(this.appconfig.getLocalStorage('openJobData'));
     console.log(localjobData, 'console localjobdata');
     this.jobdata = this.appconfig.jobData ? this.appconfig.jobData : localjobData;
+    this.JobLocations.push(...this.jobdata?.jobLocation);
+    this.newSkill.push(...this.jobdata?.skillSet);
     this.selectedRangeOption = this.jobdata.ctcType;
     //console.log(this.selectedRangeOption, ' selected testctc');
     this.companylist();
@@ -167,10 +170,6 @@ export class EditJobComponent implements OnInit {
 
     this.patchFormValues();
   }
-
-
-
-
 
   patchFormValues() {
     // setTimeout(() => {
@@ -222,8 +221,6 @@ export class EditJobComponent implements OnInit {
         this.patchEducation(educationItem, i);
         educationGroupsArray.push(educationGroup);
       }
-
-
     }
 
     if (this.jobdata?.approveStatus === 'approved') {
@@ -243,11 +240,10 @@ export class EditJobComponent implements OnInit {
     // }, 1000);
   }
 
-
-  compareFn(c1: any, c2: any): boolean { return c1 && c2 ? c1.companyId === c2.companyId : c1 === c2; }
-  // get getskillSet() {
-  //     return this.addjobsForm.get([this.skillSet]) as FormArray;
-  //   }
+   //compareFn(c1: any, c2: any): boolean { return c1 && c2 ? c1.companyId === c2.companyId : c1 === c2; }
+   // get getskillSet() {
+   //     return this.addjobsForm.get([this.skillSet]) as FormArray;
+   //   }
   onMyValueChange(event) {
     console.log(event, 'eventconsole');
   }
@@ -370,14 +366,12 @@ export class EditJobComponent implements OnInit {
     if (lastGroup.valid) {
       this.formGroups.push(this.createEducationGroup());
       this.updateDisabledGraduations();
-    } else {
+    }
+    else {
       lastGroup.markAllAsTouched();
       this.toastr.warning('Please fill in all required fields in the last added group.', 'Form Validation Error');
     }
   }
-
-
-
 
   removeEducationGroup(index: number): void {
     // if (this.formGroups.length > 1 && index > 0) {
@@ -398,7 +392,6 @@ export class EditJobComponent implements OnInit {
       this.formGroups.splice(index, 1);
       this.addjobsForm.setControl('educationGroups', this.fb.array(this.formGroups));
     }
-
 
   }
 
@@ -486,7 +479,7 @@ export class EditJobComponent implements OnInit {
     });
     const currentFormGroup = this.formGroups[currentIndex];
     const currentGroupValue = currentFormGroup.get('level').value;
-	return (option !== 'Any Degree' && this.disabledSpecifications?.includes(option)) || (option == "Any Degree" && hasUGLevelAndNonNullValues && currentGroupValue === 'UG') || (option == "Any Degree" && hasPGLevelAndNonNullValues && currentGroupValue === 'PG') || (option == "Any Degree" && hasPHDLevelAndNonNullValues && currentGroupValue === 'Phd') || (option !== "Any Degree" && hasUGLevelAndNonNullValues && hasUGDegreeAndNonNullValues && currentGroupValue === 'UG') || (option !== "Any Degree" && hasPGLevelAndNonNullValues && hasPGDegreeAndNonNullValues && currentGroupValue === 'PG') || (option !== "Any Degree" && hasPHDLevelAndNonNullValues && hasPHDDegreeAndNonNullValues && currentGroupValue === 'Phd');
+	  return (option !== 'Any Degree' && this.disabledSpecifications?.includes(option)) || (option == "Any Degree" && hasUGLevelAndNonNullValues && currentGroupValue === 'UG') || (option == "Any Degree" && hasPGLevelAndNonNullValues && currentGroupValue === 'PG') || (option == "Any Degree" && hasPHDLevelAndNonNullValues && currentGroupValue === 'Phd') || (option !== "Any Degree" && hasUGLevelAndNonNullValues && hasUGDegreeAndNonNullValues && currentGroupValue === 'UG') || (option !== "Any Degree" && hasPGLevelAndNonNullValues && hasPGDegreeAndNonNullValues && currentGroupValue === 'PG') || (option !== "Any Degree" && hasPHDLevelAndNonNullValues && hasPHDDegreeAndNonNullValues && currentGroupValue === 'Phd');
 
   }
 
@@ -610,14 +603,16 @@ export class EditJobComponent implements OnInit {
     if (selectedGraduation === 'Any Graduation' || selectedGraduation === 'SSLC' || selectedGraduation === 'HSC') {
       currentFormGroup.get('discipline').clearValidators();
       currentFormGroup.get('discipline').updateValueAndValidity();
-    } else {
+    }
+    else {
       currentFormGroup.get('discipline').setValidators(Validators.required);
       currentFormGroup.get('discipline').updateValueAndValidity();
     }
     if (selectedGraduation === 'UG' || selectedGraduation === 'PG' || selectedGraduation === 'Diploma') {
       currentFormGroup.get('specification').setValidators(Validators.required);
       currentFormGroup.get('specification').updateValueAndValidity();
-    } else {
+    }
+    else {
       currentFormGroup.get('specification').clearValidators();
       currentFormGroup.get('specification').updateValueAndValidity();
     }
@@ -730,7 +725,8 @@ export class EditJobComponent implements OnInit {
 
     if (currentFormGroup.get('level').value === 'UG' || currentFormGroup.get('level').value === 'PG' || currentFormGroup.get('level').value === 'Phd' || currentFormGroup.get('level').value === 'Diploma') {
       return false; // Do not apply disabled
-    } else {
+    }
+    else {
       return true; // Apply disabled
     }
   }
@@ -849,7 +845,8 @@ export class EditJobComponent implements OnInit {
       endrangeControl.clearValidators();
       startrangeControl.setValue(null);
       endrangeControl.setValue(null);
-    } else if (this.selectedRangeOption === 'range') {
+    }
+    else {
       startrangeControl.setValidators(Validators.required);
       endrangeControl.setValidators(Validators.required);
       // startrangeControl.setValue(this.startrange);
@@ -933,7 +930,8 @@ export class EditJobComponent implements OnInit {
         // console.log(data)
         if (data.success === false) {
           this.toastr.warning(data.message);
-        } else {
+        }
+        else {
           this.toastr.success(data.message);
           this.toastr.success(data.message);
           const popup = this.dialog.open(this.jobsavedtemplate, {
@@ -964,4 +962,11 @@ export class EditJobComponent implements OnInit {
     this.appconfig.routeNavigation('/auth/partner/viewopenjobs');
     location.reload();
   }
+  getMinDate(): string {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0); // Set hours, minutes, seconds, and milliseconds to 0
+    today.setDate(today.getDate() + 1);
+    return today.toISOString().split('T')[0];
+  }
+
 }

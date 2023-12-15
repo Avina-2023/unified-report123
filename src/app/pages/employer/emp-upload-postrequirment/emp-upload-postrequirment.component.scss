@@ -391,6 +391,9 @@ nz-select {
 nz-select.ng-touched.ng-invalid {
   border: 1px solid red;
 }
+::ng-deep mat-form-field.ng-touched.ng-invalid .mat-form-field-flex{
+  border: 1px solid red!important;
+}
 
 
 ::ng-deep .ng-touched.ng-valid .ant-select-selector {
@@ -404,6 +407,21 @@ input.ng-touched.ng-invalid {
 .lastDatetoApply {
   border: none !important;
 }
+
+::ng-deep .angular-editor-textarea ul li {
+  list-style-type: disc!important;
+}
+
+::ng-deep .angular-editor-textarea{
+padding: 5px 20px!important;
+}
+
+.form-group{
+::ng-deep .mat-form-field.mat-form-field-invalid .mat-form-field-label {
+  color: #9da3a8!important;
+}
+}
+
 
 ::ng-deep .ng-invalid .ng-touched .angular-editor-textarea {
   border: 1px solid red !important;

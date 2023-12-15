@@ -192,8 +192,8 @@
     <div>
       <div class="main-wrapper">
         <div class="logoHeadleft">
-          <div class="companylogo">
-            <img class="avatar" [src]="productionUrl?one.companyLogo+blobToken:one.companyLogo" />
+          <div class="companylogo" style="background: url({{productionUrl?one.companyLogo+blobToken:one.companyLogo}});">
+            <!-- <img class="avatar" [src]="productionUrl?one.companyLogo+blobToken:one.companyLogo" /> -->
           </div>
           <div class="designation">
             <div>{{ one.jobRole}}</div>

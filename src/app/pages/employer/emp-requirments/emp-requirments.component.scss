@@ -276,6 +276,13 @@ display: none;
 }
 .companylogo {
   width: 20%;
+  background-size: cover!important;
+    background-repeat: no-repeat!important;
+    background-position: center!important;
+    height: -webkit-fill-available;
+    border: 1px solid #dddddd;
+    margin: 0px 20px;
+    border-radius: 5px;
 }
 .designation {
   width: 80%;
@@ -1005,6 +1012,13 @@ display: none;
   }
   .companylogo {
     width: 20%;
+    background-size: cover!important;
+    background-repeat: no-repeat!important;
+    background-position: center!important;
+    height: -webkit-fill-available;
+    border: 1px solid #dddddd;
+    margin: 0px 20px;
+    border-radius: 5px;
   }
   .designation {
     width: 80%;
