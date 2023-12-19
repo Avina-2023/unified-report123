@@ -1,0 +1,27 @@
+.inner-container{
+    padding: 10px;
+    background-color: #ffffff; 
+}
+.char{
+    display: flex; 
+    flex-direction: row; 
+    align-items: center; 
+    justify-content: space-around;
+}
+.char1{
+    background-color: #ffffff; 
+    border: 1px solid red;
+    padding: 5px;
+    width: 550px;
+}
+.heading{
+    color: #262626;
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0px 0px 5px 0px;
+}
+.chart-inner{
+    display: flex; 
+    flex-direction: row; 
+    align-items: center;
+}

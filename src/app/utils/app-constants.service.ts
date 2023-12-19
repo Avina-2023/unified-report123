@@ -82,6 +82,8 @@ export const APP_CONSTANTS = {
       UPLOADREQUIRMENT: 'auth/partner/uploadpostrequirment',
       ADDOPENJOBS: '/auth/partner/addopenjobs',
       VIEWOPENJOBS: '/auth/partner/viewopenjobs',
+      STUDENTTRACKER:'/auth/partner/studenttracker',
+      PARTNERTRACKER:'auth/partner/partnertracker'
     },
     // OPENJOBS: {
     //   HOME: '/auth/openjobs',
@@ -177,6 +179,8 @@ export const APP_CONSTANTS = {
       UPLOADREQUIRMENT: 'uploadpostrequirment',
       ADDOPENJOBS: 'addopenjobs',
       VIEWOPENJOBS: 'viewopenjobs',
+      STUDENTTRACKER:'studenttracker',
+      PARTNERTRACKER:'partnertracker',
     },
     // OPENJOBS: {
     //   HOME: 'openjobs',
@@ -207,7 +211,7 @@ export const APP_CONSTANTS = {
       POSTREQUIRMENT: 'postrequirment',
       REQUIRMENT: 'jobrequirment',
       // REQUIRMENT:'jobrequirment'
-      CANDIDATESEARCH: 'candidatesearch',
+      CANDIDATESEARCH: 'candidatesearch', 
     },
   },
 };

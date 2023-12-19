@@ -26,6 +26,7 @@ export class SidebarComponent implements OnInit {
   menuIconToggle1: boolean;
   driveIconToggle: boolean;
   jobIconToggle: boolean;
+  reportIconToggle: boolean;
   check = 'empdashboard';
   constructor(
     private appconfig: AppConfigService,
@@ -165,15 +166,19 @@ export class SidebarComponent implements OnInit {
   }
   viewjobs(value) {
     this.check = value;
-    this.appconfig.routeNavigation(
-      APP_CONSTANTS.ENDPOINTS.PARTNER.VIEWOPENJOBS
-    );
+    this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.PARTNER.VIEWOPENJOBS);
+  }
+  studentReportTracker(value){
+    this.check = value;
+    this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.PARTNER.STUDENTTRACKER);
+  }
+  partnerReportTracker(value){
+    this.check = value;
+    this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.PARTNER.PARTNERTRACKER);
   }
   drive(value) {
     this.check = value;
-    this.appconfig.routeNavigation(
-      APP_CONSTANTS.ENDPOINTS.VIEWDRIVE.MANAGEDRIVE
-    );
+    this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.VIEWDRIVE.MANAGEDRIVE);
   }
   manage(value) {
     this.check = value;
@@ -181,9 +186,7 @@ export class SidebarComponent implements OnInit {
   }
   partners(value) {
     this.check = value;
-    this.appconfig.routeNavigation(
-      APP_CONSTANTS.ENDPOINTS.PARTNER.PARTNERENQUIRY
-    );
+    this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.PARTNER.PARTNERENQUIRY);
   }
   logout() {
     localStorage.clear();
@@ -192,9 +195,7 @@ export class SidebarComponent implements OnInit {
   }
   uploadpostrequirement(value) {
     this.check = value;
-    this.appconfig.routeNavigation(
-      APP_CONSTANTS.ENDPOINTS.PARTNER.UPLOADREQUIRMENT
-    );
+    this.appconfig.routeNavigation( APP_CONSTANTS.ENDPOINTS.PARTNER.UPLOADREQUIRMENT);
     console.log(this.check);
   }
   work(value) {
@@ -206,16 +207,12 @@ export class SidebarComponent implements OnInit {
 
   profile(value) {
     this.check = value;
-    this.appconfig.routeNavigation(
-      APP_CONSTANTS.ENDPOINTS.EMPDASHBOARD.PROFILE
-    );
+    this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.EMPDASHBOARD.PROFILE);
   }
 
-  candidatesearch(value) {
+  candidatesearch(value) { 
     this.check = value;
-    this.appconfig.routeNavigation(
-      APP_CONSTANTS.ENDPOINTS.EMPDASHBOARD.CANDIDATESEARCH
-    );
+    this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.EMPDASHBOARD.CANDIDATESEARCH);
   }
 
   sideBar() {
@@ -233,5 +230,8 @@ export class SidebarComponent implements OnInit {
   }
   changeJobIcon() {
     this.jobIconToggle = !this.jobIconToggle;
+  }
+  changeReportIcon(){
+    this.reportIconToggle = !this.reportIconToggle;
   }
 }
