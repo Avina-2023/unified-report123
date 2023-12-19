@@ -1,7 +1,9 @@
 .body {
   padding-bottom: 20px;
 }
-
+.text_underline{
+  text-decoration: underline;
+}
 
 .save_btn {
   background: #1B4E9B;
@@ -375,24 +377,30 @@ nz-select {
   // padding: 3px 2px 2px 3px;
 }
 
+.job-status{
+  padding: 2px 10px;
+    font-size: 13px;
+    border-radius: 3px;
+    text-transform: capitalize;
+    color: #fff;
+}
+
 .status-active {
-  background-color: #49AE31;
-  padding: 2px 6px 4px 6px;
-  color: #ffffff;
-  font-size: 12px;
-  width: 53px;
-  height: 25px;
-  border-radius: 3px;
+  background-color: #65AC45;
 }
 
 .status-expired {
   background-color: #000000;
-  padding: 3px 7px 2px 7px;
-  color: #ffffff;
-  font-size: 12px;
-  width: 53px;
-  height: 25px;
-  border-radius: 3px;
+
+}
+.status-rejected{
+  background:#b32727;
+}
+.status-closed{
+  background:grey;
+}
+.status-pending{
+  background-color: #27BBEE;
 }
 
 .candidate-applied-no-container {
