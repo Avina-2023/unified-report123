@@ -3,15 +3,50 @@
    font-size: 24px;
    font-weight: 600;
 }
-
+.flex_div{
+  display: flex;
+  justify-content: space-between;
+  margin: 0px 80px;
+}
 .main-card{
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  // justify-content: center;
+  width: 70%;
 }
-
+.lnt-learners{
+  width: 30%;
+}
+.learners-card{
+  width: 300px;
+  height: 477px;
+  margin: 15px 0px 0px 0px;
+  border-radius: 10px;
+  padding: 10px;
+  border: 1px solid #4C1C00;
+}
+.learners-count{
+  background-color: #4C1C0014;
+  padding: 0px 10px 10px 10px
+}
+.learners-count-details{
+  display: flex; 
+  flex-direction: row; 
+  align-items: center; 
+  justify-content: space-between; 
+  padding: 20px 0px 0px 0px;
+}
 .main-card2{
   display: flex;
   justify-content: center;
   margin: 50px 0px 0px 0px;
+}
+
+.chart {
+  max-width: 380px;
+  margin: 35px auto;
+  padding: 0;
+}
+.flex_div{
+  display: flex;
 }
