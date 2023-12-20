@@ -17,6 +17,10 @@
 .lnt-learners{
   width: 30%;
 }
+.learners-heading{
+  font-size: 18px;
+  color: #848484;
+}
 .learners-card{
   width: 300px;
   height: 477px;
@@ -49,4 +53,49 @@
 }
 .flex_div{
   display: flex;
+}
+.learner-details-count{
+  display: flex; 
+  flex-direction: row; 
+  align-items: center; 
+  justify-content: space-between;
+  margin: 15px 0px 0px 0px;
+}
+.learner-detail{
+  display: flex; 
+  flex-direction: row; 
+  align-items: center;
+}
+.color-strip1{
+  width: 30px;
+  height: 10px;
+  margin: 0px 10px 0px 0px;
+  background-color: #2862FF; 
+}
+.color-strip2{
+  width: 30px;
+  height: 10px;
+  margin: 0px 10px 0px 0px;
+  background-color: #FF6A81; 
+}
+.color-strip3{
+  width: 30px;
+  height: 10px;
+  margin: 0px 10px 0px 0px;
+  background-color: #5289C9; 
+}
+.color-strip4{
+  width: 30px;
+  height: 10px;
+  margin: 0px 10px 0px 0px;
+  background-color: #EB4A8A; 
+}
+.details-name{
+  font-size: 12px;
+  color: #848484;
+}
+.details-count{
+  color: #010101;
+  font-size: 16px;
+  font-weight: 700;
 }

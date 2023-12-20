@@ -48,6 +48,11 @@ export class StudentTrackerComponent implements OnInit {
         ],
       },
       options: {
+        plugins: {
+          datalabels: {
+            display: false,
+          },
+        },
           legend: {
           display: false,
           // position: 'bottom',
@@ -78,6 +83,11 @@ export class StudentTrackerComponent implements OnInit {
         ],
       },
       options: {
+        plugins: {
+          datalabels: {
+            display: false,
+          },
+        },
           legend: {
           display: false,
           // position: 'bottom',
