@@ -81,8 +81,10 @@ export class OverallReportComponent implements OnInit {
   ngOnInit() {
     this.getOverAllReport();
     this.chartLabels = ['Data1', 'Data2', 'Data3', 'Data4'];
-    // this.chartColors = ['rgba(255, 0, 0, 1)', 'rgba(255, 0, 0, 0.1)', 'rgba(255, 0, 0, 0.7)'];
     this.chartColors = ['#EB4A8A', '#FF6A81', '#5289C9', '#2862FF'];
+
+    const dataValues = [55, 45, 25, 65];
+    const sumData = dataValues.reduce((acc, value) => acc + value, 0);
 
     this.chart = new Chart('canvas', {
       type: 'doughnut',
@@ -90,14 +92,18 @@ export class OverallReportComponent implements OnInit {
         labels: this.chartLabels,
         datasets: [
           {
-            data: [55, 45, 25, 65],
-            // backgroundColor: ['rgba(255, 0, 0, 1)', 'rgba(255, 0, 0, 0.1)', 'rgba(255, 0, 0, 0.7)',],
+            data: dataValues,
             backgroundColor: this.chartColors,
             fill: false,
           },
         ],
       },
       options: {
+        plugins: {
+          datalabels: {
+            display: false,
+          },
+        },
           legend: {
           display: false,
           // position: 'bottom',
@@ -110,6 +116,35 @@ export class OverallReportComponent implements OnInit {
         maintainAspectRatio: false,
       },
     });
+    Chart.pluginService.register({
+      beforeDraw: (chart: Chart) => {
+        const width = chart.width,
+          height = chart.height,
+          ctx = chart.ctx;
+        ctx.restore();
+        
+        const totalText = 'Total ';
+        const percentageText = `${sumData}`;
+        const totalWidth = ctx.measureText(totalText).width;
+        
+        const textX = Math.round((width - totalWidth) / 2);
+        const textYTotal = height / 2  + 20; 
+        const textYPercentage = height / 2 - 7; 
+        
+        const fontSizeTotal = (height / 130).toFixed(2);
+        ctx.font = `${fontSizeTotal}em sans-serif`;
+        ctx.fillStyle = '#B3B8BD';
+        ctx.fillText(totalText, textX, textYTotal);
+        
+        const fontSizePercentage = (height / 114).toFixed(2);
+        ctx.font = `${fontSizePercentage}em sans-serif`;
+        ctx.fillStyle = 'black'; 
+        ctx.fillText(percentageText, textX, textYPercentage);
+        
+        ctx.save();
+      },
+    });
+
   }
 
   getOverAllReport(){

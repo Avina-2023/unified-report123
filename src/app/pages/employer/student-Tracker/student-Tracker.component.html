@@ -24,12 +24,19 @@
         <div [hidden]="!chart">
           <canvas id="canvas" width="170" height="170"></canvas>
         </div>
-        <div style="margin-left: 20px;">
+        <!-- <div style="margin-left: 20px;">
           <div *ngFor="let index of chartLabels; let i = index" style="display: flex; align-items: center;">
             <div [ngStyle]="{'width.px': '20', 'height.px': '5', 'background-color': chartColors[i], 'margin-right.px': '5'}"></div>
             <div style="text-align: center; margin-right: 10px;">{{ chartLabels[i] }}</div>
             <div>{{ chartData[i] }}</div>
           </div>
+        </div> -->
+        <div class="learner-details-count">
+          <div class="learner-detail">
+            <div class="color-strip1"></div>
+            <div class="details-name">Trained</div>
+          </div>
+          <div class="details-count">1229</div>
         </div>
       </div>
     </mat-card>
