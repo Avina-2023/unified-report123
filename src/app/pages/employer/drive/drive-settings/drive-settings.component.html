@@ -1,7 +1,8 @@
 <div class="body">
     <div class="DS-link-text-container">
         <div class="titile1">
-            <div class="active-link" (click)="dashboard()">View Job Requirements</div>
+            <div *ngIf="roleCode === 'EMP'" class="active-link" (click)="dashboard()">View Job Requirements</div>
+            <div *ngIf="roleCode === 'SADM'" class="active-link" (click)="navigatetoDrive()"><span class="text_underline">Manage Drive</span></div>
         </div>
         <span class="arrow"> > </span>
         <span>
@@ -35,10 +36,23 @@
                                         <div class="job-role-text2"> {{jobReqData?.jobType}} </div>
                                     </div>
                                     <div class="job-role-status-container">
-                                        <!-- <div class="status"> {{jobReqData?.status}} </div> -->
-                                        <div
-                                            [ngClass]="{'status-active': jobReqData?.status === 'Active', 'status-expired': jobReqData?.status === 'Expired'}">
-                                            {{ jobReqData?.status }}</div>
+                                        <!-- <div class="status"> {{jobReqData?.approveStatus}} </div> -->
+                                        <!-- <div [matTooltip]="jobReqData?.approveStatus === 'rejected' ? jobReqData?.remarks : null" class="job-status"
+                                            [ngClass]="{'status-active': (jobReqData?.approveStatus === 'Active' || jobReqData?.approveStatus === 'approved'), 'status-expired': (jobReqData?.approveStatus === 'Expired'), 'status-pending': (jobReqData?.approveStatus === 'pending'), 'status-rejected': (jobReqData?.approveStatus === 'rejected'), 'status-closed': (jobReqData?.approveStatus === 'closed')}">
+                                            {{ jobReqData?.approveStatus == 'approved' ? 'Active' : jobReqData?.approveStatus }}</div> -->
+                                            
+                                            <div class="job-status" [matTooltip]="getTooltipText()"
+                                            [ngClass]="{
+                                               'status-active': (jobReqData?.approveStatus === 'Active' || jobReqData?.approveStatus === 'approved'),
+                                               'status-expired': (jobReqData?.approveStatus === 'Expired'),
+                                               'status-pending': (jobReqData?.approveStatus === 'pending'),
+                                               'status-rejected': (jobReqData?.approveStatus === 'rejected'),
+                                               'status-closed': (jobReqData?.approveStatus === 'closed')
+                                            }">
+                                           {{ jobReqData?.approveStatus == 'approved' ? 'Active' : jobReqData?.approveStatus }}
+                                       </div>
+                                             
+                                            
                                     </div>
                                 </div>
                             </div>
@@ -87,10 +101,10 @@
                             </div>
                         </div>
                         <div class="edit-icon" (click)="toggleEditMode()"
-                            *ngIf="editModeVisible && jobReqData?.status === 'Pending'">
+                            *ngIf="(editModeVisible && jobReqData?.approveStatus === 'pending' && (jobReqData?.lastDatetoApply > ISOStringDate)) || (editModeVisible && roleCode === 'SADM' && jobReqData?.approveStatus !== 'rejected')">
                             <mat-icon>create</mat-icon>Edit
                         </div>
-                        <!-- <div class="edit-disabled" *ngIf="editModeVisible && jobReqData?.status !== 'Pending'">
+                        <!-- <div class="edit-disabled" *ngIf="editModeVisible && jobReqData?.approveStatus !== 'pending'">
                             <mat-icon>create</mat-icon>Edit
                         </div> -->
                     </div>
@@ -350,7 +364,7 @@
                                     <div class="label-value-text">{{jobReqData?.requirement[0].item}}</div>
                                 </div> -->
                                 <div class="lable-value" *ngIf="!editMode">
-                                    <div class="label-value-text" [innerHTML]="jobReqData?.requirement[0].item"></div>
+                                    <div class="label-value-text" [innerHTML]="jobReqData?.requirement[0]?.item"></div>
                                 </div>
 
                                 <div class="lable-value custom-form" *ngIf="editMode">
@@ -446,13 +460,14 @@
                                     </div>
                                 </div>
                                 <div class="separator_line_width"></div>
-                                <div class="edu_section width-20" *ngIf="jobReqData?.status === 'Pending'">
+                                
+                                <div class="edu_section width-20" *ngIf="(jobReqData?.approveStatus === 'pending' && (jobReqData?.lastDatetoApply > ISOStringDate)) || (roleCode === 'SADM' && jobReqData?.approveStatus !== 'rejected')">
                                     <div class="pd-5">
                                         <div style="cursor: pointer;color: #1B4E9B;text-align:center;"
                                             (click)="toggleEditEducation(educationItem, i)">
                                             <mat-icon>create</mat-icon>Edit
                                         </div>
-                                        <!-- <div class="edit-disabled" *ngIf="jobReqData?.status != 'Pending'" style="text-align:center;">
+                                        <!-- <div class="edit-disabled" *ngIf="jobReqData?.approveStatus != 'pending'" style="text-align:center;">
                                             <mat-icon>create</mat-icon>Edit
                                         </div> -->
                                     </div>
@@ -464,6 +479,26 @@
                                         </div>
                                     </div>
                                 </div>
+
+
+                                <div class="edu_section width-20" *ngIf="(roleCode !== 'SADM' && jobReqData?.approveStatus !== 'pending') || (roleCode !== 'SADM' && jobReqData?.lastDatetoApply < ISOStringDate) || (roleCode === 'SADM' && jobReqData?.approveStatus === 'rejected')">
+                                    <div class="pd-5">
+                                        <div style="cursor: not-allowed;color: #1B4E9B;text-align:center;">
+                                            <mat-icon>create</mat-icon>Edit
+                                        </div>
+                                        <!-- <div class="edit-disabled" *ngIf="jobReqData?.approveStatus != 'pending'" style="text-align:center;">
+                                            <mat-icon>create</mat-icon>Edit
+                                        </div> -->
+                                    </div>
+                                    <div class="separator_line_ht"></div>
+                                    <div class="pd-5">
+                                        <div style="cursor: not-allowed;color: #1B4E9B;text-align:center;">
+                                            <mat-icon>delete</mat-icon>Delete
+                                        </div>
+                                    </div>
+                                </div>
+
+
                             </div>
                             <div *ngIf="educationItem.editEducation">
                                 <div style="margin-bottom: 100px; width: 100%;">
@@ -539,7 +574,7 @@
                         </div>
                     </div>
 
-                    <div *ngIf="!addneweducationGroup && !editGroup && jobReqData?.status === 'Pending'"
+                    <div *ngIf="(!addneweducationGroup && !editGroup && jobReqData?.approveStatus === 'pending' && (jobReqData?.lastDatetoApply > ISOStringDate)) || (!addneweducationGroup && !editGroup && roleCode === 'SADM' && jobReqData?.approveStatus !== 'rejected')"
                         class="add_more_text" (click)="addEducationGroup()">
                         {{jobReqData?.education?.length == 0 ? "Add Education" : "Add
                         More"}}
@@ -615,7 +650,7 @@
                                 Set Criteria
                             </div>
                             <div class="add-criteria flex_div flx_center" (click)="toggleCustomCriteria()"
-                                *ngIf="editCustomCriteriaVisible && !addneweducationGroupCriteria && !criteriaEditGroup && jobReqData?.status === 'Pending'">
+                                *ngIf="(editCustomCriteriaVisible && !addneweducationGroupCriteria && !criteriaEditGroup && jobReqData?.approveStatus === 'pending' && (jobReqData?.lastDatetoApply > ISOStringDate)) || (editCustomCriteriaVisible && !addneweducationGroupCriteria && !criteriaEditGroup && roleCode === 'SADM' && jobReqData?.approveStatus !== 'rejected')">
                                 <mat-icon>add</mat-icon>
                                 <div style="margin-left: -5px;">Add Criteria</div>
                             </div>
@@ -650,7 +685,7 @@
                                         </div>
 
                                         <div class="flex_div flx_center submit_btn pd-tp-10" style="float:right;"
-                                            *ngIf="jobReqData?.status === 'Pending'">
+                                            *ngIf="(jobReqData?.approveStatus === 'pending' && (jobReqData?.lastDatetoApply > ISOStringDate)) || (roleCode === 'SADM' && jobReqData?.approveStatus !== 'rejected')">
                                             <div class="mg-5"><button type="submit" class="btn btn-primary save_btn"
                                                     (click)="toggleeditCustomCriteria(eligibilityItem, i)">Edit</button>
                                             </div>
@@ -658,6 +693,16 @@
                                                 (click)="deleteCustomCriteria(eligibilityItem, i)">
                                                 Delete</div>
                                         </div>
+
+
+                                        <div class="flex_div flx_center submit_btn pd-tp-10" style="float:right;"
+                                            *ngIf="(roleCode !== 'SADM' && jobReqData?.approveStatus !== 'pending') || (roleCode !== 'SADM' && jobReqData?.lastDatetoApply < ISOStringDate) || (roleCode === 'SADM' && jobReqData?.approveStatus === 'rejected')">
+                                            <div class="mg-5"><button type="submit" class="save_btn" style="cursor: not-allowed;color:#fff;">Edit</button>
+                                            </div>
+                                            <div class="cancel_btn mg-5" style="cursor: not-allowed;">
+                                                Delete</div>
+                                        </div>
+
                                     </div>
                                 </div>
 
@@ -801,7 +846,7 @@
                                 Year Of Passing
                             </div>
                             <div class="add-criteria" (click)="toggleCriteriaEditMode()"
-                                *ngIf="editCriteriaModeVisible && jobReqData?.status === 'Pending'">
+                                *ngIf="(editCriteriaModeVisible && jobReqData?.approveStatus === 'pending' && (jobReqData?.lastDatetoApply > ISOStringDate)) || (editCriteriaModeVisible && roleCode === 'SADM' && jobReqData?.approveStatus !== 'rejected')">
                                 <mat-icon>create</mat-icon> Edit
                             </div>
                         </div>
@@ -851,7 +896,7 @@
                                 Backlogs
                             </div>
                             <div class="add-criteria" (click)="toggleBacklogsEditMode()"
-                                *ngIf="jobReqData?.status === 'Pending' && editBacklogsModeVisible && (jobReqData?.noofBacklog?.length == 0 || !jobReqData?.noofBacklog)">
+                                *ngIf="((jobReqData?.lastDatetoApply > ISOStringDate) && jobReqData?.approveStatus === 'pending' && editBacklogsModeVisible && (jobReqData?.noofBacklog?.length == 0 || !jobReqData?.noofBacklog)) || ((roleCode === 'SADM' && jobReqData?.approveStatus !== 'rejected') && editBacklogsModeVisible && (jobReqData?.noofBacklog?.length == 0 || !jobReqData?.noofBacklog))">
                                 <mat-icon>create</mat-icon>Edit
                             </div>
                         </div>
@@ -873,7 +918,7 @@
 
                                 </div>
                                 <div class="flex_div flx_center submit_btn pd-tp-10" style="float:right;"
-                                    *ngIf="jobReqData?.status === 'Pending'">
+                                    *ngIf="((jobReqData?.lastDatetoApply > ISOStringDate) && jobReqData?.approveStatus === 'pending') || (roleCode === 'SADM' && jobReqData?.approveStatus !== 'rejected')">
                                     <div class="mg-5"><button type="submit" class="btn btn-primary save_btn"
                                             (click)="toggleBacklogsEditMode()">Edit</button>
                                     </div>
@@ -910,7 +955,7 @@
                                 Gender
                             </div>
                             <div class="add-criteria" (click)="toggleGenderEditMode()"
-                                *ngIf="jobReqData?.status === 'Pending' && editGenderModeVisible && !jobReqData?.gender">
+                                *ngIf="(jobReqData?.approveStatus === 'pending' && (jobReqData?.lastDatetoApply > ISOStringDate) && editGenderModeVisible && !jobReqData?.gender) || ((roleCode === 'SADM' && jobReqData?.approveStatus !== 'rejected') && editGenderModeVisible && !jobReqData?.gender)">
                                 <mat-icon>create</mat-icon>Edit
                             </div>
                         </div>
@@ -930,7 +975,7 @@
                                         : jobReqData?.gender }}</span> Candidates are eligible.
                                 </div>
                                 <div class="flex_div flx_center submit_btn pd-tp-10" style="float:right;"
-                                    *ngIf="jobReqData?.status === 'Pending'">
+                                    *ngIf="(jobReqData?.approveStatus === 'pending' && (jobReqData?.lastDatetoApply > ISOStringDate)) || (roleCode === 'SADM' && jobReqData?.approveStatus !== 'rejected')">
                                     <div class="mg-5"><button type="submit" class="btn btn-primary save_btn"
                                             (click)="toggleGenderEditMode()">Edit</button>
                                     </div>
@@ -1007,7 +1052,7 @@
                             Hiring Process
                         </div>
                         <div class="mg-15 add-criteria flex_div flx_center" (click)="addhiringGroup()"
-                            *ngIf="jobReqData?.status === 'Pending' && !addnewhiringProcessGroup && !editHiringGroup && (jobReqData?.hiringProcess?.length == 0 || !jobReqData?.hiringProcess)">
+                            *ngIf="(jobReqData?.approveStatus === 'pending' && (jobReqData?.lastDatetoApply > ISOStringDate) && !addnewhiringProcessGroup && !editHiringGroup && (jobReqData?.hiringProcess?.length == 0 || !jobReqData?.hiringProcess)) || ((roleCode === 'SADM' && jobReqData?.approveStatus !== 'rejected') && !addnewhiringProcessGroup && !editHiringGroup && (jobReqData?.hiringProcess?.length == 0 || !jobReqData?.hiringProcess))">
                             <mat-icon>add</mat-icon>
                             <div style="margin-left: -5px;">Add Process</div>
                         </div>
@@ -1032,8 +1077,8 @@
                                     <div>{{hiringItem.date | date:'MMM dd, yyyy h:mm a'}} - {{hiringItem.venue}} </div>
 
                                 </div>
-                                <div class="separator_line_width" *ngIf="jobReqData?.status === 'Pending'"></div>
-                                <div class="edu_section width-20" *ngIf="jobReqData?.status === 'Pending'">
+                                <div class="separator_line_width"></div>
+                                <div class="edu_section width-20" *ngIf="(jobReqData?.approveStatus === 'pending' && (jobReqData?.lastDatetoApply > ISOStringDate)) || (roleCode === 'SADM' && jobReqData?.approveStatus !== 'rejected')">
                                     <div class="pd-5">
                                         <div style="cursor: pointer;color: #1B4E9B;text-align:center;"
                                             (click)="toggleeditHiringProcess(hiringItem, i)">
@@ -1048,6 +1093,23 @@
                                         </div>
                                     </div>
                                 </div>
+
+
+                                <div class="edu_section width-20" *ngIf="(roleCode !== 'SADM' && jobReqData?.approveStatus !== 'pending') || (roleCode !== 'SADM' && jobReqData?.lastDatetoApply < ISOStringDate) || (roleCode === 'SADM' && jobReqData?.approveStatus === 'rejected')">
+                                    <div class="pd-5">
+                                        <div style="cursor: not-allowed;color: #1B4E9B;text-align:center;">
+                                            <mat-icon>create</mat-icon>Edit
+                                        </div>
+                                    </div>
+                                    <div class="separator_line_ht"></div>
+                                    <div class="pd-5">
+                                        <div style="cursor: not-allowed;color: #1B4E9B;text-align:center;">
+                                            <mat-icon>delete</mat-icon>Delete
+                                        </div>
+                                    </div>
+                                </div>
+
+
                             </div>
                             <div *ngIf="hiringItem.editHiringProcess">
                                 <div style="border: 1px solid #dfdfdf; margin-bottom: 100px; width: 100%;">
@@ -1136,7 +1198,7 @@
                             </div>
                         </div>
                     </div>
-                    <div *ngIf="!this.editHiringGroup && !this.addnewhiringProcessGroup && jobReqData?.hiringProcess?.length"
+                    <div *ngIf="(jobReqData?.approveStatus === 'pending' && (jobReqData?.lastDatetoApply > ISOStringDate) && !this.editHiringGroup && !this.addnewhiringProcessGroup && jobReqData?.hiringProcess?.length) || ((roleCode === 'SADM' && jobReqData?.approveStatus !== 'rejected') && !this.editHiringGroup && !this.addnewhiringProcessGroup && jobReqData?.hiringProcess?.length)"
                         class="add_more_text" (click)="addhiringGroup()">Add More
                     </div>
                     <div class="edu-values" *ngIf="addnewhiringProcessGroup && !editHiringGroup">
@@ -1227,7 +1289,7 @@
                                 Additional Information
                             </div>
                             <div class="add-criteria flex_div flx_center" (click)="toggleInfoEditMode()"
-                                *ngIf="jobReqData?.status === 'Pending' && editInfoModeVisible && (isObjectEmpty(jobReqData?.additionalInformation) || !jobReqData?.additionalInformation)">
+                                *ngIf="(jobReqData?.approveStatus === 'pending' && (jobReqData?.lastDatetoApply > ISOStringDate) && editInfoModeVisible && (isObjectEmpty(jobReqData?.additionalInformation) || !jobReqData?.additionalInformation)) || ((roleCode === 'SADM' && jobReqData?.approveStatus !== 'rejected') && editInfoModeVisible && (isObjectEmpty(jobReqData?.additionalInformation) || !jobReqData?.additionalInformation))">
                                 <mat-icon>add</mat-icon>
                                 <div style="margin-left: -5px;">Add Info</div>
                             </div>
@@ -1260,7 +1322,7 @@
                                 </div>
 
                                 <div class="flex_div flx_center submit_btn pd-tp-10" style="float:right;"
-                                    *ngIf="jobReqData?.status === 'Pending'">
+                                    *ngIf="(jobReqData?.approveStatus === 'pending' && (jobReqData?.lastDatetoApply > ISOStringDate)) || (roleCode === 'SADM' && jobReqData?.approveStatus !== 'rejected')">
                                     <div class="mg-5"><button type="submit" class="btn btn-primary save_btn"
                                             (click)="toggleInfoEditMode()">Edit</button>
                                     </div>

@@ -1,7 +1,8 @@
 <div class="body">
 
   <div class="view_breadcrump flx_div flx_center">
-    <div class="active-link" (click)="dashboard()">View Job Requirements</div>
+    <div *ngIf="roleCode === 'SADM'" class="active-link" (click)="navigatetoDrive()"><span class="text_underline">Manage Drive</span></div>
+    <div *ngIf="roleCode === 'EMP'" class="active-link" (click)="dashboard()">View Job Requirements</div>
     <div> View Applications</div>
   </div>
 
@@ -24,7 +25,7 @@
     <mat-card class="main">
       <div class="job-details">
         <div class="heading">Job Title</div>
-        <div class="val text_capitalize">{{valueone?.jobRole}}</div>
+        <div class="val text_capitalize">{{valueone?.jobTitle}}</div>
       </div>
       <div class="job-details">
         <div class="heading">Location</div>

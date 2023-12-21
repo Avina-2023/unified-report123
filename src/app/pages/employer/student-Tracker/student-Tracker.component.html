@@ -1,0 +1,62 @@
+<div class="inner-container">
+  <div>Total Records of June-2023</div>
+
+  <div class="char">
+
+    <!-- <mat-card class="char1">
+      <div>Registrations</div>
+      <div class="chart-inner">
+        <div [hidden]="!chart">
+          <canvas id="canvas" width="200" height="200"></canvas>
+        </div>
+        <div style="margin-left: 20px;">
+          <div *ngFor="let index of chartLabels; let i = index" style="display: flex; align-items: center;">
+            <div [ngStyle]="{'width.px': '20', 'height.px': '5', 'background-color': chartColors[i], 'margin-right.px': '5'}"></div>
+            <div style="text-align: center; margin-right: 10px;">{{ chartLabels[i] }}</div>
+            <div style="margin-right: 10px;">{{ chartData[i] }}</div>
+          </div>
+        </div>
+      </div>
+    </mat-card> -->
+    <mat-card class="char1">
+      <div class="heading">Registrations</div>
+      <div class="chart-inner">
+        <div [hidden]="!chart">
+          <canvas id="canvas" width="170" height="170"></canvas>
+        </div>
+        <!-- <div style="margin-left: 20px;">
+          <div *ngFor="let index of chartLabels; let i = index" style="display: flex; align-items: center;">
+            <div [ngStyle]="{'width.px': '20', 'height.px': '5', 'background-color': chartColors[i], 'margin-right.px': '5'}"></div>
+            <div style="text-align: center; margin-right: 10px;">{{ chartLabels[i] }}</div>
+            <div>{{ chartData[i] }}</div>
+          </div>
+        </div> -->
+        <div class="learner-details-count">
+          <div class="learner-detail">
+            <div class="color-strip1"></div>
+            <div class="details-name">Trained</div>
+          </div>
+          <div class="details-count">1229</div>
+        </div>
+      </div>
+    </mat-card>
+    
+    <mat-card class="char1">
+      <div class="heading">Skill Profiles Filled</div>
+      <div class="chart-inner">
+        <div [hidden]="!chart2">
+          <canvas id="canvas2" width="170" height="170"></canvas>
+        </div>
+        <div style="margin-left: 20px;">
+          <div *ngFor="let index of chartLabels2; let i = index" style="display: flex; align-items: center;">
+            <div
+              [ngStyle]="{'width.px': '20', 'height.px': '5', 'background-color': chartColors2[i], 'margin-right.px': '5'}">
+            </div>
+            <div style="text-align: center;">{{ chartLabels2[i] }}</div>
+          </div>
+        </div>
+      </div>
+    </mat-card>
+
+  </div>
+</div>

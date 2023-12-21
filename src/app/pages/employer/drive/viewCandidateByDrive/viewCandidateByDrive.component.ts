@@ -115,6 +115,9 @@ export class ViewCandidateByDriveComponent implements OnInit {
   pageArray: number[] = [1];
   isPrevButtonDisabled: boolean = false;
   isNextButtonDisabled: boolean = false;
+  userRole: any;
+  role: any;
+  roleCode: any;
   constructor(
     private ApiService: ApiService,
     private toastr: ToastrService,
@@ -554,6 +557,9 @@ export class ViewCandidateByDriveComponent implements OnInit {
   dashboard() {
     this.router.navigate(['/auth/partner/jobrequirment']);
   }
+  navigatetoDrive(){
+    this.router.navigate(['/auth/drive/managedrive']);
+  }
 
   refresh() {
     this.gridApi.refreshServerSideStore({ purge: true });
@@ -562,6 +568,12 @@ export class ViewCandidateByDriveComponent implements OnInit {
   getJobDetails() { 
     this.jobDetailsdata = this.appconfig.getLocalStorage('currentJobData'); 
     this.valueone = JSON.parse(this.jobDetailsdata); 
+
+    this.userRole = this.appconfig.getLocalStorage('role'); 
+    this.role = JSON.parse(this.userRole); 
+    this.roleCode = this.role[0].roles[0].roleCode;
+    console.log(this.roleCode, 'role');
+    
   } 
 
   onTabChange(index: number) {

@@ -871,7 +871,7 @@ export class EmpUploadPostrequirmentComponent implements OnInit {
         "description": descriptionItems,
         "requirement": requirementItems,
         "driveDate": "",
-        "isActive": false
+        "isActive": true
       };
 
       if (this.selectedOption === 'Jobs') {
