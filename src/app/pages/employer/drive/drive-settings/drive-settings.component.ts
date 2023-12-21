@@ -1047,6 +1047,30 @@ export class DriveSettingsComponent implements OnInit {
   }
 
 
+/*to show tool tip value*/
+  getTooltipText() {
+    if (this.jobReqData?.approveStatus === 'closed' && this.jobReqData?.updatedOn) {
+      return this.formatDate('Application closed on', this.jobReqData.updatedOn);
+    } else if (this.jobReqData?.approveStatus === 'rejected' && this.jobReqData?.remarks) {
+      return `${this.jobReqData.remarks}`;
+    } else {
+      return null;
+    }
+  }
+  /*to show tool tip value date, month and year*/
+  formatDate(prefix: string, dateString: string) {
+    const date = new Date(dateString);
+    const day = date.getDate();
+    const monthNames = [
+      'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+    ];
+    const month = monthNames[date.getMonth()];
+    const year = date.getFullYear();
+    return `${prefix} ${day}th ${month} ${year}`;
+  }
+
+  
+
 
   dashboard() {
     this.router.navigate(['/auth/partner/jobrequirment']);

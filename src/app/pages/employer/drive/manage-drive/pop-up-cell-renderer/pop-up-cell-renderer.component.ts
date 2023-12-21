@@ -111,6 +111,8 @@ export class PopUpCellRendererComponent implements ICellRendererAngularComp {
   }
   agInit(params: ICellRendererParams): void {
     this.params = params;
+    console.log(this.params?.data?.approveStatus, 'actualjobdata');
+    
 
 
     params.value;
@@ -121,7 +123,7 @@ export class PopUpCellRendererComponent implements ICellRendererAngularComp {
   }
 
   ngOnInit(): void {
-    console.log('testingdadlkfjlsk');
+    //console.log('testingdadlkfjlsk');
     this.dateF = this.params?.data?.lastDatetoApply;
 
     for (var i = 0; i <= 60; i++) {
@@ -155,6 +157,8 @@ export class PopUpCellRendererComponent implements ICellRendererAngularComp {
     ];
 
     this.formInitialize();
+    
+    
 
   }
 

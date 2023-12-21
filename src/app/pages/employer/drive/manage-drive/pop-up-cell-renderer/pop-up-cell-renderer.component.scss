@@ -8,6 +8,10 @@ menu-item {
   border-bottom: 1px solid #0000001F;
   width: 150px;
 }
+.disabled-button{
+  cursor: not-allowed;
+  pointer-events: auto;
+}
 
 ::ng-deep.mat-menu-panel{
   min-height: 0px;
