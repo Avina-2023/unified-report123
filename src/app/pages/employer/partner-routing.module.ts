@@ -8,7 +8,8 @@ import { PartnerEnquiriesComponent } from './partner-enquiries/partner-enquiries
 import { PartnerListComponent } from './partner-list/partner-list.component';
 import { AddJobsComponent } from './add-jobs/add-jobs.component';
 import { ViewJobsComponent } from './view-jobs/view-jobs.component';
-
+import { StudentTrackerComponent } from './student-Tracker/student-Tracker.component';
+import { PartnerTrackerComponent } from './partner-Tracker/partner-Tracker.component';
 // import { ViewDriveComponent } from './view-drive/view-drive.component';
 const routes: Routes = [
   {
@@ -38,6 +39,14 @@ const routes: Routes = [
   {
     path: `${APP_CONSTANTS.ROUTES.PARTNER.VIEWOPENJOBS}`,
     component: ViewJobsComponent,
+  },
+  {
+    path: `${APP_CONSTANTS.ROUTES.PARTNER.STUDENTTRACKER}`,
+    component: StudentTrackerComponent,
+  },
+  {
+    path: `${APP_CONSTANTS.ROUTES.PARTNER.PARTNERTRACKER}`,
+    component: PartnerTrackerComponent,
   },
   {
     path: '',

@@ -27,7 +27,9 @@ import { ViewJobsComponent } from './view-jobs/view-jobs.component';
 // import { AngularEditorModule } from '@kolkov/angular-editor';
 import { ActionButtonViewJobsComponent } from './view-jobs/action-button-viewJobs/action-button-viewJobs.component';
 import { EditJobComponent } from './view-jobs/edit-job/edit-job.component';
-
+import { NgApexchartsModule } from 'ng-apexcharts';
+import { StudentTrackerComponent } from './student-Tracker/student-Tracker.component';
+import { PartnerTrackerComponent } from './partner-Tracker/partner-Tracker.component';
 @NgModule({
   declarations: [
     AddPartnerComponent,
@@ -44,7 +46,9 @@ import { EditJobComponent } from './view-jobs/edit-job/edit-job.component';
     OverallReportDetailsCardComponent,
     OverallReportMinicardDetailsComponent,
     ActionButtonViewJobsComponent,
-    EditJobComponent
+    EditJobComponent,
+    StudentTrackerComponent,
+    PartnerTrackerComponent
   ],
   imports: [
     CommonModule,
@@ -56,7 +60,8 @@ import { EditJobComponent } from './view-jobs/edit-job/edit-job.component';
     ReactiveFormsModule,
     NzDropDownModule,
     NzSelectModule,
-    AngularEditorModule
+    AngularEditorModule,
+    NgApexchartsModule
   ],
 })
 export class Adminmodule {}
