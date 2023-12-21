@@ -7,7 +7,8 @@
         <div class="col-md-2 p-0 inputContainer">
           <mat-form-field appearance="outline">
             <mat-select [(ngModel)]="sortData" (selectionChange)="sortChange()" placeholder="Sort By">
-              <mat-option *ngFor="let status of sortbystatusArray" [value]="status">{{status}}</mat-option>
+              <mat-option *ngFor="let status of sortbystatusArray"
+                [value]="status.statusValue">{{status.statusName}}</mat-option>
               <!-- <mat-option value="rejected">Rejected</mat-option> -->
             </mat-select>
           </mat-form-field>
@@ -45,257 +46,273 @@
           </mat-form-field>
         </div>
       </div>
-<!--mobile view-->
-<div class="dataMV">
+      <!--mobile view-->
+      <div class="dataMV">
 
-  <div class="col-md-7 p-0 search">
-    <mat-form-field appearance="outline">
-      <input matInput [(ngModel)]="searchData" placeholder="Search by Job Role"
-        (keyup)="applyFilter($event.target.value)" class="searchBycompany" />
-      <button mat-button matPrefix mat-icon-button>
-        <mat-icon class="searchIcon" (click)="searchList()" type="submit">search</mat-icon>
-      </button>
-      <button mat-button *ngIf="true" matSuffix mat-icon-button aria-label="Clear">
-        <mat-icon class="closeIcon" *ngIf="(this.searchData == '')?false:true"
-          (click)="clearSearch()">close</mat-icon>
-      </button>
-    </mat-form-field>
-  </div>
-  <div class="dateSort">
-
-    <div class="col-md-3 p-0 dateRange">
-      <mat-form-field appearance="outline">
-        <mat-label>Enter a date range</mat-label>
-        <mat-date-range-input [rangePicker]="picker2" [dateFilter]="rangeFilter">
-          <input matStartDate [(ngModel)]="startDate" placeholder="Start">
-          <input matEndDate [(ngModel)]="endDate" placeholder="End">
-        </mat-date-range-input>
-        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-        <mat-date-range-picker #picker2>
-          <mat-date-range-picker-actions>
-            <button mat-button matDateRangePickerCancel (click)="clearDate()">Cancel</button>
-            <button mat-raised-button color="primary" matDateRangePickerApply [(ngModel)]="sortDate"
-              (click)="dateChange()">Apply</button>
-          </mat-date-range-picker-actions>
-        </mat-date-range-picker>
-      </mat-form-field>
-    </div>
-    <div class="col-md-1 p-0 inputContainer">
-      <mat-form-field appearance="outline">
-        <mat-select [(ngModel)]="sortData" (selectionChange)="sortChange()" placeholder="Sort By">
-          <mat-option *ngFor="let status of sortbystatusArray" [value]="status">{{status}}</mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
-  </div>
-</div>
-<div class="cardMV">
-<div class="card_scroller" *ngIf="jobReqData?.length; else nodata">
-  <div class="card1Border" *ngFor="let one of jobReqData">
-    <div>
-      <div class="main-wrapper">
-        <div class="logoHeadleft">
-          <div class="companylogo">
-            <img class="avatar" [src]="productionUrl?one.companyLogo+blobToken:one.companyLogo" />
-          </div>
-          <div class="designation">
-            <div>{{ one.jobRole}}</div>
-            <div class="locations" *ngFor="let location of one.jobLocation">
-              <div class="icon-location1 locate"></div>
-              <div class="location">{{ location.trim()}}</div>
-            </div>
-          </div>
-
+        <div class="col-md-7 p-0 search">
+          <mat-form-field appearance="outline">
+            <input matInput [(ngModel)]="searchData" placeholder="Search by Job Role"
+              (keyup)="applyFilter($event.target.value)" class="searchBycompany" />
+            <button mat-button matPrefix mat-icon-button>
+              <mat-icon class="searchIcon" (click)="searchList()" type="submit">search</mat-icon>
+            </button>
+            <button mat-button *ngIf="true" matSuffix mat-icon-button aria-label="Clear">
+              <mat-icon class="closeIcon" *ngIf="(this.searchData == '')?false:true"
+                (click)="clearSearch()">close</mat-icon>
+            </button>
+          </mat-form-field>
         </div>
-        <div class="commonDiv">
-          <button disabled
+        <div class="dateSort">
+
+          <div class="col-md-3 p-0 dateRange">
+            <mat-form-field appearance="outline">
+              <mat-label>Enter a date range</mat-label>
+              <mat-date-range-input [rangePicker]="picker2" [dateFilter]="rangeFilter">
+                <input matStartDate [(ngModel)]="startDate" placeholder="Start">
+                <input matEndDate [(ngModel)]="endDate" placeholder="End">
+              </mat-date-range-input>
+              <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+              <mat-date-range-picker #picker2>
+                <mat-date-range-picker-actions>
+                  <button mat-button matDateRangePickerCancel (click)="clearDate()">Cancel</button>
+                  <button mat-raised-button color="primary" matDateRangePickerApply [(ngModel)]="sortDate"
+                    (click)="dateChange()">Apply</button>
+                </mat-date-range-picker-actions>
+              </mat-date-range-picker>
+            </mat-form-field>
+          </div>
+          <div class="col-md-1 p-0 inputContainer">
+            <mat-form-field appearance="outline">
+              <mat-select [(ngModel)]="sortData" (selectionChange)="sortChange()" placeholder="Sort By">
+                <mat-option *ngFor="let status of sortbystatusArray"
+                  [value]="status.statusValue">{{status.statusName}}</mat-option>
+                <!-- <mat-option value="rejected">Rejected</mat-option> -->
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <div class="cardMV">
+        <div class="card_scroller" *ngIf="jobReqData?.length; else nodata">
+          <div class="card1Border" *ngFor="let one of jobReqData">
+            <div>
+              <div class="main-wrapper">
+                <div class="logoHeadleft">
+                  <div class="companylogo">
+                    <img class="avatar" [src]="productionUrl?one.companyLogo+blobToken:one.companyLogo" />
+                  </div>
+                  <div class="designation">
+                    <div>{{ one.jobRole}}</div>
+                    <div class="locations" *ngFor="let location of one.jobLocation">
+                      <div class="icon-location1 locate"></div>
+                      <div class="location">{{ location.trim()}}</div>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="commonDiv">
+                  <!-- <button disabled
             [ngClass]="{'activeBg':one.status=='Active', 'pendingBg':one.status=='Pending', 'closedBg':one.status=='Closed', 'expiredBg':one.status=='Expired',  'openBg':one.status=='Open', 'yettoopenBg':one.status=='yetToOpen', 'rejectedBg':one.status=='Rejected'}">
             <span class="Status">{{one.status}}</span>
-          </button>
-      </div>
+          </button> -->
 
-      </div>
-      <div class="headCenter">
-        <div class="application">
-          <div class="text">Application closes on:  </div><div class="date">{{ one.lastDatetoApply | date: 'MMM d, y h:mm a' }}</div>
-        </div>
-      </div>
-      <hr class="line">
+          <button disabled
+          [ngClass]="{'activeBg':(one.approveStatus=='approved' && one?.lastDatetoApply > ISOStringDate), 'pendingBg':(one.approveStatus=='pending' && one?.lastDatetoApply > ISOStringDate), 'closedBg':(one.approveStatus=='closed'), 'expiredBg':((one.approveStatus!='rejected' && one?.lastDatetoApply < ISOStringDate) ||  (one.approveStatus!='closed' && one?.lastDatetoApply < ISOStringDate)),  'openBg':(one.approveStatus=='open' && one?.lastDatetoApply > ISOStringDate), 'yettoopenBg':(one.approveStatus=='yettoopen' && one?.lastDatetoApply > ISOStringDate), 'rejectedBg':(one.approveStatus=='rejected')}">
+          <span class="approveStatus">{{ (one?.lastDatetoApply < ISOStringDate && (one?.approveStatus != 'rejected') && (one?.approveStatus != 'closed')) ? 'Expired' : (one?.approveStatus == 'approved' ? 'Active' : one?.approveStatus) }}</span>
+        </button>
+                </div>
 
-      <div class="contenT">
-      <p class="content">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-    </div>
+              </div>
+              <div class="headCenter">
+                <div class="application">
+                  <div class="text">Application closes on: </div>
+                  <div class="date">{{ one.lastDatetoApply | date: 'MMM d, y h:mm a' }}</div>
+                </div>
+              </div>
+              <hr class="line">
 
-      <div class="departMent">
-        <span class="departmentBorder" *ngFor="let item of one.specialization">{{item}}</span>
-      </div>
+              <div class="contenT">
+                <p class="content">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+                  Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
+                  galley of type and scrambled it to make a type specimen book.</p>
+              </div>
 
-
-      <br>
-      <div class="lastLine">
-        <div class="lastLeftline">
-          <div class="workTime">
-            <!-- <mat-icon class="cardtravel">card_travel</mat-icon> -->
-            <span class="icon-work-suitcase"></span>
-            <span class="fulltime">{{ one.jobType }}</span>
-          </div>
-          <div class="yearofPassing">
-            <!-- <mat-icon class="drotation"> 3d_rotation </mat-icon> -->
-            <span class="icon-recognization icon-size"></span>
-            <span class="passedout" *ngFor="let item of one.yearofPassout; let isLast=last">
-              {{item}}{{isLast ? '' : ', '}} Passed Out</span>
-          </div>
-          <div class="packAge">
-            <!-- <mat-icon class="accountbalance">account_balance</mat-icon> -->
-            <span class="icon-rupee-icon"></span>
-            <span> {{ one.ctc }}</span>
-          </div>
+              <div class="departMent">
+                <span class="departmentBorder" *ngFor="let item of one.specialization">{{item}}</span>
+              </div>
 
 
-          <div class="bTech">
-            <!-- <mat-icon class="bookmark">bookmark</mat-icon> -->
-            <span class=icon-graduation-cap-solid></span>
-            <span class="Btech" *ngFor="let item of one.education; let isLast=last">
-              {{item.specification}}{{isLast ? '' : ', '}}</span>
-          </div>
+              <br>
+              <div class="lastLine">
+                <div class="lastLeftline">
+                  <div class="workTime">
+                    <!-- <mat-icon class="cardtravel">card_travel</mat-icon> -->
+                    <span class="icon-work-suitcase"></span>
+                    <span class="fulltime">{{ one.jobType }}</span>
+                  </div>
+                  <div class="yearofPassing">
+                    <!-- <mat-icon class="drotation"> 3d_rotation </mat-icon> -->
+                    <span class="icon-recognization icon-size"></span>
+                    <span class="passedout" *ngFor="let item of one.yearofPassout; let isLast=last">
+                      {{item}}{{isLast ? '' : ', '}} Passed Out</span>
+                  </div>
+                  <div class="packAge">
+                    <!-- <mat-icon class="accountbalance">account_balance</mat-icon> -->
+                    <span class="icon-rupee-icon"></span>
+                    <span> {{ one.ctc }}</span>
+                  </div>
 
-          <div class="daysLeft">
-            <!-- <mat-icon class="android">android</mat-icon> -->
-            <span class="icon-calendar-icon icon-calsize"></span>
-            <span> Posted on
-              {{ one.postedDate | date : 'd MMM, y' }}
-            </span>
-          </div>
-        </div>
-        <div class="lastRightline">
 
-          <span class="applied" (click)="viewApplication(one)">
-            <mat-icon class="schedule">schedule</mat-icon>
-            Applied
-            <u>{{ one.candidatesAppliedCount }}</u>
-          </span>
+                  <div class="bTech">
+                    <!-- <mat-icon class="bookmark">bookmark</mat-icon> -->
+                    <span class=icon-graduation-cap-solid></span>
+                    <span class="Btech" *ngFor="let item of one.education; let isLast=last">
+                      {{item.specification}}{{isLast ? '' : ', '}}</span>
+                  </div>
 
-          <!-- <span class="settings" [routerLink]="routerlink.VIEWDRIVE.DRIVESETTINGS">
+                  <div class="daysLeft">
+                    <!-- <mat-icon class="android">android</mat-icon> -->
+                    <span class="icon-calendar-icon icon-calsize"></span>
+                    <span> Posted on
+                      {{ one.postedDate | date : 'd MMM, y' }}
+                    </span>
+                  </div>
+                </div>
+                <div class="lastRightline">
+
+                  <span class="applied" (click)="viewApplication(one)">
+                    <mat-icon class="schedule">schedule</mat-icon>
+                    Applied
+                    <u>{{ one.candidatesAppliedCount }}</u>
+                  </span>
+
+                  <!-- <span class="settings" [routerLink]="routerlink.VIEWDRIVE.DRIVESETTINGS">
             <mat-icon class="setting">settings</mat-icon>
             settings
             <u>{{ one.settingsMenu}}</u>
           </span> -->
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-</div>
-</div>
-<!--mobile view-->
-<div class="card_scroller" *ngIf="jobReqData?.length; else nodata">
-  <div class="card1Border" *ngFor="let one of jobReqData">
-    <div>
-      <div class="main-wrapper">
-        <div class="logoHeadleft">
-          <div class="companylogo" style="background: url({{productionUrl?one.companyLogo+blobToken:one.companyLogo}});">
-            <!-- <img class="avatar" [src]="productionUrl?one.companyLogo+blobToken:one.companyLogo" /> -->
-          </div>
-          <div class="designation">
-            <div>{{ one.jobRole}}</div>
-            <div class="locations">
-              <span class="icon-location1 locate"></span>
-              <span class="location">{{ one.jobLocation}}</span>
-            </div>
-          </div>
-        </div>
-        <div class="commonDiv">
-          <div class="headCenter">
-            <span class="application">
-              <p>Application closes on:</p>
-            </span>
-            <div>
-              <p class="date">{{ one.lastDatetoApply | date: 'MMM d, y h:mm a' }}</p>
-            </div>
-          </div>
-
+      <!--mobile view-->
+      <div class="card_scroller" *ngIf="jobReqData?.length; else nodata">
+        <div class="card1Border" *ngFor="let one of jobReqData">
           <div>
-            <button disabled
+            <div class="main-wrapper">
+              <div class="logoHeadleft">
+                <div class="companylogo"
+                  style="background: url({{productionUrl?one.companyLogo+blobToken:one.companyLogo}});">
+                  <!-- <img class="avatar" [src]="productionUrl?one.companyLogo+blobToken:one.companyLogo" /> -->
+                </div>
+                <div class="designation">
+                  <div>{{ one.jobRole}}</div>
+                  <div class="locations">
+                    <span class="icon-location1 locate"></span>
+                    <span class="location">{{ one.jobLocation}}</span>
+                  </div>
+                </div>
+              </div>
+              <div class="commonDiv">
+                <div class="headCenter">
+                  <span class="application">
+                    <p>Application closes on:</p>
+                  </span>
+                  <div>
+                    <p class="date">{{ one.lastDatetoApply | date: 'MMM d, y h:mm a' }}</p>
+                  </div>
+                </div>
+
+                <div>
+                  <!-- <button disabled
               [ngClass]="{'activeBg':one.status=='Active', 'pendingBg':one.status=='Pending', 'closedBg':one.status=='Closed', 'expiredBg':one.status=='Expired',  'openBg':one.status=='Open', 'yettoopenBg':one.status=='yetToOpen', 'rejectedBg':one.status=='Rejected'}">
               <span class="Status">{{one.status}}</span>
-            </button>
-          </div>
-        </div>
-      </div>
+            </button> -->
+            <button disabled
+          [ngClass]="{'activeBg':(one.approveStatus=='approved'), 'pendingBg':(one.approveStatus=='pending'), 'closedBg':(one.approveStatus=='closed'), 'expiredBg':(one.approveStatus=='expired'),  'openBg':(one.approveStatus=='open'), 'yettoopenBg':(one.approveStatus=='yettoopen'), 'rejectedBg':(one.approveStatus=='rejected')}">
+          <span class="approveStatus">{{ one?.approveStatus == 'approved' ? 'Active' : one?.approveStatus }}</span>
+        </button>
+                </div>
+              </div>
+            </div>
 
-      <hr class="line">
+            <hr class="line">
 
-      <!--<div>
+            <!--<div>
       <p class="content">{{ one.about }}</p>
     </div>-->
 
-      <div class="departMent">
-        <span class="departmentBorder" *ngFor="let item of one.specialization">{{item}}</span>
-      </div>
+            <div class="departMent">
+              <span class="departmentBorder" *ngFor="let item of one.specialization">{{item}}</span>
+            </div>
 
-      <div class="bTech">
-          <span class=icon-graduation-cap-solid></span>
-          <span class="Btech" *ngFor="let item of one.education; let isLast=last">
-            {{item.specification}}{{isLast ? '' : ', '}}</span>
-        </div>
+            <div class="bTech">
+              <span class=icon-graduation-cap-solid></span>
+              <span class="Btech" *ngFor="let item of one.education; let isLast=last">
+                {{item.specification}}{{isLast ? '' : ', '}}</span>
+            </div>
 
-      <br>
-      <div class="lastLine">
-        <div class="lastLeftline">
-          <div class="workTime">
-            <!-- <mat-icon class="cardtravel">card_travel</mat-icon> -->
-            <span class="icon-work-suitcase"></span>
-            <span class="fulltime">{{ one.jobType }}</span>
-          </div>
-          <div class="yearofPassing">
-            <!-- <mat-icon class="drotation"> 3d_rotation </mat-icon> -->
-            <span class="icon-recognization icon-size"></span>
-            <span class="passedout" *ngFor="let item of one.yearofPassout; let isLast=last">
-              {{item}}{{isLast ? '' : ', '}} </span>
-          </div>
-          <div class="packAge">
-            <!-- <mat-icon class="accountbalance">account_balance</mat-icon> -->
-            <span class="icon-rupee-icon"></span>
-            <span> {{ one.ctc }}</span>
-          </div>
+            <br>
+            <div class="lastLine">
+              <div class="lastLeftline">
+                <div class="workTime">
+                  <!-- <mat-icon class="cardtravel">card_travel</mat-icon> -->
+                  <span class="icon-work-suitcase"></span>
+                  <span class="fulltime">{{ one.jobType }}</span>
+                </div>
+                <div class="yearofPassing">
+                  <!-- <mat-icon class="drotation"> 3d_rotation </mat-icon> -->
+                  <span class="icon-recognization icon-size"></span>
+                  <span class="passedout" *ngFor="let item of one.yearofPassout; let isLast=last">
+                    {{item}}{{isLast ? '' : ', '}} </span>
+                </div>
+                <div class="packAge">
+                  <!-- <mat-icon class="accountbalance">account_balance</mat-icon> -->
+                  <span class="icon-rupee-icon"></span>
+                  <span> {{ one.ctc }}</span>
+                </div>
 
 
-          <!-- <div class="bTech">
+                <!-- <div class="bTech">
             <span class=icon-graduation-cap-solid></span>
             <span class="Btech" *ngFor="let item of one.education; let isLast=last">
               {{item}}{{isLast ? '' : ', '}}</span>
           </div> -->
 
-          <div class="daysLeft">
-            <!-- <mat-icon class="android">android</mat-icon> -->
-            <span class="icon-calendar-icon icon-calsize"></span>
-             <span> Posted On
-              {{ one.postedDate | date : 'd MMM, y'}}
-            </span>
-          </div>
-        </div>
-        <div class="lastRightline">
+                <div class="daysLeft">
+                  <!-- <mat-icon class="android">android</mat-icon> -->
+                  <span class="icon-calendar-icon icon-calsize"></span>
+                  <span> Posted On
+                    {{ one.postedDate | date : 'd MMM, y'}}
+                  </span>
+                </div>
+              </div>
+              <div class="lastRightline">
 
-          <div class="applied" (click)="viewApplication(one)">
-            <!-- <mat-icon class="schedule">schedule</mat-icon> -->
-            <div><span class="icon-checked_Skyblue"></span></div>
-            Applied
-           (<span>{{ one.candidatesAppliedCount }}</span>)
-          </div>
+                <div class="applied" (click)="viewApplication(one)">
+                  <!-- <mat-icon class="schedule">schedule</mat-icon> -->
+                  <div><span class="icon-checked_Skyblue"></span></div>
+                  Applied
+                  (<span>{{ one.candidatesAppliedCount }}</span>)
+                </div>
 
-          <div class="applied" (click)="viewSettings(one)">
-            <div><mat-icon class="setting">settings</mat-icon></div><div>Settings</div>
-          </div>
+                <div class="applied" (click)="viewSettings(one)">
+                  <div><mat-icon class="setting">settings</mat-icon></div>
+                  <div>Settings</div>
+                </div>
 
-          <!-- <span class="settings" [routerLink]="routerlink.VIEWDRIVE.DRIVESETTINGS">
+                <!-- <span class="settings" [routerLink]="routerlink.VIEWDRIVE.DRIVESETTINGS">
             <mat-icon class="setting">settings</mat-icon>
             settings
             <u>{{ one.settingsMenu}}</u>
           </span> -->
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-</div>
       <!-- page nation -->
       <div class="pagenator">
         <app-common-paginator *ngIf="total" (send)="some($event)" [totalcount]="total"

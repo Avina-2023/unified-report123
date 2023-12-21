@@ -146,6 +146,12 @@ export class DriveSettingsComponent implements OnInit {
   disabledSpecifications: any[];
   elementRef: any;
 
+  
+  ISOStringDate = new Date().toISOString();
+  userRole: any;
+  role: any;
+  roleCode: any;
+
   toggleEditMode() {
     this.editMode = !this.editMode;
     this.editModeVisible = !this.editModeVisible;
@@ -397,8 +403,8 @@ export class DriveSettingsComponent implements OnInit {
       stipend: this.jobReqData?.ctc,
       startrange: this.lowerLimit,
       endrange: this.upperLimit,
-      description: this.jobReqData?.description[0].item,
-      requirement: this.jobReqData?.requirement[0].item,
+      description: this.jobReqData?.description[0]?.item,
+      requirement: this.jobReqData?.requirement[0]?.item,
       lastDatetoApply: this.jobReqData?.lastDatetoApply
     });
 
@@ -1033,12 +1039,44 @@ export class DriveSettingsComponent implements OnInit {
     this.jobDetailsdata = this.appconfig.getLocalStorage('currentJobData');
     this.valueone = JSON.parse(this.jobDetailsdata);
     console.log(this.valueone, 'jobdataaaaaaa');
+
+    this.userRole = this.appconfig.getLocalStorage('role'); 
+    this.role = JSON.parse(this.userRole); 
+    this.roleCode = this.role[0].roles[0].roleCode;
+    console.log(this.roleCode, 'role');
   }
 
+
+/*to show tool tip value*/
+  getTooltipText() {
+    if (this.jobReqData?.approveStatus === 'closed' && this.jobReqData?.updatedOn) {
+      return this.formatDate('Application closed on', this.jobReqData.updatedOn);
+    } else if (this.jobReqData?.approveStatus === 'rejected' && this.jobReqData?.remarks) {
+      return `${this.jobReqData.remarks}`;
+    } else {
+      return null;
+    }
+  }
+  /*to show tool tip value date, month and year*/
+  formatDate(prefix: string, dateString: string) {
+    const date = new Date(dateString);
+    const day = date.getDate();
+    const monthNames = [
+      'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+    ];
+    const month = monthNames[date.getMonth()];
+    const year = date.getFullYear();
+    return `${prefix} ${day}th ${month} ${year}`;
+  }
+
+  
 
 
   dashboard() {
     this.router.navigate(['/auth/partner/jobrequirment']);
+  }
+  navigatetoDrive(){
+    this.router.navigate(['/auth/drive/managedrive']);
   }
   navigateToCandidateList() {
     this.router.navigate(['/auth/drive/candidatelist']);

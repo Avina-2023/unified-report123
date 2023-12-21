@@ -409,8 +409,8 @@ display: none;
   border-radius: 3px;
   opacity: 1;
   border: 0;
-  background-color: #ef2917 opacity($color: 40%);
-  color: #ef2917;
+  background-color: #ef2917;
+  color: #fff;
   width: 74px;
   display: flex;
   position: relative;
@@ -1010,6 +1010,7 @@ display: none;
     height: 38px;
     opacity: 1;
   }
+  
   .companylogo {
     width: 20%;
     background-size: cover!important;
@@ -1458,6 +1459,9 @@ display: none;
   span{
 padding-right: 5px;
   }
+}
+.approveStatus{
+  text-transform: capitalize;
 }
 
 
