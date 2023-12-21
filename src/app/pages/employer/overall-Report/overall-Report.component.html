@@ -8,51 +8,53 @@
         [subCount2]="item.content[1].count" [subCount3]="item.content[2].count">
       </app-overall-Report-details-card>
     </div>
-    <div class="lnt-learners">
-      <mat-card class="learners-card">
+    <div class="main-card lnt-learners">
+      <div class="learner-content" *ngIf="overallreportdata">
+      <mat-card class="chart-section">
         <div class="learners-heading">L&T EduTech Learners</div>
+        <div class="line"></div>
         <div class="chart">
           <div style="display: flex; flex-direction: column;">
-            <div [hidden]="!chart">
-              <canvas id="canvas" width="200" height="200"></canvas>
+            <div class="chart1">
+              <canvas baseChart [data]="doughnutChartData" [options]="options" [colors]="doughnutChartColors"
+                [labels]="doughnutChartLabels" [chartType]="doughnutChartType">
+              </canvas>
             </div>
             <div>
-              <!-- <div *ngFor="let index of chartLabels; let i = index" style="display: flex; align-items: center;">
-                        <div [ngStyle]="{'width.px': '20', 'height.px': '5', 'background-color': chartColors[i], 'margin-right.px': '5'}"></div>
-                        <div style="text-align: center;">{{ chartLabels[i] }}</div>
-                  </div> -->
               <div class="learner-details-count">
                 <div class="learner-detail">
                   <div class="color-strip1"></div>
                   <div class="details-name">Skill Profiles Filled</div>
                 </div>
-                <div class="details-count">1229</div>
+                <div class="details-count">{{overallreportdata.eduTechReport.skillProfileCount}}</div>
               </div>
               <div class="learner-details-count">
                 <div class="learner-detail">
                   <div class="color-strip2"></div>
                   <div class="details-name">Job Applications</div>
                 </div>
-                <div class="details-count">1229</div>
+                <div class="details-count">{{overallreportdata.eduTechReport.jobApplicationCount}}</div>
               </div>
               <div class="learner-details-count">
                 <div class="learner-detail">
                   <div class="color-strip3"></div>
                   <div class="details-name">Open Job Views</div>
                 </div>
-                <div class="details-count">1229</div>
+                <div class="details-count">{{overallreportdata.eduTechReport.openJobViewCount}}</div>
               </div>
               <div class="learner-details-count">
                 <div class="learner-detail">
                   <div class="color-strip4"></div>
                   <div class="details-name">Internship Applications</div>
                 </div>
-                <div class="details-count">1229</div>
+                <div class="details-count">{{overallreportdata.eduTechReport.internshipApplicationCount}}</div>
               </div>
             </div>
           </div>
         </div>
       </mat-card>
+
+    </div>
     </div>
   </div>
 

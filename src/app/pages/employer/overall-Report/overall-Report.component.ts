@@ -13,7 +13,8 @@ import { environment } from 'src/environments/environment';
 //   responsive: ApexResponsive[];
 //   labels: any;
 // };
-import { Chart } from 'chart.js';
+import { ChartType, ChartOptions } from 'chart.js';
+import { MultiDataSet, Label, Colors } from 'ng2-charts';
 
 @Component({
   selector: 'app-overall-Report',
@@ -22,9 +23,6 @@ import { Chart } from 'chart.js';
 })
 
 export class OverallReportComponent implements OnInit {
-  chart: any;
-  // @ViewChild("chart") chart: ChartComponent;
-  // public chartOptions: Partial<ChartOptions>;
   overallreportdata: any;
   colorconfig = [
     {
@@ -44,114 +42,66 @@ export class OverallReportComponent implements OnInit {
       bgcolor: '#4CAF5014'
     }
   ]
-  chartLabels: string[];
-  chartColors: string[];
 
-  constructor(
-    private apiService:ApiService,
-    private appConfig:AppConfigService
-  ) { 
+  // progress bar chart 1
+  public options: ChartOptions = {
+    responsive: true,
+    layout: {
+      padding: {
+        left: 0,
+        right: 0,
+        bottom: 0,
+        top: 0
+      }
+    },
+    legend: {
+      display: false,
+    },
+    plugins: {
+      datalabels: {
+        display: false
+      }
+    },
 
-    // this.chartOptions = {
-    //   series: [44, 55, 13, 43, 22],
-    //   chart: {
-    //     type: "donut"
-    //   },
-    //   labels: ["Team A", "Team B", "Team C", "Team D", "Team E"],
-    //   responsive: [
-    //     {
-    //       breakpoint: 480,
-    //       options: {
-    //         // dataLabels: {
-    //         //   enabled: false,
-    //         // },
-    //         chart: {
-    //           width: 200
-    //         },
-    //         legend: {
-    //           position: "bottom"
-    //         }
-    //       }
-    //     }
-    //   ]
-    // };
+    cutoutPercentage: 70
+  }
+
+  public doughnutChartColors: Colors[] = [{
+    backgroundColor:
+      [
+        '#2862FF',
+        '#5289C9',
+        '#EB4A8A',
+        '#FF6A81',
+      ],
+
+  }
+  ];
+
+  doughnutChartLabels: Label[] = ['Skill Profiles Filled', 'Open Job Views', 'Internship Applications', 'Job Applications'];
+  doughnutChartData: MultiDataSet = [];
+  doughnutChartType: ChartType = 'doughnut';
+
+  constructor(private apiService: ApiService, private appConfig: AppConfigService) {
 
   }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.getOverAllReport();
-    this.chartLabels = ['Data1', 'Data2', 'Data3', 'Data4'];
-    this.chartColors = ['#EB4A8A', '#FF6A81', '#5289C9', '#2862FF'];
-
-    const dataValues = [55, 45, 25, 65];
-    const sumData = dataValues.reduce((acc, value) => acc + value, 0);
-
-    this.chart = new Chart('canvas', {
-      type: 'doughnut',
-      data: {
-        labels: this.chartLabels,
-        datasets: [
-          {
-            data: dataValues,
-            backgroundColor: this.chartColors,
-            fill: false,
-          },
-        ],
-      },
-      options: {
-        plugins: {
-          datalabels: {
-            display: false,
-          },
-        },
-          legend: {
-          display: false,
-          // position: 'bottom',
-        },
-        tooltips: {
-          enabled: true,
-        },   
-        cutoutPercentage: 75, 
-        responsive: true,
-        maintainAspectRatio: false,
-      },
-    });
-    Chart.pluginService.register({
-      beforeDraw: (chart: Chart) => {
-        const width = chart.width,
-          height = chart.height,
-          ctx = chart.ctx;
-        ctx.restore();
-        
-        const totalText = 'Total ';
-        const percentageText = `${sumData}`;
-        const totalWidth = ctx.measureText(totalText).width;
-        
-        const textX = Math.round((width - totalWidth) / 2);
-        const textYTotal = height / 2  + 20; 
-        const textYPercentage = height / 2 - 7; 
-        
-        const fontSizeTotal = (height / 130).toFixed(2);
-        ctx.font = `${fontSizeTotal}em sans-serif`;
-        ctx.fillStyle = '#B3B8BD';
-        ctx.fillText(totalText, textX, textYTotal);
-        
-        const fontSizePercentage = (height / 114).toFixed(2);
-        ctx.font = `${fontSizePercentage}em sans-serif`;
-        ctx.fillStyle = 'black'; 
-        ctx.fillText(percentageText, textX, textYPercentage);
-        
-        ctx.save();
-      },
-    });
-
   }
 
-  getOverAllReport(){
+  getOverAllReport() {
     this.apiService.getOverAllReport(data).subscribe((response: any) => {
-      if (response.success){
+      if (response.success) {
         this.overallreportdata = response.data
-        console.log(this.overallreportdata,'overallreportdata');
+        let chartData = [
+          this.overallreportdata.eduTechReport.skillProfileCount,
+          this.overallreportdata.eduTechReport.openJobViewCount,
+          this.overallreportdata.eduTechReport.internshipApplicationCount,
+          this.overallreportdata.eduTechReport.jobApplicationCount
+        ]
+        this.doughnutChartData.push(chartData);
+        console.log(this.overallreportdata, 'overallreportdata');
       }
     })
   }
