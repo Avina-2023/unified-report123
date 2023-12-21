@@ -30,6 +30,7 @@ import { EditJobComponent } from './view-jobs/edit-job/edit-job.component';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { StudentTrackerComponent } from './student-Tracker/student-Tracker.component';
 import { PartnerTrackerComponent } from './partner-Tracker/partner-Tracker.component';
+import { ChartsModule } from 'ng2-charts';
 @NgModule({
   declarations: [
     AddPartnerComponent,
@@ -61,7 +62,8 @@ import { PartnerTrackerComponent } from './partner-Tracker/partner-Tracker.compo
     NzDropDownModule,
     NzSelectModule,
     AngularEditorModule,
-    NgApexchartsModule
+    NgApexchartsModule,
+    ChartsModule
   ],
 })
 export class Adminmodule {}
