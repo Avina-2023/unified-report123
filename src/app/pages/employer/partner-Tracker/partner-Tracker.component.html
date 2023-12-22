@@ -1,3 +1,35 @@
-<p>
-  partner-Tracker works!
-</p>
+<div class="inner-container">
+  <div class="Student-heading">Month Wise Student Tracker</div>
+
+ <div class="inner-container-1">
+  <div class="filter-data">
+    <div><button class="year-btn">2023</button></div>
+    <div><button class="year-btn">July</button></div>
+    <div><h5 class="Export-btn" (click)="exportData()">Export Data</h5></div>
+  </div>
+
+  <div style="height: 400px;" class="ag-theme-alpine">
+    <ag-grid-angular
+      style="width: 100%; height: 100%;"
+      class="ag-theme-alpine"
+      [rowData]="rowData"
+      [columnDefs]="columnDefs"
+    ></ag-grid-angular>
+  </div>
+
+
+  <div id="chart">
+    <apx-chart
+      [series]="chartOptions.series"
+      [chart]="chartOptions.chart"
+      [dataLabels]="chartOptions.dataLabels"
+      [plotOptions]="chartOptions.plotOptions"
+      [yaxis]="chartOptions.yaxis"
+      [xaxis]="chartOptions.xaxis"
+      [fill]="chartOptions.fill"
+      [title]="chartOptions.title"
+    ></apx-chart>
+  </div>
+  
+ </div>
+</div>

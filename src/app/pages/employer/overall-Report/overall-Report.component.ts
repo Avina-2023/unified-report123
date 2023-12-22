@@ -3,16 +3,6 @@ import { data } from 'jquery';
 import { ApiService } from 'src/app/services/api.service';
 import {AppConfigService} from 'src/app/utils/app-config.service'
 import { environment } from 'src/environments/environment';
-// import { ChartComponent } from "ng-apexcharts";
-// import { ApexNonAxisChartSeries, ApexResponsive, ApexChart } from "ng-apexcharts";
-
-
-// export type ChartOptions = {
-//   series: ApexNonAxisChartSeries;
-//   chart: ApexChart;
-//   responsive: ApexResponsive[];
-//   labels: any;
-// };
 import { ChartType, ChartOptions } from 'chart.js';
 import { MultiDataSet, Label, Colors } from 'ng2-charts';
 
@@ -82,12 +72,14 @@ export class OverallReportComponent implements OnInit {
   doughnutChartData: MultiDataSet = [];
   doughnutChartType: ChartType = 'doughnut';
 
-  constructor(private apiService: ApiService, private appConfig: AppConfigService) {
+  constructor(
+    private apiService: ApiService, 
+    private appConfig: AppConfigService
+    ) {
+ }
 
-  }
-
-  async ngOnInit() {
-    this.getOverAllReport();
+   ngOnInit() {
+    this.getOverAllReport(); 
   }
 
   getOverAllReport() {
