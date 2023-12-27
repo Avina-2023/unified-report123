@@ -1,0 +1,24 @@
+.filter-data{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+  }
+  .year-btn{
+    border: 1px solid #848484;
+    padding: 2px 5px 2px 5px;
+    margin: 10px;
+    border-radius: 5px;
+  }
+  .Export-btn {
+    size: 14px;
+    color: #1b4e9b;
+    cursor: pointer;
+    text-decoration: underline;
+    margin: 0px 20px 0px 0px;
+  }
+
+  #chart {
+    max-width: 650px;
+    margin: 35px auto;
+  }
