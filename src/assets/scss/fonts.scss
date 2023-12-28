@@ -58,6 +58,89 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
+  
+  .icon-closedStatus:before {
+    content: "\ea37";
+    color: #b4b4b4;
+  }
+  .icon-pendingStatus .path1:before {
+    content: "\ea38";
+    color: rgb(38, 193, 246);
+  }
+  .icon-pendingStatus .path2:before {
+    content: "\ea39";
+    margin-left: -1em;
+    color: rgb(255, 255, 255);
+  }
+  .icon-rejectedStatus:before {
+    content: "\ea3a";
+    color: #cb0000;
+  }
+
+  .icon-signout:before {
+    content: "\ea36";
+  }
+  
+  .icon-hover_learning:before {
+    content: "\ea2f";
+    color: #1b4e9b;
+  }
+  .icon-hover_jobs:before {
+    content: "\ea30";
+    color: #1b4e9b;
+  }
+  .icon-hover_internships:before {
+    content: "\ea31";
+    color: #004684;
+  }
+  .icon-hover_forum:before {
+    content: "\ea33";
+    color: #1b4e9b;
+  }
+  .icon-hover_events:before {
+    content: "\ea34";
+    color: #1b4e9b;
+  }
+  .icon-hover_home:before {
+    content: "\ea35";
+    color: #1b4e9b;
+  }
+  .icon-darkMode:before {
+    content: "\ea2e";
+    color:#848484;
+  }
+  .icon-lightmode:before {
+    content: "\ea2d";
+  }
+  .icon-notification:before {
+    content: "\ea2c";
+    color: #848484;
+  }
+  .icon-home:before {
+    content: "\ea2b";
+    font-weight: 600;
+  }
+  .icon-forum:before {
+    content: "\ea26";
+    color: #848484;
+  }
+  .icon-internships:before {
+    content: "\ea27";
+    color: #848484;
+  }
+  .icon-jobs:before {
+    content: "\ea28";
+    font-weight: 600;
+  }
+  .icon-learning:before {
+    content: "\ea29";
+    color: #848484;
+  }
+  .icon-events:before {
+    content: "\ea2a";
+    color: #848484;
+  }
+
   .icon-checked_Skyblue:before {
     content: "\ea25";
     color: #0097cc;
