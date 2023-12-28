@@ -47,7 +47,7 @@
             <span class="icon-tick_mark_green" *ngIf="valueone?.status === 'Active'"></span>
             <span *ngIf="valueone?.status === 'Expired'"></span>
           </div>
-          <div class="val text_capitalize">{{ valueone?.status }}</div>
+          <div class="val text_capitalize">{{ valueone?.approveStatus == 'approved' ? 'Active' : valueone?.approveStatus }}</div>
         </div>
       </div>
     </mat-card>
