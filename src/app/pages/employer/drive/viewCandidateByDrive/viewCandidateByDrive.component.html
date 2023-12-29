@@ -44,10 +44,17 @@
 
         <div class="act">
           <div>
-            <span class="icon-tick_mark_green" *ngIf="valueone?.status === 'Active'"></span>
+            <!-- <span class="icon-tick_mark_green" *ngIf="valueone?.approveStatus === 'approved'"></span>
+            <span class="icon-closedStatus" *ngIf="valueone?.approveStatus === 'closed'"></span> -->
+            <img src="/assets/images/rejected.png" class="astatus-icon" *ngIf="valueone?.approveStatus === 'rejected'">
+<img src="/assets/images/Timeout.png" class="status-icon" *ngIf="valueone?.approveStatus === 'pending'">
+<img src="/assets/images/cancel.png" class="status-icon" *ngIf="valueone?.approveStatus === 'closed'">
+<img src="/assets/images/expired@2x.png" class="status-icon" *ngIf="valueone?.approveStatus === 'expired'">
+<img src="/assets/images/green-tic.svg" class="status-icon" *ngIf="valueone?.approveStatus === 'approved'">
+            
             <span *ngIf="valueone?.status === 'Expired'"></span>
           </div>
-          <div class="val text_capitalize">{{ valueone?.status }}</div>
+          <div class="val text_capitalize">{{ valueone?.approveStatus == 'approved' ? 'Active' : valueone?.approveStatus }}</div>
         </div>
       </div>
     </mat-card>

@@ -1,62 +1,97 @@
 <div class="inner-container">
-  <div>Total Records of June-2023</div>
-
-  <div class="char">
-
-    <!-- <mat-card class="char1">
-      <div>Registrations</div>
-      <div class="chart-inner">
-        <div [hidden]="!chart">
-          <canvas id="canvas" width="200" height="200"></canvas>
-        </div>
-        <div style="margin-left: 20px;">
-          <div *ngFor="let index of chartLabels; let i = index" style="display: flex; align-items: center;">
-            <div [ngStyle]="{'width.px': '20', 'height.px': '5', 'background-color': chartColors[i], 'margin-right.px': '5'}"></div>
-            <div style="text-align: center; margin-right: 10px;">{{ chartLabels[i] }}</div>
-            <div style="margin-right: 10px;">{{ chartData[i] }}</div>
-          </div>
-        </div>
+  <div class="Student-heading">Month Wise Student Tracker</div>
+  <div class="inner-container-1">
+    <div class="filter-data">
+      <div><button class="year-btn">2023</button></div>
+      <div><button class="year-btn">July</button></div>
+      <div>
+        <h5 class="Export-btn" (click)="exportData()">Export Data</h5>
       </div>
-    </mat-card> -->
-    <mat-card class="char1">
-      <div class="heading">Registrations</div>
-      <div class="chart-inner">
-        <div [hidden]="!chart">
-          <canvas id="canvas" width="170" height="170"></canvas>
-        </div>
-        <!-- <div style="margin-left: 20px;">
-          <div *ngFor="let index of chartLabels; let i = index" style="display: flex; align-items: center;">
-            <div [ngStyle]="{'width.px': '20', 'height.px': '5', 'background-color': chartColors[i], 'margin-right.px': '5'}"></div>
-            <div style="text-align: center; margin-right: 10px;">{{ chartLabels[i] }}</div>
-            <div>{{ chartData[i] }}</div>
-          </div>
-        </div> -->
-        <div class="learner-details-count">
-          <div class="learner-detail">
-            <div class="color-strip1"></div>
-            <div class="details-name">Trained</div>
-          </div>
-          <div class="details-count">1229</div>
-        </div>
-      </div>
-    </mat-card>
-    
-    <mat-card class="char1">
-      <div class="heading">Skill Profiles Filled</div>
-      <div class="chart-inner">
-        <div [hidden]="!chart2">
-          <canvas id="canvas2" width="170" height="170"></canvas>
-        </div>
-        <div style="margin-left: 20px;">
-          <div *ngFor="let index of chartLabels2; let i = index" style="display: flex; align-items: center;">
-            <div
-              [ngStyle]="{'width.px': '20', 'height.px': '5', 'background-color': chartColors2[i], 'margin-right.px': '5'}">
+    </div>
+    <div style="height: 400px;" class="ag-theme-alpine">
+      <ag-grid-angular style="width: 100%; height: 100%;" class="ag-theme-alpine" [rowData]="rowData"
+        [columnDefs]="columnDefs"></ag-grid-angular>
+    </div>
+    <div>
+      <div class="graph-heading">Total Records For NOV-2023</div>
+      <div class="graph-details">
+        <div>
+          <mat-card class="registration-card">
+            <div class="sub-heading">Registrations</div>
+            <div style="display: flex; flex-direction: row; align-items: center; justify-content: space-around;">
+              <div *ngIf="overallreportdata">
+                <canvas height="200px" width="200px" baseChart [data]="doughnutChartData" [options]="options"
+                  [colors]="doughnutChartColors" [labels]="doughnutChartLabels" [chartType]="doughnutChartType">
+                </canvas>
+              </div>
+              <div>
+                <div class="Register-details-count">
+                  <div class="Register-detail">
+                    <div class="Register-circle circle1"></div>
+                    <div class="Register-details-name">Trained</div>
+                  </div>
+                  <div class="details-count">{{overallreportdata?.eduTechReport?.skillProfileCount}}</div>
+                </div>
+                <div class="seperator seperator1"></div>
+                <div class="Register-details-count">
+                  <div class="Register-detail">
+                    <div class="Register-circle circle2"></div>
+                    <div class="Register-details-name">Trained</div>
+                  </div>
+                  <div class="details-count">{{overallreportdata?.eduTechReport?.skillProfileCount}}</div>
+                </div>
+                <div class="seperator seperator2"></div>
+                <div class="Register-details-count">
+                  <div class="Register-detail">
+                    <div class="Register-circle circle3"></div>
+                    <div class="Register-details-name">Trained</div>
+                  </div>
+                  <div class="details-count">{{overallreportdata?.eduTechReport?.skillProfileCount}}</div>
+                </div>
+                <div class="seperator seperator3"></div>
+              </div>
             </div>
-            <div style="text-align: center;">{{ chartLabels2[i] }}</div>
-          </div>
+          </mat-card>
+        </div>
+        <div>
+          <mat-card class="registration-card2">
+            <div class="sub-heading">Skill Profile filled</div>
+            <div style="display: flex; flex-direction: row; align-items: center; justify-content: space-around;">
+              <div *ngIf="overallreportdata">
+                <canvas height="200px" width="200px" baseChart [data]="doughnutChartData" [options]="options"
+                  [colors]="doughnutChartColors" [labels]="doughnutChartLabels" [chartType]="doughnutChartType">
+                </canvas>
+              </div>
+              <div>
+                <div class="Register-details-count">
+                  <div class="Register-detail">
+                    <div class="Register-circle circle1"></div>
+                    <div class="Register-details-name">Trained</div>
+                  </div>
+                  <div class="details-count">{{overallreportdata?.eduTechReport?.skillProfileCount}}</div>
+                </div>
+                <div class="seperator seperator1"></div>
+                <div class="Register-details-count">
+                  <div class="Register-detail">
+                    <div class="Register-circle circle2"></div>
+                    <div class="Register-details-name">Trained</div>
+                  </div>
+                  <div class="details-count">{{overallreportdata?.eduTechReport?.skillProfileCount}}</div>
+                </div>
+                <div class="seperator seperator2"></div>
+                <div class="Register-details-count">
+                  <div class="Register-detail">
+                    <div class="Register-circle circle3"></div>
+                    <div class="Register-details-name">Trained</div>
+                  </div>
+                  <div class="details-count">{{overallreportdata?.eduTechReport?.skillProfileCount}}</div>
+                </div>
+                <div class="seperator seperator3"></div>
+              </div>
+            </div>
+          </mat-card>
         </div>
       </div>
-    </mat-card>
-
+    </div>
   </div>
 </div>

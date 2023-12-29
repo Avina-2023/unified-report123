@@ -300,6 +300,14 @@ export class EmpUploadPostrequirmentComponent implements OnInit {
 
   }
 
+  // validateCtc(control) {
+  //   const value = control.value;
+  //   if (value === -1 || value < 0) {
+  //     return { invalidCtc: true };
+  //   }
+  //   return null;
+  // }
+
 
 
   getCurrentDate(): string {

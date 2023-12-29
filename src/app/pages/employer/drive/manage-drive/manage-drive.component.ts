@@ -369,6 +369,11 @@ export class ManageDriveComponent implements OnInit {
     return {
       getRows: (params) => {
         let apiData: any = params;
+        apiData.request.filterModel['jobCategoryId'] = {
+          filterType: 'text',
+          type: "contains",
+          filter :"64cc8ce4112e2bb777bcbef5"
+        };
         this.driveAgGridSubscription = this.ApiService.getAGgridData(
           apiData.request
         ).subscribe(
