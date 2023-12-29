@@ -66,12 +66,12 @@ export class AddJobsComponent implements OnInit {
 
   productionUrl = environment.SKILL_EDGE_URL == "https://skilledge.lntedutech.com" ? true : false;
 
-  config: AngularEditorConfig = {
+   config: AngularEditorConfig = {
     editable: true,
     spellcheck: true,
     minHeight: '100px',
     maxHeight: '100px',
-    placeholder: 'Type here...',
+   // placeholder: 'Type here...',
     translate: 'no',
     sanitize: false,
     toolbarPosition: 'top',
