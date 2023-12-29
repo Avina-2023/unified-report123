@@ -163,7 +163,7 @@
 
             <div *ngIf="selectedRangeOption === 'fixed'" style="width:-webkit-fill-available;">
               <input type="number" id="numberInput" formControlName="fixed" class="form-control"
-                placeholder="CTC (numeric only)">
+                placeholder="CTC (numeric only)" min="0">
               <div *ngIf="jobForm.get('fixed').hasError('required') && jobForm.get('fixed').touched"
                 class="text-danger">
                 CTC required.
