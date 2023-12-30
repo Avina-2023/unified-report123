@@ -60,24 +60,33 @@ export class JobListingComponent implements OnInit {
   removeduplicate1: any;
   removeduplicate2: any;
   activeButton: string = 'all';
-  grid2Selected = false;
+  // grid2Selected = false;
   partnerLabel: string | undefined;
   private buttonClicked = new Subject<string>();
   workOption: any;
+ jobs = [
+    { jobType: 'Contract' },
+    { jobType: 'Parttime' },
+    { jobType: 'Full Time' },
+    // Add more job types as needed
+  ];
+ item = {
+    isSelected: false,
+  };
   constructor(
     public dialog: MatDialog,
-    private apiservice: ApiService, 
-    private appconfig: AppConfigService, 
-    public router: Router, 
+    private apiservice: ApiService,
+    private appconfig: AppConfigService,
+    public router: Router,
     private toaster: ToastrService,
     private renderer: Renderer2,
     private el: ElementRef
   ) {}
   url = 'Jobs';
   ngOnInit() {
-    this.getJobList(); 
-    this.getJobFilter(); 
-    this.candidateData(); 
+    this.getJobList();
+    this.getJobFilter();
+    this.candidateData();
     this.enabledisable();
     this.partnerLabel = 'Skill Exchange Partner';
     this.debouncefn();
@@ -102,18 +111,18 @@ export class JobListingComponent implements OnInit {
     }
   }
 
-  toggleGrid2() {
-    this.grid2Selected = !this.grid2Selected;
-  }
+  // toggleGrid2() {
+  //   this.grid2Selected = !this.grid2Selected;
+  // }
   candidateData() {
-    this.candidateDetails = localStorage.getItem('candidateProfile'); 
-    let educationyear = JSON.parse(this.candidateDetails); 
-    this.useryop = educationyear?.education_details?.educations[ educationyear.education_details.educations.length - 1 ]?.year_of_passing; 
-    this.yopdate = new Date(this.useryop);  
-    this.useryopyear = this.yopdate.getFullYear(); 
-    this.removeduplicate2 = this.useryopyear.toString(); 
-    console.log(this.useryopyear, 'useryop1'); 
-    return this.useryopyear; 
+    this.candidateDetails = localStorage.getItem('candidateProfile');
+    let educationyear = JSON.parse(this.candidateDetails);
+    this.useryop = educationyear?.education_details?.educations[ educationyear.education_details.educations.length - 1 ]?.year_of_passing;
+    this.yopdate = new Date(this.useryop);
+    this.useryopyear = this.yopdate.getFullYear();
+    this.removeduplicate2 = this.useryopyear.toString();
+    console.log(this.useryopyear, 'useryop1');
+    return this.useryopyear;
   }
 
   getJobList() {
@@ -123,28 +132,28 @@ export class JobListingComponent implements OnInit {
       delete this.filterObj.textSearch;
     }
     let params: any = {
-      pageNumber: this.pageNumber, 
-      itemsPerPage: this.itemsPerPage, 
+      pageNumber: this.pageNumber,
+      itemsPerPage: this.itemsPerPage,
       // filter: {
       //   textSearch: this.searchInput,
       // },
-      filter: this.filterObj, 
-      sort: this.sortData, 
+      filter: this.filterObj,
+      sort: this.sortData,
       specialization: 'Computer Science Engineering',
-      email: this.appconfig.getLocalStorage('email'), 
+      email: this.appconfig.getLocalStorage('email'),
     };
-    this.apiservice.joblistingDashboard(params).subscribe((response: any) => { 
-      if (response.success) { 
-        this.joblist = response.data; 
+    this.apiservice.joblistingDashboard(params).subscribe((response: any) => {
+      if (response.success) {
+        this.joblist = response.data;
         console.log(this.joblist, 'joblist');
         this.totallength = response.totalCount;
-        this.total = Math.ceil(response.totalCount / this.itemsPerPage); 
-        this.joblist.forEach((element) => { 
-        this.sampleContent.push(element.overview); 
-        }); 
-      } 
-    }); 
-  } 
+        this.total = Math.ceil(response.totalCount / this.itemsPerPage);
+        this.joblist.forEach((element) => {
+        this.sampleContent.push(element.overview);
+        });
+      }
+    });
+  }
 
   enabledisable() {
     console.log(this.useryopyear);
@@ -329,5 +338,29 @@ export class JobListingComponent implements OnInit {
     }
     this.getJobList()
   }
+ getColor(jobType: string): string {
+    switch (jobType) {
+      case 'Contract':
+        return '#700353';
+      case 'Parttime':
+        return '#4C1C00';
 
+      default:
+        return '#56B35A'; // Default color
+    }
+  }
+
+ getBackgroundColor(jobType: string): string {
+    switch (jobType) {
+      case 'Contract':
+        return '#70035329';
+      case 'Parttime':
+        return '#4C1C0029';
+      default:
+        return '#56B35A29'; // Default background color
+    }
+  }
+ toggleSave() {
+    this.item.isSelected = !this.item.isSelected;
+  }
 }

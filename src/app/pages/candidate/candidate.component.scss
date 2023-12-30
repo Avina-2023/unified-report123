@@ -86,6 +86,7 @@
 
 .navMarginOver{
   margin-left: 65px;
+  background-color: #ededed;
 }
 .navMarginSide{
   margin-left: 0px;
@@ -154,7 +155,7 @@
   // color: #1B4E9B;
   .book:hover {
     color: #1B4E9B !important;
-  } 
+  }
 }
 
 .mat-list-base{
@@ -165,7 +166,7 @@
   margin-top: 4px;
 }
 .full-width-save{
- 
+
 }
 .hrlogout{
   border-top: 1px solid #eee;
@@ -233,4 +234,3 @@
 ::ng-deep .mat-menu-item .mat-icon{
   margin-right: 0px!important;
 }
- 

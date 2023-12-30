@@ -1,6 +1,13 @@
 <div class="overflowbox">
   <div class="position">
-    <span class="result-show"> Results Showing ({{resultShow}}) </span>
+    <div style="width: 1026px;
+height: 69px;
+background: #FFFFFF 0% 0% no-repeat padding-box;
+border-radius: 15px; margin: 1px 15px;display: flex;
+    justify-content: space-between;
+    align-items: center;">
+      <div class="result-show"> Results Showing <span class="result-count">({{resultShow}}) </span></div>
+    </div>
     <div class="card_flex" *ngFor="let item of data">
       <mat-card class="listcard">
         <mat-card-header>
@@ -10,13 +17,16 @@
             </div>
             <div class="cardgrid">
               <!-- <div class="title">{{item.jobRole}}</div> -->
-              <div class="subtitle">{{item.company}}</div>
-              <div class="cardfooter_row">
+              <div class="subtitle">{{item.jobRole}}</div>
+              <!-- <div class="cardfooter_row">
                 <span>
                   <mat-icon class="icon"> location_on</mat-icon>
                 </span>
                 <span class="smalltext" *ngFor="let elem of item.jobLocation;let i=index; let isLast=last">{{elem}}<span
                     class="misc_col" *ngIf="!isLast && i < item.jobLocation.length">&nbsp;</span> </span>
+              </div> -->
+              <div class="cmpny_sel">
+                <span></span> {{item.company}}
               </div>
             </div>
           </div>
@@ -37,31 +47,35 @@
         </div> -->
           <div class="foo-flex">
             <div class="footer_details">
-              <div class="title">{{item.jobRole}}</div>
-
+              <!-- <div class="title">{{item.jobRole}}</div> -->
               <div class="cardfooter_row">
                 <span>
-                  <mat-icon class="icon" [class.active]="isActive"> school</mat-icon>
+                  <mat-icon class="icon"> location_on</mat-icon>
                 </span>
-                <!-- <span class="smalltext" *ngFor="let elem of item.education;let i=index; let isLast=last">{{elem}}<span
+                <span class="smalltext" *ngFor="let elem of item.jobLocation; let i = index; let isLast = last">
+                  {{ elem }}
+                  <span class="misc_col" *ngIf="!isLast && i < item.jobLocation.length - 1">,&nbsp;</span>
+                </span>
+                <div class="cardfooter_edu">
+                  <span>
+                    <mat-icon class="icon" [class.active]="isActive"> school</mat-icon>
+                  </span>
+                  <!-- <span class="smalltext" *ngFor="let elem of item.education;let i=index; let isLast=last">{{elem}}<span
                   class="misc_col" *ngIf="!isLast && i < item.education.length">&nbsp;</span></span>  -->
-                <span class="smalltext" *ngFor="let elem of item.education; let isLast=last">{{ elem.specification
-                  }}<span class="misc_col" *ngIf="!isLast">&nbsp;</span></span>
-
+                  <span class="smalltext" *ngFor="let elem of item.education; let isLast=last">{{ elem.specification
+                    }}<span class="misc_col" *ngIf="!isLast">&nbsp;</span></span>
+                </div>
               </div>
-              <!-- <div class="cardfooter_row"><span>
-        <mat-icon class="icon"> location_on</mat-icon>
-      </span>
-      <span class="smalltext" *ngFor="let elem of item.jobLocation;let i=index; let isLast=last">{{elem}}<span class="misc_col" *ngIf="!isLast && i < item.jobLocation.length">&nbsp;</span> </span>
-    </div> -->
-              <!-- <div class="cardfooter_row"  *ngIf="item.jobType"><span>
-            <mat-icon class="icon"> business_center</mat-icon>
-          </span>
-          <span class="smalltext">{{item.jobType}}</span>
-        </div> -->
-
+              <div class="box_rad">
+                <div *ngIf="item.jobFamily" class="jobTTyp">{{ item.jobFamily }}</div>
+                <div class="type_fulltime"
+                  [ngStyle]="{ 'color': getColor(item.jobType), 'background-color': getBackgroundColor(item.jobType) }">
+                  <span class="icon-full_time"></span> {{item.jobType}}
+                </div>
+              </div>
             </div>
-            <div class="footer_right">
+
+            <!-- <div class="footer_right">
               <div class="box-job">
                 <div class="jobTTyp">#{{item.workType}}</div>
                 <div class="full_time">{{item.jobType}}</div>
@@ -76,18 +90,11 @@
                   *ngIf="item?.isApplied == false && currentdate>item?.lastDatetoApply">Expired
                 </button>
               </div>
-            </div>
+            </div> -->
           </div>
           <div class="footer-gray">
             <div class="gray-flex">
-              <!-- <div class="cardfooter_row" *ngIf="savedButton">
-            <div *ngIf="!item.createdOn">
-              <span>
-                <mat-icon class="icon"> calendar_month</mat-icon>
-              </span>
-              <span class="smalltext">Posted &nbsp;{{item.createdOn|timeAgo}}</span>
-            </div>
-          </div> -->
+
               <ng-container *ngIf="showApplied">
                 <div class="flex-growone" *ngIf="item?.isApplied == false && currentdate<item?.lastDatetoApply"><span
                     class="icon-clock_postdate"></span>
@@ -102,37 +109,37 @@
                   <!-- days left -->
                 </div>
                 <div *ngIf="item.isAppliedDate">
-                  <!-- <span>
-              <mat-icon class="icon">check_circle_outline</mat-icon>
-            </span> -->
+
                   <span class="icon-clock_postdate"></span>
                   <span class="smalltext">Applied on &nbsp;{{item.isAppliedDate | date : 'd MMM '}}</span>
                 </div>
-                <!-- <div class="saved isDisabled" [disabled]="isDisabled" *ngIf="item?.isApplied == true"> Posted on
-            {{item.createdOn | date : 'd MMM '}}
-          </div>
-           -->
-              </ng-container>
 
+              </ng-container>
+              <!-- apply button -->
+              <!-- <div class="" style=""> -->
+              <div class="misc_save" style="padding: 0px 20px 0px 0px;" *ngIf="savedButton">
+                <button class="saved" *ngIf="item?.isApplied == false && currentdate<item?.lastDatetoApply"
+                  (click)=" handleApplyButtonClick(item)">Apply Now
+                </button>
+                <button class="saved isDisabled" style="margin-left: auto;" [disabled]="isDisabled"
+                  *ngIf="item?.isApplied == true">Applied
+                </button>
+                <button class="saved isDisabled" [disabled]="isDisabled"
+                  *ngIf="item?.isApplied == false && currentdate>item?.lastDatetoApply">Expired
+                </button>
+              </div>
+              <!--  -->
               <div class="flex-growthree" class="misc_save" *ngIf="savedButton">
                 <div>
                   <!-- <mat-icon class="misc_icon" *ngIf="item?.isSelected == true">bookmark_border</mat-icon>
-            <mat-icon class="misc_icon" *ngIf="item?.isSelected == false">bookmark_border</mat-icon> -->
+                        <mat-icon class="misc_icon" *ngIf="item?.isSelected == false">bookmark_border</mat-icon> -->
                   <mat-icon (click)="bookMarkIcon(item)" [ngClass]="item.isSelected ? 'saved_icon':'unsaved_icon'">
                     {{item.isSelected?'bookmark':'bookmark_border'}} </mat-icon>
+                  <span class="save_text">Saved</span>
                 </div>
               </div>
-
+              <!-- </div> -->
             </div>
-
-            <!-- <div class="cardfooter_row" *ngIf="showApplied">
-        <div *ngIf="item.isAppliedDate">
-          <span>
-            <mat-icon class="icon">check_circle_outline</mat-icon>
-          </span>
-          <span class="smalltext">Applied &nbsp;{{item.isAppliedDate|timeAgo}}</span>
-        </div>
-      </div> -->
           </div>
         </mat-card-content>
       </mat-card>

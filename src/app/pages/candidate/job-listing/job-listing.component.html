@@ -1,4 +1,4 @@
-<app-common-banner [name]="url"></app-common-banner>
+<!-- <app-common-banner [name]="url"></app-common-banner> -->
 <div class="flex-layout">
   <div class="job_board">
     <!-- <div class="find_job banner_header"> -->
@@ -8,7 +8,6 @@
         <h5 class="findtext"> &nbsp; > &nbsp;Find Jobs</h5>
       </div> -->
     <br>
-
 
     <div class="button-container">
       <button class="custom-button allbtn" [ngClass]="{'active': activeButton === 'all'}"
@@ -40,28 +39,68 @@
         <mat-icon class="misc_icon">filter_list</mat-icon><span>Filters ({{this.selectedValues.length}})</span>
       </div>
     </div>
-
-    <div class="results_dash">
-      <div> Results Showing ({{this.totallength}})</div>
-      <div class="arrow_grid">
-        <div class="sort">
+    <div style="
+height: 76px;
+background: #FFFFFF 0% 0% no-repeat padding-box;
+border-radius: 15px;margin: 1% 4%;border: 1px solid #d0d0d0;">
+      <div class="results_dash">
+        <!-- <div> Results Showing ({{this.totallength}})</div> -->
+        <div class="arrow_grid">
+          <!-- <div class="sort">
           <p class="sortby_text">Sort by:</p>
           <mat-select class="panelPosition mat-select-arrow-wrapper " appearance="outline" [(ngModel)]="sortData"
             (selectionChange)="getJobList()" placeholder="Relevance">
             <mat-option value="relevance"> Relevance </mat-option>
             <mat-option value="recently posted"> Recently Posted </mat-option>
           </mat-select>
-        </div>
+        </div> -->
+          <div style="background: #1B4E9C 0% 0% no-repeat padding-box;
+border-radius: 20px;color:#fff;height: 36px;
+opacity: 1;">
+            <mat-select class="jobs_Position mat-select-arrow-wrapper " appearance="outline">
+              <mat-option value="relevance" [ngClass]="{'active': activeButton === 'Jobs'}"
+                (click)="setActiveButton('Jobs')"> Jobs </mat-option>
 
-        <div class="icon-container">
-          <div class="grid-container" [ngClass]="{'grid_2-selected': grid2Selected}" (click)="toggleGrid2()">
-            <span class="icon-dotted-grid grid_1" matTooltip="Grid View" matTooltipClass="custom-tooltip"></span>
-            <span class="icon-list_view grid_2" matTooltip="List View" matTooltipClass="custom-tooltip"></span>
+              <mat-option value="recently posted" [ngClass]="{'active': activeButton === 'Internships'}"
+                (click)="setActiveButton('Internships')"> Internship </mat-option>
+            </mat-select>
           </div>
+
+          <div class="sort" style="height: 36px;">
+            <ng-container *ngIf="!sortData; else optionSelected">
+              <p class="sortby_text">Sort by:</p>
+              <mat-select class="panelPosition mat-select-arrow-wrapper" appearance="outline" [(ngModel)]="sortData"
+                (selectionChange)="getJobList()" placeholder="Relevance">
+                <mat-option value="relevance"> Relevance </mat-option>
+                <mat-option value="recently posted"> Recently Posted </mat-option>
+              </mat-select>
+            </ng-container>
+            <ng-template #optionSelected>
+              <mat-select class="panelPosition mat-select-arrow-wrapper" appearance="outline" [(ngModel)]="sortData"
+                (selectionChange)="getJobList()" placeholder="Relevance">
+                <mat-option value="relevance"> Relevance </mat-option>
+                <mat-option value="recently posted"> Recently Posted </mat-option>
+              </mat-select>
+            </ng-template>
+          </div>
+
+
+          <!-- <div class="icon-container">
+              <div class="grid-container" [ngClass]="{'grid_2-selected': grid2Selected}" (click)="toggleGrid2()">
+                <span class="icon-dotted-grid grid_1" matTooltip="Grid View" matTooltipClass="custom-tooltip"></span>
+                <span class="icon-list_view grid_2" matTooltip="List View" matTooltipClass="custom-tooltip"></span>
+              </div>
+            </div> -->
+          <!-- <div class="icon-container"> -->
+          <!-- <div class="grid-container" (click)="toggleGrid2()"> -->
+          <!-- <span class="icon-dotted-grid grid_1" matTooltip="Grid View" matTooltipClass="custom-tooltip"></span> -->
+          <!-- <span class="icon-list_view grid_2" matTooltip="List View" matTooltipClass="custom-tooltip"></span> -->
+          <!-- </div> -->
+          <!-- </div> -->
+          <div class="result_sty"> Results Showing ({{this.totallength}})</div>
         </div>
       </div>
     </div>
-
     <div class="main2">
       <div class="card-sty">
         <mat-card class="main-card2" [class.custom-class]="grid2Selected" *ngFor="let item of joblist;let i as index">
@@ -86,10 +125,19 @@
                 </div>
                 <div class="minicard-heading">
                   <!-- <span matTooltip="{{ item.company }}" class="head2">{{ item.company }}</span> -->
-                  <span matTooltip="{{ item.company }}" class="head2" [ngClass]="{'truncate-text': item.partnerLabel}">
-                    {{ item.company }}
+                  <span matTooltip="{{ item.jobRole }}" class="head2" [ngClass]="{'truncate-text': item.partnerLabel}">
+                    {{ item.jobRole }}
                   </span>
 
+                  <div class="sub-details">
+                    <div class="cmpny_sty">
+                      <span></span> {{item.company}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="main-sub">
+                <div class="sub-details-1">
                   <div class="sub-details">
                     <div>
                       <mat-icon class="locicon">location_on</mat-icon>
@@ -98,36 +146,26 @@
                       <ng-container *ngFor="let location of item.jobLocation; let last = last"> {{ location }}{{ !last ?
                         ', ' : '' }} </ng-container>
                     </div>
-                  </div>
-                </div>
-              </div>
-              <div class="main-sub">
-                <div class="sub-details-1">
-                  <div>
-                    <!-- <div class='compTitle'><strong>{{ jobDetails.jobRole ? jobDetails.jobRole : jobDetails.jobTitle }}</strong> -->
-                    <span class="head1 rolebold"
-                      [matTooltip]="item.jobRole ? item.jobRole : item.jobTitle">{{item.jobRole ? item.jobRole :
-                      item.jobTitle}}</span>
+                    <div class="degree">
+                      <span class="icon-graduation-cap-solid"></span>
+                      <ng-container *ngFor="let degree of item.education; let last = last">
+                        {{ degree.specification }}
+                        <!-- <span *ngIf="degree.discipline.length > 0"> (Discipline: {{ degree.discipline.join(', ') }})</span> -->
+                        {{ !last ? ', ' : '' }}
+                      </ng-container>
+                    </div>
                   </div>
                 </div>
                 <div class="box">
                   <div>
-                    <span class="jobTTyp">#{{item.workType}}</span>
+                    <!-- <span class="jobTTyp">{{item.jobFamily}}</span> -->
+                    <span *ngIf="item.jobFamily" class="jobTTyp">{{ item.jobFamily }}</span>
                   </div>
-                  <div class="type_fulltime">
+
+                  <div class="type_fulltime"
+                    [ngStyle]="{ 'color': getColor(item.jobType), 'background-color': getBackgroundColor(item.jobType) }">
                     <span class="icon-full_time"></span> {{item.jobType}}
                   </div>
-                </div>
-                <div class="degree">
-                  <span class="icon-graduation-cap-solid"></span>
-                  <!-- <ng-container *ngFor="let degree of item.education; let last = last">
-                    {{ degree }}{{ !last ? ', ' : '' }}
-                  </ng-container> -->
-                  <ng-container *ngFor="let degree of item.education; let last = last">
-                    {{ degree.specification }}
-                    <!-- <span *ngIf="degree.discipline.length > 0"> (Discipline: {{ degree.discipline.join(', ') }})</span> -->
-                    {{ !last ? ', ' : '' }}
-                  </ng-container>
                 </div>
               </div>
             </div>
@@ -153,9 +191,13 @@
               <div class="misc_save" (click)="bookMarkIcon(item)"
                 [ngClass]="{'blurcard disabled-card': !item.yearofPassout.includes(removeduplicate2) && item.partnerLabel}">
                 <div class="save">
-                  <mat-icon [ngClass]="item.isSelected ? 'saved_icon' : 'unsaved_icon'">
+                  <mat-icon [ngClass]="item.isSelected ? 'saved_icon' : 'unsaved_icon'" (click)="toggleSave()">
                     {{item.isSelected ? 'bookmark' : 'bookmark_border'}}
-                  </mat-icon><span class="book-icon"></span>
+                  </mat-icon>
+                  <span class="book-icon" (click)="toggleSave()"
+                    [ngClass]="{'saved-text': item.isSelected, 'unsaved-text': !item.isSelected}">
+                  </span>
+                  <span class="saved_text_ed"> {{ item.isSelected ? 'Saved' : 'Save' }}</span>
                 </div>
               </div>
             </div>
@@ -196,7 +238,8 @@
         <div *ngFor="let course of fillist.subContent; let i = index">
           <span *ngIf="i<4">
             <mat-checkbox (change)="checkboxChecked($event,course,fillist.key,fillist.isMaster,'direct')"
-              [checked]="course.is_checked" class="fldName" color="primary" *ngIf="!fillist.isShow">{{fillist.fieldName == 'Education' ? course.name.specification : course.name }}
+              [checked]="course.is_checked" class="fldName" color="primary" *ngIf="!fillist.isShow">{{fillist.fieldName
+              == 'Education' ? course.name.specification : course.name }}
               ({{course.totalCount}})
             </mat-checkbox>
           </span>
@@ -221,7 +264,8 @@
     <div class="filter_col mat_dlg_cnt">
       <div *ngFor="let course of filterItems.subContent">
         <mat-checkbox class="mat_courses" (change)="checkboxChecked($event,course,filterItems.key,filterItems.isMaster)"
-          [checked]="course.is_checked" color="primary">{{filterItems.fieldName == "Education" ? course.name.specification : course.name}} ({{course.totalCount}})</mat-checkbox>
+          [checked]="course.is_checked" color="primary">{{filterItems.fieldName == "Education" ?
+          course.name.specification : course.name}} ({{course.totalCount}})</mat-checkbox>
       </div>
     </div>
     <button [mat-dialog-close] class="aply_btn" (click)="applyfilter()" mat-raised-button color="primary">Apply</button>

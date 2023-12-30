@@ -78,7 +78,7 @@
             <mat-icon>keyboard_arrow_right</mat-icon>
           </div>
         </div> -->
-        
+
       <div class="details_header flx_div flx_center card_sticky" #headerRef>
         <div class="overall-detail" *ngFor="let detail of details" [class.active]="activeSection === detail.sectionId"
           (click)="scrollToSection(detail.sectionId)">
@@ -196,8 +196,7 @@
             <h2 class="head_title">Hobbies/Interests </h2>
             <div class="flx_div ">
               <div class="hobbies">
-                <div *ngFor="let hobby of candidateData?.personal_details?.hobbies_intrest">{{ hobby.hobbiesAndInterests
-                  }}
+                <div *ngFor="let hobby of candidateData?.personal_details?.hobbies_intrest">{{ hobby.hobbiesAndInterests }}
                 </div>
               </div>
               <div
@@ -207,7 +206,6 @@
               </div>
             </div>
           </div>
-
         </div>
 
         <div>
@@ -319,8 +317,7 @@
                   </ng-container>
                 </div>
               </div>
-              <div class="edu_start_end">{{candidates.start_date| date : 'MMM y'}}-{{candidates.end_date| date : 'MMM
-                y'}}
+              <div class="edu_start_end">{{candidates.start_date| date : 'MMM y'}}-{{candidates.end_date| date : 'MMM y'}}
               </div>
               <div class="flx_div flx_baseline title">
                 <div class="key">Year of Passing</div>
@@ -439,14 +436,12 @@
 
                 <div class="flx_div flx_center hidden_div title">
                   <div class="key">Duration From</div>
-                  <div class="value content_wrap">{{ employment.duration_from ? (employment.duration_from | date : 'MMM
-                    y') : 'NIL' }}
+                  <div class="value content_wrap">{{ employment.duration_from ? (employment.duration_from | date : 'MMM y') : 'NIL' }}
                   </div>
                 </div>
                 <div class="flx_div flx_center hidden_div title" *ngIf="!employment.is_working_here">
                   <div class="key">Duration To</div>
-                  <div class="value content_wrap">{{ employment?.duration_to ? (employment?.duration_to | date : 'MMM
-                    y')
+                  <div class="value content_wrap">{{ employment?.duration_to ? (employment?.duration_to | date : 'MMM y')
                     : 'NIL' }}</div>
                 </div>
                 <div class="flx_div flx_baseline title">
@@ -626,7 +621,7 @@
     </div>
 
     <div class="card_three">
-      
+
       <div class="job_details_card pd-20 card_sticky card_hide" *ngIf="!hideSection">
         <div class="job_header">Job Details</div>
         <div class="job_card hidden_div">
@@ -668,13 +663,13 @@
         </div>
       </div>
 
-      <div class="job_details_card pd-30 card_sticky card_hide" *ngIf="AssesmentDetails?.length > 0"> 
-        <ng-container > 
-          <mat-card class="asses-details-card">  
-            <div class="assessment-container"> 
-              <div class="assesment-detail"> 
+      <div class="job_details_card pd-30 card_sticky card_hide" *ngIf="AssesmentDetails?.length > 0">
+        <ng-container >
+          <mat-card class="asses-details-card">
+            <div class="assessment-container">
+              <div class="assesment-detail">
                 <div class="asses-name">Assesment Details</div>
-                <div class="prev-next"> 
+                <div class="prev-next">
                   <div mat-icon-button class="nav-icon" (click)="showPrevious()" [ngClass]="{'disabled': assessmentIndex === 0}">
                     <mat-icon>keyboard_arrow_left</mat-icon>
                   </div>
@@ -682,8 +677,8 @@
                     <mat-icon>keyboard_arrow_right</mat-icon>
                   </div>
                 </div>
-              </div> 
-              <div class="asses-image"> 
+              </div>
+              <div class="asses-image">
                 <!-- <img src="https://t3.ftcdn.net/jpg/02/45/87/36/360_F_245873693_0geCBYQipchlBwGPXskG5SZckAdJkTLa.jpg" alt="" /> -->
                 <img src="https://media.istockphoto.com/id/1398462038/photo/online-exam-or-test.jpg?s=612x612&w=0&k=20&c=hvaH_2oA0Dm-tpQ8T5JBF_39QF3xhpic38Yi2AngaCE=" alt="" />
                 <!-- <img src="https://media.istockphoto.com/id/1483355290/photo/businessman-using-a-laptop-and-taking-an-assessment-questionnaire-evaluation-online-survey.jpg?s=612x612&w=0&k=20&c=PhztRjrkCSetcm_9cWDDB1IIgw1hi4tr7FF8BbBkWeg=" alt=""/> -->
@@ -705,33 +700,33 @@
               <div class="scor">
                 <span class="scor1">Score:</span>
               </div>
-              <div class="horizonatlscrollline"> 
-                <div class="horizonatlline"> 
-                  <div class="horizonatllinecircle" [style.left]="getLeftValue()"> 
-                    <div class="horizonatllinecircleinsidetext" > 
+              <div class="horizonatlscrollline">
+                <div class="horizonatlline">
+                  <div class="horizonatllinecircle" [style.left]="getLeftValue()">
+                    <div class="horizonatllinecircleinsidetext" >
                       <!-- {{selectedAssessment.max_score}} -->
                       {{ selectedAssessment.score < 0 ? 0 : selectedAssessment.score }}
-                    </div> 
+                    </div>
                   </div>
                 </div>
-                <div class="semi-circle-score"> 
+                <div class="semi-circle-score">
                   <div>  <span class="rating">Ratings:</span> </div>
-                  <div> 
+                  <div>
                     <!-- <img *ngIf="selectedAssessment.max_score >= 0 && selectedAssessment.max_score <= 33" src="../../../../../assets/images/red-semi.png"> -->
-                    <img *ngIf="selectedAssessment.score <= 33" src="../../../../../assets/images/red-semi.png"> 
+                    <img *ngIf="selectedAssessment.score <= 33" src="../../../../../assets/images/red-semi.png">
                     <img *ngIf="selectedAssessment.score >= 34 && selectedAssessment.score <= 66" src="../../../../../assets/images/orange-semi.png">
                     <img *ngIf="selectedAssessment.score >= 67 && selectedAssessment.score <= 100" src="../../../../../assets/images/green-semi.png">
                   </div>
-                  <div> 
+                  <div>
                     <!-- <span class="behaviour1" *ngIf="selectedAssessment.max_score >= 0 && selectedAssessment.max_score <= 33">Low</span> -->
-                    <span class="behaviour1" *ngIf="selectedAssessment.score <= 33">Low</span> 
-                    <span class="behaviour2" *ngIf="selectedAssessment.score >= 34 && selectedAssessment.score <= 66">Average</span> 
+                    <span class="behaviour1" *ngIf="selectedAssessment.score <= 33">Low</span>
+                    <span class="behaviour2" *ngIf="selectedAssessment.score >= 34 && selectedAssessment.score <= 66">Average</span>
                     <span class="behaviour" *ngIf="selectedAssessment.score >= 67 && selectedAssessment.score <= 100">Good</span>
-                  </div> 
-                </div> 
-              </div> 
-            </div> 
-          </mat-card> 
+                  </div>
+                </div>
+              </div>
+            </div>
+          </mat-card>
 
         </ng-container>
         <!-- <ng-template #noAssessmentDetails>
@@ -769,16 +764,16 @@
               <div class="percen">
                 <div class="percen-name">Percentage: </div>
                 <div class="percen-num">
-                  <circle-progress 
-                  [percent]="currentCertification.coursePercentage" 
-                  [radius]="30" 
+                  <circle-progress
+                  [percent]="currentCertification.coursePercentage"
+                  [radius]="30"
                   [showImage]="false"
-                    [showSubtitle]="false" 
-                    [titleColor]="000000" 
-                    [outerStrokeWidth]="7" 
+                    [showSubtitle]="false"
+                    [titleColor]="000000"
+                    [outerStrokeWidth]="7"
                     [innerStrokeWidth]="0"
-                    [outerStrokeColor]="'#78C000'" 
-                    [animation]="true" 
+                    [outerStrokeColor]="'#78C000'"
+                    [animation]="true"
                     [animationDuration]="300">
                   </circle-progress>
                 </div>
@@ -791,7 +786,7 @@
       </div>
 
     </div>
-  </div> 
+  </div>
 
   <ng-template #matDialog>
     <div class="main-wrapper">
