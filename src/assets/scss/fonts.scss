@@ -59,6 +59,10 @@
     -moz-osx-font-smoothing: grayscale;
   }
   
+  .icon-export:before {
+    content: "\ea3b";
+    color: #004684;
+  }
   .icon-closedStatus:before {
     content: "\ea37";
     color: #b4b4b4;
