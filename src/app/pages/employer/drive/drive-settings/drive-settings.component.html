@@ -160,7 +160,7 @@
                                     <div class="label-text">Job Location</div>
                                 </div>
                                 <div class="lable-value" *ngIf="!editMode">
-                                    <div class="label-value-text">{{jobReqData?.jobLocation}}</div>
+                                    <div class="label-value-text">{{ formatSpacing(jobReqData?.jobLocation) }}</div>
                                 </div>
 
                                 <div class="label-value custom-form" *ngIf="editMode">
@@ -188,7 +188,7 @@
                                     <div class="label-text">Skill Set Required</div>
                                 </div>
                                 <div class="lable-value" *ngIf="!editMode">
-                                    <div class="label-value-text">{{jobReqData?.skillSet}}</div>
+                                    <div class="label-value-text">{{formatSpacing(jobReqData?.skillSet)}}</div>
                                 </div>
 
                                 <div class="label-value custom-form" *ngIf="editMode">
@@ -364,7 +364,7 @@
                                     <div class="label-value-text">{{jobReqData?.requirement[0].item}}</div>
                                 </div> -->
                                 <div class="lable-value" *ngIf="!editMode">
-                                    <div class="label-value-text" [innerHTML]="jobReqData?.requirement[0]?.item"></div>
+                                    <div class="label-value-text" [innerHTML]="((jobReqData?.requirement[0]?.item) ? (jobReqData?.requirement[0]?.item) : 'NA' )"></div>
                                 </div>
 
                                 <div class="lable-value custom-form" *ngIf="editMode">

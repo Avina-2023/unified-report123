@@ -19,10 +19,10 @@
         <button [ngClass]="{ 'disabled-button': params?.data?.approveStatus === 'approved' || params?.data?.approveStatus === 'rejected' }" [disabled]="params?.data?.approveStatus == 'approved' || params?.data?.approveStatus == 'rejected'" (click)="approveApplication()" mat-menu-item class="menu-item">
             <span>Open for Applications</span>
         </button>
-        <button [ngClass]="{ 'disabled-button': params?.data?.approveStatus === 'rejected' }" [disabled]="params?.data?.approveStatus == 'rejected'" (click)="rejectApplication()" mat-menu-item class="menu-item">
+        <button [ngClass]="{ 'disabled-button': params?.data?.approveStatus === 'rejected' || params?.data?.approveStatus === 'expired' }" [disabled]="params?.data?.approveStatus == 'rejected' || params?.data?.approveStatus == 'expired'" (click)="rejectApplication()" mat-menu-item class="menu-item">
             <span>Reject</span>
         </button>
-        <button [ngClass]="{ 'disabled-button': params?.data?.approveStatus === 'closed' || params?.data?.approveStatus === 'rejected' }" [disabled]="params?.data?.approveStatus == 'closed' || params?.data?.approveStatus == 'rejected'" (click)="closeApplication()" mat-menu-item class="menu-item">
+        <button [ngClass]="{ 'disabled-button': params?.data?.approveStatus === 'closed' || params?.data?.approveStatus === 'rejected' || params?.data?.approveStatus === 'expired' }" [disabled]="params?.data?.approveStatus == 'closed' || params?.data?.approveStatus == 'rejected' || params?.data?.approveStatus == 'expired'" (click)="closeApplication()" mat-menu-item class="menu-item">
             <span>Close Applications</span>
         </button>
         <button  (click)="editJob()" mat-menu-item class="menu-item">
@@ -114,7 +114,7 @@
     <div class="reject-tittle-border"></div>
     <div class="reject-content" [formGroup]="rejectReason">
         <div class="reject-content-titlebox">
-            <div class="reject-content-text">Enter your reason *</div>
+            <div class="reject-content-text">Enter your reason <span class="mandatory_symbol">*</span></div>
         </div>
         <div class="reason-box">
             <textarea formControlName="remarks" placeholder="Type your reason here..." class="reason-txt-box" cols="30" rows="10"></textarea>

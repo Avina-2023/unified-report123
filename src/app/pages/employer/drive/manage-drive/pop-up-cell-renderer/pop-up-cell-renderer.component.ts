@@ -163,6 +163,9 @@ export class PopUpCellRendererComponent implements ICellRendererAngularComp {
   }
 
 
+  
+
+
   formInitialize() {
     this.deadlineForm = this.fb.group({
       hours: ['11', Validators.required],
@@ -176,6 +179,12 @@ export class PopUpCellRendererComponent implements ICellRendererAngularComp {
       remarks: ['', Validators.required],
     });
   }
+
+
+  
+
+
+  
 
   onHoursSelected(value: string) {
     // console.log("the selected Hours is " + value);
