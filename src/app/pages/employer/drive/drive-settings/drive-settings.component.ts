@@ -482,11 +482,30 @@ export class DriveSettingsComponent implements OnInit {
     this.isCTCOptionAvailable = this.jobReqData?.hasOwnProperty('ctcType');
     console.log(this.isCTCOptionAvailable, 'ctcoptionavail');
 
-    this.locations?.push(...this.jobReqData?.jobLocation);
+    /*this.locations?.push(...this.jobReqData?.jobLocation);
     console.log(this.locations, 'totalLocation');
 
     //push the api skill value to the default locations array
     this.listOfOption?.push(...this.jobReqData?.skillSet);
+    console.log(this.listOfOption, 'totalOptions');*/
+
+    if (this.jobReqData?.jobLocation) {
+      this.jobReqData?.jobLocation?.forEach((location: string) => {
+        if (!this.locations?.includes(location)) {
+          this.locations?.push(location);
+        }
+      });
+    }
+    console.log(this.locations, 'totalLocation');
+
+    // Check and push unique values to the default options array
+    if (this.jobReqData?.skillSet) {
+      this.jobReqData?.skillSet?.forEach((option: string) => {
+        if (!this.listOfOption?.includes(option)) {
+          this.listOfOption?.push(option);
+        }
+      });
+    }
     console.log(this.listOfOption, 'totalOptions');
 
   }
@@ -544,6 +563,12 @@ export class DriveSettingsComponent implements OnInit {
     return new Date();
   }
 
+  formatSpacing(arraydata: string[]): string {
+    if (arraydata && Array.isArray(arraydata)) {
+      return arraydata.join(', ');
+    }
+    return '';
+  }
 
 
   degreeOptionChange(selectedGraduation: string, index: number) {
@@ -1002,13 +1027,37 @@ export class DriveSettingsComponent implements OnInit {
         if (this.jobReqData) {
           this.selectedOption = this.jobReqData?.workType;
           console.log(this.jobReqData?.jobLocation, 'dblocation');
-          //push the api location value to the default locations array
+         
+          /*//push the api location value to the default locations array
           this.locations?.push(...this.jobReqData?.jobLocation);
           console.log(this.locations, 'totalLocation');
 
           //push the api skill value to the default locations array
           this.listOfOption?.push(...this.jobReqData?.skillSet);
-          console.log(this.listOfOption, 'totalOptions');
+          console.log(this.listOfOption, 'totalOptions');*/
+
+
+          // Check and push unique values to the default locations array
+        if (this.jobReqData?.jobLocation) {
+          this.jobReqData?.jobLocation?.forEach((location: string) => {
+            if (!this.locations?.includes(location)) {
+              this.locations?.push(location);
+            }
+          });
+        }
+        console.log(this.locations, 'totalLocation');
+
+        // Check and push unique values to the default options array
+        if (this.jobReqData?.skillSet) {
+          this.jobReqData?.skillSet?.forEach((option: string) => {
+            if (!this.listOfOption?.includes(option)) {
+              this.listOfOption?.push(option);
+            }
+          });
+        }
+        console.log(this.listOfOption, 'totalOptions');
+
+
 
 
           this.selectedRangeOption = this.jobReqData?.ctcType;
