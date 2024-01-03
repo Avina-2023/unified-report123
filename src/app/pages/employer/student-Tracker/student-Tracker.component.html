@@ -24,7 +24,10 @@
       </ag-grid-angular>
     </div>
     <div>
-      <div class="graph-heading">Total Records For NOV-2023</div>
+      <!-- <div class="graph-heading">Total Records For NOV-2023</div> -->
+      <div class="graph-heading">
+        Total Records For {{ months[selectedMonth - 1].name }}-{{ selectedYear }}
+      </div>
       <div class="graph-details">
         <div>
           <mat-card class="registration-card">
