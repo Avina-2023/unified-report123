@@ -456,4 +456,10 @@ export class ApiService {
   getOpenJobStatusUpdated(data) {
     return this.http.post(`${this.BASE_URL}/updateApproveStatus`, data);
   }
+  getStudentTrackerReport(data){
+    return this.http.post(`${this.BASE_URL}/studentReport`, data);
+  }
+  getPartnerTrackerReport(data){
+    return this.http.post(`${this.BASE_URL}/partnerReport`, data);
+  }
 }
