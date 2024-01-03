@@ -26,8 +26,6 @@ export class StudentTrackerComponent implements OnInit {
   public rowSelection = 'multiple';
   public serverSideStoreType;
   overallreportdata: any;
-
-
   selectedYear: number;
   selectedMonth: number;
   years: number[] = [];
@@ -87,10 +85,8 @@ export class StudentTrackerComponent implements OnInit {
         display: false
       }
     },
-
     cutoutPercentage: 70
   }
-
   public doughnutChartColors: Colors[] = [{
     backgroundColor:
       [
@@ -100,11 +96,9 @@ export class StudentTrackerComponent implements OnInit {
       ],
   }
   ];
-
   doughnutChartLabels: Label[] = ['Trained', 'Assessed', 'Others'];
   doughnutChartData: MultiDataSet = [];
   doughnutChartType: ChartType = 'doughnut';
-
   public options2: ChartOptions = {
     responsive: true,
     layout: {
@@ -125,7 +119,6 @@ export class StudentTrackerComponent implements OnInit {
     },
     cutoutPercentage: 70
   }
-
   public doughnutChartColors2: Colors[] = [{
     backgroundColor:
       [
@@ -135,11 +128,9 @@ export class StudentTrackerComponent implements OnInit {
       ],
   }
   ];
-
   doughnutChartLabels2: Label[] = ['Trained', 'Assessed', 'Others'];
   doughnutChartData2: MultiDataSet = [];
   doughnutChartType2: ChartType = 'doughnut';
-
   studentData: any;
   public themeClass: string = "ag-theme-quartz";
   studentChartData: any;

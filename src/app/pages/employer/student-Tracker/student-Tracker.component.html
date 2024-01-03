@@ -1,13 +1,6 @@
 <div class="inner-container">
   <div class="Student-heading">Month Wise Student Tracker</div>
   <div class="inner-container-1">
-    <!-- <div class="filter-data">
-      <div><button class="year-btn">2023</button></div>
-      <div><button class="year-btn">October</button></div>
-      <div>
-        <h5 class="Export-btn" (click)="exportData()">Export Data</h5>
-      </div>
-    </div> -->
     <div class="filter-data">
       <div>
         <select class="year-btn" [(ngModel)]="selectedYear" (change)="changeMonthYear()">
@@ -30,18 +23,31 @@
         [columnDefs]="columnDefs">
       </ag-grid-angular>
     </div>
-
     <div>
       <div class="graph-heading">Total Records For NOV-2023</div>
       <div class="graph-details">
-        <div> 
+        <div>
           <mat-card class="registration-card">
             <div class="sub-heading">Registrations</div>
             <div style="display: flex; flex-direction: row; align-items: center; justify-content: space-around;">
-              <div *ngIf="studentData">
+              <!-- <div *ngIf="studentData">
                 <canvas height="200px" width="200px" baseChart [data]="doughnutChartData" [options]="options"
                   [colors]="doughnutChartColors" [labels]="doughnutChartLabels" [chartType]="doughnutChartType">
                 </canvas>
+              </div> -->
+              <div *ngIf="studentData">
+                <ng-container *ngIf="!studentData?.chartData?.registerTrainTotal && 
+                                    !studentData?.chartData?.registerAssessTotal && 
+                                    !studentData?.chartData?.otherRegisterTotal">
+                  <mat-card>NO DATA AVAILABLE</mat-card>
+                </ng-container>
+                <ng-container *ngIf="studentData?.chartData?.registerTrainTotal || 
+                                    studentData?.chartData?.registerAssessTotal || 
+                                    studentData?.chartData?.otherRegisterTotal">
+                  <canvas height="200px" width="200px" baseChart [data]="doughnutChartData" [options]="options"
+                    [colors]="doughnutChartColors" [labels]="doughnutChartLabels" [chartType]="doughnutChartType">
+                  </canvas>
+                </ng-container>
               </div>
               <div>
                 <div class="Register-details-count">
@@ -76,10 +82,24 @@
           <mat-card class="registration-card2">
             <div class="sub-heading">Skill Profile filled</div>
             <div style="display: flex; flex-direction: row; align-items: center; justify-content: space-around;">
-              <div *ngIf="studentData">
+              <!-- <div *ngIf="studentData">
                 <canvas height="200px" width="200px" baseChart [data]="doughnutChartData2" [options]="options2"
                   [colors]="doughnutChartColors2" [labels]="doughnutChartLabels2" [chartType]="doughnutChartType2">
                 </canvas>
+              </div> -->
+              <div *ngIf="studentData">
+                <ng-container *ngIf="!studentData?.chartData?.profileTrainTotal && 
+                                    !studentData?.chartData?.profileAssessTotal && 
+                                    !studentData?.chartData?.otherProfileTotal">
+                  <mat-card>NO DATA AVAILABLE</mat-card>
+                </ng-container>
+                <ng-container *ngIf="studentData?.chartData?.profileTrainTotal || 
+                                    studentData?.chartData?.profileAssessTotal || 
+                                    studentData?.chartData?.otherProfileTotal">
+                  <canvas height="200px" width="200px" baseChart [data]="doughnutChartData2" [options]="options2"
+                    [colors]="doughnutChartColors2" [labels]="doughnutChartLabels2" [chartType]="doughnutChartType2">
+                  </canvas>
+                </ng-container>
               </div>
               <div>
                 <div class="Register-details-count">
@@ -112,6 +132,5 @@
         </div>
       </div>
     </div>
-    
   </div>
 </div>
