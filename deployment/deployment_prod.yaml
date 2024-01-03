@@ -27,6 +27,5 @@ spec:
           ports:
           - containerPort: 80
       imagePullSecrets:
-        - name: mysecret
-      nodeSelector:
-        agentpool: uapuat
+        - name: mysecret2
+      
