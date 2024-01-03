@@ -103,6 +103,7 @@ export class ManageDriveComponent implements OnInit {
       if (data.data == 'grid-refresh') {
         console.log('inside');
         this.refresh();
+        this.getManageDriveDashBoard(data);
       }
     });
   }
@@ -487,12 +488,45 @@ export class ManageDriveComponent implements OnInit {
   // }
   //   }
   // }
-  getManageDriveDashBoard(data: any) {
+  
+  /*getManageDriveDashBoard(data: any) {
     this.ApiService.getDriveCardData(data).subscribe(
       (driveCardData: any) => {
         if (driveCardData.success == false) {
           this.toastr.warning('Connection failed, Please try again.');
         } else {
+          console.log(driveCardData, 'drivedatacount');
+          this.drive_cards = driveCardData.totalCount.count;
+          this.active_cards = driveCardData.totalCount.activeCount;
+          this.expire_cards = driveCardData.totalCount.expireCount;
+          this.reject_cards = driveCardData.totalCount.rejectCount;
+          this.pending_cards = driveCardData.totalCount.pendingCount;
+          this.closed_cards = driveCardData.totalCount.closedCount;
+        }
+      },
+      (err) => {
+        this.toastr.warning('Connection failed, Please try again.');
+      }
+    );
+  }*/
+
+
+  getManageDriveDashBoard(data: any) {
+    let requestData = {
+      filterModel: {
+        jobCategoryId: {
+          filterType: 'text',
+          type: 'contains',
+          filter: '64cc8ce4112e2bb777bcbef5'
+        }
+      }
+    };
+    this.ApiService.getDriveCardData(requestData).subscribe(
+      (driveCardData: any) => {
+        if (driveCardData.success == false) {
+          this.toastr.warning('Connection failed, Please try again.');
+        } else {
+          console.log(driveCardData, 'drivedatacount');
           this.drive_cards = driveCardData.totalCount.count;
           this.active_cards = driveCardData.totalCount.activeCount;
           this.expire_cards = driveCardData.totalCount.expireCount;
@@ -506,4 +540,8 @@ export class ManageDriveComponent implements OnInit {
       }
     );
   }
+
+
+
+
 }

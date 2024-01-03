@@ -58,6 +58,11 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
+
+  .icon-active-icon:before {
+    content: "\ea3b";
+    color: #1b4e9b;
+  }
   
   .icon-export:before {
     content: "\ea3b";
