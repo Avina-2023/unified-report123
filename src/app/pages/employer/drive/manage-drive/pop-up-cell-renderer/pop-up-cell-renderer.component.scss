@@ -13,6 +13,10 @@ menu-item {
   pointer-events: auto;
 }
 
+.mandatory_symbol{
+  color: red;
+}
+
 ::ng-deep.mat-menu-panel{
   min-height: 0px;
   position: relative!important;
