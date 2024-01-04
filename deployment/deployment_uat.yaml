@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: unifiedreportuat
-  namespace: unifiedrpt
+  namespace: skillexchange
 spec:
   replicas: 1
   selector:
@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: unifiedreportuat
-          image: assessmentecouat.azurecr.io/unifiedreportuat:$tag
+          image: uapuat.azurecr.io/unifiedreportuat:$tag
           resources:
            limits:
              cpu: "1"
