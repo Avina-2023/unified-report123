@@ -25,11 +25,11 @@ export const environment = {
 
   // NODE_EDGE_URL: 'https://uapedgeservicedev.lntedutech.com',
 
-  API_BASE_URL: 'https://skilledgeqa.lntedutech.com',
+  API_BASE_URL: 'https://skilledgeuat.lntedutech.com',
 
-  API_BASE_URL_RE: 'https://reportedgeqa.lntedutech.com',
+  API_BASE_URL_RE: 'https://reportedgeuat.lntedutech.com',
 
-  NODE_EDGE_URL: 'https://skilledgeqa.lntedutech.com',
+  NODE_EDGE_URL: 'https://skilledgeuat.lntedutech.com',
 
   NODE_URL: 'https://uapcoreservicesqa.lntedutech.com',
 
@@ -43,7 +43,7 @@ export const environment = {
 
   CAMPUS_URL: 'http://campus-qa.lntedutech.com/l#/login',
 
-  SKILL_EDGE_URL: 'https://skilledgeqa.lntedutech.com',
+  SKILL_EDGE_URL: 'https://skilledgeuat.lntedutech.com',
 
   SKILL_PROFILE_URL: 'https://profile-qa.lntedutech.com',
 
