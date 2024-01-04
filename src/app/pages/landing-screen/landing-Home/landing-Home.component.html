@@ -1,0 +1,227 @@
+<main #trackScroll class="main main--top" (scroll)="onScrollEvent($event);">
+  <owl-carousel-o [options]="bannerOptions">
+    <ng-container *ngFor="let banner of bannerslider;let i=index">
+      <ng-template carouselSlide>
+        <div #hslider [ngClass]="'section-hero__slide swiper-slide section-hero__slide--'+i"
+          (mouseover)="slidehover(hslider,$event)" (mouseleave)="removeslidehover(hslider,$event)">
+          <div class="section-hero__container container">
+            <div class="section-hero__content">
+              <h1 class="section-hero__title">{{banner.title}}</h1>
+              <p class="section-hero__text">{{banner.subtitle}}</p>
+              <a [routerLink]="endPoints.LANDINGPAGE.FRESHGRADUATES"
+                class="section-action__link button button--primary slideup" data-wow-delay="0.3s">Get Started</a>
+            </div>
+            <div class="section-hero__image1">
+              <img src="{{banner.bannerimg}}" alt="" />
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </ng-container>
+  </owl-carousel-o>
+  <section class="section-partners">
+    <div class="section-partners__container container">
+      <div>
+        <owl-carousel-o [options]="customOptions">
+          <ng-container *ngFor="let partner of HiringPartners">
+            <ng-template carouselSlide>
+              <img class="section-team__item-image" [src]="partner.url">
+            </ng-template>
+          </ng-container>
+        </owl-carousel-o>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-numbers">
+    <div class="section-numbers__container container">
+      <div class="section-numbers__wrapper">
+        <ul class="section-numbers__list list-unstyled animated_section">
+          <li class="section-numbers__item" >
+            <span class="section-numbers__number">80,000+</span>
+            <span class="section-numbers__text">Students Registered</span>
+          </li>
+          <li class="section-numbers__item">
+            <span class="section-numbers__number">70,000+</span>
+            <span class="section-numbers__text_2">Students Assessed</span>
+          </li>
+          <li class="section-numbers__item">
+            <span class="section-numbers__number">20,000+</span>
+            <span class="section-numbers__text_3">Students Hired</span>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-blocks">
+    <div class="section-blocks__container container">
+      <h2 class="section-roadmap__title" animateOnScroll animationName="animated slideDown" offset="20">Connecting
+        skilled talent
+        with Industry</h2>
+      <p class="section-roadmap__text">L&T
+        EduTech’s Skill Exchange is a platform for students and recent graduates
+        to meet India’s premiere employers and vice versa.</p>
+      <div class="row">
+        <div class="section-blocks__item col-md-6">
+          <div class="section-blocks__item-wrapper section-blocks__item-wrapper--right-element">
+            <h3 class="section-blocks__item-title">Employers</h3>
+            <p class="section-blocks__item-text" style="margin-bottom: 10px;">Reach out to talent pool
+              of pre-assessed and certified fresh graduates with skills from the latest niche &
+              emerging technologies across domains pan India. Skill Exchange helps employers enable
+              just in time hiring and fulfill sudden surge in demands.</p>
+            <a class="link-demo link-demo--visited" [routerLink]="endPoints.LANDINGPAGE.EMPLOYER">Join as Hiring Partner
+              >></a>
+          </div>
+        </div>
+        <div class="section-blocks__image section-blocks__image--1 col-md-6 "></div>
+      </div>
+      <div class="row">
+        <div class="section-blocks__image section-blocks__image--2 col-md-6" data-wow-delay="0.2s"></div>
+        <div class="section-blocks__item col-md-6   ">
+          <div class="section-blocks__item-wrapper section-blocks__item-wrapper--left-element">
+            <h3 class="section-blocks__item-title">Fresh Graduates</h3>
+            <p class="section-blocks__item-text" style="margin-bottom: 10px;">Skill Exchange helps
+              talented and skilled fresh graduates build skill profile and apply to drives from top
+              recruiters which helps in landing their dream job in line with their educational
+              qualification and core skill sets.</p>
+            <a class="link-demo link-demo--visited" [routerLink]="endPoints.LANDINGPAGE.FRESHGRADUATES">Build your Skill
+              Profile
+              >></a>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="section-blocks__item col-md-6 wow animate__animated animate__fadeIn">
+          <div class="section-blocks__item-wrapper">
+            <h3 class="section-blocks__item-title">Institutions</h3>
+            <p class="section-blocks__item-text" style="margin-bottom: 10px;">L&T EduTech partner
+              Institutions will have access to facilitate domain specific placement opportunity and
+              exclusive partner drives to their final year students.</p>
+            <a class="link-demo link-demo--visited" href="https://lntedutech.com/college-connect-partners/"
+              target="_blank">Join as
+              Institutional Partner >></a>
+          </div>
+        </div>
+        <div class="section-blocks__image section-blocks__image--3 col-md-6 wow animate__animated animate__fadeIn"
+          data-wow-delay="0.2s"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-begin">
+    <div class="section-begin__container container">
+      <div class="section-begin__columns">
+        <div class="section-begin__column">
+          <div class="section-begin__image">
+            <img src="https://assets.lntedutech.com/Skillexchange/about1.png" alt="">
+          </div>
+        </div>
+        <div class="section-begin__column">
+          <div class="section-begin__wrapper">
+            <h2 class="section-begin__title">About Skill Exchange</h2>
+            <p class="section-begin__text">L&T EduTech’s Skill Exchange is a platform for students and
+              recent graduates to meet India’s premiere employers and vice versa. New
+              graduates—students who are about to take their course-end examinations and recent
+              graduates with up to two years of experience—can create customised profiles to showcase
+              their talent, skillsets, credentials and assessment scores to prominent employers on the
+              platform.</p>
+            <p class="section-begin__text">The platform is also ideal for corporates looking to engage
+              and employ skilled, talented, pre-assessed and job-ready candidates. Exclusive filtering
+              is offered for corporates to get candidates vetted by L&T via its intensive courses and
+              rigorous assessments</p>
+            <a [routerLink]="endPoints.LANDINGPAGE.ABOUT" class="button button--white">Know More</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-team slideup">
+    <div class="section-team__container container">
+      <h2 class="section-team__title">Institutional Partners</h2>
+      <div>
+        <owl-carousel-o [options]="customOptions" class="slideup">
+          <ng-container *ngFor="let slide of InstitutionalPartners">
+            <ng-template carouselSlide>
+              <mat-card class="slidercard">
+                <img [src]="slide.url" [title]="slide.name">
+                <div class="section-team__item-name">{{slide.name}}</div>
+              </mat-card>
+            </ng-template>
+          </ng-container>
+        </owl-carousel-o>
+      </div>
+      <div class="text-center" style="padding:20px 0px;">
+        <a class="link-demo link-demo" [routerLink]="endPoints.LANDINGPAGE.INSTITUTIONALPARTNERS">View All</a>
+
+      </div>
+    </div>
+  </section>
+<!-- <hr class="hr_testimonial"> -->
+
+
+  <section class="section-action">
+    <div class="section-action__container container">
+      <h2 class="section-action__title slideDown">Looking to hire Pre-Assessed
+        and Certified Fresh Graduates</h2>
+      <p class="section-action__text slideIn">
+        To join as a hiring partner, write to meher.k@lntecc.com
+      </p>
+      <a [routerLink]="endPoints.LANDINGPAGE.EMPLOYER" class="section-action__link button button--white slideup">Join as
+        Hiring Partner</a>
+    </div>
+  </section>
+
+<!-- videos -->
+<!-- Testimonials -->
+<section class="section-team-testimonial slideup">
+  <div class="section-team__container_testimonial container">
+    <h2 class="section-team__title">Experts Speak</h2>
+    <div>
+      <owl-carousel-o [options]="customOptions" class="slideup_testimonial">
+        <ng-container *ngFor="let picture of pictures">
+          <ng-template carouselSlide>
+            <!-- <mat-card class="slidercard_testimonial" (mouseenter)="playVideo()"
+            (mouseleave)="pauseVideo()" >
+              <video poster="https://lntedutech.com/wp-content/uploads/2022/04/image-4.png" controlsList="nodownload" style="width: 250px;height: 150px;" [src]="picture.url"  controls></video>
+
+              <div class="section-team__item-name"> <span class="title_name">{{picture.titlename}}</span><br>{{picture.titledesc}}<br>{{picture.titlecompany}}</div>
+
+            </mat-card> -->
+
+            <mat-card class="slidercard_testimonial" (mouseenter)="video.play()" (mouseleave)="video.pause()">
+              <video poster="https://lntedutech.com/wp-content/uploads/2022/04/image-4.png" style="width: 250px;height: 150px;" #video controls (click)="playVideo(video)">
+                <source [src]="picture.url" type="video/mp4">
+              </video>
+              <div class="section-team__item-name">
+                <span class="title_name">{{picture.titlename}}</span><br>{{picture.titledesc}}<br>{{picture.titlecompany}}
+              </div>
+            </mat-card>
+<!--  -->
+<!-- <mat-card class="slidercard_testimonial" (mouseenter)="video.play()" (mouseleave)="video.pause()"> -->
+  <!-- <video poster="https://lntedutech.com/wp-content/uploads/2022/04/image-4.png" style="width: 250px;height: 150px;" #video controls>
+    <source [src]="picture.url" type="video/mp4">
+  </video>
+  <div class="section-team__item-name">
+    <span class="title_name">{{picture.titlename}}</span><br>{{picture.titledesc}}<br>{{picture.titlecompany}}
+  </div>
+</mat-card> -->
+<!--  -->
+
+          </ng-template>
+        </ng-container>
+      </owl-carousel-o>
+    </div>
+    <!-- <div class="text-center" style="padding:20px 0px;">
+      <a class="link-demo link-demo" [routerLink]="endPoints.LANDINGPAGE.INSTITUTIONALPARTNERS">View All</a>
+
+    </div> -->
+  </div>
+</section>
+
+<!-- videos -->
+
+  <app-landing-footer></app-landing-footer>
+</main>

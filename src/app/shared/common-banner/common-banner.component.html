@@ -1,0 +1,24 @@
+
+  <div class="banner_header">
+    
+    <div class="user">
+      <div class="user-name">
+        <div class="dash" *ngIf="getCurrentUrl=='jobdescription'">
+          <div  ><span class="findtext" (click)="goBack()">{{this.subname}}</span><span class="view"> &nbsp; > &nbsp;{{this.name}}</span></div>
+          
+        </div>
+        <div *ngIf="getCurrentUrl=='dashboard'" class="username-N">Welcome,&nbsp; <b>{{username}}</b></div>
+        <div class="username-B">
+          {{this.name}}
+        </div>
+      </div>
+      <div class="quote">
+        <div>Kick Start Your</div>
+        <div>
+          <div class="grad-text">CAREER</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+

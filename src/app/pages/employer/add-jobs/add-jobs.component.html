@@ -1,0 +1,411 @@
+<div class="body">
+  <div class="subBody">
+    <h3 class="title">Add Jobs</h3>
+    <div class="partnerCardBody">
+      <mat-card class="partnerCard">
+        <div class="">
+          <p class="job_title">Job Details</p>
+        </div>
+        <mat-card-content class="cardValue">
+          <div class="primarysingleWrap">
+            <div class="singleWrap">
+              <form [formGroup]="addjobsForm">
+                <!-- mat select  -->
+                <!-- <div class="inputContainer">
+                  <label>Company Name<span>*</span></label>
+                  <mat-form-field appearance="outline">
+                    <mat-select formControlName="company" placeholder="Select Company Name"
+                      [(ngModel)]="selectedCompany" matInput>
+                      <mat-option *ngFor="let company of companyOptions" [value]="company">
+                        {{ company.company }}
+                      </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="addjobsForm.get('company')?.hasError('required')">
+                      Company name is Required
+                    </mat-error>
+                  </mat-form-field>
+                </div> -->
+                <!--  -->
+                <!-- nz zorro -->
+                <div class="inputContainer" style="padding: 0px 0px 15px 0px;">
+                  <label>Company Name<span>*</span></label>
+                  <nz-select style="width: 98%;" nzAllowClear nzShowSearch [(ngModel)]="selectedCompany"
+                    nzPlaceHolder="-- Select Company Name --" formControlName="company" class="">
+                    <nz-option *ngFor="let company of companyOptions" [nzLabel]="company.company"
+                      [nzValue]="company"></nz-option>
+                  </nz-select>
+                </div>
+                <div *ngIf="addjobsForm.get('company').hasError('required') && addjobsForm.get('company').touched"
+                  class="text-danger">
+                  Company Name is required.
+                </div>
+                <!--  -->
+                <div class="primaryWrap">
+                  <div class="leftWrap">
+                    <div class="inputContainer">
+                      <label>Job Role<span>*</span></label>
+                      <mat-form-field appearance="outline">
+                        <input formControlName="jobRole" matInput placeholder="Enter Job Role">
+                        <mat-error class="error" *ngIf="jobRole?.errors?.required">{{'Job Role is Required'}}
+                        </mat-error>
+                      </mat-form-field>
+                      <ng-container *ngIf="jobRole.invalid && jobRole.touched">
+                      </ng-container>
+                    </div>
+                  </div>
+                  <div class="rightWrap">
+                    <div class="inputContainer">
+                      <label>Job Title<span>*</span></label>
+                      <mat-form-field appearance="outline">
+                        <input formControlName="jobTitle" matInput placeholder="Enter Job Title">
+                        <mat-error class="error" *ngIf="jobTitle?.errors?.required">{{'Job Title is Required'}}
+                        </mat-error>
+                      </mat-form-field>
+                      <ng-container *ngIf="jobTitle.invalid && jobTitle.touched">
+                      </ng-container>
+                    </div>
+                  </div>
+                </div>
+                <!-- company logo upload code -->
+                <!-- <div class="right">
+              <div class="inputContainer">
+                <label>Company Logo<span>*</span></label>
+                <p class="errmsg" *ngIf="errorMsgforCmpnyLogo">{{errorMsgforCmpnyLogo}}</p>
+                <div class="wrapper">
+                  <div>
+                    <img *ngIf="!employerLogo" class="cloudicon"
+                      src="../../../../assets/images/Icon ionic-md-cloud-upload.jpg" alt="">
+                    <img *ngIf="employerLogo" class="imgicon" [src]="displayImageUrl" height="100" width="200">
+                  </div>
+                  <div class="buttonClass">
+                    <div class="subButton">
+                      <input type="file" accept="image/png, image/jpeg" class="file-input"
+                        (change)="onEmployerLogoFileSelected($event)" (click)="$event.target.value=null" #fileUpload>
+                      <button mat-flat-button (click)="fileUpload.click()">Browse</button>
+                    </div>
+                  </div>
+                  <div class="titlealign">
+                    <p class="labeldes">Photo must be in .jpg or .png format</p>
+                  </div>
+                </div>
+              </div>
+            </div> -->
+                <div class="primaryWrap">
+                  <div class="leftWrap">
+                    <div class="inputContainer">
+                      <label>Job Location<span>*</span></label>
+                      <nz-select style="width: 98%;" nzMode="" nzAllowClear nzShowSearch
+                        nzPlaceHolder="-- Select Job Location (Multiple Select)-- " formControlName="jobLocation"
+                        (input)="locationSearch($event)" class="custom-nz-select my-custom-nz-select">
+                        <nz-option *ngFor="let location of JobLocations" [nzLabel]="location"
+                          [nzValue]="location"></nz-option>
+                      </nz-select>
+                    </div>
+                    <!-- <div class="inputContainer">
+                      <label>Job Location <span>*</span></label>
+                      <div style="display: flex;">
+                        <nz-select style="width: 98%;" nzMode="tags" nzAllowClear nzShowSearch
+                          nzPlaceHolder="-- Select Job Location (Multiple Select)" formControlName="jobLocation"
+                          [(ngModel)]="selectedJobLocations" (input)="locationSearch($event)" class="custom-nz-select my-custom-nz-select">
+                          <nz-option *ngFor="let location of JobLocations" [nzLabel]="location" [nzValue]="location"></nz-option>
+                        <div style="padding: 0px 0px 0px 0px;" *ngIf="selectedJobLocations.length > 0" class="selected-count">
+                          {{ selectedJobLocations.length }}
+                        </div>
+                        </nz-select>
+                      </div>
+                    </div> -->
+                    <div
+                      *ngIf="addjobsForm.get('jobLocation').hasError('required') && addjobsForm.get('jobLocation').touched"
+                      class="text-danger">
+                      Job Location is Required.
+                    </div>
+                  </div>
+
+                  <div class="rightWrap">
+                    <div class="inputContainer">
+                      <label>Job Type<span>*</span></label>
+                      <mat-form-field appearance="outline" style="width: 98%;">
+                        <mat-select [(ngModel)]="jobType" formControlName="jobType" placeholder="Select Job Type">
+                          <mat-option *ngFor="let item of JobType" [value]="item">{{ item }}</mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="addjobsForm.get('jobType')?.hasError('required')">
+                          Job Type is Required
+                        </mat-error>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- <div class="primaryWrap">
+            <div class="leftWrap">
+              <form [formGroup]="addjobsForm" enctype="multipart/form-data">
+                <div class="inputContainer">
+                  <label>Degree<span>*</span></label>
+                  <mat-form-field appearance="outline">
+                    <input formControlName="degree" matInput placeholder="Enter Degree">
+                  </mat-form-field>
+                  <ng-container *ngIf="degree.invalid && degree.touched">
+                    <mat-error class="error" *ngIf="degree?.errors?.required">{{'Degree is Required'}}</mat-error>
+                  </ng-container>
+                </div>
+              </form>
+            </div>
+            <div class="rightWrap">
+              <form [formGroup]="addjobsForm" enctype="multipart/form-data">
+                <div class="inputContainer">
+                  <label>Specialization<span>*</span></label>
+                  <mat-form-field appearance="outline">
+                    <input formControlName="specialization" matInput placeholder="Enter Specialization">
+                    <mat-error class="error" *ngIf="specialization?.errors?.required">{{'Specialization is Required'}}</mat-error>
+                  </mat-form-field>
+                  <ng-container *ngIf="specialization.invalid && specialization.touched">
+                  </ng-container>
+                </div>
+              </form>
+            </div>
+          </div> -->
+                <div>
+                  <div class="edu_box ">
+                    <label class="edu_heading">Education<span class="edu_man">*</span></label>
+                    <fieldset class="education-fieldset">
+                      <div *ngFor="let group of formGroups; let i = index" class="form-group flex_div">
+                        <div class="mg-r-10 width-30 "><nz-select nzShowSearch nzAllowClear nzPlaceHolder="Graduation"
+                            [formControl]="group.get('level')" (ngModelChange)="onGraduationChange($event, i)">
+                            <nz-option *ngFor="let option of educations" [nzLabel]="option.education"
+                              [nzValue]="option.education"
+                              [nzDisabled]="isGraduationDisabled(option.education, i)"></nz-option>
+                          </nz-select>
+                          <div *ngIf="group.get('level').hasError('required') && group.get('level').touched"
+                            class="text-danger">
+                            Graduation Field is Required.
+                          </div>
+                        </div>
+
+                        <div class="mg-l-10 width-30">
+                          <nz-select [nzDisabled]="isdegreeDisabled(i)" nzShowSearch nzAllowClear nzPlaceHolder="Degree"
+                            [formControl]="group.get('specification')" (ngModelChange)="onDegreeChange($event, i)"
+                            (click)="degreeOptionChange($event, i)">
+                            <nz-option *ngFor="let option of degreeOptions" [nzLabel]="option" [nzValue]="option"
+                              [nzDisabled]="isOptionDisabled(option, i)"></nz-option>
+                          </nz-select>
+                          <div
+                            *ngIf="group.get('specification').hasError('required') && group.get('specification').touched"
+                            class="text-danger">
+                            Degree Required.
+                          </div>
+                        </div>
+                        <div class="mg-l-10 width-40 overflow_scroll">
+                          <nz-select nzAllowClear [nzDisabled]="iscourseDisabled(i)"
+                            [ngModel]="group.get('multipleSpecialization')?.value"
+                            [ngModelOptions]="{ standalone: true }" [nzSize]="default" nzMode="multiple"
+                            nzPlaceHolder="--Select Specialization (Multiple Select)---" class="custom-nz-select"
+                            [formControl]="group.get('discipline')" (click)="disciplineOptionChange($event, i)">
+                            <nz-option *ngFor="let option of listOfSpecializations" [nzLabel]="option"
+                              [nzValue]="option"></nz-option>
+                          </nz-select>
+                          <div *ngIf="group.get('discipline').hasError('required') && group.get('discipline').touched"
+                            class="text-danger">
+                            Specialization is Required.
+                          </div>
+                        </div>
+                        <div class="remove_group_text" *ngIf="formGroups.length > 1 && i > 0"
+                          (click)="removeEducationGroup(i)">X
+                        </div>
+                      </div>
+                      <div class="add_more_text" (click)="addEducationGroup()">Add More</div>
+                    </fieldset>
+                  </div>
+                </div>
+
+                <div class="primaryWrap flex_div width-100 mg-r-10"
+                  style="padding: 15px 0px 0px 0px;margin: 0px 0px 15px 0px;">
+
+                  <div class="leftWrap">
+                    <div class="inputContainer">
+                      <label>CTC<span>*</span></label>
+                      <div class="form-group salary-range" style="display: flex;">
+                        <mat-radio-group style="margin: -5px 0px 0px 0px; " formControlName="ctcOption"
+                          aria-label="Select an option" [(ngModel)]="selectedRangeOption"
+                          (ngModelChange)="onCtcOptionChange()">
+                          <mat-radio-button value="fixed"
+                            style="font-weight: bold; font-size: 14px;">Fixed</mat-radio-button>
+                          <mat-radio-button value="range"
+                            style="padding: 10px; font-weight: bold; font-size: 14px;">Range</mat-radio-button>
+                        </mat-radio-group>
+
+                        <!-- Fixed input -->
+                        <div *ngIf="selectedRangeOption === 'fixed'" style="width: 71.5%;">
+                          <mat-form-field class="example-full-width" appearance="outline">
+                            <input type="number" formControlName="fixed" matInput placeholder="CTC (numeric only)" min="0">
+                            <mat-error *ngIf="addjobsForm.get('fixed')?.hasError('required')">CTC is
+                              Required</mat-error>
+                          </mat-form-field>
+                        </div>
+
+                        <!-- Range inputs -->
+                        <div *ngIf="selectedRangeOption === 'range'" style="display: flex; width: 37%;">
+                          <mat-form-field appearance="outline" style="padding-right: 13px;">
+                            <input type="number" formControlName="startrange" matInput placeholder="CTC (numeric only)" min="0">
+                            <mat-error *ngIf="addjobsForm.get('startrange')?.hasError('required')"> Start Range CTC is
+                              Required</mat-error>
+                          </mat-form-field>
+                          <span style="padding: 0px 10px 0px 0px;color: #848484;">_</span>
+                          <mat-form-field appearance="outline" style="padding-right: 13px;">
+                            <input type="number" formControlName="endrange" matInput placeholder="CTC (numeric only)" min="0">
+                            <mat-error *ngIf="addjobsForm.get('endrange')?.hasError('required')"> End Range CTC is
+                              Required</mat-error>
+                          </mat-form-field>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="rightWrap">
+                    <div class="inputContainer">
+                      <label>Year of Passing<span>*</span></label>
+                      <nz-select style="width: 98%; padding: 0px 0px 0px 0px;" nzMode="multiple" nzAllowClear
+                        nzShowSearch nzPlaceHolder="-- Select Year of Passing (Multiple Select)"
+                        formControlName="yearofPassout" class="custom-nz-select my-custom-nz-select">
+                        <nz-option *ngFor="let item of YearofPassing" [nzLabel]="item" [nzValue]="item"></nz-option>
+                      </nz-select>
+                    </div>
+                    <div
+                      *ngIf="addjobsForm.get('yearofPassout').hasError('required') && addjobsForm.get('yearofPassout').touched"
+                      class="text-danger">
+                      Year of Passing is Required.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="primaryWrap" style="margin: -25px 0px 0px 0px;">
+                  <div class="leftWrap">
+                    <div class="inputContainer overflow_scroll" style="margin: 0px 5px 0px 0px;">
+                      <label>Key Skills<span>*</span></label>
+                      <nz-select [(ngModel)]="skillSet" style="width: 98%;" nzMode="multiple" nzAllowClear nzShowSearch
+                        nzPlaceHolder="-- Select Skill Set (Multiple Select) --" formControlName="skillSet"
+                        (input)="handleSearch($event)" class="custom-nz-select my-custom-nz-select" required>
+                        <nz-option *ngFor="let item of newSkill" [nzLabel]="item" [nzValue]="item"></nz-option>
+                      </nz-select>
+                      <div
+                        *ngIf="addjobsForm.get('skillSet').hasError('required') && addjobsForm.get('skillSet').touched"
+                        class="text-danger">Skill Set is
+                        Required.</div>
+                    </div>
+                  </div>
+
+                  <div class="rightWrap">
+                    <!-- <div class="inputContainer">
+                      <label>Last Date To Apply<span>*</span></label>
+                      <mat-form-field appearance="outline">
+                        <input formControlName="lastDatetoApply" [matDatepicker]="picker" matInput
+                          placeholder="— MM/DD/YYYY —">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                        <mat-error *ngIf="addjobsForm.get('lastDatetoApply')?.hasError('required')">
+                          Last Day to Apply is Required.
+                        </mat-error>
+                      </mat-form-field>
+                    </div> -->
+                    <div class="inputContainer">
+                      <label>Last Date To Apply<span>*</span></label>
+                      <mat-form-field appearance="outline">
+                        <input formControlName="lastDatetoApply" [matDatepicker]="picker" matInput
+                          placeholder="— MM/DD/YYYY —" min="{{ getMinDate() }}">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                        <mat-error *ngIf="addjobsForm.get('lastDatetoApply')?.hasError('required')">
+                          Last Day to Apply is Required.
+                        </mat-error>
+                        <mat-error *ngIf="addjobsForm.get('lastDatetoApply')?.hasError('matDatepickerMax')">
+                          Please select a future date.
+                        </mat-error>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="primarysingleWrap">
+                  <div class="singleWrap">
+                    <div class="inputContainer">
+                      <label>Apply link<span>*</span></label>
+                      <mat-form-field appearance="outline">
+                        <input formControlName="applyLink" matInput placeholder="Enter URL">
+                        <mat-error class="error" *ngIf="applyLink?.errors?.required">{{'URL is Required'}}</mat-error>
+                        <mat-error class="error" *ngIf="urlFormaterror.applyLink.errors?.pattern">
+                          {{ 'Invalid URL format' }}
+                        </mat-error>
+                      </mat-form-field>
+                      <ng-container *ngIf="urlFormaterror.applyLink.invalid && urlFormaterror.applyLink.touched">
+                      </ng-container>
+                    </div>
+                  </div>
+                </div>
+                <div class="primarysingleWrap">
+                  <div class="singleWrap">
+                    <div class="inputContainer">
+                      <label>Job Description<span>*</span></label>
+                      <angular-editor [(ngModel)]="htmlContent_description" [config]="config"
+                        formControlName="description" placeholder="Enter Job Description"
+                        id="description"></angular-editor>
+
+                      <mat-error
+                        *ngIf="addjobsForm.get('description')?.hasError('required') && addjobsForm.get('description').touched">
+                        Job Requirements is Required.
+                      </mat-error>
+                    </div>
+                  </div>
+                </div>
+                <br>
+                <div class="primarysingleWrap">
+                  <div class="singleWrap">
+                    <div class="inputContainer">
+                      <label>Job Requirements<span>*</span></label>
+                      <angular-editor [(ngModel)]="htmlContent_requirement" [config]="config"
+                        formControlName="requirement" placeholder="Enter Job Requirements"
+                        id="requirements"></angular-editor>
+
+                      <mat-error
+                        *ngIf="addjobsForm.get('requirement')?.hasError('required') && addjobsForm.get('requirement').touched">
+                        Job Requirement is required.
+                      </mat-error>
+                    </div>
+                  </div>
+                </div>
+                <br>
+                <div class="primarysingleWrap">
+                  <div class="singleWrap">
+                    <div class="inputContainer">
+                      <label>Additional Information</label>
+                      <angular-editor [(ngModel)]="htmlContent_information" [config]="config"
+                        formControlName="additionalInformation" placeholder="Enter Additional Information"
+                        id="additionalInformation"></angular-editor>
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <div class="buttonClass">
+                    <div class="subButton">
+                      <button mat-flat-button (click)="saveForm()">Save</button>
+                    </div>
+                    <div class="subButton2">
+                      <button mat-flat-button (click)="clearForm()">Clear</button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <ng-template #jobsaved>
+      <div class="thank_you_page">
+        <img style="justify-content: center;width: 60px;align-items: center;text-align: center;"
+          src="../../../../assets/images/green_tick_image.png">
+        <p class="job_text"><strong>Job</strong> has been<br>saved successfully</p>
+        <div><button class="go_to_viewjob" type="submit" (click)="closeThankYou()">OK</button></div>
+      </div>
+    </ng-template>
+  </div>
+</div>

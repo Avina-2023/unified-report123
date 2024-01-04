@@ -22,7 +22,7 @@ export class LandingPageComponent implements OnInit {
     autoplay: true,
     animateIn: 'fadeIn',
     animateOut: 'fadeOut',
-    autoplayTimeout: 1000,
+    autoplayTimeout: 2500,
     autoplayHoverPause: false,
     dots: true,
     navSpeed: 1000,

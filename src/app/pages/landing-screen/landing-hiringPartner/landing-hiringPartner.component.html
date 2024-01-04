@@ -1,0 +1,41 @@
+<main #trackScroll class="main" (scroll)="onScrollEvent($event);" style="background-color: #fff;">
+  <!--  -->
+
+
+  <section class="section-about" style="margin-bottom: 0px;">
+<div class="section-about__image wow animate__animated animate__fadeIn" style="margin-bottom: 50px;"><img src="https://assets.lntedutech.com/Skillexchange/about-image-4.png" alt="" /></div>
+<div class="container">
+
+</div>
+</section>
+<section class="section-image-numbers">
+<div class="section-image-numbers__container container">
+<div class="row">
+
+  <div class="section-image-numbers__content col-lg-12">
+    <h2 class="section-image-numbers__title wow animate__animated animate__fadeInDown animated text-center">Hiring Partners</h2>
+    <div class="row">
+      <div *ngFor="let item of HiringPartners" class="col-lg-2 col-sm-6 c-logo-1">
+          <img src={{item.url}} />
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</section>
+
+
+<section class="section-banner wow animate__animated animate__pulse animated" style="visibility: visible; animation-name: pulse;">
+<div class="section-banner__container container">
+<div class="section-banner__wrapper">
+  <div class="section-banner__content">
+    <h2 class="section-banner__title">Looking to hire Pre-Assessed and Certified Fresh Graduates</h2>
+    <p class="section-banner__text">We'll be glad to have you onboard! To join as a hiring partner, write to meher.k@lntecc.com</p>
+  </div>
+  <a [routerLink]="endPoints.LANDINGPAGE.EMPLOYER" class="section-banner__link button button--white">Join as Hiring Partner</a>
+</div>
+</div>
+</section>
+<app-landing-footer></app-landing-footer>
+<div style="padding-bottom: 50px;"></div>
+</main>

@@ -7,7 +7,7 @@ export class SentDataToOtherComp {
 
   constructor() { }
   private subject = new Subject<any>();
-
+  public jobData_Subject = new Subject<any>();
   sendMessage(data: any,value:any) {
     data = {
       data:data,
@@ -20,7 +20,18 @@ export class SentDataToOtherComp {
       this.subject.next();
   }
 
-  getMessage(): Observable<any> {
+  getMessage (): Observable<any> {
       return this.subject.asObservable();
+  }
+
+  getMessage_Dyn (sub:Subject<any>): Observable<any> {
+    return sub.asObservable();
+  }
+  sendMessage_Dyn (data: any,value:any, sub:Subject<any>) {
+    data = {
+      data:data,
+      value:value
+    }
+      sub.next( data );
   }
 }

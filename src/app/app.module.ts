@@ -6,11 +6,11 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
+import { CommonModule, registerLocaleData } from '@angular/common';
 import { NgxChartsModule} from '@swimlane/ngx-charts';
 import { SharedModule } from './shared/shared.module';
 import { PerfectScrollbarConfigInterface, PerfectScrollbarModule, PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { InterceptorService } from './interceptor/interceptor.service';
 import { DragScrollModule } from 'ngx-drag-scroll';
 import { AgGridModule } from 'ag-grid-angular';
@@ -23,10 +23,26 @@ import { LandingPageComponent } from './pages/landing-page/landing-page.componen
 import { PartnersListComponent } from './pages/landing-page/partners-list/partners-list.component';
 import { LandingHeaderComponent } from './pages/landing-page/landing-header/landing-header.component';
 import { LandingFooterComponent } from './pages/landing-page/landing-footer/landing-footer.component';
-import { CarouselModule } from 'ngx-owl-carousel-o';
 import { LoginPageComponent } from './pages/login/login-page/login-page.component';
-import { RegisterPageComponent } from './pages/register/register-page/register-page.component';
-import { JobSeekersComponent } from './pages/jobSeekers/job-seekers/job-seekers.component';
+import { RegisterPageComponent } from './pages/login/register-page/register-page.component';
+// import { JobSeekersComponent } from './pages/login/candidateRegister/candidateRegister.component';
+import {candidateRegister} from './pages/login/candidateRegister/candidateRegister.component'
+import { SkillMasterListComponent } from './pages/skill-Master/skill-master-list/skill-master-list.component';
+import { SetPasswordComponent } from './pages/login/set-password/set-password.component';
+import { ForgotPasswordComponent } from './pages/login/forgot-password/forgot-password.component';
+import { CandidateModule } from './pages/candidate/candidate.module';
+import { NZ_I18N } from 'ng-zorro-antd/i18n';
+import { en_US } from 'ng-zorro-antd/i18n';
+import en from '@angular/common/locales/en';
+import { NzSelectModule } from 'ng-zorro-antd/select';
+import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
+import { CarouselModule } from 'ngx-owl-carousel-o';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { ExternalLinkComponent } from './pages/external-link/external-link.component';
+// import { DashboardtableComponent } from './dashboardtable/dashboardtable.component';
+import { NgCircleProgressModule } from 'ng-circle-progress';
+
+registerLocaleData(en);
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
 };
@@ -41,9 +57,17 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     LandingHeaderComponent,
     LandingFooterComponent,
     LoginPageComponent,
+    ForgotPasswordComponent,
+    SetPasswordComponent,
     RegisterPageComponent,
-    JobSeekersComponent
-  ],
+    ExternalLinkComponent,
+ 
+    // JobSeekersComponent,
+    candidateRegister,
+    SkillMasterListComponent,
+    // DashboardtableComponent,
+
+],
   imports: [
     BrowserModule,
     FormsModule,
@@ -53,10 +77,17 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     NgxChartsModule,
     MaterialModule,
     SharedModule,
+    MatDatepickerModule,
     DragScrollModule,
     PerfectScrollbarModule,
     AgGridModule,
+    NzSelectModule,
+    NzDropDownModule,
     CarouselModule,
+    NgCircleProgressModule.forRoot({
+      
+    }),
+    // PopupCellRenderer,
     ToastrModule.forRoot(
       {
         timeOut: 3000,
@@ -68,6 +99,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
         closeButton:true
       }
     ),
+    HttpClientModule,
+
   ],
   providers: [
     {
@@ -77,7 +110,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
       provide: PERFECT_SCROLLBAR_CONFIG,
       useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
     },
-    IsloggedInGuard, IsAccessGuard
+    IsloggedInGuard, IsAccessGuard, { provide: NZ_I18N, useValue: en_US }
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]

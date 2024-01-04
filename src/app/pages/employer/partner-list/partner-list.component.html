@@ -1,0 +1,135 @@
+<div class="body">
+  <div class="subBody">
+    <h3 class="title">Manage Partners</h3>
+    <div class="partnerCardBody">
+        <div class="container-fluid">
+          <div class="row p-1">
+            <div class="col-md-3">
+              <mat-card class="partnerCard">
+                <mat-card-title class="cardTitle">Total Partners</mat-card-title>
+                <mat-card-content class="cardValue">
+                  <div>
+                    <p>{{dashboard_cards ? dashboard_cards.totalCount : ''}}</p>
+                  </div>
+                  <div><img src="/assets/images/partner/partners.svg" alt=""></div>
+                </mat-card-content>
+                <!-- <div class="media d-flex">
+                  <div class="card-inside-percentage-box">
+                      <span>8%</span>
+                  </div>
+                  <span class="ml-2">Since last month</span>
+              </div> -->
+                <mat-card-footer class="cardFooter">
+                  <span class="cardFootervalue">
+                    <span class="icon-arrow-round-up"></span>
+                   <span>{{dashboard_cards?.totalIncreased}}%</span> 
+                  </span> Since last month
+                </mat-card-footer>
+              </mat-card>
+            </div>
+            <div class="col-md-3">
+              <mat-card class="partnerCard">
+                <mat-card-title class="cardTitle">No. of Active Partners</mat-card-title>
+                <mat-card-content class="cardValue">
+                  <div>
+                    <p>{{dashboard_cards?.activeCount}}</p>
+                  </div>
+                  <div><img src="/assets/images/partner/partners-active.svg" alt=""></div>
+                </mat-card-content>
+                <mat-card-footer class="cardFooter">
+                  <span class="cardFootervalue">
+                    <span class="icon-arrow-round-up"></span>
+                    <span>{{dashboard_cards?.activeIncreased}}%</span></span> Since last month
+                </mat-card-footer>
+              </mat-card>
+            </div>
+            <div class="col-md-3">
+              <mat-card class="partnerCard">
+                <mat-card-title class="cardTitle">No. of Inactive Partners</mat-card-title>
+                <mat-card-content class="cardValue">
+                  <div>
+                    <p>{{dashboard_cards?.inActiveCount}}</p>
+                  </div>
+                  <div><img src="/assets/images/partner/partners-inactive.svg" alt=""></div>
+                </mat-card-content>
+                <mat-card-footer class="cardFooter">
+                  <span class="cardFootervalue"> 
+                    <span class="icon-arrow-round-up"></span>
+                    <span>{{dashboard_cards?.inActiveIncreased}}%</span></span> Since last month
+                </mat-card-footer>
+              </mat-card>
+            </div>
+            <div class="col-md-3">
+              <mat-card class="partnerCard">
+                <mat-card-title class="cardTitle">Pending Approvals</mat-card-title>
+                <mat-card-content class="cardValue">
+                  <div>
+                    <p>{{dashboard_cards?.pendingCount}}</p>
+                  </div>
+                  <div><img src="/assets/images/partner/partners-pending.svg" alt=""></div>
+                </mat-card-content>
+                <mat-card-footer class="cardFooter">
+                  <span class="cardFootervalue">
+                    <span class="icon-arrow-round-up"></span>
+                    <span>{{dashboard_cards?.pendingIncreased}}%</span></span> Since last month
+                </mat-card-footer>
+              </mat-card>
+            </div>
+          </div>
+      </div>
+    </div>
+    <div class="partnerCardTableBody">
+      <mat-card class="partnerCard">
+        <mat-card-title class="cardTitle">
+          <div>Partner's Information List</div>
+          <div class="buttonSlide">
+            <mat-button-toggle-group [(ngModel)]="status" (change)="refresh()" name="status"
+              aria-label="Font Style">
+              <mat-button-toggle value="all">All</mat-button-toggle>
+              <mat-button-toggle value="active">Active</mat-button-toggle>
+              <mat-button-toggle value="inActive">InActive</mat-button-toggle>
+              <mat-button-toggle value="pending">Pending</mat-button-toggle>
+            </mat-button-toggle-group>
+          </div>
+        </mat-card-title>
+        <div class="ag-grid">
+          <ag-grid-angular
+            style="width: 100%; height: 100%;"
+            class="ag-theme-alpine"
+            [gridOptions]= "gridOptions"
+            [columnDefs]="columnDefs" 
+                             [defaultColDef]="defaultColDef"
+                             [masterDetail]="masterDetail"
+                             [overlayNoRowsTemplate]="overlayNoRowsTemplate"
+                              [rowData]="rowData" 
+                              [enableRangeSelection]="true"
+                             [tooltipShowDelay]="0" 
+                             [animateRows]="true"
+                              headerHeight="45" 
+                              rowHeight="45"
+                             [suppressRowClickSelection]="true"
+                              [suppressRowTransform]="true" 
+                              [rowSelection]="rowSelection"
+                             [pivotPanelShow]="'always'" 
+                             [sideBar]="false" 
+                             (gridReady)="onGridReady($event)"
+                             [rowModelType]="rowModelType"
+                              [maintainColumnOrder]="true" 
+                              [cacheBlockSize]="cacheBlockSize"
+                            
+                             [suppressAggFuncInHeader]="true" 
+                             [suppressColumnVirtualisation]="true"
+                             [autoGroupColumnDef]="autoGroupColumnDef" 
+                             [serverSideStoreType]="serverSideStoreType"
+                             [pagination]="true" 
+                             [paginationPageSize]="10" 
+                             [sideBar]="sideBar" 
+                             allColumns=true
+            >
+        </ag-grid-angular>
+        
+      </div>
+      </mat-card>
+    </div>
+  </div>
+</div>

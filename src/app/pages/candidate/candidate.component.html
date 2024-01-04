@@ -1,0 +1,107 @@
+<mat-toolbar class="appHeader" layout="row" style="position: fixed;z-index:99;">
+  <button mat-icon-button class="menu-icon">
+    <mat-icon (click)="isExpanded = !isExpanded;sideNavMode=sideNavMode=='over'?'side':'over'" class="mat-24"
+      aria-label="Menu">menu</mat-icon>
+  </button>
+  <img class="hearder-logo" alt="" src="assets/images/landing/newLogo.png">
+  <span class="toolbar-spacer"></span>
+  <div class="toolbar-pic">
+    <span class="username">{{candidateName}}</span>
+    <button mat-button [matMenuTriggerFor]="menu">
+      <!-- <img class="profileimg"
+        [src]="profileimge && profileimge !=''?profileimge:'../../../../assets/images/emp-dashboard-icons/user.png'"> -->
+        <!-- <img class="profileimg" 
+        [src]="profileimge && profileimge !='' && profileimge !='undefined'?profileimge:'../../../../assets/images/emp-dashboard-icons/user.png'"> -->
+        <img class="profileimg" 
+        [src]="profileimge && profileimge !='' && profileimge !='undefined'?profileimge:'../../../../assets/images/candidate-userprofile.png'">
+    </button>
+    <mat-menu #menu="matMenu"> 
+      <button style="color:#1B4E9B;" mat-menu-item (click)="logout()"> <mat-icon 
+          style="color:#1B4E9B;">output</mat-icon>Log Out</button>
+      <!-- <span class="icon-logout"></span> -->
+    </mat-menu>
+  </div>
+</mat-toolbar>
+<div class="content">
+  <mat-sidenav-container class="example-container" style="margin-top: 56px !important;" autosize [hasBackdrop]="false">
+    <mat-sidenav #sidenav [mode]="sideNavMode" opened="true" class="sidenav" (mouseenter)="mouseenter()"
+      (mouseleave)="mouseleave()">
+      <mat-nav-list>
+        <mat-list-item class="navItems" [ngClass]="router.url==routelinks.CANDIDATEDASH.DASHBOARD? 'active':''"
+          [routerLink]="routelinks.CNDIDATELANDING">
+          <div class="innerLine"></div>
+          <mat-icon mat-list-icon>home_outline</mat-icon>
+          <span class="full-width" *ngIf="isExpanded || isShowing">Dashboard</span>
+        </mat-list-item>
+        <mat-list-item class="navItems" (click)="gotoDashboard()">
+          <div class="innerLine"></div>
+          <mat-icon mat-list-icon>home</mat-icon>
+          <span class="full-width" *ngIf="isExpanded || isShowing">Dashboard</span>
+        </mat-list-item>
+        <mat-list-item class="navItems" (click)="gotoProfile()">
+          <div class="innerLine"></div>
+          <mat-icon mat-list-icon>person_filled</mat-icon>
+          <span class="full-width" *ngIf="isExpanded || isShowing">My Profile</span>
+        </mat-list-item>
+        <mat-list-item class="navItems" [ngClass]="router.url==routelinks.CANDIDATEDASH.RESUMEBUILDER ? 'active':''"
+          [routerLink]="routelinks.CANDIDATEDASH.RESUMEBUILDER">
+          <div class="innerLine"></div>
+          <mat-icon mat-list-icon>edit_off</mat-icon>
+          <span class="full-width" *ngIf="isExpanded || isShowing">Resume Builder</span>
+        </mat-list-item>
+        <mat-list-item class="navItems"
+          [ngClass]="router.url==routelinks.CANDIDATEDASH.JOBLIST || router.url==routelinks.CANDIDATEDASH.JOBDESCRIPTION? 'active':''"
+          [routerLink]="routelinks.CANDIDATEDASH.JOBLIST">
+          <div class="innerLine"></div>
+          <mat-icon mat-list-icon>work_outline</mat-icon>
+          <span class="full-width" *ngIf="isExpanded || isShowing">Jobs/Internships</span>
+        </mat-list-item>
+        <mat-list-item class="navItems" [ngClass]="router.url==routelinks.CANDIDATEDASH.JOBSAPPLIED? 'active':''"
+          [routerLink]="routelinks.CANDIDATEDASH.JOBSAPPLIED">
+          <div class="innerLine"></div>
+          <mat-icon mat-list-icon>check_circle_outline</mat-icon>
+          <span class="full-width" *ngIf="isExpanded || isShowing">Applied Jobs/Internships</span>
+        </mat-list-item>
+        <mat-list-item class="navItems" [ngClass]="router.url==routelinks.CANDIDATEDASH.JOBSSAVED? 'active':''"
+          [routerLink]="routelinks.CANDIDATEDASH.JOBSSAVED">
+          <div class="innerLine"></div>
+          <img class="book" src="../../../assets/images/Group 23057.svg">
+          <!-- <mat-icon mat-list-icon class="material-symbols-outlined">bookmark_outline</mat-icon> -->
+          <span class="full-width-save" *ngIf="isExpanded || isShowing">Saved Jobs/Internships</span>
+        </mat-list-item>
+
+        <!-- <mat-list-item class=" lastitem hrlogout" (click)="logout()">
+          <mat-icon mat-list-icon class="material-symbols-outlined">logout_outline</mat-icon>
+          <span class="full-width" *ngIf="isExpanded || isShowing">Logout</span>
+        </mat-list-item> -->
+      </mat-nav-list>
+      <mat-nav-list>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content style="overflow-x:hidden !important">
+      <div [ngClass]="sideNavMode=='over'?'navMarginOver':'navMarginSide'">
+        <router-outlet></router-outlet>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+  <div class="appFooter">
+    <app-footer></app-footer>
+  </div>
+</div>
+<div>
+  <ng-template #confirmDialog>
+    <div class="logout">
+     <div class="clos-icn"><mat-icon mat-dialog-close>close</mat-icon></div>
+      <div class="logot-img">
+        <img src="../../../assets/images/alert-image.png" />
+      </div>
+      <div class="box">
+        <p>Are you sure you want to logout?</p>
+      </div>
+      <div mat-dialog-actions class="actions">
+        <button class="yes" mat-button (click)="confirm(true)" cdkFocusInitial>Yes</button>
+        <button class="no" mat-button (click)="confirm(false)">No</button>
+      </div>
+    </div>
+  </ng-template>
+</div>

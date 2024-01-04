@@ -1,18 +1,31 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
+import { SentDataToOtherComp } from '../services/sendDataToOtherComp.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AppConfigService {
-
+  jobData:any;
   constructor(
     private activatedRoute: ActivatedRoute,
     private route: Router,
+    private sendData: SentDataToOtherComp,
   ) {
+    this.getjobdata();
    }
 
+   getjobdata(){
+    this.sendData.getMessage_Dyn(this.sendData.jobData_Subject).subscribe((data:any)=>{
+      this.jobData = data.value
+      console.log(this.jobData,'jobdata')
+    })
+   }
+
+   getCurrentYear() {
+    return new Date().getFullYear();
+  }
 
   // get Current route
   currentRoute() {
@@ -95,4 +108,15 @@ export class AppConfigService {
       return true;
     }
   }
+
+
+  transformToTitleCase(text: string): string {
+    return text
+      .toLowerCase()
+      .split(' ')
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ');
+  }
+  //usage: {{appconfig.transformToTitleCase(item.firstName)}}
+
 }

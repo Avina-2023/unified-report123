@@ -5,14 +5,18 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HiringReportComponent } from './sub-pages/hiring-report/hiring-report.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { DashboardlistComponent } from './dashboardlist/dashboardlist.component';
 import { CandidateOverAllReportComponent } from '../candidate-assessment-report/candidate-over-all-report/candidate-over-all-report.component';
-
+import { ToolbarComponent } from '../../shared/toolbar/toolbar.component';
 const routes: Routes = [
   {
     path: `${APP_CONSTANTS.ROUTES.REPORTS.VIEWREPORTS}/:id`, component: ViewOverallReportsComponent,
   },
   {
     path: `${APP_CONSTANTS.ROUTES.REPORTS.USERLIST}`, component: UserListComponent,
+  },
+  {
+    path: `${APP_CONSTANTS.ROUTES.REPORTS.BEHAVIOURALDASHBOARD}`, component: DashboardlistComponent,
   },
   {
     path: `${APP_CONSTANTS.ROUTES.REPORTS.HIRINGREPORT}`, component: HiringReportComponent,
@@ -30,7 +34,7 @@ const routes: Routes = [
     path: '',
     redirectTo: `${APP_CONSTANTS.ROUTES.REPORTS.USERLIST}`,
     pathMatch: 'full',
-  }
+  },
 ];
 
 @NgModule({

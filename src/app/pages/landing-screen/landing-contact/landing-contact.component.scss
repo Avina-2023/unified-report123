@@ -1,0 +1,133 @@
+@import "../../../../assets/scss/landingAnimation.scss";
+@import "../../../../assets/scss/landingScreen.scss";
+@import "../../../../assets/scss/swiper-bundle.min.scss";
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans&display=swap');
+
+
+
+.main{
+    height: 100% !important;
+    overflow: auto;
+}
+@media (min-width: 1200px){
+.h4, h4 {
+    font-size: 1.5rem !important;
+    font-family: "PT Sans", sans-serif !important;
+
+}}
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3,
+h4,
+.h4 {
+  margin: 0;
+  padding: 0;
+  color: #111111;
+}
+
+h1,
+.h1 {
+  font-weight: 700 !important;
+  font-size: 34px !important;
+  font-family: "PT Sans", sans-serif !important;
+  line-height: 38px !important;
+  margin-bottom: 20px !important;
+}
+@media (min-width: 992px) {
+  h1,
+.h1 {
+    font-size: 52px !important ;
+    font-family: "PT Sans", sans-serif !important;
+    line-height: 58px !important ;
+  }
+}
+
+h2,
+.h2 {
+  font-weight: 700 !important;
+  font-size: 26px !important;
+  font-family: "PT Sans", sans-serif !important;
+  line-height: 32px !important;
+  margin-bottom: 12px !important;
+}
+@media (min-width: 992px) {
+  h2,
+.h2 {
+    font-size: 42px !important;
+    font-family: "PT Sans", sans-serif !important;
+    line-height: 46px !important;
+    margin-bottom: 25px !important;
+  }
+}
+
+.h2 {
+  margin-top: 40px;
+}
+@media (min-width: 992px) {
+  .h2 {
+    margin-top: 50px;
+  }
+}
+
+h3,
+.h3 {
+  font-weight: 700 !important;
+  font-size: 19px !important;
+  font-family: "PT Sans", sans-serif !important;
+  line-height: 25px !important;
+  margin-bottom: 9px !important;
+}
+@media (min-width: 992px) {
+  h3,
+.h3 {
+    font-size: 24px !important;
+    font-family: "PT Sans", sans-serif !important;
+    line-height: 32px !important;
+    margin-bottom: 16px !important;
+  }
+}
+
+.h3 {
+  margin-top: 50px !important;
+}
+.section-begin__text{
+  font-size: 18px;
+  font-family: "PT Sans", sans-serif;
+
+}
+@media (min-width: 992px) {
+  .section-begin__text{
+    font-size: 18px;
+    font-family: "PT Sans", sans-serif;
+
+  }
+}
+.text-center{
+  font-size: 18px;
+  font-family: "PT Sans", sans-serif;
+  line-height: 24px;
+}
+@media (min-width: 992px) {
+  .text-center{
+    font-size: 18px;
+    font-family: "PT Sans", sans-serif;
+    line-height: 24px;
+  }
+}
+.section-roadmap__title{
+  animation: fadeInDown 1s ;
+
+  @keyframes fadeInDown {
+    from {
+      opacity: 0;
+      transform: translate3d(0, 0, 0);
+    }
+    to {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+  }
+}

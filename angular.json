@@ -1,5 +1,8 @@
 {
     "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+    "cli": {
+      "analytics": false
+    },
     "version": 1,
     "newProjectRoot": "projects",
     "projects": {
@@ -25,20 +28,28 @@
                         "aot": true,
                         "assets": [
                             "src/favicon.ico",
-                            "src/assets"
+                            "src/assets",
+                            {
+                                "glob": "**/*",
+                                "input": "./node_modules/@ant-design/icons-angular/src/inline-svg/",
+                                "output": "/assets/"
+                            }
                         ],
                         "styles": [
-                            "src/styles.scss",
+                            "src/theme.less",
+                            "src/assets/fonts/ptsans/PTSans-Regular.ttf",
                             "./node_modules/@videogular/ngx-videogular/fonts/videogular.css",
                             "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
                             "node_modules/bootstrap/dist/css/bootstrap.min.css",
                             "node_modules/ngx-toastr/toastr.css",
-                            "./node_modules/ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.carousel.min.css",
-                            "./node_modules/ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.theme.default.min.css"
+                            "node_modules/ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.carousel.min.css",
+                            "node_modules/ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.theme.default.min.css",
+                            "src/styles.scss"
                         ],
                         "stylePreprocessorOptions": {
                             "includePaths": [
                                 "src/assets/scss/"
+
                             ]
                         },
                         "scripts": [
@@ -62,13 +73,13 @@
                             "buildOptimizer": true,
                             "budgets": [{
                                     "type": "initial",
-                                    "maximumWarning": "20mb",
-                                    "maximumError": "20mb"
+                                    "maximumWarning": "100mb",
+                                    "maximumError": "100mb"
                                 },
                                 {
                                     "type": "anyComponentStyle",
-                                    "maximumWarning": "2mb",
-                                    "maximumError": "2mb"
+                                    "maximumWarning": "100mb",
+                                    "maximumError": "100mb"
                                 }
                             ]
                         }

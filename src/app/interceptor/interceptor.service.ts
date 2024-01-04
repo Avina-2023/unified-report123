@@ -31,7 +31,7 @@ export class InterceptorService implements HttpInterceptor {
     const clone = request.clone({
       // Overwriting
       headers: new HttpHeaders({
-        'Content-Type':  'application/json',
+        'Accept':  'application/json',
         'Authorization': request.url.includes('/api/chat/') ? 'Bearer ' + this.appConfig.getLocalStorage('Proctor_token') : 'Bearer aqSkKT6qguVyANMPtR6qqWaiCLUTRNpS7aki0COQm6WEg9WE8VWiopu9rF5oQank2AdWyM3UKr62WUu9l1R1BfaO9CzM16Vi89ecAX6ADPfhGBzpAEXze1do0SqtMkdQ5oGqFqtXphoc4DZL4hb6wRdg09RWzEJcnYJLtvska9HfvQiywtu1LZvDt1AD104ypzLaIRV6dGtKWHrhYgxVn7D3Q9mkTS3oejbVX8z81RwN3Ely6g59t5RRU88BVJiv'
       })
       // Without overwriting

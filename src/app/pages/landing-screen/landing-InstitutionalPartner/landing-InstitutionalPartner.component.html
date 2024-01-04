@@ -1,0 +1,36 @@
+<main #trackScroll class="main" (scroll)="onScrollEvent($event);">
+  <!--   -->
+
+
+  <section class="section-about" style="margin-bottom: 0px;">
+    <div class="section-about__image wow animate__animated animate__fadeIn" style="margin-bottom: 50px;"><img src="https://assets.lntedutech.com/Skillexchange/about-image-4.png" alt="" /></div>
+    <div class="container">
+
+    </div>
+  </section>
+  <section class="section-image-numbers">
+    <div class="section-image-numbers__container container">
+      <div class="row">
+
+        <div class="section-image-numbers__content col-lg-12">
+          <h2 class="section-image-numbers__title wow animate__animated animate__fadeInDown animated text-center">Institutional Partners</h2>
+          <div class="row">
+
+            <div *ngFor="let item of InstitutionalPartners" class="col-lg-3 mb-4">
+              <div class="section-team__item-wrapper">
+                <div class="section-team__item-image">
+                  <img src={{item.url}} alt="">
+                </div>
+                <div class="section-team__item-text">
+                  <p class="section-team__item-name">{{item.name}}</p>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <app-landing-footer></app-landing-footer>
+<div style="padding-bottom: 50px;"></div>
+      </main>
