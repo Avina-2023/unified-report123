@@ -142,8 +142,27 @@ export class EditJobComponent implements OnInit {
     let localjobData = JSON.parse(this.appconfig.getLocalStorage('openJobData'));
     console.log(localjobData, 'console localjobdata');
     this.jobdata = this.appconfig.jobData ? this.appconfig.jobData : localjobData;
-    this.JobLocations.push(...this.jobdata?.jobLocation);
-    this.newSkill.push(...this.jobdata?.skillSet);
+
+    // this.JobLocations.push(...this.jobdata?.jobLocation);
+    // this.newSkill.push(...this.jobdata?.skillSet);
+
+    if (this.jobdata?.jobLocation) {
+      this.jobdata?.jobLocation?.forEach((location: string) => {
+        if (!this.JobLocations?.includes(location)) {
+          this.JobLocations?.push(location);
+        }
+      });
+    }
+    console.log(this.JobLocations, 'totalLocation');
+    // Check and push unique values to the default options array
+    if (this.jobdata?.skillSet) {
+      this.jobdata?.skillSet?.forEach((option: string) => {
+        if (!this.newSkill?.includes(option)) {
+          this.newSkill?.push(option);
+        }
+      });
+    }
+    console.log(this.newSkill, 'totalOptions');
     this.selectedRangeOption = this.jobdata.ctcType;
     //console.log(this.selectedRangeOption, ' selected testctc');
     this.companylist();
@@ -919,7 +938,7 @@ export class EditJobComponent implements OnInit {
         "companyLogo": "https://example.com/path/to/your/logo.png",
         "isActive": true,
         "jobCategoryId": "64cc8cbd112e2bb777bc92fb",
-        "postedDate": formatDate(new Date(), 'dd-MM-yyyy', 'en-IN', 'IST'),
+        // "postedDate": formatDate(new Date(), 'dd-MM-yyyy', 'en-IN', 'IST'),
         "workType": "Jobs",
         "applyLink": this.addjobsForm.value.applyLink,
         "education": this.formGroups.map(formGroup => formGroup.value)

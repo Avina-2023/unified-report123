@@ -21,82 +21,87 @@ export class JobListItemComponent implements OnInit, AfterViewInit {
   @Input() showApplied = false;
   @ViewChild('externalApply', {static: false}) extApply: TemplateRef<any>;
 
-  public totallength: any; 
-  public total: any; 
-  sampleContent = []; 
-  blobToken = environment.blobToken; 
-  productionUrl = 
+  public totallength: any;
+  public total: any;
+  sampleContent = [];
+  blobToken = environment.blobToken;
+  productionUrl =
     environment.SKILL_EDGE_URL == 'https://skilledge.lntedutech.com'
       ? true
       : false;
-  joblist: any; 
-  resultShow: any; 
-
-  constructor( 
-    private apiservice: ApiService, 
-    private toastr: ToastrService, 
-    public router: Router, 
-    private appconfig: AppConfigService, 
+  joblist: any;
+  resultShow: any;
+  jobs = [
+    { jobType: 'Contract' },
+    { jobType: 'Parttime' },
+    { jobType: 'Full Time' },
+    // Add more job types as needed
+  ];
+  constructor(
+    private apiservice: ApiService,
+    private toastr: ToastrService,
+    public router: Router,
+    private appconfig: AppConfigService,
     private mdDialog: MatDialog,
   ) {}
-  ngOnInit():void {  
-    this.resultShow = this.data.length 
-    this.currentdate = this.currentdate.toISOString(); 
-    
+  ngOnInit():void {
+    this.resultShow = this.data.length
+    this.currentdate = this.currentdate.toISOString();
+
   }
 
   apply(item) {
-    var obj = { 
-      jobId: item.jobId,  
-      email: localStorage.getItem('email'), 
-      companyId: item.companyId,  
-      patner: item.partnerLabel,  
-      link: item.applyLink, 
-      jobDetails: { 
-        education: item.education, 
-        specialization: item.specialization, 
-        yearofPassout: item.yearofPassout, 
-        eligibilityCriteria: item.eligibilityCriteria, 
+    var obj = {
+      jobId: item.jobId,
+      email: localStorage.getItem('email'),
+      companyId: item.companyId,
+      patner: item.partnerLabel,
+      link: item.applyLink,
+      jobDetails: {
+        education: item.education,
+        specialization: item.specialization,
+        yearofPassout: item.yearofPassout,
+        eligibilityCriteria: item.eligibilityCriteria,
       },
     };
-    this.apiservice.savedJobs(obj).subscribe((res: any) => { 
-      if (res.success) { 
-        this.toastr.success(res.message); 
-        item.isApplied = true; 
-      } else { 
-        this.toastr.warning(res.message); 
-      } 
-    }); 
+    this.apiservice.savedJobs(obj).subscribe((res: any) => {
+      if (res.success) {
+        this.toastr.success(res.message);
+        item.isApplied = true;
+      } else {
+        this.toastr.warning(res.message);
+      }
+    });
   }
-  
+
   handleApplyButtonClick(item) {
     if (item.partnerLabel === 'Skill Exchange Partner') {
       this.apply(item);
-      
+
     } else {
       // window.open(item.applyLink, '_blank');
       this.openExternalApplyDialog(item);
       this.appconfig.setLocalStorage('savedJobData', JSON.stringify(item));
     }
   }
-  
+
 
   openExternalApplyDialog(item) {
     const dialogRef = this.mdDialog.open(this.extApply, {
-      width: '50%', 
+      width: '50%',
       height: 'auto',
-      disableClose: true, 
+      disableClose: true,
     });
     dialogRef.afterClosed().subscribe(result => {
-     
+
     });
   }
 
   redirectToApplyLink() {
-    const dataItem = JSON.parse(localStorage.getItem('savedJobData')); 
+    const dataItem = JSON.parse(localStorage.getItem('savedJobData'));
      window.open(dataItem.applyLink, '_blank');  //open link in different tab
   }
- 
+
 
   bookMarkIcon(item) {
     item.isSelected = !item.isSelected;
@@ -119,6 +124,28 @@ export class JobListItemComponent implements OnInit, AfterViewInit {
       }
     });
   }
+ getColor(jobType: string): string {
+    switch (jobType) {
+      case 'Contract':
+        return '#700353';
+      case 'Parttime':
+        return '#4C1C00';
 
+      default:
+        return '#56B35A'; // Default color
+    }
+  }
+
+ getBackgroundColor(jobType: string): string {
+    switch (jobType) {
+      case 'Contract':
+        return '#70035329';
+      case 'Parttime':
+        return '#4C1C0029';
+
+      default:
+        return '#56B35A29'; // Default background color
+    }
+  }
   ngAfterViewInit() {}
 }

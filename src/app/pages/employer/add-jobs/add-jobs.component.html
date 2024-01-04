@@ -236,7 +236,7 @@
                         <!-- Fixed input -->
                         <div *ngIf="selectedRangeOption === 'fixed'" style="width: 71.5%;">
                           <mat-form-field class="example-full-width" appearance="outline">
-                            <input type="number" formControlName="fixed" matInput placeholder="CTC (numeric only)">
+                            <input type="number" formControlName="fixed" matInput placeholder="CTC (numeric only)" min="0">
                             <mat-error *ngIf="addjobsForm.get('fixed')?.hasError('required')">CTC is
                               Required</mat-error>
                           </mat-form-field>
@@ -245,13 +245,13 @@
                         <!-- Range inputs -->
                         <div *ngIf="selectedRangeOption === 'range'" style="display: flex; width: 37%;">
                           <mat-form-field appearance="outline" style="padding-right: 13px;">
-                            <input type="number" formControlName="startrange" matInput placeholder="CTC (numeric only)">
+                            <input type="number" formControlName="startrange" matInput placeholder="CTC (numeric only)" min="0">
                             <mat-error *ngIf="addjobsForm.get('startrange')?.hasError('required')"> Start Range CTC is
                               Required</mat-error>
                           </mat-form-field>
                           <span style="padding: 0px 10px 0px 0px;color: #848484;">_</span>
                           <mat-form-field appearance="outline" style="padding-right: 13px;">
-                            <input type="number" formControlName="endrange" matInput placeholder="CTC (numeric only)">
+                            <input type="number" formControlName="endrange" matInput placeholder="CTC (numeric only)" min="0">
                             <mat-error *ngIf="addjobsForm.get('endrange')?.hasError('required')"> End Range CTC is
                               Required</mat-error>
                           </mat-form-field>
