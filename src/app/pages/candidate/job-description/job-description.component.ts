@@ -1,4 +1,4 @@
-import { Component, OnInit, TemplateRef, ViewChild, Pipe, PipeTransform } from '@angular/core';
+import { Component,Renderer2,HostListener ,NgZone, OnInit, TemplateRef, ViewChild, Pipe, PipeTransform, ElementRef } from '@angular/core';
 // import { MatDialog,  } from '@angular/material/dialog';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { APP_CONSTANTS } from 'src/app/utils/app-constants.service';
@@ -16,6 +16,7 @@ import { environment } from 'src/environments/environment';
 })
 export class JobDescriptionComponent implements OnInit {
   jobViewsCount: any;
+
   transform(value: string): any {
     return value.trim()
   }
@@ -35,17 +36,25 @@ export class JobDescriptionComponent implements OnInit {
   item: any;
   blobToken = environment.blobToken
 	productionUrl = environment.SKILL_EDGE_URL == "https://skilledge.lntedutech.com"?true:false;
-
+  jobs = [
+    { jobType: 'Contract' },
+    { jobType: 'Parttime' },
+    { jobType: 'Full Time' },
+    // Add more job types as needed
+  ];
   constructor(
     private skillexService:ApiService,
     private toaster:ToastrService,
     private appConfig: AppConfigService,
     private mdDialog: MatDialog,
     public router: Router,
-    public route: ActivatedRoute
-  ) { }
+    public route: ActivatedRoute,
+    private el: ElementRef,
+    private renderer: Renderer2,
+    private ngZone: NgZone,
 
-  ngOnInit() {
+  ) { }
+  ngOnInit(): void {
     this.getRoute()
     this.jobViewCount();
   }
@@ -106,7 +115,6 @@ export class JobDescriptionComponent implements OnInit {
     });
   }
 
-
   applyJob(){
     let obj =
     {
@@ -156,21 +164,57 @@ export class JobDescriptionComponent implements OnInit {
         //  this.jobViewCount();
       }
     }
-  
+
     openExternalApplyDialog() {
       const dialogRef = this.mdDialog.open(this.extApply, {
-        width: '50%', 
+        width: '466px',
         height: 'auto',
-        disableClose: true, 
+        disableClose: true,
       });
       dialogRef.afterClosed().subscribe(result => {
       });
       //  this.jobViewCount();
     }
-  
+
     redirectToApplyLink() {
       window.open(this.jobDetails.applyLink, '_blank');  //open link in different tab
       // window.location.href = this.jobDetails.applyLink; //open link in same tab
     }
-    
+    getColor(jobType: string): string {
+      switch (jobType) {
+      case 'Contract':
+        return '#700353';
+      case 'Parttime':
+        return '#4C1C00';
+
+      default:
+        return '#56B35A'; // Default color
+     }
+    }
+
+  getBackgroundColor(jobType: string): string {
+    switch (jobType) {
+      case 'Contract':
+        return '#70035329';
+      case 'Parttime':
+        return '#4C1C0029';
+      default:
+        return '#56B35A29'; // Default background color
+    }
+  }
+
+  scrollToSection(sectionId: string): void {
+   console.log(`Scrolling to section: ${sectionId}`);
+    const element = this.el.nativeElement.querySelector(`#${sectionId}`);
+   if (element) {
+     element.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' });
+    }
+  }
+  getDaysAgo(createdOn: Date): string {
+    const today = new Date();
+    const differenceInMilliseconds = today.getTime() - new Date(createdOn).getTime();
+    const differenceInDays = Math.floor(differenceInMilliseconds / (24 * 60 * 60 * 1000));
+
+    return `${differenceInDays} days ago`;
+  }
 }

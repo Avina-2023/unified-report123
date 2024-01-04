@@ -249,7 +249,7 @@
               <!-- Fixed input -->
               <div *ngIf="selectedRangeOption === 'fixed'" style="width: 50%; padding: 0px 0px 0px 15px;">
                 <mat-form-field style="width: 140%;" class="example-full-width" appearance="outline">
-                  <input type="number" formControlName="fixed" matInput placeholder="Enter Value">
+                  <input type="number" formControlName="fixed" matInput placeholder="Enter Value" min="0">
                   <mat-error *ngIf="addjobsForm.get('fixed').hasError('required')">CTC is Required</mat-error>
                 </mat-form-field>
               </div>
@@ -258,12 +258,12 @@
               <div *ngIf="selectedRangeOption === 'range'"
                 style="display: flex; align-items: center; margin-left: 10px;">
                 <mat-form-field appearance="outline" style="padding-right: 5px; width: 160px;">
-                  <input type="number" formControlName="startrange" matInput placeholder="CTC (numeric only)" style="">
+                  <input type="number" formControlName="startrange" matInput placeholder="CTC (numeric only)" min="0">
                   <mat-error *ngIf="addjobsForm.get('startrange').hasError('required')"> CTC is Required</mat-error>
                 </mat-form-field>
 
                 <mat-form-field appearance="outline" style="padding-right: 5px; width: 160px;">
-                  <input type="number" formControlName="endrange" matInput placeholder="CTC (numeric only)">
+                  <input type="number" formControlName="endrange" matInput placeholder="CTC (numeric only)" min="0">
                   <mat-error *ngIf="addjobsForm.get('endrange').hasError('required')"> CTC is Required</mat-error>
                 </mat-form-field>
               </div>
@@ -365,8 +365,8 @@
             <div class="inputContainer" style="display: flex; align-items: center;">
               <label style="margin: 0px 0px 27% 0px;padding: 0px 0px 0px 15px;">Job Description</label>
               <mat-form-field appearance="outline" style="width: 90%;padding: 0px 0px 0px 6px;">
-                <angular-editor [config]="config" formControlName="description"
-                  placeholder="Enter Job Description" id="description"></angular-editor>
+                <angular-editor [config]="config" formControlName="description" placeholder="Enter Job Description"
+                  id="description"></angular-editor>
                 <textarea type="textarea" maxlength="250" formControlName="description"
                   style="resize: none;display: none;" class="descstyle" matInput
                   placeholder="Enter Job Description"></textarea>
@@ -381,8 +381,8 @@
             <div class="inputContainer" style="display: flex; align-items: center;">
               <label style="margin: 0px 0px 27% 0px;padding: 0px 0px 0px 15px;">Job Requirements</label>
               <mat-form-field appearance="outline" style="width: 90%;padding: 0px 0px 0px 6px;">
-                <angular-editor  [config]="config" formControlName="requirement"
-                  placeholder="Enter Job requirement" id="requirement"></angular-editor>
+                <angular-editor [config]="config" formControlName="requirement" placeholder="Enter Job requirement"
+                  id="requirement"></angular-editor>
                 <textarea type="textarea" maxlength="250" formControlName="requirement"
                   style="resize: none;display: none;" class="descstyle" matInput
                   placeholder="Enter Job requirement"></textarea>
@@ -397,9 +397,8 @@
             <div class="inputContainer" style="display: flex; align-items: center;">
               <label style="margin: 0px 0px 27% 0px;padding: 0px 0px 0px 15px;">Additional Information</label>
               <mat-form-field appearance="outline" style="width: 90%;padding: 0px 0px 0px 6px;">
-                <angular-editor  [config]="config"
-                  formControlName="additionalInformation" placeholder="Enter Additional Information "
-                  id="additionalInformation"></angular-editor>
+                <angular-editor [config]="config" formControlName="additionalInformation"
+                  placeholder="Enter Additional Information " id="additionalInformation"></angular-editor>
                 <textarea type="textarea" maxlength="250" formControlName="additionalInformation"
                   style="resize: none;display: none;" class="descstyle" matInput
                   placeholder="Enter Job Description"></textarea>
@@ -423,8 +422,8 @@
       <div class="thank_you_page">
         <img style="justify-content: center;width: 60px;align-items: center;text-align: center;"
           src="../../../../assets/images/green_tick_image.png">
-        <p class="job_text"><strong>Job</strong> has been<br>Updated successfully</p>
-        <div><button class="go_to_viewjob" type="submit" (click)="closeThankYou()">ok</button></div>
+        <p class="job_text"><strong>Job</strong> has been<br>updated successfully</p>
+        <div><button class="go_to_viewjob" type="submit" (click)="closeThankYou()">OK</button></div>
       </div>
     </ng-template>
   </div>

@@ -538,7 +538,7 @@ nz-select.ng-touched.ng-invalid {
 
 ::ng-deep.angular-editor-textarea {
   min-height: 5rem;
-  padding: .5rem .8rem 1rem;
+  padding: 5px 20px !important;
   border: 1px solid #ddd;
   background-color: transparent;
   overflow-x: hidden;
@@ -546,3 +546,6 @@ nz-select.ng-touched.ng-invalid {
   position: relative;
   height: 100px !important;
 }
+// ::ng-deep .angular-editor-textarea {
+//   padding: 5px 20px !important;
+// }
