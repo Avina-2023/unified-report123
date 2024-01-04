@@ -2,7 +2,7 @@ kind: Service
 apiVersion: v1
 metadata:
   name: unifiedreport
-  namespace: unifiedreportuat
+  namespace: skillexchange
   #annotations:
   #  service.beta.kubernetes.io/azure-load-balancer-internal: "true"
 spec:
