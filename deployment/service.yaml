@@ -1,7 +1,7 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: unifiedreportuat
+  name: unifiedreport
   namespace: unifiedrpt
   #annotations:
   #  service.beta.kubernetes.io/azure-load-balancer-internal: "true"
