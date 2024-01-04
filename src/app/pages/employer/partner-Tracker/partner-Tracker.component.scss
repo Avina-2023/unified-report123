@@ -1,24 +1,163 @@
+.inner-container{
+  padding: 10px;
+  background-color: #FAFAFA; 
+}
+.partner-heading{
+  color: #262626;
+  font-size: 19px;
+  font-weight: 600;
+  padding: 10px;
+}
+.inner-container-1{
+  background-color: #FFFFFF; 
+}
 .filter-data{
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
     align-items: center;
+    margin: 0px 20px 0px 0px;
   }
   .year-btn{
     border: 1px solid #848484;
-    padding: 2px 5px 2px 5px;
+    padding: 3px 7px 3px 7px;
     margin: 10px;
     border-radius: 5px;
+    cursor: pointer;
+  }
+  .export{
+    display: flex; 
+    flex-direction: row; 
+    align-items: center;
+    .export-icn{
+      margin: 0px 5px 0px 0px;
+    }
   }
   .Export-btn {
-    size: 14px;
+    font-size: 14px;
     color: #1b4e9b;
     cursor: pointer;
     text-decoration: underline;
-    margin: 0px 20px 0px 0px;
+    font-weight: 600 !important;
+    margin: 0px;
   }
 
   #chart {
     max-width: 650px;
     margin: 35px auto;
+  }
+  .bar-chart1{
+    width: 500px;
+  }
+  .bar-chart2{
+    width: 500px;
+  }
+
+  .ag-theme-alpine {
+    // --ag-header-height: 20px;
+  
+    // //  --ag-header-foreground-color: #1b4e9b 25%;
+  
+    //  --ag-header-background-color: #1b4e9b;
+    --ag-header-background-color: rgba(27, 78, 155, 0.25);
+    //  --ag-odd-row-background-color: rgba(237, 237, 237, 0.6);
+    // color: #1b4e9b;
+    // font-size: 13px;
+    // font: normal normal normal 13px/18px Roboto;
+    // font-weight: 500;
+    // letter-spacing: 0.33px;
+  
+    //  --ag-header-column-separator-display: block;
+    //   --ag-header-column-separator-height: 100%;
+    //   --ag-header-column-separator-width: 2px;
+    //   --ag-header-column-separator-color: purple;
+  
+  }
+  
+  .ag-theme-quartz,
+  .ag-theme-quartz-dark {
+    
+    --ag-header-column-separator-display: block;
+    --ag-header-column-separator-height: 100%;
+    --ag-header-column-separator-width: 2px;
+    --ag-header-column-separator-color: purple;
+  
+    --ag-header-column-resize-handle-display: block;
+    --ag-header-column-resize-handle-height: 25%;
+    --ag-header-column-resize-handle-width: 5px;
+    --ag-header-column-resize-handle-color: #1B4E9B40;
+  
+    
+  }
+  
+  ::ng-deep.ag-theme-alpine .ag-header-cell-resize::after {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    display: block;
+    left: calc(50% - 1px);
+    top: 0;
+    width: 2px;
+    height: 100%;
+    background-color: rgba(186, 191, 199, 0.5);
+    background-color: var(--ag-header-column-resize-handle-color, rgba(186, 191, 199, 0.5));
+  } 
+
+  .graphh-heading{
+    color: #262626;
+    font-size: 17px;
+    font-weight: 700;
+    margin: 30px 0px 10px 0px;
+  }
+  .graphh-details{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+  .bar-chart1{
+    width: 500px;
+    border-radius: 10px;
+    box-shadow: 0px 1px 12px #0000001F;
+    margin: 15px;
+  }
+  .job_type{
+    color: #262626;
+    font-size: 18px;
+    font-weight: 600;
+  }
+  .bar-chart2{
+    width: 500px;
+    border-radius: 10px;
+    box-shadow: 0px 1px 12px #0000001F;
+    margin: 15px;
+  }
+
+
+  .Hiring-detail{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  .job-color{
+    display: flex; 
+    flex-direction: row; 
+    align-items: center;
+    justify-content: space-around;
+  }
+  .color1{
+    width: 25px;
+    height: 7px;
+    margin: 0px 10px 0px 0px;
+    background-color: #FFB74D; 
+  }
+  .color2{
+    width: 25px;
+    height: 7px;
+    margin: 0px 10px 0px 0px;
+    background-color: #EF2917; 
+  }
+  .details-name{
+    color: #262626;
+    font-size: 12px;
+    font-weight: 400;
   }

@@ -1,35 +1,100 @@
 <div class="inner-container">
-  <div class="Student-heading">Month Wise Student Tracker</div>
+
+<div class="partner-heading">Month Wise Partner Tracker</div>
 
  <div class="inner-container-1">
   <div class="filter-data">
-    <div><button class="year-btn">2023</button></div>
-    <div><button class="year-btn">July</button></div>
-    <div><h5 class="Export-btn" (click)="exportData()">Export Data</h5></div>
+    <div>
+      <select class="year-btn" [(ngModel)]="selectedYear" (change)="changeMonthYear()">
+        <option *ngFor="let year of years" [value]="year">{{ year }}</option>
+      </select>
+    </div>
+    <div>
+      <select class="year-btn" [(ngModel)]="selectedMonth" (change)="changeMonthYear()">
+        <option *ngFor="let month of months" [value]="month.value">{{ month.name }}</option>
+      </select>
+    </div>
+    <div class="export">
+      <div class="export-icn"><span class="icon-export-file"></span></div>
+      <div class="Export-btn" (click)="exportPartnerData()">Export Data</div>
+    </div>
   </div>
 
-  <div style="height: 400px;" class="ag-theme-alpine">
+  <div style="height: 700px;" class="ag-theme-alpine">
     <ag-grid-angular
       style="width: 100%; height: 100%;"
       class="ag-theme-alpine"
       [rowData]="rowData"
+      [class]="themeClass"
+      [overlayNoRowsTemplate]="overlayNoRowsTemplate"
+      (gridReady)="onGridReady($event)"
       [columnDefs]="columnDefs"
     ></ag-grid-angular>
   </div>
 
-
-  <div id="chart">
-    <apx-chart
-      [series]="chartOptions.series"
-      [chart]="chartOptions.chart"
-      [dataLabels]="chartOptions.dataLabels"
-      [plotOptions]="chartOptions.plotOptions"
-      [yaxis]="chartOptions.yaxis"
-      [xaxis]="chartOptions.xaxis"
-      [fill]="chartOptions.fill"
-      [title]="chartOptions.title"
-    ></apx-chart>
+<div>
+  <!-- <div class="graphh-heading">Total Records For NOV-2023</div> -->
+  <div class="graphh-heading">
+    Total Records For {{ months[selectedMonth - 1].name }}-{{ selectedYear }}
   </div>
-  
+  <div class="graphh-details">
+    <div>
+      <mat-card class="bar-chart1">
+        <div class="job_type">Hiring Partners</div>
+        <div id="chart">
+          <apx-chart
+            [series]="chartOptions.series"
+            [chart]="chartOptions.chart"
+            [dataLabels]="chartOptions.dataLabels"
+            [plotOptions]="chartOptions.plotOptions"
+            [yaxis]="chartOptions.yaxis"
+            [xaxis]="chartOptions.xaxis"
+            [fill]="chartOptions.fill"
+            [title]="chartOptions.title"
+          ></apx-chart>
+        </div>
+        <div class="job-color">
+          <div class="Hiring-detail">
+            <div class="color1"></div>
+            <div class="details-name">Jobs Posted</div>
+          </div>
+          <div class="Hiring-detail">
+            <div class="color2"></div>
+            <div class="details-name">Internships Posted</div>
+          </div>
+        </div>
+       </mat-card>
+    </div>
+    <div>
+      <mat-card class="bar-chart2">
+        <div class="job_type">Open Market</div>
+        <div id="chart">
+          <apx-chart
+            [series]="chartOptions2.series"
+            [chart]="chartOptions2.chart"
+            [dataLabels]="chartOptions2.dataLabels"
+            [plotOptions]="chartOptions2.plotOptions"
+            [yaxis]="chartOptions2.yaxis"
+            [xaxis]="chartOptions2.xaxis"
+            [legend]="chartOptions2.legend"
+            [colors]="chartOptions2.colors"
+            [grid]="chartOptions2.grid"
+          ></apx-chart>
+        </div>
+        <div class="job-color">
+          <div class="Hiring-detail">
+            <div class="color1"></div>
+            <div class="details-name">Jobs Posted</div>
+          </div>
+          <div class="Hiring-detail">
+            <div class="color2"></div>
+            <div class="details-name">Internships Posted</div>
+          </div>
+        </div>
+       </mat-card>
+    </div>
+  </div>
+</div>
+
  </div>
 </div>

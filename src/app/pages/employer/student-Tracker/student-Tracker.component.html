@@ -2,27 +2,55 @@
   <div class="Student-heading">Month Wise Student Tracker</div>
   <div class="inner-container-1">
     <div class="filter-data">
-      <div><button class="year-btn">2023</button></div>
-      <div><button class="year-btn">July</button></div>
       <div>
-        <h5 class="Export-btn" (click)="exportData()">Export Data</h5>
+        <select class="year-btn" [(ngModel)]="selectedYear" (change)="changeMonthYear()">
+          <option *ngFor="let year of years" [value]="year">{{ year }}</option>
+        </select>
+      </div>
+      <div>
+        <select class="year-btn" [(ngModel)]="selectedMonth" (change)="changeMonthYear()">
+          <option *ngFor="let month of months" [value]="month.value">{{ month.name }}</option>
+        </select>
+      </div>
+      <div class="export">
+        <div class="export-icn"><span class="icon-export-file"></span></div>
+        <div class="Export-btn" (click)="exportData()">Export Data</div>
       </div>
     </div>
-    <div style="height: 400px;" class="ag-theme-alpine">
+    <div style="height: 700px;" class="ag-theme-alpine">
       <ag-grid-angular style="width: 100%; height: 100%;" class="ag-theme-alpine" [rowData]="rowData"
-        [columnDefs]="columnDefs"></ag-grid-angular>
+        [class]="themeClass" (gridReady)="onGridReady($event)" [overlayNoRowsTemplate]="overlayNoRowsTemplate"
+        [columnDefs]="columnDefs">
+      </ag-grid-angular>
     </div>
     <div>
-      <div class="graph-heading">Total Records For NOV-2023</div>
+      <!-- <div class="graph-heading">Total Records For NOV-2023</div> -->
+      <div class="graph-heading">
+        Total Records For {{ months[selectedMonth - 1].name }}-{{ selectedYear }}
+      </div>
       <div class="graph-details">
         <div>
           <mat-card class="registration-card">
             <div class="sub-heading">Registrations</div>
             <div style="display: flex; flex-direction: row; align-items: center; justify-content: space-around;">
-              <div *ngIf="overallreportdata">
+              <!-- <div *ngIf="studentData">
                 <canvas height="200px" width="200px" baseChart [data]="doughnutChartData" [options]="options"
                   [colors]="doughnutChartColors" [labels]="doughnutChartLabels" [chartType]="doughnutChartType">
                 </canvas>
+              </div> -->
+              <div *ngIf="studentData">
+                <ng-container *ngIf="!studentData?.chartData?.registerTrainTotal && 
+                                    !studentData?.chartData?.registerAssessTotal && 
+                                    !studentData?.chartData?.otherRegisterTotal">
+                  <mat-card>NO DATA AVAILABLE</mat-card>
+                </ng-container>
+                <ng-container *ngIf="studentData?.chartData?.registerTrainTotal || 
+                                    studentData?.chartData?.registerAssessTotal || 
+                                    studentData?.chartData?.otherRegisterTotal">
+                  <canvas height="200px" width="200px" baseChart [data]="doughnutChartData" [options]="options"
+                    [colors]="doughnutChartColors" [labels]="doughnutChartLabels" [chartType]="doughnutChartType">
+                  </canvas>
+                </ng-container>
               </div>
               <div>
                 <div class="Register-details-count">
@@ -30,23 +58,23 @@
                     <div class="Register-circle circle1"></div>
                     <div class="Register-details-name">Trained</div>
                   </div>
-                  <div class="details-count">{{overallreportdata?.eduTechReport?.skillProfileCount}}</div>
+                  <div class="details-count">{{studentData?.chartData?.registerTrainTotal}}</div>
                 </div>
                 <div class="seperator seperator1"></div>
                 <div class="Register-details-count">
                   <div class="Register-detail">
                     <div class="Register-circle circle2"></div>
-                    <div class="Register-details-name">Trained</div>
+                    <div class="Register-details-name">Assessed</div>
                   </div>
-                  <div class="details-count">{{overallreportdata?.eduTechReport?.skillProfileCount}}</div>
+                  <div class="details-count">{{studentData?.chartData?.registerAssessTotal}}</div>
                 </div>
                 <div class="seperator seperator2"></div>
                 <div class="Register-details-count">
                   <div class="Register-detail">
                     <div class="Register-circle circle3"></div>
-                    <div class="Register-details-name">Trained</div>
+                    <div class="Register-details-name">Others</div>
                   </div>
-                  <div class="details-count">{{overallreportdata?.eduTechReport?.skillProfileCount}}</div>
+                  <div class="details-count">{{studentData?.chartData?.otherRegisterTotal}}</div>
                 </div>
                 <div class="seperator seperator3"></div>
               </div>
@@ -57,10 +85,24 @@
           <mat-card class="registration-card2">
             <div class="sub-heading">Skill Profile filled</div>
             <div style="display: flex; flex-direction: row; align-items: center; justify-content: space-around;">
-              <div *ngIf="overallreportdata">
-                <canvas height="200px" width="200px" baseChart [data]="doughnutChartData" [options]="options"
-                  [colors]="doughnutChartColors" [labels]="doughnutChartLabels" [chartType]="doughnutChartType">
+              <!-- <div *ngIf="studentData">
+                <canvas height="200px" width="200px" baseChart [data]="doughnutChartData2" [options]="options2"
+                  [colors]="doughnutChartColors2" [labels]="doughnutChartLabels2" [chartType]="doughnutChartType2">
                 </canvas>
+              </div> -->
+              <div *ngIf="studentData">
+                <ng-container *ngIf="!studentData?.chartData?.profileTrainTotal && 
+                                    !studentData?.chartData?.profileAssessTotal && 
+                                    !studentData?.chartData?.otherProfileTotal">
+                  <mat-card>NO DATA AVAILABLE</mat-card>
+                </ng-container>
+                <ng-container *ngIf="studentData?.chartData?.profileTrainTotal || 
+                                    studentData?.chartData?.profileAssessTotal || 
+                                    studentData?.chartData?.otherProfileTotal">
+                  <canvas height="200px" width="200px" baseChart [data]="doughnutChartData2" [options]="options2"
+                    [colors]="doughnutChartColors2" [labels]="doughnutChartLabels2" [chartType]="doughnutChartType2">
+                  </canvas>
+                </ng-container>
               </div>
               <div>
                 <div class="Register-details-count">
@@ -68,23 +110,23 @@
                     <div class="Register-circle circle1"></div>
                     <div class="Register-details-name">Trained</div>
                   </div>
-                  <div class="details-count">{{overallreportdata?.eduTechReport?.skillProfileCount}}</div>
+                  <div class="details-count">{{studentData?.chartData?.profileTrainTotal}}</div>
                 </div>
                 <div class="seperator seperator1"></div>
                 <div class="Register-details-count">
                   <div class="Register-detail">
                     <div class="Register-circle circle2"></div>
-                    <div class="Register-details-name">Trained</div>
+                    <div class="Register-details-name">Assessed</div>
                   </div>
-                  <div class="details-count">{{overallreportdata?.eduTechReport?.skillProfileCount}}</div>
+                  <div class="details-count">{{studentData?.chartData?.profileAssessTotal}}</div>
                 </div>
                 <div class="seperator seperator2"></div>
                 <div class="Register-details-count">
                   <div class="Register-detail">
                     <div class="Register-circle circle3"></div>
-                    <div class="Register-details-name">Trained</div>
+                    <div class="Register-details-name">Others</div>
                   </div>
-                  <div class="details-count">{{overallreportdata?.eduTechReport?.skillProfileCount}}</div>
+                  <div class="details-count">{{studentData?.chartData?.otherProfileTotal}}</div>
                 </div>
                 <div class="seperator seperator3"></div>
               </div>
