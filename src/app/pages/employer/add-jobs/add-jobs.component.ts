@@ -875,7 +875,7 @@ export class AddJobsComponent implements OnInit {
         "companyLogo": "https://example.com/path/to/your/logo.png",
         "isActive": true,
         "jobCategoryId": "64cc8cbd112e2bb777bc92fb",
-        "postedDate": formatDate(new Date(), 'dd-MM-yyyy', 'en-IN', 'IST'),
+        // "postedDate": formatDate(new Date(), 'dd-MM-yyyy', 'en-IN', 'IST'),
         "workType": "Jobs",
         "applyLink": this.addjobsForm.value?.applyLink,
         "education": this.formGroups.map(formGroup => formGroup.value)
