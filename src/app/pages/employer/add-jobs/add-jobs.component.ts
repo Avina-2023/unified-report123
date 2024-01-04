@@ -104,6 +104,8 @@ export class AddJobsComponent implements OnInit {
       ['unlink'],
       ['insertVideo'],
       ['insertHorizontalRule'],
+      ['insertUnorderedList'],
+      ['outdent'],
       ['removeFormat'],
       ['customClasses'],
       ['toggleEditorMode']
