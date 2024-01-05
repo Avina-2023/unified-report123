@@ -85,7 +85,10 @@ export class PartnerTrackerComponent implements OnInit {
       ],
       chart: {
         height: 350,
-        type: "bar"
+        type: "bar",
+        toolbar: {
+          show: false
+        }
       },
       plotOptions: {
         bar: {
@@ -140,7 +143,7 @@ export class PartnerTrackerComponent implements OnInit {
         }
       },
       fill: {
-        colors: ["#EF2917","#FFB74D"]
+        colors: ["#FFB74D","#EF2917"]
       },
       yaxis: {
         axisBorder: {
@@ -176,7 +179,10 @@ export class PartnerTrackerComponent implements OnInit {
       ],
       chart: {
         height: 350,
-        type: "bar"
+        type: "bar",
+        toolbar: {
+          show: false
+        }
       },
       plotOptions: {
         bar: {
@@ -228,7 +234,7 @@ export class PartnerTrackerComponent implements OnInit {
         }
       },
       fill: {
-        colors: ["#EF2917","#FFB74D"]
+        colors: ["#FFB74D","#EF2917"]
       },
       yaxis: {
         axisBorder: {
