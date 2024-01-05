@@ -404,6 +404,10 @@ input.ng-touched.ng-invalid {
   border: 1px solid red;
 }
 
+input::placeholder {
+  color: #bfbfc3!important;
+}
+
 .lastDatetoApply {
   border: none !important;
 }
