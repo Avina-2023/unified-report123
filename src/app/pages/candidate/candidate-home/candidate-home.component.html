@@ -1,0 +1,58 @@
+<div class="candy_home flex_div">
+    <div class="left_sidebar mg-s-10">
+        <ng-container *ngTemplateOutlet="leftSidebarContent"></ng-container>
+    </div>
+    <div class="timeline_posts mg-s-10">Timeline Posts</div>
+    <div class="right_sidebar mg-s-10">
+    </div>
+</div>
+
+
+<ng-template #leftSidebarContent>
+    <div class="common_card bg-white">
+        <div class="pd-15">
+            <div class="section-title">Recommended jobs for you</div>
+            <div *ngFor="let item of joblist" class="single-element">
+                <div class="flex_div flx_center">
+                    <div class="card_img">
+                        <div class="comp_logo">
+                            <img decoding="async"
+                                [src]="((item?.companyLogo) ? (item?.companyLogo) : 'assets/images/job-bag.png')">
+                        </div>
+                    </div>
+                    <div class="card_content">
+                        <div class="title">{{item?.jobTitle}}</div>
+                        <div class="flex_div flx_center flx_between">
+                            <span class="postedDate">{{item.postedDate}}</span>
+                            <span class="separator"></span>
+                            <span class="active_link pointer_cursor" *ngIf="item.approveStatus == 'approved'"><span
+                                    class="icon-active-icon"></span> Actively Recruiting</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="common_card bg-white">
+        <div class="pd-15">
+            <div class="section-title">Suggested Courses</div>
+            <div *ngFor="let item of microLearnCourses" class="single-element">
+                <div class="flex_div flx_center">
+                    <div class="card_img bg_course_img"
+                        [style.background]="'url(' + ((item?.image?.url) ? (item?.image?.url) : 'assets/images/medal.png') + ')'">
+                    </div>
+                    <div class="card_content">
+                        <div class="title">{{item?.areaName}}</div>
+                        <div class="flex_div flx_center flx_between">
+                            <span class="postedDate rating">User Rating</span>
+                            <span class="separator"></span>
+                            <span class="enrolCount">1210 Enrolled</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="addon_btn pointer_cursor">Explore More</div>
+    </div>
+    
+</ng-template>

@@ -8,11 +8,15 @@ import {JobSavedListComponent} from './job-display-pages/job-saved-list/job-save
 import { JobAppliedListComponent } from './job-display-pages/job-applied-list/job-applied-list.component';
 import { JobDashboardComponent } from './job-dashboard/job-dashboard.component';
 import { JobDescriptionComponent } from './job-description/job-description.component';
+import { CandidateHomeComponent } from './candidate-home/candidate-home.component';
 
 const routes: Routes = [
   {
     path: '', component: CandidateComponent,
     children: [
+      {
+        path: `${APP_CONSTANTS.ROUTES.CANDIDATEDASH.NEWDASHBOARD}`, component: CandidateHomeComponent
+      },
       {
         path: `${APP_CONSTANTS.ROUTES.CANDIDATEDASH.DASHBOARD}`, component: JobDashboardComponent
       },
@@ -35,7 +39,7 @@ const routes: Routes = [
         path:`${APP_CONSTANTS.ROUTES.CANDIDATEDASH.JOBDESCRIPTION}`,component:JobDescriptionComponent
       },
       {
-        path:'',redirectTo:`${APP_CONSTANTS.ROUTES.CANDIDATEDASH.DASHBOARD}`,pathMatch:'full'
+        path:'',redirectTo:`${APP_CONSTANTS.ROUTES.CANDIDATEDASH.NEWDASHBOARD}`,pathMatch:'full'
       }
 
     ]
