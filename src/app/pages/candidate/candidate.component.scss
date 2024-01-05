@@ -242,14 +242,16 @@
 
 
 
-
+.icon-jobs-work{
+  font-weight: 600!important;
+}
 
 .icon-home:before,
-.icon-jobs:before {
+.icon-jobs-work:before {
   color: #848484e0;
 }
 
-.icon-jobs:before,
+.icon-jobs-work:before,
 .icon-darkMode:before,
 .icon-lightmode:before,
 .icon-notification:before,
@@ -343,7 +345,7 @@
     // }
     .icon-home::before,
     .icon-learning:before,
-    .icon-jobs:before,
+    .icon-jobs-work:before,
     .icon-internships:before,
     .icon-forum:before,
     .icon-events:before {
@@ -358,7 +360,7 @@
       content: "\ea2f";
     }
 
-    .icon-jobs:before {
+    .icon-jobs-work:before {
       content: "\ea30";
     }
 

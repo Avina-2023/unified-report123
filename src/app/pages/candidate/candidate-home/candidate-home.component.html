@@ -4,6 +4,7 @@
     </div>
     <div class="timeline_posts mg-s-10">Timeline Posts</div>
     <div class="right_sidebar mg-s-10">
+        <ng-container *ngTemplateOutlet="rightSidebarContent"></ng-container>
     </div>
 </div>
 
@@ -54,5 +55,47 @@
         </div>
         <div class="addon_btn pointer_cursor">Explore More</div>
     </div>
+
+</ng-template>
+
+
+<ng-template #rightSidebarContent>
+    <div class="common_card bg-white">
+            <div class="profile_background  border_tp_10"></div>
+            <div class="bg-white border_btm_10">
+                <div class="avatar_image" [style.background]="'url(' + (profileImage ? profileImage : 'assets/images/candidate-userprofile.png') + ')'">
+                </div>
+                <div class="profile_details">
+                    <div class="title user-title">{{candidateName ? candidateName : ''}}</div>
+                    <div class="user_email">{{candidateEmail ? candidateEmail : ''}}</div>
+                    <div class="user_place">{{form_present_city ? form_present_city : ''}}, {{form_present_state ? form_present_state : ''}}
+                    </div>
+                    <div class="flag" *ngIf="form_present_city"><img decoding="async"
+                            src="assets/images/India-flag.png"></div>
+                </div>
+                <div class="flex_div flx_center flx_between pdt-15">
+                    <div class="flex_div flx_end">
+                        <div class="profile-right">
+                            <div class="profile_text">PROFILE</div>
+                            <div class="profile-percentage profile_heading">{{profilePercent}}%</div>
+                        </div>
+                        <div class="profile_progress" role="progressbar" aria-valuemin="0" aria-valuemax="100"
+                            style="--size: 40px; --value: {{profilePercent}};"></div>
+                    </div>
+                    <div class="profile_separator"></div>
+                    <div class="flex_div flx_center">
+                        <div class="profile-right">
+                            <div class="profile_text">POINTS</div>
+                            <div class="points-count profile_heading">100</div>
+                        </div>
+                        <div class="profile-left">
+                            <img decoding="async"
+                                src="assets/images/points.svg">
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
     
+
 </ng-template>

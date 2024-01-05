@@ -100,7 +100,7 @@ export class CandidateComponent implements OnInit {
     this.apiservice.candidateDetails(obj).subscribe((res: any) => {
       if (res.success) {
         this.Details = res.data;
-        console.log(this.Details, 'Candidate Details New');
+        //console.log(this.Details, 'Candidate Details New');
         this.candidateEmail = this.Details?.email;
         this.candidateName = this.Details?.personal_details?.name;
         this.profileImage = this.Details?.personal_details?.profileImage

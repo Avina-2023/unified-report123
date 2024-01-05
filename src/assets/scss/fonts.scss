@@ -59,6 +59,10 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
+  .icon-jobs-work:before {
+    content: "\e992";
+    color: #848484;
+  }
   .icon-export-file:before {
     content: "\e991";
     color: #004684;
@@ -144,10 +148,7 @@
     content: "\ea27";
     color: #848484;
   }
-  .icon-jobs:before {
-    content: "\ea28";
-    font-weight: 600;
-  }
+  
   .icon-learning:before {
     content: "\ea29";
     color: #848484;
