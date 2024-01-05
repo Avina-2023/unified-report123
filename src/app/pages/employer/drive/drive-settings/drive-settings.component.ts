@@ -1098,9 +1098,16 @@ export class DriveSettingsComponent implements OnInit {
 
 /*to show tool tip value*/
   getTooltipText() {
-    if (this.jobReqData?.approveStatus === 'closed' && this.jobReqData?.updatedOn) {
-      return this.formatDate('Application closed on', this.jobReqData.updatedOn);
-    } else if (this.jobReqData?.approveStatus === 'rejected' && this.jobReqData?.remarks) {
+    // if (this.jobReqData?.approveStatus === 'closed' && this.jobReqData?.updatedOn) {
+    //   return this.formatDate('Application closed on', this.jobReqData.updatedOn);
+    // } else if (this.jobReqData?.approveStatus === 'rejected' && this.jobReqData?.remarks) {
+    //   return `${this.jobReqData.remarks}`;
+    // } else {
+    //   return null;
+    // }
+
+
+    if (this.jobReqData?.approveStatus === 'rejected' && this.jobReqData?.remarks) {
       return `${this.jobReqData.remarks}`;
     } else {
       return null;

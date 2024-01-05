@@ -44,7 +44,7 @@
                                             <div class="job-status" [matTooltip]="getTooltipText()"
                                             [ngClass]="{
                                                'status-active': (jobReqData?.approveStatus === 'Active' || jobReqData?.approveStatus === 'approved'),
-                                               'status-expired': (jobReqData?.approveStatus === 'Expired'),
+                                               'status-expired': (jobReqData?.approveStatus === 'expired'),
                                                'status-pending': (jobReqData?.approveStatus === 'pending'),
                                                'status-rejected': (jobReqData?.approveStatus === 'rejected'),
                                                'status-closed': (jobReqData?.approveStatus === 'closed')
@@ -123,7 +123,7 @@
                                 </div>
 
                                 <div class="lable-value custom-form" *ngIf="editMode">
-                                    <input type="text" formControlName="jobRole" class="inputForm">
+                                    <input type="text" formControlName="jobRole" class="inputForm" placeholder="Enter Job Role">
                                     <div *ngIf="jobForm.get('jobRole').hasError('required') && jobForm.get('jobRole').touched"
                                         class="text-danger">
                                         Job Role is Required.
@@ -143,7 +143,7 @@
                                     <div class="label-value-text">{{jobReqData?.jobTitle}}</div>
                                 </div>
                                 <div class="lable-value custom-form" *ngIf="editMode">
-                                    <input type="text" formControlName="jobTitle" class="inputForm">
+                                    <input type="text" formControlName="jobTitle" class="inputForm" placeholder="Enter Job Title">
                                     <div *ngIf="jobForm.get('jobTitle').hasError('required') && jobForm.get('jobTitle').touched"
                                         class="text-danger">
                                         Job Title is Required.
@@ -662,7 +662,7 @@
                     <!-- <div class="flex_div flx_between"> -->
                     <div class="width-100 edu-values">
                         <div
-                            *ngIf="jobReqData && jobReqData.eligibilityCriteria && jobReqData.eligibilityCriteria?.length == 0 && !showCustomCriteria">
+                            *ngIf="jobReqData && jobReqData.eligibilityCriteria && jobReqData.eligibilityCriteria?.length == 0 && !showCustomCriteria && !addneweducationGroupCriteria">
                             <div class="education-lable-text mg-15">
                                 No Criteria defined. All Candidates are eligible
                             </div>
@@ -931,7 +931,7 @@
                             <div class="flex_div width-100 flx_baseline flx_evenly">
                                 <div><label for="noofBacklog">Maximum No.of Backlogs</label></div>
                                 <div class="width-50">
-                                    <input formControlName="noofBacklog" type="number" class="inputForm">
+                                    <input min="0" formControlName="noofBacklog" type="number" class="inputForm" placeholder="Enter here">
                                     <div *ngIf="backlogsForm.get('noofBacklog').hasError('required') && backlogsForm.get('noofBacklog').touched"
                                         class="text-danger">
                                         No.of Backlogs Required
@@ -1061,7 +1061,7 @@
                         <div class="bottom-border"></div>
                     </div>
                     <div class="edu-values"
-                        *ngIf="(jobReqData?.hiringProcess?.length == 0 || !jobReqData?.hiringProcess)">
+                        *ngIf="(jobReqData?.hiringProcess?.length == 0 || !jobReqData?.hiringProcess) && !addnewhiringProcessGroup">
                         <div class="education-lable-text mg-15"> No Hiring Process added. </div>
                     </div>
                     <div class="edu-values" *ngIf="jobReqData?.hiringProcess?.length">
