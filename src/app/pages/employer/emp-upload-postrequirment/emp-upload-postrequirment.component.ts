@@ -862,7 +862,7 @@ export class EmpUploadPostrequirmentComponent implements OnInit {
         "about": this.companyDataResult?.description,
         "address": "",
         //"postedDate": formatDate(new Date(), 'dd-MM-yyyy', 'en-IN', 'IST'),
-        "postedDate": formatDate(new Date(), 'MM-dd-yyyy', 'en-IN', 'IST'),
+       // "postedDate": formatDate(new Date(), 'MM-dd-yyyy', 'en-IN', 'IST'),
         "jobTitle": this.jobForm.value?.jobTitle,
         "jobRole": this.jobForm.value?.jobRole,
         "jobLocation": this.jobForm.value?.jobLocation,

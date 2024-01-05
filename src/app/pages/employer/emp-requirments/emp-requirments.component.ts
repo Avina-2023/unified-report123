@@ -278,4 +278,17 @@ export class EmpRequirmentsComponent implements OnInit {
     };
   }
 
+  formatDate(dateString: string): string {
+    const dateParts = dateString.split('-');
+    const day = dateParts[0];
+    const month = dateParts[1];
+    const year = dateParts[2];
+    
+    // Creating a new Date object using the date parts
+    const formattedDate = new Date(parseInt(year), parseInt(month) - 1, parseInt(day));
+
+    // Formatting the date using toLocaleDateString
+    return formattedDate.toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric' });
+  }
+
 }

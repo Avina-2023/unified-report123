@@ -174,7 +174,7 @@
                     <!-- <mat-icon class="android">android</mat-icon> -->
                     <span class="icon-calendar-icon icon-calsize"></span>
                     <span> Posted on
-                      {{ one.postedDate | date : 'd MMM, y' }}
+                      {{ one.postedDate | date : 'd MMM, y' }} 
                     </span>
                   </div>
                 </div>
@@ -285,7 +285,7 @@
                   <!-- <mat-icon class="android">android</mat-icon> -->
                   <span class="icon-calendar-icon icon-calsize"></span>
                   <span> Posted On
-                    {{ one.postedDate | date : 'd MMM, y'}}
+                    {{ formatDate(one.postedDate) }}
                   </span>
                 </div>
               </div>
