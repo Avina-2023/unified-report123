@@ -79,7 +79,7 @@ export class PartnerTrackerComponent implements OnInit {
       series: [
         {
           // name: "Inflation",
-          // data: [3, 7, 21, 35]
+          // data: [7, 21]
           data: []
         }
       ],
@@ -90,6 +90,7 @@ export class PartnerTrackerComponent implements OnInit {
       plotOptions: {
         bar: {
           columnWidth: "10%",
+          distributed: true,
           dataLabels: {
             position: "top" // top, center, bottom
           }
@@ -105,8 +106,8 @@ export class PartnerTrackerComponent implements OnInit {
       },
       xaxis: {
         categories: [
-          "Jan",
-          "Feb"
+          "Jobs Posted",
+          "Internships Posted"
         ],
         position: "top",
         labels: {
@@ -136,7 +137,7 @@ export class PartnerTrackerComponent implements OnInit {
         }
       },
       fill: {
-        colors: ["#EF2917"]
+        colors: ["#EF2917","#FFB74D"]
       },
       yaxis: {
         axisBorder: {
@@ -161,64 +162,12 @@ export class PartnerTrackerComponent implements OnInit {
         }
       }
     };
-
-    // this.chartOptions2 = {
-    //   series: [
-    //     {
-    //       // name: "distibuted",
-    //       // data: [21, 10]
-    //       data: []
-    //     }
-    //   ],
-    //   chart: {
-    //     height: 350,
-    //     type: "bar",
-    //     events: {
-    //       click: function (chart, w, e) {
-    //       }
-    //     }
-    //   },
-    //   colors: [
-    //     "#FFB74D",
-    //     "#EF2917",
-    //   ],
-    //   plotOptions: {
-    //     bar: {
-    //       columnWidth: "10%", 
-    //       distributed: true,
-    //       dataLabels: {
-    //         position: "top",
-    //       }
-    //     }
-    //   },
-    //   legend: {
-    //     show: false
-    //   },
-    //   grid: {
-    //     show: false
-    //   },
-    //   xaxis: {
-    //     categories: [
-    //       ["Job", "Posted"],
-    //       ["Internship", "Posted"]
-    //     ],
-    //     labels: {
-    //       style: {
-    //         colors: [
-    //           "#FFB74D",
-    //           "#EF2917",
-    //         ],
-    //         fontSize: "12px"
-    //       }
-    //     }
-    //   }
-    // };
 
     this.chartOptions2 = {
       series: [
         {
           // name: "Inflation",
-          // data: [3, 7, 21, 35]
+          // data: [7, 21]
           data: []
         }
       ],
@@ -229,6 +178,7 @@ export class PartnerTrackerComponent implements OnInit {
       plotOptions: {
         bar: {
           columnWidth: "10%",
+          distributed: true,
           dataLabels: {
             position: "top" // top, center, bottom
           }
@@ -244,8 +194,8 @@ export class PartnerTrackerComponent implements OnInit {
       },
       xaxis: {
         categories: [
-          "Jan",
-          "Feb"
+          "Jobs Posted",
+          "Internships Posted"
         ],
         position: "top",
         labels: {
@@ -275,7 +225,7 @@ export class PartnerTrackerComponent implements OnInit {
         }
       },
       fill: {
-        colors: ["#EF2917"]
+        colors: ["#EF2917","#FFB74D"]
       },
       yaxis: {
         axisBorder: {
@@ -300,6 +250,7 @@ export class PartnerTrackerComponent implements OnInit {
         }
       }
     };
+
   }
 
   ngOnInit() {
