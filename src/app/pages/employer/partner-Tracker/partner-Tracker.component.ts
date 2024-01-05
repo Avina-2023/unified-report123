@@ -96,6 +96,9 @@ export class PartnerTrackerComponent implements OnInit {
           }
         }
       },
+      // legend: {
+      //   show: false
+      // },
       dataLabels: {
         enabled: true,
         offsetY: -20,
