@@ -242,11 +242,11 @@
 
 
 
-.icon-jobs-work{
+.icon-jobs-work, .icon-home_icon{
   font-weight: 600!important;
 }
 
-.icon-home:before,
+.icon-home_icon:before,
 .icon-jobs-work:before {
   color: #848484e0;
 }
@@ -258,11 +258,12 @@
 .icon-internships:before,
 .icon-learning:before,
 .icon-forum:before,
+.icon-home_icon:before,
 .icon-events:before {
   font-size: 15px;
 }
 
-.icon-home:before,
+
 .icon-internships:before,
 .icon-learning:before,
 .icon-forum:before,
@@ -343,7 +344,7 @@
     // .icon_txt{
     //   font-size: 13px;
     // }
-    .icon-home::before,
+    .icon-home_icon::before,
     .icon-learning:before,
     .icon-jobs-work:before,
     .icon-internships:before,
@@ -352,7 +353,7 @@
       color: #1b4e9b;
     }
 
-    .icon-home::before {
+    .icon-home_icon::before {
       content: "\ea35";
     }
 

@@ -9,6 +9,7 @@ import { JobAppliedListComponent } from './job-display-pages/job-applied-list/jo
 import { JobDashboardComponent } from './job-dashboard/job-dashboard.component';
 import { JobDescriptionComponent } from './job-description/job-description.component';
 import { CandidateHomeComponent } from './candidate-home/candidate-home.component';
+import { CandidateProfileOverviewComponent } from './candidate-profile-overview/candidate-profile-overview.component';
 
 const routes: Routes = [
   {
@@ -16,6 +17,9 @@ const routes: Routes = [
     children: [
       {
         path: `${APP_CONSTANTS.ROUTES.CANDIDATEDASH.NEWDASHBOARD}`, component: CandidateHomeComponent
+      },
+      {
+        path: `${APP_CONSTANTS.ROUTES.CANDIDATEDASH.MYACCOUNT}`, component: CandidateProfileOverviewComponent
       },
       {
         path: `${APP_CONSTANTS.ROUTES.CANDIDATEDASH.DASHBOARD}`, component: JobDashboardComponent

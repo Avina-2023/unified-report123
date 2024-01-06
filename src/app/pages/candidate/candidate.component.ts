@@ -21,6 +21,7 @@ export class CandidateComponent implements OnInit {
   @ViewChild('iconHover3') iconHover3: ElementRef;
   @ViewChild('iconHover4') iconHover4: ElementRef;
   @ViewChild('iconHover5') iconHover5: ElementRef;
+  @ViewChild('iconHover6') iconHover6: ElementRef;
   isExpanded = false;
   isShowProfile = false;
   isSidebarDisabled = true;
@@ -43,9 +44,8 @@ export class CandidateComponent implements OnInit {
   ) {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
-
       }
-    })
+    });
   }
 
   ngOnInit() {
@@ -60,7 +60,7 @@ export class CandidateComponent implements OnInit {
           this.profileimge = data.value
         }
       }
-    })
+    });
   }
 
 
@@ -74,13 +74,14 @@ export class CandidateComponent implements OnInit {
       this.isIconActive(this.iconHover1.nativeElement, 'dashboard');
     }
 
+
     else if (this.router.routerState.snapshot.url == '/candidateview/findjobs') {
       this.isIconActive(this.iconHover2.nativeElement, 'jobs');
     }
   }
 
   sidebarDisabled(){
-    if (this.router.routerState.snapshot.url == '/candidateview/home') {
+    if (this.router.routerState.snapshot.url == '/candidateview/home' || this.router.routerState.snapshot.url == '/candidateview/profile') {
       this.isSidebarDisabled = false;
     }
     else{
@@ -106,6 +107,20 @@ export class CandidateComponent implements OnInit {
         this.profileImage = this.Details?.personal_details?.profileImage
       }
     });
+  }
+
+  gotoAccount(){
+    this.router.navigateByUrl('/candidateview/profile');
+    this.isShowProfile = !this.isShowProfile;
+    this.isSidebarDisabled = false;
+
+    const menuIcons = this.menuIcons.nativeElement.querySelectorAll('.menu_icon');
+    menuIcons.forEach((icon: any) => {
+      //if (icon !== element) {
+        icon.classList.remove('active-icon');
+      //}
+    });
+    
   }
 
   showProfileDashboard() {

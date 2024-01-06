@@ -38,6 +38,7 @@ export const APP_CONSTANTS = {
     CNDIDATELANDING: '/candidateview',
     CANDIDATEDASH: {
       NEWDASHBOARD: '/candidateview/home',
+      MYACCOUNT : '/candidateview/profile',
       DASHBOARD: '/candidateview/dashboard',
       JOBLIST: '/candidateview/findjobs',
       RESUMEBUILDER: '/candidateview/resumebuilder',
@@ -141,6 +142,7 @@ export const APP_CONSTANTS = {
     CNDIDATELANDING: 'candidateview',
     CANDIDATEDASH: {
       NEWDASHBOARD: 'home',
+      MYACCOUNT : 'profile',
       DASHBOARD: 'dashboard',
       JOBLIST: 'findjobs',
       RESUMEBUILDER: 'resumebuilder',

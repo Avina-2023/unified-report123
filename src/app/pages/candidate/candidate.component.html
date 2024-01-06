@@ -34,7 +34,7 @@
       <div class="menu_icon pointer_cursor" #iconHover1 (mouseenter)="addSlideAnimation(iconHover1, 'home')"
         (mouseleave)="removeSlideAnimation(iconHover1, 'home')" (click)="isIconActive(iconHover1, 'home')">
         <div class="icon">
-          <span class="icon-home"></span>
+          <span class="icon-home_icon"></span>
         </div>
         <div class="icon_txt">Home</div>
       </div>
@@ -160,7 +160,7 @@
         </div>
       </div>
       <div class="profile_link">
-        <div class="view_profile pointer_cursor">My Account</div>
+        <div class="view_profile pointer_cursor" (click)="gotoAccount()">My Account</div>
       </div>
       <div class="close-icon pointer_cursor" (click)="closeDashboard()">
         <span class="icon-Close"></span>

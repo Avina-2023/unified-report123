@@ -59,6 +59,11 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
+  .icon-home_icon:before {
+    content: "\e9a3";
+    color: #848484;
+  }
+
   .icon-jobs-work:before {
     content: "\e992";
     color: #848484;
@@ -135,10 +140,6 @@
   .icon-notification:before {
     content: "\ea2c";
     color: #848484;
-  }
-  .icon-home:before {
-    content: "\ea2b";
-    font-weight: 600;
   }
   .icon-forum:before {
     content: "\ea26";
