@@ -409,3 +409,7 @@ nz-select {
 .error-border {
   border: 1px solid red;
 }
+
+::ng-deep .angular-editor-textarea {
+  padding: 5px 20px !important;
+}
