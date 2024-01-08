@@ -1,0 +1,249 @@
+/*Common css*/
+.flex_div {
+    display: flex;
+}
+
+.flx_center {
+    align-items: center;
+}
+
+.flx_between {
+    justify-content: space-between;
+}
+
+.mg-s-10 {
+    margin: 0px 10px;
+}
+
+.bg-white {
+    background-color: #fff;
+}
+
+.pointer_cursor {
+    cursor: pointer;
+}
+
+
+/*Body Elements css*/
+.candy_home {
+    height: auto;
+    background-color: #EDEDED;
+    margin-left: -65px;
+    padding: 30px;
+    width: -webkit-fill-available;
+    margin-bottom: 40px;
+
+    .left_sidebar,
+    .right_sidebar {
+        width: 25%;
+        height: fit-content;
+    }
+
+    // .left_sidebar {
+    .common_card {
+        border-radius: 10px;
+        margin-bottom: 20px;
+
+        .pd-15 {
+            padding: 15px;
+        }
+
+        .card_img {
+            width: 17%;
+        }
+
+        .bg_course_img {
+            background-size: cover !important;
+            height: 40px !important;
+            background-position: center !important;
+            background-repeat: no-repeat !important;
+            border-radius: 8px;
+        }
+
+        .card_content {
+            width: 83%;
+            margin-left: 10px;
+            line-height: 22px;
+        }
+
+        .comp_logo {
+            border: 1px solid #ededed;
+            padding: 7px 0px;
+            border-radius: 5px;
+            background: #fff;
+
+            img {
+                border-radius: 5px;
+                width: -webkit-fill-available;
+            }
+        }
+
+        .single-element {
+            margin-bottom: 20px;
+        }
+
+        .section-title,
+        .title {
+            line-height: 20px;
+            max-width: 235px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            text-transform: capitalize;
+
+        }
+
+        .user-title {
+            font-size: 16px !important;
+            font-weight: 700 !important;
+            padding-bottom: 5px;
+            margin: 0 auto;
+        }
+
+        .user_place {
+            font-weight: 500;
+            color: #262626;
+            font-size: 13px;
+            padding-top: 3px;
+        }
+
+        .section-title {
+            color: #262626;
+            font-size: 16px;
+            padding-bottom: 20px;
+        }
+
+        .title {
+            color: #000;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .postedDate,
+        .enrolCount {
+            color: #848484;
+        }
+
+        .active_link {
+            color: #1B4E9B;
+        }
+
+        .separator {
+            background: #80808026;
+            height: 17px;
+            width: 1px;
+        }
+
+        .postedDate,
+        .active_link,
+        .enrolCount {
+            font-size: 12px;
+        }
+
+        .addon_btn {
+            text-align: center;
+            border-top: 1px solid #e5e5e5;
+            padding-top: 15px;
+            color: #373331;
+            padding-bottom: 15px;
+            font-weight: 600;
+        }
+    }
+
+    // }
+
+    .timeline_posts {
+        width: 50%;
+        height: -webkit-fill-available;
+        margin: 0px 10px 60px 10px;
+    }
+
+
+
+    .border_tp_10 {
+        border-radius: 10px 10px 0px 0px;
+    }
+
+    .profile_background {
+        background: url(../../../../assets/images/profile-banner.png);
+        height: 110px;
+        background-size: cover;
+        background-position: center;
+        position: relative;
+    }
+
+    .border_btm_10 {
+        border-radius: 0px 0px 10px 10px !important;
+    }
+
+    .avatar_image {
+        border-radius: 50%;
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+        margin-top: -40px;
+        max-width: 75px;
+        height: 75px;
+        background-position: center !important;
+        background-size: cover !important;
+    }
+
+    .profile_details {
+        border-bottom: 1px solid #EDEDED;
+        text-align: center;
+        padding: 15px 0px;
+    }
+
+    .profile_progress {
+        --bg: #ededed;
+        --pgPercentage: var(--value);
+        --fg: #27BBEE;
+        animation: growProgressBar 3s 1 forwards;
+        width: var(--size);
+        height: var(--size);
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        background: radial-gradient(closest-side, #fff 65%, #0000 0 99.9%, #fff 0), conic-gradient(var(--fg) calc(var(--pgPercentage) * 1%), var(--bg) 0) !important;
+        font-size: calc(var(--size) / 5);
+        color: #26bbef;
+        font-family: Lato !important;
+        font-weight: 600;
+    }
+
+    .user_email {
+        color: #848484;
+        font-size: 12px;
+    }
+
+    .profile_separator {
+        background: #ededed;
+        width: 1px;
+        height: 45px;
+    }
+
+
+    /*Profile Percentage Circle*/
+
+
+    .profile-right {
+        margin-right: 20px;
+        line-height: 18px;
+    }
+
+    .profile_heading {
+        font-weight: bold;
+    }
+
+    .profile_text {
+        font-size: 11px;
+    }
+
+    .pdt-15 {
+        padding: 15px 10px;
+    }
+
+    /*Profile Percentage end*/
+
+
+}
