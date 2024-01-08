@@ -12,6 +12,7 @@ import {
   ApexAxisChartSeries, ApexChart, ChartComponent, ApexDataLabels, ApexPlotOptions, ApexYAxis, ApexTitleSubtitle, ApexXAxis, ApexFill, ApexLegend,
   ApexGrid
 } from "ng-apexcharts";
+import * as moment from 'moment';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -300,12 +301,14 @@ export class PartnerTrackerComponent implements OnInit {
   rowData = [];
 
   columnDefs = [
-    { headerName: 'Date', resizable: true, maxWidth: 120, field: 'date', cellStyle: { 'border-right-color': '#e2e2e2' }, },
+  // { headerName: 'Date', resizable: true, maxWidth: 120, field: 'date', cellStyle: { 'border-right-color': '#e2e2e2' }, },
+    { headerName: 'Date', resizable: true, maxWidth: 130, field: 'date', cellStyle: { 'border-right-color': '#e2e2e2' },
+      valueFormatter: function (params) { return moment(params.value, 'DD-MM-YYYY').format('D-MMM-YYYY'); }, },
     {
       headerName: 'No Of Partners', resizable: true, cellStyle: { 'border-right-color': '#e2e2e2' },
       children: [
-        { headerName: 'Day', resizable: true,  maxWidth: 112,   cellStyle: { 'border-right-color': '#e2e2e2' }, field: 'dayCount', },
-        { headerName: 'YTD', resizable: true,  maxWidth: 112,   cellStyle: { 'border-right-color': '#e2e2e2' }, field: 'ytdCount' },
+        { headerName: 'Day', resizable: true,  maxWidth: 110,   cellStyle: { 'border-right-color': '#e2e2e2' }, field: 'dayCount', },
+        { headerName: 'YTD', resizable: true,  maxWidth: 110,   cellStyle: { 'border-right-color': '#e2e2e2' }, field: 'ytdCount' },
       ]
     },
     {
@@ -314,8 +317,8 @@ export class PartnerTrackerComponent implements OnInit {
         {
           headerName: 'Jobs', resizable: true,
           children: [
-            { headerName: 'Day', resizable: true,  maxWidth: 112,   field: 'hirJobDayCount', cellStyle: { 'border-right-color': '#e2e2e2' }, },
-            { headerName: 'YTD', resizable: true,  maxWidth: 112,   field: 'hirJobYtdCount', cellStyle: { 'border-right-color': '#e2e2e2' }, },
+            { headerName: 'Day', resizable: true,  maxWidth: 110,   field: 'hirJobDayCount', cellStyle: { 'border-right-color': '#e2e2e2' }, },
+            { headerName: 'YTD', resizable: true,  maxWidth: 110,   field: 'hirJobYtdCount', cellStyle: { 'border-right-color': '#e2e2e2' }, },
 
           ]
         },

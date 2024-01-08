@@ -11,7 +11,7 @@ import { ChartType, ChartOptions } from 'chart.js';
 import { MultiDataSet, Label, Colors } from 'ng2-charts';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
-
+import * as moment from 'moment';
 @Component({
   selector: 'app-student-Tracker',
   templateUrl: './student-Tracker.component.html',
@@ -197,7 +197,9 @@ export class StudentTrackerComponent implements OnInit {
   rowData = [];
 
   columnDefs = [
-    { headerName: 'Date', resizable: true,  maxWidth: 130,  field: 'date', cellStyle: { 'border-right-color': '#e2e2e2' }, },
+    // { headerName: 'Date', resizable: true,  maxWidth: 130,  field: 'date', cellStyle: { 'border-right-color': '#e2e2e2' }, },
+    { headerName: 'Date', resizable: true, maxWidth: 130, field: 'date', cellStyle: { 'border-right-color': '#e2e2e2' },
+      valueFormatter: function (params) { return moment(params.value, 'DD-MM-YYYY').format('D-MMM-YYYY'); }, },
     {
       headerName: 'Registrations', resizable: true,  cellStyle: { 'border-right-color': '#e2e2e2' },
       children: [
