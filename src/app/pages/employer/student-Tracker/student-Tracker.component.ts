@@ -11,7 +11,7 @@ import { ChartType, ChartOptions } from 'chart.js';
 import { MultiDataSet, Label, Colors } from 'ng2-charts';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
-
+import * as moment from 'moment';
 @Component({
   selector: 'app-student-Tracker',
   templateUrl: './student-Tracker.component.html',
@@ -146,26 +146,6 @@ export class StudentTrackerComponent implements OnInit {
     this.generateYearOptions();
   }
 
-  //  getCurrentMonth(){
-  //   const currentYear = '2023';//this.currentyear using js
-  //     const currentMonth = '10'
-  //     let obj = {
-  //       "year": currentYear,
-  //       "month": currentMonth
-  //   }
-  //   this.getagGridData(obj);
-  //  }
-
-  //  changeMonthYear(){
-  //   const currentYear = '2023'; // get the current changed value in select dropdown
-  //     const currentMonth = '10';
-  //   let changedDate = {
-  //     "year": currentYear,
-  //     "month": currentMonth 
-  //   }
-  //   this.getagGridData(changedDate);
-  //  }
-
   onGridReady(params) {
     this.gridApi = params.api;
   }
@@ -197,19 +177,21 @@ export class StudentTrackerComponent implements OnInit {
   rowData = [];
 
   columnDefs = [
-    { headerName: 'Date', resizable: true,  maxWidth: 135,  field: 'date', cellStyle: { 'border-right-color': '#e2e2e2' }, },
+    // { headerName: 'Date', resizable: true,  maxWidth: 130,  field: 'date', cellStyle: { 'border-right-color': '#e2e2e2' }, },
+    { headerName: 'Date', resizable: true, maxWidth: 130, field: 'date', cellStyle: { 'border-right-color': '#e2e2e2' },
+      valueFormatter: function (params) { return moment(params.value, 'DD-MM-YYYY').format('D-MMM-YYYY'); }, },
     {
       headerName: 'Registrations', resizable: true,  cellStyle: { 'border-right-color': '#e2e2e2' },
       children: [
-        { headerName: 'Day', resizable: true,  maxWidth: 93,  cellStyle: { 'border-right-color': '#e2e2e2' }, field: 'regDayCount', },
-        { headerName: 'YTD', resizable: true,  maxWidth: 93,  cellStyle: { 'border-right-color': '#e2e2e2' }, field: 'regYtdCount' },
+        { headerName: 'Day', resizable: true,  maxWidth: 91,  cellStyle: { 'border-right-color': '#e2e2e2' }, field: 'regDayCount', },
+        { headerName: 'YTD', resizable: true,  maxWidth: 91,  cellStyle: { 'border-right-color': '#e2e2e2' }, field: 'regYtdCount' },
       ]
     },
     {
       headerName: 'Skill Profile', resizable: true,
       children: [
-        { headerName: 'Day', resizable: true,  maxWidth: 93,  field: 'profDayCount', cellStyle: { 'border-right-color': '#e2e2e2' }, },
-        { headerName: 'YTD', resizable: true,  maxWidth: 93,  field: 'profYtdCount', cellStyle: { 'border-right-color': '#e2e2e2' }, },
+        { headerName: 'Day', resizable: true,  maxWidth: 91,  field: 'profDayCount', cellStyle: { 'border-right-color': '#e2e2e2' }, },
+        { headerName: 'YTD', resizable: true,  maxWidth: 91,  field: 'profYtdCount', cellStyle: { 'border-right-color': '#e2e2e2' }, },
       ]
     },
     {
@@ -218,16 +200,16 @@ export class StudentTrackerComponent implements OnInit {
         {
           headerName: 'Registrations', resizable: true,
           children: [
-            { headerName: 'Day', resizable: true,  maxWidth: 93,  field: 'trainRegDayCount', cellStyle: { 'border-right-color': '#e2e2e2' }, },
-            { headerName: 'YTD', resizable: true,  maxWidth: 93,  field: 'trainRegYtdCount', cellStyle: { 'border-right-color': '#e2e2e2' }, },
+            { headerName: 'Day', resizable: true,  maxWidth: 91,  field: 'trainRegDayCount', cellStyle: { 'border-right-color': '#e2e2e2' }, },
+            { headerName: 'YTD', resizable: true,  maxWidth: 91,  field: 'trainRegYtdCount', cellStyle: { 'border-right-color': '#e2e2e2' }, },
 
           ]
         },
         {
           headerName: 'Profile Filled', resizable: true, 
           children: [
-            { headerName: 'Day', resizable: true,  maxWidth: 93,  field: 'trainProfDayCount', cellStyle: { 'border-right-color': '#e2e2e2' }, },
-            { headerName: 'YTD', resizable: true,  maxWidth: 93,  field: 'trainProfYtdCount', cellStyle: { 'border-right-color': '#e2e2e2' }, },
+            { headerName: 'Day', resizable: true,  maxWidth: 91,  field: 'trainProfDayCount', cellStyle: { 'border-right-color': '#e2e2e2' }, },
+            { headerName: 'YTD', resizable: true,  maxWidth: 91,  field: 'trainProfYtdCount', cellStyle: { 'border-right-color': '#e2e2e2' }, },
 
           ]
         },
@@ -239,16 +221,16 @@ export class StudentTrackerComponent implements OnInit {
         {
           headerName: 'Registrations', resizable: true, 
           children: [
-            { headerName: 'Day', resizable: true,  maxWidth: 93,  field: 'assessRegDayCount', cellStyle: { 'border-right-color': '#e2e2e2' }, },
-            { headerName: 'YTD', resizable: true,  maxWidth: 93,  field: 'assessRegYtdCount', cellStyle: { 'border-right-color': '#e2e2e2' }, },
+            { headerName: 'Day', resizable: true,  maxWidth: 91,  field: 'assessRegDayCount', cellStyle: { 'border-right-color': '#e2e2e2' }, },
+            { headerName: 'YTD', resizable: true,  maxWidth: 91,  field: 'assessRegYtdCount', cellStyle: { 'border-right-color': '#e2e2e2' }, },
 
           ]
         },
         {
           headerName: 'Profile Filled', resizable: true,
           children: [
-            { headerName: 'Day', resizable: true,  maxWidth: 93,  field: 'assessProfDayCount', cellStyle: { 'border-right-color': '#e2e2e2' }, },
-            { headerName: 'YTD', resizable: true,  maxWidth: 93,  field: 'assessProfYtdCount', cellStyle: { 'border-right-color': '#e2e2e2' }, },
+            { headerName: 'Day', resizable: true,  maxWidth: 91,  field: 'assessProfDayCount', cellStyle: { 'border-right-color': '#e2e2e2' }, },
+            { headerName: 'YTD', resizable: true,  maxWidth: 91,  field: 'assessProfYtdCount', cellStyle: { 'border-right-color': '#e2e2e2' }, },
 
           ]
         },
@@ -256,32 +238,6 @@ export class StudentTrackerComponent implements OnInit {
     }
 
   ];
-
-  // getagGridData(obj) {
-  //   this.apiService.getStudentTrackerReport(obj).subscribe((response: any) => {
-  //     if (response.success) {
-  //       this.studentData = response.data
-  //       console.log(this.studentData, 'overalldata');
-  //       this.rowData = response.data.reportData
-  //       // console.log(this.studentData.reportData,'studentDatastudentData');
-  //       // this.studentChartData = response.data.chartData
-  //       // console.log(this.studentChartData,'studentDatastudentData');
-  //       let chartData = [
-  //         this.studentData.chartData.registerTrainTotal,
-  //         this.studentData.chartData.registerAssessTotal,
-  //         this.studentData.chartData.otherRegisterTotal
-  //       ]
-  //       this.doughnutChartData.push(chartData);
-
-  //       let chartData2 = [
-  //         this.studentData.chartData.profileTrainTotal,
-  //         this.studentData.chartData.profileAssessTotal,
-  //         this.studentData.chartData.otherProfileTotal
-  //       ]
-  //       this.doughnutChartData2.push(chartData2);
-  //     }
-  //   })
-  // }
 
   getagGridData(obj) {
     this.rowData = [];
@@ -315,7 +271,17 @@ export class StudentTrackerComponent implements OnInit {
   }
 
   exportData() {
-    this.gridApi.exportDataAsExcel();
+    // this.gridApi.exportDataAsExcel();
+    if (this.gridApi) {
+      const params = {
+        columnGroups: true,
+        allColumns: true,
+        fileName: 'Month-wise_Student_Tracker.xlsx',
+        sheetName: 'Month-wise_Student_Tracker',
+        domLayout: 'autoHeight', 
+      };
+      this.gridApi.exportDataAsExcel(params);
+    }
   }
 
 }

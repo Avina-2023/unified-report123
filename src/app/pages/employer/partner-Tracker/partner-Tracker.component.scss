@@ -4,9 +4,9 @@
 }
 .partner-heading{
   color: #262626;
-  font-size: 19px;
+  font-size: 17px;
   font-weight: 600;
-  padding: 10px;
+  padding: 10px 10px 30px 10px;
 }
 .inner-container-1{
   background-color: #FFFFFF; 
@@ -46,26 +46,25 @@
     max-width: 650px;
     margin: 35px auto;
   }
-  .bar-chart1{
-    width: 500px;
-  }
-  .bar-chart2{
-    width: 500px;
-  }
+  // .bar-chart1{
+  //   width: 500px;
+  // }
+  // .bar-chart2{
+  //   width: 500px;
+  // }
 
   .ag-theme-alpine {
-    // --ag-header-height: 20px;
-  
-    // //  --ag-header-foreground-color: #1b4e9b 25%;
-  
-    //  --ag-header-background-color: #1b4e9b;
+    --ag-header-height: 20px;
+    --ag-header-foreground-color: #1b4e9b 25%;
+    --ag-header-background-color: #1b4e9b;
     --ag-header-background-color: rgba(27, 78, 155, 0.25);
-    //  --ag-odd-row-background-color: rgba(237, 237, 237, 0.6);
-    // color: #1b4e9b;
-    // font-size: 13px;
-    // font: normal normal normal 13px/18px Roboto;
-    // font-weight: 500;
-    // letter-spacing: 0.33px;
+    --ag-odd-row-background-color: rgba(237, 237, 237, 0.6);
+    color: #1b4e9b;
+    font-size: 13px;
+    font: normal normal normal 13px/18px Roboto;
+    font-weight: 500;
+    letter-spacing: 0.33px;
+    opacity: 1;
   
     //  --ag-header-column-separator-display: block;
     //   --ag-header-column-separator-height: 100%;
@@ -102,7 +101,6 @@
     background-color: rgba(186, 191, 199, 0.5);
     background-color: var(--ag-header-column-resize-handle-color, rgba(186, 191, 199, 0.5));
   } 
-
   .graphh-heading{
     color: #262626;
     font-size: 17px;
@@ -116,6 +114,7 @@
   }
   .bar-chart1{
     width: 500px;
+    height: 400px;
     border-radius: 10px;
     box-shadow: 0px 1px 12px #0000001F;
     margin: 15px;
@@ -127,11 +126,17 @@
   }
   .bar-chart2{
     width: 500px;
+    height: 400px;
     border-radius: 10px;
     box-shadow: 0px 1px 12px #0000001F;
     margin: 15px;
   }
 
+  .no-data{
+    margin: 140px 0px;
+    text-align: center;
+    box-shadow: none;
+  }
 
   .Hiring-detail{
     display: flex;
