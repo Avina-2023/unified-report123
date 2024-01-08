@@ -172,6 +172,21 @@ export class CandidateHomeComponent implements OnInit {
         }
       );
   }
+
+  gotoJob(data: any) {
+    let userId = this.Details?.userId;
+    let enc_email = encodeURIComponent(this.apiService.encryptnew(userId, environment.cryptoEncryptionKey));
+    let url = '/externallogin?extId=' + enc_email + '&jobid=' + data;
+    // Open the link in a new tab
+    window.open(url, '_blank');
+  }
+
+  gotoCourses() {
+    let microKey = this.Details?.privateKey;
+    let microUrl = environment.MICROLEARN_URL + '?key=' + microKey
+    window.open(microUrl, '_blank');
+  }
+  
   
 
 

@@ -17,7 +17,7 @@ export class ApiService {
   EDGE_URL = environment.NODE_EDGE_URL;
   BASE_URL_RE = environment.API_BASE_URL_RE;
   SKILL_EDGE_URL = environment.SKILL_EDGE_URL;
-  MICROLEARN_URL = environment.MICROLEARN_URL;
+  MICROLEARN_API_URL = environment.MICROLEARN_API_URL;
   CORPORATE_URL = environment.CORPORATE_URL;
   Prourl = environment.NODE_URL;
   EncryptKEY = environment.encryptionKey;
@@ -346,7 +346,15 @@ export class ApiService {
 
   // Microlearn Courses API
   getLearningCourses(data) {
-    return this.http.post(`${this.MICROLEARN_URL}/getCourseByDomain`, data);
+    return this.http.post(`${this.MICROLEARN_API_URL}/getCourseByDomain`, data);
+  }
+
+
+
+
+  //learning Progress status
+  getLearningStatus(data) {
+    return this.http.post(`${this.MICROLEARN_API_URL}/learningProgressSkillExchange`, data);
   }
 
   // Newsroom API

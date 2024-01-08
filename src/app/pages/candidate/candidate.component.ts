@@ -215,8 +215,15 @@ export class CandidateComponent implements OnInit {
     let enc_email = encodeURIComponent(this.apiservice.encryptnew(emailval, environment.cryptoEncryptionKey))
     // window.open(environment.SKILL_PROFILE_URL+'/externallogin?extId='+enc_email, 'profile_redir');
     window.location.assign(environment.SKILL_PROFILE_URL + '/externallogin?extId=' + enc_email);
-
   }
+
+  gotoCourses() {
+    let microKey = this.Details?.privateKey;
+    let microUrl = environment.MICROLEARN_URL + '?key=' + microKey
+    window.open(microUrl, '_blank');
+  }
+
+  
   gotoDashboard() {
     this.router.navigate(['/candidateview/dashboard'])
   }
