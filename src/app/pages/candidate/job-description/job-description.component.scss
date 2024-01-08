@@ -27,6 +27,20 @@ li {
   }
 }
 
+.btn_applied {
+  font-size: 13px;
+  background: #DFE6F2 !important;
+  color: #1B4E9C;
+  //  border: 2px solid #1A4E9B;
+  border-radius: 20px;
+  // width: 100%;
+  padding: 7px 20px 6px 17px;
+  margin: -25px 0px 0px 20px;
+  float: right;
+  font-family: Lato !important;
+
+}
+
 .btn:hover {
   transition: ease-out 0.3s;
   border: 1px solid #1A4E9B !important;
@@ -79,7 +93,7 @@ li {
     // display: flex;
     flex-direction: row;
     align-items: center;
-    padding: 10px 0px 15px 20px;
+    padding: 5px 0px 20px 25px;
     // background-color: #1B4E9B0F;
 
     .genText1 {
@@ -88,10 +102,10 @@ li {
       align-items: center;
       font-size: 14px;
       color: #707070bf;
-      padding-top: 0px 4px 0px 4px;
+      // padding-top: 0px 4px 0px 4px;
       flex-wrap: wrap;
       position: relative;
-      top: 5px;
+      // top: 5px;
 
       .icon-clock_postdate {
         padding: 5px 7px 5px 15px;
@@ -110,7 +124,7 @@ li {
     display: flex;
     flex-direction: row;
     align-items: center;
-    padding: 20px 0px 10px 20px;
+    padding: 5px 0px 0px 27px;
     // background-color: #1B4E9B0F;
 
     .job-intern {
@@ -182,9 +196,11 @@ li {
         span:hover {
           color: #1B4E9B;
           cursor: pointer;
-          /* Optional: to show a pointer cursor when hovering */
+          border-bottom: 3.5px solid #294D96;
         }
+
       }
+
     }
 
     .about {
@@ -200,12 +216,19 @@ li {
   color: #1A4E9B;
 }
 
+.save_ed {
+  background: #1A4E9C !important;
+  border-color: #1A4E9B;
+  color: #FFFFFF;
+}
+
 .flx_butn {
   display: flex;
 }
 
 .flx_save {
-  // display: flex;
+  //  display: flex;
+  //  justify-content: space-between;
 }
 
 .save-applied {
@@ -213,7 +236,6 @@ li {
 }
 
 .scroller-head {
-  // display: none;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -222,6 +244,15 @@ li {
   background: #FFFFFF 0% 0% no-repeat padding-box;
   opacity: 1;
   margin: 1% 3%;
+}
+
+.scroller-head-hidden {
+  display: none;
+}
+
+.scroller-head-visible {
+  display: block;
+  /* Add any other styling properties for the visible state */
 }
 
 .company-details {
@@ -246,8 +277,7 @@ li {
 .custom-card {
   transition: 0.3s;
   width: 850px;
-  height: 250px;
-  /* UI Properties */
+  height: 220px;
   background: #FFFFFF 0% 0% no-repeat padding-box;
   border-radius: 15px;
   opacity: 1;
@@ -267,7 +297,7 @@ li {
       align-items: center;
 
       .companyLogo1 {
-        padding: 0px 20px 0px 0px;
+        padding: 0px 12px 0px 0px;
 
         .comp_logo {
           width: 117px;
@@ -429,10 +459,21 @@ li {
   margin: 0px 15px 0px 0px;
 
   .application-end {
-    font-size: 13px !important;
+    // font: normal normal medium 13px/16px Inter;
+    font-size: 12px;
     letter-spacing: 0px;
     color: #262626;
     opacity: 1;
+    padding: 0px 25px 0px 0px;
+
+  }
+
+  .application-dateend {
+    font: normal normal bold 13px/20px Inter;
+    letter-spacing: 0px;
+    color: #171717;
+    opacity: 1;
+    padding: 0px 0px 0px 20px;
   }
 }
 
@@ -599,6 +640,7 @@ li {
   }
 
   .pageWrapper {
+    position: relative;
     padding: 0px 10px;
     border-radius: 15px;
 
@@ -634,6 +676,9 @@ li {
   margin: -5px 0px 0px 10px;
   border: 1px solid #70707066;
   border-radius: 5px;
+}
+.comp_skill_sim{
+  margin: 0px 15px 0px 0px;
 }
 
 .compTitle_sim {
@@ -678,4 +723,18 @@ li {
   color: #848484;
   opacity: 1;
   margin: 5px 0px 0px 10px;
+}
+
+.PostedDate {
+  text-align: left;
+  font: normal normal medium 13px/16px Inter;
+  color: #5C5C5C;
+  opacity: 1;
+}
+.Similar_job_card{
+  width: 250px;margin: 12px 15px 0px 0px;
+   height: 568px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border-radius: 15px;
+
 }

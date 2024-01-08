@@ -8,23 +8,26 @@
   align-content: flex-start;
   overflow: auto;
   border-right: 1px solid #e7e7e7;
-  height: 75vh;
+  height: 80vh;
   justify-content: space-between;
   overflow-x: hidden !important;
   align-content: stretch;
 
   .result-show {
     // position: absolute;
-    // display: flex;
+    display: flex;
     padding: 0px 17px;
-    font: normal normal 600 26px/0px Lato;
+    // font: normal normal 600 26px/0px Lato;
+    font: normal normal 600 24px Inter;
     letter-spacing: 0px;
     opacity: 1;
     color: #262626;
+    opacity: 1;
 
     .result-count {
-      // float: right;
-      // margin: 8px 10px 0px 0px
+      // font: normal normal 600 42px Inter !important;
+      //   color: #262626;
+      //   opacity: 1;
     }
   }
 }
@@ -32,6 +35,17 @@
 .position {
   position: relative;
   top: 20px;
+}
+
+.count_container {
+  width: 1026px;
+  height: 69px;
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  border-radius: 15px;
+  margin: 1px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 ::-webkit-scrollbar {
@@ -53,13 +67,13 @@
   width: 1046px;
   flex-wrap: wrap;
   position: relative;
-  top: 30px;
+  top: 10px;
   left: 5px;
 }
 
 .listcard {
   background: #ffffff 0% 0% no-repeat padding-box;
-  border: 1px solid #70707033;
+  // border: 1px solid #70707033;
   position: relative;
   bottom: 10px;
   border-radius: 10px;
@@ -69,7 +83,7 @@
 
   .mat-card-content {
     display: block;
-    margin-bottom: 70px;
+    margin-bottom: 45px;
     // padding:5px ;
   }
 
@@ -152,16 +166,16 @@
     opacity: 0.5;
   }
 
-  .hrline {
-    position: absolute;
-    background: #ffffff 0% 0% no-repeat padding-box;
-    border: 1px solid #70707033;
-    border-radius: 10px;
-    left: 0;
-    right: 0;
-    width: 100%;
-    opacity: 1;
-  }
+  // .hrline {
+  //   position: absolute;
+  //   background: #ffffff 0% 0% no-repeat padding-box;
+  //   border: 1px solid #70707033;
+  //   border-radius: 10px;
+  //   left: 0;
+  //   right: 0;
+  //   width: 100%;
+  //   opacity: 1;
+  // }
 
   .description-p {
     font: normal normal normal 14px/19px lato;
@@ -227,8 +241,8 @@
     flex-wrap: wrap;
     /* margin-top: 30px; */
     position: relative;
-    top: 30px;
-    padding: 10px 4px;
+    top: 10px;
+    // padding: 10px 4px;
   }
 
   .footer_right {
@@ -302,10 +316,12 @@
   }
 
   .smalltext {
-    font-size: 12px;
-    color: #707070;
-    margin: 7px 0px;
+    margin: 12px 0px;
+    font: normal normal normal 12px/15px Inter;
+    letter-spacing: 0px;
+    color: #5C5C5C;
   }
+
 
   .cardfooter_row {
     display: flex;
@@ -313,7 +329,7 @@
     // letter-spacing: 0.24px;
     color: #707070;
     opacity: 1;
-    margin: 5px 0px;
+    // margin: 5px 0px;
     // margin: 0px 4px;
   }
 
@@ -323,12 +339,12 @@
 
   .footer-gray {
     position: absolute;
-    background: #f6f6f6 0% 0% no-repeat padding-box;
+    // background: #f6f6f6 0% 0% no-repeat padding-box;
     border-radius: 0px 0px 7px 7px;
     opacity: 1;
     width: 100%;
     height: 50px;
-    padding: 7px 20px;
+    padding: 0px 20px;
 
     // height: 40px;
     left: 0;
@@ -349,11 +365,14 @@
       }
 
       .flex-growone {
-        flex-grow: 18;
+         flex-grow: 18;
+        padding: 0px 10px 3px 0px;
       }
 
       .flex-growtwo {
         flex-grow: 400;
+        font: normal normal normal 12px/15px Inter;
+        color: #5C5C5C;
       }
 
       .flex-growthree {
@@ -398,11 +417,13 @@
 .pagination {
   display: flex;
   justify-content: space-around;
+  background-color: #EDEDED;
+  padding: 5px 0px 5px 0px;
 }
 
 .greenblue {
   width: 156px;
-  height: 24px;
+  height: 30px;
   position: absolute;
   top: 15%;
   right: 0%;
@@ -416,7 +437,7 @@
 .greenblue .text-overlay {
   text-align: center;
   /* Center the text horizontally */
-  padding: 2px 0px;
+  padding: 5px 0px;
   opacity: 1;
 }
 
@@ -485,7 +506,7 @@
   display: flex;
   flex-direction: row;
   align-items: baseline;
-  margin: 5px 0px 0px 8px;
+  margin: 0px 0px 10px 10px;
   // background: #1b4e9b14 0% 0% no-repeat padding-box;
   // border-radius: 17px;
   // width: 89px;
