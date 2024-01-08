@@ -58,6 +58,7 @@
             background-position: center !important;
             background-repeat: no-repeat !important;
             border-radius: 8px;
+            width: 50px;
         }
 
         .card_content {
@@ -67,15 +68,12 @@
         }
 
         .comp_logo {
+            background-repeat: no-repeat !important;
+            background-size: contain !important;
+            height: 40px;
+            background-position: center !important;
             border: 1px solid #ededed;
-            padding: 7px 0px;
             border-radius: 5px;
-            background: #fff;
-
-            img {
-                border-radius: 5px;
-                width: -webkit-fill-available;
-            }
         }
 
         .single-element {

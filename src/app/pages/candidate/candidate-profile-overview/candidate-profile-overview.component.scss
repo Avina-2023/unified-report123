@@ -2,6 +2,10 @@
     display: flex;
 }
 
+.flx_wrap {
+    flex-wrap: wrap
+}
+
 .flx_center {
     align-items: center;
 }
@@ -20,6 +24,10 @@
 
 .pointer_cursor {
     cursor: pointer;
+}
+
+span.icon-plus_rounded {
+    font-size: 17px !important;
 }
 
 .profile-layout {
@@ -45,16 +53,35 @@
 
         .bg_course_img {
             background-size: cover !important;
-            height: 40px !important;
+            height: 74px !important;
             background-position: center !important;
             background-repeat: no-repeat !important;
-            border-radius: 8px;
+            border-radius: 8px 0px 0px 8px;
+            width: 74px;
+        }
+
+        .course_percent {
+            color: #fff;
+            margin-left: 20px;
+            padding: 0px 10px;
+            border-radius: 16px;
+            font-size: 12px;
+        }
+        .duration{
+            color: #848484;
+        }
+        .course_status,.duration{
+            font-size: 12px;
+        }
+        .mg-lr-10{
+            margin: 0px 10px;
         }
 
         .card_content {
             width: 83%;
-            margin-left: 10px;
+            padding: 5px 0px 5px 10px;
             line-height: 22px;
+            border-radius: 0px 10px 10px 0px;
         }
 
         .comp_logo {
@@ -138,6 +165,41 @@
             color: #373331;
             padding-bottom: 15px;
             font-weight: 600;
+        }
+    }
+
+
+    .inprogress_state{
+        background: #FFFBF6;
+        
+        .course_status{
+            color: #FFB74D;
+        }
+        .course_percent{
+           background: #FFB74D;
+        }
+    }
+
+    .completed_state{
+        background: #F6FBF5;
+        
+        .course_status{
+            color: #49AE31;
+        }
+        .course_percent{
+           background: #49AE31;
+        }
+    }
+
+
+    .not-started-state{
+        background: #F6F6F6;
+        
+        .course_status{
+            color: #5C5C5C;
+        }
+        .course_percent{
+           background: #5C5C5C;
         }
     }
 
@@ -265,5 +327,45 @@
         border-top: 1px solid #EDEDED;
         line-height: 25px;
     }
+
+    .skill-content {
+        width: fit-content;
+        margin: 5px;
+        border: 1px solid #efefef;
+        padding: 2px 16px 2px 16px;
+        border-radius: 40px;
+        background: #efefef;
+        color: #262626;
+        font-size: 14px;
+        font-weight: 500;
+        text-transform: capitalize;
+    }
+
+    .graduation {
+        font-size: 30px;
+        background: #f4f4f4;
+        padding: 17px;
+        border-radius: 10px
+    }
+    .eduYear {
+        color: #848484;
+        font-size: 12px;
+    }
+
+    .view_more {
+        color: #1B4E9B;
+        font-weight: 500;
+        font-size: 13px;
+    }
+
+    .comp_logo {
+        background-repeat: no-repeat!important;
+            background-size: contain!important;
+            height: 63px;
+            background-position: center!important;
+            border: 1px solid #ededed;
+            border-radius: 5px;
+    }
+
 
 }

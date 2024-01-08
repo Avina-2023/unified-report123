@@ -16,17 +16,15 @@
             <div *ngFor="let item of joblist" class="single-element">
                 <div class="flex_div flx_center">
                     <div class="card_img">
-                        <div class="comp_logo">
-                            <img decoding="async"
-                                [src]="((item?.companyLogo) ? (item?.companyLogo) : 'assets/images/job-bag.png')">
+                        <div class="comp_logo" [style.background]="'url(' + ((item?.companyLogo) ? (item?.companyLogo) : 'assets/images/job-bag.png') + ')'">
                         </div>
                     </div>
                     <div class="card_content">
-                        <div class="title">{{item?.jobTitle}}</div>
+                        <div class="title">{{item?.jobRole}}</div>
                         <div class="flex_div flx_center flx_between">
                             <span class="postedDate">{{item.postedDate}}</span>
                             <span class="separator"></span>
-                            <span class="active_link pointer_cursor" *ngIf="item.approveStatus == 'approved'"><span
+                            <span class="active_link pointer_cursor" *ngIf="item.approveStatus == 'approved'" (click)="gotoJob(item.jobId)"><span
                                     class="icon-active-icon"></span> Actively Recruiting</span>
                         </div>
                     </div>
@@ -53,7 +51,7 @@
                 </div>
             </div>
         </div>
-        <div class="addon_btn pointer_cursor">Explore More</div>
+        <div class="addon_btn pointer_cursor" (click)="gotoCourses()">Explore More</div>
     </div>
 
 </ng-template>
@@ -68,7 +66,7 @@
                 <div class="profile_details">
                     <div class="title user-title">{{candidateName ? candidateName : ''}}</div>
                     <div class="user_email">{{candidateEmail ? candidateEmail : ''}}</div>
-                    <div class="user_place">{{form_present_city ? form_present_city : ''}}, {{form_present_state ? form_present_state : ''}}
+                    <div class="user_place">{{form_present_city ? form_present_city + ',' : ''}} {{form_present_state ? form_present_state : ''}}
                     </div>
                     <div class="flag" *ngIf="form_present_city"><img decoding="async"
                             src="assets/images/India-flag.png"></div>
