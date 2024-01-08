@@ -98,19 +98,12 @@
               </ng-container>
               <ng-container *ngIf="partnerData?.chartData?.openJobTotal || 
                                partnerData?.chartData?.openInternshipTotal">
-                               <div id="chart">
-                                <apx-chart
-                                  [series]="chartOptions2.series"
-                                  [chart]="chartOptions2.chart"
-                                  [dataLabels]="chartOptions2.dataLabels"
-                                  [plotOptions]="chartOptions2.plotOptions"
-                                  [yaxis]="chartOptions2.yaxis"
-                                  [xaxis]="chartOptions2.xaxis"
-                                  [colors]="chartOptions2.colors"
-                                  [grid]="chartOptions2.grid"
-                                  [legend]="{ show: false }"
-                                ></apx-chart>
-                              </div>
+                <div id="chart">
+                  <apx-chart [series]="chartOptions2.series" [chart]="chartOptions2.chart"
+                    [dataLabels]="chartOptions2.dataLabels" [plotOptions]="chartOptions2.plotOptions"
+                    [yaxis]="chartOptions2.yaxis" [xaxis]="chartOptions2.xaxis" [fill]="chartOptions.fill"
+                    [colors]="chartOptions2.colors" [grid]="chartOptions2.grid" [legend]="{ show: false }"></apx-chart>
+                </div>
               </ng-container>
             </div>
             <div class="job-color">

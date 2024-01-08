@@ -85,7 +85,7 @@ export class PartnerTrackerComponent implements OnInit {
         }
       ],
       chart: {
-        height: 350,
+        height: 250,
         type: "bar",
         toolbar: {
           show: false
@@ -148,7 +148,7 @@ export class PartnerTrackerComponent implements OnInit {
       },
       yaxis: {
         axisBorder: {
-          show: true
+          show: false
         },
         axisTicks: {
           show: true
@@ -179,7 +179,7 @@ export class PartnerTrackerComponent implements OnInit {
         }
       ],
       chart: {
-        height: 350,
+        height: 250,
         type: "bar",
         toolbar: {
           show: false
@@ -239,7 +239,7 @@ export class PartnerTrackerComponent implements OnInit {
       },
       yaxis: {
         axisBorder: {
-          show: true
+          show: false
         },
         axisTicks: {
           show: true
@@ -305,7 +305,7 @@ export class PartnerTrackerComponent implements OnInit {
     { headerName: 'Date', resizable: true, maxWidth: 130, field: 'date', cellStyle: { 'border-right-color': '#e2e2e2' },
       valueFormatter: function (params) { return moment(params.value, 'DD-MM-YYYY').format('D-MMM-YYYY'); }, },
     {
-      headerName: 'No Of Partners', resizable: true, cellStyle: { 'border-right-color': '#e2e2e2' },
+      headerName: 'No of Partners', resizable: true, cellStyle: { 'border-right-color': '#e2e2e2' },
       children: [
         { headerName: 'Day', resizable: true,  maxWidth: 110,   cellStyle: { 'border-right-color': '#e2e2e2' }, field: 'dayCount', },
         { headerName: 'YTD', resizable: true,  maxWidth: 110,   cellStyle: { 'border-right-color': '#e2e2e2' }, field: 'ytdCount' },
@@ -422,7 +422,17 @@ export class PartnerTrackerComponent implements OnInit {
   // }
 
   exportPartnerData() {
-    this.gridApi.exportDataAsExcel();
+    // this.gridApi.exportDataAsExcel();
+    if (this.gridApi) {
+      const params = {
+        columnGroups: true,
+        allColumns: true,
+        fileName: 'Month-wise_Partner_Tracker.xlsx',
+        sheetName: 'Month-wise_Partner_Tracker',
+        domLayout: 'autoHeight', 
+      };
+      this.gridApi.exportDataAsExcel(params);
+    }
   }
 
 }

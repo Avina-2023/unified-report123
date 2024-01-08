@@ -146,26 +146,6 @@ export class StudentTrackerComponent implements OnInit {
     this.generateYearOptions();
   }
 
-  //  getCurrentMonth(){
-  //   const currentYear = '2023';//this.currentyear using js
-  //     const currentMonth = '10'
-  //     let obj = {
-  //       "year": currentYear,
-  //       "month": currentMonth
-  //   }
-  //   this.getagGridData(obj);
-  //  }
-
-  //  changeMonthYear(){
-  //   const currentYear = '2023'; // get the current changed value in select dropdown
-  //     const currentMonth = '10';
-  //   let changedDate = {
-  //     "year": currentYear,
-  //     "month": currentMonth 
-  //   }
-  //   this.getagGridData(changedDate);
-  //  }
-
   onGridReady(params) {
     this.gridApi = params.api;
   }
@@ -259,32 +239,6 @@ export class StudentTrackerComponent implements OnInit {
 
   ];
 
-  // getagGridData(obj) {
-  //   this.apiService.getStudentTrackerReport(obj).subscribe((response: any) => {
-  //     if (response.success) {
-  //       this.studentData = response.data
-  //       console.log(this.studentData, 'overalldata');
-  //       this.rowData = response.data.reportData
-  //       // console.log(this.studentData.reportData,'studentDatastudentData');
-  //       // this.studentChartData = response.data.chartData
-  //       // console.log(this.studentChartData,'studentDatastudentData');
-  //       let chartData = [
-  //         this.studentData.chartData.registerTrainTotal,
-  //         this.studentData.chartData.registerAssessTotal,
-  //         this.studentData.chartData.otherRegisterTotal
-  //       ]
-  //       this.doughnutChartData.push(chartData);
-
-  //       let chartData2 = [
-  //         this.studentData.chartData.profileTrainTotal,
-  //         this.studentData.chartData.profileAssessTotal,
-  //         this.studentData.chartData.otherProfileTotal
-  //       ]
-  //       this.doughnutChartData2.push(chartData2);
-  //     }
-  //   })
-  // }
-
   getagGridData(obj) {
     this.rowData = [];
     this.apiService.getStudentTrackerReport(obj).subscribe(
@@ -317,7 +271,17 @@ export class StudentTrackerComponent implements OnInit {
   }
 
   exportData() {
-    this.gridApi.exportDataAsExcel();
+    // this.gridApi.exportDataAsExcel();
+    if (this.gridApi) {
+      const params = {
+        columnGroups: true,
+        allColumns: true,
+        fileName: 'Month-wise_Student_Tracker.xlsx',
+        sheetName: 'Month-wise_Student_Tracker',
+        domLayout: 'autoHeight', 
+      };
+      this.gridApi.exportDataAsExcel(params);
+    }
   }
 
 }
