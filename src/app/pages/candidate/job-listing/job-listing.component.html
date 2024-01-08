@@ -238,8 +238,7 @@ opacity: 1;">
         <div *ngFor="let course of fillist.subContent; let i = index">
           <span *ngIf="i<4">
             <mat-checkbox (change)="checkboxChecked($event,course,fillist.key,fillist.isMaster,'direct')"
-              [checked]="course.is_checked" class="fldName" color="primary" *ngIf="!fillist.isShow">{{fillist.fieldName
-              == 'Education' ? course.name.specification : course.name }}
+              [checked]="course.is_checked" class="fldName" color="primary" *ngIf="!fillist.isShow">{{course.name}}
               ({{course.totalCount}})
             </mat-checkbox>
           </span>
@@ -264,8 +263,7 @@ opacity: 1;">
     <div class="filter_col mat_dlg_cnt">
       <div *ngFor="let course of filterItems.subContent">
         <mat-checkbox class="mat_courses" (change)="checkboxChecked($event,course,filterItems.key,filterItems.isMaster)"
-          [checked]="course.is_checked" color="primary">{{filterItems.fieldName == "Education" ?
-          course.name.specification : course.name}} ({{course.totalCount}})</mat-checkbox>
+          [checked]="course.is_checked" color="primary">{{course.name}} ({{course.totalCount}})</mat-checkbox>
       </div>
     </div>
     <button [mat-dialog-close] class="aply_btn" (click)="applyfilter()" mat-raised-button color="primary">Apply</button>
