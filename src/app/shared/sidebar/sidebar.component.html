@@ -116,7 +116,7 @@
       *ngIf='roleCode === "SADM" || roleCode === "OADM" || roleCode === "ADM" || roleCode === "HR" || roleCode === "ISADM" || roleCode === "IADM"'>
       <div class="sidebar-admin pl-3">
         <!-- <em class="icon-Document"></em> -->
-        <span class="headerfont" mat-line *ngIf="isExpanded && !isnotShowing">OverAll-Reports</span>
+        <span class="headerfont" mat-line *ngIf="isExpanded && !isnotShowing">Summary</span>
       </div>
     </mat-list-item>
 
@@ -124,14 +124,14 @@
       *ngIf='roleCode === "SADM" || roleCode === "OADM" || roleCode === "ADM" || roleCode === "HR" || roleCode === "ISADM" || roleCode === "IADM"'
       [routerLink]="['/studenttracker']" [routerLinkActive]="['is-active']">
       <div class="sidebar-admin pl-3">
-        <span class="headerfont" mat-line *ngIf="isExpanded && !isnotShowing">Student Tracker</span>
+        <span class="headerfont" mat-line *ngIf="isExpanded && !isnotShowing">Student-Tracker</span>
       </div>
     </mat-list-item>
     <mat-list-item [ngClass]="[check === '' ? 'selected' : 'notSelected']" (click)="partnerReportTracker('partnertracker')"
       *ngIf='roleCode === "SADM" || roleCode === "OADM" || roleCode === "ADM" || roleCode === "HR" || roleCode === "ISADM" || roleCode === "IADM"'
       [routerLink]="['/partnertracker']" [routerLinkActive]="['is-active']">
       <div class="sidebar-admin pl-3">
-        <span class="headerfont" mat-line *ngIf="isExpanded && !isnotShowing">Partner Tracker</span>
+        <span class="headerfont" mat-line *ngIf="isExpanded && !isnotShowing">Partner-Tracker</span>
       </div>
     </mat-list-item>
   </ng-container>
