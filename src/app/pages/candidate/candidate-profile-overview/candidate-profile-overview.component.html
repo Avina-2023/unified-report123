@@ -202,7 +202,7 @@
                         <div class="title">{{(item?.jobRole) ? (item?.jobRole) : ''}}</div>
                         <div class="company_name">{{(item?.company) ? (item?.company) : ''}}</div>
                         <div class="application_status"><span class="icon-check-rounded"></span> Application Sent
-                            {{item?.isAppliedDate}}</div>
+                            {{dateTimeAgo(item?.isAppliedDate)}}</div>
                     </div>
                 </div>
             </div>

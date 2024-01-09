@@ -53,7 +53,7 @@
       </div>
 
       <div class="menu_icon pointer_cursor" #iconHover4 (mouseenter)="addSlideAnimation(iconHover4, 'learning')"
-        (mouseleave)="removeSlideAnimation(iconHover4, 'learning')" (click)="gotoCourses()">
+        (mouseleave)="removeSlideAnimation(iconHover4, 'learning')" (click)="gotoCourses('learning')">
         <div class="icon"><span class="icon-learning"></span></div>
         <div class="icon_txt">Learning</div>
       </div>
@@ -65,7 +65,7 @@
       </div>
 
       <div class="menu_icon pointer_cursor" #iconHover6 (mouseenter)="addSlideAnimation(iconHover6, 'events')"
-        (mouseleave)="removeSlideAnimation(iconHover6, 'events')">
+        (mouseleave)="removeSlideAnimation(iconHover6, 'events')" (click)="gotoEvent()">
         <div class="icon"><span class="icon-events"></span></div>
         <div class="icon_txt">Events</div>
       </div>
@@ -169,10 +169,7 @@
       <div class="split_div"></div>
 
       <div class="menu_profile">
-        <div class="flex_div flx_center other_links pointer_cursor">
-          <!-- <div class="profiledash_icon recently_viewed">
-            <span class="icon-jobs"></span>
-          </div> -->
+        <div class="flex_div flx_center other_links pointer_cursor" (click)="isIconActive(iconHover2,'jobsProfile')">
           <div class="profiledash_text toggle_white job_menu"><span class="icon-jobs-work mg_r_10"></span> Jobs</div>
         </div>
 
@@ -182,7 +179,7 @@
           </div>
         </div>
 
-        <div class="flex_div flx_center other_links pointer_cursor flex_div flx_center">
+        <div class="flex_div flx_center other_links pointer_cursor flex_div flx_center" (click)="gotoCourses('learnProfile')">
           <div class="profiledash_text toggle_white learn_menu"><span class="icon-learning mg_r_10"></span> Learning
           </div>
         </div>
@@ -193,7 +190,7 @@
         </div>
 
 
-        <div class="flex_div flx_center other_links pointer_cursor flex_div flx_center">
+        <div class="flex_div flx_center other_links pointer_cursor flex_div flx_center" (click)="gotoEvent()">
           <div class="profiledash_text toggle_white event_menu"><span class="icon-events mg_r_10"></span> Events</div>
         </div>
       </div>

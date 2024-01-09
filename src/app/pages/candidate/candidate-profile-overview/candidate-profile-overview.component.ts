@@ -34,6 +34,7 @@ export class CandidateProfileOverviewComponent implements OnInit {
   myLearningData: any;
   filterObj: any = {};
   appliedJobData: any;
+  jobappliedDate: any;
 
   constructor(
     public router: Router,
@@ -45,6 +46,43 @@ export class CandidateProfileOverviewComponent implements OnInit {
 
   ngOnInit(): void {
     this.getJobList();
+  }
+
+
+  dateTimeAgo(jobDate: any) {
+    // Step 1: Parse the provided UTC date string
+    const utcDateString = jobDate;
+    const utcDate: Date = new Date(utcDateString);
+    // Step 2: Calculate the time difference in milliseconds
+    const currentDate: Date = new Date();
+    const timeDifferenceInMilliseconds: number = currentDate.getTime() - utcDate.getTime();
+    // Step 3: Convert milliseconds to different units
+    const secondsAgo: number = Math.floor(timeDifferenceInMilliseconds / 1000);
+    const minutesAgo: number = Math.floor(secondsAgo / 60);
+    const hoursAgo: number = Math.floor(minutesAgo / 60);
+    const daysAgo: number = Math.floor(timeDifferenceInMilliseconds / (24 * 60 * 60 * 1000));
+    const weeksAgo: number = Math.floor(daysAgo / 7);
+    const monthsAgo: number = Math.floor(daysAgo / 30);
+    const yearsAgo: number = Math.floor(daysAgo / 365);
+    // Step 4: Determine the appropriate unit and display
+    let displayString: string;
+
+    if (yearsAgo > 0) {
+      displayString = `${yearsAgo} ${yearsAgo === 1 ? 'year' : 'years'} ago`;
+    } else if (monthsAgo > 0) {
+      displayString = `${monthsAgo} ${monthsAgo === 1 ? 'month' : 'months'} ago`;
+    } else if (weeksAgo > 0) {
+      displayString = `${weeksAgo} ${weeksAgo === 1 ? 'week' : 'weeks'} ago`;
+    } else if (daysAgo > 0) {
+      displayString = `${daysAgo} ${daysAgo === 1 ? 'day' : 'days'} ago`;
+    } else if (hoursAgo > 0) {
+      displayString = `${hoursAgo} ${hoursAgo === 1 ? 'hour' : 'hours'} ago`;
+    } else if (minutesAgo > 0) {
+      displayString = `${minutesAgo} ${minutesAgo === 1 ? 'minute' : 'minutes'} ago`;
+    } else {
+      displayString = 'Just now';
+    }
+    return displayString;
   }
 
 
@@ -180,12 +218,18 @@ export class CandidateProfileOverviewComponent implements OnInit {
     this.apiService.joblistingDashboard(params).subscribe((response: any) => {
       if (response.success) {
         this.appliedJobData = response.data;
+        this.jobappliedDate = this.appliedJobData?.isAppliedDate;
         console.log(this.appliedJobData, 'Applied Job Details');
       }
     });
   }
 
-  gotoappliedJobs(){
+
+
+
+
+
+  gotoappliedJobs() {
     this.router.navigateByUrl('/candidateview/appliedjobs');
   }
 
