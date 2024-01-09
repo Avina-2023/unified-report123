@@ -44,7 +44,6 @@ height: 76px;
 background: #FFFFFF 0% 0% no-repeat padding-box;
 border-radius: 15px;margin: 1% 4%;border: 1px solid #d0d0d0;">
       <div class="results_dash">
-        <!-- <div> Results Showing ({{this.totallength}})</div> -->
         <div class="arrow_grid">
           <!-- <div class="sort">
           <p class="sortby_text">Sort by:</p>
@@ -56,7 +55,7 @@ border-radius: 15px;margin: 1% 4%;border: 1px solid #d0d0d0;">
         </div> -->
           <div style="background: #1B4E9C 0% 0% no-repeat padding-box;
 border-radius: 20px;color:#fff;height: 36px;
-opacity: 1;">
+opacity: 1;margin: 0px 20px 0px 0px;padding: 7px 0px 0px 0px;">
             <mat-select class="jobs_Position mat-select-arrow-wrapper " appearance="outline">
               <mat-option value="relevance" [ngClass]="{'active': activeButton === 'Jobs'}"
                 (click)="setActiveButton('Jobs')"> Jobs </mat-option>
@@ -83,22 +82,23 @@ opacity: 1;">
               </mat-select>
             </ng-template>
           </div>
+        </div>
 
 
-          <!-- <div class="icon-container">
+
+        <!-- <div class="icon-container">
               <div class="grid-container" [ngClass]="{'grid_2-selected': grid2Selected}" (click)="toggleGrid2()">
                 <span class="icon-dotted-grid grid_1" matTooltip="Grid View" matTooltipClass="custom-tooltip"></span>
                 <span class="icon-list_view grid_2" matTooltip="List View" matTooltipClass="custom-tooltip"></span>
               </div>
             </div> -->
-          <!-- <div class="icon-container"> -->
-          <!-- <div class="grid-container" (click)="toggleGrid2()"> -->
-          <!-- <span class="icon-dotted-grid grid_1" matTooltip="Grid View" matTooltipClass="custom-tooltip"></span> -->
-          <!-- <span class="icon-list_view grid_2" matTooltip="List View" matTooltipClass="custom-tooltip"></span> -->
-          <!-- </div> -->
-          <!-- </div> -->
-          <div class="result_sty"> Results Showing ({{this.totallength}})</div>
-        </div>
+        <!-- <div class="icon-container"> -->
+        <!-- <div class="grid-container" (click)="toggleGrid2()"> -->
+        <!-- <span class="icon-dotted-grid grid_1" matTooltip="Grid View" matTooltipClass="custom-tooltip"></span> -->
+        <!-- <span class="icon-list_view grid_2" matTooltip="List View" matTooltipClass="custom-tooltip"></span> -->
+        <!-- </div> -->
+        <!-- </div> -->
+        <div class="result_sty"> Results Showing ({{this.totallength | number:'2.0-0'}})</div>
       </div>
     </div>
     <div class="main2">
@@ -169,6 +169,7 @@ opacity: 1;">
                 </div>
               </div>
             </div>
+            <hr style="margin: 19px 20px 0px 20px;">
             <div class="date">
               <div [disabled]="!item.yearofPassout.includes(removeduplicate2)"
                 (click)="!item.yearofPassout.includes(removeduplicate2) ? gotojob(item) : customalert(item)"
@@ -179,14 +180,17 @@ opacity: 1;">
               <div [disabled]="!item.yearofPassout.includes(removeduplicate2)"
                 (click)="item.yearofPassout.includes(removeduplicate2) ? gotojob(item) : customalert(item)"
                 [ngClass]="{'blurcard': !item.yearofPassout.includes(removeduplicate2)&&item.partnerLabel}">
-                <span class="icon-clock_postdate dayleftclr"></span>
-                Posted on {{item.createdOn | date : 'd MMM'}}
+                <div style="  display: flex; align-items: center;">
+                  <span class="icon-clock_postdate "></span>
+                  <div>{{ getDaysAgo(item.createdOn) }}</div>
+                </div>
+                <!-- Posted on {{item.createdOn | date : 'd MMM'}} -->
               </div>
-              <div [disabled]="!item.yearofPassout.includes(removeduplicate2)"
+              <!-- <div [disabled]="!item.yearofPassout.includes(removeduplicate2)"
                 (click)="item.yearofPassout.includes(removeduplicate2) ? gotojob(item) : customalert(item)"
                 [ngClass]="{'blurcard': !item.yearofPassout.includes(removeduplicate2)&&item.partnerLabel}">
                 &nbsp; <span class="icon-daysleft_clock dayleftclr"></span> {{item.lastDatetoApply | timeDiff}}
-              </div>
+              </div> -->
 
               <div class="misc_save" (click)="bookMarkIcon(item)"
                 [ngClass]="{'blurcard disabled-card': !item.yearofPassout.includes(removeduplicate2) && item.partnerLabel}">
@@ -238,8 +242,7 @@ opacity: 1;">
         <div *ngFor="let course of fillist.subContent; let i = index">
           <span *ngIf="i<4">
             <mat-checkbox (change)="checkboxChecked($event,course,fillist.key,fillist.isMaster,'direct')"
-              [checked]="course.is_checked" class="fldName" color="primary" *ngIf="!fillist.isShow">{{fillist.fieldName
-              == 'Education' ? course.name.specification : course.name }}
+              [checked]="course.is_checked" class="fldName" color="primary" *ngIf="!fillist.isShow">{{course.name}}
               ({{course.totalCount}})
             </mat-checkbox>
           </span>
@@ -264,8 +267,7 @@ opacity: 1;">
     <div class="filter_col mat_dlg_cnt">
       <div *ngFor="let course of filterItems.subContent">
         <mat-checkbox class="mat_courses" (change)="checkboxChecked($event,course,filterItems.key,filterItems.isMaster)"
-          [checked]="course.is_checked" color="primary">{{filterItems.fieldName == "Education" ?
-          course.name.specification : course.name}} ({{course.totalCount}})</mat-checkbox>
+          [checked]="course.is_checked" color="primary">{{course.name}} ({{course.totalCount}})</mat-checkbox>
       </div>
     </div>
     <button [mat-dialog-close] class="aply_btn" (click)="applyfilter()" mat-raised-button color="primary">Apply</button>

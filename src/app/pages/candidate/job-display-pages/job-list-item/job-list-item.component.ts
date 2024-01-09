@@ -6,6 +6,10 @@ import { environment } from 'src/environments/environment';
 import { log } from 'console';
 import { AppConfigService } from 'src/app/utils/app-config.service';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { NavigationExtras } from '@angular/router';
+import { APP_CONSTANTS } from 'src/app/utils/app-constants.service';
+
+
 @Component({
   selector: 'app-job-list-item',
   templateUrl: './job-list-item.component.html',
@@ -103,6 +107,7 @@ export class JobListItemComponent implements OnInit, AfterViewInit {
   }
 
 
+
   bookMarkIcon(item) {
     item.isSelected = !item.isSelected;
     let jobParams: any = {
@@ -147,5 +152,36 @@ export class JobListItemComponent implements OnInit, AfterViewInit {
         return '#56B35A29'; // Default background color
     }
   }
-  ngAfterViewInit() {}
+
+ gotojob(item) {
+    let extras: NavigationExtras = { state: { itemData: item } };
+    this.appconfig.setLocalStorage('jobDesc', JSON.stringify(item));
+    this.router.navigateByUrl(
+      APP_CONSTANTS.ENDPOINTS.CANDIDATEDASH.JOBDESCRIPTION,
+      extras
+    );
+  }
+
+  ngAfterViewInit() { }
+  getDaysAgo(createdOn: Date): string {
+  const today = new Date();
+  const differenceInSeconds = Math.floor((today.getTime() - new Date(createdOn).getTime()) / 1000);
+  if (differenceInSeconds < 60) {
+    return 'just now';
+  }
+  const differenceInMinutes = Math.floor(differenceInSeconds / 60);
+  if (differenceInMinutes < 60) {
+    return `${differenceInMinutes} ${differenceInMinutes === 1 ? 'min' : 'mins'} ago`;
+  }
+  const differenceInHours = Math.floor(differenceInMinutes / 60);
+  if (differenceInHours < 24) {
+    return `${differenceInHours} ${differenceInHours === 1 ? 'hour' : 'hours'} ago`;
+  }
+  const differenceInDays = Math.floor(differenceInHours / 24);
+  if (differenceInDays <= 30) {
+    return `${differenceInDays} ${differenceInDays === 1 ? 'day' : 'days'} ago`;
+  }
+  return '30+ days ago';
+}
+
 }

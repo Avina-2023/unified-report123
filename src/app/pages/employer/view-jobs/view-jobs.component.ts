@@ -158,7 +158,8 @@ export class ViewJobsComponent implements OnInit {
             params.value != null &&
             params.value != ''
           ) {
-            this.FormateName = params.value;
+             this.FormateName = params.value;
+
             if (
               params.data.lastName != undefined &&
               params.data.lastName != ''
@@ -330,7 +331,7 @@ export class ViewJobsComponent implements OnInit {
       return '-';
     }
   },
- // tooltipField: 'education',
+   //tooltipField: 'education'
 },
 
       {
@@ -386,7 +387,7 @@ export class ViewJobsComponent implements OnInit {
         tooltipField: 'yearofPassout',
       },
 
-{
+     {
         headerName: 'Posted By',
         field: 'postedBy',
         minWidth: 235,
@@ -639,7 +640,7 @@ export class ViewJobsComponent implements OnInit {
     };
   }
 
-   onTabChange(index: number) {
+  onTabChange(index: number) {
     const pall = ['navyblue', 'green', 'lightblue', 'red'];
     const icn = ['#1B4E9B', '#49AE31', '#27BBEE', '#EF2917'];
     console.log('Selected tab index:' + index);

@@ -8,21 +8,24 @@
         <div class='compTitle' style="display: flex;align-items: center;"><strong>{{ jobDetails.jobRole ?
             jobDetails.jobRole : jobDetails.jobTitle }}</strong>
           <div *ngIf="jobDetails.partnerLabel === 'Skill Exchange Partner'" matTooltip="Skill Exchange Partner">
-            <span style="margin: 0px 0px 0px 7px;" class="icon-green_tick_flower_circuled"></span>
+            <span style="margin: 0px 0px 0px 7px;"></span><img
+              src="../../../../assets/images/skillexchange-logotick.png">
           </div>
         </div>
         <div class='genTitle'>{{ jobDetails.company }}</div>
       </div>
     </div>
-
     <!--  -->
     <div class="" style="margin: 15px 15px 0px 0px;">
       <button class="btn" *ngIf="jobDetails.isApplied == false" (click)="handleButtonClick()">
         <span class="icon-apply_now" *ngIf="jobDetails.partnerLabel !== 'Skill Exchange Partner'"></span>Apply Now
       </button>
-      <button class="btn" [disabled]="true" *ngIf="jobDetails.isApplied == true">Applied</button>
+      <button class="btn_applied" [disabled]="true" *ngIf="jobDetails?.isApplied == true"
+        [ngStyle]="{'background-color': ' #DFE6F2','color': '#1B4E9C','border':'none','font-weight':' 600','opacity': '1'}">
+        <span class="icon-tick_mark_green"></span>&nbsp;Applied
+      </button>
       <button class="save btn" *ngIf="jobDetails.isSelected == false" (click)="saved()">Save</button>
-      <button class="save btn" *ngIf="jobDetails.isSelected == true" (click)="saved()">Saved</button>
+      <button class="save_ed btn" *ngIf="jobDetails.isSelected == true" (click)="saved()">Saved</button>
     </div>
   </div>
 
@@ -56,6 +59,8 @@
           </button>
           <button class="btn" [disabled]="true" *ngIf="jobDetails.isApplied == true">Applied</button>
         </div> -->
+
+          <!--  -->
           <div *ngIf="jobDetails.partnerLabel && jobDetails.partnerLabel === 'Skill Exchange Partner'"
             class="greenblue">
             <div class="text-overlay">{{jobDetails.partnerLabel }}</div>
@@ -73,16 +78,23 @@
       </div>
       <div class="job-details">
         <div class="genText1" style="justify-content: space-between;">
-         <div style="display: flex; flex-direction: row;">
-          <div class="locate" *ngFor="let item of jobDetails.jobLocation; let i=index; let isLast=last"><span><mat-icon
-                style="width: 15px !important;" class="misc_icon"> location_on</mat-icon></span>
-            {{ item }}
-            <span class="misc_col" *ngIf="!isLast && i < jobDetails.jobLocation.length - 1">,&nbsp;</span>
+
+          <div style="display: flex; flex-direction: row;">
+            <div class="locate">
+              <span><mat-icon style="width: 15px !important;" class="misc_icon">location_on</mat-icon></span>
+              <ng-container *ngFor="let item of jobDetails.jobLocation; let i = index; let isLast = last">
+                {{ item }}
+                <span class="misc_col" *ngIf="!isLast && i < jobDetails.jobLocation.length - 1">,&nbsp;</span>
+              </ng-container>
+            </div>
           </div>
-         </div>
-          <div class="eventnote">
-            <span class="application-end">Application Deadline</span><br>
-            {{ jobDetails.lastDatetoApply | date:'d MMMM, yyyy' }}
+
+          <div #eventnoteDiv class="eventnote">
+            <div>
+              <span class="icon-cal_endar_icon_g"></span>&nbsp;
+              <span class="application-end">Application Deadline</span><br>
+              <span class="application-dateend">{{ jobDetails.lastDatetoApply | date:'d MMMM, yyyy' }}</span>
+            </div>
           </div>
         </div>
 
@@ -107,22 +119,30 @@
           <span class="misc_col" *ngIf="!isLast && i < jobDetails.education.length">&nbsp;</span>
         </div>
       </div> -->
-        <hr>
+        <hr style="margin: 10px 0px 15px 0px;">
         <div class="flx_save">
-          <span>Just Now</span>
+          <div class="genText1">
+            <span class="icon-clock_postdate " style="margin: 0px 0px 0px -10px;"></span>
+            <div class="PostedDate"> {{ getDaysAgo(jobDetails.createdOn) }}</div>
+          </div>
+          <!-- <span>Just Now</span> -->
           <div class="save-applied">
             <button class="btn" *ngIf="jobDetails.isApplied == false" (click)="handleButtonClick()">
               <span class="icon-apply_now" *ngIf="jobDetails.partnerLabel !== 'Skill Exchange Partner'"></span>Apply Now
             </button>
-            <button class="btn" [disabled]="true" *ngIf="jobDetails.isApplied == true">Applied</button>
+            <button class="btn_applied" [disabled]="true" *ngIf="jobDetails?.isApplied == true"
+              [ngStyle]="{'background-color': ' #DFE6F2','color': '#1B4E9C','border':'none','font-weight':' 600','opacity': '1'}">
+              <span class="icon-tick_mark_green"></span>&nbsp;Applied
+            </button>
+            <!-- <button class="btn" [disabled]="true" *ngIf="jobDetails.isApplied == true">Applied</button> -->
             <button class="save btn" *ngIf="jobDetails.isSelected == false" (click)="saved()">Save</button>
-            <button class="save btn" *ngIf="jobDetails.isSelected == true" (click)="saved()">Saved</button>
+            <button class="save_ed btn" *ngIf="jobDetails.isSelected == true" (click)="saved()">Saved</button>
           </div>
         </div>
       </div>
       <div style="background: #FFFFFF  0% 0% no-repeat padding-box;
 border-radius: 15px;width: 850px;
-height: auto;display: flex;justify-content: space-around;">
+height: 144px;display: flex;justify-content: space-around;align-items: center;">
         <div style="margin: 10px 0px 0px 0px; display: flex; flex-direction: column; align-items: center;">
           <div><img src="../../../../assets/images/job_profile_blue.png"></div>
           <div class="desTitle"> Job Title /
@@ -135,7 +155,7 @@ height: auto;display: flex;justify-content: space-around;">
           <div class="desTitle">Education</div>
           <div class="job_options">
             <div *ngFor="let content of jobDetails.education; let i = index; let isLast = last; let first = first">
-              <div class="spacing"><ng-container *ngIf="!first">, </ng-container> {{ content.level }} </div>
+              <div class="spacing"><ng-container *ngIf="!first">, </ng-container> {{ content.specification }} </div>
             </div>
           </div>
         </div>
@@ -216,28 +236,39 @@ height: auto;display: flex;justify-content: space-around;">
         </div>
       </div>
     </div>
-    <div class="" style="width: 250px;margin: 12px 15px 0px 0px;
-  height: 568px;
-  background: #FFFFFF 0% 0% no-repeat padding-box;
-  border-radius: 15px;">
-      <h3 style="padding: 10px 0px 0px 10px;font-weight: bold!important;">Similar Jobs</h3>
-      <div class=''><img class="comp_logo_sim" (error)="'/assets/images/compPlaceholder.png'"
-          [src]="productionUrl?jobDetails.companyLogo+blobToken:jobDetails.companyLogo" /></div>
-      <div class='compTitle_sim'><strong>{{ jobDetails.jobRole ? jobDetails.jobRole : jobDetails.jobTitle
-          }}</strong>
-      </div>
-      <div class='genTitle_sim'>{{jobDetails.company}}</div>
-      <div class="location_sim" *ngFor="let item of jobDetails.jobLocation; let i=index; let isLast=last"><span></span>
-        {{ item }}
-        <span class="misc_col" *ngIf="!isLast && i < jobDetails.jobLocation.length - 1">,&nbsp;</span>
-      </div>
-      <div class="genText1">
-        <div class="locate_sim">Posted {{ getDaysAgo(jobDetails.createdOn) }}</div>
-      </div>
-      <hr style="margin: 5px 10px;">
-    </div>
-  </div>
+    <!-- Similar jobs -->
+    <div class="Similar_job_card">
+      <h3 style="padding: 10px 0px 0px 15px; font-weight: bold!important;">Similar Jobs</h3>
 
+      <div *ngFor="let item of joblist; let i = index" class="similar-job" style="margin-bottom: 20px;padding: 0px 0px 0px 7px;">
+        <div class="" style="display: flex; align-items: center;">
+          <img class="comp_logo_sim" (error)="'/assets/images/compPlaceholder.png'"
+            [src]="productionUrl ? item.companyLogo + blobToken : item.companyLogo" />
+
+          <div *ngIf="item.partnerLabel === 'Skill Exchange Partner'" matTooltip="Skill Exchange Partner"
+            style="margin-left: auto;">
+            <span></span>
+            <img class="comp_skill_sim" src="../../../../assets/images/skillexchange-logotick.png">
+          </div>
+        </div>
+
+        <div class='compTitle_sim'><strong>{{ item.jobRole ? item.jobRole : item.jobTitle }}</strong></div>
+        <div class='genTitle_sim'>{{item.company}}</div>
+
+        <div class="location_sim" *ngFor="let location of item.jobLocation; let isLast=last">
+          <span>{{ location }}</span>
+          <span class="misc_col" *ngIf="!isLast">,&nbsp;</span>
+        </div>
+
+        <div class="genText1">
+          <div class="locate_sim">Posted {{ getDaysAgo(item.createdOn) }}</div>
+        </div>
+
+        <hr style="margin: 5px 10px;" *ngIf="i !== joblist.length - 1">
+      </div>
+    </div>
+
+  </div>
 
 
   <ng-template #incompleteProfile>
@@ -267,15 +298,6 @@ height: auto;display: flex;justify-content: space-around;">
     </div>
   </ng-template>
 
-  <!-- <ng-template #externalApply>
-    <div class="wrapper">
-      <div class="closer"><mat-icon mat-dialog-close>close</mat-icon></div>
-      <div><img width="100px" class="ticsize" src="/assets/images/alert-image.png"></div>
-      <div class="message">This link will take you to a third-party page that is not part of Skill Exchange.</div>
-      <div class="msgsub" style="margin-top:10px">The given link is external and is not verified by L&T EduTech for its safety</div>
-    </div>
-  </ng-template> -->
-
   <ng-template #externalApply>
     <div class="ext-closer"><span class="text_leave">YOU ARE LEAVING</span> <mat-icon mat-dialog-close>close</mat-icon>
     </div>
@@ -286,12 +308,9 @@ height: auto;display: flex;justify-content: space-around;">
         <div class="redirect-message"><b>Note:</b>The provided link is external and has not been verified by L&T Edutech
           for its safety.
         </div>
-        <!-- <div class="redirect-message">The applicant may choose to proceed or return back to homepage</div> -->
-        <!-- <a href="https://example.com/test/test/test">https://example.com/test/test/test</a> -->
       </div>
     </div>
     <div>
-      <!-- <button class="mat-raised-button primary can-btn" >cancel</button> -->
       <button class="mat-raised-button primary ext-btn" (click)="redirectToApplyLink()">I understand, let’s
         proceed</button>
     </div>
