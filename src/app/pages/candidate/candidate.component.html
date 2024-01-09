@@ -1,4 +1,4 @@
-<mat-toolbar class="appHeader" layout="row" style="position: fixed;z-index:99;">
+<!-- <mat-toolbar class="appHeader" layout="row" style="position: fixed;z-index:99;">
   <button mat-icon-button class="menu-icon">
     <mat-icon (click)="isExpanded = !isExpanded;sideNavMode=sideNavMode=='over'?'side':'over'" class="mat-24"
       aria-label="Menu">menu</mat-icon>
@@ -8,24 +8,88 @@
   <div class="toolbar-pic">
     <span class="username">{{candidateName}}</span>
     <button mat-button [matMenuTriggerFor]="menu">
-      <!-- <img class="profileimg"
-        [src]="profileimge && profileimge !=''?profileimge:'../../../../assets/images/emp-dashboard-icons/user.png'"> -->
-        <!-- <img class="profileimg" 
-        [src]="profileimge && profileimge !='' && profileimge !='undefined'?profileimge:'../../../../assets/images/emp-dashboard-icons/user.png'"> -->
         <img class="profileimg" 
         [src]="profileimge && profileimge !='' && profileimge !='undefined'?profileimge:'../../../../assets/images/candidate-userprofile.png'">
     </button>
     <mat-menu #menu="matMenu"> 
       <button style="color:#1B4E9B;" mat-menu-item (click)="logout()"> <mat-icon 
           style="color:#1B4E9B;">output</mat-icon>Log Out</button>
-      <!-- <span class="icon-logout"></span> -->
     </mat-menu>
   </div>
+</mat-toolbar> -->
+
+
+
+<mat-toolbar class="flex_div candidate_header flx_between">
+  <div class="flex_div flx_center">
+    <div class="mg-10"><img class="hearder-logo" alt="" src="assets/images/landing/newLogo.png"></div>
+    <div class="search-container mg-10">
+      <mat-icon class="search-icon">search</mat-icon>
+      <input type="search" placeholder="Search" class="search_input">
+    </div>
+  </div>
+
+  <div class="flex_div">
+    <div class="menus flex_div mob_view" style="border-right: 1px solid #ccc3c375; padding: 0px 10px;" #menuIcons>
+      <div class="menu_icon pointer_cursor" #iconHover1 (mouseenter)="addSlideAnimation(iconHover1, 'home')"
+        (mouseleave)="removeSlideAnimation(iconHover1, 'home')" (click)="isIconActive(iconHover1, 'home')">
+        <div class="icon">
+          <span class="icon-home_icon"></span>
+        </div>
+        <div class="icon_txt">Home</div>
+      </div>
+
+      <div class="menu_icon pointer_cursor" #iconHover2 (mouseenter)="addSlideAnimation(iconHover2, 'jobs')"
+        (mouseleave)="removeSlideAnimation(iconHover2, 'jobs')" (click)="isIconActive(iconHover2,'jobs')">
+        <div class="icon"><span class="icon-jobs-work"></span></div>
+        <div class="icon_txt">Jobs</div>
+      </div>
+
+      <div class="menu_icon pointer_cursor" #iconHover3 (mouseenter)="addSlideAnimation(iconHover3, 'internships')"
+        (mouseleave)="removeSlideAnimation(iconHover3, 'internships')"
+        (click)="isIconActive(iconHover3, 'internships')">
+        <div class="icon"><span class="icon-internships"></span></div>
+        <div class="icon_txt">Internships</div>
+      </div>
+
+      <div class="menu_icon pointer_cursor" #iconHover4 (mouseenter)="addSlideAnimation(iconHover4, 'learning')"
+        (mouseleave)="removeSlideAnimation(iconHover4, 'learning')" (click)="gotoCourses()">
+        <div class="icon"><span class="icon-learning"></span></div>
+        <div class="icon_txt">Learning</div>
+      </div>
+
+      <div class="menu_icon pointer_cursor" #iconHover5 (mouseenter)="addSlideAnimation(iconHover5, 'forum')"
+        (mouseleave)="removeSlideAnimation(iconHover5, 'forum')">
+        <div class="icon"><span class="icon-forum"></span></div>
+        <div class="icon_txt">Forum</div>
+      </div>
+
+      <div class="menu_icon pointer_cursor" #iconHover6 (mouseenter)="addSlideAnimation(iconHover6, 'events')"
+        (mouseleave)="removeSlideAnimation(iconHover6, 'events')">
+        <div class="icon"><span class="icon-events"></span></div>
+        <div class="icon_txt">Events</div>
+      </div>
+    </div>
+    <div class="flex_div flx_center" style="padding: 0px 10px;">
+      <div class="mg-7 pointer_cursor mob_view"><span class="icon-darkMode"></span></div>
+      <div class="mg-7 pointer_cursor mob_view"><span class="icon-notification"></span></div>
+      <div class="mg-7 pointer_cursor bg-user" (click)="showProfileDashboard()"
+     [style.background]="'url(' + (profileImage ? profileImage : 'assets/images/candidate-userprofile.png') + ')'">
+</div>
+
+      <!-- <div class="icon pointer_cursor" (click)="showProfileDashboard()" *ngIf ="{{profileimge}} != null"> {{profileimge}}
+      </div> -->
+    </div>
+  </div>
 </mat-toolbar>
+
+
+
+
 <div class="content">
-  <mat-sidenav-container class="example-container" style="margin-top: 56px !important;" autosize [hasBackdrop]="false">
+  <mat-sidenav-container class="example-container" autosize [hasBackdrop]="false">
     <mat-sidenav #sidenav [mode]="sideNavMode" opened="true" class="sidenav" (mouseenter)="mouseenter()"
-      (mouseleave)="mouseleave()">
+      (mouseleave)="mouseleave()" *ngIf="isSidebarDisabled">
       <mat-nav-list>
         <mat-list-item class="navItems" [ngClass]="router.url==routelinks.CANDIDATEDASH.DASHBOARD? 'active':''"
           [routerLink]="routelinks.CNDIDATELANDING">
@@ -78,20 +142,81 @@
       <mat-nav-list>
       </mat-nav-list>
     </mat-sidenav>
-    <mat-sidenav-content style="overflow-x:hidden !important">
+    <mat-sidenav-content style="overflow-x:hidden !important;">
       <div [ngClass]="sideNavMode=='over'?'navMarginOver':'navMarginSide'">
         <router-outlet></router-outlet>
       </div>
     </mat-sidenav-content>
   </mat-sidenav-container>
-  <div class="appFooter">
-    <app-footer></app-footer>
+  
+  <div class="profile_menu" [class.slide-left]="isShowProfile">
+    <div class="innercontent">
+      <div class="flex_div flx_center pt-20">
+        <div class="user_avatar mg-10" [style.background]="'url('+(profileImage ? profileImage : 'assets/images/candidate-userprofile.png')+')'">
+        </div>
+        <div class="txt_left">
+          <div class="user_title toggle_white text_capitalize">{{candidateName}}</div>
+          <div class="user_email toggle_grey">{{candidateEmail}}</div>
+        </div>
+      </div>
+      <div class="profile_link">
+        <div class="view_profile pointer_cursor" (click)="gotoAccount()">My Account</div>
+      </div>
+      <div class="close-icon pointer_cursor" (click)="closeDashboard()">
+        <span class="icon-Close"></span>
+      </div>
+
+      <div class="split_div"></div>
+
+      <div class="menu_profile">
+        <div class="flex_div flx_center other_links pointer_cursor">
+          <!-- <div class="profiledash_icon recently_viewed">
+            <span class="icon-jobs"></span>
+          </div> -->
+          <div class="profiledash_text toggle_white job_menu"><span class="icon-jobs-work mg_r_10"></span> Jobs</div>
+        </div>
+
+        <div class="flex_div flx_center other_links pointer_cursor flex_div flx_center">
+          <div class="profiledash_text toggle_white intern_menu"><span class="icon-internships mg_r_10"></span>
+            Internships
+          </div>
+        </div>
+
+        <div class="flex_div flx_center other_links pointer_cursor flex_div flx_center">
+          <div class="profiledash_text toggle_white learn_menu"><span class="icon-learning mg_r_10"></span> Learning
+          </div>
+        </div>
+
+
+        <div class="flex_div flx_center other_links pointer_cursor flex_div flx_center">
+          <div class="profiledash_text toggle_white group_menu"><span class="icon-forum mg_r_10"></span> Groups</div>
+        </div>
+
+
+        <div class="flex_div flx_center other_links pointer_cursor flex_div flx_center">
+          <div class="profiledash_text toggle_white event_menu"><span class="icon-events mg_r_10"></span> Events</div>
+        </div>
+      </div>
+      <div style="text-decoration: none!important">
+        <div class="flex_div flx_center signout_div center_abs trans_x50 pointer_cursor">
+          <div class="profiledash_text trans_x50 center_abs toggle_white" (click)="logout()"><span
+              class="icon-signout"></span> Sign Out
+          </div>
+        </div>
+      </div>
+
+
+    </div>
   </div>
+  <!-- <div class="appFooter">
+    <app-footer></app-footer>
+  </div> -->
 </div>
+
 <div>
   <ng-template #confirmDialog>
     <div class="logout">
-     <div class="clos-icn"><mat-icon mat-dialog-close>close</mat-icon></div>
+      <div class="clos-icn"><mat-icon mat-dialog-close>close</mat-icon></div>
       <div class="logot-img">
         <img src="../../../assets/images/alert-image.png" />
       </div>
