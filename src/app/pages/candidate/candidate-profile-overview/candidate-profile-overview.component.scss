@@ -67,13 +67,17 @@ span.icon-plus_rounded {
             border-radius: 16px;
             font-size: 12px;
         }
-        .duration{
+
+        .duration {
             color: #848484;
         }
-        .course_status,.duration{
+
+        .course_status,
+        .duration {
             font-size: 12px;
         }
-        .mg-lr-10{
+
+        .mg-lr-10 {
             margin: 0px 10px;
         }
 
@@ -169,37 +173,40 @@ span.icon-plus_rounded {
     }
 
 
-    .inprogress_state{
+    .inprogress_state {
         background: #FFFBF6;
-        
-        .course_status{
+
+        .course_status {
             color: #FFB74D;
         }
-        .course_percent{
-           background: #FFB74D;
+
+        .course_percent {
+            background: #FFB74D;
         }
     }
 
-    .completed_state{
+    .completed_state {
         background: #F6FBF5;
-        
-        .course_status{
+
+        .course_status {
             color: #49AE31;
         }
-        .course_percent{
-           background: #49AE31;
+
+        .course_percent {
+            background: #49AE31;
         }
     }
 
 
-    .not-started-state{
+    .not-started-state {
         background: #F6F6F6;
-        
-        .course_status{
+
+        .course_status {
             color: #5C5C5C;
         }
-        .course_percent{
-           background: #5C5C5C;
+
+        .course_percent {
+            background: #5C5C5C;
         }
     }
 
@@ -347,6 +354,7 @@ span.icon-plus_rounded {
         padding: 17px;
         border-radius: 10px
     }
+
     .eduYear {
         color: #848484;
         font-size: 12px;
@@ -359,12 +367,30 @@ span.icon-plus_rounded {
     }
 
     .comp_logo {
-        background-repeat: no-repeat!important;
-            background-size: contain!important;
-            height: 63px;
-            background-position: center!important;
-            border: 1px solid #ededed;
-            border-radius: 5px;
+        background-repeat: no-repeat !important;
+        background-size: contain !important;
+        height: 63px;
+        background-position: center !important;
+        border: 1px solid #ededed;
+        border-radius: 5px;
+    }
+
+    .company_name {
+        font-size: 13px;
+        line-height: 18px;
+        text-transform: capitalize;
+        padding-bottom: 2px
+    }
+
+    .application_status {
+        color: #49AE31;
+        font-size: 12px;
+        background: #F6FBF5;
+        width: -moz-fit-content;
+        width: fit-content;
+        padding: 1px 10px;
+        border-radius: 40px;
+        text-transform: capitalize;
     }
 
 

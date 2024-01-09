@@ -508,6 +508,7 @@ input.ng-touched.ng-invalid {
   border-radius: 5px;
   opacity: 1;
   color: #FCFCFC;
+  border: none;
 }
 
 .job_text {
@@ -546,6 +547,7 @@ nz-select.ng-touched.ng-invalid {
   position: relative;
   height: 100px !important;
 }
+
 // ::ng-deep .angular-editor-textarea {
 //   padding: 5px 20px !important;
 // }

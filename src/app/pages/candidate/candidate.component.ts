@@ -1,12 +1,13 @@
 import { Component, ElementRef, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { MatDrawerMode } from '@angular/material/sidenav';
 import { MatDialog } from '@angular/material/dialog';
-import { NavigationEnd, Router, RouterEvent } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router, RouterEvent } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
 import { SentDataToOtherComp } from 'src/app/services/sendDataToOtherComp.service';
 import { AppConfigService } from 'src/app/utils/app-config.service';
 import { APP_CONSTANTS } from 'src/app/utils/app-constants.service';
 import { environment } from 'src/environments/environment';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-candidatedash',
@@ -35,20 +36,37 @@ export class CandidateComponent implements OnInit {
   Details: any;
   candidateEmail: any;
   profileImage: any;
+  currentUrl: string;
   constructor(
     public router: Router,
     private apiservice: ApiService,
     private appconfig: AppConfigService,
     private msgData: SentDataToOtherComp,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private activatedRoute:ActivatedRoute
   ) {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
       }
     });
+
+
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe(() => {
+      // Get the current URL
+      this.currentUrl = this.router.url;
+      //console.log(this.currentUrl, 'currenturlparams');
+      this.sidebarDisabled();
+    });
+
+ 
+    
   }
 
   ngOnInit() {
+    // console.log(this.router.routerState.snapshot.url, 'currenturlparams');
+    // console.log(this.router.url, 'routerurl');
     this.profileimge = this.appconfig.getLocalStorage('profileImage');
     this.CandidateDetails();
     this.sidebarDisabled();
@@ -65,23 +83,28 @@ export class CandidateComponent implements OnInit {
 
 
   ngAfterViewInit() {
+
     // Set "Home" as the default active icon
     if (this.router.routerState.snapshot.url == '/candidateview/home') {
       this.isIconActive(this.iconHover1.nativeElement, 'home');
     }
-
     else if (this.router.routerState.snapshot.url == '/candidateview/dashboard') {
       this.isIconActive(this.iconHover1.nativeElement, 'dashboard');
     }
-
-
     else if (this.router.routerState.snapshot.url == '/candidateview/findjobs') {
       this.isIconActive(this.iconHover2.nativeElement, 'jobs');
     }
   }
 
   sidebarDisabled(){
-    if (this.router.routerState.snapshot.url == '/candidateview/home' || this.router.routerState.snapshot.url == '/candidateview/profile') {
+    // if (this.router.routerState.snapshot.url == '/candidateview/home' || this.router.routerState.snapshot.url == '/candidateview/profile') {
+    //   this.isSidebarDisabled = false;
+    // }
+    // else{
+    //   this.isSidebarDisabled = true;
+    // }
+
+    if((this.currentUrl == '/candidateview/home') || (this.currentUrl == '/candidateview/profile')){
       this.isSidebarDisabled = false;
     }
     else{
@@ -112,7 +135,7 @@ export class CandidateComponent implements OnInit {
   gotoAccount(){
     this.router.navigateByUrl('/candidateview/profile');
     this.isShowProfile = !this.isShowProfile;
-    this.isSidebarDisabled = false;
+    //this.isSidebarDisabled = false;
 
     const menuIcons = this.menuIcons.nativeElement.querySelectorAll('.menu_icon');
     menuIcons.forEach((icon: any) => {
@@ -162,15 +185,22 @@ export class CandidateComponent implements OnInit {
     // Now you can use the menuType parameter
     if (menuType === 'jobs') {
       this.router.navigateByUrl('/candidateview/findjobs');
-      this.isSidebarDisabled = true;
+      //this.isSidebarDisabled = true;
     }
+
+    if (menuType === 'jobsProfile') {
+      this.router.navigateByUrl('/candidateview/findjobs');
+      //this.isSidebarDisabled = true;
+      this.isShowProfile = !this.isShowProfile;
+    }
+
     if (menuType === 'dashboard') {
       this.router.navigateByUrl('/candidateview/dashboard');
-      this.isSidebarDisabled = false;
+      //this.isSidebarDisabled = false;
     }
     if (menuType === 'home') {
       this.router.navigateByUrl('/candidateview/home');
-      this.isSidebarDisabled = false;
+      //this.isSidebarDisabled = false;
     }
   }
 
@@ -217,16 +247,27 @@ export class CandidateComponent implements OnInit {
     window.location.assign(environment.SKILL_PROFILE_URL + '/externallogin?extId=' + enc_email);
   }
 
-  gotoCourses() {
+  gotoCourses(data:any) {
     let microKey = this.Details?.privateKey;
     let microUrl = environment.MICROLEARN_URL + '?key=' + microKey
     window.open(microUrl, '_blank');
+    if (data == 'learnProfile' ){
+      this.isShowProfile = !this.isShowProfile;
+    }
   }
 
   
   gotoDashboard() {
     this.router.navigate(['/candidateview/dashboard'])
   }
+
+  gotoEvent(){
+    let eventUrl = environment.CORPORATE_URL + '/events';
+    window.open(eventUrl, '_blank');
+  }
+  // gotoJob(){
+  //   this.router.navigate(['/candidateview/findjobs'])
+  // }
 
 
 }

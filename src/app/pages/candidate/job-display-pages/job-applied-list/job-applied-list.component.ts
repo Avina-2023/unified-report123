@@ -20,10 +20,12 @@ export class JobAppliedListComponent implements OnInit {
   public appliedjobs: any;
   public appliedlenghth: any;
   public url = 'Applied Jobs';
+  resultShow: any;
   // public suburl="Dashboard";
   constructor(private apiService: ApiService, private toastr: ToastrService) {}
 
   ngOnInit() {
+    this.resultShow = length
     this.appliedJobList();
   }
   some(pages) {

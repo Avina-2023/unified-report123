@@ -20,7 +20,7 @@
             <div class="profile_details">
                 <div class="title user-title">{{candidateName ? candidateName : ''}}</div>
                 <div class="user_email">{{candidateEmail ? candidateEmail : ''}}</div>
-                <div class="user_place">{{form_present_city ? form_present_city + ',' : ''}}  {{form_present_state ?
+                <div class="user_place">{{form_present_city ? form_present_city + ',' : ''}} {{form_present_state ?
                     form_present_state : ''}}
                 </div>
                 <div class="flag" *ngIf="form_present_city"><img decoding="async" src="assets/images/India-flag.png">
@@ -87,7 +87,8 @@
                 <div class="section-title">Work Experience</div>
                 <div (click)="gotoProfile()"><span class="icon-plus_rounded pointer_cursor"></span></div>
             </div>
-            <div class="single-element" *ngIf="workExperience?.is_anywork_exp == true || workExperience?.employments?.length != 0">
+            <div class="single-element"
+                *ngIf="workExperience?.is_anywork_exp == true || workExperience?.employments?.length != 0">
                 <div class="flex_div flx_center"
                     *ngFor="let item of workExperience?.employments?.slice()?.reverse()?.slice(0, 3)">
                     <div><span class="icon-work-suitcase graduation"></span></div>
@@ -112,8 +113,10 @@
                 <div class="section-title">Internships</div>
                 <div (click)="gotoProfile()"><span class="icon-plus_rounded pointer_cursor"></span></div>
             </div>
-            <div class="single-element" *ngIf="workExperience?.is_intern_status == true || workExperience?.intern?.length != 0">
-                <div *ngFor="let item of workExperience?.intern?.slice()?.reverse()?.slice(0, 3)" class="flex_div flx_center">
+            <div class="single-element"
+                *ngIf="workExperience?.is_intern_status == true || workExperience?.intern?.length != 0">
+                <div *ngFor="let item of workExperience?.intern?.slice()?.reverse()?.slice(0, 3)"
+                    class="flex_div flx_center">
                     <div><span class="icon-work-suitcase graduation"></span></div>
                     <div class="card_content">
                         <div class="title">{{(item?.work_responsiability) ? (item?.work_responsiability) : ''}}</div>
@@ -136,14 +139,27 @@
         <div class="pd-15">
             <div class="flex_div flx_between">
                 <div class="section-title">My Learnings</div>
-                <div class="view_more pointer_cursor">View All</div>
+                <div (click)="gotoCourses()" class="view_more pointer_cursor">View All</div>
             </div>
-            <div class="single-element"  *ngFor="let item of myLearningData?.slice()?.reverse()?.slice(0, 3)">
+            <div class="single-element" *ngFor="let item of myLearningData">
                 <div class="flex_div flx_center" *ngIf="myLearningData?.length != 0">
-                    <div class="card_img bg_course_img"
+                    <!-- <div class="card_img bg_course_img"
                         [style.background]="'url(' + ((item?.image?.url) ? (item?.image?.url) : 'assets/images/medal.png') + ')'">
-                    </div>                
-                   
+                    </div>                 -->
+
+                    <div class="card_img bg_course_img" *ngIf="item?.image?.url; else staticImage"
+                        style="background-image: url('{{ item?.image?.url }}');">
+                    </div>
+
+                    <ng-template #staticImage>
+                        <div class="card_img bg_course_img" style="background-image: url('assets/images/medal.png');">
+                        </div>
+                    </ng-template>
+
+
+
+
+
                     <div class="card_content" [class.completed_state]="item.status === 'completed'"
                         [class.inprogress_state]="item.status === 'suspend' || item.status === 'incomplete'"
                         [class.not-started-state]="item.status === 'start'">
@@ -175,10 +191,10 @@
         <div class="pd-15">
             <div class="flex_div flx_between">
                 <div class="section-title">Jobs Applied</div>
-                <div class="view_more pointer_cursor">View</div>
+                <div class="view_more pointer_cursor" (click)="gotoappliedJobs()">View</div>
             </div>
             <div class="single-element" *ngIf="appliedJobData?.length != 0">
-                <div class="flex_div flx_center" *ngFor="let item of appliedJobData" >
+                <div class="flex_div flx_center" *ngFor="let item of appliedJobData">
                     <div class="card_img comp_logo"
                         [style.background]="'url(' + ((item?.companyLogo) ? (item?.companyLogo) : 'assets/images/job-bag.png') + ')'">
                     </div>
@@ -186,7 +202,7 @@
                         <div class="title">{{(item?.jobRole) ? (item?.jobRole) : ''}}</div>
                         <div class="company_name">{{(item?.company) ? (item?.company) : ''}}</div>
                         <div class="application_status"><span class="icon-check-rounded"></span> Application Sent
-                            {{item?.isAppliedDate}}</div>
+                            {{dateTimeAgo(item?.isAppliedDate)}}</div>
                     </div>
                 </div>
             </div>
