@@ -23,7 +23,8 @@
 .pd_20 {
   padding: 20px !important;
 }
-.content{
+
+.content {
   background: #ededed;
 }
 
@@ -110,17 +111,16 @@
     background-color: #fff;
     height: 100%;
     border-radius: 20px 0px 0px 20px;
-    padding: 0px 10px;
 
 
     .user_avatar {
       width: 60px;
       border-radius: 50%;
       position: relative;
-      background-size: cover!important;
-      background-position: center!important;
+      background-size: cover !important;
+      background-position: center !important;
       height: 60px;
-      background-repeat: no-repeat!important;
+      background-repeat: no-repeat !important;
     }
 
     .txt_left {
@@ -237,13 +237,18 @@
         color: #1B4E9B;
       }
     }
+
+    .other_links:hover {
+      background: #d7fff8;
+    }
   }
 }
 
 
 
-.icon-jobs-work, .icon-home_icon{
-  font-weight: 600!important;
+.icon-jobs-work,
+.icon-home_icon {
+  font-weight: 600 !important;
 }
 
 .icon-home_icon:before,
