@@ -4,9 +4,9 @@
 }
 .Student-heading{
   color: #262626;
-  font-size: 19px;
+  font-size: 17px;
   font-weight: 600;
-  padding: 10px;
+  padding: 10px 10px 30px 10px;
 }
 .inner-container-1{
   background-color: #FFFFFF;
@@ -57,12 +57,14 @@
 }
 .registration-card{
   width: 500px;
+  height: 277px;
   border-radius: 10px;
   box-shadow: 0px 1px 12px #0000001F;
   margin: 15px;
 }
 .registration-card2{
   width: 500px;
+  height: 277px;
   border-radius: 10px;
   box-shadow: 0px 1px 12px #0000001F;
   margin: 15px 15px 15px 30px;
@@ -127,19 +129,18 @@
 }
 
 .ag-theme-alpine {
-  // --ag-header-height: 20px;
-
-  // //  --ag-header-foreground-color: #1b4e9b 25%;
-
-  //  --ag-header-background-color: #1b4e9b;
+  --ag-header-height: 20px;
+  --ag-header-foreground-color: #1b4e9b 25%;
+  --ag-header-background-color: #1b4e9b;
   --ag-header-background-color: rgba(27, 78, 155, 0.25);
-  //  --ag-odd-row-background-color: rgba(237, 237, 237, 0.6);
-  // color: #1b4e9b;
-  // font-size: 13px;
-  // font: normal normal normal 13px/18px Roboto;
-  // font-weight: 500;
-  // letter-spacing: 0.33px;
-
+  --ag-odd-row-background-color: rgba(237, 237, 237, 0.6);
+  color: #1B4E9B;
+  font-size: 13px;
+  font: normal normal normal 13px/18px Roboto;
+  font-weight: 500;
+  letter-spacing: 0.33px;
+  opacity: 1;
+  
   //  --ag-header-column-separator-display: block;
   //   --ag-header-column-separator-height: 100%;
   //   --ag-header-column-separator-width: 2px;

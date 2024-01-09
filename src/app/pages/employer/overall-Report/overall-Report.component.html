@@ -1,5 +1,5 @@
-<div style="background-color: #F4F7FC;">
-  <div class="dashboard"> Dashboard</div>
+<div style="background-color: #FAFAFA;">
+  <div class="dashboard"> Summary</div>
   <div class="flex_div">
     <div class="main-card" *ngIf="overallreportdata">
       <app-overall-Report-details-card *ngFor="let item of overallreportdata.generalReport; let i = index"
@@ -20,7 +20,7 @@
                   [labels]="doughnutChartLabels" [chartType]="doughnutChartType">
                 </canvas>
               </div>
-              <div>
+              <div class="learners-count">
                 <div class="learner-details-count">
                   <div class="learner-detail">
                     <div class="color-strip1"></div>

@@ -102,6 +102,8 @@ export class EditJobComponent implements OnInit {
       ['unlink'],
       ['insertVideo'],
       ['insertHorizontalRule'],
+      ['insertUnorderedList'],
+      ['outdent'],
       ['removeFormat'],
       ['customClasses'],
       ['toggleEditorMode']

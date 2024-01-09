@@ -9,9 +9,7 @@
 <div *ngIf="totallength==0">
   <app-no-data-found [from]="'applied'"></app-no-data-found>
 </div>
-
 <h1 class="result-show" *ngIf="total">{{total}}</h1>
-
 <app-job-list-item *ngIf="totallength" [data]="appliedjobs" [showApplied]="true"></app-job-list-item>
 <div class="pagination">
   <app-common-paginator *ngIf="total" (send)="some($event)" [totalcount]="total"></app-common-paginator>
