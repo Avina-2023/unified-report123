@@ -175,9 +175,9 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
     }
   }
 
-  getLeftValue(): string { 
-    const score = +this.selectedAssessment.score; 
-    const leftPercentage = (score / this.selectedAssessment.max_score) * 100; 
+  getLeftValue(): string {
+    const score = +this.selectedAssessment.score;
+    const leftPercentage = (score / this.selectedAssessment.max_score) * 100;
     return leftPercentage + '%';
   }
 
@@ -218,19 +218,19 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
     });
   }
 
-  assesmentdata() { 
-    this.candidateResultData = this.candidateData.assessments; 
+  assesmentdata() {
+    this.candidateResultData = this.candidateData.assessments;
     // this.AssesmentDetails = [...this.candidateResultData.Aptitude,...this.candidateResultData.Coding,...this.candidateResultData.English];
-    this.AssesmentDetails = this.candidateResultData; 
-    this.selectedAssessment = this.AssesmentDetails[this.assessmentIndex]; 
-  } 
+    this.AssesmentDetails = this.candidateResultData;
+    this.selectedAssessment = this.AssesmentDetails[this.assessmentIndex];
+  }
 
-  courseData() { 
-    this.courseResultData = this.candidateData.courses; 
-    this.currentIndex = 0; 
-    this.currentCertification = this.courseResultData[0]; 
+  courseData() {
+    this.courseResultData = this.candidateData.courses;
+    this.currentIndex = 0;
+    this.currentCertification = this.courseResultData[0];
     this.courseImg1 = this.currentCertification?.courseImgUrl + environment.SAS_Token;
-  } 
+  }
 
   scrollToSection(sectionId: string) {
     this.activeSection = sectionId;
@@ -303,15 +303,15 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
     };
     let city;
     this.updatedCitySubscription = this.apiService.districtList(ApiData).subscribe((datas: any) => {
-          this.allPresentCityList = datas.data;  
-          datas.data.forEach((element) => { 
-            if (element.id == cityId) { 
-              this.form_present_city = element.name; 
+          this.allPresentCityList = datas.data;
+          datas.data.forEach((element) => {
+            if (element.id == cityId) {
+              this.form_present_city = element.name;
               // return element.name;
             }
           });
-        }, 
-        (err) => { 
+        },
+        (err) => {
           console.log(err);
         }
       );
@@ -371,7 +371,7 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
       disableClose: false,
       panelClass: 'popupModalContainerForForms',
     });
-    
+
   }
   confirmrejectDialog(status) {
     const data = {
@@ -434,5 +434,5 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
     }
   }
 
-  
+
 }

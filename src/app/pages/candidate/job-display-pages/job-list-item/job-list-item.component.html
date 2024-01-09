@@ -1,81 +1,87 @@
 <div class="overflowbox">
   <div class="position">
-    <div style="width: 1026px;
-height: 69px;
-background: #FFFFFF 0% 0% no-repeat padding-box;
-border-radius: 15px; margin: 1px 15px;display: flex;
-    justify-content: space-between;
-    align-items: center;">
-      <div class="result-show"> Results Showing <span class="result-count">({{resultShow}}) </span></div>
+    <div class="count_container">
+
+      <ng-container *ngIf="showApplied">
+        <div class="result-show"> Applied Jobs</div>
+        <div style=" font: normal normal 500 42px Inter !important;
+          color: #262626;opacity: 1;margin: 15px;">{{resultShow | number:'2.0-0'}} </div>
+      </ng-container>
+      <ng-container *ngIf="savedButton">
+        <div class="result-show"> Saved Jobs</div>
+        <div style=" font: normal normal 500 42px Inter !important;
+          color: #262626;opacity: 1;margin: 15px;">{{resultShow | number:'2.0-0'}} </div>
+      </ng-container>
+
     </div>
     <div class="card_flex" *ngFor="let item of data">
-      <mat-card class="listcard">
-        <mat-card-header>
-          <div class="card_header">
-            <div class="comp-image">
-              <img class="img" [src]="productionUrl?item.companyLogo+blobToken:item.companyLogo">
-            </div>
-            <div class="cardgrid">
-              <!-- <div class="title">{{item.jobRole}}</div> -->
-              <div class="subtitle">{{item.jobRole}}</div>
-              <!-- <div class="cardfooter_row">
+      <div>
+        <mat-card class="listcard">
+          <mat-card-header style="  cursor: pointer;">
+            <div class="card_header" (click)="gotojob(item)">
+              <div class="comp-image">
+                <img class="img" [src]="productionUrl?item.companyLogo+blobToken:item.companyLogo">
+              </div>
+              <div class="cardgrid">
+                <!-- <div class="title">{{item.jobRole}}</div> -->
+                <div class="subtitle">{{item.jobRole}}</div>
+                <!-- <div class="cardfooter_row">
                 <span>
                   <mat-icon class="icon"> location_on</mat-icon>
                 </span>
                 <span class="smalltext" *ngFor="let elem of item.jobLocation;let i=index; let isLast=last">{{elem}}<span
                     class="misc_col" *ngIf="!isLast && i < item.jobLocation.length">&nbsp;</span> </span>
               </div> -->
-              <div class="cmpny_sel">
-                <span></span> {{item.company}}
+                <div class="cmpny_sel">
+                  <span></span> {{item.company}}
+                </div>
               </div>
             </div>
-          </div>
-          <div *ngIf="item.partnerLabel && item.partnerLabel === 'Skill Exchange Partner'" class="greenblue">
-            <div class="text-overlay">{{item.partnerLabel }}</div>
-          </div>
-        </mat-card-header>
-        <hr class="hrline">
-        <mat-card-content>
-          <p class="description-p" *ngIf="item.overview">
+            <div (click)="gotojob(item)" *ngIf="item.partnerLabel && item.partnerLabel === 'Skill Exchange Partner'" class="greenblue">
+              <div class="text-overlay">{{item.partnerLabel }}</div>
+            </div>
+          </mat-card-header>
+          <!-- <hr class="hrline"> -->
+          <mat-card-content>
+            <!-- <p class="description-p" *ngIf="item.overview">
             {{item.overview}}
-          </p>
-          <!-- <div class="specialization">
+          </p> -->
+            <!-- <div class="specialization">
           <span class="specialization-box" *ngFor="let elem of item.specialization">{{elem}}</span>
         </div> -->
-          <!-- <div class="cardgrid">
+            <!-- <div class="cardgrid">
           <div class="subtitle">{{item.company}}</div>
         </div> -->
-          <div class="foo-flex">
-            <div class="footer_details">
-              <!-- <div class="title">{{item.jobRole}}</div> -->
-              <div class="cardfooter_row">
-                <span>
-                  <mat-icon class="icon"> location_on</mat-icon>
-                </span>
-                <span class="smalltext" *ngFor="let elem of item.jobLocation; let i = index; let isLast = last">
-                  {{ elem }}
-                  <span class="misc_col" *ngIf="!isLast && i < item.jobLocation.length - 1">,&nbsp;</span>
-                </span>
-                <div class="cardfooter_edu">
+            <div class="foo-flex" style="  cursor: pointer;" (click)="gotojob(item)">
+              <div class="footer_details">
+                <!-- <div class="title">{{item.jobRole}}</div> -->
+                <div class="cardfooter_row">
                   <span>
-                    <mat-icon class="icon" [class.active]="isActive"> school</mat-icon>
+                    <mat-icon class="icon"> location_on</mat-icon>
                   </span>
-                  <!-- <span class="smalltext" *ngFor="let elem of item.education;let i=index; let isLast=last">{{elem}}<span
+                  <span class="smalltext" *ngFor="let elem of item.jobLocation; let i = index; let isLast = last">
+                    {{elem}}<span *ngIf="!isLast && i < item.jobLocation.length -1">,</span>
+                  </span>
+                  <div class="cardfooter_edu">
+                    <span>
+                      <mat-icon class="icon" [class.active]="isActive"> school</mat-icon>
+                    </span>
+                    <!-- <span class="smalltext" *ngFor="let elem of item.education;let i=index; let isLast=last">{{elem}}<span
                   class="misc_col" *ngIf="!isLast && i < item.education.length">&nbsp;</span></span>  -->
-                  <span class="smalltext" *ngFor="let elem of item.education; let isLast=last">{{ elem.specification
-                    }}<span class="misc_col" *ngIf="!isLast">&nbsp;</span></span>
+                    <span class="smalltext" *ngFor="let elem of item.education; let isLast=last">{{ elem.specification
+                      }}<span class="misc_col" *ngIf="!isLast"></span></span>
+                  </div>
+                </div>
+                <div class="box_rad">
+                  <div *ngIf="item.jobFamily" class="jobTTyp">{{ item.jobFamily }}</div>
+                  <div class="type_fulltime"
+                    [ngStyle]="{ 'color': getColor(item.jobType), 'background-color': getBackgroundColor(item.jobType) }">
+                    <span class="icon-full_time"></span> {{item.jobType}}
+                  </div>
                 </div>
               </div>
-              <div class="box_rad">
-                <div *ngIf="item.jobFamily" class="jobTTyp">{{ item.jobFamily }}</div>
-                <div class="type_fulltime"
-                  [ngStyle]="{ 'color': getColor(item.jobType), 'background-color': getBackgroundColor(item.jobType) }">
-                  <span class="icon-full_time"></span> {{item.jobType}}
-                </div>
-              </div>
-            </div>
 
-            <!-- <div class="footer_right">
+              <!-- <div class="footer_right">
               <div class="box-job">
                 <div class="jobTTyp">#{{item.workType}}</div>
                 <div class="full_time">{{item.jobType}}</div>
@@ -91,62 +97,87 @@ border-radius: 15px; margin: 1px 15px;display: flex;
                 </button>
               </div>
             </div> -->
-          </div>
-          <div class="footer-gray">
-            <div class="gray-flex">
-
-              <ng-container *ngIf="showApplied">
-                <div class="flex-growone" *ngIf="item?.isApplied == false && currentdate<item?.lastDatetoApply"><span
-                    class="icon-clock_postdate"></span>
-                  Posted on
-                  {{item.createdOn | date : 'd MMM '}}
-                </div>
-                <div class="flex-growtwo" *ngIf="item?.isApplied == false && currentdate<item?.lastDatetoApply"><span
-                    class="icon-daysleft_clock"></span>
-
-                  {{item.lastDatetoApply | timeDiff}}
-                  <!-- {{item.lastDatetoApply | calculateDiff}} -->
-                  <!-- days left -->
-                </div>
-                <div *ngIf="item.isAppliedDate">
-
-                  <span class="icon-clock_postdate"></span>
-                  <span class="smalltext">Applied on &nbsp;{{item.isAppliedDate | date : 'd MMM '}}</span>
-                </div>
-
-              </ng-container>
-              <!-- apply button -->
-              <!-- <div class="" style=""> -->
-              <div class="misc_save" style="padding: 0px 20px 0px 0px;" *ngIf="savedButton">
-                <button class="saved" *ngIf="item?.isApplied == false && currentdate<item?.lastDatetoApply"
-                  (click)=" handleApplyButtonClick(item)">Apply Now
-                </button>
-                <button class="saved isDisabled" style="margin-left: auto;" [disabled]="isDisabled"
-                  *ngIf="item?.isApplied == true">Applied
-                </button>
-                <button class="saved isDisabled" [disabled]="isDisabled"
-                  *ngIf="item?.isApplied == false && currentdate>item?.lastDatetoApply">Expired
-                </button>
-              </div>
-              <!--  -->
-              <div class="flex-growthree" class="misc_save" *ngIf="savedButton">
-                <div>
-                  <!-- <mat-icon class="misc_icon" *ngIf="item?.isSelected == true">bookmark_border</mat-icon>
-                        <mat-icon class="misc_icon" *ngIf="item?.isSelected == false">bookmark_border</mat-icon> -->
-                  <mat-icon (click)="bookMarkIcon(item)" [ngClass]="item.isSelected ? 'saved_icon':'unsaved_icon'">
-                    {{item.isSelected?'bookmark':'bookmark_border'}} </mat-icon>
-                  <span class="save_text">Saved</span>
-                </div>
-              </div>
-              <!-- </div> -->
             </div>
-          </div>
-        </mat-card-content>
-      </mat-card>
+            <hr>
+            <div class="footer-gray" >
+              <div class="gray-flex">
+                <!-- Applied page -->
+                <ng-container *ngIf="showApplied">
+                  <div  class="flex-growone" *ngIf="item?.isApplied == false && currentdate<item?.lastDatetoApply"><span
+                      class="icon-clock_postdate"></span>
+                    <span class="smalltext">{{ getDaysAgo(item.createdOn) }}</span>
+                  </div>
+                  <div  class="flex-growtwo" *ngIf="item?.isApplied == false && currentdate<item?.lastDatetoApply">
+                    <span class="icon-wait_time_icon"></span>
+                    Expires
+                    {{item.lastDatetoApply | timeDiff}}
+                  </div>
+                  <div *ngIf="item.isAppliedDate">
+
+                    <span class="icon-clock_postdate"></span>
+                    <span class="smalltext">{{ getDaysAgo(item.createdOn) }}</span>
+
+                  </div>
+                  <div *ngIf="item.isAppliedDate" style="margin-left: 20cm;">
+                    <span class="icon-check-rounded"></span>
+                    <span class="smalltext">Applied on &nbsp;{{item.isAppliedDate | date : 'd MMM '}}</span>
+                  </div>
+
+                </ng-container>
+                <!-- save page -->
+                <ng-container  class="misc_save" style="padding: 0px 20px 0px 0px;" *ngIf="savedButton">
+                  <div  class="flex-growone" *ngIf="item?.isApplied == false && currentdate<item?.lastDatetoApply"><span
+                      class="icon-clock_postdate"></span>
+                    <span class="smalltext">{{ getDaysAgo(item.createdOn) }}</span>
+                  </div>
+                  <div  class="flex-growone" *ngIf="item?.isApplied == false && currentdate > item?.lastDatetoApply">
+                    <span class="icon-clock_postdate"></span>
+                    <span class="smalltext">{{ getDaysAgo(item.createdOn) }}</span>
+                  </div>
+                  <div  class="flex-growtwo" *ngIf="item?.isApplied == false && currentdate<item?.lastDatetoApply">
+                    <span class="icon-wait_time_icon"></span>
+                    Expires
+                    {{item.lastDatetoApply | timeDiff}}
+                    <!-- {{item.lastDatetoApply | calculateDiff}} -->
+                    <!-- days left -->
+                  </div>
+                  <!-- <div class="flex-growone" *ngIf="item.isAppliedDate"><span
+                      class="icon-clock_postdate"></span>
+                    <span class="smalltext">{{ getDaysAgo(item.createdOn) }}</span>
+                  </div> -->
+                  <div  *ngIf="item.isAppliedDate">
+                    <span class="icon-check-rounded"></span>
+                    <span class="smalltext">Applied on &nbsp;{{item.isAppliedDate | date : 'd MMM '}}</span>
+                  </div>
+                  <button class="saved" *ngIf="item?.isApplied == false && currentdate<item?.lastDatetoApply"
+                    (click)=" handleApplyButtonClick(item)">Apply Now
+                  </button>
+                  <button class="saved isDisabled" style="margin-left: auto;" [disabled]="isDisabled"
+                    *ngIf="item?.isApplied == true"
+                    [ngStyle]="{'background-color': ' #DFE6F2','color': '#1B4E9C','border':'none','font-weight':' 600','opacity': '1'}">
+                    <span class="icon-tick_mark_green"></span>Applied
+                  </button>
+                  <button class="saved isDisabled" [disabled]="isDisabled"
+                    *ngIf="item?.isApplied == false && currentdate > item?.lastDatetoApply"
+                    [ngStyle]="{'background-color': '#E37162','color': '#FFFFFF','border':'none','opacity': '1'}">
+                    Expired
+                  </button>
+                </ng-container>
+                &nbsp;&nbsp;&nbsp;
+                <div class="flex-growthree" class="misc_save" *ngIf="savedButton">
+                  <div>
+                    <mat-icon (click)="bookMarkIcon(item)" [ngClass]="item.isSelected ? 'saved_icon':'unsaved_icon'">
+                      {{item.isSelected?'bookmark':'bookmark_border'}}</mat-icon> <span class="save_text">Saved</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
     </div>
   </div>
 </div>
-
 <ng-template #externalApply>
   <div class="ext-closer"><mat-icon mat-dialog-close>close</mat-icon></div>
   <div class="ext-redirect-popup">

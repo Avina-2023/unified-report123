@@ -1,11 +1,11 @@
 <div class="overflowbox">
   <div class="inside">
-    <img src="../../../../.././assets/images/candidate-nofound.png" />
-    <div class="nomessage">{{from=='saved'?'No Saved Jobs found': from=='applied'?'No Applied Jobs found':from
+    <img class="img_size" src="../../../../.././assets/images/noitem_image.png" />
+    <div class="nomessage">{{from=='saved'?'Nothing to show here!': from=='applied'?'Nothing to show here!':from
       =='find'?'No Jobs found':'No Data Found'}}</div>
     <div class="nomsgnrmltext">
-      {{from=='saved'?'Tap on bookmark icon against a job to save it. Click on Search Jobs to find Jobs':
-      from=='applied'?'Tap on bookmark icon against a job to apply it. Click on Search Jobs to find Jobs':from
+      {{from=='saved'?'Jobs that you save will show up here. Tap on save icon against a job to save it':
+      from=='applied'?'Click on Search Jobs to find Jobs':from
       =='find'?'':'No Data Found'}}
     </div>
     <div class="text-centar" *ngIf="from === 'saved' || from === 'applied'">

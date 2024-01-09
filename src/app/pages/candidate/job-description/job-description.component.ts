@@ -16,6 +16,8 @@ import { environment } from 'src/environments/environment';
 })
 export class JobDescriptionComponent implements OnInit {
   jobViewsCount: any;
+  pageNumber: any;
+  itemsPerPage: any;
 
   transform(value: string): any {
     return value.trim()
@@ -28,10 +30,16 @@ export class JobDescriptionComponent implements OnInit {
   @Pipe({
     name: 'trim',
     pure: false
- })
+  })
+  candidateDetails: any;
+  storedCandidateDetails: any;
 
   dialogData: any;
   descriptionData: any;
+  joblist = [];
+    searchInput: string = '';
+  filterObj: any = {};
+  sortData = '';
   jobDetails:any;
   item: any;
   blobToken = environment.blobToken
@@ -43,22 +51,41 @@ export class JobDescriptionComponent implements OnInit {
     // Add more job types as needed
   ];
   constructor(
-    private skillexService:ApiService,
+    private skillexService: ApiService,
+    private apiservice: ApiService,
     private toaster:ToastrService,
     private appConfig: AppConfigService,
+    private appconfig: AppConfigService,
     private mdDialog: MatDialog,
     public router: Router,
     public route: ActivatedRoute,
     private el: ElementRef,
     private renderer: Renderer2,
     private ngZone: NgZone,
-
   ) { }
   ngOnInit(): void {
+    this.candidateData();
     this.getRoute()
     this.jobViewCount();
+    this.getJobsList();
   }
-
+  candidateData() {
+    this.candidateDetails = localStorage.getItem('candidateProfile');
+    this.storedCandidateDetails = JSON.parse(this.candidateDetails);
+    console.log(this.storedCandidateDetails, 'can');
+    // this.specified = this.candidateDetails.education_details.educations[2].discipline;
+    // let educationyear = JSON.parse(this.candidateDetails);
+    // this.useryop = educationyear?.education_details?.educations[ educationyear.education_details.educations.length - 1 ]?.year_of_passing;
+    // this.yopdate = new Date(this.useryop);
+    // this.useryopyear = this.yopdate.getFullYear();
+    // this.removeduplicate2 = this.useryopyear.toString();
+    // console.log(this.useryopyear, 'useryop1');
+    // return this.useryopyear;
+  }
+  // Helper function to check if two arrays are equal
+  arraysEqual(arr1: any[], arr2: any[]): boolean {
+    return arr1.length === arr2.length && arr1.every((value, index) => value === arr2[index]);
+  }
   getRoute() {
     this.jobDetails = JSON.parse(this.appConfig.getLocalStorage('jobDesc'))
       // console.log(this.jobDetails, 'job details');
@@ -156,6 +183,42 @@ export class JobDescriptionComponent implements OnInit {
       })
     }
 
+  //   getJobsList() {
+  //      let params: any = {
+  //      pageNumber: 1,
+  //      itemsPerPage: 3,
+  //      filter: this.filterObj,
+  //      sort: 'defaultSort',
+  //      specialization: 'Computer Science Engineering',
+  //      email: this.appConfig.getLocalStorage('email'),
+  //      };
+
+  //     this.skillexService.joblistingDashboard(params).subscribe((response: any) => {
+  //       if (response.success) {
+  //         this.joblist = response.data;
+  //          console.log(this.joblist, 'joblist');
+  //       }
+  //     });
+  // }
+getJobsList() {
+    const candidateDiscipline = this.candidateDetails?.education_details?.educations[length-1]?.discipline;
+
+    let params: any = {
+      pageNumber: 1,
+      itemsPerPage: 3,
+      filter: this.filterObj,
+      sort: 'defaultSort',
+      specialization: candidateDiscipline || 'DefaultSpecialization',
+      email: this.appconfig.getLocalStorage('email'),
+    };
+
+    this.apiservice.joblistingDashboard(params).subscribe((response: any) => {
+      if (response.success) {
+        this.joblist = response.data;
+        console.log(this.joblist, 'joblist');
+      }
+    });
+  }
     handleButtonClick() {
       if (this.jobDetails.partnerLabel === 'Skill Exchange Partner') {
         this.applyJob();
@@ -203,6 +266,9 @@ export class JobDescriptionComponent implements OnInit {
     }
   }
 
+
+
+
   scrollToSection(sectionId: string): void {
    console.log(`Scrolling to section: ${sectionId}`);
     const element = this.el.nativeElement.querySelector(`#${sectionId}`);
@@ -210,11 +276,31 @@ export class JobDescriptionComponent implements OnInit {
      element.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' });
     }
   }
-  getDaysAgo(createdOn: Date): string {
-    const today = new Date();
-    const differenceInMilliseconds = today.getTime() - new Date(createdOn).getTime();
-    const differenceInDays = Math.floor(differenceInMilliseconds / (24 * 60 * 60 * 1000));
+  // getDaysAgo(createdOn: Date): string {
+  //   const today = new Date();
+  //   const differenceInMilliseconds = today.getTime() - new Date(createdOn).getTime();
+  //   const differenceInDays = Math.floor(differenceInMilliseconds / (24 * 60 * 60 * 1000));
 
-    return `${differenceInDays} days ago`;
+  //   return `${differenceInDays} days ago`;
+  // }
+  getDaysAgo(createdOn: Date): string {
+  const today = new Date();
+  const differenceInSeconds = Math.floor((today.getTime() - new Date(createdOn).getTime()) / 1000);
+  if (differenceInSeconds < 60) {
+    return 'just now';
   }
+  const differenceInMinutes = Math.floor(differenceInSeconds / 60);
+  if (differenceInMinutes < 60) {
+    return `${differenceInMinutes} ${differenceInMinutes === 1 ? 'min' : 'mins'} ago`;
+  }
+  const differenceInHours = Math.floor(differenceInMinutes / 60);
+  if (differenceInHours < 24) {
+    return `${differenceInHours} ${differenceInHours === 1 ? 'hour' : 'hours'} ago`;
+  }
+  const differenceInDays = Math.floor(differenceInHours / 24);
+  if (differenceInDays <= 30) {
+    return `${differenceInDays} ${differenceInDays === 1 ? 'day' : 'days'} ago`;
+  }
+  return '30+ days ago';
+}
 }
