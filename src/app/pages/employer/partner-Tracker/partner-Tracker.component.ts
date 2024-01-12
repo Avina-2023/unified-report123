@@ -10,8 +10,9 @@ import { Router } from '@angular/router';
 import { AgGridAngular } from 'ag-grid-angular';
 import {
   ApexAxisChartSeries, ApexChart, ChartComponent, ApexDataLabels, ApexPlotOptions, ApexYAxis, ApexTitleSubtitle, ApexXAxis, ApexFill, ApexLegend,
-  ApexGrid
+  ApexGrid,ApexOptions
 } from "ng-apexcharts";
+
 import * as moment from 'moment';
 
 export type ChartOptions = {
@@ -64,8 +65,9 @@ export class PartnerTrackerComponent implements OnInit {
   public overlayNoRowsTemplate = ' <span><br><br><img src="assets/images/skillMaster/norecord.svg" alt="" /> <br><br> <h3>No Records Found</h3></span>';
 
   @ViewChild("chart") chart: ChartComponent;
-  public chartOptions: Partial<ChartOptions>;
-  public chartOptions2: Partial<ChartOptions>;
+  public chartOptions:any;
+  // public chartOptions2: Partial<ChartOptions>;
+  public chartOptions2:any;
   partnerData: any;
   public themeClass: string = "ag-theme-quartz";
   barchartData: any[];
@@ -77,11 +79,17 @@ export class PartnerTrackerComponent implements OnInit {
   ) {
 
     this.chartOptions = {
+      tooltip: {
+        enabled: false,
+      },
       series: [
         {
           // name: "Inflation",
           // data: [7, 21]
-          data: []
+          data: [],
+          tooltip:{
+            enabled:false
+          }
         }
       ],
       chart: {
@@ -91,13 +99,19 @@ export class PartnerTrackerComponent implements OnInit {
           show: false
         }
       },
+     
+  
       plotOptions: {
         bar: {
           columnWidth: "10%",
           distributed: true,
           dataLabels: {
             position: "top" // top, center, bottom
-          }
+          },
+          // tooltip:{
+          //   show:false,
+          //   enabled:false
+          // }
         }
       },
       // legend: {
@@ -137,10 +151,6 @@ export class PartnerTrackerComponent implements OnInit {
               opacityTo: 0.5
             }
           }
-        },
-        tooltip: {
-          enabled: true,
-          offsetY: -35
         }
       },
       fill: {
@@ -171,11 +181,17 @@ export class PartnerTrackerComponent implements OnInit {
     };
 
     this.chartOptions2 = {
+      tooltip: {
+        enabled: false,
+      },
       series: [
         {
           // name: "Inflation",
           // data: [7, 21]
-          data: []
+          data: [],
+          tooltip: {
+            enabled: false,
+          },
         }
       ],
       chart: {
