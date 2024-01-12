@@ -35,19 +35,6 @@
         <div>
           <mat-card class="bar-chart1">
             <div class="job_type">Hiring Partners</div>
-            <!-- <div id="chart">
-          <apx-chart
-            [series]="chartOptions.series"
-            [chart]="chartOptions.chart"
-            [dataLabels]="chartOptions.dataLabels"
-            [plotOptions]="chartOptions.plotOptions"
-            [yaxis]="chartOptions.yaxis"
-            [xaxis]="chartOptions.xaxis"
-            [fill]="chartOptions.fill"
-            [title]="chartOptions.title"
-            [legend]="{ show: false }"
-          ></apx-chart>
-        </div> -->
             <div *ngIf="partnerData">
               <ng-container *ngIf="!partnerData?.chartData?.hirJobTotal && 
                                 !partnerData?.chartData?.hirInternshipTotal">
@@ -59,7 +46,7 @@
                   <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart"
                     [dataLabels]="chartOptions.dataLabels" [plotOptions]="chartOptions.plotOptions"
                     [yaxis]="chartOptions.yaxis" [xaxis]="chartOptions.xaxis" [fill]="chartOptions.fill"
-                    [title]="chartOptions.title" [legend]="{ show: false }"></apx-chart>
+                    [title]="chartOptions.title" [legend]="{ show: false }" [tooltip]="chartOptions.tooltip"></apx-chart>
                 </div>
               </ng-container>
             </div>
@@ -78,19 +65,6 @@
         <div>
           <mat-card class="bar-chart2">
             <div class="job_type">Open Market</div>
-            <!-- <div id="chart">
-          <apx-chart
-            [series]="chartOptions2.series"
-            [chart]="chartOptions2.chart"
-            [dataLabels]="chartOptions2.dataLabels"
-            [plotOptions]="chartOptions2.plotOptions"
-            [yaxis]="chartOptions2.yaxis"
-            [xaxis]="chartOptions2.xaxis"
-            [colors]="chartOptions2.colors"
-            [grid]="chartOptions2.grid"
-            [legend]="{ show: false }"
-          ></apx-chart>
-        </div> -->
             <div *ngIf="partnerData">
               <ng-container *ngIf="!partnerData?.chartData?.openJobTotal && 
                                 !partnerData?.chartData?.openInternshipTotal">
@@ -102,7 +76,7 @@
                   <apx-chart [series]="chartOptions2.series" [chart]="chartOptions2.chart"
                     [dataLabels]="chartOptions2.dataLabels" [plotOptions]="chartOptions2.plotOptions"
                     [yaxis]="chartOptions2.yaxis" [xaxis]="chartOptions2.xaxis" [fill]="chartOptions.fill"
-                    [colors]="chartOptions2.colors" [grid]="chartOptions2.grid" [legend]="{ show: false }"></apx-chart>
+                    [colors]="chartOptions2.colors" [grid]="chartOptions2.grid" [legend]="{ show: false }" [tooltip]="chartOptions.tooltip"></apx-chart>
                 </div>
               </ng-container>
             </div>
