@@ -368,27 +368,6 @@ export class PartnerTrackerComponent implements OnInit {
 
   ];
 
-  // getPartneragGridData(obj) {
-  //   this.apiService.getPartnerTrackerReport(obj).subscribe((response: any) => {
-  //     if (response.success) {
-  //       this.partnerData = response.data
-  //       console.log(this.partnerData, 'partnerDatapartnerData');
-  //       this.rowData = response?.data?.reportData
-  //       console.log(this.rowData, 'rowDatarowData');
-  //       this.barchartData = [
-  //         this.partnerData.chartData.hirJobTotal,
-  //         this.partnerData.chartData.hirInternshipTotal
-  //       ]
-  //       console.log(this.barchartData,'aaaaaaaaaaaa')
-  //       // this.chartOptions.series[0].data.push(...this.barchartData)
-  //       this.chartOptions.series[0].data = this.barchartData;
-  //       if (this.partnerData == null) {
-  //         this.rowData = [];
-  //       }
-  //     }
-  //   })
-  // }
-
   getPartneragGridData(obj) {
     this.apiService.getPartnerTrackerReport(obj).subscribe((response: any) => {
       if (response.success) {
@@ -415,23 +394,6 @@ export class PartnerTrackerComponent implements OnInit {
       }
     });
   }
-
-  // getPartneragGridData(obj) {
-  //   this.rowData = [];
-  //   this.apiService.getPartnerTrackerReport(obj).subscribe(
-  //     (response: any) => {
-  //       if (response.success) {
-  //         this.partnerData = response.data;
-  //         console.log(this.partnerData, 'partnerData');
-  //         this.rowData = response?.data?.reportData;
-  //         console.log(this.rowData, 'rowData');
-  //       }
-  //     },(error) => {
-  //       console.error('API Error:', error);
-  //       this.rowData = []; // Set rowData to an empty array on API error
-  //     }
-  //   );
-  // }
 
   exportPartnerData() {
     if (this.gridApi) {
