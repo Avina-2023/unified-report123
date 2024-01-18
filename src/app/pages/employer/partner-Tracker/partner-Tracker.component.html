@@ -1,7 +1,5 @@
 <div class="inner-container">
-
   <div class="partner-heading">Month-wise Partner Tracker</div>
-
   <div class="inner-container-1">
     <div class="filter-data">
       <div>
@@ -27,7 +25,6 @@
     </div>
 
     <div>
-      <!-- <div class="graphh-heading">Total Records For NOV-2023</div> -->
       <div class="graphh-heading">
         Total Records For {{ months[selectedMonth - 1].name }}-{{ selectedYear }}
       </div>
@@ -46,7 +43,8 @@
                   <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart"
                     [dataLabels]="chartOptions.dataLabels" [plotOptions]="chartOptions.plotOptions"
                     [yaxis]="chartOptions.yaxis" [xaxis]="chartOptions.xaxis" [fill]="chartOptions.fill"
-                    [title]="chartOptions.title" [legend]="{ show: false }" [tooltip]="chartOptions.tooltip"></apx-chart>
+                    [title]="chartOptions.title" [legend]="{ show: false }"
+                    [tooltip]="chartOptions.tooltip"></apx-chart>
                 </div>
               </ng-container>
             </div>
@@ -76,7 +74,8 @@
                   <apx-chart [series]="chartOptions2.series" [chart]="chartOptions2.chart"
                     [dataLabels]="chartOptions2.dataLabels" [plotOptions]="chartOptions2.plotOptions"
                     [yaxis]="chartOptions2.yaxis" [xaxis]="chartOptions2.xaxis" [fill]="chartOptions.fill"
-                    [colors]="chartOptions2.colors" [grid]="chartOptions2.grid" [legend]="{ show: false }" [tooltip]="chartOptions.tooltip"></apx-chart>
+                    [colors]="chartOptions2.colors" [grid]="chartOptions2.grid" [legend]="{ show: false }"
+                    [tooltip]="chartOptions.tooltip"></apx-chart>
                 </div>
               </ng-container>
             </div>
@@ -94,6 +93,7 @@
         </div>
       </div>
     </div>
-
   </div>
 </div>
+
+

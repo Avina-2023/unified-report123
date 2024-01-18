@@ -163,12 +163,12 @@ export class PartnerTrackerComponent implements OnInit {
         axisTicks: {
           show: true
         },
-        labels: {
-          show: true,
-          formatter: function (val) {
-            return val + "";
-          }
-        }
+        // labels: {
+        //   show: true,
+        //   formatter: function (val) {
+        //     return val + "";
+        //   }
+        // }
       },
       title: {
         // text: "Monthly Inflation in Argentina, 2002",
@@ -260,12 +260,12 @@ export class PartnerTrackerComponent implements OnInit {
         axisTicks: {
           show: true
         },
-        labels: {
-          show: true,
-          formatter: function (val) {
-            return val + "";
-          }
-        }
+        // labels: {
+        //   show: true,
+        //   formatter: function (val) {
+        //     return val + "";
+        //   }
+        // }
       },
       title: {
         // text: "Monthly Inflation in Argentina, 2002",
@@ -276,7 +276,7 @@ export class PartnerTrackerComponent implements OnInit {
         }
       }
     };
-
+    
   }
 
   ngOnInit() {
@@ -305,9 +305,6 @@ export class PartnerTrackerComponent implements OnInit {
   }
 
   changeMonthYear() {
-    // this.getPartneragGridData({ year: this.selectedYear, month: this.selectedMonth });
-    // console.log(this.selectedYear, this.selectedMonth , 'Changing month and year:');
-
     const year = +this.selectedYear;
     const month = +this.selectedMonth;
     this.getPartneragGridData({ year, month });
@@ -317,7 +314,6 @@ export class PartnerTrackerComponent implements OnInit {
   rowData = [];
 
   columnDefs = [
-  // { headerName: 'Date', resizable: true, maxWidth: 120, field: 'date', cellStyle: { 'border-right-color': '#e2e2e2' }, },
     { headerName: 'Date', resizable: true, maxWidth: 130, field: 'date', cellStyle: { 'border-right-color': '#e2e2e2' },
       valueFormatter: function (params) { return moment(params.value, 'DD-MM-YYYY').format('D-MMM-YYYY'); }, },
     {
@@ -438,7 +434,6 @@ export class PartnerTrackerComponent implements OnInit {
   // }
 
   exportPartnerData() {
-    // this.gridApi.exportDataAsExcel();
     if (this.gridApi) {
       const params = {
         columnGroups: true,
