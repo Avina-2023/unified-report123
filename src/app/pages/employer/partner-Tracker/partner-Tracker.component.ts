@@ -163,12 +163,12 @@ export class PartnerTrackerComponent implements OnInit {
         axisTicks: {
           show: true
         },
-        labels: {
-          show: true,
-          formatter: function (val) {
-            return val + "";
-          }
-        }
+        // labels: {
+        //   show: true,
+        //   formatter: function (val) {
+        //     return val + "";
+        //   }
+        // }
       },
       title: {
         // text: "Monthly Inflation in Argentina, 2002",
@@ -260,12 +260,12 @@ export class PartnerTrackerComponent implements OnInit {
         axisTicks: {
           show: true
         },
-        labels: {
-          show: true,
-          formatter: function (val) {
-            return val + "";
-          }
-        }
+        // labels: {
+        //   show: true,
+        //   formatter: function (val) {
+        //     return val + "";
+        //   }
+        // }
       },
       title: {
         // text: "Monthly Inflation in Argentina, 2002",
@@ -276,7 +276,7 @@ export class PartnerTrackerComponent implements OnInit {
         }
       }
     };
-
+    
   }
 
   ngOnInit() {
@@ -305,9 +305,6 @@ export class PartnerTrackerComponent implements OnInit {
   }
 
   changeMonthYear() {
-    // this.getPartneragGridData({ year: this.selectedYear, month: this.selectedMonth });
-    // console.log(this.selectedYear, this.selectedMonth , 'Changing month and year:');
-
     const year = +this.selectedYear;
     const month = +this.selectedMonth;
     this.getPartneragGridData({ year, month });
@@ -317,7 +314,6 @@ export class PartnerTrackerComponent implements OnInit {
   rowData = [];
 
   columnDefs = [
-  // { headerName: 'Date', resizable: true, maxWidth: 120, field: 'date', cellStyle: { 'border-right-color': '#e2e2e2' }, },
     { headerName: 'Date', resizable: true, maxWidth: 130, field: 'date', cellStyle: { 'border-right-color': '#e2e2e2' },
       valueFormatter: function (params) { return moment(params.value, 'DD-MM-YYYY').format('D-MMM-YYYY'); }, },
     {
@@ -372,27 +368,6 @@ export class PartnerTrackerComponent implements OnInit {
 
   ];
 
-  // getPartneragGridData(obj) {
-  //   this.apiService.getPartnerTrackerReport(obj).subscribe((response: any) => {
-  //     if (response.success) {
-  //       this.partnerData = response.data
-  //       console.log(this.partnerData, 'partnerDatapartnerData');
-  //       this.rowData = response?.data?.reportData
-  //       console.log(this.rowData, 'rowDatarowData');
-  //       this.barchartData = [
-  //         this.partnerData.chartData.hirJobTotal,
-  //         this.partnerData.chartData.hirInternshipTotal
-  //       ]
-  //       console.log(this.barchartData,'aaaaaaaaaaaa')
-  //       // this.chartOptions.series[0].data.push(...this.barchartData)
-  //       this.chartOptions.series[0].data = this.barchartData;
-  //       if (this.partnerData == null) {
-  //         this.rowData = [];
-  //       }
-  //     }
-  //   })
-  // }
-
   getPartneragGridData(obj) {
     this.apiService.getPartnerTrackerReport(obj).subscribe((response: any) => {
       if (response.success) {
@@ -420,25 +395,7 @@ export class PartnerTrackerComponent implements OnInit {
     });
   }
 
-  // getPartneragGridData(obj) {
-  //   this.rowData = [];
-  //   this.apiService.getPartnerTrackerReport(obj).subscribe(
-  //     (response: any) => {
-  //       if (response.success) {
-  //         this.partnerData = response.data;
-  //         console.log(this.partnerData, 'partnerData');
-  //         this.rowData = response?.data?.reportData;
-  //         console.log(this.rowData, 'rowData');
-  //       }
-  //     },(error) => {
-  //       console.error('API Error:', error);
-  //       this.rowData = []; // Set rowData to an empty array on API error
-  //     }
-  //   );
-  // }
-
   exportPartnerData() {
-    // this.gridApi.exportDataAsExcel();
     if (this.gridApi) {
       const params = {
         columnGroups: true,
