@@ -152,7 +152,9 @@ export class JobDescriptionComponent implements OnInit {
         education:this.jobDetails.education,
         specialization:this.jobDetails.specialization,
         yearofPassout:this.jobDetails.yearofPassout,
-        eligibilityCriteria:this.jobDetails.eligibilityCriteria
+        eligibilityCriteria:this.jobDetails.eligibilityCriteria,
+        noofBacklog:this.jobDetails.noofBacklog,
+        gender:this.jobDetails.gender
       }
     }
       this.skillexService.savedJobs(obj).subscribe((res: any) => {
