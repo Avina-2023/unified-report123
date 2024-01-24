@@ -165,9 +165,6 @@ export class StudentTrackerComponent implements OnInit {
   }
 
   changeMonthYear() {
-    // this.getagGridData({ year: this.selectedYear, month: this.selectedMonth });
-    // console.log(this.selectedYear, this.selectedMonth, 'Changing month and year:');
-
     const year = +this.selectedYear;
     const month = +this.selectedMonth;
     this.getagGridData({ year, month });
@@ -177,7 +174,6 @@ export class StudentTrackerComponent implements OnInit {
   rowData = [];
 
   columnDefs = [
-    // { headerName: 'Date', resizable: true,  maxWidth: 130,  field: 'date', cellStyle: { 'border-right-color': '#e2e2e2' }, },
     { headerName: 'Date', resizable: true, maxWidth: 130, field: 'date', cellStyle: { 'border-right-color': '#e2e2e2' },
       valueFormatter: function (params) { return moment(params.value, 'DD-MM-YYYY').format('D-MMM-YYYY'); }, },
     {
@@ -271,7 +267,6 @@ export class StudentTrackerComponent implements OnInit {
   }
 
   exportData() {
-    // this.gridApi.exportDataAsExcel();
     if (this.gridApi) {
       const params = {
         columnGroups: true,
