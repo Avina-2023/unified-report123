@@ -75,6 +75,7 @@ export class JobListingComponent implements OnInit {
   };
   storedCandidateDetails: any;
   specified: any;
+  selectedOption: string = 'relevance';
   constructor(
     public dialog: MatDialog,
     private apiservice: ApiService,
@@ -84,7 +85,7 @@ export class JobListingComponent implements OnInit {
     private renderer: Renderer2,
     private el: ElementRef
   ) {}
-  url = 'Jobs';
+  // url = 'Jobs';
   ngOnInit() {
     this.getJobList();
     this.getJobFilter();
@@ -92,6 +93,17 @@ export class JobListingComponent implements OnInit {
     this.enabledisable();
     this.partnerLabel = 'Skill Exchange Partner';
     this.debouncefn();
+    //  this.setActiveButton('Jobs');
+    // if (this.router.routerState.snapshot.url == 'APP_CONSTANTS.ENDPOINTS.CANDIDATEDASH.INTERNSHIPLIST') {
+      // this.router.navigateByUrl(APP_CONSTANTS.ENDPOINTS.CANDIDATEDASH.INTERNSHIPLIST);
+  //     this.isIconActive(this.iconHover1.nativeElement, 'home');
+  //   }
+  //   else if (this.router.routerState.snapshot.url == '/candidateview/dashboard') {
+  //     this.isIconActive(this.iconHover1.nativeElement, 'dashboard');
+  //   }
+  //   else if (this.router.routerState.snapshot.url == '/candidateview/findjobs') {
+  //     this.isIconActive(this.iconHover2.nativeElement, 'jobs');
+  //   }
   }
 
   debouncefn() {
@@ -166,6 +178,19 @@ getJobList() {
   } else {
     delete this.filterObj.textSearch;
   }
+    if (this.router.routerState.snapshot.url == 'APP_CONSTANTS.ENDPOINTS.CANDIDATEDASH.JOBLIST') {
+      this.filterObj.workType == 'Jobs';
+    }
+    else if (this.router.routerState.snapshot.url == 'APP_CONSTANTS.ENDPOINTS.CANDIDATEDASH.INTERNSHIPLIST') {
+      this.filterObj.workType == 'Internships';
+    }
+
+  // if (url == 'jobs') {
+  //   this.filterObj.workType == 'Jobs';
+  // }
+  // else if (url == 'internships') {
+  //  this.filterObj.workType == 'Jobs';
+  // }
 
   console.log(this.candidateDetails);
 
@@ -374,11 +399,33 @@ getJobList() {
   setActiveButton(workOption) {
     this.activeButton = workOption;
     this.filterObj.workType = [workOption];
-    if (this.filterObj.workType == 'all') {
-      this.filterObj = {};
+    this.getJobList();
+    console.log(workOption, 'worktyps');
+    if (workOption == 'Jobs') {
+     this.router.navigateByUrl(APP_CONSTANTS.ENDPOINTS.CANDIDATEDASH.JOBLIST);
     }
-    this.getJobList()
+    else if (workOption == 'Internships') {
+    this.router.navigateByUrl(APP_CONSTANTS.ENDPOINTS.CANDIDATEDASH.INTERNSHIPLIST);
+    }
+
+
   }
+  //   setActiveButton(workOption: string) {
+  //   this.activeButton = workOption;
+  //   this.filterObj.workType = [workOption];
+
+  //   if (workOption === 'Jobs') {
+  //     this.filterObj = {};
+  //     // Navigate to the Jobs URL
+  //     this.router.navigateByUrl(APP_CONSTANTS.ENDPOINTS.CANDIDATEDASH.JOBLIST);
+  //   } else if (workOption === 'Internships') {
+  //     // Navigate to the Internships URL
+  //     this.router.navigateByUrl(APP_CONSTANTS.ENDPOINTS.CANDIDATEDASH.INTERNSHIPLIST);
+  //   }
+
+  //   this.getJobList();
+  // }
+
  getColor(jobType: string): string {
     switch (jobType) {
       case 'Contract':

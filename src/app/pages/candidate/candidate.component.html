@@ -8,11 +8,11 @@
   <div class="toolbar-pic">
     <span class="username">{{candidateName}}</span>
     <button mat-button [matMenuTriggerFor]="menu">
-        <img class="profileimg" 
+        <img class="profileimg"
         [src]="profileimge && profileimge !='' && profileimge !='undefined'?profileimge:'../../../../assets/images/candidate-userprofile.png'">
     </button>
-    <mat-menu #menu="matMenu"> 
-      <button style="color:#1B4E9B;" mat-menu-item (click)="logout()"> <mat-icon 
+    <mat-menu #menu="matMenu">
+      <button style="color:#1B4E9B;" mat-menu-item (click)="logout()"> <mat-icon
           style="color:#1B4E9B;">output</mat-icon>Log Out</button>
     </mat-menu>
   </div>
@@ -39,13 +39,15 @@
         <div class="icon_txt">Home</div>
       </div>
 
-      <div class="menu_icon pointer_cursor" #iconHover2 (mouseenter)="addSlideAnimation(iconHover2, 'jobs')"
-        (mouseleave)="removeSlideAnimation(iconHover2, 'jobs')" (click)="isIconActive(iconHover2,'jobs')">
+      <div (click)="onJobsClick()" class="menu_icon pointer_cursor" #iconHover2
+        (mouseenter)="addSlideAnimation(iconHover2, 'jobs')" (mouseleave)="removeSlideAnimation(iconHover2, 'jobs')"
+        (click)="isIconActive(iconHover2,'jobs')">
         <div class="icon"><span class="icon-jobs-work"></span></div>
         <div class="icon_txt">Jobs</div>
       </div>
 
-      <div class="menu_icon pointer_cursor" #iconHover3 (mouseenter)="addSlideAnimation(iconHover3, 'internships')"
+      <div (click)="onInternshipClick()" class="menu_icon pointer_cursor" #iconHover3
+        (mouseenter)="addSlideAnimation(iconHover3, 'internships')"
         (mouseleave)="removeSlideAnimation(iconHover3, 'internships')"
         (click)="isIconActive(iconHover3, 'internships')">
         <div class="icon"><span class="icon-internships"></span></div>
@@ -74,8 +76,8 @@
       <div class="mg-7 pointer_cursor mob_view"><span class="icon-darkMode"></span></div>
       <div class="mg-7 pointer_cursor mob_view"><span class="icon-notification"></span></div>
       <div class="mg-7 pointer_cursor bg-user" (click)="showProfileDashboard()"
-     [style.background]="'url(' + (profileImage ? profileImage : 'assets/images/candidate-userprofile.png') + ')'">
-</div>
+        [style.background]="'url(' + (profileImage ? profileImage : 'assets/images/candidate-userprofile.png') + ')'">
+      </div>
 
       <!-- <div class="icon pointer_cursor" (click)="showProfileDashboard()" *ngIf ="{{profileimge}} != null"> {{profileimge}}
       </div> -->
@@ -83,13 +85,10 @@
   </div>
 </mat-toolbar>
 
-
-
-
 <div class="content">
   <mat-sidenav-container class="example-container" autosize [hasBackdrop]="false">
-    <mat-sidenav #sidenav [mode]="sideNavMode" opened="true" class="sidenav" (mouseenter)="mouseenter()"
-      (mouseleave)="mouseleave()" *ngIf="isSidebarDisabled">
+    <mat-sidenav style="display: none;" #sidenav [mode]="sideNavMode" opened="true" class="sidenav"
+      *ngIf="isSidebarDisabled">
       <mat-nav-list>
         <mat-list-item class="navItems" [ngClass]="router.url==routelinks.CANDIDATEDASH.DASHBOARD? 'active':''"
           [routerLink]="routelinks.CNDIDATELANDING">
@@ -142,17 +141,94 @@
       <mat-nav-list>
       </mat-nav-list>
     </mat-sidenav>
+
     <mat-sidenav-content style="overflow-x:hidden !important;">
-      <div [ngClass]="sideNavMode=='over'?'navMarginOver':'navMarginSide'">
-        <router-outlet></router-outlet>
+      <!-- <div [ngClass]="sideNavMode=='over'?'navMarginOver':'navMarginSide'"> -->
+      <div style="display: flex;width:100%;">
+        <div *ngIf="isSidebarDisabled" style="width:15%">
+          <div style="margin: 20px 0px 0px 15px;
+              width: 175px;
+              height: 230px;
+              background: #FFFFFF 0% 0% no-repeat padding-box;
+              border-radius: 15px;">
+            <div *ngIf="showJobs" class="hover-effect" [routerLinkActive]="['active']"
+              style="display: flex; align-items: center; margin: 0px 0px 20px 20px; padding: 20px 0px 0px 0px;">
+              <!-- <mat-icon mat-list-icon style="margin-right: 10px;">work_outline</mat-icon> -->
+              <span style="margin-right: 10px;" class="icon-jobing-func-check"></span>
+              <mat-list-item [routerLink]="routelinks.CANDIDATEDASH.JOBLIST">
+                <span class="full-width side_head_sty">Jobs</span>
+              </mat-list-item>
+            </div>
+            <!-- internship -->
+            <div *ngIf="showInternship"
+              style="display: flex; align-items: center; margin: 0px 0px 20px 20px; padding: 20px 0px 0px 0px;">
+              <span style="margin-right: 10px;" class="icon-job-blue-converted"></span>
+              <mat-list-item [ngClass]="router.url == routelinks.CANDIDATEDASH.INTERNSHIPLIST ? 'active' : ''"
+                (click)="navigateToInternshipList()">
+                <span class="full-width side_head_sty" style="color: #1B4E9B;">Internship</span>
+              </mat-list-item>
+            </div>
+            <!-- Resume Builder -->
+            <div class="hover-effect" style="display: flex; align-items: center; margin: 0px 0px 20px 20px;">
+              <span style="margin-right: 10px;"
+                [ngClass]="{'icon-resume-converted-black': !isActive(), 'icon-resume-blue-converted': isActive()}"></span>
+              <mat-list-item [routerLink]="routelinks.CANDIDATEDASH.RESUMEBUILDER" [routerLinkActive]="['active']"
+                [routerLinkActiveOptions]="{exact: true}">
+                <span class="full-width side_head_sty">Resume Builder</span>
+              </mat-list-item>
+            </div>
+            <!-- skill profile-->
+            <div class="hover-effect" style="display: flex; align-items: center; margin: 0px 0px 20px 20px;"
+              (click)="gotoProfile()">
+              <!-- <mat-icon mat-list-icon style="margin-right: 10px;">person</mat-icon> -->
+              <span style="margin-right: 10px;" class="icon-profile-converted-black"></span>
+              <span class="full-width side_head_sty">Skill Profile</span>
+            </div>
+            <!-- Applied Jobs -->
+            <div class="hover-effect" style="display: flex; align-items: center; margin: 0px 0px 20px 20px;">
+              <span style="margin-right: 10px;"
+                [ngClass]="{'icon-check-rounded': router.url !== routelinks.CANDIDATEDASH.JOBSAPPLIED, 'icon-apply-blue-converted-2': router.url === routelinks.CANDIDATEDASH.JOBSAPPLIED}"></span>
+              <mat-list-item [routerLink]="routelinks.CANDIDATEDASH.JOBSAPPLIED" [routerLinkActive]="['active']"
+                [routerLinkActiveOptions]="{exact: true}">
+                <span class="full-width side_head_sty">Applied Jobs</span>
+              </mat-list-item>
+            </div>
+            <!-- Saved Jobs -->
+            <div class="hover-effect" style="display: flex; align-items: center; margin: 0px 0px 20px 21px;">
+              <span style="margin-right: 10px;"
+                [ngClass]="{'icon-save-converted-black': router.url !== routelinks.CANDIDATEDASH.JOBSSAVED, 'icon-save-blue-converted': router.url === routelinks.CANDIDATEDASH.JOBSSAVED}"></span>
+              <mat-list-item [routerLink]="routelinks.CANDIDATEDASH.JOBSSAVED" [routerLinkActive]="['active']">
+                <span class="full-width side_head_sty" style="padding: 2px;">Saved Jobs</span>
+              </mat-list-item>
+            </div>
+          </div>
+          <style>
+            .hover-effect:hover,
+            .hover-effect:hover .side_head_sty,
+            .active,
+            .active:hover,
+            .active .side_head_sty,
+            .active .icon-resume-converted-black {
+              color: #1B4E9C;
+            }
+
+          </style>
+
+          <p class="text_on_side"> © 2023 L&T EduTech.<br>All Rights Reserved.</p>
+        </div>
+        <div style="width:100%;">
+          <router-outlet></router-outlet>
+        </div>
       </div>
+
     </mat-sidenav-content>
   </mat-sidenav-container>
-  
+
   <div class="profile_menu" [class.slide-left]="isShowProfile">
     <div class="innercontent">
       <div class="flex_div flx_center pt-20">
-        <div class="user_avatar mg-10" [style.background]="'url('+(profileImage ? profileImage : 'assets/images/candidate-userprofile.png')+')'">
+        <div class="user_avatar mg-10"
+          [style.background]="'url('+(profileImage ? profileImage : 'assets/images/candidate-userprofile.png')+')'">
         </div>
         <div class="txt_left">
           <div class="user_title toggle_white text_capitalize">{{candidateName}}</div>
@@ -179,7 +255,8 @@
           </div>
         </div>
 
-        <div class="flex_div flx_center other_links pointer_cursor flex_div flx_center" (click)="gotoCourses('learnProfile')">
+        <div class="flex_div flx_center other_links pointer_cursor flex_div flx_center"
+          (click)="gotoCourses('learnProfile')">
           <div class="profiledash_text toggle_white learn_menu"><span class="icon-learning mg_r_10"></span> Learning
           </div>
         </div>
@@ -201,7 +278,6 @@
           </div>
         </div>
       </div>
-
 
     </div>
   </div>

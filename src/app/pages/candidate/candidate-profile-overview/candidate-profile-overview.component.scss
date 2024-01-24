@@ -33,7 +33,7 @@ span.icon-plus_rounded {
 .profile-layout {
     height: auto;
     background-color: #EDEDED;
-    margin-left: -65px;
+    //margin-left: -65px;
     padding: 30px;
     width: -webkit-fill-available;
     margin-bottom: 40px;
@@ -176,7 +176,7 @@ span.icon-plus_rounded {
     .inprogress_state {
         background: #FFFBF6;
 
-        .course_status {
+        .course_status{
             color: #FFB74D;
         }
 
@@ -188,7 +188,7 @@ span.icon-plus_rounded {
     .completed_state {
         background: #F6FBF5;
 
-        .course_status {
+        .course_status{
             color: #49AE31;
         }
 
@@ -201,7 +201,7 @@ span.icon-plus_rounded {
     .not-started-state {
         background: #F6F6F6;
 
-        .course_status {
+        .course_status{
             color: #5C5C5C;
         }
 

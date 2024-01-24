@@ -41,6 +41,7 @@ export const APP_CONSTANTS = {
       MYACCOUNT : '/candidateview/profile',
       DASHBOARD: '/candidateview/dashboard',
       JOBLIST: '/candidateview/findjobs',
+      INTERNSHIPLIST: '/candidateview/findinternship',
       RESUMEBUILDER: '/candidateview/resumebuilder',
       RESUMETEMPLATE: '/candidateview/resumetemplate',
       JOBSSAVED: '/candidateview/savedjobs',
@@ -145,6 +146,7 @@ export const APP_CONSTANTS = {
       MYACCOUNT : 'profile',
       DASHBOARD: 'dashboard',
       JOBLIST: 'findjobs',
+      INTERNSHIPLIST: 'findinternship',
       RESUMEBUILDER: 'resumebuilder',
       RESUMETEMPLATE: 'resumetemplate',
       JOBSSAVED: 'savedjobs',
@@ -215,7 +217,7 @@ export const APP_CONSTANTS = {
       POSTREQUIRMENT: 'postrequirment',
       REQUIRMENT: 'jobrequirment',
       // REQUIRMENT:'jobrequirment'
-      CANDIDATESEARCH: 'candidatesearch', 
+      CANDIDATESEARCH: 'candidatesearch',
     },
   },
 };

@@ -1,5 +1,5 @@
 <div class="pageWrapper">
-  <div class="scroller-head">
+  <div  class="scroller-head">
     <div class="company-details">
       <img class="companyLogo_head" (error)="'/assets/images/compPlaceholder.png'"
         [src]="productionUrl ? jobDetails.companyLogo + blobToken : jobDetails.companyLogo" />
@@ -28,7 +28,13 @@
       <button class="save_ed btn" *ngIf="jobDetails.isSelected == true" (click)="saved()">Saved</button>
     </div>
   </div>
+  <!-- SCRIPT FOR SCROLLING -->
 
+<script>
+
+
+</script>
+  <!--  -->
   <div style="display: flex;">
     <div class="custom-card">
       <!-- <div class="coverImage">
@@ -91,13 +97,12 @@
 
           <div #eventnoteDiv class="eventnote">
             <div>
-              <span class="icon-cal_endar_icon_g"></span>&nbsp;
+              <span class="icon-calndar_gray_apply"></span>&nbsp;
               <span class="application-end">Application Deadline</span><br>
               <span class="application-dateend">{{ jobDetails.lastDatetoApply | date:'d MMMM, yyyy' }}</span>
             </div>
           </div>
         </div>
-
         <!--  -->
 
         <!-- <div class="genText1">
@@ -141,7 +146,7 @@
         </div>
       </div>
       <div style="background: #FFFFFF  0% 0% no-repeat padding-box;
-border-radius: 15px;width: 850px;
+border-radius: 15px;width: 750px;
 height: 144px;display: flex;justify-content: space-around;align-items: center;">
         <div style="margin: 10px 0px 0px 0px; display: flex; flex-direction: column; align-items: center;">
           <div><img src="../../../../assets/images/job_profile_blue.png"></div>
@@ -240,7 +245,8 @@ height: 144px;display: flex;justify-content: space-around;align-items: center;">
     <div class="Similar_job_card">
       <h3 style="padding: 10px 0px 0px 15px; font-weight: bold!important;">Similar Jobs</h3>
 
-      <div *ngFor="let item of joblist; let i = index" class="similar-job" style="margin-bottom: 20px;padding: 0px 0px 0px 7px;">
+      <div *ngFor="let item of joblist; let i = index" class="similar-job"
+        style="margin-bottom: 20px;padding: 0px 0px 0px 7px;">
         <div class="" style="display: flex; align-items: center;">
           <img class="comp_logo_sim" (error)="'/assets/images/compPlaceholder.png'"
             [src]="productionUrl ? item.companyLogo + blobToken : item.companyLogo" />

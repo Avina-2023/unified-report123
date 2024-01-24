@@ -23,6 +23,9 @@ export class CandidateComponent implements OnInit {
   @ViewChild('iconHover4') iconHover4: ElementRef;
   @ViewChild('iconHover5') iconHover5: ElementRef;
   @ViewChild('iconHover6') iconHover6: ElementRef;
+  showInternship: boolean = false;
+  showJobs: boolean = false;
+  // showJobs = true;
   isExpanded = false;
   isShowProfile = false;
   isSidebarDisabled = true;
@@ -60,11 +63,18 @@ export class CandidateComponent implements OnInit {
       this.sidebarDisabled();
     });
 
- 
-    
+
+
   }
 
   ngOnInit() {
+    const storedShowInternship = localStorage.getItem('showInternship');
+    const storedShowJobs = localStorage.getItem('showJobs');
+
+    this.showInternship = storedShowInternship ? JSON.parse(storedShowInternship) : this.showInternship;
+    this.showJobs = storedShowJobs ? JSON.parse(storedShowJobs) : this.showJobs;
+
+
     // console.log(this.router.routerState.snapshot.url, 'currenturlparams');
     // console.log(this.router.url, 'routerurl');
     this.profileimge = this.appconfig.getLocalStorage('profileImage');
@@ -143,7 +153,7 @@ export class CandidateComponent implements OnInit {
         icon.classList.remove('active-icon');
       //}
     });
-    
+
   }
 
   showProfileDashboard() {
@@ -174,6 +184,8 @@ export class CandidateComponent implements OnInit {
   isIconActive(element: any, menuType: any) {
     // Remove "active-icon" from all other elements
     const menuIcons = this.menuIcons.nativeElement.querySelectorAll('.menu_icon');
+        // const sideIcons = this.menuIcons.nativeElement.querySelectorAll('.menu_icon');
+
     menuIcons.forEach((icon: any) => {
       if (icon !== element) {
         icon.classList.remove('active-icon');
@@ -194,6 +206,17 @@ export class CandidateComponent implements OnInit {
       this.isShowProfile = !this.isShowProfile;
     }
 
+    if (menuType === 'internships') {
+      this.router.navigateByUrl(APP_CONSTANTS.ENDPOINTS.CANDIDATEDASH.INTERNSHIPLIST);
+      this.isSidebarDisabled = true;
+    }
+
+    if (menuType === 'jobsProfile') {
+      this.router.navigateByUrl('/candidateview/findjobs');
+      //this.isSidebarDisabled = true;
+      this.isShowProfile = !this.isShowProfile;
+    }
+
     if (menuType === 'dashboard') {
       this.router.navigateByUrl('/candidateview/dashboard');
       //this.isSidebarDisabled = false;
@@ -206,7 +229,9 @@ export class CandidateComponent implements OnInit {
 
 
 
-
+ navigateToInternshipList() {
+    this.router.navigateByUrl(APP_CONSTANTS.ENDPOINTS.CANDIDATEDASH.INTERNSHIPLIST);
+  }
 
   // ngOnChanges(){
   //   this.profileimge = this.appconfig.getLocalStorage('profileImage');
@@ -256,7 +281,7 @@ export class CandidateComponent implements OnInit {
     }
   }
 
-  
+
   gotoDashboard() {
     this.router.navigate(['/candidateview/dashboard'])
   }
@@ -268,7 +293,33 @@ export class CandidateComponent implements OnInit {
   // gotoJob(){
   //   this.router.navigate(['/candidateview/findjobs'])
   // }
+  isActive(): boolean {
+   return this.router.isActive(this.router.createUrlTree(['/candidateview/resumebuilder']), true);
+  }
 
+ onInternshipClick() {
+    this.showInternship = true;
+    this.showJobs = false;
+
+    // Store state in localStorage
+    localStorage.setItem('showInternship', JSON.stringify(this.showInternship));
+    localStorage.setItem('showJobs', JSON.stringify(this.showJobs));
+}
+
+  // onJobsClick() {
+  //   if (!this.showJobs) {
+  //     this.showJobs = true;
+  //     this.showInternship = false;
+  //   }
+  // }
+onJobsClick() {
+    this.showJobs = true;
+    this.showInternship = false;
+
+    // Store state in localStorage
+    localStorage.setItem('showInternship', JSON.stringify(this.showInternship));
+    localStorage.setItem('showJobs', JSON.stringify(this.showJobs));
+  }
 
 }
 

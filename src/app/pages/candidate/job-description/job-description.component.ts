@@ -9,15 +9,19 @@ import { filter, map } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
 import { environment } from 'src/environments/environment';
 
+
 @Component({
   selector: 'app-job-description',
   templateUrl: './job-description.component.html',
-  styleUrls: ['./job-description.component.scss']
+  styleUrls: ['./job-description.component.scss'],
+
 })
 export class JobDescriptionComponent implements OnInit {
   jobViewsCount: any;
   pageNumber: any;
   itemsPerPage: any;
+  isScrollerHeadVisible: any;
+  // checkScroll: any;
 
   transform(value: string): any {
     return value.trim()
@@ -26,18 +30,17 @@ export class JobDescriptionComponent implements OnInit {
   @ViewChild('incompleteProfile',{static: false}) matDialogRef: TemplateRef<any>;
   @ViewChild('eligiblity',{static: false}) eligiblitypop: TemplateRef<any>;
   @ViewChild('successApply',{static: false}) applySuccess: TemplateRef<any>;
-  @ViewChild('externalApply', {static: false}) extApply: TemplateRef<any>;
+  @ViewChild('externalApply', { static: false }) extApply: TemplateRef<any>;
   @Pipe({
     name: 'trim',
     pure: false
   })
   candidateDetails: any;
   storedCandidateDetails: any;
-
   dialogData: any;
   descriptionData: any;
   joblist = [];
-    searchInput: string = '';
+  searchInput: string = '';
   filterObj: any = {};
   sortData = '';
   jobDetails:any;
@@ -50,6 +53,7 @@ export class JobDescriptionComponent implements OnInit {
     { jobType: 'Full Time' },
     // Add more job types as needed
   ];
+
   constructor(
     private skillexService: ApiService,
     private apiservice: ApiService,
@@ -61,14 +65,30 @@ export class JobDescriptionComponent implements OnInit {
     public route: ActivatedRoute,
     private el: ElementRef,
     private renderer: Renderer2,
-    private ngZone: NgZone,
   ) { }
-  ngOnInit(): void {
-    this.candidateData();
-    this.getRoute()
-    this.jobViewCount();
-    this.getJobsList();
+
+  // ngOnInit(): void {
+  //   this.candidateData();
+  //   this.getRoute()
+  //   this.jobViewCount();
+  //   this.getJobsList();
+  //   // this.checkScroll();
+  // }
+ngOnInit(): void {
+  this.candidateData();
+  this.getRoute();
+  this.jobViewCount();
+  this.getJobsList();
+  //   // this.checkScroll();
+  //  for applied job local storage
+  const appliedJobDetailsString = localStorage.getItem('appliedJob');
+  if (appliedJobDetailsString) {
+    const appliedJobDetails = JSON.parse(appliedJobDetailsString);
+    if (appliedJobDetails.jobId === this.jobDetails.jobId && appliedJobDetails.companyId === this.jobDetails.companyId) {
+      this.jobDetails.isApplied = true;
+    }
   }
+}
   candidateData() {
     this.candidateDetails = localStorage.getItem('candidateProfile');
     this.storedCandidateDetails = JSON.parse(this.candidateDetails);
@@ -142,34 +162,64 @@ export class JobDescriptionComponent implements OnInit {
     });
   }
 
-  applyJob(){
-    let obj =
-    {
-      email:this.appConfig.getLocalStorage('email'),
-      jobId:this.jobDetails.jobId,
-      companyId:this.jobDetails.companyId,
-      jobDetails:{
-        education:this.jobDetails.education,
-        specialization:this.jobDetails.specialization,
-        yearofPassout:this.jobDetails.yearofPassout,
-        eligibilityCriteria:this.jobDetails.eligibilityCriteria
-      }
+  // applyJob(){
+  //   let obj =
+  //   {
+  //     email:this.appConfig.getLocalStorage('email'),
+  //     jobId:this.jobDetails.jobId,
+  //     companyId:this.jobDetails.companyId,
+  //     jobDetails:{
+  //       education:this.jobDetails.education,
+  //       specialization:this.jobDetails.specialization,
+  //       yearofPassout:this.jobDetails.yearofPassout,
+  //       eligibilityCriteria:this.jobDetails.eligibilityCriteria
+  //     }
+  //   }
+  //     this.skillexService.savedJobs(obj).subscribe((res: any) => {
+  //       if (res.success) {
+  //         // this.toaster.success(res.message);
+  //         this.openDialog(this.applySuccess)
+  //         this.jobDetails.isApplied= !this.jobDetails.isApplied;
+  //       } else {
+  //         // this.toaster.warning(res.message);
+  //         if(res.message == "Please complete your profile to apply for this job")
+  //         {this.openDialog(this.matDialogRef)}
+  //         if(res.message == "You are not eligible to apply for this job."){
+  //           this.openDialog(this.eligiblitypop)
+  //         }
+  //       }
+  //     });
+  //   }
+applyJob() {
+  let obj = {
+    email: this.appConfig.getLocalStorage('email'),
+    jobId: this.jobDetails.jobId,
+    companyId: this.jobDetails.companyId,
+    jobDetails: {
+      education: this.jobDetails.education,
+      specialization: this.jobDetails.specialization,
+      yearofPassout: this.jobDetails.yearofPassout,
+      eligibilityCriteria: this.jobDetails.eligibilityCriteria
     }
-      this.skillexService.savedJobs(obj).subscribe((res: any) => {
-        if (res.success) {
-          // this.toaster.success(res.message);
-          this.openDialog(this.applySuccess)
-          this.jobDetails.isApplied= !this.jobDetails.isApplied;
-        } else {
-          // this.toaster.warning(res.message);
-          if(res.message == "Please complete your profile to apply for this job")
-          {this.openDialog(this.matDialogRef)}
-          if(res.message == "You are not eligible to apply for this job."){
-            this.openDialog(this.eligiblitypop)
-          }
-        }
-      });
+  };
+
+  this.skillexService.savedJobs(obj).subscribe((res: any) => {
+    if (res.success) {
+      this.openDialog(this.applySuccess);
+
+      // Store applied job details in local storage
+      const appliedJobDetails = {
+        jobId: this.jobDetails.jobId,
+        companyId: this.jobDetails.companyId
+      };
+      localStorage.setItem('appliedJob', JSON.stringify(appliedJobDetails));
+
+      this.jobDetails.isApplied = !this.jobDetails.isApplied;
+    } else {
+      // Handle other cases
     }
+  });
+}
 
     jobViewCount(){
       let obj = {
@@ -266,9 +316,6 @@ getJobsList() {
     }
   }
 
-
-
-
   scrollToSection(sectionId: string): void {
    console.log(`Scrolling to section: ${sectionId}`);
     const element = this.el.nativeElement.querySelector(`#${sectionId}`);
@@ -302,5 +349,7 @@ getJobsList() {
     return `${differenceInDays} ${differenceInDays === 1 ? 'day' : 'days'} ago`;
   }
   return '30+ days ago';
-}
+  }
+
+
 }
