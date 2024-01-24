@@ -178,6 +178,7 @@ getJobList() {
   } else {
     delete this.filterObj.textSearch;
   }
+  // routing for jobs and internships
     if (this.router.routerState.snapshot.url == 'APP_CONSTANTS.ENDPOINTS.CANDIDATEDASH.JOBLIST') {
       this.filterObj.workType == 'Jobs';
     }
