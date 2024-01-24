@@ -245,3 +245,196 @@
 
 
 }
+
+.header{
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.company-image {
+    border: 1px solid #80808045;
+    border-radius: 5px;
+    background: #ffffff 0% 0% no-repeat padding-box;
+    img {
+        width: 65px;
+        padding: 10px 5px;
+        border-radius: 3px;
+    }
+  }
+  .company-header{
+    margin: 5px 5px 5px 15px;
+  }
+  .company-name{
+    color: #000;
+    font-weight: 600;
+    font-size: 16px;
+  }
+  .timeleft-logo{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  .job-details-open{
+    padding: 15px;  
+    display: flex; 
+    flex-direction: row; 
+    align-items: center; 
+    justify-content: space-between; 
+    // background-color: #1b4e9b;
+  }
+  .job-details{
+    line-height: 27px;
+  }
+  .job-details-bg{
+    background-color: #1b4e9b;
+  }
+  .poster_comp_logo{
+    width: 25%;
+    margin-top: -77px;
+    img{
+        border: 1px solid #e7e7e7;
+        padding: 20px 8px;
+        border-radius: 5px;
+        background: #fff;
+        margin: 20px 0px;
+        width: -webkit-fill-available;
+    }
+  }
+  .post_description {
+    font-size: 13px;
+    padding: 10px 10px 10px 10px;
+    line-height: 20px;
+}
+  .poster_image{
+    background: url(../../../../assets/images/job-profile1.png);
+  }
+  .job-post-img {
+    background-repeat: no-repeat;
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+}
+.post-color{
+    color: #FFFFFF;
+}
+.poster_designation {
+    font-size: 17px;
+    font-weight: 600;
+}
+.post_company {
+    font-size: 16px;
+    font-weight: 300;
+}
+.post-company-loc{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.post-apply{
+    margin: 10px 0px 0px 0px;
+    background-color: #efefef;
+    padding: 2px 5px 2px 5px;
+    border-radius: 10px;
+    width: fit-content;
+}
+.job-opening{
+    img{
+        width: 200px;
+    }
+}
+.flex-div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.aply_div {
+    border-top: 1px solid #ffffff73;
+    background-color: #1B4E9B;
+}
+.kick-start{
+    padding: 15px 25px 15px 10px;
+    color: #FFFFFF;
+}
+.aply{
+    padding: 0px 10px 0px 0px;
+}
+.apply-btn{
+    padding: 6px 13px;
+    border-radius: 20px;
+    font-size: 14px;
+    border: 1px solid #fff;
+    color: #fff;
+    text-decoration: none !important;
+    background: transparent;
+}
+.apply-btn:hover {
+    background-color: #ffffff;
+    color: #1b4e9b;
+  }
+
+  .view-count{
+    // justify-content: flex-start;
+    color: #848484;
+    border-bottom: 1px solid #edeaea;
+    margin: 15px 5px 15px 5px;;
+    padding: 5px 5px 15px 5px;
+  }
+  .share{
+    color: #848484;
+    padding: 0px 0px 15px 0px;
+    position: relative;
+    width: fit-content;
+    left: 50%;
+    transform: translateX(-50%);
+    cursor: pointer;
+  }
+//   .course_image{
+//     background: url(../../../../assets/images/job-profile3.png);
+//   }
+  .course-post-img {
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    height: 300px;
+}
+.news_image{
+    background: url(../../../../assets/images/technology-adoption-news.jpg);
+  }
+  .news-post-img {
+    background-repeat: no-repeat;
+    height: 300px;
+    background-size: cover;
+    background-position: center;
+}
+.qr-image {
+    overflow: hidden;
+    width: 150px;
+    height: 150px;
+    position: relative;
+    margin: 20px auto;
+    border: 3px solid transparent;
+    border-radius: 15px;
+    img {
+        width: 100%;
+        background: #fff!important;
+        padding: 10px;
+    }
+      
+}
+
+.qr-title {
+    text-align: center;
+    font-size: 14px;
+    color: #334155;
+}
+.qr-link{
+    cursor: pointer;
+    text-align: center;
+    font-size: 14px;
+    color: #1b4e9b;
+    font-weight: 500;
+}
+

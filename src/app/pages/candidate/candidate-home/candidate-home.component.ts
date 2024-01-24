@@ -3,6 +3,7 @@ import { NavigationEnd, Router, RouterEvent } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
 import { AppConfigService } from 'src/app/utils/app-config.service';
 import { environment } from 'src/environments/environment';
+import { OwlOptions } from 'ngx-owl-carousel-o';
 
 @Component({
   selector: 'app-candidate-home',
@@ -14,7 +15,7 @@ export class CandidateHomeComponent implements OnInit {
   filterObj: any = {};
   sortData = 'Recently Posted';
   pageNumber: any = 1;
-  itemsPerPage: any = 3;
+  itemsPerPage: any = 7;
   microLearnCourses: any;
   title: any;
   Details: any;
@@ -30,6 +31,48 @@ export class CandidateHomeComponent implements OnInit {
   form_present_state: any;
   profilePercent: any;
 
+  qrScanner:any = [
+    {
+      "title": "Follow us on LinkedIn ",
+      "imgurl" : "../../../../assets/images/LinkedIn-QR.png",
+      "link": "http://www.linkedin.com/company/lnt-edutech"
+    },
+    {
+      "title": "Follow us on Instagram ",
+      "imgurl" : "../../../../assets/images/Instagram-QR.png",
+      "link": "http://www.instagram.com/lntedutech"
+    },
+    {
+      "title": "Follow us on Facebook ",
+      "imgurl" : "../../../../assets/images/Meta-QR.png",
+      "link": "http://www.facebook.com/lntedutech"
+    },
+    {
+      "title": "Follow us on Twitter ",
+      "imgurl" : "../../../../assets/images/Twitter-QR.png",
+      "link": "http://www.twitter.com/lntedutech"
+    },
+    {
+      "title": "Follow us on Youtube",
+      "imgurl" : "../../../../assets/images/YouTube-QR.png",
+      "link": "http://www.youtube.com/@lntedutech"
+    }
+  ]
+  combinedList: any[];
+  imageUrls = [
+    '../../../../assets/images/job-profile1.png',
+    '../../../../assets/images/job-profile2.png',
+    '../../../../assets/images/job-profile3.png',
+    '../../../../assets/images/job-profile4.png',
+    '../../../../assets/images/job-profile6.png',
+    '../../../../assets/images/job-profile7.png',
+    '../../../../assets/images/job-profile9.png',
+    '../../../../assets/images/dash-bg-img.png',
+    '../../../../assets/images/register.png',
+  ];
+  usedImageIndices: number[] = []; 
+  colorIndex = 0;
+
   constructor(
     public router: Router,
     private apiService: ApiService,
@@ -42,8 +85,20 @@ export class CandidateHomeComponent implements OnInit {
     this.getJobList();
     this.getCourses();
     //this.fetchNewsArticle();
+    // this.getCombinedList();
   }
 
+  getRandomImageUrl(): string {
+    if (this.usedImageIndices.length === this.imageUrls.length) {
+      this.usedImageIndices = [];
+    }
+    let randomIndex: number;
+    do {
+      randomIndex = Math.floor(Math.random() * this.imageUrls.length);
+    } while (this.usedImageIndices.includes(randomIndex));
+    this.usedImageIndices.push(randomIndex);
+    return this.imageUrls[randomIndex];
+  }
 
   getJobList() {
     let params: any =
@@ -62,6 +117,7 @@ export class CandidateHomeComponent implements OnInit {
         this.joblist = response.data;
         console.log(response.data, 'job details');
         this.title = this.joblist?.jobTitle;
+        this.getCombinedList(); // Call getCombinedList after fetching joblist
       }
     });
   }
@@ -82,10 +138,34 @@ export class CandidateHomeComponent implements OnInit {
         this.microLearnCourses = response.data;
         console.log(this.microLearnCourses, 'course details');
         this.title = this.microLearnCourses?.areaName;
+        this.getCombinedList(); // Call getCombinedList after fetching microLearnCourses
       }
     });
   }
+  
+  getCombinedList() {
+    this.combinedList = [];
+    let jobIndex = 0;
+    let courseIndex = 0;
+    for (let i = 0; i < this.joblist?.length + this.microLearnCourses?.length; i++) {
+      if (i % 4 === 3 && courseIndex < this.microLearnCourses.length) {
+        this.combinedList.push({ type: 'course', data: this.microLearnCourses[courseIndex++] });
+      } else if (jobIndex < this.joblist.length) {
+        this.combinedList.push({ type: 'job', data: this.joblist[jobIndex++] });
+      }
+    }
+    console.log('Combined List:', this.combinedList);
+  }
 
+  getSpecificColor(): string {
+    const colors = ['#580052', '#644637', '#1b4e9b', '#3a5e64', '#400202'];
+
+    const color = colors[this.colorIndex];
+    this.colorIndex = (this.colorIndex + 1) % colors.length;
+    return color;
+  }
+
+  
   // fetchNewsArticle() {
   //   this.apiService.getNewsArticle().subscribe((response:any) => {
   //       // Handle the data received from the API
@@ -187,8 +267,43 @@ export class CandidateHomeComponent implements OnInit {
     window.open(microUrl, '_blank');
   }
   
-  
+  customOptions: OwlOptions = {
+    loop: true,
+    autoplay: false,
+    animateIn: 'fadeIn',
+    animateOut: 'fadeOut',
+    autoplayTimeout: 2000,
+    autoplayHoverPause: true,
+    dots: false,
+    navSpeed: 1000,
+    navText: ["<div class='nav-btn prev-slide'></div>","<div class='nav-btn next-slide'></div>"],
+    nav: false,
+    center:false,
+    autoHeight: false,
+    autoWidth: false,
+    responsive: {
 
+      0: {
+        items: 1,
+        margin: 10
+      },
+      600: {
+        items: 2,
+        margin: 20
+      },
+      900: {
+        items: 3,
+        margin: 5
+      }
+     
+    },
+  }
+
+
+  getBorderStyles(index: number): string {
+    const borderStyles = ['3px solid red', '3px solid blue', '3px solid green', '3px solid yellow', '3px solid grey'];
+    return borderStyles[index] || '1px solid black'; 
+}
 
 
 }
