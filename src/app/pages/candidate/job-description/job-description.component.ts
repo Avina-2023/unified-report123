@@ -27,9 +27,9 @@ export class JobDescriptionComponent implements OnInit {
     return value.trim()
   }
   jobDescription: any;
-  @ViewChild('incompleteProfile',{static: false}) matDialogRef: TemplateRef<any>;
-  @ViewChild('eligiblity',{static: false}) eligiblitypop: TemplateRef<any>;
-  @ViewChild('successApply',{static: false}) applySuccess: TemplateRef<any>;
+  @ViewChild('incompleteProfile', { static: false }) matDialogRef: TemplateRef<any>;
+  @ViewChild('eligiblity', { static: false }) eligiblitypop: TemplateRef<any>;
+  @ViewChild('successApply', { static: false }) applySuccess: TemplateRef<any>;
   @ViewChild('externalApply', { static: false }) extApply: TemplateRef<any>;
   @Pipe({
     name: 'trim',
@@ -43,10 +43,10 @@ export class JobDescriptionComponent implements OnInit {
   searchInput: string = '';
   filterObj: any = {};
   sortData = '';
-  jobDetails:any;
+  jobDetails: any;
   item: any;
   blobToken = environment.blobToken
-	productionUrl = environment.SKILL_EDGE_URL == "https://skilledge.lntedutech.com"?true:false;
+  productionUrl = environment.SKILL_EDGE_URL == "https://skilledge.lntedutech.com" ? true : false;
   jobs = [
     { jobType: 'Contract' },
     { jobType: 'Parttime' },
@@ -57,7 +57,7 @@ export class JobDescriptionComponent implements OnInit {
   constructor(
     private skillexService: ApiService,
     private apiservice: ApiService,
-    private toaster:ToastrService,
+    private toaster: ToastrService,
     private appConfig: AppConfigService,
     private appconfig: AppConfigService,
     private mdDialog: MatDialog,
@@ -74,21 +74,21 @@ export class JobDescriptionComponent implements OnInit {
   //   this.getJobsList();
   //   // this.checkScroll();
   // }
-ngOnInit(): void {
-  this.candidateData();
-  this.getRoute();
-  this.jobViewCount();
-  this.getJobsList();
-  //   // this.checkScroll();
-  //  for applied job local storage
-  const appliedJobDetailsString = localStorage.getItem('appliedJob');
-  if (appliedJobDetailsString) {
-    const appliedJobDetails = JSON.parse(appliedJobDetailsString);
-    if (appliedJobDetails.jobId === this.jobDetails.jobId && appliedJobDetails.companyId === this.jobDetails.companyId) {
-      this.jobDetails.isApplied = true;
+  ngOnInit(): void {
+    this.candidateData();
+    this.getRoute();
+    this.jobViewCount();
+    this.getJobsList();
+    //   // this.checkScroll();
+    //  for applied job local storage
+    const appliedJobDetailsString = localStorage.getItem('appliedJob');
+    if (appliedJobDetailsString) {
+      const appliedJobDetails = JSON.parse(appliedJobDetailsString);
+      if (appliedJobDetails.jobId === this.jobDetails.jobId && appliedJobDetails.companyId === this.jobDetails.companyId) {
+        this.jobDetails.isApplied = true;
+      }
     }
   }
-}
   candidateData() {
     this.candidateDetails = localStorage.getItem('candidateProfile');
     this.storedCandidateDetails = JSON.parse(this.candidateDetails);
@@ -108,12 +108,12 @@ ngOnInit(): void {
   }
   getRoute() {
     this.jobDetails = JSON.parse(this.appConfig.getLocalStorage('jobDesc'))
-      // console.log(this.jobDetails, 'job details');
-      // console.log(this.jobDetails.workType, 'workTypeeeeeee');
+    // console.log(this.jobDetails, 'job details');
+    // console.log(this.jobDetails.workType, 'workTypeeeeeee');
   }
 
-  openDialog(dialogval){
-   this.dialogData =  this.mdDialog.open(dialogval, {
+  openDialog(dialogval) {
+    this.dialogData = this.mdDialog.open(dialogval, {
       width: '500px',
       height: 'auto',
       autoFocus: false,
@@ -123,16 +123,16 @@ ngOnInit(): void {
     });
   }
 
-  gotopage(){
+  gotopage() {
     let emailval = this.appConfig.getLocalStorage('email')
-    let enc_email = encodeURIComponent(this.skillexService.encryptnew(emailval,environment.cryptoEncryptionKey))
+    let enc_email = encodeURIComponent(this.skillexService.encryptnew(emailval, environment.cryptoEncryptionKey))
     // window.open(environment.SKILL_PROFILE_URL+'/externallogin?extId='+enc_email, 'profile_redir');
-    window.location.assign(environment.SKILL_PROFILE_URL+'/externallogin?extId='+enc_email);
+    window.location.assign(environment.SKILL_PROFILE_URL + '/externallogin?extId=' + enc_email);
 
     this.dialogData.close();
   }
 
-  getpageData(){
+  getpageData() {
     // this.skillexService.getJobDetail({"jobId":"34567"}).subscribe((jobdata:any) => {
     //   if(jobdata.success){
     //     this.jobDescription = jobdata.data
@@ -150,18 +150,17 @@ ngOnInit(): void {
     this.skillexService.saveJobsDashboard(jobParams).subscribe((res: any) => {
       if (res.success) {
         // console.log(res)
-        if(res && res.data !=undefined && res.data  ){
+        if (res && res.data != undefined && res.data) {
           this.toaster.success("Job saved successfully");
-        }else{
+        } else {
           this.toaster.success("Job removed successfully");
         }
-        this.jobDetails.isSelected= !this.jobDetails.isSelected;
+        this.jobDetails.isSelected = !this.jobDetails.isSelected;
       } else {
         this.toaster.warning("Connection failed");
       }
     });
   }
-
   // applyJob(){
   //   let obj =
   //   {
@@ -190,18 +189,22 @@ ngOnInit(): void {
   //       }
   //     });
   //   }
-applyJob() {
-  let obj = {
-    email: this.appConfig.getLocalStorage('email'),
-    jobId: this.jobDetails.jobId,
-    companyId: this.jobDetails.companyId,
-    jobDetails: {
-      education: this.jobDetails.education,
-      specialization: this.jobDetails.specialization,
-      yearofPassout: this.jobDetails.yearofPassout,
-      eligibilityCriteria: this.jobDetails.eligibilityCriteria
+  applyJob() {
+    let obj =
+    {
+      email: this.appConfig.getLocalStorage('email'),
+      jobId: this.jobDetails.jobId,
+      companyId: this.jobDetails.companyId,
+      jobDetails: {
+        education: this.jobDetails.education,
+        specialization: this.jobDetails.specialization,
+        yearofPassout: this.jobDetails.yearofPassout,
+        eligibilityCriteria: this.jobDetails.eligibilityCriteria,
+        noofBacklog: this.jobDetails.noofBacklog,
+        gender: this.jobDetails.gender
+      }
     }
-  };
+
 
   this.skillexService.savedJobs(obj).subscribe((res: any) => {
     if (res.success) {
