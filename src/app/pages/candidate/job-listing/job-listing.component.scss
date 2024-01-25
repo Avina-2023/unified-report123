@@ -195,38 +195,62 @@
   color: #848484;
 }
 
-.results_dash {
-  display: flex;
-  // padding: 10px 20px 0px 20px;
-  padding: 10px 15px 0px 10px;
-  margin-top: 7px;
-  justify-content: space-between;
+.first_container_new {
 
-  .arrow_grid {
+  height: 76px;
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  border-radius: 15px;
+  margin: 1% 4%;
+  border: 1px solid #d0d0d0;
+
+
+  .results_dash {
     display: flex;
+    // padding: 10px 20px 0px 20px;
+    padding: 10px 15px 0px 10px;
+    margin-top: 7px;
     justify-content: space-between;
-    /* This will separate the child elements in one line */
-    align-items: center;
 
-    .icon-container {
-      margin: 0px 0px 5px 10px;
+    .arrow_grid {
+      display: flex;
+      justify-content: space-between;
+      /* This will separate the child elements in one line */
+      align-items: center;
+
+      .icon-container {
+        margin: 0px 0px 5px 10px;
+      }
+    }
+
+    div {
+      font-weight: 600;
+    }
+
+    .sort {
+      display: flex;
+      border: 1px;
+      background: #1B4E9B14;
+      border-radius: 20px;
+      align-items: center;
+
+      // margin: 0px 15px -10px 0px;
+      .sortby_text {
+        // margin: -1px 0px 0px 0px;
+      }
     }
   }
 
-  div {
-    font-weight: 600;
-  }
-
-  .sort {
-    display: flex;
-    border: 1px;
-    background: #1B4E9B14;
+  .select_job_or_intern {
+    background: #1B4E9C 0% 0% no-repeat padding-box;
     border-radius: 20px;
-    align-items: center;
+    color: #fff;
+    height: 36px;
+    opacity: 1;
+    margin: 0px 20px 0px 0px;
+    padding: 7px 0px 0px 0px;
 
-    // margin: 0px 15px -10px 0px;
-    .sortby_text {
-      // margin: -1px 0px 0px 0px;
+    ::ng-deep .mat-select-value {
+      color: white;
     }
   }
 }
@@ -596,6 +620,8 @@
     position: relative;
     width: 100%;
     padding: 25px 20px 10px 20px;
+    // padding: 18px 20px 10px 20px;
+    // padding: 5px 20px 0px 7px;
     border-bottom: 1px solid #e7e7e763;
     background: #fff;
     box-shadow: 1px 1px 1px 1px #e7e7e763;
@@ -629,6 +655,8 @@
 
   .filter_col {
     padding: 20px;
+    // padding: 5px 0px 0px 18px;
+    // padding: 8px;
     background-color: #ffff;
     border-bottom: 1px solid #e7e7e7;
     align-content: flex-start;

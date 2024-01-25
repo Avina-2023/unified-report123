@@ -176,7 +176,7 @@ li {
     justify-content: space-between;
     margin-bottom: 40px;
     background: #ffffff;
-    width: 850px;
+    width: 750px;
     height: auto;
     margin: 2% 0%;
     border-radius: 15px;
@@ -196,7 +196,7 @@ li {
         span:hover {
           color: #1B4E9B;
           cursor: pointer;
-          border-bottom: 3.5px solid #294D96;
+          // border-bottom: 3.5px solid #294D96;
         }
 
       }
@@ -239,21 +239,26 @@ li {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 850px;
+  width: 750px;
   height: 80px;
   background: #FFFFFF 0% 0% no-repeat padding-box;
   opacity: 1;
   margin: 1% 3%;
-}
-
-.scroller-head-hidden {
   display: none;
 }
 
-.scroller-head-visible {
-  display: block;
-  /* Add any other styling properties for the visible state */
+.show-scroller {
+  display: flex;
 }
+
+// .scroller-head-hidden {
+//   display: none;
+// }
+
+// .scroller-head-visible {
+//   display: block;
+//   /* Add any other styling properties for the visible state */
+// }
 
 .company-details {
   display: flex;
@@ -276,7 +281,7 @@ li {
 
 .custom-card {
   transition: 0.3s;
-  width: 850px;
+  width: 750px;
   height: 220px;
   background: #FFFFFF 0% 0% no-repeat padding-box;
   border-radius: 15px;
@@ -677,7 +682,8 @@ li {
   border: 1px solid #70707066;
   border-radius: 5px;
 }
-.comp_skill_sim{
+
+.comp_skill_sim {
   margin: 0px 15px 0px 0px;
 }
 
@@ -731,10 +737,27 @@ li {
   color: #5C5C5C;
   opacity: 1;
 }
-.Similar_job_card{
-  width: 250px;margin: 12px 15px 0px 0px;
-   height: 568px;
-    background: #FFFFFF 0% 0% no-repeat padding-box;
-    border-radius: 15px;
 
+.Similar_job_card {
+  width: 250px;
+  margin: 12px 15px 0px 0px;
+  height: 568px;
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  border-radius: 15px;
+
+}
+
+.hoverable:hover::after {
+  content: "";
+  position: relative;
+  bottom: -17px;
+  width: auto;
+  height: 2px;
+  background-color: #1B4E9B;
+  transition: width 0.2s;
+  display: block;
+}
+
+::ng-deep .mat-drawer-container {
+  background-color: #EDEDED;
 }

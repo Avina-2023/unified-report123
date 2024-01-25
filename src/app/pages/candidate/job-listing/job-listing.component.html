@@ -7,16 +7,16 @@
         <h5 class="view" (click)="dashboard()">Dashboard </h5>
         <h5 class="findtext"> &nbsp; > &nbsp;Find Jobs</h5>
       </div> -->
-    <br>
-
-    <div class="button-container">
+    <!-- <br> -->
+    <!-- old code to stich job and internship -->
+    <!-- <div class="button-container">
       <button class="custom-button allbtn" [ngClass]="{'active': activeButton === 'all'}"
         (click)="setActiveButton('all')">All</button>
       <button class="custom-button" [ngClass]="{'active': activeButton === 'Jobs'}"
         (click)="setActiveButton('Jobs')">Jobs</button>
       <button class="custom-button" [ngClass]="{'active': activeButton === 'Internships'}"
         (click)="setActiveButton('Internships')">Internships</button>
-    </div>
+    </div> -->
 
     <br>
 
@@ -39,10 +39,7 @@
         <mat-icon class="misc_icon">filter_list</mat-icon><span>Filters ({{this.selectedValues.length}})</span>
       </div>
     </div>
-    <div style="
-height: 76px;
-background: #FFFFFF 0% 0% no-repeat padding-box;
-border-radius: 15px;margin: 1% 4%;border: 1px solid #d0d0d0;">
+    <div class="first_container_new">
       <div class="results_dash">
         <div class="arrow_grid">
           <!-- <div class="sort">
@@ -53,17 +50,20 @@ border-radius: 15px;margin: 1% 4%;border: 1px solid #d0d0d0;">
             <mat-option value="recently posted"> Recently Posted </mat-option>
           </mat-select>
         </div> -->
-          <div style="background: #1B4E9C 0% 0% no-repeat padding-box;
-border-radius: 20px;color:#fff;height: 36px;
-opacity: 1;margin: 0px 20px 0px 0px;padding: 7px 0px 0px 0px;">
-            <mat-select class="jobs_Position mat-select-arrow-wrapper " appearance="outline">
-              <mat-option value="relevance" [ngClass]="{'active': activeButton === 'Jobs'}"
-                (click)="setActiveButton('Jobs')"> Jobs </mat-option>
+          <div class="select_job_or_intern">
+            <mat-select class="jobs_Position mat-select-arrow-wrapper " appearance="outline"
+              [(ngModel)]="selectedOption">
+              <mat-option *ngIf="selectedOption !== 'Internships'" value="relevance"
+                [ngClass]="{'active': activeButton === 'Jobs'}" (click)="setActiveButton('Jobs')"> Jobs </mat-option>
 
-              <mat-option value="recently posted" [ngClass]="{'active': activeButton === 'Internships'}"
-                (click)="setActiveButton('Internships')"> Internship </mat-option>
+              <mat-option *ngIf="selectedOption !== 'Jobs'" value="recently posted"
+                [ngClass]="{'active': activeButton === 'Internships'}" (click)="setActiveButton('Internships')">
+                Internship
+              </mat-option>
             </mat-select>
           </div>
+
+
 
           <div class="sort" style="height: 36px;">
             <ng-container *ngIf="!sortData; else optionSelected">
@@ -83,8 +83,6 @@ opacity: 1;margin: 0px 20px 0px 0px;padding: 7px 0px 0px 0px;">
             </ng-template>
           </div>
         </div>
-
-
 
         <!-- <div class="icon-container">
               <div class="grid-container" [ngClass]="{'grid_2-selected': grid2Selected}" (click)="toggleGrid2()">
@@ -235,27 +233,27 @@ opacity: 1;margin: 0px 20px 0px 0px;padding: 7px 0px 0px 0px;">
     <div class="filt_list">
       <div class="filter_col" *ngFor="let fillist of filter_info.data">
         <p class="filter_head" (click)="fillist.isShow=!fillist.isShow">
-          <mat-icon class="misc_icon">{{fillist.iconName}}</mat-icon><span
-            class="job_designation">{{fillist.fieldName}}</span>
+          <mat-icon class="misc_icon">{{fillist?.iconName}}</mat-icon><span
+            class="job_designation">{{fillist?.fieldName}}</span>
           <mat-icon class="expand_icon" class="clickBtn misc_icon">expand_more</mat-icon>
         </p>
-        <div *ngFor="let course of fillist.subContent; let i = index">
+        <div *ngFor="let course of fillist?.subContent; let i = index">
           <span *ngIf="i<4">
-            <mat-checkbox (change)="checkboxChecked($event,course,fillist.key,fillist.isMaster,'direct')"
-              [checked]="course.is_checked" class="fldName" color="primary" *ngIf="!fillist.isShow">{{course.name}}
-              ({{course.totalCount}})
+            <mat-checkbox (change)="checkboxChecked($event,course,fillist?.key,fillist?.isMaster,'direct')"
+              [checked]="course?.is_checked" class="fldName" color="primary" *ngIf="!fillist.isShow">{{course?.name}}
+              ({{course?.totalCount}})
             </mat-checkbox>
           </span>
         </div>
-        <button *ngIf="(fillist.subContent.length)>4" mat-button
-          (click)="openDialog(fillist)">+{{fillist.subContent.length-4}} more</button>
+        <button *ngIf="(fillist?.subContent.length)>4" mat-button
+          (click)="openDialog(fillist)">+{{fillist?.subContent.length-4}} more</button>
       </div>
     </div>
   </div>
 </div>
 <ng-template #moreItems>
   <div class="dlog_template">
-    <h1 class="job_designation" mat-dialog-title>{{filterItems.fieldName}}</h1>
+    <h1 class="job_designation" mat-dialog-title>{{filterItems?.fieldName}}</h1>
     <div class="close_div" mat-dialog-actions>
       <button mat-button class="close-icon" [mat-dialog-close]="true">
         <mat-icon>close</mat-icon>
@@ -267,7 +265,7 @@ opacity: 1;margin: 0px 20px 0px 0px;padding: 7px 0px 0px 0px;">
     <div class="filter_col mat_dlg_cnt">
       <div *ngFor="let course of filterItems.subContent">
         <mat-checkbox class="mat_courses" (change)="checkboxChecked($event,course,filterItems.key,filterItems.isMaster)"
-          [checked]="course.is_checked" color="primary">{{course.name}} ({{course.totalCount}})</mat-checkbox>
+          [checked]="course.is_checked" color="primary">{{course?.name}} ({{course?.totalCount}})</mat-checkbox>
       </div>
     </div>
     <button [mat-dialog-close] class="aply_btn" (click)="applyfilter()" mat-raised-button color="primary">Apply</button>
@@ -288,9 +286,9 @@ opacity: 1;margin: 0px 20px 0px 0px;padding: 7px 0px 0px 0px;">
   <div class="mob_courses">
     <div class="sub_crse">
       <div *ngFor="let fillist of filter_info.data;let indx = index">
-        <div class="field_crse" (click)="fil_elements(filter_info.data,fillist.subContent,indx,fillist.key)"
-          [ngClass]="fillist.active?'redlab':''">
-          {{fillist.fieldName}} <mat-icon *ngIf="fillist.active">arrow_forward_ios</mat-icon>
+        <div class="field_crse" (click)="fil_elements(filter_info.data,fillist?.subContent,indx,fillist.key)"
+          [ngClass]="fillist?.active?'redlab':''">
+          {{fillist?.fieldName}} <mat-icon *ngIf="fillist?.active">arrow_forward_ios</mat-icon>
         </div>
       </div>
     </div>
@@ -298,7 +296,7 @@ opacity: 1;margin: 0px 20px 0px 0px;padding: 7px 0px 0px 0px;">
       <span *ngIf="filterItems">
         <mat-checkbox color="primary" (change)="checkboxChecked($event,item,item.key,item.isMaster)"
           [checked]="item.is_checked" class="mob_filter_res" *ngFor="let item of filterItems">{{item.name}}
-          ({{item.totalCount}})
+          ({{item?.totalCount}})
         </mat-checkbox>
       </span>
     </div>
