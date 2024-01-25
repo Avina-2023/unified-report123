@@ -2,7 +2,243 @@
     <div class="left_sidebar mg-s-10">
         <ng-container *ngTemplateOutlet="leftSidebarContent"></ng-container>
     </div>
-    <div class="timeline_posts mg-s-10">Timeline Posts</div>
+    <div class="timeline_posts mg-s-10">
+
+        <!-- <div class="common_card bg-white">
+            <div>
+                <div *ngFor="let item of joblist">
+                    
+                    <div class="header">
+                        <div class="company-image">
+                            <img src="../../../../assets/images/lnt-logo.jpg" />
+                        </div>
+                        <div class="company-header">
+                            <div class="company-name">L&T EduTech</div>
+                            <div class="timeleft-logo">
+                                <div>10 Months ago .</div>
+                                <div style="margin: 0px 0px 0px 5px;"><span class="icon-clock_postdate"></span></div>
+                            </div>
+                        </div>  
+                    </div>
+                    <div class="post_description"> 
+                        Job Opening for UI UX Designer Permanent Role.
+                    </div>
+                    <div>
+                        <div class="poster_image job-post-img"
+                            style="background-image: url('../../../../assets/images/job-profile1.png')">
+                        </div>
+                    </div>
+                    <div class="job-details-bg">
+                        <div class="job-details">
+                            <div>
+                                <div class="poster_comp_logo">
+                                    <img [src]="item.companyLogo ? item.companyLogo : '../../../../assets/images/bottomCircle.png'" alt="" />
+                                </div>
+                                <div class="poster_designation post-color">{{item.jobRole}}</div>
+                                <div class="post_company post-color">{{item.jobTitle}}</div>
+                                <div style="display: flex; flex-direction: row; align-items: center;">
+                                    <div style="padding: 0px 5px 0px 0px;"> <span class="icon-clock_postdate"></span>
+                                    </div>
+                                    <div class="post-location post-color">
+                                        <ng-container *ngFor="let location of item.jobLocation; let last = last"> {{ location }}{{ !last ? ', ' : '' }} </ng-container>
+                                    </div>
+                                </div>
+                                <div style="display: flex; flex-direction: row; align-items: center;">
+                                    <div style="padding: 0px 5px 0px 0px;"> <span class="icon-clock_postdate"></span>
+                                    </div>
+                                    <div class="post-degree post-color">
+                                        <ng-container *ngFor="let degree of item.education; let last = last"> {{ degree.level }}{{ !last ? ', ' : '' }} </ng-container>
+                                    </div>
+                                </div>
+                                <div class="post-apply">Apply before {{ item.lastDatetoApply | date:'MMM, d yyyy' }}</div>
+                            </div>
+                            <div class="job-opening">
+                                <img src="../../../../assets/images/job-opening-black.svg" />
+                            </div>
+                        </div>
+                        <div class="aply_div flex-div">
+                            <div class="kick-start">Kick Start Your Career</div>
+                            <div class="aply"><button class="apply-btn"  (click)="gotoJob(item?.jobId)">Apply</button></div>
+                        </div>
+                    </div>
+                    <div class="view-count">
+                        227 Views
+                    </div>
+                    <div class="share">
+                        Share
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="common_card bg-white">
+            <div *ngFor="let course of microLearnCourses">
+                <div class="header">
+                    <div class="company-image">
+                        <img src="../../../../assets/images/lnt-logo.jpg" />
+                    </div>
+                    <div class="company-header">
+                        <div class="company-name">L&T EduTech</div>
+                        <div class="timeleft-logo">
+                            <div>10 Months ago .</div>
+                            <div style="margin: 0px 0px 0px 5px;"><span class="icon-clock_postdate"></span></div>
+                        </div>
+                    </div>
+                </div>
+                <div style="padding: 10px;">
+                    Micro Learning Free Course On {{course.domainName}}
+                </div>
+                <div class="course_image course-post-img">
+                </div>
+                <div class="aply_div flex-div" style="background-color: #400202;">
+                    <div class="kick-start">Enroll the Course now</div>
+                    <div class="aply"><button class="apply-btn">Enroll</button></div>
+                </div>
+                <div class="view-count">
+                    227 Views
+                </div>
+                <div class="share">
+                    Share
+                </div>
+            </div>
+        </div> -->
+
+        
+        <div *ngFor="let item of combinedList">
+            <div class="common_card bg-white">
+        
+                <div *ngIf="item.type === 'job'">
+                    <div class="header">
+                        <div class="company-image">
+                            <img src="../../../../assets/images/lnt-logo.jpg" />
+                        </div>
+                        <div class="company-header">
+                            <div class="company-name">L&T EduTech</div>
+                            <div class="timeleft-logo">
+                                <div>10 Months ago .</div>
+                                <div style="margin: 0px 0px 0px 5px;"><span class="icon-clock_postdate"></span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="post_description">
+                        Job Opening for {{ item.data.jobRole }} Permanent Role.
+                    </div>
+                    <div>
+                        
+                        <!-- <div class="poster_image job-post-img"
+                            style="background-image: url('../../../../assets/images/job-profile1.png')">
+                        </div> -->
+
+                        <div class="poster_image job-post-img" 
+                          [ngStyle]="{ 'background-image': 'url(' + getRandomImageUrl() + ')' }">
+                        </div>
+
+                    </div>
+                    <!-- <div class="job-details-open job-details-bg"> -->
+                    <div class="job-details-open" [ngStyle]="{'background-color': getSpecificColor()}">
+                        <div class="job-details">
+                            <div class="poster_comp_logo">
+                                <img [src]="item.data.companyLogo ? item.data.companyLogo : '../../../../assets/images/bottomCircle.png'"  alt="" />
+                            </div>
+                             <div class="poster_designation post-color">{{item.data.jobRole}}</div>
+                            <div class="post_company post-color">{{item.data.jobTitle}}</div>
+                            <div style="display: flex; flex-direction: row; align-items: center;">
+                                <div style="padding: 0px 5px 0px 0px;"> <span class="icon-clock_postdate"></span>
+                                </div>
+                                <div class="post-location post-color">
+                                    <ng-container *ngFor="let location of item.data.jobLocation; let last = last"> {{ location }}{{ !last ? ', ' : '' }} </ng-container>
+                                </div>
+                            </div>
+                            <div style="display: flex; flex-direction: row; align-items: center;">
+                                <div style="padding: 0px 5px 0px 0px;"> <span class="icon-clock_postdate"></span>
+                                </div>
+                                <div class="post-degree post-color">
+                                    <ng-container *ngFor="let degree of item.data.education; let last = last"> {{ degree.level }}{{ !last ? ', ' : '' }} </ng-container>
+                                </div>
+                            </div>
+                            <div class="post-apply">Apply before {{ item.data.lastDatetoApply | date:'MMM, d yyyy' }}</div>
+                        </div>
+                        <div class="job-opening">
+                            <img src="../../../../assets/images/job-opening-black.svg" />
+                        </div>
+                    </div>
+                    <div class="aply_div flex-div">
+                        <div class="kick-start">Kick Start Your Career</div>
+                        <div class="aply"><button class="apply-btn" (click)="gotoJob(item?.data?.jobId)">Apply</button></div>
+                    </div>
+                </div>
+        
+                <div *ngIf="item.type === 'course'">
+                    <div class="header">
+                        <div class="company-image">
+                            <img src="../../../../assets/images/lnt-logo.jpg" />
+                        </div>
+                        <div class="company-header">
+                            <div class="company-name">L&T EduTech</div>
+                            <div class="timeleft-logo">
+                                <div>10 Months ago .</div>
+                                <div style="margin: 0px 0px 0px 5px;"><span class="icon-clock_postdate"></span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="padding: 10px;">
+                        Micro Learning Free Course On {{ item.data.domainName }}
+                    </div>
+
+                    <!-- <div class="course_image course-post-img">
+                    </div> -->
+
+                    <div class="course-post-img"
+                    [style.background]="'url(' + ((item?.data.image.url) ? (item?.data.image.url) : '../../../../assets/images/job-profile3.png') + ')'">>
+                    </div>
+
+                    <div class="aply_div flex-div" style="background-color: #400202;">
+                        <div class="kick-start">Enroll the Course now</div>
+                        <div class="aply"><button class="apply-btn" (click)="gotoCourses()">Enroll</button></div>
+                    </div>
+                </div>
+        
+                <div class="view-count">
+                    227 Views
+                </div>
+                <div class="share">
+                    Share
+                </div>
+            </div>
+        </div>
+
+          
+        <div class="common_card bg-white">
+            <div>
+                <div class="header">
+                    <div class="company-image">
+                        <img src="../../../../assets/images/lnt-logo.jpg" />
+                    </div>
+                    <div class="company-header">
+                        <div class="company-name">L&T EduTech</div>
+                        <div class="timeleft-logo">
+                            <div>10 Months ago .</div>
+                            <div style="margin: 0px 0px 0px 5px;"><span class="icon-clock_postdate"></span></div>
+                        </div>
+                    </div>
+                </div>
+                <div style="padding: 10px;">
+                    L&T Edutech Shines At The 4th Cii Global Education Conclave<br><span style="color: #1b4e9b;">Read
+                        More...</span>
+                </div>
+                <div class="news_image news-post-img">
+                </div>
+                <div class="view-count">
+                    227 Views
+                </div>
+                <div class="share">
+                    Share
+                </div>
+            </div>
+        </div>
+
+    </div>
+
     <div class="right_sidebar mg-s-10">
         <ng-container *ngTemplateOutlet="rightSidebarContent"></ng-container>
     </div>
@@ -13,10 +249,11 @@
     <div class="common_card bg-white">
         <div class="pd-15">
             <div class="section-title">Recommended jobs for you</div>
-            <div *ngFor="let item of joblist" class="single-element">
+            <div *ngFor="let item of joblist?.slice(0, 3)" class="single-element">
                 <div class="flex_div flx_center">
                     <div class="card_img">
-                        <div class="comp_logo" [style.background]="'url(' + ((item?.companyLogo) ? (item?.companyLogo) : 'assets/images/job-bag.png') + ')'">
+                        <div class="comp_logo"
+                            [style.background]="'url(' + ((item?.companyLogo) ? (item?.companyLogo) : 'assets/images/job-bag.png') + ')'">
                         </div>
                     </div>
                     <div class="card_content">
@@ -24,8 +261,9 @@
                         <div class="flex_div flx_center flx_between">
                             <span class="postedDate">{{item.postedDate}}</span>
                             <span class="separator"></span>
-                            <span class="active_link pointer_cursor" *ngIf="item.approveStatus == 'approved'" (click)="gotoJob(item.jobId)"><span
-                                    class="icon-active-icon"></span> Actively Recruiting</span>
+                            <span class="active_link pointer_cursor" *ngIf="item.approveStatus == 'approved'"
+                                (click)="gotoJob(item?.jobId)"><span class="icon-active-icon"></span> Actively
+                                Recruiting</span>
                         </div>
                     </div>
                 </div>
@@ -58,42 +296,71 @@
 
 
 <ng-template #rightSidebarContent>
+    
     <div class="common_card bg-white">
-            <div class="profile_background  border_tp_10"></div>
-            <div class="bg-white border_btm_10">
-                <div class="avatar_image" [style.background]="'url(' + (profileImage ? profileImage : 'assets/images/candidate-userprofile.png') + ')'">
+        <div class="profile_background  border_tp_10"></div>
+        <div class="bg-white border_btm_10">
+            <div class="avatar_image"
+                [style.background]="'url(' + (profileImage ? profileImage : 'assets/images/candidate-userprofile.png') + ')'">
+            </div>
+            <div class="profile_details">
+                <div class="title user-title">{{candidateName ? candidateName : ''}}</div>
+                <div class="user_email">{{candidateEmail ? candidateEmail : ''}}</div>
+                <div class="user_place">{{form_present_city ? form_present_city + ',' : ''}} {{form_present_state ?
+                    form_present_state : ''}}
                 </div>
-                <div class="profile_details">
-                    <div class="title user-title">{{candidateName ? candidateName : ''}}</div>
-                    <div class="user_email">{{candidateEmail ? candidateEmail : ''}}</div>
-                    <div class="user_place">{{form_present_city ? form_present_city + ',' : ''}} {{form_present_state ? form_present_state : ''}}
-                    </div>
-                    <div class="flag" *ngIf="form_present_city"><img decoding="async"
-                            src="assets/images/India-flag.png"></div>
+                <div class="flag" *ngIf="form_present_city"><img decoding="async" src="assets/images/India-flag.png">
                 </div>
-                <div class="flex_div flx_center flx_between pdt-15">
-                    <div class="flex_div flx_end">
-                        <div class="profile-right">
-                            <div class="profile_text">PROFILE</div>
-                            <div class="profile-percentage profile_heading">{{profilePercent}}%</div>
-                        </div>
-                        <div class="profile_progress" role="progressbar" aria-valuemin="0" aria-valuemax="100"
-                            style="--size: 40px; --value: {{profilePercent}};"></div>
+            </div>
+            <div class="flex_div flx_center flx_between pdt-15">
+                <div class="flex_div flx_end">
+                    <div class="profile-right">
+                        <div class="profile_text">PROFILE</div>
+                        <div class="profile-percentage profile_heading">{{profilePercent}}%</div>
                     </div>
-                    <div class="profile_separator"></div>
-                    <div class="flex_div flx_center">
-                        <div class="profile-right">
-                            <div class="profile_text">POINTS</div>
-                            <div class="points-count profile_heading">100</div>
-                        </div>
-                        <div class="profile-left">
-                            <img decoding="async"
-                                src="assets/images/points.svg">
-                        </div>
+                    <div class="profile_progress" role="progressbar" aria-valuemin="0" aria-valuemax="100"
+                        style="--size: 40px; --value: {{profilePercent}};"></div>
+                </div>
+                <div class="profile_separator"></div>
+                <div class="flex_div flx_center">
+                    <div class="profile-right">
+                        <div class="profile_text">POINTS</div>
+                        <div class="points-count profile_heading">100</div>
+                    </div>
+                    <div class="profile-left">
+                        <img decoding="async" src="assets/images/points.svg">
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+   
+    <div class="common_card bg-white">
+        <div style="display: flex; align-items: center; justify-content: space-between; padding: 15px;">
+            <button class="prev-btn" (click)="owlCar.prev()" style="border: none;  background: none;"><em class='icon-LeftArrow'></em></button>
+            <div style="flex: 1; overflow: hidden;">
+                <owl-carousel-o [options]="customOptions" #owlCar>
+                    <ng-container>
+                        <ng-template *ngFor="let sliders of qrScanner; let i = index" class="imageWrapper" carouselSlide>
+                            <div>
+                                <div>
+                                    <div class="qr-title">{{sliders.title}}</div>
+                                    <div class="qr-image" [style.border]="getBorderStyles(i)">
+                                        <img [src]="sliders.imgurl" alt="" />
+                                    </div>
+                                    <!-- <div class="qr-link">{{sliders.link}}</div> -->
+                                    <div class="qr-link">
+                                        <a [href]="sliders.redirectLink" target="_blank">{{sliders.link}}</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-template>
+                    </ng-container>
+                </owl-carousel-o>
+            </div>
+            <button class="next-btn" (click)="owlCar.next()" style="border: none;  background: none;"><em class='icon-RightArrow'></em></button>
+        </div>
     </div>
     
-
+    
 </ng-template>
