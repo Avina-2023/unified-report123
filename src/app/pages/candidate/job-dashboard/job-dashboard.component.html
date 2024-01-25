@@ -374,14 +374,17 @@
     </div> -->
     <div class="candidatebg">
       <div class="userprofile">
-        <img
+        <!-- <img
           class="avatar"
           [src]="
             profileImage
               ? profileImage
               : '../../../../assets/images/candidate-userprofile.png'
           "
-        />
+        /> -->
+
+        <div class="avatar" [style.background]="'url('+(profileImage ? profileImage : 'assets/images/candidate-userprofile.png')+')'"></div>
+
         <div class="bg-white">
           <div class="profilename">
             {{ username }}

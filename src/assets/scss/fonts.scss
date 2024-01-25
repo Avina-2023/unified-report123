@@ -72,6 +72,20 @@
    content: "\e9a3";
   }
 
+  .icon-plus_rounded:before {
+    content: "\e9a4";
+    color: #1b4e9b;
+  }
+
+  .icon-home_icon:before {
+    content: "\e9a3";
+    color: #848484;
+  }
+
+  .icon-jobs-work:before {
+    content: "\e992";
+    color: #848484;
+  }
   .icon-export-file:before {
     content: "\e991";
     color: #004684;
@@ -145,10 +159,6 @@
     content: "\ea2c";
     color: #848484;
   }
-  .icon-home:before {
-    content: "\ea2b";
-    font-weight: 600;
-  }
   .icon-forum:before {
     content: "\ea26";
     color: #848484;
@@ -157,10 +167,7 @@
     content: "\ea27";
     color: #848484;
   }
-  .icon-jobs:before {
-    content: "\ea28";
-    font-weight: 600;
-  }
+
   .icon-learning:before {
     content: "\ea29";
     color: #848484;

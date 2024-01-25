@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="262.905" height="166.337" viewBox="0 0 262.905 166.337">
+  <g id="Group_25348" data-name="Group 25348" transform="translate(1663 1277.536)">
+    <path id="Path_31299" data-name="Path 31299" d="M9.3,224c2.412,0,2.412,2.539,4.825,2.539S16.537,224,18.949,224s2.412,2.539,4.825,2.539S26.187,224,28.6,224s2.412,2.539,4.825,2.539S35.836,224,38.248,224s2.412,2.539,4.825,2.539S45.486,224,47.9,224s2.412,2.539,4.825,2.539" transform="translate(-1660.492 -1495.453)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+    <path id="Path_31300" data-name="Path 31300" d="M43.033,322.766a2.682,2.682,0,0,1-2.666,2.666,2.666,2.666,0,1,1,2.666-2.666Z" transform="translate(-1652.833 -1469.538)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+    <path id="Path_31301" data-name="Path 31301" d="M194.733,238.866a2.682,2.682,0,0,1-2.666,2.666,2.666,2.666,0,1,1,2.666-2.666Z" transform="translate(-1611.925 -1492.163)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+    <circle id="Ellipse_770" data-name="Ellipse 770" cx="20.188" cy="20.188" r="20.188" transform="translate(-1547.714 -1276.786)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+    <line id="Line_802" data-name="Line 802" y2="5.333" transform="translate(-1653.859 -1234.125)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+    <line id="Line_803" data-name="Line 803" x1="5.333" transform="translate(-1656.525 -1231.459)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+    <line id="Line_804" data-name="Line 804" y2="5.206" transform="translate(-1472.296 -1149.438)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+    <line id="Line_805" data-name="Line 805" x1="5.206" transform="translate(-1474.835 -1146.772)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+    <path id="Path_31302" data-name="Path 31302" d="M15.5,270.443l77.2,77.45,165.311-55.865L233.883,246.7Z" transform="translate(-1658.82 -1489.332)" fill="none" stroke="#ffc107" stroke-miterlimit="10" stroke-width="1"/>
+    <path id="Path_31303" data-name="Path 31303" d="M17.5,244.116l94.336,115.667,145.631-52.564L224.837,243.1Z" transform="translate(-1658.281 -1490.303)" fill="#ffc107"/>
+    <path id="Path_31304" data-name="Path 31304" d="M0,234.79,40.375,283.8l124.682-19.807L179.023,230.6Z" transform="translate(-1663 -1493.674)" fill="#fff"/>
+    <path id="Path_31305" data-name="Path 31305" d="M241.911,250.5,75.2,275.893,54,338.869l166.581-8.38Z" transform="translate(-1648.438 -1488.307)" fill="#fff"/>
+    <path id="Path_31306" data-name="Path 31306" d="M87.008,343.535A10.617,10.617,0,1,1,75.835,333.5,10.555,10.555,0,0,1,87.008,343.535Z" transform="translate(-1645.26 -1465.929)" fill="#ffc107"/>
+    <path id="Path_31307" data-name="Path 31307" d="M203.442,307.871a4.571,4.571,0,1,1-4.571-4.571A4.552,4.552,0,0,1,203.442,307.871Z" transform="translate(-1610.603 -1474.069)" fill="#ffc107"/>
+    <circle id="Ellipse_771" data-name="Ellipse 771" cx="9.523" cy="9.523" r="9.523" transform="translate(-1474.962 -1274.374)" fill="#ffc107"/>
+    <path id="Path_31308" data-name="Path 31308" d="M31.81,298.355a3.549,3.549,0,0,1-3.555,3.555,3.555,3.555,0,1,1,3.555-3.555Z" transform="translate(-1656.339 -1476.361)" fill="#ffc107"/>
+    <path id="Path_31309" data-name="Path 31309" d="M59.663,224.431a2.031,2.031,0,1,1-2.031-2.031A2.006,2.006,0,0,1,59.663,224.431Z" transform="translate(-1648.006 -1495.885)" fill="#ffc107"/>
+    <text id="OPENING" transform="translate(-1574.838 -1172.473) rotate(-4.92)" fill="#262626" font-size="30" font-family="Helvetica-BoldOblique, Helvetica" font-weight="700" font-style="oblique"><tspan x="0" y="0">OPENING</tspan></text>
+    <text id="JOB" transform="translate(-1606.341 -1228.717) rotate(-3.9)" fill="#262626" font-size="27" font-family="Helvetica-BoldOblique, Helvetica" font-weight="700" font-style="oblique"><tspan x="0" y="0">JOB</tspan></text>
+  </g>
+</svg>

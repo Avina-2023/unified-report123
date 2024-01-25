@@ -1,0 +1,397 @@
+.flex_div {
+    display: flex;
+}
+
+.flx_wrap {
+    flex-wrap: wrap
+}
+
+.flx_center {
+    align-items: center;
+}
+
+.flx_between {
+    justify-content: space-between;
+}
+
+.mg-s-10 {
+    margin: 0px 10px;
+}
+
+.bg-white {
+    background-color: #fff;
+}
+
+.pointer_cursor {
+    cursor: pointer;
+}
+
+span.icon-plus_rounded {
+    font-size: 17px !important;
+}
+
+.profile-layout {
+    height: auto;
+    background-color: #EDEDED;
+    margin-left: -65px;
+    padding: 30px;
+    width: -webkit-fill-available;
+    margin-bottom: 40px;
+
+
+    .common_card {
+        border-radius: 10px;
+        margin-bottom: 20px;
+
+        .pd-15 {
+            padding: 15px;
+        }
+
+        .card_img {
+            width: 17%;
+        }
+
+        .bg_course_img {
+            background-size: cover !important;
+            height: 74px !important;
+            background-position: center !important;
+            background-repeat: no-repeat !important;
+            border-radius: 8px 0px 0px 8px;
+            width: 74px;
+        }
+
+        .course_percent {
+            color: #fff;
+            margin-left: 20px;
+            padding: 0px 10px;
+            border-radius: 16px;
+            font-size: 12px;
+        }
+
+        .duration {
+            color: #848484;
+        }
+
+        .course_status,
+        .duration {
+            font-size: 12px;
+        }
+
+        .mg-lr-10 {
+            margin: 0px 10px;
+        }
+
+        .card_content {
+            width: 83%;
+            padding: 5px 0px 5px 10px;
+            line-height: 22px;
+            border-radius: 0px 10px 10px 0px;
+        }
+
+        .comp_logo {
+            border: 1px solid #ededed;
+            padding: 7px 0px;
+            border-radius: 5px;
+            background: #fff;
+
+            img {
+                border-radius: 5px;
+                width: -webkit-fill-available;
+            }
+        }
+
+        .single-element {
+            margin-bottom: 20px;
+        }
+
+        .section-title,
+        .title {
+            line-height: 20px;
+            max-width: 235px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            text-transform: capitalize;
+
+        }
+
+        .user-title {
+            font-size: 16px !important;
+            font-weight: 700 !important;
+            padding-bottom: 5px;
+            margin: 0 auto;
+        }
+
+        .user_place {
+            font-weight: 500;
+            color: #262626;
+            font-size: 13px;
+            padding-top: 3px;
+        }
+
+        .section-title {
+            color: #262626;
+            font-size: 16px;
+            padding-bottom: 20px;
+        }
+
+        .title {
+            color: #000;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .postedDate,
+        .enrolCount {
+            color: #848484;
+        }
+
+        .active_link {
+            color: #1B4E9B;
+        }
+
+        .separator {
+            background: #80808026;
+            height: 17px;
+            width: 1px;
+        }
+
+        .postedDate,
+        .active_link,
+        .enrolCount {
+            font-size: 12px;
+        }
+
+        .addon_btn {
+            text-align: center;
+            border-top: 1px solid #e5e5e5;
+            padding-top: 15px;
+            color: #373331;
+            padding-bottom: 15px;
+            font-weight: 600;
+        }
+    }
+
+
+    .inprogress_state {
+        background: #FFFBF6;
+
+        .course_status {
+            color: #FFB74D;
+        }
+
+        .course_percent {
+            background: #FFB74D;
+        }
+    }
+
+    .completed_state {
+        background: #F6FBF5;
+
+        .course_status {
+            color: #49AE31;
+        }
+
+        .course_percent {
+            background: #49AE31;
+        }
+    }
+
+
+    .not-started-state {
+        background: #F6F6F6;
+
+        .course_status {
+            color: #5C5C5C;
+        }
+
+        .course_percent {
+            background: #5C5C5C;
+        }
+    }
+
+
+
+
+    .border_tp_10 {
+        border-radius: 10px 10px 0px 0px;
+    }
+
+    .profile_background {
+        background: url(../../../../assets/images/profile-banner.png);
+        height: 110px;
+        background-size: cover;
+        background-position: center;
+        position: relative;
+    }
+
+    .border_btm_10 {
+        border-radius: 0px 0px 10px 10px !important;
+    }
+
+    .avatar_image {
+        border-radius: 50%;
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+        margin-top: -40px;
+        max-width: 75px;
+        height: 75px;
+        background-position: center !important;
+        background-size: cover !important;
+    }
+
+    .profile_details {
+        border-bottom: 1px solid #EDEDED;
+        text-align: center;
+        padding: 15px 0px;
+    }
+
+    .profile_progress {
+        --bg: #ededed;
+        --pgPercentage: var(--value);
+        --fg: #27BBEE;
+        animation: growProgressBar 3s 1 forwards;
+        width: var(--size);
+        height: var(--size);
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        background: radial-gradient(closest-side, #fff 65%, #0000 0 99.9%, #fff 0), conic-gradient(var(--fg) calc(var(--pgPercentage) * 1%), var(--bg) 0) !important;
+        font-size: calc(var(--size) / 5);
+        color: #26bbef;
+        font-family: Lato !important;
+        font-weight: 600;
+    }
+
+    .user_email {
+        color: #848484;
+        font-size: 12px;
+    }
+
+    .profile_separator {
+        background: #ededed;
+        width: 1px;
+        height: 100%;
+        position: absolute;
+        right: 16%;
+    }
+
+
+    /*Profile Percentage Circle*/
+
+
+    .profile-right {
+        margin-right: 20px;
+        line-height: 18px;
+    }
+
+    .profile_heading {
+        font-weight: bold;
+    }
+
+    .profile_text {
+        font-size: 11px;
+    }
+
+    .pdt-15 {
+        padding: 15px 10px;
+    }
+
+    /*Profile Percentage end*/
+
+    .left_sidebar,
+    .right_sidebar {
+        width: 30%;
+    }
+
+    .center_div {
+        width: 40%;
+    }
+
+    .edit_profile_btn {
+        color: #1B4E9B;
+        border: 1px solid #1B4E9B;
+        padding: 5px 15px;
+        border-radius: 40px;
+        width: fit-content;
+        margin: 20px auto 20px auto;
+        font-weight: 600;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .edit_profile_btn:hover {
+        background: #1B4E98;
+        color: #fff;
+    }
+
+    .profile_content {
+        text-align: center;
+        font-size: 14px;
+        color: #262626;
+        padding: 25px 20px 30px 20px;
+        border-top: 1px solid #EDEDED;
+        line-height: 25px;
+    }
+
+    .skill-content {
+        width: fit-content;
+        margin: 5px;
+        border: 1px solid #efefef;
+        padding: 2px 16px 2px 16px;
+        border-radius: 40px;
+        background: #efefef;
+        color: #262626;
+        font-size: 14px;
+        font-weight: 500;
+        text-transform: capitalize;
+    }
+
+    .graduation {
+        font-size: 30px;
+        background: #f4f4f4;
+        padding: 17px;
+        border-radius: 10px
+    }
+
+    .eduYear {
+        color: #848484;
+        font-size: 12px;
+    }
+
+    .view_more {
+        color: #1B4E9B;
+        font-weight: 500;
+        font-size: 13px;
+    }
+
+    .comp_logo {
+        background-repeat: no-repeat !important;
+        background-size: contain !important;
+        height: 63px;
+        background-position: center !important;
+        border: 1px solid #ededed;
+        border-radius: 5px;
+    }
+
+    .company_name {
+        font-size: 13px;
+        line-height: 18px;
+        text-transform: capitalize;
+        padding-bottom: 2px
+    }
+
+    .application_status {
+        color: #49AE31;
+        font-size: 12px;
+        background: #F6FBF5;
+        width: -moz-fit-content;
+        width: fit-content;
+        padding: 1px 10px;
+        border-radius: 40px;
+        text-transform: capitalize;
+    }
+
+
+}

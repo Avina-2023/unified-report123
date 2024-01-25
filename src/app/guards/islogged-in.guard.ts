@@ -18,7 +18,7 @@ export class IsloggedInGuard implements CanActivate {
         this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.EMPDASHBOARD.HOME);
         return false;
       } else if(this.appConfig.getLocalStorage('c_token')){
-        this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.CANDIDATEDASH.DASHBOARD);
+        this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.CANDIDATEDASH.NEWDASHBOARD);
         return false
       }else{
         return true

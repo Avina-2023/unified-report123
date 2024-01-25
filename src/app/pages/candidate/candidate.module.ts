@@ -25,6 +25,8 @@ import { ResumeTemplate1Component } from './resume-builder/resume-templates/resu
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { DragScrollModule } from 'ngx-drag-scroll';
 import { ToastrModule } from 'ngx-toastr';
+import { CandidateHomeComponent } from './candidate-home/candidate-home.component';
+import { CandidateProfileOverviewComponent } from './candidate-profile-overview/candidate-profile-overview.component';
 
 @NgModule({
   imports: [
@@ -51,6 +53,8 @@ import { ToastrModule } from 'ngx-toastr';
     TimeAgoPipe,
     TimeDiffPipe,
     NoDataFoundComponent,
+    CandidateHomeComponent,
+    CandidateProfileOverviewComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
 })
