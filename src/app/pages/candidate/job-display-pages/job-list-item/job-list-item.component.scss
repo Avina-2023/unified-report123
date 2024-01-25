@@ -365,7 +365,7 @@
       }
 
       .flex-growone {
-         flex-grow: 18;
+        flex-grow: 18;
         padding: 0px 10px 3px 0px;
       }
 
@@ -535,4 +535,7 @@
   background: #1B4E9B14 0% 0% no-repeat padding-box;
   border-radius: 15px;
   opacity: 1;
+}
+::ng-deep .mat-drawer-container {
+  background-color: #EDEDED;
 }

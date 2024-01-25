@@ -28,6 +28,9 @@ const routes: Routes = [
         path: `${APP_CONSTANTS.ROUTES.CANDIDATEDASH.JOBLIST}`, component: JobListingComponent
       },
       {
+        path: `${APP_CONSTANTS.ROUTES.CANDIDATEDASH.INTERNSHIPLIST}`, component: JobListingComponent
+      },
+      {
         path: `${APP_CONSTANTS.ROUTES.CANDIDATEDASH.RESUMEBUILDER}`, component: ResumeBuilderComponent
       },
       {
