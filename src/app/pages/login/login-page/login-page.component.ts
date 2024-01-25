@@ -25,6 +25,7 @@ export class LoginPageComponent  {
 
   @ViewChild('mailsuccess', { static: false }) mailsuccess: TemplateRef<any>;
   @ViewChild('notactive', { static: false }) notactive: TemplateRef<any>;
+  currentYear: number;
 
   constructor(
     public fb: FormBuilder,
@@ -50,6 +51,7 @@ export class LoginPageComponent  {
 
   ngOnInit(): void {
     this.formInitialize();
+    this.currentYear = new Date().getFullYear();
   }
 
   openMatDialogs(templateref){
