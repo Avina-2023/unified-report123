@@ -34,6 +34,7 @@ export class RegisterPageComponent implements OnInit {
   userName: any;
   // userOtp:any;
   otp: number;
+  currentYear: number;
 
 
   constructor(
@@ -49,6 +50,7 @@ export class RegisterPageComponent implements OnInit {
   industrytype: any;
 
   ngOnInit(): void {
+    this.currentYear = new Date().getFullYear();
     this.formInitialize();
     this.otpForm = this.fb.group({
       digit1: ['', [Validators.required]],

@@ -40,6 +40,7 @@ export class CandidateComponent implements OnInit {
   candidateEmail: any;
   profileImage: any;
   currentUrl: string;
+  currentYear: number;
   constructor(
     public router: Router,
     private apiservice: ApiService,
@@ -68,6 +69,7 @@ export class CandidateComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.currentYear = new Date().getFullYear();
     const storedShowInternship = localStorage.getItem('showInternship');
     const storedShowJobs = localStorage.getItem('showJobs');
 

@@ -16,6 +16,7 @@ export class ForgotPasswordComponent implements OnInit {
   notTrue = false;
   getCurrentYear = this.appConfig.getCurrentYear();
   isCandidate: boolean;
+  currentYear: number;
 
   constructor(
     private fb: FormBuilder,
@@ -37,6 +38,7 @@ export class ForgotPasswordComponent implements OnInit {
 
   ngOnInit() {
     this.formInitialize();
+    this.currentYear = new Date().getFullYear();
   }
 
   formInitialize() {
