@@ -17,6 +17,7 @@ import { environment } from 'src/environments/environment';
 
 })
 export class JobDescriptionComponent implements OnInit {
+
   jobViewsCount: any;
   pageNumber: any;
   itemsPerPage: any;
@@ -204,7 +205,6 @@ export class JobDescriptionComponent implements OnInit {
         gender: this.jobDetails.gender
       }
     }
-
 
   this.skillexService.savedJobs(obj).subscribe((res: any) => {
     if (res.success) {

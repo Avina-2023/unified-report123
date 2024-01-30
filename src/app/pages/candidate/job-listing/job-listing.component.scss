@@ -159,7 +159,8 @@
   border-radius: 35px;
   opacity: 1;
   padding: 8px;
-  margin: 0px 20px 0px 26px;
+  // margin: 0px 20px 0px 26px;
+  margin: 0px 18px 0px 18px;
 }
 
 .search-bar input {
@@ -200,7 +201,8 @@
   height: 76px;
   background: #FFFFFF 0% 0% no-repeat padding-box;
   border-radius: 15px;
-  margin: 1% 4%;
+  // margin: 1% 4%;
+  margin: 1% 2%;
   border: 1px solid #ffffff;
 
 
@@ -599,12 +601,13 @@
 }
 
 .filter {
-  width: 25%;
+  width: 26%;
   // overflow-y: scroll;
   scroll-behavior: smooth;
   height: 86vh;
   background-color: #EDEDED;
-  padding: 15px 20px;
+  padding: 15px 0px;
+  padding-right: 50px;
   border-radius: 30px;
 
   .clear_filter {
@@ -644,8 +647,8 @@
   }
 
   .filt_list {
-    height: 70vh;
-    // overflow-y: scroll;
+    height: 320vh;
+    overflow-y: scroll;
     // border-radius: 15px;
   }
 
@@ -794,7 +797,8 @@
   .card-sty {
     display: flex;
     flex-wrap: wrap;
-    margin: 1% 3%;
+    // margin: 1% 3%;
+    margin: 0% 1%;
   }
 
   .custom-class {
