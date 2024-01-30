@@ -32,7 +32,7 @@
                     <div *ngIf='roleCode != "EMP"'></div>
                 </div>
             </div>
-            <div class="percent-side">
+            <div class="percent-side" *ngIf='roleCode === "EMP"'>
                 <div class="percent-side-bg">
                   <circle-progress
                     [percent]="profileCompletion"
@@ -54,8 +54,11 @@
         </div>
     </div>
 
-    <!-- <app-details-card> 
-    </app-details-card> -->
+    <!-- <div  *ngIf='roleCode === "EMP"'>
+        <app-details-card> 
+        </app-details-card>
+    </div> -->
+
 
     <div class="cand-prof-dash">Candidate Profile Dashboard</div>
     <div class="row candidate-count">
