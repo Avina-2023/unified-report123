@@ -206,23 +206,25 @@ export class JobDescriptionComponent implements OnInit {
     }
 
 
-  this.skillexService.savedJobs(obj).subscribe((res: any) => {
-    if (res.success) {
-      this.openDialog(this.applySuccess);
+    this.skillexService.savedJobs(obj).subscribe((res: any) => {
+      if (res.success) {
+        this.openDialog(this.applySuccess);
 
-      // Store applied job details in local storage
-      const appliedJobDetails = {
-        jobId: this.jobDetails.jobId,
-        companyId: this.jobDetails.companyId
-      };
-      localStorage.setItem('appliedJob', JSON.stringify(appliedJobDetails));
+        // Store applied job details in local storage
+        const appliedJobDetails = {
+          jobId: this.jobDetails.jobId,
+          companyId: this.jobDetails.companyId
+        };
+        localStorage.setItem('appliedJob', JSON.stringify(appliedJobDetails));
 
-      this.jobDetails.isApplied = !this.jobDetails.isApplied;
-    } else {
-      // Handle other cases
-    }
-  });
-}
+        this.jobDetails.isApplied = !this.jobDetails.isApplied;
+      } else {
+        // Handle other cases
+        if (res.message == "Please complete your profile to apply for this job") { this.openDialog(this.matDialogRef) }
+        if (res.message == "You are not eligible to apply for this job.") { this.openDialog(this.eligiblitypop) }
+      }
+    });
+  }
 
     jobViewCount(){
       let obj = {
