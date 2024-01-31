@@ -76,6 +76,8 @@ export class JobListingComponent implements OnInit {
   storedCandidateDetails: any;
   specified: any;
   selectedOption: string = 'relevance';
+  showJobs: boolean;
+  showInternship: boolean;
   constructor(
     public dialog: MatDialog,
     private apiservice: ApiService,
@@ -104,6 +106,25 @@ export class JobListingComponent implements OnInit {
   //   else if (this.router.routerState.snapshot.url == '/candidateview/findjobs') {
   //     this.isIconActive(this.iconHover2.nativeElement, 'jobs');
   //   }
+  console.log(this.router.routerState.snapshot.url,'this.router.routerState.snapshot.url');
+  if (this.router.routerState.snapshot.url == '/candidateview/findjobs') {     
+    this.showJobs = true;
+    this.showInternship = false;
+  
+    // Store state in localStorage
+    localStorage.setItem('showInternship', JSON.stringify(this.showInternship));
+    localStorage.setItem('showJobs', JSON.stringify(this.showJobs));
+  }
+
+  if (this.router.routerState.snapshot.url == '/candidateview/findinternship') {     
+    this.showJobs = false;
+    this.showInternship = true;
+  
+    // Store state in localStorage
+    localStorage.setItem('showInternship', JSON.stringify(this.showInternship));
+    localStorage.setItem('showJobs', JSON.stringify(this.showJobs));
+  }
+  
   }
 
   debouncefn() {

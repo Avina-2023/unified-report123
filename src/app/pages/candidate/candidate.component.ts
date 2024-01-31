@@ -315,12 +315,12 @@ export class CandidateComponent implements OnInit {
   //   }
   // }
 onJobsClick() {
-    this.showJobs = true;
-    this.showInternship = false;
+    // this.showJobs = true;
+    // this.showInternship = false;
 
-    // Store state in localStorage
-    localStorage.setItem('showInternship', JSON.stringify(this.showInternship));
-    localStorage.setItem('showJobs', JSON.stringify(this.showJobs));
+    // // Store state in localStorage
+    // localStorage.setItem('showInternship', JSON.stringify(this.showInternship));
+    // localStorage.setItem('showJobs', JSON.stringify(this.showJobs));
   }
 
 }
