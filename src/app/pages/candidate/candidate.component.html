@@ -39,14 +39,14 @@
         <div class="icon_txt">Home</div>
       </div>
 
-      <div (click)="onJobsClick()" class="menu_icon pointer_cursor" #iconHover2
+      <div (click)="onJobsClick('jobs')" class="menu_icon pointer_cursor" #iconHover2
         (mouseenter)="addSlideAnimation(iconHover2, 'jobs')" (mouseleave)="removeSlideAnimation(iconHover2, 'jobs')"
         (click)="isIconActive(iconHover2,'jobs')">
         <div class="icon"><span class="icon-jobs-work"></span></div>
         <div class="icon_txt">Jobs</div>
       </div>
 
-      <div (click)="onInternshipClick()" class="menu_icon pointer_cursor" #iconHover3
+      <div (click)="onJobsClick('ints')" class="menu_icon pointer_cursor" #iconHover3
         (mouseenter)="addSlideAnimation(iconHover3, 'internships')"
         (mouseleave)="removeSlideAnimation(iconHover3, 'internships')"
         (click)="isIconActive(iconHover3, 'internships')">
@@ -160,7 +160,7 @@
               </mat-list-item>
             </div>
             <!-- internship -->
-            <div *ngIf="showInternship"
+            <div *ngIf="!showJobs"
               style="display: flex; align-items: center; margin: 0px 0px 20px 20px; padding: 20px 0px 0px 0px;">
               <span style="margin-right: 10px;" class="icon-job-blue-converted"></span>
               <mat-list-item [ngClass]="router.url == routelinks.CANDIDATEDASH.INTERNSHIPLIST ? 'active' : ''"

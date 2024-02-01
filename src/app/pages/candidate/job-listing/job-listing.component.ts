@@ -77,7 +77,6 @@ export class JobListingComponent implements OnInit {
   specified: any;
   selectedOption: string = 'relevance';
   showJobs: boolean;
-  showInternship: boolean;
   constructor(
     public dialog: MatDialog,
     private apiservice: ApiService,
@@ -89,41 +88,14 @@ export class JobListingComponent implements OnInit {
   ) {}
   // url = 'Jobs';
   ngOnInit() {
+    // window.location.reload();
     this.getJobList();
     this.getJobFilter();
     this.candidateData();
     this.enabledisable();
     this.partnerLabel = 'Skill Exchange Partner';
     this.debouncefn();
-    //  this.setActiveButton('Jobs');
-    // if (this.router.routerState.snapshot.url == 'APP_CONSTANTS.ENDPOINTS.CANDIDATEDASH.INTERNSHIPLIST') {
-      // this.router.navigateByUrl(APP_CONSTANTS.ENDPOINTS.CANDIDATEDASH.INTERNSHIPLIST);
-  //     this.isIconActive(this.iconHover1.nativeElement, 'home');
-  //   }
-  //   else if (this.router.routerState.snapshot.url == '/candidateview/dashboard') {
-  //     this.isIconActive(this.iconHover1.nativeElement, 'dashboard');
-  //   }
-  //   else if (this.router.routerState.snapshot.url == '/candidateview/findjobs') {
-  //     this.isIconActive(this.iconHover2.nativeElement, 'jobs');
-  //   }
-  console.log(this.router.routerState.snapshot.url,'this.router.routerState.snapshot.url');
-  if (this.router.routerState.snapshot.url == '/candidateview/findjobs') {     
-    this.showJobs = true;
-    this.showInternship = false;
-  
-    // Store state in localStorage
-    localStorage.setItem('showInternship', JSON.stringify(this.showInternship));
-    localStorage.setItem('showJobs', JSON.stringify(this.showJobs));
-  }
-
-  if (this.router.routerState.snapshot.url == '/candidateview/findinternship') {     
-    this.showJobs = false;
-    this.showInternship = true;
-  
-    // Store state in localStorage
-    localStorage.setItem('showInternship', JSON.stringify(this.showInternship));
-    localStorage.setItem('showJobs', JSON.stringify(this.showJobs));
-  }
+    // console.log(this.router.routerState.snapshot.url,'this.router.routerState.snapshot.url');
   
   }
 
@@ -200,24 +172,14 @@ getJobList() {
     delete this.filterObj.textSearch;
   }
   // routing for jobs and internships
-    if (this.router.routerState.snapshot.url == 'APP_CONSTANTS.ENDPOINTS.CANDIDATEDASH.JOBLIST') {
-      this.filterObj.workType == 'Jobs';
+    if (this.router.routerState.snapshot.url == APP_CONSTANTS.ENDPOINTS.CANDIDATEDASH.JOBLIST) {
+      this.filterObj.workType = ['Jobs'];
     }
-    else if (this.router.routerState.snapshot.url == 'APP_CONSTANTS.ENDPOINTS.CANDIDATEDASH.INTERNSHIPLIST') {
-      this.filterObj.workType == 'Internships';
+    else if (this.router.routerState.snapshot.url == APP_CONSTANTS.ENDPOINTS.CANDIDATEDASH.INTERNSHIPLIST) {
+      this.filterObj.workType = ['Internships'];
     }
-
-  // if (url == 'jobs') {
-  //   this.filterObj.workType == 'Jobs';
-  // }
-  // else if (url == 'internships') {
-  //  this.filterObj.workType == 'Jobs';
-  // }
-
   console.log(this.candidateDetails);
-
   const candidateDiscipline = this.candidateDetails?.education_details?.educations[length-1]?.discipline;
-
   console.log(candidateDiscipline);
 
   let params: any = {
@@ -241,7 +203,6 @@ getJobList() {
     }
   });
 }
-
 
   enabledisable() {
     console.log(this.useryopyear);
@@ -418,20 +379,20 @@ getJobList() {
     this.router.navigate(['/candidateview/dashboard']);
   }
 
-  setActiveButton(workOption) {
-    this.activeButton = workOption;
-    this.filterObj.workType = [workOption];
-    this.getJobList();
-    console.log(workOption, 'worktyps');
-    if (workOption == 'Jobs') {
-     this.router.navigateByUrl(APP_CONSTANTS.ENDPOINTS.CANDIDATEDASH.JOBLIST);
-    }
-    else if (workOption == 'Internships') {
-    this.router.navigateByUrl(APP_CONSTANTS.ENDPOINTS.CANDIDATEDASH.INTERNSHIPLIST);
-    }
+  // setActiveButton(workOption) {
+  //   // this.activeButton = workOption;
+  //   // this.filterObj.workType = [workOption];
+  //   // this.getJobList();
+  //   // console.log(workOption, 'worktyps');
+  //   // if (workOption == 'Jobs') {
+  //   //  this.router.navigateByUrl(APP_CONSTANTS.ENDPOINTS.CANDIDATEDASH.JOBLIST);
+  //   // }
+  //   // else if (workOption == 'Internships') {
+  //   // this.router.navigateByUrl(APP_CONSTANTS.ENDPOINTS.CANDIDATEDASH.INTERNSHIPLIST);
+  //   // }
 
 
-  }
+  // }
   //   setActiveButton(workOption: string) {
   //   this.activeButton = workOption;
   //   this.filterObj.workType = [workOption];
