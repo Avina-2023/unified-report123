@@ -355,7 +355,13 @@ export class ExternalLinkComponent implements OnInit {
             this.appConfig.setLocalStorage('name',data && data.data.personal_details?data.data.personal_details.name:'N/A')
             this.appConfig.setLocalStorage('profileImage',data && data.data.personal_details?data.data.personal_details.profileImage:'')
             this.appConfig.setLocalStorage('candidateProfile',data && data.data?JSON.stringify(data.data):'')
-
+           
+            if (view === 'findjobs'){
+                this.appConfig.setLocalStorage('showJobs' , true  )
+            }
+            if (view === 'findinternship'){
+                this.appConfig.setLocalStorage('showJobs' , false)
+            }
             if(!view && !jobid)
             {this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.CANDIDATEDASH.DASHBOARD);}
 
@@ -364,6 +370,7 @@ export class ExternalLinkComponent implements OnInit {
             }else{
               this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.CANDIDATEDASH.DASHBOARD);
             }
+
 
             if(jobid){
               let dataval = {
