@@ -51,7 +51,7 @@
           </mat-select>
         </div> -->
           <div class="select_job_or_intern">
-            <mat-select class="jobs_Position mat-select-arrow-wrapper " appearance="outline"
+            <!-- <mat-select class="jobs_Position mat-select-arrow-wrapper " appearance="outline"
               [(ngModel)]="selectedOption">
               <mat-option *ngIf="selectedOption !== 'Internships'" value="relevance"
                 [ngClass]="{'active': activeButton === 'Jobs'}" (click)="setActiveButton('Jobs')"> Jobs </mat-option>
@@ -60,7 +60,7 @@
                 [ngClass]="{'active': activeButton === 'Internships'}" (click)="setActiveButton('Internships')">
                 Internship
               </mat-option>
-            </mat-select>
+            </mat-select> -->
           </div>
 
 
@@ -212,7 +212,7 @@
       </div>
     </div>
 
-    <div *ngIf="totallength==0">
+    <div *ngIf="totallength==0" style="margin: 0px 30px 0px 40px;">
       <app-no-data-found [from]="'find'"></app-no-data-found>
     </div>
   </div>

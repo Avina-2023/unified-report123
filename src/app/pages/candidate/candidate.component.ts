@@ -23,7 +23,6 @@ export class CandidateComponent implements OnInit {
   @ViewChild('iconHover4') iconHover4: ElementRef;
   @ViewChild('iconHover5') iconHover5: ElementRef;
   @ViewChild('iconHover6') iconHover6: ElementRef;
-  showInternship: boolean = false;
   showJobs: boolean = false;
   // showJobs = true;
   isExpanded = false;
@@ -69,16 +68,9 @@ export class CandidateComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.currentYear = new Date().getFullYear();
-    const storedShowInternship = localStorage.getItem('showInternship');
-    const storedShowJobs = localStorage.getItem('showJobs');
-
-    this.showInternship = storedShowInternship ? JSON.parse(storedShowInternship) : this.showInternship;
-    this.showJobs = storedShowJobs ? JSON.parse(storedShowJobs) : this.showJobs;
-
-
-    // console.log(this.router.routerState.snapshot.url, 'currenturlparams');
-    // console.log(this.router.url, 'routerurl');
+    this.currentYear = new Date().getFullYear(); 
+    const storedShowJobs = localStorage.getItem('showJobs'); 
+    this.showJobs = storedShowJobs ? JSON.parse(storedShowJobs) : this.showJobs; 
     this.profileimge = this.appconfig.getLocalStorage('profileImage');
     this.CandidateDetails();
     this.sidebarDisabled();
@@ -105,6 +97,9 @@ export class CandidateComponent implements OnInit {
     }
     else if (this.router.routerState.snapshot.url == '/candidateview/findjobs') {
       this.isIconActive(this.iconHover2.nativeElement, 'jobs');
+    }
+    else if (this.router.routerState.snapshot.url == '/candidateview/findinternship') {
+      this.isIconActive(this.iconHover3.nativeElement, 'internships');
     }
   }
 
@@ -223,10 +218,15 @@ export class CandidateComponent implements OnInit {
       this.router.navigateByUrl('/candidateview/dashboard');
       //this.isSidebarDisabled = false;
     }
+    // if (menuType === 'home') {
+    //   this.router.navigateByUrl('/candidateview/home');
+    //   //this.isSidebarDisabled = false;
+    // }
     if (menuType === 'home') {
-      this.router.navigateByUrl('/candidateview/home');
+      this.router.navigateByUrl('https://reviewinfo.lntedutech.com');
       //this.isSidebarDisabled = false;
     }
+  
   }
 
 
@@ -298,28 +298,13 @@ export class CandidateComponent implements OnInit {
   isActive(): boolean {
    return this.router.isActive(this.router.createUrlTree(['/candidateview/resumebuilder']), true);
   }
-
- onInternshipClick() {
-    this.showInternship = true;
-    this.showJobs = false;
-
-    // Store state in localStorage
-    localStorage.setItem('showInternship', JSON.stringify(this.showInternship));
-    localStorage.setItem('showJobs', JSON.stringify(this.showJobs));
-}
-
-  // onJobsClick() {
-  //   if (!this.showJobs) {
-  //     this.showJobs = true;
-  //     this.showInternship = false;
-  //   }
-  // }
-onJobsClick() {
+onJobsClick(from) {
+  if(from == 'jobs'){
     this.showJobs = true;
-    this.showInternship = false;
-
-    // Store state in localStorage
-    localStorage.setItem('showInternship', JSON.stringify(this.showInternship));
+  }
+  else{
+    this.showJobs = false;
+  }
     localStorage.setItem('showJobs', JSON.stringify(this.showJobs));
   }
 
