@@ -89,10 +89,11 @@ export class CandidateComponent implements OnInit {
   ngAfterViewInit() {
 
     // Set "Home" as the default active icon
-    if (this.router.routerState.snapshot.url == '/candidateview/home') {
-      this.isIconActive(this.iconHover1.nativeElement, 'home');
-    }
-    else if (this.router.routerState.snapshot.url == '/candidateview/dashboard') {
+    // if (this.router.routerState.snapshot.url == '/candidateview/home') {
+    //   this.isIconActive(this.iconHover1.nativeElement, 'home');
+    // }
+    // else 
+    if (this.router.routerState.snapshot.url == '/candidateview/dashboard') {
       this.isIconActive(this.iconHover1.nativeElement, 'dashboard');
     }
     else if (this.router.routerState.snapshot.url == '/candidateview/findjobs') {
@@ -218,14 +219,20 @@ export class CandidateComponent implements OnInit {
       this.router.navigateByUrl('/candidateview/dashboard');
       //this.isSidebarDisabled = false;
     }
+
     // if (menuType === 'home') {
     //   this.router.navigateByUrl('/candidateview/home');
     //   //this.isSidebarDisabled = false;
     // }
-    if (menuType === 'home') {
-      this.router.navigateByUrl('https://reviewinfo.lntedutech.com');
-      //this.isSidebarDisabled = false;
-    }
+
+    if (menuType === 'home') { 
+      // this.appconfig.clearLocalStorage();
+      // this.apiservice.logout();
+      window.location.href = 'https://reviewinfo.lntedutech.com';
+      // this.apiservice.logout();
+      // window.location.replace('https://reviewinfo.lntedutech.com');
+      //  this.appconfig.clearLocalStorage();
+    } 
   
   }
 
