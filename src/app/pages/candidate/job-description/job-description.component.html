@@ -28,13 +28,7 @@
       <button class="save_ed btn" *ngIf="jobDetails.isSelected == true" (click)="saved()">Saved</button>
     </div>
   </div>
-  <!-- SCRIPT FOR SCROLLING -->
 
-<script>
-
-
-</script>
-  <!--  -->
   <div style="display: flex;">
     <div class="custom-card">
       <!-- <div class="coverImage">
@@ -242,12 +236,12 @@ height: 144px;display: flex;justify-content: space-around;align-items: center;">
       </div>
     </div>
     <!-- Similar jobs -->
-    <div class="Similar_job_card">
+    <div  class="Similar_job_card">
       <h3 style="padding: 10px 0px 0px 15px; font-weight: bold!important;">Similar Jobs</h3>
 
       <div *ngFor="let item of joblist; let i = index" class="similar-job"
-        style="margin-bottom: 20px;padding: 0px 0px 0px 7px;">
-        <div class="" style="display: flex; align-items: center;">
+        style="margin-bottom: 20px;padding: 0px 0px 0px 7px;" (click)="gotojob(item)">
+        <div  class="" style="display: flex; align-items: center;">
           <img class="comp_logo_sim" (error)="'/assets/images/compPlaceholder.png'"
             [src]="productionUrl ? item.companyLogo + blobToken : item.companyLogo" />
 

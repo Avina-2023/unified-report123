@@ -49,7 +49,9 @@ export class JobListItemComponent implements OnInit, AfterViewInit {
     private mdDialog: MatDialog,
   ) {}
   ngOnInit():void {
-    this.resultShow = this.data.length
+    this.resultShow = this.data.length;
+    console.log(this.data, 'outputdata');
+
     this.currentdate = this.currentdate.toISOString();
 
   }

@@ -96,7 +96,7 @@ export class JobListingComponent implements OnInit {
     this.partnerLabel = 'Skill Exchange Partner';
     this.debouncefn();
     // console.log(this.router.routerState.snapshot.url,'this.router.routerState.snapshot.url');
-  
+
   }
 
   debouncefn() {
@@ -165,7 +165,7 @@ export class JobListingComponent implements OnInit {
   //   });
   // }
 
-getJobList() {
+  getJobList() {
   if (this.searchInput) {
     this.filterObj.textSearch = this.searchInput;
   } else {
@@ -202,7 +202,7 @@ getJobList() {
       });
     }
   });
-}
+  }
 
   enabledisable() {
     console.log(this.useryopyear);
@@ -460,5 +460,5 @@ getJobList() {
     return `${differenceInDays} ${differenceInDays === 1 ? 'day' : 'days'} ago`;
   }
   return '30+ days ago';
-}
+ }
 }

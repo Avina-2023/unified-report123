@@ -50,7 +50,8 @@ li {
 }
 
 .pageWrapper {
-  padding: 3px 0px 10px 7px;
+  // padding: 3px 0px 10px 7px;
+  padding: 10px 0px 0px 0px;
   height: 84vh;
   border-radius: 15px;
 
@@ -324,7 +325,6 @@ li {
         font: normal normal medium 14px/16px Inter;
         letter-spacing: 0px;
         color: #1B4E9B;
-
       }
 
       .se-patner {
@@ -744,6 +744,7 @@ li {
   height: 568px;
   background: #FFFFFF 0% 0% no-repeat padding-box;
   border-radius: 15px;
+  cursor: pointer;
 
 }
 
