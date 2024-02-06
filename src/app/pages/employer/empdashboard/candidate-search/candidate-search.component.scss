@@ -8,6 +8,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    background: #F5F5F5;
     .main2 {
       width: 75%;
       background: #F5F5F5;
@@ -98,6 +99,7 @@
           width: auto;
           padding: 0px;
           margin: 10px;
+          box-shadow: none;
           .icon-bookmark {
             position: absolute;
             top: 0px;
@@ -172,6 +174,7 @@
             display: flex;
             flex-direction: row;
             width: 100%;
+            border-radius: 0px 0px 5px 5px;
           }
   
           .action-button .view-prof {
@@ -218,7 +221,7 @@
       }
     }
     .filter-candidate {
-      width: 25%;
+      width: 22%;
       .filter {
         height: 550px;
         overflow-y: auto;
@@ -234,7 +237,7 @@
         position: sticky;
         width: 100%;
         padding: 25px 20px 10px 20px;
-        border-bottom: 1px solid #e7e7e763;
+        // border-bottom: 1px solid #e7e7e763;
         background: #fff;
         box-shadow: 1px 1px 1px 1px #e7e7e763;
         border-top: 5px solid whitesmoke;

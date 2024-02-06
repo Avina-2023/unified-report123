@@ -15,8 +15,7 @@
             </mat-select>
           </mat-form-field>
         </div>
-  
-      </div>
+       </div>
       <div class="candidate-card">
         <mat-card class="card-1" *ngFor="let item of candidatelist;">
   
@@ -40,23 +39,12 @@
             </div>
             <div class="candidate-edu">
               <div *ngFor="let education of item.educations">
-                <!-- <div *ngIf="education.is_highLevelEdu" class="high-level">
-                  {{education.specification ? education.specification + (education.discipline ? ' ' + education.discipline : '') :
-                  education.discipline ? education.discipline : education.level }} - {{ education.end_date |date:'MMMM yyyy'}}
-                </div> -->
                 <div *ngIf="education.is_highLevelEdu" class="high-level" [matTooltip]="getTooltipText(education)">
                   {{education.specification ? education.specification + (education.discipline ? ' ' + education.discipline : '') :
                   education.discipline ? education.discipline : education.level }} - {{ education.end_date |date:'MMMM yyyy'}}
                 </div>
               </div>
             </div>
-  
-  
-            <!-- <div class="candidate-loc">
-              <div> <mat-icon class="loc-icon"> location_on</mat-icon></div>
-              <div class="loc-name">{{item.permanentaddress.permanent_city}}, {{getStateName(item.permanentaddress.permanent_state)}}
-              </div>
-            </div> -->
   
             <div class="candidate-loc">
               <div> <mat-icon class="loc-icon"> location_on</mat-icon></div>
@@ -87,16 +75,6 @@
               </div>
             </div>
           </div>
-          <!-- <div class="act-button">
-            <div class="view-profile">
-              <div class="view-icn"><mat-icon>visibility</mat-icon></div>
-              <div class="view-btn"><button mat-button>View Profile</button></div>
-            </div>
-            <div class="view-saved">
-              <div class="sav-icn"><mat-icon>save</mat-icon></div>
-              <div class="save-btn"><button mat-button>Save</button></div>
-            </div>
-          </div> -->
         </mat-card>
   
       </div>
