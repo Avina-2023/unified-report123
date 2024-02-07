@@ -160,24 +160,18 @@ export class ViewCandidateByDriveComponent implements OnInit {
     this.getJobDetails();
     this.getAggridJoblist();
 
-    this.sendData
-      .getMessage()
-      .subscribe((data: { data: string; value: any }) => {
-        if (data.data == 'grid-refresh') {
-          console.log('inside');
-          this.refresh();
-        }
-      });
+    this.sendData.getMessage().subscribe((data: { data: string; value: any }) => {
+      if (data.data == 'grid-refresh') {
+        console.log('inside');
+        this.refresh();
+      }
+    });
   }
 
   ngOnDestroy() {
     // this.appconfig.clearLocalStorageOne('currentJobID');
   }
 
-  // paginationCounter(){
-  //   this.totalPages = Math.ceil(this.pageRowCount/this.selectedPageSize)
-  //   this.pageArray = Array.from(Array(this.totalPages).keys());
-  // }
   arrayofData: any = [];
 
   // Ag Grid Section
@@ -191,6 +185,7 @@ export class ViewCandidateByDriveComponent implements OnInit {
       {
         headerName: 'S.No',
         field: 'id',
+        resizable: false,
         minWidth: 85,
         suppressColumnsToolPanel: true,
         filter: false,
@@ -202,6 +197,7 @@ export class ViewCandidateByDriveComponent implements OnInit {
       {
         headerName: 'Name',
         field: 'studentName',
+        resizable: false,
         minWidth: 175,
         filter: 'agTextColumnFilter',
         chartDataType: 'category',
@@ -211,12 +207,7 @@ export class ViewCandidateByDriveComponent implements OnInit {
           filterOptions: ['contains'],
         },
         cellRenderer: (params) => {
-          if (
-            params.value &&
-            params.value !== undefined &&
-            params.value !== null &&
-            params.value !== ''
-          ) {
+          if ( params.value && params.value !== undefined && params.value !== null && params.value !== '' ) {
             this.FormateName = params.value;
             return this.titleCase(this.FormateName);
           } else {
@@ -225,11 +216,7 @@ export class ViewCandidateByDriveComponent implements OnInit {
         },
         tooltipValueGetter: (params) => {
           if (
-            params.value &&
-            params.value !== undefined &&
-            params.value !== null &&
-            params.value !== ''
-          ) {
+            params.value &&  params.value !== undefined && params.value !== null && params.value !== '') {
             this.FormateName = params.value;
             return this.titleCase(this.FormateName);
           } else {
@@ -240,13 +227,14 @@ export class ViewCandidateByDriveComponent implements OnInit {
           return {
             'text-decoration': 'underline',
             color: 'blue',
-            cursor: 'pointer',
+            cursor: 'pointer', 
           };
         },
       },
       {
         headerName: 'Status',
         field: 'jobStatus',
+        resizable: false,
         minWidth: 195,
         filter: 'agTextColumnFilter',
         chartDataType: 'category',
@@ -284,7 +272,8 @@ export class ViewCandidateByDriveComponent implements OnInit {
       {
         headerName: 'Qualification',
         field: 'degree',
-        minWidth: 133,
+        resizable: false,
+        minWidth: 143,
         filter: 'agTextColumnFilter',
         chartDataType: 'category',
         aggFunc: 'sum',
@@ -309,7 +298,8 @@ export class ViewCandidateByDriveComponent implements OnInit {
       {
         headerName: 'Year of Passout',
         field: 'yearOfPassing',
-        minWidth: 147,
+        resizable: false,
+        minWidth: 160,
         filter: 'agNumberColumnFilter',
         chartDataType: 'series',
         filterParams: {
@@ -340,7 +330,8 @@ export class ViewCandidateByDriveComponent implements OnInit {
       {
         headerName: 'Trained by L&T EduTech',
         field: 'trainedStatus',
-        minWidth: 200,
+        resizable: false,
+        minWidth: 220,
         filter: 'agTextColumnFilter',
         chartDataType: 'category',
         aggFunc: 'sum',
@@ -361,11 +352,12 @@ export class ViewCandidateByDriveComponent implements OnInit {
           }
         },
         tooltipField: 'trainedStatus',
-      },
+      }, 
       { 
         headerName: 'Assessed by L&T EduTech', 
         field: 'assessedStatus', 
-        minWidth: 210, 
+        resizable: false,
+        minWidth: 225, 
         filter: 'agTextColumnFilter', 
         chartDataType: 'category',
         aggFunc: 'sum',
@@ -374,12 +366,7 @@ export class ViewCandidateByDriveComponent implements OnInit {
           filterOptions: ['contains'],
         }, 
         cellRenderer: (params) => {
-          if (
-            params.value &&
-            params.value != undefined &&
-            params.value != null &&
-            params.value != ''
-          ) {
+          if ( params.value && params.value != undefined && params.value != null && params.value != '' ) {
             return params.value; 
           } else {
             return '-';
@@ -390,7 +377,8 @@ export class ViewCandidateByDriveComponent implements OnInit {
       {
         headerName: 'Applied Date', 
         field: 'appliedDate', 
-        minWidth: 135,
+        resizable: false,
+        minWidth: 145,
         valueFormatter: function (params){
           return moment(params.value).format('DD-MM-yy'); 
         }, 
@@ -408,7 +396,8 @@ export class ViewCandidateByDriveComponent implements OnInit {
       {
         headerName: 'Actions',
         field: '',
-        minWidth: 150,
+        minWidth: 100,
+        resizable: false,
         cellRenderer: 'moreOptions',
         //  onCellClicked: this.sendJobData(),
         suppressColumnsToolPanel: true,
@@ -474,10 +463,7 @@ export class ViewCandidateByDriveComponent implements OnInit {
       getRows: (params) => {
         let apiData: any = params;
         apiData.request.jobId = this.jobId;
-        this.driveAgGridSubscription = this.ApiService.getCandidateListByDeive(
-          apiData.request
-        ).subscribe(
-          (data1: any) => {
+        this.driveAgGridSubscription = this.ApiService.getCandidateListByDeive(apiData.request).subscribe((data1: any) => {
             if (data1.success == false) {
               params.fail();
               params.success({
@@ -490,22 +476,16 @@ export class ViewCandidateByDriveComponent implements OnInit {
               this.candidateList = data1 && data1.data ? data1.data : [];
               console.log(this.candidateList, 'candidateList');
               this.alldata = data1;
-
               this.shortlitcountvalue = this.alldata.Shortlisted || 0;
               this.awaitingcountvalue = this.alldata.awaitingReview || 0;
               this.rejectedcountvalue = this.alldata.Rejected || 0;
               this.allcountvalue = this.alldata.totalCount || 0;
               this.inprogresscountvalue = this.alldata['In Progress'] || 0;
-
               console.log(this.alldata, 'dataaaaa');
               //this.displayData = JSON.stringify(this.alldata);
-
               if (this.candidateList.length > 0) {
-                this.pageRowCount =
-                  data1 && data1.totalCount ? data1.totalCount : 0;
-                this.totalPages = Math.ceil(
-                  this.pageRowCount / this.selectedPageSize
-                );
+                this.pageRowCount = data1 && data1.totalCount ? data1.totalCount : 0;
+                this.totalPages = Math.ceil( this.pageRowCount / this.selectedPageSize);
                 console.log(this.totalPages);
                 this.gridApi.hideOverlay();
                 params.success({
@@ -525,9 +505,9 @@ export class ViewCandidateByDriveComponent implements OnInit {
           },
           (err) => {
             params.fail();
-            params.success({
+            params.success({ 
               rowData: this.candidateList,
-              rowCount: this.pageRowCount,
+              rowCount: this.pageRowCount, 
             });
           }
         );
@@ -542,12 +522,8 @@ export class ViewCandidateByDriveComponent implements OnInit {
 
   autoSizeAll(skipHeader: boolean) {
     const allColumnIds: string[] = [];
-    if (
-      this.gridColumnApi &&
-      this.gridColumnApi.getAllColumns != undefined &&
-      this.gridColumnApi.getAllColumns().length
-    ) {
-      this.gridColumnApi.getAllColumns().forEach((column) => {
+    if ( this.gridColumnApi && this.gridColumnApi.getAllColumns != undefined && this.gridColumnApi.getAllColumns().length ) {
+      this.gridColumnApi.getAllColumns().forEach((column) => { 
         allColumnIds.push(column.getId());
       });
       this.gridColumnApi.autoSizeColumns(allColumnIds, skipHeader);
@@ -568,29 +544,27 @@ export class ViewCandidateByDriveComponent implements OnInit {
   getJobDetails() { 
     this.jobDetailsdata = this.appconfig.getLocalStorage('currentJobData'); 
     this.valueone = JSON.parse(this.jobDetailsdata); 
-
     this.userRole = this.appconfig.getLocalStorage('role'); 
     this.role = JSON.parse(this.userRole); 
     this.roleCode = this.role[0].roles[0].roleCode;
     console.log(this.roleCode, 'role');
-    
   } 
 
   onTabChange(index: number) {
-    const pall = ['navyblue', 'yellow', 'lightblue', 'red', 'green'];
-    const icn = ['#1B4E9B', '#FFB74D', '#27BBEE', '#EF2917', ' #49AE31'];
-    console.log('Selected tab index:' + index);
-    this.dynclass = pall[index];
-    this.icncolor = icn[index];
-    this.active = index;
-    console.log(index, 'MYINDEX VALUE');
-    let statusmodel = { 
-      jobStatus: {
-        filterType: 'text',
-        type: 'contains',
-        filter: '',
-      },
-    };
+    const pall = ['navyblue', 'yellow', 'lightblue', 'red', 'green']; 
+    const icn = ['#1B4E9B', '#FFB74D', '#27BBEE', '#EF2917', ' #49AE31']; 
+    console.log('Selected tab index:' + index); 
+    this.dynclass = pall[index]; 
+    this.icncolor = icn[index]; 
+    this.active = index; 
+    console.log(index, 'MYINDEX VALUE'); 
+    let statusmodel = {  
+      jobStatus: { 
+        filterType: 'text', 
+        type: 'contains', 
+        filter: '', 
+      }, 
+    }; 
     // if (index == 0) {
     //   statusmodel.jobStatus.filter = 'All';
     // }else
