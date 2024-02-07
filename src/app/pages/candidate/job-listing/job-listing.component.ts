@@ -1,5 +1,5 @@
 import { ApiService } from 'src/app/services/api.service';
-import { Component, OnInit, TemplateRef, ViewChild, ElementRef, Renderer2,} from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild, ElementRef, Renderer2,Input,} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { I } from '@angular/cdk/keycodes';
 import { AppConfigService } from 'src/app/utils/app-config.service';
@@ -12,6 +12,7 @@ import { FormsModule } from '@angular/forms';
 import { element } from 'protractor';
 import { Subject } from 'rxjs/internal/Subject';
 import { debounceTime } from 'rxjs/internal/operators/debounceTime';
+import { SentDataToOtherComp } from 'src/app/services/sendDataToOtherComp.service';
 
 @Component({
   selector: 'app-job-listing',
@@ -19,6 +20,7 @@ import { debounceTime } from 'rxjs/internal/operators/debounceTime';
   styleUrls: ['./job-listing.component.scss'],
 })
 export class JobListingComponent implements OnInit {
+  @Input() searchText: string ='';
   message: string;
   public pageNumber: any = 1;
   public itemsPerPage: any = 6;
@@ -29,7 +31,6 @@ export class JobListingComponent implements OnInit {
   sampleContent = [];
   title = 'edutech';
   education = ['B.Tech', 'B.Sc', 'B.Com', 'BE'];
-  searchInput: string = '';
   joblist = [];
   // filter_info = any[];
 
@@ -77,6 +78,7 @@ export class JobListingComponent implements OnInit {
   specified: any;
   selectedOption: string = 'relevance';
   showJobs: boolean;
+  searchInput: string;
   constructor(
     public dialog: MatDialog,
     private apiservice: ApiService,
@@ -84,11 +86,21 @@ export class JobListingComponent implements OnInit {
     public router: Router,
     private toaster: ToastrService,
     private renderer: Renderer2,
-    private el: ElementRef
+    private el: ElementRef,
+    private sendData: SentDataToOtherComp
   ) {}
   // url = 'Jobs';
   ngOnInit() {
     // window.location.reload();
+this.sendData
+      .getMessage()
+      .subscribe((data: { data: string; value: any }) => {
+        if (data) {
+          this.searchInput = data.data;
+          this.getJobList();
+        }
+      });
+
     this.getJobList();
     this.getJobFilter();
     this.candidateData();
@@ -166,23 +178,27 @@ export class JobListingComponent implements OnInit {
   // }
 
   getJobList() {
+    console.log(this.searchInput, 'recieved data');
   if (this.searchInput) {
-    this.filterObj.textSearch = this.searchInput;
-  } else {
-    delete this.filterObj.textSearch;
+      this.filterObj.textSearch = this.searchInput;
   }
-  // routing for jobs and internships
+  else if (this.searchInput == "") {
+    delete this.filterObj.textSearch;
+    }
+    //this.filterObj.textSearch = this.searchInput;
+
+    // routing for jobs and internships
     if (this.router.routerState.snapshot.url == APP_CONSTANTS.ENDPOINTS.CANDIDATEDASH.JOBLIST) {
       this.filterObj.workType = ['Jobs'];
     }
     else if (this.router.routerState.snapshot.url == APP_CONSTANTS.ENDPOINTS.CANDIDATEDASH.INTERNSHIPLIST) {
       this.filterObj.workType = ['Internships'];
     }
-  console.log(this.candidateDetails);
-  const candidateDiscipline = this.candidateDetails?.education_details?.educations[length-1]?.discipline;
-  console.log(candidateDiscipline);
+    //console.log(this.candidateDetails);
+    const candidateDiscipline = this.candidateDetails?.education_details?.educations[length-1]?.discipline;
+    //console.log(candidateDiscipline);
 
-  let params: any = {
+   let params: any = {
     pageNumber: this.pageNumber,
     itemsPerPage: this.itemsPerPage,
     filter: this.filterObj,
@@ -460,5 +476,6 @@ export class JobListingComponent implements OnInit {
     return `${differenceInDays} ${differenceInDays === 1 ? 'day' : 'days'} ago`;
   }
   return '30+ days ago';
- }
+  }
+
 }

@@ -15,7 +15,7 @@ import { APP_CONSTANTS } from 'src/app/utils/app-constants.service';
 export class ExternalLinkComponent implements OnInit {
   codec = new HttpUrlEncodingCodec;
   apiresponse = {
-    
+
       "success": true,
       "message": "login successfully",
       "data": {
@@ -326,15 +326,15 @@ export class ExternalLinkComponent implements OnInit {
       },
       "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImVtYWlsIjoiZ29rdWw0N0BkaXNwb3N0YWJsZS5jb20iLCJ1c2VySWQiOiJxYnBjZ3UifSwiaWF0IjoxNjkxMzg5NDY0LCJleHAiOjE2OTE0MDAyNjQsImlzcyI6Imh0dHBzOi8vd3d3LmxhcnNlbnRvdWJyby5jb20vIn0.bxVhQ-KUZZ_c-r_3909Ue4QBgLHVPGio2Z8jOxmgOns",
       "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImVtYWlsIjoiZ29rdWw0N0BkaXNwb3N0YWJsZS5jb20iLCJ1c2VySWQiOiJxYnBjZ3UifSwiaWF0IjoxNjkxMzg5NDY0LCJleHAiOjE2OTE0MjU0NjQsImlzcyI6Imh0dHBzOi8vd3d3LmxhcnNlbnRvdWJyby5jb20vIn0.1kpnF1-CT25Ib9Qd8BO2fN0Ik3YVOZzoQUjfp1c7eN0"
-  
+
   }
   constructor(private route: ActivatedRoute, public toast: ToastrService,public appConfig: AppConfigService, public apiService:ApiService,
-  ) { 
+  ) {
     this.appConfig.clearLocalStorage();
   }
 
   ngOnInit(): void {
-    
+
     this.getRoute();
   }
 
@@ -349,13 +349,13 @@ export class ExternalLinkComponent implements OnInit {
         this.apiService.student_login({ key: decodeURIComponent(extId) }).subscribe((data: any) => {
           // data = this.apiresponse//mocking
           if (data.success) {
-            
+
             this.appConfig.setLocalStorage('c_token', data && data.token ? data.token : '');
             this.appConfig.setLocalStorage('email', data && data.data.email ? data.data.email : '');
             this.appConfig.setLocalStorage('name',data && data.data.personal_details?data.data.personal_details.name:'N/A')
             this.appConfig.setLocalStorage('profileImage',data && data.data.personal_details?data.data.personal_details.profileImage:'')
             this.appConfig.setLocalStorage('candidateProfile',data && data.data?JSON.stringify(data.data):'')
-           
+
             if (view === 'findjobs'){
                 this.appConfig.setLocalStorage('showJobs' , true  )
             }
@@ -387,7 +387,7 @@ export class ExternalLinkComponent implements OnInit {
                   this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.CANDIDATEDASH.DASHBOARD);
                 }
               })
-              
+
             }
             // this.loginRedirection(data.data,);
           } else {
@@ -405,7 +405,7 @@ export class ExternalLinkComponent implements OnInit {
   }
 
   loginRedirection(data: any) {
-    
+
 
     this.appConfig.routeNavigation('/candidateview/dashboard');
 

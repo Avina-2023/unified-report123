@@ -30,10 +30,10 @@ export class JobListItemComponent implements OnInit, AfterViewInit {
   sampleContent = [];
   blobToken = environment.blobToken;
   productionUrl =
-    environment.SKILL_EDGE_URL == 'https://skilledge.lntedutech.com'
-      ? true
-      : false;
+  environment.SKILL_EDGE_URL == 'https://skilledge.lntedutech.com'? true : false;
   joblist: any;
+  applyJobs: boolean;
+  saveJobs: boolean;
   resultShow: any;
   jobs = [
     { jobType: 'Contract' },
@@ -48,7 +48,20 @@ export class JobListItemComponent implements OnInit, AfterViewInit {
     private appconfig: AppConfigService,
     private mdDialog: MatDialog,
   ) {}
-  ngOnInit():void {
+  ngOnInit(): void {
+
+    if (this.router.routerState.snapshot.url == APP_CONSTANTS.ENDPOINTS.CANDIDATEDASH.JOBSAPPLIED) {
+      this.applyJobs = true;
+    }
+    else {
+      this.applyJobs = false;
+    }
+    if (this.router.routerState.snapshot.url == APP_CONSTANTS.ENDPOINTS.CANDIDATEDASH.JOBSSAVED) {
+      this.saveJobs = true;
+    }
+    else {
+      this.saveJobs = false;
+    }
     this.resultShow = this.data.length;
     console.log(this.data, 'outputdata');
 
@@ -56,6 +69,9 @@ export class JobListItemComponent implements OnInit, AfterViewInit {
 
   }
 
+  isInternshipApplied(): boolean {
+    return this.router.url.includes('Internships');
+  }
   apply(item) {
     var obj = {
       jobId: item.jobId,
@@ -166,24 +182,24 @@ export class JobListItemComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() { }
   getDaysAgo(createdOn: Date): string {
-  const today = new Date();
-  const differenceInSeconds = Math.floor((today.getTime() - new Date(createdOn).getTime()) / 1000);
-  if (differenceInSeconds < 60) {
-    return 'just now';
-  }
-  const differenceInMinutes = Math.floor(differenceInSeconds / 60);
-  if (differenceInMinutes < 60) {
-    return `${differenceInMinutes} ${differenceInMinutes === 1 ? 'min' : 'mins'} ago`;
-  }
-  const differenceInHours = Math.floor(differenceInMinutes / 60);
-  if (differenceInHours < 24) {
-    return `${differenceInHours} ${differenceInHours === 1 ? 'hour' : 'hours'} ago`;
-  }
-  const differenceInDays = Math.floor(differenceInHours / 24);
-  if (differenceInDays <= 30) {
-    return `${differenceInDays} ${differenceInDays === 1 ? 'day' : 'days'} ago`;
-  }
-  return '30+ days ago';
-}
+    const today = new Date();
+    const differenceInSeconds = Math.floor((today.getTime() - new Date(createdOn).getTime()) / 1000);
+       if (differenceInSeconds < 60) {
+         return 'just now';
+        }
+    const differenceInMinutes = Math.floor(differenceInSeconds / 60);
+       if (differenceInMinutes < 60) {
+         return `${differenceInMinutes} ${differenceInMinutes === 1 ? 'min' : 'mins'} ago`;
+        }
+    const differenceInHours = Math.floor(differenceInMinutes / 60);
+       if (differenceInHours < 24) {
+         return `${differenceInHours} ${differenceInHours === 1 ? 'hour' : 'hours'} ago`;
+        }
+    const differenceInDays = Math.floor(differenceInHours / 24);
+       if (differenceInDays <= 30) {
+         return `${differenceInDays} ${differenceInDays === 1 ? 'day' : 'days'} ago`;
+        }
+         return '30+ days ago';
+   }
 
 }

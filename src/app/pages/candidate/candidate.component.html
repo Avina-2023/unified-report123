@@ -19,15 +19,17 @@
 </mat-toolbar> -->
 
 
-
+<!-- job and intern search -->
 <mat-toolbar class="flex_div candidate_header flx_between">
   <div class="flex_div flx_center">
     <div class="mg-10"><img class="hearder-logo" alt="" src="assets/images/landing/newLogo.png"></div>
     <div class="search-container mg-10">
       <mat-icon class="search-icon">search</mat-icon>
-      <input type="search" placeholder="Search" class="search_input">
+      <input type="search" [placeholder]="showJobs ? 'Search Jobs' : 'Search Internship'" class="search_input"
+        [(ngModel)]="searchText" (keypress)="headertextSearch($event)">
     </div>
   </div>
+
 
   <div class="flex_div">
     <div class="menus flex_div mob_view" style="border-right: 1px solid #ccc3c375; padding: 0px 10px;" #menuIcons>
@@ -158,6 +160,7 @@
                 <span class="full-width side_head_sty">Jobs</span>
               </mat-list-item>
             </div>
+
             <!-- internship -->
             <div *ngIf="!showJobs"
               style="display: flex; align-items: center; margin: 0px 0px 20px 20px; padding: 20px 0px 0px 0px;">
@@ -167,6 +170,7 @@
                 <span class="full-width side_head_sty" style="color: #1B4E9B;">Internship</span>
               </mat-list-item>
             </div>
+
             <!-- Resume Builder -->
             <div class="hover-effect" style="display: flex; align-items: center; margin: 0px 0px 20px 20px;">
               <span style="margin-right: 10px;"
