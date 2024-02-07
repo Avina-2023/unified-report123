@@ -1,5 +1,5 @@
 <div class="pageWrapper">
-  <div  class="scroller-head">
+  <div class="scroller-head">
     <div class="company-details">
       <img class="companyLogo_head" (error)="'/assets/images/compPlaceholder.png'"
         [src]="productionUrl ? jobDetails.companyLogo + blobToken : jobDetails.companyLogo" />
@@ -28,14 +28,8 @@
       <button class="save_ed btn" *ngIf="jobDetails.isSelected == true" (click)="saved()">Saved</button>
     </div>
   </div>
-  <!-- SCRIPT FOR SCROLLING -->
 
-<script>
-
-
-</script>
-  <!--  -->
-  <div style="display: flex;">
+  <div style="display: flex; margin-top: -8px;">
     <div class="custom-card">
       <!-- <div class="coverImage">
       <app-common-banner [subname]="'Jobs'" [name]="'Apply Job'"></app-common-banner>
@@ -146,7 +140,7 @@
         </div>
       </div>
       <div style="background: #FFFFFF  0% 0% no-repeat padding-box;
-            border-radius: 15px; 
+            border-radius: 15px;
             height: 144px;display: flex;justify-content: space-around;align-items: center;">
         <div style="margin: 10px 0px 0px 0px; display: flex; flex-direction: column; align-items: center;">
           <div><img src="../../../../assets/images/job_profile_blue.png"></div>
@@ -164,13 +158,15 @@
             </div>
           </div>
         </div>
+
         <div style=" display: flex; flex-direction: column; align-items: center;">
           <div class="desTitle"><img src="../../../../assets/images/CTC_blue.png" />
-            {{ jobDetails.workType === 'Internships' ? 'Stipend :' : '' }}
           </div>
-          <div class="desTitle">CTC</div>
+          <!-- <div class="desTitle">CTC</div> -->
+          <div class="desTitle">{{ jobDetails.workType === 'Internships' ? 'Stipend' : 'CTC' }}</div>
           <div> {{jobDetails.ctc}} </div>
         </div>
+
         <!-- <div style="display: flex; flex-direction: column; align-items: center;">
           <div class="desTitle"><img src="../../../../assets/images/Edu_cap_blue.png" />
           </div>
@@ -246,7 +242,7 @@
       <h3 style="padding: 10px 0px 0px 15px; font-weight: bold!important;">Similar Jobs</h3>
 
       <div *ngFor="let item of joblist; let i = index" class="similar-job"
-        style="margin-bottom: 20px;padding: 0px 0px 0px 7px;">
+        style="margin-bottom: 20px;padding: 0px 0px 0px 7px;" (click)="gotojob(item)">
         <div class="" style="display: flex; align-items: center;">
           <img class="comp_logo_sim" (error)="'/assets/images/compPlaceholder.png'"
             [src]="productionUrl ? item.companyLogo + blobToken : item.companyLogo" />

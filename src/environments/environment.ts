@@ -53,8 +53,6 @@ export const environment = {
 
   CORPORATE_URL: 'https://review.lntedutech.com',
 
-
-
   cryptoEncryptionKey: '(!@#Passcode!@#)',
 
   blobToken:

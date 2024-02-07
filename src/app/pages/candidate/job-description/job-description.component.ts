@@ -4,11 +4,10 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { APP_CONSTANTS } from 'src/app/utils/app-constants.service';
 import { ApiService } from 'src/app/services/api.service';
 import { AppConfigService } from 'src/app/utils/app-config.service';
-import { ActivatedRoute, NavigationStart, Router } from '@angular/router';
+import { ActivatedRoute, NavigationStart, Router,NavigationExtras } from '@angular/router';
 import { filter, map } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
 import { environment } from 'src/environments/environment';
-
 
 @Component({
   selector: 'app-job-description',
@@ -17,6 +16,7 @@ import { environment } from 'src/environments/environment';
 
 })
 export class JobDescriptionComponent implements OnInit {
+
   jobViewsCount: any;
   pageNumber: any;
   itemsPerPage: any;
@@ -336,11 +336,11 @@ getJobsList() {
   //   return `${differenceInDays} days ago`;
   // }
   getDaysAgo(createdOn: Date): string {
-  const today = new Date();
-  const differenceInSeconds = Math.floor((today.getTime() - new Date(createdOn).getTime()) / 1000);
-  if (differenceInSeconds < 60) {
+     const today = new Date();
+     const differenceInSeconds = Math.floor((today.getTime() - new Date(createdOn).getTime()) / 1000);
+     if (differenceInSeconds < 60) {
     return 'just now';
-  }
+    }
   const differenceInMinutes = Math.floor(differenceInSeconds / 60);
   if (differenceInMinutes < 60) {
     return `${differenceInMinutes} ${differenceInMinutes === 1 ? 'min' : 'mins'} ago`;
@@ -356,5 +356,15 @@ getJobsList() {
   return '30+ days ago';
   }
 
+ gotojob(item) {
+    let extras: NavigationExtras = { state: { itemData: item } };
+    this.appconfig.setLocalStorage('jobDesc', JSON.stringify(item));
+  //   this.router.navigateByUrl(
+  //     APP_CONSTANTS.ENDPOINTS.CANDIDATEDASH.JOBDESCRIPTION,
+  //     extras
+  //  );
+   //  location.reload();
+   this.getRoute();
+    }
 
 }

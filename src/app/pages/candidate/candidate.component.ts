@@ -1,13 +1,15 @@
-import { Component, ElementRef, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import { MatDrawerMode } from '@angular/material/sidenav';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, NavigationEnd, Router, RouterEvent } from '@angular/router';
+// import { RouteService } from 'path-to-your-route-service';
 import { ApiService } from 'src/app/services/api.service';
 import { SentDataToOtherComp } from 'src/app/services/sendDataToOtherComp.service';
 import { AppConfigService } from 'src/app/utils/app-config.service';
 import { APP_CONSTANTS } from 'src/app/utils/app-constants.service';
 import { environment } from 'src/environments/environment';
 import { filter } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-candidatedash',
@@ -23,7 +25,8 @@ export class CandidateComponent implements OnInit {
   @ViewChild('iconHover4') iconHover4: ElementRef;
   @ViewChild('iconHover5') iconHover5: ElementRef;
   @ViewChild('iconHover6') iconHover6: ElementRef;
-  showJobs: boolean = false;
+  showJobs: boolean = true;
+  isInternshipPage: boolean = false;
   // showJobs = true;
   isExpanded = false;
   isShowProfile = false;
@@ -40,13 +43,19 @@ export class CandidateComponent implements OnInit {
   profileImage: any;
   currentUrl: string;
   currentYear: number;
+  event: any;
+  fullSearchText: string = '';
+  searchText: string = '';
+
   constructor(
     public router: Router,
+    // private routeService: RouteService,
     private apiservice: ApiService,
     private appconfig: AppConfigService,
     private msgData: SentDataToOtherComp,
     public dialog: MatDialog,
-    private activatedRoute:ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private messenger: SentDataToOtherComp
   ) {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
@@ -63,14 +72,12 @@ export class CandidateComponent implements OnInit {
       this.sidebarDisabled();
     });
 
-
-
   }
 
   ngOnInit() {
-    this.currentYear = new Date().getFullYear(); 
-    const storedShowJobs = localStorage.getItem('showJobs'); 
-    this.showJobs = storedShowJobs ? JSON.parse(storedShowJobs) : this.showJobs; 
+    this.currentYear = new Date().getFullYear();
+    const storedShowJobs = localStorage.getItem('showJobs');
+    this.showJobs = storedShowJobs ? JSON.parse(storedShowJobs) : this.showJobs;
     this.profileimge = this.appconfig.getLocalStorage('profileImage');
     this.CandidateDetails();
     this.sidebarDisabled();
@@ -92,7 +99,7 @@ export class CandidateComponent implements OnInit {
     // if (this.router.routerState.snapshot.url == '/candidateview/home') {
     //   this.isIconActive(this.iconHover1.nativeElement, 'home');
     // }
-    // else 
+    // else
     if (this.router.routerState.snapshot.url == '/candidateview/dashboard') {
       this.isIconActive(this.iconHover1.nativeElement, 'dashboard');
     }
@@ -225,20 +232,21 @@ export class CandidateComponent implements OnInit {
     //   //this.isSidebarDisabled = false;
     // }
 
-    if (menuType === 'home') { 
+    if (menuType === 'home') {
       // this.appconfig.clearLocalStorage();
       // this.apiservice.logout();
       window.location.href = 'https://reviewinfo.lntedutech.com';
       this.appconfig.clearLocalStorage();
       // window.location.replace('https://reviewinfo.lntedutech.com');
       //  this.appconfig.clearLocalStorage();
-    } 
-  
+    }
+
   }
 
 
 
- navigateToInternshipList() {
+  navigateToInternshipList() {
+    this.showJobs = false;
     this.router.navigateByUrl(APP_CONSTANTS.ENDPOINTS.CANDIDATEDASH.INTERNSHIPLIST);
   }
 
@@ -315,5 +323,51 @@ onJobsClick(from) {
     localStorage.setItem('showJobs', JSON.stringify(this.showJobs));
   }
 
-}
+  // headertextSearch(event) {
+  //   // console.log(event, 'input serch appears');
+  //   console.log(event.target.value, 'input search appears');
+  // }
 
+//   headertextSearch(event) {
+//     const keyPressed = event.key;
+//     if (keyPressed === 'Backspace') { // Check if backspace is pressed to handle deletion
+//        if (this.fullSearchText.length > 0) { // Ensure there is something to delete
+//       this.fullSearchText = this.fullSearchText.slice(0, -1); // Remove the last character
+//          }
+//     } else {
+//       this.fullSearchText += keyPressed;
+//       // this.messageEvent.emit(this.fullSearchText);
+//        this.messenger.sendMessage(this.fullSearchText, true);
+//     }
+//     console.log(this.fullSearchText, 'input search appears');
+//  }
+
+
+ headertextSearch(event: any) {
+  const keyPressed = event.key;
+  if (keyPressed === 'Backspace') {
+    if (this.fullSearchText.length > 0) {
+      this.fullSearchText = this.fullSearchText.slice(0, -1);
+    }
+  } else {
+    this.fullSearchText += keyPressed;
+    this.messenger.sendMessage(this.fullSearchText, true);
+  }
+  console.log(this.fullSearchText, 'input search appears');
+
+  // Check if the user is on the "Applied Jobs" page and navigate to the "Jobs" page
+  if (this.router.routerState.snapshot.url === this.routelinks.CANDIDATEDASH.JOBSAPPLIED) {
+    this.router.navigate([this.routelinks.CANDIDATEDASH.JOBLIST]);
+  }
+
+  // Check if the user is on the "Saved Jobs" page and navigate to the "Jobs" page
+  if (this.router.routerState.snapshot.url === this.routelinks.CANDIDATEDASH.JOBSSAVED) {
+    this.router.navigate([this.routelinks.CANDIDATEDASH.JOBLIST]);
+  }
+
+    if (this.router.routerState.snapshot.url === this.routelinks.CANDIDATEDASH.RESUMEBUILDER) {
+    this.router.navigate([this.routelinks.CANDIDATEDASH.JOBLIST]);
+  }
+
+}
+}

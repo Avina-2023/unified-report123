@@ -3,12 +3,15 @@
     <div class="count_container">
 
       <ng-container *ngIf="showApplied">
-        <div class="result-show"> Applied Jobs</div>
+        <div class="result-show" *ngIf="applyJobs"> Applied Jobs</div>
+        <div class="result-show" *ngIf="!applyJobs"> Applied Internships</div>
         <div style=" font: normal normal 500 42px Inter !important;
           color: #262626;opacity: 1;margin: 15px;">{{resultShow | number:'2.0-0'}} </div>
       </ng-container>
+
       <ng-container *ngIf="savedButton">
-        <div class="result-show"> Saved Jobs</div>
+        <div class="result-show" *ngIf="saveJobs"> Saved Jobs</div>
+        <div class="result-show" *ngIf="!saveJobs"> Saved Internships</div>
         <div style=" font: normal normal 500 42px Inter !important;
           color: #262626;opacity: 1;margin: 15px;">{{resultShow | number:'2.0-0'}} </div>
       </ng-container>
