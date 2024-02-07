@@ -184,7 +184,8 @@
               <span class="full-width side_head_sty">Skill Profile</span>
             </div>
             <!-- Applied Jobs -->
-            <div class="hover-effect" style="display: flex; align-items: center; margin: 0px 0px 20px 20px;">
+            <div class="hover-effect" *ngIf="showJobs" 
+            style="display: flex; align-items: center; margin: 0px 0px 20px 20px;">
               <span style="margin-right: 10px;"
                 [ngClass]="{'icon-check-rounded': router.url !== routelinks.CANDIDATEDASH.JOBSAPPLIED, 'icon-apply-blue-converted-2': router.url === routelinks.CANDIDATEDASH.JOBSAPPLIED}"></span>
               <mat-list-item [routerLink]="routelinks.CANDIDATEDASH.JOBSAPPLIED" [routerLinkActive]="['active']"
@@ -192,12 +193,34 @@
                 <span class="full-width side_head_sty">Applied Jobs</span>
               </mat-list-item>
             </div>
+            <!-- Applied Internships -->
+            <div class="hover-effect" *ngIf="!showJobs"
+            style="display: flex; align-items: center; margin: 0px 0px 20px 20px;">
+              <span style="margin-right: 10px;"
+                [ngClass]="{'icon-check-rounded': router.url !== routelinks.CANDIDATEDASH.INTERNSHIPSAPPLIED, 'icon-apply-blue-converted-2': router.url === routelinks.CANDIDATEDASH.INTERNSHIPSAPPLIED}"></span>
+              <mat-list-item [routerLink]="routelinks.CANDIDATEDASH.INTERNSHIPSAPPLIED" [routerLinkActive]="['active']"
+                [routerLinkActiveOptions]="{exact: true}">
+                <span class="full-width side_head_sty">Applied Internships</span>
+              </mat-list-item>
+            </div>
             <!-- Saved Jobs -->
-            <div class="hover-effect" style="display: flex; align-items: center; margin: 0px 0px 20px 21px;">
+            <div *ngIf="showJobs" 
+            class="hover-effect" style="display: flex; align-items: center; margin: 0px 0px 20px 21px;">
               <span style="margin-right: 10px;"
                 [ngClass]="{'icon-save-converted-black': router.url !== routelinks.CANDIDATEDASH.JOBSSAVED, 'icon-save-blue-converted': router.url === routelinks.CANDIDATEDASH.JOBSSAVED}"></span>
               <mat-list-item [routerLink]="routelinks.CANDIDATEDASH.JOBSSAVED" [routerLinkActive]="['active']">
-                <span class="full-width side_head_sty" style="padding: 2px;">Saved Jobs</span>
+                <!-- <span class="full-width side_head_sty" style="padding: 2px;">Saved Jobs</span> -->
+                <span class="full-width side_head_sty">Saved Jobs</span>
+              </mat-list-item>
+            </div>
+            <!-- Saved Internships -->
+            <div *ngIf="!showJobs" 
+            class="hover-effect" style="display: flex; align-items: center; margin: 0px 0px 20px 21px;">
+              <span style="margin-right: 10px;"
+                [ngClass]="{'icon-save-converted-black': router.url !== routelinks.CANDIDATEDASH.INTERNSHIPSAVED, 'icon-save-blue-converted': router.url === routelinks.CANDIDATEDASH.INTERNSHIPSAVED}"></span>
+              <mat-list-item [routerLink]="routelinks.CANDIDATEDASH.INTERNSHIPSAVED" [routerLinkActive]="['active']">
+                <!-- <span class="full-width side_head_sty" style="padding: 2px;">Saved Internships</span> -->
+                <span class="full-width side_head_sty">Saved Internships</span>
               </mat-list-item>
             </div>
           </div>
