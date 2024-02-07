@@ -1,6 +1,8 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ApiService } from 'src/app/services/api.service';
+import { NavigationExtras, Router } from '@angular/router';
+import { APP_CONSTANTS } from 'src/app/utils/app-constants.service';
 import { ToastrService } from 'ngx-toastr';
 import { log } from 'console';
 export interface PaginatedResponse<T> {
@@ -20,9 +22,14 @@ export class JobAppliedListComponent implements OnInit {
   public appliedjobs: any;
   public appliedlenghth: any;
   public url = 'Applied Jobs';
+  filterObj: any = {};
   resultShow: any;
   // public suburl="Dashboard";
-  constructor(private apiService: ApiService, private toastr: ToastrService) {}
+  constructor(
+    private apiService: ApiService,
+    private toastr: ToastrService,
+    public router: Router,
+  ) { }
 
   ngOnInit() {
     this.resultShow = length
@@ -35,11 +42,18 @@ export class JobAppliedListComponent implements OnInit {
   }
   appliedJobList() {
     const email = localStorage.getItem('email');
+    if (this.router.routerState.snapshot.url == APP_CONSTANTS.ENDPOINTS.CANDIDATEDASH.JOBSAPPLIED) {
+      this.filterObj.workType = ['Jobs'];
+    }
+    else if (this.router.routerState.snapshot.url == APP_CONSTANTS.ENDPOINTS.CANDIDATEDASH.INTERNSHIPSAPPLIED) {
+      this.filterObj.workType = ['Internships'];
+    }
     var objDetails = {};
     objDetails = {
       pageNumber: this.pageNumber,
       itemsPerPage: this.itemsPerPage,
       email: email,
+      filter: this.filterObj,
       isApplied: true,
       sort: 's',
       specialization: 's',

@@ -47,6 +47,12 @@ export const environment = {
 
   SKILL_PROFILE_URL: 'https://profile-qa.lntedutech.com',
 
+  MICROLEARN_API_URL: 'https://edgeportaldev.lntedutech.com',
+
+  MICROLEARN_URL: 'https://microlearndev.lntedutech.com/Home',
+
+  CORPORATE_URL: 'https://review.lntedutech.com',
+
   cryptoEncryptionKey: '(!@#Passcode!@#)',
 
   blobToken:

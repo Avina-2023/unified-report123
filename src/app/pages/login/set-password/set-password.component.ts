@@ -28,6 +28,7 @@ export class SetPasswordComponent implements OnInit {
   apiemail: any;
   deCryuserId: any;
   frompage:any;
+  currentYear: number;
 
   constructor(
     private fb: FormBuilder,
@@ -46,6 +47,7 @@ export class SetPasswordComponent implements OnInit {
   ngOnInit() {
     this.formInitialize();
     this.getEncriptedMail();
+    this.currentYear = new Date().getFullYear();
   }
 
 

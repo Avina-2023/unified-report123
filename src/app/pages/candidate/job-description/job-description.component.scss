@@ -50,7 +50,8 @@ li {
 }
 
 .pageWrapper {
-  padding: 3px 0px 10px 7px;
+  // padding: 3px 0px 10px 7px;
+  padding: 10px 0px 0px 0px;
   height: 84vh;
   border-radius: 15px;
 
@@ -176,7 +177,7 @@ li {
     justify-content: space-between;
     margin-bottom: 40px;
     background: #ffffff;
-    width: 850px;
+    // width: 750px;
     height: auto;
     margin: 2% 0%;
     border-radius: 15px;
@@ -196,7 +197,7 @@ li {
         span:hover {
           color: #1B4E9B;
           cursor: pointer;
-          border-bottom: 3.5px solid #294D96;
+          // border-bottom: 3.5px solid #294D96;
         }
 
       }
@@ -239,21 +240,26 @@ li {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 850px;
+  width: 750px;
   height: 80px;
   background: #FFFFFF 0% 0% no-repeat padding-box;
   opacity: 1;
   margin: 1% 3%;
-}
-
-.scroller-head-hidden {
   display: none;
 }
 
-.scroller-head-visible {
-  display: block;
-  /* Add any other styling properties for the visible state */
+.show-scroller {
+  display: flex;
 }
+
+// .scroller-head-hidden {
+//   display: none;
+// }
+
+// .scroller-head-visible {
+//   display: block;
+//   /* Add any other styling properties for the visible state */
+// }
 
 .company-details {
   display: flex;
@@ -276,15 +282,17 @@ li {
 
 .custom-card {
   transition: 0.3s;
-  width: 850px;
+  // width: 750px;
+  width: 75%;
   height: 220px;
   background: #FFFFFF 0% 0% no-repeat padding-box;
   border-radius: 15px;
   opacity: 1;
-  margin: 1% 3%;
+  // margin: 1% 3%;
+  margin: 20px;
 
   .jobtopcontainer {
-    padding: 10px 30px;
+    padding: 10px 0px 10px 30px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -319,7 +327,6 @@ li {
         font: normal normal medium 14px/16px Inter;
         letter-spacing: 0px;
         color: #1B4E9B;
-
       }
 
       .se-patner {
@@ -617,27 +624,27 @@ li {
     top: 85px !important;
   }
 
-  .jobtopcontainer {
-    margin-top: 40px !important;
-    display: block !important;
-    padding: 10px;
+  // .jobtopcontainer {
+  //   margin-top: 40px !important;
+  //   display: block !important;
+  //   padding: 10px;
 
-    .JT-right {
-      width: 100%;
-      //margin-top: 10px;
-    }
+  //   .JT-right {
+  //     width: 100%;
+  //     //margin-top: 10px;
+  //   }
 
-    .calign {
-      width: 50%;
-    }
+  //   .calign {
+  //     width: 50%;
+  //   }
 
-    .btn {
-      margin: 0px 10px !important;
-      width: 40% !important;
-      background: #26bbef;
-    }
+  //   .btn {
+  //     margin: 0px 10px !important;
+  //     width: 40% !important;
+  //     background: #26bbef;
+  //   }
 
-  }
+  // }
 
   .pageWrapper {
     position: relative;
@@ -677,7 +684,8 @@ li {
   border: 1px solid #70707066;
   border-radius: 5px;
 }
-.comp_skill_sim{
+
+.comp_skill_sim {
   margin: 0px 15px 0px 0px;
 }
 
@@ -731,10 +739,30 @@ li {
   color: #5C5C5C;
   opacity: 1;
 }
-.Similar_job_card{
-  width: 250px;margin: 12px 15px 0px 0px;
-   height: 568px;
-    background: #FFFFFF 0% 0% no-repeat padding-box;
-    border-radius: 15px;
 
+.Similar_job_card {
+  // width: 250px;
+  width: 23%;
+  // margin: 12px 15px 0px 0px;
+  margin: 20px 30px 0px 0px;
+  height: 568px;
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  border-radius: 15px;
+  cursor: pointer;
+
+}
+
+.hoverable:hover::after {
+  content: "";
+  position: relative;
+  bottom: -17px;
+  width: auto;
+  height: 2px;
+  background-color: #1B4E9B;
+  transition: width 0.2s;
+  display: block;
+}
+
+::ng-deep .mat-drawer-container {
+  background-color: #EDEDED;
 }

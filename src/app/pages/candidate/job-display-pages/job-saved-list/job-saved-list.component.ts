@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
 import { ToastrService } from 'ngx-toastr';
+import { NavigationExtras, Router } from '@angular/router';
+import { APP_CONSTANTS } from 'src/app/utils/app-constants.service';
+
 @Component({
   selector: 'app-job-saved-list',
   templateUrl: './job-saved-list.component.html',
@@ -12,8 +15,13 @@ export class JobSavedListComponent implements OnInit {
   public savedjobs: any;
   public totallength: any;
   public total: any;
+  filterObj: any = {};
   url = 'Saved Jobs';
-  constructor(private apiService: ApiService, private toastr: ToastrService) {}
+  constructor(
+    private apiService: ApiService,
+    private toastr: ToastrService,
+    public router: Router,
+  ) { }
   ngOnInit() {
     this.savedJobList();
   }
@@ -25,10 +33,17 @@ export class JobSavedListComponent implements OnInit {
 
   savedJobList() {
     const email = localStorage.getItem('email');
+    if (this.router.routerState.snapshot.url == APP_CONSTANTS.ENDPOINTS.CANDIDATEDASH.JOBSSAVED) {
+      this.filterObj.workType = ['Jobs'];
+    }
+    else if (this.router.routerState.snapshot.url == APP_CONSTANTS.ENDPOINTS.CANDIDATEDASH.INTERNSHIPSAVED) {
+      this.filterObj.workType = ['Internships'];
+    }
     var objDetails = {};
     objDetails = {
       pageNumber: this.pageNumber,
       itemsPerPage: this.itemsPerPage,
+      filter: this.filterObj,
       email: email,
       isSelected: true,
       sort: 's',

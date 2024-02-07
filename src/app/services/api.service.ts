@@ -10,10 +10,15 @@ import { Observable, Subject } from 'rxjs';
   providedIn: 'root',
 })
 export class ApiService {
+  get(arg0: string) {
+    throw new Error('Method not implemented.');
+  }
   BASE_URL = environment.API_BASE_URL;
   EDGE_URL = environment.NODE_EDGE_URL;
   BASE_URL_RE = environment.API_BASE_URL_RE;
   SKILL_EDGE_URL = environment.SKILL_EDGE_URL;
+  MICROLEARN_API_URL = environment.MICROLEARN_API_URL;
+  CORPORATE_URL = environment.CORPORATE_URL;
   Prourl = environment.NODE_URL;
   EncryptKEY = environment.encryptionKey;
   cryptoEncryptionKey = environment.cryptoEncryptionKey;
@@ -27,7 +32,8 @@ export class ApiService {
     this.appConfig.clearLocalStorage();
     this.appConfig.clearSessionStorage();
     // return this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.HOME);
-    window.location.href = "https://reviewinfo.lntedutech.com/login/";
+    // window.location.href = "https://reviewinfo.lntedutech.com/login/";  \
+    window.location.href = "https://reviewinfo.lntedutech.com/wp-json/skillexchange/logout";  
   }
 
   login(data: any) {
@@ -338,6 +344,25 @@ export class ApiService {
   joblistingDashboard(data) {
     return this.http.post(`${this.BASE_URL}/joblist`, data);
   }
+
+  // Microlearn Courses API
+  getLearningCourses(data) {
+    return this.http.post(`${this.MICROLEARN_API_URL}/getCourseByDomain`, data);
+  }
+
+
+
+
+  //learning Progress status
+  getLearningStatus(data) {
+    return this.http.post(`${this.MICROLEARN_API_URL}/learningProgressSkillExchange`, data);
+  }
+
+  // Newsroom API
+  getNewsArticle(){
+    return this.http.get(`${this.CORPORATE_URL}/wp-json/news/posts`);
+  }
+  
 
   // JobFilter API
   jobfilterDashboard(data) {

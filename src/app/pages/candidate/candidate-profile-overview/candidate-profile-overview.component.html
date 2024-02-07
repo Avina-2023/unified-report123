@@ -1,0 +1,239 @@
+<div class="profile-layout flex_div">
+    <div class="left_sidebar mg-s-10">
+        <ng-container *ngTemplateOutlet="leftSidebarContent"></ng-container>
+    </div>
+    <div class="center_div mg-s-10">
+        <ng-container *ngTemplateOutlet="centerSectionContent"></ng-container>
+    </div>
+    <div class="right_sidebar mg-s-10">
+        <ng-container *ngTemplateOutlet="rightSidebarContent"></ng-container>
+    </div>
+</div>
+
+<ng-template #leftSidebarContent>
+    <div class="common_card bg-white">
+        <div class="profile_background  border_tp_10"></div>
+        <div class="bg-white border_btm_10">
+            <div class="avatar_image"
+                [style.background]="'url(' + (profileImage ? profileImage : 'assets/images/candidate-userprofile.png') + ')'">
+            </div>
+            <div class="profile_details">
+                <div class="title user-title">{{candidateName ? candidateName : ''}}</div>
+                <div class="user_email">{{candidateEmail ? candidateEmail : ''}}</div>
+                <div class="user_place">{{form_present_city ? form_present_city + ',' : ''}} {{form_present_state ?
+                    form_present_state : ''}}
+                </div>
+                <div class="flag" *ngIf="form_present_city"><img decoding="async" src="assets/images/India-flag.png">
+                </div>
+
+                <div class="edit_profile_btn pointer_cursor">
+                    <div (click)="gotoProfile()"><span class="icon-Edit"></span> Edit Profile</div>
+                </div>
+                <div class="profile_content" *ngIf="profileSummary">{{profileSummary ? profileSummary : ''}}</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="common_card bg-white">
+        <div class="pd-15">
+            <div class="flex_div flx_between">
+                <div class="section-title">Skills</div>
+                <div (click)="gotoProfile()"><span class="icon-plus_rounded pointer_cursor"></span></div>
+            </div>
+            <div class="flex_div flx_wrap" *ngIf="Details?.experience_details?.skills?.length != 0">
+                <div class="skill-content" *ngFor="let item of skills">
+                    {{item.skill}}
+                </div>
+            </div>
+            <div class="flex_div flx_wrap" *ngIf="Details?.experience_details?.skills?.length == 0">
+                <div>
+                    No Skills Found
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="common_card bg-white">
+        <div class="pd-15">
+            <div class="flex_div flx_between">
+                <div class="section-title">Education</div>
+                <div (click)="gotoProfile()"><span class="icon-plus_rounded pointer_cursor"></span></div>
+            </div>
+            <div class="single-element" *ngIf="Details?.education_details?.educations?.length != 0">
+                <div class="flex_div flx_center" *ngFor="let item of education?.slice()?.reverse()?.slice(0, 3)">
+                    <!-- <div class="card_img bg_course_img"
+                    [style.background]="'url(' + 'assets/images/fg-bg.png' + ')'">
+                    </div> -->
+                    <div><span class="icon-graduation-gap graduation"></span></div>
+                    <div class="card_content">
+                        <div class="title">{{(item?.institute) ? (item?.institute) : ''}}</div>
+                        <div class="eduLevel">{{(item.level) ? (item?.level) : ''}}</div>
+                        <div class="eduYear" *ngIf="item.start_date && item.end_date">{{item?.start_date | date:'yyyy'}}
+                            - {{item?.end_date | date:'yyyy'}}</div>
+                    </div>
+                </div>
+            </div>
+
+            <div *ngIf="Details?.education_details?.educations?.length == 0">
+                No Educations Found.
+            </div>
+
+        </div>
+    </div>
+
+    <div class="common_card bg-white">
+        <div class="pd-15">
+            <div class="flex_div flx_between">
+                <div class="section-title">Work Experience</div>
+                <div (click)="gotoProfile()"><span class="icon-plus_rounded pointer_cursor"></span></div>
+            </div>
+            <div class="single-element"
+                *ngIf="workExperience?.is_anywork_exp == true || workExperience?.employments?.length != 0">
+                <div class="flex_div flx_center"
+                    *ngFor="let item of workExperience?.employments?.slice()?.reverse()?.slice(0, 3)">
+                    <div><span class="icon-work-suitcase graduation"></span></div>
+                    <div class="card_content">
+                        <div class="title">{{(item?.postion_field) ? (item?.postion_field) : ''}}</div>
+                        <div class="eduLevel">{{(item.employment_name_address) ? (item?.employment_name_address) : ''}}
+                        </div>
+                        <div class="eduYear" *ngIf="item.duration_from">{{item?.duration_from | date:'MMM d, y'}}
+                            - {{item?.is_working_here == true ? 'Present' : item?.duration_to | date:'MMM d, y'}}</div>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="workExperience?.employments?.length == 0 || workExperience?.is_anywork_exp == false">
+                No Work Experience Available
+            </div>
+        </div>
+    </div>
+
+    <div class="common_card bg-white">
+        <div class="pd-15">
+            <div class="flex_div flx_between">
+                <div class="section-title">Internships</div>
+                <div (click)="gotoProfile()"><span class="icon-plus_rounded pointer_cursor"></span></div>
+            </div>
+            <div class="single-element"
+                *ngIf="workExperience?.is_intern_status == true || workExperience?.intern?.length != 0">
+                <div *ngFor="let item of workExperience?.intern?.slice()?.reverse()?.slice(0, 3)"
+                    class="flex_div flx_center">
+                    <div><span class="icon-work-suitcase graduation"></span></div>
+                    <div class="card_content">
+                        <div class="title">{{(item?.work_responsiability) ? (item?.work_responsiability) : ''}}</div>
+                        <div class="eduLevel">{{(item.employer_name) ? (item?.employer_name) : ''}}</div>
+                        <div class="eduYear" *ngIf="item.from_date && item.to_date">{{item?.from_date | date:'MMM d,
+                            y'}}
+                            - {{item?.is_working_here == true ? 'Present' : item?.to_date | date:'MMM d, y'}}</div>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="workExperience?.intern?.length == 0 || workExperience?.is_intern_status == false">
+                No internships Available
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #centerSectionContent>
+    <div class="common_card bg-white">
+        <div class="pd-15">
+            <div class="flex_div flx_between">
+                <div class="section-title">My Learnings</div>
+                <div (click)="gotoCourses()" class="view_more pointer_cursor">View All</div>
+            </div>
+            <div class="single-element" *ngFor="let item of myLearningData">
+                <div class="flex_div flx_center" *ngIf="myLearningData?.length != 0">
+                    <!-- <div class="card_img bg_course_img"
+                        [style.background]="'url(' + ((item?.image?.url) ? (item?.image?.url) : 'assets/images/medal.png') + ')'">
+                    </div>                 -->
+
+                    <div class="card_img bg_course_img" *ngIf="item?.image?.url; else staticImage"
+                        style="background-image: url('{{ item?.image?.url }}');">
+                    </div>
+
+                    <ng-template #staticImage>
+                        <div class="card_img bg_course_img" style="background-image: url('assets/images/medal.png');">
+                        </div>
+                    </ng-template>
+
+
+
+
+
+                    <div class="card_content" [class.completed_state]="item.status === 'completed'"
+                        [class.inprogress_state]="item.status === 'suspend' || item.status === 'incomplete'"
+                        [class.not-started-state]="item.status === 'start'">
+                        <div class="title">{{(item?.course_name) ? (item?.course_name) : ''}}</div>
+                        <div class="flex_div course_status">
+                            <!-- <div class="course_status">{{(item.status) ? (item?.status) : ''}}</div> -->
+                            <div>
+                                {{ getStatusText(item.status) }}
+                            </div>
+
+
+                            <div><span class="course_percent">{{item?.course_percentage}}%</span></div>
+                        </div>
+                        <div class="flex_div flx_center duration">
+                            <div class="course_duration">{{item?.contentDuration}}</div>
+                            <div class="separator mg-lr-10"></div>
+                            <div class="course_period">{{item?.week}} Week</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="single-element" *ngIf="myLearningData?.length == 0">
+                No Active Learnings Found.
+            </div>
+        </div>
+    </div>
+
+    <div class="common_card bg-white">
+        <div class="pd-15">
+            <div class="flex_div flx_between">
+                <div class="section-title">Jobs Applied</div>
+                <div class="view_more pointer_cursor" (click)="gotoappliedJobs()">View</div>
+            </div>
+            <div class="single-element" *ngIf="appliedJobData?.length != 0">
+                <div class="flex_div flx_center" *ngFor="let item of appliedJobData">
+                    <div class="card_img comp_logo"
+                        [style.background]="'url(' + ((item?.companyLogo) ? (item?.companyLogo) : 'assets/images/job-bag.png') + ')'">
+                    </div>
+                    <div class="card_content">
+                        <div class="title">{{(item?.jobRole) ? (item?.jobRole) : ''}}</div>
+                        <div class="company_name">{{(item?.company) ? (item?.company) : ''}}</div>
+                        <div class="application_status"><span class="icon-check-rounded"></span> Application Sent
+                            {{dateTimeAgo(item?.isAppliedDate)}}</div>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="appliedJobData?.length == 0" class="flex_div flx_center">
+                No Jobs Applied.
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #rightSidebarContent>
+    <div class="common_card bg-white">
+        <div class="flex_div flx_center flx_between pdt-15">
+            <div class="flex_div flx_end">
+                <div class="profile-right">
+                    <div class="profile_text">PROFILE</div>
+                    <div class="profile-percentage profile_heading">{{profilePercent}}%</div>
+                </div>
+                <div class="profile_progress" role="progressbar" aria-valuemin="0" aria-valuemax="100"
+                    style="--size: 40px; --value: {{profilePercent}};"></div>
+            </div>
+            <div class="profile_separator"></div>
+            <div class="flex_div flx_center">
+                <div class="profile-right">
+                    <div class="profile_text">POINTS</div>
+                    <div class="points-count profile_heading">100</div>
+                </div>
+                <div class="profile-left">
+                    <img decoding="async" src="assets/images/points.svg">
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>

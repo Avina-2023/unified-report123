@@ -3,12 +3,15 @@
     <div class="count_container">
 
       <ng-container *ngIf="showApplied">
-        <div class="result-show"> Applied Jobs</div>
+        <div class="result-show" *ngIf="applyJobs"> Applied Jobs</div>
+        <div class="result-show" *ngIf="!applyJobs"> Applied Internships</div>
         <div style=" font: normal normal 500 42px Inter !important;
           color: #262626;opacity: 1;margin: 15px;">{{resultShow | number:'2.0-0'}} </div>
       </ng-container>
+
       <ng-container *ngIf="savedButton">
-        <div class="result-show"> Saved Jobs</div>
+        <div class="result-show" *ngIf="saveJobs"> Saved Jobs</div>
+        <div class="result-show" *ngIf="!saveJobs"> Saved Internships</div>
         <div style=" font: normal normal 500 42px Inter !important;
           color: #262626;opacity: 1;margin: 15px;">{{resultShow | number:'2.0-0'}} </div>
       </ng-container>
@@ -37,7 +40,8 @@
                 </div>
               </div>
             </div>
-            <div (click)="gotojob(item)" *ngIf="item.partnerLabel && item.partnerLabel === 'Skill Exchange Partner'" class="greenblue">
+            <div (click)="gotojob(item)" *ngIf="item.partnerLabel && item.partnerLabel === 'Skill Exchange Partner'"
+              class="greenblue">
               <div class="text-overlay">{{item.partnerLabel }}</div>
             </div>
           </mat-card-header>
@@ -99,16 +103,16 @@
             </div> -->
             </div>
             <hr>
-            <div class="footer-gray" >
+            <div class="footer-gray">
               <div class="gray-flex">
                 <!-- Applied page -->
                 <ng-container *ngIf="showApplied">
-                  <div  class="flex-growone" *ngIf="item?.isApplied == false && currentdate<item?.lastDatetoApply"><span
+                  <div class="flex-growone" *ngIf="item?.isApplied == false && currentdate<item?.lastDatetoApply"><span
                       class="icon-clock_postdate"></span>
                     <span class="smalltext">{{ getDaysAgo(item.createdOn) }}</span>
                   </div>
-                  <div  class="flex-growtwo" *ngIf="item?.isApplied == false && currentdate<item?.lastDatetoApply">
-                    <span class="icon-wait_time_icon"></span>
+                  <div class="flex-growtwo" *ngIf="item?.isApplied == false && currentdate<item?.lastDatetoApply">
+                    <span class="icon-stopwatch_groups"></span>
                     Expires
                     {{item.lastDatetoApply | timeDiff}}
                   </div>
@@ -125,17 +129,17 @@
 
                 </ng-container>
                 <!-- save page -->
-                <ng-container  class="misc_save" style="padding: 0px 20px 0px 0px;" *ngIf="savedButton">
-                  <div  class="flex-growone" *ngIf="item?.isApplied == false && currentdate<item?.lastDatetoApply"><span
+                <ng-container class="misc_save" style="padding: 0px 20px 0px 0px;" *ngIf="savedButton">
+                  <div class="flex-growone" *ngIf="item?.isApplied == false && currentdate<item?.lastDatetoApply"><span
                       class="icon-clock_postdate"></span>
                     <span class="smalltext">{{ getDaysAgo(item.createdOn) }}</span>
                   </div>
-                  <div  class="flex-growone" *ngIf="item?.isApplied == false && currentdate > item?.lastDatetoApply">
+                  <div class="flex-growone" *ngIf="item?.isApplied == false && currentdate > item?.lastDatetoApply">
                     <span class="icon-clock_postdate"></span>
                     <span class="smalltext">{{ getDaysAgo(item.createdOn) }}</span>
                   </div>
-                  <div  class="flex-growtwo" *ngIf="item?.isApplied == false && currentdate<item?.lastDatetoApply">
-                    <span class="icon-wait_time_icon"></span>
+                  <div class="flex-growtwo" *ngIf="item?.isApplied == false && currentdate<item?.lastDatetoApply">
+                    <span class="icon-stopwatch_groups"></span>
                     Expires
                     {{item.lastDatetoApply | timeDiff}}
                     <!-- {{item.lastDatetoApply | calculateDiff}} -->
@@ -145,7 +149,7 @@
                       class="icon-clock_postdate"></span>
                     <span class="smalltext">{{ getDaysAgo(item.createdOn) }}</span>
                   </div> -->
-                  <div  *ngIf="item.isAppliedDate">
+                  <div *ngIf="item.isAppliedDate">
                     <span class="icon-check-rounded"></span>
                     <span class="smalltext">Applied on &nbsp;{{item.isAppliedDate | date : 'd MMM '}}</span>
                   </div>

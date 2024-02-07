@@ -29,7 +29,7 @@
     </div>
   </div>
 
-  <div style="display: flex;">
+  <div style="display: flex; margin-top: -8px;">
     <div class="custom-card">
       <!-- <div class="coverImage">
       <app-common-banner [subname]="'Jobs'" [name]="'Apply Job'"></app-common-banner>
@@ -48,7 +48,7 @@
           </div>
         </div>
 
-        <div class="JT-right" style="margin-right: -3.8%;">
+        <div class="JT-right">
           <!-- <div class="eventnote"><span class="application-end">Application ends:</span> {{jobDetails.lastDatetoApply |
           date}}</div> -->
           <!-- <div class="flx_butn">
@@ -91,13 +91,12 @@
 
           <div #eventnoteDiv class="eventnote">
             <div>
-              <span class="icon-cal_endar_icon_g"></span>&nbsp;
+              <span class="icon-calndar_gray_apply"></span>&nbsp;
               <span class="application-end">Application Deadline</span><br>
               <span class="application-dateend">{{ jobDetails.lastDatetoApply | date:'d MMMM, yyyy' }}</span>
             </div>
           </div>
         </div>
-
         <!--  -->
 
         <!-- <div class="genText1">
@@ -141,8 +140,8 @@
         </div>
       </div>
       <div style="background: #FFFFFF  0% 0% no-repeat padding-box;
-border-radius: 15px;width: 850px;
-height: 144px;display: flex;justify-content: space-around;align-items: center;">
+            border-radius: 15px;
+            height: 144px;display: flex;justify-content: space-around;align-items: center;">
         <div style="margin: 10px 0px 0px 0px; display: flex; flex-direction: column; align-items: center;">
           <div><img src="../../../../assets/images/job_profile_blue.png"></div>
           <div class="desTitle"> Job Title /
@@ -159,13 +158,15 @@ height: 144px;display: flex;justify-content: space-around;align-items: center;">
             </div>
           </div>
         </div>
+
         <div style=" display: flex; flex-direction: column; align-items: center;">
           <div class="desTitle"><img src="../../../../assets/images/CTC_blue.png" />
-            {{ jobDetails.workType === 'Internships' ? 'Stipend :' : '' }}
           </div>
-          <div class="desTitle">CTC</div>
+          <!-- <div class="desTitle">CTC</div> -->
+          <div class="desTitle">{{ jobDetails.workType === 'Internships' ? 'Stipend' : 'CTC' }}</div>
           <div> {{jobDetails.ctc}} </div>
         </div>
+
         <!-- <div style="display: flex; flex-direction: column; align-items: center;">
           <div class="desTitle"><img src="../../../../assets/images/Edu_cap_blue.png" />
           </div>
@@ -240,7 +241,8 @@ height: 144px;display: flex;justify-content: space-around;align-items: center;">
     <div class="Similar_job_card">
       <h3 style="padding: 10px 0px 0px 15px; font-weight: bold!important;">Similar Jobs</h3>
 
-      <div *ngFor="let item of joblist; let i = index" class="similar-job" style="margin-bottom: 20px;padding: 0px 0px 0px 7px;">
+      <div *ngFor="let item of joblist; let i = index" class="similar-job"
+        style="margin-bottom: 20px;padding: 0px 0px 0px 7px;" (click)="gotojob(item)">
         <div class="" style="display: flex; align-items: center;">
           <img class="comp_logo_sim" (error)="'/assets/images/compPlaceholder.png'"
             [src]="productionUrl ? item.companyLogo + blobToken : item.companyLogo" />

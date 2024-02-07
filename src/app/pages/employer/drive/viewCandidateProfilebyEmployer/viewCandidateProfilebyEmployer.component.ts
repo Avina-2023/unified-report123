@@ -58,6 +58,7 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
   isPopupOpen: boolean;
   shortlistDisabled: boolean = false;
 
+
   @ViewChild('matDialog', { static: false }) matDialogRef: TemplateRef<any>;
   @ViewChild('confirmmatDialog') confirmmatDialogRef!: TemplateRef<any>;
   @ViewChild('rejectDialog') rejectDialogRef!: TemplateRef<any>;
@@ -109,6 +110,7 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
   testname: any;
   hideSection: boolean;
   route: any;
+  role: any;
 
   constructor(
     private apiService: ApiService,
@@ -271,6 +273,10 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
 
   todashboard() {
     this.router.navigate(['/auth/partner/jobrequirment']);
+  }
+
+  todriveboard() {
+     this.router.navigate(['/auth/drive/managedrive']);
   }
 
   getStateAPI() {
