@@ -40,7 +40,13 @@ const routes: Routes = [
         path:`${APP_CONSTANTS.ROUTES.CANDIDATEDASH.JOBSSAVED}`,component:JobSavedListComponent
       },
       {
+        path:`${APP_CONSTANTS.ROUTES.CANDIDATEDASH.INTERNSHIPSAVED}`,component:JobSavedListComponent
+      },
+      {
         path:`${APP_CONSTANTS.ROUTES.CANDIDATEDASH.JOBSAPPLIED}`,component:JobAppliedListComponent
+      },
+      {
+        path:`${APP_CONSTANTS.ROUTES.CANDIDATEDASH.INTERNSHIPSAPPLIED}`,component:JobAppliedListComponent
       },
       {
         path:`${APP_CONSTANTS.ROUTES.CANDIDATEDASH.JOBDESCRIPTION}`,component:JobDescriptionComponent
