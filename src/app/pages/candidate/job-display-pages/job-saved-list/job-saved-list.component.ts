@@ -18,10 +18,10 @@ export class JobSavedListComponent implements OnInit {
   filterObj: any = {};
   url = 'Saved Jobs';
   constructor(
-    private apiService: ApiService, 
+    private apiService: ApiService,
     private toastr: ToastrService,
     public router: Router,
-    ) {}
+  ) { }
   ngOnInit() {
     this.savedJobList();
   }

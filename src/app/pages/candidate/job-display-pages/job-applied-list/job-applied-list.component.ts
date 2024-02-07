@@ -26,10 +26,10 @@ export class JobAppliedListComponent implements OnInit {
   resultShow: any;
   // public suburl="Dashboard";
   constructor(
-    private apiService: ApiService, 
+    private apiService: ApiService,
     private toastr: ToastrService,
     public router: Router,
-    ) {}
+  ) { }
 
   ngOnInit() {
     this.resultShow = length
