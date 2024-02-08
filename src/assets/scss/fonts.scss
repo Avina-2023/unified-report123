@@ -61,6 +61,11 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+.icon-up__arrow:before {
+  content: "\e9b0";
+  color: #fff;
+}
+
 .icon-apply-blue-converted-2:before {
   content: "\e9af";
   color: #1b4e9b;
