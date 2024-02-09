@@ -353,19 +353,22 @@ onJobsClick(from) {
 //   }
 //   }
 
- headertextSearch(event: KeyboardEvent) {
-  console.log(event);
+headertextSearch(event: KeyboardEvent) {
+  event.preventDefault();
+
   const keyPressed = event.key;
   if (keyPressed === 'Backspace') {
     if (this.fullSearchText.length > 0) {
       this.fullSearchText = this.fullSearchText.slice(0, -1);
       console.log(this.fullSearchText, 'input search updated');
+      this.messenger.sendMessage(this.fullSearchText, true);
     }
   } else {
     this.fullSearchText += keyPressed;
-    console.log(this.fullSearchText, 'input search updated')
+    console.log(this.fullSearchText, 'input search updated');
     this.messenger.sendMessage(this.fullSearchText, true);
   }
+
   const currentUrl = this.router.routerState.snapshot.url;
   switch (currentUrl) {
     case this.routelinks.CANDIDATEDASH.JOBSAPPLIED:
@@ -378,5 +381,6 @@ onJobsClick(from) {
       break;
   }
 }
+
 
 }

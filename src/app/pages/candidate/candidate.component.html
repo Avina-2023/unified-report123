@@ -26,7 +26,7 @@
     <div class="search-container mg-10">
       <mat-icon class="search-icon">search</mat-icon>
       <input type="search" [placeholder]="showJobs ? 'Search Jobs' : 'Search Internship'" class="search_input"
-        [(ngModel)]="searchText" (keypress)="headertextSearch($event)" >
+        [(ngModel)]="fullSearchText" (keydown)="headertextSearch($event)">
     </div>
   </div>
 
