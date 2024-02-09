@@ -30,6 +30,50 @@
         <app-details-card> 
         </app-details-card>
     </div> -->
+    <div *ngIf='roleCode === "EMP"'>
+        <div class="dashboard">
+            My Dashboard
+        </div>
+        <div class="main-card">
+            <mat-card class="dash-card dash-card-1">
+                <div class="count">
+                    <div class="num">100</div>
+                    <div class="title">Total No of Jobs Posted</div>
+                </div>
+                <div class="imic">
+                    <img src="../../../../assets/images/job-post.png">
+                </div>
+            </mat-card>
+            <mat-card class="dash-card dash-card-2">
+                <div class="count">
+                    <div class="num">100</div>
+                    <div class="title">Total No of Jobs Posted</div>
+                </div>
+                <div class="imic">
+                    <img src="../../../../assets/images/stu-applied.png">
+                </div>
+            </mat-card>
+            <mat-card class="dash-card dash-card-3">
+                <div class="count">
+                    <div class="num">100</div>
+                    <div class="title">Total No of Jobs Posted</div>
+                </div>
+                <div class="imic">
+                    <img src="../../../../assets/images/stu-shortlist.png">
+                </div>
+            </mat-card>
+            <mat-card class="dash-card dash-card-4">
+                <div class="count">
+                    <div class="num">100</div>
+                    <div class="title">Total No of Jobs Posted</div>
+                </div>
+                <div class="imic">
+                    <img src="../../../../assets/images/profile-viewed.png">
+                </div>
+            </mat-card>
+        </div>
+    </div>
+
 
 
     <div class="cand-prof-dash" *ngIf='roleCode === "EMP"'>Candidate Profile Dashboard</div>
