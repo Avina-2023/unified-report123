@@ -43,7 +43,8 @@ export class JobDescriptionComponent implements OnInit {
   searchInput: string = '';
   filterObj: any = {};
   sortData = '';
-  jobDetails: any;
+  // jobDetails: any;
+  jobDetails: any = { isSelected: false, jobId: null };
   item: any;
   blobToken = environment.blobToken
   productionUrl = environment.SKILL_EDGE_URL == "https://skilledge.lntedutech.com" ? true : false;
@@ -80,7 +81,12 @@ export class JobDescriptionComponent implements OnInit {
     this.jobViewCount();
     this.getJobsList();
     //   // this.checkScroll();
-    //  for applied job local storage
+
+    const isSelected = localStorage.getItem('isSelected');
+    if (isSelected) {
+      this.jobDetails.isSelected = JSON.parse(isSelected);
+    }
+
     const appliedJobDetailsString = localStorage.getItem('appliedJob');
     if (appliedJobDetailsString) {
       const appliedJobDetails = JSON.parse(appliedJobDetailsString);
@@ -149,13 +155,14 @@ export class JobDescriptionComponent implements OnInit {
     };
     this.skillexService.saveJobsDashboard(jobParams).subscribe((res: any) => {
       if (res.success) {
-        // console.log(res)
-        if (res && res.data != undefined && res.data) {
+        if (res.data != undefined && res.data) {
           this.toaster.success("Job saved successfully");
         } else {
           this.toaster.success("Job removed successfully");
         }
         this.jobDetails.isSelected = !this.jobDetails.isSelected;
+        // Save the isSelected state to localStorage
+        localStorage.setItem('isSelected', JSON.stringify(this.jobDetails.isSelected));
       } else {
         this.toaster.warning("Connection failed");
       }
@@ -359,11 +366,11 @@ getJobsList() {
  gotojob(item) {
     let extras: NavigationExtras = { state: { itemData: item } };
     this.appconfig.setLocalStorage('jobDesc', JSON.stringify(item));
-  //   this.router.navigateByUrl(
-  //     APP_CONSTANTS.ENDPOINTS.CANDIDATEDASH.JOBDESCRIPTION,
-  //     extras
-  //  );
-   //  location.reload();
+    //   this.router.navigateByUrl(
+    //     APP_CONSTANTS.ENDPOINTS.CANDIDATEDASH.JOBDESCRIPTION,
+    //     extras
+    //  );
+    //  location.reload();
    this.getRoute();
     }
 

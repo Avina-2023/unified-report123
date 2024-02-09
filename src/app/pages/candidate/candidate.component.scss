@@ -247,11 +247,11 @@
 
 
 .icon-jobs-work,
-.icon-home_icon {
+.icon-home_icon__filborder{
   font-weight: 600 !important;
 }
 
-.icon-home_icon:before,
+.icon-home_icon__filborder:before,
 .icon-jobs-work:before {
   color: #848484e0;
 }
@@ -263,7 +263,7 @@
 .icon-internships:before,
 .icon-learning:before,
 .icon-forum:before,
-.icon-home_icon:before,
+.icon-home_icon__filborder:before,
 .icon-events:before {
   font-size: 15px;
 }
@@ -279,14 +279,13 @@
 
 
 .candidate_header {
-  position: relative;
-  // position: fixed;
+  position: fixed;
   z-index: 99;
-  width: 100%;
   background: #fff;
-  font-family: 'inter' !important;
+  font-family: "inter" !important;
   padding: 0 3%;
   border-bottom: 1px solid #80808024;
+  width: 100%;
 
   img {
     width: 160px;
@@ -349,7 +348,7 @@
     // .icon_txt{
     //   font-size: 13px;
     // }
-    .icon-home_icon::before,
+    .icon-home_icon__filborder::before,
     .icon-learning:before,
     .icon-jobs-work:before,
     .icon-internships:before,
@@ -358,7 +357,7 @@
       color: #1b4e9b;
     }
 
-    .icon-home_icon::before {
+    .icon-home_icon__filborder::before {
       content: "\ea35";
     }
 
@@ -599,6 +598,8 @@
   // padding-left: 10px;
   // padding-right: 10px;
   height: 100%;
+  overflow: auto;
+  padding-top: 60px;
 }
 
 .navItems:hover {
@@ -646,7 +647,8 @@
 
 .side_head_sty {
   // font: normal normal medium 14px/17px Inter;
-  font-size: 14px;
+  font-size: 12px;
+  font-weight: 600;
   color: #262626;
   opacity: 1;
   cursor: pointer;
