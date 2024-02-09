@@ -323,51 +323,60 @@ onJobsClick(from) {
     localStorage.setItem('showJobs', JSON.stringify(this.showJobs));
   }
 
-  // headertextSearch(event) {
-  //   // console.log(event, 'input serch appears');
-  //   console.log(event.target.value, 'input search appears');
-  // }
-
-//   headertextSearch(event) {
-//     const keyPressed = event.key;
-//     if (keyPressed === 'Backspace') { // Check if backspace is pressed to handle deletion
-//        if (this.fullSearchText.length > 0) { // Ensure there is something to delete
-//       this.fullSearchText = this.fullSearchText.slice(0, -1); // Remove the last character
-//          }
-//     } else {
-//       this.fullSearchText += keyPressed;
-//       // this.messageEvent.emit(this.fullSearchText);
-//        this.messenger.sendMessage(this.fullSearchText, true);
+//  headertextSearch(event: any) {
+//   const keyPressed = event.key;
+//   if (keyPressed === 'Backspace') {
+//     if (this.fullSearchText.length > 0) {
+//       this.fullSearchText = this.fullSearchText.slice(0, -1);
 //     }
-//     console.log(this.fullSearchText, 'input search appears');
-//  }
+//   } else {
+//     this.fullSearchText += keyPressed;
+//     this.messenger.sendMessage(this.fullSearchText, true);
+//   }
+//   console.log(this.fullSearchText, 'input search appears');
 
+//   if (this.router.routerState.snapshot.url === this.routelinks.CANDIDATEDASH.JOBSAPPLIED) {
+//     this.router.navigate([this.routelinks.CANDIDATEDASH.JOBLIST]);
+//   }
 
- headertextSearch(event: any) {
+//   // Check if the user is on the "Saved Jobs" page and navigate to the "Jobs" page
+//   if (this.router.routerState.snapshot.url === this.routelinks.CANDIDATEDASH.JOBSSAVED) {
+//     this.router.navigate([this.routelinks.CANDIDATEDASH.JOBLIST]);
+//   }
+
+//   if (this.router.routerState.snapshot.url === this.routelinks.CANDIDATEDASH.RESUMEBUILDER) {
+//     this.router.navigate([this.routelinks.CANDIDATEDASH.JOBLIST]);
+//   }
+
+//    if (this.router.routerState.snapshot.url === this.routelinks.CANDIDATEDASH.JOBDESCRIPTION) {
+//     this.router.navigate([this.routelinks.CANDIDATEDASH.JOBLIST]);
+//   }
+//   }
+
+ headertextSearch(event: KeyboardEvent) {
+  console.log(event);
   const keyPressed = event.key;
   if (keyPressed === 'Backspace') {
     if (this.fullSearchText.length > 0) {
       this.fullSearchText = this.fullSearchText.slice(0, -1);
+      console.log(this.fullSearchText, 'input search updated');
     }
   } else {
     this.fullSearchText += keyPressed;
+    console.log(this.fullSearchText, 'input search updated')
     this.messenger.sendMessage(this.fullSearchText, true);
   }
-  console.log(this.fullSearchText, 'input search appears');
-
-  // Check if the user is on the "Applied Jobs" page and navigate to the "Jobs" page
-  if (this.router.routerState.snapshot.url === this.routelinks.CANDIDATEDASH.JOBSAPPLIED) {
-    this.router.navigate([this.routelinks.CANDIDATEDASH.JOBLIST]);
+  const currentUrl = this.router.routerState.snapshot.url;
+  switch (currentUrl) {
+    case this.routelinks.CANDIDATEDASH.JOBSAPPLIED:
+    case this.routelinks.CANDIDATEDASH.JOBSSAVED:
+    case this.routelinks.CANDIDATEDASH.RESUMEBUILDER:
+    case this.routelinks.CANDIDATEDASH.JOBDESCRIPTION:
+      this.router.navigate([this.routelinks.CANDIDATEDASH.JOBLIST]);
+      break;
+    default:
+      break;
   }
-
-  // Check if the user is on the "Saved Jobs" page and navigate to the "Jobs" page
-  if (this.router.routerState.snapshot.url === this.routelinks.CANDIDATEDASH.JOBSSAVED) {
-    this.router.navigate([this.routelinks.CANDIDATEDASH.JOBLIST]);
-  }
-
-    if (this.router.routerState.snapshot.url === this.routelinks.CANDIDATEDASH.RESUMEBUILDER) {
-    this.router.navigate([this.routelinks.CANDIDATEDASH.JOBLIST]);
-  }
-
 }
+
 }

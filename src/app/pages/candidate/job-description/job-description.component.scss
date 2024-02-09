@@ -1,9 +1,9 @@
 div {
-  font-family: Lato !important;
+  font-family: inter !important;
 }
 
 li {
-  font-family: Lato !important;
+  font-family: inter !important;
 }
 
 // .navMarginOver{
@@ -19,7 +19,7 @@ li {
   padding: 5px 20px 5px 17px;
   margin: -25px 0px 0px 20px;
   float: right;
-  font-family: Lato !important;
+  font-family: inter !important;
 
   .icon-apply_now {
     margin: 2px 7px 0px 0px;
@@ -37,7 +37,7 @@ li {
   padding: 7px 20px 6px 17px;
   margin: -25px 0px 0px 20px;
   float: right;
-  font-family: Lato !important;
+  font-family: inter !important;
 
 }
 
@@ -732,7 +732,7 @@ li {
 .genTitle_sim {
   margin: -3px 0px 0px 10px;
   color: #1B4E9B;
-}
+  font: normal normal 600 12px/20px Inter;}
 
 .location_sim {
   display: flex;
