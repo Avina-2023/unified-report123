@@ -170,8 +170,9 @@
         [routerLinkActive]="['is-active']">
         <div class="sidebar-admin" (click)="changeIcon()">
           <em class="icon-User"></em>
-          <span class="headerfont" (click)="validateClick('partnerlist')" mat-line *ngIf="isExpanded && !isnotShowing">Hiring
-            Partners</span>
+          <!-- <span class="headerfont" (click)="validateClick('partnerlist')" mat-line *ngIf="isExpanded && !isnotShowing">Hiring
+            Partners</span> -->
+            <span class="headerfont" mat-line *ngIf="isExpanded && !isnotShowing">Hiring Partners</span>
           <div class="arrow" *ngIf="isExpanded && !isnotShowing">
             <span *ngIf="!menuIconToggle" class="position-relative left2 headerfont">
               <mat-icon>arrow_drop_down</mat-icon>
