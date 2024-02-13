@@ -314,13 +314,13 @@ export class PartnerTrackerComponent implements OnInit {
   rowData = [];
 
   columnDefs = [
-    { headerName: 'Date', resizable: true, maxWidth: 130, field: 'date', cellStyle: { 'border-right-color': '#e2e2e2' },
+    { headerName: 'Date', resizable: true, maxWidth: 130, field: 'date', cellStyle: { 'border-right-color': '#e2e2e2', 'text-align': 'right' },
       valueFormatter: function (params) { return moment(params.value, 'DD-MM-YYYY').format('D-MMM-YYYY'); }, },
     {
       headerName: 'No of Partners', resizable: true, cellStyle: { 'border-right-color': '#e2e2e2' },
       children: [
-        { headerName: 'Day', resizable: true,  maxWidth: 110,   cellStyle: { 'border-right-color': '#e2e2e2' }, field: 'dayCount', },
-        { headerName: 'YTD', resizable: true,  maxWidth: 110,   cellStyle: { 'border-right-color': '#e2e2e2' }, field: 'ytdCount' },
+        { headerName: 'Day', resizable: true,  maxWidth: 110,   cellStyle: { 'border-right-color': '#e2e2e2', 'text-align': 'right' }, field: 'dayCount', },
+        { headerName: 'YTD', resizable: true,  maxWidth: 110,   cellStyle: { 'border-right-color': '#e2e2e2', 'text-align': 'right' }, field: 'ytdCount' },
       ]
     },
     {
@@ -329,16 +329,16 @@ export class PartnerTrackerComponent implements OnInit {
         {
           headerName: 'Jobs', resizable: true,
           children: [
-            { headerName: 'Day', resizable: true,  maxWidth: 110,   field: 'hirJobDayCount', cellStyle: { 'border-right-color': '#e2e2e2' }, },
-            { headerName: 'YTD', resizable: true,  maxWidth: 110,   field: 'hirJobYtdCount', cellStyle: { 'border-right-color': '#e2e2e2' }, },
+            { headerName: 'Day', resizable: true,  maxWidth: 110,   field: 'hirJobDayCount', cellStyle: { 'border-right-color': '#e2e2e2', 'text-align': 'right' }, },
+            { headerName: 'YTD', resizable: true,  maxWidth: 110,   field: 'hirJobYtdCount', cellStyle: { 'border-right-color': '#e2e2e2', 'text-align': 'right' }, },
 
           ]
         },
         {
           headerName: 'Internships', resizable: true,
           children: [
-            { headerName: 'Day', resizable: true,  maxWidth: 112,   field: 'hirInternDayCount', cellStyle: { 'border-right-color': '#e2e2e2' }, },
-            { headerName: 'YTD', resizable: true,  maxWidth: 112,   field: 'hirInternYtdCount', cellStyle: { 'border-right-color': '#e2e2e2' }, },
+            { headerName: 'Day', resizable: true,  maxWidth: 112,   field: 'hirInternDayCount', cellStyle: { 'border-right-color': '#e2e2e2', 'text-align': 'right' }, },
+            { headerName: 'YTD', resizable: true,  maxWidth: 112,   field: 'hirInternYtdCount', cellStyle: { 'border-right-color': '#e2e2e2', 'text-align': 'right' }, },
 
           ]
         },
@@ -350,16 +350,16 @@ export class PartnerTrackerComponent implements OnInit {
         {
           headerName: 'Jobs', resizable: true,
           children: [
-            { headerName: 'Day', resizable: true,  maxWidth: 112,   field: 'openJobDayCount', cellStyle: { 'border-right-color': '#e2e2e2' }, },
-            { headerName: 'YTD', resizable: true,  maxWidth: 112,   field: 'openJobYtdCount', cellStyle: { 'border-right-color': '#e2e2e2' }, },
+            { headerName: 'Day', resizable: true,  maxWidth: 112,   field: 'openJobDayCount', cellStyle: { 'border-right-color': '#e2e2e2', 'text-align': 'right' }, },
+            { headerName: 'YTD', resizable: true,  maxWidth: 112,   field: 'openJobYtdCount', cellStyle: { 'border-right-color': '#e2e2e2', 'text-align': 'right' }, },
 
           ]
         },
         {
           headerName: 'Internships', resizable: true,
           children: [
-            { headerName: 'Day', resizable: true,  maxWidth: 112,   field: 'openInternDayCount', cellStyle: { 'border-right-color': '#e2e2e2' }, },
-            { headerName: 'YTD', resizable: true,  maxWidth: 112,   field: 'openInternYtdCount', cellStyle: { 'border-right-color': '#e2e2e2' }, },
+            { headerName: 'Day', resizable: true,  maxWidth: 112,   field: 'openInternDayCount', cellStyle: { 'border-right-color': '#e2e2e2', 'text-align': 'right' }, },
+            { headerName: 'YTD', resizable: true,  maxWidth: 112,   field: 'openInternYtdCount', cellStyle: { 'border-right-color': '#e2e2e2', 'text-align': 'right' }, },
 
           ]
         },

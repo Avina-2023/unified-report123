@@ -104,6 +104,19 @@ export class SidebarComponent implements OnInit {
       case '/auth/overall-reports':
         this.check = 'overallReports';
         break;
+      case '/auth/partner/studenttracker':
+        this.check = 'studentTracker';
+        break;
+      case '/auth/partner/partnertracker':
+        this.check = 'partnerTracker';
+        break;
+      case '/auth/partner/addopenjobs':
+        this.check = 'addOpenJobs';
+        break;
+      case '/auth/partner/viewopenjobs':
+        this.check = 'viewOpenJobs';
+        break;
+     
       default:
         this.check = 'empdashboard';
         break;
