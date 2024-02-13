@@ -26,7 +26,7 @@
     <div class="search-container mg-10">
       <mat-icon class="search-icon">search</mat-icon>
       <input type="search" [placeholder]="showJobs ? 'Search Jobs' : 'Search Internship'" class="search_input"
-        [(ngModel)]="searchText" (keypress)="headertextSearch($event)">
+        [(ngModel)]="fullSearchText" (keydown)="headertextSearch($event)">
     </div>
   </div>
 
@@ -36,7 +36,8 @@
       <div class="menu_icon pointer_cursor" #iconHover1 (mouseenter)="addSlideAnimation(iconHover1, 'home')"
         (mouseleave)="removeSlideAnimation(iconHover1, 'home')" (click)="isIconActive(iconHover1, 'home')">
         <div class="icon">
-          <span class="icon-home_icon"></span>
+          <!-- <span class="icon-home_icon"></span> -->
+          <span class="icon-home_icon__filborder"></span>
         </div>
         <div class="icon_txt">Home</div>
       </div>
@@ -75,8 +76,8 @@
       </div>
     </div>
     <div class="flex_div flx_center" style="padding: 0px 10px;">
-      <div class="mg-7 pointer_cursor mob_view"><span class="icon-darkMode"></span></div>
-      <div class="mg-7 pointer_cursor mob_view"><span class="icon-notification"></span></div>
+      <!-- <div class="mg-7 pointer_cursor mob_view"><span class="icon-darkMode"></span></div> -->
+      <!-- <div class="mg-7 pointer_cursor mob_view"><span class="icon-notification"></span></div> -->
       <div class="mg-7 pointer_cursor bg-user" (click)="showProfileDashboard()"
         [style.background]="'url(' + (profileImage ? profileImage : 'assets/images/candidate-userprofile.png') + ')'">
       </div>
@@ -147,7 +148,7 @@
     <mat-sidenav-content style="overflow-x:hidden !important;">
       <!-- <div [ngClass]="sideNavMode=='over'?'navMarginOver':'navMarginSide'"> -->
       <div style="display: flex;width:100%;">
-        <div *ngIf="isSidebarDisabled" style="width:17%">
+        <div *ngIf="isSidebarDisabled" style="width:18%">
           <div style="margin: 20px 0px 0px 15px;
               height: 230px;
               background: #FFFFFF 0% 0% no-repeat padding-box;
