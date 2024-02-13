@@ -10,6 +10,7 @@ import { Label } from 'ng2-charts';
 export class DegreeChartComponent implements OnInit {
   @Input() btech;
   @Input() item: Array<any>;
+
   barChartOptions: ChartOptions = {
     responsive: true,
     legend: {
@@ -31,26 +32,29 @@ export class DegreeChartComponent implements OnInit {
       }],
     },
   };
+
   public barChartLabels: Label[] = [];
   barChartType: ChartType = 'bar';
   barChartLegend = false;
   barChartPlugins = [];
   bardata = [];
+
   public barChartData: any = [
     {
       data: [],
       // borderWidth: 0.5,
       // barPercentage:0.5,
-      hoverBackgroundColor: 'rgba(27, 78, 155, 1)',
-      backgroundColor: 'rgba(27, 78, 155, 1)',
-      borderColor: 'rgba(27, 78, 155, 1)',
-      // hoverBorderColor:'rgba(27, 78, 155, 1)',
+      hoverBackgroundColor: '#1B4E9B',
+      backgroundColor: '#1B4E9B',
+      borderColor: '#1B4E9B',
+      hoverBorderColor:'#1B4E9B',
       barThickness: 30,
       // radius:10,
       borderRadius: 25,
 
-    },
+    }
   ];
+  
   constructor() { }
   ngOnInit() {
     // this.degreeChart()
@@ -78,8 +82,8 @@ export class DegreeChartComponent implements OnInit {
         this.barChartData = [
           {
             data: this.bardata,
-            backgroundColor: ['rgba(27, 78, 155, 1)'],
-            hoverBackgroundColor: ['rgba(27, 78, 155, 1)'],
+            backgroundColor: '#1B4E9B',
+            hoverBackgroundColor: '#1B4E9B',
             barThickness: 30,
             borderRadius: 25
           }

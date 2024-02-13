@@ -3,6 +3,7 @@
         <div class="main">
             <div class="welcome-update">
                 <div class="welcome-name">
+                   
                     <div class="welcome-text">Welcome, </div>
                     <div><span class="username-text"><b> &nbsp;{{username}}!</b></span></div>
                 </div>
@@ -25,11 +26,7 @@
             </div>
         </div>
     </div>
-
-    <!-- <div  *ngIf='roleCode === "EMP"'>
-        <app-details-card> 
-        </app-details-card>
-    </div> -->
+    
     <div *ngIf='roleCode === "EMP"'>
         <div class="dashboard">
             My Dashboard
@@ -37,7 +34,7 @@
         <div class="main-card">
             <mat-card class="dash-card dash-card-1">
                 <div class="count">
-                    <div class="num">100</div>
+                    <div class="num">{{ dashBoardDetails[0]?.cardDetails.jobsPostedCount }}</div>
                     <div class="title">Total No of Jobs Posted</div>
                 </div>
                 <div class="imic">
@@ -46,8 +43,8 @@
             </mat-card>
             <mat-card class="dash-card dash-card-2">
                 <div class="count">
-                    <div class="num">100</div>
-                    <div class="title">Total No of Jobs Posted</div>
+                    <div class="num">{{ dashBoardDetails[0]?.cardDetails.studentsAppliedCount }}</div>
+                    <div class="title">Total No of Students Applied</div>
                 </div>
                 <div class="imic">
                     <img src="../../../../assets/images/stu-applied.png">
@@ -55,8 +52,8 @@
             </mat-card>
             <mat-card class="dash-card dash-card-3">
                 <div class="count">
-                    <div class="num">100</div>
-                    <div class="title">Total No of Jobs Posted</div>
+                    <div class="num">{{ dashBoardDetails[0]?.cardDetails.studentsShortlistedCount }}</div>
+                    <div class="title">Total No. of Students Shortlisted</div>
                 </div>
                 <div class="imic">
                     <img src="../../../../assets/images/stu-shortlist.png">
@@ -64,8 +61,8 @@
             </mat-card>
             <mat-card class="dash-card dash-card-4">
                 <div class="count">
-                    <div class="num">100</div>
-                    <div class="title">Total No of Jobs Posted</div>
+                    <div class="num">{{ dashBoardDetails[0]?.cardDetails.ProfilesViewedCount }}</div>
+                    <div class="title">Total No. of Profiles Viewed</div>
                 </div>
                 <div class="imic">
                     <img src="../../../../assets/images/profile-viewed.png">
@@ -74,9 +71,8 @@
         </div>
     </div>
 
-
-
     <div class="cand-prof-dash" *ngIf='roleCode === "EMP"'>Candidate Profile Dashboard</div>
+    <div class="sadm-dash" *ngIf='roleCode === "SADM"'>Dashboard</div>
 
     <div class="row candidate-count" *ngIf='roleCode === "EMP"'>
         <div class="col-md-4">
@@ -351,7 +347,6 @@
         </div>
     </div>
 
-
     <div class="row prof_grad">
         <div class="col-xs-3 card_one">
             <div class="chart-title spacing">Profile by Graduation Level</div>
@@ -363,7 +358,4 @@
         </div>
     </div>
 
-    <!-- <app-candidate-details-card>
-        
-    </app-candidate-details-card> -->
 </div>

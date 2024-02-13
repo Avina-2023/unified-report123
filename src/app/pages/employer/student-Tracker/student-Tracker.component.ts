@@ -174,20 +174,20 @@ export class StudentTrackerComponent implements OnInit {
   rowData = [];
 
   columnDefs = [
-    { headerName: 'Date', resizable: true, maxWidth: 130, field: 'date', cellStyle: { 'border-right-color': '#e2e2e2' },
+    { headerName: 'Date', resizable: true, maxWidth: 130, field: 'date', cellStyle: { 'border-right-color': '#e2e2e2', 'text-align': 'right' },
       valueFormatter: function (params) { return moment(params.value, 'DD-MM-YYYY').format('D-MMM-YYYY'); }, },
     {
       headerName: 'Registrations', resizable: true,  cellStyle: { 'border-right-color': '#e2e2e2' },
       children: [
-        { headerName: 'Day', resizable: true,  maxWidth: 91,  cellStyle: { 'border-right-color': '#e2e2e2' }, field: 'regDayCount', },
-        { headerName: 'YTD', resizable: true,  maxWidth: 91,  cellStyle: { 'border-right-color': '#e2e2e2' }, field: 'regYtdCount' },
+        { headerName: 'Day', resizable: true,  maxWidth: 91,  cellStyle: { 'border-right-color': '#e2e2e2', 'text-align': 'right' }, field: 'regDayCount', },
+        { headerName: 'YTD', resizable: true,  maxWidth: 91,  cellStyle: { 'border-right-color': '#e2e2e2', 'text-align': 'right' }, field: 'regYtdCount' },
       ]
     },
     {
       headerName: 'Skill Profile', resizable: true,
       children: [
-        { headerName: 'Day', resizable: true,  maxWidth: 91,  field: 'profDayCount', cellStyle: { 'border-right-color': '#e2e2e2' }, },
-        { headerName: 'YTD', resizable: true,  maxWidth: 91,  field: 'profYtdCount', cellStyle: { 'border-right-color': '#e2e2e2' }, },
+        { headerName: 'Day', resizable: true,  maxWidth: 91,  field: 'profDayCount', cellStyle: { 'border-right-color': '#e2e2e2', 'text-align': 'right' }, },
+        { headerName: 'YTD', resizable: true,  maxWidth: 91,  field: 'profYtdCount', cellStyle: { 'border-right-color': '#e2e2e2', 'text-align': 'right' }, },
       ]
     },
     {
@@ -196,16 +196,16 @@ export class StudentTrackerComponent implements OnInit {
         {
           headerName: 'Registrations', resizable: true,
           children: [
-            { headerName: 'Day', resizable: true,  maxWidth: 91,  field: 'trainRegDayCount', cellStyle: { 'border-right-color': '#e2e2e2' }, },
-            { headerName: 'YTD', resizable: true,  maxWidth: 91,  field: 'trainRegYtdCount', cellStyle: { 'border-right-color': '#e2e2e2' }, },
+            { headerName: 'Day', resizable: true,  maxWidth: 91,  field: 'trainRegDayCount', cellStyle: { 'border-right-color': '#e2e2e2', 'text-align': 'right' }, },
+            { headerName: 'YTD', resizable: true,  maxWidth: 91,  field: 'trainRegYtdCount', cellStyle: { 'border-right-color': '#e2e2e2', 'text-align': 'right' }, },
 
           ]
         },
         {
           headerName: 'Profile Filled', resizable: true, 
           children: [
-            { headerName: 'Day', resizable: true,  maxWidth: 91,  field: 'trainProfDayCount', cellStyle: { 'border-right-color': '#e2e2e2' }, },
-            { headerName: 'YTD', resizable: true,  maxWidth: 91,  field: 'trainProfYtdCount', cellStyle: { 'border-right-color': '#e2e2e2' }, },
+            { headerName: 'Day', resizable: true,  maxWidth: 91,  field: 'trainProfDayCount', cellStyle: { 'border-right-color': '#e2e2e2', 'text-align': 'right' }, },
+            { headerName: 'YTD', resizable: true,  maxWidth: 91,  field: 'trainProfYtdCount', cellStyle: { 'border-right-color': '#e2e2e2', 'text-align': 'right' }, },
 
           ]
         },
@@ -217,16 +217,16 @@ export class StudentTrackerComponent implements OnInit {
         {
           headerName: 'Registrations', resizable: true, 
           children: [
-            { headerName: 'Day', resizable: true,  maxWidth: 91,  field: 'assessRegDayCount', cellStyle: { 'border-right-color': '#e2e2e2' }, },
-            { headerName: 'YTD', resizable: true,  maxWidth: 91,  field: 'assessRegYtdCount', cellStyle: { 'border-right-color': '#e2e2e2' }, },
+            { headerName: 'Day', resizable: true,  maxWidth: 91,  field: 'assessRegDayCount', cellStyle: { 'border-right-color': '#e2e2e2', 'text-align': 'right' }, },
+            { headerName: 'YTD', resizable: true,  maxWidth: 91,  field: 'assessRegYtdCount', cellStyle: { 'border-right-color': '#e2e2e2', 'text-align': 'right' }, },
 
           ]
         },
         {
           headerName: 'Profile Filled', resizable: true,
           children: [
-            { headerName: 'Day', resizable: true,  maxWidth: 91,  field: 'assessProfDayCount', cellStyle: { 'border-right-color': '#e2e2e2' }, },
-            { headerName: 'YTD', resizable: true,  maxWidth: 91,  field: 'assessProfYtdCount', cellStyle: { 'border-right-color': '#e2e2e2' }, },
+            { headerName: 'Day', resizable: true,  maxWidth: 91,  field: 'assessProfDayCount', cellStyle: { 'border-right-color': '#e2e2e2', 'text-align': 'right' }, },
+            { headerName: 'YTD', resizable: true,  maxWidth: 91,  field: 'assessProfYtdCount', cellStyle: { 'border-right-color': '#e2e2e2', 'text-align': 'right' }, },
 
           ]
         },
