@@ -1,13 +1,11 @@
 <div class="candidate_profile_detail">
   <div class="view_breadcrump flx_div flx_center">
-
-    <!-- <div *ngIf="roleCode === 'SADM'" class="active-link" (click)="navigatetoDrive()"><span class="text_underline">Manage
-        Drive</span></div>
-    <div *ngIf="roleCode === 'EMP'" class="active-link" (click)="dashboard()">View Job Requirements</div> -->
-    <div  class="active-link" (click)="todashboard()">View Job Requirements</div>
+    <div *ngIf="roleCode === 'SADM'" class="active-link" (click)="todriveboard()"><span class="text_underline">Manage Drive</span></div>
+    <div *ngIf="roleCode === 'EMP'" class="active-link" (click)="dashboard()">View Job Requirements</div>
     <div class="active-link" (click)="tocandidtedrive()"> View Applications</div>
     <div>Candidate Profile</div>
   </div>
+
   <h1 class="profile_header">Candidate Profile</h1>
   <div class="candidate_card flx_div flx_between">
 

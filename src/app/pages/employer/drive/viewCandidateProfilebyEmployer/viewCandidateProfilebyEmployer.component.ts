@@ -111,6 +111,8 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
   hideSection: boolean;
   route: any;
   role: any;
+  roleCode: any;
+  userRole: any;
 
   constructor(
     private apiService: ApiService,
@@ -147,6 +149,10 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
     this.currentCertification = this.CertificationDetails[this.currentIndex];
 
     // this.getCandidateCourseDetails();
+    this.userRole = this.appConfig.getLocalStorage('role');
+    this.role = JSON.parse(this.userRole);
+    this.roleCode = this.role[0].roles[0].roleCode;
+    console.log(this.roleCode, 'role');
   }
 
   showPrevious() {
