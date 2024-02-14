@@ -1,12 +1,14 @@
 .dashboard{
-  padding: 20px 0px 20px 25px;
+  // padding: 20px 0px 20px 25px;
+  padding: 20px 0px 20px 77px;
    font-size: 24px;
    font-weight: 600;
 }
 .flex_div{
   display: flex;
   justify-content: space-between;
-  margin: 0px 80px;
+  // margin: 0px 80px;
+  margin: 0px 100px 0px 50px;
 }
 .main-card{
   display: flex;
@@ -43,7 +45,7 @@
 }
 .main-card2{
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   margin: 50px 0px 0px 0px;
 }
 

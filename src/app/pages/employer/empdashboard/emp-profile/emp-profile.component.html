@@ -18,20 +18,21 @@
             </div>
             <div class="divider"></div>
             <div class="left-userinfo card-body">
-              <label class="heading">SPOC Details:</label>
+              <label class="heading_left headleft_">SPOC Details:</label>
               <table>
                 <tr>
                   <td>Name:</td>
-                  <td><span>{{ empProfile?.firstName }}</span></td>
+                  <td><span>{{ empProfile?.firstName | titlecase }}</span></td>
+
                 </tr>
                 <tr>
                   <td>Designation:</td>
-                  <td><span>{{ empProfile?.designation }}</span></td>
+                  <td><span>{{ empProfile?.designation | titlecase }}</span></td>
                 </tr>
                 <tr>
                   <td>Email:</td>
                   <td><span class="emailbreak" matTooltip="{{ empProfile?.email }}">
-                    {{empProfile?.email }}</span></td>
+                      {{empProfile?.email }}</span></td>
                 </tr>
                 <tr>
                   <td>Mobile:</td>
@@ -41,8 +42,8 @@
             </div>
             <div class="divider"></div>
             <div class="left-userinfo card-body">
-              <label class="heading">Short Description: </label>
-              <p>{{empProfile?.description}}</p>
+              <label class="heading_left">Short Description: </label>
+              <p>{{empProfile?.description | titlecase }}</p>
             </div>
           </div>
         </div>
@@ -176,12 +177,12 @@
                             CHRO {{InvalidNumber}}
                           </div>
                         </mat-error>
-                      </mat-form-field>
+                      </mat-form-field>HR Contact Details
                     </div>
                   </div>
                   <div class="alignp1 mt-4">
                     <fieldset>
-                      <legend>HR Contact Details:<span>*</span></legend>
+                      <legend>HR Contact Details<span>*</span></legend>
                       <ng-container formArrayName="hrContactDetails"
                         *ngFor="let hrContactDetail of hrContactDetails.controls; index as i">
                         <div class="row hrright" [formGroupName]="i">
@@ -357,7 +358,7 @@
                     </div>
                   </div>
                   <div class="alignp1 mt-3 mb-2">
-                    <h4 class="mb-0"><b>Presence In India:</b></h4>
+                    <div><h4 class="mb-0"><b>Presence In India</b><span>*</span></h4></div>
                     <div class="row d-flex alignp">
                       <div class="col-md-12 alignp">
                         <mat-form-field class="form-filed-width" appearance="outline" *ngIf="stateone.length">
@@ -377,17 +378,21 @@
                               [value]="selectstate" (click)="selectMe(selectstate,i)">
                               {{selectstate}}
                             </mat-chip>
-
                           </mat-chip-list>
+                        </div>
+                        <div *ngIf="!isAtLeastOneCitySelected()" class="error-message text-danger">
+                          Please select at least one.
                         </div>
                       </div>
                     </div>
                   </div>
                   <div class="d-flex formbtns">
-                    <button *ngIf="!empProfile?.detailedInformation" mat-raised-button class="save"
-                      type="submit">save</button>
-                    <button *ngIf="empProfile.detailedInformation" mat-raised-button class="save"
-                      type="submit">Update</button>
+                    <button *ngIf="!empProfile?.detailedInformation" mat-raised-button class="save" type="submit"
+                      [ngStyle]="{'background-color': stateone.length === 0 ? '#ccc' : ''}"
+                      [disabled]="stateone.length === 0">save</button>
+                    <button *ngIf="empProfile.detailedInformation" mat-raised-button class="save" type="submit"
+                      [ngStyle]="{'background-color': stateone.length === 0 ? '#ccc' : ''}"
+                      [disabled]="stateone.length === 0">Update</button>
                     <!-- <button mat-raised-button class="cancel" type="submit">cancel</button> -->
                   </div>
                 </form>

@@ -14,8 +14,11 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./emp-profile.component.scss']
 })
 export class EmpProfileComponent implements OnInit {
+  stateCtrl = new FormControl;
+  isAtLeastOneCitySelected(): boolean {
+  return this.stateone.length > 0;
+  }
   separatorKeysCodes: number[] = [ENTER, COMMA];
-  stateCtrl = new FormControl('');
   states: any;
   stateone: any[] = [];
   empProfile: any;
@@ -36,7 +39,6 @@ export class EmpProfileComponent implements OnInit {
     'Karnataka', 'Kerala', 'Kerala', 'Lakshadweep', 'Madhya Pradesh', 'Maharashtra', 'Manipur',
     'Meghalaya', 'Mizoram', 'Nagaland', 'Odisha', 'Puducherry', 'Punjab', 'Rajasthan', 'Sikkim', 'Tamil Nadu',
     'Telangana', 'Tripura', 'Uttar Pradesh', 'Uttarakhand', 'West Bengal'
-
   ]
 
   allCountry: any = [{ id: 1, name: 'India', countryId: 101 }]
@@ -215,6 +217,7 @@ export class EmpProfileComponent implements OnInit {
       this.toaster.warning('Please fill all the red highlighted fields to proceed further');
     }
   }
+
   //  hr details patch value
   HRspocPatch() {
     this.empProfile1 = [];
