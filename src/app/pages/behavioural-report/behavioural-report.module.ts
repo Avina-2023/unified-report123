@@ -7,11 +7,13 @@ import { MaterialModule } from 'src/app/material/material.module';
 import { ChartsModule } from 'ng2-charts';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { BajajViewReportComponent } from './bajaj-view-report/bajaj-view-report.component';
+import { WoltersKluverViewReportComponentComponent } from './wolters-kluver-view-report-component/wolters-kluver-view-report-component.component';
 
 @NgModule({
   declarations: [
     BehaviouralLandingPageComponent,
     BajajViewReportComponent,
+    WoltersKluverViewReportComponentComponent,
     // BehaviouralReportCanvasComponent,
     // BehaviouralPdfReportDownloadComponent
   ],
