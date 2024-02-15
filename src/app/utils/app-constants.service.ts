@@ -67,6 +67,7 @@ export const APP_CONSTANTS = {
         BEHAVIOUR_MODULE_PAGE: '/auth/reports/behavioural',
         BEHAVIOUR_REPORT: '/auth/reports/behavioural/view',
         BEHAVIOUR_REPORT1: '/auth/reports/behavioural/viewBajajReport',
+        BEHAVIOUR_REPORT2: '/auth/reports/behavioural/wolterkluverReport',
       },
     },
     CANDIDATE: {
@@ -169,6 +170,7 @@ export const APP_CONSTANTS = {
         HOME: 'behavioural',
         BEHAVIOUR_REPORT: 'view',
         BEHAVIOUR_REPORT1: 'viewBajajReport',
+        BEHAVIOUR_REPORT2: 'wolterkluverReport',
       },
     },
     CANDIDATE: {

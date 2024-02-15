@@ -20,6 +20,7 @@ import { BajajBegaviouralPdfReportDownloadComponent } from './bajaj-begavioural-
 import { BajajReportCanvasComponent } from './bajaj-report-canvas/bajaj-report-canvas.component'
 import { CommonPaginatorComponent } from './common-paginator/common-paginator.component';
 import { CommonBannerComponent } from './common-banner/common-banner.component';
+import { WolterKluverPdfReportDownloadComponent } from './wolter-kluver-pdf-report-download/wolter-kluver-pdf-report-download.component';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -40,7 +41,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     BajajBegaviouralPdfReportDownloadComponent,
     BajajReportCanvasComponent,
     CommonPaginatorComponent,
-    CommonBannerComponent
+    CommonBannerComponent,
+    WolterKluverPdfReportDownloadComponent
   ],
   imports: [
     CommonModule,
@@ -72,7 +74,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     BajajBegaviouralPdfReportDownloadComponent,
     BajajReportCanvasComponent,
     CommonPaginatorComponent,
-    CommonBannerComponent
+    CommonBannerComponent,
+    WolterKluverPdfReportDownloadComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
   providers: [
