@@ -55,6 +55,9 @@ export class AuthComponent implements OnInit {
     else if (this.checkRouter.search("/auth/reports/behavioural/viewBajajReport") == 0) {
       this.checkRouter = "/auth/reports/behavioural/viewBajajReport";
     }
+    else if (this.checkRouter.search("/auth/reports/behavioural/wolterkluverReport") == 0) {
+      this.checkRouter = "/auth/reports/behavioural/wolterkluverReport";
+    }
     // console.log(this.checkRouter)
     this.roles = this.appConfig.getLocalStorage('role') ? this.appConfig.getLocalStorage('role') : '';
     this.orgdetails = JSON.parse(this.roles);
