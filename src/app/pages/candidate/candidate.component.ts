@@ -313,13 +313,13 @@ export class CandidateComponent implements OnInit {
   isActive(): boolean {
    return this.router.isActive(this.router.createUrlTree(['/candidateview/resumebuilder']), true);
   }
-onJobsClick(from) {
-  if(from == 'jobs'){
-    this.showJobs = true;
-  }
-  else{
-    this.showJobs = false;
-  }
+  onJobsClick(from) {
+    if(from == 'jobs'){
+     this.showJobs = true;
+    }
+    else{
+     this.showJobs = false;
+    }
     localStorage.setItem('showJobs', JSON.stringify(this.showJobs));
   }
 
@@ -381,6 +381,4 @@ headertextSearch(event: KeyboardEvent) {
       break;
   }
 }
-
-
 }

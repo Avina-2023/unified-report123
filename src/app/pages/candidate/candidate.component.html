@@ -22,7 +22,7 @@
 <!-- job and intern search -->
 <mat-toolbar class="flex_div candidate_header flx_between">
   <div class="flex_div flx_center">
-    <div class="mg-10"><img class="hearder-logo" alt="" src="assets/images/landing/newLogo.png"></div>
+    <div class="mg-10"><img class="hearder-logo" alt="" src="assets/images/landing/skillexchangelogo.png"></div>
     <div class="search-container mg-10">
       <mat-icon class="search-icon">search</mat-icon>
       <input type="search" [placeholder]="showJobs ? 'Search Jobs' : 'Search Internship'" class="search_input"
@@ -81,7 +81,6 @@
       <div class="mg-7 pointer_cursor bg-user" (click)="showProfileDashboard()"
         [style.background]="'url(' + (profileImage ? profileImage : 'assets/images/candidate-userprofile.png') + ')'">
       </div>
-
       <!-- <div class="icon pointer_cursor" (click)="showProfileDashboard()" *ngIf ="{{profileimge}} != null"> {{profileimge}}
       </div> -->
     </div>
@@ -240,7 +239,7 @@
             }
           </style>
 
-          <p class="text_on_side"> {{ currentYear }} L&T EduTech.<br>All Rights Reserved.</p>
+          <p class="text_on_side"> © {{ currentYear }} L&T EduTech.<br>All Rights Reserved.</p>
         </div>
         <div style="width:100%;">
           <router-outlet></router-outlet>

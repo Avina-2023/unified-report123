@@ -318,9 +318,10 @@
     .panelPosition {
       .mat-select-min-line {
         color: #1b4e9b;
-        font-weight: 400;
+        font-weight: 600;
         position: relative;
-        // top: 4px;
+        top: 2
+        px;
       }
     }
   }
@@ -483,7 +484,7 @@
 }
 
 .all_filter {
-  margin: 0px 0px 0px -20px;
+  margin: 0px 0px 0px 2px;
 }
 
 .head_designation {
@@ -614,7 +615,8 @@
   .clear_filter {
     color: #294d96;
     position: absolute;
-    right: 4%;
+    right: 5%;
+    padding: 4px 0px 0px 0px;
     font-weight: 600;
     font-size: 13px;
     cursor: pointer;

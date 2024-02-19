@@ -159,6 +159,11 @@
                     <!-- <span class="jobTTyp">{{item.jobFamily}}</span> -->
                     <span *ngIf="item.jobFamily" class="jobTTyp">{{ item.jobFamily }}</span>
                   </div>
+                  <!-- <div *ngIf="item.education && item.education.length > 0">
+                    <span *ngFor="let edu of item.education" class="jobTTyp">
+                      {{ edu.discipline }}
+                    </span>
+                  </div> -->
 
                   <div class="type_fulltime"
                     [ngStyle]="{ 'color': getColor(item.jobType), 'background-color': getBackgroundColor(item.jobType) }">
@@ -219,7 +224,7 @@
   <div class="filter" *ngIf="this.filter_info.data.length">
     <div class="fil_head">
       <p>
-        <mat-icon class="misc_icon"></mat-icon><span class="job_designation all_filter">All Filters
+        <mat-icon class="misc_icon">filter_list</mat-icon><span class="job_designation all_filter">All Filters
           {{this.selectedValues.length ? '(' + this.selectedValues.length + ')' : ''}}</span>
         <span (click)="clearFilters(filter_info.data)" *ngIf="selectedValues.length" class="clear_filter">Clear
           All</span>

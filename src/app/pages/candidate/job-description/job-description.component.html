@@ -1,5 +1,5 @@
 <div class="pageWrapper">
-  <div class="scroller-head">
+  <div class="scroller-head" #scrollerHead>
     <div class="company-details">
       <img class="companyLogo_head" (error)="'/assets/images/compPlaceholder.png'"
         [src]="productionUrl ? jobDetails.companyLogo + blobToken : jobDetails.companyLogo" />
@@ -38,7 +38,7 @@
         <div class="left">
           <div class='companyLogo1'><img class="comp_logo" (error)="'/assets/images/compPlaceholder.png'"
               [src]="productionUrl?jobDetails.companyLogo+blobToken:jobDetails.companyLogo" /></div>
-           <div class="JT-left">
+          <div class="JT-left">
             <div class="se-patner">
               <div class='compTitle'><strong>{{ jobDetails.jobRole ? jobDetails.jobRole : jobDetails.jobTitle
                   }}</strong>
@@ -134,8 +134,8 @@
               <span class="icon-tick_mark_green"></span>&nbsp;Applied
             </button>
             <!-- <button class="btn" [disabled]="true" *ngIf="jobDetails.isApplied == true">Applied</button> -->
-            <button (click)="saved()" class="save btn" *ngIf="jobDetails.isSelected == false" >Save</button>
-            <button (click)="saved()" class="save_ed btn" *ngIf="jobDetails.isSelected == true" >Saved</button>
+            <button (click)="saved()" class="save btn" *ngIf="jobDetails.isSelected == false">Save</button>
+            <button (click)="saved()" class="save_ed btn" *ngIf="jobDetails.isSelected == true">Saved</button>
           </div>
         </div>
       </div>
@@ -216,12 +216,19 @@
             </ul>
           </div>
 
-          <div id="specializationSection" class="desTitle"> Specialization: </div>
+          <!-- <div id="specializationSection" class="desTitle"> Specialization: </div>
           <div class="job_options">
             <div class="genText" *ngFor="let content of jobDetails.education">
               <button class="specialization-box"> {{ content.specification }} </button>
             </div>
+          </div> -->
+          <div id="specializationSection" class="desTitle"> Specialization: </div>
+          <div class="job_options">
+            <div class="genText">
+              <button class="specialization-box"> {{ jobDetails.education[jobDetails.education.length - 1].discipline }} </button>
+            </div>
           </div>
+
           <div id="keyskillsSection" class="desTitle"> Key Skills: </div>
           <div class="job_options">
             <div class="genText" *ngFor="let content of jobDetails.skillSet">
@@ -249,7 +256,6 @@
 
           <div *ngIf="item.partnerLabel === 'Skill Exchange Partner'" matTooltip="Skill Exchange Partner"
             style="margin-left: auto;">
-            <span></span>
             <img class="comp_skill_sim" src="../../../../assets/images/skillexchange-logotick.png">
           </div>
         </div>
