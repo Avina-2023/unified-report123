@@ -40,7 +40,7 @@
                                         <!-- <div [matTooltip]="jobReqData?.approveStatus === 'rejected' ? jobReqData?.remarks : null" class="job-status"
                                             [ngClass]="{'status-active': (jobReqData?.approveStatus === 'Active' || jobReqData?.approveStatus === 'approved'), 'status-expired': (jobReqData?.approveStatus === 'Expired'), 'status-pending': (jobReqData?.approveStatus === 'pending'), 'status-rejected': (jobReqData?.approveStatus === 'rejected'), 'status-closed': (jobReqData?.approveStatus === 'closed')}">
                                             {{ jobReqData?.approveStatus == 'approved' ? 'Active' : jobReqData?.approveStatus }}</div> -->
-                                            
+
                                             <div class="job-status" [matTooltip]="getTooltipText()"
                                             [ngClass]="{
                                                'status-active': (jobReqData?.approveStatus === 'Active' || jobReqData?.approveStatus === 'approved'),
@@ -51,8 +51,8 @@
                                             }">
                                            {{ jobReqData?.approveStatus == 'approved' ? 'Active' : jobReqData?.approveStatus }}
                                        </div>
-                                             
-                                            
+
+
                                     </div>
                                 </div>
                             </div>
@@ -220,11 +220,8 @@
                                     <div class="label-value-text">{{jobReqData?.ctc}}</div>
                                 </div>
                                 <div class="label-value custom-form" *ngIf="editMode">
-
-
-
                                     <div class="width-100" *ngIf="selectedOption === 'Jobs'">
-                                        <div class="form-group salary-range">
+                                        <div class="form-group salary-range" style="margin: 10px 0px 0px 0px;">
                                             <mat-radio-group aria-label="Select an option"
                                                 [(ngModel)]="selectedRangeOption" (ngModelChange)="onCtcOptionChange()"
                                                 formControlName="ctcOption" style="width:40%;">
@@ -236,7 +233,7 @@
                                             <div *ngIf="selectedRangeOption === 'fixed'"
                                                 style="width:-webkit-fill-available;">
                                                 <input type="number" id="numberInput" formControlName="fixed"
-                                                    class="inputForm" placeholder="CTC (numeric only)">
+                                                    class="inputForm" placeholder="CTC (numeric only)" min="0">
                                                 <div *ngIf="jobForm.get('fixed').hasError('required') && jobForm.get('fixed').touched"
                                                     class="text-danger">
                                                     CTC Required.
@@ -247,7 +244,7 @@
                                                 <div class="flex_div flx_evenly flx_center">
                                                     <div><input type="number" id="numberInput"
                                                             formControlName="startrange" class="inputForm"
-                                                            placeholder="CTC Start Range (numeric only)">
+                                                            placeholder="CTC Start Range (numeric only)" min="0">
                                                         <div *ngIf="jobForm.get('startrange').hasError('required') && jobForm.get('startrange').touched"
                                                             class="text-danger">
                                                             Start Range of CTC Required.
@@ -256,7 +253,7 @@
                                                     <div>-</div>
                                                     <div><input type="number" id="numberInput"
                                                             formControlName="endrange" class="inputForm"
-                                                            placeholder="CTC End Range (numeric only)">
+                                                            placeholder="CTC End Range (numeric only)" min="0">
                                                         <div *ngIf="jobForm.get('endrange').hasError('required') && jobForm.get('endrange').touched"
                                                             class="text-danger">
                                                             End Range of CTC Required.
@@ -279,13 +276,8 @@
                                                     Stipend is Required
                                                 </div>
                                             </div>
-
-
                                         </div>
                                     </div>
-
-
-
                                 </div>
                             </div>
                             <div class="border-line">
@@ -460,7 +452,7 @@
                                     </div>
                                 </div>
                                 <div class="separator_line_width"></div>
-                                
+
                                 <div class="edu_section width-20" *ngIf="(jobReqData?.approveStatus === 'pending' && (jobReqData?.lastDatetoApply > ISOStringDate)) || (roleCode === 'SADM' && jobReqData?.approveStatus !== 'rejected')">
                                     <div class="pd-5">
                                         <div style="cursor: pointer;color: #1B4E9B;text-align:center;"
@@ -1022,7 +1014,7 @@
                             <div class="jobprofile-header-text2">
                                 Hiring Process
                             </div>
-                            
+
                             <div class="add-criteria flex_div flx_center">
                                 <mat-icon>add</mat-icon>
                                 <div style="margin-left: -5px;">Add Process</div>
