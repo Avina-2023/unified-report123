@@ -60,7 +60,7 @@
                         <div class="right">
                             <label class="customLabel2">Upload Employer Logo<span>*</span></label>
                             <p class="errmsg" *ngIf="errorMsgforLogo">{{errorMsgforLogo}}</p>
-                            <div class="wrapper">
+                            <div class="wrapper" style="text-align: center;">
                                 <div>
                                     <img *ngIf="!employerLogoFileName" class="cloudicon" src="/assets/images/partner/cloud-upload-blu.svg" alt="">
                                     <img *ngIf="employerLogoFileName" class="cloudicon" [src]="displayImageUrl" height="100" width="200">
@@ -204,7 +204,7 @@
                             </div>
                             <div class="buttonClass2">
                                 <div class="subButton">
-                                    <input type="file"  accept="image/png, image/jpeg, application/pdf"
+                                    <input type="file"  accept="image/jpeg, application/pdf"
                                     class="file-input" (change)="onEoiFileSelected($event)" (click)="$event.target.value=null" #fileUploadeoi>
                                     <button formControlName="eoiForm" (click)="fileUploadeoi.click()" mat-flat-button>Browse</button>
                                 </div>
