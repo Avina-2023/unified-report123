@@ -16,7 +16,7 @@ import { environment } from 'src/environments/environment';
 
 })
 export class JobDescriptionComponent implements OnInit {
-
+  @ViewChild('scrollerHead') scrollerHead!: ElementRef;
   jobViewsCount: any;
   pageNumber: any;
   itemsPerPage: any;
@@ -82,6 +82,8 @@ export class JobDescriptionComponent implements OnInit {
     this.getJobsList();
     //   // this.checkScroll();
 
+    window.addEventListener('scroll', this.onWindowScroll.bind(this));
+
     const isSelected = localStorage.getItem('isSelected');
     if (isSelected) {
       this.jobDetails.isSelected = JSON.parse(isSelected);
@@ -94,6 +96,10 @@ export class JobDescriptionComponent implements OnInit {
         this.jobDetails.isApplied = true;
       }
     }
+  }
+    ngOnDestroy(): void {
+    // Remove scroll event listener when the component is destroyed to prevent memory leaks
+    window.removeEventListener('scroll', this.onWindowScroll.bind(this));
   }
   candidateData() {
     this.candidateDetails = localStorage.getItem('candidateProfile');
@@ -372,6 +378,23 @@ getJobsList() {
     //  );
     //  location.reload();
    this.getRoute();
-    }
+  }
+
+onWindowScroll() {
+  const scrollPosition = window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0;
+  const triggerPosition = 20;
+  if (scrollPosition > triggerPosition) {
+    this.showScrollerHead();
+  } else {
+    this.hideScrollerHead();
+  }
+}
+showScrollerHead() {
+  this.scrollerHead.nativeElement.classList.add('visible');
+}
+
+hideScrollerHead() {
+  this.scrollerHead.nativeElement.classList.remove('visible');
+}
 
 }
