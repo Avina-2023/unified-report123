@@ -3,7 +3,6 @@
         <div class="main">
             <div class="welcome-update">
                 <div class="welcome-name">
-                   
                     <div class="welcome-text">Welcome, </div>
                     <div><span class="username-text"><b> &nbsp;{{username}}!</b></span></div>
                 </div>
@@ -198,7 +197,7 @@
                     <div class="card-body">
                         <div class="media d-flex">
                             <div class="media-body text-left">
-                                <span class="card-head">Basic Profile Candidates</span>
+                                <span class="card-head">Basic Profiled Candidates</span>
                                 <div class="card-number">{{ dashBoardDetails[0]?.cardDetails.basicCandidate }}
                                 </div>
                             </div>
@@ -280,7 +279,7 @@
             <app-demography-chart [item]="demography"></app-demography-chart>
         </div>
         <div class="col-xs-2 card_two">
-            <div class="row above_card">
+            <!-- <div class="row above_card">
                 <div class="chart-title mb-3">Profile by Year of Pass Out</div>
                 <div class="flex">
                     <div class="chart1">
@@ -311,7 +310,51 @@
                         </table>
                     </div>
                 </div>
-            </div>
+            </div> -->
+            <div class="row above_card">
+                <div class="chart-title mb-3">Profile by Year of Pass Out</div>
+                <div class="flex">
+                  <div class="chart1">
+                    <canvas baseChart 
+                            [data]="doughnutChartData" 
+                            [options]="options" 
+                            [colors]="doughnutChartColors"
+                            [labels]="doughnutChartLabels" 
+                            [chartType]="doughnutChartType">
+                    </canvas>
+                  </div>
+                  <div class="rightchart">
+                    <table>
+                      <tbody>
+                        <tr class="flex" *ngFor="let elem of dashBoardDetails[0]?.yearDetails; index as i">
+                          <td> <label [ngClass]="'circle circle'+i"></label></td>
+                          <td>
+                            <div *ngIf="i+1!=4" class="yeard-flex">{{elem.year }}</div>
+                            <div *ngIf="i+1==4" class="yeard-flex">{{ elem.year }}</div>
+                          </td>
+                          <td>
+                            <div class="chart1total">
+                              <div class="yeard-flex2">{{ elem.total }}</div>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr class="flex">
+                            <td><label class="circle circle4"></label></td> 
+                            <td>
+                                <div class="yeard-flex">Total</div>
+                            </td>
+                            <td>
+                              <div class="chart1total">
+                                <div class="yeard-flex2">{{ totalSum }}</div>
+                              </div>
+                            </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              
             <div class="row below_card">
                 <div class="chart-title">Profile by Gender</div>
                 <div class="flex">
