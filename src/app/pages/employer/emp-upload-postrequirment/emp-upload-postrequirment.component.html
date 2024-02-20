@@ -38,7 +38,7 @@
               trimFilename(fileName) || " Upload only .csv format"}}</span></div>
           <div *ngIf="fileName" class="close" (click)="cancleUpload()">
             <span class="pointer-close"><mat-icon class="close-icon">close</mat-icon></span>
-          </div> 
+          </div>
 
         </div>
     <div class="submitbtn">
@@ -162,7 +162,7 @@
             </mat-radio-group>
 
             <div *ngIf="selectedRangeOption === 'fixed'" style="width:-webkit-fill-available;">
-              <input type="number" id="numberInput" formControlName="fixed" class="form-control"
+              <input style="height: 32px;" type="number" id="numberInput" formControlName="fixed" class="form-control"
                 placeholder="CTC (numeric only)" min="0">
               <div *ngIf="jobForm.get('fixed').hasError('required') && jobForm.get('fixed').touched"
                 class="text-danger">
@@ -172,7 +172,7 @@
             </div>
             <div *ngIf="selectedRangeOption === 'range'" style="width:-webkit-fill-available;">
               <div class="flex_div flx_evenly flx_center">
-                <div><input type="number" id="numberInput" formControlName="startrange" class="form-control"
+                <div><input style="height: 32px;" type="number" id="numberInput" formControlName="startrange" class="form-control"
                     placeholder="CTC (Numeric)">
                   <div *ngIf="jobForm.get('startrange').hasError('required') && jobForm.get('startrange').touched"
                     class="text-danger">
@@ -180,7 +180,7 @@
                   </div>
                 </div>
                 <div>-</div>
-                <div><input type="number" id="numberInput" formControlName="endrange" class="form-control"
+                <div><input style="height: 32px;" type="number" id="numberInput" formControlName="endrange" class="form-control"
                     placeholder="CTC (Numeric)">
                   <div *ngIf="jobForm.get('endrange').hasError('required') && jobForm.get('endrange').touched"
                     class="text-danger">
