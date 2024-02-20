@@ -18,7 +18,7 @@
        </div>
       <div class="candidate-card">
         <mat-card class="card-1" *ngFor="let item of candidatelist;">
-  
+
           <span class="">
             <span *ngIf="item.assessments"><i *ngIf="item?.assessments?.length" class="flag_lnt icon-bookmark col1"
                 matTooltip="Assessed by L&T EduTech"></i></span>
@@ -45,7 +45,7 @@
                 </div>
               </div>
             </div>
-  
+
             <div class="candidate-loc">
               <div> <mat-icon class="loc-icon"> location_on</mat-icon></div>
               <div class="loc-name">
@@ -54,8 +54,8 @@
                 <!-- {{getStateName(item.permanentaddress.permanent_state)}} -->
               </div>
             </div>
-  
-  
+
+
           </div>
           <div class="action-button">
             <div class="view-prof">
@@ -76,7 +76,7 @@
             </div>
           </div>
         </mat-card>
-  
+
       </div>
       <div class="pagination">
         <app-common-paginator *ngIf="total" (send)="some($event)" [totalcount]="total"></app-common-paginator>
@@ -85,7 +85,7 @@
     <div class="filter-candidate" *ngIf="this.filter_info.data.length">
       <div class="fil_head">
         <div class="all-clear">
-          <div><mat-icon class="misc_icon"></mat-icon><span class="job_designation all_filter">All Filters
+          <div><mat-icon class="misc_icon">filter_list</mat-icon><span class="job_designation all_filter">All Filters
             {{this.selectedValues.length ? '(' + this.selectedValues.length + ')' : ''}}</span></div>
           <div><span (click)="clearFilters(filter_info.data)" *ngIf="selectedValues.length" class="clear_filter">Clear
             All</span></div>
@@ -137,7 +137,7 @@
       <button [mat-dialog-close] class="aply_btn" (click)="applyfilter()" mat-raised-button color="primary">Apply </button>
     </div>
   </ng-template>
-  
+
   <ng-template #mobFilter>
     <div class="filt_mob_top">
       <mat-icon [mat-dialog-close]>west</mat-icon>

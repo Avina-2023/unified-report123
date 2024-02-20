@@ -402,7 +402,7 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
 
     const dialogRef = this.dialog.open(this.confirmrejectmatDialogRef, {
       width: '400px',
-      height: 'auto',
+      height: '240px',
       autoFocus: false,
       closeOnNavigation: true,
       disableClose: false,

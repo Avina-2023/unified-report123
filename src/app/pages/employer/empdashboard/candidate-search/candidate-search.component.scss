@@ -39,9 +39,9 @@
         .select_value{
            padding: 0px 15px 7px 15px;
         }
-  
+
       }
-  
+
       ::ng-deep .mat-form-field-flex {
         background: var(--unnamed-color-ffffff) 0% 0% no-repeat padding-box;
         background: #ffffff 0% 0% no-repeat padding-box;
@@ -74,7 +74,7 @@
         border-top: 5px solid;
         margin: 0 8px;
       }
-  
+
       .matlabel {
         background: var(--unnamed-color-ffffff) 0% 0% no-repeat padding-box;
         background: #ffffff 0% 0% no-repeat padding-box;
@@ -176,19 +176,19 @@
             width: 100%;
             border-radius: 0px 0px 5px 5px;
           }
-  
+
           .action-button .view-prof {
             display: flex;
             flex-direction: row;
             justify-content: center;
             width: 50%;
           }
-  
+
           .action-button .view-icon {
             padding: 7px 0px 0px 17px;
             color: #707070;
           }
-  
+
           .action-button .buton {
             border-right: 1px solid #e6e6e6;
             width: 100%;
@@ -196,20 +196,20 @@
             outline: none;
             border: none;
           }
-  
+
           .action-button .buton:focus {
             outline: none !important;
           }
-  
+
           .action-button .buton2 {
             width: 100%;
           }
-  
+
           .action-button .view-prof:hover {
             background-color: #1b4e9b;
             color: #ffffff;
           }
-  
+
           .action-button .view-prof:hover .view-icon {
             color: #ffffff;
           }
@@ -243,7 +243,7 @@
         border-top: 5px solid whitesmoke;
         top: 0;
         z-index: 1;
-  
+
         .all-clear{
           display: flex;
           flex-direction: row;
@@ -252,7 +252,6 @@
           .all_filter{
             color: #000000;
             font-weight: 600;
-            margin: 0px 0px 0px -20px
           }
           .clear_filter{
             color: #294d96;
@@ -261,7 +260,7 @@
             font-size: 14px;
           }
         }
-  
+
         .fil_output{
           display: flex;
           flex-wrap: wrap;
@@ -329,19 +328,19 @@
     height: 43px;
     border-bottom: 2px solid #e7e7e764;
     padding: 5px 10px;
-  
+
     h1 {
       display: flex;
       width: 50%;
       float: left;
     }
-  
+
     .close_div {
       padding: 0px;
       margin-bottom: 0px;
       width: 50%;
       flex-direction: row-reverse;
-  
+
       .close-icon {
         text-align: center;
         margin-top: -20px;
@@ -355,26 +354,26 @@
     color: #000 !important;
     line-height: 1.2;
   }
-  
+
   .close_div {
     padding: 0px;
     margin-bottom: 0px;
     width: 50%;
     flex-direction: row-reverse;
-  
+
     .close-icon {
       text-align: center;
       margin-top: -20px;
       padding: 0px;
     }
   }
-  
+
   .aply_btn {
     background-color: #1B4E9B;
     margin: 10px 20px;
     float: right;
   }
-  
+
   .mat_dlg_cnt {
     width: 100%;
     display: grid;
