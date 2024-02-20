@@ -47,6 +47,7 @@ export class DisciplineChartComponent implements OnInit {
           show:false
         }
       },
+      
       // title: {
       //   text: "Basic Treemap"
       // },
@@ -54,7 +55,7 @@ export class DisciplineChartComponent implements OnInit {
         treemap:{
           enableShades: true,
           colorScale:{
-            inverse:true,
+            inverse:false,
             ranges:[
               {
                 from: 0,
