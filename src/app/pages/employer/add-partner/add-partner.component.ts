@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from './../../../services/api.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { AppConfigService } from 'src/app/utils/app-config.service';
 import { APP_CONSTANTS } from '../../../utils/app-constants.service';
@@ -96,10 +96,18 @@ export class AddPartnerComponent implements OnInit {
       name: ['', [Validators.required]],
       designation: ['', [Validators.required]],
       mobile: ['', Validators.compose([Validators.required, Validators.minLength(10),Validators.maxLength(10),Validators.pattern('[1-9]{1}[0-9]{9}')])],
-      description: ['', [Validators.required]],
+      description: ['', [Validators.required, this.descriptionValidator]],
       email: ['', [Validators.required, Validators.pattern(emailregex)]],
       // employerEOIFORM: ['', [Validators.required]],
     })
+  }
+
+  descriptionValidator(control: AbstractControl): ValidationErrors | null {
+    const value = control.value.trim();
+    if (value == "") {
+      return { invalidDescription: true };
+    }
+    return null;
   }
 
   getIndustryType(){
