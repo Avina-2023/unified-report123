@@ -105,15 +105,15 @@
     color: #262626;
     font-size: 17px;
     font-weight: 700;
-    margin: 30px 0px 10px 0px;
+    margin: 30px 0px 10px 15px;
   }
   .graphh-details{
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
   }
   .bar-chart1{
-    width: 500px;
+    width: 570px;
     height: 400px;
     border-radius: 10px;
     box-shadow: 0px 1px 12px #0000001F;
@@ -125,7 +125,7 @@
     font-weight: 600;
   }
   .bar-chart2{
-    width: 500px;
+    width: 570px;
     height: 400px;
     border-radius: 10px;
     box-shadow: 0px 1px 12px #0000001F;
