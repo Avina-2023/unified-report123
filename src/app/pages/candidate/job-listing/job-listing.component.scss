@@ -1156,7 +1156,12 @@
 
   img {
     width: 60px;
-    margin: 9px 0px 0px 2px;
+    margin: 3px 0px 0px 2px;
+    height: 37px;
+        // max-width: 60%;
+        // max-height: 100%;
+        // display: block;
+        // margin: auto;
   }
 }
 

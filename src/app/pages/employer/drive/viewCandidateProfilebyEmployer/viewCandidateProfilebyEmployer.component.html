@@ -25,7 +25,7 @@
           <div class="content_wrap">{{candidateData?.personal_details?.name}}</div>
         </div>
         <div class="description txt-center  hidden_div">
-          <div class="content_wrap">{{candidateData?.email}}</div>
+        <div class="content_wrap" title="{{candidateData?.email}}">{{candidateData?.email}}</div>
           <!-- <div class="content_wrap">
             {{candidateData.contact_details.permanent_city}},&nbsp;{{candidateData.contact_details.permanent_state}},&nbsp;<span
               class="countryimg"> &nbsp;&nbsp;&nbsp;&nbsp;<img src="assets/images/india_flag.svg"></span>
@@ -237,10 +237,10 @@
                     candidateData?.contact_details?.present_address_line_3
                     : ''}}
                     {{form_present_city ? ', ' + form_present_city : 'NA'}}
-                    {{form_present_state ? ', ' + form_present_state : 'NA'}},
+                    {{form_present_state ? ', ' + form_present_state : 'NA'}} ,
                     <!-- {{form_present_country ? ', ' + form_present_country : 'NA'}}, -->
                     <ng-container *ngIf="candidateData?.contact_details?.present_zip">
-                      India- {{ candidateData.contact_details.present_zip }}
+                      India - {{ candidateData.contact_details.present_zip }}
                     </ng-container>
                     <!-- {{candidateData?.contact_details?.present_zip}} -->
                   </div>
@@ -263,7 +263,7 @@
                     candidateData?.contact_details?.permanent_state : ''}}
                     {{candidateData?.contact_details?.permanent_country ? ', ' +
                     candidateData?.contact_details?.permanent_country : ''}}
-                    {{candidateData?.contact_details?.permanent_zip ? '-' +
+                    {{candidateData?.contact_details?.permanent_zip ? '- ' +
                     candidateData?.contact_details?.permanent_zip :
                     ''}}
                   </div>

@@ -90,6 +90,7 @@ export class AddPartnerComponent implements OnInit {
 
     this.registerForm = this.fb.group({
       employerName: ['', [Validators.required]],
+      // employerLogo: ['', [Validators.required]],
       establishedYear: ['', Validators.compose([Validators.required, Validators.minLength(4),Validators.maxLength(4),Validators.pattern('[1-9]{1}[0-9]{3}')])],
       industryType: ['', [Validators.required]],
       name: ['', [Validators.required]],
@@ -97,6 +98,7 @@ export class AddPartnerComponent implements OnInit {
       mobile: ['', Validators.compose([Validators.required, Validators.minLength(10),Validators.maxLength(10),Validators.pattern('[1-9]{1}[0-9]{9}')])],
       description: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.pattern(emailregex)]],
+      // employerEOIFORM: ['', [Validators.required]],
     })
   }
 
@@ -152,45 +154,101 @@ export class AddPartnerComponent implements OnInit {
     });
   
   }
-  savePartner() {
-    if (this.existsUser == "false" && this.employerLogoFileName == "") {
-      this.errorMsgforLogo = "Employer Logo is Required"
-      this.toastr.warning(this.errorMsgforLogo);
-    } else if (this.existsUser == "false" && this.eoiFileName == "") {
-      this.errorMsgforeoi = "EOF Form is Required"
-      this.toastr.warning(this.errorMsgforeoi);
-    } else if(!this.registerForm.valid){
-      this.toastr.warning("Please fill all the red highlighted fields to proceed further");
-    }else{
-      this.errorMsgforeoi = "";
-      this.errorMsgforLogo = "";
-      var obj = {
-            "employerName": this.registerForm.value.employerName,
-            "establishedYear": this.registerForm.value.establishedYear,
-            "industryType": this.registerForm.value.industryType,
-            "companyImgURL": this.employerLogoUrl,
-            "name":this.registerForm.value.name,
-            "designation":this.registerForm.value.designation,
-            "mobile":this.registerForm.value.mobile,
-            "description":this.registerForm.value.description,
-            "eoiFormUrl":this.eoiFormUrl,
-            "email":this.existsEmail==""?this.registerForm.value.email:this.existsEmail,
-            "existsUser":this.existsUser
-      }
-      this.ApiService.updatePartner(obj).subscribe((data: any) => {
-        // console.log(data)
-        if (data.success == false) {
-          this.toastr.warning(data.message);
-        } else {
-          this.toastr.success(data.message);
-          this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.PARTNER.PARTNERLIST);
-        }
-      }, (err) => {
-        this.toastr.warning('Connection failed, Please try again.');
-      });
-    }
+  removeUploadedLogo() {
+    this.employerLogoFileName = null; 
+    this.displayImageUrl = null; 
+    this.employerLogoUrl = null; 
+}
+removeUploadedFile() {
+  this.eoiFileName = null; 
+  this.eoiFormUrl = null; 
+}
 
-  }
+  // savePartner() {
+  //   this.registerForm.markAllAsTouched();
+  //   if (this.existsUser == "false" && this.employerLogoFileName == "") {
+  //     this.errorMsgforLogo = "Employer Logo is Required"
+  //     this.toastr.warning(this.errorMsgforLogo);
+  //   } else if (this.existsUser == "false" && this.eoiFileName == "") {
+  //     this.errorMsgforeoi = "EOF Form is Required"
+  //     this.toastr.warning(this.errorMsgforeoi);
+  //   } else if(!this.registerForm.valid){
+  //     this.toastr.warning("Please fill all the red highlighted fields to proceed further");
+  //   }else{
+  //     this.errorMsgforeoi = "";
+  //     this.errorMsgforLogo = "";
+  //     var obj = {
+  //           "employerName": this.registerForm.value.employerName,
+  //           "establishedYear": this.registerForm.value.establishedYear,
+  //           "industryType": this.registerForm.value.industryType,
+  //           "companyImgURL": this.employerLogoUrl,
+  //           "name":this.registerForm.value.name,
+  //           "designation":this.registerForm.value.designation,
+  //           "mobile":this.registerForm.value.mobile,
+  //           "description":this.registerForm.value.description,
+  //           "eoiFormUrl":this.eoiFormUrl,
+  //           "email":this.existsEmail==""?this.registerForm.value.email:this.existsEmail,
+  //           "existsUser":this.existsUser
+  //     }
+  //     this.ApiService.updatePartner(obj).subscribe((data: any) => {
+  //       // console.log(data)
+  //       if (data.success == false) {
+  //         this.toastr.warning(data.message);
+  //       } else {
+  //         this.toastr.success(data.message);
+  //         this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.PARTNER.PARTNERLIST);
+  //       }
+  //     }, (err) => {
+  //       this.toastr.warning('Connection failed, Please try again.');
+  //     });
+  //   }
+
+  // }
+
+
+  savePartner() {
+    this.registerForm.markAllAsTouched();
+    if (!this.registerForm.valid) {
+      this.toastr.warning("Please fill all the red highlighted fields to proceed further");
+      return;
+    }
+    if (this.existsUser === "false" && !this.employerLogoFileName) {
+      this.errorMsgforLogo = "Employer Logo is Required";
+      this.toastr.warning("Please fill all the red highlighted fields to proceed further");
+      return;
+    }
+    if (this.existsUser === "false" && !this.eoiFileName) {
+      this.errorMsgforeoi = "EOF Form is Required";
+      this.toastr.warning("Please fill all the red highlighted fields to proceed further");
+      return;
+    }
+    this.errorMsgforeoi = "";
+    this.errorMsgforLogo = "";
+
+    var obj = {
+      "employerName": this.registerForm.value.employerName,
+      "establishedYear": this.registerForm.value.establishedYear,
+      "industryType": this.registerForm.value.industryType,
+      "companyImgURL": this.employerLogoUrl,
+      "name": this.registerForm.value.name,
+      "designation": this.registerForm.value.designation,
+      "mobile": this.registerForm.value.mobile,
+      "description": this.registerForm.value.description,
+      "eoiFormUrl": this.eoiFormUrl,
+      "email": this.existsEmail === "" ? this.registerForm.value.email : this.existsEmail,
+      "existsUser": this.existsUser
+    };
+    this.ApiService.updatePartner(obj).subscribe((data: any) => {
+      if (data.success === false) {
+        this.toastr.warning(data.message);
+      } else {
+        this.toastr.success(data.message);
+        this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.PARTNER.PARTNERLIST);
+      }
+    }, (err) => {
+      this.toastr.warning('Connection failed, Please try again.');
+    });
+  }	
 
 
   get employerName() {

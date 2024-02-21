@@ -127,7 +127,6 @@ export class ViewJobsComponent implements OnInit {
   }
 
   tabledata() {
-
     this.columnDefs = [
       {
         headerName: 'S.No',
@@ -158,7 +157,7 @@ export class ViewJobsComponent implements OnInit {
             params.value != null &&
             params.value != ''
           ) {
-             this.FormateName = params.value;
+            this.FormateName = params.value;
 
             if (
               params.data.lastName != undefined &&
@@ -178,7 +177,7 @@ export class ViewJobsComponent implements OnInit {
       {
         headerName: 'Job Role',
         field: 'jobRole',
-        minWidth: 235,
+        minWidth: 195,
         filter: 'agTextColumnFilter',
         chartDataType: 'category',
         aggFunc: 'sum',
@@ -201,34 +200,6 @@ export class ViewJobsComponent implements OnInit {
         },
         tooltipField: 'jobRole',
       },
-
-      // {
-      //   headerName: 'Job Location',
-      //   field: 'address',
-      //   minWidth: 175,
-      //   filter: 'agTextColumnFilter',
-      //   chartDataType: 'category',
-      //   aggFunc: 'sum',
-      //   filterParams: {
-      //     suppressAndOrCondition: true,
-      //     filterOptions: ['contains'],
-      //   },
-      //   cellRenderer: (params) => {
-      //     if (
-      //       params.value &&
-      //       params.value != undefined &&
-      //       params.value != null &&
-      //       params.value != ''
-      //     ) {
-      //       this.FormateName = params.value;
-      //       return this.titleCase(this.FormateName);
-      //     } else {
-      //       return '-';
-      //     }
-      //   },
-      //   tooltipField: 'address',
-      // },
-
       {
         headerName: 'Job Location',
         field: 'jobLocation',
@@ -308,32 +279,31 @@ export class ViewJobsComponent implements OnInit {
       //   tooltipField: 'education',
       // },
 
-{
-  headerName: 'Degree',
-  field: 'education',
-  minWidth: 200,
-  filter: 'agTextColumnFilter',
-  chartDataType: 'category',
-  aggFunc: 'sum',
-  filterParams: {
-    suppressAndOrCondition: true,
-    filterOptions: ['contains'],
-  },
-  cellRenderer: (params) => {
-    if (
-      params.value &&
-      Array.isArray(params.value) &&
-      params.value.length > 0
-    ) {
-      const levels = params.value.map(entry => entry.specification).join(', ');
-      return levels;
-    } else {
-      return '-';
-    }
-  },
-   //tooltipField: 'education'
-},
-
+      {
+        headerName: 'Degree',
+        field: 'education',
+        minWidth: 200,
+        filter: 'agTextColumnFilter',
+        chartDataType: 'category',
+        aggFunc: 'sum',
+        filterParams: {
+          suppressAndOrCondition: true,
+          filterOptions: ['contains'],
+        },
+        cellRenderer: (params) => {
+          if (
+            params.value &&
+            Array.isArray(params.value) &&
+            params.value.length > 0
+          ) {
+            const levels = params.value.map(entry => entry.specification).join(', ');
+            return levels;
+          } else {
+            return '-';
+          }
+        },
+        // tooltipField: 'education'
+      },
       {
         headerName: 'Job Type',
         field: 'jobType',
@@ -360,7 +330,6 @@ export class ViewJobsComponent implements OnInit {
         },
         tooltipField: 'jobType',
       },
-
       {
         headerName: 'Year Of Passout',
         field: 'yearofPassout',
@@ -387,37 +356,10 @@ export class ViewJobsComponent implements OnInit {
         tooltipField: 'yearofPassout',
       },
 
-     {
-        headerName: 'Posted By',
-        field: 'postedBy',
-        minWidth: 235,
-        filter: 'agTextColumnFilter',
-        chartDataType: 'category',
-        aggFunc: 'sum',
-        filterParams: {
-          suppressAndOrCondition: true,
-          filterOptions: ['contains'],
-        },
-        cellRenderer: (params) => {
-          if (
-            params.value &&
-            params.value != undefined &&
-            params.value != null &&
-            params.value != ''
-          ) {
-            this.FormateName = params.value;
-            return this.titleCase(this.FormateName);
-          } else {
-            return '-';
-          }
-        },
-        tooltipField: 'Posted By',
-      },
-
       // {
-      //   headerName: 'Year Of Passout',
-      //   field: 'yearofPassout',
-      //   minWidth: 165,
+      //   headerName: 'Posted By',
+      //   field: 'postedBy',
+      //   minWidth: 235,
       //   filter: 'agTextColumnFilter',
       //   chartDataType: 'category',
       //   aggFunc: 'sum',
@@ -428,21 +370,41 @@ export class ViewJobsComponent implements OnInit {
       //   cellRenderer: (params) => {
       //     if (
       //       params.value &&
-      //       Array.isArray(params.value) &&
-      //       params.value.length > 0
+      //       params.value != undefined &&
+      //       params.value != null &&
+      //       params.value != ''
       //     ) {
-      //       const years = params.value.join(', ');
-      //       return years;
-      //     } else if (params.value === null) {
-      //       return 'N/A';
+      //       this.FormateName = params.value;
+      //       return this.titleCase(this.FormateName);
       //     } else {
-      //       return 'Any Year';
+      //       return '-';
       //     }
       //   },
-      //   tooltipField: 'yearofPassout',
+      //   tooltipField: 'Posted By',
       // },
 
-
+      {
+        headerName: 'Posted By',
+        field: 'postedBy',
+        minWidth: 125,
+        filter: 'agTextColumnFilter',
+        chartDataType: 'category',
+        aggFunc: 'sum',
+        filterParams: {
+          suppressAndOrCondition: true,
+          filterOptions: ['contains'],
+        },
+        valueGetter: () => 'Uap Admin', 
+        cellRenderer: (params) => {
+          if (params.value) {
+            this.FormateName = params.value;
+            return this.titleCase(this.FormateName);
+          } else {
+            return '-';
+          }
+        },
+        tooltipField: 'Posted By',
+      },
       {
         headerName: 'Last Date To Apply',
         field: 'lastDatetoApply',
@@ -460,8 +422,8 @@ export class ViewJobsComponent implements OnInit {
       {
         headerName: 'Total Views',
         field: 'viewCount',
-       // cellStyle: { textAlign: "center" },
-        minWidth: 175,
+        // cellStyle: { textAlign: "center" },
+        minWidth: 135,
         filter: 'agNumberColumnFilter',
         chartDataType: 'series',
         filterParams: {

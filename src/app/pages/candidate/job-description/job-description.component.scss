@@ -33,6 +33,7 @@ li {
   color: #1B4E9C;
   //  border: 2px solid #1A4E9B;
   border-radius: 20px;
+  border: none;
   // width: 100%;
   padding: 7px 20px 6px 17px;
   margin: -25px 0px 0px 20px;
@@ -325,9 +326,10 @@ li {
         padding: 0px 12px 0px 0px;
 
         .comp_logo {
-          width: 117px;
+          width: 80px;
+          height: 52px;
           border: 1px solid #70707066;
-          padding: 5px 10px;
+          // padding: 5px 10px;
           border-radius: 5px;
         }
                 @media screen and (min-width: 1360px) {

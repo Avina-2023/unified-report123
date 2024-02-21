@@ -33,7 +33,7 @@ export class DashboardComponent implements OnInit {
   public centerText: String = "Center Text";
   candidatelist: any;
   companyDetails: any;
-
+  totalSum: number = 0;
 
 
   constructor(private apiService:ApiService,private toaster:ToastrService,private appConfig:AppConfigService) { }
@@ -69,7 +69,6 @@ public options: ChartOptions = {
       display: false
     }
   },
-
   cutoutPercentage: 70
 }
 
@@ -92,11 +91,7 @@ public options: ChartOptions = {
 // this.doughnutChartPlugins
   }
 
-
-
 // char1
-
-
 
   // progress bar chart 2
   doughnutChartLabelstwo: Label[] = [];
@@ -108,10 +103,10 @@ public options: ChartOptions = {
         "rgba(255, 87, 34, 1)", // male
         'rgba(96, 125, 139, 1)',  //others
       ],
-
   }
 ];
   doughnutChartTypetwo: ChartType = 'doughnut';
+
   public options2: ChartOptions = {
     responsive: true,
     layout: {
@@ -149,11 +144,15 @@ public options: ChartOptions = {
                   this.doughnutChartLabelstwo.push(element.gender)
                   this.doughnutChartDatatwo.push(element.total)
                 }
+                this.totalSum = 0;
                 for (let j = 0; j < result.data[0].yearDetails.length; j++) {
                   const chart2 = result.data[0].yearDetails[j];
+                  // console.log(chart2,'chart2');
                   this.doughnutChartLabels.push(chart2.year)
                   this.doughnutChartData.push(chart2.total)
+                  this.totalSum += chart2.total;
                 }
+                // console.log('Total Sum:', this.totalSum);
               }else{
                 this.toaster.error(result.message)
               }

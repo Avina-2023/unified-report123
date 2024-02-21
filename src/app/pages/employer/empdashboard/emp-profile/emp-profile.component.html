@@ -177,7 +177,7 @@
                             CHRO {{InvalidNumber}}
                           </div>
                         </mat-error>
-                      </mat-form-field>HR Contact Details
+                      </mat-form-field>
                     </div>
                   </div>
                   <div class="alignp1 mt-4">
@@ -380,8 +380,8 @@
                             </mat-chip>
                           </mat-chip-list>
                         </div>
-                        <div *ngIf="!isAtLeastOneCitySelected()" class="error-message text-danger">
-                          Please select at least one.
+                        <div *ngIf="!isAtLeastOneCitySelected()" class="error-message ">
+                          <b>Note:</b> Please select at least one.
                         </div>
                       </div>
                     </div>
