@@ -185,7 +185,7 @@
                             <textarea type="textarea" maxlength="250" formControlName="description" style="resize: none;" class="descstyle" matInput placeholder="Enter the Short Description"></textarea>
                         </mat-form-field>
                         <ng-container *ngIf="description.invalid && description.touched">
-                            <mat-error class="error" *ngIf="description?.errors?.required">{{'Description is Required'}}</mat-error>
+                            <mat-error class="error" *ngIf="description?.errors?.required || description.errors?.invalidDescription">{{'Description is Required'}}</mat-error>
                         </ng-container>
                     </form>
                     </div>
