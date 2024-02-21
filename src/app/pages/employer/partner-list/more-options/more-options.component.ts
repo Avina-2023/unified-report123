@@ -15,33 +15,30 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class MoreOptionsComponent implements ICellRendererAngularComp {
   
-  REQUESTS = [
-    {sno: '01', employerName: 'HR Name_1', designation: 'HR' , email: 'johnsmith@xyz.com', mbNo:' +00 9871237645'},
-    {sno: '01', employerName: 'HR Name_1', designation: 'HR' , email: 'johnsmith@xyz.com', mbNo:' +00 9871237645'},
-    
-  ];
-  dataSource = new MatTableDataSource(this.REQUESTS);
-  columnsToDisplay = ['sno', 'employerName', 'designation', 'email', 'mbNo', ];
-  // @ContentChild(MatNoDataRow) noDataRow: MatNoDataRow;
-  // displayedColumns: string[] = [
-  //   'sno',
-  //   'img',
-  //   'employerName',
-  //   'industryType',
-  //   'spocName',
-  //   'spocEmail',
-  // ];
-  // dataSource = new MatTableDataSource<any>([]);
-  // tableEmpty: Boolean = false;
-  // emptyData = new MatTableDataSource([{ empty: 'row' }]);
-  // toastr: any;
-  // ApiService: any;
+  // REQUESTS = [ 
+  //   {sno: '01', employerName: 'HR Name_1', designation: 'HR' , email: 'johnsmith@xyz.com', mbNo:' +00 9871237645'}, 
+  //   {sno: '01', employerName: 'HR Name_1', designation: 'HR' , email: 'johnsmith@xyz.com', mbNo:' +00 9871237645'}, 
+  // ]; 
+  // dataSource = new MatTableDataSource(this.REQUESTS);
+  // columnsToDisplay = ['sno', 'employerName', 'designation', 'email', 'mbNo', ];
+
+  hrContactDetails: any[] = []; 
+  displayedColumns: string[] = ['hrName', 'hrdesignation', 'hrEmail', 'hrMobilenumber'];
+  displayedColumnLabels: string[] = ['Name', 'Designation', 'Email', 'Mobile Number'];
+
+  dataSource: MatTableDataSource<any>;
+
+  headerColumns: string[] = ['serialNumber', ...this.displayedColumns];
+  rowColumns: string[] = ['serialNumber', ...this.displayedColumns];
+
   data:any;
   status: string;
   getAGgrid: any;
   partnerListAgData: any;
   params:any;
   gridApi: any;
+  empProfile: any[];
+  // dataSource: MatTableDataSource<unknown>;
   constructor(
     private toastr: ToastrService,
     private dialog: MatDialog,
@@ -52,13 +49,16 @@ export class MoreOptionsComponent implements ICellRendererAngularComp {
   MatDialog(){
   
     const dialogRef = this.dialog.open(this.matDialog, {
-      width: '2200px',
+      maxWidth: '2000px',
+      // width: '2200px',
+      width: '1300px',
       height: '545px',
       panelClass: 'matDialog',
       autoFocus: false,
       closeOnNavigation: true,
       disableClose: true,
     });
+    this.empDetails()
   }
   instructionClose() {
     this.dialog.closeAll();
@@ -68,6 +68,7 @@ export class MoreOptionsComponent implements ICellRendererAngularComp {
   }
   agInit(params: ICellRendererParams): void {
     this.params = params;
+    // console.log(this.params.data, 'params');
     params.value
   }
   afterGuiAttached?(params?: IAfterGuiAttachedParams): void {
@@ -75,7 +76,7 @@ export class MoreOptionsComponent implements ICellRendererAngularComp {
   }
 
   ngOnInit(): void {
- 
+    this.empDetails()
   }
 
   updateStatus(isActive, isApproved, email, userId, firstName) {
@@ -91,17 +92,12 @@ export class MoreOptionsComponent implements ICellRendererAngularComp {
         } else {
           this.ApiService.partnersubject.next(true)
           this.toastr.success('Status updated Successfully');
-          
         }
-      
       },
       (err) => {
         this.toastr.warning('Connection failed, Please try again.');
       }
-      
     );
-   
-    
   }
   
   updatePartner(email) {
@@ -110,4 +106,25 @@ export class MoreOptionsComponent implements ICellRendererAngularComp {
       { email: this.ApiService.encrypt(this.params.data.email) }
     );
   }
+
+  empDetails() {
+    this.empProfile = [];
+    var apiData = {
+      "filterModel": {
+        "email": {
+          "filterType": "set",
+          "values": [this.params.data.email]
+        }
+      }
+    }
+    this.ApiService.empProfileDetails(apiData).subscribe((result: any) => {
+      if (result.success) {
+        this.empProfile = result.data[0]
+        const hrContactDetailsFromApi = result.data[0].detailedInformation?.hrContactDetails;
+        this.dataSource = new MatTableDataSource(hrContactDetailsFromApi);
+      }
+    })
+  }
+
+  
 }
