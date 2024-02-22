@@ -3,6 +3,7 @@
     <div class="title-text">Manage Drives</div>
   </div>
   <div class="container">
+
     <mat-card class="card">
       <div class="card-body">
         <mat-card-header class="left">
@@ -10,7 +11,9 @@
             <mat-card-title class="text">No. of Drives</mat-card-title>
           </div>
           <div>
-            <mat-card-subtitle><div class="num">{{drive_cards}}</div></mat-card-subtitle>
+            <mat-card-subtitle>
+              <div class="num">{{drive_cards}}</div>
+            </mat-card-subtitle>
           </div>
         </mat-card-header>
         <mat-card-content class="icon">
@@ -25,7 +28,9 @@
             <mat-card-title class="text">Active</mat-card-title>
           </div>
           <div>
-            <mat-card-subtitle ><div class="num">{{active_cards}}</div></mat-card-subtitle>
+            <mat-card-subtitle>
+              <div class="num">{{active_cards}}</div>
+            </mat-card-subtitle>
           </div>
         </mat-card-header>
         <mat-card-content class="icon">
@@ -40,7 +45,9 @@
             <mat-card-title class="text">Rejected</mat-card-title>
           </div>
           <div>
-            <mat-card-subtitle><div class="num">{{reject_cards}}</div></mat-card-subtitle>
+            <mat-card-subtitle>
+              <div class="num">{{reject_cards}}</div>
+            </mat-card-subtitle>
           </div>
         </mat-card-header>
         <mat-card-content class="icon">
@@ -55,7 +62,9 @@
             <mat-card-title class="text">Pending</mat-card-title>
           </div>
           <div>
-            <mat-card-subtitle ><div class="num">{{pending_cards}}</div></mat-card-subtitle>
+            <mat-card-subtitle>
+              <div class="num">{{pending_cards}}</div>
+            </mat-card-subtitle>
           </div>
         </mat-card-header>
         <mat-card-content class="icon">
@@ -70,7 +79,9 @@
             <mat-card-title class="text">Closed</mat-card-title>
           </div>
           <div>
-            <mat-card-subtitle ><div class="num">{{closed_cards}}</div></mat-card-subtitle>
+            <mat-card-subtitle>
+              <div class="num">{{closed_cards}}</div>
+            </mat-card-subtitle>
           </div>
         </mat-card-header>
         <mat-card-content class="icon">
@@ -85,7 +96,9 @@
             <mat-card-title class="text">Expired</mat-card-title>
           </div>
           <div>
-            <mat-card-subtitle><div class="num">{{expire_cards}}</div></mat-card-subtitle>
+            <mat-card-subtitle>
+              <div class="num">{{expire_cards}}</div>
+            </mat-card-subtitle>
           </div>
         </mat-card-header>
         <mat-card-content class="icon">
@@ -93,8 +106,9 @@
         </mat-card-content>
       </div>
     </mat-card>
-
+    
   </div>
+
   <div class="border">
    <div class="ag-grid">
     <ag-grid-angular
