@@ -1,10 +1,4 @@
-import {
-  Component,
-  OnInit,
-  ElementRef,
-  ViewChild,
-  TemplateRef,
-} from '@angular/core';
+import {Component,OnInit,ElementRef,ViewChild,TemplateRef,} from '@angular/core';
 import { APP_CONSTANTS } from '../../../../utils/app-constants.service';
 import { ApiService } from 'src/app/services/api.service';
 import { environment } from 'src/environments/environment';
@@ -58,7 +52,6 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
   isPopupOpen: boolean;
   shortlistDisabled: boolean = false;
 
-
   @ViewChild('matDialog', { static: false }) matDialogRef: TemplateRef<any>;
   @ViewChild('confirmmatDialog') confirmmatDialogRef!: TemplateRef<any>;
   @ViewChild('rejectDialog') rejectDialogRef!: TemplateRef<any>;
@@ -74,12 +67,9 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
   //  elementRef: any;
   assessmentIndex = 0;
   selectedAssessment: any;
-
   currentIndex = 0;
   currentCertification: any;
-
   AssesmentDetails: any;
-
   CertificationDetails: any = [
     {
       Name: 'Concepts Risk Management',
