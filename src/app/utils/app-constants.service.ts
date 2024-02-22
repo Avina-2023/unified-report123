@@ -156,7 +156,7 @@ export const APP_CONSTANTS = {
       INTERNSHIPSAVED: 'savedinternships',
       JOBSAPPLIED: 'appliedjobs',
       INTERNSHIPSAPPLIED: 'appliedinternships',
-      JOBDESCRIPTION: 'jobdescription',
+      JOBDESCRIPTION: 'jobdescription/:id',
       PAGINATION: 'page',
     },
     REPORTS: {
