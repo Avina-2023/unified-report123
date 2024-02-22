@@ -220,12 +220,12 @@ removeUploadedFile() {
       this.toastr.warning("Please fill all the red highlighted fields to proceed further");
       return;
     }
-    if (this.existsUser === "false" && !this.employerLogoFileName) {
+    if (!this.employerLogoFileName) {
       this.errorMsgforLogo = "Employer Logo is Required";
       this.toastr.warning("Please fill all the red highlighted fields to proceed further");
       return;
     }
-    if (this.existsUser === "false" && !this.eoiFileName) {
+    if (!this.eoiFileName) {
       this.errorMsgforeoi = "EOF Form is Required";
       this.toastr.warning("Please fill all the red highlighted fields to proceed further");
       return;
