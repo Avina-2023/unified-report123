@@ -132,19 +132,19 @@ export class ManageDriveComponent implements OnInit {
         },
         sortable: false,
       },
-      // {
-      //   headerName: '',
-      //   field: 'companyLogo',
-      //   width: 55,
-      //   sortable: false,
-      //   minWidth: 100,
-      //   suppressColumnsToolPanel: true,
-      //   filter: false,
-      //   cellRenderer: function (params) {
-      //     let val = encodeURI(params.value);
-      //     return `<img width="30px" height"22px" src=${val}>`;
-      //   },
-      // },
+      {
+        headerName: '',
+        field: 'companyLogo',
+        width: 55,
+        sortable: false,
+        minWidth: 100,
+        suppressColumnsToolPanel: true,
+        filter: false,
+        cellRenderer: function (params) {
+          let val = encodeURI(params.value);
+          return `<img width="30px" height"22px" src=${val}>`;
+        },
+      },
       { headerName: 'Company Name', field: 'company', minWidth: 175,
       filter: 'agTextColumnFilter',
       chartDataType: 'category',
@@ -201,7 +201,7 @@ export class ManageDriveComponent implements OnInit {
     }, {
         headerName: 'Candidates Applied',
         field: 'candidatesAppliedCount',
-        minWidth: 175,
+        minWidth: 180,
         cellStyle: { textAlign: 'center' },
         filter: 'agNumberColumnFilter',
         chartDataType: 'series',

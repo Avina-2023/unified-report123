@@ -17,6 +17,7 @@ import { environment } from 'src/environments/environment';
 })
 export class JobDescriptionComponent implements OnInit {
   @ViewChild('scrollerHead') scrollerHead!: ElementRef;
+  jobId: any;
   jobViewsCount: any;
   pageNumber: any;
   itemsPerPage: any;
@@ -76,6 +77,9 @@ export class JobDescriptionComponent implements OnInit {
   //   // this.checkScroll();
   // }
   ngOnInit(): void {
+    this.route.paramMap.subscribe(params => {
+      this.jobId = this.appConfig.base64Decryption(params.get('id'));
+    })
     this.candidateData();
     this.getRoute();
     this.jobViewCount();
@@ -104,7 +108,7 @@ export class JobDescriptionComponent implements OnInit {
   candidateData() {
     this.candidateDetails = localStorage.getItem('candidateProfile');
     this.storedCandidateDetails = JSON.parse(this.candidateDetails);
-    console.log(this.storedCandidateDetails, 'can');
+    // console.log(this.storedCandidateDetails, 'can');
     // this.specified = this.candidateDetails.education_details.educations[2].discipline;
     // let educationyear = JSON.parse(this.candidateDetails);
     // this.useryop = educationyear?.education_details?.educations[ educationyear.education_details.educations.length - 1 ]?.year_of_passing;
@@ -119,7 +123,18 @@ export class JobDescriptionComponent implements OnInit {
     return arr1.length === arr2.length && arr1.every((value, index) => value === arr2[index]);
   }
   getRoute() {
-    this.jobDetails = JSON.parse(this.appConfig.getLocalStorage('jobDesc'))
+    let jobParams = { 
+      "jobId": this.jobId, 
+      "email": this.appConfig.getLocalStorage('email') 
+    }
+    this.skillexService.getJobDetail(jobParams).subscribe((result: any) =>{
+        if(result.success){
+          this.jobDetails = result.data;
+        }else{
+          this.toaster.error(result.message)
+        }
+    })
+    // this.jobDetails = JSON.parse(this.appConfig.getLocalStorage('jobDesc'))
     // console.log(this.jobDetails, 'job details');
     // console.log(this.jobDetails.workType, 'workTypeeeeeee');
   }
@@ -283,7 +298,7 @@ getJobsList() {
     this.apiservice.joblistingDashboard(params).subscribe((response: any) => {
       if (response.success) {
         this.joblist = response.data;
-        console.log(this.joblist, 'joblist');
+        // console.log(this.joblist, 'joblist');
       }
     });
   }

@@ -582,8 +582,9 @@ export class PartnerListComponent implements OnInit {
     this.fetchData(data);
   }
 
-  getalldata(partnerListAgData){
-    this.appconfig.setLocalStorage('PartnerJobData',JSON.stringify(partnerListAgData));
-  }
+  // getalldata(partnerListAgData){
+  //   this.appconfig.setLocalStorage('PartnerJobData',JSON.stringify(partnerListAgData));
+  // }
 
 }
+ 

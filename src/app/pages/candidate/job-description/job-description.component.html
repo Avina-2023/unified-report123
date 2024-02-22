@@ -30,7 +30,7 @@
   </div>
 
   <div style="display: flex; margin-top: -8px;">
-    <div class="custom-card">
+    <div class="custom-card" *ngIf="jobDetails.description?.length;">
       <!-- <div class="coverImage">
       <app-common-banner [subname]="'Jobs'" [name]="'Apply Job'"></app-common-banner>
     </div> -->

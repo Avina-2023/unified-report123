@@ -71,7 +71,6 @@ export class EmpRequirmentsComponent implements OnInit {
         "filter": this.companyId,
       }
     },
-
   };
   month = this.today.getMonth();
   year = this.today.getFullYear();
@@ -90,9 +89,7 @@ export class EmpRequirmentsComponent implements OnInit {
     private toastr: ToastrService,
     private appConfig: AppConfigService,
     private sendData: SentDataToOtherComp
-  ) {
-
-  }
+  ) {}
   // sortbystatusArray: any = [
   //   'Active',
   //   'Pending',
@@ -283,7 +280,7 @@ export class EmpRequirmentsComponent implements OnInit {
     const day = dateParts[0];
     const month = dateParts[1];
     const year = dateParts[2];
-    
+
     // Creating a new Date object using the date parts
     const formattedDate = new Date(parseInt(year), parseInt(month) - 1, parseInt(day));
 
