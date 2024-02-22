@@ -146,7 +146,6 @@ export class DriveSettingsComponent implements OnInit {
   disabledSpecifications: any[];
   elementRef: any;
 
-  
   ISOStringDate = new Date().toISOString();
   userRole: any;
   role: any;
@@ -175,8 +174,6 @@ export class DriveSettingsComponent implements OnInit {
     this.editBacklogsMode = !this.editBacklogsMode;
     this.editBacklogsModeVisible = !this.editBacklogsModeVisible;
   }
-
-
 
   toggleCustomCriteria() {
     this.editCustomCriteria = !this.editCustomCriteria;
@@ -207,10 +204,6 @@ export class DriveSettingsComponent implements OnInit {
       this.toastr.warning('Close the currently open edit form before opening another one.', 'Edit Form Restriction');
     }
   }
-
-
-
-
 
   toggleeditCustomCriteria(eligibilityItem: EligibilityItem, index: number) {
     //this.showCustomCriteria = !this.showCustomCriteria;
@@ -1027,7 +1020,7 @@ export class DriveSettingsComponent implements OnInit {
         if (this.jobReqData) {
           this.selectedOption = this.jobReqData?.workType;
           console.log(this.jobReqData?.jobLocation, 'dblocation');
-         
+
           /*//push the api location value to the default locations array
           this.locations?.push(...this.jobReqData?.jobLocation);
           console.log(this.locations, 'totalLocation');
@@ -1089,8 +1082,8 @@ export class DriveSettingsComponent implements OnInit {
     this.valueone = JSON.parse(this.jobDetailsdata);
     console.log(this.valueone, 'jobdataaaaaaa');
 
-    this.userRole = this.appconfig.getLocalStorage('role'); 
-    this.role = JSON.parse(this.userRole); 
+    this.userRole = this.appconfig.getLocalStorage('role');
+    this.role = JSON.parse(this.userRole);
     this.roleCode = this.role[0].roles[0].roleCode;
     console.log(this.roleCode, 'role');
   }
@@ -1125,7 +1118,7 @@ export class DriveSettingsComponent implements OnInit {
     return `${prefix} ${day}th ${month} ${year}`;
   }
 
-  
+
 
 
   dashboard() {
