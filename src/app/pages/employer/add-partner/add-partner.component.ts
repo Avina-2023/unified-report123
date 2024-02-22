@@ -173,27 +173,9 @@ export class AddPartnerComponent implements OnInit {
     });
 }
 
-  // onEoiFileSelected(event) {
-  //   this.errorMsgforeoi='';
-  //   this.eoiFile = event.target.files[0];
-  //   const fd = new FormData();
-  //   fd.append("uploadFile",event.target.files[0]);
-  //   fd.append("type", "EOF");
-  //   this.ApiService.imageUpload(fd).subscribe((imageData: any) => {
-  //     if (imageData.success == false) {
-  //       this.toastr.warning(imageData.message);
-  //     } else {
-  //       this.eoiFormUrl = imageData.data
-  //       this.eoiFileName = this.eoiFile.name;
-  //     }
-  //   }, (err) => {
-  //     this.toastr.warning('Connection failed, Please try again.');
-  //   });
-
-  // }
 
 
- onEoiFileSelected(event) {
+  onEoiFileSelected(event) {
     this.errorMsgforeoi = '';
     const file = event.target.files[0];
     const allowedFormats = ['image/jpeg', 'application/pdf'];
@@ -202,35 +184,37 @@ export class AddPartnerComponent implements OnInit {
       return; // No file selected
     }
 
-    if (allowedFormats.includes(file.type)) {
-    const fd = new FormData();
-    fd.append("uploadFile", file);
-    fd.append("type", "EOF");
+    if (allowedFormats.includes(file.type) || file.type === 'image/jpeg') {
+      const fd = new FormData();
+      fd.append("uploadFile", file);
+      fd.append("type", "EOF");
 
-    this.ApiService.imageUpload(fd).subscribe((imageData: any) => {
-      if (imageData.success === false) {
-        this.toastr.warning(imageData.message);
-      } else {
-        this.eoiFormUrl = imageData.data;
-        this.eoiFileName = file.name;
-      }
-    }, (err) => {
-      this.toastr.warning('Connection failed, Please try again.');
-    });
+      this.ApiService.imageUpload(fd).subscribe((imageData: any) => {
+        if (imageData.success === false) {
+          this.toastr.warning(imageData.message);
+        } else {
+          this.eoiFormUrl = imageData.data;
+          this.eoiFileName = file.name;
+        }
+      }, (err) => {
+        this.toastr.warning('Connection failed, Please try again.');
+      });
     } else {
-        // File format not allowed
-        this.toastr.warning('Please upload a valid .jpeg or .pdf file.');
-      }
-  }
+      // File format not allowed
+      this.toastr.warning('Please upload a valid .jpeg or .pdf file.');
+    }
+}
+
 
   removeUploadedLogo() {
     this.employerLogoFileName = null;
     this.displayImageUrl = null;
     this.employerLogoUrl = null;
   }
+
   removeUploadedFile() {
-   this.eoiFileName = null;
-   this.eoiFormUrl = null;
+    this.eoiFileName = '';
+    this.eoiFormUrl = '';
   }
 
   // savePartner() {
