@@ -272,8 +272,8 @@ padding-top: 20px;
 display: flex;
 padding: 15px 0px 0px 0px;
 // padding-top: 15px;
-// padding-right: 30px;
-justify-content: space-evenly;
+// padding-right: 30px; 
+justify-content: space-around;
 .l2-left {
   display: flex;
   flex-direction: column;
@@ -285,7 +285,7 @@ justify-content: space-evenly;
     font-size: 14px;
   } 
   .label-content-text { 
-    padding-top: 10px;
+    // padding-top: 10px;
   } 
 }
 .l2-middle {
@@ -368,7 +368,7 @@ position: relative;
 padding: 30px;
 // top: 15px;
 height: 100px;
-justify-content: space-evenly;
+justify-content: space-between;
 } 
 .Adress-list {
 display: flex;
@@ -376,7 +376,7 @@ flex-direction: column;
 } 
 .address-details-container {
 display: flex;
-padding: 0 0px 0px 45px;
+// padding: 0 0px 0px 45px;
 // padding-right: 30px;
 } 
 .address-details {
