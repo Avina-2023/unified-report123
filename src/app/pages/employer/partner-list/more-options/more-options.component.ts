@@ -38,6 +38,16 @@ export class MoreOptionsComponent implements ICellRendererAngularComp {
   params:any;
   gridApi: any;
   empProfile: any[];
+  getAllStates: any;
+  Details: any;
+  form_domicile_state: any;
+  form_present_state: any;
+  updatedCitySubscription: any;
+  allPresentCityList: any;
+  form_present_city: any;
+  stateid: any;
+  cityId: any;
+  countryId: any;
   // dataSource: MatTableDataSource<unknown>;
   constructor(
     private toastr: ToastrService,
@@ -122,9 +132,57 @@ export class MoreOptionsComponent implements ICellRendererAngularComp {
         this.empProfile = result.data[0]
         const hrContactDetailsFromApi = result.data[0].detailedInformation?.hrContactDetails;
         this.dataSource = new MatTableDataSource(hrContactDetailsFromApi);
+        //this.getStateAPI(this.empProfile);
+        this.stateid = result.data[0].detailedInformation?.state;
+        this.cityId = result.data[0].detailedInformation?.district;
+        this.countryId = result.data[0].detailedInformation?.country;
+        console.log(this.cityId, 'cityid');
+        console.log(this.stateid, 'stateid');
+        
+        
       }
     })
+    this.getStateAPI();
+    this.getCityName();
   }
 
-  
+  getStateAPI() {
+    const countryData = {
+      country_id: this.countryId,
+    };
+    this.ApiService.getallStates().subscribe(
+      (countryData: any) => {
+        this.getAllStates = countryData[0];
+        this.getAllStates.forEach((element) => {
+          if (element.id == this.stateid) {
+            this.form_present_state = element.name;
+            console.log(this.form_present_state, 'statename');
+        }
+        });
+      },
+      (err) => { }
+    );
+  }
+
+  getCityName() {
+    const ApiData = {
+        state_id: this.stateid,
+    };
+    this.updatedCitySubscription = this.ApiService.districtList(ApiData).subscribe(
+        (datas: any) => {
+            this.allPresentCityList = datas.data;
+            console.log(this.allPresentCityList, 'citylist');
+            this.allPresentCityList?.forEach((element) => {
+              if (element.id == this.cityId) {
+                  this.form_present_city = element.name;
+                  console.log(this.form_present_city, 'cityname');
+              }
+          });
+        },
+        (err) => {
+            console.log(err);
+        }
+    );
+}
+
 }
