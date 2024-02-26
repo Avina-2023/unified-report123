@@ -334,7 +334,7 @@
   }
 
   .cardfooter_edu {
-    margin: 0px 0px 0px 20px;
+    margin: 0px 0px 0px 10px;
   }
 
   .footer-gray {
@@ -344,7 +344,7 @@
     opacity: 1;
     width: 100%;
     height: 50px;
-    padding: 0px 20px;
+    padding: 0px 10px;
 
     // height: 40px;
     left: 0;
@@ -538,4 +538,7 @@
 }
 ::ng-deep .mat-drawer-container {
   background-color: #EDEDED;
+}
+.pipe_symbol{
+  margin: 10px 0px 0px 10px;
 }

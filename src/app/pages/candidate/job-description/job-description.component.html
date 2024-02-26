@@ -222,12 +222,20 @@
               <button class="specialization-box"> {{ content.specification }} </button>
             </div>
           </div> -->
+
           <div id="specializationSection" class="desTitle"> Specialization: </div>
           <div class="job_options">
-            <div class="genText">
-              <button class="specialization-box"> {{ jobDetails.education[jobDetails.education.length - 1].discipline }} </button>
+            <div class="genText" *ngFor="let educationItem of jobDetails.education">
+              <ng-container *ngFor="let discipline of educationItem.discipline">
+                <button class="specialization-box">{{ discipline }}</button>
+              </ng-container>
+              <ng-container *ngIf="educationItem.specification === 'Any Degree / Graduation'">
+                <button class="specialization-box">Any Degree</button>
+              </ng-container>
             </div>
           </div>
+
+
 
           <div id="keyskillsSection" class="desTitle"> Key Skills: </div>
           <div class="job_options">
