@@ -144,6 +144,7 @@
                       <ng-container *ngFor="let location of item.jobLocation; let last = last"> {{ location }}{{ !last ?
                         ', ' : '' }} </ng-container>
                     </div>
+                    <div class="pipe_symbol">|</div>
                     <div class="degree">
                       <span class="icon-graduation-cap-solid"></span>
                       <ng-container *ngFor="let degree of item.education; let last = last">
@@ -154,6 +155,7 @@
                     </div>
                   </div>
                 </div>
+
                 <div class="box">
                   <div>
                     <!-- <span class="jobTTyp">{{item.jobFamily}}</span> -->

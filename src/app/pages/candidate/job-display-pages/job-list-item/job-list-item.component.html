@@ -66,6 +66,7 @@
                   <span class="smalltext" *ngFor="let elem of item.jobLocation; let i = index; let isLast = last">
                     {{elem}}<span *ngIf="!isLast && i < item.jobLocation.length -1">,</span>
                   </span>
+                    <div class="pipe_symbol">|</div>
                   <div class="cardfooter_edu">
                     <span>
                       <mat-icon class="icon" [class.active]="isActive"> school</mat-icon>
@@ -107,8 +108,8 @@
               <div class="gray-flex">
                 <!-- Applied page -->
                 <ng-container *ngIf="showApplied">
-                  <div class="flex-growone" *ngIf="item?.isApplied == false && currentdate<item?.lastDatetoApply"><span
-                      class="icon-clock_postdate"></span>
+                  <div class="flex-growone" *ngIf="item?.isApplied == false && currentdate<item?.lastDatetoApply">
+                    <span  class="icon-clock_postdate"></span>
                     <span class="smalltext">{{ getDaysAgo(item.createdOn) }}</span>
                   </div>
                   <div class="flex-growtwo" *ngIf="item?.isApplied == false && currentdate<item?.lastDatetoApply">
@@ -124,7 +125,7 @@
                   </div>
                   <div *ngIf="item.isAppliedDate" style="margin-left: 20cm;">
                     <span class="icon-check-rounded"></span>
-                    <span class="smalltext">Applied on &nbsp;{{item.isAppliedDate | date : 'd MMM '}}</span>
+                    <span class="smalltext">Applied on &nbsp;{{ item.isAppliedDate | date : 'd MMM yy' }}</span>
                   </div>
 
                 </ng-container>
