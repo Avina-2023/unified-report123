@@ -67,6 +67,7 @@ export class JobDescriptionComponent implements OnInit {
     public route: ActivatedRoute,
     private el: ElementRef,
     private renderer: Renderer2,
+    private dialog: MatDialog
   ) { }
 
   // ngOnInit(): void {
@@ -123,9 +124,9 @@ export class JobDescriptionComponent implements OnInit {
     return arr1.length === arr2.length && arr1.every((value, index) => value === arr2[index]);
   }
   getRoute() {
-    let jobParams = { 
-      "jobId": this.jobId, 
-      "email": this.appConfig.getLocalStorage('email') 
+    let jobParams = {
+      "jobId": this.jobId,
+      "email": this.appConfig.getLocalStorage('email')
     }
     this.skillexService.getJobDetail(jobParams).subscribe((result: any) =>{
         if(result.success){
@@ -323,7 +324,8 @@ getJobsList() {
     }
 
     redirectToApplyLink() {
-      window.open(this.jobDetails.applyLink, '_blank');  //open link in different tab
+      window.open(this.jobDetails.applyLink, '_blank');//open link in different tab
+      this.dialog.closeAll();
       // window.location.href = this.jobDetails.applyLink; //open link in same tab
     }
     getColor(jobType: string): string {
