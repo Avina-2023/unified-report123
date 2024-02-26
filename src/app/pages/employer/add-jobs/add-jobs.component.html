@@ -245,7 +245,8 @@
                         <!-- Range inputs -->
                         <div *ngIf="selectedRangeOption === 'range'" style="display: flex; width: 35%;">
                           <mat-form-field appearance="outline" style="padding-right: 13px;">
-                            <input type="number" formControlName="startrange" matInput placeholder="Enter Value" min="0">
+                            <input type="number" formControlName="startrange" matInput placeholder="Enter Value"
+                              min="0">
                             <mat-error *ngIf="addjobsForm.get('startrange')?.hasError('required')"> Start Range CTC is
                               Required</mat-error>
                           </mat-form-field>
@@ -266,7 +267,7 @@
                       <nz-select style="width: 98%; padding: 0px 0px 0px 0px;" nzMode="multiple" nzAllowClear
                         nzShowSearch nzPlaceHolder="-- Select Year of Passing (Multiple Select)"
                         formControlName="yearofPassout" class="custom-nz-select my-custom-nz-select">
-                        <nz-option *ngFor="let item of YearofPassing" [nzLabel]="item" [nzValue]="item"></nz-option>
+                        <nz-option *ngFor="let year of YearofPassing" [nzLabel]="year" [nzValue]="year"></nz-option>
                       </nz-select>
                     </div>
                     <div
@@ -275,6 +276,7 @@
                       Year of Passing is Required.
                     </div>
                   </div>
+
                 </div>
 
                 <div class="primaryWrap" style="margin: -25px 0px 0px 0px;">
@@ -294,18 +296,6 @@
                   </div>
 
                   <div class="rightWrap">
-                    <!-- <div class="inputContainer">
-                      <label>Last Date To Apply<span>*</span></label>
-                      <mat-form-field appearance="outline">
-                        <input formControlName="lastDatetoApply" [matDatepicker]="picker" matInput
-                          placeholder="— MM/DD/YYYY —">
-                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                        <mat-datepicker #picker></mat-datepicker>
-                        <mat-error *ngIf="addjobsForm.get('lastDatetoApply')?.hasError('required')">
-                          Last Day to Apply is Required.
-                        </mat-error>
-                      </mat-form-field>
-                    </div> -->
                     <div class="inputContainer">
                       <label>Last Date To Apply<span>*</span></label>
                       <mat-form-field appearance="outline">

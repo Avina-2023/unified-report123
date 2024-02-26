@@ -152,9 +152,15 @@ export class AddJobsComponent implements OnInit {
     private toastr: ToastrService,
     private dialog: MatDialog) {
 
-    const currentYear = new Date().getFullYear() - 1;
-    for (let i = currentYear; i >= currentYear - 10; i--) {
-      this.YearofPassing.push(i.toString());
+    const currentYear = new Date().getFullYear();
+    const yearsToDisplay = 10;
+    for (let i = currentYear + yearsToDisplay; i >= currentYear - yearsToDisplay; i--) {
+    this.YearofPassing.push(i.toString());
+    }
+
+    if (!this.YearofPassing.includes(currentYear.toString())) {
+    this.YearofPassing.push(currentYear.toString());
+    this.YearofPassing.sort((a, b) => parseInt(b) - parseInt(a));
     }
 
   }

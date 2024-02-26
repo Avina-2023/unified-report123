@@ -320,8 +320,7 @@
         color: #1b4e9b;
         font-weight: 600;
         position: relative;
-        top: 2
-        px;
+        top: 2 px;
       }
     }
   }
@@ -916,9 +915,10 @@
     position: sticky;
     padding: 25px 0px 10px 0px;
   }
-    ::ng-deep .mat-card:not([class*=mat-elevation-z]) {
-      box-shadow: none;
-    }
+
+  ::ng-deep .mat-card:not([class*=mat-elevation-z]) {
+    box-shadow: none;
+  }
 }
 
 .result_sty {
@@ -931,6 +931,10 @@
   // margin-bottom: 10px;
   padding: 0px 0px 0px 7px;
 
+  .pipe_symbol {
+    margin: 0px 0px 0px 10px;
+  }
+
   .degree {
     // padding-left: 20px;
     white-space: nowrap;
@@ -939,7 +943,7 @@
     color: #5C5C5C;
     font: normal normal normal 13px/20px Inter;
     // width: 110px;
-    margin: 0px 0px 0px 15px;
+    margin: 0px 0px 0px 10px;
     font-size: 12px;
 
     .icon-degree:before {
@@ -1158,10 +1162,10 @@
     width: 60px;
     margin: 3px 0px 0px 2px;
     height: 37px;
-        // max-width: 60%;
-        // max-height: 100%;
-        // display: block;
-        // margin: auto;
+    // max-width: 60%;
+    // max-height: 100%;
+    // display: block;
+    // margin: auto;
   }
 }
 
@@ -1539,4 +1543,3 @@
     }
   }
 }
-
