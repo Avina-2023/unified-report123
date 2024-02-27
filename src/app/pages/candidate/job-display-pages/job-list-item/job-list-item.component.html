@@ -117,7 +117,7 @@
                     Expires
                     {{item.lastDatetoApply | timeDiff}}
                   </div>
-                  <div *ngIf="item.isAppliedDate">
+                  <div style="padding: 6px;" *ngIf="item.isAppliedDate">
 
                     <span class="icon-clock_postdate"></span>
                     <span class="smalltext">{{ getDaysAgo(item.createdOn) }}</span>

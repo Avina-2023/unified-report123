@@ -149,8 +149,7 @@
                       <span class="icon-graduation-cap-solid"></span>
                       <ng-container *ngFor="let degree of item.education; let last = last">
                         {{ degree.specification }}
-                        <!-- <span *ngIf="degree.discipline.length > 0"> (Discipline: {{ degree.discipline.join(', ') }})</span> -->
-                        {{ !last ? ', ' : '' }}
+                        {{ !last ?', ' : '' }}
                       </ng-container>
                     </div>
                   </div>
