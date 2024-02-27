@@ -160,9 +160,9 @@ export class PartnerTrackerComponent implements OnInit {
         axisBorder: {
           show: false
         },
-        axisTicks: {
-          show: true
-        },
+        // axisTicks: {
+        //   show: true
+        // },
         // labels: {
         //   show: true,
         //   formatter: function (val) {
@@ -257,9 +257,9 @@ export class PartnerTrackerComponent implements OnInit {
         axisBorder: {
           show: false
         },
-        axisTicks: {
-          show: true
-        },
+        // axisTicks: {
+        //   show: true
+        // },
         // labels: {
         //   show: true,
         //   formatter: function (val) {
