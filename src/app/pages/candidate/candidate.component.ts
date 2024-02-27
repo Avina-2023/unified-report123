@@ -355,6 +355,10 @@ export class CandidateComponent implements OnInit {
 
 headertextSearch(event: KeyboardEvent) {
   event.preventDefault();
+  if (event.key === 'CapsLock' || event.key.startsWith('Control') || event.key === 'Delete' || event.altKey || event.shiftKey || event.key === "Tab") {
+    event.preventDefault();
+    return;
+  }
 
   const keyPressed = event.key;
   if (keyPressed === 'Backspace') {
