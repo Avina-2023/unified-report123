@@ -260,8 +260,7 @@ padding-top: 20px;
  display: flex;
  flex-direction: column;
 .list-title-container {
-  padding-left: 30px;
-  padding-top: 20px;
+  padding: 20px 0px 0px 28px;
   .list-title {
     font-size: 16px;
     color: #262626;
@@ -323,7 +322,7 @@ justify-content: space-around;
 .hr-table{
 display: flex;
 // width: 800px;
-padding: 30px 0px 30px 30px;
+padding: 30px 0px 30px 10px;
 // padding-top:10px !important;
 // padding-bottom: 0px !important;
 .sno-column{
@@ -336,13 +335,19 @@ padding: 30px 0px 30px 30px;
   width:  70px;
 }
 .desig-column{
-  width: 150px;
+  width: 100px;
+}
+.desig-column-1 {
+  width: 100px; 
+}
+.desig-column-2 {
+  width: 150px; 
 }
 .email-column{
-  width: 150px;
+  width: 330px;
 }
 .mbno{
-  width: 153px;
+  width: 150px;
 }
 } 
 .mat-header-cell {

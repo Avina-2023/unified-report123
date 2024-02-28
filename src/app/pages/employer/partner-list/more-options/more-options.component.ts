@@ -14,23 +14,12 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./more-options.component.scss']
 })
 export class MoreOptionsComponent implements ICellRendererAngularComp {
-  
-  // REQUESTS = [ 
-  //   {sno: '01', employerName: 'HR Name_1', designation: 'HR' , email: 'johnsmith@xyz.com', mbNo:' +00 9871237645'}, 
-  //   {sno: '01', employerName: 'HR Name_1', designation: 'HR' , email: 'johnsmith@xyz.com', mbNo:' +00 9871237645'}, 
-  // ]; 
-  // dataSource = new MatTableDataSource(this.REQUESTS);
-  // columnsToDisplay = ['sno', 'employerName', 'designation', 'email', 'mbNo', ];
-
   hrContactDetails: any[] = []; 
   displayedColumns: string[] = ['hrName', 'hrdesignation', 'hrEmail', 'hrMobilenumber'];
   displayedColumnLabels: string[] = ['Name', 'Designation', 'Email', 'Mobile Number'];
-
   dataSource: MatTableDataSource<any>;
-
   headerColumns: string[] = ['serialNumber', ...this.displayedColumns];
   rowColumns: string[] = ['serialNumber', ...this.displayedColumns];
-
   data:any;
   status: string;
   getAGgrid: any;
@@ -57,7 +46,6 @@ export class MoreOptionsComponent implements ICellRendererAngularComp {
   ) { }
   @ViewChild('matDialog', { static: false }) matDialog: TemplateRef<any>;
   MatDialog(){
-  
     const dialogRef = this.dialog.open(this.matDialog, {
       maxWidth: '2000px',
       // width: '2200px',
@@ -72,23 +60,21 @@ export class MoreOptionsComponent implements ICellRendererAngularComp {
   }
   instructionClose() {
     this.dialog.closeAll();
- }
+  }
   refresh(params: ICellRendererParams): boolean {
     throw new Error('Method not implemented.');
   }
   agInit(params: ICellRendererParams): void {
     this.params = params;
-    // console.log(this.params.data, 'params');
     params.value
   }
   afterGuiAttached?(params?: IAfterGuiAttachedParams): void {
     throw new Error('Method not implemented.');
   }
-
   ngOnInit(): void {
     this.empDetails()
   }
-
+  
   updateStatus(isActive, isApproved, email, userId, firstName) {
     this.ApiService.updatePartnerStatus({
       isApproved: this.params.data.isApproved,
@@ -109,7 +95,7 @@ export class MoreOptionsComponent implements ICellRendererAngularComp {
       }
     );
   }
-  
+
   updatePartner(email) {
     this.appconfig.routeNavigationWithParam(
       APP_CONSTANTS.ENDPOINTS.PARTNER.ADDPARTNER,
@@ -132,20 +118,27 @@ export class MoreOptionsComponent implements ICellRendererAngularComp {
         this.empProfile = result.data[0]
         const hrContactDetailsFromApi = result.data[0].detailedInformation?.hrContactDetails;
         this.dataSource = new MatTableDataSource(hrContactDetailsFromApi);
-        //this.getStateAPI(this.empProfile);
         this.stateid = result.data[0].detailedInformation?.state;
         this.cityId = result.data[0].detailedInformation?.district;
         this.countryId = result.data[0].detailedInformation?.country;
-        console.log(this.cityId, 'cityid');
-        console.log(this.stateid, 'stateid');
-        
-        
       }
     })
     this.getStateAPI();
     this.getCityName();
   }
 
+  getHeaderClass(index: number): string {
+    switch(index) {
+      case 0:
+        return 'desig-column-1';
+      case 1:
+        return 'desig-column-2';
+      case 2:
+        return 'email-column'; 
+      default:
+        return 'desig-column';
+    }
+}
   getStateAPI() {
     const countryData = {
       country_id: this.countryId,
@@ -156,7 +149,6 @@ export class MoreOptionsComponent implements ICellRendererAngularComp {
         this.getAllStates.forEach((element) => {
           if (element.id == this.stateid) {
             this.form_present_state = element.name;
-            console.log(this.form_present_state, 'statename');
         }
         });
       },
@@ -171,11 +163,9 @@ export class MoreOptionsComponent implements ICellRendererAngularComp {
     this.updatedCitySubscription = this.ApiService.districtList(ApiData).subscribe(
         (datas: any) => {
             this.allPresentCityList = datas.data;
-            console.log(this.allPresentCityList, 'citylist');
             this.allPresentCityList?.forEach((element) => {
               if (element.id == this.cityId) {
                   this.form_present_city = element.name;
-                  console.log(this.form_present_city, 'cityname');
               }
           });
         },

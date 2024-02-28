@@ -94,14 +94,15 @@
                   <span class="dropdowntxt dropdownic">Change Password</span>
                 </label>
               </li>
-              <li class="select_option dropdownic" for="awesomeness-close" (click)="profile()"
+              <!-- functionality will work commended as per wireframe -->
+              <!-- <li class="select_option dropdownic" for="awesomeness-close" (click)="profile()"
                 *ngIf='roleCode === "EMP"'>
                 <label class="select_label dropdownic">
                   <img alt="profile" class="dropdownic" style="height: 19px;"
                     src="../../assets/images/emp-dashboard-icons/profile.svg">
                   <span class="dropdowntxt dropdownic">Profile</span>
                 </label>
-              </li>
+              </li> -->
               <li class="select_option dropdownic" for="awesomeness-close" (click)="logout()"
                 *ngIf='roleCode === "SADM" || roleCode === "OADM" || roleCode === "ADM" || roleCode === "HR" || roleCode === "ISADM" || roleCode === "IADM" || roleCode === "EMP"'>
                 <label class="select_label dropdownic">

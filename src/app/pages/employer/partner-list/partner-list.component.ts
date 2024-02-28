@@ -46,7 +46,6 @@ export class PartnerListComponent implements OnInit {
   totalPages: number = 1;
   //aggrid
   data:any;
-  // rowData: any;
   columnDefs: any = [];
   private gridApi!: GridApi;
   public gridOptions: GridOptions;
@@ -59,7 +58,7 @@ export class PartnerListComponent implements OnInit {
   public masterDetail;
   public rowSelection = 'multiple';
   cacheBlockSize: any = 10;
-  // partnerlistdata: any;
+  
   public rowData: any[] | null = [];
   paginationPageSize: number;
   partnerListAgGridSubscription: Subscription;
@@ -73,23 +72,15 @@ export class PartnerListComponent implements OnInit {
   public overlayNoRowsTemplate =
   ' <span><br><br><img src="assets/images/skillMaster/norecord.svg" alt="" /> <br><br> <h3>No Records Found</h3></span>';
   sideBar = {
-
     toolPanels: [
-
-    {id: 'filters',
-
-    labelDefault: 'Filters',
-
-    labelKey: 'filters',
-
-    iconKey: 'filter',
-
-    toolPanel: 'agFiltersToolPanel',
-
-    }
-
+      {
+        id: 'filters',
+        labelDefault: 'Filters',
+        labelKey: 'filters',
+        iconKey: 'filter',
+        toolPanel: 'agFiltersToolPanel',
+      }
     ], defaultToolPanel: ''
-
   };
   partnerListStatusData: any;
   FormateName: any;
@@ -460,35 +451,6 @@ export class PartnerListComponent implements OnInit {
     );
   }
 
-  // updateStatus(isActive, isApproved, email, userId, firstName) {
-  //   this.ApiService.updatePartnerStatus({
-  //     isApproved: isApproved,
-  //     isActive: isActive,
-  //     email: email,
-  //     userId: userId,
-  //     firstName: firstName,
-  //   }).subscribe(
-  //     (partnerList: any) => {
-  //       if (partnerList.success == false) {
-  //         this.toastr.warning('Connection failed, Please try again.');
-  //       } else {
-  //         this.selectStatus();
-  //         this.toastr.success('Status updated Successfully');
-  //       }
-  //     },
-  //     (err) => {
-  //       this.toastr.warning('Connection failed, Please try again.');
-  //     }
-  //   );
-  // }
-
-  // updatePartner(email) {
-  //   this.appconfig.routeNavigationWithParam(
-  //     APP_CONSTANTS.ENDPOINTS.PARTNER.ADDPARTNER,
-  //     { email: this.ApiService.encrypt(email) }
-  //   );
-  // }
-
   searchList() {
     if (
       this.fromDate == undefined &&
@@ -581,10 +543,6 @@ export class PartnerListComponent implements OnInit {
     }
     this.fetchData(data);
   }
-
-  // getalldata(partnerListAgData){
-  //   this.appconfig.setLocalStorage('PartnerJobData',JSON.stringify(partnerListAgData));
-  // }
 
 }
  
