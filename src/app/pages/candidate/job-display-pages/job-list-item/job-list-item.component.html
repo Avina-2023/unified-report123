@@ -150,7 +150,7 @@
                       class="icon-clock_postdate"></span>
                     <span class="smalltext">{{ getDaysAgo(item.createdOn) }}</span>
                   </div> -->
-                  <div *ngIf="item.isAppliedDate">
+                  <div *ngIf="item.isAppliedDate" style="margin: 0px 0px 0px 6px;">
                     <span class="icon-check-rounded"></span>
                     <span class="smalltext">Applied on &nbsp;{{item.isAppliedDate | date : 'd MMM '}}</span>
                   </div>
