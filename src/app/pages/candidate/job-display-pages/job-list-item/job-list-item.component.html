@@ -117,13 +117,13 @@
                     Expires
                     {{item.lastDatetoApply | timeDiff}}
                   </div>
-                  <div style="padding: 6px;" *ngIf="item.isAppliedDate">
+                  <div style="padding: 6px;margin: 0px 0px 0px 5px;" *ngIf="item.isAppliedDate">
 
                     <span class="icon-clock_postdate"></span>
                     <span class="smalltext">{{ getDaysAgo(item.createdOn) }}</span>
 
                   </div>
-                  <div *ngIf="item.isAppliedDate" style="margin-left: 20cm;">
+                  <div *ngIf="item.isAppliedDate" style="margin-left: 19cm;">
                     <span class="icon-check-rounded"></span>
                     <span class="smalltext">Applied on &nbsp;{{ item.isAppliedDate | date : 'd MMM yy' }}</span>
                   </div>
@@ -150,7 +150,7 @@
                       class="icon-clock_postdate"></span>
                     <span class="smalltext">{{ getDaysAgo(item.createdOn) }}</span>
                   </div> -->
-                  <div *ngIf="item.isAppliedDate">
+                  <div *ngIf="item.isAppliedDate" style="margin: 0px 0px 0px 6px;">
                     <span class="icon-check-rounded"></span>
                     <span class="smalltext">Applied on &nbsp;{{item.isAppliedDate | date : 'd MMM '}}</span>
                   </div>
@@ -169,7 +169,7 @@
                   </button>
                 </ng-container>
                 &nbsp;&nbsp;&nbsp;
-                <div class="flex-growthree" class="misc_save" *ngIf="savedButton">
+                <div class="flex-growthree" class="misc_save" style="padding: 0px 5px 0px 5px;" *ngIf="savedButton">
                   <div>
                     <mat-icon (click)="bookMarkIcon(item)" [ngClass]="item.isSelected ? 'saved_icon':'unsaved_icon'">
                       {{item.isSelected?'bookmark':'bookmark_border'}}</mat-icon> <span class="save_text">Saved</span>

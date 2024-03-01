@@ -376,18 +376,17 @@ export class ExternalLinkComponent implements OnInit {
               let dataval = {
                 "jobId": jobid,
                 "email": data.data.email
-            }
+              }
               this.apiService.getJobDetail(dataval).subscribe((data:any)=>{
-                console.log(data);
                 if (data.success) {
                   this.appConfig.setLocalStorage('jobDesc',JSON.stringify(data.data))
-                  this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.CANDIDATEDASH.JOBDESCRIPTION);
-                }else{
+                  let jobId = this.appConfig.base64Encryption(data.data.jobId);
+                  this.appConfig.routeNavigation(`${APP_CONSTANTS.ENDPOINTS.CANDIDATEDASH.JOBDESCRIPTION}/${jobId}`);
+                } else {
                   this.toast.warning(data.message)
-                  this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.CANDIDATEDASH.DASHBOARD);
+                  // this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.CANDIDATEDASH.DASHBOARD);
                 }
               })
-
             }
             // this.loginRedirection(data.data,);
           } else {
@@ -405,10 +404,7 @@ export class ExternalLinkComponent implements OnInit {
   }
 
   loginRedirection(data: any) {
-
-
     this.appConfig.routeNavigation('/candidateview/dashboard');
-
   }
 
 }
