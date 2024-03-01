@@ -388,13 +388,15 @@ getJobsList() {
 
  gotojob(item) {
     let extras: NavigationExtras = { state: { itemData: item } };
-    this.appconfig.setLocalStorage('jobDesc', JSON.stringify(item));
+   this.appconfig.setLocalStorage('jobDesc', JSON.stringify(item));
+   this.jobDetails = JSON.parse(this.appConfig.getLocalStorage('jobDesc'))
+
     //   this.router.navigateByUrl(
     //     APP_CONSTANTS.ENDPOINTS.CANDIDATEDASH.JOBDESCRIPTION,
     //     extras
     //  );
     //  location.reload();
-   this.getRoute();
+  //  this.getRoute();
   }
 
 onWindowScroll() {
