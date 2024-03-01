@@ -42,18 +42,41 @@ export class CommonPaginatorComponent implements OnInit {
     this.updateVisiblePages();
   }
 //  active and inactive paginator
+  // private updateVisiblePages(): void {
+  //   const length = Math.min(this.totalcount);
+  //   const startIndex = Math.max(
+  //     Math.min(
+  //       this.value - Math.ceil(length / 2),
+  //       this.totalcount - length
+  //     ),
+  //     0
+  //   );
+  //   this.visiblePages = Array.from(
+  //     new Array(length).keys(),
+  //     (item) => item + startIndex + 1
+  //   );
+  // }
   private updateVisiblePages(): void {
-    const length = Math.min(this.totalcount);
-    const startIndex = Math.max(
-      Math.min(
-        this.value - Math.ceil(length / 2),
-        this.totalcount - length
-      ),
-      0
-    );
-    this.visiblePages = Array.from(
-      new Array(length).keys(),
-      (item) => item + startIndex + 1
-    );
+  const totalPagesToShow = 5; // Number of pages to show at a time
+  const visiblePages = [];
+  const currentPage = this.value;
+  const totalPageCount = this.totalcount;
+
+  // Calculate the start and end index of the visible pages
+  let startPage = Math.max(currentPage - Math.floor(totalPagesToShow / 2), 1);
+  let endPage = Math.min(startPage + totalPagesToShow - 1, totalPageCount);
+
+  // Adjust startPage and endPage if they go out of bounds
+  if (endPage - startPage + 1 < totalPagesToShow) {
+    startPage = Math.max(endPage - totalPagesToShow + 1, 1);
   }
+
+  // Populate the visible pages array
+  for (let i = startPage; i <= endPage; i++) {
+    visiblePages.push(i);
+  }
+
+  this.visiblePages = visiblePages;
+}
+
 }

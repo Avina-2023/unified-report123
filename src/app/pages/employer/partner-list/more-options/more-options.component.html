@@ -4,7 +4,7 @@
 </div>
 </button>
 
-<div class="menu-container"> 
+<div class="menu-container">
     <mat-menu #menu="matMenu">
         <button mat-menu-item class="menu-item" (click)="updatePartner(params.data.email)">
             <span>Edit </span>
@@ -87,9 +87,13 @@
                                             <div class="label">
                                                 <div class="label-font-style">Email:</div>
                                             </div>
-                                            <div class="label-text">
+                                            <!-- <div class="label-text">
                                                 <span class="label-text-style"> {{empProfile?.email}}</span>
+                                            </div> -->
+                                            <div class="label-text" style="width: 180px; text-overflow: ellipsis; white-space: nowrap;overflow: hidden;display: block;" >
+                                              <span class="label-text-style" matTooltip="{{empProfile?.email}}">{{empProfile?.email}}</span>
                                             </div>
+
                                         </div>
                                         <div class="spoc-sub-details">
                                             <div class="label">

@@ -12,49 +12,49 @@
     color: #ffffff;
   }
 }
-.mat-icon { 
+.mat-icon {
   height: 24px;
   /* position: relative; */
   display: flex;
   justify-content: center;
   width: 24px;
   top: 5px;
-} 
+}
 .icon {
   display: flex;
   box-shadow: #b4b4b4;
-} 
+}
 ::ng-deep.mat-dialog-container {
   padding: 0px !important;
   overflow: hidden !important;
-} 
+}
 .dialog-container {
 // padding: 20px;
 padding: 20px 20px 20px 80px;
 padding-right: 0px !important;
-} 
-.dialog { 
+}
+.dialog {
 height: 150px;
 background-color: #1b4e9b;
-} 
+}
 .view-header {
 display: flex;
 justify-content: space-between;
 align-items: center;
-} 
+}
 .view-title-text {
 color: #ffffff;
-} 
+}
 .reject-close-icon {
 display: flex;
 ::ng-deep.mat-icon {
   color: white;
-} 
-} 
+}
+}
 .body {
 display: flex;
 justify-content: space-evenly;
-} 
+}
 .left-container {
 width: 352px;
 height: 622px;
@@ -67,12 +67,12 @@ border-radius: 10px;
 flex-direction: column;
 overflow-y: scroll;
 // max-height: 100vh;
-} 
+}
 // style="overflow-y: scroll; height:450px;"
 ::-webkit-scrollbar {
 width: 0px;
 background: transparent; /* make scrollbar transparent */
-} 
+}
 
 .left-container-body {
 padding: 20px;
@@ -183,13 +183,20 @@ min-width: 160px;
   font-weight: 100;
 }
 }
+.labelfor-mail{
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  display: block;
+  width: 180px;
+}
 .short-description {
 padding: 20px;
 }
 .description {
 display: flex;
 }
-.download-button { 
+.download-button {
 padding: 10px;
 display: flex;
 align-items: center;
@@ -198,10 +205,10 @@ justify-content: space-around;
   color: #ffffff;
   background-color: #1b4e9b;
 }
-} 
-.right { 
+}
+.right {
 // padding-left: 20px;
-} 
+}
 .right-container {
 width: 777px;
 height: 622px;
@@ -213,13 +220,13 @@ box-shadow: 1px 1px 12px #00000033;
 border-radius: 10px;
 flex-direction: column;
 }
-.list1 { 
+.list1 {
 display: flex;
 // height: 110px;
 padding: 30px;
 justify-content: space-between;
-} 
-.l1-left { 
+}
+.l1-left {
 display: flex;
 flex-direction: column;
 width: 320px;
@@ -266,56 +273,56 @@ padding-top: 20px;
     color: #262626;
     font-weight: 600;
   }
-} 
+}
 .list-content {
 display: flex;
 padding: 15px 0px 0px 0px;
 // padding-top: 15px;
-// padding-right: 30px; 
+// padding-right: 30px;
 justify-content: space-around;
 .l2-left {
   display: flex;
   flex-direction: column;
   // height: 19px;
   width: 190px;
-  .label-text { 
+  .label-text {
     color: #262626;
     font-weight: 600;
     font-size: 14px;
-  } 
-  .label-content-text { 
+  }
+  .label-content-text {
     // padding-top: 10px;
-  } 
+  }
 }
 .l2-middle {
   display: flex;
   flex-direction: column;
   width: 210px;
-  .label2 { 
+  .label2 {
     .label2-text {
       color: #262626;
       font-size: 14px;
       font-weight: 600;
     }
-  } 
-  .label2-content { 
+  }
+  .label2-content {
     padding-top: 10px;
-  } 
+  }
 }
 .l2-right {
   display: flex;
   flex-direction: column;
   width: 203px;
-.label3 { 
+.label3 {
     .label3-text {
       color: #262626;
       font-size: 14px;
       font-weight: 600;
     }
-  } 
-  .label3-content { 
+  }
+  .label3-content {
     padding-top: 10px;
-  } 
+  }
 }
 }
 }
@@ -338,10 +345,10 @@ padding: 30px 0px 30px 10px;
   width: 100px;
 }
 .desig-column-1 {
-  width: 100px; 
+  width: 100px;
 }
 .desig-column-2 {
-  width: 150px; 
+  width: 150px;
 }
 .email-column{
   width: 330px;
@@ -349,11 +356,11 @@ padding: 30px 0px 30px 10px;
 .mbno{
   width: 150px;
 }
-} 
+}
 .mat-header-cell {
 color: #ffffff;
 // border-radius: 5px 5px 0px 0px;
-} 
+}
 .mat-header-cell:first-child {
 border-top-left-radius: 5px;
 }
@@ -366,7 +373,7 @@ background: #1B4E9B ;
 }
 .mat-row {
 height: 40px;
-} 
+}
 .address {
 display: flex;
 position: relative;
@@ -374,16 +381,16 @@ padding: 30px;
 // top: 15px;
 height: 100px;
 justify-content: space-between;
-} 
+}
 .Adress-list {
 display: flex;
 flex-direction: column;
-} 
+}
 .address-details-container {
 display: flex;
 // padding: 0 0px 0px 45px;
 // padding-right: 30px;
-} 
+}
 .address-details {
 display: flex;
 justify-content: space-evenly;
@@ -412,16 +419,16 @@ display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
-} 
-.label-text { 
+}
+.label-text {
 color: #262626;
 font-size: 14px;
 font-weight: 600;
-} 
+}
 .label-content {
 position: relative;
 padding-top: 10px;
-} 
+}
 .mat-button{
 background-color: #1B4E9B;
 color: #ffffff;
