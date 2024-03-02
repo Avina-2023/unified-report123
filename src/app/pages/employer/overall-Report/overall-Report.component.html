@@ -84,7 +84,7 @@
       [minitotalCount]="list.totalCount" [minisubCount1]="list.content[0].count"
       [minisubCount2]="list.content[1].count">
     </app-overall-Report-minicard-details>
-    <app-overall-Report-minicard-details [cardTitle]="'No. of Internships'" [minitotalCount]="0" [minisubCount1]="0"
+    <app-overall-Report-minicard-details *ngIf="overallreportdata?.companyReport?.length==2" [cardTitle]="'No. of Internships'" [minitotalCount]="0" [minisubCount1]="0"
       [minisubCount2]="0">
     </app-overall-Report-minicard-details>
   </div>
