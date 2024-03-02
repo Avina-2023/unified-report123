@@ -355,7 +355,9 @@ export class CandidateComponent implements OnInit {
 
 headertextSearch(event: KeyboardEvent) {
   event.preventDefault();
-  if (event.key === 'CapsLock' || event.key.startsWith('Control') || event.key === 'Delete' || event.altKey || event.shiftKey || event.key === "Tab") {
+  if (event.key === 'Enter' || event.key === 'ArrowUp' || event.key === 'ArrowRight' || event.key === 'ArrowDown' || event.key === 'ArrowLeft' || event.key === 'CapsLock' ||
+      event.key.startsWith('Control') || event.key === 'Delete' || event.key === 'Escape' || event.key === 'Insert' || event.altKey || event.shiftKey || event.key === "Tab" )
+  {
     event.preventDefault();
     return;
   }
