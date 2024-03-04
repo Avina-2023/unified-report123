@@ -1,4 +1,4 @@
-import {Component,OnInit,ElementRef,ViewChild,TemplateRef,} from '@angular/core';
+import {Component,OnInit,ElementRef,ViewChild,TemplateRef, Input,} from '@angular/core';
 import { APP_CONSTANTS } from '../../../../utils/app-constants.service';
 import { ApiService } from 'src/app/services/api.service';
 import { environment } from 'src/environments/environment';
@@ -14,9 +14,10 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 export class ViewCandidateProfilebyEmployerComponent implements OnInit {
   @ViewChild('conditions', { static: false }) termsconditions: TemplateRef<any>;
   @ViewChild('headerRef', { static: true })
+
   headerRef!: ElementRef<HTMLDivElement>;
   routerlink = APP_CONSTANTS.ENDPOINTS;
-  blobtoken:string = environment.blobToken;
+  blobtoken: string = environment.blobToken;
   personalDetailsMap: any;
   journalentry = { journalEntityUrl: '' };
   shouldTruncate: boolean = false;
@@ -103,6 +104,7 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
   role: any;
   roleCode: any;
   userRole: any;
+  @Input() from: any;
 
   constructor(
     private apiService: ApiService,
@@ -111,10 +113,11 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
     private dialog: MatDialog,
     public router: Router,
     private activatedRoute: ActivatedRoute
-  ) {}
+  ) { }
   ngOnInit() {
     this.activatedRoute.queryParams.subscribe((queryParams) => {
       const from = queryParams['from'];
+      console.log('From:', from); // Log the value of 'from'
 
       if (from === 'CS') {
         this.hideSection = true;
@@ -122,6 +125,7 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
         this.hideSection = false;
       }
     });
+
 
     this.jobDetailsdata = JSON.parse(
       this.appConfig.getLocalStorage('currentJobData')
@@ -270,7 +274,10 @@ export class ViewCandidateProfilebyEmployerComponent implements OnInit {
   todashboard() {
     this.router.navigate(['/auth/partner/jobrequirment']);
   }
+  tocandidatesearch() {
+   this.router.navigate(['/auth/dashboard/candidatesearch']);
 
+}
   todriveboard() {
      this.router.navigate(['/auth/drive/managedrive']);
   }

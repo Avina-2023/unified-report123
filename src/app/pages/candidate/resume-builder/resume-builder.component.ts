@@ -19,6 +19,7 @@ export class ResumeBuilderComponent implements OnInit {
   @ViewChild('preview') preview:ElementRef;
   thumbnailimage: string;
   FILEURI: string;
+  candyprofile: any;
   constructor(public dialog: MatDialog,private router:Router,private appconfig:AppConfigService,private apiservice:ApiService) { }
 
   profilePercentage: any;
@@ -27,7 +28,8 @@ export class ResumeBuilderComponent implements OnInit {
 
   ngOnInit() {
     this.profilePercentage = JSON.parse(localStorage.getItem('profilePercentage'));
-    // console.log(this.profilePercentage);
+    this.candyprofile = JSON.parse(localStorage.getItem('candidateProfile'));
+    this.profilePercentage = this.candyprofile?.profilePercentage;
   }
 
   resumeDialog() {
