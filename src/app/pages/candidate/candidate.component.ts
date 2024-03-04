@@ -46,6 +46,7 @@ export class CandidateComponent implements OnInit {
   event: any;
   fullSearchText: string = '';
   searchText: string = '';
+   isIconHighlighted: boolean = false;
 
   constructor(
     public router: Router,
@@ -55,7 +56,7 @@ export class CandidateComponent implements OnInit {
     private msgData: SentDataToOtherComp,
     public dialog: MatDialog,
     private activatedRoute: ActivatedRoute,
-    private messenger: SentDataToOtherComp
+    private messenger: SentDataToOtherComp,
   ) {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
@@ -75,6 +76,14 @@ export class CandidateComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    this.router.events.pipe(
+    filter(event => event instanceof NavigationEnd)
+    ).subscribe((event: NavigationEnd) => {
+      this.isIconHighlighted = event.url === '/candidateview/jobdescription/jobId';
+    });
+
+
     this.currentYear = new Date().getFullYear();
     const storedShowJobs = localStorage.getItem('showJobs');
     this.showJobs = storedShowJobs ? JSON.parse(storedShowJobs) : this.showJobs;
@@ -90,6 +99,7 @@ export class CandidateComponent implements OnInit {
         }
       }
     });
+
   }
 
 
