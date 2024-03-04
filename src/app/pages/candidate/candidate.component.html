@@ -42,9 +42,16 @@
         <div class="icon_txt">Home</div>
       </div>
 
-      <div (click)="onJobsClick('jobs')" class="menu_icon pointer_cursor" #iconHover2
+      <!-- <div (click)="onJobsClick('jobs')" class="menu_icon pointer_cursor" #iconHover2
         (mouseenter)="addSlideAnimation(iconHover2, 'jobs')" (mouseleave)="removeSlideAnimation(iconHover2, 'jobs')"
         (click)="isIconActive(iconHover2,'jobs')">
+        <div class="icon"><span class="icon-jobs-work"></span></div>
+        <div class="icon_txt">Jobs</div>
+      </div> -->
+
+      <div (click)="onJobsClick('jobs')" class="menu_icon pointer_cursor" #iconHover2
+        (mouseenter)="addSlideAnimation(iconHover2, 'jobs')" (mouseleave)="removeSlideAnimation(iconHover2, 'jobs')"
+        [class.highlighted]="isIconHighlighted" (click)="isIconActive(iconHover2,'jobs')">
         <div class="icon"><span class="icon-jobs-work"></span></div>
         <div class="icon_txt">Jobs</div>
       </div>
