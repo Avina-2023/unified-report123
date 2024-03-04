@@ -140,6 +140,15 @@ export class ViewJobsComponent implements OnInit {
         sortable: false,
       },
       {
+        headerName: '', field: 'companyLogo', minWidth: 100,
+        suppressColumnsToolPanel: true,
+        filter: false,
+        cellRenderer: function (params) {
+          let val = encodeURI(params.value);
+          return `<img width="30px" height"22px" src=${val} alt="">`;
+        }
+      },
+      {
         headerName: 'Company Name',
         field: 'company',
         minWidth: 175,
