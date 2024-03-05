@@ -362,14 +362,13 @@ export class ExternalLinkComponent implements OnInit {
             if (view === 'findinternship'){
                 this.appConfig.setLocalStorage('showJobs' , false)
             }
-            if(!view && !jobid)
-            {this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.CANDIDATEDASH.DASHBOARD);}
+            // if(!view && !jobid)
+            // {this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.CANDIDATEDASH.DASHBOARD);}
 
             if(view){
               this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.CNDIDATELANDING+'/'+view);
-            }else{
-              this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.CANDIDATEDASH.DASHBOARD);
             }
+
 
 
             if(jobid){
@@ -404,7 +403,7 @@ export class ExternalLinkComponent implements OnInit {
   }
 
   loginRedirection(data: any) {
-    this.appConfig.routeNavigation('/candidateview/dashboard');
+    // this.appConfig.routeNavigation('/candidateview/dashboard');
   }
 
 }
