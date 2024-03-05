@@ -77,11 +77,11 @@ export class CandidateComponent implements OnInit {
 
   ngOnInit() {
 
-    this.router.events.pipe(
-    filter(event => event instanceof NavigationEnd)
-    ).subscribe((event: NavigationEnd) => {
-      this.isIconHighlighted = event.url === '/candidateview/jobdescription/jobId';
-    });
+    // this.router.events.pipe(
+    // filter(event => event instanceof NavigationEnd)
+    // ).subscribe((event: NavigationEnd) => {
+    //   this.isIconHighlighted = event.url === '/candidateview/jobdescription';
+    // });
 
 
     this.currentYear = new Date().getFullYear();
@@ -105,11 +105,8 @@ export class CandidateComponent implements OnInit {
 
   ngAfterViewInit() {
 
-    // Set "Home" as the default active icon
-    // if (this.router.routerState.snapshot.url == '/candidateview/home') {
-    //   this.isIconActive(this.iconHover1.nativeElement, 'home');
-    // }
-    // else
+    const urlRegex = new RegExp(APP_CONSTANTS.ENDPOINTS.CANDIDATEDASH.JOBDESCRIPTION);
+
     if (this.router.routerState.snapshot.url == '/candidateview/dashboard') {
       this.isIconActive(this.iconHover1.nativeElement, 'dashboard');
     }
@@ -118,6 +115,15 @@ export class CandidateComponent implements OnInit {
     }
     else if (this.router.routerState.snapshot.url == '/candidateview/findinternship') {
       this.isIconActive(this.iconHover3.nativeElement, 'internships');
+    }
+
+    // else if (this.router.routerState.snapshot.url == '/candidateview/jobdescription') {
+    //   this.isIconActive(this.iconHover2.nativeElement, 'jobs');
+      // }/^\/candidateview\/jobdescription$/;
+
+
+    else if (urlRegex.test(this.router.routerState.snapshot.url)) {
+    this.isIconActive(this.iconHover2.nativeElement, '');
     }
   }
 
@@ -197,9 +203,9 @@ export class CandidateComponent implements OnInit {
   }
 
   isIconActive(element: any, menuType: any) {
-    // Remove "active-icon" from all other elements
     const menuIcons = this.menuIcons.nativeElement.querySelectorAll('.menu_icon');
-        // const sideIcons = this.menuIcons.nativeElement.querySelectorAll('.menu_icon');
+    // const sideIcons = this.menuIcons.nativeElement.querySelectorAll('.menu_icon');
+
 
     menuIcons.forEach((icon: any) => {
       if (icon !== element) {
@@ -210,27 +216,32 @@ export class CandidateComponent implements OnInit {
     element.classList.add('active-icon');
 
     // Now you can use the menuType parameter
-    if (menuType === 'jobs') {
+    this.menutype_redirection(menuType)
+
+  }
+
+  menutype_redirection(menuType:any) {
+   if (menuType === 'jobs') {
       this.router.navigateByUrl('/candidateview/findjobs');
       //this.isSidebarDisabled = true;
     }
 
-    if (menuType === 'jobsProfile') {
-      this.router.navigateByUrl('/candidateview/findjobs');
-      //this.isSidebarDisabled = true;
-      this.isShowProfile = !this.isShowProfile;
-    }
+    // if (menuType === 'jobsProfile') {
+    //   this.router.navigateByUrl('/candidateview/findjobs');
+    //   //this.isSidebarDisabled = true;
+    //   this.isShowProfile = !this.isShowProfile;
+    // }
 
     if (menuType === 'internships') {
       this.router.navigateByUrl(APP_CONSTANTS.ENDPOINTS.CANDIDATEDASH.INTERNSHIPLIST);
       this.isSidebarDisabled = true;
     }
 
-    if (menuType === 'jobsProfile') {
-      this.router.navigateByUrl('/candidateview/findjobs');
-      //this.isSidebarDisabled = true;
-      this.isShowProfile = !this.isShowProfile;
-    }
+    // if (menuType === 'jobsProfile') {
+    //   this.router.navigateByUrl('/candidateview/findjobs');
+    //   //this.isSidebarDisabled = true;
+    //   this.isShowProfile = !this.isShowProfile;
+    // }
 
     if (menuType === 'dashboard') {
       this.router.navigateByUrl('/candidateview/dashboard');
@@ -250,10 +261,7 @@ export class CandidateComponent implements OnInit {
       // window.location.replace('https://reviewinfo.lntedutech.com');
       //  this.appconfig.clearLocalStorage();
     }
-
   }
-
-
 
   navigateToInternshipList() {
     this.showJobs = false;
