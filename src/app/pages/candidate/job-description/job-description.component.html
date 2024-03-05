@@ -193,24 +193,24 @@
             <span class="hoverable" (click)="scrollToSection('cmpnyprfSection')">About Company</span>
           </div>
           <hr>
-          <div class="desTitle" *ngIf="jobDetails.overview">
+          <div class="desTitle" *ngIf="jobDetails?.overview">
             Job Overview<br>
-            <p>{{jobDetails.overview}}</p>
+            <p>{{jobDetails?.overview}}</p>
           </div>
 
-          <div id="descriptionSection" class="desTitle" *ngIf="jobDetails.description.length">
+          <div id="descriptionSection" class="desTitle" *ngIf="jobDetails?.description?.length">
             Description
             <ul>
-              <li *ngFor="let content of jobDetails.description">
+              <li *ngFor="let content of jobDetails?.description">
                 <span [innerHTML]="content.item"></span>
               </li>
             </ul>
           </div>
 
-          <div id="rolesSection" class="desTitle" *ngIf="jobDetails.requirement.length">
+          <div id="rolesSection" class="desTitle" *ngIf="jobDetails?.requirement?.length">
             Roles And Responsibilities
             <ul>
-              <li *ngFor="let content of jobDetails.requirement">
+              <li *ngFor="let content of jobDetails?.requirement">
                 <span [innerHTML]="content.item"></span>
               </li>
             </ul>
@@ -225,8 +225,8 @@
 
           <div id="specializationSection" class="desTitle"> Specialization: </div>
           <div class="job_options">
-            <div class="genText" *ngFor="let educationItem of jobDetails.education">
-              <ng-container *ngFor="let discipline of educationItem.discipline">
+            <div class="genText" *ngFor="let educationItem of jobDetails?.education">
+              <ng-container *ngFor="let discipline of educationItem?.discipline">
                 <button class="specialization-box">{{ discipline }}</button>
               </ng-container>
               <ng-container *ngIf="educationItem.specification === 'Any Degree / Graduation'">
@@ -239,7 +239,7 @@
 
           <div id="keyskillsSection" class="desTitle"> Key Skills: </div>
           <div class="job_options">
-            <div class="genText" *ngFor="let content of jobDetails.skillSet">
+            <div class="genText" *ngFor="let content of jobDetails?.skillSet">
               <button class="specialization-box">{{content}}</button>
             </div>
           </div>
@@ -248,7 +248,7 @@
       <div class="descriptionArea" style="margin: 2% 0%;">
         <div id="cmpnyprfSection" class="desTitle" style="margin: 1% 2%;">
           Company Profile<br>
-          <p> {{jobDetails.about}}</p>
+          <p> {{jobDetails?.about}}</p>
         </div>
       </div>
     </div>
