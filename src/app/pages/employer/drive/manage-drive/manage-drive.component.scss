@@ -18,11 +18,12 @@
   padding-left: 25px;
   font-size: 20px;
 }
-.container {
+.containerr {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
   position: relative;
   top: 25px;
+  // right: 60px;
   align-items: center;
   flex-wrap: wrap;
 }
@@ -33,7 +34,7 @@
   position: relative;
   padding: 10px;
   border-radius: 4px;
-margin-bottom: 10px;
+  margin-bottom: 10px;
   // top: 30px;
   // left: 30px;
   width: 171px;

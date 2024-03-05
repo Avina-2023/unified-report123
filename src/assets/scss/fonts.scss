@@ -5,59 +5,274 @@
 @font-face {
   font-family: 'Roboto';
   src: url('#{$fontPath}/Roboto-Light.woff2') format('woff2'),
-       url('#{$fontPath}/Roboto-Light.woff') format('woff');
+  url('#{$fontPath}/Roboto-Light.woff') format('woff');
   font-weight: 300;
   font-style: normal;
 }
+
 @font-face {
-    font-family: 'Roboto';
-    src: url('#{$fontPath}/Roboto-Regular.woff2') format('woff2'),
-         url('#{$fontPath}/Roboto-Regular.woff') format('woff');
-    font-weight: 400;
-    font-style: normal;
+  font-family: 'Roboto';
+  src: url('#{$fontPath}/Roboto-Regular.woff2') format('woff2'),
+  url('#{$fontPath}/Roboto-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
 }
+
 @font-face {
-    font-family: 'Roboto';
-    src: url('#{$fontPath}/Roboto-Bold.woff2') format('woff2'),
-         url('#{$fontPath}/Roboto-Bold.woff') format('woff');
-    font-weight: 700;
-    font-style: normal;
+  font-family: 'Roboto';
+  src: url('#{$fontPath}/Roboto-Bold.woff2') format('woff2'),
+  url('#{$fontPath}/Roboto-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
 }
 
 // Icon Fonts - Icomoon
 @font-face {
-    font-family: 'icomoon';
-    src:  url('#{$fontPath}/icomoon.woff?bkp143') format('woff'),
-      url('#{$fontPath}/icomoon.svg?bkp143#icomoon') format('svg');
-    font-weight: normal;
-    font-style: normal;
-    font-display: block;
-  }
+  font-family: 'icomoon';
+  src: url('#{$fontPath}/icomoon.woff?bkp143') format('woff'),
+  url('#{$fontPath}/icomoon.svg?bkp143#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
 
-  [class^="icon-"], [class*=" icon-"] {
-    /* use !important to prevent issues with browser extensions that change fonts */
-    font-family: 'icomoon' !important;
-    speak: never;
-    font-style: normal;
-    font-weight: normal;
-    font-variant: normal;
-    text-transform: none;
-    line-height: 1;
+[class^="icon-"],
+[class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
 
-    /* Enable Ligatures ================ */
-    letter-spacing: 0;
-    -webkit-font-feature-settings: "liga";
-    -moz-font-feature-settings: "liga=1";
-    -moz-font-feature-settings: "liga";
-    -ms-font-feature-settings: "liga" 1;
-    font-feature-settings: "liga";
-    -webkit-font-variant-ligatures: discretionary-ligatures;
-    font-variant-ligatures: discretionary-ligatures;
+  /* Enable Ligatures ================ */
+  letter-spacing: 0;
+  -webkit-font-feature-settings: "liga";
+  -moz-font-feature-settings: "liga=1";
+  -moz-font-feature-settings: "liga";
+  -ms-font-feature-settings: "liga" 1;
+  font-feature-settings: "liga";
+  -webkit-font-variant-ligatures: discretionary-ligatures;
+  font-variant-ligatures: discretionary-ligatures;
 
-    /* Better Font Rendering =========== */
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+.icon-Open-Jobs:before {
+  content: "\e9a7";
+  color: #848484;
+}
+
+.icon-home_icon__filborder:before {
+  content: "\e9a3";
+  color: #848484;
+}
+
+.icon-up__arrow:before {
+  content: "\e9b0";
+  color: #fff;
+}
+
+.icon-apply-blue-converted-2:before {
+  content: "\e9af";
+  color: #1b4e9b;
+}
+
+.icon-profile-blue-converted:before {
+  content: "\e9a8";
+  color: #1b4e9c;
+}
+
+.icon-profile-converted-black:before {
+  content: "\e9a9";
+}
+
+.icon-resume-blue-converted:before {
+  content: "\e9aa";
+  color: #1b4e9c;
+}
+
+.icon-save-blue-converted:before {
+  content: "\e9ab";
+  color: #1b4e9b;
+}
+
+.icon-job-blue-converted:before {
+  content: "\e9ac";
+  color: #1b4e9c;
+}
+
+.icon-resume-converted-black:before {
+  content: "\e9ad";
+}
+
+.icon-save-converted-black:before {
+  content: "\e9ae";
+}
+
+.icon-jobing-func-check:before {
+  content: "\e992";
+}
+
+.icon-checkingkjwsdv:before {
+  content: "\e9a3";
+}
+
+.icon-calndar_gray_apply:before {
+  content: "\e9a5";
+}
+
+.icon-stopwatch_groups:before {
+  content: "\e9a6";
+}
+
+.icon-skill_exchange_logo_tick:before {
+  content: "\e9a3";
+}
+
+.icon-plus_rounded:before {
+  content: "\e9a4";
+  color: #1b4e9b;
+}
+
+.icon-home_icon:before {
+  content: "\e9a3";
+  color: #848484;
+}
+
+.icon-jobs-work:before {
+  content: "\e992";
+  color: #848484;
+}
+
+.icon-export-file:before {
+  content: "\e991";
+  color: #004684;
+}
+
+.icon-job_fil_case:before {
+  content: "\e992";
+}
+
+.icon-active-icon:before {
+  content: "\ea3b";
+  color: #1b4e9b;
+}
+
+.icon-export:before {
+  content: "\ea3c";
+  color: #004684;
+}
+
+.icon-export:before {
+  content: "\ea3b";
+  color: #004684;
+}
+
+.icon-closedStatus:before {
+  content: "\ea37";
+  color: #b4b4b4;
+}
+
+.icon-pendingStatus .path1:before {
+  content: "\ea38";
+  color: rgb(38, 193, 246);
+}
+
+.icon-pendingStatus .path2:before {
+  content: "\ea39";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
+
+.icon-rejectedStatus:before {
+  content: "\ea3a";
+  color: #cb0000;
+}
+
+.icon-signout:before {
+  content: "\ea36";
+}
+
+.icon-hover_learning:before {
+  content: "\ea2f";
+  color: #1b4e9b;
+}
+
+.icon-hover_jobs:before {
+  content: "\ea30";
+  color: #1b4e9b;
+}
+
+.icon-hover_internships:before {
+  content: "\ea31";
+  color: #004684;
+}
+
+.icon-hover_forum:before {
+  content: "\ea33";
+  color: #1b4e9b;
+}
+
+.icon-hover_events:before {
+  content: "\ea34";
+  color: #1b4e9b;
+}
+
+.icon-hover_home:before {
+  content: "\ea35";
+  color: #1b4e9b;
+}
+
+.icon-darkMode:before {
+  content: "\ea2e";
+  color: #848484;
+}
+
+.icon-lightmode:before {
+  content: "\ea2d";
+}
+
+.icon-notification:before {
+  content: "\ea2c";
+  color: #848484;
+}
+
+.icon-forum:before {
+  content: "\ea26";
+  color: #848484;
+}
+
+.icon-internships:before {
+  content: "\ea27";
+  color: #848484;
+}
+
+.icon-learning:before {
+  content: "\ea29";
+  color: #848484;
+}
+
+.icon-events:before {
+  content: "\ea2a";
+  color: #848484;
+}
+
+.icon-checked_Skyblue:before {
+  content: "\ea25";
+  color: #0097cc;
+}
+
+.icon-Icon-ionic-ios-calendar-1:before {
+  content: "\ea24";
+  color: #707070;
+}
+
 .icon-bookmark_fill_blue:before {
   content: "\ea23";
   color: #84b6c6;
@@ -67,25 +282,30 @@
   content: "\ea24";
   color: #7fcf7c;
 }
+
 .icon-candidate_search:before {
   content: "\ea23";
   color: #858585;
 }
-    .icon-bookmark_icon:before {
-      content: "\ea22";
-    }
-    .icon-apply_now:before {
-      content: "\ea1d";
-      // color: #fff;
-    }
-    .icon-daysleft_clock:before {
-      content: "\ea1b";
-    }
+
+.icon-bookmark_icon:before {
+  content: "\ea22";
+}
+
+.icon-apply_now:before {
+  content: "\ea1d";
+  // color: #fff;
+}
+
+.icon-daysleft_clock:before {
+  content: "\ea1b";
+}
 
 .icon-green_tick_flower_circuled:before {
   content: "\ea1c";
   color: #4fa13a;
 }
+
 .icon-clock_postdate:before {
   content: "\ea1e";
   color: #848484;

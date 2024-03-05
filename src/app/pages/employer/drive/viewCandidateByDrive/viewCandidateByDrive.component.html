@@ -1,119 +1,112 @@
 <div class="body">
 
-    <div class="view_breadcrump flx_div flx_center">
-      <div class="active-link" (click)="dashboard()">View Job Requirements</div>
-      <div> View Applications</div>
-    </div>
+<div class="view_breadcrump flx_div flx_center">
+  <div *ngIf="roleCode === 'SADM'" class="active-link" (click)="navigatetoDrive()"><span class="text_underline">Manage Drive</span></div>
+  <div *ngIf="roleCode === 'EMP'" class="active-link" (click)="dashboard()">View Job Requirements</div>
+  <div> View Applications</div>
+</div>
 
-  <!-- <div class="title">
-    <div class="title-text">View Applications</div>
-    <div class="exportcsv">
-      <span [routerLink]="routerlink.VIEWDRIVE.VIEWCANDIDATEPROFILEBYEMPLOYER">click my profile</span> -->
-     <!--  <div><a (click)="exportCSV()">
-          <span class=""></span>
-          <span><img src="assets/images/skillMaster/exportinviewcandidate.svg"> Export CSV</span>
-        </a></div>
-    </div>
-  </div> -->
+<div class="pageheader">
+  <span><strong>View Applications</strong></span>
+</div>
 
-  <div class="pageheader">
-    <span>View Applications</span>
-  </div> 
+<div class="matcard">
+  <mat-card class="main">
+    <div class="job-details">
+      <div class="heading">Job Title</div>
+      <div class="val text_capitalize">{{valueone?.jobTitle}}</div>
+    </div>
+    <div class="job-details">
+      <div class="heading">Location</div>
+      <div class="val text_capitalize">{{valueone?.jobLocation}}</div>
+    </div>
+    <div class="job-details">
+      <div class="heading">Job-Type</div>
+      <div class="val text_capitalize">{{valueone?.jobType}}</div>
+    </div>
+    <div class="job-details">
+      <div class="heading">Application Closes On</div>
+      <div class="val text_capitalize">{{valueone?.lastDatetoApply| date : 'dd-MM-y' }}</div>
+    </div>
+    <div class="job-details">
+      <div class="heading">Job Status</div>
 
-  <div class="matcard">
-    <mat-card class="main">
-    <div class="job-details">
-    <div class="heading">Job Title</div>
-    <div class="val">{{valueone.jobRole}}</div>
+      <div class="act">
+        <div>
+          <!-- <span class="icon-tick_mark_green" *ngIf="valueone?.approveStatus === 'approved'"></span>
+          <span class="icon-closedStatus" *ngIf="valueone?.approveStatus === 'closed'"></span> -->
+          <img src="/assets/images/rejected.png" class="status-icon" *ngIf="valueone?.approveStatus === 'rejected'">
+          <img src="/assets/images/Timeout.png" class="status-icon" *ngIf="valueone?.approveStatus === 'pending'">
+          <img src="/assets/images/cancel.png" class="status-icon" *ngIf="valueone?.approveStatus === 'closed'">
+          <img src="/assets/images/expired@2x.png" class="status-icon" *ngIf="valueone?.approveStatus === 'expired'">
+          <img src="/assets/images/green-tic.svg" class="status-icon" *ngIf="valueone?.approveStatus === 'approved'">
+          
+          <span *ngIf="valueone?.status === 'Expired'"></span>
+        </div>
+        <div class="val text_capitalize">{{ valueone?.approveStatus == 'approved' ? 'Active' : valueone?.approveStatus }}</div>
+      </div>
     </div>
-    <div class="job-details">
-    <div class="heading">Location</div>
-    <div class="val">{{valueone.jobLocation}}</div>
-    </div>
-    <div class="job-details">
-    <div class="heading">Job-Type</div>
-    <div class="val">{{valueone.jobType}}</div>
-    </div>
-    <div class="job-details">
-    <div class="heading">Application Closes On</div>
-    <div class="val">{{valueone.lastDatetoApply| date : 'dd-MM-y' }}</div>
-    </div>
-    <div class="job-details">
-    <div class="heading">Job Status</div>
+  </mat-card>
+</div>
 
-  <div class="act">
-    <div>
-      <span class="icon-tick_mark_green" *ngIf="valueone.status === 'Active'"></span>
-      <span *ngIf="valueone.status === 'Expired'"></span>
-    </div>
-    <div class="val">{{ valueone.status }}</div>
+<div class="tableheader" [ngClass]="dynclass">
+  <mat-tab-group class="mattab" (selectedIndexChange)="onTabChange($event)">
+    <mat-tab *ngFor="let tab of tabs;  let i = index">
+      <ng-template mat-tab-label>
+        <span class="tab-name">{{ tab.title }}</span>
+        <div>
+          <span class="tab-count" [style.background-color]="active == i ? icncolor :  null">
+            <span *ngIf="tab.title == 'All'">{{allcountvalue}}</span>
+            <span *ngIf="tab.title == 'Awaiting Review'">{{awaitingcountvalue}}</span>
+            <span *ngIf="tab.title == 'In Progress'"> {{ inprogresscountvalue }}</span>
+            <span *ngIf="tab.title == 'Rejected'"> {{ rejectedcountvalue }}</span>
+            <span *ngIf="tab.title == 'Shortlisted'"> {{ shortlitcountvalue }}</span>
+          </span>
+        </div>
+      </ng-template>
+    </mat-tab>
+  </mat-tab-group>
+</div>
+
+<div class="border">
+  <div class="ag-grid">
+    <ag-grid-angular style="width: 100%; height: 100%;" class="ag-theme-alpine" 
+      [gridOptions]="gridOptions"
+      [columnDefs]="columnDefs" 
+      [defaultColDef]="defaultColDef" 
+      (cellClicked)="onCellClicked($event)"
+      [masterDetail]="masterDetail"
+      [overlayNoRowsTemplate]="overlayNoRowsTemplate" 
+      [rowData]="filteredRowData"
+      [enableRangeSelection]="true" 
+      [tooltipShowDelay]="0" 
+      [animateRows]="true" headerHeight="45" rowHeight="45"
+      [suppressRowClickSelection]="true" 
+      [suppressRowTransform]="true" 
+      [suppressPaginationPanel]="true"
+      [rowSelection]="rowSelection" 
+      [pivotPanelShow]="'always'"
+      [sideBar]="false" 
+      (gridReady)="onGridReady($event)"
+      [rowModelType]="rowModelType" 
+      [maintainColumnOrder]="true" 
+      [cacheBlockSize]="cacheBlockSize"
+      (selectionChanged)="onSelectionChanged($event)" 
+      [suppressAggFuncInHeader]="true"
+      [suppressColumnVirtualisation]="true" 
+      [autoGroupColumnDef]="autoGroupColumnDef"
+      [serverSideStoreType]="serverSideStoreType" 
+      [pagination]="true" 
+      [paginationPageSize]="10" 
+      [sideBar]="sideBar"
+      allColumns="true">
+    </ag-grid-angular>
   </div>
-    </div>
-    </mat-card>
-    </div>
 
-    <div class="tableheader" [ngClass]="dynclass">
-      <mat-tab-group class="mattab" (selectedIndexChange)="onTabChange($event)">
-        <mat-tab *ngFor="let tab of tabs;  let i = index">
-          <ng-template mat-tab-label>
-            <span class="tab-name">{{ tab.title }}</span>
-            <div>
-              <span class="tab-count" [style.background-color]="active == i ? icncolor :  null">
-                <span *ngIf="tab.title == 'All'">{{allcountvalue}}</span>
-                <span *ngIf="tab.title == 'Awaiting Review'">{{awaitingcountvalue}}</span> 
-                <span *ngIf="tab.title == 'In Progress'"> {{ inprogresscountvalue }}</span>
-                <span *ngIf="tab.title == 'Rejected'"> {{ rejectedcountvalue }}</span>
-               <span *ngIf="tab.title == 'Shortlisted'"> {{ shortlitcountvalue }}</span>
-              </span>
-            </div>
-          </ng-template>
-        </mat-tab>
-      </mat-tab-group>
-    </div>
 
-  <div class="border">
-    <div class="ag-grid">
-      <ag-grid-angular 
-      style="width: 100%; height: 100%;"
-       class="ag-theme-alpine" 
-       [gridOptions]="gridOptions"
-        [columnDefs]="columnDefs" 
-        [defaultColDef]="defaultColDef" 
-        (cellClicked)="onCellClicked($event)"
-        [masterDetail]="masterDetail" 
-        [overlayNoRowsTemplate]="overlayNoRowsTemplate" 
-        [rowData]="filteredRowData" [enableRangeSelection]="true"
-        [tooltipShowDelay]="0" 
-        [animateRows]="true" 
-        headerHeight="45" 
-        rowHeight="45" 
-        [suppressRowClickSelection]="true"
-        [suppressRowTransform]="true" 
-        [suppressPaginationPanel]="true"
-        [rowSelection]="rowSelection" 
-        [pivotPanelShow]="'always'" 
-        [sideBar]="false"
-        (gridReady)="onGridReady($event)" 
-        [rowModelType]="rowModelType" 
-        [maintainColumnOrder]="true"
-        [cacheBlockSize]="cacheBlockSize"  
-        (selectionChanged)="onSelectionChanged($event)"
-        [suppressAggFuncInHeader]="true" 
-        [suppressColumnVirtualisation]="true" 
-        [autoGroupColumnDef]="autoGroupColumnDef"
-        [serverSideStoreType]="serverSideStoreType" 
-        [pagination]="true" 
-        [paginationPageSize]="10" 
-        [sideBar]="sideBar"
-        allColumns="true">
-      </ag-grid-angular>
-    </div>
-
-    
-  <div class="row-pagnation">
-
+  <div class="row-pagnation"> 
     <div class="example-header">
-      Rows:
+    Rows:
       <select (change)="onPageSizeChanged()" [(ngModel)]="selectedPageSize" name="pageSize">
         <option value="5">5</option>
         <option value="10">10</option>
@@ -121,7 +114,7 @@
         <option value="20">20</option>
       </select>
     </div>
-    
+
     <div class="goto-sear">
       <div class="pagintion">
         <!-- <button class="prev" (click)=" onBtPrevPage()">Prev</button> -->
@@ -135,27 +128,14 @@
       <div class="goto"> Go To Page: </div>
       <div>
         <input type="string" class="goto-search" [(ngModel)]="pageNumberInput" />
-        <button class="go" [ngClass]="{disabled: pageNumberInput===''||pageNumberInput===undefined||(totalPages < pageNumberInput)}" (click)="onBtPageGo(pageNumberInput)"  [disabled]="pageNumberInput===''||pageNumberInput===undefined||(totalPages < pageNumberInput)">Go</button>
+        <button class="go"
+          [ngClass]="{disabled: pageNumberInput===''||pageNumberInput===undefined||(totalPages < pageNumberInput)}"
+          (click)="onBtPageGo(pageNumberInput)"
+          [disabled]="pageNumberInput===''||pageNumberInput===undefined||(totalPages < pageNumberInput)">Go</button>
       </div>
     </div>
 
-    <!-- <div class="goto-sear">
-      <div class="pagintion">
-        <button class="prev" (click)="onBtPrevPage()" [disabled]="isFirstPage">Prev</button>
-        <button class="one" (click)="onBtPageOne()">1</button>
-        <button class="one" (click)="onBtPageTwo()">2</button>
-        <button class="one" (click)="onBtPageThree()">3</button>
-        <button class="next" (click)="onBtNextPage()" [disabled]="isLastPage">Next</button>
-      </div>
-      <div class="goto"> Go To Page: </div>
-      <div>
-        <input type="string" class="goto-search" [(ngModel)]="pageNumberInput" />
-        <button class="go" (click)="onBtPageGo(pageNumberInput)">Go</button>
-      </div>
-    </div> -->
-    
   </div>
 
-  </div> 
 </div>
-
+</div>

@@ -1,15 +1,24 @@
+*{
+  font-family: inter;
+}
+.fnt_inter{
+  font-family: inter!important;
+}
 .main1 {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    background: #F5F5F5;
     .main2 {
-      width: 70%;
+      width: 75%;
+      background: #F5F5F5;
       .dash {
         display: flex;
         align-items: baseline;
-        padding: 15px 0px 0px 39px;
+        padding: 20px 15px 0px 15px;
+        margin: 10px;
         .findtext {
-          font-size: 20px !important;
+          font-size: 17px !important;
           font-weight: 600 !important;
         }
       }
@@ -18,20 +27,21 @@
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
+        padding: 0px 25px;
       }
       .count {
-        padding: 0px 0px 0px 40px;
+        //padding: 0px 0px 0px 40px;
         font-size: 14px;
         font-weight: 700;
       }
       .sorting {
-        padding: 0px 25px 0px 0px;
+       // padding: 0px 25px 0px 0px;
         .select_value{
-           padding: 0px 10px 7px 10px;
+           padding: 0px 15px 7px 15px;
         }
-  
+
       }
-  
+
       ::ng-deep .mat-form-field-flex {
         background: var(--unnamed-color-ffffff) 0% 0% no-repeat padding-box;
         background: #ffffff 0% 0% no-repeat padding-box;
@@ -64,7 +74,7 @@
         border-top: 5px solid;
         margin: 0 8px;
       }
-  
+
       .matlabel {
         background: var(--unnamed-color-ffffff) 0% 0% no-repeat padding-box;
         background: #ffffff 0% 0% no-repeat padding-box;
@@ -73,8 +83,11 @@
         opacity: 1;
       }
       .candidate-card {
-        padding: 20px 0px 0px 20px;
-        display: flex;
+        // padding: 20px 0px 0px 20px;
+        padding: 0px 15px;
+        //display: flex;
+        display: grid;
+        grid-template-columns: 33.33% 33.33% 33.33%;
         flex-direction: row;
         flex-wrap: wrap;
         align-items: center !important;
@@ -82,9 +95,11 @@
           display: flex;
           flex-direction: column;
           // align-items: center;
-          width: 237px;
-          padding: 5px 0px 0px 0px;
-          margin: 10px 25px 10px 25px;
+          // width: 237px;
+          width: auto;
+          padding: 0px;
+          margin: 10px;
+          box-shadow: none;
           .icon-bookmark {
             position: absolute;
             top: 0px;
@@ -130,7 +145,7 @@
             flex-direction: row;
             font-size: 12px;
             color: #848484;
-            margin: 0px 0px 10px 0px;
+            margin: 0px 0px 3px 0px;
             .high-level{
               white-space: nowrap;
               text-overflow: ellipsis;
@@ -159,20 +174,21 @@
             display: flex;
             flex-direction: row;
             width: 100%;
+            border-radius: 0px 0px 5px 5px;
           }
-  
+
           .action-button .view-prof {
             display: flex;
             flex-direction: row;
             justify-content: center;
             width: 50%;
           }
-  
+
           .action-button .view-icon {
             padding: 7px 0px 0px 17px;
             color: #707070;
           }
-  
+
           .action-button .buton {
             border-right: 1px solid #e6e6e6;
             width: 100%;
@@ -180,20 +196,20 @@
             outline: none;
             border: none;
           }
-  
+
           .action-button .buton:focus {
             outline: none !important;
           }
-  
+
           .action-button .buton2 {
             width: 100%;
           }
-  
+
           .action-button .view-prof:hover {
             background-color: #1b4e9b;
             color: #ffffff;
           }
-  
+
           .action-button .view-prof:hover .view-icon {
             color: #ffffff;
           }
@@ -205,7 +221,7 @@
       }
     }
     .filter-candidate {
-      width: 30%;
+      width: 22%;
       .filter {
         height: 550px;
         overflow-y: auto;
@@ -221,12 +237,13 @@
         position: sticky;
         width: 100%;
         padding: 25px 20px 10px 20px;
-        border-bottom: 1px solid #e7e7e763;
+        // border-bottom: 1px solid #e7e7e763;
         background: #fff;
         box-shadow: 1px 1px 1px 1px #e7e7e763;
+        border-top: 5px solid whitesmoke;
         top: 0;
         z-index: 1;
-  
+
         .all-clear{
           display: flex;
           flex-direction: row;
@@ -235,7 +252,6 @@
           .all_filter{
             color: #000000;
             font-weight: 600;
-            margin: 0px 0px 0px -20px
           }
           .clear_filter{
             color: #294d96;
@@ -244,7 +260,7 @@
             font-size: 14px;
           }
         }
-  
+
         .fil_output{
           display: flex;
           flex-wrap: wrap;
@@ -253,8 +269,8 @@
           .checkedVal{
             padding: 1px 8px 0px 8px;
             border: 1px solid #1b4e9b14;
-            background: #1b4e9b14;
-            color: #1b4e9b;
+            background: #1B4E9B;
+            color: #fff;
             margin: 4px;
             border-radius: 18px;
             font-size: 13px;
@@ -279,8 +295,10 @@
         }
       }
       .filt_list{
-        height: 90vh !important;
-        // overflow-y: scroll;
+        // height: 90vh !important;
+        overflow-y: scroll;
+        position: fixed;
+        height: 75vh!important;
         // width: 110vh;
       }
       @media only screen and (min-width: 900px) {
@@ -299,10 +317,10 @@
     }
   }
   .col1 {
-    color: #84B6C7
+    color: #3aa2c3;
   }
   .col2 {
-    color:  #92CD84
+    color:  #24c71e;
   }
   .dlog_template {
     display: flex;
@@ -310,19 +328,19 @@
     height: 43px;
     border-bottom: 2px solid #e7e7e764;
     padding: 5px 10px;
-  
+
     h1 {
       display: flex;
       width: 50%;
       float: left;
     }
-  
+
     .close_div {
       padding: 0px;
       margin-bottom: 0px;
       width: 50%;
       flex-direction: row-reverse;
-  
+
       .close-icon {
         text-align: center;
         margin-top: -20px;
@@ -336,26 +354,26 @@
     color: #000 !important;
     line-height: 1.2;
   }
-  
+
   .close_div {
     padding: 0px;
     margin-bottom: 0px;
     width: 50%;
     flex-direction: row-reverse;
-  
+
     .close-icon {
       text-align: center;
       margin-top: -20px;
       padding: 0px;
     }
   }
-  
+
   .aply_btn {
-    background-color: #26bbef;
+    background-color: #1B4E9B;
     margin: 10px 20px;
     float: right;
   }
-  
+
   .mat_dlg_cnt {
     width: 100%;
     display: grid;
@@ -363,3 +381,37 @@
     grid-template-columns: auto auto auto;
     font-size: 12px;
   }
+
+
+::ng-deep .sel_field.mat-form-field-appearance-legacy .mat-form-field-infix {
+    padding: 0px!important;
+}
+::ng-deep .mat-toolbar {
+  background: #fff!important;
+}
+
+::ng-deep  .fldName span.mat-checkbox-label {
+  overflow: hidden!important;
+  white-space: nowrap!important;
+  text-overflow: ellipsis!important;
+  max-width: 250px!important;
+}
+
+.mat_courses{
+  margin: 0px 10px;
+}
+::ng-deep .spec_desk_dialog .mat-dialog-container {
+  padding: 10px;
+  overflow: hidden;
+}
+
+.expand_more_icon{
+  color: #1B4E9B;
+    text-decoration: underline;
+    font-size: 13px;
+    font-weight: 600;
+}
+.option_title{
+  padding-bottom: 8px !important;
+  margin-bottom: 0px!important;
+}

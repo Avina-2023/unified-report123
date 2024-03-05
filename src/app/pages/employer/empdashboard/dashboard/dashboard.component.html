@@ -1,25 +1,5 @@
 <div class="container-fluid p-0" style="overflow:hidden;">
     <div class="top-bg ">
-        <!-- <div class="row mb-3">
-            <div class="col-md-6">
-                <div class="top-left">
-                    <div class="welcome-name">
-                        <div class="text-white welcome-text mb-0">Welcome, </div>
-                        <div><span class="text-white username-text"><b> &nbsp;{{username}}!</b></span></div>
-                    </div>
-                    <button type="submit" class="update-info profilebtn" *ngIf='roleCode === "EMP"'
-                        (click)="profile()">Update Profile</button>
-                    <div *ngIf='roleCode != "EMP"' style="padding:25px 0px;"></div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="top-right d-flex" *ngIf='roleCode === "EMP"'>
-                    <div class="text-white profile-text mb-0">Profile Completion</div>
-                    <div role="progressbar" aria-valuenow="{{profileCompletion}}" aria-valuemin="0" aria-valuemax="100"
-                        style="--value:{{profileCompletion}}"></div>
-                </div>
-            </div>
-        </div> -->
         <div class="main">
             <div class="welcome-update">
                 <div class="welcome-name">
@@ -32,52 +12,88 @@
                     <div *ngIf='roleCode != "EMP"'></div>
                 </div>
             </div>
-            <div class="percent-side">
+            <div class="percent-side" *ngIf='roleCode === "EMP"'>
                 <div class="percent-side-bg">
-                  <circle-progress
-                    [percent]="profileCompletion"
-                    [radius]="30"
-                    [showImage]="false"
-                    [showSubtitle]="false"
-                    [titleColor]="'#000000'"
-                    [outerStrokeWidth]="7"
-                    [innerStrokeWidth]="0"
-                    [outerStrokeColor]="'#FFB74D'"
-                    [animation]="true"
-                    [animationDuration]="300">
-                  </circle-progress>
+                    <circle-progress [percent]="profileCompletion" [radius]="30" [showImage]="false" [showSubtitle]="false"
+                        [titleColor]="'#000000'" [outerStrokeWidth]="7" [innerStrokeWidth]="0"
+                        [outerStrokeColor]="'#FFB74D'" [animation]="true" [animationDuration]="300">
+                    </circle-progress>
                 </div>
                 <div class="prof-comp">
                     <span class="prof-comp1">Profile Completion</span>
                 </div>
-            </div> 
+            </div>
+        </div>
+    </div>
+    
+    <div *ngIf='roleCode === "EMP"'>
+        <div class="dashboard">
+            My Dashboard
+        </div>
+        <div class="main-card">
+            <mat-card class="dash-card dash-card-1">
+                <div class="count">
+                    <div class="num">{{ dashBoardDetails[0]?.cardDetails.jobsPostedCount }}</div>
+                    <div class="title">Total No. of Jobs Posted</div>
+                </div>
+                <div class="imic">
+                    <img src="../../../../assets/images/job-post.png">
+                </div>
+            </mat-card>
+            <mat-card class="dash-card dash-card-2">
+                <div class="count">
+                    <div class="num">{{ dashBoardDetails[0]?.cardDetails.studentsAppliedCount }}</div>
+                    <div class="title">Total No. of Students Applied</div>
+                </div>
+                <div class="imic">
+                    <img src="../../../../assets/images/stu-applied.png">
+                </div>
+            </mat-card>
+            <mat-card class="dash-card dash-card-3">
+                <div class="count">
+                    <div class="num">{{ dashBoardDetails[0]?.cardDetails.studentsShortlistedCount }}</div>
+                    <div class="title">Total No. of Students Shortlisted</div>
+                </div>
+                <div class="imic">
+                    <img src="../../../../assets/images/stu-shortlist.png">
+                </div>
+            </mat-card>
+            <mat-card class="dash-card dash-card-4">
+                <div class="count">
+                    <div class="num">{{ dashBoardDetails[0]?.cardDetails.ProfilesViewedCount }}</div>
+                    <div class="title">Total No. of Profiles Viewed</div>
+                </div>
+                <div class="imic">
+                    <img src="../../../../assets/images/profile-viewed.png">
+                </div>
+            </mat-card>
         </div>
     </div>
 
-    <!-- <app-details-card> 
-    </app-details-card> -->
+    <div class="cand-prof-dash" *ngIf='roleCode === "EMP"'>Candidate Profile Dashboard</div>
+    <div class="sadm-dash" *ngIf='roleCode === "SADM"'>Dashboard</div>
 
-    <div class="cand-prof-dash">Candidate Profile Dashboard</div>
-    <div class="row candidate-count">
+    <div class="row candidate-count" *ngIf='roleCode === "EMP"'>
         <div class="col-md-4">
             <div class="card">
                 <div class="card-content">
                     <div class="card-body">
                         <div class="media d-flex">
                             <div class="media-body text-left">
-                                <span class="card-head">Total Number Of Students</span>
+                                <span class="card-head">Total Number of Students</span>
                                 <div class="card-number">{{ dashBoardDetails[0]?.cardDetails.totalCandidate }}</div>
-                            </div> 
+                            </div>
                             <div class="align-self-center">
                                 <img class="font-large-2 float-right ic-img"
-                                    src="../../../assets/images/emp-dashboard-icons/small-ic-1.png"> 
-                            </div> 
+                                    src="../../../assets/images/emp-dashboard-icons/small-ic-1.png">
+                            </div>
                         </div>
                         <div class="media d-flex">
                             <div class="card-inside-percentage-box">
-                                <span class="icon-arrow-round-up"></span>
-                                <span> 
-                                   {{ dashBoardDetails[0]?.cardDetails.totalCandidateIncrease }} %
+                                <!-- <span class="icon-arrow-round-up"></span> -->
+                                <span class="icon-up__arrow"></span>
+                                <span>
+                                    {{ dashBoardDetails[0]?.cardDetails.totalCandidateIncrease }} %
                                 </span>
                             </div>
                             <span class="ml-2 card-last-text">Since last month</span>
@@ -86,91 +102,34 @@
                 </div>
             </div>
         </div>
-        <!-- <div class="col-md-3">
-            <div class="card">
-                <div class="card-content">
-                    <div class="card-body">
-                        <div class="media d-flex">
-                            <div class="media-body text-left">
-                                <span class="card-head"> Basic Profiled Candidates</span>
-                                <div class="card-number">{{ dashBoardDetails[0]?.cardDetails.basicCandidate }}</div>
-                            </div>
-                            <div class="align-self-center">
-                                <img class="font-large-2 float-right"
-                                    src="../../../assets/images/emp-dashboard-icons/small-ic-2.png">
-                            </div>
-                        </div>
-                        <div class="media d-flex">
-                            <div class="card-inside-percentage-box">
-                                <span class="icon-arrow-round-up"></span>
-                                <span>
-                                    {{
-                                    dashBoardDetails[0]?.cardDetails.basicCandidateIncrease }}%
-                                </span>
-                            </div>
-                            <span class="ml-2 card-last-text">Since last month</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> -->
-        <!-- <div class="col-md-3">
-            <div class="card">
-                <div class="card-content">
-                    <div class="card-body">
-                        <div class="media d-flex">
-                            <div class="media-body text-left">
-                                <span class="card-head">Detailed Profile Candidates</span>
-                                <div class="card-number">{{ dashBoardDetails[0]?.cardDetails.detailedCandidate }}
-                                </div>
-                            </div>
-                            <div class="align-self-center">
-                                <img class="font-large-2 float-right"
-                                    src="../../../assets/images/emp-dashboard-icons/small-ic-4.png">
-                            </div>
-                        </div>
-                        <div class="media d-flex">
-                            <div class="card-inside-percentage-box">
-                                <span class="icon-arrow-round-up"></span>
-                                <span>
-                                   {{
-                                    dashBoardDetails[0]?.cardDetails.basicCandidateIncrease }}%
-                                </span>
-                            </div>
-                            <span class="ml-2 card-last-text">Since last month</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> -->
-       
         <div class="col-md-4">
             <div class="card">
                 <div class="card-content">
                     <div class="card-body">
                         <div class="media d-flex">
                             <div class="media-body text-left">
-                                <span class="card-head">Total Number Of Students Assessed</span>
+                                <span class="card-head">Total Number of Students Assessed</span>
                                 <div class="card-number">{{ dashBoardDetails[0]?.cardDetails.assessedCandidates }}
-                                </div> 
-                            </div> 
+                                </div>
+                            </div>
                             <div class="align-self-center">
                                 <img class="font-large-2 float-right ic-img"
                                     src="../../../../../assets/images/Dash-Asses_img.png">
-                            </div> 
+                            </div>
                         </div>
                         <div class="media d-flex">
                             <div class="card-inside-percentage-box">
-                                <span class="icon-arrow-round-up"></span>
+                                <!-- <span class="icon-arrow-round-up"></span> -->
+                                <span class="icon-up__arrow"></span>
                                 <span>
                                     {{
                                     dashBoardDetails[0]?.cardDetails.assessedCandidatesIncrease }}%
                                 </span>
-                            </div> 
-                            <span class="ml-2 card-last-text">Since last month</span> 
-                        </div> 
-                    </div> 
-                </div> 
+                            </div>
+                            <span class="ml-2 card-last-text">Since last month</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="col-md-4">
@@ -179,7 +138,7 @@
                     <div class="card-body">
                         <div class="media d-flex">
                             <div class="media-body text-left">
-                                <span class="card-head">Total Number Of Students Trained</span>
+                                <span class="card-head">Total Number of Students Trained</span>
                                 <div class="card-number">{{ dashBoardDetails[0]?.cardDetails.trainedCandidate }}
                                 </div>
                             </div>
@@ -190,11 +149,121 @@
                         </div>
                         <div class="media d-flex">
                             <div class="card-inside-percentage-box">
-                                <span class="icon-arrow-round-up"></span>
+                                <!-- <span class="icon-arrow-round-up"></span> -->
+                                <span class="icon-up__arrow"></span>
                                 <span>
-                                   {{
+                                    {{
                                     dashBoardDetails[0]?.cardDetails.trainedCandidateIncrease }}%
                                 </span>
+                            </div>
+                            <span class="ml-2 card-last-text">Since last month</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row candidate-count" *ngIf='roleCode === "SADM"'>
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-content">
+                    <div class="card-body">
+                        <div class="media d-flex">
+                            <div class="media-body text-left">
+                                <span class="card-head"> Total Candidates</span>
+                                <div class="card-number">{{ dashBoardDetails[0]?.cardDetails.totalCandidate }}</div>
+                            </div>
+                            <div class="align-self-center">
+                                <img class="font-large-2 float-right"
+                                    src="../../../assets/images/emp-dashboard-icons/small-ic-1.png">
+                            </div>
+                        </div>
+                        <div class="media d-flex">
+                            <div class="card-inside-percentage-box">
+                                <!-- <span class="icon-arrow-round-up"></span> -->
+                                <span class="icon-up__arrow"></span>
+                                <span>{{dashBoardDetails[0]?.cardDetails.totalCandidateIncrease }}%</span>
+                            </div>
+                            <span class="ml-2 card-last-text">Since last month</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-content">
+                    <div class="card-body">
+                        <div class="media d-flex">
+                            <div class="media-body text-left">
+                                <span class="card-head">Basic Profiled Candidates</span>
+                                <div class="card-number">{{ dashBoardDetails[0]?.cardDetails.basicCandidate }}
+                                </div>
+                            </div>
+                            <div class="align-self-center">
+                                <img class="font-large-2 float-right"
+                                    src="../../../assets/images/emp-dashboard-icons/small-ic-2.png">
+                            </div>
+                        </div>
+                        <div class="media d-flex">
+                            <div class="card-inside-percentage-box">
+                                <!-- <span class="icon-arrow-round-up"></span> -->
+                                <span class="icon-up__arrow"></span>
+                                <span> {{dashBoardDetails[0]?.cardDetails.basicCandidateIncrease }}% </span>
+                            </div>
+                            <span class="ml-2 card-last-text">Since last month</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-content">
+                    <div class="card-body">
+                        <div class="media d-flex">
+                            <div class="media-body text-left">
+                                <span class="card-head"> Detailed Profiled Candidates</span>
+                                <div class="card-number">{{ dashBoardDetails[0]?.cardDetails.detailedCandidate }}</div>
+                            </div>
+                            <div class="align-self-center">
+                                <img class="font-large-2 float-right"
+                                    src="../../../assets/images/emp-dashboard-icons/small-ic-4.png">
+                            </div>
+                        </div>
+                        <div class="media d-flex">
+                            <div class="card-inside-percentage-box">
+                                <!-- <span class="icon-arrow-round-up"></span> -->
+                                <span class="icon-up__arrow"></span>
+                                <span> {{ dashBoardDetails[0]?.cardDetails.detailedCandidateIncrease }}% </span>
+                            </div>
+                            <span class="ml-2 card-last-text">Since last month</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-content">
+                    <div class="card-body">
+                        <div class="media d-flex">
+                            <div class="media-body text-left">
+                                <span class="card-head">Assessed Candidates</span>
+                                <div class="card-number">{{ dashBoardDetails[0]?.cardDetails.assessedCandidates }}
+                                </div>
+                            </div>
+                            <div class="align-self-center">
+                                <img class="font-large-2 float-right"
+                                    src="../../../assets/images/emp-dashboard-icons/small-ic-3.png">
+                            </div>
+                        </div>
+                        <div class="media d-flex">
+                            <div class="card-inside-percentage-box">
+                                <!-- <span class="icon-arrow-round-up"></span> -->
+                                <span class="icon-up__arrow"></span>
+                                <span> {{ dashBoardDetails[0]?.cardDetails.assessedCandidatesIncrease }}% </span>
                             </div>
                             <span class="ml-2 card-last-text">Since last month</span>
                         </div>
@@ -210,7 +279,7 @@
             <app-demography-chart [item]="demography"></app-demography-chart>
         </div>
         <div class="col-xs-2 card_two">
-            <div class="row above_card">
+            <!-- <div class="row above_card">
                 <div class="chart-title mb-3">Profile by Year of Pass Out</div>
                 <div class="flex">
                     <div class="chart1">
@@ -241,7 +310,51 @@
                         </table>
                     </div>
                 </div>
-            </div>
+            </div> -->
+            <div class="row above_card">
+                <div class="chart-title mb-3">Profile by Year of Pass Out</div>
+                <div class="flex">
+                  <div class="chart1">
+                    <canvas baseChart 
+                            [data]="doughnutChartData" 
+                            [options]="options" 
+                            [colors]="doughnutChartColors"
+                            [labels]="doughnutChartLabels" 
+                            [chartType]="doughnutChartType">
+                    </canvas>
+                  </div>
+                  <div class="rightchart">
+                    <table>
+                      <tbody>
+                        <tr class="flex" *ngFor="let elem of dashBoardDetails[0]?.yearDetails; index as i">
+                          <td> <label [ngClass]="'circle circle'+i"></label></td>
+                          <td>
+                            <div *ngIf="i+1!=4" class="yeard-flex">{{elem.year }}</div>
+                            <div *ngIf="i+1==4" class="yeard-flex">{{ elem.year }}</div>
+                          </td>
+                          <td>
+                            <div class="chart1total">
+                              <div class="yeard-flex2">{{ elem.total }}</div>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr class="flex">
+                            <td><label class="circle circle4"></label></td> 
+                            <td>
+                                <div class="yeard-flex">Total</div>
+                            </td>
+                            <td>
+                              <div class="chart1total">
+                                <div class="yeard-flex2">{{ totalSum }}</div>
+                              </div>
+                            </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              
             <div class="row below_card">
                 <div class="chart-title">Profile by Gender</div>
                 <div class="flex">
@@ -277,7 +390,6 @@
         </div>
     </div>
 
-
     <div class="row prof_grad">
         <div class="col-xs-3 card_one">
             <div class="chart-title spacing">Profile by Graduation Level</div>
@@ -289,7 +401,4 @@
         </div>
     </div>
 
-    <!-- <app-candidate-details-card>
-        
-    </app-candidate-details-card> -->
 </div>

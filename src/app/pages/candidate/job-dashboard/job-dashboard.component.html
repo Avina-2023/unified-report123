@@ -269,7 +269,7 @@
 
               </div>
               <div class="date">
-                <div><span class="icon-Icon-ionic-ios-calendar"></span></div>
+                <div><span class="icon-Icon-ionic-ios-calendar-1"></span></div>
                 <div>Posted on {{slider.createdOn | date : 'd MMM'}}</div>
               </div>
             </mat-card>
@@ -374,14 +374,17 @@
     </div> -->
     <div class="candidatebg">
       <div class="userprofile">
-        <img
+        <!-- <img
           class="avatar"
           [src]="
             profileImage
               ? profileImage
               : '../../../../assets/images/candidate-userprofile.png'
           "
-        />
+        /> -->
+
+        <div class="avatar" [style.background]="'url('+(profileImage ? profileImage : 'assets/images/candidate-userprofile.png')+')'"></div>
+
         <div class="bg-white">
           <div class="profilename">
             {{ username }}

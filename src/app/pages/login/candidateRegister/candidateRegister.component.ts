@@ -29,9 +29,11 @@ export class candidateRegister implements OnInit {
   // skillProfileUrl = "/login?from=freshGrad";
   skillProfileUrl = "https://myaccount.lntedutech.com/login/";
   dialogRef: any;
+  currentYear: number;
   constructor(public fb: FormBuilder,private dialog: MatDialog, private glovbal_validators: GlobalValidatorService, public toastr: ToastrService, private ApiService: ApiService,public appConfig: AppConfigService, private router:Router   ) { }
 
   ngOnInit(): void {
+    this.currentYear = new Date().getFullYear();
     this.formInitialize()
   }
 

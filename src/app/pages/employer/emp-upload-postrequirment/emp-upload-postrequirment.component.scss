@@ -1,4 +1,4 @@
-.top-bg {
+/*.top-bg {
   background-color: #1B4E9B;
   width: 100%;
   height: 275px;
@@ -162,5 +162,279 @@
     top: -1px !important;
    }
   }
+}*/
+
+
+.clear_btn {
+  border: 1px solid #1B4E9B;
+  color: #1B4E9B;
+  padding: 8px 20px;
+  color: #1B4E9B;
+  border-radius: 5px;
+  cursor: pointer;
 }
+
+.submit_btn {
+  margin: 0 auto;
+  position: relative;
+  justify-content: space-between;
+  width: fit-content;
+
+  div {
+    margin: 0 10px;
+  }
+}
+
+.save_btn {
+  background: #1B4E9B;
+  padding: 6px 20px !important;
+  border: 1px solid #1B4E9B;
+}
+
+.close-icon {
+  display: inline-block;
+  width: 10px;
+  color: red;
+  font-family: cursive;
+  font-weight: 700;
+  transform: rotate(0deg);
+  padding-left: 10px;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.post_title {
+  padding: 20px;
+  font-size: 18px;
+  color: #000000;
+  font-weight: 800;
+}
+
+.txt_center {
+  text-align: center;
+
+  p {
+    margin: 20px 0px;
+  }
+}
+
+button.go_to_viewjob {
+  color: #fff;
+  padding: 10px 20px;
+  background: #1B4E9B;
+  border: 1px solid #1B4E9B;
+  font-size: 16px;
+}
+
+.form_card {
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  box-shadow: 1px 1px 12px #0000001F;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 0px 20px;
+}
+
+.job_title {
+  color: #262626;
+  font-weight: bold;
+  font-size: 1
+}
+
+.matGroup {
+  padding-top: 20px;
+}
+
+.intern,
+.range {
+  margin-left: 20px;
+}
+
+.pd-top-20 {
+  padding-top: 20px;
+}
+
+.text-danger {
+  font-size: 13px;
+  padding-top: 5px;
+}
+
+.flex_div {
+  display: flex;
+}
+
+.flx_center {
+  align-items: center;
+}
+
+.flx_evenly {
+  justify-content: space-evenly;
+}
+
+input::placeholder {
+  color: #848484;
+  /* Change to your desired color */
+  //font-weight: 300;
+  font-size: 14px;
+}
+
+input,
+
+select {
+  // height: 32px;
+  font-size: 14px !important;
+}
+
+.width-100 {
+  width: 100%;
+}
+
+.width-50 {
+  width: 50%;
+}
+
+.width-30 {
+  width: 30%;
+}
+
+.mg-l-10 {
+  margin-left: 10px;
+}
+
+.mg-r-10 {
+  margin-right: 10px;
+}
+
+.mandatory_symbl {
+  color: #b10000;
+}
+
+.salary-range {
+  display: flex;
+  align-items: baseline;
+  width: 100%;
+}
+
+.keySkills {
+  width: -webkit-fill-available !important;
+}
+
+::ng-deep .overflow_scroll nz-select-top-control {
+  height: 32px !important;
+  overflow-y: scroll !important;
+}
+
+nz-select {
+  width: 100%;
+}
+
+::ng-deep .form-group .mat-form-field-flex {
+  border: 1px solid #d5d5d5 !important;
+  padding: 0px 10px 6px;
+  border-radius: 5px;
+}
+
+::ng-deep .form-group .mat-form-field.mat-focused .mat-form-field-label {
+  padding-top: 5px;
+}
+
+::ng-deep .form-group .mat-form-field-appearance-legacy .mat-form-field-underline {
+  display: none !important;
+}
+
+::ng-deep .form-group .mat-form-field-appearance-legacy .mat-form-field-suffix .mat-datepicker-toggle-default-icon {
+  width: auto !important;
+}
+
+.width-20 {
+  width: 20%;
+}
+
+.width-40 {
+  width: 40%;
+}
+
+
+
+
+/* Style for the fieldset */
+.education-fieldset {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px 20px 20px;
+  margin-bottom: 20px;
+}
+
+/* Style for the legend */
+.education-fieldset legend {
+  font-size: 15px;
+  color: #212529;
+  padding: 2px 5px;
+  border-radius: 5px;
+  width: fit-content;
+}
+
+.add_more_text {
+  color: #1B4E9A;
+  text-decoration: underline;
+  font-size: 14px;
+  cursor: pointer;
+  width: fit-content;
+  float: right;
+}
+
+// ::ng-deep .ng-invalid.ng-touched .ant-select-selector {
+//   border: 1px solid red!important;
+// }
+
+// ::ng-deep .ng-pristine.ng-invalid.ng-touched .ant-select-selector {
+//   border: 1px solid red!important;
+// }
+
+nz-select.ng-touched.ng-invalid {
+  border: 1px solid red;
+}
+::ng-deep mat-form-field.ng-touched.ng-invalid .mat-form-field-flex{
+  border: 1px solid red!important;
+}
+
+
+::ng-deep .ng-touched.ng-valid .ant-select-selector {
+  border: 1px solid #ced4da !important;
+}
+
+input.ng-touched.ng-invalid {
+  border: 1px solid red;
+}
+
+input::placeholder {
+  color: #bfbfc3!important;
+}
+
+.lastDatetoApply {
+  border: none !important;
+}
+
+::ng-deep .angular-editor-textarea ul li {
+  list-style-type: disc!important;
+}
+
+::ng-deep .angular-editor-textarea{
+padding: 5px 20px!important;
+}
+
+.form-group{
+::ng-deep .mat-form-field.mat-form-field-invalid .mat-form-field-label {
+  color: #9da3a8!important;
+}
+}
+
+
+::ng-deep .ng-invalid .ng-touched .angular-editor-textarea {
+  border: 1px solid red !important;
+}
+
+::ng-deep .ng-touched.ng-valid .angular-editor-textarea {
+  border: 1px solid #ced4da !important;
+}
+
 

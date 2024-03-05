@@ -14,34 +14,30 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./more-options.component.scss']
 })
 export class MoreOptionsComponent implements ICellRendererAngularComp {
-  
-  REQUESTS = [
-    {sno: '01', employerName: 'HR Name_1', designation: 'HR' , email: 'johnsmith@xyz.com', mbNo:' +00 9871237645'},
-    {sno: '01', employerName: 'HR Name_1', designation: 'HR' , email: 'johnsmith@xyz.com', mbNo:' +00 9871237645'},
-    
-  ];
-  dataSource = new MatTableDataSource(this.REQUESTS);
-  columnsToDisplay = ['sno', 'employerName', 'designation', 'email', 'mbNo', ];
-  // @ContentChild(MatNoDataRow) noDataRow: MatNoDataRow;
-  // displayedColumns: string[] = [
-  //   'sno',
-  //   'img',
-  //   'employerName',
-  //   'industryType',
-  //   'spocName',
-  //   'spocEmail',
-  // ];
-  // dataSource = new MatTableDataSource<any>([]);
-  // tableEmpty: Boolean = false;
-  // emptyData = new MatTableDataSource([{ empty: 'row' }]);
-  // toastr: any;
-  // ApiService: any;
+  hrContactDetails: any[] = []; 
+  displayedColumns: string[] = ['hrName', 'hrdesignation', 'hrEmail', 'hrMobilenumber'];
+  displayedColumnLabels: string[] = ['Name', 'Designation', 'Email', 'Mobile Number'];
+  dataSource: MatTableDataSource<any>;
+  headerColumns: string[] = ['serialNumber', ...this.displayedColumns];
+  rowColumns: string[] = ['serialNumber', ...this.displayedColumns];
   data:any;
   status: string;
   getAGgrid: any;
   partnerListAgData: any;
   params:any;
   gridApi: any;
+  empProfile: any[];
+  getAllStates: any;
+  Details: any;
+  form_domicile_state: any;
+  form_present_state: any;
+  updatedCitySubscription: any;
+  allPresentCityList: any;
+  form_present_city: any;
+  stateid: any;
+  cityId: any;
+  countryId: any;
+  // dataSource: MatTableDataSource<unknown>;
   constructor(
     private toastr: ToastrService,
     private dialog: MatDialog,
@@ -50,19 +46,21 @@ export class MoreOptionsComponent implements ICellRendererAngularComp {
   ) { }
   @ViewChild('matDialog', { static: false }) matDialog: TemplateRef<any>;
   MatDialog(){
-  
     const dialogRef = this.dialog.open(this.matDialog, {
-      width: '2200px',
+      maxWidth: '2000px',
+      // width: '2200px',
+      width: '1300px',
       height: '545px',
       panelClass: 'matDialog',
       autoFocus: false,
       closeOnNavigation: true,
       disableClose: true,
     });
+    this.empDetails()
   }
   instructionClose() {
     this.dialog.closeAll();
- }
+  }
   refresh(params: ICellRendererParams): boolean {
     throw new Error('Method not implemented.');
   }
@@ -73,11 +71,10 @@ export class MoreOptionsComponent implements ICellRendererAngularComp {
   afterGuiAttached?(params?: IAfterGuiAttachedParams): void {
     throw new Error('Method not implemented.');
   }
-
   ngOnInit(): void {
- 
+    this.empDetails()
   }
-
+  
   updateStatus(isActive, isApproved, email, userId, firstName) {
     this.ApiService.updatePartnerStatus({
       isApproved: this.params.data.isApproved,
@@ -91,23 +88,91 @@ export class MoreOptionsComponent implements ICellRendererAngularComp {
         } else {
           this.ApiService.partnersubject.next(true)
           this.toastr.success('Status updated Successfully');
-          
         }
-      
       },
       (err) => {
         this.toastr.warning('Connection failed, Please try again.');
       }
-      
     );
-   
-    
   }
-  
+
   updatePartner(email) {
     this.appconfig.routeNavigationWithParam(
       APP_CONSTANTS.ENDPOINTS.PARTNER.ADDPARTNER,
       { email: this.ApiService.encrypt(this.params.data.email) }
     );
   }
+
+  empDetails() {
+    this.empProfile = [];
+    var apiData = {
+      "filterModel": {
+        "email": {
+          "filterType": "set",
+          "values": [this.params.data.email]
+        }
+      }
+    }
+    this.ApiService.empProfileDetails(apiData).subscribe((result: any) => {
+      if (result.success) {
+        this.empProfile = result.data[0]
+        const hrContactDetailsFromApi = result.data[0].detailedInformation?.hrContactDetails;
+        this.dataSource = new MatTableDataSource(hrContactDetailsFromApi);
+        this.stateid = result.data[0].detailedInformation?.state;
+        this.cityId = result.data[0].detailedInformation?.district;
+        this.countryId = result.data[0].detailedInformation?.country;
+      }
+    })
+    this.getStateAPI();
+    this.getCityName();
+  }
+
+  getHeaderClass(index: number): string {
+    switch(index) {
+      case 0:
+        return 'desig-column-1';
+      case 1:
+        return 'desig-column-2';
+      case 2:
+        return 'email-column'; 
+      default:
+        return 'desig-column';
+    }
+}
+  getStateAPI() {
+    const countryData = {
+      country_id: this.countryId,
+    };
+    this.ApiService.getallStates().subscribe(
+      (countryData: any) => {
+        this.getAllStates = countryData[0];
+        this.getAllStates.forEach((element) => {
+          if (element.id == this.stateid) {
+            this.form_present_state = element.name;
+        }
+        });
+      },
+      (err) => { }
+    );
+  }
+
+  getCityName() {
+    const ApiData = {
+        state_id: this.stateid,
+    };
+    this.updatedCitySubscription = this.ApiService.districtList(ApiData).subscribe(
+        (datas: any) => {
+            this.allPresentCityList = datas.data;
+            this.allPresentCityList?.forEach((element) => {
+              if (element.id == this.cityId) {
+                  this.form_present_city = element.name;
+              }
+          });
+        },
+        (err) => {
+            console.log(err);
+        }
+    );
+}
+
 }

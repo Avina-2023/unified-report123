@@ -3,6 +3,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatMenuTrigger } from '@angular/material/menu';
 import { NavigationEnd, Router } from '@angular/router';
+import { log } from 'console';
 import { LoadingService } from 'src/app/services/loading.service';
 import { AppConfigService } from 'src/app/utils/app-config.service';
 import { APP_CONSTANTS } from 'src/app/utils/app-constants.service';
@@ -15,6 +16,7 @@ import { APP_CONSTANTS } from 'src/app/utils/app-constants.service';
 export class SidebarComponent implements OnInit {
   @ViewChild('menuTrigger') menuTrigger: MatMenuTrigger;
   isExpanded: boolean;
+  isnotShowing: boolean = true;
   name: string;
   text: string;
   roles: any;
@@ -23,6 +25,8 @@ export class SidebarComponent implements OnInit {
   menuIconToggle: boolean;
   menuIconToggle1: boolean;
   driveIconToggle: boolean;
+  jobIconToggle: boolean;
+  reportIconToggle: boolean;
   check = 'empdashboard';
   constructor(
     private appconfig: AppConfigService,
@@ -55,7 +59,6 @@ export class SidebarComponent implements OnInit {
         this.driveIconToggle = true;
         this.check = 'managedrive';
         break;
-
       case '/auth/partner/addpartner':
         this.menuIconToggle = true;
         this.check = 'addpartner';
@@ -83,6 +86,10 @@ export class SidebarComponent implements OnInit {
         this.menuIconToggle = true;
         this.check = 'Viewcandidatelist';
         break;
+      case '/auth/drive/drivesettings':
+        this.menuIconToggle = true;
+        this.check = 'driveSettings';
+        break;
       case '/auth/drive/viewCandidateProfilebyEmployer':
         this.menuIconToggle = true;
         this.check = 'viewProfilebyEmployer';
@@ -94,9 +101,57 @@ export class SidebarComponent implements OnInit {
       case '/auth/dashboard/candidatesearch':
         this.check = 'empcandidatesearch';
         break;
+      case '/auth/overall-reports':
+        this.check = 'overallReports';
+        break;
+      case '/auth/partner/studenttracker':
+        this.check = 'studentTracker';
+        break;
+      case '/auth/partner/partnertracker':
+        this.check = 'partnerTracker';
+        break;
+      case '/auth/partner/addopenjobs':
+        this.check = 'addOpenJobs';
+        break;
+      case '/auth/partner/viewopenjobs':
+        this.check = 'viewOpenJobs';
+        break;
+     
       default:
         this.check = 'empdashboard';
         break;
+    }
+  }
+
+  // mouseenter() {
+  //   if (!this.isExpanded) {
+  //     this.isnotShowing = false;
+  //   }
+  // }
+
+  // mouseleave() {
+  //   if (!this.isExpanded) {
+  //     this.isnotShowing = true;
+  //   }
+  // }
+
+  mouseenter() {
+    if (!this.isExpanded) {
+      this.isnotShowing = false;
+      // console.log('mouse entered');
+    }
+    if(this.isExpanded){
+      this.isnotShowing = false;
+      // console.log('mouse entered');
+    }
+  }
+  mouseleave() {
+    if (!this.isExpanded) {
+      this.isnotShowing = true;
+    }
+    if(this.isExpanded){
+      this.isnotShowing = true;
+      // console.log('mouse left');
     }
   }
 
@@ -110,17 +165,33 @@ export class SidebarComponent implements OnInit {
       this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.EMPDASHBOARD.HOME);
     } else if (value == 'partnerlist') {
       this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.PARTNER.HOME);
+    } else if (value == 'overallreport') { 
+      this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.OVERALLREPORTS.HOME);
     }
   }
   hiring(value) {
     this.check = value;
     this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.PARTNER.ADDPARTNER);
   }
+  addjobs(value) {
+    this.check = value;
+    this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.PARTNER.ADDOPENJOBS);
+  }
+  viewjobs(value) {
+    this.check = value;
+    this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.PARTNER.VIEWOPENJOBS);
+  }
+  studentReportTracker(value){
+    this.check = value;
+    this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.PARTNER.STUDENTTRACKER);
+  }
+  partnerReportTracker(value){
+    this.check = value;
+    this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.PARTNER.PARTNERTRACKER);
+  }
   drive(value) {
     this.check = value;
-    this.appconfig.routeNavigation(
-      APP_CONSTANTS.ENDPOINTS.VIEWDRIVE.MANAGEDRIVE
-    );
+    this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.VIEWDRIVE.MANAGEDRIVE);
   }
   manage(value) {
     this.check = value;
@@ -128,9 +199,7 @@ export class SidebarComponent implements OnInit {
   }
   partners(value) {
     this.check = value;
-    this.appconfig.routeNavigation(
-      APP_CONSTANTS.ENDPOINTS.PARTNER.PARTNERENQUIRY
-    );
+    this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.PARTNER.PARTNERENQUIRY);
   }
   logout() {
     localStorage.clear();
@@ -139,9 +208,7 @@ export class SidebarComponent implements OnInit {
   }
   uploadpostrequirement(value) {
     this.check = value;
-    this.appconfig.routeNavigation(
-      APP_CONSTANTS.ENDPOINTS.PARTNER.UPLOADREQUIRMENT
-    );
+    this.appconfig.routeNavigation( APP_CONSTANTS.ENDPOINTS.PARTNER.UPLOADREQUIRMENT);
     console.log(this.check);
   }
   work(value) {
@@ -153,16 +220,12 @@ export class SidebarComponent implements OnInit {
 
   profile(value) {
     this.check = value;
-    this.appconfig.routeNavigation(
-      APP_CONSTANTS.ENDPOINTS.EMPDASHBOARD.PROFILE
-    );
+    this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.EMPDASHBOARD.PROFILE);
   }
 
-  candidatesearch(value) {
+  candidatesearch(value) { 
     this.check = value;
-    this.appconfig.routeNavigation(
-      APP_CONSTANTS.ENDPOINTS.EMPDASHBOARD.CANDIDATESEARCH
-    );
+    this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.EMPDASHBOARD.CANDIDATESEARCH);
   }
 
   sideBar() {
@@ -177,5 +240,11 @@ export class SidebarComponent implements OnInit {
   }
   changedriveIcon() {
     this.driveIconToggle = !this.driveIconToggle;
+  }
+  changeJobIcon() {
+    this.jobIconToggle = !this.jobIconToggle;
+  }
+  changeReportIcon(){
+    this.reportIconToggle = !this.reportIconToggle;
   }
 }

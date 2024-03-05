@@ -13,7 +13,7 @@ import { CertificateViewComponent } from './pages/certificate-view/certificate-v
 import { ExternalLinkComponent } from './pages/external-link/external-link.component';
 const routes: Routes = [
   {
-    path: `${APP_CONSTANTS.ROUTES.LANDINGPAGE.LANDINGPAGE}`, loadChildren: () => import('./pages/landing-screen/landing-screen.module').then(m => m.LandingScreenModule)
+    path: `${APP_CONSTANTS.ROUTES.LANDINGPAGE.LANDINGPAGE}`, loadChildren: () => import('./pages/landing-screen/landing-screen.module').then(m => m.LandingScreenModule),canActivate: [IsloggedInGuard]
   },
   {
     path: `landingold`, component: LandingPageComponent

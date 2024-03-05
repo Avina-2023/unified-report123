@@ -1,0 +1,116 @@
+.dashboard{
+  // padding: 20px 0px 20px 25px;
+  padding: 20px 0px 20px 77px;
+   font-size: 24px;
+   font-weight: 600;
+}
+.flex_div{
+  display: flex;
+  justify-content: space-between;
+  // margin: 0px 80px;
+  margin: 0px 100px 0px 50px;
+}
+.main-card{
+  display: flex;
+  flex-wrap: wrap;
+  // justify-content: center;
+  width: 70%;
+}
+.lnt-learners{
+  width: 30%;
+}
+.learners-heading{
+  color: #848484;
+  font-size: 17px;
+  margin-bottom: 15px;
+}
+.learners-card{
+  width: 300px;
+  height: 477px;
+  margin: 15px 0px 0px 0px;
+  border-radius: 10px;
+  padding: 10px;
+}
+.learners-count{
+  background-color: #4C1C0014;
+  padding: 0px 10px 5px 10px;
+  margin: 10px 0px 0px 0px;
+}
+.learners-count-details{
+  display: flex; 
+  flex-direction: row; 
+  align-items: center; 
+  justify-content: space-between; 
+  padding: 20px 0px 0px 0px;
+}
+.main-card2{
+  display: flex;
+  justify-content: space-evenly;
+  margin: 50px 0px 0px 0px;
+}
+
+.chart {
+  margin: 35px auto;
+}
+.flex_div{
+  display: flex;
+}
+.learner-content{
+  padding: 20px 10px 20px 30px;
+}
+.chart-section{
+  padding: 16px;
+  height: 477px;
+  border: 1px solid #4C1C00;
+  border-radius: 7px
+}
+.line{
+  width: 100%;
+  height: 1px;
+  background-color: #E6E6E6;
+}
+.learner-details-count{
+  display: flex; 
+  flex-direction: row; 
+  align-items: center; 
+  justify-content: space-between;
+  margin: 15px 0px 0px 0px;
+}
+.learner-detail{
+  display: flex; 
+  flex-direction: row; 
+  align-items: center;
+}
+.color-strip1{
+  width: 20px;
+  height: 6px;
+  margin: 0px 10px 0px 0px;
+  background-color: #2862FF; 
+}
+.color-strip2{
+  width: 20px;
+  height: 6px;
+  margin: 0px 10px 0px 0px;
+  background-color: #FF6A81; 
+}
+.color-strip3{
+  width: 20px;
+  height: 6px;
+  margin: 0px 10px 0px 0px;
+  background-color: #5289C9; 
+}
+.color-strip4{
+  width: 20px;
+  height: 6px;
+  margin: 0px 10px 0px 0px;
+  background-color: #EB4A8A; 
+}
+.details-name{
+  font-size: 12px;
+  color: #848484;
+}
+.details-count{
+  color: #010101;
+  font-size: 16px;
+  font-weight: 700;
+}

@@ -20,7 +20,7 @@
   <!-- for old report page -->
 
   <mat-toolbar class="header-toolbar p-3"
-    *ngIf="checkRouter === '/auth/reports/viewreport' || checkRouter === '/auth/reports/behavioural/view'|| checkRouter === '/auth/reports/behavioural/viewBajajReport'">
+    *ngIf="checkRouter === '/auth/reports/viewreport' || checkRouter === '/auth/reports/behavioural/view'|| checkRouter === '/auth/reports/behavioural/viewBajajReport' || checkRouter === '/auth/reports/behavioural/wolterkluverReport'">
     <div class="first">
       <img alt="EduTech" class="beforeloginimg"
         [src]="this.orgLogo ? this.orgLogo  : 'https://assets.lntedutech.com/SKILL_EXCHANGE.png'" />
@@ -49,7 +49,7 @@
 
   <!-- new header bar for partner and employer page  -->
   <mat-toolbar class="p-3"
-    *ngIf="checkRouter != '/auth/reports/dashboard' && checkRouter !='/auth/reports/userlist' && checkRouter !='/auth/reports/behaviouraldashboard' && checkRouter !='/auth/skillmaster/skillmasterlist' && checkRouter !='/auth/skillmaster/skillbulkupload' && checkRouter != '/auth/reports/viewreport' && checkRouter != '/auth/reports/behavioural/view' && checkRouter != '/auth/reports/behavioural/viewBajajReport' ">
+    *ngIf="checkRouter != '/auth/reports/dashboard' && checkRouter !='/auth/reports/userlist' && checkRouter !='/auth/reports/behaviouraldashboard' && checkRouter !='/auth/skillmaster/skillmasterlist' && checkRouter !='/auth/skillmaster/skillbulkupload' && checkRouter != '/auth/reports/viewreport' && checkRouter != '/auth/reports/behavioural/view' && checkRouter != '/auth/reports/behavioural/viewBajajReport' && checkRouter != '/auth/reports/behavioural/wolterkluverReport' ">
     <div>
       <img class="logo" src="https://assets.lntedutech.com/SKILL_EXCHANGE.png">
     </div>
@@ -94,14 +94,15 @@
                   <span class="dropdowntxt dropdownic">Change Password</span>
                 </label>
               </li>
-              <li class="select_option dropdownic" for="awesomeness-close" (click)="profile()"
+              <!-- functionality will work commended as per wireframe -->
+              <!-- <li class="select_option dropdownic" for="awesomeness-close" (click)="profile()"
                 *ngIf='roleCode === "EMP"'>
                 <label class="select_label dropdownic">
                   <img alt="profile" class="dropdownic" style="height: 19px;"
                     src="../../assets/images/emp-dashboard-icons/profile.svg">
                   <span class="dropdowntxt dropdownic">Profile</span>
                 </label>
-              </li>
+              </li> -->
               <li class="select_option dropdownic" for="awesomeness-close" (click)="logout()"
                 *ngIf='roleCode === "SADM" || roleCode === "OADM" || roleCode === "ADM" || roleCode === "HR" || roleCode === "ISADM" || roleCode === "IADM" || roleCode === "EMP"'>
                 <label class="select_label dropdownic">
@@ -121,7 +122,7 @@
 
   <!-- new foorter for partner and employer page  -->
   <div class="footer"
-    *ngIf="checkRouter != '/auth/reports/dashboard' && checkRouter !='/auth/reports/userlist' && checkRouter !='/auth/reports/behaviouraldashboard' && checkRouter !='/auth/skillmaster/skillmasterlist' && checkRouter !='/auth/skillmaster/skillbulkupload' && checkRouter != '/auth/reports/viewreport' && checkRouter != '/auth/reports/behavioural/view' && checkRouter != '/auth/reports/behavioural/viewBajajReport' ">
+    *ngIf="checkRouter != '/auth/reports/dashboard' && checkRouter !='/auth/reports/userlist' && checkRouter !='/auth/reports/behaviouraldashboard' && checkRouter !='/auth/skillmaster/skillmasterlist' && checkRouter !='/auth/skillmaster/skillbulkupload' && checkRouter != '/auth/reports/viewreport' && checkRouter != '/auth/reports/behavioural/view' && checkRouter != '/auth/reports/behavioural/viewBajajReport' && checkRouter != '/auth/reports/behavioural/wolterkluverReport' ">
     <app-footer></app-footer>
   </div>
 
@@ -144,14 +145,14 @@
 
     <!--new for partner and employer side bar -->
     <div
-      *ngIf="checkRouter != '/auth/reports/dashboard' && checkRouter !='/auth/reports/userlist' && checkRouter !='/auth/reports/behaviouraldashboard' && checkRouter !='/auth/skillmaster/skillmasterlist' && checkRouter !='/auth/skillmaster/skillbulkupload' && checkRouter != '/auth/reports/viewreport' && checkRouter != '/auth/reports/behavioural/view' && checkRouter != '/auth/reports/behavioural/viewBajajReport' ">
+      *ngIf="checkRouter != '/auth/reports/dashboard' && checkRouter !='/auth/reports/userlist' && checkRouter !='/auth/reports/behaviouraldashboard' && checkRouter !='/auth/skillmaster/skillmasterlist' && checkRouter !='/auth/skillmaster/skillbulkupload' && checkRouter != '/auth/reports/viewreport' && checkRouter != '/auth/reports/behavioural/view' && checkRouter != '/auth/reports/behavioural/viewBajajReport' && checkRouter != '/auth/reports/behavioural/wolterkluverReport' ">
 
       <app-sidebar></app-sidebar>
     </div>
 
     <!-- new Route -->
     <div class="heightDiv"
-      *ngIf="checkRouter != '/auth/reports/dashboard' && checkRouter !='/auth/reports/userlist' && checkRouter !='/auth/reports/behaviouraldashboard'  && checkRouter !='/auth/skillmaster/skillmasterlist' && checkRouter !='/auth/skillmaster/skillbulkupload' && checkRouter != '/auth/reports/viewreport' && checkRouter != '/auth/reports/behavioural/view' && checkRouter != '/auth/reports/behavioural/viewBajajReport' ">
+      *ngIf="checkRouter != '/auth/reports/dashboard' && checkRouter !='/auth/reports/userlist' && checkRouter !='/auth/reports/behaviouraldashboard'  && checkRouter !='/auth/skillmaster/skillmasterlist' && checkRouter !='/auth/skillmaster/skillbulkupload' && checkRouter != '/auth/reports/viewreport' && checkRouter != '/auth/reports/behavioural/view' && checkRouter != '/auth/reports/behavioural/viewBajajReport' && checkRouter != '/auth/reports/behavioural/wolterkluverReport' ">
       <router-outlet></router-outlet>
 
     </div>

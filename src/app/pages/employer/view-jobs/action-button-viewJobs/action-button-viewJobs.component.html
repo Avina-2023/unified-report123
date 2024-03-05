@@ -1,0 +1,317 @@
+<div class="icon-list">
+  <button class="accept-icon icn" [ngClass]="{'disable': params.data.approveStatus === 'approved'}"
+    (click)="openStatusDialog('approved')" matTooltip="Select"><mat-icon>done</mat-icon></button>
+  <button class="reject-icon icn" [ngClass]="{'disable': params.data.approveStatus === 'rejected'}"
+    (click)="openStatusDialog('rejected')" matTooltip="Reject"><mat-icon>clear</mat-icon></button>
+  <button class="view-icon icn" (click)="openEditJobDialog()"
+    [matTooltip]="params.data.approveStatus === 'approved' ? 'View Profile' : 'Edit Profile'">
+    <mat-icon>{{ params.data.approveStatus === 'approved' ? 'remove_red_eye' : 'mode_edit' }}</mat-icon>
+  </button>
+</div>
+
+<!-- <div class="icon-list">
+  <button class="accept-icon icn" [ngClass]="{'disable': params.data.approveStatus === 'approved'}"
+    (click)="openStatusDialog('approved')" matTooltip="Select"><mat-icon>done</mat-icon></button>
+
+  <button class="reject-icon icn" [ngClass]="{'disable': params.data.approveStatus === 'rejected'}"
+    (click)="openStatusDialog('rejected')" matTooltip="Reject"><mat-icon>clear</mat-icon></button>
+
+  <button class="view-icon icn" [disabled]="params.data.approveStatus === 'approved'"
+    [ngStyle]="{'opacity': params.data.approveStatus === 'approved' ? '0.2' : '1'}" (click)="openEditJobDialog()"
+    [matTooltip]="params.data.approveStatus === 'approved' ? null : 'Edit Profile'">
+    <mat-icon>mode_edit</mat-icon>
+  </button>
+</div> -->
+
+
+<ng-template #matDialog let-data>
+  <div class="main-wraper">
+    <div>
+      <div class="warning-imag">
+        <img class="warning_symbol" src="../../../../../assets/images/alert image filled.svg">
+      </div>
+      <div class="text">
+        <ng-container *ngIf="data.status === 'approved'; else otherText">
+          Are you sure you want to <span class="status-text">Approve</span> the Job?
+        </ng-container>
+        <ng-container *ngIf="data.status === 'rejected'; else otherText">
+          Are you sure you want to <span class="status-text">Reject</span> the Job?
+        </ng-container>
+        <ng-container *ngIf="data.status === 'In Progress'; else otherText">
+          Are you sure you want to <span class="status-text">In Progress</span> the Job?
+        </ng-container>
+      </div>
+      <div class="button-wraper-fom-pop-up">
+        <ng-container *ngIf="data.status === 'approved'; else otherButtons">
+          <button class="button1" (click)="getStatusChange(data.status)" type="button" mat-raised-button>
+            Confirm
+          </button>
+        </ng-container>
+        <ng-template #otherButtons>
+          <button class="button2" (click)="getStatusChange(data.status)" type="button" mat-raised-button>
+            Confirm
+          </button>
+        </ng-template>
+        <button class="button3" (click)="closeDialog('cancel')" type="button" mat-raised-button>
+          Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #confirmmatDialog let-data>
+  <div class="main-wraper">
+    <div class="gren-tick">
+      <img *ngIf="data.status === 'approved'" class="status-icon"
+        src="../../../../../assets/images/green_tick_image.png">
+      <img *ngIf="data.status === 'rejected'" class="status-icon" src="../../../../../assets/images/reject-img.png">
+    </div>
+    <div class="text1">
+      <ng-container *ngIf="data.status === 'approved'; else otherText">
+        <div class="text">
+          <span class="candidatename">Job</span> <span> has been approved successfully</span>
+
+        </div>
+      </ng-container>
+      <ng-template #otherText>
+        <ng-container *ngIf="data.status === 'rejected'; else otherText">
+          <span class="candidatename">Job</span> <span> has been rejected successfully</span>
+        </ng-container>
+      </ng-template>
+    </div>
+    <div class="button-wraper-fom-pop-up">
+      <button class="b4" (click)="okclose()" type="button" mat-raised-button>
+        OK
+      </button>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #viewEditJobmatDialog>
+  <div class="ext-closer"><mat-icon mat-dialog-close>close</mat-icon></div>
+  <div>
+    <div class="main-Container-popup">
+      <div class="left-side">
+
+        <div class="company-logo">
+          <img src="../../../../assets/images/jobs-available.png" />
+        </div>
+        <div class="border-line1">
+          <div class="bottom-border1"></div>
+        </div>
+
+        <div class="job-Role">{{params.data.jobRole}}</div>
+        <div class="Job-Type">{{params.data.jobType}}</div>
+        <div class="Job-Status">{{params.data.approveStatus}}</div>
+        <div class="border-line1">
+          <div class="bottom-border1"></div>
+        </div>
+
+        <div class="last-date-apply">Last Date To Apply</div>
+        <!-- <div class="last-date">{{params.data.lastDatetoApply}}</div> -->
+        <!-- <div class="last-date">{{ params.data.lastDatetoApply | date: 'MMM d, y h:mm a' }}</div> -->
+        <div class="last-date">{{ params.data.lastDatetoApply | date: 'MMM d, y' }}</div>
+
+        <div class="border-line1">
+          <div class="bottom-border1"></div>
+        </div>
+
+      </div>
+      <div class="right-side">
+
+        <div class="main-head">
+          <div><span class="heading">Job Details</span></div>
+          <div class="edit" (click)="openEditJobDialog()"><mat-icon>create</mat-icon>Edit</div>
+        </div>
+        <div class="border-line">
+          <div class="bottom-border"></div>
+        </div>
+
+        <div class="main-heading2">
+          <div class="title">Company Name</div>
+          <div class="role">{{params.data.company}}</div>
+        </div>
+        <div class="border-line">
+          <div class="bottom-border"></div>
+        </div>
+
+        <div class="main-heading2">
+          <div class="title">Job Role</div>
+          <div class="role">{{params.data.jobRole}}</div>
+        </div>
+        <div class="border-line">
+          <div class="bottom-border"></div>
+        </div>
+
+        <div class="main-heading2">
+          <div class="title">Job Title</div>
+          <div class="role">{{params.data.jobTitle}}</div>
+        </div>
+        <div class="border-line">
+          <div class="bottom-border"></div>
+        </div>
+
+        <div class="main-heading2">
+          <div class="title">Job Location</div>
+          <div class="role">{{params.data.jobLocation}}</div>
+        </div>
+        <div class="border-line">
+          <div class="bottom-border"></div>
+        </div>
+
+        <div class="main-heading2">
+          <div class="title">Job Type</div>
+          <div class="role">{{params.data.jobType}}</div>
+        </div>
+        <div class="border-line">
+          <div class="bottom-border"></div>
+        </div>
+
+        <div class="main-heading2">
+          <div class="title">Education</div>
+          <div class="role">
+            <span class="education">{{ params.data.education }}</span>
+            <ng-container *ngFor="let specialization of params.data.specialization; let last = last">
+              <span class="specialization-box" [ngClass]="{'last-box': last}">
+                <span class="specialization">{{ specialization }}</span>
+              </span>
+            </ng-container>
+          </div>
+        </div>
+        <div class="border-line">
+          <div class="bottom-border"></div>
+        </div>
+
+        <div class="main-heading2">
+          <div class="title">CTC</div>
+          <div class="role">{{params.data.ctc}}</div>
+        </div>
+        <div class="border-line">
+          <div class="bottom-border"></div>
+        </div>
+
+        <div class="main-heading2">
+          <div class="title">Year of Passing</div>
+          <div class="role">{{params.data.yearofPassout}}</div>
+        </div>
+        <div class="border-line">
+          <div class="bottom-border"></div>
+        </div>
+        <!-- <div class="main-heading2">
+                <div class="title">Key Skills</div>
+                <div class="role">{{params.data.skillSet}}</div>
+              </div> -->
+
+      <div class="main-heading2">
+        <div class="title">Key Skills</div>
+        <div class="role">
+          <ng-container *ngFor="let skill of params.data.skillSet; let last = last">
+            <span class="key-skills" [ngClass]="{'box': !last}">{{ skill }}</span>
+          </ng-container>
+        </div>
+      </div>
+        <div class="border-line">
+          <div class="bottom-border"></div>
+        </div>
+
+      <div class="main-heading2">
+        <div class="title">Last day to Apply</div>
+        <div class="role">{{ params.data.lastDatetoApply | date:'MM/dd/yyyy' }}</div>
+      </div>
+        <div class="border-line">
+          <div class="bottom-border"></div>
+        </div>
+
+        <div class="main-heading2">
+          <div class="title">Apply Link</div>
+          <div class="role">
+            <a [href]="params.data.applyLink" target="_blank">{{ params.data.applyLink }}</a>
+          </div>
+        </div>
+        <div class="border-line">
+          <div class="bottom-border"></div>
+        </div>
+
+        <div class="main-heading2">
+          <div class="title">Job Description</div>
+          <div class="role">{{params.data.about}}</div>
+        </div>
+        <div class="border-line">
+          <div class="bottom-border"></div>
+        </div>
+
+        <div class="main-heading2">
+          <div class="title">Job Requirements</div>
+
+          <!-- <div class="role">{{params.data.description}}</div> -->
+
+          <!-- <div *ngFor="let desc of params.data.description" class="role">
+              <p>{{ desc.item }}</p>
+            </div> -->
+
+          <!-- <div class="role">
+            <p *ngFor="let desc of params.data.description" style="display: inline">{{ desc.item }}</p>
+          </div> -->
+
+          <div class="role">
+            <p *ngFor="let desc of params.data.description" style="display: block">{{ desc.item }}</p>
+          </div>
+          </div>
+          <div class="border-line">
+            <div class="bottom-border"></div>
+          </div>
+
+          <div class="main-heading2">
+            <div class="title">Additional Information</div>
+            <div class="role">{{params.data.additionalInformation}}</div>
+          </div>
+          <div class="border-line">
+            <div class="bottom-border"></div>
+          </div>
+
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #editJobmatDialog>
+  <div class="ext-closer1"><mat-icon mat-dialog-close>close</mat-icon></div>
+
+  <!-- <div>
+    <div class="main-Container-popup">
+
+      <div class="left-side">
+        <div class="company-logo">
+          <img src="../../../../assets/images/jobs-available.png" />
+        </div>
+        <div class="border-line1">
+          <div class="bottom-border1"></div>
+        </div>
+        <div class="job-Role">{{params.data.jobRole}}</div>
+        <div class="Job-Type">{{params.data.jobType}}</div>
+        <div class="Job-Status">{{params.data.approveStatus}}</div>
+        <div class="border-line1">
+          <div class="bottom-border1"></div>
+        </div>
+        <div class="last-date-apply">Last Date To Apply</div>
+        <div class="last-date">{{ params.data.lastDatetoApply | date: 'MMM d, y' }}</div>
+        <div class="border-line1">
+          <div class="bottom-border1"></div>
+        </div>
+      </div>
+
+      <div class="right-side">
+
+        <app-edit-job>
+        </app-edit-job>
+
+      </div>
+
+    </div>
+  </div> -->
+
+  <app-edit-job>
+  </app-edit-job>
+
+</ng-template>

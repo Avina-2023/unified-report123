@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { IsAccessGuard } from '../guards/is-access.guard';
 import { EmpPostrequirmentsComponent } from '../pages/employer/emp-postrequirments/emp-postrequirments.component';
+import { OverallReportComponent } from '../pages/employer/overall-Report/overall-Report.component';
 // import { EmpRequirmentsComponent } from '../pages/employer/emp-requirments/emp-requirments.component';
 
 const routes: Routes = [
@@ -31,6 +32,11 @@ const routes: Routes = [
       {
         path: `${APP_CONSTANTS.ROUTES.EMPDASHBOARD.POSTREQUIRMENT}`, component: EmpPostrequirmentsComponent
       },
+
+      {
+        path: `${APP_CONSTANTS.ROUTES.OVERALLREPORTS.HOME}`, component: OverallReportComponent
+      },
+
       // {
       //   path: `${APP_CONSTANTS.ROUTES.EMPDASHBOARD.REQUIRMENT}`, component: EmpRequirmentsComponent
       // },

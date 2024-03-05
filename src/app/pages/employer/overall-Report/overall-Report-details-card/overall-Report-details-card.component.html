@@ -1,0 +1,28 @@
+<div class="overall-report-dashboard">
+
+  <div class="main-Dashboard"> 
+    <!-- <mat-card class="main-Dashboard-details"  [style.border]="`1px solid ${borderColor}`"> -->
+      <mat-card class="main-Dashboard-details" [style.border]="'1px solid ' + borderColor">
+      <div class="Registrarion-name"><span>{{ cardName }}</span></div>
+      <div class="line"></div>
+      <div class="Registrarion-count" [style.color]="registrationCountColor">
+        <span>{{ totalCount }}</span>
+      </div>
+      <div class="candidates-count" [style.background-color]="backgroundColor">
+        <div class="name-count">
+          <div class="candidate-count">{{ subCount1 }}</div>
+          <div class="candidate-certified">Certified</div>
+        </div>
+        <div class="name-count">
+          <div class="candidate-count">{{ subCount2 }}</div>  
+          <div class="candidate-certified">Assessed</div>
+        </div>
+        <div class="name-count">
+          <div class="candidate-count">{{ subCount3 }}</div>
+          <div class="candidate-certified">General</div>
+        </div>
+      </div>
+    </mat-card>  
+  </div>
+
+  </div>

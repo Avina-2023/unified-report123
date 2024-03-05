@@ -16,9 +16,23 @@
             <span>
                 <a routerLink="/auth/drive/drivesettings" style="text-decoration:none"> Settings </a></span>
         </button> -->
-        <button  (click)="viewApplication()" mat-menu-item class="menu-item">
+        <button [ngClass]="{ 'disabled-button': params?.data?.approveStatus === 'approved' || params?.data?.approveStatus === 'rejected' }" [disabled]="params?.data?.approveStatus == 'approved' || params?.data?.approveStatus == 'rejected'" (click)="approveApplication()" mat-menu-item class="menu-item">
+            <span>Open for Applications</span>
+        </button>
+        <button [ngClass]="{ 'disabled-button': params?.data?.approveStatus === 'rejected' || params?.data?.approveStatus === 'expired' }" [disabled]="params?.data?.approveStatus == 'rejected' || params?.data?.approveStatus == 'expired'" (click)="rejectApplication()" mat-menu-item class="menu-item">
+            <span>Reject</span>
+        </button>
+        <button [ngClass]="{ 'disabled-button': params?.data?.approveStatus === 'closed' || params?.data?.approveStatus === 'rejected' || params?.data?.approveStatus === 'expired' }" [disabled]="params?.data?.approveStatus == 'closed' || params?.data?.approveStatus == 'rejected' || params?.data?.approveStatus == 'expired'" (click)="closeApplication()" mat-menu-item class="menu-item">
+            <span>Close Applications</span>
+        </button>
+        <button  (click)="editJob()" mat-menu-item class="menu-item">
+            <span>Settings</span>
+        </button>
+        <button [ngClass]="{ 'disabled-button': params?.data?.approveStatus === 'rejected' }" [disabled]="params?.data?.approveStatus == 'rejected'" (click)="viewApplication()" mat-menu-item class="menu-item">
             <span>View Applications</span>
         </button>
+
+        
         <!-- <button (click)="MatDialog3()" mat-menu-item class="menu-item">
             <span>Workflow</span>
         </button> -->
@@ -26,7 +40,7 @@
 </div>
 
 <ng-template #matDialog>
-    <div class="openforapp">
+    <div class="openforapp" [formGroup]="deadlineForm">
         <div class="openforapp-header">
             <div class="open-for-app-tittle">
                 <span class="open-for-app-tittle-txt">Open for Application</span>
@@ -45,17 +59,17 @@
                 </div>
                 <div class="time-picker" time-picker>
                     <span class="hours"><select id="time" name="time" class="time" #mySelectTime
-                            (change)='onHoursSelected(mySelectTime.value)'>
+                            (change)='onHoursSelected(mySelectTime.value)' formControlName="hours">
                             <option *ngFor="let seconds of gethours" value="{{seconds|number:'2.0'}}">
                                 {{seconds|number:'2.0'}}</option>
                         </select></span>
                     <span class="min"><select id="sec" name="seconds" class="sec" #mySelectMin
-                            (change)='onMinSelected(mySelectMin.value)'>
+                            (change)='onMinSelected(mySelectMin.value)' formControlName="min">
                             <option *ngFor="let seconds of getseconds" value="{{seconds|number:'2.0'}}">
                                 {{seconds|number:'2.0'}} </option>
                         </select></span>
                     <span class="meri"><select id="meridiem" class="meridiem" #mySelectMeridiem
-                            (change)='onMeridiemSelected(mySelectMeridiem.value)'>
+                            (change)='onMeridiemSelected(mySelectMeridiem.value)' formControlName="meridiem">
                             <option value="AM">AM</option>
                             <option value="PM">PM</option>
                         </select></span>
@@ -66,64 +80,70 @@
                 <div class="date-picker">
                     <mat-form-field floatLable="never">
                         <!-- <mat-label>{{dateF|date:'dd/MM/YYYY'}}</mat-label> -->
-                        <input matInput [matDatepicker]="picker" [value]="dateF">
+                        <input readonly [min]="getCurrentDate()" matInput [matDatepicker]="picker" [value]="dateF" formControlName="date">
                         <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                         <mat-datepicker #picker></mat-datepicker>
                     </mat-form-field>
                 </div>
             </div>
-            <div class="content-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                Lorem Ipsum has been the industry's</div>
+            <div class="content-text">*Students can apply up until the designated deadline.</div>
         </div>
         <div class="content-border"></div>
         <div>
             <span class="action-button">
-                <button class="open-button" mat-raised-button>Open</button>
-                <button class="close-button" mat-raised-button>Cancel</button>
+                <button class="open-button" mat-raised-button (click)="onOpenClick('approved')">Open</button>
+                <button class="close-button" mat-raised-button (click)="cancelClick()">Cancel</button>
             </span>
         </div>
-
-
-
     </div>
 </ng-template>
 
 
+
+<!-- Reject the Application -->
 <ng-template class="reject-dialog" #matDialog1>
     <div class="reject-header">
 
         <div class="reject-title-text">Reason for Rejection</div>
         <span class="reject-close-icon">
-            <button mat-icon-button (click)="instructionClose()" >
+            <button mat-icon-button (click)="cancelClick()" >
                 <mat-icon>close</mat-icon>
             </button></span>
 
     </div>
     <div class="reject-tittle-border"></div>
-    <div class="reject-content">
+    <div class="reject-content" [formGroup]="rejectReason">
         <div class="reject-content-titlebox">
-            <div class="reject-content-text">Enter your reason *</div>
+            <div class="reject-content-text">Enter your reason <span class="mandatory_symbol">*</span></div>
         </div>
         <div class="reason-box">
-            <textarea placeholder="Type your reason here..." class="reason-txt-box" cols="30" rows="10"></textarea>
+            <textarea formControlName="remarks" placeholder="Type your reason here..." class="reason-txt-box" cols="30" rows="10"></textarea>
+            
+        </div>
+        <div style="padding-top: 10px;font-size: 13px;"
+          *ngIf="rejectReason.get('remarks').hasError('required') && rejectReason.get('remarks').touched"
+          class="text-danger">
+          Reason is Required
         </div>
     </div>
     <div class="reject-content-border"></div>
     <div class="reject-footer">
         <span class="reject-action-button">
-            <button class="reject-save-button" mat-raised-button>Save</button>
-            <button class="close-button" mat-raised-button>Cancel</button>
+            <button class="reject-save-button" mat-raised-button (click)="rejectClick('rejected')">Save</button>
+            <button class="close-button" mat-raised-button (click)="cancelClick()">Cancel</button>
         </span>
     </div>
 
 </ng-template>
 
+
+<!-- Close the application -->
 <ng-template #matDialog2>
     <div>
         <div class="cnfrm-title">
             <div class="cnfrm-title-text">Confirmation</div>
             <span>
-                <button mat-icon-button (click)="instructionClose()">
+                <button mat-icon-button (click)="cancelClick()">
                     <mat-icon>close</mat-icon>
                 </button>
             </span>
@@ -136,19 +156,21 @@
         <div class="cnfrm-content-border"></div>
         <div>
             <span class="cnfrm-action-button">
-                <button class="open-button" mat-raised-button>Confirm</button>
-                <button class="close-button" mat-raised-button>Cancel</button>
+                <button class="open-button" mat-raised-button  (click)="confirmClose('closed')">Confirm</button>
+                <button class="close-button" mat-raised-button (click)="cancelClick()">Cancel</button>
             </span>
         </div>
     </div>
 </ng-template>
 
+
+<!-- workflow -->
 <ng-template #matDialog3>
     <div>
         <div class="workflow-title">
             <div class="workflow-title-text">Workflow</div>
             <span>
-                <button mat-icon-button (click)="instructionClose()" >
+                <button mat-icon-button (click)="cancelClick()" >
                     <mat-icon>close</mat-icon >
                 </button>
             </span>

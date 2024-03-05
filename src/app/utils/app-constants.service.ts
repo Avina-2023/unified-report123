@@ -37,12 +37,17 @@ export const APP_CONSTANTS = {
 
     CNDIDATELANDING: '/candidateview',
     CANDIDATEDASH: {
+      NEWDASHBOARD: '/candidateview/home',
+      MYACCOUNT : '/candidateview/profile',
       DASHBOARD: '/candidateview/dashboard',
       JOBLIST: '/candidateview/findjobs',
+      INTERNSHIPLIST: '/candidateview/findinternship',
       RESUMEBUILDER: '/candidateview/resumebuilder',
       RESUMETEMPLATE: '/candidateview/resumetemplate',
       JOBSSAVED: '/candidateview/savedjobs',
+      INTERNSHIPSAVED: '/candidateview/savedinternships',
       JOBSAPPLIED: '/candidateview/appliedjobs',
+      INTERNSHIPSAPPLIED: '/candidateview/appliedinternships',
       PAGINATION: '/candidateview/page',
       JOBDESCRIPTION: '/candidateview/jobdescription',
     },
@@ -62,6 +67,7 @@ export const APP_CONSTANTS = {
         BEHAVIOUR_MODULE_PAGE: '/auth/reports/behavioural',
         BEHAVIOUR_REPORT: '/auth/reports/behavioural/view',
         BEHAVIOUR_REPORT1: '/auth/reports/behavioural/viewBajajReport',
+        BEHAVIOUR_REPORT2: '/auth/reports/behavioural/wolterkluverReport',
       },
     },
     CANDIDATE: {
@@ -80,6 +86,18 @@ export const APP_CONSTANTS = {
       PARTNERENQUIRY: '/auth/partner/partnerenquiry',
       REQUIRMENT: 'auth/partner/jobrequirment',
       UPLOADREQUIRMENT: 'auth/partner/uploadpostrequirment',
+      ADDOPENJOBS: '/auth/partner/addopenjobs',
+      VIEWOPENJOBS: '/auth/partner/viewopenjobs',
+      STUDENTTRACKER:'/auth/partner/studenttracker',
+      PARTNERTRACKER:'auth/partner/partnertracker'
+    },
+    // OPENJOBS: {
+    //   HOME: '/auth/openjobs',
+    //   // VIEWJOBS: 'auth/',
+    // },
+    OVERALLREPORTS: {
+      HOME: '/auth/overall-reports',
+      //OVERALLREPORTS: '/auth/report/overallreports'
     },
     VIEWDRIVE: {
       HOME: '/auth/drive',
@@ -93,7 +111,7 @@ export const APP_CONSTANTS = {
       HOME: '/auth/dashboard',
       PROFILE: '/auth/dashboard/profile',
       CHANGEPWD: '/auth/dashboard/changePwd',
-      CANDIDATESEARCH: '/auth/dashboard/candidatesearch'
+      CANDIDATESEARCH: '/auth/dashboard/candidatesearch',
     },
     EMPJOBS: {
       REQUIRMENT: 'auth/jobrequirment',
@@ -127,13 +145,18 @@ export const APP_CONSTANTS = {
     AUTH: 'auth',
     CNDIDATELANDING: 'candidateview',
     CANDIDATEDASH: {
+      NEWDASHBOARD: 'home',
+      MYACCOUNT : 'profile',
       DASHBOARD: 'dashboard',
       JOBLIST: 'findjobs',
+      INTERNSHIPLIST: 'findinternship',
       RESUMEBUILDER: 'resumebuilder',
       RESUMETEMPLATE: 'resumetemplate',
       JOBSSAVED: 'savedjobs',
+      INTERNSHIPSAVED: 'savedinternships',
       JOBSAPPLIED: 'appliedjobs',
-      JOBDESCRIPTION: 'jobdescription',
+      INTERNSHIPSAPPLIED: 'appliedinternships',
+      JOBDESCRIPTION: 'jobdescription/:id',
       PAGINATION: 'page',
     },
     REPORTS: {
@@ -147,6 +170,7 @@ export const APP_CONSTANTS = {
         HOME: 'behavioural',
         BEHAVIOUR_REPORT: 'view',
         BEHAVIOUR_REPORT1: 'viewBajajReport',
+        BEHAVIOUR_REPORT2: 'wolterkluverReport',
       },
     },
     CANDIDATE: {
@@ -165,8 +189,20 @@ export const APP_CONSTANTS = {
       PARTNERENQUIRY: 'partnerenquiry',
       REQUIRMENT: 'jobrequirment',
       UPLOADREQUIRMENT: 'uploadpostrequirment',
+      ADDOPENJOBS: 'addopenjobs',
+      VIEWOPENJOBS: 'viewopenjobs',
+      STUDENTTRACKER:'studenttracker',
+      PARTNERTRACKER:'partnertracker',
     },
-
+    // OPENJOBS: {
+    //   HOME: 'openjobs',
+    //   ADDJOBS: 'addjobs',
+    //   // VIEWJOBS: 'viewjobs',
+    // },
+    OVERALLREPORTS: {
+      HOME: 'overall-reports',
+      //OVERALLREPORTS: 'overallreports'
+    },
     DRIVE: {
       HOME: 'drive',
       MANAGEDRIVE: 'managedrive',
@@ -187,7 +223,7 @@ export const APP_CONSTANTS = {
       POSTREQUIRMENT: 'postrequirment',
       REQUIRMENT: 'jobrequirment',
       // REQUIRMENT:'jobrequirment'
-      CANDIDATESEARCH: 'candidatesearch'
+      CANDIDATESEARCH: 'candidatesearch',
     },
   },
 };

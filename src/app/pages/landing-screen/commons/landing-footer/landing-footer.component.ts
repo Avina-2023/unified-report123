@@ -9,10 +9,12 @@ import { APP_CONSTANTS } from 'src/app/utils/app-constants.service';
 export class LandingFooterComponent implements OnInit {
   routerData = APP_CONSTANTS.ROUTES;
   endPoints = APP_CONSTANTS.ENDPOINTS;
+  currentYear: number;
 
   constructor() { }
 
   ngOnInit() {
+    this.currentYear = new Date().getFullYear();
   }
 
 }

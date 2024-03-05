@@ -17,7 +17,7 @@ export class LandingHeaderComponent implements OnInit {
 
 
   ngOnInit() {
-
+ 
   }
   footerTrigger(){
     this.visible = !this.visible

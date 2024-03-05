@@ -5,12 +5,29 @@ menu-item {
   letter-spacing: 0.4px;
   color: #1b4e9b;
   height: 30px;
-  border-bottom: 0.5px solid #b4b4b4;
+  border-bottom: 1px solid #0000001F;
   width: 150px;
 }
-::ng-deep.mat-menu-panel{
-  min-height: 0px
+.disabled-button{
+  cursor: not-allowed;
+  pointer-events: auto;
 }
+
+.mandatory_symbol{
+  color: red;
+}
+
+::ng-deep.mat-menu-panel{
+  min-height: 0px;
+  position: relative!important;
+  left: auto!important;
+  right:auto!important;
+  bottom:auto!important;
+}
+::ng-deep.mat-menu-item{
+  height: 40px!important;
+}
+
 .popup-image {
   width: 400px;
   height: 400px;
@@ -18,6 +35,10 @@ menu-item {
 ::ng-deep.mat-dialog-container {
   padding: 0px !important;
   overflow: hidden !important;
+  border-radius: 10px!important;
+}
+textarea.ng-invalid.ng-touched {
+  border: 1px solid red!important;
 }
 .mat-icon {
   height: 24px;
@@ -39,7 +60,7 @@ menu-item {
 }
 
 .openforapp-header {
-  padding: 24px;
+  padding: 20px 20px 15px 20px;
 }
 .open-for-app-tittle {
   display: flex;
@@ -49,15 +70,13 @@ menu-item {
   .open-for-app-tittle-txt {
     display: flex;
     position: relative;
-    top: 5px;
-    height: 30px;
-    font-weight: 500;
+    font-weight: bold;
     font-size: large;
   }
 }
 
 .open-for-app-title-border {
-  border-bottom: 0.5px solid #b4b4b4;
+  border-bottom: 1px solid #0000001F;
   bottom: 5px;
   display: flex;
 
@@ -76,7 +95,7 @@ menu-item {
   .open-for-app-subtittle-text {
     display: flex;
     position: relative;
-    font-weight: 500;
+    font-weight: 600;
   }
 }
 .open-for-app-content {
@@ -195,17 +214,16 @@ menu-item {
 }
 }
 .content-text {
-  text-align: left;
   font: normal normal 300 12px/20px Roboto;
-  letter-spacing: 0.3px;
-  color: #262626;
-  display: flex;
-  position: relative;
-  top: 10px;
-  flex-wrap: wrap;
+    color: #FF0000;
+    position: relative;
+    top: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    padding-bottom: 10px;
 }
 .content-border {
-  border-bottom: 0.5px solid #b4b4b4;
+  border-bottom: 1px solid #0000001F;
   display: flex;
   position: relative;
   top: 10px;
@@ -310,9 +328,10 @@ menu-item {
       overflow: hidden;
       width: 513px;
       height: 100px;
-      border: 1px solid #707070;
+      border: 1px solid #e6e6e6;
       text-align: left;
       border-radius: 0.5;
+      padding: 10px;
     }
   }
 }
@@ -356,13 +375,14 @@ menu-item {
   align-items: center;
 
   .cnfrm-title-text {
-    font-size: 20px;
-    font-weight: 500;
-    padding-left: 29px;
+    font-size: 18px;
+    font-weight: 600;
+    padding-left: 30px;
+    color: #262626;
   }
 }
 .cnfrm-title-border {
-  border-bottom: 0.5px solid #b4b4b4;
+  border-bottom: 1px solid #0000001F;
   display: flex;
   position: relative;
   top: 20px;
@@ -385,7 +405,7 @@ menu-item {
   }
 }
 .cnfrm-content-border {
-  border-bottom: 0.5px solid #b4b4b4;
+  border-bottom: 1px solid #0000001F;
   display: flex;
   position: relative;
   top: 85px;
@@ -416,7 +436,7 @@ menu-item {
   }
 }
 .workflow-tittle-border {
-  border-bottom: 0.5px solid #b4b4b4;
+  border-bottom: 1px solid #0000001F;
   padding-top: 10px;
 }
 .workflow-header {

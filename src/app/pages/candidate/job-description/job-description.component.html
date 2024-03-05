@@ -1,199 +1,295 @@
 <div class="pageWrapper">
-  <div class="custom-card">
-    <div class="coverImage">
-      <app-common-banner [subname]="'Jobs'" [name]="'Apply Job'"></app-common-banner>
-      <!-- <div><img (error)="'/assets/images/compCover.png'"
-               [src]="jobDescription?.bannerImage?jobDescription.bannerImage:'/assets/images/job_description_background.png'" />
-         </div> -->
-    </div>
-    <div class="jobtopcontainer">
-      <div class="left">
-        <div class='companyLogo1'><img class="comp_logo" (error)="'/assets/images/compPlaceholder.png'"
-            [src]="productionUrl?jobDetails.companyLogo+blobToken:jobDetails.companyLogo" /></div>
-        <div class="JT-left">
-          <div class="se-patner">
-            <div class='compTitle'><strong>{{ jobDetails.jobRole ? jobDetails.jobRole : jobDetails.jobTitle }}</strong>
-            </div>
-            <!-- <div class='compTitle'><strong>{{jobDetails.jobRole}}</strong></div> -->
-            <!-- <div *ngIf="jobDetails.partnerLabel === 'Skill Exchange Partner'"><span
-                class="icon-green_tick_flower_circuled"></span></div> -->
-            <div *ngIf="jobDetails.partnerLabel === 'Skill Exchange Partner'" matTooltip="Skill Exchange Partner">
-              <span class="icon-green_tick_flower_circuled"></span>
-            </div>
+  <div class="scroller-head" style="display: none;">
+    <div class="company-details">
+      <img class="companyLogo_head" (error)="'/assets/images/compPlaceholder.png'"
+        [src]="productionUrl ? jobDetails.companyLogo + blobToken : jobDetails.companyLogo" />
+
+      <div class="text-details">
+        <div class='compTitle' style="display: flex;align-items: center;"><strong>{{ jobDetails.jobRole ?
+            jobDetails.jobRole : jobDetails.jobTitle }}</strong>
+          <div *ngIf="jobDetails.partnerLabel === 'Skill Exchange Partner'" matTooltip="Skill Exchange Partner">
+            <span style="margin: 0px 0px 0px 7px;"></span><img
+              src="../../../../assets/images/skillexchange-logotick.png">
           </div>
-          <div class='genTitle'>{{jobDetails.company}}</div>
         </div>
+        <div class='genTitle'>{{ jobDetails.company }}</div>
       </div>
-      <!-- <div class="JT-right">
-               <div class="eventnote"><span class="application-end">Application ends:</span> {{jobDetails.lastDatetoApply|date}}</div>
-           <div class="flx_butn">
-            <button class="save btn" *ngIf="jobDetails.isSelected == false" (click)="saved()" >Save</button>
-            <button class="save btn"   *ngIf="jobDetails.isSelected == true" (click)="saved()" >Saved</button>
-            <button class="btn"  *ngIf="jobDetails.isApplied == false" (click)="applyJob()">Apply now</button>
-            <button class="btn" [disabled]="true" *ngIf="jobDetails.isApplied == true">Applied</button>
+    </div>
+    <!--  -->
+    <div class="" style="margin: 15px 15px 0px 0px;">
+      <button class="btn" *ngIf="jobDetails.isApplied == false" (click)="handleButtonClick()">
+        <span class="icon-apply_now" *ngIf="jobDetails.partnerLabel !== 'Skill Exchange Partner'"></span>Apply Now
+      </button>
+      <button class="btn_applied" [disabled]="true" *ngIf="jobDetails?.isApplied == true"
+        [ngStyle]="{'background-color': ' #DFE6F2','color': '#1B4E9C','border':'none','font-weight':' 600','opacity': '1'}">
+        <span class="icon-tick_mark_green"></span>&nbsp;Applied
+      </button>
+      <button class="save btn" *ngIf="jobDetails.isSelected == false" (click)="saved()">Save</button>
+      <button class="save_ed btn" *ngIf="jobDetails.isSelected == true" (click)="saved()">Saved</button>
+    </div>
+  </div>
+
+  <div style="display: flex; margin-top: -8px;">
+    <div class="custom-card">
+      <!-- <div class="coverImage">
+      <app-common-banner [subname]="'Jobs'" [name]="'Apply Job'"></app-common-banner>
+    </div> -->
+      <div class="jobtopcontainer">
+        <div class="left">
+          <div class='companyLogo1'><img class="comp_logo" (error)="'/assets/images/compPlaceholder.png'"
+              [src]="productionUrl?jobDetails.companyLogo+blobToken:jobDetails.companyLogo" /></div>
+          <div class="JT-left">
+            <div class="se-patner">
+              <div class='compTitle'><strong>{{ jobDetails.jobRole ? jobDetails.jobRole : jobDetails.jobTitle
+                  }}</strong>
+              </div>
+            </div>
+            <div class='genTitle'>{{jobDetails.company}}</div>
           </div>
+        </div>
+
+        <div class="JT-right">
+          <!-- <div class="eventnote"><span class="application-end">Application ends:</span> {{jobDetails.lastDatetoApply |
+          date}}</div> -->
+          <!-- <div class="flx_butn">
+          <button class="save btn" *ngIf="jobDetails.isSelected == false" (click)="saved()">Save</button>
+          <button class="save btn" *ngIf="jobDetails.isSelected == true" (click)="saved()">Saved</button>
+          <button class="btn" *ngIf="jobDetails.isApplied == false" (click)="handleButtonClick()">
+            <span class="icon-apply_now" *ngIf="jobDetails.partnerLabel !== 'Skill Exchange Partner'"></span>Apply Now
+          </button>
+          <button class="btn" [disabled]="true" *ngIf="jobDetails.isApplied == true">Applied</button>
          </div> -->
 
-      <!-- <div class="JT-right">
-            <div class="eventnote"><span class="application-end">Application ends:</span> {{jobDetails.lastDatetoApply | date}}</div>
-            <div class="flx_butn">
-              <button class="save btn" *ngIf="jobDetails.isSelected == false" (click)="saved()">Save</button>
-              <button class="save btn" *ngIf="jobDetails.isSelected == true" (click)="saved()">Saved</button>
-              <button class="btn" *ngIf="jobDetails.isApplied == false" (click)="handleButtonClick()">Apply now</button>
-              <button class="btn" [disabled]="true" *ngIf="jobDetails.isApplied == true">Applied</button>
+          <!--  -->
+          <div *ngIf="jobDetails.partnerLabel && jobDetails.partnerLabel === 'Skill Exchange Partner'"
+            class="greenblue">
+            <div class="text-overlay">{{jobDetails.partnerLabel }}</div>
+          </div>
+        </div>
+
+      </div>
+      <div class="job-details1">
+       <div *ngIf="jobDetails.jobFamily" class="worktyp">{{jobDetails.jobFamily}}</div>
+           <!-- <div class="job-intern"><span class="job-intern2">{{jobDetails.jobType}}</span></div> -->
+        <div class="job_typesty"
+          [ngStyle]="{ 'color': getColor(jobDetails.jobType), 'background-color': getBackgroundColor(jobDetails.jobType) }">
+          <span class="icon-full_time"></span> {{jobDetails.jobType}}
+        </div>
+      </div>
+      <div class="job-details">
+        <div class="genText1" style="justify-content: space-between;">
+
+          <div style="display: flex; flex-direction: row;">
+            <div class="locate">
+              <span><mat-icon style="width: 15px !important;" class="misc_icon">location_on</mat-icon></span>
+              <ng-container *ngFor="let item of jobDetails.jobLocation; let i = index; let isLast = last">
+                {{ item }}
+                <span class="misc_col" *ngIf="!isLast && i < jobDetails.jobLocation.length - 1">,</span>
+              </ng-container>
+            </div>
+          </div>
+
+          <div #eventnoteDiv class="eventnote">
+            <div>
+              <span class="icon-calndar_gray_apply"></span>&nbsp;
+              <span class="application-end">Application Deadline</span><br>
+              <span class="application-dateend">{{ jobDetails.lastDatetoApply | date:'d MMMM, yyyy' }}</span>
+            </div>
+          </div>
+        </div>
+        <!--  -->
+
+        <!-- <div class="genText1">
+        <div> <span class="icon-clock_postdate"></span></div>
+        <div class="locate">Posted On {{jobDetails.createdOn | date : 'd MMM'}}</div>
+      </div> -->
+        <!-- <div class="genText1">
+        <div><span class="icon-graduation-gap"></span></div>
+        <div class="locate" *ngFor="let item of jobDetails.education;let i=index; let isLast=last">{{item}}
+          <span class="misc_col" *ngIf="!isLast && i < jobDetails.education.length">&nbsp;</span> </div>
+      </div> -->
+
+        <!--  -->
+
+        <!-- <div class="genText1">
+        <div><span class="icon-graduation-gap"></span></div>
+        <div class="locate" *ngFor="let item of jobDetails.education; let i = index; let isLast = last">
+          {{ item.specification }}
+          <span class="misc_col" *ngIf="!isLast && i < jobDetails.education.length">&nbsp;</span>
+        </div>
+      </div> -->
+        <hr style="margin: 10px 25px 15px 0px;">
+        <div class="flx_save">
+          <div class="genText1">
+            <span class="icon-clock_postdate " style="margin: 0px 0px 0px -10px;"></span>
+            <div class="PostedDate"> {{ getDaysAgo(jobDetails.createdOn) }}</div>
+          </div>
+          <!-- <span>Just Now</span> -->
+          <div class="save-applied">
+            <button class="btn" *ngIf="jobDetails.isApplied == false" (click)="handleButtonClick()">
+              <span class="icon-apply_now" *ngIf="jobDetails.partnerLabel !== 'Skill Exchange Partner'"></span>Apply Now
+            </button>
+            <button class="btn_applied" [disabled]="true" *ngIf="jobDetails?.isApplied == true"
+              [ngStyle]="{'background-color': ' #DFE6F2','color': '#1B4E9C','border':'none','font-weight':' 600','opacity': '1'}">
+              <span class="icon-tick_mark_green"></span>&nbsp;Applied
+            </button>
+            <!-- <button class="btn" [disabled]="true" *ngIf="jobDetails.isApplied == true">Applied</button> -->
+            <button (click)="saved()" class="save btn" *ngIf="jobDetails.isSelected == false">Save</button>
+            <button (click)="saved()" class="save_ed btn" *ngIf="jobDetails.isSelected == true">Saved</button>
+          </div>
+        </div>
+      </div>
+      <div style="background: #FFFFFF  0% 0% no-repeat padding-box;
+            border-radius: 15px;
+            height: 144px;display: flex;justify-content: space-around;align-items: center;">
+        <div style="margin: 10px 0px 0px 0px; display: flex; flex-direction: column; align-items: center;">
+          <div><img src="../../../../assets/images/job_profile_blue.png"></div>
+          <div class="desTitle"> Job Title /
+            Position</div>
+          <div> {{jobDetails.jobTitle}}</div>
+        </div>
+        <div style="margin: 10px 0px 0px 0px; display: flex; flex-direction: column; align-items: center;">
+          <div><img src="../../../../assets/images/Degree_rope_blue.png" />
+          </div>
+          <div class="desTitle">Education</div>
+          <div class="job_options">
+            <div *ngFor="let content of jobDetails.education; let i = index; let isLast = last; let first = first">
+              <div class="spacing"><ng-container *ngIf="!first">, </ng-container> {{ content.specification }} </div>
+            </div>
+          </div>
+        </div>
+
+        <div style=" display: flex; flex-direction: column; align-items: center;">
+          <div class="desTitle"><img src="../../../../assets/images/CTC_blue.png" />
+          </div>
+          <!-- <div class="desTitle">CTC</div> -->
+          <div class="desTitle">{{ jobDetails.workType === 'Internships' ? 'Stipend' : 'CTC' }}</div>
+          <div> {{jobDetails.ctc}} </div>
+        </div>
+
+        <!-- <div style="display: flex; flex-direction: column; align-items: center;">
+          <div class="desTitle"><img src="../../../../assets/images/Edu_cap_blue.png" />
+          </div>
+          <div class="desTitle">Year of Passing</div>
+          <span class="genTextpassout" *ngFor="let content of jobDetails.yearofPassout ;  let first = first">
+            <ng-container *ngIf="!first">, </ng-container> {{content.trim()}} </span>
+        </div> -->
+        <div style="display: flex; flex-direction: column; align-items: center;">
+          <div class="desTitle"><img src="../../../../assets/images/Edu_cap_blue.png" /></div>
+          <div class="desTitle">Year of Passing</div>
+          <ng-container *ngFor="let content of jobDetails.yearofPassout; let last = last">
+            {{ content.trim() }}<ng-container *ngIf="!last">, </ng-container>
+          </ng-container>
+        </div>
+
+      </div>
+      <div class="descriptionArea">
+        <div class="custom-card1 cardpad LAlign">
+          <div class="select_head">
+            <span class="hoverable" (click)="scrollToSection('descriptionSection')">Description</span>
+            <span class="hoverable" (click)="scrollToSection('rolesSection')">Roles & Responsibilities</span>
+            <span class="hoverable" (click)="scrollToSection('specializationSection')">Specialization</span>
+            <span class="hoverable" (click)="scrollToSection('keyskillsSection')">Key Skills</span>
+            <span class="hoverable" (click)="scrollToSection('cmpnyprfSection')">About Company</span>
+          </div>
+          <hr>
+          <div class="desTitle" *ngIf="jobDetails?.overview">
+            Job Overview<br>
+            <p>{{jobDetails?.overview}}</p>
+          </div>
+
+          <div id="descriptionSection" class="desTitle" *ngIf="jobDetails?.description?.length">
+            Description
+            <ul>
+              <li *ngFor="let content of jobDetails?.description">
+                <span [innerHTML]="content.item"></span>
+              </li>
+            </ul>
+          </div>
+
+          <div id="rolesSection" class="desTitle" *ngIf="jobDetails?.requirement?.length">
+            Roles And Responsibilities
+            <ul>
+              <li *ngFor="let content of jobDetails?.requirement">
+                <span [innerHTML]="content.item"></span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- <div id="specializationSection" class="desTitle"> Specialization: </div>
+          <div class="job_options">
+            <div class="genText" *ngFor="let content of jobDetails.education">
+              <button class="specialization-box"> {{ content.specification }} </button>
             </div>
           </div> -->
 
+          <div id="specializationSection" class="desTitle"> Specialization: </div>
+          <div class="job_options">
+            <div class="genText" *ngFor="let educationItem of jobDetails?.education">
+              <ng-container *ngFor="let discipline of educationItem?.discipline">
+                <button class="specialization-box">{{ discipline }}</button>
+              </ng-container>
+              <ng-container *ngIf="educationItem.specification === 'Any Degree / Graduation'">
+                <button class="specialization-box">Any Specialization</button>
+              </ng-container>
+            </div>
+          </div>
 
-      <div class="JT-right">
-        <div class="eventnote"><span class="application-end">Application ends:</span> {{jobDetails.lastDatetoApply |
-          date}}</div>
-        <div class="flx_butn">
-          <button class="save btn" *ngIf="jobDetails.isSelected == false" (click)="saved()">Save</button>
-          <button class="save btn" *ngIf="jobDetails.isSelected == true" (click)="saved()">Saved</button>
-          <!-- <button class="btn" *ngIf="jobDetails.isApplied == false" (click)="handleButtonClick()"> -->
-          <!-- <mat-icon *ngIf="jobDetails.partnerLabel !== 'Skill Exchange Partner'">screen_share</mat-icon>Apply now -->
-          <!-- <span class="icon-apply_now" *ngIf="jobDetails.partnerLabel !== 'Skill Exchange Partner'"></span>Apply Now -->
-          <!-- </button> -->
-          <button class="btn" *ngIf="jobDetails.isApplied == false" (click)="handleButtonClick()">
-          <span class="icon-apply_now" *ngIf="jobDetails.partnerLabel !== 'Skill Exchange Partner'"></span>Apply Now
-          </button>
-          
-          <button class="btn" [disabled]="true" *ngIf="jobDetails.isApplied == true">Applied</button>
+
+
+          <div id="keyskillsSection" class="desTitle"> Key Skills: </div>
+          <div class="job_options">
+            <div class="genText" *ngFor="let content of jobDetails?.skillSet">
+              <button class="specialization-box">{{content}}</button>
+            </div>
+          </div>
         </div>
       </div>
+      <div class="descriptionArea" style="margin: 2% 0%;">
+        <div id="cmpnyprfSection" class="desTitle" style="margin: 1% 2%;">
+          Company Profile<br>
+          <p> {{jobDetails?.about}}</p>
+        </div>
+      </div>
+    </div>
+    <!-- Similar jobs -->
+    <div class="Similar_job_card">
+      <h3 style="padding: 10px 0px 0px 15px; font-weight: bold!important;">Similar Jobs</h3>
 
-    </div>
-    <div class="job-details1">
-      <!-- <div class="job-intern"><span class="job-intern1">#Jobs</span></div> -->
-      <div class="job-intern"><span class="job-intern2">{{jobDetails.jobType}}</span></div>
-    </div>
-    <div class="job-details">
-      <div class="genText1">
-        <div><mat-icon class="misc_icon"> location_on</mat-icon></div>
-        <div class="locate" *ngFor="let item of jobDetails.jobLocation;let i=index; let isLast=last">{{item}}<span
-            class="misc_col" *ngIf="!isLast && i < jobDetails.jobLocation.length">&nbsp;</span> </div>
-      </div>
-      <div class="genText1">
-        <div><span class="icon-clock_postdate"></span></div>
-        <!-- <div class="locate" *ngFor="let item of jobDetails.jobLocation;let i=index; let isLast=last">{{item}}<span class="misc_col" *ngIf="!isLast && i < jobDetails.jobLocation.length">&nbsp;</span> </div> -->
-        <div class="locate">Posted On {{jobDetails.createdOn| date : 'd MMM'}}</div>
-      </div>
-      <div class="genText1">
-        <div><span class="icon-graduation-gap"></span></div>
-        <div class="locate" *ngFor="let item of jobDetails.education;let i=index; let isLast=last">{{item}}<span
-            class="misc_col" *ngIf="!isLast && i < jobDetails.education.length">&nbsp;</span> </div>
+      <div *ngFor="let item of joblist; let i = index" class="similar-job"
+        style="margin-bottom: 20px;padding: 0px 0px 0px 7px;" (click)="gotojob(item)">
+        <div class="" style="display: flex; align-items: center;">
+          <img class="comp_logo_sim" (error)="'/assets/images/compPlaceholder.png'"
+            [src]="productionUrl ? item.companyLogo + blobToken : item.companyLogo" />
+
+          <div *ngIf="item.partnerLabel === 'Skill Exchange Partner'" matTooltip="Skill Exchange Partner"
+            style="margin-left: auto;">
+            <img class="comp_skill_sim" src="../../../../assets/images/skillexchange-logotick.png">
+          </div>
+        </div>
+
+        <div class='compTitle_sim'><strong>{{ item.jobRole ? item.jobRole : item.jobTitle }}</strong></div>
+        <div class='genTitle_sim'>{{item.company}}</div>
+
+        <!-- <div class="location_sim" *ngFor="let location of item.jobLocation; let isLast=last">
+          <span>{{ location }}</span>
+          <span class="misc_col" *ngIf="!isLast">,&nbsp;</span>
+        </div> -->
+
+        <div class="location_sim">
+          <span *ngFor="let location of item.jobLocation; let isLast=last">{{ location }}
+            <span *ngIf="!isLast">,&nbsp;</span>
+          </span>
+        </div>
+
+        <div class="genText1">
+          <div class="locate_sim">Posted {{ getDaysAgo(item.createdOn) }}</div>
+        </div>
+
+        <hr style="margin: 5px 10px;" *ngIf="i !== joblist.length - 1">
       </div>
     </div>
   </div>
-
-  <div class="descriptionArea">
-    <div class="custom-card1 cardpad LAlign">
-      <div class="desTitle" *ngIf="jobDetails.overview">
-        Job Overview<br>
-        <p>{{jobDetails.overview}}</p>
-      </div>
-      <div class="desTitle" *ngIf="jobDetails.description.length">
-        Job Description
-        <ul>
-          <li *ngFor="let content of jobDetails.description">{{content.item}}</li>
-        </ul>
-      </div>
-      <div class="desTitle" *ngIf="jobDetails.requirement.length">
-        Key Responsibilities
-        <ul>
-          <li *ngFor="let content of jobDetails.requirement">{{content.item}}</li>
-        </ul>
-      </div>
-      <div class="desTitle">
-        Company Profile:<br>
-        <p>{{jobDetails.about}}</p>
-      </div>
-    </div>
-    <div class="custom-card cardpad RAlign">
-      <div class="listspace">
-        <div class="desTitle">
-          Job Title / Position:
-        </div>
-        <div class="genText">
-          {{jobDetails.jobTitle}}
-        </div>
-      </div>
-      <div class="listspace">
-        <div class="desTitle">
-          Job Type:
-        </div>
-        <div class="genText">
-          {{jobDetails.jobType}}
-        </div>
-      </div>
-      <div class="listspace">
-        <div class="desTitle">
-          Education:
-        </div>
-        <div class="job_options">
-          <div class="genText"
-            *ngFor="let content of jobDetails.education;let i=index; let isLast=last; let first = first">
-            <div class="spacing"><ng-container *ngIf="!first">, </ng-container>{{content.trim()}}</div>
-          </div>
-        </div>
-      </div>
-      <div class="listspace">
-        <div class="desTitle">
-          Specialization:
-        </div>
-        <div class="job_options">
-          <div class="genText" *ngFor="let content of jobDetails.specialization">
-            <button class="specialization-box">{{content}}</button>
-          </div>
-        </div>
-      </div>
-      <div class="listspace">
-        <div class="desTitle">
-          CTC:
-        </div>
-        <div class="genText">
-          {{jobDetails.ctc}}
-        </div>
-      </div>
-      <div class="listspace">
-        <div class="desTitle">
-          Year of Passing:
-        </div>
-        <span class="genTextpassout" *ngFor="let content of jobDetails.yearofPassout ; let first = first">
-          <ng-container *ngIf="!first">, </ng-container>{{content.trim()}}</span>
-      </div>
-      <div class="listspace">
-        <div class="desTitle">
-          Industries:
-        </div>
-        <div class="genText">
-          {{jobDetails.jobFamily}}
-        </div>
-      </div>
-
-      <div class="listspace">
-        <div class="desTitle">
-          Key Skills:
-        </div>
-        <div class="job_options">
-          <div class="genText" *ngFor="let content of jobDetails.skillSet">
-            <button class="specialization-box">{{content}}</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- <div class="descriptionArea">
-      <div class="custom-card cardpad about">
-         <div class="desTitle">
-           About Company:<br>
-            <p>{{jobDetails.about}}</p>
-         </div>
-      </div>
-   </div>
-</div> -->
 
 
   <ng-template #incompleteProfile>
@@ -222,3 +318,22 @@
       <div class="msgsub" style="margin-top:10px">You will be soon contacted by the recruiter</div>
     </div>
   </ng-template>
+
+  <ng-template #externalApply>
+    <div class="ext-closer"><span class="text_leave">YOU ARE LEAVING</span> <mat-icon mat-dialog-close>close</mat-icon>
+    </div>
+    <img style="width: 200px;" src="assets/images/landing/newLogo.png">
+    <div class="ext-redirect-popup">
+      <div class="ext-redirect-content">
+        <div class="heading">This link will take you to a third-party page that is not part of<br>Skill Exchange.</div>
+        <div class="redirect-message"><b>Note:</b>The provided link is external and has not been verified by L&T Edutech
+          for its safety.
+        </div>
+      </div>
+    </div>
+    <div>
+      <button class="mat-raised-button primary ext-btn" (click)="redirectToApplyLink()">I understand, let’s
+        proceed</button>
+    </div>
+  </ng-template>
+</div>

@@ -1,12 +1,5 @@
 import { ApiService } from 'src/app/services/api.service';
-import {
-  Component,
-  OnInit,
-  TemplateRef,
-  ViewChild,
-  ElementRef,
-  Renderer2,
-} from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild, ElementRef, Renderer2,Input,} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { I } from '@angular/cdk/keycodes';
 import { AppConfigService } from 'src/app/utils/app-config.service';
@@ -19,6 +12,7 @@ import { FormsModule } from '@angular/forms';
 import { element } from 'protractor';
 import { Subject } from 'rxjs/internal/Subject';
 import { debounceTime } from 'rxjs/internal/operators/debounceTime';
+import { SentDataToOtherComp } from 'src/app/services/sendDataToOtherComp.service';
 
 @Component({
   selector: 'app-job-listing',
@@ -26,6 +20,7 @@ import { debounceTime } from 'rxjs/internal/operators/debounceTime';
   styleUrls: ['./job-listing.component.scss'],
 })
 export class JobListingComponent implements OnInit {
+  @Input() searchText: string ='';
   message: string;
   public pageNumber: any = 1;
   public itemsPerPage: any = 12;
@@ -36,7 +31,6 @@ export class JobListingComponent implements OnInit {
   sampleContent = [];
   title = 'edutech';
   education = ['B.Tech', 'B.Sc', 'B.Com', 'BE'];
-  searchInput: string = '';
   joblist = [];
   // filter_info = any[];
 
@@ -67,10 +61,24 @@ export class JobListingComponent implements OnInit {
   removeduplicate1: any;
   removeduplicate2: any;
   activeButton: string = 'all';
-  grid2Selected = false;
+  // grid2Selected = false;
   partnerLabel: string | undefined;
   private buttonClicked = new Subject<string>();
-  // isSelected:any;
+  workOption: any;
+ jobs = [
+    { jobType: 'Contract' },
+    { jobType: 'Parttime' },
+    { jobType: 'Full Time' },
+    // Add more job types as needed
+  ];
+ item = {
+    isSelected: false,
+  };
+  storedCandidateDetails: any;
+  specified: any;
+  selectedOption: string = 'relevance';
+  showJobs: boolean;
+  searchInput: string;
   constructor(
     public dialog: MatDialog,
     private apiservice: ApiService,
@@ -78,22 +86,34 @@ export class JobListingComponent implements OnInit {
     public router: Router,
     private toaster: ToastrService,
     private renderer: Renderer2,
-    private el: ElementRef
+    private el: ElementRef,
+    private sendData: SentDataToOtherComp
   ) {}
-  url = 'Jobs';
+  // url = 'Jobs';
   ngOnInit() {
+    // window.location.reload();
+this.sendData
+      .getMessage()
+      .subscribe((data: { data: string; value: any }) => {
+        if (data) {
+          this.searchInput = data.data;
+          this.getJobList();
+        }
+      });
+
     this.getJobList();
     this.getJobFilter();
     this.candidateData();
     this.enabledisable();
     this.partnerLabel = 'Skill Exchange Partner';
     this.debouncefn();
+    // console.log(this.router.routerState.snapshot.url,'this.router.routerState.snapshot.url');
+
   }
 
   debouncefn() {
     const buttonClickedDebounced = this.buttonClicked.pipe(debounceTime(200));
     buttonClickedDebounced.subscribe((itemId: string) =>
-      //The actual action that should be performed on click
       {
         this.getJobList();
       }
@@ -109,24 +129,17 @@ export class JobListingComponent implements OnInit {
       this.gotojob(item);
     }
   }
-  setActiveButton(buttonId: string) {
-    this.activeButton = buttonId;
-  }
 
-  toggleGrid2() {
-    this.grid2Selected = !this.grid2Selected;
-  }
+  // toggleGrid2() {
+  //   this.grid2Selected = !this.grid2Selected;
+  // }
   candidateData() {
     this.candidateDetails = localStorage.getItem('candidateProfile');
-
+    this.storedCandidateDetails = JSON.parse(this.candidateDetails);
+    console.log(this.storedCandidateDetails, 'can');
+    // this.specified = this.candidateDetails.education_details.educations[2].discipline;
     let educationyear = JSON.parse(this.candidateDetails);
-    // this.useryop = educationyear?.education_details?.educations[0]?.year_of_passing;
-    this.useryop =
-      educationyear?.education_details?.educations[
-        educationyear.education_details.educations.length - 1
-      ]?.year_of_passing;
-    // console.log( educationyear?.education_details?.educations[educationyear.education_details.educations.length - 1]?.year_of_passing , 'YOP')
-    // console.log(educationyear,'details2')
+    this.useryop = educationyear?.education_details?.educations[ educationyear.education_details.educations.length - 1 ]?.year_of_passing;
     this.yopdate = new Date(this.useryop);
     this.useryopyear = this.yopdate.getFullYear();
     this.removeduplicate2 = this.useryopyear.toString();
@@ -135,99 +148,82 @@ export class JobListingComponent implements OnInit {
   }
 
   // getJobList() {
-  //   // this.filter.textSearch = searchInput;
+  //   if (this.searchInput) {
+  //     this.filterObj.textSearch = this.searchInput;
+  //   }else {
+  //     delete this.filterObj.textSearch;
+  //   }
   //   let params: any = {
   //     pageNumber: this.pageNumber,
   //     itemsPerPage: this.itemsPerPage,
+  //     // filter: {
+  //     //   textSearch: this.searchInput,
+  //     // },
   //     filter: this.filterObj,
   //     sort: this.sortData,
   //     specialization: 'Computer Science Engineering',
   //     email: this.appconfig.getLocalStorage('email'),
-  //     // "isApplied":false,
-  //     // "isSelected":false
   //   };
-
   //   this.apiservice.joblistingDashboard(params).subscribe((response: any) => {
   //     if (response.success) {
   //       this.joblist = response.data;
-
-  //       console.log(this.joblist, 'jobdata');
-
-  //       // this.joblist?.forEach((element)=>{
-  //       // 	element?.yearofPassout?.forEach((element)=>{
-  //       // 		if(element == this.useryopyear){
-  //       // 			this.common.push(element);
-  //       // 		}
-  //       // 	})
-  //       // 	return this.common;
-  //       // })
-
-  //       //  this.removeduplicate = this.common.filter((item,index)=>{
-  //       // 	return this.common.indexOf(item) === index
-
-  //       // })
-  //       // this.removeduplicate1 = this.removeduplicate.toString()
-  //       // console.log("unique",this.removeduplicate1);
-
-  //       // console.log(this.common,'common')
-
+  //       console.log(this.joblist, 'joblist');
   //       this.totallength = response.totalCount;
   //       this.total = Math.ceil(response.totalCount / this.itemsPerPage);
-  //       // console.log(this.total)
   //       this.joblist.forEach((element) => {
-  //         this.sampleContent.push(element.overview);
+  //       this.sampleContent.push(element.overview);
   //       });
   //     }
   //   });
   // }
 
   getJobList() {
-    if (this.searchInput) {
+    console.log(this.searchInput, 'recieved data');
+  if (this.searchInput) {
       this.filterObj.textSearch = this.searchInput;
-    } else {
-      delete this.filterObj.textSearch;
+  }
+  else if (this.searchInput == "") {
+    delete this.filterObj.textSearch;
     }
-    let params: any = {
-      pageNumber: this.pageNumber,
-      itemsPerPage: this.itemsPerPage,
-      // filter: {
-      //   textSearch: this.searchInput,
-      // },
-      filter: this.filterObj,
-      sort: this.sortData,
-      specialization: 'Computer Science Engineering',
-      email: this.appconfig.getLocalStorage('email'),
-    };
+    //this.filterObj.textSearch = this.searchInput;
 
-    this.apiservice.joblistingDashboard(params).subscribe((response: any) => {
-      if (response.success) {
-        this.joblist = response.data;
-        this.totallength = response.totalCount;
-        this.total = Math.ceil(response.totalCount / this.itemsPerPage);
-        this.joblist.forEach((element) => {
-          this.sampleContent.push(element.overview);
-        });
-      }
-    });
+    // routing for jobs and internships
+    if (this.router.routerState.snapshot.url == APP_CONSTANTS.ENDPOINTS.CANDIDATEDASH.JOBLIST) {
+      this.filterObj.workType = ['Jobs'];
+    }
+    else if (this.router.routerState.snapshot.url == APP_CONSTANTS.ENDPOINTS.CANDIDATEDASH.INTERNSHIPLIST) {
+      this.filterObj.workType = ['Internships'];
+    }
+    //console.log(this.candidateDetails);
+    const candidateDiscipline = this.candidateDetails?.education_details?.educations[length-1]?.discipline;
+    //console.log(candidateDiscipline);
+
+   let params: any = {
+    pageNumber: this.pageNumber,
+    itemsPerPage: this.itemsPerPage,
+    filter: this.filterObj,
+    sort: this.sortData,
+    specialization: candidateDiscipline || 'DefaultSpecialization',
+    email: this.appconfig.getLocalStorage('email'),
+  };
+
+  this.apiservice.joblistingDashboard(params).subscribe((response: any) => {
+    if (response.success) {
+      this.joblist = response.data;
+      console.log(this.joblist, 'joblist');
+      this.totallength = response.totalCount;
+      this.total = Math.ceil(response.totalCount / this.itemsPerPage);
+      this.joblist.forEach((element) => {
+        this.sampleContent.push(element.overview);
+      });
+    }
+  });
   }
 
   enabledisable() {
     console.log(this.useryopyear);
   }
 
-  jobyop() {
-    // this.yop?.forEach((element,i) => {
-    // 	console.log(element,'element');
-    // 	if(element == this.useryopyear){
-    // 	this.jobDisable = true
-    // 	console.log(this.jobDisable,'jobDisable1');
-    // 	}
-    // 	else {
-    // 		this.jobDisable = false
-    // 		console.log(this.jobDisable,'jobDisable1');
-    // 	}
-    // })
-  }
 
   openDialog(displayValue) {
     this.filterItems = displayValue;
@@ -388,14 +384,100 @@ export class JobListingComponent implements OnInit {
   gotojob(item) {
     // item.stopPropagation();
     let extras: NavigationExtras = { state: { itemData: item } };
-    this.appconfig.setLocalStorage('jobDesc', JSON.stringify(item));
-    this.router.navigateByUrl(
-      APP_CONSTANTS.ENDPOINTS.CANDIDATEDASH.JOBDESCRIPTION,
-      extras
-    );
+    // this.appconfig.setLocalStorage('jobDesc', JSON.stringify(item));
+    // this.router.navigateByUrl(
+    //   APP_CONSTANTS.ENDPOINTS.CANDIDATEDASH.JOBDESCRIPTION,
+    //   extras
+    // );
+    let jobId = this.appconfig.base64Encryption(item.jobId);
+    this.router.navigateByUrl(APP_CONSTANTS.ENDPOINTS.CANDIDATEDASH.JOBDESCRIPTION + '/' + jobId);
   }
 
   dashboard() {
     this.router.navigate(['/candidateview/dashboard']);
   }
+
+  // setActiveButton(workOption) {
+  //   // this.activeButton = workOption;
+  //   // this.filterObj.workType = [workOption];
+  //   // this.getJobList();
+  //   // console.log(workOption, 'worktyps');
+  //   // if (workOption == 'Jobs') {
+  //   //  this.router.navigateByUrl(APP_CONSTANTS.ENDPOINTS.CANDIDATEDASH.JOBLIST);
+  //   // }
+  //   // else if (workOption == 'Internships') {
+  //   // this.router.navigateByUrl(APP_CONSTANTS.ENDPOINTS.CANDIDATEDASH.INTERNSHIPLIST);
+  //   // }
+
+
+  // }
+  //   setActiveButton(workOption: string) {
+  //   this.activeButton = workOption;
+  //   this.filterObj.workType = [workOption];
+
+  //   if (workOption === 'Jobs') {
+  //     this.filterObj = {};
+  //     // Navigate to the Jobs URL
+  //     this.router.navigateByUrl(APP_CONSTANTS.ENDPOINTS.CANDIDATEDASH.JOBLIST);
+  //   } else if (workOption === 'Internships') {
+  //     // Navigate to the Internships URL
+  //     this.router.navigateByUrl(APP_CONSTANTS.ENDPOINTS.CANDIDATEDASH.INTERNSHIPLIST);
+  //   }
+
+  //   this.getJobList();
+  // }
+
+ getColor(jobType: string): string {
+    switch (jobType) {
+      case 'Contract':
+        return '#700353';
+      case 'Parttime':
+        return '#4C1C00';
+
+      default:
+        return '#56B35A'; // Default color
+    }
+  }
+
+ getBackgroundColor(jobType: string): string {
+    switch (jobType) {
+      case 'Contract':
+        return '#70035329';
+      case 'Parttime':
+        return '#4C1C0029';
+      default:
+        return '#56B35A29'; // Default background color
+    }
+  }
+ toggleSave() {
+    this.item.isSelected = !this.item.isSelected;
+  }
+  //  getDaysAgo(createdOn: Date): string {
+  //   const today = new Date();
+  //   const differenceInMilliseconds = today.getTime() - new Date(createdOn).getTime();
+  //   const differenceInDays = Math.floor(differenceInMilliseconds / (24 * 60 * 60 * 1000));
+
+  //   return `${differenceInDays} days ago`;
+  // }
+  getDaysAgo(createdOn: Date): string {
+  const today = new Date();
+  const differenceInSeconds = Math.floor((today.getTime() - new Date(createdOn).getTime()) / 1000);
+  if (differenceInSeconds < 60) {
+    return 'just now';
+  }
+  const differenceInMinutes = Math.floor(differenceInSeconds / 60);
+  if (differenceInMinutes < 60) {
+    return `${differenceInMinutes} ${differenceInMinutes === 1 ? 'min' : 'mins'} ago`;
+  }
+  const differenceInHours = Math.floor(differenceInMinutes / 60);
+  if (differenceInHours < 24) {
+    return `${differenceInHours} ${differenceInHours === 1 ? 'hour' : 'hours'} ago`;
+  }
+  const differenceInDays = Math.floor(differenceInHours / 24);
+  if (differenceInDays <= 30) {
+    return `${differenceInDays} ${differenceInDays === 1 ? 'day' : 'days'} ago`;
+  }
+  return '30+ days ago';
+  }
+
 }

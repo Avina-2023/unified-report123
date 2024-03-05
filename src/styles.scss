@@ -7,7 +7,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'lato';
+    font-family: 'Inter';
 }
 
 
@@ -24,6 +24,7 @@ $custom-typography: mat-typography-config($font-family: '"Roboto", normal !impor
 @include mat-core($custom-typography);
 @import "../node_modules/ag-grid-community/dist/styles/ag-grid.css";
 @import "../node_modules/ag-grid-community/dist/styles/ag-theme-alpine.css";
+@import "~ng-pick-datetime/assets/style/picker.min.css";
 // ::-webkit-scrollbar {
 //     width: 6px;
 //     height: 6px;
@@ -32,6 +33,9 @@ $custom-typography: mat-typography-config($font-family: '"Roboto", normal !impor
     font-family: 'Material Icons' !important;
 }
 
+.text_capitalize{
+    text-transform: capitalize!important;
+}
 
 /* Track */
 

@@ -5,6 +5,7 @@ import { ColDef, GridApi } from 'ag-grid-community';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { PopUpCellRendererComponent } from './pop-up-cell-renderer/pop-up-cell-renderer.component';
+import { SentDataToOtherComp } from 'src/app/services/sendDataToOtherComp.service';
 import { GridOptions } from '@ag-grid-enterprise/all-modules';
 import { ApiService } from 'src/app/services/api.service';
 import { formatDate } from '@angular/common';
@@ -69,7 +70,8 @@ export class ManageDriveComponent implements OnInit {
   constructor(
     private ApiService: ApiService,
     private toastr: ToastrService,
-    private appconfig: AppConfigService
+    private appconfig: AppConfigService,
+    private sendData: SentDataToOtherComp
   ) {
     this.serverSideStoreType = 'partial';
     this.rowModelType = 'serverSide';
@@ -95,10 +97,27 @@ export class ManageDriveComponent implements OnInit {
   ngOnInit(): void {
     this.tabledata();
     this.autoSizeAll(false);
+    this.sendData
+    .getMessage()
+    .subscribe((data: { data: string; value: any }) => {
+      if (data.data == 'grid-refresh') {
+        console.log('inside');
+        this.refresh();
+        this.getManageDriveDashBoard(data);
+      }
+    });
   }
   arrayofData: any = [];
 
+
+
+  refresh() {
+    this.gridApi.refreshServerSideStore({ purge: true });
+  }
+
+  
   // Ag Grid Section
+
 
   tabledata() {
     this.columnDefs = [
@@ -113,19 +132,19 @@ export class ManageDriveComponent implements OnInit {
         },
         sortable: false,
       },
-      // {
-      //   headerName: '',
-      //   field: 'companyLogo',
-      //   width: 55,
-      //   sortable: false,
-      //   minWidth: 100,
-      //   suppressColumnsToolPanel: true,
-      //   filter: false,
-      //   cellRenderer: function (params) {
-      //     let val = encodeURI(params.value);
-      //     return `<img width="30px" height"22px" src=${val}>`;
-      //   },
-      // },
+      {
+        headerName: '',
+        field: 'companyLogo',
+        width: 55,
+        sortable: false,
+        minWidth: 100,
+        suppressColumnsToolPanel: true,
+        filter: false,
+        cellRenderer: function (params) {
+          let val = encodeURI(params.value);
+          return `<img width="30px" height"22px" src=${val}>`;
+        },
+      },
       { headerName: 'Company Name', field: 'company', minWidth: 175,
       filter: 'agTextColumnFilter',
       chartDataType: 'category',
@@ -182,7 +201,7 @@ export class ManageDriveComponent implements OnInit {
     }, {
         headerName: 'Candidates Applied',
         field: 'candidatesAppliedCount',
-        minWidth: 175,
+        minWidth: 180,
         cellStyle: { textAlign: 'center' },
         filter: 'agNumberColumnFilter',
         chartDataType: 'series',
@@ -243,9 +262,43 @@ export class ManageDriveComponent implements OnInit {
         // tooltipField: 'lastDatetoApply',
       
       },
+      // {
+      //   headerName: 'Status',
+      //   field: 'status',
+      //   minWidth: 120,
+      //   // filter: false,
+      //   filter: 'agTextColumnFilter',
+      //   chartDataType: 'category',
+      //   aggFunc: 'sum',
+      //   filterParams: {
+      //     suppressAndOrCondition: true,
+      //     filterOptions: ['contains']
+      //   },
+      //   cellStyle: { textAlign: 'center' },
+      //   cellRenderer: function (params) {
+      //     if (params.value === 'Active') {
+      //       return '<div class="status-button"><button mat-button disabled class="active-button">Active</button></div>';
+      //     }
+      //     if (params.value === 'Pending') {
+      //       return '<div class="status-button"><button mat-button disabled class="pending-button">Pending</button></div>';
+      //     }
+      //     if (params.value === 'Expired') {
+      //       return '<div class="status-button"><button mat-button disabled class="expired-button">Expired</button></div>';
+      //     }
+      //     if (params.value === 'Closed') {
+      //       return '<div class="status-button"><button mat-button disabled class="closed-button">Closed</button></div>';
+      //     }
+      //     if (params.value === 'Rejected') {
+      //       return '<div class="status-button"><button mat-button disabled class="rejected-button">Rejected</button></div>';
+      //     }
+      //   },
+     
+      // },
+
+
       {
         headerName: 'Status',
-        field: 'status',
+        field: 'approveStatus',
         minWidth: 120,
         // filter: false,
         filter: 'agTextColumnFilter',
@@ -257,24 +310,26 @@ export class ManageDriveComponent implements OnInit {
         },
         cellStyle: { textAlign: 'center' },
         cellRenderer: function (params) {
-          if (params.value === 'Active') {
+          if (params.value === 'approved') {
             return '<div class="status-button"><button mat-button disabled class="active-button">Active</button></div>';
           }
-          if (params.value === 'Pending') {
+          if (params.value === 'pending') {
             return '<div class="status-button"><button mat-button disabled class="pending-button">Pending</button></div>';
           }
-          if (params.value === 'Expired') {
+          if (params.value === 'expired') {
             return '<div class="status-button"><button mat-button disabled class="expired-button">Expired</button></div>';
           }
-          if (params.value === 'Closed') {
+          if (params.value === 'closed') {
             return '<div class="status-button"><button mat-button disabled class="closed-button">Closed</button></div>';
           }
-          if (params.value === 'Rejected') {
+          if (params.value === 'rejected') {
             return '<div class="status-button"><button mat-button disabled class="rejected-button">Rejected</button></div>';
           }
         },
      
       },
+
+
       {
         headerName: '',
         field: 'action',
@@ -315,6 +370,11 @@ export class ManageDriveComponent implements OnInit {
     return {
       getRows: (params) => {
         let apiData: any = params;
+        apiData.request.filterModel['jobCategoryId'] = {
+          filterType: 'text',
+          type: "contains",
+          filter :"64cc8ce4112e2bb777bcbef5"
+        };
         this.driveAgGridSubscription = this.ApiService.getAGgridData(
           apiData.request
         ).subscribe(
@@ -428,12 +488,45 @@ export class ManageDriveComponent implements OnInit {
   // }
   //   }
   // }
-  getManageDriveDashBoard(data: any) {
+  
+  /*getManageDriveDashBoard(data: any) {
     this.ApiService.getDriveCardData(data).subscribe(
       (driveCardData: any) => {
         if (driveCardData.success == false) {
           this.toastr.warning('Connection failed, Please try again.');
         } else {
+          console.log(driveCardData, 'drivedatacount');
+          this.drive_cards = driveCardData.totalCount.count;
+          this.active_cards = driveCardData.totalCount.activeCount;
+          this.expire_cards = driveCardData.totalCount.expireCount;
+          this.reject_cards = driveCardData.totalCount.rejectCount;
+          this.pending_cards = driveCardData.totalCount.pendingCount;
+          this.closed_cards = driveCardData.totalCount.closedCount;
+        }
+      },
+      (err) => {
+        this.toastr.warning('Connection failed, Please try again.');
+      }
+    );
+  }*/
+
+
+  getManageDriveDashBoard(data: any) {
+    let requestData = {
+      filterModel: {
+        jobCategoryId: {
+          filterType: 'text',
+          type: 'contains',
+          filter: '64cc8ce4112e2bb777bcbef5'
+        }
+      }
+    };
+    this.ApiService.getDriveCardData(requestData).subscribe(
+      (driveCardData: any) => {
+        if (driveCardData.success == false) {
+          this.toastr.warning('Connection failed, Please try again.');
+        } else {
+          console.log(driveCardData, 'drivedatacount');
           this.drive_cards = driveCardData.totalCount.count;
           this.active_cards = driveCardData.totalCount.activeCount;
           this.expire_cards = driveCardData.totalCount.expireCount;
@@ -447,4 +540,8 @@ export class ManageDriveComponent implements OnInit {
       }
     );
   }
+
+
+
+
 }

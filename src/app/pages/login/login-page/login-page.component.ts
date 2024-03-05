@@ -25,6 +25,7 @@ export class LoginPageComponent  {
 
   @ViewChild('mailsuccess', { static: false }) mailsuccess: TemplateRef<any>;
   @ViewChild('notactive', { static: false }) notactive: TemplateRef<any>;
+  currentYear: number;
 
   constructor(
     public fb: FormBuilder,
@@ -50,6 +51,7 @@ export class LoginPageComponent  {
 
   ngOnInit(): void {
     this.formInitialize();
+    this.currentYear = new Date().getFullYear();
   }
 
   openMatDialogs(templateref){
@@ -83,7 +85,7 @@ export class LoginPageComponent  {
         this.appConfig.setLocalStorage('name',data && data.data.personal_details?data.data.personal_details.name:'N/A')
         this.appConfig.setLocalStorage('profileImage',data && data.data.personal_details?data.data.personal_details.profileImage:'')
         this.appConfig.setLocalStorage('candidateProfile',data && data.data?JSON.stringify(data.data):'')
-        this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.CANDIDATEDASH.DASHBOARD);
+        this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.CANDIDATEDASH.NEWDASHBOARD);
       }else{
         // this.appConfig.setLocalStorage('c_token', data && data.token ? data.token : 'my token');
 
