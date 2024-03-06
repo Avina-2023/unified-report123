@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: unifiedreport
-          image: uapprod.azurecr.io/unifiedreport:$tag
+          image: unifiedassessprod.azurecr.io/unifiedreport:$tag
           resources:
            limits:
              cpu: "1"
@@ -28,5 +28,4 @@ spec:
           - containerPort: 80
       imagePullSecrets:
         - name: mysecret
-      nodeSelector:
-        agentpool: uapuat
+      
