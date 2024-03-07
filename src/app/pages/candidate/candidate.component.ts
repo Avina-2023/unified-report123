@@ -257,7 +257,9 @@ export class CandidateComponent implements OnInit {
     if (menuType === 'home') {
       // this.appconfig.clearLocalStorage();
       // this.apiservice.logout();
-      window.location.href = 'https://reviewinfo.lntedutech.com';
+      // window.location.href = 'https://reviewinfo.lntedutech.com';
+       window.location.href = 'https://myaccount.lntedutech.com/login/';
+
       this.appconfig.clearLocalStorage();
       // window.location.replace('https://reviewinfo.lntedutech.com');
       //  this.appconfig.clearLocalStorage();
