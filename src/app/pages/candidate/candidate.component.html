@@ -252,9 +252,9 @@
   <div class="profile_menu" [class.slide-left]="isShowProfile">
     <div class="innercontent">
       <div class="flex_div flx_center pt-20">
-        <div class="user_avatar mg-10"
-          [style.background]="'url('+(profileImage ? profileImage : 'assets/images/candidate-userprofile.png')+')'">
-        </div>
+      <div class="user_avatar mg-10"
+        [style.background]="'url(' + (profileImage ? profileImage : 'assets/images/candidate-userprofile.png') + (blobtoken ? '?token=' + blobtoken : '') + ')'">
+      </div>
         <div class="txt_left">
           <div class="user_title toggle_white text_capitalize">{{candidateName}}</div>
           <div class="user_email toggle_grey">{{candidateEmail}}</div>
