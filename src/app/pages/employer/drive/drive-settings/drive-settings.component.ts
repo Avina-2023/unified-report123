@@ -7,6 +7,8 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { NzSelectSizeType } from 'ng-zorro-antd/select';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { log } from 'console';
+import { environment } from 'src/environments/environment';
+
 interface EducationItem {
   specification: string;
   discipline: string[];
@@ -37,6 +39,8 @@ interface HiringItem {
 })
 
 export class DriveSettingsComponent implements OnInit {
+    blobtoken: string = environment.blobToken;
+
   jobForm: FormGroup;
   educationForm: FormGroup;
   genderForm: FormGroup;

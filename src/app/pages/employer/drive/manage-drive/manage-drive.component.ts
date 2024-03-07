@@ -13,6 +13,8 @@ import * as moment from 'moment';
 import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
 import { AppConfigService } from 'src/app/utils/app-config.service';
+import { environment } from 'src/environments/environment';
+
 @Component({
   selector: 'app-manage-drive',
   templateUrl: './manage-drive.component.html',
@@ -46,6 +48,7 @@ export class ManageDriveComponent implements OnInit {
   pageRowCount = 0;
   paginationPageSize: number;
   driveAgGridSubscription: Subscription;
+  blobtoken: string = environment.blobToken;
   pagination: boolean;
   sideBar = {
     toolPanels: [
@@ -115,7 +118,7 @@ export class ManageDriveComponent implements OnInit {
     this.gridApi.refreshServerSideStore({ purge: true });
   }
 
-  
+
   // Ag Grid Section
 
 
@@ -260,7 +263,7 @@ export class ManageDriveComponent implements OnInit {
         //   }
         // },
         // tooltipField: 'lastDatetoApply',
-      
+
       },
       // {
       //   headerName: 'Status',
@@ -292,7 +295,7 @@ export class ManageDriveComponent implements OnInit {
       //       return '<div class="status-button"><button mat-button disabled class="rejected-button">Rejected</button></div>';
       //     }
       //   },
-     
+
       // },
 
 
@@ -326,7 +329,7 @@ export class ManageDriveComponent implements OnInit {
             return '<div class="status-button"><button mat-button disabled class="rejected-button">Rejected</button></div>';
           }
         },
-     
+
       },
 
 
@@ -339,7 +342,7 @@ export class ManageDriveComponent implements OnInit {
         filter: false,
       },
     ];
-   
+
   }
 
   async onSelectionChanged(event) {
@@ -379,7 +382,7 @@ export class ManageDriveComponent implements OnInit {
           apiData.request
         ).subscribe(
           (data1: any) => {
-            
+
             if (data1.success == false) {
               params.fail();
               params.success({
@@ -387,16 +390,16 @@ export class ManageDriveComponent implements OnInit {
                 rowCount: 0,
               });
               this.gridApi.showNoRowsOverlay();
-            } 
+            }
             else {
-              this.manageDriveAgData = data1 && data1.data ? data1.data : [];             
+              this.manageDriveAgData = data1 && data1.data ? data1.data : [];
               if (this.manageDriveAgData.length > 0) {
                 this.pageRowCount =
                   data1 && data1.totalCount.count ? data1.totalCount.count : 0;
                 this.gridApi.hideOverlay();
                 params.success({
                   rowData: this.manageDriveAgData,
-                  rowCount: this.pageRowCount,    
+                  rowCount: this.pageRowCount,
                 });
                 // this.gridApi.selectAllFiltered();
                 // this.gridApi.selectAll();
@@ -488,7 +491,7 @@ export class ManageDriveComponent implements OnInit {
   // }
   //   }
   // }
-  
+
   /*getManageDriveDashBoard(data: any) {
     this.ApiService.getDriveCardData(data).subscribe(
       (driveCardData: any) => {

@@ -34,6 +34,7 @@ export class CandidateComponent implements OnInit {
   sideNavMode: MatDrawerMode = 'over'
   isShowing: boolean = false;
   routelinks = APP_CONSTANTS.ENDPOINTS
+  blobtoken: string = environment.blobToken;
   candidateName = localStorage.getItem('name')
   productionUrl = environment.SKILL_EDGE_URL == "https://skilledge.lntedutech.com" ? true : false;
   profileimge: any = "";
