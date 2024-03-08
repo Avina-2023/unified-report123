@@ -42,7 +42,7 @@ export class JobListingComponent implements OnInit {
   filterObj: any = {};
   sortData = 'relevance';
   jobId: any = '';
-  blobToken = environment.blobToken;
+  blobtoken: string = environment.blobToken;
   productionUrl =
     environment.SKILL_EDGE_URL == 'https://skilledge.lntedutech.com'
       ? true
