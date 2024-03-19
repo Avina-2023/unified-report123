@@ -519,6 +519,80 @@ input.ng-touched.ng-invalid {
   text-align: center;
 }
 
+.cmpny_logo_upload {
+
+  ::ng-deep .mat-form-field {
+    display: block;
+  }
+
+  .templateContainer {
+    .input_box {
+      border: 1px solid #B4B4B4;
+      border-radius: 3px;
+      width: 100%;
+      padding: 7px;
+      margin: -5px 0px 15px 0px;
+    }
+  }
+}
+
+.cmpny_title {
+  font-size: 12px;
+  color: #262626;
+  font-weight: 600;
+}
+
+.cmpny_logo_section {
+  border: 1px dashed #B4B4B4;
+  border-radius: 5px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cmpny_logo_section>div {
+  text-align: center;
+}
+
+.slt_logo {
+  border: none !important;
+  background-color: #1B4E9A;
+  color: #ffffff;
+  padding: 5px 20px;
+  border-radius: 15px;
+  margin: 20px 0px 0px 0px;
+}
+
+.save_logo {
+  border: none !important;
+  background-color: #1B4E9A;
+  color: #ffffff;
+  padding: 5px 20px;
+  border-radius: 5px;
+  margin: 20px 0px 0px 0px;
+}
+
+.button-space {
+  display: inline-block;
+  width: 10px;
+}
+
+.cancel_logo {
+  border: 1px solid #08558C !important;
+  background-color: #ffffff;
+  color: #08558C;
+  padding: 5px 20px;
+  border-radius: 5px;
+  margin: 20px 0px 0px 0px;
+}
+
+.frmt_logo {
+  margin: 23px 0px 0px 0px;
+  font-size: 12px;
+  color: #848484;
+}
+
 ::ng-deep.overflow_scroll nz-select-top-control {
   height: 32px !important;
   overflow-y: scroll !important;
@@ -546,6 +620,44 @@ nz-select.ng-touched.ng-invalid {
   overflow-y: auto;
   position: relative;
   height: 100px !important;
+}
+
+.cmpny_save {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.logo_div {
+  width: 15%;
+  padding: 33px 0px 0px 0px;
+}
+
+@media screen and (max-width: 1060px) {
+  .logo_div {
+    width: 22%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .logo_div {
+    width: 30%;
+  }
+}
+
+.cmpnt_btn {
+  background-color: #1B4E9B;
+  border-radius: 5px;
+  border: 1px solid #1B4E9B;
+  color: #ffffff;
+  padding: 7px;
+  cursor: pointer;
+}
+
+.add_cmpny {
+  color: #262626;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 10px;
 }
 
 // ::ng-deep .angular-editor-textarea {

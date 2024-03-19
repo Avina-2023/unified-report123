@@ -64,9 +64,13 @@ export class AddJobsComponent implements OnInit {
   pgCourses: any;
   ugCourses: any;
 
+  employerLogoFileName: string;
+  errorMsgforLogo: string;
+  employerLogoFile: File;
+
   productionUrl = environment.SKILL_EDGE_URL == "https://skilledge.lntedutech.com" ? true : false;
 
-   config: AngularEditorConfig = {
+  config: AngularEditorConfig = {
     editable: true,
     spellcheck: true,
     minHeight: '100px',
@@ -131,6 +135,7 @@ export class AddJobsComponent implements OnInit {
   // };
 
   @ViewChild('jobsaved', { static: false }) jobsavedtemplate: TemplateRef<any>;
+  @ViewChild('cmpnylogosaved', { static: false }) cmpnylogotemplate: TemplateRef<any>;
   ugDegrees: any[];
   pgDegrees: any[];
   phdDegrees: any[];
@@ -143,11 +148,15 @@ export class AddJobsComponent implements OnInit {
   disabledGraduations: any[];
   minDate: Date;
   maxDate: Date;
+  companyArray: any[];
+  companyArr: any[];
+  newcompany: { company: string; compmayid: string; };
+  compObj: { company_name: string; company_logo: string; };
 
     constructor
     (private fb: FormBuilder,
     private apiService: ApiService,
-    //private ApiService: ApiService,
+    private ApiService: ApiService,
     private appconfig: AppConfigService,
     private toastr: ToastrService,
     private dialog: MatDialog) {
@@ -225,42 +234,6 @@ export class AddJobsComponent implements OnInit {
     });
   }
 
-  //   companylist() {
-  //      const data: any = {};
-  //     this.apiService.masterCompany().subscribe(
-  //   (res: any) => {
-  //     console.log(res);
-  //     if (res.success) {
-  //       this.companyOptions = res.data.map(item => item.company);
-  //       //this.companyOptions = res.data;
-  //       console.log(this.companyOptions, '');
-  //     }
-  //   },
-  //   (error) => {
-  //     console.error('API request error:', error);
-  //   }
-  // );
-  //   }
-
-  //   companylist() {
-  //   const data: any = {};
-  //   this.apiService.masterCompany().subscribe(
-  //     (res: any) => {
-  //       console.log(res);
-  //       if (res.success) {
-  //         this.companyOptions = res.data.map(item => ({
-  //           company: item.company,
-  //           companyId: item.companyId
-  //         }));
-  //         console.log(this.companyOptions, '');
-  //       }
-  //     },
-  //     (error) => {
-  //       console.error('API request error:', error);
-  //     }
-  //   );
-  // }
-
   companylist() {
     const data: any = {};
     this.apiService.masterCompany().subscribe(
@@ -271,7 +244,10 @@ export class AddJobsComponent implements OnInit {
             company: item.company,
             companyId: item.companyId
           }));
-          console.log(this.companyOptions, '');
+        //   this.companyArr = [];
+        //   this.companyArr.push(this.companyOptions);
+        //   console.log(this.companyArr, 'COMARRRRRRRRR');
+          console.log(this.companyOptions, 'compoptions');
         }
       },
       (error) => {
@@ -279,6 +255,15 @@ export class AddJobsComponent implements OnInit {
       }
     );
   }
+
+  // addNewCompany() {
+  //   this.newcompany = {
+  //     'company': 'new',
+  //     'compmayid' : 'id'
+  //   };
+  //   this.companyArr.push(this.newcompany);
+  //   console.log(this.companyArr, 'updatedarray');
+  // }
 
   formatCompany(selectedCompany: any): void {
     if (selectedCompany) {
@@ -294,11 +279,13 @@ export class AddJobsComponent implements OnInit {
     //const emailregex: RegExp =
     // /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     this.addjobsForm = this.fb.group({
-      ctcOption: ['', Validators.required],
+      // ctcOption: ['', Validators.required],
+      ctcOption: [''],
       fixed: [''],
       startrange: [''],
       endrange: [''],
       company: ['', [Validators.required]],
+      // companyNameupload: ['', [Validators.required]],
       jobRole: ['', [Validators.required]],
       jobLocation: [[], [Validators.required]],
       // jobLocation: ['', [Validators.required]],
@@ -307,9 +294,9 @@ export class AddJobsComponent implements OnInit {
       // level: ['', [Validators.required]],
       // specification: ['', [Validators.required]],
       // discipline: ['', [Validators.required]],
-      skillSet: [[], [Validators.required]],
+      skillSet: [[]],
       lastDatetoApply: [[], [Validators.required]],
-      yearofPassout: [[], [Validators.required]],
+      yearofPassout: [[]],
       applyLink: [
         '',
         [
@@ -318,7 +305,7 @@ export class AddJobsComponent implements OnInit {
         ]
       ],
 
-      requirement: ['', [Validators.required]],
+      requirement: [''],
       description: ['', [Validators.required]],
       additionalInformation: [''],
       educationGroups: this.fb.array([this.createEducationGroup()])
@@ -333,7 +320,7 @@ export class AddJobsComponent implements OnInit {
       discipline: [this.multipleSpecialization],
     });
   }
-   get urlFormaterror() {
+  get urlFormaterror() {
     return this.addjobsForm.controls;
   }
   get company() {
@@ -342,6 +329,9 @@ export class AddJobsComponent implements OnInit {
   get jobRole() {
     return this.addjobsForm.get('jobRole');
   }
+  // get companyNameupload() {
+  //   return this.addjobsForm.get('companyNameupload');
+  // }
   get jobTitle() {
     return this.addjobsForm.get('jobTitle');
   }
@@ -769,7 +759,7 @@ export class AddJobsComponent implements OnInit {
     const endrangeControl = this.addjobsForm.get('endrange');
     const ctcOptionControl = this.addjobsForm.get('ctcOption');
     if (this.selectedOption === 'Jobs') {
-      ctcOptionControl.setValidators(Validators.required);
+      // ctcOptionControl.setValidators(Validators.required);
       ctcOptionControl.updateValueAndValidity();
       this.selectedRangeOption = 'fixed';
     }
@@ -798,7 +788,7 @@ export class AddJobsComponent implements OnInit {
     const startrangeControl = this.addjobsForm.get('startrange');
     const endrangeControl = this.addjobsForm.get('endrange');
     if (this.selectedRangeOption === 'fixed') {
-      fixedControl.setValidators(Validators.required);
+      // fixedControl.setValidators(Validators.required);
       fixedControl.setValue(this.fixed);
       startrangeControl.clearValidators();
       endrangeControl.clearValidators();
@@ -806,8 +796,8 @@ export class AddJobsComponent implements OnInit {
       endrangeControl.setValue(null);
     }
     else  {
-      startrangeControl.setValidators(Validators.required);
-      endrangeControl.setValidators(Validators.required);
+      // startrangeControl.setValidators(Validators.required);
+      // endrangeControl.setValidators(Validators.required);
       startrangeControl.setValue(this.startrange);
       endrangeControl.setValue(this.endrange);
       fixedControl.clearValidators();
@@ -865,6 +855,7 @@ export class AddJobsComponent implements OnInit {
       var obj = {
         "companyId": this.addjobsForm.value?.company.companyId,
         "company": this.addjobsForm.value?.company.company,
+        // "companyNameupload": this.addjobsForm.value?.companyNameupload,
         "jobRole": this.addjobsForm.value?.jobRole,
         "jobTitle": this.addjobsForm.value?.jobTitle,
         "jobLocation": this.addjobsForm.value?.jobLocation,
@@ -923,9 +914,7 @@ export class AddJobsComponent implements OnInit {
   //   }
   // }
 
-  // clearForm() {
-  //     this.addjobsForm.reset();
-  //     }
+
 
   clearForm() {
     if (this.addjobsForm.dirty) {
@@ -946,6 +935,63 @@ export class AddJobsComponent implements OnInit {
     today.setHours(0, 0, 0, 0); // Set hours, minutes, seconds, and milliseconds to 0
     today.setDate(today.getDate() + 1);
     return today.toISOString().split('T')[0];
- }
+  }
+
+  openDialog() {
+    this.dialog.open(this.cmpnylogotemplate, {
+      width: '600px',
+      disableClose: true,
+      hasBackdrop: true,
+    });
+  }
+  saveTemplate(companyName: string) {
+   //console.log("Company Name:", companyName);
+    this.compObj = {
+     "company_name": companyName,
+     "company_logo" : 'companyLogo'
+   }
+
+   console.log(this.compObj, 'compobj');
+    this.dialog.closeAll();
+  }
+
+  closeTemplate(): void {
+    this.dialog.closeAll();
+  }
+
+  onEmployerLogoFileSelected(event) {
+    this.errorMsgforLogo = '';
+    const file = event.target.files[0];
+    if (file.type !== 'image/jpeg' && file.type !== 'image/png') {
+        // Display warning if file type is not supported
+        this.errorMsgforLogo = 'Please select a JPEG or PNG file.';
+        return;
+    }
+    this.employerLogoFile = file;
+    const fd = new FormData();
+    fd.append("uploadFile", file);
+    fd.append("type", "profile");
+
+    this.ApiService.imageUpload(fd).subscribe((imageData: any) => {
+      if (imageData.success == false) {
+        // Display warning if image upload fails
+        this.errorMsgforLogo = imageData.message;
+      } else {
+        this.employerLogoFileName = file.name;
+        // Set display image URL
+        this.displayImageUrl = imageData.data;
+      }
+    }, (err) => {
+      // Display warning if connection fails
+      this.errorMsgforLogo = 'Connection failed, Please try again.';
+    });
+  }
+
+  removeUploadedLogo() {
+    // Clear the uploaded logo data
+    this.employerLogoFileName = '';
+    this.displayImageUrl = '';
+  }
+
 
 }

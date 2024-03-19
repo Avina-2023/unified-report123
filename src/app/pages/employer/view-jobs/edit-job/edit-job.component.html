@@ -250,7 +250,7 @@
               <div *ngIf="selectedRangeOption === 'fixed'" style="width: 50%; padding: 0px 0px 0px 15px;">
                 <mat-form-field style="width: 140%;" class="example-full-width" appearance="outline">
                   <input type="number" formControlName="fixed" matInput placeholder="Enter Value" min="0">
-                  <mat-error *ngIf="addjobsForm.get('fixed').hasError('required')">CTC is Required</mat-error>
+                  <!-- <mat-error *ngIf="addjobsForm.get('fixed').hasError('required')">CTC is Required</mat-error> -->
                 </mat-form-field>
               </div>
 
@@ -259,12 +259,12 @@
                 style="display: flex; align-items: center; margin-left: 10px;">
                 <mat-form-field appearance="outline" style="padding-right: 5px; width: 160px;">
                   <input type="number" formControlName="startrange" matInput placeholder="CTC (numeric only)" min="0">
-                  <mat-error *ngIf="addjobsForm.get('startrange').hasError('required')"> CTC is Required</mat-error>
+                  <!-- <mat-error *ngIf="addjobsForm.get('startrange').hasError('required')"> CTC is Required</mat-error> -->
                 </mat-form-field>
 
                 <mat-form-field appearance="outline" style="padding-right: 5px; width: 160px;">
                   <input type="number" formControlName="endrange" matInput placeholder="CTC (numeric only)" min="0">
-                  <mat-error *ngIf="addjobsForm.get('endrange').hasError('required')"> CTC is Required</mat-error>
+                  <!-- <mat-error *ngIf="addjobsForm.get('endrange').hasError('required')"> CTC is Required</mat-error> -->
                 </mat-form-field>
               </div>
             </div>
@@ -283,11 +283,11 @@
                 <nz-option *ngFor="let item of YearofPassing" [nzLabel]="item" [nzValue]="item"></nz-option>
               </nz-select>
             </div>
-            <div style="padding: 0% 0% 0% 27%; margin: -10px 0px 0px 0px;"
+            <!-- <div style="padding: 0% 0% 0% 27%; margin: -10px 0px 0px 0px;"
               *ngIf="addjobsForm.get('yearofPassout').hasError('required') && addjobsForm.get('yearofPassout').touched"
               class="text-danger">
               Year of Passing is Required.
-            </div>
+            </div> -->
           </div>
 
           <div class="border-line">
@@ -313,15 +313,14 @@
               <label style="padding: 20px 0px 20px 15px;">Key Skills</label>
               <nz-select style="width: 83%; padding: 3px 0px 0px 0px;overflow-x: hidden;" nzMode="multiple" nzAllowClear
                 nzShowSearch nzPlaceHolder="-- Select Skill Set (Multiple Select) --" formControlName="skillSet"
-                (input)="handleSearch($event)" class="custom-nz-select my-custom-nz-select"
-                [ngClass]="{'error-border': addjobsForm.get('skillSet').hasError('required') && addjobsForm.get('skillSet').touched}">
+                (input)="handleSearch($event)" class="custom-nz-select my-custom-nz-select">
                 <nz-option *ngFor="let item of newSkill" [nzLabel]="item" [nzValue]="item"></nz-option>
               </nz-select>
             </div>
-            <div *ngIf="addjobsForm.get('skillSet').hasError('required') && addjobsForm.get('skillSet').touched"
+            <!-- <div *ngIf="addjobsForm.get('skillSet').hasError('required') && addjobsForm.get('skillSet').touched"
               style="color: red;padding: 0% 0% 0% 27%; margin: -10px 0px 0px 0px;">
               Skill Set is Required.
-            </div>
+            </div> -->
           </div>
 
           <div class="border-line">
@@ -392,10 +391,10 @@
                   placeholder="Enter Job requirement"></textarea> -->
               <!-- </mat-form-field> -->
             </div>
-            <mat-error
+            <!-- <mat-error
               *ngIf="addjobsForm.get('requirement')?.hasError('required') && addjobsForm.get('requirement').touched">
               Job Requirements is Required.
-            </mat-error>
+            </mat-error> -->
           </div>
           <div class="border-line">
             <div class="bottom-border"></div>

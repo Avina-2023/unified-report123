@@ -79,7 +79,7 @@
       <!-- <div class="mg-7 pointer_cursor mob_view"><span class="icon-darkMode"></span></div> -->
       <!-- <div class="mg-7 pointer_cursor mob_view"><span class="icon-notification"></span></div> -->
       <div class="mg-7 pointer_cursor bg-user" (click)="showProfileDashboard()"
-        [style.background]="'url(' + (profileImage ? profileImage : 'assets/images/candidate-userprofile.png') + ')'">
+        [style.background]="'url(' + (profileImage ? profileImage +blobtoken : 'assets/images/candidate-userprofile.png') + ')'">
       </div>
       <!-- <div class="icon pointer_cursor" (click)="showProfileDashboard()" *ngIf ="{{profileimge}} != null"> {{profileimge}}
       </div> -->
@@ -253,7 +253,7 @@
     <div class="innercontent">
       <div class="flex_div flx_center pt-20">
         <div class="user_avatar mg-10"
-          [style.background]="'url('+(profileImage ? profileImage : 'assets/images/candidate-userprofile.png')+')'">
+          [style.background]="'url('+(profileImage ? profileImage +blobtoken: 'assets/images/candidate-userprofile.png')+')'">
         </div>
         <div class="txt_left">
           <div class="user_title toggle_white text_capitalize">{{candidateName}}</div>

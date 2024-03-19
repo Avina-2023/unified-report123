@@ -61,6 +61,7 @@ export class JobListingComponent implements OnInit {
   removeduplicate1: any;
   removeduplicate2: any;
   activeButton: string = 'all';
+  blobtoken: string = environment.blobToken;
   // grid2Selected = false;
   partnerLabel: string | undefined;
   private buttonClicked = new Subject<string>();

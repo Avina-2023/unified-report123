@@ -325,7 +325,7 @@ export class EditJobComponent implements OnInit {
 
   formerrorInitialize() {
     this.addjobsForm = this.fb.group({
-      ctcOption: ['', Validators.required],
+      ctcOption: [''],
       fixed: [''],
       startrange: [''],
       endrange: [''],
@@ -334,9 +334,9 @@ export class EditJobComponent implements OnInit {
       jobLocation: ['', [Validators.required]],
       jobType: [[], [Validators.required]],
       jobTitle: ['', [Validators.required]],
-      skillSet: ['', [Validators.required]],
+      skillSet: ['', []],
       lastDatetoApply: [[], [Validators.required]],
-      yearofPassout: [[], [Validators.required]],
+      yearofPassout: [[]],
       applyLink: [
         '',
         [
@@ -344,7 +344,7 @@ export class EditJobComponent implements OnInit {
           Validators.pattern(/^(https?:\/\/)?([\w\d.-]+)\.([a-z]{2,})(\/\S*)?$/i)
         ]
       ],
-      requirement: ['', [Validators.required]],
+      requirement: [''],
       description: ['', [Validators.required]],
       additionalInformation: [],
       educationGroups: this.fb.array([this.createEducationGroup()])
@@ -831,27 +831,27 @@ export class EditJobComponent implements OnInit {
     const endrangeControl = this.addjobsForm.get('endrange');
     const ctcOptionControl = this.addjobsForm.get('ctcOption');
     if (this.selectedOption === 'Jobs') {
-      ctcOptionControl.setValidators(Validators.required);
+      // ctcOptionControl.setValidators(Validators.required);
       ctcOptionControl.updateValueAndValidity();
       this.selectedRangeOption = 'fixed';
     }
-    if (this.selectedOption === 'Internships') {
-      fixedControl.clearValidators();
-      fixedControl.setValue(null);
-      fixedControl.updateValueAndValidity();
+    // if (this.selectedOption === 'Internships') {
+    //   fixedControl.clearValidators();
+    //   fixedControl.setValue(null);
+    //   fixedControl.updateValueAndValidity();
 
-      startrangeControl.clearValidators();
-      startrangeControl.setValue(null);
-      startrangeControl.updateValueAndValidity();
+    //   startrangeControl.clearValidators();
+    //   startrangeControl.setValue(null);
+    //   startrangeControl.updateValueAndValidity();
 
-      endrangeControl.clearValidators();
-      endrangeControl.setValue(null);
-      endrangeControl.updateValueAndValidity();
+    //   endrangeControl.clearValidators();
+    //   endrangeControl.setValue(null);
+    //   endrangeControl.updateValueAndValidity();
 
-      ctcOptionControl.clearValidators();
-      ctcOptionControl.setValue(null);
-      ctcOptionControl.updateValueAndValidity();
-    }
+    //   ctcOptionControl.clearValidators();
+    //   ctcOptionControl.setValue(null);
+    //   ctcOptionControl.updateValueAndValidity();
+    // }
     this.addjobsForm.reset();
   }
 
@@ -860,7 +860,7 @@ export class EditJobComponent implements OnInit {
     const startrangeControl = this.addjobsForm.get('startrange');
     const endrangeControl = this.addjobsForm.get('endrange');
     if (this.selectedRangeOption === 'fixed') {
-      fixedControl.setValidators(Validators.required);
+      // fixedControl.setValidators(Validators.required);
       fixedControl.setValue(this.jobdata.ctc);
       startrangeControl.clearValidators();
       endrangeControl.clearValidators();
@@ -868,8 +868,8 @@ export class EditJobComponent implements OnInit {
       endrangeControl.setValue(null);
     }
     else {
-      startrangeControl.setValidators(Validators.required);
-      endrangeControl.setValidators(Validators.required);
+      // startrangeControl.setValidators(Validators.required);
+      // endrangeControl.setValidators(Validators.required);
       // startrangeControl.setValue(this.startrange);
       // endrangeControl.setValue(this.endrange);
       fixedControl.clearValidators();

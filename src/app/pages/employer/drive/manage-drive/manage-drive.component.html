@@ -17,7 +17,7 @@
           </div>
         </mat-card-header>
         <mat-card-content class="icon">
-          <img src="/assets/images/wordrive.png" class="icon-image">
+          <img src="/assets/images/wordrive.png + blobtoken" class="icon-image">
         </mat-card-content>
       </div>
     </mat-card>
@@ -106,7 +106,7 @@
         </mat-card-content>
       </div>
     </mat-card>
-    
+
   </div>
 
   <div class="border">
@@ -115,38 +115,38 @@
       style="width: 100%; height: 100%;"
       class="ag-theme-alpine"
       [gridOptions]= "gridOptions"
-       [columnDefs]="columnDefs" 
+       [columnDefs]="columnDefs"
                         [defaultColDef]="defaultColDef"
                         [masterDetail]="masterDetail"
                         [overlayNoRowsTemplate]="overlayNoRowsTemplate"
-                         [rowData]="rowData" 
+                         [rowData]="rowData"
                          [enableRangeSelection]="true"
-                        [tooltipShowDelay]="0" 
+                        [tooltipShowDelay]="0"
                         [animateRows]="true"
-                         headerHeight="45" 
+                         headerHeight="45"
                          rowHeight="45"
                         [suppressRowClickSelection]="true"
-                         [suppressRowTransform]="true" 
+                         [suppressRowTransform]="true"
                          [rowSelection]="rowSelection"
-                        [pivotPanelShow]="'always'" 
-                        [sideBar]="false" 
+                        [pivotPanelShow]="'always'"
+                        [sideBar]="false"
                         (gridReady)="onGridReady($event)"
                         [rowModelType]="rowModelType"
-                         [maintainColumnOrder]="true" 
+                         [maintainColumnOrder]="true"
                          [cacheBlockSize]="cacheBlockSize"
-                        (selectionChanged)="onSelectionChanged($event)" 
-                        [suppressAggFuncInHeader]="true" 
+                        (selectionChanged)="onSelectionChanged($event)"
+                        [suppressAggFuncInHeader]="true"
                         [suppressColumnVirtualisation]="true"
-                        [autoGroupColumnDef]="autoGroupColumnDef" 
+                        [autoGroupColumnDef]="autoGroupColumnDef"
                         [serverSideStoreType]="serverSideStoreType"
-                        [pagination]="true" 
-                        [paginationPageSize]="10" 
-                        [sideBar]="sideBar" 
+                        [pagination]="true"
+                        [paginationPageSize]="10"
+                        [sideBar]="sideBar"
                         allColumns=true
       >
-      
+
   </ag-grid-angular>
-  
+
 </div>
   </div>
 </div>

@@ -118,7 +118,7 @@
               [ngClass]="{'blurcard': !item.yearofPassout.includes(removeduplicate2)&&item.partnerLabel}">
               <div class="minicard-header">
                 <div class="company-image">
-                  <img [src]="item.companyLogo ? item.companyLogo : '../../../../assets/images/bottomCircle.png'"
+                  <img [src]="item.companyLogo ? item.companyLogo + blobtoken : '../../../../assets/images/bottomCircle.png'"
                     alt="" />
                 </div>
                 <div class="minicard-heading">

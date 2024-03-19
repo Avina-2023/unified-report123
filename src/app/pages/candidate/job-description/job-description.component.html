@@ -69,8 +69,8 @@
 
       </div>
       <div class="job-details1">
-       <div *ngIf="jobDetails.jobFamily" class="worktyp">{{jobDetails.jobFamily}}</div>
-           <!-- <div class="job-intern"><span class="job-intern2">{{jobDetails.jobType}}</span></div> -->
+        <div *ngIf="jobDetails.jobFamily" class="worktyp">{{jobDetails.jobFamily}}</div>
+        <!-- <div class="job-intern"><span class="job-intern2">{{jobDetails.jobType}}</span></div> -->
         <div class="job_typesty"
           [ngStyle]="{ 'color': getColor(jobDetails.jobType), 'background-color': getBackgroundColor(jobDetails.jobType) }">
           <span class="icon-full_time"></span> {{jobDetails.jobType}}
@@ -146,7 +146,7 @@
           <div><img src="../../../../assets/images/job_profile_blue.png"></div>
           <div class="desTitle"> Job Title /
             Position</div>
-          <div> {{jobDetails.jobTitle}}</div>
+          <div  style="overflow: hidden;white-space: normal;text-overflow: ellipsis;max-width: 210px;text-align: center;"> {{jobDetails.jobTitle}}</div>
         </div>
         <div style="margin: 10px 0px 0px 0px; display: flex; flex-direction: column; align-items: center;">
           <div><img src="../../../../assets/images/Degree_rope_blue.png" />
@@ -159,13 +159,13 @@
           </div>
         </div>
 
-        <div style=" display: flex; flex-direction: column; align-items: center;">
-          <div class="desTitle"><img src="../../../../assets/images/CTC_blue.png" />
-          </div>
+        <div style="display: flex; flex-direction: column; align-items: center;">
+          <div class="desTitle"><img src="../../../../assets/images/CTC_blue.png" /></div>
           <!-- <div class="desTitle">CTC</div> -->
           <div class="desTitle">{{ jobDetails.workType === 'Internships' ? 'Stipend' : 'CTC' }}</div>
-          <div> {{jobDetails.ctc}} </div>
+          <div>{{ jobDetails.ctc !== null && jobDetails.ctc !== undefined ? jobDetails.ctc : 'NA' }}</div>
         </div>
+
 
         <!-- <div style="display: flex; flex-direction: column; align-items: center;">
           <div class="desTitle"><img src="../../../../assets/images/Edu_cap_blue.png" />
