@@ -67,7 +67,8 @@
     <form [formGroup]="jobForm" (ngSubmit)="onSubmit()">
       <div class="form-group" *ngIf="roleCode === 'SADM'">
         <label for="company">Company Name<span class="mandatory_symbl">*</span></label>
-        <select id="company" formControlName="company" class="form-control" [(ngModel)]="selectedCompany">
+        <select id="company" formControlName="company" class="form-control" [(ngModel)]="selectedCompany"
+          (change)="onCompanyChange()">
           <option value="" disabled selected hidden style="color: #6c757d!important;opacity: .75;">Select Company Name
           </option>
           <option *ngFor="let company of companyOptions" [value]="company.companyId">{{ company.company }}</option>
@@ -76,6 +77,14 @@
           Company Name is Required.
         </div>
       </div>
+
+      <!-- <div class="inputContainer" style="padding: 0px 0px 15px 0px;">
+        <label>Company Name<span>*</span></label>
+        <nz-select style="width: 98%;" nzAllowClear nzShowSearch [(ngModel)]="selectedCompany"
+          nzPlaceHolder="-- Select Company Name --" formControlName="company" class="">
+          <nz-option *ngFor="let company of companyOptions" [nzLabel]="company.company" [nzValue]="company"></nz-option>
+        </nz-select>
+      </div> -->
 
       <div class="form-group">
         <label for="jobRole">Job Role<span class="mandatory_symbl">*</span></label>
@@ -184,8 +193,8 @@
                 class="text-danger">
                 CTC required.
               </div>
-
             </div>
+
             <div *ngIf="selectedRangeOption === 'range'" style="width:-webkit-fill-available;">
               <div class="flex_div flx_evenly flx_center">
                 <div><input style="height: 32px;" type="number" id="numberInput" formControlName="startrange"

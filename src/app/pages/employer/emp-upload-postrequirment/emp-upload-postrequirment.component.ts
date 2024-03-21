@@ -248,6 +248,8 @@ export class EmpUploadPostrequirmentComponent implements OnInit {
   roles: any;
   orgdetails: any;
   roleCode: any;
+  username:any;
+
 
   constructor(
     private apiService: ApiService,
@@ -259,12 +261,15 @@ export class EmpUploadPostrequirmentComponent implements OnInit {
   ) {this.selectedOption = 'Jobs';}
 
   ngOnInit(): void {
-    this.companyDetails();
+    if (this.roleCode !== 'SADM') {
+      this.companyDetails();
+    }
     this.getallEducation();
     this.getallCourses();
     this.getalldegree();
     this.skilllist();
     this.companylist();
+    this.onCompanyChange();
     this.cityLocation();
     //this.locations = ['Chennai', 'Bangalore', 'Mumbai'];
     this.yearofPassout = [];
@@ -298,7 +303,6 @@ export class EmpUploadPostrequirmentComponent implements OnInit {
     this.orgdetails = JSON.parse(this.roles);
     this.roleCode = this.orgdetails && this.orgdetails[0].roles && this.orgdetails[0].roles[0].roleCode;
   }
-
 
   companyDetails() {
     // Retrieve the company details from localstorage
@@ -837,7 +841,7 @@ export class EmpUploadPostrequirmentComponent implements OnInit {
       }
     );
   }
-    formatCompany(selectedCompany: any): void {
+  formatCompany(selectedCompany: any): void {
     if (selectedCompany) {
       const payload = {
         "company": selectedCompany.company,
@@ -846,6 +850,31 @@ export class EmpUploadPostrequirmentComponent implements OnInit {
       console.log(payload);
     }
   }
+  onCompanyChange() {
+   if (this.selectedCompany) {
+      const obj = {
+        userId: this.apiService.encryptnew(localStorage.getItem('email'),
+        environment.cryptoEncryptionKey),
+        companyId: this.selectedCompany,
+
+      };
+      console.log('API Request Payload:', obj);
+      this.apiService.getEmployerDetails(obj).subscribe(
+        (result: any) => {
+        this.companyDetails = result.data;
+        this.username = result.data.firstName;
+        localStorage.setItem('companyId', result.data.userId);
+        localStorage.setItem('companyDetails', JSON.stringify(this.companyDetails));
+        console.log('API Response:', result);
+
+        },
+        (error) => {
+          console.error('Error fetching employer details:', error);
+        }
+      );
+    }
+  }
+
   onSubmit() {
     const areEducationGroupsValid = this.formGroups.every(formGroup => formGroup.valid);
     const isFixed = this.jobForm.value.fixed;
@@ -882,13 +911,12 @@ export class EmpUploadPostrequirmentComponent implements OnInit {
       inputDate.setHours(23, 59, 59);
       const ISTDateString = inputDate.toISOString();
 
-
       var obj = {
         "companyId": this.companyDataResult?.userId,
         "companyEmail": this.companyDataResult?.email,
-        // "about": this.companyDataResult?.about ? this.companyDataResult?.about : '',
         "companyLogo": this.companyDataResult?.companyImgURL,
         "company": this.companyDataResult?.company,
+        // "about": this.companyDataResult?.about ? this.companyDataResult?.about : '',
         "division": this.companyDataResult?.industryType,
         "jobFamily": this.companyDataResult?.industryType,
         "about": this.companyDataResult?.description,
@@ -925,12 +953,17 @@ export class EmpUploadPostrequirmentComponent implements OnInit {
         console.log(obj, 'object');
       }
 
-     if(this.roleCode === 'SADM'){
-        obj['company'] = this.companyDataResult?.company;
-        obj['companyId'] = this.companyDataResult?.userId;
-        obj['companyEmail'] = this.companyDataResult?.emai;
-        obj['companyLogo'] = this.companyDataResult?.companyImgURL;
-      }
+    //  if(this.roleCode === 'SADM'){
+    //     obj['company'] = this.companyDataResult?.company;
+    //     obj['companyId'] = this.companyDataResult?.companyId;
+    //     obj['companyEmail'] = this.companyDataResult?.email;
+    //     obj['companyLogo'] = this.companyDataResult?.companyImgURL;
+
+    //   //  obj['company'] = this.jobForm.value?.company.company;
+    //   //  obj['companyId'] = this.jobForm.value?.company.companyId;
+    //   //  obj['companyEmail'] = this.jobForm.value?.email;
+    //   //  obj['companyLogo'] = this.jobForm.value?.companyImgURL;
+    //   }
 
       this.apiService.UploadPostJob(obj).subscribe((data: any) => {
         // console.log(data)
@@ -968,7 +1001,6 @@ export class EmpUploadPostrequirmentComponent implements OnInit {
       this.toastr.warning('Please fill in all required fields.', 'Form Validation Error');
     }
   }
-
 
   jobSaved() {
     this.dialog.closeAll();
