@@ -249,6 +249,7 @@ export class EmpUploadPostrequirmentComponent implements OnInit {
   orgdetails: any;
   roleCode: any;
   username:any;
+  companyinfoDetails: any;
 
 
   constructor(
@@ -261,15 +262,13 @@ export class EmpUploadPostrequirmentComponent implements OnInit {
   ) {this.selectedOption = 'Jobs';}
 
   ngOnInit(): void {
-    if (this.roleCode !== 'SADM') {
-      this.companyDetails();
-    }
+
     this.getallEducation();
     this.getallCourses();
     this.getalldegree();
     this.skilllist();
     this.companylist();
-    this.onCompanyChange();
+    // this.onCompanyChange();
     this.cityLocation();
     //this.locations = ['Chennai', 'Bangalore', 'Mumbai'];
     this.yearofPassout = [];
@@ -302,6 +301,10 @@ export class EmpUploadPostrequirmentComponent implements OnInit {
     this.roles = this.appconfig.getLocalStorage('role') ? this.appconfig.getLocalStorage('role') : '';
     this.orgdetails = JSON.parse(this.roles);
     this.roleCode = this.orgdetails && this.orgdetails[0].roles && this.orgdetails[0].roles[0].roleCode;
+
+  if (this.roleCode !== 'SADM') {
+      this.companyDetails();
+    }
   }
 
   companyDetails() {
@@ -848,7 +851,7 @@ export class EmpUploadPostrequirmentComponent implements OnInit {
    if (this.selectedCompany) {
       const obj = {
         userId: this.apiService.encryptnew(this.selectedCompany,environment.cryptoEncryptionKey),
-        companyId: this.selectedCompany,
+        // companyId: this.selectedCompany,
 
         // userId: this.apiService.encryptnew(localStorage.getItem('email'),
         // environment.cryptoEncryptionKey),
@@ -862,12 +865,9 @@ export class EmpUploadPostrequirmentComponent implements OnInit {
       console.log('API Request Payload:', obj);
       this.apiService.getEmployerDetails(obj).subscribe(
         (result: any) => {
-        // this.companyDetails = result.data;
-        // this.username = result.data.firstName;
-        // localStorage.setItem('companyId', result.data.userId);
-        // localStorage.setItem('companyDetails', JSON.stringify(this.companyDetails));
-        console.log('API Response:', result);
+        this.companyDataResult = result.data;
 
+        console.log('API Response:', result);
         },
         (error) => {
           console.error('Error fetching employer details:', error);
