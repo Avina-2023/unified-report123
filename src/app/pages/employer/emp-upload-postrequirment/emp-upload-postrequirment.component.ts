@@ -464,12 +464,6 @@ export class EmpUploadPostrequirmentComponent implements OnInit {
   }
 
 
-
-
-
-
-
-
   getallEducation() {
     this.apiService.getallEducations().subscribe((data: any) => {
       this.educations = data[0];
@@ -853,18 +847,25 @@ export class EmpUploadPostrequirmentComponent implements OnInit {
   onCompanyChange() {
    if (this.selectedCompany) {
       const obj = {
-        userId: this.apiService.encryptnew(localStorage.getItem('email'),
-        environment.cryptoEncryptionKey),
+        userId: this.apiService.encryptnew(this.selectedCompany,environment.cryptoEncryptionKey),
         companyId: this.selectedCompany,
 
+        // userId: this.apiService.encryptnew(localStorage.getItem('email'),
+        // environment.cryptoEncryptionKey),
+        // companyId: this.selectedCompany,
+
+        // "companyId": this.companyDataResult?.userId,
+        // "companyEmail": this.companyDataResult?.email,
+        // "companyLogo": this.companyDataResult?.companyImgURL,
+        // "company": this.companyDataResult?.company,
       };
       console.log('API Request Payload:', obj);
       this.apiService.getEmployerDetails(obj).subscribe(
         (result: any) => {
-        this.companyDetails = result.data;
-        this.username = result.data.firstName;
-        localStorage.setItem('companyId', result.data.userId);
-        localStorage.setItem('companyDetails', JSON.stringify(this.companyDetails));
+        // this.companyDetails = result.data;
+        // this.username = result.data.firstName;
+        // localStorage.setItem('companyId', result.data.userId);
+        // localStorage.setItem('companyDetails', JSON.stringify(this.companyDetails));
         console.log('API Response:', result);
 
         },

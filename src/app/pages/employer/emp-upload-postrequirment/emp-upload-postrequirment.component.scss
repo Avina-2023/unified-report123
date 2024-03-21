@@ -354,8 +354,6 @@ nz-select {
 }
 
 
-
-
 /* Style for the fieldset */
 .education-fieldset {
   border: 1px solid #ccc;
@@ -393,8 +391,9 @@ nz-select {
 nz-select.ng-touched.ng-invalid {
   border: 1px solid red;
 }
-::ng-deep mat-form-field.ng-touched.ng-invalid .mat-form-field-flex{
-  border: 1px solid red!important;
+
+::ng-deep mat-form-field.ng-touched.ng-invalid .mat-form-field-flex {
+  border: 1px solid red !important;
 }
 
 
@@ -407,7 +406,7 @@ input.ng-touched.ng-invalid {
 }
 
 input::placeholder {
-  color: #bfbfc3!important;
+  color: #bfbfc3 !important;
 }
 
 .lastDatetoApply {
@@ -415,17 +414,17 @@ input::placeholder {
 }
 
 ::ng-deep .angular-editor-textarea ul li {
-  list-style-type: disc!important;
+  list-style-type: disc !important;
 }
 
-::ng-deep .angular-editor-textarea{
-padding: 5px 20px!important;
+::ng-deep .angular-editor-textarea {
+  padding: 5px 20px !important;
 }
 
-.form-group{
-::ng-deep .mat-form-field.mat-form-field-invalid .mat-form-field-label {
-  color: #9da3a8!important;
-}
+.form-group {
+  ::ng-deep .mat-form-field.mat-form-field-invalid .mat-form-field-label {
+    color: #9da3a8 !important;
+  }
 }
 
 
@@ -436,5 +435,3 @@ padding: 5px 20px!important;
 ::ng-deep .ng-touched.ng-valid .angular-editor-textarea {
   border: 1px solid #ced4da !important;
 }
-
-
