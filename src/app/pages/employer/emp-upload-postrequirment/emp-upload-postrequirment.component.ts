@@ -851,16 +851,7 @@ export class EmpUploadPostrequirmentComponent implements OnInit {
    if (this.selectedCompany) {
       const obj = {
         userId: this.apiService.encryptnew(this.selectedCompany,environment.cryptoEncryptionKey),
-        // companyId: this.selectedCompany,
 
-        // userId: this.apiService.encryptnew(localStorage.getItem('email'),
-        // environment.cryptoEncryptionKey),
-        // companyId: this.selectedCompany,
-
-        // "companyId": this.companyDataResult?.userId,
-        // "companyEmail": this.companyDataResult?.email,
-        // "companyLogo": this.companyDataResult?.companyImgURL,
-        // "company": this.companyDataResult?.company,
       };
       console.log('API Request Payload:', obj);
       this.apiService.getEmployerDetails(obj).subscribe(
@@ -953,18 +944,6 @@ export class EmpUploadPostrequirmentComponent implements OnInit {
         obj['ctc'] = this.jobForm.value?.stipend;
         console.log(obj, 'object');
       }
-
-    //  if(this.roleCode === 'SADM'){
-    //     obj['company'] = this.companyDataResult?.company;
-    //     obj['companyId'] = this.companyDataResult?.companyId;
-    //     obj['companyEmail'] = this.companyDataResult?.email;
-    //     obj['companyLogo'] = this.companyDataResult?.companyImgURL;
-
-    //   //  obj['company'] = this.jobForm.value?.company.company;
-    //   //  obj['companyId'] = this.jobForm.value?.company.companyId;
-    //   //  obj['companyEmail'] = this.jobForm.value?.email;
-    //   //  obj['companyLogo'] = this.jobForm.value?.companyImgURL;
-    //   }
 
       this.apiService.UploadPostJob(obj).subscribe((data: any) => {
         // console.log(data)
