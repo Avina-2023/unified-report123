@@ -150,7 +150,6 @@ export class AddJobsComponent implements OnInit {
   maxDate: Date;
   companyArray: any[];
   companyArr: any[];
-  newcompany: { company: string; compmayid: string; };
   compObj: { company_name: string; company_logo: string; };
 
     constructor
@@ -159,7 +158,7 @@ export class AddJobsComponent implements OnInit {
     private ApiService: ApiService,
     private appconfig: AppConfigService,
     private toastr: ToastrService,
-    private dialog: MatDialog) {
+    private dialog: MatDialog,) {
 
     const currentYear = new Date().getFullYear();
     const yearsToDisplay = 10;
@@ -233,8 +232,7 @@ export class AddJobsComponent implements OnInit {
       }
     });
   }
-
-  companylist() {
+companylist() {
     const data: any = {};
     this.apiService.masterCompany().subscribe(
       (res: any) => {
@@ -252,28 +250,50 @@ export class AddJobsComponent implements OnInit {
       },
       (error) => {
         console.error('API request error:', error);
-      }
-    );
+         }
+  );
   }
 
-  // addNewCompany() {
-  //   this.newcompany = {
-  //     'company': 'new',
-  //     'compmayid' : 'id'
-  //   };
-  //   this.companyArr.push(this.newcompany);
-  //   console.log(this.companyArr, 'updatedarray');
-  // }
+  // need this code for add company
+// companylist() {
+//   this.apiService.getopenCompany().subscribe(
+//     (res: any) => {
+//       console.log(res);
+//       if (res.success) {
+//         this.companyOptions = res.data.map(item => ({
+//           companyName: item.companyName,
+//           ocId: item.ocId
+//         }));
+//         console.log(this.companyOptions, 'compoptions');
+//       }
+//     },
+//     (error) => {
+//       console.error('API request error:', error);
+//     }
+//   );
+// }
 
-  formatCompany(selectedCompany: any): void {
-    if (selectedCompany) {
-      const payload = {
-        "company": selectedCompany.company,
-        "companyId": selectedCompany.companyId
-      };
-      console.log(payload);
-    }
+
+    formatCompany(selectedCompany: any): void {
+  if (selectedCompany) {
+    const payload = {
+     "company": selectedCompany.company,
+     "companyId": selectedCompany.companyId
+    };
+    console.log(payload);
   }
+}
+  // need this code for add company
+// formatCompany(selectedCompany: any): void {
+//   if (selectedCompany) {
+//     const payload = {
+//       companyName: selectedCompany.companyName,
+//       ocId: selectedCompany.ocId
+//     };
+//     console.log(payload);
+//   }
+// }
+
 
   formerrorInitialize() {
     //const emailregex: RegExp =
@@ -285,7 +305,6 @@ export class AddJobsComponent implements OnInit {
       startrange: [''],
       endrange: [''],
       company: ['', [Validators.required]],
-      // companyNameupload: ['', [Validators.required]],
       jobRole: ['', [Validators.required]],
       jobLocation: [[], [Validators.required]],
       // jobLocation: ['', [Validators.required]],
@@ -329,9 +348,6 @@ export class AddJobsComponent implements OnInit {
   get jobRole() {
     return this.addjobsForm.get('jobRole');
   }
-  // get companyNameupload() {
-  //   return this.addjobsForm.get('companyNameupload');
-  // }
   get jobTitle() {
     return this.addjobsForm.get('jobTitle');
   }
@@ -855,7 +871,6 @@ export class AddJobsComponent implements OnInit {
       var obj = {
         "companyId": this.addjobsForm.value?.company.companyId,
         "company": this.addjobsForm.value?.company.company,
-        // "companyNameupload": this.addjobsForm.value?.companyNameupload,
         "jobRole": this.addjobsForm.value?.jobRole,
         "jobTitle": this.addjobsForm.value?.jobTitle,
         "jobLocation": this.addjobsForm.value?.jobLocation,
@@ -872,6 +887,7 @@ export class AddJobsComponent implements OnInit {
         "partnerLabel": "",
         "address": "",
         "companyLogo": "https://example.com/path/to/your/logo.png",
+        // "logoURL": "https://microcertstg.blob.core.windows.net/container1/employerDetails/8969478198619409-spr_logo.jpg",
         "isActive": true,
         "jobCategoryId": "64cc8cbd112e2bb777bc92fb",
         // "postedDate": formatDate(new Date(), 'dd-MM-yyyy', 'en-IN', 'IST'),
@@ -908,25 +924,16 @@ export class AddJobsComponent implements OnInit {
         this.toastr.warning('Please fill in all required fields.', 'Form Validation Error');
       }
   }
-  //  onFormTouched() {
-  //   if (!this.formTouched) {
-  //     this.formTouched = true;
-  //   }
-  // }
-
 
 
   clearForm() {
     if (this.addjobsForm.dirty) {
-    // Display a success message for form cleared
     this.toastr.success('Form cleared successfully.');
     }
     else if (!this.formTouched) {
-    // Display a warning message if the form hasn't been touched
     this.toastr.warning('Please interact with the form before clearing.');
     return;
     }
-   // Reset the form
    this.addjobsForm.reset();
   }
 
@@ -944,16 +951,34 @@ export class AddJobsComponent implements OnInit {
       hasBackdrop: true,
     });
   }
-  saveTemplate(companyName: string) {
-   //console.log("Company Name:", companyName);
-    this.compObj = {
-     "company_name": companyName,
-     "company_logo" : 'companyLogo'
-   }
 
-   console.log(this.compObj, 'compobj');
+  saveTemplate(companyName: string) {
+    if (!companyName || !this.employerLogoFileName) {
+      console.log("Company name or logo is missing. Cannot save.");
+      return;
+    }
+
+    const companyData = {
+      companyName: companyName,
+      logoURL: this.employerLogoFileName // Assuming employerLogoFileName contains the logo URL
+    };
+
+    this.apiService.addCompany(companyData).subscribe(
+      (response: any) => {
+        console.log("Company added successfully:", response);
+        this.toastr.success('Company added successfully');
+      },
+      (error: any) => {
+        console.error("Error adding company:", error);
+        this.toastr.error('Error adding company');
+      }
+    );
+    //no companylogo will display when reenter add company after saving old
+    this.employerLogoFileName = null;
     this.dialog.closeAll();
   }
+
+
 
   closeTemplate(): void {
     this.dialog.closeAll();

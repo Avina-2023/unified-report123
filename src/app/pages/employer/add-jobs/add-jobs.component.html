@@ -10,38 +10,15 @@
           <div class="primarysingleWrap">
             <div class="singleWrap">
               <form [formGroup]="addjobsForm">
-                <!-- mat select  -->
-                <!-- <div class="inputContainer">
+                <div class="inputContainer" style="padding: 0px 0px 15px 0px;">
                   <label>Company Name<span>*</span></label>
-                  <mat-form-field appearance="outline">
-                    <mat-select formControlName="company" placeholder="Select Company Name"
-                      [(ngModel)]="selectedCompany" matInput>
-                      <mat-option *ngFor="let company of companyOptions" [value]="company">
-                        {{ company.company }}
-                      </mat-option>
-                    </mat-select>
-                    <mat-error *ngIf="addjobsForm.get('company')?.hasError('required')">
-                      Company name is Required
-                    </mat-error>
-                  </mat-form-field>
-                </div> -->
-                <!--  -->
-                <!-- nz zorro -->
-                <div style="display: flex; width: 103%;">
-                  <div class="inputContainer" style="padding: 0px 0px 15px 0px;width: 90%;">
-                    <label>Company Name<span>*</span></label>
-                    <nz-select style="width: 98%;" nzAllowClear nzShowSearch [(ngModel)]="selectedCompany"
-                      nzPlaceHolder="-- Select Company Name --" formControlName="company" class="">
-                      <nz-option *ngFor="let company of companyOptions" [nzLabel]="company.company"
-                        [nzValue]="company"></nz-option>
-                    </nz-select>
-                    <div *ngIf="addjobsForm.get('company').hasError('required') && addjobsForm.get('company').touched"
-                      class="text-danger">
-                      Company Name is required.
-                    </div>
-                  </div>
-                  <div class="logo_div"> <span class="cmpnt_btn" (click)="openDialog()">
-                      Add Company</span></div>
+                  <nz-select style="width: 98%;" nzAllowClear nzShowSearch [(ngModel)]="selectedCompany"
+                    nzPlaceHolder="-- Select Company Name --" formControlName="company" class="">
+                    <nz-option *ngFor="let company of companyOptions" [nzLabel]="company.company" [nzValue]="company"></nz-option>
+                  </nz-select>
+                </div>
+                <div *ngIf="addjobsForm.get('company').hasError('required') && addjobsForm.get('company').touched" class="text-danger">
+                  Company Name is required.
                 </div>
                 <!--  -->
                 <div class="primaryWrap">
@@ -360,43 +337,43 @@
       </div>
     </ng-template>
 
-    <ng-template #cmpnylogosaved>
-      <h2>Add Company</h2>
-      <hr>
-      <div class="cmpny_logo_upload">
-        <div class="templateContainer">
-          <label class="cmpny_title"> Company Name<span style="color: #EF2917;"> *</span></label>
-          <div class="input_box">
-            <input width="100%" formControlName="companyName" matInput placeholder="Enter Company Name here"
-              #companyNameInput>
-          </div>
-        </div>
-        <label class="cmpny_title"> Company Logo<span style="color: #EF2917;"> *</span></label>
-        <div class="cmpny_logo_section">
-          <div>
-            <img *ngIf="!employerLogoFileName" class="cloudicon" src="/assets/images/partner/cloud-upload-blu.svg"
-              alt="">
-            <img *ngIf="employerLogoFileName" class="cloudicon" [src]="displayImageUrl" height="40" width="70">
-            <div *ngIf="employerLogoFileName">{{employerLogoFileName}}</div>
-            <button class="close-icon" *ngIf="employerLogoFileName" mat-icon-button (click)="removeUploadedLogo()">
-              <mat-icon matTooltip="Remove Company logo" style="color: #EF2917;">cancel</mat-icon>
-            </button>
-            <div>
-              <input style="display: none;" type="file" accept="image/jpeg, image/png" class="file-input"
-                (change)="onEmployerLogoFileSelected($event)" (click)="$event.target.value=null" #fileUpload><button
-                class="slt_logo" (click)="fileUpload.click()">Browse</button>
-            </div>
-            <p class="frmt_logo">Photo must be in .jpeg .jpg or .png format</p>
-          </div>
-        </div>
-        <div class="cmpny_save">
-          <button class="save_logo" [disabled]="!companyNameInput.value || !employerLogoFileName"
-            [ngStyle]="{ 'cursor': (!companyNameInput.value || !employerLogoFileName) ? 'not-allowed' : 'pointer' }"
-            (click)="saveTemplate(companyNameInput.value)">Save</button>
-          <span class="button-space"></span>
-          <button class="cancel_logo" (click)="closeTemplate()">Cancel</button>
-        </div>
+<ng-template #cmpnylogosaved>
+  <h2>Add Company</h2>
+  <hr>
+  <div class="cmpny_logo_upload">
+    <div class="templateContainer">
+      <label class="cmpny_title"> Company Name<span style="color: #EF2917;"> *</span></label>
+      <div class="input_box">
+        <input width="100%" formControlName="companyName" matInput placeholder="Enter Company Name here"
+          #companyNameInput>
       </div>
-    </ng-template>
+    </div>
+    <label class="cmpny_title"> Company Logo<span style="color: #EF2917;"> *</span></label>
+    <div class="cmpny_logo_section">
+      <div>
+        <img *ngIf="!employerLogoFileName" class="cloudicon" src="/assets/images/partner/cloud-upload-blu.svg" alt="">
+        <img *ngIf="employerLogoFileName" class="cloudicon" [src]="displayImageUrl" height="40" width="70">
+        <div *ngIf="employerLogoFileName">{{employerLogoFileName}}</div>
+        <button class="close-icon" *ngIf="employerLogoFileName" mat-icon-button (click)="removeUploadedLogo()">
+          <mat-icon matTooltip="Remove Company logo" style="color: #EF2917;">cancel</mat-icon>
+        </button>
+        <div>
+          <input style="display: none;" type="file" accept="image/jpeg, image/png" class="file-input"
+            (change)="onEmployerLogoFileSelected($event)" (click)="$event.target.value=null" #fileUpload><button
+            class="slt_logo" (click)="fileUpload.click()">Browse</button>
+        </div>
+        <p class="frmt_logo">Photo must be in .jpeg .jpg or .png format</p>
+      </div>
+    </div>
+    <div class="cmpny_save">
+      <button class="save_logo" [disabled]="!companyNameInput.value || !employerLogoFileName"
+        [ngStyle]="{ 'cursor': (!companyNameInput.value || !employerLogoFileName) ? 'not-allowed' : 'pointer' }"
+        (click)="saveTemplate(companyNameInput.value)">Save</button>
+      <span class="button-space"></span>
+      <button class="cancel_logo" (click)="closeTemplate()">Cancel</button>
+    </div>
+  </div>
+</ng-template>
+
   </div>
 </div>

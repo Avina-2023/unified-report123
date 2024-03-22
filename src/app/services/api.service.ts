@@ -33,7 +33,7 @@ export class ApiService {
     this.appConfig.clearSessionStorage();
     // return this.appConfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.HOME);
     // window.location.href = "https://reviewinfo.lntedutech.com/login/";  \
-    window.location.href = "https://reviewinfo.lntedutech.com/wp-json/skillexchange/logout";  
+    window.location.href = "https://reviewinfo.lntedutech.com/wp-json/skillexchange/logout";
   }
 
   login(data: any) {
@@ -260,6 +260,15 @@ export class ApiService {
     });
   }
 
+  getopenCompany() {
+    return this.http.get(`${this.BASE_URL}/getOpenCompanyList`, {
+    });
+  }
+
+  addCompany(data) {
+    return this.http.post(`${this.BASE_URL}/addOpenCompany`, data);
+  }
+
   skillMasterValidate(data) {
     return this.http.post(`${this.BASE_URL}/skillValidate`, data);
   }
@@ -362,7 +371,7 @@ export class ApiService {
   getNewsArticle(){
     return this.http.get(`${this.CORPORATE_URL}/wp-json/news/posts`);
   }
-  
+
 
   // JobFilter API
   jobfilterDashboard(data) {
