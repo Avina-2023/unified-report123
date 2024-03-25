@@ -232,67 +232,67 @@ export class AddJobsComponent implements OnInit {
       }
     });
   }
-companylist() {
-    const data: any = {};
-    this.apiService.masterCompany().subscribe(
-      (res: any) => {
-        console.log(res);
-        if (res.success) {
-          this.companyOptions = res.data.map(item => ({
-            company: item.company,
-            companyId: item.companyId
-          }));
-        //   this.companyArr = [];
-        //   this.companyArr.push(this.companyOptions);
-        //   console.log(this.companyArr, 'COMARRRRRRRRR');
-          console.log(this.companyOptions, 'compoptions');
-        }
-      },
-      (error) => {
-        console.error('API request error:', error);
-         }
-  );
-  }
-
-  // need this code for add company
 // companylist() {
-//   this.apiService.getopenCompany().subscribe(
-//     (res: any) => {
-//       console.log(res);
-//       if (res.success) {
-//         this.companyOptions = res.data.map(item => ({
-//           companyName: item.companyName,
-//           ocId: item.ocId
-//         }));
-//         console.log(this.companyOptions, 'compoptions');
-//       }
-//     },
-//     (error) => {
-//       console.error('API request error:', error);
-//     }
+//     const data: any = {};
+//     this.apiService.masterCompany().subscribe(
+//       (res: any) => {
+//         console.log(res);
+//         if (res.success) {
+//           this.companyOptions = res.data.map(item => ({
+//             company: item.company,
+//             companyId: item.companyId
+//           }));
+//         //   this.companyArr = [];
+//         //   this.companyArr.push(this.companyOptions);
+//         //   console.log(this.companyArr, 'COMARRRRRRRRR');
+//           console.log(this.companyOptions, 'compoptions');
+//         }
+//       },
+//       (error) => {
+//         console.error('API request error:', error);
+//          }
 //   );
-// }
+//   }
 
-
-    formatCompany(selectedCompany: any): void {
-  if (selectedCompany) {
-    const payload = {
-     "company": selectedCompany.company,
-     "companyId": selectedCompany.companyId
-    };
-    console.log(payload);
-  }
-}
   // need this code for add company
-// formatCompany(selectedCompany: any): void {
+companylist() {
+  this.apiService.getopenCompany().subscribe(
+    (res: any) => {
+      console.log(res);
+      if (res.success) {
+        this.companyOptions = res.data.map(item => ({
+          companyName: item.companyName,
+          ocId: item.ocId
+        }));
+        console.log(this.companyOptions, 'compoptions');
+      }
+    },
+    (error) => {
+      console.error('API request error:', error);
+    }
+  );
+}
+
+
+//     formatCompany(selectedCompany: any): void {
 //   if (selectedCompany) {
 //     const payload = {
-//       companyName: selectedCompany.companyName,
-//       ocId: selectedCompany.ocId
+//      "company": selectedCompany.company,
+//      "companyId": selectedCompany.companyId
 //     };
 //     console.log(payload);
 //   }
 // }
+  // need this code for add company
+formatCompany(selectedCompany: any): void {
+  if (selectedCompany) {
+    const payload = {
+      companyName: selectedCompany.companyName,
+      ocId: selectedCompany.ocId
+    };
+    console.log(payload);
+  }
+}
 
 
   formerrorInitialize() {
@@ -385,29 +385,6 @@ companylist() {
     return this.addjobsForm.get('requirement');
   }
 
-  // onEmployerLogoFileSelected(event) {
-  //   this.errorMsgforCmpnyLogo = '';
-  //   this.employerCmpnyLogoFile = event.target.files[0];
-  //    const fd = new FormData();
-  //     fd.append("uploadFile",event.target.files[0]);
-  //     fd.append("type", "profile");
-  // this.ApiService.imageUpload(fd).subscribe((imageData: any) => {
-  //       if (imageData.success == false) {
-  //         this.toastr.warning(imageData.message);
-  //       } else {
-  //         this.employerLogo = event.target.files[0].name;
-  //         if (imageData.data && this.productionUrl == true) {
-  //           this.displayImageUrl = imageData.data + environment.blobToken
-  //         } else if (imageData.data && this.productionUrl == false) {
-  //           this.displayImageUrl = imageData.data
-  //         }
-  //         this.employerLogoUrl = imageData.data;
-  //       }
-  //     }, (err) => {
-  //       this.toastr.warning('Connection failed, Please try again.');
-  //     });
-
-  //   }
 
   addEducationGroup(): void {
     const lastGroupIndex = this.formGroups.length - 1;

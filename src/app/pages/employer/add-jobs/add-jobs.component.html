@@ -10,16 +10,24 @@
           <div class="primarysingleWrap">
             <div class="singleWrap">
               <form [formGroup]="addjobsForm">
-                <div class="inputContainer" style="padding: 0px 0px 15px 0px;">
-                  <label>Company Name<span>*</span></label>
-                  <nz-select style="width: 98%;" nzAllowClear nzShowSearch [(ngModel)]="selectedCompany"
-                    nzPlaceHolder="-- Select Company Name --" formControlName="company" class="">
-                    <nz-option *ngFor="let company of companyOptions" [nzLabel]="company.company" [nzValue]="company"></nz-option>
-                  </nz-select>
+                <div style="display: flex; width: 103%;">
+                  <div class="inputContainer" style="padding: 0px 0px 15px 0px;width: 90%;">
+                    <label>Company Name<span>*</span></label>
+                    <nz-select style="width: 98%;" nzAllowClear nzShowSearch [(ngModel)]="selectedCompany"
+                      nzPlaceHolder="-- Select Company Name --" formControlName="company" class="">
+                      <nz-option *ngFor="let company of companyOptions" [nzLabel]="company.companyName"
+                        [nzValue]="company.ocId"></nz-option>
+                    </nz-select>
+                    <div *ngIf="addjobsForm.get('company').hasError('required') && addjobsForm.get('company').touched"
+                      class="text-danger">
+                      Company Name is required.
+                    </div>
+                  </div>
+                  <div class="logo_div">
+                    <span class="cmpnt_btn" (click)="openDialog()">Add Company</span>
+                  </div>
                 </div>
-                <div *ngIf="addjobsForm.get('company').hasError('required') && addjobsForm.get('company').touched" class="text-danger">
-                  Company Name is required.
-                </div>
+
                 <!--  -->
                 <div class="primaryWrap">
                   <div class="leftWrap">
