@@ -65,6 +65,27 @@
   </div>
   <div *ngIf="selectedOption === 'Jobs' || selectedOption === 'Internships'" class="pd-top-20">
     <form [formGroup]="jobForm" (ngSubmit)="onSubmit()">
+      <div class="form-group" *ngIf="roleCode === 'SADM'">
+        <label for="company">Company Name<span class="mandatory_symbl">*</span></label>
+        <select id="company" formControlName="company" class="form-control" [(ngModel)]="selectedCompany"
+          (change)="onCompanyChange()">
+          <option value="" disabled selected hidden style="color: #6c757d!important;opacity: .75;">Select Company Name
+          </option>
+          <option *ngFor="let company of companyOptions" [value]="company.companyId">{{ company.company }}</option>
+        </select>
+        <div *ngIf="jobForm.get('company').hasError('required') && jobForm.get('company').touched" class="text-danger">
+          Company Name is Required.
+        </div>
+      </div>
+
+      <!-- <div class="inputContainer" style="padding: 0px 0px 15px 0px;">
+        <label>Company Name<span>*</span></label>
+        <nz-select style="width: 98%;" nzAllowClear nzShowSearch [(ngModel)]="selectedCompany"
+          nzPlaceHolder="-- Select Company Name --" formControlName="company" class="">
+          <nz-option *ngFor="let company of companyOptions" [nzLabel]="company.company" [nzValue]="company"></nz-option>
+        </nz-select>
+      </div> -->
+
       <div class="form-group">
         <label for="jobRole">Job Role<span class="mandatory_symbl">*</span></label>
         <input type="text" id="jobRole" formControlName="jobRole" class="form-control" placeholder="Enter Job Role">
@@ -85,8 +106,9 @@
           <label for="jobLocation">Job Location<span class="mandatory_symbl">*</span></label>
           <!-- <input type="text" id="jobLocation" formControlName="jobLocation" class="form-control"
             placeholder="Chennai, Bangalore"> -->
-          <nz-select nzShowSearch nzAllowClear nzMode="multiple" nzPlaceHolder=" --Select Job Location (Multiple Select)--"
-            [(ngModel)]="multipleLocation" formControlName="jobLocation" (input)="locationSearch($event)">
+          <nz-select nzShowSearch nzAllowClear nzMode="multiple"
+            nzPlaceHolder=" --Select Job Location (Multiple Select)--" [(ngModel)]="multipleLocation"
+            formControlName="jobLocation" (input)="locationSearch($event)">
             <nz-option *ngFor="let option of locations" [nzLabel]="option" [nzValue]="option"></nz-option>
           </nz-select>
           <div *ngIf="jobForm.get('jobLocation').hasError('required') && jobForm.get('jobLocation').touched"
@@ -97,7 +119,8 @@
 
         <div class="form-group width-50 mg-l-10">
           <label for="jobType">Job Type<span class="mandatory_symbl">*</span></label>
-          <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Select Job Type" [(ngModel)]="jobType" formControlName="jobType">
+          <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Select Job Type" [(ngModel)]="jobType"
+            formControlName="jobType">
             <nz-option nzLabel="Full Time" nzValue="Full Time"></nz-option>
             <nz-option nzLabel="Part Time" nzValue="Part Time"></nz-option>
           </nz-select>
@@ -124,8 +147,10 @@
           </div>
           <div class="mg-l-10 width-30">
             <nz-select [nzDisabled]="isdegreeDisabled(i)" nzShowSearch nzAllowClear nzPlaceHolder="Degree"
-              [formControl]="group.get('specification')" (ngModelChange)="onDegreeChange($event, i)" (click)="degreeOptionChange($event, i)">
-              <nz-option [nzDisabled]="isOptionDisabled(option, i)" *ngFor="let option of degreeOptions" [nzLabel]="option" [nzValue]="option"></nz-option>
+              [formControl]="group.get('specification')" (ngModelChange)="onDegreeChange($event, i)"
+              (click)="degreeOptionChange($event, i)">
+              <nz-option [nzDisabled]="isOptionDisabled(option, i)" *ngFor="let option of degreeOptions"
+                [nzLabel]="option" [nzValue]="option"></nz-option>
             </nz-select>
             <div *ngIf="group.get('specification').hasError('required') && group.get('specification').touched"
               class="text-danger">
@@ -168,20 +193,20 @@
                 class="text-danger">
                 CTC required.
               </div>
-
             </div>
+
             <div *ngIf="selectedRangeOption === 'range'" style="width:-webkit-fill-available;">
               <div class="flex_div flx_evenly flx_center">
-                <div><input style="height: 32px;" type="number" id="numberInput" formControlName="startrange" class="form-control"
-                    placeholder="CTC (Numeric)">
+                <div><input style="height: 32px;" type="number" id="numberInput" formControlName="startrange"
+                    class="form-control" placeholder="CTC (Numeric)">
                   <div *ngIf="jobForm.get('startrange').hasError('required') && jobForm.get('startrange').touched"
                     class="text-danger">
                     Start Range of CTC required.
                   </div>
                 </div>
                 <div>-</div>
-                <div><input style="height: 32px;" type="number" id="numberInput" formControlName="endrange" class="form-control"
-                    placeholder="CTC (Numeric)">
+                <div><input style="height: 32px;" type="number" id="numberInput" formControlName="endrange"
+                    class="form-control" placeholder="CTC (Numeric)">
                   <div *ngIf="jobForm.get('endrange').hasError('required') && jobForm.get('endrange').touched"
                     class="text-danger">
                     End Range of CTC required.
@@ -207,8 +232,8 @@
         <div class="form-group width-50 mg-l-10">
           <label for="yearofPassing">Year of Passing <span class="mandatory_symbl">*</span></label>
           <nz-select [(ngModel)]="yearofPassingValue" [nzSize]="large" nzMode="multiple"
-            nzPlaceHolder="--Select Year of Passing (Multiple Select)--" class="yearofPassing" formControlName="yearofPassout"
-            nzAllowClear>
+            nzPlaceHolder="--Select Year of Passing (Multiple Select)--" class="yearofPassing"
+            formControlName="yearofPassout" nzAllowClear>
             <nz-option *ngFor="let item of yearofPassout" [nzLabel]="item" [nzValue]="item"></nz-option>
           </nz-select>
           <div *ngIf="jobForm.get('yearofPassout').hasError('required') && jobForm.get('yearofPassout').touched"
@@ -220,7 +245,8 @@
       <div class="form-group">
         <label for="keySkills">Key Skills <span class="mandatory_symbl">*</span></label>
         <nz-select nzAllowClear [(ngModel)]="multipleValue" [nzSize]="default" nzMode="multiple"
-          nzPlaceHolder="--Select Skill Set (Multiple Select)--" class="keySkills" formControlName="skillSet" (input)="handleSearch($event)">
+          nzPlaceHolder="--Select Skill Set (Multiple Select)--" class="keySkills" formControlName="skillSet"
+          (input)="handleSearch($event)">
           <nz-option *ngFor="let option of listOfOption" [nzLabel]="option" [nzValue]="option"></nz-option>
         </nz-select>
         <div *ngIf="jobForm.get('skillSet').hasError('required') && jobForm.get('skillSet').touched"
@@ -231,8 +257,8 @@
 
       <div class="form-group">
         <label for="jobDescription">About the Job / Job Description<span class="mandatory_symbl">*</span></label>
-        <angular-editor placeholder="Enter Job Description" [(ngModel)]="htmlContent" [property]='binding' [config]="config" formControlName="description"
-          id="jobDescription"></angular-editor>
+        <angular-editor placeholder="Enter Job Description" [(ngModel)]="htmlContent" [property]='binding'
+          [config]="config" formControlName="description" id="jobDescription"></angular-editor>
         <div *ngIf="jobForm.get('description').hasError('required') && jobForm.get('description').touched"
           class="text-danger">
           Job Description is Required.
@@ -240,8 +266,8 @@
       </div>
       <div class="form-group">
         <label for="jobRequirements">Job Requirements</label>
-        <angular-editor placeholder="Enter Job Requirements" [(ngModel)]="htmlContent_1" [config]="config" formControlName="requirement"
-          id="jobRequirements"></angular-editor>
+        <angular-editor placeholder="Enter Job Requirements" [(ngModel)]="htmlContent_1" [config]="config"
+          formControlName="requirement" id="jobRequirements"></angular-editor>
         <div *ngIf="jobForm.get('requirement').hasError('required') && jobForm.get('requirement').touched"
           class="text-danger">
           Job Requirement is Required.
@@ -251,7 +277,7 @@
       <label for="lastDatetoApply">Last Date to Apply</label><span class="mandatory_symbl">*</span>
       <div class="form-group">
         <mat-form-field style="width: 50%;">
-          <input matInput  placeholder="MM/DD/YYYY" [matDatepicker]="picker" formControlName="lastDatetoApply"
+          <input matInput placeholder="MM/DD/YYYY" [matDatepicker]="picker" formControlName="lastDatetoApply"
             class="lastDatetoApply" [min]="getCurrentDate()" readonly>
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>

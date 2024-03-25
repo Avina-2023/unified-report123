@@ -93,7 +93,7 @@ export class JobListingComponent implements OnInit {
   // url = 'Jobs';
   ngOnInit() {
     // window.location.reload();
-this.sendData
+  this.sendData
       .getMessage()
       .subscribe((data: { data: string; value: any }) => {
         if (data) {

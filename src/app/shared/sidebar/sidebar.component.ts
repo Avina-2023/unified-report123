@@ -116,7 +116,7 @@ export class SidebarComponent implements OnInit {
       case '/auth/partner/viewopenjobs':
         this.check = 'viewOpenJobs';
         break;
-     
+
       default:
         this.check = 'empdashboard';
         break;
@@ -165,7 +165,7 @@ export class SidebarComponent implements OnInit {
       this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.EMPDASHBOARD.HOME);
     } else if (value == 'partnerlist') {
       this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.PARTNER.HOME);
-    } else if (value == 'overallreport') { 
+    } else if (value == 'overallreport') {
       this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.OVERALLREPORTS.HOME);
     }
   }
@@ -208,7 +208,7 @@ export class SidebarComponent implements OnInit {
   }
   uploadpostrequirement(value) {
     this.check = value;
-    this.appconfig.routeNavigation( APP_CONSTANTS.ENDPOINTS.PARTNER.UPLOADREQUIRMENT);
+    this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.PARTNER.UPLOADREQUIRMENT);
     console.log(this.check);
   }
   work(value) {
@@ -223,7 +223,7 @@ export class SidebarComponent implements OnInit {
     this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.EMPDASHBOARD.PROFILE);
   }
 
-  candidatesearch(value) { 
+  candidatesearch(value) {
     this.check = value;
     this.appconfig.routeNavigation(APP_CONSTANTS.ENDPOINTS.EMPDASHBOARD.CANDIDATESEARCH);
   }
