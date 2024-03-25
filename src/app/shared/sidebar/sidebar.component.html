@@ -145,7 +145,7 @@
           <em class="icon-graduation-gap "
             style="transform: rotateY(180deg);font-size: 18px;margin-left: -2px;margin-top: 0px"></em>
           <span class="headerfont" (click)="validateClick('managedrive')" mat-line
-            *ngIf="isExpanded && !isnotShowing">Drive</span>
+            *ngIf="isExpanded && !isnotShowing">Partner Jobs</span>
           <div class="arrow" *ngIf="isExpanded && !isnotShowing">
             <span *ngIf="!driveIconToggle" class="position-relative left2 headerfont">
               <mat-icon>arrow_drop_down</mat-icon>
@@ -162,10 +162,33 @@
           *ngIf='roleCode === "SADM" || roleCode === "OADM" || roleCode === "ADM" || roleCode === "HR" || roleCode === "ISADM" || roleCode === "IADM"'
           [routerLink]="['/manage-drive']" [routerLinkActive]="['is-active']">
           <div class="sidebar-admin pl-3">
-            <span class="headerfont" mat-line *ngIf="isExpanded && !isnotShowing">Manage Drive</span>
+            <span class="headerfont" mat-line *ngIf="isExpanded && !isnotShowing">Manage Partners</span>
           </div>
         </mat-list-item>
-      </ng-container>
+        </ng-container>
+
+        <!-- <ng-container *ngIf="driveIconToggle">
+          <mat-list-item [ngClass]="[check === 'managedrive' ? 'selected' : 'notSelected']" (click)="drive('managedrive')"
+            *ngIf='roleCode === "SADM" || roleCode === "OADM" || roleCode === "ADM" || roleCode === "HR" || roleCode === "ISADM" || roleCode === "IADM"'
+            [routerLink]="['/manage-drive']" [routerLinkActive]="['is-active']">
+            <div class="sidebar-admin pl-3">
+              <span class="headerfont" mat-line *ngIf="isExpanded && !isnotShowing">Add Drive</span>
+            </div>
+          </mat-list-item>
+        </ng-container> -->
+
+        <ng-container *ngIf="driveIconToggle">
+          <mat-list-item [ngClass]="[check === 'managedrive' ? 'selected' : 'notSelected']"
+            (click)="uploadpostrequirement()"
+            *ngIf='roleCode === "SADM" || roleCode === "OADM" || roleCode === "ADM" || roleCode === "HR" || roleCode === "ISADM"
+            || roleCode === "IADM"'
+            [routerLink]="['/manage-drive']" [routerLinkActive]="['is-active']">
+            <div class="sidebar-admin pl-3">
+              <span class="headerfont" mat-line *ngIf="isExpanded && !isnotShowing">Add Partners</span>
+            </div>
+          </mat-list-item>
+        </ng-container>
+
 
       <mat-list-item [ngClass]="['notSelected']"
         *ngIf='roleCode === "SADM" || roleCode === "OADM" || roleCode === "ADM" || roleCode === "HR" || roleCode === "ISADM" || roleCode === "IADM"'
