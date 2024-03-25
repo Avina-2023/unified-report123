@@ -94,9 +94,6 @@ export class EmpUploadPostrequirmentComponent implements OnInit {
   }
 }
 */
-
-
-
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
@@ -110,6 +107,7 @@ import { AppConfigService } from 'src/app/utils/app-config.service';
 import { APP_CONSTANTS } from 'src/app/utils/app-constants.service';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { log } from 'console';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -137,6 +135,8 @@ export class EmpUploadPostrequirmentComponent implements OnInit {
   multipleValue = [];
   yearofPassingValue = [];
   multipleSpecialization = [];
+  companyOptions: string[] = [];
+  selectedCompany: string[] = [];
   formTouched: boolean = false;
   //Rich Text Editor
   htmlContent = '';
@@ -244,6 +244,12 @@ export class EmpUploadPostrequirmentComponent implements OnInit {
   // Inside your component class
   disabledGraduations: string[] = [];
   disabledSpecifications: string[] = [];
+  showCompanySelect: boolean = false;
+  roles: any;
+  orgdetails: any;
+  roleCode: any;
+  username:any;
+  companyinfoDetails: any;
 
 
   constructor(
@@ -251,18 +257,18 @@ export class EmpUploadPostrequirmentComponent implements OnInit {
     private toastr: ToastrService,
     private fb: FormBuilder,
     private appconfig: AppConfigService,
-    private dialog: MatDialog
-  ) {
-    this.selectedOption = 'Jobs';
-  }
-
+    private dialog: MatDialog,
+    private route: ActivatedRoute
+  ) {this.selectedOption = 'Jobs';}
 
   ngOnInit(): void {
-    this.companyDetails();
+
     this.getallEducation();
     this.getallCourses();
     this.getalldegree();
     this.skilllist();
+    this.companylist();
+    // this.onCompanyChange();
     this.cityLocation();
     //this.locations = ['Chennai', 'Bangalore', 'Mumbai'];
     this.yearofPassout = [];
@@ -272,6 +278,8 @@ export class EmpUploadPostrequirmentComponent implements OnInit {
     }
     this.jobForm = this.fb.group({
       jobRole: ['', Validators.required],
+      // company: ['', Validators.required],
+      company: ['',this.roleCode ==='SADM'?Validators.required : null],
       jobTitle: ['', Validators.required],
       jobLocation: [this.multipleLocation, Validators.required],
       jobType: ['', Validators.required],
@@ -288,16 +296,22 @@ export class EmpUploadPostrequirmentComponent implements OnInit {
       yearofPassout: [this.yearofPassingValue, Validators.required],
       educationGroups: this.fb.array([this.createEducationGroup()])
     });
-    this.formGroups = this.jobForm.get('educationGroups')['controls'];  
-  }
+    this.formGroups = this.jobForm.get('educationGroups')['controls'];
 
+    this.roles = this.appconfig.getLocalStorage('role') ? this.appconfig.getLocalStorage('role') : '';
+    this.orgdetails = JSON.parse(this.roles);
+    this.roleCode = this.orgdetails && this.orgdetails[0].roles && this.orgdetails[0].roles[0].roleCode;
+
+  if (this.roleCode !== 'SADM') {
+      this.companyDetails();
+    }
+  }
 
   companyDetails() {
     // Retrieve the company details from localstorage
     this.companyData = localStorage.getItem('companyDetails');
     this.companyDataResult = JSON.parse(this.companyData);
     //console.log(this.companyDataResult, 'companydetails');
-
   }
 
   // validateCtc(control) {
@@ -307,8 +321,6 @@ export class EmpUploadPostrequirmentComponent implements OnInit {
   //   }
   //   return null;
   // }
-
-
 
   getCurrentDate(): string {
     const today = new Date();
@@ -421,7 +433,7 @@ export class EmpUploadPostrequirmentComponent implements OnInit {
       }
       return ugdegreeCount > 0;
     });
-    
+
     const hasPGLevelAndNonNullValues = this.formGroups.some((group, i) => {
       if (group.value.level === 'PG' && i !== currentIndex) {
         pgLevelCount++;
@@ -440,7 +452,7 @@ export class EmpUploadPostrequirmentComponent implements OnInit {
     //return this.disabledSpecifications?.includes(option);
     //return (option !== 'Any Degree' && this.disabledSpecifications?.includes(option)) || (option == "Any Degree" && hasUGLevelAndNonNullValues) || (option == "Any Degree" && hasPGLevelAndNonNullValues);
     return (option !== 'Any Degree' && this.disabledSpecifications?.includes(option)) || (option == "Any Degree" && hasUGLevelAndNonNullValues && currentGroupValue === 'UG') || (option == "Any Degree" && hasPGLevelAndNonNullValues && currentGroupValue === 'PG') || (option == "Any Degree" && hasPHDLevelAndNonNullValues && currentGroupValue === 'Phd') || (option !== "Any Degree" && hasUGLevelAndNonNullValues && hasUGDegreeAndNonNullValues && currentGroupValue === 'UG') || (option !== "Any Degree" && hasPGLevelAndNonNullValues && hasPGDegreeAndNonNullValues && currentGroupValue === 'PG') || (option !== "Any Degree" && hasPHDLevelAndNonNullValues && hasPHDDegreeAndNonNullValues && currentGroupValue === 'Phd');
-    
+
     /*if (option !== 'Any Degree' && this.disabledSpecifications?.includes(option)) {
       return true;
     } else if (option === 'Any Degree' && hasUGLevelAndNonNullValues && currentGroupValue === 'UG') {
@@ -453,12 +465,6 @@ export class EmpUploadPostrequirmentComponent implements OnInit {
       return false;
     }*/
   }
-
-
-
-
-
-
 
 
   getallEducation() {
@@ -814,6 +820,53 @@ export class EmpUploadPostrequirmentComponent implements OnInit {
     endrangeControl.updateValueAndValidity();
   }
 
+    companylist() {
+    const data: any = {};
+    this.apiService.masterCompany().subscribe(
+      (res: any) => {
+        console.log(res);
+        if (res.success) {
+          this.companyOptions = res.data.map(item => ({
+            company: item.company,
+            companyId: item.companyId
+          }));
+          console.log(this.companyOptions, '');
+        }
+      },
+      (error) => {
+        console.error('API request error:', error);
+      }
+    );
+  }
+  formatCompany(selectedCompany: any): void {
+    if (selectedCompany) {
+      const payload = {
+        "company": selectedCompany.company,
+        "companyId": selectedCompany.companyId
+      };
+      console.log(payload);
+    }
+  }
+  onCompanyChange() {
+   if (this.selectedCompany) {
+      const obj = {
+        userId: this.apiService.encryptnew(this.selectedCompany,environment.cryptoEncryptionKey),
+
+      };
+      console.log('API Request Payload:', obj);
+      this.apiService.getEmployerDetails(obj).subscribe(
+        (result: any) => {
+        this.companyDataResult = result.data;
+
+        console.log('API Response:', result);
+        },
+        (error) => {
+          console.error('Error fetching employer details:', error);
+        }
+      );
+    }
+  }
+
   onSubmit() {
     const areEducationGroupsValid = this.formGroups.every(formGroup => formGroup.valid);
     const isFixed = this.jobForm.value.fixed;
@@ -850,13 +903,12 @@ export class EmpUploadPostrequirmentComponent implements OnInit {
       inputDate.setHours(23, 59, 59);
       const ISTDateString = inputDate.toISOString();
 
-
       var obj = {
         "companyId": this.companyDataResult?.userId,
         "companyEmail": this.companyDataResult?.email,
-        // "about": this.companyDataResult?.about ? this.companyDataResult?.about : '',
         "companyLogo": this.companyDataResult?.companyImgURL,
         "company": this.companyDataResult?.company,
+        // "about": this.companyDataResult?.about ? this.companyDataResult?.about : '',
         "division": this.companyDataResult?.industryType,
         "jobFamily": this.companyDataResult?.industryType,
         "about": this.companyDataResult?.description,
@@ -892,8 +944,6 @@ export class EmpUploadPostrequirmentComponent implements OnInit {
         obj['ctc'] = this.jobForm.value?.stipend;
         console.log(obj, 'object');
       }
-
-
 
       this.apiService.UploadPostJob(obj).subscribe((data: any) => {
         // console.log(data)
@@ -931,7 +981,6 @@ export class EmpUploadPostrequirmentComponent implements OnInit {
       this.toastr.warning('Please fill in all required fields.', 'Form Validation Error');
     }
   }
-
 
   jobSaved() {
     this.dialog.closeAll();
